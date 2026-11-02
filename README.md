@@ -2,6 +2,10 @@
 
 Portfolio statico (HTML/CSS/JS, nessun build) che raccoglie i siti di studio di Ingegneria Elettronica. Italiano e inglese. Progetto personale e non ufficiale.
 
+## Pagine
+- `index.html`: elenco dei siti di studio. `chi-sono.html`: pagina personale (testi IT/EN in `assets/app.js`, chiavi `cs.*`; contatti in fondo alla pagina e nel footer).
+- `note-legali.html`, `privacy.html`, `404.html`: pagine legali (generate).
+
 ## Aggiungere o aggiornare un sito
 Modifica solo `data/projects.json`. Per una card con sito: `"status": "online"`, `"site"` (percorso dopo `https://valeriocolapinto1-cpu.github.io/`), `"repo"`, `"metrics"`. Senza questi campi la card resta "in arrivo".
 
