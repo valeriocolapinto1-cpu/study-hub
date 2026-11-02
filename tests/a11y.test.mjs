@@ -14,16 +14,16 @@ const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p);
 
 test('contrasto WCAG AA (≥ 4.5:1) per le coppie di testo, in tema scuro e chiaro', () => {
   for (const [name, t] of [['scuro', dark], ['chiaro', light]]) {
-    const pairs = [['fg', 'bg'], ['fg', 'bg-2'], ['fg', 'card'], ['fg-dim', 'bg'], ['fg-dim', 'bg-2'], ['fg-dim', 'card'], ['link', 'bg'], ['link', 'card'], ['accent', 'bg'], ['accent', 'card'], ['accent-fg', 'accent'],
-      ['ok', 'bg'], ['ok', 'card'], ['bad', 'bg'], ['bad', 'card'], ['warn', 'bg'], ['warn', 'card'], ['info', 'bg'], ['info', 'card']];
+    const pairs = [['text', 'bg'], ['text', 'surface'], ['text', 'surface-2'], ['text-muted', 'bg'], ['text-muted', 'surface'], ['text-muted', 'surface-2'], ['accent', 'bg'], ['accent', 'surface'], ['accent-contrast', 'accent'],
+      ['ok', 'bg'], ['ok', 'surface'], ['danger', 'bg'], ['danger', 'surface'], ['warn', 'bg'], ['warn', 'surface'], ['info', 'bg'], ['info', 'surface']];
     for (const [f, b] of pairs) assert.ok(ratio(t[f], t[b]) >= 4.5, `tema ${name}: ${f} su ${b} = ${ratio(t[f], t[b]).toFixed(2)}`);
   }
 });
 
-test('contrasto: anche il bordo di pulsanti/campi (--line) e l\'accento sono visibili (≥ 3:1) sul fondo', () => {
+test('contrasto: anche il bordo di pulsanti/campi (--border) e l\'accento sono visibili (≥ 3:1) sul fondo', () => {
   for (const [name, t] of [['scuro', dark], ['chiaro', light]]) {
     assert.ok(ratio(t.accent, t.bg) >= 3, name);
-    assert.ok(ratio(t.line, t.bg) >= 1.3, `${name}: bordo troppo debole`);
+    assert.ok(ratio(t.border, t.bg) >= 1.3, `${name}: bordo troppo debole`);
   }
 });
 

@@ -27,17 +27,30 @@
 </head>
 <body>
 <main>
-<h1>Teoria dei Circuiti</h1>
-<p class="muted">Ingegneria Elettronica L-8 · 2º anno, 1º semestre · 6 CFU. Sito di studio non ufficiale.</p>
-<section class="card" id="scadenza" aria-live="polite"><strong>Prossima scadenza</strong><div id="scad-body">Caricamento…</div></section>
-<div class="grid">
-  <a class="card" href="programma/"><h3><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 5.5v16"/></svg></span>Studia</h3><p>Teoria e dimostrazioni, argomento per argomento.</p></a>
-  <a class="card" href="esercizi/"><h3><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20l4-1L19 8l-3-3L5 16z"/><path d="M14 7l3 3"/></svg></span>Esercizi</h3><p>Esercizi con soluzione passo-passo.</p></a>
-  <a class="card" href="prova/"><h3><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg></span>Prova d'esame</h3><p>Una prova completa a tempo.</p></a>
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <p class="kicker"><span class="pill">2º anno · 6 CFU</span> Ingegneria Elettronica</p>
+  <h1>Teoria dei Circuiti,<br><span class="grad">passo dopo passo.</span></h1>
+  <p class="lead">Teoria con dimostrazioni, formulario, esercizi originali con soluzione verificata, quiz con ripasso a intervalli e prove a tempo. Gratis, senza registrazione.</p>
+  <div class="hero-actions">
+    <a class="btn primary lg" href="programma/">Inizia a studiare <span aria-hidden="true">→</span></a>
+    <a class="btn lg" href="prova/"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg> Fai una prova</a>
+  </div>
+</section>
+<div class="grid grid-4">
+  <a class="card card-link" href="programma/" style="--bc:var(--b1)"><div class="feature-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5z"/><path d="M4 19a2 2 0 0 1 2-2h13"/></svg></div><h3>Studia <span class="arrow" aria-hidden="true">→</span></h3><p class="small muted" style="margin:0">49 argomenti con teoria e dimostrazioni.</p></a>
+  <a class="card card-link" href="esercizi/" style="--bc:var(--b2)"><div class="feature-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M14 6l4 4"/></svg></div><h3>Esercizi <span class="arrow" aria-hidden="true">→</span></h3><p class="small muted" style="margin:0">Numeri generati e soluzione passo per passo.</p></a>
+  <a class="card card-link" href="quiz/" style="--bc:var(--b3)"><div class="feature-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg></div><h3>Quiz e ripasso <span class="arrow" aria-hidden="true">→</span></h3><p class="small muted" style="margin:0">271 domande con ripasso a intervalli.</p></a>
+  <a class="card card-link" href="prova/" style="--bc:var(--b5)"><div class="feature-ico"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></div><h3>Prova d'esame <span class="arrow" aria-hidden="true">→</span></h3><p class="small muted" style="margin:0">Una prova completa a tempo, con report.</p></a>
 </div>
-<section class="card"><h3>Il tuo progresso</h3><div class="bar" role="progressbar" aria-label="Argomenti studiati" aria-valuemin="0" aria-valuemax="100" id="home-bar"><i style="width:0%"></i></div><p id="home-prog" class="muted"></p></section>
-<section class="card"><h3>Ripasso di oggi</h3><p id="home-rip" class="muted">…</p></section>
-<p class="muted"><a href="altro/">Altro</a>: formulario, quiz di teoria, piano di studio, risorse, FAQ…</p>
+<section class="card" id="scadenza" aria-live="polite" style="margin-top:14px"><strong>Prossima scadenza</strong><div id="scad-body">Caricamento…</div></section>
+<div class="card">
+  <h3 style="margin:0 0 8px">Il tuo progresso</h3>
+  <div class="bar" role="progressbar" aria-label="Argomenti studiati" aria-valuemin="0" aria-valuemax="100" id="home-bar"><i style="width:0%"></i></div>
+  <p id="home-prog" class="muted small"></p>
+  <h3 style="margin:14px 0 4px">Ripasso di oggi</h3><p id="home-rip" class="muted" style="margin:0">…</p>
+</div>
+<p class="small muted" style="margin-top:18px"><a href="altro/">Altro</a>: formulario, quiz di teoria, piano di studio, risorse, FAQ…</p>
 </main>
 <script type="module" src="assets/js/app.js"></script>
 <script type="module" src="assets/js/pages/home.js"></script>

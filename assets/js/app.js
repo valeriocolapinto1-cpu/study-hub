@@ -1,6 +1,6 @@
 // Shell comune: header, navigazione, ricerca globale, tema, indicatore di progresso, footer.
 import { getStorage } from './storage.js';
-import { url, esc, loadJSON } from './ui.js';
+import { url, esc, loadJSON, icon } from './ui.js';
 import { summary } from './progress.js';
 
 // Menu semplificato: 5 voci. Le pagine meno usate stanno sotto «Altro» (altro/).
@@ -29,9 +29,9 @@ function cycleTheme() {
   return applyTheme();
 }
 const ICON = {
-  auto: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8"/><path d="M12 4v16" /><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg>',
-  chiaro: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
-  scuro: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>',
+  get auto() { return icon('auto'); },
+  get chiaro() { return icon('sun'); },
+  get scuro() { return icon('moon'); },
 };
 
 function currentPath() {
@@ -50,15 +50,17 @@ function buildHeader() {
   const h = document.createElement('header');
   h.className = 'site-header';
   h.innerHTML = `
-    <div class="hbar">
-      <a class="brand" href="${url('')}"><svg class="brand-mark" viewBox="0 0 32 32" width="26" height="26" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="var(--bg)" stroke="var(--line)"/><path d="M18 4 8 19h7l-2 9 11-16h-7z" fill="var(--accent)"/></svg><span>Teoria dei <b>Circuiti</b></span></a>
-      <div class="gsearch"><input id="gs" type="search" placeholder="Cerca argomento…" aria-label="Cerca nel programma" autocomplete="off"><div class="gresults" id="gres" hidden></div></div>
-      <span class="prog-ind" id="pind" title="Argomenti studiati">…</span>
-      <button class="btn" id="fdrawer-btn" aria-label="Apri formulario rapido" aria-expanded="false" title="Formulario rapido"><span class="fx" aria-hidden="true">ƒ</span></button>
-      <button class="btn" id="theme-btn" aria-label="Cambia tema (attuale: ${t})" title="Tema: ${t}">${ICON[t]}</button>
-      <button class="btn menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Menu"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-    </div>
-    <nav class="nav" id="nav" aria-label="Navigazione principale">${links}</nav>`;
+    <div class="header-inner">
+      <a class="brand" href="${url('')}"><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="var(--accent)"/><path d="M36 10 18 36h12l-4 18 20-28H34z" fill="var(--accent-contrast)"/></svg>Teoria dei Circuiti <span>Ing. Elettronica</span></a>
+      <nav class="nav" id="nav" aria-label="Navigazione principale">${links}</nav>
+      <div class="header-search gsearch"><input id="gs" type="search" placeholder="Cerca argomento…" aria-label="Cerca nel programma" autocomplete="off" enterkeyhint="search"><div class="gresults" id="gres" hidden></div></div>
+      <div class="header-tools">
+        <span class="prog-ind" id="pind" title="Argomenti studiati">…</span>
+        <button class="icon-btn" id="fdrawer-btn" type="button" aria-label="Apri formulario rapido" aria-expanded="false" title="Formulario rapido"><span class="fx" aria-hidden="true">ƒ</span></button>
+        <button class="icon-btn" id="theme-btn" type="button" aria-label="Cambia tema (attuale: ${t})" title="Tema: ${t}">${ICON[t]}</button>
+        <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu">${icon('menu')}</button>
+      </div>
+    </div>`;
   return h;
 }
 
@@ -84,12 +86,14 @@ async function wireSearch(root) {
 
 function init() {
   const skip = document.createElement('a');
-  skip.className = 'skip'; skip.href = '#main'; skip.textContent = 'Vai al contenuto';
+  skip.className = 'skip-link'; skip.href = '#main'; skip.textContent = 'Vai al contenuto';
   document.body.prepend(skip);
   const header = buildHeader();
   skip.after(header);
   const main = document.querySelector('main');
   if (main && !main.id) main.id = 'main';
+  const sec = NAV.find((n) => n.match.some((m) => currentPath().startsWith(m)));
+  if (main && sec && currentPath() !== '') main.dataset.eyebrow = sec.label;
   const st = getStorage();
   if (st.isDegraded) {
     const n = document.createElement('div');
@@ -100,14 +104,23 @@ function init() {
   }
   const f = document.createElement('footer');
   f.className = 'site-footer';
-  f.innerHTML = '<p>Strumento di studio <strong>non ufficiale</strong>, non affiliato all\'università né ai docenti. Nessun materiale di terzi è incluso. I dati restano nel tuo browser.</p><p>© 2026 Valerio Colapinto · codice MIT · <a href="' + url('note-legali/') + '">Note legali</a> · <a href="' + url('privacy/') + '">Privacy</a> · <a href="mailto:valeriocolapinto1@gmail.com">valeriocolapinto1@gmail.com</a> · <a href="https://www.linkedin.com/in/valerio-colapinto" rel="noopener">LinkedIn</a></p>';
+  f.innerHTML = `
+    <p>Teoria dei Circuiti · Ingegneria Elettronica · 2º anno</p>
+    <p>Strumento di studio non ufficiale, gratuito e aperto a tutti. Non è affiliato all'università né ai docenti: per programma ed esami fanno fede le comunicazioni dei docenti. Nessun materiale di terzi è incluso; i dati restano nel tuo browser.</p>
+    <p>© 2026 Valerio Colapinto · codice con licenza MIT · contenuti per uso personale di studio</p>
+    <nav class="footer-links" aria-label="Link legali">
+      <a href="${url('privacy/')}">Privacy</a>
+      <a href="${url('note-legali/')}">Note legali</a>
+      <a href="mailto:valeriocolapinto1@gmail.com">valeriocolapinto1@gmail.com</a>
+      <a href="https://www.linkedin.com/in/valerio-colapinto" rel="noopener">LinkedIn</a>
+    </nav>`;
   document.body.append(f);
   header.querySelector('#theme-btn').addEventListener('click', (e) => {
     const t = cycleTheme(); e.currentTarget.innerHTML = ICON[t];
     e.currentTarget.setAttribute('aria-label', `Cambia tema (attuale: ${t})`); e.currentTarget.title = 'Tema: ' + t;
   });
   const mb = header.querySelector('#menu-btn'), nav = header.querySelector('#nav');
-  mb.addEventListener('click', () => { const o = nav.classList.toggle('open'); header.classList.toggle('menu-open', o); mb.setAttribute('aria-expanded', String(o)); });
+  mb.addEventListener('click', () => { const o = nav.classList.toggle('open'); mb.setAttribute('aria-expanded', String(o)); });
   wireSearch(header);
   wireDrawer(header);
 }
