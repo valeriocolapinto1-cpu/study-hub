@@ -96,7 +96,7 @@ function init() {
   }
   const f = document.createElement('footer');
   f.className = 'site-footer';
-  f.innerHTML = '<p>Strumento di studio <strong>non ufficiale</strong>, non affiliato all\'università né ai docenti. Nessun materiale di terzi è incluso. I dati restano nel tuo browser.</p><p>© 2026 Valerio Colapinto · codice MIT · <a href="' + url('note-legali/') + '">Note legali</a> · <a href="' + url('privacy/') + '">Privacy</a> · <a href="mailto:valeriocolapinto1@gmail.com">valeriocolapinto1@gmail.com</a></p>';
+  f.innerHTML = '<p>Strumento di studio <strong>non ufficiale</strong>, non affiliato all\'università né ai docenti. Nessun materiale di terzi è incluso. I dati restano nel tuo browser.</p><p>© 2026 Valerio Colapinto · codice MIT · <a href="' + url('note-legali/') + '">Note legali</a> · <a href="' + url('privacy/') + '">Privacy</a> · <a href="mailto:valeriocolapinto1@gmail.com">valeriocolapinto1@gmail.com</a> · <a href="https://www.linkedin.com/in/valerio-colapinto" rel="noopener">LinkedIn</a></p>';
   document.body.append(f);
   header.querySelector('#theme-btn').addEventListener('click', (e) => {
     const t = cycleTheme(); e.currentTarget.textContent = ICON[t];

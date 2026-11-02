@@ -90,4 +90,5 @@ Non riproduce testi, figure o soluzioni di terzi: criteri e provenienza in [`COM
 
 - Codice: licenza MIT ([`LICENSE`](LICENSE)). Contenuti originali: uso personale di studio ([`LICENSE-CONTENT.md`](LICENSE-CONTENT.md)).
 - Componenti di terzi: [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md).
-- Segnalazioni e rimozioni: [issue](https://github.com/valeriocolapinto1-cpu/teoria-dei-circuiti-ingegneria-elettronica/issues/new?template=rimozione-contenuti.md) o [valeriocolapinto1@gmail.com](mailto:valeriocolapinto1@gmail.com). Il materiale contestato viene rimosso subito.
+- Contatti: [valeriocolapinto1@gmail.com](mailto:valeriocolapinto1@gmail.com) · [LinkedIn](https://www.linkedin.com/in/valerio-colapinto) · [GitHub](https://github.com/valeriocolapinto1-cpu).
+- Segnalazioni e rimozioni: [issue](https://github.com/valeriocolapinto1-cpu/teoria-dei-circuiti-ingegneria-elettronica/issues/new?template=rimozione-contenuti.md) o email. Il materiale contestato viene rimosso subito.

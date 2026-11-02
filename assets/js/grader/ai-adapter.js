@@ -82,7 +82,7 @@ export async function testConnection(opts = {}) {
 }
 
 // ── correzione con rubrica ──
-export const SYSTEM_GRADER = 'Sei un correttore per l\'esame di Teoria dei Circuiti (Ingegneria Elettronica, Roma). Valuta la risposta dello studente SOLO rispetto alla rubrica fornita e alla correttezza fisica, senza inventare criteri e senza ricalcolare esercizi numerici. Rispondi esclusivamente con un oggetto JSON, senza testo prima o dopo, con questo schema: {"criteria":[{"id":string,"awarded":number,"max":number,"comment":string}],"total":number,"feedback":string,"errors":[string]}. I testi sono in italiano.';
+export const SYSTEM_GRADER = 'Sei un correttore per l\'esame di Teoria dei Circuiti (Ingegneria Elettronica). Valuta la risposta dello studente SOLO rispetto alla rubrica fornita e alla correttezza fisica, senza inventare criteri e senza ricalcolare esercizi numerici. Rispondi esclusivamente con un oggetto JSON, senza testo prima o dopo, con questo schema: {"criteria":[{"id":string,"awarded":number,"max":number,"comment":string}],"total":number,"feedback":string,"errors":[string]}. I testi sono in italiano.';
 
 export function buildGradingPrompt(domanda, rubrica, risposta) {
   const r = rubrica.criteri.map((c) => `- id=${c.id}; max=${c.peso}; criterio: ${c.desc}`).join('\n');
