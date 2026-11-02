@@ -65,12 +65,12 @@ Legenda: `[ ]` da fare · `[x]` fatto. Ogni fase termina con un commit e con la 
 - [x] **Criterio:** calibrazione verde; AI disattivata senza chiave e fallback offline su errore
 
 ## Fase 6 — Prove d'esame
-- [ ] Generatore prova (esercizio 30 + 3 domande × 10 + opzionale 3), blocchi III–VI bilanciati, seed visibile
-- [ ] Timer 2h30 configurabile, avvisi 15/5 min, ripresa dopo ricarica
-- [ ] Interfaccia risposte, consegna, correzione, report, aggiornamento progresso e ripasso
-- [ ] Stampa/PDF prova (intestazione COGNOME/NOME/MATRICOLA) e soluzione separate
-- [ ] Stima in trentesimi proporzionale con avviso
-- [ ] **Criterio:** una prova si genera, si svolge, si corregge e aggiorna il progresso
+- [x] Generatore prova (esercizio 30 + 3 domande × 10 + opzionale 3), blocchi III–VI bilanciati, seed visibile
+- [x] Timer 2h30 configurabile, avvisi 15/5 min, ripresa dopo ricarica
+- [x] Interfaccia risposte, consegna, correzione, report, aggiornamento progresso e ripasso
+- [x] Stampa/PDF prova (intestazione COGNOME/NOME/MATRICOLA) e soluzione separate
+- [x] Stima in trentesimi proporzionale con avviso
+- [x] **Criterio:** una prova si genera, si svolge, si corregge e aggiorna il progresso
 
 ## Fase 7 — Contenuti blocchi III–VI e funzioni restanti
 - [ ] Studio blocchi III, IV, V, VI (incl. nullore/op-amp §6), tutte le dimostrazioni di §5.2 (≥ 12)

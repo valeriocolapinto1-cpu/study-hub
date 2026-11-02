@@ -118,3 +118,15 @@ figure.fig { margin: 12px 0; text-align: center; } figure.fig svg { max-width: 1
 .fld { margin: 10px 0; } .fld input, .fld select { max-width: 520px; }
 .res { font-weight: 700; margin-left: 6px; }
 .gstep summary { font-size: 1.02rem; }
+/* Stampa della prova */
+#print-area { display: none; }
+@media print {
+  body.printing > *:not(#print-area) { display: none !important; }
+  body.printing #print-area { display: block !important; color: #000; background: #fff; font-size: 11pt; line-height: 1.35; }
+  .phead h1 { font-size: 15pt; margin: 0 0 6pt; } .pid { width: 100%; border: 0; min-width: 0; } .pid td { border: 0; padding: 2pt 4pt; background: none; } .pid td.pf { border-bottom: 1px solid #000; width: 22%; }
+  .pmeta { font-size: 8.5pt; color: #333; } .pq { break-inside: avoid-page; margin: 10pt 0; } .pq h2 { font-size: 12pt; border-bottom: 1px solid #000; }
+  .plines div { border-bottom: 1px solid #999; height: 19pt; } .pbox { display: inline-block; border: 1px solid #000; min-width: 70pt; height: 14pt; vertical-align: middle; } .pbox.wide { min-width: 260pt; }
+  .pfig svg { max-width: 100%; height: auto; color: #000; } .pcampi { list-style: none; padding: 0; } .pcampi li { margin: 4pt 0; }
+}
+.timer { position: sticky; top: 0; z-index: 40; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 8px 12px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.timer .t { font: 700 1.3rem var(--mono); } .timer.warn { border-color: var(--warn); } .timer.bad { border-color: var(--bad); }

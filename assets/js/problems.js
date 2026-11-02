@@ -99,7 +99,7 @@ APPLIED.impulsiva = {
     const k = a; // h(t) = a e^{-a t}
     return { testo: rc ? `Un circuito RC serie ($R=${r}\\,\\Omega$, $C=${x}\\,\\mathrm F$) ha come uscita la tensione sul condensatore. Determinare la risposta impulsiva $h(t)$ per $t>0$ (scrivi ad esempio <code>2*e^(-t/3)</code>).`
       : `Un circuito RL serie ($R=${r}\\,\\Omega$, $L=${x}\\,\\mathrm H$) ha come uscita la tensione sul resistore. Determinare la risposta impulsiva $h(t)$ per $t>0$ (scrivi ad esempio <code>2*e^(-t/3)</code>).`,
-      campi: [{ key: 'h', label: '$h(t)$, $t>0$', tipo: 'expr', region: 'pos', atteso: (t) => k.toNumber() * Math.exp(-a.toNumber() * t) }],
+      campi: [{ key: 'h', label: '$h(t)$, $t>0$', tipo: 'expr', region: 'pos', atteso: (t) => k.toNumber() * Math.exp(-a.toNumber() * t), risposta: `(${k})*e^(-(${a})*t)` }],
       soluzione: [rc ? `$H(s)=\\dfrac{1/(RC)}{s+1/(RC)}=\\dfrac{${L(a)}}{s+${L(a)}}$.` : `$H(s)=\\dfrac{R/L}{s+R/L}=\\dfrac{${L(a)}}{s+${L(a)}}$.`, `$h(t)=\\mathcal L^{-1}\\{H(s)\\}=${L(k)}\\,e^{-${L(a)}t}\\,u_{-1}(t)$.`] };
   },
 };
@@ -252,7 +252,7 @@ function antitrasformata(rng, level, seed) {
     const a = rng.int(1, 6), k = rng.nz(9);
     return { kind: 'antitrasformata', seed, titolo: 'Antitrasformata', blocco: 'IV', studio: ['IV-03'],
       testo: `Calcolare la trasformata inversa $f(t)$, per $t>0$, di $F(s)=\\dfrac{${k}}{s+${a}}$ (scrivi ad esempio <code>3*e^(-2t)</code>).`,
-      campi: [{ key: 'f', label: '$f(t)$, $t>0$', tipo: 'expr', region: 'pos', atteso: (t) => k * Math.exp(-a * t) }],
+      campi: [{ key: 'f', label: '$f(t)$, $t>0$', tipo: 'expr', region: 'pos', atteso: (t) => k * Math.exp(-a * t), risposta: `${k}*e^(-${a}*t)` }],
       soluzione: [`Polo semplice in $s=-${a}$: $f(t)=${k}\\,e^{-${a}t}u_{-1}(t)$.`] };
   }
   if (type === 'fratti') {
@@ -262,13 +262,13 @@ function antitrasformata(rng, level, seed) {
     const num2 = `${a + b}s${(a * q + b * p) >= 0 ? '+' : ''}${a * q + b * p}`;
     return { kind: 'antitrasformata', seed, titolo: 'Antitrasformata (fratti semplici)', blocco: 'IV', studio: ['IV-03'],
       testo: `Calcolare $f(t)$, per $t>0$, di $F(s)=\\dfrac{${num2}}{(s+${p})(s+${q})}$.`,
-      campi: [{ key: 'f', label: '$f(t)$, $t>0$', tipo: 'expr', region: 'pos', atteso: (t) => a * Math.exp(-p * t) + b * Math.exp(-q * t) }],
+      campi: [{ key: 'f', label: '$f(t)$, $t>0$', tipo: 'expr', region: 'pos', atteso: (t) => a * Math.exp(-p * t) + b * Math.exp(-q * t), risposta: `(${a})*e^(-${p}*t)+(${b})*e^(-${q}*t)` }],
       soluzione: [`Fratti semplici: $F(s)=\\dfrac{A}{s+${p}}+\\dfrac{B}{s+${q}}$ con $A=\\left.\\dfrac{${num2}}{s+${q}}\\right|_{s=-${p}}=${a}$ e $B=\\left.\\dfrac{${num2}}{s+${p}}\\right|_{s=-${q}}=${b}$.`, `$f(t)=${a}e^{-${p}t}+${b}e^{-${q}t}$ (per $t>0$).`] };
   }
   const w = rng.int(1, 4), a = rng.nz(5), b = rng.nz(8);
   return { kind: 'antitrasformata', seed, titolo: 'Antitrasformata (poli complessi coniugati)', blocco: 'IV', studio: ['IV-04'],
     testo: `Calcolare $f(t)$, per $t>0$, di $F(s)=\\dfrac{${a}s${b >= 0 ? '+' : ''}${b}}{s^2+${w * w}}$.`,
-    campi: [{ key: 'f', label: '$f(t)$, $t>0$', tipo: 'expr', region: 'pos', atteso: (t) => a * Math.cos(w * t) + (b / w) * Math.sin(w * t) }],
+    campi: [{ key: 'f', label: '$f(t)$, $t>0$', tipo: 'expr', region: 'pos', atteso: (t) => a * Math.cos(w * t) + (b / w) * Math.sin(w * t), risposta: `(${a})*cos(${w}*t)+(${b}/${w})*sin(${w}*t)` }],
     soluzione: [`$\\mathcal L\\{\\cos\\omega t\\}=\\dfrac{s}{s^2+\\omega^2}$ e $\\mathcal L\\{\\sin\\omega t\\}=\\dfrac{\\omega}{s^2+\\omega^2}$ con $\\omega=${w}$.`, `$F(s)=${a}\\dfrac{s}{s^2+${w * w}}+\\dfrac{${b}}{${w}}\\cdot\\dfrac{${w}}{s^2+${w * w}}$, quindi $f(t)=${a}\\cos(${w}t)+${L(R(b, w))}\\sin(${w}t)$.`] };
 }
 
