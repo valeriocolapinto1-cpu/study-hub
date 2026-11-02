@@ -26,14 +26,14 @@ function setup() {
   const hist = st.get(HIST, []);
   const saved = st.get(KEY, null);
   root.innerHTML = `<h1>Prova d'esame simulata</h1>
-    <div class="notice"><strong>Formato storico, non garantito per l'esame attuale</strong> [STORICO]: 1 esercizio d'analisi (${FORMATO.esercizio} punti) + 3 domande da ${FORMATO.domanda} punti (${FORMATO.teoria} teoria + ${FORMATO.applicata} applicata) + 1 domanda opzionale (${FORMATO.opzionale} punti). Le domande coprono i blocchi III–VI in modo bilanciato e senza ripetere argomenti. La stima in trentesimi è solo proporzionale e <strong>non è ufficiale</strong> [INFERENZA].</div>
+    <p>Una prova simulata: 1 esercizio (${FORMATO.esercizio} punti), 3 domande (${FORMATO.domanda} punti ciascuna) e 1 opzionale (${FORMATO.opzionale}). Timer di 2h30 modificabile.</p><div class="notice">Formato storico, <strong>non garantito per l'esame attuale</strong> [STORICO]. La stima in trentesimi è solo proporzionale e <strong>non è ufficiale</strong> [INFERENZA].</div>
     ${saved && !saved.consegnata ? `<section class="card"><h2 style="margin-top:0">Prova in corso</h2><p>Seed <code>${esc(saved.seed)}</code>, iniziata il ${new Date(saved.startedAt).toLocaleString('it-IT')}.</p><button class="btn primary" id="resume">Riprendi</button> <button class="btn danger" id="drop">Abbandona</button></section>` : ''}
-    <form class="card" id="f"><div class="row">
-      <div><label for="lvl">Difficoltà dell'esercizio</label><select id="lvl"><option value="1">1 · Base</option><option value="2" selected>2 · Esame</option><option value="3">3 · Avanzato</option></select></div>
+    <form class="card" id="f"><div class="row"><div><label for="lvl">Difficoltà dell'esercizio</label><select id="lvl"><option value="1">1 · Base</option><option value="2" selected>2 · Esame</option><option value="3">3 · Avanzato</option></select></div>
+      <button class="btn primary" type="submit">Genera prova</button></div>
+      <details style="margin-top:12px"><summary>Opzioni (timer, seed, soglia)</summary><div class="row">
       <div><label for="seed">Seed (per riprodurre la prova)</label><input id="seed" type="text" value="${newSeed()}" style="max-width:140px"></div>
       <div><label for="min">Timer (minuti, 0 = disattivato)</label><input id="min" type="number" min="0" max="600" value="${c.minuti}" style="max-width:120px"></div>
-      <div><label for="sog">Soglia di sufficienza (/30)</label><input id="sog" type="number" min="1" max="30" value="${c.soglia}" style="max-width:120px"></div>
-    </div><p><button class="btn primary" type="submit">Genera prova</button></p></form>
+      <div><label for="sog">Soglia di sufficienza (/30)</label><input id="sog" type="number" min="1" max="30" value="${c.soglia}" style="max-width:120px"></div></div></details></form>
     ${hist.length ? `<section class="card"><h2 style="margin-top:0">Prove precedenti</h2><div class="table-wrap"><table><thead><tr><th>Data</th><th>Seed</th><th>Punti</th><th>Stima</th><th>Tempo</th></tr></thead><tbody>${hist.slice().reverse().map((h) => `<tr><td>${new Date(h.data).toLocaleDateString('it-IT')}</td><td><code>${esc(h.seed)}</code></td><td>${h.totale}/${TOTALE}</td><td>${h.stima}/30</td><td>${fmtTime(h.secondi * 1000)}</td></tr>`).join('')}</tbody></table></div></section>` : ''}`;
   root.querySelector('#f').addEventListener('submit', (e) => {
     e.preventDefault();

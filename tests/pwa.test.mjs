@@ -62,3 +62,13 @@ test('tutti i percorsi nelle pagine sono relativi (compatibili con https://utent
 test('check-links: nessun link interno rotto', () => {
   execFileSync('node', [join(root, 'tools/check-links/check.mjs')], { stdio: 'pipe' });
 });
+
+test('menu semplificato: 5 voci e pagina «Altro» con tutte le altre pagine raggiungibili', async () => {
+  const { NAV_ITEMS } = await import('../assets/js/app.js').catch(() => ({ NAV_ITEMS: null }));
+  const src = readFileSync(join(root, 'assets/js/app.js'), 'utf8');
+  const nav = /const NAV = \[([\s\S]*?)\n\];/.exec(src)[1];
+  assert.equal((nav.match(/label:/g) || []).length, 5);
+  const altro = readFileSync(join(root, 'altro/index.html'), 'utf8');
+  for (const d of ['formulario', 'teoria', 'progresso', 'piano', 'appunti', 'corso', 'esame', 'archivio', 'risorse', 'simulatori', 'faq', 'impostazioni']) assert.ok(altro.includes(`href="../${d}/"`), d);
+  void NAV_ITEMS;
+});

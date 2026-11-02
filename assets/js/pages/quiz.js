@@ -18,6 +18,7 @@ function menu() {
   const dueQuiz = dueItems.filter((x) => x.id.startsWith('quiz:')).length;
   root.innerHTML = `<h1>Quiz e ripasso</h1>
     <p>Banco di ${all.length} domande originali (scelta multipla, vero/falso con motivazione, completamento di formule), ognuna con spiegazione e rimando alla teoria. Le domande sbagliate o segnate «incerte» rientrano in una coda di ripasso a intervalli crescenti (1, 3, 7, 14, 30 giorni).</p>
+    <p><a class="btn" href="${url('teoria/')}">Domande di teoria (risposte aperte)</a></p>
     <section class="card"><h2 style="margin-top:0">Ripasso di oggi: ${dueItems.length} ${dueItems.length === 1 ? 'voce' : 'voci'}</h2>
       <p class="muted">In coda: ${s.total} (scatole 1–5: ${s.byBox.slice(1).join(' / ')}). ${dueQuiz} sono domande del quiz.</p>
       <button class="btn primary" id="go-due"${dueItems.length ? '' : ' disabled'}>Inizia il ripasso</button></section>

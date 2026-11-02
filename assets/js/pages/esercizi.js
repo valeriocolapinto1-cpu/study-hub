@@ -23,6 +23,7 @@ $('stepk').value = params.get('sk') || STEP_KINDS[0].kind; $('appk').value = par
 $('seed').value = params.get('seed') || newSeed();
 
 function syncMode() {
+  const adv = document.getElementById('adv'); if (adv && mode !== 'completo') adv.open = true;
   document.querySelectorAll('#modes button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.m === mode));
   document.querySelectorAll('#ctl [data-for]').forEach((d) => { d.hidden = !d.dataset.for.split(' ').includes(mode); });
 }

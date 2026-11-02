@@ -12,24 +12,29 @@
 <body>
 <main>
 <h1>Esercizi di allenamento</h1>
-<p>Esercizi generati con numeri originali, nel formato dell'esercizio d'analisi: «determinare $v_{out}(t)$ per tutto l'asse dei tempi». Ogni istanza è calcolata con aritmetica esatta e verificata da un simulatore indipendente prima di essere mostrata. La correzione dei risultati numerici usa sempre il motore esatto.</p>
-<div class="notice">Esercizi didattici originali, ispirati alla <em>struttura</em> degli esercizi del corso: non sono tracce d'esame.</div>
-<div class="chips" role="tablist" aria-label="Modalità" id="modes">
-  <button class="btn chip" role="tab" data-m="completo" aria-pressed="true">Esercizio completo</button>
-  <button class="btn chip" role="tab" data-m="guidato" aria-pressed="false">Guidato (8 passi)</button>
-  <button class="btn chip" role="tab" data-m="passo" aria-pressed="false">Allenamento per passo</button>
-  <button class="btn chip" role="tab" data-m="applicate" aria-pressed="false">Domande applicate</button>
-</div>
+<p>Esercizi generati con numeri originali, nel formato dell'esercizio d'analisi: «determinare $v_{out}(t)$ per tutto l'asse dei tempi». Ogni esercizio è calcolato in modo esatto e verificato prima di essere mostrato.</p>
 <form id="ctl" class="card">
   <div class="row">
     <div data-for="completo guidato passo"><label for="lvl">Difficoltà</label>
       <select id="lvl"><option value="1">1 · Base (continua)</option><option value="2">2 · Esame (sinusoidale / 2-porte)</option><option value="3">3 · Avanzato (misto, nullore + 2-porte)</option></select></div>
-    <div data-for="completo guidato"><label for="tpl">Tipo di circuito</label><select id="tpl"></select></div>
-    <div data-for="passo"><label for="stepk">Passo da allenare</label><select id="stepk"></select></div>
-    <div data-for="applicate"><label for="appk">Argomento</label><select id="appk"></select></div>
-    <div><label for="seed">Seed</label><input id="seed" type="text" inputmode="numeric" style="max-width:140px"></div>
+    <button class="btn primary" type="submit">Genera</button>
+    <button class="btn" type="button" id="new">Nuovo esercizio</button>
   </div>
-  <div class="row" style="margin-top:12px"><button class="btn primary" type="submit">Genera</button><button class="btn" type="button" id="new">Nuovo seed</button><button class="btn" type="button" id="same">Stessa struttura, altri numeri</button></div>
+  <details id="adv" style="margin-top:12px"><summary>Opzioni avanzate (altre modalità, tipo di circuito, seed)</summary>
+    <div class="chips" role="tablist" aria-label="Modalità" id="modes">
+      <button class="btn chip" type="button" role="tab" data-m="completo" aria-pressed="true">Esercizio completo</button>
+      <button class="btn chip" type="button" role="tab" data-m="guidato" aria-pressed="false">Guidato (8 passi)</button>
+      <button class="btn chip" type="button" role="tab" data-m="passo" aria-pressed="false">Allenamento per passo</button>
+      <button class="btn chip" type="button" role="tab" data-m="applicate" aria-pressed="false">Domande applicate</button>
+    </div>
+    <div class="row">
+      <div data-for="completo guidato"><label for="tpl">Tipo di circuito</label><select id="tpl"></select></div>
+      <div data-for="passo"><label for="stepk">Passo da allenare</label><select id="stepk"></select></div>
+      <div data-for="applicate"><label for="appk">Argomento</label><select id="appk"></select></div>
+      <div><label for="seed">Seed</label><input id="seed" type="text" inputmode="numeric" style="max-width:140px"></div>
+    </div>
+    <p><button class="btn" type="button" id="same">Stessa struttura, altri numeri</button></p>
+  </details>
 </form>
 <div id="ex" aria-live="polite"></div>
 </main>

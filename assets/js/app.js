@@ -3,13 +3,15 @@ import { getStorage } from './storage.js';
 import { url, esc, loadJSON } from './ui.js';
 import { summary } from './progress.js';
 
+// Menu semplificato: 5 voci. Le pagine meno usate stanno sotto «Altro» (altro/).
 const NAV = [
-  ['Home', '', true], ['Corso', 'corso/', true], ['Esame', 'esame/', true], ['Programma', 'programma/', true],
-  ['Studio', 'studio/', true], ['Formulario', 'formulario/', true], ['Esercizi', 'esercizi/', true],
-  ['Quiz', 'quiz/', true], ['Teoria', 'teoria/', true], ['Prove', 'prova/', true], ['Archivio', 'archivio/', true],
-  ['Risorse', 'risorse/', true], ['Appunti', 'appunti/', true], ['Simulatori', 'simulatori/', true],
-  ['Progresso', 'progresso/', true], ['Piano', 'piano/', true], ['Impostazioni', 'impostazioni/', true], ['FAQ', 'faq/', true],
+  { label: 'Studia', href: 'programma/', match: ['programma/', 'studio/', 'formulario/'] },
+  { label: 'Esercizi', href: 'esercizi/', match: ['esercizi/'] },
+  { label: 'Quiz', href: 'quiz/', match: ['quiz/', 'teoria/'] },
+  { label: 'Prove', href: 'prova/', match: ['prova/'] },
+  { label: 'Altro', href: 'altro/', match: ['altro/', 'corso/', 'esame/', 'archivio/', 'risorse/', 'appunti/', 'simulatori/', 'progresso/', 'piano/', 'faq/', 'impostazioni/'] },
 ];
+export const NAV_ITEMS = NAV;
 
 export function applyTheme() {
   const st = getStorage();
@@ -36,9 +38,9 @@ function currentPath() {
 
 function buildHeader() {
   const cur = currentPath();
-  const links = NAV.map(([label, href, ready]) => {
-    const isCur = href === cur || (href && cur.startsWith(href));
-    return `<a href="${url(href)}"${isCur ? ' aria-current="page"' : ''}${ready ? '' : ' class="soon" title="In arrivo nelle prossime fasi"'}>${esc(label)}${ready ? '' : '<span class="tag">presto</span>'}</a>`;
+  const links = NAV.map((n) => {
+    const isCur = n.match.some((m) => cur.startsWith(m));
+    return `<a href="${url(n.href)}"${isCur ? ' aria-current="page"' : ''}>${esc(n.label)}</a>`;
   }).join('');
   const t = applyTheme();
   const h = document.createElement('header');
