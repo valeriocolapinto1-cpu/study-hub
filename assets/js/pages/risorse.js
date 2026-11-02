@@ -9,11 +9,12 @@ root.innerHTML = `<h1>Risorse gratuite</h1>
   <h2>Libri del corso</h2><div class="table-wrap"><table><thead><tr><th>Testo</th><th>Ruolo</th><th>Note</th><th>PDF legale gratuito?</th></tr></thead><tbody>${R.libri.map((l) => `<tr><td>${esc(l.titolo)}<br><small class="muted">${esc(l.autori)} — ${esc(l.editore)}</small> ${badge(l.badge)}</td><td>${esc(l.ruolo)}</td><td>${esc(l.note)}</td><td><strong>${l.pdf_gratuito ? 'sì' : 'No'}</strong></td></tr>`).join('')}</tbody></table></div>
   <div class="notice">${esc(R.dichiarazione_libri)}</div>
   <h2>Risorse online</h2>
-  <form class="card" onsubmit="return false"><div class="row">
+  <form class="card" id="rf"><div class="row">
     <div><label for="fb">Blocco del programma</label><select id="fb"><option value="tutti">Tutti</option>${S.blocchi.map((b) => `<option value="${b.id}">${b.id} · ${esc(b.titolo)}</option>`).join('')}</select></div>
     ${opt('ft', 'Tipo', uniq('tipo'), ['tutti', 'Tutti'])}${opt('fl', 'Lingua', uniq('lingua'), ['tutte', 'Tutte'])}${opt('fc', 'Licenza', uniq('licenza'), ['tutte', 'Tutte'])}</div></form>
   <div id="lst"></div>
   <h2>Materiali di studenti a pagamento</h2><div class="notice">${esc(R.a_pagamento.avviso)} ${badge(R.a_pagamento.badge)}</div><p>${R.a_pagamento.siti.map((s) => esc(s.nome)).join(', ')} (nessun link a file scaricabili).</p>`;
+root.querySelector('#rf').addEventListener('submit', (e) => e.preventDefault());
 const title = new Map(S.argomenti.map((a) => [a.id, a.titolo]));
 const draw = () => {
   const list = R.risorse.filter((r) => (state.blocco === 'tutti' || r.copre.some((id) => id.startsWith(state.blocco + '-'))) && (state.tipo === 'tutti' || r.tipo === state.tipo) && (state.lingua === 'tutte' || r.lingua === state.lingua) && (state.licenza === 'tutte' || r.licenza === state.licenza));

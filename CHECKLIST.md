@@ -86,19 +86,19 @@ Legenda: `[ ]` da fare · `[x]` fatto. Ogni fase termina con un commit e con la 
 - [x] **Criterio:** quantità minime del §13 soddisfatte
 
 ## Fase 8 — Rifinitura e deploy
-- [ ] Accessibilità (contrasto, tab, testo alternativo SVG), mobile (44 px, no scroll orizzontale)
-- [ ] Performance (lazy load, worker se serve), CSP, nessun analytics
-- [ ] PWA/service worker (opzionale, non deve rompere il deploy)
-- [ ] `tools/check-links`
-- [ ] Test JSON (schema, id univoci, link interni, KaTeX), storage (round-trip, migrazione, senza localStorage)
-- [ ] `README.md` completo (non affiliazione, deploy, aggiornamento JSON, chiave AI, backup)
-- [ ] `.github/workflows/pages.yml` con `node --test` prima del deploy
-- [ ] Deploy riuscito e CI verde
-- [ ] Riepilogo finale: albero progetto, test passati, punti `DA VERIFICARE`
+- [x] Accessibilità (contrasto, tab, testo alternativo SVG), mobile (44 px, no scroll orizzontale)
+- [x] Performance (lazy load, worker se serve), CSP, nessun analytics
+- [x] PWA/service worker (opzionale, non deve rompere il deploy)
+- [x] `tools/check-links`
+- [x] Test JSON (schema, id univoci, link interni, KaTeX), storage (round-trip, migrazione, senza localStorage)
+- [x] `README.md` completo (non affiliazione, deploy, aggiornamento JSON, chiave AI, backup)
+- [x] `.github/workflows/pages.yml` con `node --test` prima del deploy
+- [x] Deploy riuscito e CI verde
+- [x] Riepilogo finale: albero progetto, test passati, punti `DA VERIFICARE`
 
 ## Controlli trasversali (a ogni fase)
-- [ ] Nessun contenuto, figura o numero del professore nel repo
-- [ ] Nessuna chiave/token/dato personale nel repo
-- [ ] Badge di affidabilità su ogni dato non banale
-- [ ] Link tutti relativi
-- [ ] Commit a fine fase
+- [x] Nessun contenuto, figura o numero del professore nel repo
+- [x] Nessuna chiave/token/dato personale nel repo
+- [x] Badge di affidabilità su ogni dato non banale
+- [x] Link tutti relativi
+- [x] Commit a fine fase

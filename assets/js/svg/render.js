@@ -34,6 +34,26 @@ export function valueLabel(e, omega) {
   }
 }
 
+/** Descrizione testuale del circuito (per lo screen reader), generata dalla stessa netlist. */
+export function describeCircuit(circuit, omega = null) {
+  const node = (n) => (String(n) === GND ? 'massa' : `nodo ${n}`);
+  const parts = circuit.elements.map((e) => {
+    switch (e.type) {
+      case 'R': return `${e.id} resistore ${e.r} ohm tra ${node(e.a)} e ${node(e.b)}`;
+      case 'C': return `${e.id} condensatore ${e.c} farad tra ${node(e.a)} e ${node(e.b)}`;
+      case 'L': return `${e.id} induttore ${e.l} henry tra ${node(e.a)} e ${node(e.b)}`;
+      case 'V': return `${e.id} generatore di tensione ${sourceLabel(e, omega)} tra ${node(e.a)} (positivo) e ${node(e.b)}`;
+      case 'I': return `${e.id} generatore di corrente tra ${node(e.a)} e ${node(e.b)}`;
+      case 'G': return `${e.id} generatore di corrente controllato in tensione, transconduttanza ${e.gm} siemens, pilotato dalla tensione tra ${node(e.cp)} e ${node(e.cn)}, tra ${node(e.a)} e ${node(e.b)}`;
+      case 'N': return `${e.id} nullore: nullatore tra ${node(e.na)} e ${node(e.nb)}, noratore tra ${node(e.ra)} e ${node(e.rb)}`;
+      case 'T': return `${e.id} trasformatore ideale con rapporto ${e.n} a 1, porta 1 tra ${node(e.p1a)} e ${node(e.p1b)}, porta 2 tra ${node(e.p2a)} e ${node(e.p2b)}`;
+      case 'P': return `${e.id} doppio bipolo con matrice ${e.kind} ${e.m[0][0]} ${e.m[0][1]} ${e.m[1][0]} ${e.m[1][1]}, porta 1 tra ${node(e.p1a)} e ${node(e.p1b)}, porta 2 tra ${node(e.p2a)} e ${node(e.p2b)}`;
+      default: return e.id;
+    }
+  });
+  return `Schema del circuito: ${parts.join('; ')}.`;
+}
+
 export function renderCircuit(circuit, layout, { omega = null, outLabel = 'v_out' } = {}) {
   const drawn = new Set();
   const terms = {}; // `${id}.${campo}` -> [x,y]
@@ -113,7 +133,7 @@ export function renderCircuit(circuit, layout, { omega = null, outLabel = 'v_out
     body.push(DOT(x, y), TEXT(x + 8, y - 8, `+ ${outLabel}`, 'start'), ...(layout.outRef ? [DOT(layout.outRef[0], layout.outRef[1]), TEXT(layout.outRef[0] + 8, layout.outRef[1] - 8, '−', 'start')] : []));
   }
   const PADL = 70, PADT = 14, PADR = 96, W = layout.width + PADL + PADR, H = layout.height + PADT;
-  const svg = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg" ${STR} font-family="system-ui,sans-serif" font-size="13" role="img"><g transform="translate(${PADL},${PADT})">${body.join('')}</g></svg>`;
+  const svg = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg" ${STR} font-family="system-ui,sans-serif" font-size="13" role="img" aria-label="${esc(describeCircuit(circuit, omega))}"><g transform="translate(${PADL},${PADT})">${body.join('')}</g></svg>`;
   return { svg, drawn, terms };
 }
 

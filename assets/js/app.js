@@ -126,4 +126,13 @@ function wireDrawer(header) {
     drawer.querySelector('.fq').focus();
   });
 }
+// PWA offline opzionale: se non è disponibile o fallisce, il sito funziona comunque.
+function registerSW() {
+  try {
+    if (!('serviceWorker' in navigator)) return;
+    if (!(location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) return;
+    navigator.serviceWorker.register(url('sw.js'), { scope: url('') }).catch(() => {});
+  } catch (e) { /* ignora */ }
+}
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+registerSW();

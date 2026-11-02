@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com data:; img-src 'self' data: blob:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self'; manifest-src 'self'">
+<meta name="theme-color" content="#0b1530">
+<link rel="manifest" href="../manifest.webmanifest">
 <title>Modalità d'esame</title>
 <link rel="stylesheet" href="../assets/css/style.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%230b1530%27/%3E%3Cpath d=%27M18 4 8 19h7l-2 9 11-16h-7z%27 fill=%27%23ffb84d%27/%3E%3C/svg%3E">
@@ -33,13 +36,10 @@
 <li>Quali sono le prossime date degli appelli di gennaio/febbraio 2027?</li>
 <li>Qual è la 2ª edizione di riferimento del Martinelli–Salerno, visto che è fuori catalogo?</li>
 </ol>
-<script type="module">
-const b=document.getElementById('copy-q');
-b.addEventListener('click',async()=>{const t=[...document.querySelectorAll('#domande li')].map((l,i)=>(i+1)+'. '+l.textContent).join('\n');
-try{await navigator.clipboard.writeText(t);b.textContent='Copiato ✓';}catch(e){b.textContent='Copia non riuscita: seleziona il testo a mano';}});
-</script>
+
 </main>
 <script type="module" src="../assets/js/app.js"></script>
+<script type="module" src="../assets/js/pages/esame.js"></script>
 
 </body>
 </html>
