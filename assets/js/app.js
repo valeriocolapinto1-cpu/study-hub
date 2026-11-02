@@ -5,7 +5,7 @@ import { summary } from './progress.js';
 
 const NAV = [
   ['Home', '', true], ['Corso', 'corso/', true], ['Esame', 'esame/', true], ['Programma', 'programma/', true],
-  ['Studio', 'studio/', true], ['Formulario', 'formulario/', true], ['Esercizi', 'esercizi/', false],
+  ['Studio', 'studio/', true], ['Formulario', 'formulario/', true], ['Esercizi', 'esercizi/', true],
   ['Quiz', 'quiz/', false], ['Prove', 'prova/', false], ['Archivio', 'archivio/', false],
   ['Risorse', 'risorse/', false], ['Appunti', 'appunti/', false], ['Simulatori', 'simulatori/', false],
   ['Progresso', 'progresso/', false], ['Piano', 'piano/', false], ['Impostazioni', 'impostazioni/', true], ['FAQ', 'faq/', false],

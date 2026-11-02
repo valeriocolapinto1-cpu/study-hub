@@ -33,16 +33,16 @@ Legenda: `[ ]` da fare · `[x]` fatto. Ogni fase termina con un commit e con la 
 - [x] **Criterio:** pagine dei due blocchi complete, formule compilano in KaTeX
 
 ## Fase 3 — Motore degli esercizi
-- [ ] `rational.js` (BigInt) e `complex.js` (complessi razionali)
-- [ ] Netlist interna unica (solutore, passi, SPICE, SVG leggono la stessa struttura)
-- [ ] Solutore MNA esatto (continua e fasori; generatori, R/L/C, trasformatore, nullore, 2-porte Z/Y)
-- [ ] Thevenin/Norton con generatore di prova
-- [ ] Risposta per t<0 e t>0 (metodo Laplace con generatori equivalenti)
-- [ ] Generatore di istanze con seed e vincoli di «bellezza»
-- [ ] Simulatore indipendente (transitorio numerico + AC) e controllo a runtime
-- [ ] Libreria simboli SVG + layout a griglia, template A (nullore)
-- [ ] Test: aritmetica, casi a mano originali, doppia verifica su centinaia di istanze
-- [ ] **Criterio:** doppia verifica verde
+- [x] `rational.js` (BigInt) e `complex.js` (complessi razionali)
+- [x] Netlist interna unica (solutore, passi, SPICE, SVG leggono la stessa struttura)
+- [x] Solutore MNA esatto (continua e fasori; generatori, R/L/C, trasformatore, nullore, 2-porte Z/Y)
+- [x] Thevenin/Norton con generatore di prova
+- [x] Risposta per t<0 e t>0 (metodo Laplace con generatori equivalenti)
+- [x] Generatore di istanze con seed e vincoli di «bellezza»
+- [x] Simulatore indipendente (transitorio numerico + AC) e controllo a runtime
+- [x] Libreria simboli SVG + layout a griglia, template A (nullore)
+- [x] Test: aritmetica, casi a mano originali, doppia verifica su centinaia di istanze
+- [x] **Criterio:** doppia verifica verde
 
 ## Fase 4 — Template B e C, AC/misto, parser, modalità
 - [ ] Template B (2-porte Z/Y + Thevenin/Norton, anche con generatore controllato)
