@@ -5,6 +5,8 @@ import { statement, steps, guidedSteps, answerLatex } from '../explain.js';
 import { gradeAnswer, gradeNumber, compareExpr } from '../grader/exercise.js';
 import { STEP_KINDS, APPLIED_KINDS, generateStep, generateApplied, gradeProblem } from '../problems.js';
 import { recordAttempt } from '../stats.js';
+import { recordResult } from '../srs.js';
+import { aiEnabled, explainMistake } from '../grader/ai-adapter.js';
 import { typeset } from '../katex.js';
 import { esc, url } from '../ui.js';
 
@@ -53,6 +55,16 @@ async function showCompleto(guided) {
       mark($('a-pre'), r.pre.ok, r.pre.parseError); mark($('a-post'), r.post.ok, r.post.parseError);
       $('fb').innerHTML = `<p><strong>Punteggio: ${Math.round(r.score * 100)}%</strong></p>${r.hints.map((h) => `<p class="notice">${esc(h)}</p>`).join('')}`;
       recordAttempt({ mode: 'completo', template: g.inst.template, level, seed, score: r.score, seconds: Math.round((Date.now() - t0) / 1000) });
+      recordResult(`ex:${g.inst.template}:${level}:${seed}`, r.score === 1, { meta: { arg: 'III-02' } });
+      if (r.score < 1 && aiEnabled()) {
+        $('fb').insertAdjacentHTML('beforeend', '<p><button class="btn" id="expl">Spiega il mio errore (AI)</button></p><div id="explbox"></div>');
+        $('expl').addEventListener('click', async () => {
+          $('expl').disabled = true; $('explbox').textContent = 'Un momento…';
+          try { const t = await explainMistake({ testo: statement(g.inst, g.sol).replace(/<[^>]+>/g, ''), passiCorretti: steps(g.inst, g.sol).flatMap((s) => [s.titolo + ':', ...s.testo]).map((x) => x.replace(/<[^>]+>/g, '')), rispostaUtente: `t<0: ${$('a-pre').value} | t>0: ${$('a-post').value}` }); $('explbox').innerHTML = `<div class="notice">${esc(t)}</div><p class="muted">Spiegazione generata da AI sulla base dei passaggi calcolati dal motore esatto.</p>`; }
+          catch (e) { $('explbox').textContent = 'Spiegazione non disponibile: ' + e.message; }
+          $('expl').disabled = false;
+        });
+      }
     });
     $('sol').addEventListener('click', async () => {
       const box = $('solbox'); if (!box.hidden) { box.hidden = true; return; }

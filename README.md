@@ -24,3 +24,7 @@ Le date degli appelli si cambiano solo in `data/appelli.json`.
 
 ## Deploy su GitHub Pages
 Settings → Pages → Source: **GitHub Actions**. Il workflow `.github/workflows/pages.yml` esegue `npm test` e poi pubblica.
+
+## Correzione con AI (facoltativa)
+Nelle Impostazioni puoi inserire una chiave API personale (Anthropic o endpoint compatibile OpenAI). La chiave resta nel tuo browser (per la sola sessione, salvo la casella «ricorda»), non entra mai nel repository né nell'export JSON, ed è inviata solo al provider scelto. Il modello è sempre modificabile. I risultati numerici degli esercizi sono verificati solo dal motore esatto, mai dall'AI.
+**Punto `DA VERIFICARE`:** l'intestazione HTTP per le chiamate dirette dal browser (`anthropic-dangerous-direct-browser-access`) non compare nelle pagine ufficiali consultate (Messages, versioning, authentication): è un campo modificabile nelle Impostazioni. Se il provider blocca la chiamata (CORS) il sito mostra un messaggio chiaro e ripiega sulla correzione offline.

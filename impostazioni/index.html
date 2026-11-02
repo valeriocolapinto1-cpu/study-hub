@@ -21,7 +21,16 @@
 <section class="card"><h2>Azzera</h2>
 <p class="muted">Cancella i dati di una sezione. L'operazione non si può annullare: esporta prima un backup.</p>
 <div class="row" id="reset-row"></div></section>
-<section class="card"><h2>Correzione con AI</h2><p class="muted">Disponibile con la fase Quiz e Correzione: qui potrai inserire una chiave API personale (resta solo nel tuo browser).</p></section>
+<section class="card" id="ai"><h2>Correzione con AI (facoltativa)</h2>
+<div class="notice"><strong>Costi, privacy e sicurezza.</strong> Inserendo una chiave API personale, la risposta dello studente e la rubrica vengono inviate al provider scelto, che può addebitarti dei costi. La chiave resta <strong>solo nel tuo browser</strong> (di default per la sola sessione), non entra nel repository né nell'export, ed è inviata solo al provider. Una chiave usata in una pagina web è esposta a chi controlla il tuo browser: usa una chiave con limiti di spesa. Senza chiave resta attiva la correzione offline.</div>
+<label for="prov">Provider</label>
+<select id="prov"><option value="anthropic">Anthropic</option><option value="openai">Endpoint compatibile OpenAI</option></select>
+<div id="p-anthropic"><label for="a-url">Indirizzo base</label><input id="a-url" type="text"><label for="a-model">Modello (modificabile)</label><input id="a-model" type="text"><label for="a-ver">Versione API (intestazione anthropic-version)</label><input id="a-ver" type="text"><label for="a-hdr">Intestazione per l'accesso dal browser (vuota per disattivarla)</label><input id="a-hdr" type="text"><p class="muted">L'intestazione per l'accesso diretto dal browser non è documentata nelle pagine ufficiali consultate: è un'impostazione modificabile <span class="badge b-DAVERIFICARE">DA VERIFICARE</span>. Se il provider blocca la chiamata (CORS) vedrai un messaggio chiaro.</p></div>
+<div id="p-openai" hidden><label for="o-url">Indirizzo base (…/v1)</label><input id="o-url" type="text"><label for="o-model">Modello</label><input id="o-model" type="text"></div>
+<label for="key">Chiave API</label><input id="key" type="password" autocomplete="off" placeholder="la chiave non viene mai mostrata di nuovo">
+<label style="font-weight:400"><input type="checkbox" id="rem" style="min-height:auto;width:auto;margin-right:6px">Ricorda la chiave su questo dispositivo (altrimenti solo per questa sessione)</label>
+<div class="row" style="margin-top:10px"><button class="btn primary" id="ai-save">Salva</button><button class="btn" id="ai-test">Testa connessione</button><button class="btn danger" id="ai-clear">Cancella chiave</button></div>
+<p id="ai-msg" role="status"></p></section>
 <p id="msg" role="status" class="muted"></p>
 </main>
 <script type="module" src="../assets/js/app.js"></script>

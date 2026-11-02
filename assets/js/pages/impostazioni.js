@@ -40,3 +40,24 @@ row.addEventListener('click', (e) => {
   if (!confirm(`Azzerare «${b.textContent.replace('Azzera ', '')}»? L'operazione non si può annullare.`)) return;
   const n = st.reset(b.dataset.k); applyTheme(); say(`Cancellate ${n} voci.`);
 });
+
+// ── Correzione con AI ──
+import { getConfig, saveConfig, getKey, setKey, clearKey, testConnection, DEFAULTS } from '../grader/ai-adapter.js';
+(() => {
+  const g = (id) => document.getElementById(id), msg = g('ai-msg');
+  const cfg = getConfig();
+  g('prov').value = cfg.provider;
+  g('a-url').value = cfg.anthropic.baseUrl; g('a-model').value = cfg.anthropic.model; g('a-ver').value = cfg.anthropic.version; g('a-hdr').value = cfg.anthropic.browserHeader;
+  g('o-url').value = cfg.openai.baseUrl; g('o-model').value = cfg.openai.model;
+  g('key').placeholder = getKey() ? '•••••••• (chiave impostata)' : 'incolla qui la chiave';
+  const sync = () => { g('p-anthropic').hidden = g('prov').value !== 'anthropic'; g('p-openai').hidden = g('prov').value !== 'openai'; };
+  g('prov').addEventListener('change', sync); sync();
+  const read = () => ({ ...DEFAULTS, provider: g('prov').value, anthropic: { baseUrl: g('a-url').value.trim(), model: g('a-model').value.trim(), version: g('a-ver').value.trim(), browserHeader: g('a-hdr').value.trim() }, openai: { baseUrl: g('o-url').value.trim(), model: g('o-model').value.trim() } });
+  const save = () => { saveConfig(read()); const k = g('key').value.trim(); if (k) { setKey(k, g('rem').checked); g('key').value = ''; g('key').placeholder = '•••••••• (chiave impostata)'; } };
+  g('ai-save').addEventListener('click', () => { save(); msg.textContent = 'Impostazioni salvate.'; });
+  g('ai-clear').addEventListener('click', () => { clearKey(); g('key').value = ''; g('key').placeholder = 'incolla qui la chiave'; msg.textContent = 'Chiave cancellata da questo browser.'; });
+  g('ai-test').addEventListener('click', async () => {
+    save(); msg.textContent = 'Test in corso…';
+    try { const t = await testConnection(); msg.textContent = `Connessione riuscita (risposta: «${t}»).`; } catch (e) { msg.textContent = 'Test non riuscito: ' + e.message; }
+  });
+})();

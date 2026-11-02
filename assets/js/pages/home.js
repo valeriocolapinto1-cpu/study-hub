@@ -1,5 +1,6 @@
 import { loadJSON, esc, badge } from '../ui.js';
 import { summary } from '../progress.js';
+import { stats } from '../srs.js';
 (async () => {
   const el = document.getElementById('scad-body');
   try {
@@ -16,4 +17,6 @@ import { summary } from '../progress.js';
     document.getElementById('home-bar').setAttribute('aria-valuenow', s.pct);
     document.getElementById('home-prog').textContent = `${s.done} argomenti su ${s.total} studiati (${s.pct}%).`;
   } catch (e) { el.textContent = 'Dati non disponibili: ' + e.message; }
+  const s = stats(); const r = document.getElementById('home-rip');
+  if (r) r.innerHTML = s.due ? `<strong>${s.due}</strong> ${s.due === 1 ? 'voce' : 'voci'} da ripassare oggi. <a class="btn primary" href="quiz/">Ripassa</a>` : 'Nessuna voce in scadenza oggi. Le domande sbagliate dei quiz e delle domande di teoria rientrano qui a intervalli crescenti.';
 })();

@@ -1,0 +1,3952 @@
+{
+ "_nota": "Generato da tools/build-content.mjs. Domande originali.",
+ "domande": [
+  {
+   "id": "Q-I-001",
+   "blocco": "I",
+   "argomento": "I-01",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Il modello a costanti concentrate è ragionevole quando le dimensioni $L$ del circuito e la lunghezza d'onda $\\lambda$ verificano:",
+   "spiegazione": "I tempi di propagazione $L/c$ devono essere trascurabili rispetto al periodo, cioè $L\\ll\\lambda=c/f$.",
+   "studio": "I-01",
+   "opzioni": [
+    "$L\\gg\\lambda$",
+    "$L$ è indipendente da $\\lambda$",
+    "$L=\\lambda$",
+    "$L\\ll\\lambda$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-I-002",
+   "blocco": "I",
+   "argomento": "I-01",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "A $f=50\\,\\mathrm{Hz}$ la lunghezza d'onda nel vuoto è circa:",
+   "spiegazione": "$\\lambda=c/f=3\\cdot10^8/50=6\\cdot10^6\\,\\mathrm m$.",
+   "studio": "I-01",
+   "opzioni": [
+    "$6\\,\\mathrm{m}$",
+    "$60\\,\\mathrm{m}$",
+    "$6\\,\\mathrm{mm}$",
+    "$6000\\,\\mathrm{km}$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-I-003",
+   "blocco": "I",
+   "argomento": "I-01",
+   "difficolta": 1,
+   "tipo": "vf",
+   "testo": "Le leggi di Kirchhoff derivano dal modello a costanti concentrate e non valgono in generale per una linea lunga ad alta frequenza.",
+   "spiegazione": "Nella linea tensione e corrente dipendono dalla posizione: serve il modello a parametri distribuiti.",
+   "studio": "I-01",
+   "corretta": true
+  },
+  {
+   "id": "Q-I-004",
+   "blocco": "I",
+   "argomento": "I-01",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "In un circuito a costanti concentrate l'energia del campo elettrico è immagazzinata solo nei condensatori e quella magnetica solo negli induttori.",
+   "spiegazione": "È l'ipotesi del modello: i campi sono confinati nei componenti.",
+   "studio": "I-01",
+   "corretta": true
+  },
+  {
+   "id": "Q-I-005",
+   "blocco": "I",
+   "argomento": "I-02",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "La KCL applicata a un nodo afferma che:",
+   "spiegazione": "KCL: $\\sum\\pm i_k=0$ per ogni nodo (e ogni taglio).",
+   "studio": "I-02",
+   "opzioni": [
+    "la tensione è la stessa su tutti i rami",
+    "la somma algebrica delle correnti dei rami è nulla",
+    "la somma delle tensioni dei rami è nulla",
+    "la potenza assorbita è massima"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-I-006",
+   "blocco": "I",
+   "argomento": "I-02",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Un taglio che separa il circuito in due parti è attraversato da correnti $i_1=2\\,\\mathrm A$ (verso $A\\to B$), $i_2=-5\\,\\mathrm A$ (verso $A\\to B$) e $i_3$ (verso $A\\to B$). Allora $i_3$ vale:",
+   "spiegazione": "KCL sul taglio: $2-5+i_3=0\\Rightarrow i_3=3\\,\\mathrm A$.",
+   "studio": "I-02",
+   "opzioni": [
+    "$-3\\,\\mathrm A$",
+    "$-7\\,\\mathrm A$",
+    "$7\\,\\mathrm A$",
+    "$3\\,\\mathrm A$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-I-007",
+   "blocco": "I",
+   "argomento": "I-02",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "La KVL vale lungo una maglia anche se non contiene generatori.",
+   "spiegazione": "Dipende solo dalla topologia: la somma algebrica delle tensioni di ramo è nulla.",
+   "studio": "I-02",
+   "corretta": true
+  },
+  {
+   "id": "Q-I-008",
+   "blocco": "I",
+   "argomento": "I-02",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "La KCL per un taglio è una conseguenza delle KCL dei nodi contenuti in una delle due parti.",
+   "spiegazione": "Sommando le KCL dei nodi interni le correnti dei rami interni si cancellano a coppie.",
+   "studio": "I-02",
+   "corretta": true
+  },
+  {
+   "id": "Q-I-009",
+   "blocco": "I",
+   "argomento": "I-03",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Con la convenzione degli utilizzatori la potenza $p=v\\,i$ è:",
+   "spiegazione": "Corrente entrante nel morsetto $+$: $p=vi$ è assorbita.",
+   "studio": "I-03",
+   "opzioni": [
+    "sempre nulla",
+    "assorbita dal bipolo",
+    "sempre positiva",
+    "erogata dal bipolo"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-I-010",
+   "blocco": "I",
+   "argomento": "I-03",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Un bipolo ha $v=12\\,\\mathrm V$, $i=-2\\,\\mathrm A$ (convenzione degli utilizzatori). Esso:",
+   "spiegazione": "$p_{ass}=vi=-24\\,\\mathrm W$, quindi eroga $24\\,\\mathrm W$.",
+   "studio": "I-03",
+   "opzioni": [
+    "assorbe $24\\,\\mathrm W$",
+    "non scambia potenza",
+    "eroga $24\\,\\mathrm W$",
+    "assorbe $6\\,\\mathrm W$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-I-011",
+   "blocco": "I",
+   "argomento": "I-03",
+   "difficolta": 1,
+   "tipo": "fm",
+   "testo": "Una porta è una coppia di morsetti per cui la corrente entrante in un morsetto è ___ quella uscente dall'altro.",
+   "spiegazione": "È la definizione di porta.",
+   "studio": "I-03",
+   "opzioni": [
+    "indipendente da",
+    "opposta a",
+    "uguale a",
+    "doppia di"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-I-012",
+   "blocco": "I",
+   "argomento": "I-03",
+   "difficolta": 1,
+   "tipo": "vf",
+   "testo": "Un doppio bipolo ha quattro morsetti e due porte.",
+   "spiegazione": "Ogni porta è una coppia di morsetti.",
+   "studio": "I-03",
+   "corretta": true
+  },
+  {
+   "id": "Q-I-013",
+   "blocco": "I",
+   "argomento": "I-04",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Quale relazione descrive un elemento lineare e tempo-invariante?",
+   "spiegazione": "$v=3i$ è omogenea, additiva e senza parametri dipendenti da $t$.",
+   "studio": "I-04",
+   "opzioni": [
+    "$v=3i$",
+    "$v=t\\,i$",
+    "$v=i+1$",
+    "$v=2i^2$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-I-014",
+   "blocco": "I",
+   "argomento": "I-04",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "L'elemento $v=t\\,i$ è:",
+   "spiegazione": "È lineare in $i$, ma il coefficiente dipende da $t$.",
+   "studio": "I-04",
+   "opzioni": [
+    "non lineare e tempo-variante",
+    "lineare e tempo-variante",
+    "lineare e tempo-invariante",
+    "non lineare e tempo-invariante"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-I-015",
+   "blocco": "I",
+   "argomento": "I-04",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Un generatore indipendente di tensione non nulla è un elemento passivo.",
+   "spiegazione": "Può erogare energia: non è passivo.",
+   "studio": "I-04",
+   "corretta": false
+  },
+  {
+   "id": "Q-I-016",
+   "blocco": "I",
+   "argomento": "I-04",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Un elemento causale ha una risposta che a $t$ dipende solo dall'ingresso agli istanti $\\le t$.",
+   "spiegazione": "È la definizione di causalità.",
+   "studio": "I-04",
+   "corretta": true
+  },
+  {
+   "id": "Q-I-017",
+   "blocco": "I",
+   "argomento": "I-05",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "La relazione costitutiva del condensatore è:",
+   "spiegazione": "$i=C\\,dv/dt$.",
+   "studio": "I-05",
+   "opzioni": [
+    "$v=C\\,i$",
+    "$i=C\\,dv/dt$",
+    "$v=C\\,di/dt$",
+    "$i=C\\,v$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-I-018",
+   "blocco": "I",
+   "argomento": "I-05",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "In regime continuo l'induttore ideale si comporta come:",
+   "spiegazione": "$v=L\\,di/dt=0$ se $i$ è costante: tensione nulla, cioè corto.",
+   "studio": "I-05",
+   "opzioni": [
+    "circuito aperto",
+    "resistore da $1\\,\\Omega$",
+    "generatore di corrente",
+    "cortocircuito"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-I-019",
+   "blocco": "I",
+   "argomento": "I-05",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "La tensione ai capi di un condensatore è continua se:",
+   "spiegazione": "$v_C(t)=v_C(t_0)+\\frac1C\\int i\\,d\\tau$: con $i$ limitata l'integrale è continuo.",
+   "studio": "I-05",
+   "opzioni": [
+    "la capacità è unitaria",
+    "la corrente è limitata",
+    "la carica è nulla",
+    "la tensione è limitata"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-I-020",
+   "blocco": "I",
+   "argomento": "I-05",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Se $v_L$ è limitata, $i_L$ è continua.",
+   "spiegazione": "L'integrale di una funzione limitata è continuo.",
+   "studio": "I-05",
+   "corretta": true
+  },
+  {
+   "id": "Q-I-021",
+   "blocco": "I",
+   "argomento": "I-05",
+   "difficolta": 1,
+   "tipo": "fm",
+   "testo": "Un generatore ideale di corrente con valore nullo equivale a un ___.",
+   "spiegazione": "Corrente nulla qualunque sia la tensione: aperto.",
+   "studio": "I-05",
+   "opzioni": [
+    "cortocircuito",
+    "resistore",
+    "circuito aperto",
+    "condensatore"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-I-022",
+   "blocco": "I",
+   "argomento": "I-05",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Per $t>0$ in un circuito RC la tensione $v_C(0^+)$ vale:",
+   "spiegazione": "$v_C$ è continua: $v_C(0^+)=v_C(0^-)$.",
+   "studio": "I-05",
+   "opzioni": [
+    "non è determinabile",
+    "$0$",
+    "$v_C(0^-)$",
+    "la tensione del generatore"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-I-023",
+   "blocco": "I",
+   "argomento": "I-06",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "L'energia immagazzinata in un induttore $L=2\\,\\mathrm H$ percorso da $i=3\\,\\mathrm A$ è:",
+   "spiegazione": "$W=\\tfrac12Li^2=\\tfrac12\\cdot2\\cdot9=9\\,\\mathrm J$.",
+   "studio": "I-06",
+   "opzioni": [
+    "$3\\,\\mathrm J$",
+    "$9\\,\\mathrm J$",
+    "$18\\,\\mathrm J$",
+    "$6\\,\\mathrm J$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-I-024",
+   "blocco": "I",
+   "argomento": "I-06",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "$C=1\\,\\mathrm F$ a $2\\,\\mathrm V$ viene collegato in parallelo a $C=1\\,\\mathrm F$ scarico. L'energia finale rispetto a quella iniziale:",
+   "spiegazione": "Iniziale $2\\,\\mathrm J$, finale $\\tfrac12\\cdot2\\cdot1^2=1\\,\\mathrm J$: metà.",
+   "studio": "I-06",
+   "opzioni": [
+    "è uguale",
+    "è la metà",
+    "è nulla",
+    "è doppia"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-I-025",
+   "blocco": "I",
+   "argomento": "I-06",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Due generatori ideali di tensione diversi collegati in parallelo costituiscono una situazione incongruente.",
+   "spiegazione": "Violano la KVL: la stessa tensione non può avere due valori.",
+   "studio": "I-06",
+   "corretta": true
+  },
+  {
+   "id": "Q-I-026",
+   "blocco": "I",
+   "argomento": "I-06",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Una pila reale si può modellare con un generatore ideale di tensione in serie a una resistenza.",
+   "spiegazione": "Modello $v=E-r\\,i$.",
+   "studio": "I-06",
+   "corretta": true
+  },
+  {
+   "id": "Q-I-027",
+   "blocco": "I",
+   "argomento": "I-07",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Un generatore di corrente controllato in tensione (VCCS) è descritto da:",
+   "spiegazione": "VCCS: $i_2=g_m v_1$ con $i_1=0$.",
+   "studio": "I-07",
+   "opzioni": [
+    "$v_2=r_mi_1$",
+    "$v_2=\\mu v_1$",
+    "$i_2=g_mv_1$",
+    "$i_2=\\beta i_1$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-I-028",
+   "blocco": "I",
+   "argomento": "I-07",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Per calcolare la resistenza equivalente con il metodo del generatore di prova si spengono anche i generatori controllati.",
+   "spiegazione": "Si spengono solo gli indipendenti; i controllati restano.",
+   "studio": "I-07",
+   "corretta": false
+  },
+  {
+   "id": "Q-I-029",
+   "blocco": "I",
+   "argomento": "I-07",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "I generatori controllati sono elementi attivi.",
+   "spiegazione": "Possono erogare potenza netta.",
+   "studio": "I-07",
+   "corretta": true
+  },
+  {
+   "id": "Q-I-030",
+   "blocco": "I",
+   "argomento": "I-08",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Nel trasformatore ideale con $v_1=nv_2$ e convenzione degli utilizzatori su entrambe le porte, la corrente $i_1$ vale:",
+   "spiegazione": "$i_1=-i_2/n$: la potenza assorbita totale è nulla.",
+   "studio": "I-08",
+   "opzioni": [
+    "$i_2/n$",
+    "$-i_2/n$",
+    "$n\\,i_2$",
+    "$-n\\,i_2$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-I-031",
+   "blocco": "I",
+   "argomento": "I-08",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Con $n=2$, un carico $Z_L=3\\,\\Omega$ alla porta 2 è visto dalla porta 1 come:",
+   "spiegazione": "$Z_{in}=n^2Z_L=4\\cdot3=12\\,\\Omega$.",
+   "studio": "I-08",
+   "opzioni": [
+    "$12\\,\\Omega$",
+    "$6\\,\\Omega$",
+    "$1{,}5\\,\\Omega$",
+    "$0{,}75\\,\\Omega$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-I-032",
+   "blocco": "I",
+   "argomento": "I-08",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Il trasformatore ideale funziona anche in continua.",
+   "spiegazione": "È un doppio bipolo algebrico (senza memoria), non un induttore.",
+   "studio": "I-08",
+   "corretta": true
+  },
+  {
+   "id": "Q-I-033",
+   "blocco": "I",
+   "argomento": "I-09",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Il nullatore impone:",
+   "spiegazione": "Nullatore: tensione e corrente entrambe nulle.",
+   "studio": "I-09",
+   "opzioni": [
+    "$i=0$, $v$ qualsiasi",
+    "$v=0$, $i$ qualsiasi",
+    "$v=i$",
+    "$v=0$ e $i=0$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-I-034",
+   "blocco": "I",
+   "argomento": "I-09",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Il noratore è un bipolo con:",
+   "spiegazione": "Noratore: $v$ e $i$ libere, determinate dal resto del circuito.",
+   "studio": "I-09",
+   "opzioni": [
+    "solo tensione nulla",
+    "tensione e corrente qualsiasi",
+    "solo corrente nulla",
+    "tensione e corrente nulle"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-I-035",
+   "blocco": "I",
+   "argomento": "I-09",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Op-amp ideale in configurazione invertente con $R_1=2\\,\\Omega$, $R_2=8\\,\\Omega$ e $V_g=1\\,\\mathrm V$: $v_o=$",
+   "spiegazione": "$v_o=-R_2/R_1\\cdot V_g=-4\\,\\mathrm V$.",
+   "studio": "I-09",
+   "opzioni": [
+    "$4\\,\\mathrm V$",
+    "$-0{,}25\\,\\mathrm V$",
+    "$5\\,\\mathrm V$",
+    "$-4\\,\\mathrm V$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-I-036",
+   "blocco": "I",
+   "argomento": "I-09",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Op-amp non invertente con $R_1=1\\,\\Omega$ (verso massa) e $R_2=3\\,\\Omega$ (retroazione): il guadagno è",
+   "spiegazione": "$1+R_2/R_1=4$.",
+   "studio": "I-09",
+   "opzioni": [
+    "$1/4$",
+    "$-3$",
+    "$4$",
+    "$3$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-I-037",
+   "blocco": "I",
+   "argomento": "I-09",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Nel nullore la potenza erogata dal generatore pilota (di corrente) è nulla perché ai suoi capi la tensione è nulla.",
+   "spiegazione": "Nel nullatore $v=0$ e $i=0$: nessuna potenza scambiata.",
+   "studio": "I-09",
+   "corretta": true
+  },
+  {
+   "id": "Q-I-038",
+   "blocco": "I",
+   "argomento": "I-09",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Il modello lineare dell'amplificatore operazionale reale ha tre regioni di funzionamento: lineare e due di saturazione.",
+   "spiegazione": "Saturazione a $\\pm V_{cc}$.",
+   "studio": "I-09",
+   "corretta": true
+  },
+  {
+   "id": "Q-I-039",
+   "blocco": "I",
+   "argomento": "I-09",
+   "difficolta": 2,
+   "tipo": "fm",
+   "testo": "L'inseguitore di tensione ha guadagno ___.",
+   "spiegazione": "$v_o=V_g$, con impedenza d'ingresso teoricamente infinita.",
+   "studio": "I-09",
+   "opzioni": [
+    "0",
+    "1",
+    "$-1$",
+    "$\\infty$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-II-001",
+   "blocco": "II",
+   "argomento": "II-01",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Una maglia è:",
+   "spiegazione": "Definizione di maglia.",
+   "studio": "II-01",
+   "opzioni": [
+    "un insieme di rami che forma un percorso chiuso toccando ciascun nodo una sola volta",
+    "un insieme di rami incidenti in un nodo",
+    "un ramo con una corrente",
+    "un insieme di nodi"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-II-002",
+   "blocco": "II",
+   "argomento": "II-01",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Un taglio è un insieme di rami che:",
+   "spiegazione": "Taglio: insieme minimale la cui rimozione disconnette il grafo.",
+   "studio": "II-01",
+   "opzioni": [
+    "forma un percorso chiuso",
+    "se rimosso rende il grafo non connesso (insieme minimale)",
+    "contiene un solo nodo",
+    "ha tutti la stessa corrente"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-II-003",
+   "blocco": "II",
+   "argomento": "II-01",
+   "difficolta": 1,
+   "tipo": "vf",
+   "testo": "I rami incidenti in un nodo costituiscono un taglio.",
+   "spiegazione": "Rimuoverli isola il nodo dal resto del grafo.",
+   "studio": "II-01",
+   "corretta": true
+  },
+  {
+   "id": "Q-II-004",
+   "blocco": "II",
+   "argomento": "II-01",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "In un grafo connesso con $n$ nodi e $b$ rami vale sempre $b\\ge n-1$.",
+   "spiegazione": "Un albero ha $n-1$ rami: servono almeno tanti per connettere.",
+   "studio": "II-01",
+   "corretta": true
+  },
+  {
+   "id": "Q-II-005",
+   "blocco": "II",
+   "argomento": "II-02",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Un albero di un grafo con $n$ nodi ha:",
+   "spiegazione": "Albero: connette tutti i nodi senza maglie, $n-1$ rami.",
+   "studio": "II-02",
+   "opzioni": [
+    "$n$ rami",
+    "$n-1$ rami",
+    "$b-n+1$ rami",
+    "$2n$ rami"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-II-006",
+   "blocco": "II",
+   "argomento": "II-02",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Il coalbero di un grafo con $n$ nodi e $b$ rami ha:",
+   "spiegazione": "$b-(n-1)=b-n+1$.",
+   "studio": "II-02",
+   "opzioni": [
+    "$b-n+1$ rami",
+    "$b$ rami",
+    "$n-1$ rami",
+    "$b-n$ rami"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-II-007",
+   "blocco": "II",
+   "argomento": "II-02",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Il grafo ha $n=5$ e $b=9$. Le maglie fondamentali sono:",
+   "spiegazione": "$b-n+1=9-5+1=5$.",
+   "studio": "II-02",
+   "opzioni": [
+    "$5$",
+    "$9$",
+    "$4$",
+    "$14$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-II-008",
+   "blocco": "II",
+   "argomento": "II-02",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Il grafo ha $n=5$ e $b=9$. I tagli fondamentali sono:",
+   "spiegazione": "$n-1=4$.",
+   "studio": "II-02",
+   "opzioni": [
+    "$5$",
+    "$9$",
+    "$8$",
+    "$4$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-II-009",
+   "blocco": "II",
+   "argomento": "II-02",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Aggiungendo all'albero un ramo di coalbero si chiude una e una sola maglia.",
+   "spiegazione": "È la maglia fondamentale di quel ramo.",
+   "studio": "II-02",
+   "corretta": true
+  },
+  {
+   "id": "Q-II-010",
+   "blocco": "II",
+   "argomento": "II-02",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "L'albero di un grafo è unico.",
+   "spiegazione": "In generale ci sono molti alberi; le maglie e i tagli fondamentali dipendono dalla scelta.",
+   "studio": "II-02",
+   "corretta": false
+  },
+  {
+   "id": "Q-II-011",
+   "blocco": "II",
+   "argomento": "II-03",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "La matrice di incidenza ridotta $A$ di un grafo con $n$ nodi e $b$ rami ha dimensione:",
+   "spiegazione": "Si elimina la riga del nodo di riferimento.",
+   "studio": "II-03",
+   "opzioni": [
+    "$(n-1)\\times b$",
+    "$n\\times b$",
+    "$b\\times b$",
+    "$b\\times(n-1)$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-II-012",
+   "blocco": "II",
+   "argomento": "II-03",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "La KCL in forma matriciale è:",
+   "spiegazione": "$A\\mathbf i=\\mathbf0$.",
+   "studio": "II-03",
+   "opzioni": [
+    "$A\\mathbf i=0$",
+    "$\\mathbf v=B^{\\mathsf T}\\mathbf i$",
+    "$B\\mathbf i=0$",
+    "$A\\mathbf v=0$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-II-013",
+   "blocco": "II",
+   "argomento": "II-03",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "La KVL in forma matriciale è:",
+   "spiegazione": "$B\\mathbf v=\\mathbf0$ (maglie fondamentali).",
+   "studio": "II-03",
+   "opzioni": [
+    "$\\mathbf i=A^{\\mathsf T}\\mathbf v$",
+    "$A\\mathbf v=0$",
+    "$B\\mathbf i=0$",
+    "$B\\mathbf v=0$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-II-014",
+   "blocco": "II",
+   "argomento": "II-03",
+   "difficolta": 3,
+   "tipo": "mc",
+   "testo": "Con $A=[A_t\\ A_c]$ e $F=A_t^{-1}A_c$, la matrice delle maglie fondamentali (con $B_c=\\mathbb1$) è:",
+   "spiegazione": "Da $AB^{\\mathsf T}=0$: $B_t=-F^{\\mathsf T}$.",
+   "studio": "II-03",
+   "opzioni": [
+    "$[\\mathbb1\\ \\ F]$",
+    "$[F^{\\mathsf T}\\ \\ \\mathbb1]$",
+    "$[-F\\ \\ \\mathbb1]$",
+    "$[-F^{\\mathsf T}\\ \\ \\mathbb1]$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-II-015",
+   "blocco": "II",
+   "argomento": "II-03",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Le matrici complete $A$ e $B$ hanno la stessa dimensione e $B=-A^{\\mathsf T}$.",
+   "spiegazione": "Dimensioni diverse: la relazione vale tra i blocchi.",
+   "studio": "II-03",
+   "corretta": false
+  },
+  {
+   "id": "Q-II-016",
+   "blocco": "II",
+   "argomento": "II-03",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Per ogni grafo orientato vale $A\\,B^{\\mathsf T}=0$.",
+   "spiegazione": "Segue dal fatto che le tensioni $\\mathbf v=A^{\\mathsf T}\\mathbf e$ soddisfano $B\\mathbf v=0$ per ogni $\\mathbf e$.",
+   "studio": "II-03",
+   "corretta": true
+  },
+  {
+   "id": "Q-II-017",
+   "blocco": "II",
+   "argomento": "II-04",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Quante tensioni di ramo indipendenti ci sono in un circuito con $n$ nodi e $b$ rami?",
+   "spiegazione": "$n-1$: sono le tensioni dei rami d'albero (o di nodo).",
+   "studio": "II-04",
+   "opzioni": [
+    "$n-1$",
+    "$b-n+1$",
+    "$n$",
+    "$b$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-II-018",
+   "blocco": "II",
+   "argomento": "II-04",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Quante correnti di ramo indipendenti ci sono?",
+   "spiegazione": "Le correnti dei rami di coalbero (di maglia).",
+   "studio": "II-04",
+   "opzioni": [
+    "$n-1$",
+    "$n$",
+    "$b$",
+    "$b-n+1$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-II-019",
+   "blocco": "II",
+   "argomento": "II-04",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Le tensioni di coalbero si ricavano da quelle d'albero con $\\mathbf v_c=F^{\\mathsf T}\\mathbf v_t$.",
+   "spiegazione": "Dalla KVL $-F^{\\mathsf T}\\mathbf v_t+\\mathbf v_c=0$.",
+   "studio": "II-04",
+   "corretta": true
+  },
+  {
+   "id": "Q-II-020",
+   "blocco": "II",
+   "argomento": "II-05",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Il teorema di Tellegen afferma che per vettori $\\mathbf v$ (KVL) e $\\mathbf i$ (KCL) dello stesso grafo:",
+   "spiegazione": "$\\sum v_ki_k=0$.",
+   "studio": "II-05",
+   "opzioni": [
+    "$\\mathbf v^{\\mathsf T}\\mathbf i>0$",
+    "$\\mathbf v^{\\mathsf T}\\mathbf i=0$",
+    "$\\mathbf v+\\mathbf i=0$",
+    "$\\mathbf v=R\\mathbf i$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-II-021",
+   "blocco": "II",
+   "argomento": "II-05",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Il teorema di Tellegen vale anche se $\\mathbf v$ e $\\mathbf i$ appartengono a due circuiti diversi con lo stesso grafo.",
+   "spiegazione": "Dipende solo dalla topologia.",
+   "studio": "II-05",
+   "corretta": true
+  },
+  {
+   "id": "Q-II-022",
+   "blocco": "II",
+   "argomento": "II-05",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Tellegen implica che la somma delle potenze assorbite da tutti i rami è nulla.",
+   "spiegazione": "È la conservazione della potenza.",
+   "studio": "II-05",
+   "corretta": true
+  },
+  {
+   "id": "Q-II-023",
+   "blocco": "II",
+   "argomento": "II-05",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Il teorema di Tellegen richiede che i bipoli siano lineari.",
+   "spiegazione": "Non usa le relazioni costitutive.",
+   "studio": "II-05",
+   "corretta": false
+  },
+  {
+   "id": "Q-II-024",
+   "blocco": "II",
+   "argomento": "II-05",
+   "difficolta": 3,
+   "tipo": "mc",
+   "testo": "La dimostrazione di Tellegen usa:",
+   "spiegazione": "$\\mathbf v^{\\mathsf T}\\mathbf i=\\mathbf e^{\\mathsf T}A\\mathbf i=0$.",
+   "studio": "II-05",
+   "opzioni": [
+    "$\\mathbf v=A^{\\mathsf T}\\mathbf e$ e $A\\mathbf i=0$",
+    "la sovrapposizione degli effetti",
+    "il teorema di Thevenin",
+    "la linearità degli elementi"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-II-025",
+   "blocco": "II",
+   "argomento": "II-06",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Due resistori $6\\,\\Omega$ e $3\\,\\Omega$ in parallelo equivalgono a:",
+   "spiegazione": "$6\\cdot3/9=2\\,\\Omega$.",
+   "studio": "II-06",
+   "opzioni": [
+    "$2\\,\\Omega$",
+    "$18\\,\\Omega$",
+    "$9\\,\\Omega$",
+    "$4{,}5\\,\\Omega$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-II-026",
+   "blocco": "II",
+   "argomento": "II-06",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "$R_1=1\\,\\Omega$ e $R_2=3\\,\\Omega$ in serie con $12\\,\\mathrm V$: la tensione su $R_2$ è",
+   "spiegazione": "$12\\cdot3/4=9\\,\\mathrm V$.",
+   "studio": "II-06",
+   "opzioni": [
+    "$4\\,\\mathrm V$",
+    "$3\\,\\mathrm V$",
+    "$9\\,\\mathrm V$",
+    "$12\\,\\mathrm V$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-II-027",
+   "blocco": "II",
+   "argomento": "II-06",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Partitore di corrente: $i$ entra nel parallelo di $G_1=1\\,\\mathrm S$ e $G_2=3\\,\\mathrm S$. La corrente in $G_2$ è:",
+   "spiegazione": "$i_2=i\\,G_2/(G_1+G_2)$.",
+   "studio": "II-06",
+   "opzioni": [
+    "$i/4$",
+    "$3i$",
+    "$3i/4$",
+    "$i/3$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-II-028",
+   "blocco": "II",
+   "argomento": "II-06",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Il partitore di tensione si applica correttamente se la corrente nei due resistori è la stessa.",
+   "spiegazione": "Cioè in assenza di carico che sottragga corrente.",
+   "studio": "II-06",
+   "corretta": true
+  },
+  {
+   "id": "Q-II-029",
+   "blocco": "II",
+   "argomento": "II-07",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Nel metodo dei nodi per una rete di soli resistori e generatori di corrente il sistema è:",
+   "spiegazione": "$G=A\\mathcal GA^{\\mathsf T}$.",
+   "studio": "II-07",
+   "opzioni": [
+    "$G\\mathbf i=\\mathbf e$",
+    "$G\\mathbf e=\\mathbf i_s$",
+    "$A\\mathbf v=0$",
+    "$R\\mathbf j=\\mathbf v_s$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-II-030",
+   "blocco": "II",
+   "argomento": "II-07",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Il metodo dei nodi è conveniente se:",
+   "spiegazione": "Pochi nodi rispetto alle maglie indipendenti.",
+   "studio": "II-07",
+   "opzioni": [
+    "non ci sono generatori",
+    "$n-1>b-n+1$",
+    "$n-1<b-n+1$",
+    "$b$ è pari"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-II-031",
+   "blocco": "II",
+   "argomento": "II-07",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Con soli resistori e generatori di corrente la matrice $G$ è simmetrica.",
+   "spiegazione": "$G=A\\mathcal GA^{\\mathsf T}$ è simmetrica.",
+   "studio": "II-07",
+   "corretta": true
+  },
+  {
+   "id": "Q-II-032",
+   "blocco": "II",
+   "argomento": "II-07",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Un generatore di tensione tra due nodi diversi dal riferimento si tratta con un supernodo.",
+   "spiegazione": "KCL sul taglio più il vincolo $e_j-e_k=E$.",
+   "studio": "II-07",
+   "corretta": true
+  },
+  {
+   "id": "Q-II-033",
+   "blocco": "II",
+   "argomento": "II-08",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Nel metodo delle maglie l'elemento $R_{jk}$ ($j\\ne k$) con tutte le correnti di maglia orarie è:",
+   "spiegazione": "Nel ramo comune le correnti hanno versi opposti.",
+   "studio": "II-08",
+   "opzioni": [
+    "nullo",
+    "la resistenza condivisa con segno $-$",
+    "la resistenza condivisa con segno $+$",
+    "la somma delle resistenze"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-II-034",
+   "blocco": "II",
+   "argomento": "II-08",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Un generatore di corrente su un solo ramo di una maglia fissa la corrente di quella maglia.",
+   "spiegazione": "Elimina un'incognita.",
+   "studio": "II-08",
+   "corretta": true
+  },
+  {
+   "id": "Q-II-035",
+   "blocco": "II",
+   "argomento": "II-08",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Il metodo delle maglie è il duale del metodo dei nodi.",
+   "spiegazione": "Tensioni ↔ correnti, resistenze ↔ conduttanze.",
+   "studio": "II-08",
+   "corretta": true
+  },
+  {
+   "id": "Q-II-036",
+   "blocco": "II",
+   "argomento": "II-08",
+   "difficolta": 2,
+   "tipo": "fm",
+   "testo": "Con $b-n+1$ maglie indipendenti si scrivono ___ equazioni di KVL.",
+   "spiegazione": "Una per ogni maglia fondamentale.",
+   "studio": "II-08",
+   "opzioni": [
+    "$b$",
+    "$n$",
+    "$n-1$",
+    "$b-n+1$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-II-037",
+   "blocco": "II",
+   "argomento": "II-06",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "$R_{eq}$ fra i capi di un resistore da $4\\,\\Omega$ in parallelo alla serie $2\\,\\Omega+2\\,\\Omega$:",
+   "spiegazione": "$4\\parallel4=2\\,\\Omega$.",
+   "studio": "II-06",
+   "opzioni": [
+    "$1\\,\\Omega$",
+    "$8\\,\\Omega$",
+    "$2\\,\\Omega$",
+    "$4\\,\\Omega$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-II-038",
+   "blocco": "II",
+   "argomento": "II-05",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Un generatore di tensione eroga $20\\,\\mathrm W$; i resistori della rete assorbono complessivamente:",
+   "spiegazione": "Tellegen: la somma algebrica delle potenze è nulla.",
+   "studio": "II-05",
+   "opzioni": [
+    "$40\\,\\mathrm W$",
+    "$10\\,\\mathrm W$",
+    "$0$",
+    "$20\\,\\mathrm W$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-II-039",
+   "blocco": "II",
+   "argomento": "II-04",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Se $\\mathbf v_t=(5,3)^{\\mathsf T}$ e $F^{\\mathsf T}=(-1\\ \\ 1)$, allora $v_c=$",
+   "spiegazione": "$v_c=F^{\\mathsf T}\\mathbf v_t=-5+3=-2$.",
+   "studio": "II-04",
+   "opzioni": [
+    "$-2$",
+    "$2$",
+    "$8$",
+    "$-8$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-II-040",
+   "blocco": "II",
+   "argomento": "II-03",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Nella matrice $A$ il ramo $k$ che esce dal nodo $j$ ha $a_{jk}=$",
+   "spiegazione": "Convenzione: $+1$ uscente, $-1$ entrante.",
+   "studio": "II-03",
+   "opzioni": [
+    "$-1$",
+    "$2$",
+    "$0$",
+    "$+1$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-III-001",
+   "blocco": "III",
+   "argomento": "III-01",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "In un circuito RC la costante di tempo è:",
+   "spiegazione": "$\\tau=R_{eq}C$.",
+   "studio": "III-01",
+   "opzioni": [
+    "$R/C$",
+    "$1/(RC)$",
+    "$RC$",
+    "$C/R$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-III-002",
+   "blocco": "III",
+   "argomento": "III-01",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Dopo un tempo pari a $5\\tau$ una scarica esponenziale ha raggiunto circa:",
+   "spiegazione": "$e^{-5}\\approx0{,}0067$.",
+   "studio": "III-01",
+   "opzioni": [
+    "esattamente zero",
+    "il $10\\%$ del valore iniziale",
+    "meno dell'$1\\%$ del valore iniziale",
+    "il $50\\%$ del valore iniziale"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-III-003",
+   "blocco": "III",
+   "argomento": "III-01",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Per un RL con $L=2\\,\\mathrm H$ e $R_{eq}=5\\,\\Omega$, $\\tau=$",
+   "spiegazione": "$\\tau=L/R_{eq}=2/5$.",
+   "studio": "III-01",
+   "opzioni": [
+    "$7\\,\\mathrm s$",
+    "$2{,}5\\,\\mathrm s$",
+    "$0{,}4\\,\\mathrm s$",
+    "$10\\,\\mathrm s$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-III-004",
+   "blocco": "III",
+   "argomento": "III-01",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Nella risposta a $t>0$ con generatori spenti, $R_{eq}$ si calcola con un generatore di prova ai morsetti dell'elemento con memoria.",
+   "spiegazione": "Gli indipendenti sono spenti, i controllati restano.",
+   "studio": "III-01",
+   "corretta": true
+  },
+  {
+   "id": "Q-III-005",
+   "blocco": "III",
+   "argomento": "III-01",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Se $\\tau$ risulta negativa, la risposta libera è una esponenziale decrescente.",
+   "spiegazione": "$e^{-t/\\tau}$ con $\\tau<0$ cresce: instabilità.",
+   "studio": "III-01",
+   "corretta": false
+  },
+  {
+   "id": "Q-III-006",
+   "blocco": "III",
+   "argomento": "III-02",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Al segnale $v(t)=V_m\\cos(\\omega t+\\varphi)$ corrisponde il fasore:",
+   "spiegazione": "$\\dot V=V_me^{j\\varphi}$ con $v(t)=\\mathrm{Re}\\{\\dot Ve^{j\\omega t}\\}$.",
+   "studio": "III-02",
+   "opzioni": [
+    "$V_me^{-j\\varphi}$",
+    "$V_m\\cos\\varphi$",
+    "$V_me^{j\\varphi}$",
+    "$V_m\\sin\\varphi$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-III-007",
+   "blocco": "III",
+   "argomento": "III-02",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Il fasore di $5\\sin(\\omega t)$ (nella convenzione cos) è:",
+   "spiegazione": "$\\sin\\omega t=\\cos(\\omega t-90^\\circ)$, fasore $5e^{-j\\pi/2}=-5j$.",
+   "studio": "III-02",
+   "opzioni": [
+    "$5j$",
+    "$-5$",
+    "$-5j$",
+    "$5$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-III-008",
+   "blocco": "III",
+   "argomento": "III-02",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "La derivata nel tempo corrisponde, nel dominio dei fasori, alla moltiplicazione per:",
+   "spiegazione": "$\\frac{d}{dt}\\to j\\omega$.",
+   "studio": "III-02",
+   "opzioni": [
+    "$\\omega$",
+    "$j\\omega$",
+    "$1/(j\\omega)$",
+    "$-\\omega$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-III-009",
+   "blocco": "III",
+   "argomento": "III-02",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Il fasore dipende dal tempo.",
+   "spiegazione": "È un numero complesso costante; la dipendenza da $t$ è nel fattore $e^{j\\omega t}$.",
+   "studio": "III-02",
+   "corretta": false
+  },
+  {
+   "id": "Q-III-010",
+   "blocco": "III",
+   "argomento": "III-02",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "A $\\omega_0=1$ e $\\dot V=\\tfrac12-\\tfrac12j$ corrisponde $v(t)=\\tfrac12\\cos t+\\tfrac12\\sin t$.",
+   "spiegazione": "$\\mathrm{Re}\\{(a-jb)e^{jt}\\}=a\\cos t+b\\sin t$.",
+   "studio": "III-02",
+   "corretta": true
+  },
+  {
+   "id": "Q-III-011",
+   "blocco": "III",
+   "argomento": "III-03",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "L'impedenza di un induttore è:",
+   "spiegazione": "$Z_L=j\\omega L$.",
+   "studio": "III-03",
+   "opzioni": [
+    "$1/(j\\omega L)$",
+    "$-j\\omega L$",
+    "$j\\omega L$",
+    "$L$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-III-012",
+   "blocco": "III",
+   "argomento": "III-03",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "L'impedenza di un condensatore è:",
+   "spiegazione": "$Z_C=1/(j\\omega C)=-j/(\\omega C)$.",
+   "studio": "III-03",
+   "opzioni": [
+    "$C$",
+    "$j\\omega C$",
+    "$1/(j\\omega C)$",
+    "$-j/(\\omega)$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-III-013",
+   "blocco": "III",
+   "argomento": "III-03",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Un RC serie con $R=1\\,\\Omega$, $C=1\\,\\mathrm F$ a $\\omega=1$ ha impedenza:",
+   "spiegazione": "$R+1/(j\\omega C)=1-j$.",
+   "studio": "III-03",
+   "opzioni": [
+    "$1-j$",
+    "$j$",
+    "$1+j$",
+    "$1$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-III-014",
+   "blocco": "III",
+   "argomento": "III-03",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "L'ammettenza è l'inverso dell'impedenza.",
+   "spiegazione": "$Y=1/Z$.",
+   "studio": "III-03",
+   "corretta": true
+  },
+  {
+   "id": "Q-III-015",
+   "blocco": "III",
+   "argomento": "III-03",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "In regime sinusoidale, l'impedenza di un resistore dipende dalla frequenza.",
+   "spiegazione": "$Z_R=R$.",
+   "studio": "III-03",
+   "corretta": false
+  },
+  {
+   "id": "Q-III-016",
+   "blocco": "III",
+   "argomento": "III-04",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Il metodo dei fasori si applica a circuiti:",
+   "spiegazione": "Servono linearità, permanenza e regime.",
+   "studio": "III-04",
+   "opzioni": [
+    "qualsiasi, anche non lineari",
+    "solo resistivi",
+    "solo con generatori di corrente",
+    "lineari, tempo-invarianti, in regime sinusoidale a una sola frequenza"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-III-017",
+   "blocco": "III",
+   "argomento": "III-04",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Il metodo dei fasori fornisce il transitorio dopo l'accensione di un generatore.",
+   "spiegazione": "Fornisce solo la risposta a regime.",
+   "studio": "III-04",
+   "corretta": false
+  },
+  {
+   "id": "Q-III-018",
+   "blocco": "III",
+   "argomento": "III-04",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Con un diodo nel circuito si può comunque usare il metodo dei fasori senza approssimazioni.",
+   "spiegazione": "L'elemento non lineare viola l'ipotesi di linearità.",
+   "studio": "III-04",
+   "corretta": false
+  },
+  {
+   "id": "Q-III-019",
+   "blocco": "III",
+   "argomento": "III-05",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Due generatori a frequenze diverse alimentano un circuito lineare. La tensione totale in uscita si ottiene:",
+   "spiegazione": "Sovrapposizione nel tempo, mai dei fasori a frequenze diverse.",
+   "studio": "III-05",
+   "opzioni": [
+    "sommando nel tempo le risposte calcolate separatamente",
+    "sommando i fasori",
+    "sommando i moduli",
+    "non è calcolabile"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-III-020",
+   "blocco": "III",
+   "argomento": "III-05",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Un generatore continuo e uno sinusoidale si analizzano separatamente e le risposte si sommano nel tempo.",
+   "spiegazione": "La continua si tratta con $C$ aperto e $L$ corto.",
+   "studio": "III-05",
+   "corretta": true
+  },
+  {
+   "id": "Q-III-021",
+   "blocco": "III",
+   "argomento": "III-05",
+   "difficolta": 3,
+   "tipo": "mc",
+   "testo": "Per $t<0$: $v_C=4+\\tfrac12\\cos t+\\tfrac12\\sin t$. La condizione iniziale è:",
+   "spiegazione": "Valore a $t=0$: $4+\\tfrac12+0$.",
+   "studio": "III-05",
+   "opzioni": [
+    "$4$",
+    "$5$",
+    "$4{,}5\\sqrt2$",
+    "$4{,}5$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-III-022",
+   "blocco": "III",
+   "argomento": "III-06",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Con valori di picco la potenza attiva è:",
+   "spiegazione": "$P=\\tfrac12V_mI_m\\cos\\varphi$.",
+   "studio": "III-06",
+   "opzioni": [
+    "$V_mI_m\\sin\\varphi$",
+    "$\\tfrac12V_mI_m\\cos\\varphi$",
+    "$V_mI_m\\cos\\varphi$",
+    "$\\tfrac12V_mI_m$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-III-023",
+   "blocco": "III",
+   "argomento": "III-06",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Con valori efficaci la potenza reattiva è:",
+   "spiegazione": "$Q=VI\\sin\\varphi$.",
+   "studio": "III-06",
+   "opzioni": [
+    "$V^2/R$",
+    "$VI\\cos\\varphi$",
+    "$VI\\sin\\varphi$",
+    "$VI$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-III-024",
+   "blocco": "III",
+   "argomento": "III-06",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "$P=300\\,\\mathrm W$, $Q=400\\,\\mathrm{var}$: $|S|=$",
+   "spiegazione": "$|S|=\\sqrt{300^2+400^2}=500$.",
+   "studio": "III-06",
+   "opzioni": [
+    "$500\\,\\mathrm{VA}$",
+    "$700\\,\\mathrm{VA}$",
+    "$350\\,\\mathrm{VA}$",
+    "$100\\,\\mathrm{VA}$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-III-025",
+   "blocco": "III",
+   "argomento": "III-06",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Fattore di potenza di $P=300$, $Q=400$:",
+   "spiegazione": "$\\cos\\varphi=P/|S|=300/500$.",
+   "studio": "III-06",
+   "opzioni": [
+    "$0{,}6$",
+    "$0{,}8$",
+    "$0{,}75$",
+    "$1$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-III-026",
+   "blocco": "III",
+   "argomento": "III-06",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "La potenza reattiva di un induttore ideale è positiva (convenzione degli utilizzatori).",
+   "spiegazione": "$Q_L=\\omega L I^2>0$.",
+   "studio": "III-06",
+   "corretta": true
+  },
+  {
+   "id": "Q-III-027",
+   "blocco": "III",
+   "argomento": "III-06",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "La potenza attiva media assorbita da un induttore o da un condensatore ideale è nulla in regime sinusoidale.",
+   "spiegazione": "Solo scambio di energia.",
+   "studio": "III-06",
+   "corretta": true
+  },
+  {
+   "id": "Q-III-028",
+   "blocco": "III",
+   "argomento": "III-06",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "$Q=2\\omega(W_L-W_C)$ con $W$ valori medi delle energie immagazzinate.",
+   "spiegazione": "Relazione tra reattiva ed energie medie (valori efficaci).",
+   "studio": "III-06",
+   "corretta": true
+  },
+  {
+   "id": "Q-III-029",
+   "blocco": "III",
+   "argomento": "III-06",
+   "difficolta": 2,
+   "tipo": "fm",
+   "testo": "La potenza complessa è $S=P+jQ=\\dot V\\,\\dot I^{\\,\\square}$ (valori efficaci); al posto di $\\square$ va:",
+   "spiegazione": "$S=\\dot V\\dot I^*$.",
+   "studio": "III-06",
+   "opzioni": [
+    "$*$ (coniugato)",
+    "$mathsf T$",
+    "$2$",
+    "$-1$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-III-030",
+   "blocco": "III",
+   "argomento": "III-07",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "La conservazione della potenza complessa afferma che:",
+   "spiegazione": "Tellegen applicato ai fasori: $\\sum\\dot V_k\\dot I_k^*=0$.",
+   "studio": "III-07",
+   "opzioni": [
+    "$S$ è costante nel tempo",
+    "la somma delle $S$ assorbite da tutti i rami è nulla",
+    "la somma dei moduli $|S|$ è nulla",
+    "$P=Q$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-III-031",
+   "blocco": "III",
+   "argomento": "III-07",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Poiché $\\sum S_k=0$, anche la somma dei moduli $|S_k|$ è nulla.",
+   "spiegazione": "Si conservano $P$ e $Q$ separatamente, non i moduli.",
+   "studio": "III-07",
+   "corretta": false
+  },
+  {
+   "id": "Q-III-032",
+   "blocco": "III",
+   "argomento": "III-07",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Il bilancio delle potenze attive: potenza erogata dai generatori = potenza assorbita dai resistori.",
+   "spiegazione": "Gli elementi reattivi hanno $P=0$.",
+   "studio": "III-07",
+   "corretta": true
+  },
+  {
+   "id": "Q-III-033",
+   "blocco": "III",
+   "argomento": "III-08",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Rifasare significa:",
+   "spiegazione": "Tipicamente con un condensatore in parallelo al carico induttivo.",
+   "studio": "III-08",
+   "opzioni": [
+    "ridurre la potenza attiva",
+    "aumentare la tensione",
+    "ridurre la potenza reattiva scambiata con la rete, aumentando il fattore di potenza",
+    "eliminare la frequenza"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-III-034",
+   "blocco": "III",
+   "argomento": "III-08",
+   "difficolta": 3,
+   "tipo": "mc",
+   "testo": "Formula della capacità di rifasamento (valori efficaci):",
+   "spiegazione": "$Q_C=P(\\tan\\varphi_1-\\tan\\varphi_2)=\\omega CV^2$.",
+   "studio": "III-08",
+   "opzioni": [
+    "$C=\\dfrac{P}{\\omega V^2}$",
+    "$C=\\dfrac{P(\\tan\\varphi_1-\\tan\\varphi_2)}{\\omega V^2}$",
+    "$C=\\dfrac{Q}{V}$",
+    "$C=\\dfrac{\\omega V^2}{P}$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-III-035",
+   "blocco": "III",
+   "argomento": "III-08",
+   "difficolta": 3,
+   "tipo": "mc",
+   "testo": "$P=100\\,\\mathrm W$, $V=10\\,\\mathrm V$, $\\omega=10$, $\\tan\\varphi_1=3/4$, rifasamento completo: $C=$",
+   "spiegazione": "$C=100\\cdot0{,}75/(10\\cdot100)=0{,}075$.",
+   "studio": "III-08",
+   "opzioni": [
+    "$0{,}01\\,\\mathrm F$",
+    "$0{,}75\\,\\mathrm F$",
+    "$0{,}075\\,\\mathrm F$",
+    "$7{,}5\\,\\mathrm F$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-III-036",
+   "blocco": "III",
+   "argomento": "III-08",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Il condensatore di rifasamento si collega in parallelo al carico.",
+   "spiegazione": "Così non cambia la tensione sul carico.",
+   "studio": "III-08",
+   "corretta": true
+  },
+  {
+   "id": "Q-III-037",
+   "blocco": "III",
+   "argomento": "III-02",
+   "difficolta": 3,
+   "tipo": "mc",
+   "testo": "Il circuito RC serie ($R=C=1$) con $v_g=\\cos t$: l'espressione di $v_C$ in regime è:",
+   "spiegazione": "$\\dot V_C=\\dfrac{1}{1+j}=\\tfrac12-\\tfrac12j$.",
+   "studio": "III-02",
+   "opzioni": [
+    "$\\sin t$",
+    "$\\tfrac12\\cos t-\\tfrac12\\sin t$",
+    "$\\cos t$",
+    "$\\tfrac12\\cos t+\\tfrac12\\sin t$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-IV-001",
+   "blocco": "IV",
+   "argomento": "IV-01",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "La trasformata di Laplace unilatera di $x(t)$ è:",
+   "spiegazione": "$X(s)=\\int_{0^-}^{\\infty}x(t)e^{-st}dt$.",
+   "studio": "IV-01",
+   "opzioni": [
+    "$\\sum x(n)s^{-n}$",
+    "$\\int_0^{\\infty}x(t)dt$",
+    "$\\int_{0^-}^{\\infty}x(t)e^{-st}dt$",
+    "$\\int_{-\\infty}^{\\infty}x(t)e^{-st}dt$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-IV-002",
+   "blocco": "IV",
+   "argomento": "IV-01",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "La trasformata della derivata è:",
+   "spiegazione": "$\\mathcal L\\{\\dot x\\}=sX-x(0^-)$.",
+   "studio": "IV-01",
+   "opzioni": [
+    "$X(s)/s$",
+    "$sX(s)$",
+    "$sX(s)-x(0^-)$",
+    "$X(s)-x(0^-)$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-IV-003",
+   "blocco": "IV",
+   "argomento": "IV-01",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "La trasformata dell'integrale $\\int_{0}^{t}x$ è:",
+   "spiegazione": "Integrazione ↔ divisione per $s$.",
+   "studio": "IV-01",
+   "opzioni": [
+    "$X(s)-x(0)$",
+    "$X(s)/s$",
+    "$X(s)s^2$",
+    "$sX(s)$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-IV-004",
+   "blocco": "IV",
+   "argomento": "IV-01",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Il ritardo $x(t-T)u_{-1}(t-T)$ ha trasformata:",
+   "spiegazione": "Traslazione nel tempo ↔ moltiplicazione per $e^{-sT}$.",
+   "studio": "IV-01",
+   "opzioni": [
+    "$e^{-sT}X(s)$",
+    "$X(s-T)$",
+    "$e^{sT}X(s)$",
+    "$X(s)/T$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-IV-005",
+   "blocco": "IV",
+   "argomento": "IV-01",
+   "difficolta": 3,
+   "tipo": "mc",
+   "testo": "La trasformata della convoluzione $x*y$ è:",
+   "spiegazione": "Convoluzione ↔ prodotto.",
+   "studio": "IV-01",
+   "opzioni": [
+    "$X(s)*Y(s)$",
+    "$X(s)+Y(s)$",
+    "$X(s)Y(s)$",
+    "$X(s)/Y(s)$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-IV-006",
+   "blocco": "IV",
+   "argomento": "IV-01",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "La trasformata di Laplace è un operatore lineare.",
+   "spiegazione": "$\\mathcal L\\{ax+by\\}=aX+bY$.",
+   "studio": "IV-01",
+   "corretta": true
+  },
+  {
+   "id": "Q-IV-007",
+   "blocco": "IV",
+   "argomento": "IV-01",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Il teorema del valore finale richiede che tutti i poli di $sX(s)$ abbiano parte reale negativa.",
+   "spiegazione": "Altrimenti il limite non esiste o non coincide.",
+   "studio": "IV-01",
+   "corretta": true
+  },
+  {
+   "id": "Q-IV-008",
+   "blocco": "IV",
+   "argomento": "IV-02",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "$\\mathcal L\\{u_{-1}(t)\\}=$",
+   "spiegazione": "Gradino: $1/s$.",
+   "studio": "IV-02",
+   "opzioni": [
+    "$s$",
+    "$1$",
+    "$1/s^2$",
+    "$1/s$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-IV-009",
+   "blocco": "IV",
+   "argomento": "IV-02",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "$\\mathcal L\\{e^{-at}u_{-1}(t)\\}=$",
+   "spiegazione": "$1/(s+a)$.",
+   "studio": "IV-02",
+   "opzioni": [
+    "$\\dfrac{s}{s+a}$",
+    "$\\dfrac{a}{s}$",
+    "$\\dfrac{1}{s-a}$",
+    "$\\dfrac{1}{s+a}$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-IV-010",
+   "blocco": "IV",
+   "argomento": "IV-02",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "$\\mathcal L\\{\\delta(t)\\}=$",
+   "spiegazione": "L'impulso ha trasformata $1$.",
+   "studio": "IV-02",
+   "opzioni": [
+    "$1/s$",
+    "$0$",
+    "$1$",
+    "$s$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-IV-011",
+   "blocco": "IV",
+   "argomento": "IV-02",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "$\\mathcal L\\{t\\,u_{-1}(t)\\}=$",
+   "spiegazione": "Rampa: $1/s^2$.",
+   "studio": "IV-02",
+   "opzioni": [
+    "$1/s$",
+    "$1/s^2$",
+    "$s^2$",
+    "$2/s^3$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-IV-012",
+   "blocco": "IV",
+   "argomento": "IV-02",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "$\\mathcal L\\{\\cos(\\omega t)u_{-1}(t)\\}=$",
+   "spiegazione": "Coseno: $s/(s^2+\\omega^2)$.",
+   "studio": "IV-02",
+   "opzioni": [
+    "$\\dfrac{\\omega}{s^2+\\omega^2}$",
+    "$\\dfrac{1}{s+\\omega}$",
+    "$\\dfrac{s}{s^2+\\omega^2}$",
+    "$\\dfrac{s}{s^2-\\omega^2}$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-IV-013",
+   "blocco": "IV",
+   "argomento": "IV-02",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "$\\mathcal L\\{\\sin(\\omega t)u_{-1}(t)\\}=$",
+   "spiegazione": "Seno: $\\omega/(s^2+\\omega^2)$.",
+   "studio": "IV-02",
+   "opzioni": [
+    "$\\dfrac{\\omega}{s^2-\\omega^2}$",
+    "$\\dfrac{1}{s^2+\\omega^2}$",
+    "$\\dfrac{s}{s^2+\\omega^2}$",
+    "$\\dfrac{\\omega}{s^2+\\omega^2}$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-IV-014",
+   "blocco": "IV",
+   "argomento": "IV-02",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "$x(t)=3$ per $0<t<2$, zero altrove: $X(s)=$",
+   "spiegazione": "$3[u_{-1}(t)-u_{-1}(t-2)]$.",
+   "studio": "IV-02",
+   "opzioni": [
+    "$3(1-e^{-2s})$",
+    "$\\dfrac{3}{s}$",
+    "$\\dfrac{3e^{-2s}}{s}$",
+    "$\\dfrac{3(1-e^{-2s})}{s}$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-IV-015",
+   "blocco": "IV",
+   "argomento": "IV-02",
+   "difficolta": 2,
+   "tipo": "fm",
+   "testo": "$\\mathcal L\\{e^{-at}\\cos(\\omega t)\\}$ si ottiene da $\\mathcal L\\{\\cos\\omega t\\}$ sostituendo $s$ con $\\square$.",
+   "spiegazione": "Traslazione in frequenza.",
+   "studio": "IV-02",
+   "opzioni": [
+    "$s-a$",
+    "$s+a$",
+    "$as$",
+    "$s/a$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-IV-016",
+   "blocco": "IV",
+   "argomento": "IV-03",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "$F(s)=\\dfrac{1}{(s+1)(s+2)}$ si scompone in:",
+   "spiegazione": "$A=1/(2-1)=1$, $B=1/(1-2)=-1$.",
+   "studio": "IV-03",
+   "opzioni": [
+    "$\\dfrac{2}{s+1}-\\dfrac{1}{s+2}$",
+    "$\\dfrac{1}{s+1}-\\dfrac{1}{s+2}$",
+    "$\\dfrac{1}{s+1}-\\dfrac{2}{s+2}$",
+    "$\\dfrac{1}{s+1}+\\dfrac{1}{s+2}$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-IV-017",
+   "blocco": "IV",
+   "argomento": "IV-03",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Antitrasformata di $\\dfrac{1}{(s+1)(s+2)}$ per $t>0$:",
+   "spiegazione": "Dalla scomposizione precedente.",
+   "studio": "IV-03",
+   "opzioni": [
+    "$e^{-t}-e^{-2t}$",
+    "$te^{-t}$",
+    "$e^{-2t}-e^{-t}$",
+    "$e^{-t}+e^{-2t}$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-IV-018",
+   "blocco": "IV",
+   "argomento": "IV-03",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Il residuo del polo semplice $s=p$ di $F(s)=N(s)/D(s)$ è:",
+   "spiegazione": "Formula di Heaviside.",
+   "studio": "IV-03",
+   "opzioni": [
+    "$F(p)$",
+    "$D'(p)$",
+    "$\\lim_{s\\to p}(s-p)F(s)$",
+    "$N(p)$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-IV-019",
+   "blocco": "IV",
+   "argomento": "IV-03",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Per scomporre in fratti semplici il grado del numeratore deve essere minore di quello del denominatore (altrimenti si divide prima).",
+   "spiegazione": "Con grado uguale compare un termine costante (impulso).",
+   "studio": "IV-03",
+   "corretta": true
+  },
+  {
+   "id": "Q-IV-020",
+   "blocco": "IV",
+   "argomento": "IV-03",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Un polo doppio in $s=-a$ dà un termine $t\\,e^{-at}$.",
+   "spiegazione": "$\\mathcal L\\{te^{-at}\\}=1/(s+a)^2$.",
+   "studio": "IV-03",
+   "corretta": true
+  },
+  {
+   "id": "Q-IV-021",
+   "blocco": "IV",
+   "argomento": "IV-04",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Poli $s=\\pm j\\omega_0$ danno un contributo temporale:",
+   "spiegazione": "Oscillazione permanente.",
+   "studio": "IV-04",
+   "opzioni": [
+    "sinusoidale non smorzato",
+    "costante",
+    "esponenziale decrescente",
+    "esponenziale crescente"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-IV-022",
+   "blocco": "IV",
+   "argomento": "IV-04",
+   "difficolta": 3,
+   "tipo": "mc",
+   "testo": "Poli $-a\\pm j\\omega$ con $a>0$ danno:",
+   "spiegazione": "Parte reale negativa: smorzamento.",
+   "studio": "IV-04",
+   "opzioni": [
+    "esponenziale puro",
+    "sinusoide smorzata $e^{-at}\\cos(\\omega t+\\phi)$",
+    "impulso",
+    "sinusoide crescente"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-IV-023",
+   "blocco": "IV",
+   "argomento": "IV-04",
+   "difficolta": 3,
+   "tipo": "mc",
+   "testo": "$\\mathcal L^{-1}\\left\\{\\dfrac{2s+6}{s^2+9}\\right\\}$ per $t>0$ è:",
+   "spiegazione": "$2\\frac{s}{s^2+9}+\\frac{6}{3}\\frac{3}{s^2+9}$.",
+   "studio": "IV-04",
+   "opzioni": [
+    "$2\\cos3t+2\\sin3t$",
+    "$6\\cos3t$",
+    "$2e^{-3t}$",
+    "$2\\cos3t+6\\sin3t$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-IV-024",
+   "blocco": "IV",
+   "argomento": "IV-04",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Poli complessi di una funzione razionale a coefficienti reali compaiono in coppie coniugate.",
+   "spiegazione": "I coefficienti reali implicano la simmetria.",
+   "studio": "IV-04",
+   "corretta": true
+  },
+  {
+   "id": "Q-IV-025",
+   "blocco": "IV",
+   "argomento": "IV-05",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "L'equazione $\\dot y+2y=0$ con $y(0^-)=3$ ha trasformata $Y(s)=$",
+   "spiegazione": "$sY-3+2Y=0$.",
+   "studio": "IV-05",
+   "opzioni": [
+    "$\\dfrac{2}{s+3}$",
+    "$\\dfrac{3s}{s+2}$",
+    "$\\dfrac{3}{s-2}$",
+    "$\\dfrac{3}{s+2}$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-IV-026",
+   "blocco": "IV",
+   "argomento": "IV-05",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Con il metodo di Laplace le condizioni iniziali compaiono direttamente nell'equazione trasformata.",
+   "spiegazione": "Tramite i termini $x(0^-)$.",
+   "studio": "IV-05",
+   "corretta": true
+  },
+  {
+   "id": "Q-IV-027",
+   "blocco": "IV",
+   "argomento": "IV-06",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Nel dominio di Laplace l'induttore ($i_L(0^-)=0$) ha impedenza:",
+   "spiegazione": "$Z_L=sL$.",
+   "studio": "IV-06",
+   "opzioni": [
+    "$L$",
+    "$1/(sL)$",
+    "$s/L$",
+    "$sL$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-IV-028",
+   "blocco": "IV",
+   "argomento": "IV-06",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Nel dominio di Laplace il condensatore ($v_C(0^-)=0$) ha impedenza:",
+   "spiegazione": "$Z_C=1/(sC)$.",
+   "studio": "IV-06",
+   "opzioni": [
+    "$s/C$",
+    "$sC$",
+    "$C/s$",
+    "$1/(sC)$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-IV-029",
+   "blocco": "IV",
+   "argomento": "IV-07",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "L'induttore con $i_L(0^-)=I_0$ si modella con $sL$ in serie a un generatore di tensione:",
+   "spiegazione": "$V=sLI-LI_0$: generatore $LI_0$ (verso opposto alla caduta).",
+   "studio": "IV-07",
+   "opzioni": [
+    "$I_0/s$",
+    "$sLI_0$",
+    "$I_0/L$",
+    "$LI_0$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-IV-030",
+   "blocco": "IV",
+   "argomento": "IV-07",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Il condensatore con $v_C(0^-)=V_0$ si modella con $1/(sC)$ in serie a un generatore di tensione:",
+   "spiegazione": "$V=I/(sC)+V_0/s$.",
+   "studio": "IV-07",
+   "opzioni": [
+    "$CV_0$",
+    "$V_0\\,s$",
+    "$V_0/s$",
+    "$V_0/C$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-IV-031",
+   "blocco": "IV",
+   "argomento": "IV-07",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Il condensatore con condizione iniziale ha anche un modello in parallelo con generatore di corrente $CV_0$.",
+   "spiegazione": "Equivalente Norton del modello in serie.",
+   "studio": "IV-07",
+   "corretta": true
+  },
+  {
+   "id": "Q-IV-032",
+   "blocco": "IV",
+   "argomento": "IV-07",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "In un circuito RC con condizione iniziale e generatori indipendenti spenti, la risposta ha la forma $K e^{-t/\\tau}$.",
+   "spiegazione": "Un solo polo in $-1/\\tau$.",
+   "studio": "IV-07",
+   "corretta": true
+  },
+  {
+   "id": "Q-IV-033",
+   "blocco": "IV",
+   "argomento": "IV-06",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "$R=2\\,\\Omega$, $C=1\\,\\mathrm F$, $v_C(0^-)=4\\,\\mathrm V$, generatori spenti: $V_C(s)=$",
+   "spiegazione": "$\\tau=2$, polo in $-1/2$, $K=4$.",
+   "studio": "IV-06",
+   "opzioni": [
+    "$\\dfrac{4}{s+1/2}$",
+    "$\\dfrac{4}{s+2}$",
+    "$\\dfrac{4s}{s+1/2}$",
+    "$\\dfrac{2}{s+4}$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-IV-034",
+   "blocco": "IV",
+   "argomento": "IV-03",
+   "difficolta": 3,
+   "tipo": "mc",
+   "testo": "$F(s)=\\dfrac{3s+5}{(s+1)(s+3)}$: i residui in $s=-1$ e $s=-3$ sono:",
+   "spiegazione": "$A=(−3+5)/2=1$, $B=(−9+5)/(−2)=2$.",
+   "studio": "IV-03",
+   "opzioni": [
+    "$2$ e $1$",
+    "$3$ e $5$",
+    "$1$ e $1$",
+    "$1$ e $2$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-V-001",
+   "blocco": "V",
+   "argomento": "V-01",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "La funzione di rete $H(s)$ è il rapporto tra:",
+   "spiegazione": "$H(s)=Y(s)/X(s)$ con condizioni iniziali nulle.",
+   "studio": "V-01",
+   "opzioni": [
+    "trasformata della risposta e trasformata dell'ingresso, a condizioni iniziali nulle",
+    "modulo e fase",
+    "tensione e corrente in continua",
+    "due poli"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-V-002",
+   "blocco": "V",
+   "argomento": "V-01",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Per circuiti di elementi concentrati lineari tempo-invarianti $H(s)$ è una funzione razionale a coefficienti reali.",
+   "spiegazione": "Segue dalle equazioni algebriche in $s$ con coefficienti reali.",
+   "studio": "V-01",
+   "corretta": true
+  },
+  {
+   "id": "Q-V-003",
+   "blocco": "V",
+   "argomento": "V-01",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Poli e zeri non reali di $H(s)$ compaiono in coppie complesse coniugate.",
+   "spiegazione": "Conseguenza dei coefficienti reali.",
+   "studio": "V-01",
+   "corretta": true
+  },
+  {
+   "id": "Q-V-004",
+   "blocco": "V",
+   "argomento": "V-01",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "$H(s)=\\dfrac{s+2}{(s+1)(s+3)}$ ha:",
+   "spiegazione": "Zeri: radici del numeratore; poli: del denominatore.",
+   "studio": "V-01",
+   "opzioni": [
+    "nessuno zero",
+    "poli in $-2$",
+    "zero in $2$, poli in $1,3$",
+    "zero in $-2$, poli in $-1,-3$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-V-005",
+   "blocco": "V",
+   "argomento": "V-02",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "La risposta impulsiva $h(t)$ è:",
+   "spiegazione": "$h(t)=\\mathcal L^{-1}\\{H\\}$.",
+   "studio": "V-02",
+   "opzioni": [
+    "$H(j\\omega)$",
+    "$\\mathcal L\\{H(s)\\}$",
+    "$\\mathcal L^{-1}\\{H(s)\\}$",
+    "$dH/ds$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-V-006",
+   "blocco": "V",
+   "argomento": "V-02",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "La risposta a un ingresso $x(t)$ (condizioni nulle) è:",
+   "spiegazione": "Convoluzione.",
+   "studio": "V-02",
+   "opzioni": [
+    "$y=h*x$",
+    "$y=h+x$",
+    "$y=hx$",
+    "$y=h/x$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-V-007",
+   "blocco": "V",
+   "argomento": "V-02",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "RC passa-basso con $\\tau=2$: $h(t)=$",
+   "spiegazione": "$H(s)=\\dfrac{1/\\tau}{s+1/\\tau}$.",
+   "studio": "V-02",
+   "opzioni": [
+    "$\\tfrac12e^{-t/2}u_{-1}(t)$",
+    "$2e^{-2t}u_{-1}(t)$",
+    "$\\tfrac12e^{-2t}u_{-1}(t)$",
+    "$e^{-t/2}u_{-1}(t)$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-V-008",
+   "blocco": "V",
+   "argomento": "V-02",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "La risposta al gradino è l'integrale della risposta impulsiva.",
+   "spiegazione": "$y_{gr}(t)=\\int_0^th(\\tau)d\\tau$.",
+   "studio": "V-02",
+   "corretta": true
+  },
+  {
+   "id": "Q-V-009",
+   "blocco": "V",
+   "argomento": "V-02",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "$h(t)=0$ per $t<0$ è conseguenza della causalità.",
+   "spiegazione": "Un sistema causale non risponde prima di essere sollecitato.",
+   "studio": "V-02",
+   "corretta": true
+  },
+  {
+   "id": "Q-V-010",
+   "blocco": "V",
+   "argomento": "V-03",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "La risposta libera dipende:",
+   "spiegazione": "Libera: ingresso nullo.",
+   "studio": "V-03",
+   "opzioni": [
+    "solo da $H(j\\omega)$",
+    "dalle condizioni iniziali, con ingresso nullo",
+    "dalla frequenza",
+    "solo dall'ingresso"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-V-011",
+   "blocco": "V",
+   "argomento": "V-03",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "La risposta forzata si ottiene con:",
+   "spiegazione": "Forzata: condizioni iniziali nulle.",
+   "studio": "V-03",
+   "opzioni": [
+    "$t<0$",
+    "stato iniziale arbitrario",
+    "ingresso nullo",
+    "ingresso e condizioni iniziali nulle"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-V-012",
+   "blocco": "V",
+   "argomento": "V-03",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "In un sistema lineare la risposta completa è somma di risposta libera e forzata.",
+   "spiegazione": "Sovrapposizione.",
+   "studio": "V-03",
+   "corretta": true
+  },
+  {
+   "id": "Q-V-013",
+   "blocco": "V",
+   "argomento": "V-04",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Un sistema lineare è asintoticamente stabile se:",
+   "spiegazione": "Poli nel semipiano sinistro aperto.",
+   "studio": "V-04",
+   "opzioni": [
+    "i poli sono sull'asse immaginario",
+    "tutti gli zeri hanno parte reale negativa",
+    "tutti i poli hanno parte reale negativa",
+    "ha almeno un polo reale"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-V-014",
+   "blocco": "V",
+   "argomento": "V-04",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "$H(s)=\\dfrac{1}{s^2+2s+5}$ è:",
+   "spiegazione": "Parte reale $-1<0$.",
+   "studio": "V-04",
+   "opzioni": [
+    "non razionale",
+    "marginale",
+    "stabile (poli $-1\\pm2j$)",
+    "instabile"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-V-015",
+   "blocco": "V",
+   "argomento": "V-04",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "$H(s)=\\dfrac{1}{s^2+4}$ ha poli in $\\pm2j$: il sistema è",
+   "spiegazione": "Poli semplici sull'asse immaginario.",
+   "studio": "V-04",
+   "opzioni": [
+    "asintoticamente stabile",
+    "instabile con crescita esponenziale",
+    "marginalmente stabile (oscillazioni non smorzate)",
+    "tempo-variante"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-V-016",
+   "blocco": "V",
+   "argomento": "V-04",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "$H(s)=\\dfrac{1}{s-1}$ è:",
+   "spiegazione": "Polo in $+1$: $e^{t}$ cresce.",
+   "studio": "V-04",
+   "opzioni": [
+    "un derivatore",
+    "marginale",
+    "stabile",
+    "instabile"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-V-017",
+   "blocco": "V",
+   "argomento": "V-04",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Un polo doppio sull'asse immaginario rende il sistema instabile.",
+   "spiegazione": "Compare $t\\cos(\\omega t)$, illimitato.",
+   "studio": "V-04",
+   "corretta": true
+  },
+  {
+   "id": "Q-V-018",
+   "blocco": "V",
+   "argomento": "V-04",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Una cancellazione polo-zero può nascondere nella $H(s)$ un polo instabile, che resta presente nel comportamento interno.",
+   "spiegazione": "La stabilità interna richiede di guardare anche i modi non osservabili/controllabili.",
+   "studio": "V-04",
+   "corretta": true
+  },
+  {
+   "id": "Q-V-019",
+   "blocco": "V",
+   "argomento": "V-04",
+   "difficolta": 3,
+   "tipo": "mc",
+   "testo": "$D(s)=s^2+(k-3)s+2$: stabile per",
+   "spiegazione": "Coefficienti dello stesso segno: $k-3>0$.",
+   "studio": "V-04",
+   "opzioni": [
+    "$k<3$",
+    "$k>0$",
+    "$k>3$",
+    "ogni $k$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-V-020",
+   "blocco": "V",
+   "argomento": "V-05",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "La risposta permanente a un ingresso sinusoidale (sistema stabile) è:",
+   "spiegazione": "Linearità e permanenza: stessa frequenza, modulo e fase cambiati da $H(j\\omega)$.",
+   "studio": "V-05",
+   "opzioni": [
+    "esponenziale",
+    "costante",
+    "nulla",
+    "sinusoidale alla stessa frequenza"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-V-021",
+   "blocco": "V",
+   "argomento": "V-05",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "La risposta transitoria si estingue se:",
+   "spiegazione": "I modi naturali decadono.",
+   "studio": "V-05",
+   "opzioni": [
+    "l'ingresso è nullo",
+    "$\\omega=0$",
+    "$H(0)=0$",
+    "il sistema è asintoticamente stabile"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-V-022",
+   "blocco": "V",
+   "argomento": "V-05",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "La risposta permanente a $x(t)=A\\cos\\omega_0t$ è $A|H(j\\omega_0)|\\cos(\\omega_0t+\\arg H(j\\omega_0))$.",
+   "spiegazione": "Il metodo dei fasori.",
+   "studio": "V-05",
+   "corretta": true
+  },
+  {
+   "id": "Q-V-023",
+   "blocco": "V",
+   "argomento": "V-05",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Con un polo in $s=-1/\\tau$ il transitorio decade con costante di tempo $\\tau$.",
+   "spiegazione": "$e^{-t/\\tau}$.",
+   "studio": "V-05",
+   "corretta": true
+  },
+  {
+   "id": "Q-V-024",
+   "blocco": "V",
+   "argomento": "V-06",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Il legame tra fasori e Laplace è:",
+   "spiegazione": "Sostituzione $s=j\\omega$.",
+   "studio": "V-06",
+   "opzioni": [
+    "$H(j\\omega)=H(\\omega)$",
+    "$H(j\\omega)=s$",
+    "$H(j\\omega)=1/H(s)$",
+    "$H(j\\omega)=H(s)|_{s=j\\omega}$ se il sistema è stabile"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-V-025",
+   "blocco": "V",
+   "argomento": "V-06",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Se il sistema è instabile, $H(j\\omega)$ descrive comunque la risposta a regime.",
+   "spiegazione": "Non esiste un regime: i modi naturali divergono.",
+   "studio": "V-06",
+   "corretta": false
+  },
+  {
+   "id": "Q-V-026",
+   "blocco": "V",
+   "argomento": "V-07",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Un RC con uscita sul condensatore è un filtro:",
+   "spiegazione": "$|H|\\to1$ a bassa frequenza.",
+   "studio": "V-07",
+   "opzioni": [
+    "elimina-banda",
+    "passa-alto",
+    "passa-basso",
+    "passa-banda"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-V-027",
+   "blocco": "V",
+   "argomento": "V-07",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "La pulsazione di taglio a $3\\,\\mathrm{dB}$ di un RC è:",
+   "spiegazione": "Polo in $-1/(RC)$.",
+   "studio": "V-07",
+   "opzioni": [
+    "$\\omega_c=RC$",
+    "$\\omega_c=1/(RC)$",
+    "$\\omega_c=C/R$",
+    "$\\omega_c=R/C$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-V-028",
+   "blocco": "V",
+   "argomento": "V-07",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "A $\\omega_c$ il modulo di un passa-basso del primo ordine vale:",
+   "spiegazione": "$-3\\,\\mathrm{dB}$.",
+   "studio": "V-07",
+   "opzioni": [
+    "$0$",
+    "$|H|_{max}/2$",
+    "$|H|_{max}/\\sqrt2$",
+    "$|H|_{max}$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-V-029",
+   "blocco": "V",
+   "argomento": "V-07",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Il guadagno in dB è:",
+   "spiegazione": "Per grandezze di campo: $20\\log_{10}$.",
+   "studio": "V-07",
+   "opzioni": [
+    "$20\\log_{10}|H|$",
+    "$10\\log_{10}|H|$",
+    "$|H|^2$",
+    "$\\ln|H|$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-V-030",
+   "blocco": "V",
+   "argomento": "V-07",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Oltre $\\omega_c$ un passa-basso del primo ordine scende di:",
+   "spiegazione": "Pendenza $-20\\,\\mathrm{dB/dec}$.",
+   "studio": "V-07",
+   "opzioni": [
+    "$20\\,\\mathrm{dB}$/decade",
+    "$40\\,\\mathrm{dB}$/decade",
+    "$3\\,\\mathrm{dB}$/decade",
+    "non scende"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-V-031",
+   "blocco": "V",
+   "argomento": "V-07",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "RL con uscita sul resistore (serie $L$, $R$) è:",
+   "spiegazione": "$H=\\dfrac{R}{R+sL}$.",
+   "studio": "V-07",
+   "opzioni": [
+    "passa-basso con $\\omega_c=L/R$",
+    "passa-basso con $\\omega_c=R/L$",
+    "passa-alto con $\\omega_c=R/L$",
+    "passa-tutto"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-V-032",
+   "blocco": "V",
+   "argomento": "V-07",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Un filtro passa-alto del primo ordine ha $|H(j\\omega)|\\to0$ per $\\omega\\to0$.",
+   "spiegazione": "Blocca la continua.",
+   "studio": "V-07",
+   "corretta": true
+  },
+  {
+   "id": "Q-V-033",
+   "blocco": "V",
+   "argomento": "V-07",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "La fase di un RC passa-basso a $\\omega_c$ è $-45^\\circ$.",
+   "spiegazione": "$H(j\\omega_c)=1/(1+j)$.",
+   "studio": "V-07",
+   "corretta": true
+  },
+  {
+   "id": "Q-V-034",
+   "blocco": "V",
+   "argomento": "V-08",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "La pulsazione di risonanza di un RLC è:",
+   "spiegazione": "$\\omega_0=1/\\sqrt{LC}$.",
+   "studio": "V-08",
+   "opzioni": [
+    "$\\omega_0=1/(RC)$",
+    "$\\omega_0=R/L$",
+    "$\\omega_0=1/\\sqrt{LC}$",
+    "$\\omega_0=\\sqrt{LC}$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-V-035",
+   "blocco": "V",
+   "argomento": "V-08",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Nel RLC serie $Q=$",
+   "spiegazione": "$Q_{serie}=\\omega_0L/R=1/(\\omega_0RC)$.",
+   "studio": "V-08",
+   "opzioni": [
+    "$R/(\\omega_0L)$",
+    "$\\omega_0L/R$",
+    "$\\omega_0RC$",
+    "$LC$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-V-036",
+   "blocco": "V",
+   "argomento": "V-08",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Nel RLC parallelo $Q=$",
+   "spiegazione": "$Q_{par}=R/(\\omega_0L)=\\omega_0RC$.",
+   "studio": "V-08",
+   "opzioni": [
+    "$L/(RC)$",
+    "$\\omega_0L/R$",
+    "$R\\omega_0L$",
+    "$R/(\\omega_0L)$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-V-037",
+   "blocco": "V",
+   "argomento": "V-08",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "La banda a $3\\,\\mathrm{dB}$ è:",
+   "spiegazione": "$B=\\omega_0/Q$.",
+   "studio": "V-08",
+   "opzioni": [
+    "$B=Q/\\omega_0$",
+    "$B=\\omega_0^2$",
+    "$B=\\omega_0Q$",
+    "$B=\\omega_0/Q$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-V-038",
+   "blocco": "V",
+   "argomento": "V-08",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "RLC serie con $L=1\\,\\mathrm H$, $C=1/4\\,\\mathrm F$, $R=1\\,\\Omega$: $\\omega_0$ e $Q$ valgono",
+   "spiegazione": "$\\omega_0=1/\\sqrt{1/4}=2$; $Q=2\\cdot1/1=2$.",
+   "studio": "V-08",
+   "opzioni": [
+    "$4$ e $2$",
+    "$2$ e $2$",
+    "$2$ e $1/2$",
+    "$1/2$ e $2$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-V-039",
+   "blocco": "V",
+   "argomento": "V-08",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Alla risonanza serie l'impedenza è puramente resistiva e minima.",
+   "spiegazione": "$X_L+X_C=0$: $Z=R$.",
+   "studio": "V-08",
+   "corretta": true
+  },
+  {
+   "id": "Q-V-040",
+   "blocco": "V",
+   "argomento": "V-08",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Alla risonanza parallelo l'impedenza è massima.",
+   "spiegazione": "Ammettenza minima.",
+   "studio": "V-08",
+   "corretta": true
+  },
+  {
+   "id": "Q-V-041",
+   "blocco": "V",
+   "argomento": "V-08",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "A parità di $\\omega_0$ un $Q$ più alto dà una banda più stretta.",
+   "spiegazione": "$B=\\omega_0/Q$.",
+   "studio": "V-08",
+   "corretta": true
+  },
+  {
+   "id": "Q-VI-001",
+   "blocco": "VI",
+   "argomento": "VI-01",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Il teorema di sostituzione consente di sostituire un bipolo con:",
+   "spiegazione": "Ferma restando l'unicità della soluzione.",
+   "studio": "VI-01",
+   "opzioni": [
+    "un aperto",
+    "un resistore",
+    "un generatore ideale di tensione (o corrente) che impone la stessa tensione (o corrente) della soluzione",
+    "un corto"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-VI-002",
+   "blocco": "VI",
+   "argomento": "VI-01",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Il teorema di sostituzione richiede che il circuito modificato abbia soluzione unica.",
+   "spiegazione": "Altrimenti la sostituzione non è equivalente.",
+   "studio": "VI-01",
+   "corretta": true
+  },
+  {
+   "id": "Q-VI-003",
+   "blocco": "VI",
+   "argomento": "VI-01",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Il teorema di sostituzione vale anche per circuiti non lineari.",
+   "spiegazione": "Non richiede linearità, solo l'unicità della soluzione.",
+   "studio": "VI-01",
+   "corretta": true
+  },
+  {
+   "id": "Q-VI-004",
+   "blocco": "VI",
+   "argomento": "VI-02",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "L'equivalente di Thevenin è formato da:",
+   "spiegazione": "$V_{th}$ in serie a $Z_{th}$.",
+   "studio": "VI-02",
+   "opzioni": [
+    "due generatori",
+    "solo un resistore",
+    "generatore di tensione in serie a un'impedenza",
+    "generatore di corrente in parallelo a un'impedenza"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-VI-005",
+   "blocco": "VI",
+   "argomento": "VI-02",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "La tensione di Thevenin è:",
+   "spiegazione": "$V_{th}=v_{oc}$.",
+   "studio": "VI-02",
+   "opzioni": [
+    "la tensione a vuoto della porta",
+    "la corrente di cortocircuito",
+    "nulla",
+    "la tensione a carico"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-VI-006",
+   "blocco": "VI",
+   "argomento": "VI-02",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Per trovare $R_{th}$ con un generatore di prova:",
+   "spiegazione": "I controllati restano.",
+   "studio": "VI-02",
+   "opzioni": [
+    "si apre la porta con gli indipendenti accesi",
+    "si spengono anche i controllati",
+    "si spengono gli indipendenti e si calcola $V/I$",
+    "si cortocircuita la porta"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-VI-007",
+   "blocco": "VI",
+   "argomento": "VI-02",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "$12\\,\\mathrm V$ in serie a $2\\,\\Omega$ con $4\\,\\Omega$ verso massa: la porta ai capi di $4\\,\\Omega$ ha $V_{th}$ e $R_{th}$:",
+   "spiegazione": "Partitore $12\\cdot4/6=8$; $R_{th}=2\\parallel4=4/3$.",
+   "studio": "VI-02",
+   "opzioni": [
+    "$12\\,\\mathrm V$ e $2\\,\\Omega$",
+    "$8\\,\\mathrm V$ e $4/3\\,\\Omega$",
+    "$8\\,\\mathrm V$ e $6\\,\\Omega$",
+    "$4\\,\\mathrm V$ e $6\\,\\Omega$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-VI-008",
+   "blocco": "VI",
+   "argomento": "VI-02",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Il teorema di Thevenin vale per circuiti lineari.",
+   "spiegazione": "Serve la linearità del bipolo.",
+   "studio": "VI-02",
+   "corretta": true
+  },
+  {
+   "id": "Q-VI-009",
+   "blocco": "VI",
+   "argomento": "VI-02",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Il teorema di Thevenin non si applica se il bipolo contiene un elemento non lineare.",
+   "spiegazione": "Non esiste l'equivalente lineare.",
+   "studio": "VI-02",
+   "corretta": true
+  },
+  {
+   "id": "Q-VI-010",
+   "blocco": "VI",
+   "argomento": "VI-02",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Il teorema di Thevenin non si applica se il carico contiene generatori controllati da grandezze interne al bipolo (accoppiamento tra bipolo e carico).",
+   "spiegazione": "Il bipolo e il carico non devono avere accoppiamenti (controlli) tra loro.",
+   "studio": "VI-02",
+   "corretta": true
+  },
+  {
+   "id": "Q-VI-011",
+   "blocco": "VI",
+   "argomento": "VI-02",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Un bipolo può non avere equivalente di Thevenin ma avere quello di Norton.",
+   "spiegazione": "Es.: il generatore ideale di corrente (Thevenin richiederebbe $Z_{th}=\\infty$).",
+   "studio": "VI-02",
+   "corretta": true
+  },
+  {
+   "id": "Q-VI-012",
+   "blocco": "VI",
+   "argomento": "VI-03",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "L'equivalente di Norton è:",
+   "spiegazione": "$I_N$ in parallelo a $Z_N$.",
+   "studio": "VI-03",
+   "opzioni": [
+    "generatore di tensione in serie a un'impedenza",
+    "generatore di corrente in parallelo a un'impedenza",
+    "un solo generatore",
+    "un trasformatore"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-VI-013",
+   "blocco": "VI",
+   "argomento": "VI-03",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "$I_N$ si calcola come:",
+   "spiegazione": "$I_N=i_{sc}=V_{th}/Z_{th}$.",
+   "studio": "VI-03",
+   "opzioni": [
+    "$Z_{th}/V_{th}$",
+    "$V_{th}\\cdot Z_{th}$",
+    "tensione a vuoto",
+    "corrente di corto circuito della porta"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-VI-014",
+   "blocco": "VI",
+   "argomento": "VI-03",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "$V_{th}=8\\,\\mathrm V$, $R_{th}=4\\,\\Omega$: $I_N=$",
+   "spiegazione": "$8/4=2$.",
+   "studio": "VI-03",
+   "opzioni": [
+    "$32\\,\\mathrm A$",
+    "$8\\,\\mathrm A$",
+    "$2\\,\\mathrm A$",
+    "$0{,}5\\,\\mathrm A$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-VI-015",
+   "blocco": "VI",
+   "argomento": "VI-03",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "$Z_N=Z_{th}$.",
+   "spiegazione": "Stessa impedenza equivalente.",
+   "studio": "VI-03",
+   "corretta": true
+  },
+  {
+   "id": "Q-VI-016",
+   "blocco": "VI",
+   "argomento": "VI-04",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Un doppio bipolo (2 porte) è caratterizzato, nei casi lineari, da:",
+   "spiegazione": "Due equazioni lineari tra le quattro variabili.",
+   "studio": "VI-04",
+   "opzioni": [
+    "$1$ relazione",
+    "$6$ relazioni",
+    "$2$ relazioni tra $v_1,v_2,i_1,i_2$",
+    "$4$ relazioni"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-VI-017",
+   "blocco": "VI",
+   "argomento": "VI-05",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "La matrice $Z$ è definita da:",
+   "spiegazione": "Impedenze a vuoto.",
+   "studio": "VI-05",
+   "opzioni": [
+    "$v_1=Zi_2$",
+    "$\\mathbf i=Z\\mathbf v$",
+    "$\\mathbf v=Z\\mathbf i$",
+    "$\\mathbf v=Z^{-1}\\mathbf i$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-VI-018",
+   "blocco": "VI",
+   "argomento": "VI-05",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "$z_{11}$ si misura:",
+   "spiegazione": "$z_{11}=v_1/i_1|_{i_2=0}$.",
+   "studio": "VI-05",
+   "opzioni": [
+    "con le due porte in corto",
+    "con tensione alla porta 1 e porta 2 in corto",
+    "con corrente alla porta 1 e porta 2 aperta",
+    "con la porta 2 in corto e corrente alla 1"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-VI-019",
+   "blocco": "VI",
+   "argomento": "VI-05",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "$y_{11}$ si misura:",
+   "spiegazione": "$y_{11}=i_1/v_1|_{v_2=0}$.",
+   "studio": "VI-05",
+   "opzioni": [
+    "con le due porte aperte",
+    "con corrente alla 1",
+    "con porta 2 aperta",
+    "con tensione alla porta 1 e porta 2 in corto"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-VI-020",
+   "blocco": "VI",
+   "argomento": "VI-05",
+   "difficolta": 3,
+   "tipo": "mc",
+   "testo": "Se $Z$ è invertibile, $Y=$",
+   "spiegazione": "$\\mathbf i=Z^{-1}\\mathbf v$.",
+   "studio": "VI-05",
+   "opzioni": [
+    "$Z^{-1}$",
+    "$-Z$",
+    "$Z^2$",
+    "$Z^{\\mathsf T}$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-VI-021",
+   "blocco": "VI",
+   "argomento": "VI-05",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Una rete reciproca ha $z_{12}=z_{21}$.",
+   "spiegazione": "Simmetria della matrice per reti di soli R, L, C.",
+   "studio": "VI-05",
+   "corretta": true
+  },
+  {
+   "id": "Q-VI-022",
+   "blocco": "VI",
+   "argomento": "VI-05",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Ogni doppio bipolo lineare ammette sia la matrice $Z$ sia la matrice $Y$.",
+   "spiegazione": "Esistono doppi bipoli (es. trasformatore ideale) con una sola delle due.",
+   "studio": "VI-05",
+   "corretta": false
+  },
+  {
+   "id": "Q-VI-023",
+   "blocco": "VI",
+   "argomento": "VI-06",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "La matrice di trasmissione (inversa) lega:",
+   "spiegazione": "Rappresentazione a cascata.",
+   "studio": "VI-06",
+   "opzioni": [
+    "$(i_1,i_2)$ a $(v_1,v_2)$",
+    "$(v_1,i_1)$ a $(v_2,-i_2)$",
+    "$(v_1,v_2)$ a $(i_1,i_2)$",
+    "$(v_1,i_2)$ a $(v_2,i_1)$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-VI-024",
+   "blocco": "VI",
+   "argomento": "VI-06",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Nelle matrici ibride $h$ le variabili indipendenti sono $i_1$ e $v_2$.",
+   "spiegazione": "$v_1=h_{11}i_1+h_{12}v_2$, $i_2=h_{21}i_1+h_{22}v_2$.",
+   "studio": "VI-06",
+   "corretta": true
+  },
+  {
+   "id": "Q-VI-025",
+   "blocco": "VI",
+   "argomento": "VI-07",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Connessione serie-serie di due doppi bipoli: la matrice risultante è:",
+   "spiegazione": "Le impedenze si sommano.",
+   "studio": "VI-07",
+   "opzioni": [
+    "$Z_a+Z_b$",
+    "$Y_a+Y_b$",
+    "$Z_aZ_b$",
+    "$T_aT_b$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-VI-026",
+   "blocco": "VI",
+   "argomento": "VI-07",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Connessione parallelo-parallelo: la matrice risultante è:",
+   "spiegazione": "Le ammettenze si sommano.",
+   "studio": "VI-07",
+   "opzioni": [
+    "$Y_a+Y_b$",
+    "$Y_aY_b$",
+    "$T_aT_b$",
+    "$Z_a+Z_b$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-VI-027",
+   "blocco": "VI",
+   "argomento": "VI-07",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Connessione in cascata: la matrice risultante è:",
+   "spiegazione": "Si moltiplicano le matrici di trasmissione.",
+   "studio": "VI-07",
+   "opzioni": [
+    "$T_a+T_b$",
+    "$Z_a+Z_b$",
+    "$Y_aY_b$",
+    "$T_a\\,T_b$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-VI-028",
+   "blocco": "VI",
+   "argomento": "VI-08",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Le formule di somma delle matrici $Z$ valgono solo se, dopo il collegamento, le correnti entranti nelle porte restano uguali a quelle uscenti (prova di validità).",
+   "spiegazione": "Altrimenti la connessione altera il funzionamento dei singoli doppi bipoli.",
+   "studio": "VI-08",
+   "corretta": true
+  },
+  {
+   "id": "Q-VI-029",
+   "blocco": "VI",
+   "argomento": "VI-08",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "La prova di validità si esegue alimentando una connessione con le porte a vuoto e verificando che tra i morsetti da collegare non ci sia tensione.",
+   "spiegazione": "Se la tensione è nulla si può collegare senza modificare le correnti.",
+   "studio": "VI-08",
+   "corretta": true
+  },
+  {
+   "id": "Q-VI-030",
+   "blocco": "VI",
+   "argomento": "VI-08",
+   "difficolta": 3,
+   "tipo": "mc",
+   "testo": "Se la prova di validità fallisce per la connessione serie-serie, un rimedio è:",
+   "spiegazione": "Ripristina l'uguaglianza delle correnti di porta.",
+   "studio": "VI-08",
+   "opzioni": [
+    "eliminare il carico",
+    "inserire trasformatori di isolamento (1:1) su una delle porte",
+    "usare solo condensatori",
+    "aumentare la frequenza"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-VI-031",
+   "blocco": "VI",
+   "argomento": "VI-09",
+   "difficolta": 1,
+   "tipo": "mc",
+   "testo": "Il massimo trasferimento di potenza attiva si ha per:",
+   "spiegazione": "Adattamento coniugato.",
+   "studio": "VI-09",
+   "opzioni": [
+    "$Z_L=Z_{th}^{*}$",
+    "$Z_L=0$",
+    "$Z_L=\\infty$",
+    "$Z_L=Z_{th}$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-VI-032",
+   "blocco": "VI",
+   "argomento": "VI-09",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "$|V_{th}|=10\\,\\mathrm V$ (picco), $R_{th}=5\\,\\Omega$: $P_{max}=$",
+   "spiegazione": "$|V_{th}|^2/(8R_{th})=100/40=2{,}5$.",
+   "studio": "VI-09",
+   "opzioni": [
+    "$2{,}5\\,\\mathrm W$",
+    "$10\\,\\mathrm W$",
+    "$20\\,\\mathrm W$",
+    "$5\\,\\mathrm W$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-VI-033",
+   "blocco": "VI",
+   "argomento": "VI-09",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Con valori efficaci $|V_{th}|=10\\,\\mathrm V$, $R_{th}=5\\,\\Omega$: $P_{max}=$",
+   "spiegazione": "$|V_{th}|^2/(4R_{th})=100/20=5$.",
+   "studio": "VI-09",
+   "opzioni": [
+    "$5\\,\\mathrm W$",
+    "$2{,}5\\,\\mathrm W$",
+    "$10\\,\\mathrm W$",
+    "$20\\,\\mathrm W$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-VI-034",
+   "blocco": "VI",
+   "argomento": "VI-09",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "Con carico puramente resistivo $R_L$ e $Z_{th}=R_{th}+jX_{th}$ il massimo si ha per:",
+   "spiegazione": "Vincolo: $X_L=0$; il massimo è per $R_L=\\sqrt{R_{th}^2+X_{th}^2}$.",
+   "studio": "VI-09",
+   "opzioni": [
+    "$R_L=X_{th}$",
+    "$R_L=|Z_{th}|$",
+    "$R_L=R_{th}$",
+    "$R_L=0$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-VI-035",
+   "blocco": "VI",
+   "argomento": "VI-09",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Nell'adattamento coniugato il rendimento è del $50\\%$ (potenza sul carico / potenza erogata dal generatore equivalente).",
+   "spiegazione": "La stessa potenza si dissipa su $R_{th}$ e su $R_L$.",
+   "studio": "VI-09",
+   "corretta": true
+  },
+  {
+   "id": "Q-VI-036",
+   "blocco": "VI",
+   "argomento": "VI-09",
+   "difficolta": 3,
+   "tipo": "mc",
+   "testo": "Con trasformatore ideale $1{:}n$ (rapporto $n$) tra generatore e carico $R_L$, per l'adattamento si ha:",
+   "spiegazione": "Il carico riportato al primario deve essere pari a $R_{th}$ (con la convenzione scelta per $n$).",
+   "studio": "VI-09",
+   "opzioni": [
+    "$n^2R_L=R_{th}$ (carico riportato)",
+    "$nR_L=R_{th}$",
+    "$R_L=0$",
+    "$R_L=nR_{th}$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-VI-037",
+   "blocco": "VI",
+   "argomento": "VI-09",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Il massimo trasferimento di potenza attiva coincide con il massimo rendimento.",
+   "spiegazione": "Il rendimento tende a 1 per $R_L\\gg R_{th}$ ma la potenza tende a 0.",
+   "studio": "VI-09",
+   "corretta": false
+  },
+  {
+   "id": "Q-VI-038",
+   "blocco": "VI",
+   "argomento": "VI-04",
+   "difficolta": 3,
+   "tipo": "mc",
+   "testo": "Una rete a $N$ porte lineare è descritta da:",
+   "spiegazione": "Una relazione per porta.",
+   "studio": "VI-04",
+   "opzioni": [
+    "$2N$ relazioni",
+    "$N^2$ relazioni",
+    "una relazione",
+    "$N$ relazioni lineari tra le $2N$ variabili di porta"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-VI-039",
+   "blocco": "VI",
+   "argomento": "VI-02",
+   "difficolta": 3,
+   "tipo": "mc",
+   "testo": "Il teorema di Thevenin si dimostra con:",
+   "spiegazione": "Si sostituisce il carico con un generatore di tensione e si sovrappongono gli effetti.",
+   "studio": "VI-02",
+   "opzioni": [
+    "il teorema di Tellegen",
+    "il teorema di sostituzione e la sovrapposizione degli effetti",
+    "la trasformata di Laplace",
+    "i fasori"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-VI-040",
+   "blocco": "VI",
+   "argomento": "VI-03",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Il teorema di Norton si dimostra dualmente a quello di Thevenin, sostituendo il carico con un generatore di corrente.",
+   "spiegazione": "Duale.",
+   "studio": "VI-03",
+   "corretta": true
+  },
+  {
+   "id": "Q-VI-041",
+   "blocco": "VI",
+   "argomento": "VI-05",
+   "difficolta": 2,
+   "tipo": "mc",
+   "testo": "$T$ di resistori: $R_a=1,R_b=2$ (serie) e $R_c=3$ (derivazione). $z_{12}=$",
+   "spiegazione": "$z_{12}=z_{21}=R_c=3$.",
+   "studio": "VI-05",
+   "opzioni": [
+    "$3$",
+    "$5$",
+    "$4$",
+    "$6$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-I-040",
+   "blocco": "I",
+   "argomento": "I-02",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "La KVL richiede che i bipoli della maglia siano tutti resistori.",
+   "spiegazione": "Vale per qualunque bipolo: dipende solo dalla topologia.",
+   "studio": "I-02",
+   "corretta": false
+  },
+  {
+   "id": "Q-I-041",
+   "blocco": "I",
+   "argomento": "I-05",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "In un condensatore ideale la tensione può variare in modo discontinuo con una corrente limitata.",
+   "spiegazione": "Con $i$ limitata $v_C$ è continua.",
+   "studio": "I-05",
+   "corretta": false
+  },
+  {
+   "id": "Q-I-042",
+   "blocco": "I",
+   "argomento": "I-05",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Un induttore ideale in regime continuo ha tensione non nulla ai suoi capi.",
+   "spiegazione": "$v=L\\,di/dt=0$: è un corto.",
+   "studio": "I-05",
+   "corretta": false
+  },
+  {
+   "id": "Q-I-043",
+   "blocco": "I",
+   "argomento": "I-08",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Il trasformatore ideale con rapporto $n$ riporta un'impedenza moltiplicandola per $n$ (anziché $n^2$).",
+   "spiegazione": "$Z_{in}=n^2Z_L$.",
+   "studio": "I-08",
+   "corretta": false
+  },
+  {
+   "id": "Q-I-044",
+   "blocco": "I",
+   "argomento": "I-09",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Nel nullatore la corrente può essere qualsiasi purché la tensione sia nulla.",
+   "spiegazione": "Nel nullatore sia $v$ sia $i$ sono nulle.",
+   "studio": "I-09",
+   "corretta": false
+  },
+  {
+   "id": "Q-I-045",
+   "blocco": "I",
+   "argomento": "I-09",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Un amplificatore operazionale ideale ha resistenza di uscita infinita.",
+   "spiegazione": "Ideale: $R_o=0$, $R_i=\\infty$, $A\\to\\infty$.",
+   "studio": "I-09",
+   "corretta": false
+  },
+  {
+   "id": "Q-II-041",
+   "blocco": "II",
+   "argomento": "II-02",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Un albero di un grafo con $n$ nodi ha $b-n+1$ rami.",
+   "spiegazione": "Ha $n-1$ rami; $b-n+1$ sono quelli del coalbero.",
+   "studio": "II-02",
+   "corretta": false
+  },
+  {
+   "id": "Q-II-042",
+   "blocco": "II",
+   "argomento": "II-03",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "La KCL in forma matriciale è $B\\mathbf i=0$.",
+   "spiegazione": "La KCL è $A\\mathbf i=0$; $B\\mathbf v=0$ è la KVL.",
+   "studio": "II-03",
+   "corretta": false
+  },
+  {
+   "id": "Q-II-043",
+   "blocco": "II",
+   "argomento": "II-05",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Il teorema di Tellegen vale solo per circuiti resistivi.",
+   "spiegazione": "Vale per ogni circuito (dipende solo dal grafo).",
+   "studio": "II-05",
+   "corretta": false
+  },
+  {
+   "id": "Q-II-044",
+   "blocco": "II",
+   "argomento": "II-06",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Due resistori in parallelo hanno resistenza equivalente maggiore di ciascuno dei due.",
+   "spiegazione": "Il parallelo ha resistenza minore del minore dei due.",
+   "studio": "II-06",
+   "corretta": false
+  },
+  {
+   "id": "Q-II-045",
+   "blocco": "II",
+   "argomento": "II-07",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Nel metodo dei nodi le incognite sono le correnti di maglia.",
+   "spiegazione": "Sono le tensioni di nodo.",
+   "studio": "II-07",
+   "corretta": false
+  },
+  {
+   "id": "Q-III-038",
+   "blocco": "III",
+   "argomento": "III-02",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Il fasore di una sinusoide dipende dal tempo come $e^{j\\omega t}$.",
+   "spiegazione": "Il fasore è costante: $e^{j\\omega t}$ si sottintende.",
+   "studio": "III-02",
+   "corretta": false
+  },
+  {
+   "id": "Q-III-039",
+   "blocco": "III",
+   "argomento": "III-03",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "L'impedenza di un condensatore ideale è reale e positiva.",
+   "spiegazione": "$Z_C=1/(j\\omega C)$ è immaginaria pura negativa.",
+   "studio": "III-03",
+   "corretta": false
+  },
+  {
+   "id": "Q-III-040",
+   "blocco": "III",
+   "argomento": "III-05",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Per sommare le risposte a due frequenze diverse basta sommare i fasori.",
+   "spiegazione": "Si sommano le risposte nel tempo.",
+   "studio": "III-05",
+   "corretta": false
+  },
+  {
+   "id": "Q-III-041",
+   "blocco": "III",
+   "argomento": "III-06",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Un resistore assorbe potenza reattiva non nulla in regime sinusoidale.",
+   "spiegazione": "$Q_R=0$: la tensione è in fase con la corrente.",
+   "studio": "III-06",
+   "corretta": false
+  },
+  {
+   "id": "Q-III-042",
+   "blocco": "III",
+   "argomento": "III-08",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Per rifasare un carico induttivo si collega un induttore in parallelo.",
+   "spiegazione": "Si usa un condensatore.",
+   "studio": "III-08",
+   "corretta": false
+  },
+  {
+   "id": "Q-IV-035",
+   "blocco": "IV",
+   "argomento": "IV-02",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "La trasformata di Laplace del gradino unitario è $1/s^2$.",
+   "spiegazione": "È $1/s$; $1/s^2$ è la rampa.",
+   "studio": "IV-02",
+   "corretta": false
+  },
+  {
+   "id": "Q-IV-036",
+   "blocco": "IV",
+   "argomento": "IV-03",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Un polo semplice in $s=-2$ dà un termine temporale $e^{2t}$.",
+   "spiegazione": "Dà $e^{-2t}$.",
+   "studio": "IV-03",
+   "corretta": false
+  },
+  {
+   "id": "Q-IV-037",
+   "blocco": "IV",
+   "argomento": "IV-07",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Il condensatore con condizione iniziale $V_0$ si modella con un generatore in serie di valore $V_0$ (non diviso per $s$).",
+   "spiegazione": "Il generatore vale $V_0/s$.",
+   "studio": "IV-07",
+   "corretta": false
+  },
+  {
+   "id": "Q-V-042",
+   "blocco": "V",
+   "argomento": "V-04",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Un sistema con un polo in $s=+3$ è asintoticamente stabile.",
+   "spiegazione": "Il modo $e^{3t}$ diverge.",
+   "studio": "V-04",
+   "corretta": false
+  },
+  {
+   "id": "Q-V-043",
+   "blocco": "V",
+   "argomento": "V-07",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Un filtro passa-basso del primo ordine ha guadagno nullo a frequenza zero.",
+   "spiegazione": "È massimo in continua.",
+   "studio": "V-07",
+   "corretta": false
+  },
+  {
+   "id": "Q-V-044",
+   "blocco": "V",
+   "argomento": "V-08",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Nel RLC serie alla risonanza l'impedenza è massima.",
+   "spiegazione": "È minima e pari a $R$.",
+   "studio": "V-08",
+   "corretta": false
+  },
+  {
+   "id": "Q-V-045",
+   "blocco": "V",
+   "argomento": "V-02",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "La risposta impulsiva di un sistema causale è diversa da zero per $t<0$.",
+   "spiegazione": "$h(t)=0$ per $t<0$.",
+   "studio": "V-02",
+   "corretta": false
+  },
+  {
+   "id": "Q-VI-042",
+   "blocco": "VI",
+   "argomento": "VI-02",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Per calcolare $R_{th}$ si lasciano accesi tutti i generatori indipendenti.",
+   "spiegazione": "Si spengono gli indipendenti.",
+   "studio": "VI-02",
+   "corretta": false
+  },
+  {
+   "id": "Q-VI-043",
+   "blocco": "VI",
+   "argomento": "VI-05",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Per misurare $z_{11}$ si pone la porta 2 in cortocircuito.",
+   "spiegazione": "Si lascia la porta 2 aperta ($i_2=0$).",
+   "studio": "VI-05",
+   "corretta": false
+  },
+  {
+   "id": "Q-VI-044",
+   "blocco": "VI",
+   "argomento": "VI-07",
+   "difficolta": 3,
+   "tipo": "vf",
+   "testo": "Nella connessione in cascata si sommano le matrici di trasmissione.",
+   "spiegazione": "Si moltiplicano.",
+   "studio": "VI-07",
+   "corretta": false
+  },
+  {
+   "id": "Q-VI-045",
+   "blocco": "VI",
+   "argomento": "VI-09",
+   "difficolta": 2,
+   "tipo": "vf",
+   "testo": "Il massimo trasferimento di potenza attiva si ha per $Z_L=Z_{th}$.",
+   "spiegazione": "Si ha per $Z_L=Z_{th}^*$.",
+   "studio": "VI-09",
+   "corretta": false
+  },
+  {
+   "id": "Q-I-046",
+   "blocco": "I",
+   "argomento": "I-05",
+   "difficolta": 2,
+   "tipo": "fm",
+   "testo": "L'induttore: $v_L=L\\cdot$ ___.",
+   "spiegazione": "$v=L\\,di/dt$.",
+   "studio": "I-05",
+   "opzioni": [
+    "$i$",
+    "$dv/dt$",
+    "$\\int i\\,dt$",
+    "$di/dt$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-II-046",
+   "blocco": "II",
+   "argomento": "II-01",
+   "difficolta": 1,
+   "tipo": "fm",
+   "testo": "In un grafo connesso con $n$ nodi e $b$ rami il numero di maglie fondamentali è ___.",
+   "spiegazione": "Una per ogni ramo di coalbero.",
+   "studio": "II-01",
+   "opzioni": [
+    "$b$",
+    "$n-1$",
+    "$n$",
+    "$b-n+1$"
+   ],
+   "corretta": 3
+  },
+  {
+   "id": "Q-II-047",
+   "blocco": "II",
+   "argomento": "II-06",
+   "difficolta": 1,
+   "tipo": "fm",
+   "testo": "Per $n$ resistori in serie $R_{eq}=$ ___.",
+   "spiegazione": "Le resistenze si sommano.",
+   "studio": "II-06",
+   "opzioni": [
+    "$1/\\sum R_k$",
+    "$\\sum R_k$",
+    "$\\prod R_k$",
+    "$\\sum 1/R_k$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-III-043",
+   "blocco": "III",
+   "argomento": "III-03",
+   "difficolta": 1,
+   "tipo": "fm",
+   "testo": "$Z_L=$ ___.",
+   "spiegazione": "Impedenza dell'induttore.",
+   "studio": "III-03",
+   "opzioni": [
+    "$\\omega L$",
+    "$j\\omega L$",
+    "$-L$",
+    "$1/(j\\omega L)$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-III-044",
+   "blocco": "III",
+   "argomento": "III-06",
+   "difficolta": 2,
+   "tipo": "fm",
+   "testo": "$|S|=\\sqrt{P^2+\\square}$.",
+   "spiegazione": "$|S|^2=P^2+Q^2$.",
+   "studio": "III-06",
+   "opzioni": [
+    "$P$",
+    "$Q^2$",
+    "$PQ$",
+    "$Q$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-IV-038",
+   "blocco": "IV",
+   "argomento": "IV-02",
+   "difficolta": 1,
+   "tipo": "fm",
+   "testo": "$\\mathcal L\\{e^{-at}\\}=\\dfrac{1}{s+\\square}$.",
+   "spiegazione": "Esponenziale decrescente.",
+   "studio": "IV-02",
+   "opzioni": [
+    "$a^2$",
+    "$1/a$",
+    "$a$",
+    "$-a$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-IV-039",
+   "blocco": "IV",
+   "argomento": "IV-01",
+   "difficolta": 2,
+   "tipo": "fm",
+   "testo": "$\\mathcal L\\{\\dot x\\}=sX(s)-\\square$.",
+   "spiegazione": "Condizione iniziale.",
+   "studio": "IV-01",
+   "opzioni": [
+    "$x(0^-)$",
+    "$X(0^-)$",
+    "$\\dot x(0^-)$",
+    "$sx(0)$"
+   ],
+   "corretta": 0
+  },
+  {
+   "id": "Q-V-046",
+   "blocco": "V",
+   "argomento": "V-04",
+   "difficolta": 1,
+   "tipo": "fm",
+   "testo": "Un sistema è stabile se tutti i poli hanno parte ___.",
+   "spiegazione": "Semipiano sinistro aperto.",
+   "studio": "V-04",
+   "opzioni": [
+    "reale nulla",
+    "reale negativa",
+    "reale positiva",
+    "immaginaria nulla"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-V-047",
+   "blocco": "V",
+   "argomento": "V-07",
+   "difficolta": 1,
+   "tipo": "fm",
+   "testo": "A $\\omega_c$ il modulo di $H$ è ridotto di ___ rispetto al massimo.",
+   "spiegazione": "Frequenza di taglio a 3 dB.",
+   "studio": "V-07",
+   "opzioni": [
+    "$0\\,\\mathrm{dB}$",
+    "$20\\,\\mathrm{dB}$",
+    "$3\\,\\mathrm{dB}$",
+    "$6\\,\\mathrm{dB}$"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-V-048",
+   "blocco": "V",
+   "argomento": "V-08",
+   "difficolta": 2,
+   "tipo": "fm",
+   "testo": "$B=\\omega_0/\\square$.",
+   "spiegazione": "Banda a 3 dB.",
+   "studio": "V-08",
+   "opzioni": [
+    "$L$",
+    "$Q$",
+    "$R$",
+    "$Q^2$"
+   ],
+   "corretta": 1
+  },
+  {
+   "id": "Q-VI-046",
+   "blocco": "VI",
+   "argomento": "VI-02",
+   "difficolta": 1,
+   "tipo": "fm",
+   "testo": "$V_{th}$ è la tensione ___ della porta.",
+   "spiegazione": "Porta aperta.",
+   "studio": "VI-02",
+   "opzioni": [
+    "a carico",
+    "media",
+    "a vuoto",
+    "in cortocircuito"
+   ],
+   "corretta": 2
+  },
+  {
+   "id": "Q-VI-047",
+   "blocco": "VI",
+   "argomento": "VI-03",
+   "difficolta": 2,
+   "tipo": "fm",
+   "testo": "$I_N=V_{th}/\\square$.",
+   "spiegazione": "Trasformazione di generatori.",
+   "studio": "VI-03",
+   "opzioni": [
+    "$Z_L$",
+    "$Z_{th}$",
+    "$V_{th}$",
+    "$Z_{th}^2$"
+   ],
+   "corretta": 1
+  }
+ ]
+}

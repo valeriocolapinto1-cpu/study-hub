@@ -55,14 +55,14 @@ Legenda: `[ ]` da fare · `[x]` fatto. Ogni fase termina con un commit e con la 
 - [x] **Criterio:** tutte le combinazioni generano istanze valide e verificate
 
 ## Fase 5 — Quiz, ripasso, teoria, correzione
-- [ ] `quiz.json` (≥ 200 domande originali) e pagina Quiz (blocco, argomento, mista, solo errori)
-- [ ] `srs.js` (Leitner 5 scatole o SM-2) e «Ripasso di oggi» in Home; scadenze nell'export
-- [ ] `teoria.json` (≥ 50 domande aperte con rubrica, copertura righe §5.1, ≥ 3 risposte campione ciascuna)
-- [ ] `rubric.js` (normalizzazione, stemming, criteri, confidenza, conferma utente)
-- [ ] `ai-adapter.js` (Anthropic + OpenAI-compatibile, modello modificabile, header accesso diretto verificato in documentazione, gestione CORS)
-- [ ] Impostazioni: chiave API (localStorage/sessionStorage), testa, cancella, avvisi privacy/costi
-- [ ] Output JSON validato, fallback offline, confronto affiancato, cache, «Spiega il mio errore»
-- [ ] **Criterio:** calibrazione verde; AI disattivata senza chiave e fallback offline su errore
+- [x] `quiz.json` (≥ 200 domande originali) e pagina Quiz (blocco, argomento, mista, solo errori)
+- [x] `srs.js` (Leitner 5 scatole o SM-2) e «Ripasso di oggi» in Home; scadenze nell'export
+- [x] `teoria.json` (≥ 50 domande aperte con rubrica, copertura righe §5.1, ≥ 3 risposte campione ciascuna)
+- [x] `rubric.js` (normalizzazione, stemming, criteri, confidenza, conferma utente)
+- [x] `ai-adapter.js` (Anthropic + OpenAI-compatibile, modello modificabile, header accesso diretto verificato in documentazione, gestione CORS)
+- [x] Impostazioni: chiave API (localStorage/sessionStorage), testa, cancella, avvisi privacy/costi
+- [x] Output JSON validato, fallback offline, confronto affiancato, cache, «Spiega il mio errore»
+- [x] **Criterio:** calibrazione verde; AI disattivata senza chiave e fallback offline su errore
 
 ## Fase 6 — Prove d'esame
 - [ ] Generatore prova (esercizio 30 + 3 domande × 10 + opzionale 3), blocchi III–VI bilanciati, seed visibile
