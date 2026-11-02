@@ -6,7 +6,7 @@ e, dove il testo è incluso nel repository, è indicato nella colonna *Note*.
 | Componente | Versione | Licenza | Note |
 |---|---|---|---|
 | Geist e Geist Mono (font) | variable | SIL Open Font License 1.1 | `assets/fonts/` (licenza inclusa) |
-| KaTeX | 0.16.9 (CDN cdnjs) | MIT | Caricato da `cdnjs.cloudflare.com` (vedi pagina Privacy) |
+| KaTeX | 0.16.22 | MIT | `assets/vendor/katex/` (licenza inclusa), nessun CDN |
 | API Anthropic / endpoint compatibili OpenAI | — | Condizioni del provider | Solo se l'utente attiva la correzione con AI con la propria chiave |
 
 Le dipendenze di sviluppo (strumenti di build e di test) non sono distribuite con il sito pubblicato.

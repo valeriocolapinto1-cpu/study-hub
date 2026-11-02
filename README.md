@@ -19,7 +19,7 @@ Sito statico **in italiano** per preparare l'esame di *Teoria dei Circuiti* (Ing
 
 ## Decisioni di progetto
 - Solo versione pubblica; `sources-private/` è nel `.gitignore` e non va mai tracciata (`git ls-files | grep sources-private` deve essere vuoto).
-- HTML + CSS + JavaScript vanilla a moduli ES, **nessun build** per il deploy; KaTeX da CDN (cdnjs) con fallback; PWA offline opzionale.
+- HTML + CSS + JavaScript vanilla a moduli ES, **nessun build** per il deploy; KaTeX e Geist self-hosted in `assets/vendor` e `assets/fonts` (nessun CDN); PWA offline.
 - Stile blu notte + ambra, tema chiaro/scuro; simboli circuitali ANSI/IEEE (resistore a zig-zag); mobile-first.
 - Dati nel browser (localStorage / IndexedDB) con export/import JSON. Nessun account, nessun analytics, nessun tracker.
 - **Correttezza prima di tutto:** i risultati numerici sono calcolati con aritmetica esatta (razionali su BigInt) e mai valutati da un LLM. Dove un dato non è pubblico il sito scrive «non pubblicato / DA VERIFICARE».

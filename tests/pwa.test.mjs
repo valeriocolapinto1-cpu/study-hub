@@ -17,9 +17,9 @@ test('CSP: ogni pagina ha una Content-Security-Policy compatibile con KaTeX e co
     assert.ok(!/script-src[^;]*unsafe-inline/.test(csp), p);
     assert.match(csp, /object-src 'none'|default-src 'none'/);
     if (!p.endsWith('404.html')) {
-      assert.match(csp, /script-src 'self' https:\/\/cdnjs\.cloudflare\.com/);
-      assert.match(csp, /style-src [^;]*cdnjs\.cloudflare\.com/); // KaTeX css
-      assert.match(csp, /font-src [^;]*cdnjs\.cloudflare\.com/); // KaTeX font
+      assert.match(csp, /script-src 'self';/);
+      assert.ok(!/cdnjs|cloudflare/.test(csp), 'nessun CDN nella CSP');
+      assert.match(csp, /font-src 'self'/); // KaTeX e Geist locali
       assert.match(csp, /connect-src 'self' https:/); // chiamate al provider AI scelto
     }
   }
@@ -40,7 +40,7 @@ test('service worker: elenco file aggiornato, copre pagine/dati/moduli, non inte
   for (const f of ['./', './index.html', './assets/js/app.js', './assets/css/style.css', './data/syllabus.json', './data/studio/III-01.json', './prova/index.html', './esercizi/index.html', './formulario/index.html', './assets/js/solver/mna.js', './404.html']) assert.ok(files.includes(f), f);
   assert.ok(!files.some((f) => /sources-private|tests\/|node_modules/.test(f)));
   assert.ok(files.every((f) => existsSync(join(root, f === './' ? 'index.html' : f))));
-  assert.match(sw, /if \(!same && !cdn\) return;/); // api.anthropic.com & co. non passano dal service worker
+  assert.match(sw, /if \(!same\) return;/); // api.anthropic.com & co. non passano dal service worker
   assert.ok(!/anthropic|openai/.test(sw));
 });
 

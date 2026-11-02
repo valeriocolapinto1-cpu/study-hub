@@ -1,5 +1,5 @@
 /* Service worker (PWA offline, opzionale). La lista dei file è generata da tools/build-sw.mjs: non modificarla a mano. */
-const VERSION = 'tdc-053eb0788a';
+const VERSION = 'tdc-f98bc8dcab';
 const FILES = [
  "./",
  "./404.html",
@@ -67,6 +67,29 @@ const FILES = [
  "./assets/js/templates/templateB.js",
  "./assets/js/templates/templateC.js",
  "./assets/js/ui.js",
+ "./assets/vendor/katex/auto-render.min.js",
+ "./assets/vendor/katex/fonts/KaTeX_AMS-Regular.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_Caligraphic-Bold.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_Caligraphic-Regular.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_Fraktur-Bold.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_Fraktur-Regular.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_Main-Bold.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_Main-BoldItalic.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_Main-Italic.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_Main-Regular.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_Math-BoldItalic.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_Math-Italic.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_SansSerif-Bold.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_SansSerif-Italic.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_SansSerif-Regular.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_Script-Regular.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_Size1-Regular.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_Size2-Regular.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_Size3-Regular.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_Size4-Regular.woff2",
+ "./assets/vendor/katex/fonts/KaTeX_Typewriter-Regular.woff2",
+ "./assets/vendor/katex/katex.min.css",
+ "./assets/vendor/katex/katex.min.js",
  "./corso/index.html",
  "./data/appelli.json",
  "./data/archivio.json",
@@ -144,7 +167,6 @@ const FILES = [
  "./studio/index.html",
  "./teoria/index.html"
 ];
-const CDN = ['https://cdnjs.cloudflare.com/'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil((async () => {
@@ -165,12 +187,11 @@ self.addEventListener('fetch', (e) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   const same = url.origin === self.location.origin;
-  const cdn = CDN.some((p) => req.url.startsWith(p));
-  if (!same && !cdn) return; // chiamate ai provider AI e altri siti: mai intercettate né messe in cache
+  if (!same) return; // chiamate ai provider AI e altri siti: mai intercettate né messe in cache
   e.respondWith((async () => {
     const c = await caches.open(VERSION);
     const hit = await c.match(req, { ignoreSearch: same });
-    const net = fetch(req).then((r) => { if (r && r.ok && (same || cdn)) c.put(req, r.clone()); return r; }).catch(() => null);
+    const net = fetch(req).then((r) => { if (r && r.ok && same) c.put(req, r.clone()); return r; }).catch(() => null);
     if (hit) { e.waitUntil(net); return hit; } // cache prima, aggiornamento in background
     const r = await net;
     if (r) return r;

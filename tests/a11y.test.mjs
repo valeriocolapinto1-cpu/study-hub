@@ -55,12 +55,12 @@ test('niente gestori di eventi inline né eval nei moduli JavaScript', () => {
   }
 });
 
-test('privacy: nessun tracker; gli unici script esterni sono KaTeX da cdnjs', () => {
+test('privacy: nessun tracker e nessun script o carattere da CDN esterni (KaTeX e Geist sono locali)', () => {
   const js = (d) => readdirSync(d).flatMap((f) => { const p = join(d, f); return statSync(p).isDirectory() ? js(p) : p.endsWith('.js') ? [p] : []; });
   const all = [...pages, ...js(join(root, 'assets/js'))].map((f) => readFileSync(f, 'utf8')).join('\n');
   for (const bad of ['google-analytics', 'googletagmanager', 'gtag(', 'hotjar', 'segment.com', 'facebook.net', 'plausible', 'matomo', 'sentry']) assert.ok(!all.includes(bad), bad);
   const ext = [...new Set([...all.matchAll(/https:\/\/([a-z0-9.-]+)\//g)].map((m) => m[1]))];
-  const allowed = new Set(['cdnjs.cloudflare.com', 'valeriocolapinto1-cpu.github.io', 'www.linkedin.com', 'docs.github.com', 'www.cloudflare.com', 'www.garanteprivacy.it', 'api.anthropic.com', 'api.openai.com', 'www.falstad.com', 'www.analog.com', 'www.skuola.net', 'www.docsity.com', 'github.com', 'claude.ai', 'www.w3.org', 'ocw.mit.edu', 'moodle2.units.it', 'michelescarpiniti.site.uniroma1.it', 'sites.google.com', 'example.org', 'www.docsity.com']);
+  const allowed = new Set(['valeriocolapinto1-cpu.github.io', 'www.linkedin.com', 'docs.github.com', 'www.cloudflare.com', 'www.garanteprivacy.it', 'api.anthropic.com', 'api.openai.com', 'www.falstad.com', 'www.analog.com', 'www.skuola.net', 'www.docsity.com', 'github.com', 'claude.ai', 'www.w3.org', 'ocw.mit.edu', 'moodle2.units.it', 'michelescarpiniti.site.uniroma1.it', 'sites.google.com', 'example.org', 'www.docsity.com']);
   for (const h of ext) assert.ok(allowed.has(h) || /w3\.org|example/.test(h), 'host esterno non previsto: ' + h);
 });
 
