@@ -181,7 +181,8 @@ test('archivio: ≥ 25 appelli con data valida e argomenti; nessun testo del doc
   assert.ok(A.appelli.length >= 25);
   for (const a of A.appelli) { assert.ok(!Number.isNaN(new Date(a.data).getTime()), a.data); assert.ok(a.argomenti.length >= 2, a.data); assert.ok(a.data >= '2000-01-01' && a.data <= '2009-12-31'); }
   assert.equal(new Set(A.appelli.map((a) => a.data)).size, A.appelli.length);
-  assert.match(JSON.stringify(A), /[host rimosso]\.uniroma1\.it/); assert.match(JSON.stringify(A), /drive\.google\.com/);
+  assert.equal(A.link.length, 0, 'nessun link a raccolte di prove o a pagine personali di docenti');
+  assert.ok(!/uniroma1\.it|drive\.google|dropbox/i.test(JSON.stringify(A)));
   assert.ok(!/\.pdf/i.test(JSON.stringify(A)));
   assert.equal(A.sintesi_2015_2024.esercizi, 14);
 });

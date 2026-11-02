@@ -1,9 +1,9 @@
 # Teoria dei Circuiti — sito di studio (non ufficiale)
 
-Sito statico **in italiano** per preparare l'esame di *Teoria dei Circuiti* (Ingegneria Elettronica L-8, Roma, 2º anno). Teoria completa con dimostrazioni, formulario, esercizi e prove d'esame **generati con numeri originali e verificati da un simulatore indipendente**, quiz con ripasso a intervalli, domande di teoria con correzione automatica, progresso, piano di studio.
+Sito statico **in italiano** per preparare l'esame di *Teoria dei Circuiti* (Ingegneria Elettronica L-8, 2º anno). Teoria completa con dimostrazioni, formulario, esercizi e prove d'esame **generati con numeri originali e verificati da un simulatore indipendente**, quiz con ripasso a intervalli, domande di teoria con correzione automatica, progresso, piano di studio.
 
-> **Strumento di studio non ufficiale, non affiliato a Roma né al prof. [docente].**
-> Il repository **non contiene** testi, figure, numeri, soluzioni o PDF del docente: esercizi e prove sono originali, ispirati alla struttura descritta nel sito. Le domande di teoria sono riformulate con parole nostre; gli appelli sono citati solo per data e argomento, con link ai siti ufficiali. Non ci sono link a download non autorizzati di libri.
+> **Strumento di studio non ufficiale, non affiliato all'università né ai docenti.**
+> Il repository **non contiene** testi, figure, numeri, soluzioni o PDF dei docenti: esercizi e prove sono originali, ispirati alla struttura descritta nel sito. Le domande di teoria sono riformulate con parole nostre; gli appelli sono citati solo per data e argomento, con link ai siti ufficiali. Non ci sono link a download non autorizzati di libri.
 
 ## Cosa c'è
 | Pagina | Contenuto |
@@ -33,13 +33,13 @@ node tools/check-links/check.mjs     # link interni (--external controlla anche 
 ```
 
 ## Deploy su GitHub Pages
-1. Crea un repository pubblico (es. `teoria-circuiti-[docente]`), `git push` su `main`.
+1. Crea un repository pubblico (es. `teoria-circuiti`), `git push` su `main`.
 2. **Settings → Pages → Source: GitHub Actions.** Il workflow `.github/workflows/pages.yml` esegue `npm test` (anche sulle pull request) e poi pubblica la cartella escludendo `tests/`, `tools/` e i file privati.
 3. Verifica che i link siano relativi (il test lo controlla), che `.nojekyll` esista e che la pagina `404.html` funzioni.
 4. In alternativa: «Deploy from a branch» dalla radice.
 
 ## Aggiornare i dati (senza toccare l'HTML)
-- **Appelli:** `data/appelli.json` (le date compaiono in Home, Corso e Piano). Controlla sempre Infostud, il catalogo Roma e il sito del docente.
+- **Appelli:** `data/appelli.json` (le date compaiono in Home, Corso e Piano). Controlla sempre Infostud e il catalogo dell'ateneo.
 - **Modalità d'esame confermate:** pagina `esame/index.html` e `data/syllabus.json` (campo `_fonte`); quando il docente risponde, sostituisci i badge `DA VERIFICARE`.
 - **Risorse, archivio, errori tipici:** `data/risorse.json`, `data/archivio.json`, `data/errori.json`.
 - **Teoria, formulario, quiz, domande aperte:** i sorgenti stanno in `tools/content/*.mjs`; rigenera i JSON con `node tools/build-content.mjs`. Dopo ogni modifica ai file del sito esegui anche `node tools/build-sw.mjs` per aggiornare l'elenco della cache offline (il test lo verifica).
@@ -82,3 +82,12 @@ Elenco aggiornabile con `node tools/list-da-verificare.mjs`:
 
 ## Licenza e contributi
 Il codice e i contenuti originali di questo repository sono stati scritti per questo progetto; la licenza va decisa dal committente prima della pubblicazione. Segnalazioni di errori nei contenuti sono benvenute: indica sempre la pagina e la formula.
+
+## Note legali e contatti
+
+Progetto **personale e non ufficiale**, non affiliato ad alcuna università o docente.
+Non riproduce testi, figure o soluzioni di terzi: criteri e provenienza in [`COMPLIANCE.md`](COMPLIANCE.md).
+
+- Codice: licenza MIT ([`LICENSE`](LICENSE)). Contenuti originali: uso personale di studio ([`LICENSE-CONTENT.md`](LICENSE-CONTENT.md)).
+- Componenti di terzi: [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md).
+- Segnalazioni e rimozioni: [issue](https://github.com/valeriocolapinto1-cpu/teoria-dei-circuiti-ingegneria-elettronica/issues/new?template=rimozione-contenuti.md) o [valeriocolapinto1@gmail.com](mailto:valeriocolapinto1@gmail.com). Il materiale contestato viene rimosso subito.

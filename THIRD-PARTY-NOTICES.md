@@ -1,0 +1,12 @@
+# Componenti di terze parti
+
+Questo progetto usa i seguenti componenti, ciascuno con la propria licenza. Le licenze originali restano valide
+e, dove il testo è incluso nel repository, è indicato nella colonna *Note*.
+
+| Componente | Versione | Licenza | Note |
+|---|---|---|---|
+| KaTeX | 0.16.9 (CDN cdnjs) | MIT | Caricato da `cdnjs.cloudflare.com` (vedi pagina Privacy) |
+| API Anthropic / endpoint compatibili OpenAI | — | Condizioni del provider | Solo se l'utente attiva la correzione con AI con la propria chiave |
+
+Le dipendenze di sviluppo (strumenti di build e di test) non sono distribuite con il sito pubblicato.
+Gli eventuali file in `.agents/` e `.claude/` sono strumenti di lavoro con licenza propria: non fanno parte dei contenuti del sito.

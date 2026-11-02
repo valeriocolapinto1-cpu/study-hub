@@ -25,7 +25,7 @@ function order() {
 const next = A.appelli.map((a) => a.data.slice(0, 10)).filter((d) => d >= new Date().toISOString().slice(0, 10)).sort()[0];
 root.innerHTML = `<h1>Piano di studio</h1>
   <p>Inserisci la data dell'esame e le ore a settimana: il sito distribuisce i blocchi in base ai pesi stimati e a ciò che hai già studiato, riserva le ultime settimane alle prove complete a tempo, e ti permette di riordinare i blocchi, esportare in <code>.ics</code> e stampare.</p>
-  <div class="notice">Le date degli appelli di gennaio/febbraio 2027 non sono ancora pubblicate: controlla Infostud e il sito del docente. ${next ? `Prossimo appello noto: ${esc(next)}.` : ''}</div>
+  <div class="notice">Le date degli appelli di gennaio/febbraio 2027 non sono ancora pubblicate: controlla Infostud e il catalogo dell'ateneo. ${next ? `Prossimo appello noto: ${esc(next)}.` : ''}</div>
   <form class="card" id="f"><div class="row"><div><label for="ex">Data dell'esame</label><input id="ex" type="date" value="${cfg.esame}"></div><div><label for="oh">Ore a settimana</label><input id="oh" type="number" min="1" max="60" value="${cfg.oreSettimana}" style="max-width:110px"></div></div></form>
   <section class="card"><h2 style="margin-top:0">Ordine dei blocchi</h2><p class="muted">Ordine ufficiale del programma; alcuni appunti di studenti anticipano la caratterizzazione esterna <span class="badge b-INFERENZA">INFERENZA</span>.</p><ol id="ord"></ol><button class="btn" id="rst">Ripristina l'ordine ufficiale</button></section>
   <div class="row no-print"><button class="btn primary" id="ics">Esporta .ics</button><button class="btn" id="pr">Stampa</button></div>

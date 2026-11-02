@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { createHash } from 'node:crypto';
 const root = new URL('../', import.meta.url).pathname;
-const skip = new Set(['node_modules', '.git', '.github', 'tests', 'tools', 'sources-private', '_site', 'package.json', 'package-lock.json', 'README.md', 'CHECKLIST.md', '.gitignore', '.nojekyll', 'sw.js']);
+const skip = new Set(['node_modules', '.git', '.github', 'tests', 'tools', 'sources-private', '_site', 'package.json', 'package-lock.json', 'README.md', 'CHECKLIST.md', '.gitignore', '.nojekyll', 'sw.js', 'COMPLIANCE.md', 'LICENSE', 'LICENSE-CONTENT.md', 'THIRD-PARTY-NOTICES.md', '.well-known', 'robots.txt', 'sitemap.xml']);
 const walk = (d) => readdirSync(d).sort().flatMap((f) => { if (skip.has(f)) return []; const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 const files = walk(root).map((p) => relative(root, p)).filter((p) => !p.endsWith('.png') || true);
 const hash = createHash('sha256'); for (const f of files) { hash.update(f); hash.update(readFileSync(join(root, f))); }

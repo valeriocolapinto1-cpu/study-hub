@@ -13,7 +13,7 @@ export async function loadJSON(path) {
 }
 export const BADGES = ['UFFICIALE', 'STORICO', 'EDITORE', 'NON UFFICIALE', 'INFERENZA', 'DA VERIFICARE'];
 const TITLES = {
-  'UFFICIALE': 'Dato dal sito del docente o dal catalogo Roma',
+  'UFFICIALE': 'Dato da fonti ufficiali del corso o dal catalogo dell\'ateneo',
   'STORICO': 'Ricavato dai testi d\'esame storici: indicazione, non regola',
   'EDITORE': 'Da schede di editori e librerie',
   'NON UFFICIALE': 'Materiale di terzi, non verificato',

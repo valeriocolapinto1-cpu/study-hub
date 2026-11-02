@@ -10,7 +10,7 @@ import { stats } from '../srs.js';
     el.innerHTML = (next
       ? `<p><strong>${esc(new Date(next.data).toLocaleString('it-IT', { dateStyle: 'full', ...(next.data.includes('T') ? { timeStyle: 'short' } : {}) }))}</strong> — ${esc(next.tipo)} ${badge(next.badge)}</p>`
       : `<p>Nessun appello futuro pubblicato. ${badge(d.badgeProssimi)}</p>`)
-      + `<p class="muted">${esc(d.prossimi)} Controlla Infostud, catalogo e sito del docente: le date cambiano.</p>`;
+      + `<p class="muted">${esc(d.prossimi)} Controlla Infostud e il catalogo dell'ateneo: le date cambiano.</p>`;
     const syl = await loadJSON('data/syllabus.json');
     const s = summary(syl.argomenti);
     document.querySelector('#home-bar i').style.width = s.pct + '%';
