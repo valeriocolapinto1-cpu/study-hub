@@ -13,7 +13,7 @@ export function isBeautiful(sol, level) {
   const t = sol.tau.toNumber();
   if (t < 0.1 || t > 20) return false;
   if (sol.hasAc && sol.pre.cos.isZero() && sol.pre.sin.isZero()) return false;
-  if (level === 1 && sol.pre.dc.isZero()) return false;
+  if (level === 1 && (sol.pre.dc.isZero() || vals.some((q) => q.d > 60n))) return false;
   if (level === 3 && (sol.pre.dc.isZero() || (sol.pre.cos.isZero() && sol.pre.sin.isZero()))) return false;
   return true;
 }
@@ -23,6 +23,7 @@ export function isBeautiful(sol, level) {
  * Con `verify` (default true) ogni istanza è confrontata con il simulatore indipendente: se differisce, è scartata.
  */
 export function generate({ template = 'A', level = 1, seed = 1, variant, verify = true, maxAttempts = 200 } = {}) {
+  if (template === 'any') { template = makeRng(`tpl|${level}|${seed}`).pick(Object.keys(TEMPLATES)); variant = undefined; }
   const T = TEMPLATES[template];
   if (!T) throw new Error('template ignoto: ' + template);
   const rng = makeRng(`${template}|${level}|${variant || ''}|${seed}`);

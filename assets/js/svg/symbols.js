@@ -11,6 +11,7 @@ export const SYM = {
   V: (len) => { const m = mid(len); return ln(0, 0, m - 18, 0) + `<circle cx="${m}" cy="0" r="18"/>` + ln(m + 18, 0, len, 0) + `<g stroke-width="1.5">${ln(m - 12, 0, m - 6, 0)}${ln(m - 9, -3, m - 9, 3)}${ln(m + 6, 0, m + 12, 0)}</g>`; },
   I: (len) => { const m = mid(len); return ln(0, 0, m - 18, 0) + `<circle cx="${m}" cy="0" r="18"/>` + ln(m + 18, 0, len, 0) + ln(m - 10, 0, m + 10, 0) + ln(m + 4, -6, m + 10, 0, m + 4, 6); },
   S: (len) => { const m = mid(len); return ln(0, 0, len, 0) + `<circle cx="${m}" cy="0" r="12"/>`; },
+  G: (len) => { const m = mid(len); return ln(0, 0, m - 18, 0) + `<polygon points="${m - 18},0 ${m},-18 ${m + 18},0 ${m},18"/>` + ln(m + 18, 0, len, 0) + ln(m - 9, 0, m + 9, 0) + ln(m + 3, -6, m + 9, 0, m + 3, 6); },
   // nullatore e noratore: scatole con etichetta
   nullator: (len) => { const m = mid(len); return ln(0, 0, m - 28, 0) + `<rect x="${m - 28}" y="-13" width="56" height="26" rx="4"/>` + ln(m + 28, 0, len, 0); },
   norator: (len) => { const m = mid(len); return ln(0, 0, m - 28, 0) + `<rect x="${m - 28}" y="-13" width="56" height="26" rx="4" stroke-dasharray="5 3"/>` + ln(m + 28, 0, len, 0); },

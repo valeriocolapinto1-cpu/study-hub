@@ -45,14 +45,14 @@ Legenda: `[ ]` da fare · `[x]` fatto. Ogni fase termina con un commit e con la 
 - [x] **Criterio:** doppia verifica verde
 
 ## Fase 4 — Template B e C, AC/misto, parser, modalità
-- [ ] Template B (2-porte Z/Y + Thevenin/Norton, anche con generatore controllato)
-- [ ] Template C (trasformatore ideale)
-- [ ] Ingressi continua, sinusoidale, misto (sovrapposizione nel tempo)
-- [ ] Livelli 1–3
-- [ ] Parser sicuro delle risposte (senza `eval`), verifica t<0 e t>0
-- [ ] Modalità: completo, guidato (8 passi), per passo, mostra soluzione, varianti con seed
-- [ ] Domande applicate (Thevenin, max trasferimento, fc, risonanza, stabilità, Z/Y, rifasamento, P/Q/S, Laplace a tratti, op-amp, topologia)
-- [ ] **Criterio:** tutte le combinazioni generano istanze valide e verificate
+- [x] Template B (2-porte Z/Y + Thevenin/Norton, anche con generatore controllato)
+- [x] Template C (trasformatore ideale)
+- [x] Ingressi continua, sinusoidale, misto (sovrapposizione nel tempo)
+- [x] Livelli 1–3
+- [x] Parser sicuro delle risposte (senza `eval`), verifica t<0 e t>0
+- [x] Modalità: completo, guidato (8 passi), per passo, mostra soluzione, varianti con seed
+- [x] Domande applicate (Thevenin, max trasferimento, fc, risonanza, stabilità, Z/Y, rifasamento, P/Q/S, Laplace a tratti, op-amp, topologia)
+- [x] **Criterio:** tutte le combinazioni generano istanze valide e verificate
 
 ## Fase 5 — Quiz, ripasso, teoria, correzione
 - [ ] `quiz.json` (≥ 200 domande originali) e pagina Quiz (blocco, argomento, mista, solo errori)

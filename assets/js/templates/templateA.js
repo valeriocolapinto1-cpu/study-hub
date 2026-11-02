@@ -3,6 +3,7 @@
 import { Rational } from '../rational.js';
 import { Cx } from '../complex.js';
 import { wave } from '../solver/netlist.js';
+import { sources } from './common.js';
 
 export const VARIANTS = ['inv_rc', 'inv_fb', 'inv_l', 'v2i'];
 export const VARIANT_INFO = {
@@ -14,15 +15,6 @@ export const VARIANT_INFO = {
 
 const R_ = (x) => Rational.from(x);
 const RAIL = 80, GND = 200, TOP = 40;
-
-function sources(rng, level, omega) {
-  // restituisce {chain:[{id,wave}], dc?, ac?}
-  const amp = () => rng.int(1, 8);
-  const acVal = () => (rng.chance(0.5) ? new Cx(amp(), 0) : new Cx(0, -amp())); // cos(ωt) oppure sin(ωt)
-  if (level === 1) return [{ id: 'V1', wave: wave(rng.nz(9) , 0) }];
-  if (level === 2) return [{ id: 'V1', wave: wave(0, acVal()) }];
-  return [{ id: 'V1', wave: wave(rng.nz(9), 0) }, { id: 'V2', wave: wave(0, acVal()) }];
-}
 
 /** Costruisce l'istanza (netlist + metadati di layout). Non verifica la «bellezza»: lo fa il generatore. */
 export function build(rng, { level = 1, variant } = {}) {

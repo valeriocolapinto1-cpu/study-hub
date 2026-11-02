@@ -115,3 +115,6 @@ figure.fig { margin: 12px 0; text-align: center; } figure.fig svg { max-width: 1
   .flist { columns: 2; column-gap: 12px; }
   h1 { font-size: 14pt; }
 }
+.fld { margin: 10px 0; } .fld input, .fld select { max-width: 520px; }
+.res { font-weight: 700; margin-left: 6px; }
+.gstep summary { font-size: 1.02rem; }
