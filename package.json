@@ -1,0 +1,7 @@
+{
+  "name": "teoria-circuiti-[docente]",
+  "private": true,
+  "type": "module",
+  "description": "Sito di studio non ufficiale per Teoria dei Circuiti. Nessuna dipendenza npm per il deploy.",
+  "scripts": { "test": "node --test \"tests/*.test.mjs\"" }
+}

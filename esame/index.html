@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Modalità d'esame</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%230b1530%27/%3E%3Cpath d=%27M18 4 8 19h7l-2 9 11-16h-7z%27 fill=%27%23ffb84d%27/%3E%3C/svg%3E">
+</head>
+<body>
+<main>
+<h1>Modalità d'esame: cosa sappiamo e cosa no</h1>
+<h2>Cosa è noto</h2>
+<ul>
+<li>La valutazione è un «esame» <span class="badge b-UFFICIALE">UFFICIALE</span>. Dopo lo scritto di ottobre 2026 c'è una discussione e verbalizzazione <span class="badge b-UFFICIALE">UFFICIALE</span>: se sia un vero orale per tutti non è specificato <span class="badge b-DAVERIFICARE">DA VERIFICARE</span>.</li>
+<li><strong>Formato storico (testi 2000–2009)</strong> <span class="badge b-STORICO">STORICO</span>: un esercizio d'analisi da 30 punti; tre domande per circa 30 punti in totale, più una domanda opzionale da 3 punti. Spesso ogni domanda ha una parte teorica (enunciato, dimostrazione, spiegazione) e una applicata a un circuito dato.</li>
+<li>Per evitare copiature c'erano gruppi (A–I / L–Z), compiti A e B, fino a 5 versioni dell'esercizio nello stesso appello <span class="badge b-STORICO">STORICO</span>.</li>
+<li><strong>Esercizio recente (2015–2024)</strong> <span class="badge b-STORICO">STORICO</span>: raccolta di 14 esercizi risolti di 11 appelli; è disponibile solo l'esercizio, non le domande.</li>
+<li>Appunti di studenti del 2022/23 parlano di una «parte teorica dell'esame»: è un indizio, non una regola <span class="badge b-NONUFFICIALE">NON UFFICIALE</span>.</li>
+</ul>
+<div class="notice">Il formato storico è usato dal sito per le prove simulate, ma <strong>non è garantito per l'esame attuale</strong>. Il voto in trentesimi sarà solo una stima proporzionale configurabile <span class="badge b-INFERENZA">INFERENZA</span>.</div>
+<h2>Cosa non è pubblico</h2>
+<p><span class="badge b-DAVERIFICARE">DA VERIFICARE</span> Durata, punteggi e soglie attuali, forma dell'orale o della discussione, calcolatrice o formulario ammessi, esonero in itinere, modalità di verbalizzazione.</p>
+<h2>Domande da fare al docente</h2>
+<button class="btn" id="copy-q">Copia l'elenco</button>
+<ol id="domande">
+<li>L'esame è solo scritto o c'è un orale? Come funziona la discussione dopo lo scritto?</li>
+<li>Il testo comprende ancora le domande di teoria? Quanti punti vale ciascuna parte?</li>
+<li>Qual è la durata della prova?</li>
+<li>Sono ammessi calcolatrice, formulario o appunti?</li>
+<li>Esistono esoneri o prove in itinere quest'anno?</li>
+<li>La raccolta di esercizi risolti è la versione aggiornata? Ne usciranno altre?</li>
+<li>Quali sono le prossime date degli appelli di gennaio/febbraio 2027?</li>
+<li>Qual è la 2ª edizione di riferimento del Martinelli–Salerno, visto che è fuori catalogo?</li>
+</ol>
+<script type="module">
+const b=document.getElementById('copy-q');
+b.addEventListener('click',async()=>{const t=[...document.querySelectorAll('#domande li')].map((l,i)=>(i+1)+'. '+l.textContent).join('\n');
+try{await navigator.clipboard.writeText(t);b.textContent='Copiato ✓';}catch(e){b.textContent='Copia non riuscita: seleziona il testo a mano';}});
+</script>
+</main>
+<script type="module" src="../assets/js/app.js"></script>
+
+</body>
+</html>

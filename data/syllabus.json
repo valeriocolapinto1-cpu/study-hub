@@ -1,0 +1,759 @@
+{
+ "_fonte": "Programma ufficiale del corso (6 blocchi) [UFFICIALE]. Pesi per blocco e per argomento: INFERENZA. Fuori programma: sistemi trifase, circuiti magnetici, macchine elettriche.",
+ "blocchi": [
+  {
+   "id": "I",
+   "titolo": "Costanti concentrate",
+   "peso": 5,
+   "badge": "UFFICIALE",
+   "nota": "Peso INFERENZA: ~5% (+ nullore negli esercizi)."
+  },
+  {
+   "id": "II",
+   "titolo": "Circuiti senza memoria",
+   "peso": 15,
+   "badge": "UFFICIALE",
+   "nota": "Peso INFERENZA."
+  },
+  {
+   "id": "III",
+   "titolo": "Regime sinusoidale",
+   "peso": 25,
+   "badge": "UFFICIALE",
+   "nota": "Peso INFERENZA."
+  },
+  {
+   "id": "IV",
+   "titolo": "Trasformata di Laplace",
+   "peso": 18,
+   "badge": "UFFICIALE",
+   "nota": "Peso INFERENZA: IV+V ~35%, ripartito a metà."
+  },
+  {
+   "id": "V",
+   "titolo": "Funzioni di rete e stabilità",
+   "peso": 17,
+   "badge": "UFFICIALE",
+   "nota": "Peso INFERENZA: IV+V ~35%, ripartito a metà."
+  },
+  {
+   "id": "VI",
+   "titolo": "Caratterizzazione esterna",
+   "peso": 20,
+   "badge": "UFFICIALE",
+   "nota": "Peso INFERENZA."
+  }
+ ],
+ "fuoriProgramma": [
+  "Sistemi trifase",
+  "Circuiti magnetici",
+  "Macchine elettriche"
+ ],
+ "argomenti": [
+  {
+   "id": "I-01",
+   "titolo": "Modellamento a costanti concentrate",
+   "blocco": "I",
+   "prerequisiti": [],
+   "pagina": "studio/?t=I-01",
+   "peso": 1,
+   "tag": [
+    "modello"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "I-02",
+   "titolo": "Leggi di Kirchhoff",
+   "blocco": "I",
+   "prerequisiti": [
+    "I-01"
+   ],
+   "pagina": "studio/?t=I-02",
+   "peso": 2,
+   "tag": [
+    "kirchhoff"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "I-03",
+   "titolo": "Porta e bipolo",
+   "blocco": "I",
+   "prerequisiti": [
+    "I-01"
+   ],
+   "pagina": "studio/?t=I-03",
+   "peso": 1,
+   "tag": [
+    "bipolo"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "I-04",
+   "titolo": "Linearità, tempo-invarianza, passività, causalità",
+   "blocco": "I",
+   "prerequisiti": [
+    "I-03"
+   ],
+   "pagina": "studio/?t=I-04",
+   "peso": 2,
+   "tag": [
+    "proprieta"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "I-05",
+   "titolo": "Relazioni costitutive di R, L, C e dei generatori",
+   "blocco": "I",
+   "prerequisiti": [
+    "I-03"
+   ],
+   "pagina": "studio/?t=I-05",
+   "peso": 2,
+   "tag": [
+    "costitutive"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "I-06",
+   "titolo": "Aspetti energetici e bipoli reali",
+   "blocco": "I",
+   "prerequisiti": [
+    "I-05"
+   ],
+   "pagina": "studio/?t=I-06",
+   "peso": 1,
+   "tag": [
+    "energia"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "I-07",
+   "titolo": "Generatori controllati",
+   "blocco": "I",
+   "prerequisiti": [
+    "I-05"
+   ],
+   "pagina": "studio/?t=I-07",
+   "peso": 2,
+   "tag": [
+    "controllati"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "I-08",
+   "titolo": "Trasformatore ideale",
+   "blocco": "I",
+   "prerequisiti": [
+    "I-07"
+   ],
+   "pagina": "studio/?t=I-08",
+   "peso": 2,
+   "tag": [
+    "trasformatore"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "I-09",
+   "titolo": "Nullore e amplificatore operazionale",
+   "blocco": "I",
+   "prerequisiti": [
+    "I-07"
+   ],
+   "pagina": "studio/?t=I-09",
+   "peso": 3,
+   "tag": [
+    "nullore",
+    "opamp"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "II-01",
+   "titolo": "Grafo orientato, maglie e tagli",
+   "blocco": "II",
+   "prerequisiti": [
+    "I-02"
+   ],
+   "pagina": "studio/?t=II-01",
+   "peso": 2,
+   "tag": [
+    "topologia"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "II-02",
+   "titolo": "Albero, coalbero, maglie e tagli fondamentali",
+   "blocco": "II",
+   "prerequisiti": [
+    "II-01"
+   ],
+   "pagina": "studio/?t=II-02",
+   "peso": 2,
+   "tag": [
+    "topologia"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "II-03",
+   "titolo": "Matrici A e B e relazione B = −Aᵀ",
+   "blocco": "II",
+   "prerequisiti": [
+    "II-02"
+   ],
+   "pagina": "studio/?t=II-03",
+   "peso": 2,
+   "tag": [
+    "topologia",
+    "matrici"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "II-04",
+   "titolo": "Tensioni e correnti indipendenti",
+   "blocco": "II",
+   "prerequisiti": [
+    "II-03"
+   ],
+   "pagina": "studio/?t=II-04",
+   "peso": 2,
+   "tag": [
+    "topologia"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "II-05",
+   "titolo": "Teorema di Tellegen",
+   "blocco": "II",
+   "prerequisiti": [
+    "II-03"
+   ],
+   "pagina": "studio/?t=II-05",
+   "peso": 3,
+   "tag": [
+    "tellegen"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "II-06",
+   "titolo": "Serie, parallelo e partitori",
+   "blocco": "II",
+   "prerequisiti": [
+    "I-02"
+   ],
+   "pagina": "studio/?t=II-06",
+   "peso": 3,
+   "tag": [
+    "resistivi"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "II-07",
+   "titolo": "Metodo dei nodi",
+   "blocco": "II",
+   "prerequisiti": [
+    "II-03",
+    "II-06"
+   ],
+   "pagina": "studio/?t=II-07",
+   "peso": 3,
+   "tag": [
+    "nodi"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "II-08",
+   "titolo": "Metodo delle maglie",
+   "blocco": "II",
+   "prerequisiti": [
+    "II-03",
+    "II-06"
+   ],
+   "pagina": "studio/?t=II-08",
+   "peso": 2,
+   "tag": [
+    "maglie"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "III-01",
+   "titolo": "Circuiti del primo ordine con eccitazioni variabili",
+   "blocco": "III",
+   "prerequisiti": [
+    "I-05",
+    "II-06"
+   ],
+   "pagina": "studio/?t=III-01",
+   "peso": 3,
+   "tag": [
+    "primo-ordine"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "III-02",
+   "titolo": "Eccitazioni sinusoidali e fasori",
+   "blocco": "III",
+   "prerequisiti": [
+    "III-01"
+   ],
+   "pagina": "studio/?t=III-02",
+   "peso": 3,
+   "tag": [
+    "fasori"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "III-03",
+   "titolo": "Impedenza e ammettenza",
+   "blocco": "III",
+   "prerequisiti": [
+    "III-02"
+   ],
+   "pagina": "studio/?t=III-03",
+   "peso": 3,
+   "tag": [
+    "fasori"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "III-04",
+   "titolo": "Condizioni di applicabilità del metodo dei fasori",
+   "blocco": "III",
+   "prerequisiti": [
+    "III-02"
+   ],
+   "pagina": "studio/?t=III-04",
+   "peso": 2,
+   "tag": [
+    "fasori"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "III-05",
+   "titolo": "Eccitazioni a frequenze diverse e sovrapposizione",
+   "blocco": "III",
+   "prerequisiti": [
+    "III-03"
+   ],
+   "pagina": "studio/?t=III-05",
+   "peso": 3,
+   "tag": [
+    "sovrapposizione"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "III-06",
+   "titolo": "Potenza attiva, reattiva e complessa",
+   "blocco": "III",
+   "prerequisiti": [
+    "III-03"
+   ],
+   "pagina": "studio/?t=III-06",
+   "peso": 3,
+   "tag": [
+    "potenza"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "III-07",
+   "titolo": "Conservazione della potenza complessa e bilancio",
+   "blocco": "III",
+   "prerequisiti": [
+    "III-06",
+    "II-05"
+   ],
+   "pagina": "studio/?t=III-07",
+   "peso": 2,
+   "tag": [
+    "potenza"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "III-08",
+   "titolo": "Rifasamento",
+   "blocco": "III",
+   "prerequisiti": [
+    "III-06"
+   ],
+   "pagina": "studio/?t=III-08",
+   "peso": 2,
+   "tag": [
+    "potenza",
+    "rifasamento"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "IV-01",
+   "titolo": "Trasformata di Laplace: definizione e proprietà",
+   "blocco": "IV",
+   "prerequisiti": [
+    "III-01"
+   ],
+   "pagina": "studio/?t=IV-01",
+   "peso": 3,
+   "tag": [
+    "laplace"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "IV-02",
+   "titolo": "Trasformate notevoli",
+   "blocco": "IV",
+   "prerequisiti": [
+    "IV-01"
+   ],
+   "pagina": "studio/?t=IV-02",
+   "peso": 3,
+   "tag": [
+    "laplace"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "IV-03",
+   "titolo": "Antitrasformata di funzioni razionali: fratti semplici",
+   "blocco": "IV",
+   "prerequisiti": [
+    "IV-02"
+   ],
+   "pagina": "studio/?t=IV-03",
+   "peso": 3,
+   "tag": [
+    "laplace",
+    "fratti"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "IV-04",
+   "titolo": "Antitrasformata con poli complessi coniugati",
+   "blocco": "IV",
+   "prerequisiti": [
+    "IV-03"
+   ],
+   "pagina": "studio/?t=IV-04",
+   "peso": 2,
+   "tag": [
+    "laplace",
+    "fratti"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "IV-05",
+   "titolo": "Equazioni integro-differenziali",
+   "blocco": "IV",
+   "prerequisiti": [
+    "IV-02"
+   ],
+   "pagina": "studio/?t=IV-05",
+   "peso": 2,
+   "tag": [
+    "laplace"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "IV-06",
+   "titolo": "Circuiti con memoria nel dominio di Laplace",
+   "blocco": "IV",
+   "prerequisiti": [
+    "IV-02",
+    "III-03"
+   ],
+   "pagina": "studio/?t=IV-06",
+   "peso": 3,
+   "tag": [
+    "laplace",
+    "memoria"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "IV-07",
+   "titolo": "Condizioni iniziali come generatori",
+   "blocco": "IV",
+   "prerequisiti": [
+    "IV-06"
+   ],
+   "pagina": "studio/?t=IV-07",
+   "peso": 3,
+   "tag": [
+    "laplace",
+    "condizioni-iniziali"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "V-01",
+   "titolo": "Funzioni di rete",
+   "blocco": "V",
+   "prerequisiti": [
+    "IV-06"
+   ],
+   "pagina": "studio/?t=V-01",
+   "peso": 3,
+   "tag": [
+    "funzioni-rete"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "V-02",
+   "titolo": "Risposta impulsiva e convoluzione",
+   "blocco": "V",
+   "prerequisiti": [
+    "V-01"
+   ],
+   "pagina": "studio/?t=V-02",
+   "peso": 2,
+   "tag": [
+    "impulsiva"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "V-03",
+   "titolo": "Risposta libera e risposta forzata",
+   "blocco": "V",
+   "prerequisiti": [
+    "V-01"
+   ],
+   "pagina": "studio/?t=V-03",
+   "peso": 2,
+   "tag": [
+    "risposta"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "V-04",
+   "titolo": "Stabilità e poli",
+   "blocco": "V",
+   "prerequisiti": [
+    "V-01"
+   ],
+   "pagina": "studio/?t=V-04",
+   "peso": 3,
+   "tag": [
+    "stabilita"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "V-05",
+   "titolo": "Risposta transitoria e permanente",
+   "blocco": "V",
+   "prerequisiti": [
+    "V-03",
+    "V-04"
+   ],
+   "pagina": "studio/?t=V-05",
+   "peso": 3,
+   "tag": [
+    "risposta"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "V-06",
+   "titolo": "Relazione tra fasori e trasformata di Laplace",
+   "blocco": "V",
+   "prerequisiti": [
+    "V-01",
+    "III-03"
+   ],
+   "pagina": "studio/?t=V-06",
+   "peso": 2,
+   "tag": [
+    "fasori",
+    "laplace"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "V-07",
+   "titolo": "Risposta in frequenza e filtri",
+   "blocco": "V",
+   "prerequisiti": [
+    "V-06"
+   ],
+   "pagina": "studio/?t=V-07",
+   "peso": 3,
+   "tag": [
+    "frequenza",
+    "filtri"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "V-08",
+   "titolo": "Circuiti risonanti",
+   "blocco": "V",
+   "prerequisiti": [
+    "V-07"
+   ],
+   "pagina": "studio/?t=V-08",
+   "peso": 3,
+   "tag": [
+    "risonanza"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "VI-01",
+   "titolo": "Teorema di sostituzione",
+   "blocco": "VI",
+   "prerequisiti": [
+    "II-07"
+   ],
+   "pagina": "studio/?t=VI-01",
+   "peso": 2,
+   "tag": [
+    "sostituzione"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "VI-02",
+   "titolo": "Teorema di Thevenin",
+   "blocco": "VI",
+   "prerequisiti": [
+    "VI-01"
+   ],
+   "pagina": "studio/?t=VI-02",
+   "peso": 3,
+   "tag": [
+    "thevenin"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "VI-03",
+   "titolo": "Teorema di Norton",
+   "blocco": "VI",
+   "prerequisiti": [
+    "VI-02"
+   ],
+   "pagina": "studio/?t=VI-03",
+   "peso": 3,
+   "tag": [
+    "norton"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "VI-04",
+   "titolo": "Reti N-porte",
+   "blocco": "VI",
+   "prerequisiti": [
+    "VI-01"
+   ],
+   "pagina": "studio/?t=VI-04",
+   "peso": 2,
+   "tag": [
+    "nporte"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "VI-05",
+   "titolo": "Doppi bipoli: matrici Z e Y",
+   "blocco": "VI",
+   "prerequisiti": [
+    "VI-04"
+   ],
+   "pagina": "studio/?t=VI-05",
+   "peso": 3,
+   "tag": [
+    "2porte",
+    "z",
+    "y"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "VI-06",
+   "titolo": "Altre rappresentazioni dei doppi bipoli (T inversa, ibride)",
+   "blocco": "VI",
+   "prerequisiti": [
+    "VI-05"
+   ],
+   "pagina": "studio/?t=VI-06",
+   "peso": 1,
+   "tag": [
+    "2porte"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "VI-07",
+   "titolo": "Connessioni di doppi bipoli",
+   "blocco": "VI",
+   "prerequisiti": [
+    "VI-05"
+   ],
+   "pagina": "studio/?t=VI-07",
+   "peso": 2,
+   "tag": [
+    "2porte",
+    "connessioni"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "VI-08",
+   "titolo": "Prove di validità delle connessioni",
+   "blocco": "VI",
+   "prerequisiti": [
+    "VI-07"
+   ],
+   "pagina": "studio/?t=VI-08",
+   "peso": 2,
+   "tag": [
+    "2porte",
+    "connessioni"
+   ],
+   "badge": "UFFICIALE"
+  },
+  {
+   "id": "VI-09",
+   "titolo": "Massimo trasferimento di potenza attiva",
+   "blocco": "VI",
+   "prerequisiti": [
+    "VI-02",
+    "III-06"
+   ],
+   "pagina": "studio/?t=VI-09",
+   "peso": 3,
+   "tag": [
+    "massimo-trasferimento"
+   ],
+   "badge": "UFFICIALE"
+  }
+ ]
+}

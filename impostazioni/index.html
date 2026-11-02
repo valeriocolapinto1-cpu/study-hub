@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Impostazioni</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%230b1530%27/%3E%3Cpath d=%27M18 4 8 19h7l-2 9 11-16h-7z%27 fill=%27%23ffb84d%27/%3E%3C/svg%3E">
+</head>
+<body>
+<main>
+<h1>Impostazioni</h1>
+<section class="card"><h2>Tema</h2>
+<label for="tema">Aspetto</label>
+<select id="tema"><option value="auto">Automatico (sistema)</option><option value="chiaro">Chiaro</option><option value="scuro">Scuro</option></select></section>
+<section class="card"><h2>Salvataggio dei dati</h2>
+<p>Progresso e impostazioni restano <strong>solo in questo browser</strong>. Esporta un backup per spostarli su un altro dispositivo. La chiave API non viene mai inclusa nell'export.</p>
+<div class="row"><button class="btn primary" id="exp">Esporta JSON</button>
+<label class="btn" for="imp" style="margin:0">Importa JSON…</label><input id="imp" type="file" accept="application/json,.json" hidden></div>
+<div id="imp-prev" class="notice" hidden></div></section>
+<section class="card"><h2>Azzera</h2>
+<p class="muted">Cancella i dati di una sezione. L'operazione non si può annullare: esporta prima un backup.</p>
+<div class="row" id="reset-row"></div></section>
+<section class="card"><h2>Correzione con AI</h2><p class="muted">Disponibile con la fase Quiz e Correzione: qui potrai inserire una chiave API personale (resta solo nel tuo browser).</p></section>
+<p id="msg" role="status" class="muted"></p>
+</main>
+<script type="module" src="../assets/js/app.js"></script>
+<script type=module src=../assets/js/pages/impostazioni.js></script>
+</body>
+</html>
