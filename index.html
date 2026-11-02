@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Valerio Colapinto — Siti di studio · Ingegneria Elettronica</title>
+  <meta name="description" content="Raccolta dei siti di studio interattivi creati per gli esami di Ingegneria Elettronica alla Roma. / Collection of interactive study sites built for Electronic Engineering exams at Roma.">
+  <meta name="theme-color" content="#05060c">
+  <meta property="og:title" content="Valerio Colapinto — Siti di studio">
+  <meta property="og:description" content="Siti di studio interattivi per Ingegneria Elettronica, Roma.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span>
+    <span class="grid"></span>
+  </div>
+
+  <header class="nav" id="top">
+    <div class="wrap nav-in glass">
+      <a class="brand" href="#top" aria-label="Valerio Colapinto">
+        <svg viewBox="0 0 64 64" width="28" height="28" aria-hidden="true"><defs><linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3ce6ff"/><stop offset=".55" stop-color="#8b93ff"/><stop offset="1" stop-color="#c483ff"/></linearGradient></defs><rect x="2" y="2" width="60" height="60" rx="16" fill="rgba(255,255,255,.04)" stroke="url(#bg1)" stroke-opacity=".7" stroke-width="2.5"/><path d="M17 20l15 26 15-26" fill="none" stroke="url(#bg1)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Valerio Colapinto</span>
+      </a>
+      <nav class="links" aria-label="Principale">
+        <a href="#corsi" data-i18n="nav.courses">Corsi</a>
+        <a href="#about" data-i18n="nav.about">Chi sono</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Lingua / Language">
+        <button type="button" data-lang="it" aria-pressed="true">IT</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <p class="eyebrow" data-i18n="hero.eyebrow">Ingegneria Elettronica · Università di Roma</p>
+      <h1><span data-i18n="hero.title1">Studiare costruendo.</span><br><em data-i18n="hero.title2">Un sito per ogni esame.</em></h1>
+      <p class="lead" data-i18n="hero.lead">Una raccolta di strumenti di studio interattivi: teoria con dimostrazioni, formulari, esercizi, quiz e simulazioni d'esame, scritti e programmati da me.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#corsi" data-i18n="hero.cta">Esplora i corsi</a>
+        <a class="btn ghost" href="https://github.com/valeriocolapinto1-cpu" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+      <dl class="stats glass" id="stats" aria-live="polite"></dl>
+    </section>
+
+    <section class="wrap section" id="corsi">
+      <div class="section-head">
+        <p class="eyebrow" data-i18n="courses.eyebrow">Corsi</p>
+        <h2 data-i18n="courses.title">I miei siti di studio</h2>
+        <p class="muted" data-i18n="courses.sub">Ogni scheda rimanda al sito del corso. Quelle senza sito sono in programma.</p>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filtri"></div>
+      <div class="cards" id="cards"></div>
+      <noscript><p class="muted">Abilita JavaScript per vedere l'elenco dei corsi.</p></noscript>
+    </section>
+
+    <section class="wrap section" id="about">
+      <div class="about glass">
+        <div>
+          <p class="eyebrow" data-i18n="about.eyebrow">Chi sono</p>
+          <h2 data-i18n="about.title">Valerio Colapinto</h2>
+        </div>
+        <div class="about-body">
+          <p data-i18n="about.p1">Studente di Ingegneria Elettronica alla Università di Roma, laurea prevista nel 2028. Mi interessano elettronica, telecomunicazioni, informatica e cybersecurity.</p>
+          <p data-i18n="about.p2">Questi siti nascono dal modo in cui mi piace studiare: capire le cose da zero, verificarle con esercizi e simulazioni, e costruire gli strumenti che mi servono. Li sviluppo con Git e GitHub e con l'aiuto dell'intelligenza artificiale.</p>
+          <p><a class="btn ghost" href="https://github.com/valeriocolapinto1-cpu" target="_blank" rel="noopener">github.com/valeriocolapinto1-cpu ↗</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <p class="small muted" data-i18n="foot.disclaimer">Strumenti di studio indipendenti, scritti da uno studente: non sono siti ufficiali e non sono affiliati alla Roma né ai docenti. Per programma, regole e date d'esame fanno fede le pagine ufficiali dei corsi.</p>
+    <p class="small muted">© <span id="year"></span> Valerio Colapinto</p>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

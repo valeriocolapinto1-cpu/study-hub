@@ -1,0 +1,123 @@
+{
+  "base": "https://valeriocolapinto1-cpu.github.io/",
+  "github": "https://github.com/valeriocolapinto1-cpu/",
+  "courses": [
+    {
+      "id": "analisi-1", "year": 1, "status": "soon",
+      "name": {"it": "Analisi Matematica 1", "en": "Calculus 1"},
+      "description": {"it": "Sito di studio in preparazione.", "en": "Study site in preparation."},
+      "tags": ["Limiti", "Derivate", "Integrali"]
+    },
+    {
+      "id": "geometria", "year": 1, "status": "soon",
+      "name": {"it": "Geometria e Algebra Lineare", "en": "Linear Algebra and Geometry"},
+      "description": {"it": "Sito di studio in preparazione.", "en": "Study site in preparation."},
+      "tags": ["Matrici", "Spazi vettoriali", "Autovalori"]
+    },
+    {
+      "id": "fisica-1", "year": 1, "status": "online",
+      "name": {"it": "Fisica 1", "en": "Physics 1"},
+      "subtitle": {"it": "Orale Trainer", "en": "Oral Exam Trainer"},
+      "description": {
+        "it": "Allenatore per l'esame orale: argomenti con derivazioni passo-passo, simulazioni interattive, flashcard, quiz e un piano di studio con ripasso spaziato.",
+        "en": "Trainer for the oral exam: topics with step-by-step derivations, interactive simulations, flashcards, quizzes and a study plan with spaced repetition."
+      },
+      "tags": ["Meccanica", "Termodinamica", "Simulazioni", "Flashcard"],
+      "metrics": [
+        {"value": 33, "label": {"it": "argomenti", "en": "topics"}},
+        {"value": 7, "label": {"it": "simulazioni", "en": "simulations"}}
+      ],
+      "site": "orale-fisica-1-ingegneria-elettronica/",
+      "repo": "orale-fisica-1-ingegneria-elettronica"
+    },
+    {
+      "id": "chimica", "year": 1, "status": "soon",
+      "name": {"it": "Chimica", "en": "Chemistry"},
+      "description": {"it": "Sito di studio in preparazione.", "en": "Study site in preparation."},
+      "tags": ["Stechiometria", "Termochimica", "Elettrochimica"]
+    },
+    {
+      "id": "fondamenti-informatica", "year": 1, "status": "online",
+      "name": {"it": "Fondamenti di Informatica", "en": "Fundamentals of Computer Science"},
+      "subtitle": {"it": "AE·FIN — Architettura degli Elaboratori", "en": "AE·FIN — Computer Architecture"},
+      "description": {
+        "it": "Palestra di architettura degli elaboratori: moduli pensati per partire da zero, esercizi svolti passo per passo e un motore che genera prove sempre diverse e le corregge.",
+        "en": "A computer architecture gym: modules written to start from scratch, worked exercises step by step, and an engine that generates fresh practice exams and grades them."
+      },
+      "tags": ["Complemento a 2", "Karnaugh", "Pipeline", "Cache", "IEEE 754"],
+      "metrics": [
+        {"value": 17, "label": {"it": "moduli", "en": "modules"}},
+        {"value": 85, "label": {"it": "esercizi", "en": "exercises"}}
+      ],
+      "site": "fondamenti-di-informatica-AEFIN/",
+      "repo": "fondamenti-di-informatica-AEFIN"
+    },
+    {
+      "id": "ait", "year": 1, "status": "soon",
+      "name": {"it": "Abilità Informatiche e Telematiche", "en": "IT and Telematics Skills"},
+      "description": {"it": "Sito di studio in preparazione.", "en": "Study site in preparation."},
+      "tags": ["Reti", "Office", "Sicurezza"]
+    },
+    {
+      "id": "inglese", "year": 1, "status": "soon",
+      "name": {"it": "Inglese B2", "en": "English B2"},
+      "description": {"it": "Sito di studio in preparazione.", "en": "Study site in preparation."},
+      "tags": ["Grammar", "Vocabulary", "Reading"]
+    },
+    {
+      "id": "fisica-2", "year": 2, "semester": 1, "status": "online",
+      "name": {"it": "Fisica Generale II", "en": "General Physics II"},
+      "description": {
+        "it": "Programma lezione per lezione, teoria con formule, formulario, esercizi tratti da appelli passati con soluzioni, laboratorio e simulatore d'esame.",
+        "en": "Lesson-by-lesson syllabus, theory with typeset formulas, formula sheet, exercises from past exams with solutions, lab notes and an exam simulator."
+      },
+      "tags": ["Elettromagnetismo", "Maxwell", "Laboratorio", "Simulazione d'esame"],
+      "metrics": [
+        {"value": 60, "label": {"it": "lezioni", "en": "lessons"}},
+        {"value": 48, "label": {"it": "appelli", "en": "past exams"}}
+      ],
+      "site": "fisica-2-ingegneria-elettronica/",
+      "repo": "fisica-2-ingegneria-elettronica"
+    },
+    {
+      "id": "analisi-2", "year": 2, "semester": 1, "status": "soon",
+      "name": {"it": "Analisi Matematica 2", "en": "Calculus 2"},
+      "description": {"it": "Sito di studio in preparazione.", "en": "Study site in preparation."},
+      "tags": ["Serie", "Funzioni di più variabili", "Equazioni differenziali"]
+    },
+    {
+      "id": "teoria-circuiti", "year": 2, "semester": 1, "status": "online",
+      "name": {"it": "Teoria dei Circuiti", "en": "Circuit Theory"},
+      "description": {
+        "it": "Teoria con dimostrazioni, formulario, esercizi e prove generati con numeri originali e verificati da un simulatore indipendente, più quiz a ripasso dilazionato.",
+        "en": "Theory with proofs, formula sheet, exercises and mock exams generated with original numbers and checked by an independent simulator, plus spaced-repetition quizzes."
+      },
+      "tags": ["Nullori", "Doppi bipoli", "Trasformatore ideale", "SPICE"],
+      "metrics": [
+        {"value": 49, "label": {"it": "argomenti", "en": "topics"}},
+        {"value": 271, "label": {"it": "domande", "en": "questions"}},
+        {"value": 160, "label": {"it": "formule", "en": "formulas"}}
+      ],
+      "site": "teoria-dei-circuiti-ingegneria-elettronica/",
+      "repo": "teoria-dei-circuiti-ingegneria-elettronica"
+    },
+    {
+      "id": "segnali-1", "year": 2, "semester": 1, "status": "soon",
+      "name": {"it": "Teoria dei Segnali 1", "en": "Signal Theory 1"},
+      "description": {"it": "Sito di studio in preparazione.", "en": "Study site in preparation."},
+      "tags": ["Fourier", "Campionamento", "Sistemi LTI"]
+    },
+    {
+      "id": "segnali-2", "year": 2, "semester": 2, "status": "soon",
+      "name": {"it": "Teoria dei Segnali 2", "en": "Signal Theory 2"},
+      "description": {"it": "Sito di studio in preparazione.", "en": "Study site in preparation."},
+      "tags": ["Processi casuali", "Rumore", "Stima"]
+    },
+    {
+      "id": "elettronica", "year": 2, "semester": 2, "status": "soon",
+      "name": {"it": "Elettronica", "en": "Electronics"},
+      "description": {"it": "Sito di studio in preparazione.", "en": "Study site in preparation."},
+      "tags": ["Diodi", "Transistor", "Amplificatori"]
+    }
+  ]
+}
