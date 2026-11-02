@@ -6,9 +6,9 @@ import { summary } from './progress.js';
 const NAV = [
   ['Home', '', true], ['Corso', 'corso/', true], ['Esame', 'esame/', true], ['Programma', 'programma/', true],
   ['Studio', 'studio/', true], ['Formulario', 'formulario/', true], ['Esercizi', 'esercizi/', true],
-  ['Quiz', 'quiz/', true], ['Teoria', 'teoria/', true], ['Prove', 'prova/', true], ['Archivio', 'archivio/', false],
-  ['Risorse', 'risorse/', false], ['Appunti', 'appunti/', false], ['Simulatori', 'simulatori/', false],
-  ['Progresso', 'progresso/', false], ['Piano', 'piano/', false], ['Impostazioni', 'impostazioni/', true], ['FAQ', 'faq/', false],
+  ['Quiz', 'quiz/', true], ['Teoria', 'teoria/', true], ['Prove', 'prova/', true], ['Archivio', 'archivio/', true],
+  ['Risorse', 'risorse/', true], ['Appunti', 'appunti/', true], ['Simulatori', 'simulatori/', true],
+  ['Progresso', 'progresso/', true], ['Piano', 'piano/', true], ['Impostazioni', 'impostazioni/', true], ['FAQ', 'faq/', true],
 ];
 
 export function applyTheme() {

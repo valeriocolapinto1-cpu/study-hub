@@ -1,0 +1,46 @@
+{
+  "_nota": "Solo data e argomento, con parole nostre. Nessun testo, figura o soluzione del docente è incluso. Fonte: archivio storico del docente e raccolta di esercizi risolti [STORICO].",
+  "link": [
+    { "titolo": "Archivio storico del docente (testi 2000–2009)", "url": "[link rimosso]", "badge": "UFFICIALE", "nota": "Link esterno: il sito non ne contiene copia." },
+    { "titolo": "Cartella Drive del corso (accesso con account istituzionale)", "url": "[link rimosso]", "badge": "UFFICIALE", "nota": "Contiene il materiale del docente, compresa la raccolta di esercizi risolti 2015–2024." }
+  ],
+  "periodi": [
+    { "id": "2000-2009", "titolo": "Testi d'esame 2000–2009", "descrizione": "Formato: esercizio d'analisi (30 punti), 3 domande (circa 30 punti in totale) e una opzionale (3 punti); varianti A/B o A–I / L–Z.", "badge": "STORICO" },
+    { "id": "2015-2024", "titolo": "Esercizi risolti 2015–2024", "descrizione": "14 esercizi di 11 appelli; solo l'esercizio, non le domande di teoria.", "badge": "STORICO" }
+  ],
+  "appelli": [
+    { "data": "2000-06-01", "periodo": "2000-2009", "argomenti": ["Tellegen", "fasori", "potenze"], "ingresso": "—", "elementi": [] },
+    { "data": "2000-07-04", "periodo": "2000-2009", "argomenti": ["Thevenin", "funzioni di rete", "circuiti risonanti"], "ingresso": "—", "elementi": [] },
+    { "data": "2000-06-12", "periodo": "2000-2009", "argomenti": ["massimo trasferimento", "stabilità", "connessioni di doppi bipoli"], "ingresso": "—", "elementi": [] },
+    { "data": "2000-07-14", "periodo": "2000-2009", "argomenti": ["Laplace", "costante di tempo", "potenze"], "ingresso": "—", "elementi": [] },
+    { "data": "2000-09-15", "periodo": "2000-2009", "argomenti": ["stabilità", "doppi bipoli Z/Y", "potenze"], "ingresso": "—", "elementi": [] },
+    { "data": "2001-02-13", "periodo": "2000-2009", "argomenti": ["Norton", "connessioni di doppi bipoli", "potenze"], "ingresso": "—", "elementi": [] },
+    { "data": "2001-07-03", "periodo": "2000-2009", "argomenti": ["metodo dei nodi", "risposta in frequenza", "costante di tempo"], "ingresso": "—", "elementi": [] },
+    { "data": "2001-10-25", "periodo": "2000-2009", "argomenti": ["circuiti risonanti", "nullore"], "ingresso": "—", "elementi": ["nullore"] },
+    { "data": "2002-02-13", "periodo": "2000-2009", "argomenti": ["Thevenin", "fasori", "potenze"], "ingresso": "—", "elementi": [] },
+    { "data": "2002-04-29", "periodo": "2000-2009", "argomenti": ["Thevenin / Norton (gruppi A–I e L–Z)", "fasori", "Laplace", "stabilità", "risposta in frequenza"], "ingresso": "—", "elementi": [] },
+    { "data": "2002-06-19", "periodo": "2000-2009", "argomenti": ["massimo trasferimento", "Tellegen", "rifasamento", "risposta in frequenza"], "ingresso": "—", "elementi": [] },
+    { "data": "2002-07-17", "periodo": "2000-2009", "argomenti": ["doppi bipoli", "risposta in frequenza"], "ingresso": "—", "elementi": [] },
+    { "data": "2002-09-18", "periodo": "2000-2009", "argomenti": ["topologia", "risposta impulsiva", "costante di tempo"], "ingresso": "—", "elementi": [] },
+    { "data": "2002-10-30", "periodo": "2000-2009", "argomenti": ["Thevenin", "massimo trasferimento", "topologia", "trasformatore ideale"], "ingresso": "—", "elementi": ["trasformatore ideale"] },
+    { "data": "2003-04-24", "periodo": "2000-2009", "argomenti": ["topologia", "stabilità", "risposta in frequenza", "proprietà dei circuiti"], "ingresso": "—", "elementi": [] },
+    { "data": "2003-07-03", "periodo": "2000-2009", "argomenti": ["metodo dei nodi", "risposta in frequenza", "doppi bipoli"], "ingresso": "—", "elementi": [] },
+    { "data": "2003-09-25", "periodo": "2000-2009", "argomenti": ["circuiti risonanti", "risposta permanente e transitoria", "proprietà dei circuiti"], "ingresso": "—", "elementi": [] },
+    { "data": "2003-11-19", "periodo": "2000-2009", "argomenti": ["risposta impulsiva", "risposta in frequenza", "connessioni", "teorema di sostituzione"], "ingresso": "—", "elementi": [] },
+    { "data": "2005-07-12", "periodo": "2000-2009", "argomenti": ["topologia", "potenze", "risposta permanente e transitoria", "proprietà dei circuiti"], "ingresso": "—", "elementi": [] },
+    { "data": "2007-07-12", "periodo": "2000-2009", "argomenti": ["Tellegen", "potenze", "connessioni", "teorema di sostituzione"], "ingresso": "—", "elementi": [] },
+    { "data": "2007-09-25", "periodo": "2000-2009", "argomenti": ["metodo dei nodi", "potenze", "Laplace", "costante di tempo"], "ingresso": "—", "elementi": [] },
+    { "data": "2008-02-11", "periodo": "2000-2009", "argomenti": ["potenze", "risposta in frequenza", "proprietà dei circuiti"], "ingresso": "—", "elementi": [] },
+    { "data": "2008-04-17", "periodo": "2000-2009", "argomenti": ["metodo dei nodi", "Laplace", "costante di tempo"], "ingresso": "—", "elementi": [] },
+    { "data": "2008-07-07", "periodo": "2000-2009", "argomenti": ["metodo dei nodi", "circuiti risonanti", "risposta permanente e transitoria", "proprietà dei circuiti"], "ingresso": "—", "elementi": [] },
+    { "data": "2008-09-23", "periodo": "2000-2009", "argomenti": ["massimo trasferimento", "Tellegen", "doppi bipoli", "fasori"], "ingresso": "—", "elementi": [] },
+    { "data": "2009-04-24", "periodo": "2000-2009", "argomenti": ["Thevenin / Norton (compiti A e B)", "massimo trasferimento", "trasformatore ideale", "risposta permanente e transitoria", "proprietà dei circuiti"], "ingresso": "—", "elementi": ["trasformatore ideale"] }
+  ],
+  "sintesi_2015_2024": {
+    "esercizi": 14, "appelli": 11,
+    "ingresso": { "continua": 8, "sinusoidale": 5, "mista": 1 },
+    "elementi": { "doppio bipolo Z/Y con Thevenin/Norton": 9, "nullore": 4, "trasformatore ideale": 1 },
+    "nota": "Solo conteggi aggregati: nessun esercizio, figura o numero del docente è riprodotto.",
+    "badge": "STORICO"
+  }
+}

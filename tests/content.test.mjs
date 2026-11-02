@@ -38,8 +38,27 @@ test('syllabus: flag contenuto coerente con i file', () => {
   for (const a of syl.argomenti) assert.equal(a.contenuto, studioIds.includes(a.id), a.id);
 });
 
-test('blocchi I e II: tutte le pagine foglia presenti', () => {
-  for (const a of syl.argomenti.filter((x) => x.blocco === 'I' || x.blocco === 'II')) assert.ok(a.contenuto, a.id);
+test('tutte le 49 pagine foglia hanno contenuto completo', () => {
+  assert.ok(syl.argomenti.length >= 45);
+  for (const a of syl.argomenti) assert.ok(a.contenuto, a.id);
+});
+
+test('§13: ≥ 150 voci di formulario, ≥ 3 esempi originali per blocco, ≥ 12 dimostrazioni', () => {
+  assert.ok(form.length >= 150, 'formulario: ' + form.length);
+  const perBlocco = {}; let dim = 0; const titoli = [];
+  for (const id of studioIds) {
+    const c = J(`data/studio/${id}.json`); const b = id.split('-')[0];
+    perBlocco[b] = (perBlocco[b] || 0) + c.esempi.length; dim += c.dimostrazioni.length; titoli.push(...c.dimostrazioni.map((d) => d.titolo));
+  }
+  for (const b of ['I', 'II', 'III', 'IV', 'V', 'VI']) assert.ok(perBlocco[b] >= 3, `esempi blocco ${b}: ${perBlocco[b]}`);
+  assert.ok(dim >= 12, 'dimostrazioni: ' + dim);
+  const all = titoli.join(' | ').toLowerCase();
+  for (const w of ['thevenin', 'norton', 'tellegen', 'ortogonalit', 'massimo trasferimento', 'potenza complessa', 'energie medie', 'razionali a coefficienti reali', 'stabilità', 'risposta impulsiva', 'fasori', 'blocchi', 'validità']) assert.ok(all.includes(w), 'dimostrazione mancante: ' + w);
+});
+
+test('esempi didattici marcati e non presentati come tracce d\'esame (pagina di studio)', () => {
+  const src = readFileSync(new URL('../assets/js/pages/studio.js', import.meta.url), 'utf8');
+  assert.match(src, /non traccia d'esame/);
 });
 
 test('dimostrazioni richieste dal blocco II presenti (Tellegen, A/B)', () => {

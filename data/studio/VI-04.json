@@ -1,0 +1,52 @@
+{
+ "id": "VI-04",
+ "obiettivi": [
+  "Definire una rete a $N$ porte",
+  "Contare le relazioni che la descrivono",
+  "Capire la condizione di porta"
+ ],
+ "teoria": [
+  "Una <strong>rete a $N$ porte</strong> è un circuito con $N$ coppie di morsetti accessibili (porte), per ciascuna delle quali la corrente entrante in un morsetto è uguale a quella uscente dall'altro. Nei casi lineari è descritta da $N$ relazioni lineari tra le $2N$ variabili $v_k,i_k$: se ne scelgono $N$ come indipendenti e le altre ne sono funzione (rappresentazioni $Z$, $Y$, ibride, di trasmissione).",
+  "Un doppio bipolo ($N=2$) ha due relazioni tra $v_1,i_1,v_2,i_2$."
+ ],
+ "figure": [
+  {
+   "alt": "Doppio bipolo con le correnti i1, i2 entranti e le tensioni v1, v2 alle porte",
+   "svg": "<svg viewBox=\"0 0 320 160\" width=\"320\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" font-family=\"system-ui,sans-serif\" font-size=\"14\" aria-hidden=\"true\"><rect x=\"100\" y=\"30\" width=\"120\" height=\"100\" rx=\"6\"/><polyline points=\"40 50 100 50\"/><polyline points=\"40 110 100 110\"/><polyline points=\"220 50 280 50\"/><polyline points=\"220 110 280 110\"/><circle cx=\"40\" cy=\"50\" r=\"3\" fill=\"currentColor\"/><circle cx=\"40\" cy=\"110\" r=\"3\" fill=\"currentColor\"/><circle cx=\"280\" cy=\"50\" r=\"3\" fill=\"currentColor\"/><circle cx=\"280\" cy=\"110\" r=\"3\" fill=\"currentColor\"/><polyline points=\"50 40 90 40\"/><polyline points=\"83.7,37.0 90,40 83.7,43.0\"/><polyline points=\"270 40 230 40\"/><polyline points=\"236.3,43.0 230,40 236.3,37.0\"/><text x=\"70\" y=\"32\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">i₁</text><text x=\"250\" y=\"32\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">i₂</text><text x=\"28\" y=\"84\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">v₁</text><text x=\"292\" y=\"84\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">v₂</text><text x=\"160\" y=\"85\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">N</text></svg>"
+  }
+ ],
+ "dimostrazioni": [],
+ "esempi": [
+  {
+   "titolo": "Conteggio",
+   "testo": "Quante relazioni descrivono una rete a 3 porte lineare?",
+   "soluzione": [
+    "3 relazioni tra 6 variabili ($v_1,v_2,v_3,i_1,i_2,i_3$)."
+   ]
+  },
+  {
+   "titolo": "Condizione di porta",
+   "testo": "Un doppio bipolo ha $i_1=2$ entrante in $A$ e $1$ uscente da $B$. È una porta?",
+   "soluzione": [
+    "No: la corrente entrante non è uguale a quella uscente; la coppia non rispetta la condizione di porta."
+   ]
+  },
+  {
+   "titolo": "Doppio bipolo noto",
+   "testo": "Il trasformatore ideale: quali variabili sono indipendenti?",
+   "soluzione": [
+    "$v_1=nv_2$, $i_1=-i_2/n$: si possono scegliere $(v_2,i_2)$; non esistono $Z$ né $Y$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Trattare come porta una coppia di morsetti che non soddisfa la condizione di porta.",
+   "corretto": "Verifica che $i_{entrante}=i_{uscente}$."
+  }
+ ],
+ "esame": "Reti $N$-porte e doppi bipoli: 15-9-2000, 17-7-2002, 3-7-2003, 23-9-2008 [STORICO].",
+ "formulario": [
+  "nporte-rel"
+ ]
+}

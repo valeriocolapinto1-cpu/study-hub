@@ -1,0 +1,49 @@
+{
+ "id": "V-03",
+ "obiettivi": [
+  "Distinguere risposta libera e forzata",
+  "Calcolarle con Laplace",
+  "Ricomporre la risposta completa"
+ ],
+ "teoria": [
+  "<strong>Libera</strong>: ingresso nullo, condizioni iniziali non nulle (dipende solo dai modi naturali, cioè dai poli). <strong>Forzata</strong>: condizioni iniziali nulle e ingresso non nullo. In un sistema lineare la risposta completa è la somma $y=y_{lib}+y_{forz}$.",
+  "Con Laplace: nel circuito trasformato si pongono a zero le condizioni iniziali (forzata) oppure gli ingressi (libera)."
+ ],
+ "figure": [],
+ "dimostrazioni": [],
+ "esempi": [
+  {
+   "titolo": "RC con gradino",
+   "testo": "$R=2$, $C=\\tfrac12$, $v_C(0)=2$, ingresso $10u_{-1}$.",
+   "soluzione": [
+    "Libera: $v_C=2e^{-t}$.",
+    "Forzata: $10(1-e^{-t})$.",
+    "Somma: $10-8e^{-t}$ ✓."
+   ]
+  },
+  {
+   "titolo": "Solo libera",
+   "testo": "RL $R=4$, $L=2$, $i(0)=3$, generatori spenti.",
+   "soluzione": [
+    "$i=3e^{-2t}$."
+   ]
+  },
+  {
+   "titolo": "Solo forzata",
+   "testo": "$H=\\dfrac1{s+1}$ con $x=u_{-1}$, condizioni nulle.",
+   "soluzione": [
+    "$Y=\\dfrac1{s(s+1)}\\Rightarrow y=1-e^{-t}$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Attribuire il transitorio alla sola risposta libera.",
+   "corretto": "La forzata contiene anche termini transitori ($-10e^{-t}$ sopra)."
+  }
+ ],
+ "esame": "Risposta libera e forzata: 25-9-2007, 17-4-2008 (Laplace) [STORICO].",
+ "formulario": [
+  "y-libera-forzata"
+ ]
+}

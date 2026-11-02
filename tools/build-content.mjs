@@ -17,7 +17,9 @@ for (const f of readdirSync(dir).sort()) {
 }
 for (const [id, c] of Object.entries(studio)) writeFileSync(new URL(`data/studio/${id}.json`, root), JSON.stringify({ id, ...c }, null, 1));
 const keys = ['id', 'blocco', 'titolo', 'formula', 'simboli', 'uso', 'errore', 'studio'];
+const { FILL } = await import(new URL('fill-formulario.mjs', dir));
 const voci = forms.map((r) => Object.fromEntries(keys.map((k, i) => [k, r[i]])));
+for (const v of voci) { const f = FILL[v.id]; if (f) { if (!v.simboli) v.simboli = f[0]; if (!v.uso) v.uso = f[1]; } }
 writeFileSync(new URL('data/formulario.json', root), JSON.stringify({ _nota: 'Generato da tools/build-content.mjs', voci }, null, 1));
 const cnt = {};
 const quizOut = quiz.map((q) => {

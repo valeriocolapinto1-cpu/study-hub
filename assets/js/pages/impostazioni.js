@@ -32,7 +32,7 @@ document.getElementById('imp').addEventListener('change', async (e) => {
   prev.querySelector('#go').onclick = () => { const n = st.applyImport(obj); prev.hidden = true; e.target.value = ''; applyTheme(); say(`Importate ${n} sezioni.`); };
 });
 
-const SECTIONS = [['progress', 'Progresso'], ['srs', 'Ripasso'], ['settings', 'Impostazioni'], ['notes', 'Appunti']];
+const SECTIONS = [['progress', 'Progresso'], ['quiz.log', 'Storico quiz'], ['esercizi.log', 'Storico esercizi'], ['teoria.log', 'Storico teoria'], ['prove.storico', 'Prove svolte'], ['srs', 'Ripasso'], ['formulario', 'Segnalibri formulario'], ['piano', 'Piano di studio'], ['settings', 'Impostazioni'], ['notes', 'Appunti (copia di ripiego)']];
 const row = document.getElementById('reset-row');
 row.innerHTML = SECTIONS.map(([k, l]) => `<button class="btn danger" data-k="${k}">Azzera ${l}</button>`).join('');
 row.addEventListener('click', (e) => {

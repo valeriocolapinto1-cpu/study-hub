@@ -1,0 +1,56 @@
+{
+ "id": "V-07",
+ "obiettivi": [
+  "Tracciare modulo e fase della risposta in frequenza",
+  "Riconoscere il tipo di filtro",
+  "Calcolare la frequenza di taglio a 3 dB"
+ ],
+ "teoria": [
+  "<strong>Passa-basso del primo ordine</strong> $H=\\dfrac{1}{1+s/\\omega_c}$: $|H(j\\omega)|=\\dfrac{1}{\\sqrt{1+(\\omega/\\omega_c)^2}}$, fase $-\\arctan(\\omega/\\omega_c)$. A $\\omega_c$ il modulo vale $1/\\sqrt2$ ($-3\\,\\mathrm{dB}$) e la fase $-45^\\circ$; oltre $\\omega_c$ scende di $20\\,\\mathrm{dB/dec}$. RC: $\\omega_c=1/(RC)$; RL (uscita su $R$): $\\omega_c=R/L$.",
+  "<strong>Passa-alto</strong> $H=\\dfrac{s/\\omega_c}{1+s/\\omega_c}$: blocca la continua e passa le alte frequenze. Il guadagno in dB è $20\\log_{10}|H|$."
+ ],
+ "figure": [
+  {
+   "alt": "Diagramma asintotico di Bode del modulo di un passa-basso: piatto fino a ω_c, poi −20 dB/decade",
+   "svg": "<svg viewBox=\"0 0 340 200\" width=\"340\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" font-family=\"system-ui,sans-serif\" font-size=\"14\" aria-hidden=\"true\"><polyline points=\"40 20 40 160 320 160\"/><polyline points=\"40 60 160 60 300 140\"/><g stroke-dasharray=\"4 3\"><polyline points=\"160 60 160 160\"/></g><text x=\"160\" y=\"178\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">ω_c</text><text x=\"30\" y=\"64\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">0 dB</text><text x=\"190\" y=\"50\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">−20 dB/dec</text><text x=\"180\" y=\"18\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">|H| (dB)</text><text x=\"320\" y=\"178\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">ω (log)</text><circle cx=\"160\" cy=\"60\" r=\"3\" fill=\"currentColor\"/></svg>"
+  }
+ ],
+ "dimostrazioni": [],
+ "esempi": [
+  {
+   "titolo": "Taglio di un RC",
+   "testo": "$R=2\\,\\Omega$, $C=\\tfrac12\\,\\mathrm F$.",
+   "soluzione": [
+    "$\\omega_c=\\dfrac1{RC}=1\\,\\mathrm{rad/s}$, $f_c=\\dfrac{\\omega_c}{2\\pi}\\approx0{,}159\\,\\mathrm{Hz}$."
+   ]
+  },
+  {
+   "titolo": "Guadagno a una decade sopra",
+   "testo": "Passa-basso con $\\omega_c=1$: $|H|$ a $\\omega=10$.",
+   "soluzione": [
+    "$\\dfrac{1}{\\sqrt{101}}\\approx0{,}0995\\to-20{,}04\\,\\mathrm{dB}$ ($\\approx-20\\,\\mathrm{dB}$)."
+   ]
+  },
+  {
+   "titolo": "Tipo di filtro",
+   "testo": "$H=\\dfrac{s}{s+2}$.",
+   "soluzione": [
+    "$H(0)=0$, $|H(\\infty)|=1$: passa-alto con $\\omega_c=2$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Dire che la frequenza di taglio a 3 dB è dove il modulo è la metà del massimo.",
+   "corretto": "È dove il modulo è $|H|_{max}/\\sqrt2$ (potenza dimezzata)."
+  }
+ ],
+ "esame": "Risposta in frequenza, tipo di filtro, taglio a 3 dB: 3-7-2001, 29-4-2002, 19-6-2002, 17-7-2002, 24-4-2003, 3-7-2003, 19-11-2003, 11-2-2008 [STORICO].",
+ "formulario": [
+  "wc-rc",
+  "wc-rl",
+  "mod-lp",
+  "db",
+  "bode-pend"
+ ]
+}

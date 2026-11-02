@@ -1,0 +1,59 @@
+{
+ "id": "IV-07",
+ "obiettivi": [
+  "Modellare $L$ e $C$ con condizioni iniziali",
+  "Passare tra modello serie e parallelo",
+  "Applicare il modello al calcolo di $V_{out}(s)$"
+ ],
+ "teoria": [
+  "<strong>Condensatore.</strong> $V=\\dfrac1{sC}I+\\dfrac{v_C(0^-)}{s}$: impedenza $1/(sC)$ in serie con un generatore di tensione $v_C(0^-)/s$; oppure $I=sCV-Cv_C(0^-)$: ammettenza $sC$ in parallelo con un generatore di corrente $Cv_C(0^-)$.",
+  "<strong>Induttore.</strong> $V=sLI-Li_L(0^-)$: impedenza $sL$ in serie con un generatore $-Li_L(0^-)$ (verso opposto alla caduta); oppure $I=\\dfrac{V}{sL}+\\dfrac{i_L(0^-)}{s}$: $sL$ in parallelo con un generatore di corrente $i_L(0^-)/s$."
+ ],
+ "figure": [],
+ "dimostrazioni": [
+  {
+   "titolo": "Modelli di $L$ e $C$ con condizioni iniziali",
+   "passi": [
+    "$C$: $i=C\\,dv/dt\\Rightarrow I=C[sV-v(0^-)]\\Rightarrow V=\\dfrac{I}{sC}+\\dfrac{v(0^-)}{s}$.",
+    "$L$: $v=L\\,di/dt\\Rightarrow V=L[sI-i(0^-)]=sLI-Li(0^-)$. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "RL libera",
+   "testo": "$R=4\\,\\Omega$, $L=2\\,\\mathrm H$, $i_L(0^-)=3\\,\\mathrm A$, generatori spenti. Trova $i_L(t)$.",
+   "soluzione": [
+    "$(R+sL)I=Li_0\\Rightarrow I=\\dfrac{2\\cdot3}{4+2s}=\\dfrac{3}{s+2}$.",
+    "$i_L=3e^{-2t}\\,\\mathrm A$ ($\\tau=L/R=\\tfrac12$ ✓)."
+   ]
+  },
+  {
+   "titolo": "RC libera",
+   "testo": "$R=2$, $C=1$, $v_C(0^-)=4$.",
+   "soluzione": [
+    "$V_C=\\dfrac{4}{s+1/2}$, $v_C=4e^{-t/2}$."
+   ]
+  },
+  {
+   "titolo": "Uscita su un resistore",
+   "testo": "Stesso RC: tensione sul resistore dopo $t=0$.",
+   "soluzione": [
+    "$v_R=-v_C$ (KVL, generatori spenti): $v_R=-4e^{-t/2}$ — a $t=0^+$ salta da $v_R(0^-)$ a $-4$ (la tensione sul resistore non è continua)."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Mettere il generatore $v_C(0^-)/s$ con polarità sbagliata.",
+   "corretto": "Dalla KVL: caduta su $1/(sC)$ più $v_C(0^-)/s$ uguale alla tensione ai morsetti."
+  }
+ ],
+ "esame": "Condizioni iniziali come generatori: passo 4 dell'esercizio d'analisi [STORICO].",
+ "formulario": [
+  "modello-c-serie",
+  "modello-c-par",
+  "modello-l-serie",
+  "modello-l-par"
+ ]
+}

@@ -1,0 +1,65 @@
+{
+ "id": "III-04",
+ "obiettivi": [
+  "Enunciare le condizioni di validità del metodo dei fasori",
+  "Dimostrarle",
+  "Riconoscere i casi in cui non si applica"
+ ],
+ "teoria": [
+  "Il metodo dei fasori fornisce la <em>risposta di regime</em> (permanente) di un circuito <strong>lineare, tempo-invariante</strong> (a costanti concentrate) con generatori <strong>sinusoidali alla stessa frequenza</strong>, purché il circuito sia <strong>stabile</strong> (il transitorio si esaurisce).",
+  "Non si applica a elementi non lineari (diodi, saturazioni) né a elementi tempo-varianti, né fornisce il transitorio. Con generatori a frequenze diverse si analizzano separatamente e si sommano le risposte <em>nel tempo</em>."
+ ],
+ "figure": [],
+ "dimostrazioni": [
+  {
+   "titolo": "Condizioni di validità del metodo dei fasori",
+   "enunciato": "In un circuito lineare tempo-invariante con ingressi $x(t)=\\mathrm{Re}\\{Xe^{j\\omega t}\\}$ esiste una soluzione particolare $y_p(t)=\\mathrm{Re}\\{Ye^{j\\omega t}\\}$ con $Y$ ottenuto risolvendo equazioni algebriche in $j\\omega$; se il circuito è stabile, $y_p$ è la risposta di regime.",
+   "passi": [
+    "Le equazioni del circuito sono differenziali lineari a coefficienti costanti: $\\sum a_k\\,y^{(k)}=\\sum b_k\\,x^{(k)}$.",
+    "Poiché $\\frac{d}{dt}e^{j\\omega t}=j\\omega e^{j\\omega t}$, ponendo $x=Xe^{j\\omega t}$ e $y=Ye^{j\\omega t}$ ogni derivata si riduce a una moltiplicazione per $j\\omega$: $\\left(\\sum a_k(j\\omega)^k\\right)Y=\\left(\\sum b_k(j\\omega)^k\\right)X$.",
+    "Se $D(j\\omega)=\\sum a_k(j\\omega)^k\\neq0$, $Y=H(j\\omega)X$. I coefficienti sono reali, quindi $\\mathrm{Re}\\{\\cdot\\}$ commuta con l'operatore: $y_p=\\mathrm{Re}\\{Ye^{j\\omega t}\\}$ risolve l'equazione per l'ingresso reale $\\mathrm{Re}\\{Xe^{j\\omega t}\\}$.",
+    "La soluzione generale è $y_p$ più la risposta libera: se i poli hanno parte reale negativa questa decade e resta $y_p$ (regime). Se il sistema è instabile non esiste un regime. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Frequenze diverse",
+   "testo": "$v_g=\\cos t+\\cos2t$ su un RC serie ($R=C=1$). Trova $v_C$ a regime.",
+   "soluzione": [
+    "$\\omega=1$: $\\dfrac1{1+j}=\\tfrac12-\\tfrac12j\\Rightarrow\\tfrac12\\cos t+\\tfrac12\\sin t$.",
+    "$\\omega=2$: $\\dfrac1{1+2j}=\\dfrac{1-2j}5\\Rightarrow\\tfrac15\\cos2t+\\tfrac25\\sin2t$.",
+    "$v_C=\\tfrac12\\cos t+\\tfrac12\\sin t+\\tfrac15\\cos2t+\\tfrac25\\sin2t$: somma <em>nel tempo</em>."
+   ]
+  },
+  {
+   "titolo": "Un caso in cui non si applica",
+   "testo": "Un diodo in serie a un resistore con generatore $\\cos\\omega t$: si possono usare i fasori?",
+   "soluzione": [
+    "No: il diodo è non lineare, la risposta contiene armoniche e componente continua non descrivibili con un solo fasore."
+   ]
+  },
+  {
+   "titolo": "Circuito instabile",
+   "testo": "$H(s)=\\dfrac{1}{s-1}$ con ingresso $\\cos t$: ha senso $H(j)$?",
+   "soluzione": [
+    "$H(j)$ esiste ma non descrive un regime: il modo $e^{t}$ diverge e la soluzione non tende a una sinusoide."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Sommare fasori di frequenze diverse.",
+   "corretto": "Sommare le risposte nel tempo."
+  },
+  {
+   "sbagliato": "Usare i fasori per il transitorio dopo un'accensione.",
+   "corretto": "Il transitorio richiede Laplace o l'equazione differenziale."
+  }
+ ],
+ "esame": "Fasori: validità e applicabilità a un circuito dato: 1-6-2000, 13-2-2002, 29-4-2002 (A–I), 23-9-2008 [STORICO]. Dimostrazione richiesta.",
+ "formulario": [
+  "fasori-validita",
+  "hjw-def"
+ ]
+}

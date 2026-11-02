@@ -1,0 +1,60 @@
+{
+ "id": "VI-06",
+ "obiettivi": [
+  "Definire la matrice di trasmissione inversa",
+  "Convertire $Z\\to T$",
+  "Usare ibride e trasmissione per la cascata"
+ ],
+ "teoria": [
+  "<strong>Matrice di trasmissione inversa</strong> (ABCD): $\\begin{pmatrix}v_1\\\\i_1\\end{pmatrix}=\\begin{pmatrix}A&B\\\\C&D\\end{pmatrix}\\begin{pmatrix}v_2\\\\-i_2\\end{pmatrix}$. Da $Z$: $A=\\dfrac{z_{11}}{z_{21}}$, $B=\\dfrac{\\Delta_z}{z_{21}}$, $C=\\dfrac{1}{z_{21}}$, $D=\\dfrac{z_{22}}{z_{21}}$ con $\\Delta_z=z_{11}z_{22}-z_{12}z_{21}$. Rete reciproca: $AD-BC=1$.",
+  "<strong>Ibride</strong> $h$: $v_1=h_{11}i_1+h_{12}v_2$, $i_2=h_{21}i_1+h_{22}v_2$ (tipiche dei transistor)."
+ ],
+ "figure": [],
+ "dimostrazioni": [
+  {
+   "titolo": "Da $Z$ alla matrice di trasmissione",
+   "passi": [
+    "Da $v_2=z_{21}i_1+z_{22}i_2$: $i_1=\\dfrac{v_2-z_{22}i_2}{z_{21}}=\\dfrac1{z_{21}}v_2+\\dfrac{z_{22}}{z_{21}}(-i_2)$: $C=1/z_{21}$, $D=z_{22}/z_{21}$.",
+    "Sostituendo in $v_1=z_{11}i_1+z_{12}i_2$: $v_1=\\dfrac{z_{11}}{z_{21}}v_2+\\left(\\dfrac{z_{11}z_{22}}{z_{21}}-z_{12}\\right)(-i_2)$.",
+    "Quindi $A=z_{11}/z_{21}$ e $B=\\Delta_z/z_{21}$. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Rete a T",
+   "testo": "$Z=\\begin{pmatrix}4&3\\\\3&5\\end{pmatrix}$.",
+   "soluzione": [
+    "$\\Delta_z=20-9=11$: $A=\\tfrac43$, $B=\\tfrac{11}3$, $C=\\tfrac13$, $D=\\tfrac53$.",
+    "$AD-BC=\\tfrac{20}{9}-\\tfrac{11}{9}=1$ ✓."
+   ]
+  },
+  {
+   "titolo": "Resistore in serie",
+   "testo": "$R=2$ in serie sul ramo superiore.",
+   "soluzione": [
+    "$v_1=v_2+R(-i_2)$, $i_1=-i_2$: $T=\\begin{pmatrix}1&2\\\\0&1\\end{pmatrix}$."
+   ]
+  },
+  {
+   "titolo": "Conduttore in derivazione",
+   "testo": "$G=\\tfrac13$ tra i due rami.",
+   "soluzione": [
+    "$v_1=v_2$, $i_1=Gv_2+(-i_2)$: $T=\\begin{pmatrix}1&0\\\\1/3&1\\end{pmatrix}$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Usare $i_2$ al posto di $-i_2$ nella matrice di trasmissione.",
+   "corretto": "La corrente $-i_2$ esce dalla porta 2 (verso il carico)."
+  }
+ ],
+ "esame": "Doppi bipoli: matrici $Z$, $Y$, $T$ inversa: 15-9-2000, 17-7-2002, 3-7-2003, 23-9-2008 [STORICO].",
+ "formulario": [
+  "t-def",
+  "t-da-z",
+  "t-recip",
+  "h-def2"
+ ]
+}

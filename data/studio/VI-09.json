@@ -1,0 +1,68 @@
+{
+ "id": "VI-09",
+ "obiettivi": [
+  "Dimostrare $Z_L=Z_{th}^*$ per il massimo trasferimento",
+  "Calcolare $P_{max}$ con valori di picco ed efficaci",
+  "Adattare un carico con un trasformatore ideale"
+ ],
+ "teoria": [
+  "Un generatore equivalente $\\dot V_{th}$, $Z_{th}=R_{th}+jX_{th}$ alimenta un carico $Z_L=R_L+jX_L$. La potenza attiva assorbita è massima per $Z_L=Z_{th}^*$ (<strong>adattamento coniugato</strong>) e vale $$P_{max}=\\frac{|V_{th}|^2}{8R_{th}}\\ \\ (V_{th}\\text{ di picco}),\\qquad P_{max}=\\frac{|V_{th}|^2}{4R_{th}}\\ \\ (V_{th}\\text{ efficace}).$$",
+  "Con carico solo resistivo il massimo è per $R_L=|Z_{th}|$. Il rendimento (potenza sul carico/potenza erogata da $V_{th}$) all'adattamento vale $50\\%$. Con un trasformatore ideale di rapporto $n$ il carico riportato è $n^2R_L$ e l'adattamento richiede $n^2R_L=R_{th}$."
+ ],
+ "figure": [],
+ "dimostrazioni": [
+  {
+   "titolo": "Massimo trasferimento di potenza attiva",
+   "enunciato": "$P_L$ è massima per $Z_L=Z_{th}^*$, con $P_{max}=|V_{th}|^2/(8R_{th})$ (picco).",
+   "passi": [
+    "Corrente: $\\dot I=\\dfrac{\\dot V_{th}}{(R_{th}+R_L)+j(X_{th}+X_L)}$. Potenza attiva sul carico (picco): $P_L=\\tfrac12R_L|\\dot I|^2=\\dfrac{|V_{th}|^2R_L}{2\\left[(R_{th}+R_L)^2+(X_{th}+X_L)^2\\right]}$.",
+    "Per ogni $R_L$ fissata il denominatore è minimo se $X_L=-X_{th}$ (la reattanza totale si annulla), dove $P_L=\\dfrac{|V_{th}|^2R_L}{2(R_{th}+R_L)^2}$.",
+    "Derivando rispetto a $R_L$: $\\dfrac{d}{dR_L}\\dfrac{R_L}{(R_{th}+R_L)^2}=\\dfrac{R_{th}-R_L}{(R_{th}+R_L)^3}=0\\Rightarrow R_L=R_{th}$ (massimo: la derivata passa da positiva a negativa).",
+    "Quindi $Z_L=R_{th}-jX_{th}=Z_{th}^*$ e $P_{max}=\\dfrac{|V_{th}|^2R_{th}}{2(2R_{th})^2}=\\dfrac{|V_{th}|^2}{8R_{th}}$. Con valori efficaci ($|V|^2=|V_m|^2/2$) $P_{max}=|V_{th}|^2/(4R_{th})$. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Adattamento coniugato",
+   "testo": "$V_{th}=8\\,\\mathrm V$ (picco), $Z_{th}=4+3j\\,\\Omega$.",
+   "soluzione": [
+    "$Z_L=4-3j\\,\\Omega$; $P_{max}=\\dfrac{64}{8\\cdot4}=2\\,\\mathrm W$."
+   ]
+  },
+  {
+   "titolo": "Con trasformatore ideale",
+   "testo": "$V_{th}=8\\,\\mathrm V$ (picco), $R_{th}=8\\,\\Omega$, carico $R_L=2\\,\\Omega$.",
+   "soluzione": [
+    "$n^2R_L=R_{th}\\Rightarrow n^2=4$, $n=2$.",
+    "$P_{max}=\\dfrac{64}{8\\cdot8}=1\\,\\mathrm W$: non dipende da $n$ (dipende dall'adattamento)."
+   ]
+  },
+  {
+   "titolo": "Carico solo resistivo",
+   "testo": "$Z_{th}=3+4j\\,\\Omega$, carico resistivo.",
+   "soluzione": [
+    "$R_L=|Z_{th}|=5\\,\\Omega$ (non $3$): con $X_L=0$ non si può annullare $X_{th}$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Usare $Z_L=Z_{th}$ invece del coniugato.",
+   "corretto": "Serve $Z_L=Z_{th}^*$ per annullare la reattanza totale."
+  },
+  {
+   "sbagliato": "Confondere $/(8R_{th})$ (picco) e $/(4R_{th})$ (efficace).",
+   "corretto": "Dichiara se $V_{th}$ è di picco o efficace."
+  }
+ ],
+ "esame": "Massimo trasferimento di potenza attiva (anche con trasformatore ideale e $n$): 12-6-2000, 19-6-2002, 30-10-2002, 23-9-2008, 24-4-2009 [STORICO].",
+ "formulario": [
+  "pmax-picco",
+  "pmax-eff",
+  "zl-coniugata",
+  "rl-modulo",
+  "rendimento-50",
+  "adatt-trasf"
+ ]
+}

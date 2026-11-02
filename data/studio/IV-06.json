@@ -1,0 +1,50 @@
+{
+ "id": "IV-06",
+ "obiettivi": [
+  "Trasformare un circuito con memoria nel dominio di Laplace",
+  "Usare impedenze $R$, $sL$, $1/(sC)$",
+  "Risolvere con partitori e maglie"
+ ],
+ "teoria": [
+  "Nel dominio di $s$ gli elementi diventano: $R$, $sL$, $\\dfrac1{sC}$, con le condizioni iniziali come generatori (IV-07). KCL e KVL restano valide; il circuito è un circuito «resistivo» con impedenze $Z(s)$ risolvibile con partitori, nodi e maglie.",
+  "Un generatore costante $V_0u_{-1}(t)$ diventa $V_0/s$; un generatore sinusoidale $V_m\\cos\\omega t$ diventa $V_ms/(s^2+\\omega^2)$."
+ ],
+ "figure": [],
+ "dimostrazioni": [],
+ "esempi": [
+  {
+   "titolo": "RC con gradino e condizione iniziale",
+   "testo": "$R=2$, $C=\\tfrac12$, $v_g=10u_{-1}(t)$, $v_C(0^-)=2$.",
+   "soluzione": [
+    "Modello serie: $I=\\dfrac{10/s-2/s}{2+2/s}=\\dfrac{4}{s+1}$.",
+    "$V_C=\\dfrac{I}{sC}+\\dfrac2s=\\dfrac{8}{s(s+1)}+\\dfrac2s=\\dfrac{10}{s}-\\dfrac8{s+1}$.",
+    "$v_C=10-8e^{-t}$ ✓ (stesso risultato di III-01)."
+   ]
+  },
+  {
+   "titolo": "Funzione di trasferimento di un RC",
+   "testo": "Uscita sul condensatore, $R=C=1$.",
+   "soluzione": [
+    "Partitore: $H(s)=\\dfrac{1/s}{1+1/s}=\\dfrac{1}{s+1}$."
+   ]
+  },
+  {
+   "titolo": "RL con generatore sinusoidale",
+   "testo": "$R=1$, $L=1$, $v_g=\\cos t$, $i(0)=0$: $I(s)$.",
+   "soluzione": [
+    "$I=\\dfrac{V_g}{R+sL}=\\dfrac{s}{(s+1)(s^2+1)}$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Usare $j\\omega L$ invece di $sL$ nel transitorio.",
+   "corretto": "$s$ è la variabile complessa; $s=j\\omega$ solo per il regime."
+  }
+ ],
+ "esame": "Metodo di Laplace per i circuiti con memoria (condizioni iniziali come generatori) [UFFICIALE].",
+ "formulario": [
+  "imped-s",
+  "l-cos-gen"
+ ]
+}

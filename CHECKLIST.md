@@ -73,17 +73,17 @@ Legenda: `[ ]` da fare · `[x]` fatto. Ogni fase termina con un commit e con la 
 - [x] **Criterio:** una prova si genera, si svolge, si corregge e aggiorna il progresso
 
 ## Fase 7 — Contenuti blocchi III–VI e funzioni restanti
-- [ ] Studio blocchi III, IV, V, VI (incl. nullore/op-amp §6), tutte le dimostrazioni di §5.2 (≥ 12)
-- [ ] Pagina Errori tipici (§4.3) con esempi sbagliato vs corretto
-- [ ] Formulario ≥ 150 voci, stampa max 4 pagine A4 + «solo preferiti»
-- [ ] Archivio prove (`archivio.json`, solo data/argomento/tipo)
-- [ ] Risorse (`risorse.json`, `libri.json`), mappa argomenti, sezione materiali a pagamento
-- [ ] Appunti personali (Markdown+LaTeX, IndexedDB, ricerca, export/import, sanificazione)
-- [ ] Simulatori: guide CircuitJS/LTspice, export netlist SPICE con approssimazioni dichiarate
-- [ ] Piano di studio (pesi, riordino, `.ics`, stampa)
-- [ ] Progresso completo (metriche, barre, heatmap, andamento prove, «cosa studiare ora»)
-- [ ] Pagina FAQ e Domande al docente (copiabile)
-- [ ] **Criterio:** quantità minime del §13 soddisfatte
+- [x] Studio blocchi III, IV, V, VI (incl. nullore/op-amp §6), tutte le dimostrazioni di §5.2 (≥ 12)
+- [x] Pagina Errori tipici (§4.3) con esempi sbagliato vs corretto
+- [x] Formulario ≥ 150 voci, stampa max 4 pagine A4 + «solo preferiti»
+- [x] Archivio prove (`archivio.json`, solo data/argomento/tipo)
+- [x] Risorse (`risorse.json`, `libri.json`), mappa argomenti, sezione materiali a pagamento
+- [x] Appunti personali (Markdown+LaTeX, IndexedDB, ricerca, export/import, sanificazione)
+- [x] Simulatori: guide CircuitJS/LTspice, export netlist SPICE con approssimazioni dichiarate
+- [x] Piano di studio (pesi, riordino, `.ics`, stampa)
+- [x] Progresso completo (metriche, barre, heatmap, andamento prove, «cosa studiare ora»)
+- [x] Pagina FAQ e Domande al docente (copiabile)
+- [x] **Criterio:** quantità minime del §13 soddisfatte
 
 ## Fase 8 — Rifinitura e deploy
 - [ ] Accessibilità (contrasto, tab, testo alternativo SVG), mobile (44 px, no scroll orizzontale)

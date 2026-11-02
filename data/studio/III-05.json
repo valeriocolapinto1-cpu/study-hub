@@ -1,0 +1,51 @@
+{
+ "id": "III-05",
+ "obiettivi": [
+  "Applicare la sovrapposizione nel tempo con generatori a frequenze diverse",
+  "Trattare insieme continua e sinusoidale",
+  "Calcolare la condizione iniziale nel caso misto"
+ ],
+ "teoria": [
+  "In un circuito lineare con più generatori a frequenze diverse (la continua è frequenza zero) la risposta è la somma delle risposte a ciascun generatore, ciascuna calcolata con il proprio metodo: continua con $C$ aperto e $L$ corto, sinusoidale con i fasori a quella $\\omega$.",
+  "Mai sommare fasori di frequenze diverse: sono numeri associati a $e^{j\\omega_kt}$ diversi. La somma si fa sulle espressioni nel tempo.",
+  "<strong>Condizione iniziale nel caso misto.</strong> $x(0^-)=x_{dc}+\\sum_k\\mathrm{Re}\\{X_k\\}$ (il valore a $t=0$ di ogni termine $\\mathrm{Re}\\{X_ke^{j\\omega_kt}\\}$ è $\\mathrm{Re}\\{X_k\\}$)."
+ ],
+ "figure": [],
+ "dimostrazioni": [],
+ "esempi": [
+  {
+   "titolo": "Continua più sinusoidale",
+   "testo": "RC serie ($R=C=1$), $v_g=4+\\cos t$ per $t<0$. Trova $v_C(t)$ per $t<0$ e $v_C(0^-)$.",
+   "soluzione": [
+    "Continua: $v_C^{dc}=4$.",
+    "Sinusoidale ($\\omega=1$): $\\tfrac12\\cos t+\\tfrac12\\sin t$.",
+    "$v_C(t)=4+\\tfrac12\\cos t+\\tfrac12\\sin t$; $v_C(0^-)=4+\\tfrac12=\\tfrac92$."
+   ]
+  },
+  {
+   "titolo": "Due sinusoidi",
+   "testo": "Condizione iniziale per $v_C=\\tfrac12\\cos t+\\tfrac12\\sin t+\\tfrac15\\cos2t+\\tfrac25\\sin2t$.",
+   "soluzione": [
+    "Valore a $t=0$: $\\tfrac12+\\tfrac15=\\tfrac7{10}$ (i seni valgono $0$)."
+   ]
+  },
+  {
+   "titolo": "Errore tipico",
+   "testo": "Un allievo somma i moduli: $|X_1|+|X_2|$ come ampiezza totale. Perché è sbagliato?",
+   "soluzione": [
+    "Le due sinusoidi hanno frequenze diverse: l'ampiezza totale non è la somma dei moduli: l'espressione nel tempo è la somma delle due sinusoidi. Il valore a $t=0$ è la somma dei valori istantanei."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Usare il modulo del fasore come condizione iniziale.",
+   "corretto": "Serve il valore all'istante $t=0$: la parte reale del fasore."
+  }
+ ],
+ "esame": "Ingresso misto continua + sinusoidale: 1 caso su 14 negli esercizi 2015–2024 [STORICO].",
+ "formulario": [
+  "sovrapposizione",
+  "cond-iniz-mista"
+ ]
+}

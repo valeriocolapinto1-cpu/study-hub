@@ -1,0 +1,74 @@
+{
+ "id": "III-01",
+ "obiettivi": [
+  "Risolvere un circuito del primo ordine con eccitazione costante o variabile",
+  "Scrivere risposta libera e forzata",
+  "Calcolare la costante di tempo con $R_{eq}$"
+ ],
+ "teoria": [
+  "Un circuito con un solo elemento di memoria e generatori indipendenti è descritto da $\\dot x+\\dfrac{x}{\\tau}=\\dfrac{f(t)}{\\tau}$, con $x=v_C$ o $i_L$, $\\tau=R_{eq}C$ oppure $L/R_{eq}$ ($R_{eq}$ vista dai morsetti dell'elemento con memoria, indipendenti spenti, controllati non spenti).",
+  "<strong>Eccitazione costante.</strong> $x(t)=x_\\infty+(x_0-x_\\infty)e^{-t/\\tau}$ con $x_\\infty$ valore di regime ($C$ aperto, $L$ corto) e $x_0=x(0^-)$ (continuità di $v_C$, $i_L$). Questa è la regola del «valore iniziale, valore finale, costante di tempo».",
+  "<strong>Eccitazione variabile.</strong> $x(t)=x_0e^{-t/\\tau}+\\dfrac1\\tau\\int_0^te^{-(t-s)/\\tau}f(s)\\,ds$: somma di risposta libera (dipende da $x_0$) e forzata (dipende da $f$). Per un ingresso sinusoidale la forzata contiene una parte di regime sinusoidale e una transitoria $\\propto e^{-t/\\tau}$."
+ ],
+ "figure": [
+  {
+   "alt": "Circuito RC serie con generatore di tensione v_g, resistore R e condensatore C; si osserva v_C",
+   "svg": "<svg viewBox=\"0 0 300 170\" width=\"300\" height=\"170\" xmlns=\"http://www.w3.org/2000/svg\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" font-family=\"system-ui,sans-serif\" font-size=\"14\" aria-hidden=\"true\"><circle cx=\"40\" cy=\"60\" r=\"18\"/><polyline points=\"40 40 40 42\"/><polyline points=\"40 78 40 100\"/><text x=\"40\" y=\"56\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">+</text><text x=\"40\" y=\"72\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">−</text><text x=\"16\" y=\"65\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">v_g</text><polyline points=\"40 40 40 30\"/><polyline points=\"40 30 70 30\"/><polyline points=\"70 30 80 30 85 21 95 39 105 21 115 39 120 30 130 30\"/><text x=\"100\" y=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">R</text><polyline points=\"130 30 220 30\"/><polyline points=\"220 30 220 55\"/><g transform=\"translate(220,55) rotate(90)\"><polyline points=\"0 0 24 0\"/><polyline points=\"24 -12 24 12\"/><polyline points=\"34 -12 34 12\"/><polyline points=\"34 0 60 0\"/></g><text x=\"236\" y=\"90\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">C</text><polyline points=\"220 115 220 130\"/><polyline points=\"40 100 40 130\"/><polyline points=\"40 130 220 130\"/><polyline points=\"130 130 130 138\"/><polyline points=\"118 138 142 138\"/><polyline points=\"123 143 137 143\"/><polyline points=\"127 148 133 148\"/><text x=\"240\" y=\"40\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">v_C</text></svg>"
+  }
+ ],
+ "dimostrazioni": [
+  {
+   "titolo": "Soluzione dell'equazione del primo ordine",
+   "enunciato": "La soluzione di $\\dot x+a\\,x=g(t)$, $x(0)=x_0$ è $x(t)=e^{-at}x_0+\\int_0^te^{-a(t-s)}g(s)\\,ds$.",
+   "passi": [
+    "Moltiplica per $e^{at}$: $\\dfrac{d}{dt}\\left(e^{at}x\\right)=e^{at}g(t)$.",
+    "Integra da $0$ a $t$: $e^{at}x(t)-x_0=\\int_0^te^{as}g(s)ds$.",
+    "Moltiplica per $e^{-at}$ e riordina. Con $a=1/\\tau$ e $g=f/\\tau$ si ha la formula del testo. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "RC con gradino",
+   "testo": "$R=2\\,\\Omega$, $C=\\tfrac12\\,\\mathrm F$, $v_g=10\\,\\mathrm V$ per $t>0$, $v_C(0)=2\\,\\mathrm V$. Trova $v_C(t)$.",
+   "soluzione": [
+    "$\\tau=RC=1\\,\\mathrm s$, $v_\\infty=10$, $v_0=2$.",
+    "$v_C(t)=10+(2-10)e^{-t}=10-8e^{-t}\\,\\mathrm V$ per $t>0$."
+   ]
+  },
+  {
+   "titolo": "RL con gradino",
+   "testo": "$L=3\\,\\mathrm H$, $R=6\\,\\Omega$, $v_g=12\\,\\mathrm V$ per $t>0$, $i_L(0)=0$. Trova $i_L(t)$.",
+   "soluzione": [
+    "$\\tau=L/R=\\tfrac12\\,\\mathrm s$, $i_\\infty=12/6=2\\,\\mathrm A$.",
+    "$i_L(t)=2\\left(1-e^{-2t}\\right)\\,\\mathrm A$."
+   ]
+  },
+  {
+   "titolo": "Ingresso sinusoidale",
+   "testo": "$\\dot y+y=\\cos t$, $y(0)=0$ ($\\tau=1$). Trova $y(t)$.",
+   "soluzione": [
+    "Regime: fasore $\\dot Y=\\dfrac1{1+j}=\\tfrac12-\\tfrac12j$, quindi $y_p=\\tfrac12\\cos t+\\tfrac12\\sin t$.",
+    "Transitorio $Ae^{-t}$ con $y(0)=\\tfrac12+A=0\\Rightarrow A=-\\tfrac12$.",
+    "$y(t)=\\tfrac12\\cos t+\\tfrac12\\sin t-\\tfrac12e^{-t}$ per $t>0$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Usare $R$ del generatore o di una resistenza qualsiasi come $R_{eq}$.",
+   "corretto": "$R_{eq}$ è la resistenza vista dai morsetti dell'elemento con memoria con gli indipendenti spenti."
+  },
+  {
+   "sbagliato": "Imporre $x(0^+)=0$ perché «il generatore è partito da zero».",
+   "corretto": "$x(0^+)=x(0^-)$ con il valore raggiunto nel regime precedente."
+  }
+ ],
+ "esame": "Costante di tempo e scarica/carica RC: 14-7-2000, 3-7-2001, 18-9-2002, 25-9-2007, 17-4-2008; è il cuore dell'esercizio d'analisi [STORICO].",
+ "formulario": [
+  "tau-rc",
+  "tau-rl",
+  "sol-primo-ordine",
+  "regola-vfc"
+ ]
+}

@@ -555,6 +555,1379 @@
    "studio": [
     "II-08"
    ]
+  },
+  {
+   "id": "tau-rc",
+   "blocco": "III",
+   "titolo": "Costante di tempo RC",
+   "formula": "\\tau=R_{eq}C",
+   "simboli": "R_eq vista dai morsetti di C, indipendenti spenti [Ω]; C [F]",
+   "uso": "Circuiti del primo ordine con condensatore.",
+   "errore": "Usare una resistenza qualsiasi invece di R_eq.",
+   "studio": [
+    "III-01"
+   ]
+  },
+  {
+   "id": "tau-rl",
+   "blocco": "III",
+   "titolo": "Costante di tempo RL",
+   "formula": "\\tau=\\dfrac{L}{R_{eq}}",
+   "simboli": "L [H]",
+   "uso": "Circuiti del primo ordine con induttore.",
+   "errore": "Scambiare L/R con R/L.",
+   "studio": [
+    "III-01"
+   ]
+  },
+  {
+   "id": "sol-primo-ordine",
+   "blocco": "III",
+   "titolo": "Soluzione del primo ordine",
+   "formula": "x(t)=x_0e^{-t/\\tau}+\\frac1\\tau\\int_0^te^{-(t-s)/\\tau}f(s)ds",
+   "simboli": "x_0 = x(0⁻)",
+   "uso": "Eccitazione variabile.",
+   "errore": "Dimenticare il fattore 1/τ.",
+   "studio": [
+    "III-01"
+   ]
+  },
+  {
+   "id": "regola-vfc",
+   "blocco": "III",
+   "titolo": "Regola valore iniziale/finale",
+   "formula": "x(t)=x_\\infty+(x_0-x_\\infty)e^{-t/\\tau}",
+   "simboli": "x_∞ valore di regime (C aperto, L corto)",
+   "uso": "Eccitazione costante.",
+   "errore": "Usare x(0⁺)=0.",
+   "studio": [
+    "III-01"
+   ]
+  },
+  {
+   "id": "fasore",
+   "blocco": "III",
+   "titolo": "Fasore",
+   "formula": "v(t)=V_m\\cos(\\omega t+\\varphi)\\ \\leftrightarrow\\ \\dot V=V_me^{j\\varphi}",
+   "simboli": "V_m ampiezza di picco, φ fase",
+   "uso": "Regime sinusoidale.",
+   "errore": "Confondere picco ed efficace.",
+   "studio": [
+    "III-02"
+   ]
+  },
+  {
+   "id": "fasore-sin",
+   "blocco": "III",
+   "titolo": "Fasore del seno",
+   "formula": "A\\sin\\omega t\\ \\leftrightarrow\\ -jA",
+   "simboli": "A ampiezza di picco; ω pulsazione [rad/s]",
+   "uso": "Ridurre seni a coseni.",
+   "errore": "Usare +jA.",
+   "studio": [
+    "III-02"
+   ]
+  },
+  {
+   "id": "deriv-fasore",
+   "blocco": "III",
+   "titolo": "Derivata e integrale nei fasori",
+   "formula": "\\frac{d}{dt}\\to j\\omega,\\qquad\\int dt\\to\\frac1{j\\omega}",
+   "simboli": "ω [rad/s]",
+   "uso": "Costitutive di L e C.",
+   "errore": "",
+   "studio": [
+    "III-02"
+   ]
+  },
+  {
+   "id": "cos-sin-ampl",
+   "blocco": "III",
+   "titolo": "Forma cartesiana e ampiezza-fase",
+   "formula": "a\\cos\\omega t+b\\sin\\omega t=\\sqrt{a^2+b^2}\\cos(\\omega t-\\varphi),\\ \\tan\\varphi=\\frac ba",
+   "simboli": "a, b coefficienti",
+   "uso": "Passare da una forma all'altra.",
+   "errore": "Segno della fase.",
+   "studio": [
+    "III-02"
+   ]
+  },
+  {
+   "id": "imped-r",
+   "blocco": "III",
+   "titolo": "Impedenza del resistore",
+   "formula": "Z_R=R",
+   "simboli": "R resistenza [Ω]",
+   "uso": "Circuito fittizio dei fasori.",
+   "errore": "",
+   "studio": [
+    "III-03"
+   ]
+  },
+  {
+   "id": "imped-l",
+   "blocco": "III",
+   "titolo": "Impedenza dell'induttore",
+   "formula": "Z_L=j\\omega L",
+   "simboli": "L induttanza [H]; ω pulsazione [rad/s]; Z in Ω",
+   "uso": "Circuito fittizio dei fasori.",
+   "errore": "",
+   "studio": [
+    "III-03"
+   ]
+  },
+  {
+   "id": "imped-c",
+   "blocco": "III",
+   "titolo": "Impedenza del condensatore",
+   "formula": "Z_C=\\frac{1}{j\\omega C}=-\\frac{j}{\\omega C}",
+   "simboli": "C capacità [F]; ω pulsazione [rad/s]; Z in Ω",
+   "uso": "Circuito fittizio dei fasori.",
+   "errore": "Scrivere jωC.",
+   "studio": [
+    "III-03"
+   ]
+  },
+  {
+   "id": "ammettenza",
+   "blocco": "III",
+   "titolo": "Ammettenza",
+   "formula": "Y=\\frac1Z=G+jB",
+   "simboli": "G conduttanza, B suscettanza [S]",
+   "uso": "Parallelo di bipoli.",
+   "errore": "",
+   "studio": [
+    "III-03"
+   ]
+  },
+  {
+   "id": "serie-imped",
+   "blocco": "III",
+   "titolo": "Impedenze in serie e in parallelo",
+   "formula": "Z_{s}=\\sum Z_k,\\qquad Y_{p}=\\sum Y_k",
+   "simboli": "Z impedenze [Ω]; Y ammettenze [S]",
+   "uso": "Riduzione di reti.",
+   "errore": "",
+   "studio": [
+    "III-03"
+   ]
+  },
+  {
+   "id": "part-v-fasori",
+   "blocco": "III",
+   "titolo": "Partitore di tensione complesso",
+   "formula": "\\dot V_k=\\dot V\\,\\frac{Z_k}{\\sum Z_j}",
+   "simboli": "V̇ tensione totale; Z_k impedenza del tratto k [Ω]",
+   "uso": "Serie senza carico a valle.",
+   "errore": "",
+   "studio": [
+    "III-03"
+   ]
+  },
+  {
+   "id": "fasori-validita",
+   "blocco": "III",
+   "titolo": "Validità dei fasori",
+   "formula": "H(j\\omega)=\\frac{\\sum b_k(j\\omega)^k}{\\sum a_k(j\\omega)^k},\\ \\ \\mathrm{Re}\\,p_i<0",
+   "simboli": "a_k, b_k coefficienti reali; p_i poli",
+   "uso": "Condizione di applicabilità.",
+   "errore": "Usarli con elementi non lineari.",
+   "studio": [
+    "III-04"
+   ]
+  },
+  {
+   "id": "hjw-def",
+   "blocco": "III",
+   "titolo": "Funzione di rete in regime sinusoidale",
+   "formula": "\\dot Y=H(j\\omega)\\dot X",
+   "simboli": "Ẋ ingresso, Ẏ uscita (fasori); H adimensionale o in Ω, S",
+   "uso": "Risposta di regime.",
+   "errore": "",
+   "studio": [
+    "III-04",
+    "V-06"
+   ]
+  },
+  {
+   "id": "sovrapposizione",
+   "blocco": "III",
+   "titolo": "Sovrapposizione nel tempo",
+   "formula": "y(t)=y_{dc}+\\sum_k\\mathrm{Re}\\{Y_ke^{j\\omega_kt}\\}",
+   "simboli": "ω_k frequenze diverse",
+   "uso": "Più generatori a frequenze diverse.",
+   "errore": "Sommare i fasori.",
+   "studio": [
+    "III-05"
+   ]
+  },
+  {
+   "id": "cond-iniz-mista",
+   "blocco": "III",
+   "titolo": "Condizione iniziale nel caso misto",
+   "formula": "x(0^-)=x_{dc}+\\sum_k\\mathrm{Re}\\{X_k\\}",
+   "simboli": "x_dc valore continuo; X_k fasore della k-esima sinusoide",
+   "uso": "Passo 3 dell'esercizio.",
+   "errore": "Usare il modulo.",
+   "studio": [
+    "III-05"
+   ]
+  },
+  {
+   "id": "p-picco",
+   "blocco": "III",
+   "titolo": "Potenza attiva (picco)",
+   "formula": "P=\\tfrac12V_mI_m\\cos\\varphi",
+   "simboli": "V_m, I_m ampiezze di picco; φ sfasamento tensione–corrente",
+   "uso": "Valori di picco.",
+   "errore": "Dimenticare ½.",
+   "studio": [
+    "III-06"
+   ]
+  },
+  {
+   "id": "p-eff",
+   "blocco": "III",
+   "titolo": "Potenza attiva (efficaci)",
+   "formula": "P=VI\\cos\\varphi",
+   "simboli": "V, I efficaci",
+   "uso": "Valori efficaci.",
+   "errore": "",
+   "studio": [
+    "III-06"
+   ]
+  },
+  {
+   "id": "q-eff",
+   "blocco": "III",
+   "titolo": "Potenza reattiva",
+   "formula": "Q=VI\\sin\\varphi",
+   "simboli": "[var]",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "III-06"
+   ]
+  },
+  {
+   "id": "s-compl",
+   "blocco": "III",
+   "titolo": "Potenza complessa",
+   "formula": "S=\\dot V\\dot I^{*}=P+jQ,\\ |S|=VI",
+   "simboli": "[VA]",
+   "uso": "",
+   "errore": "Dimenticare il coniugato.",
+   "studio": [
+    "III-06"
+   ]
+  },
+  {
+   "id": "cosphi",
+   "blocco": "III",
+   "titolo": "Fattore di potenza",
+   "formula": "\\cos\\varphi=\\frac{P}{|S|},\\ \\tan\\varphi=\\frac QP",
+   "simboli": "P attiva [W]; Q reattiva [var]; |S| apparente [VA]",
+   "uso": "Fattore di potenza e tangente dello sfasamento.",
+   "errore": "",
+   "studio": [
+    "III-06"
+   ]
+  },
+  {
+   "id": "p-ri2",
+   "blocco": "III",
+   "titolo": "Potenza attiva su un'impedenza",
+   "formula": "P=RI^2",
+   "simboli": "I efficace",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "III-06"
+   ]
+  },
+  {
+   "id": "q-xi2",
+   "blocco": "III",
+   "titolo": "Potenza reattiva su un'impedenza",
+   "formula": "Q=XI^2",
+   "simboli": "X reattanza",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "III-06"
+   ]
+  },
+  {
+   "id": "q-energia",
+   "blocco": "III",
+   "titolo": "Reattiva ed energie medie",
+   "formula": "Q=2\\omega(W_L-W_C)",
+   "simboli": "W energie medie immagazzinate [J]",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "III-06"
+   ]
+  },
+  {
+   "id": "cons-s",
+   "blocco": "III",
+   "titolo": "Conservazione della potenza complessa",
+   "formula": "\\sum_k\\dot V_k\\dot I_k^{*}=0",
+   "simboli": "convenzione degli utilizzatori",
+   "uso": "Bilanci di potenza.",
+   "errore": "Sommare i moduli.",
+   "studio": [
+    "III-07"
+   ]
+  },
+  {
+   "id": "bilancio-p",
+   "blocco": "III",
+   "titolo": "Bilancio delle potenze",
+   "formula": "\\sum P_{gen}=\\sum P_{ass},\\quad \\sum Q_{gen}=\\sum Q_{ass}",
+   "simboli": "P attive [W]; Q reattive [var]",
+   "uso": "Verifica di un calcolo di potenze.",
+   "errore": "",
+   "studio": [
+    "III-07"
+   ]
+  },
+  {
+   "id": "rifasamento-c",
+   "blocco": "III",
+   "titolo": "Capacità di rifasamento",
+   "formula": "C=\\frac{P(\\tan\\varphi_1-\\tan\\varphi_2)}{\\omega V^2}",
+   "simboli": "P attiva [W], V efficace [V]",
+   "uso": "Rifasare un carico induttivo.",
+   "errore": "Usare V di picco.",
+   "studio": [
+    "III-08"
+   ]
+  },
+  {
+   "id": "q-c",
+   "blocco": "III",
+   "titolo": "Reattiva del condensatore",
+   "formula": "Q_C=-\\omega CV^2",
+   "simboli": "C [F]; V efficace [V]; ω [rad/s]; Q in var",
+   "uso": "Reattiva assorbita dal condensatore.",
+   "errore": "",
+   "studio": [
+    "III-08"
+   ]
+  },
+  {
+   "id": "laplace-def",
+   "blocco": "IV",
+   "titolo": "Trasformata di Laplace",
+   "formula": "X(s)=\\int_{0^-}^{\\infty}x(t)e^{-st}dt",
+   "simboli": "s = σ + jω",
+   "uso": "Definizione.",
+   "errore": "Usare 0⁺ perdendo gli impulsi.",
+   "studio": [
+    "IV-01"
+   ]
+  },
+  {
+   "id": "laplace-lin",
+   "blocco": "IV",
+   "titolo": "Linearità",
+   "formula": "\\mathcal L\\{ax+by\\}=aX+bY",
+   "simboli": "a, b costanti; X, Y trasformate di x, y",
+   "uso": "Trasformare combinazioni di segnali.",
+   "errore": "",
+   "studio": [
+    "IV-01"
+   ]
+  },
+  {
+   "id": "laplace-der",
+   "blocco": "IV",
+   "titolo": "Derivata",
+   "formula": "\\mathcal L\\{\\dot x\\}=sX(s)-x(0^-)",
+   "simboli": "X(s) trasformata di x; x(0⁻) condizione iniziale",
+   "uso": "Equazioni differenziali, condizioni iniziali.",
+   "errore": "Dimenticare x(0⁻).",
+   "studio": [
+    "IV-01",
+    "IV-05"
+   ]
+  },
+  {
+   "id": "laplace-der2",
+   "blocco": "IV",
+   "titolo": "Derivata seconda",
+   "formula": "\\mathcal L\\{\\ddot x\\}=s^2X-sx(0^-)-\\dot x(0^-)",
+   "simboli": "x(0⁻), ẋ(0⁻) condizioni iniziali",
+   "uso": "Equazioni del secondo ordine.",
+   "errore": "",
+   "studio": [
+    "IV-01",
+    "IV-05"
+   ]
+  },
+  {
+   "id": "laplace-int",
+   "blocco": "IV",
+   "titolo": "Integrale",
+   "formula": "\\mathcal L\\left\\{\\int_{0^-}^{t}x\\right\\}=\\frac{X(s)}{s}",
+   "simboli": "X(s) trasformata",
+   "uso": "Equazioni integro-differenziali.",
+   "errore": "",
+   "studio": [
+    "IV-01"
+   ]
+  },
+  {
+   "id": "laplace-ritardo",
+   "blocco": "IV",
+   "titolo": "Ritardo",
+   "formula": "\\mathcal L\\{x(t-T)u_{-1}(t-T)\\}=e^{-sT}X(s)",
+   "simboli": "T ritardo [s]",
+   "uso": "Segnali a tratti.",
+   "errore": "",
+   "studio": [
+    "IV-01"
+   ]
+  },
+  {
+   "id": "laplace-shift",
+   "blocco": "IV",
+   "titolo": "Traslazione in frequenza",
+   "formula": "\\mathcal L\\{e^{-at}x(t)\\}=X(s+a)",
+   "simboli": "a costante reale; X(s+a) trasformata traslata",
+   "uso": "Segnali smorzati esponenzialmente.",
+   "errore": "",
+   "studio": [
+    "IV-01"
+   ]
+  },
+  {
+   "id": "laplace-conv",
+   "blocco": "IV",
+   "titolo": "Convoluzione",
+   "formula": "\\mathcal L\\{x*y\\}=X(s)\\,Y(s)",
+   "simboli": "x*y convoluzione; X, Y trasformate",
+   "uso": "Risposta di un sistema.",
+   "errore": "",
+   "studio": [
+    "IV-01"
+   ]
+  },
+  {
+   "id": "val-iniz",
+   "blocco": "IV",
+   "titolo": "Valore iniziale",
+   "formula": "x(0^+)=\\lim_{s\\to\\infty}sX(s)",
+   "simboli": "X(s) trasformata; limite per s→∞",
+   "uso": "Valore di x subito dopo t=0.",
+   "errore": "",
+   "studio": [
+    "IV-01"
+   ]
+  },
+  {
+   "id": "val-fin",
+   "blocco": "IV",
+   "titolo": "Valore finale",
+   "formula": "x(\\infty)=\\lim_{s\\to0}sX(s)",
+   "simboli": "valido se i poli di sX(s) hanno Re<0",
+   "uso": "",
+   "errore": "Poli sull'asse immaginario.",
+   "studio": [
+    "IV-01"
+   ]
+  },
+  {
+   "id": "l-delta",
+   "blocco": "IV",
+   "titolo": "Impulso",
+   "formula": "\\mathcal L\\{\\delta(t)\\}=1",
+   "simboli": "δ(t) impulso unitario",
+   "uso": "Tabella delle trasformate.",
+   "errore": "",
+   "studio": [
+    "IV-02"
+   ]
+  },
+  {
+   "id": "l-gradino",
+   "blocco": "IV",
+   "titolo": "Gradino",
+   "formula": "\\mathcal L\\{u_{-1}(t)\\}=\\frac1s",
+   "simboli": "u₋₁(t) gradino unitario",
+   "uso": "Tabella delle trasformate.",
+   "errore": "",
+   "studio": [
+    "IV-02"
+   ]
+  },
+  {
+   "id": "l-rampa",
+   "blocco": "IV",
+   "titolo": "Rampa",
+   "formula": "\\mathcal L\\{t\\}=\\frac1{s^2}",
+   "simboli": "t tempo [s]",
+   "uso": "Tabella delle trasformate.",
+   "errore": "",
+   "studio": [
+    "IV-02"
+   ]
+  },
+  {
+   "id": "l-exp",
+   "blocco": "IV",
+   "titolo": "Esponenziale",
+   "formula": "\\mathcal L\\{e^{-at}\\}=\\frac{1}{s+a}",
+   "simboli": "a costante [1/s]",
+   "uso": "Tabella delle trasformate.",
+   "errore": "",
+   "studio": [
+    "IV-02"
+   ]
+  },
+  {
+   "id": "l-cos",
+   "blocco": "IV",
+   "titolo": "Coseno",
+   "formula": "\\mathcal L\\{\\cos\\omega t\\}=\\frac{s}{s^2+\\omega^2}",
+   "simboli": "ω pulsazione [rad/s]",
+   "uso": "Tabella delle trasformate.",
+   "errore": "Scambiare con il seno.",
+   "studio": [
+    "IV-02"
+   ]
+  },
+  {
+   "id": "l-sin",
+   "blocco": "IV",
+   "titolo": "Seno",
+   "formula": "\\mathcal L\\{\\sin\\omega t\\}=\\frac{\\omega}{s^2+\\omega^2}",
+   "simboli": "ω pulsazione [rad/s]",
+   "uso": "Tabella delle trasformate.",
+   "errore": "",
+   "studio": [
+    "IV-02"
+   ]
+  },
+  {
+   "id": "l-texp",
+   "blocco": "IV",
+   "titolo": "t per esponenziale",
+   "formula": "\\mathcal L\\{te^{-at}\\}=\\frac{1}{(s+a)^2}",
+   "simboli": "a costante [1/s]",
+   "uso": "Polo doppio.",
+   "errore": "",
+   "studio": [
+    "IV-02"
+   ]
+  },
+  {
+   "id": "l-expcos",
+   "blocco": "IV",
+   "titolo": "Coseno smorzato",
+   "formula": "\\mathcal L\\{e^{-at}\\cos\\omega t\\}=\\frac{s+a}{(s+a)^2+\\omega^2}",
+   "simboli": "a, ω costanti [1/s], [rad/s]",
+   "uso": "Oscillazioni smorzate.",
+   "errore": "",
+   "studio": [
+    "IV-02"
+   ]
+  },
+  {
+   "id": "l-expsin",
+   "blocco": "IV",
+   "titolo": "Seno smorzato",
+   "formula": "\\mathcal L\\{e^{-at}\\sin\\omega t\\}=\\frac{\\omega}{(s+a)^2+\\omega^2}",
+   "simboli": "a, ω costanti [1/s], [rad/s]",
+   "uso": "Oscillazioni smorzate.",
+   "errore": "",
+   "studio": [
+    "IV-02"
+   ]
+  },
+  {
+   "id": "l-impulso-rett",
+   "blocco": "IV",
+   "titolo": "Impulso rettangolare",
+   "formula": "A[u_{-1}(t)-u_{-1}(t-T)]\\ \\to\\ A\\,\\frac{1-e^{-sT}}{s}",
+   "simboli": "A ampiezza; T durata [s]",
+   "uso": "Segnali a tratti.",
+   "errore": "",
+   "studio": [
+    "IV-02"
+   ]
+  },
+  {
+   "id": "residuo",
+   "blocco": "IV",
+   "titolo": "Residuo di un polo semplice",
+   "formula": "r=\\lim_{s\\to p}(s-p)F(s)\\ \\Rightarrow\\ f(t)=re^{pt}",
+   "simboli": "p polo; r residuo; F(s) funzione razionale",
+   "uso": "Fratti semplici.",
+   "errore": "",
+   "studio": [
+    "IV-03"
+   ]
+  },
+  {
+   "id": "polo-doppio",
+   "blocco": "IV",
+   "titolo": "Polo doppio",
+   "formula": "\\frac{r_2}{(s-p)^2}+\\frac{r_1}{s-p}\\to(r_2t+r_1)e^{pt}",
+   "simboli": "r₁ = d/ds[(s−p)²F]",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "IV-03"
+   ]
+  },
+  {
+   "id": "complessi-antitr",
+   "blocco": "IV",
+   "titolo": "Poli complessi coniugati",
+   "formula": "\\mathcal L^{-1}\\left\\{\\frac{as+b}{(s+\\alpha)^2+\\omega^2}\\right\\}=e^{-\\alpha t}\\left[a\\cos\\omega t+\\frac{b-a\\alpha}{\\omega}\\sin\\omega t\\right]",
+   "simboli": "α parte reale (smorzamento) [1/s]; ω pulsazione [rad/s]; a, b coefficienti del numeratore",
+   "uso": "Antitrasformata con poli complessi coniugati.",
+   "errore": "Dimenticare b−aα.",
+   "studio": [
+    "IV-04"
+   ]
+  },
+  {
+   "id": "imped-s",
+   "blocco": "IV",
+   "titolo": "Impedenze di Laplace",
+   "formula": "Z_R=R,\\quad Z_L=sL,\\quad Z_C=\\frac1{sC}",
+   "simboli": "s variabile di Laplace [1/s]; R [Ω]; L [H]; C [F]",
+   "uso": "Circuito trasformato.",
+   "errore": "",
+   "studio": [
+    "IV-06"
+   ]
+  },
+  {
+   "id": "l-cos-gen",
+   "blocco": "IV",
+   "titolo": "Generatore sinusoidale in Laplace",
+   "formula": "V_m\\cos\\omega t\\ \\to\\ \\frac{V_ms}{s^2+\\omega^2}",
+   "simboli": "V_m ampiezza; ω pulsazione",
+   "uso": "Generatori sinusoidali in Laplace.",
+   "errore": "",
+   "studio": [
+    "IV-06"
+   ]
+  },
+  {
+   "id": "modello-c-serie",
+   "blocco": "IV",
+   "titolo": "Condensatore con condizione iniziale (serie)",
+   "formula": "V=\\frac{I}{sC}+\\frac{v_C(0^-)}{s}",
+   "simboli": "I(s) corrente; C [F]; v_C(0⁻) tensione iniziale [V]",
+   "uso": "Passo 4 dell'esercizio.",
+   "errore": "Polarità del generatore.",
+   "studio": [
+    "IV-07"
+   ]
+  },
+  {
+   "id": "modello-c-par",
+   "blocco": "IV",
+   "titolo": "Condensatore con condizione iniziale (parallelo)",
+   "formula": "I=sC\\,V-C\\,v_C(0^-)",
+   "simboli": "generatore di corrente C v_C(0⁻)",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "IV-07"
+   ]
+  },
+  {
+   "id": "modello-l-serie",
+   "blocco": "IV",
+   "titolo": "Induttore con condizione iniziale (serie)",
+   "formula": "V=sL\\,I-L\\,i_L(0^-)",
+   "simboli": "L [H]; i_L(0⁻) corrente iniziale [A]",
+   "uso": "Induttore con condizione iniziale (modello in serie).",
+   "errore": "",
+   "studio": [
+    "IV-07"
+   ]
+  },
+  {
+   "id": "modello-l-par",
+   "blocco": "IV",
+   "titolo": "Induttore con condizione iniziale (parallelo)",
+   "formula": "I=\\frac{V}{sL}+\\frac{i_L(0^-)}{s}",
+   "simboli": "L [H]; i_L(0⁻) [A]",
+   "uso": "Induttore con condizione iniziale (modello in parallelo).",
+   "errore": "",
+   "studio": [
+    "IV-07"
+   ]
+  },
+  {
+   "id": "h-def",
+   "blocco": "V",
+   "titolo": "Funzione di rete",
+   "formula": "H(s)=\\frac{Y(s)}{X(s)}",
+   "simboli": "condizioni iniziali nulle",
+   "uso": "Rapporto uscita/ingresso.",
+   "errore": "Condizioni iniziali non nulle.",
+   "studio": [
+    "V-01"
+   ]
+  },
+  {
+   "id": "h-razionale",
+   "blocco": "V",
+   "titolo": "Forma razionale",
+   "formula": "H(s)=\\frac{N(s)}{D(s)}=K\\frac{\\prod(s-z_i)}{\\prod(s-p_i)}",
+   "simboli": "z zeri, p poli",
+   "uso": "Poli e zeri.",
+   "errore": "",
+   "studio": [
+    "V-01"
+   ]
+  },
+  {
+   "id": "h-rc-lp",
+   "blocco": "V",
+   "titolo": "RC passa-basso",
+   "formula": "H(s)=\\frac{1}{1+sRC}",
+   "simboli": "R [Ω]; C [F]; s [1/s]",
+   "uso": "Funzione di rete del filtro RC con uscita sul condensatore.",
+   "errore": "",
+   "studio": [
+    "V-01",
+    "V-07"
+   ]
+  },
+  {
+   "id": "h-rc-hp",
+   "blocco": "V",
+   "titolo": "RC passa-alto",
+   "formula": "H(s)=\\frac{sRC}{1+sRC}",
+   "simboli": "uscita su R",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "V-01",
+    "V-07"
+   ]
+  },
+  {
+   "id": "h-imp",
+   "blocco": "V",
+   "titolo": "Risposta impulsiva",
+   "formula": "h(t)=\\mathcal L^{-1}\\{H(s)\\}",
+   "simboli": "h(t) risposta impulsiva; H(s) funzione di rete",
+   "uso": "Risposta a un impulso.",
+   "errore": "",
+   "studio": [
+    "V-02"
+   ]
+  },
+  {
+   "id": "y-conv",
+   "blocco": "V",
+   "titolo": "Convoluzione",
+   "formula": "y(t)=\\int_0^th(\\tau)x(t-\\tau)d\\tau",
+   "simboli": "h risposta impulsiva; x ingresso; τ variabile di integrazione [s]",
+   "uso": "Risposta con condizioni nulle.",
+   "errore": "",
+   "studio": [
+    "V-02"
+   ]
+  },
+  {
+   "id": "y-gradino",
+   "blocco": "V",
+   "titolo": "Risposta al gradino",
+   "formula": "y_{gr}(t)=\\int_0^th(\\tau)d\\tau",
+   "simboli": "h risposta impulsiva",
+   "uso": "Risposta a un ingresso a gradino.",
+   "errore": "",
+   "studio": [
+    "V-02"
+   ]
+  },
+  {
+   "id": "y-libera-forzata",
+   "blocco": "V",
+   "titolo": "Libera + forzata",
+   "formula": "y=y_{lib}+y_{forz}",
+   "simboli": "y_lib da condizioni iniziali; y_forz da ingresso",
+   "uso": "Scomposizione della risposta completa.",
+   "errore": "",
+   "studio": [
+    "V-03"
+   ]
+  },
+  {
+   "id": "stab-poli",
+   "blocco": "V",
+   "titolo": "Stabilità asintotica",
+   "formula": "\\mathrm{Re}\\,p_i<0\\ \\ \\forall i",
+   "simboli": "p_i poli di H",
+   "uso": "Condizione necessaria e sufficiente.",
+   "errore": "Polo sull'asse immaginario.",
+   "studio": [
+    "V-04"
+   ]
+  },
+  {
+   "id": "routh2",
+   "blocco": "V",
+   "titolo": "Stabilità del 2° grado",
+   "formula": "s^2+a_1s+a_0:\\ a_1>0,\\ a_0>0",
+   "simboli": "a₀, a₁ coefficienti del denominatore",
+   "uso": "Stabilità di un polinomio di 2º grado.",
+   "errore": "",
+   "studio": [
+    "V-04"
+   ]
+  },
+  {
+   "id": "routh3",
+   "blocco": "V",
+   "titolo": "Stabilità del 3° grado",
+   "formula": "s^3+a_2s^2+a_1s+a_0:\\ a_i>0,\\ a_2a_1>a_0",
+   "simboli": "a₀, a₁, a₂ coefficienti del denominatore",
+   "uso": "Stabilità di un polinomio di 3º grado.",
+   "errore": "",
+   "studio": [
+    "V-04"
+   ]
+  },
+  {
+   "id": "y-permanente",
+   "blocco": "V",
+   "titolo": "Risposta permanente",
+   "formula": "y_p=A|F(j\\omega_0)|\\cos(\\omega_0t+\\varphi+\\arg F(j\\omega_0))",
+   "simboli": "A ampiezza; ω₀ pulsazione; φ fase dell'ingresso; F funzione di rete",
+   "uso": "Ingresso sinusoidale, sistema stabile.",
+   "errore": "Usare F(s) con s=ω.",
+   "studio": [
+    "V-05"
+   ]
+  },
+  {
+   "id": "mod-fase",
+   "blocco": "V",
+   "titolo": "Modulo e fase",
+   "formula": "|H(j\\omega)|,\\ \\ \\arg H(j\\omega)",
+   "simboli": "H(jω) funzione di rete per i fasori",
+   "uso": "Risposta in frequenza.",
+   "errore": "",
+   "studio": [
+    "V-06"
+   ]
+  },
+  {
+   "id": "wc-rc",
+   "blocco": "V",
+   "titolo": "Pulsazione di taglio RC",
+   "formula": "\\omega_c=\\frac1{RC}",
+   "simboli": "R [Ω]; C [F]; ω_c in rad/s",
+   "uso": "Pulsazione di taglio a 3 dB del filtro RC.",
+   "errore": "",
+   "studio": [
+    "V-07"
+   ]
+  },
+  {
+   "id": "wc-rl",
+   "blocco": "V",
+   "titolo": "Pulsazione di taglio RL",
+   "formula": "\\omega_c=\\frac RL",
+   "simboli": "R [Ω]; L [H]; ω_c in rad/s",
+   "uso": "Pulsazione di taglio a 3 dB del filtro RL.",
+   "errore": "",
+   "studio": [
+    "V-07"
+   ]
+  },
+  {
+   "id": "mod-lp",
+   "blocco": "V",
+   "titolo": "Modulo del passa-basso",
+   "formula": "|H(j\\omega)|=\\frac{1}{\\sqrt{1+(\\omega/\\omega_c)^2}}",
+   "simboli": "ω_c pulsazione di taglio [rad/s]",
+   "uso": "Modulo di un passa-basso del primo ordine.",
+   "errore": "",
+   "studio": [
+    "V-07"
+   ]
+  },
+  {
+   "id": "db",
+   "blocco": "V",
+   "titolo": "Decibel",
+   "formula": "|H|_{dB}=20\\log_{10}|H|",
+   "simboli": "|H| modulo adimensionale; risultato in dB",
+   "uso": "Diagrammi di Bode.",
+   "errore": "10 log per grandezze di campo.",
+   "studio": [
+    "V-07"
+   ]
+  },
+  {
+   "id": "bode-pend",
+   "blocco": "V",
+   "titolo": "Pendenza di Bode",
+   "formula": "-20\\ \\mathrm{dB/dec}\\ \\text{per ogni polo oltre}\\ \\omega_c",
+   "simboli": "dec = decade di frequenza",
+   "uso": "Tracciare i diagrammi asintotici.",
+   "errore": "",
+   "studio": [
+    "V-07"
+   ]
+  },
+  {
+   "id": "w0",
+   "blocco": "V",
+   "titolo": "Pulsazione di risonanza",
+   "formula": "\\omega_0=\\frac1{\\sqrt{LC}}",
+   "simboli": "L [H]; C [F]; ω₀ in rad/s",
+   "uso": "Risonanza di RLC serie e parallelo.",
+   "errore": "",
+   "studio": [
+    "V-08"
+   ]
+  },
+  {
+   "id": "q-serie",
+   "blocco": "V",
+   "titolo": "Q del RLC serie",
+   "formula": "Q=\\frac{\\omega_0L}{R}=\\frac1{\\omega_0RC}",
+   "simboli": "ω₀ [rad/s]; L [H]; R [Ω]; C [F]",
+   "uso": "Fattore di merito del RLC serie.",
+   "errore": "",
+   "studio": [
+    "V-08"
+   ]
+  },
+  {
+   "id": "q-par",
+   "blocco": "V",
+   "titolo": "Q del RLC parallelo",
+   "formula": "Q=\\frac{R}{\\omega_0L}=\\omega_0RC",
+   "simboli": "ω₀ [rad/s]; L [H]; R [Ω]; C [F]",
+   "uso": "Fattore di merito del RLC parallelo.",
+   "errore": "",
+   "studio": [
+    "V-08"
+   ]
+  },
+  {
+   "id": "banda",
+   "blocco": "V",
+   "titolo": "Banda a 3 dB",
+   "formula": "B=\\frac{\\omega_0}{Q}",
+   "simboli": "serie: R/L; parallelo: 1/(RC)",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "V-08"
+   ]
+  },
+  {
+   "id": "z-ris-serie",
+   "blocco": "V",
+   "titolo": "Impedenza serie in risonanza",
+   "formula": "Z(\\omega_0)=R",
+   "simboli": "minima",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "V-08"
+   ]
+  },
+  {
+   "id": "z-ris-par",
+   "blocco": "V",
+   "titolo": "Impedenza parallelo in risonanza",
+   "formula": "Z(\\omega_0)=R",
+   "simboli": "massima",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "V-08"
+   ]
+  },
+  {
+   "id": "sost",
+   "blocco": "VI",
+   "titolo": "Teorema di sostituzione",
+   "formula": "\\text{bipolo}\\ (v^*,i^*)\\ \\Rightarrow\\ \\text{generatore}\\ v=v^*\\ \\text{o}\\ i=i^*",
+   "simboli": "soluzione unica",
+   "uso": "Semplificare un circuito.",
+   "errore": "Non verificare l'unicità.",
+   "studio": [
+    "VI-01"
+   ]
+  },
+  {
+   "id": "th-vth",
+   "blocco": "VI",
+   "titolo": "Tensione di Thevenin",
+   "formula": "V_{th}=v_{AB}\\big|_{i=0}",
+   "simboli": "a vuoto",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "VI-02"
+   ]
+  },
+  {
+   "id": "th-zth",
+   "blocco": "VI",
+   "titolo": "Impedenza di Thevenin",
+   "formula": "Z_{th}=\\frac{V_{th}}{I_{sc}}=\\frac{V}{I}\\Big|_{\\text{indip. spenti}}",
+   "simboli": "I_sc corrente di cortocircuito [A]; V, I tensione e corrente del generatore di prova",
+   "uso": "Impedenza di Thevenin.",
+   "errore": "Spegnere i controllati.",
+   "studio": [
+    "VI-02"
+   ]
+  },
+  {
+   "id": "th-eq",
+   "blocco": "VI",
+   "titolo": "Equivalente di Thevenin",
+   "formula": "v=V_{th}-Z_{th}\\,i",
+   "simboli": "i corrente uscente dal bipolo",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "VI-02"
+   ]
+  },
+  {
+   "id": "th-prova",
+   "blocco": "VI",
+   "titolo": "Generatore di prova",
+   "formula": "Z_{th}=\\frac{V_{test}}{I_{test}}",
+   "simboli": "controllati lasciati accesi",
+   "uso": "Circuiti con controllati.",
+   "errore": "",
+   "studio": [
+    "VI-02"
+   ]
+  },
+  {
+   "id": "n-in",
+   "blocco": "VI",
+   "titolo": "Corrente di Norton",
+   "formula": "I_N=I_{sc}",
+   "simboli": "I_sc corrente con la porta in cortocircuito [A]",
+   "uso": "Generatore del circuito equivalente di Norton.",
+   "errore": "Misurarla a porta aperta.",
+   "studio": [
+    "VI-03"
+   ]
+  },
+  {
+   "id": "n-zn",
+   "blocco": "VI",
+   "titolo": "Impedenza di Norton",
+   "formula": "Z_N=Z_{th}",
+   "simboli": "Z_N [Ω]",
+   "uso": "Impedenza dell'equivalente di Norton.",
+   "errore": "",
+   "studio": [
+    "VI-03"
+   ]
+  },
+  {
+   "id": "th-norton",
+   "blocco": "VI",
+   "titolo": "Trasformazione di generatori",
+   "formula": "I_N=\\frac{V_{th}}{Z_{th}}",
+   "simboli": "V_th [V]; Z_th [Ω]; I_N [A]",
+   "uso": "Passare da Thevenin a Norton e viceversa.",
+   "errore": "",
+   "studio": [
+    "VI-03"
+   ]
+  },
+  {
+   "id": "nporte-rel",
+   "blocco": "VI",
+   "titolo": "Rete a N porte",
+   "formula": "N\\ \\text{relazioni tra}\\ 2N\\ \\text{variabili}",
+   "simboli": "N numero di porte; v_k, i_k tensione e corrente alla porta k",
+   "uso": "Descrizione di reti a più porte.",
+   "errore": "",
+   "studio": [
+    "VI-04"
+   ]
+  },
+  {
+   "id": "z-def",
+   "blocco": "VI",
+   "titolo": "Matrice Z",
+   "formula": "\\begin{pmatrix}v_1\\\\v_2\\end{pmatrix}=\\begin{pmatrix}z_{11}&z_{12}\\\\z_{21}&z_{22}\\end{pmatrix}\\begin{pmatrix}i_1\\\\i_2\\end{pmatrix}",
+   "simboli": "correnti entranti",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "VI-05"
+   ]
+  },
+  {
+   "id": "y-def",
+   "blocco": "VI",
+   "titolo": "Matrice Y",
+   "formula": "\\begin{pmatrix}i_1\\\\i_2\\end{pmatrix}=\\begin{pmatrix}y_{11}&y_{12}\\\\y_{21}&y_{22}\\end{pmatrix}\\begin{pmatrix}v_1\\\\v_2\\end{pmatrix}",
+   "simboli": "y_jk in siemens [S]; correnti entranti nelle porte",
+   "uso": "Rappresentazione in ammettenze.",
+   "errore": "",
+   "studio": [
+    "VI-05"
+   ]
+  },
+  {
+   "id": "z-y-inv",
+   "blocco": "VI",
+   "titolo": "Legame Z–Y",
+   "formula": "Y=Z^{-1}",
+   "simboli": "se esiste",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "VI-05"
+   ]
+  },
+  {
+   "id": "z11",
+   "blocco": "VI",
+   "titolo": "Misura dei parametri Z",
+   "formula": "z_{11}=\\frac{v_1}{i_1}\\Big|_{i_2=0},\\ \\ z_{21}=\\frac{v_2}{i_1}\\Big|_{i_2=0}",
+   "simboli": "porta 2 aperta",
+   "uso": "",
+   "errore": "Corto invece di aperto.",
+   "studio": [
+    "VI-05"
+   ]
+  },
+  {
+   "id": "y11",
+   "blocco": "VI",
+   "titolo": "Misura dei parametri Y",
+   "formula": "y_{11}=\\frac{i_1}{v_1}\\Big|_{v_2=0},\\ \\ y_{21}=\\frac{i_2}{v_1}\\Big|_{v_2=0}",
+   "simboli": "porta 2 in corto",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "VI-05"
+   ]
+  },
+  {
+   "id": "reciprocita",
+   "blocco": "VI",
+   "titolo": "Reciprocità",
+   "formula": "z_{12}=z_{21},\\quad y_{12}=y_{21}",
+   "simboli": "reti di soli R, L, C",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "VI-05"
+   ]
+  },
+  {
+   "id": "rete-t",
+   "blocco": "VI",
+   "titolo": "Rete a T",
+   "formula": "Z=\\begin{pmatrix}R_a+R_c&R_c\\\\R_c&R_b+R_c\\end{pmatrix}",
+   "simboli": "R_a, R_b in serie; R_c in derivazione",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "VI-05"
+   ]
+  },
+  {
+   "id": "rete-pi",
+   "blocco": "VI",
+   "titolo": "Rete a π",
+   "formula": "Y=\\begin{pmatrix}G_a+G_c&-G_c\\\\-G_c&G_b+G_c\\end{pmatrix}",
+   "simboli": "G_a, G_b in derivazione; G_c in serie",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "VI-05"
+   ]
+  },
+  {
+   "id": "t-def",
+   "blocco": "VI",
+   "titolo": "Matrice di trasmissione inversa",
+   "formula": "\\begin{pmatrix}v_1\\\\i_1\\end{pmatrix}=\\begin{pmatrix}A&B\\\\C&D\\end{pmatrix}\\begin{pmatrix}v_2\\\\-i_2\\end{pmatrix}",
+   "simboli": "A, D adimensionali; B in Ω; C in S; −i₂ corrente uscente dalla porta 2",
+   "uso": "Cascata.",
+   "errore": "Usare i₂ invece di −i₂.",
+   "studio": [
+    "VI-06"
+   ]
+  },
+  {
+   "id": "t-da-z",
+   "blocco": "VI",
+   "titolo": "Da Z a T",
+   "formula": "A=\\frac{z_{11}}{z_{21}},\\ B=\\frac{\\Delta_z}{z_{21}},\\ C=\\frac1{z_{21}},\\ D=\\frac{z_{22}}{z_{21}}",
+   "simboli": "Δ_z = z₁₁z₂₂ − z₁₂z₂₁",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "VI-06"
+   ]
+  },
+  {
+   "id": "t-recip",
+   "blocco": "VI",
+   "titolo": "Reciprocità in T",
+   "formula": "AD-BC=1",
+   "simboli": "rete reciproca",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "VI-06"
+   ]
+  },
+  {
+   "id": "h-def2",
+   "blocco": "VI",
+   "titolo": "Parametri ibridi",
+   "formula": "v_1=h_{11}i_1+h_{12}v_2,\\quad i_2=h_{21}i_1+h_{22}v_2",
+   "simboli": "h₁₁ [Ω]; h₂₂ [S]; h₁₂, h₂₁ adimensionali",
+   "uso": "Parametri ibridi (transistor).",
+   "errore": "",
+   "studio": [
+    "VI-06"
+   ]
+  },
+  {
+   "id": "conn-ss",
+   "blocco": "VI",
+   "titolo": "Serie-serie",
+   "formula": "Z=Z_a+Z_b",
+   "simboli": "Z_a, Z_b matrici delle impedenze [Ω]",
+   "uso": "Prova di validità.",
+   "errore": "",
+   "studio": [
+    "VI-07"
+   ]
+  },
+  {
+   "id": "conn-pp",
+   "blocco": "VI",
+   "titolo": "Parallelo-parallelo",
+   "formula": "Y=Y_a+Y_b",
+   "simboli": "Y_a, Y_b matrici delle ammettenze [S]",
+   "uso": "Prova di validità.",
+   "errore": "",
+   "studio": [
+    "VI-07"
+   ]
+  },
+  {
+   "id": "conn-cascata",
+   "blocco": "VI",
+   "titolo": "Cascata",
+   "formula": "T=T_a\\,T_b",
+   "simboli": "T_a, T_b matrici di trasmissione",
+   "uso": "Doppi bipoli in cascata.",
+   "errore": "Sommare le T.",
+   "studio": [
+    "VI-07"
+   ]
+  },
+  {
+   "id": "prova-validita",
+   "blocco": "VI",
+   "titolo": "Prova di validità",
+   "formula": "i_{ingresso}=i_{uscita}\\ \\text{a ogni porta dopo il collegamento}",
+   "simboli": "porta: i entrante = i uscente",
+   "uso": "Prima di usare le formule di connessione.",
+   "errore": "Omettere la prova.",
+   "studio": [
+    "VI-08"
+   ]
+  },
+  {
+   "id": "pmax-picco",
+   "blocco": "VI",
+   "titolo": "Potenza massima (picco)",
+   "formula": "P_{max}=\\frac{|V_{th}|^2}{8R_{th}}",
+   "simboli": "V_th di picco",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "VI-09"
+   ]
+  },
+  {
+   "id": "pmax-eff",
+   "blocco": "VI",
+   "titolo": "Potenza massima (efficace)",
+   "formula": "P_{max}=\\frac{|V_{th}|^2}{4R_{th}}",
+   "simboli": "V_th efficace",
+   "uso": "",
+   "errore": "",
+   "studio": [
+    "VI-09"
+   ]
+  },
+  {
+   "id": "zl-coniugata",
+   "blocco": "VI",
+   "titolo": "Adattamento coniugato",
+   "formula": "Z_L=Z_{th}^{*}",
+   "simboli": "Z_th* coniugato dell'impedenza di Thevenin [Ω]",
+   "uso": "Massimo trasferimento di potenza attiva.",
+   "errore": "Z_L = Z_th.",
+   "studio": [
+    "VI-09"
+   ]
+  },
+  {
+   "id": "rl-modulo",
+   "blocco": "VI",
+   "titolo": "Carico resistivo",
+   "formula": "R_L=|Z_{th}|=\\sqrt{R_{th}^2+X_{th}^2}",
+   "simboli": "R_th, X_th resistenza e reattanza di Thevenin [Ω]",
+   "uso": "Carico puramente resistivo.",
+   "errore": "",
+   "studio": [
+    "VI-09"
+   ]
+  },
+  {
+   "id": "rendimento-50",
+   "blocco": "VI",
+   "titolo": "Rendimento all'adattamento",
+   "formula": "\\eta=50\\%",
+   "simboli": "η rapporto tra potenza sul carico e potenza del generatore equivalente",
+   "uso": "Commento all'adattamento coniugato.",
+   "errore": "",
+   "studio": [
+    "VI-09"
+   ]
+  },
+  {
+   "id": "adatt-trasf",
+   "blocco": "VI",
+   "titolo": "Adattamento con trasformatore",
+   "formula": "n^2R_L=R_{th}",
+   "simboli": "n rapporto di trasformazione; R_L carico [Ω]; R_th [Ω]",
+   "uso": "Adattare un carico con un trasformatore ideale.",
+   "errore": "",
+   "studio": [
+    "VI-09"
+   ]
   }
  ]
 }

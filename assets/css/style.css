@@ -74,7 +74,7 @@ code, .mono { font-family: var(--mono); font-size: .92em; }
 .b-UFFICIALE { color: var(--ok); } .b-STORICO { color: var(--info); } .b-EDITORE { color: var(--fg-dim); }
 .b-NONUFFICIALE { color: var(--bad); } .b-INFERENZA { color: var(--accent); } .b-DAVERIFICARE { color: var(--warn); border-style: dashed; }
 .notice { border-left: 4px solid var(--accent); background: var(--bg-2); padding: 10px 14px; border-radius: 0 var(--radius) var(--radius) 0; margin: 12px 0; }
-.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 12px 0; border: 1px solid var(--line); border-radius: var(--radius); }
+.table-wrap { position: relative; overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 12px 0; border: 1px solid var(--line); border-radius: var(--radius); }
 table { border-collapse: collapse; width: 100%; min-width: 520px; }
 th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
 th { background: var(--bg-2); }
@@ -130,3 +130,6 @@ figure.fig { margin: 12px 0; text-align: center; } figure.fig svg { max-width: 1
 }
 .timer { position: sticky; top: 0; z-index: 40; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 8px 12px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .timer .t { font: 700 1.3rem var(--mono); } .timer.warn { border-color: var(--warn); } .timer.bad { border-color: var(--bad); }
+/* Formule lunghe: scorrono dentro il paragrafo senza allargare la pagina */
+main p, main li, main figcaption { position: relative; overflow-x: auto; overflow-y: hidden; padding-bottom: 1px; }
+main .katex-display { overflow-x: auto; overflow-y: hidden; }
