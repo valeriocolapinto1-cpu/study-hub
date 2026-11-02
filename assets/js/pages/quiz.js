@@ -89,7 +89,7 @@ function summary() {
     return `<li>${esc(it.id)}</li>`;
   });
   root.innerHTML = `<h1>Risultato</h1><section class="card"><p style="font-size:1.4rem"><strong>${sess.ok} / ${n}</strong> (${pct}%)</p>
-    ${Object.keys(byArg).length ? `<div class="table-wrap"><table><thead><tr><th>Argomento</th><th>Esatte</th></tr></thead><tbody>${Object.entries(byArg).map(([a, o]) => `<tr><td><a href="${url('studio/?t=' + a)}">${esc(a)}</a></td><td>${o.ok}/${o.n}</td></tr>`).join('')}</tbody></table></div>` : ''}
+    ${Object.keys(byArg).length ? `<div class="table-wrap" tabindex="0" role="region" aria-label="Tabella scorrevole"><table><thead><tr><th>Argomento</th><th>Esatte</th></tr></thead><tbody>${Object.entries(byArg).map(([a, o]) => `<tr><td><a href="${url('studio/?t=' + a)}">${esc(a)}</a></td><td>${o.ok}/${o.n}</td></tr>`).join('')}</tbody></table></div>` : ''}
     ${sess.res.some((r) => !r.ok) ? '<p class="muted">Le domande sbagliate sono state aggiunte alla coda di ripasso.</p>' : ''}
     ${other.length ? `<h2>Altre voci in scadenza</h2><ul>${other.join('')}</ul>` : ''}
     <button class="btn primary" id="again">Torna al menu</button></section>`;

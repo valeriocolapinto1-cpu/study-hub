@@ -1,5 +1,5 @@
 /* Service worker (PWA offline, opzionale). La lista dei file è generata da tools/build-sw.mjs: non modificarla a mano. */
-const VERSION = 'tdc-84a6002d70';
+const VERSION = 'tdc-93fdaaa87e';
 const FILES = [
  "./",
  "./404.html",
@@ -7,6 +7,9 @@ const FILES = [
  "./appunti/index.html",
  "./archivio/index.html",
  "./assets/css/style.css",
+ "./assets/fonts/Geist-Variable.woff2",
+ "./assets/fonts/GeistMono-Variable.woff2",
+ "./assets/fonts/LICENSE.txt",
  "./assets/icon.svg",
  "./assets/js/app.js",
  "./assets/js/complex.js",

@@ -6,7 +6,7 @@ const uniq = (k) => [...new Set(R.risorse.map((r) => r[k]))];
 const opt = (id, label, vals, first) => `<div><label for="${id}">${label}</label><select id="${id}"><option value="${first[0]}">${first[1]}</option>${vals.map((v) => `<option>${esc(v)}</option>`).join('')}</select></div>`;
 root.innerHTML = `<h1>Risorse gratuite</h1>
   <p>Link a materiali <strong>pubblicamente accessibili</strong> (la licenza è quella indicata dagli autori: controllala prima di riusarli), con la mappa degli argomenti del programma che coprono e non coprono. Nessun file è copiato nel sito. Le risorse di terzi sono <span class="badge b-NONUFFICIALE">NON UFFICIALE</span>: non sono il corso ufficiale.</p>
-  <h2>Libri del corso</h2><div class="table-wrap"><table><thead><tr><th>Testo</th><th>Ruolo</th><th>Note</th><th>PDF legale gratuito?</th></tr></thead><tbody>${R.libri.map((l) => `<tr><td>${esc(l.titolo)}<br><small class="muted">${esc(l.autori)} — ${esc(l.editore)}</small> ${badge(l.badge)}</td><td>${esc(l.ruolo)}</td><td>${esc(l.note)}</td><td><strong>${l.pdf_gratuito ? 'sì' : 'No'}</strong></td></tr>`).join('')}</tbody></table></div>
+  <h2>Libri del corso</h2><div class="table-wrap" tabindex="0" role="region" aria-label="Tabella scorrevole"><table><thead><tr><th>Testo</th><th>Ruolo</th><th>Note</th><th>PDF legale gratuito?</th></tr></thead><tbody>${R.libri.map((l) => `<tr><td>${esc(l.titolo)}<br><small class="muted">${esc(l.autori)} — ${esc(l.editore)}</small> ${badge(l.badge)}</td><td>${esc(l.ruolo)}</td><td>${esc(l.note)}</td><td><strong>${l.pdf_gratuito ? 'sì' : 'No'}</strong></td></tr>`).join('')}</tbody></table></div>
   <div class="notice">${esc(R.dichiarazione_libri)}</div>
   <h2>Risorse online</h2>
   <form class="card" id="rf"><div class="row">

@@ -1,11 +1,14 @@
 /* Tema: blu notte + ambra. Token su :root, scuro di default, chiaro alternativo. */
+@font-face { font-family: "Geist"; src: url("../fonts/Geist-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Geist Mono"; src: url("../fonts/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+
 :root {
   --bg: #0b1530; --bg-2: #111f45; --card: #14244f; --line: #2a3d73;
   --fg: #e8ecf8; --fg-dim: #aab6d8; --accent: #ffb84d; --accent-fg: #1a1200; --link: #ffc978;
   --ok: #5ed39a; --warn: #ffb84d; --bad: #ff7b8a; --info: #7fb2ff;
   --radius: 10px; --gutter: 16px; --maxw: 980px;
-  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font: "Geist", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   color-scheme: dark;
 }
 :root[data-theme="light"] {
@@ -25,14 +28,14 @@
 html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 var(--font); overflow-x: hidden; }
 a { color: var(--link); }
-a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible {
+a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible {
   outline: 3px solid var(--accent); outline-offset: 2px; }
 .skip { position: absolute; left: -999px; top: 0; background: var(--accent); color: var(--accent-fg); padding: 8px 12px; z-index: 100; }
 .skip:focus { left: 8px; top: 8px; }
 main { max-width: var(--maxw); margin: 0 auto; padding: 20px var(--gutter) 48px; }
-h1 { font-size: 1.7rem; line-height: 1.25; margin: .4em 0 .6em; }
-h2 { font-size: 1.3rem; margin: 1.6em 0 .5em; border-bottom: 1px solid var(--line); padding-bottom: .25em; }
-h3 { font-size: 1.08rem; margin: 1.2em 0 .4em; }
+h1 { font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.2rem); line-height: 1.2; margin: .4em 0 .6em; font-weight: 650; letter-spacing: -.03em; text-wrap: balance; }
+h2 { font-size: 1.3rem; font-weight: 650; letter-spacing: -.02em; margin: 1.6em 0 .5em; border-bottom: 1px solid var(--line); padding-bottom: .25em; }
+h3 { font-size: 1.08rem; font-weight: 650; letter-spacing: -.01em; margin: 1.2em 0 .4em; }
 p, li { max-width: 72ch; }
 code, .mono { font-family: var(--mono); font-size: .92em; }
 /* Header */
@@ -40,6 +43,8 @@ code, .mono { font-family: var(--mono); font-size: .92em; }
 .hbar { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 6px var(--gutter); }
 .brand { font-weight: 700; color: var(--fg); text-decoration: none; margin-right: auto; display: flex; align-items: center; gap: 8px; min-height: 44px; }
 .brand b { color: var(--accent); }
+.brand-mark { flex: none; }
+.btn .fx { font-family: var(--mono); font-style: italic; font-weight: 600; font-size: 1.05rem; }
 .btn, button.btn { min-height: 44px; min-width: 44px; padding: 8px 14px; border-radius: var(--radius); border: 1px solid var(--line);
   background: var(--card); color: var(--fg); font: inherit; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; }
 .btn:hover { border-color: var(--accent); }
@@ -52,14 +57,16 @@ code, .mono { font-family: var(--mono); font-size: .92em; }
 .nav a:hover, .nav a[aria-current="page"] { background: var(--card); color: var(--accent); }
 .nav a.soon { color: var(--fg-dim); }
 .nav a .tag { font-size: .7rem; margin-left: 8px; border: 1px solid var(--line); border-radius: 99px; padding: 0 6px; }
-.gsearch { position: relative; flex: 1 1 100%; order: 10; min-width: 0; }
-@media (min-width: 700px) { .gsearch { flex: 1 1 200px; max-width: 320px; order: 0; } }
+.gsearch { position: relative; flex: 1 1 100%; order: 10; min-width: 0; display: none; }
+.site-header.menu-open .gsearch { display: block; }
+@media (min-width: 700px) { .gsearch { display: block; flex: 1 1 200px; max-width: 320px; order: 0; } }
 .gsearch input { width: 100%; min-height: 44px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--card); color: var(--fg); padding: 0 12px; font: inherit; }
 .gresults { position: absolute; top: 48px; left: 0; right: 0; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); max-height: 60vh; overflow: auto; z-index: 60; }
 .gresults a { display: block; padding: 10px 12px; color: var(--fg); text-decoration: none; min-height: 44px; }
 .gresults a:hover, .gresults a:focus { background: var(--bg-2); }
 .gresults small { color: var(--fg-dim); display: block; }
-.prog-ind { font-size: .85rem; color: var(--fg-dim); white-space: nowrap; }
+.prog-ind { font-size: .85rem; color: var(--fg-dim); white-space: nowrap; display: none; }
+@media (min-width: 520px) { .prog-ind { display: inline; } }
 .prog-ind b { color: var(--accent); }
 @media (min-width: 900px) {
   .menu-btn { display: none; }
@@ -133,3 +140,13 @@ figure.fig { margin: 12px 0; text-align: center; } figure.fig svg { max-width: 1
 /* Formule lunghe: scorrono dentro il paragrafo senza allargare la pagina */
 main p, main li, main figcaption { position: relative; overflow-x: auto; overflow-y: hidden; padding-bottom: 1px; }
 main .katex-display { overflow-x: auto; overflow-y: hidden; }
+
+/* Card-link (home e pagina Altro): titolo, descrizione e freccia, senza sottolineature */
+a.card { display: block; color: var(--fg); text-decoration: none; position: relative; padding-right: 44px; transition: border-color .15s, transform .15s; }
+a.card h3 { margin: 0 0 .25em; display: flex; align-items: center; gap: 10px; }
+a.card p { margin: 0; color: var(--fg-dim); }
+a.card::after { content: "→"; position: absolute; right: 16px; top: 14px; color: var(--accent); font-size: 1.1rem; }
+a.card:hover { border-color: var(--accent); }
+a.card .ico { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 9px; background: var(--bg-2); border: 1px solid var(--line); color: var(--accent); flex: none; }
+@media (prefers-reduced-motion: no-preference) { a.card:hover { transform: translateY(-1px); } }
+.grid > .card { margin: 0; }

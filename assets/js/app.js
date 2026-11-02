@@ -28,7 +28,11 @@ function cycleTheme() {
   st.set('settings', s);
   return applyTheme();
 }
-const ICON = { auto: '◐', chiaro: '☀', scuro: '☾' };
+const ICON = {
+  auto: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8"/><path d="M12 4v16" /><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg>',
+  chiaro: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
+  scuro: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>',
+};
 
 function currentPath() {
   const root = new URL(url('')).pathname;
@@ -47,12 +51,12 @@ function buildHeader() {
   h.className = 'site-header';
   h.innerHTML = `
     <div class="hbar">
-      <a class="brand" href="${url('')}"><span aria-hidden="true">⚡</span> Teoria dei <b>Circuiti</b></a>
+      <a class="brand" href="${url('')}"><svg class="brand-mark" viewBox="0 0 32 32" width="26" height="26" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="var(--bg)" stroke="var(--line)"/><path d="M18 4 8 19h7l-2 9 11-16h-7z" fill="var(--accent)"/></svg><span>Teoria dei <b>Circuiti</b></span></a>
       <div class="gsearch"><input id="gs" type="search" placeholder="Cerca argomento…" aria-label="Cerca nel programma" autocomplete="off"><div class="gresults" id="gres" hidden></div></div>
       <span class="prog-ind" id="pind" title="Argomenti studiati">…</span>
-      <button class="btn" id="fdrawer-btn" aria-label="Apri formulario rapido" aria-expanded="false" title="Formulario rapido">ƒ</button>
+      <button class="btn" id="fdrawer-btn" aria-label="Apri formulario rapido" aria-expanded="false" title="Formulario rapido"><span class="fx" aria-hidden="true">ƒ</span></button>
       <button class="btn" id="theme-btn" aria-label="Cambia tema (attuale: ${t})" title="Tema: ${t}">${ICON[t]}</button>
-      <button class="btn menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Menu">☰</button>
+      <button class="btn menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Menu"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
     <nav class="nav" id="nav" aria-label="Navigazione principale">${links}</nav>`;
   return h;
@@ -99,11 +103,11 @@ function init() {
   f.innerHTML = '<p>Strumento di studio <strong>non ufficiale</strong>, non affiliato all\'università né ai docenti. Nessun materiale di terzi è incluso. I dati restano nel tuo browser.</p><p>© 2026 Valerio Colapinto · codice MIT · <a href="' + url('note-legali/') + '">Note legali</a> · <a href="' + url('privacy/') + '">Privacy</a> · <a href="mailto:valeriocolapinto1@gmail.com">valeriocolapinto1@gmail.com</a> · <a href="https://www.linkedin.com/in/valerio-colapinto" rel="noopener">LinkedIn</a></p>';
   document.body.append(f);
   header.querySelector('#theme-btn').addEventListener('click', (e) => {
-    const t = cycleTheme(); e.currentTarget.textContent = ICON[t];
+    const t = cycleTheme(); e.currentTarget.innerHTML = ICON[t];
     e.currentTarget.setAttribute('aria-label', `Cambia tema (attuale: ${t})`); e.currentTarget.title = 'Tema: ' + t;
   });
   const mb = header.querySelector('#menu-btn'), nav = header.querySelector('#nav');
-  mb.addEventListener('click', () => { const o = nav.classList.toggle('open'); mb.setAttribute('aria-expanded', String(o)); });
+  mb.addEventListener('click', () => { const o = nav.classList.toggle('open'); header.classList.toggle('menu-open', o); mb.setAttribute('aria-expanded', String(o)); });
   wireSearch(header);
   wireDrawer(header);
 }

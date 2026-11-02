@@ -22,7 +22,7 @@ export function entryHTML(e, bookmarks, studioTitle) {
   return `<article class="card fentry" id="f-${esc(e.id)}">
     <div class="row"><h3 style="margin:0;flex:1">${esc(e.titolo)} <small class="muted">${esc(e.blocco)}</small></h3>
     <button class="btn bm" data-id="${esc(e.id)}" aria-pressed="${bookmarks.has(e.id)}" aria-label="Segnalibro: ${esc(e.titolo)}">${bookmarks.has(e.id) ? '★' : '☆'}</button></div>
-    <div class="fformula">$$${e.formula}$$</div>
+    <div class="fformula" tabindex="0" role="region" aria-label="Formula">$$${e.formula}$$</div>
     <p><strong>Simboli:</strong> ${esc(e.simboli)}</p>
     <p><strong>Quando si usa:</strong> ${esc(e.uso)}</p>
     ${e.errore ? `<p><strong>Errore tipico:</strong> ${esc(e.errore)}</p>` : ''}
