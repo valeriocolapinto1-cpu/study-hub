@@ -5,7 +5,7 @@ e ogni altro materiale scritto o disegnato per il sito) sono © 2026 Valerio Col
 
 - **Consentito**: leggere, stampare e riprodurre per **uso personale di studio**; citare brevi estratti indicando la fonte.
 - **Da chiedere**: ogni altro uso (ripubblicazione, redistribuzione, uso commerciale, inclusione in altri siti o corsi).
-  Scrivi a [valeriocolapinto1@gmail.com](mailto:valeriocolapinto1@gmail.com).
+  Scrivi a [valeriocolapinto1@gmail.com](mailto:valeriocolapinto1@gmail.com) oppure su [LinkedIn](https://www.linkedin.com/in/valerio-colapinto).
 
 Il **codice** (HTML, CSS, JavaScript/TypeScript, configurazioni, test) è invece distribuito con licenza MIT: vedi il file `LICENSE`.
 

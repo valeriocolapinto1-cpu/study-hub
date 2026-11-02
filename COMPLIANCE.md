@@ -31,7 +31,7 @@ da alcun dipartimento o da alcun docente. Nomi di istituzioni e corsi compaiono 
 
 | Voce | Motivo |
 |---|---|
-| Nome dell'università da `meta description`, anteprima social e descrizioni della home | Il regolamento sul marchio disciplina l'uso della denominazione; resta l'indicazione biografica «studente di Ingegneria Elettronica alla Roma» nella sezione Chi sono |
+| Nome dell'università da `meta description`, anteprima social e descrizioni della home | Il regolamento sul marchio disciplina l'uso della denominazione; resta l'indicazione biografica «studente di Ingegneria Elettronica a Roma» nella sezione Chi sono |
 
 ## Licenza
 
@@ -45,7 +45,7 @@ Se possiedi diritti su qualcosa che compare in questo progetto e ritieni che non
 di inesatto su una persona, un corso o un'istituzione:
 
 - apri una [segnalazione](https://github.com/valeriocolapinto1-cpu/study-hub/issues/new?template=rimozione-contenuti.md), oppure
-- scrivi a [valeriocolapinto1@gmail.com](mailto:valeriocolapinto1@gmail.com).
+- scrivi a [valeriocolapinto1@gmail.com](mailto:valeriocolapinto1@gmail.com) o su [LinkedIn](https://www.linkedin.com/in/valerio-colapinto).
 
 **Il materiale contestato viene rimosso subito, senza discutere**, e la verifica viene fatta dopo. Non è richiesta una diffida formale.
 Se la rimozione riguarda materiale che non deve restare consultabile, la cronologia del repository viene ripulita su richiesta.
