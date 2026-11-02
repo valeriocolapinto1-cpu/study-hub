@@ -1,0 +1,53 @@
+{
+ "id": "I-02",
+ "obiettivi": [
+  "Enunciare KCL e KVL per nodi, tagli e maglie",
+  "Dimostrare che la KCL vale per ogni taglio",
+  "Applicare le leggi con convenzioni di segno corrette"
+ ],
+ "teoria": [
+  "<strong>Legge di Kirchhoff delle correnti (KCL).</strong> In ogni istante la somma algebrica delle correnti dei rami che concorrono a un nodo è nulla: $\\sum_k \\pm i_k = 0$, con segno $+$ per le correnti uscenti e $-$ per le entranti (o viceversa, purché coerente).",
+  "<strong>Legge di Kirchhoff delle tensioni (KVL).</strong> In ogni istante la somma algebrica delle tensioni dei rami lungo una maglia, percorsa in un verso, è nulla: $\\sum_k \\pm v_k = 0$, con $+$ se il verso di riferimento della tensione concorda col verso di percorrenza.",
+  "Le due leggi dipendono solo dalla <em>topologia</em> (come sono collegati i rami), non dalla natura dei componenti. Sono valide in ogni istante, per qualsiasi forma d'onda, nel modello a costanti concentrate.",
+  "<strong>Estensione ai tagli.</strong> Un <em>taglio</em> è un insieme di rami la cui rimozione divide il circuito in due parti: la KCL vale per ogni taglio (somma algebrica delle correnti che attraversano la superficie chiusa che racchiude una delle due parti)."
+ ],
+ "figure": [
+  {
+   "alt": "Nodo con una corrente entrante i₁ e due uscenti i₂, i₃: i₁ = i₂ + i₃",
+   "svg": "<svg viewBox=\"0 0 260 150\" width=\"260\" height=\"150\" xmlns=\"http://www.w3.org/2000/svg\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" font-family=\"system-ui,sans-serif\" font-size=\"14\" aria-hidden=\"true\"><circle cx=\"130\" cy=\"75\" r=\"3\" fill=\"currentColor\"/><polyline points=\"30 75 124 75\"/><polyline points=\"117.7,72.0 124,75 117.7,78.0\"/><polyline points=\"136 75 230 40\"/><polyline points=\"223.0,39.3 230,40 225.2,45.1\"/><polyline points=\"136 75 230 115\"/><polyline points=\"225.4,109.7 230,115 223.0,115.3\"/><text x=\"60\" y=\"62\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">i₁</text><text x=\"205\" y=\"48\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">i₂</text><text x=\"205\" y=\"135\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">i₃</text><text x=\"130\" y=\"100\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">i₁ = i₂ + i₃</text></svg>"
+  }
+ ],
+ "dimostrazioni": [
+  {
+   "titolo": "La KCL vale per ogni taglio",
+   "enunciato": "Sia $S$ una superficie chiusa che racchiude un insieme di nodi: la somma algebrica delle correnti dei rami che la attraversano è nulla.",
+   "passi": [
+    "Scrivi la KCL per ciascun nodo racchiuso da $S$: $\\sum_{k\\in\\text{nodo}} \\pm i_k = 0$.",
+    "Somma le equazioni di tutti i nodi interni.",
+    "Un ramo interamente interno a $S$ collega due nodi interni: la sua corrente compare in due equazioni con segno opposto (esce da un nodo, entra nell'altro) e si cancella.",
+    "Restano solo le correnti dei rami che attraversano $S$, con segno coerente (uscenti da $S$ ciò che è uscente dal nodo interno). La loro somma è zero. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "KCL e KVL numeriche",
+   "testo": "A un nodo entrano $i_1 = 3\\,\\mathrm{A}$ e $i_2 = 2\\,\\mathrm{A}$ ed escono $i_3 = 4\\,\\mathrm{A}$ e $i_4$. Trova $i_4$. Poi, in una maglia di tre rami, $v_1 = 5\\,\\mathrm{V}$ e $v_2 = -2\\,\\mathrm{V}$ (versi concordi col giro): trova $v_3$.",
+   "soluzione": [
+    "KCL (entranti $=$ uscenti): $3+2 = 4 + i_4 \\Rightarrow i_4 = 1\\,\\mathrm{A}$.",
+    "KVL: $v_1+v_2+v_3 = 0 \\Rightarrow v_3 = -(5-2) = -3\\,\\mathrm{V}$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Scrivere KCL con segni misti senza fissare una convenzione, ottenendo $i_1+i_2+i_3=0$ con correnti tutte entranti ma di valore positivo.",
+   "corretto": "Fissa «uscenti $+$, entranti $-$» e ricava i segni dai versi di riferimento, non dai valori."
+  }
+ ],
+ "esame": "Le leggi di Kirchhoff sono la base di tutti gli esercizi d'analisi; come tema autonomo non emerge dai testi storici [STORICO].",
+ "formulario": [
+  "kcl",
+  "kvl"
+ ]
+}

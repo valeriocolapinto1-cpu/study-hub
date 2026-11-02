@@ -1,0 +1,40 @@
+{
+ "id": "I-07",
+ "obiettivi": [
+  "Riconoscere i quattro tipi di generatori controllati",
+  "Includerli correttamente nell'analisi",
+  "Ricordare che non vanno spenti insieme agli indipendenti"
+ ],
+ "teoria": [
+  "Un <strong>generatore controllato</strong> è un doppio bipolo: la grandezza di una porta (ingresso, di controllo) determina quella dell'altra (uscita). I quattro tipi lineari:",
+  "<ul><li><strong>VCVS</strong> (tensione ↔ tensione): $v_2=\\mu\\,v_1$, $i_1=0$.</li><li><strong>VCCS</strong> (tensione → corrente): $i_2=g_m\\,v_1$, $i_1=0$.</li><li><strong>CCVS</strong> (corrente → tensione): $v_2=r_m\\,i_1$, $v_1=0$.</li><li><strong>CCCS</strong> (corrente ↔ corrente): $i_2=\\beta\\,i_1$, $v_1=0$.</li></ul>",
+  "Sono elementi <em>attivi</em> (possono erogare potenza netta) e <em>non reciproci</em>. Servono a modellare amplificatori, transistor, ecc.",
+  "<strong>Regola operativa.</strong> Nei circuiti con generatori controllati, quando si «spengono i generatori indipendenti» (per Thevenin, Norton, risposta libera) i generatori controllati restano nel circuito."
+ ],
+ "figure": [],
+ "dimostrazioni": [],
+ "esempi": [
+  {
+   "titolo": "VCCS con partitore a monte",
+   "testo": "Un generatore $V_g=6\\,\\mathrm{V}$ alimenta $R_1=2\\,\\Omega$ in serie con $R_2=4\\,\\Omega$; la tensione $v_2$ su $R_2$ controlla un VCCS con $g_m=0{,}5\\,\\mathrm{S}$ che alimenta $R_3=3\\,\\Omega$. Trova la tensione su $R_3$.",
+   "soluzione": [
+    "Il controllo è in tensione e non assorbe corrente: $v_2 = 6\\cdot\\dfrac{4}{2+4}=4\\,\\mathrm{V}$.",
+    "$i_{out}=g_m v_2=0{,}5\\cdot4=2\\,\\mathrm{A}$.",
+    "$v_3=R_3\\,i_{out}=3\\cdot2=6\\,\\mathrm{V}$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Per trovare $R_{th}$ spegnere anche un VCCS («è un generatore»).",
+   "corretto": "Si spengono solo i generatori <em>indipendenti</em>; il controllato resta e $R_{th}$ si trova col generatore di prova $V/I$."
+  }
+ ],
+ "esame": "Elemento ricorrente dell'esercizio d'analisi (Thevenin con 2-porte e controllati) [STORICO].",
+ "formulario": [
+  "vcvs",
+  "vccs",
+  "ccvs",
+  "cccs"
+ ]
+}

@@ -1,0 +1,560 @@
+{
+ "_nota": "Generato da tools/build-content.mjs",
+ "voci": [
+  {
+   "id": "lambda",
+   "blocco": "I",
+   "titolo": "Lunghezza d'onda",
+   "formula": "\\lambda=\\frac{c}{f}",
+   "simboli": "λ lunghezza d'onda [m]; c ≈ 3·10⁸ m/s; f frequenza [Hz]",
+   "uso": "Verifica del modello a costanti concentrate: serve L ≪ λ.",
+   "errore": "Applicare Kirchhoff ad alta frequenza.",
+   "studio": [
+    "I-01"
+   ]
+  },
+  {
+   "id": "concentrate",
+   "blocco": "I",
+   "titolo": "Condizione di validità delle costanti concentrate",
+   "formula": "L\\ll\\lambda,\\qquad \\frac{L}{c}\\ll T=\\frac1f",
+   "simboli": "L dimensione massima del circuito [m]; T periodo [s]",
+   "uso": "Prima di usare KCL/KVL.",
+   "errore": "Dimenticare di confrontare L con λ.",
+   "studio": [
+    "I-01"
+   ]
+  },
+  {
+   "id": "kcl",
+   "blocco": "I",
+   "titolo": "Legge di Kirchhoff delle correnti",
+   "formula": "\\sum_{k\\in\\text{nodo/taglio}}\\pm i_k=0",
+   "simboli": "i_k corrente di ramo [A]; segno + uscenti, − entranti",
+   "uso": "Ogni nodo e ogni taglio.",
+   "errore": "Mescolare convenzioni di segno.",
+   "studio": [
+    "I-02",
+    "II-05"
+   ]
+  },
+  {
+   "id": "kvl",
+   "blocco": "I",
+   "titolo": "Legge di Kirchhoff delle tensioni",
+   "formula": "\\sum_{k\\in\\text{maglia}}\\pm v_k=0",
+   "simboli": "v_k tensione di ramo [V]; + se concorde col giro",
+   "uso": "Ogni maglia.",
+   "errore": "Segni: seguire il verso di percorrenza, non il valore.",
+   "studio": [
+    "I-02"
+   ]
+  },
+  {
+   "id": "potenza-istantanea",
+   "blocco": "I",
+   "titolo": "Potenza istantanea assorbita",
+   "formula": "p(t)=v(t)\\,i(t)",
+   "simboli": "v [V], i [A], p [W]; convenzione degli utilizzatori",
+   "uso": "Bilanci di potenza.",
+   "errore": "Usarla con la convenzione dei generatori.",
+   "studio": [
+    "I-03"
+   ]
+  },
+  {
+   "id": "energia",
+   "blocco": "I",
+   "titolo": "Energia assorbita",
+   "formula": "w(t_0,t)=\\int_{t_0}^{t}v(\\tau)\\,i(\\tau)\\,d\\tau",
+   "simboli": "w [J]",
+   "uso": "Passività, energia immagazzinata.",
+   "errore": "Scordare l'energia iniziale.",
+   "studio": [
+    "I-03",
+    "I-06"
+   ]
+  },
+  {
+   "id": "linearita",
+   "blocco": "I",
+   "titolo": "Linearità",
+   "formula": "x=a\\,x_1+b\\,x_2\\ \\Rightarrow\\ y=a\\,y_1+b\\,y_2",
+   "simboli": "x ingresso, y uscita; a, b costanti",
+   "uso": "Sovrapposizione degli effetti.",
+   "errore": "Applicarla a grandezze quadratiche (potenza).",
+   "studio": [
+    "I-04"
+   ]
+  },
+  {
+   "id": "tempo-invarianza",
+   "blocco": "I",
+   "titolo": "Tempo-invarianza",
+   "formula": "x(t-T)\\ \\mapsto\\ y(t-T)",
+   "simboli": "T traslazione temporale [s]",
+   "uso": "Elementi con parametri costanti.",
+   "errore": "Confondere con causalità.",
+   "studio": [
+    "I-04"
+   ]
+  },
+  {
+   "id": "resistore",
+   "blocco": "I",
+   "titolo": "Resistore",
+   "formula": "v=R\\,i,\\qquad i=G\\,v,\\qquad G=\\frac1R",
+   "simboli": "R [Ω], G [S]",
+   "uso": "Legge di Ohm.",
+   "errore": "Dimenticare il verso (utilizzatori).",
+   "studio": [
+    "I-05"
+   ]
+  },
+  {
+   "id": "condensatore",
+   "blocco": "I",
+   "titolo": "Condensatore",
+   "formula": "i=C\\frac{dv}{dt},\\qquad v(t)=v(t_0)+\\frac1C\\int_{t_0}^{t}i\\,d\\tau",
+   "simboli": "C [F]",
+   "uso": "In continua è un aperto.",
+   "errore": "Imporre v_C(0⁺)=0 dopo un regime.",
+   "studio": [
+    "I-05"
+   ]
+  },
+  {
+   "id": "induttore",
+   "blocco": "I",
+   "titolo": "Induttore",
+   "formula": "v=L\\frac{di}{dt},\\qquad i(t)=i(t_0)+\\frac1L\\int_{t_0}^{t}v\\,d\\tau",
+   "simboli": "L [H]",
+   "uso": "In continua è un corto.",
+   "errore": "Imporre i_L(0⁺)=0 dopo un regime.",
+   "studio": [
+    "I-05"
+   ]
+  },
+  {
+   "id": "cont-vc-il",
+   "blocco": "I",
+   "titolo": "Continuità di vC e iL",
+   "formula": "v_C(0^+)=v_C(0^-),\\qquad i_L(0^+)=i_L(0^-)",
+   "simboli": "Valida se i_C e v_L sono limitate",
+   "uso": "Passo 3 e 8 della procedura d'esame.",
+   "errore": "Applicarla a v_out o ad altre grandezze.",
+   "studio": [
+    "I-05"
+   ]
+  },
+  {
+   "id": "energia-c",
+   "blocco": "I",
+   "titolo": "Energia nel condensatore",
+   "formula": "W_C=\\tfrac12\\,C\\,v^2",
+   "simboli": "W [J]",
+   "uso": "Bilanci energetici.",
+   "errore": "Usare ½Cv² con v di ramo sbagliato.",
+   "studio": [
+    "I-06"
+   ]
+  },
+  {
+   "id": "energia-l",
+   "blocco": "I",
+   "titolo": "Energia nell'induttore",
+   "formula": "W_L=\\tfrac12\\,L\\,i^2",
+   "simboli": "W [J]",
+   "uso": "Bilanci energetici.",
+   "errore": "Come sopra.",
+   "studio": [
+    "I-06"
+   ]
+  },
+  {
+   "id": "pila-reale",
+   "blocco": "I",
+   "titolo": "Generatore reale di tensione",
+   "formula": "v=E-r\\,i",
+   "simboli": "E f.e.m. [V]; r resistenza interna [Ω]",
+   "uso": "Modello di una pila.",
+   "errore": "Trattarla come generatore ideale con corto.",
+   "studio": [
+    "I-06"
+   ]
+  },
+  {
+   "id": "vcvs",
+   "blocco": "I",
+   "titolo": "Generatore controllato VCVS",
+   "formula": "v_2=\\mu\\,v_1,\\quad i_1=0",
+   "simboli": "μ guadagno di tensione",
+   "uso": "Amplificatori di tensione.",
+   "errore": "Spegnerlo con gli indipendenti.",
+   "studio": [
+    "I-07"
+   ]
+  },
+  {
+   "id": "vccs",
+   "blocco": "I",
+   "titolo": "Generatore controllato VCCS",
+   "formula": "i_2=g_m\\,v_1,\\quad i_1=0",
+   "simboli": "g_m transconduttanza [S]",
+   "uso": "Transistor.",
+   "errore": "Come sopra.",
+   "studio": [
+    "I-07"
+   ]
+  },
+  {
+   "id": "ccvs",
+   "blocco": "I",
+   "titolo": "Generatore controllato CCVS",
+   "formula": "v_2=r_m\\,i_1,\\quad v_1=0",
+   "simboli": "r_m transresistenza [Ω]",
+   "uso": "Amplificatori di corrente-tensione.",
+   "errore": "Come sopra.",
+   "studio": [
+    "I-07"
+   ]
+  },
+  {
+   "id": "cccs",
+   "blocco": "I",
+   "titolo": "Generatore controllato CCCS",
+   "formula": "i_2=\\beta\\,i_1,\\quad v_1=0",
+   "simboli": "β guadagno di corrente",
+   "uso": "Transistor bipolare (modello).",
+   "errore": "Come sopra.",
+   "studio": [
+    "I-07"
+   ]
+  },
+  {
+   "id": "trasf-v",
+   "blocco": "I",
+   "titolo": "Trasformatore ideale: tensioni",
+   "formula": "v_1=n\\,v_2",
+   "simboli": "n rapporto di trasformazione",
+   "uso": "Equazioni del trasformatore.",
+   "errore": "Scambiare n con 1/n.",
+   "studio": [
+    "I-08"
+   ]
+  },
+  {
+   "id": "trasf-i",
+   "blocco": "I",
+   "titolo": "Trasformatore ideale: correnti",
+   "formula": "i_1=-\\frac{i_2}{n}",
+   "simboli": "Convenzione degli utilizzatori su entrambe le porte",
+   "uso": "Con la precedente.",
+   "errore": "Dimenticare il segno meno.",
+   "studio": [
+    "I-08"
+   ]
+  },
+  {
+   "id": "trasf-z",
+   "blocco": "I",
+   "titolo": "Impedenza riportata",
+   "formula": "Z_{in}=n^2\\,Z_L",
+   "simboli": "Z_L carico alla porta 2 [Ω]",
+   "uso": "Riduzione di circuiti col trasformatore.",
+   "errore": "Usare n invece di n².",
+   "studio": [
+    "I-08"
+   ]
+  },
+  {
+   "id": "nullore-def",
+   "blocco": "I",
+   "titolo": "Nullore",
+   "formula": "v_1=0,\\quad i_1=0;\\quad v_2,\\,i_2\\ \\text{qualsiasi}",
+   "simboli": "Porta 1 nullatore, porta 2 noratore",
+   "uso": "Op-amp ideale.",
+   "errore": "Credere che i_2 sia nulla.",
+   "studio": [
+    "I-09"
+   ]
+  },
+  {
+   "id": "opamp-reale",
+   "blocco": "I",
+   "titolo": "Amplificatore operazionale lineare",
+   "formula": "v_o=A\\,(v_+-v_-),\\quad A\\in[10^5,10^8]",
+   "simboli": "A guadagno differenziale",
+   "uso": "Dal reale all'ideale.",
+   "errore": "Dimenticare le saturazioni ±V_cc.",
+   "studio": [
+    "I-09"
+   ]
+  },
+  {
+   "id": "invertente",
+   "blocco": "I",
+   "titolo": "Op-amp invertente",
+   "formula": "v_o=-\\frac{R_2}{R_1}\\,V_g",
+   "simboli": "R_1 ingresso, R_2 retroazione",
+   "uso": "Amplificazione con inversione.",
+   "errore": "Dimenticare il segno meno.",
+   "studio": [
+    "I-09"
+   ]
+  },
+  {
+   "id": "sommatore",
+   "blocco": "I",
+   "titolo": "Sommatore invertente",
+   "formula": "v_o=-R_0\\left(\\frac{V_{g1}}{R_1}+\\frac{V_{g2}}{R_2}+\\frac{V_{g3}}{R_3}\\right)",
+   "simboli": "R_0 retroazione",
+   "uso": "Somma pesata.",
+   "errore": "Confondere R_0 con R_k.",
+   "studio": [
+    "I-09"
+   ]
+  },
+  {
+   "id": "non-invertente",
+   "blocco": "I",
+   "titolo": "Op-amp non invertente",
+   "formula": "v_o=\\left(1+\\frac{R_2}{R_1}\\right)V_g",
+   "simboli": "R₁ verso massa, R₂ in retroazione [Ω]",
+   "uso": "Guadagno ≥ 1.",
+   "errore": "Usare la formula dell'invertente.",
+   "studio": [
+    "I-09"
+   ]
+  },
+  {
+   "id": "inseguitore",
+   "blocco": "I",
+   "titolo": "Inseguitore (buffer)",
+   "formula": "v_o=V_g",
+   "simboli": "Impedenza d'ingresso ∞, d'uscita 0",
+   "uso": "Disaccoppiamento.",
+   "errore": "Credere che amplifichi.",
+   "studio": [
+    "I-09"
+   ]
+  },
+  {
+   "id": "differenziale",
+   "blocco": "I",
+   "titolo": "Amplificatore differenziale",
+   "formula": "v_o=\\frac{R_2}{R_1}\\,(V_{g2}-V_{g1})",
+   "simboli": "Con rapporti R uguali sui due rami",
+   "uso": "Differenza di segnali.",
+   "errore": "Resistenze non appaiate.",
+   "studio": [
+    "I-09"
+   ]
+  },
+  {
+   "id": "n-b",
+   "blocco": "II",
+   "titolo": "Rami, nodi, albero, coalbero",
+   "formula": "\\#\\text{albero}=n-1,\\qquad \\#\\text{coalbero}=b-n+1",
+   "simboli": "n nodi, b rami",
+   "uso": "Contare equazioni indipendenti.",
+   "errore": "Dimenticare che il grafo deve essere connesso.",
+   "studio": [
+    "II-01",
+    "II-02"
+   ]
+  },
+  {
+   "id": "albero-coalbero",
+   "blocco": "II",
+   "titolo": "Maglie e tagli fondamentali",
+   "formula": "\\#\\text{maglie fond.}=b-n+1,\\qquad \\#\\text{tagli fond.}=n-1",
+   "simboli": "n nodi, b rami",
+   "uso": "Costruire B e Q.",
+   "errore": "Albero non connesso o con maglie.",
+   "studio": [
+    "II-02"
+   ]
+  },
+  {
+   "id": "kcl-mat",
+   "blocco": "II",
+   "titolo": "KCL in forma matriciale",
+   "formula": "A\\,\\mathbf i=\\mathbf 0",
+   "simboli": "A (n−1)×b incidenza ridotta",
+   "uso": "Metodo dei nodi.",
+   "errore": "Usare la matrice non ridotta (righe dipendenti).",
+   "studio": [
+    "II-03"
+   ]
+  },
+  {
+   "id": "kvl-mat",
+   "blocco": "II",
+   "titolo": "KVL in forma matriciale",
+   "formula": "B\\,\\mathbf v=\\mathbf 0,\\qquad \\mathbf v=A^{\\mathsf T}\\mathbf e",
+   "simboli": "B (b−n+1)×b; e tensioni di nodo",
+   "uso": "Metodo delle maglie.",
+   "errore": "",
+   "studio": [
+    "II-03"
+   ]
+  },
+  {
+   "id": "b-da-a",
+   "blocco": "II",
+   "titolo": "B in funzione di A (blocchi)",
+   "formula": "B=[-F^{\\mathsf T}\\ \\ \\mathbb 1],\\quad F=A_t^{-1}A_c",
+   "simboli": "Albero | coalbero",
+   "uso": "Ricostruire B da A.",
+   "errore": "Scrivere B = −Aᵀ tra matrici di dimensioni diverse.",
+   "studio": [
+    "II-03"
+   ]
+  },
+  {
+   "id": "tens-indip",
+   "blocco": "II",
+   "titolo": "Tensioni indipendenti",
+   "formula": "\\mathbf v_c=F^{\\mathsf T}\\mathbf v_t",
+   "simboli": "v_t tensioni d'albero",
+   "uso": "Ridurre le incognite.",
+   "errore": "",
+   "studio": [
+    "II-04"
+   ]
+  },
+  {
+   "id": "corr-indip",
+   "blocco": "II",
+   "titolo": "Correnti indipendenti",
+   "formula": "\\mathbf i_t=-F\\,\\mathbf i_c,\\qquad \\mathbf i=B^{\\mathsf T}\\mathbf j",
+   "simboli": "j correnti di maglia",
+   "uso": "Ridurre le incognite.",
+   "errore": "",
+   "studio": [
+    "II-04"
+   ]
+  },
+  {
+   "id": "tellegen",
+   "blocco": "II",
+   "titolo": "Teorema di Tellegen",
+   "formula": "\\mathbf v^{\\mathsf T}\\mathbf i=\\sum_k v_k i_k=0",
+   "simboli": "v soddisfa KVL, i soddisfa KCL, stesso grafo",
+   "uso": "Bilanci di potenza, ortogonalità.",
+   "errore": "Convenzioni miste.",
+   "studio": [
+    "II-05"
+   ]
+  },
+  {
+   "id": "ortogonalita",
+   "blocco": "II",
+   "titolo": "Ortogonalità tensioni–correnti",
+   "formula": "\\operatorname{Im}A^{\\mathsf T}\\perp\\ker A",
+   "simboli": "Im A^T: tensioni ammissibili; ker A: correnti ammissibili",
+   "uso": "Dimostrazione di Tellegen.",
+   "errore": "",
+   "studio": [
+    "II-05"
+   ]
+  },
+  {
+   "id": "serie",
+   "blocco": "II",
+   "titolo": "Resistori in serie",
+   "formula": "R_{eq}=\\sum_k R_k",
+   "simboli": "R_k resistenze [Ω]",
+   "uso": "Stessa corrente.",
+   "errore": "Usarla con rami che hanno un nodo di derivazione.",
+   "studio": [
+    "II-06"
+   ]
+  },
+  {
+   "id": "parallelo",
+   "blocco": "II",
+   "titolo": "Resistori in parallelo",
+   "formula": "\\frac1{R_{eq}}=\\sum_k\\frac1{R_k},\\quad R_{eq}=\\frac{R_1R_2}{R_1+R_2}",
+   "simboli": "R_k resistenze [Ω]",
+   "uso": "Stessa tensione.",
+   "errore": "Scordare l'inverso.",
+   "studio": [
+    "II-06"
+   ]
+  },
+  {
+   "id": "part-v",
+   "blocco": "II",
+   "titolo": "Partitore di tensione",
+   "formula": "v_k=v\\,\\frac{R_k}{\\sum_jR_j}",
+   "simboli": "v tensione totale [V]; R_k [Ω]",
+   "uso": "Serie senza carico a valle.",
+   "errore": "Ignorare il carico.",
+   "studio": [
+    "II-06"
+   ]
+  },
+  {
+   "id": "part-i",
+   "blocco": "II",
+   "titolo": "Partitore di corrente",
+   "formula": "i_k=i\\,\\frac{G_k}{\\sum_jG_j}",
+   "simboli": "G conduttanze [S]",
+   "uso": "Parallelo.",
+   "errore": "Usare R al posto di G.",
+   "studio": [
+    "II-06"
+   ]
+  },
+  {
+   "id": "nodi",
+   "blocco": "II",
+   "titolo": "Metodo dei nodi (rete resistiva)",
+   "formula": "G_{jj}=\\sum G\\ \\text{al nodo}\\ j,\\quad G_{jk}=-G_{jk}^{\\text{ramo}}",
+   "simboli": "i_s correnti entranti nei nodi",
+   "uso": "Reti con pochi nodi.",
+   "errore": "Corrente del generatore con segno sbagliato.",
+   "studio": [
+    "II-07"
+   ]
+  },
+  {
+   "id": "nodi-mat",
+   "blocco": "II",
+   "titolo": "Equazioni ai nodi",
+   "formula": "A\\,\\mathcal G\\,A^{\\mathsf T}\\,\\mathbf e=\\mathbf i_s",
+   "simboli": "𝒢 = diag(G_k)",
+   "uso": "Forma compatta.",
+   "errore": "",
+   "studio": [
+    "II-07"
+   ]
+  },
+  {
+   "id": "maglie",
+   "blocco": "II",
+   "titolo": "Metodo delle maglie",
+   "formula": "R_{jj}=\\sum R\\ \\text{della maglia},\\quad R_{jk}=-R\\ \\text{condivisa}",
+   "simboli": "v_s tensioni dei generatori nel giro",
+   "uso": "Reti con poche maglie.",
+   "errore": "Segno dei termini mutui.",
+   "studio": [
+    "II-08"
+   ]
+  },
+  {
+   "id": "maglie-mat",
+   "blocco": "II",
+   "titolo": "Equazioni alle maglie",
+   "formula": "B\\,\\mathcal R\\,B^{\\mathsf T}\\,\\mathbf j=\\mathbf v_s",
+   "simboli": "ℛ = diag(R_k)",
+   "uso": "Forma compatta.",
+   "errore": "",
+   "studio": [
+    "II-08"
+   ]
+  }
+ ]
+}

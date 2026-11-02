@@ -1,0 +1,46 @@
+{
+ "id": "II-04",
+ "obiettivi": [
+  "Contare le tensioni e le correnti indipendenti",
+  "Esprimere tutte le grandezze con tensioni di albero o correnti di coalbero",
+  "Collegare i risultati ai metodi dei nodi e delle maglie"
+ ],
+ "teoria": [
+  "Le $b$ tensioni di ramo non sono indipendenti: devono soddisfare la KVL ($b-n+1$ vincoli). Restano <strong>$n-1$ tensioni indipendenti</strong>: ad esempio le tensioni dei rami d'albero $\\mathbf v_t$, oppure le tensioni di nodo $\\mathbf e$ rispetto al riferimento ($\\mathbf v=A^{\\mathsf T}\\mathbf e$).",
+  "Analogamente le correnti: la KCL dà $n-1$ vincoli e restano <strong>$b-n+1$ correnti indipendenti</strong>: quelle dei rami di coalbero $\\mathbf i_c$ (correnti di maglia $\\mathbf j$, con $\\mathbf i=B^{\\mathsf T}\\mathbf j$).",
+  "In blocchi: $\\mathbf v_c=F^{\\mathsf T}\\mathbf v_t$ (dalla KVL $B\\mathbf v=0$) e $\\mathbf i_t=-F\\,\\mathbf i_c$ (dalla KCL $Q\\mathbf i=0$)."
+ ],
+ "figure": [],
+ "dimostrazioni": [
+  {
+   "titolo": "Tutte le tensioni si ricavano da quelle d'albero",
+   "passi": [
+    "La KVL con $B=[-F^{\\mathsf T}\\ \\ \\mathbb1]$ dà $-F^{\\mathsf T}\\mathbf v_t+\\mathbf v_c=0$.",
+    "Quindi $\\mathbf v_c=F^{\\mathsf T}\\mathbf v_t$: le tensioni di coalbero sono determinate da quelle d'albero.",
+    "Le $n-1$ tensioni d'albero sono libere: non esistono altri vincoli (le equazioni di KVL sono tante quante le maglie fondamentali, e sono già state usate tutte). $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Dal triangolo precedente",
+   "testo": "Nel triangolo dell'esempio II-03 (albero $a,b$) con $v_a=5\\,\\mathrm{V}$, $v_b=3\\,\\mathrm{V}$: trova $v_c$ e, sapendo $i_c=2\\,\\mathrm{A}$, le correnti $i_a,i_b$.",
+   "soluzione": [
+    "$F^{\\mathsf T}=(-1\\ \\ 1)$: $v_c=-5+3=-2\\,\\mathrm{V}$ (KVL: $v_a-v_b+v_c=0$ ✓).",
+    "$\\mathbf i_t=-F\\,i_c=\\begin{pmatrix}1\\\\-1\\end{pmatrix}\\cdot2=\\begin{pmatrix}2\\\\-2\\end{pmatrix}$: $i_a=2\\,\\mathrm{A}$, $i_b=-2\\,\\mathrm{A}$.",
+    "KCL nodo 1: esce $c$ ($i_c=2$) ed entra $a$ ($i_a=2$) ✓."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Assegnare liberamente $b$ tensioni di ramo.",
+   "corretto": "Solo $n-1$ tensioni (e $b-n+1$ correnti) sono indipendenti: le altre seguono dalla KVL/KCL."
+  }
+ ],
+ "esame": "Tensioni indipendenti: 18-9-2002, 30-10-2002, 24-4-2003, 12-7-2005 [STORICO].",
+ "formulario": [
+  "tens-indip",
+  "corr-indip"
+ ]
+}

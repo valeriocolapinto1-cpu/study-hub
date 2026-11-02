@@ -1,0 +1,53 @@
+{
+ "id": "II-05",
+ "obiettivi": [
+  "Enunciare e dimostrare il teorema di Tellegen",
+  "Dedurre conservazione della potenza e ortogonalità v–i",
+  "Applicare il teorema a due circuiti con lo stesso grafo"
+ ],
+ "teoria": [
+  "<strong>Teorema di Tellegen.</strong> Dato un grafo orientato, siano $\\mathbf v$ un vettore di tensioni che soddisfa la KVL e $\\mathbf i$ un vettore di correnti che soddisfa la KCL (con versi coerenti, es. convenzione degli utilizzatori). Allora $$\\mathbf v^{\\mathsf T}\\mathbf i=\\sum_{k=1}^{b}v_k\\,i_k=0.$$",
+  "Il teorema dipende <em>solo dalla topologia</em>: $\\mathbf v$ e $\\mathbf i$ possono appartenere a circuiti diversi con lo stesso grafo, a istanti diversi, ecc. Se sono dello stesso circuito, esprime la <strong>conservazione della potenza</strong>: la somma delle potenze assorbite da tutti i rami è nulla.",
+  "Geometricamente: il vettore delle tensioni appartiene al sottospazio generato dalle colonne di $A^{\\mathsf T}$, quello delle correnti al nucleo di $A$: i due sottospazi sono <em>ortogonali</em>."
+ ],
+ "figure": [],
+ "dimostrazioni": [
+  {
+   "titolo": "Teorema di Tellegen",
+   "passi": [
+    "La KVL implica $\\mathbf v=A^{\\mathsf T}\\mathbf e$ per un opportuno vettore di tensioni di nodo $\\mathbf e$ (potenziali rispetto al nodo di riferimento).",
+    "Allora $\\mathbf v^{\\mathsf T}\\mathbf i=(A^{\\mathsf T}\\mathbf e)^{\\mathsf T}\\mathbf i=\\mathbf e^{\\mathsf T}A\\,\\mathbf i$.",
+    "Per la KCL $A\\,\\mathbf i=\\mathbf0$, quindi $\\mathbf v^{\\mathsf T}\\mathbf i=0$. $\\square$"
+   ]
+  },
+  {
+   "titolo": "Ortogonalità tra spazio delle tensioni e delle correnti",
+   "passi": [
+    "Lo spazio delle tensioni ammissibili è $\\mathcal V=\\{A^{\\mathsf T}\\mathbf e\\}=\\operatorname{Im}A^{\\mathsf T}$; quello delle correnti è $\\mathcal I=\\ker A$.",
+    "Per l'algebra lineare $\\ker A=(\\operatorname{Im}A^{\\mathsf T})^{\\perp}$: ogni corrente ammissibile è ortogonale a ogni tensione ammissibile, e le dimensioni sommano a $b$: $(n-1)+(b-n+1)=b$. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Bilancio di potenza",
+   "testo": "Un generatore di tensione $V_g=10\\,\\mathrm{V}$ alimenta in serie $R_1=2\\,\\Omega$ e $R_2=3\\,\\Omega$. Verifica Tellegen.",
+   "soluzione": [
+    "$i=10/5=2\\,\\mathrm{A}$. $v_1=4\\,\\mathrm{V}$, $v_2=6\\,\\mathrm{V}$.",
+    "Potenze assorbite (utilizzatori): $R_1$: $8\\,\\mathrm{W}$, $R_2$: $12\\,\\mathrm{W}$; il generatore, in convenzione degli utilizzatori, ha $v=10$, $i=-2$: $-20\\,\\mathrm{W}$.",
+    "Somma: $8+12-20=0$. ✓"
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Sommare potenze «erogate» e «assorbite» con lo stesso segno.",
+   "corretto": "Usa una convenzione unica (utilizzatori su tutti i rami): la somma algebrica è zero."
+  }
+ ],
+ "esame": "Tellegen e ortogonalità v–i: 1-6-2000, 19-6-2002, 12-7-2007, 23-9-2008 [STORICO]. Dimostrazione richiesta.",
+ "formulario": [
+  "tellegen",
+  "ortogonalita"
+ ]
+}

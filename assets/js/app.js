@@ -5,7 +5,7 @@ import { summary } from './progress.js';
 
 const NAV = [
   ['Home', '', true], ['Corso', 'corso/', true], ['Esame', 'esame/', true], ['Programma', 'programma/', true],
-  ['Studio', 'studio/', true], ['Formulario', 'formulario/', false], ['Esercizi', 'esercizi/', false],
+  ['Studio', 'studio/', true], ['Formulario', 'formulario/', true], ['Esercizi', 'esercizi/', false],
   ['Quiz', 'quiz/', false], ['Prove', 'prova/', false], ['Archivio', 'archivio/', false],
   ['Risorse', 'risorse/', false], ['Appunti', 'appunti/', false], ['Simulatori', 'simulatori/', false],
   ['Progresso', 'progresso/', false], ['Piano', 'piano/', false], ['Impostazioni', 'impostazioni/', true], ['FAQ', 'faq/', false],
@@ -48,6 +48,7 @@ function buildHeader() {
       <a class="brand" href="${url('')}"><span aria-hidden="true">⚡</span> Teoria dei <b>Circuiti</b></a>
       <div class="gsearch"><input id="gs" type="search" placeholder="Cerca argomento…" aria-label="Cerca nel programma" autocomplete="off"><div class="gresults" id="gres" hidden></div></div>
       <span class="prog-ind" id="pind" title="Argomenti studiati">…</span>
+      <button class="btn" id="fdrawer-btn" aria-label="Apri formulario rapido" aria-expanded="false" title="Formulario rapido">ƒ</button>
       <button class="btn" id="theme-btn" aria-label="Cambia tema (attuale: ${t})" title="Tema: ${t}">${ICON[t]}</button>
       <button class="btn menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Menu">☰</button>
     </div>
@@ -102,5 +103,27 @@ function init() {
   const mb = header.querySelector('#menu-btn'), nav = header.querySelector('#nav');
   mb.addEventListener('click', () => { const o = nav.classList.toggle('open'); mb.setAttribute('aria-expanded', String(o)); });
   wireSearch(header);
+  wireDrawer(header);
+}
+
+function wireDrawer(header) {
+  const btn = header.querySelector('#fdrawer-btn');
+  let drawer = null;
+  const close = () => { if (drawer) drawer.hidden = true; btn.setAttribute('aria-expanded', 'false'); btn.focus(); };
+  btn.addEventListener('click', async () => {
+    if (drawer && !drawer.hidden) { close(); return; }
+    if (!drawer) {
+      drawer = document.createElement('aside');
+      drawer.className = 'drawer'; drawer.setAttribute('role', 'dialog'); drawer.setAttribute('aria-label', 'Formulario rapido');
+      drawer.innerHTML = '<div class="row"><h2 style="margin:0;border:0;flex:1">Formulario</h2><button class="btn" id="fd-close" aria-label="Chiudi formulario">✕</button></div><div id="fd-body"></div>';
+      document.body.append(drawer);
+      drawer.querySelector('#fd-close').addEventListener('click', close);
+      drawer.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+      const { mountFormulario } = await import('./formulario.js');
+      await mountFormulario(drawer.querySelector('#fd-body'), { compact: true });
+    }
+    drawer.hidden = false; btn.setAttribute('aria-expanded', 'true');
+    drawer.querySelector('.fq').focus();
+  });
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();

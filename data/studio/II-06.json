@@ -1,0 +1,51 @@
+{
+ "id": "II-06",
+ "obiettivi": [
+  "Calcolare resistenze equivalenti serie e parallelo",
+  "Applicare i partitori di tensione e di corrente",
+  "Conoscere le condizioni di applicabilità"
+ ],
+ "teoria": [
+  "<strong>Serie.</strong> Bipoli attraversati dalla stessa corrente: $R_{eq}=\\sum R_k$. <strong>Parallelo.</strong> Bipoli con la stessa tensione: $G_{eq}=\\sum G_k$, cioè $\\dfrac1{R_{eq}}=\\sum\\dfrac1{R_k}$; per due resistori $R_{eq}=\\dfrac{R_1R_2}{R_1+R_2}$.",
+  "<strong>Partitore di tensione</strong> (serie, tensione totale $v$): $v_k=v\\,\\dfrac{R_k}{\\sum_j R_j}$. <strong>Partitore di corrente</strong> (parallelo, corrente totale $i$): $i_k=i\\,\\dfrac{G_k}{\\sum_j G_j}$.",
+  "Condizione di applicabilità del partitore di tensione: la corrente è la stessa in tutti i resistori, cioè niente carico a valle che sottragga corrente."
+ ],
+ "figure": [
+  {
+   "alt": "Partitore di tensione: generatore V, resistori R₁ e R₂ in serie, uscita v₂ sul nodo intermedio",
+   "svg": "<svg viewBox=\"0 0 260 200\" width=\"260\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" font-family=\"system-ui,sans-serif\" font-size=\"14\" aria-hidden=\"true\"><polyline points=\"40 30 130 30\"/><circle cx=\"40\" cy=\"50\" r=\"18\"/><polyline points=\"40 30 40 32\"/><polyline points=\"40 68 40 90\"/><text x=\"40\" y=\"46\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">+</text><text x=\"40\" y=\"62\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">−</text><text x=\"16\" y=\"55\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">V</text><polyline points=\"40 90 40 160\"/><polyline points=\"130 30 130 30\"/><polyline points=\"130 30 130 40 121 45 139 55 121 65 139 75 130 80 130 90\"/><text x=\"148\" y=\"64\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">R₁</text><polyline points=\"130 100 130 110 121 115 139 125 121 135 139 145 130 150 130 160\"/><text x=\"148\" y=\"134\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">R₂</text><polyline points=\"40 160 130 160\"/><polyline points=\"130 160 130 160\"/><circle cx=\"130\" cy=\"95\" r=\"3\" fill=\"currentColor\"/><polyline points=\"130 95 190 95\"/><text x=\"200\" y=\"99\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">v₂</text><polyline points=\"40 160 40 168\"/><polyline points=\"28 168 52 168\"/><polyline points=\"33 173 47 173\"/><polyline points=\"37 178 43 178\"/></svg>"
+  }
+ ],
+ "dimostrazioni": [
+  {
+   "titolo": "Partitore di tensione",
+   "passi": [
+    "Corrente comune (KCL): $i=v/(R_1+R_2)$.",
+    "Costitutiva di $R_2$: $v_2=R_2\\,i=v\\,\\dfrac{R_2}{R_1+R_2}$. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Rete serie-parallelo",
+   "testo": "$R_1=6\\,\\Omega$ e $R_2=3\\,\\Omega$ in parallelo, in serie con $R_3=4\\,\\Omega$, alimentati da $18\\,\\mathrm{V}$. Trova $i$ in $R_1$.",
+   "soluzione": [
+    "$R_{12}=6\\cdot3/9=2\\,\\Omega$, $R_{eq}=2+4=6\\,\\Omega$, $i_{tot}=18/6=3\\,\\mathrm{A}$.",
+    "Partitore di corrente: $i_1=3\\cdot\\dfrac{1/6}{1/6+1/3}=3\\cdot\\dfrac13=1\\,\\mathrm{A}$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Usare il partitore di tensione con un carico collegato sul nodo intermedio senza includerlo.",
+   "corretto": "Il carico entra in parallelo a $R_2$: usa $R_2\\parallel R_L$."
+  }
+ ],
+ "esame": "Partitori e serie/parallelo sono la base dei calcoli nell'esercizio d'analisi [STORICO].",
+ "formulario": [
+  "serie",
+  "parallelo",
+  "part-v",
+  "part-i"
+ ]
+}

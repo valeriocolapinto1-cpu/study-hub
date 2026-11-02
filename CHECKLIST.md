@@ -23,14 +23,14 @@ Legenda: `[ ]` da fare · `[x]` fatto. Ogni fase termina con un commit e con la 
 - [x] **Criterio:** export/import ok, tema salvato, nessun errore in console
 
 ## Fase 2 — Studio blocchi I–II e Formulario
-- [ ] Template pagina di studio (10 sezioni fisse, KaTeX, dimostrazioni comprimibili, «Segna come studiato»)
-- [ ] Blocco I: pagine foglia complete (modellamento, porta/bipolo, proprietà, costitutive, energia, 2-porte, nullore)
-- [ ] Blocco II: pagine foglia complete (topologia, A/B, Tellegen, nodi/maglie, serie/parallelo, partitori)
-- [ ] Dimostrazioni: Tellegen e ortogonalità v–i; relazione A/B in forma a blocchi [DA VERIFICARE]
-- [ ] Esempi svolti originali (3 per blocco) e schemi SVG
-- [ ] `data/formulario.json` avviato; pagina Formulario con ricerca, filtri, segnalibri
-- [ ] Drawer rapido del formulario su ogni pagina
-- [ ] **Criterio:** pagine dei due blocchi complete, formule compilano in KaTeX
+- [x] Template pagina di studio (10 sezioni fisse, KaTeX, dimostrazioni comprimibili, «Segna come studiato»)
+- [x] Blocco I: pagine foglia complete (modellamento, porta/bipolo, proprietà, costitutive, energia, 2-porte, nullore)
+- [x] Blocco II: pagine foglia complete (topologia, A/B, Tellegen, nodi/maglie, serie/parallelo, partitori)
+- [x] Dimostrazioni: Tellegen e ortogonalità v–i; relazione A/B in forma a blocchi [DA VERIFICARE]
+- [x] Esempi svolti originali (3 per blocco) e schemi SVG
+- [x] `data/formulario.json` avviato (46 voci; arriva a 150 nella fase 7); pagina Formulario con ricerca, filtri, segnalibri
+- [x] Drawer rapido del formulario su ogni pagina
+- [x] **Criterio:** pagine dei due blocchi complete, formule compilano in KaTeX
 
 ## Fase 3 — Motore degli esercizi
 - [ ] `rational.js` (BigInt) e `complex.js` (complessi razionali)

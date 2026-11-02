@@ -1,0 +1,53 @@
+{
+ "id": "II-03",
+ "obiettivi": [
+  "Costruire le matrici di incidenza A e delle maglie B",
+  "Scrivere KCL e KVL in forma matriciale",
+  "Dimostrare la relazione tra i blocchi di A e B"
+ ],
+ "teoria": [
+  "<strong>Matrice di incidenza ridotta</strong> $A$, di dimensione $(n-1)\\times b$ (si elimina la riga di un nodo di riferimento): $a_{jk}=+1$ se il ramo $k$ esce dal nodo $j$, $-1$ se vi entra, $0$ altrimenti.",
+  "<strong>Matrice delle maglie fondamentali</strong> $B$, di dimensione $(b-n+1)\\times b$: $b_{jk}=+1$ se il ramo $k$ appartiene alla maglia $j$ con verso concorde, $-1$ se discorde, $0$ altrimenti.",
+  "<strong>Leggi di Kirchhoff in forma matriciale</strong> (con $\\mathbf i,\\mathbf v\\in\\mathbb R^b$): $$A\\,\\mathbf i=\\mathbf 0\\ \\ (\\text{KCL}),\\qquad B\\,\\mathbf v=\\mathbf 0\\ \\ (\\text{KVL}).$$",
+  "<strong>Forma a blocchi.</strong> Ordinando i rami prima l'albero e poi il coalbero, $A=[A_t\\ A_c]$ con $A_t$ quadrata $(n-1)\\times(n-1)$ invertibile, e $B=[B_t\\ B_c]$. Scegliendo come maglie fondamentali quelle del coalbero, $B_c=\\mathbb 1$. Definita $F=A_t^{-1}A_c$ (matrice dei tagli fondamentali $Q=A_t^{-1}A=[\\mathbb 1\\ F]$), si ha $$B=[-F^{\\mathsf T}\\ \\ \\mathbb 1].$$ Quindi <em>il blocco di $B$ relativo all'albero è meno la trasposta del blocco di $Q$ relativo al coalbero</em>.",
+  "Attenzione: $A$ e $B$ hanno <strong>dimensioni diverse</strong> ($(n-1)\\times b$ e $(b-n+1)\\times b$) e non sono una la trasposta dell'altra; la relazione vale tra i <em>blocchi</em>, con $A_t=\\mathbb 1$."
+ ],
+ "figure": [],
+ "dimostrazioni": [
+  {
+   "titolo": "Relazione tra B e A in forma a blocchi",
+   "enunciato": "Con $A=[A_t\\ A_c]$ ($A_t$ invertibile) e $B=[B_t\\ \\mathbb 1]$, la KVL è equivalente a $B_t=-(A_t^{-1}A_c)^{\\mathsf T}=-F^{\\mathsf T}$.",
+   "passi": [
+    "Le tensioni di ramo soddisfano $\\mathbf v=A^{\\mathsf T}\\mathbf e$ per un opportuno vettore $\\mathbf e$ di tensioni di nodo (potenziali), qualunque esso sia.",
+    "Poiché la KVL deve valere per ogni $\\mathbf e$: $B\\,A^{\\mathsf T}\\mathbf e=\\mathbf0$ per ogni $\\mathbf e$, cioè $B\\,A^{\\mathsf T}=0$, ovvero $A\\,B^{\\mathsf T}=0$.",
+    "In blocchi: $A\\,B^{\\mathsf T}=A_tB_t^{\\mathsf T}+A_c\\mathbb 1=0$.",
+    "Moltiplica a sinistra per $A_t^{-1}$: $B_t^{\\mathsf T}=-A_t^{-1}A_c=-F$, quindi $B_t=-F^{\\mathsf T}$. $\\square$"
+   ],
+   "nota": "La formulazione esatta data a lezione può essere diversa (ad esempio normalizzata con $A_t=\\mathbb1$) [DA VERIFICARE]."
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Matrici del grafo a 3 nodi (triangolo)",
+   "testo": "Triangolo con nodi $0,1,2$ e rami: $a$: $0\\to1$, $b$: $0\\to2$, $c$: $1\\to2$. Albero: $a,b$. Costruisci $A$, $B$ e verifica $A\\,B^{\\mathsf T}=0$.",
+   "soluzione": [
+    "Nodo di riferimento 0; righe: nodi 1, 2; colonne $a,b,c$. Il ramo $a$ entra in 1: $-1$; $b$ entra in 2: $-1$; $c$ esce da 1 ed entra in 2: $+1$ in riga 1, $-1$ in riga 2. $A=\\begin{pmatrix}-1&0&1\\\\0&-1&-1\\end{pmatrix}$.",
+    "Albero $\\{a,b\\}$: $A_t=\\begin{pmatrix}-1&0\\\\0&-1\\end{pmatrix}=-\\mathbb1$, $A_c=\\begin{pmatrix}1\\\\-1\\end{pmatrix}$, $F=A_t^{-1}A_c=\\begin{pmatrix}-1\\\\1\\end{pmatrix}$.",
+    "$B_t=-F^{\\mathsf T}=(1\\ \\ -1)$, $B=(1\\ \\ -1\\ \\ 1)$: maglia $a$, $-b$, $c$ (percorso $0\\to1\\to2\\to0$ ✓).",
+    "Verifica: $A B^{\\mathsf T}=\\begin{pmatrix}-1\\cdot1+0+1\\cdot1\\\\0+(-1)(-1)+(-1)(1)\\end{pmatrix}=\\begin{pmatrix}0\\\\0\\end{pmatrix}$. ✓"
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Scrivere $B=-A^{\\mathsf T}$ come relazione tra le matrici complete.",
+   "corretto": "Le dimensioni non coincidono: la relazione è $B_t=-(A_t^{-1}A_c)^{\\mathsf T}$ tra blocchi."
+  }
+ ],
+ "esame": "Topologia, $B=-A^{\\mathsf T}$ (in forma a blocchi) e tensioni indipendenti: 18-9-2002, 30-10-2002, 24-4-2003, 12-7-2005 [STORICO].",
+ "formulario": [
+  "kcl-mat",
+  "kvl-mat",
+  "b-da-a"
+ ]
+}
