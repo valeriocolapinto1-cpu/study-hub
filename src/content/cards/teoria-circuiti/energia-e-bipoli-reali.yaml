@@ -1,0 +1,51 @@
+- id: formula-energia-c
+  topic: energia-e-bipoli-reali
+  objectives:
+    - energia-e-bipoli-reali.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Energia nel condensatore**. Uso: Bilanci energetici.'
+    en: 'Write the formula: **Energy in the capacitor**. Use: Energy balances.'
+  back:
+    it: |-
+      $$W_C=\tfrac12\,C\,v^2$$
+
+      W [J]
+    en: |-
+      $$W_C=\tfrac12\,C\,v^2$$
+
+      W [J]
+- id: formula-energia-l
+  topic: energia-e-bipoli-reali
+  objectives:
+    - energia-e-bipoli-reali.1
+  kind: formula
+  front:
+    it: "Scrivi la formula: **Energia nell'induttore**. Uso: Bilanci energetici."
+    en: 'Write the formula: **Energy in the inductor**. Use: Energy balances.'
+  back:
+    it: |-
+      $$W_L=\tfrac12\,L\,i^2$$
+
+      W [J]
+    en: |-
+      $$W_L=\tfrac12\,L\,i^2$$
+
+      W [J]
+- id: formula-pila-reale
+  topic: energia-e-bipoli-reali
+  objectives:
+    - energia-e-bipoli-reali.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Generatore reale di tensione**. Uso: Modello di una pila.'
+    en: 'Write the formula: **Real voltage source**. Use: Model of a battery.'
+  back:
+    it: |-
+      $$v=E-r\,i$$
+
+      E f.e.m. [V]; r resistenza interna [Ω]
+    en: |-
+      $$v=E-r\,i$$
+
+      E e.m.f. [V]; r internal resistance [Ω]

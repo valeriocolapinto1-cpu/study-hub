@@ -1,0 +1,108 @@
+- id: orale-t-37
+  topic: trasformatore-ideale
+  objectives:
+    - trasformatore-ideale.1
+    - trasformatore-ideale.2
+  kind: orale
+  front:
+    it: "**Trasformatore ideale.** Scrivi le equazioni del trasformatore ideale, dimostra che non assorbe potenza e spiega l'impedenza riportata."
+    en: '**Ideal transformer.** Write the equations of the ideal transformer, prove that it absorbs no power and explain the reflected impedance.'
+  back:
+    it: |-
+      **Risposta modello.** Con convenzione degli utilizzatori su entrambe le porte v1 = n v2 e i1 = -i2/n. La potenza assorbita è v1 i1 + v2 i2 = n v2 (-i2/n) + v2 i2 = 0, quindi non assorbe potenza. Un carico ZL è visto dal primario come impedenza riportata n^2 ZL. È un elemento algebrico che funziona anche in continua.
+
+      **Punti da toccare:**
+
+      - $v_1=nv_2$, $i_1=-i_2/n$
+      - Potenza assorbita nulla: $v_1i_1+v_2i_2=0$
+      - Impedenza riportata $Z_{in}=n^2Z_L$
+      - Non è un induttore: funziona anche in continua
+    en: |-
+      **Model answer.** With the passive convention on both ports v1 = n v2 and i1 = -i2/n. The absorbed power is v1 i1 + v2 i2 = n v2 (-i2/n) + v2 i2 = 0, so it absorbs no power. A load ZL is seen from the primary as the reflected impedance n^2 ZL. It is an algebraic element that also works in DC.
+
+      **Points to cover:**
+
+      - $v_1=nv_2$, $i_1=-i_2/n$
+      - Zero absorbed power: $v_1i_1+v_2i_2=0$
+      - Reflected impedance $Z_{in}=n^2Z_L$
+      - It is not an inductor: it also works in DC
+- id: orale-t-38
+  topic: trasformatore-ideale
+  objectives:
+    - trasformatore-ideale.1
+    - trasformatore-ideale.3
+  kind: orale
+  front:
+    it: '**Trasformatore ideale e circuito equivalente.** Un trasformatore ideale con $n=2$ ha il carico $Z_L$ al secondario. Che impedenza vede il primario e come cambiano tensione e corrente?'
+    en: '**Ideal transformer and equivalent circuit.** An ideal transformer with $n=2$ has the load $Z_L$ at the secondary. What impedance does the primary see and how do voltage and current change?'
+  back:
+    it: |-
+      **Risposta modello.** Il primario vede l'impedenza riportata n^2 ZL = 4 ZL. La tensione al secondario è v2 = v1/n, cioè la metà, e la corrente al secondario in modulo è n volte quella al primario, cioè doppia. La potenza si conserva.
+
+      **Punti da toccare:**
+
+      - $Z_{in}=n^2Z_L=4Z_L$
+      - $v_2=v_1/n$
+      - $i_2=-n\,i_1$ (in modulo la corrente raddoppia)
+      - La potenza si conserva
+    en: |-
+      **Model answer.** The primary sees the reflected impedance n^2 ZL = 4 ZL. The secondary voltage is v2 = v1/n, i.e. half, and the magnitude of the secondary current is n times that of the primary, i.e. double. Power is conserved.
+
+      **Points to cover:**
+
+      - $Z_{in}=n^2Z_L=4Z_L$
+      - $v_2=v_1/n$
+      - $i_2=-n\,i_1$ (in magnitude the current doubles)
+      - Power is conserved
+- id: formula-trasf-v
+  topic: trasformatore-ideale
+  objectives:
+    - trasformatore-ideale.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Trasformatore ideale: tensioni**. Uso: Equazioni del trasformatore.'
+    en: 'Write the formula: **Ideal transformer: voltages**. Use: Transformer equations.'
+  back:
+    it: |-
+      $$v_1=n\,v_2$$
+
+      n rapporto di trasformazione
+    en: |-
+      $$v_1=n\,v_2$$
+
+      n turns ratio
+- id: formula-trasf-i
+  topic: trasformatore-ideale
+  objectives:
+    - trasformatore-ideale.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Trasformatore ideale: correnti**. Uso: Con la precedente.'
+    en: 'Write the formula: **Ideal transformer: currents**. Use: Together with the previous one.'
+  back:
+    it: |-
+      $$i_1=-\frac{i_2}{n}$$
+
+      Convenzione degli utilizzatori su entrambe le porte
+    en: |-
+      $$i_1=-\frac{i_2}{n}$$
+
+      Passive sign convention on both ports
+- id: formula-trasf-z
+  topic: trasformatore-ideale
+  objectives:
+    - trasformatore-ideale.3
+    - trasformatore-ideale.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Impedenza riportata**. Uso: Riduzione di circuiti col trasformatore.'
+    en: 'Write the formula: **Reflected impedance**. Use: Reducing circuits with a transformer.'
+  back:
+    it: |-
+      $$Z_{in}=n^2\,Z_L$$
+
+      Z_L carico alla porta 2 [Ω]
+    en: |-
+      $$Z_{in}=n^2\,Z_L$$
+
+      Z_L load at port 2 [Ω]

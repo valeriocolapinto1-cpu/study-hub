@@ -1,0 +1,34 @@
+- id: formula-sovrapposizione
+  topic: sovrapposizione-frequenze-diverse
+  objectives:
+    - sovrapposizione-frequenze-diverse.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Sovrapposizione nel tempo**. Uso: Più generatori a frequenze diverse.'
+    en: 'Write the formula: **Superposition in time**. Use: Several sources at different frequencies.'
+  back:
+    it: |-
+      $$y(t)=y_{dc}+\sum_k\mathrm{Re}\{Y_ke^{j\omega_kt}\}$$
+
+      ω_k frequenze diverse
+    en: |-
+      $$y(t)=y_{dc}+\sum_k\mathrm{Re}\{Y_ke^{j\omega_kt}\}$$
+
+      ω_k different frequencies
+- id: formula-cond-iniz-mista
+  topic: sovrapposizione-frequenze-diverse
+  objectives:
+    - sovrapposizione-frequenze-diverse.3
+  kind: formula
+  front:
+    it: "Scrivi la formula: **Condizione iniziale nel caso misto**. Uso: Passo 3 dell'esercizio."
+    en: 'Write the formula: **Initial condition in the mixed case**. Use: Step 3 of the exercise.'
+  back:
+    it: |-
+      $$x(0^-)=x_{dc}+\sum_k\mathrm{Re}\{X_k\}$$
+
+      x_dc valore continuo; X_k fasore della k-esima sinusoide
+    en: |-
+      $$x(0^-)=x_{dc}+\sum_k\mathrm{Re}\{X_k\}$$
+
+      x_dc DC value; X_k phasor of the k-th sinusoid

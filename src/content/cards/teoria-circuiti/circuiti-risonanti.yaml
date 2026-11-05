@@ -1,0 +1,156 @@
+- id: orale-t-24
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  kind: orale
+  front:
+    it: '**Circuito risonante serie.** Analizza il circuito RLC serie: pulsazione di risonanza, fattore di merito, banda.'
+    en: '**Series resonant circuit.** Analyse the series RLC circuit: resonant angular frequency, quality factor, bandwidth.'
+  back:
+    it: |-
+      **Risposta modello.** Alla pulsazione di risonanza omega0 = 1/sqrt(LC) la reattanza totale è nulla e l'impedenza è minima e puramente resistiva, uguale a R. Il fattore di merito è Q = omega0 L / R. La banda a 3 dB è B = omega0/Q = R/L. Alla risonanza le tensioni su L e C sono Q volte la tensione del generatore.
+
+      **Punti da toccare:**
+
+      - $\omega_0=1/\sqrt{LC}$: reattanza totale nulla, impedenza minima e uguale a $R$
+      - $Q=\omega_0L/R$
+      - Banda a 3 dB $B=\omega_0/Q=R/L$
+      - Alla risonanza tensioni su $L$ e $C$ pari a $Q$ volte quella del generatore
+    en: |-
+      **Model answer.** At the resonant angular frequency omega0 = 1/sqrt(LC) the total reactance is zero and the impedance is minimum and purely resistive, equal to R. The quality factor is Q = omega0 L / R. The 3 dB bandwidth is B = omega0/Q = R/L. At resonance the voltages across L and C are Q times the source voltage.
+
+      **Points to cover:**
+
+      - $\omega_0=1/\sqrt{LC}$: zero total reactance, minimum impedance equal to $R$
+      - $Q=\omega_0L/R$
+      - 3 dB bandwidth $B=\omega_0/Q=R/L$
+      - At resonance the voltages across $L$ and $C$ are $Q$ times the source voltage
+- id: orale-t-25
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  kind: orale
+  front:
+    it: '**Circuito risonante parallelo.** Analizza il circuito RLC parallelo: risonanza, $Q$ e banda, e confrontalo con il serie.'
+    en: '**Parallel resonant circuit.** Analyse the parallel RLC circuit: resonance, $Q$ and bandwidth, and compare it with the series one.'
+  back:
+    it: |-
+      **Risposta modello.** Nel parallelo alla pulsazione omega0 = 1/sqrt(LC) l'ammettenza è minima e l'impedenza è massima. Il fattore di merito è Q = R/(omega0 L) = omega0 R C e la banda è B = omega0/Q = 1/(RC). È il circuito duale del serie.
+
+      **Punti da toccare:**
+
+      - $\omega_0=1/\sqrt{LC}$ con ammettenza minima e impedenza massima
+      - $Q=R/(\omega_0L)=\omega_0RC$
+      - $B=\omega_0/Q=1/(RC)$
+      - Dualità con il circuito serie
+    en: |-
+      **Model answer.** In the parallel circuit at the angular frequency omega0 = 1/sqrt(LC) the admittance is minimum and the impedance maximum. The quality factor is Q = R/(omega0 L) = omega0 R C and the bandwidth is B = omega0/Q = 1/(RC). It is the dual of the series circuit.
+
+      **Points to cover:**
+
+      - $\omega_0=1/\sqrt{LC}$ with minimum admittance and maximum impedance
+      - $Q=R/(\omega_0L)=\omega_0RC$
+      - $B=\omega_0/Q=1/(RC)$
+      - Duality with the series circuit
+- id: formula-w0
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Pulsazione di risonanza**. Uso: Risonanza di RLC serie e parallelo.'
+    en: 'Write the formula: **Resonant angular frequency**. Use: Resonance of series and parallel RLC.'
+  back:
+    it: |-
+      $$\omega_0=\frac1{\sqrt{LC}}$$
+
+      L [H]; C [F]; ω₀ in rad/s
+    en: |-
+      $$\omega_0=\frac1{\sqrt{LC}}$$
+
+      L [H]; C [F]; ω₀ in rad/s
+- id: formula-q-serie
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Q del RLC serie**. Uso: Fattore di merito del RLC serie.'
+    en: 'Write the formula: **Q of the series RLC**. Use: Quality factor of the series RLC.'
+  back:
+    it: |-
+      $$Q=\frac{\omega_0L}{R}=\frac1{\omega_0RC}$$
+
+      ω₀ [rad/s]; L [H]; R [Ω]; C [F]
+    en: |-
+      $$Q=\frac{\omega_0L}{R}=\frac1{\omega_0RC}$$
+
+      ω₀ [rad/s]; L [H]; R [Ω]; C [F]
+- id: formula-q-par
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Q del RLC parallelo**. Uso: Fattore di merito del RLC parallelo.'
+    en: 'Write the formula: **Q of the parallel RLC**. Use: Quality factor of the parallel RLC.'
+  back:
+    it: |-
+      $$Q=\frac{R}{\omega_0L}=\omega_0RC$$
+
+      ω₀ [rad/s]; L [H]; R [Ω]; C [F]
+    en: |-
+      $$Q=\frac{R}{\omega_0L}=\omega_0RC$$
+
+      ω₀ [rad/s]; L [H]; R [Ω]; C [F]
+- id: formula-banda
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Banda a 3 dB**.'
+    en: 'Write the formula: **3 dB bandwidth**.'
+  back:
+    it: |-
+      $$B=\frac{\omega_0}{Q}$$
+
+      serie: R/L; parallelo: 1/(RC)
+    en: |-
+      $$B=\frac{\omega_0}{Q}$$
+
+      series: R/L; parallel: 1/(RC)
+- id: formula-z-ris-serie
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Impedenza serie in risonanza**.'
+    en: 'Write the formula: **Series impedance at resonance**.'
+  back:
+    it: |-
+      $$Z(\omega_0)=R$$
+
+      minima
+    en: |-
+      $$Z(\omega_0)=R$$
+
+      minimum
+- id: formula-z-ris-par
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Impedenza parallelo in risonanza**.'
+    en: 'Write the formula: **Parallel impedance at resonance**.'
+  back:
+    it: |-
+      $$Z(\omega_0)=R$$
+
+      massima
+    en: |-
+      $$Z(\omega_0)=R$$
+
+      maximum

@@ -1,0 +1,74 @@
+- id: orale-t-39
+  topic: teorema-di-sostituzione
+  objectives:
+    - teorema-di-sostituzione.1
+    - teorema-di-sostituzione.2
+  kind: orale
+  front:
+    it: '**Teorema di sostituzione.** Enuncia il teorema di sostituzione e discutine le condizioni.'
+    en: '**Substitution theorem.** State the substitution theorem and discuss its conditions.'
+  back:
+    it: |-
+      **Risposta modello.** Un bipolo si può sostituire con un generatore ideale di tensione che impone la stessa tensione, o con un generatore di corrente che impone la stessa corrente, assunti i valori della soluzione del circuito originale. Il circuito modificato deve avere soluzione unica. Non richiede la linearità.
+
+      **Punti da toccare:**
+
+      - Un bipolo (o una porta) può essere sostituito da un generatore ideale di tensione (o corrente) che impone la stessa tensione (o corrente)
+      - I valori sono quelli della soluzione del circuito originale
+      - Il circuito modificato deve avere soluzione unica
+      - Non richiede linearità
+    en: |-
+      **Model answer.** A one-port can be replaced by an ideal voltage source imposing the same voltage, or by a current source imposing the same current, taking the values of the solution of the original circuit. The modified circuit must have a unique solution. It does not require linearity.
+
+      **Points to cover:**
+
+      - A one-port (or port) can be replaced by an ideal voltage (or current) source imposing the same voltage (or current)
+      - The values are those of the solution of the original circuit
+      - The modified circuit must have a unique solution
+      - It does not require linearity
+- id: orale-t-40
+  topic: teorema-di-sostituzione
+  objectives:
+    - teorema-di-sostituzione.1
+    - teorema-di-sostituzione.3
+  kind: orale
+  front:
+    it: '**Uso del teorema di sostituzione.** Mostra come il teorema di sostituzione serve a dimostrare Thevenin e a calcolare una grandezza interna.'
+    en: '**Using the substitution theorem.** Show how the substitution theorem is used to prove Thévenin and to compute an internal quantity.'
+  back:
+    it: |-
+      **Risposta modello.** Si sostituisce il carico con un generatore di tensione che impone la stessa tensione, grazie al teorema di sostituzione. Con la sovrapposizione degli effetti per circuiti lineari si ottiene la relazione v = Vth - Zth i. Il teorema serve anche a sostituire un ramo di cui si conosce la tensione per semplificare il resto del circuito.
+
+      **Punti da toccare:**
+
+      - Si sostituisce il carico con un generatore di tensione o corrente
+      - Si applica la sovrapposizione degli effetti (circuiti lineari)
+      - Si ottiene la relazione $v=V_{th}-Z_{th}i$
+      - Si sostituisce un ramo noto per semplificare il resto
+    en: |-
+      **Model answer.** The load is replaced by a voltage source imposing the same voltage, thanks to the substitution theorem. With superposition for linear circuits the relation v = Vth - Zth i is obtained. The theorem is also used to replace a branch whose voltage is known in order to simplify the rest of the circuit.
+
+      **Points to cover:**
+
+      - The load is replaced by a voltage or current source
+      - Superposition is applied (linear circuits)
+      - The relation $v=V_{th}-Z_{th}i$ is obtained
+      - A known branch is replaced to simplify the rest
+- id: formula-sost
+  topic: teorema-di-sostituzione
+  objectives:
+    - teorema-di-sostituzione.1
+    - teorema-di-sostituzione.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Teorema di sostituzione**. Uso: Semplificare un circuito.'
+    en: 'Write the formula: **Substitution theorem**. Use: Simplifying a circuit.'
+  back:
+    it: |-
+      $$\text{bipolo}\ (v^*,i^*)\ \Rightarrow\ \text{generatore}\ v=v^*\ \text{o}\ i=i^*$$
+
+      soluzione unica
+    en: |-
+      $$\text{bipolo}\ (v^*,i^*)\ \Rightarrow\ \text{generatore}\ v=v^*\ \text{o}\ i=i^*$$
+
+      unique solution

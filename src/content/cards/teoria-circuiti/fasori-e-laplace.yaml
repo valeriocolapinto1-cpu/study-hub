@@ -1,0 +1,42 @@
+- id: orale-t-49
+  topic: fasori-e-laplace
+  objectives:
+    - fasori-e-laplace.1
+  kind: orale
+  front:
+    it: '**Relazione fasori–Laplace.** Spiega la relazione tra metodo dei fasori e trasformata di Laplace.'
+    en: '**Phasors–Laplace relation.** Explain the relation between the phasor method and the Laplace transform.'
+  back:
+    it: |-
+      **Risposta modello.** La funzione H(jω) per i fasori si ottiene da H(s) ponendo s = jω. Vale per sistemi stabili perché solo allora esiste il regime. I fasori forniscono la risposta permanente, mentre la trasformata di Laplace fornisce anche il transitorio.
+
+      **Punti da toccare:**
+
+      - $H(j\omega)=H(s)|_{s=j\omega}$
+      - Vale per sistemi stabili: il regime esiste
+      - I fasori danno la risposta permanente, Laplace anche il transitorio
+    en: |-
+      **Model answer.** The function H(jω) for phasors is obtained from H(s) by setting s = jω. It holds for stable systems because only then does a steady state exist. Phasors give the steady-state response, while the Laplace transform also gives the transient.
+
+      **Points to cover:**
+
+      - $H(j\omega)=H(s)|_{s=j\omega}$
+      - It holds for stable systems: the steady state exists
+      - Phasors give the steady-state response, Laplace the transient too
+- id: formula-mod-fase
+  topic: fasori-e-laplace
+  objectives:
+    - fasori-e-laplace.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Modulo e fase**. Uso: Risposta in frequenza.'
+    en: 'Write the formula: **Magnitude and phase**. Use: Frequency response.'
+  back:
+    it: |-
+      $$|H(j\omega)|,\ \ \arg H(j\omega)$$
+
+      H(jω) funzione di rete per i fasori
+    en: |-
+      $$|H(j\omega)|,\ \ \arg H(j\omega)$$
+
+      H(jω) network function for phasors

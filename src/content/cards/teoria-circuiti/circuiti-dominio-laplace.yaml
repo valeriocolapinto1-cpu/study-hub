@@ -1,0 +1,63 @@
+- id: orale-t-48
+  topic: circuiti-dominio-laplace
+  objectives:
+    - circuiti-dominio-laplace.1
+    - circuiti-dominio-laplace.3
+  kind: orale
+  front:
+    it: '**Metodo di Laplace per circuiti con memoria.** Descrivi il metodo di Laplace per studiare un circuito con elementi di memoria con condizioni iniziali non nulle.'
+    en: '**The Laplace method for circuits with memory.** Describe the Laplace method for studying a circuit with memory elements and non-zero initial conditions.'
+  back:
+    it: |-
+      **Risposta modello.** Si trasforma il circuito: R resta R, l'induttore diventa sL e il condensatore 1/(sC). Le condizioni iniziali diventano generatori equivalenti. Si risolve il circuito con partitori o maglie ottenendo V(s) razionale e si antitrasforma con la scomposizione in fratti semplici.
+
+      **Punti da toccare:**
+
+      - Si trasforma il circuito: $R$, $sL$, $1/(sC)$
+      - Condizioni iniziali come generatori equivalenti
+      - Si risolve il circuito resistivo ottenendo $V(s)$ razionale
+      - Si antitrasforma con i fratti semplici
+    en: |-
+      **Model answer.** The circuit is transformed: R stays R, the inductor becomes sL and the capacitor 1/(sC). The initial conditions become equivalent sources. The circuit is solved with dividers or meshes, giving a rational V(s), which is inverted by partial-fraction expansion.
+
+      **Points to cover:**
+
+      - The circuit is transformed: $R$, $sL$, $1/(sC)$
+      - Initial conditions as equivalent sources
+      - The resistive circuit is solved, giving a rational $V(s)$
+      - Inversion by partial fractions
+- id: formula-imped-s
+  topic: circuiti-dominio-laplace
+  objectives:
+    - circuiti-dominio-laplace.1
+    - circuiti-dominio-laplace.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Impedenze di Laplace**. Uso: Circuito trasformato.'
+    en: 'Write the formula: **Laplace impedances**. Use: Transformed circuit.'
+  back:
+    it: |-
+      $$Z_R=R,\quad Z_L=sL,\quad Z_C=\frac1{sC}$$
+
+      s variabile di Laplace [1/s]; R [Ω]; L [H]; C [F]
+    en: |-
+      $$Z_R=R,\quad Z_L=sL,\quad Z_C=\frac1{sC}$$
+
+      s Laplace variable [1/s]; R [Ω]; L [H]; C [F]
+- id: formula-l-cos-gen
+  topic: circuiti-dominio-laplace
+  objectives:
+    - circuiti-dominio-laplace.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Generatore sinusoidale in Laplace**. Uso: Generatori sinusoidali in Laplace.'
+    en: 'Write the formula: **Sinusoidal source in Laplace**. Use: Sinusoidal sources in Laplace.'
+  back:
+    it: |-
+      $$V_m\cos\omega t\ \to\ \frac{V_ms}{s^2+\omega^2}$$
+
+      V_m ampiezza; ω pulsazione
+    en: |-
+      $$V_m\cos\omega t\ \to\ \frac{V_ms}{s^2+\omega^2}$$
+
+      V_m amplitude; ω angular frequency

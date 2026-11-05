@@ -1,0 +1,107 @@
+- id: formula-imped-r
+  topic: impedenza-ammettenza
+  objectives:
+    - impedenza-ammettenza.1
+    - impedenza-ammettenza.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Impedenza del resistore**. Uso: Circuito fittizio dei fasori.'
+    en: 'Write the formula: **Impedance of the resistor**. Use: Fictitious phasor circuit.'
+  back:
+    it: |-
+      $$Z_R=R$$
+
+      R resistenza [Ω]
+    en: |-
+      $$Z_R=R$$
+
+      R resistance [Ω]
+- id: formula-imped-l
+  topic: impedenza-ammettenza
+  objectives:
+    - impedenza-ammettenza.1
+    - impedenza-ammettenza.2
+  kind: formula
+  front:
+    it: "Scrivi la formula: **Impedenza dell'induttore**. Uso: Circuito fittizio dei fasori."
+    en: 'Write the formula: **Impedance of the inductor**. Use: Fictitious phasor circuit.'
+  back:
+    it: |-
+      $$Z_L=j\omega L$$
+
+      L induttanza [H]; ω pulsazione [rad/s]; Z in Ω
+    en: |-
+      $$Z_L=j\omega L$$
+
+      L inductance [H]; ω angular frequency [rad/s]; Z in Ω
+- id: formula-imped-c
+  topic: impedenza-ammettenza
+  objectives:
+    - impedenza-ammettenza.1
+    - impedenza-ammettenza.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Impedenza del condensatore**. Uso: Circuito fittizio dei fasori.'
+    en: 'Write the formula: **Impedance of the capacitor**. Use: Fictitious phasor circuit.'
+  back:
+    it: |-
+      $$Z_C=\frac{1}{j\omega C}=-\frac{j}{\omega C}$$
+
+      C capacità [F]; ω pulsazione [rad/s]; Z in Ω
+    en: |-
+      $$Z_C=\frac{1}{j\omega C}=-\frac{j}{\omega C}$$
+
+      C capacitance [F]; ω angular frequency [rad/s]; Z in Ω
+- id: formula-ammettenza
+  topic: impedenza-ammettenza
+  objectives:
+    - impedenza-ammettenza.1
+    - impedenza-ammettenza.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Ammettenza**. Uso: Parallelo di bipoli.'
+    en: 'Write the formula: **Admittance**. Use: Parallel one-ports.'
+  back:
+    it: |-
+      $$Y=\frac1Z=G+jB$$
+
+      G conduttanza, B suscettanza [S]
+    en: |-
+      $$Y=\frac1Z=G+jB$$
+
+      G conductance, B susceptance [S]
+- id: formula-serie-imped
+  topic: impedenza-ammettenza
+  objectives:
+    - impedenza-ammettenza.3
+    - impedenza-ammettenza.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Impedenze in serie e in parallelo**. Uso: Riduzione di reti.'
+    en: 'Write the formula: **Impedances in series and in parallel**. Use: Network reduction.'
+  back:
+    it: |-
+      $$Z_{s}=\sum Z_k,\qquad Y_{p}=\sum Y_k$$
+
+      Z impedenze [Ω]; Y ammettenze [S]
+    en: |-
+      $$Z_{s}=\sum Z_k,\qquad Y_{p}=\sum Y_k$$
+
+      Z impedances [Ω]; Y admittances [S]
+- id: formula-part-v-fasori
+  topic: impedenza-ammettenza
+  objectives:
+    - impedenza-ammettenza.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Partitore di tensione complesso**. Uso: Serie senza carico a valle.'
+    en: 'Write the formula: **Complex voltage divider**. Use: Series with no downstream load.'
+  back:
+    it: |-
+      $$\dot V_k=\dot V\,\frac{Z_k}{\sum Z_j}$$
+
+      V̇ tensione totale; Z_k impedenza del tratto k [Ω]
+    en: |-
+      $$\dot V_k=\dot V\,\frac{Z_k}{\sum Z_j}$$
+
+      V̇ total voltage; Z_k impedance of section k [Ω]
