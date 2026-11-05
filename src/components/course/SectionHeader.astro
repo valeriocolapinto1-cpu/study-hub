@@ -1,0 +1,14 @@
+---
+/** Intestazione standard delle sezioni generiche del corso. */
+interface Props {
+  title: string;
+  lead?: string | undefined;
+}
+const { title, lead } = Astro.props;
+---
+
+<header class="sh-section-head">
+  <h1>{title}</h1>
+  {lead && <p class="lead">{lead}</p>}
+  <slot />
+</header>

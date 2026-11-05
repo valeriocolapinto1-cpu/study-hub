@@ -14,6 +14,8 @@ export default defineConfig({
   base: '/study-hub',
   trailingSlash: 'always',
   output: 'static',
+  // Build delle fixture end-to-end (corso finto): cartella separata, mai pubblicata.
+  outDir: process.env.PUBLIC_STUDY_HUB_FIXTURES === '1' ? './dist-fixtures' : './dist',
   build: { format: 'directory' },
   // Matematica resa a build-time con KaTeX (HTML + MathML): nessun JS nel browser.
   // Sätteri (processore predefinito) non supporta la matematica: si usa unified().

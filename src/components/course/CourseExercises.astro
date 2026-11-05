@@ -1,0 +1,44 @@
+---
+/**
+ * Sezione Esercizi di un corso: elenco filtrabile con link alle pagine per argomento.
+ * Uso (pagina generica già presente): <CourseExercises lang={lang} courseId="fisica-2" />
+ */
+import ExerciseList from '../../islands/ExerciseList';
+import SectionHeader from './SectionHeader.astro';
+import { getCourseData } from '../../lib/course-data';
+import { t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+  courseId: string;
+}
+const { lang, courseId } = Astro.props;
+const data = await getCourseData(courseId, lang);
+const items = data.exercises.map((e) => ({
+  id: e.id,
+  topic: e.topic,
+  objectives: e.objectives,
+  difficulty: e.difficulty,
+  title:
+    e.kind === 'generated' && !e.statementHtml
+      ? `${data.topics.find((tp) => tp.id === e.topic)?.title ?? e.topic} · ${t(lang, 'engine.generated')}`
+      : e.title,
+  generated: e.kind === 'generated',
+  href: `${data.paths.exercises}${e.topic}/#${e.id}`,
+}));
+---
+
+<SectionHeader title={t(lang, 'page.exercises.title')} lead={t(lang, 'page.exercises.lead')} />
+<nav aria-label={t(lang, 'engine.topic')}>
+  <ul class="sh-topic-links">
+    {data.topics.map((tp) => {
+      const n = data.exercises.filter((e) => e.topic === tp.id).length;
+      return n > 0 ? (
+        <li>
+          <a href={`${data.paths.exercises}${tp.id}/`}>{tp.title}</a> <span class="sh-muted">({n})</span>
+        </li>
+      ) : null;
+    })}
+  </ul>
+</nav>
+<ExerciseList client:load lang={lang} courseId={courseId} topics={data.topics} items={items} />

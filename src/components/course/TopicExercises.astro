@@ -1,0 +1,44 @@
+---
+/**
+ * Esercizi di un argomento: un ExercisePlayer per esercizio (idratato quando visibile) + appunti.
+ * Uso: <TopicExercises lang={lang} courseId="fisica-2" topicId="legge-di-gauss" />
+ */
+import 'katex/dist/katex.min.css';
+import ExercisePlayer from '../../islands/ExercisePlayer';
+import SectionHeader from './SectionHeader.astro';
+import Notes from './Notes.astro';
+import { getCourseData } from '../../lib/course-data';
+import { hashString } from '../../engine/random';
+import { t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+  courseId: string;
+  topicId: string;
+}
+const { lang, courseId, topicId } = Astro.props;
+const data = await getCourseData(courseId, lang);
+const topic = data.topics.find((tp) => tp.id === topicId);
+if (!topic) throw new Error(`${courseId}: argomento sconosciuto "${topicId}"`);
+const exercises = data.exercises.filter((e) => e.topic === topicId);
+---
+
+<SectionHeader title={t(lang, 'page.topicExercises', { topic: topic.title })}>
+  <p>
+    <a href={data.paths.exercises}>← {t(lang, 'page.backToList')}</a>
+  </p>
+</SectionHeader>
+<div class="sh-exercise-stack">
+  {exercises.map((exercise, i) => (
+    <ExercisePlayer
+      client:visible
+      lang={lang}
+      courseId={courseId}
+      exercise={exercise}
+      number={i + 1}
+      headingLevel={2}
+      seed={hashString(exercise.id)}
+    />
+  ))}
+</div>
+<Notes lang={lang} scope={courseId} />

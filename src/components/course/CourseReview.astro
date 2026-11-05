@@ -1,0 +1,22 @@
+---
+/**
+ * Sezione Ripasso di un corso: coda FSRS delle flashcard (definizioni, formule, domande d'orale).
+ * Uso: <CourseReview lang={lang} courseId="fisica-1" />
+ */
+import 'katex/dist/katex.min.css';
+import ReviewSession from '../../islands/ReviewSession';
+import SectionHeader from './SectionHeader.astro';
+import { getCourseData } from '../../lib/course-data';
+import { t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+  courseId: string;
+}
+const { lang, courseId } = Astro.props;
+const data = await getCourseData(courseId, lang);
+const decks = [{ courseId, title: data.title, cards: data.cards, examDates: data.examDates }];
+---
+
+<SectionHeader title={t(lang, 'page.review.title')} lead={t(lang, 'page.review.lead')} />
+<ReviewSession client:load lang={lang} decks={decks} />

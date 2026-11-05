@@ -27,8 +27,11 @@ src/styles/{base,components,prose,print}.css, src/styles/courses/<courseId>.css 
 src/layouts/                    BaseLayout, CourseLayout, PrintLayout
 src/components/                 Head, Header, Footer, LangSwitch, ThemeToggle, CourseNav, …
 src/lib/courses.ts              coursePath(), sortCourses(), COURSE_SECTIONS
-src/engine/                     TS puro: storage.ts, migrate.ts, random.ts, generators/{registry,index}.ts, …
-src/islands/                    componenti Preact interattivi
+src/engine/                     TS puro: storage, migrate, random, units, grading, fsrs, progress, exam, mastery,
+                                notes, exportImport, qr, rich, course-data, generators/{registry,index}.ts (docs/ENGINE.md)
+src/islands/                    isole Preact del motore (ExercisePlayer, ReviewSession, ExamRunner, …) + islands.css
+src/components/course/          sezioni generiche del corso (esercizi, ripasso, esame, progressi, appunti)
+src/lib/course-data.ts          dati dei corsi per le isole (testi localizzati, HTML con KaTeX a build-time)
 src/sim/                        kit simulatori
 src/courses/<courseId>/         codice specifico: generators/*.ts, sims/*.tsx, extras/*
 src/content/                    content collections (dati)
@@ -122,6 +125,13 @@ Principi, componenti e regole d'uso: `docs/design/README.md`; catalogo visivo di
 5. Voci di migrazione in `src/engine/migrate.ts`; dubbi di contenuto in `docs/revisione/<courseId>.md`.
 6. Pagine campione nuove in `tests/e2e/pages.ts` e `lighthouserc.cjs`; poi rigenerare le baseline visive.
 
+## Motore di studio
+
+Correzione, ripasso FSRS, prove d'esame stampabili, padronanza, piano di studio, appunti, export/QR: vedi
+**docs/ENGINE.md**. Le sezioni `esercizi/`, `ripasso/`, `esame/`, `progressi/` e `dati.json` di ogni corso
+sono generate da `src/pages/[lang]/[anno]/[course]/` (sostituibili con pagine statiche allo stesso percorso);
+pagine globali `/<lang>/ripasso/`, `/<lang>/appunti/`, `/<lang>/i-miei-dati/`, `/<lang>/stampa/prova/`.
+
 ## Comandi
 
 | Comando | Cosa fa |
@@ -130,6 +140,8 @@ Principi, componenti e regole d'uso: `docs/design/README.md`; catalogo visivo di
 | `npm run build` | build statica in `dist/` |
 | `npm run check` | `astro check` + `tsc --noEmit` |
 | `npm test` | vitest (unit + contenuti) |
+| `npm run test:coverage` | vitest con copertura (≥ 90 % righe su `src/engine`) |
+| `npm run build:fixtures` | build del corso finto di `tests/fixtures/content` in `dist-fixtures/` (e2e delle isole) |
 | `npm run test:content` | solo i controlli sui contenuti |
 | `npm run test:links` | link interni di `dist/` (dopo la build) |
 | `npm run test:e2e` | Playwright (smoke, axe, visual) su `dist/` servita da `tools/serve-dist.mjs` |
@@ -141,8 +153,8 @@ In locale con un Chromium già installato: `PW_CHROMIUM_PATH=/opt/pw-browsers/ch
 
 ## CI e deploy
 
-- `.github/workflows/ci.yml` (PR e push su main): `check` (astro check, tsc, prettier), `unit` (vitest), `build`
-  (build, test dei contenuti, link interni), `e2e` (container Playwright: smoke, axe WCAG 2.2 AA 0 violazioni serious/critical
+- `.github/workflows/ci.yml` (PR e push su main): `check` (astro check, tsc, prettier), `unit` (vitest con copertura), `build`
+  (build, test dei contenuti, link interni, build delle fixture), `e2e` (container Playwright: smoke, isole del motore sulle fixture, axe WCAG 2.2 AA 0 violazioni serious/critical
   in tema chiaro e scuro, visual 390/1280 px chiaro/scuro), `lighthouse` (≥ 0.95 nelle quattro categorie, JS ≤ 50 KB).
 - **Baseline visive**: si generano solo in CI con il workflow *Aggiorna baseline visive* (avvio manuale, oppure push su un branch con `[baseline]` nel messaggio dell'ultimo commit)
   (`visual-baselines.yml`), che le committa sul branch. Dopo il suo commit serve un nuovo push perché la CI riparta

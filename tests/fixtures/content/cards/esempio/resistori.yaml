@@ -4,3 +4,13 @@
   kind: definizione
   front: { it: Che cos'è la resistenza?, en: What is resistance? }
   back: { it: Il rapporto tra tensione e corrente., en: The ratio of voltage to current. }
+- id: orale-ohm
+  topic: resistori
+  objectives: [resistori.1]
+  kind: orale
+  front: { it: Enuncia la legge di Ohm e discutine i limiti., en: State Ohm's law and discuss its limits. }
+  back:
+    {
+      it: '$V = R I$ per i bipoli lineari; non vale per diodi e componenti non lineari.',
+      en: '$V = R I$ for linear two-terminal elements; it does not hold for diodes and non-linear components.',
+    }

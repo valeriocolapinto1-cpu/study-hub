@@ -1,0 +1,26 @@
+---
+/**
+ * Pagina generica della sezione per ogni corso. Un corso può sostituirla
+ * creando una pagina statica allo stesso percorso (le rotte statiche hanno la precedenza).
+ */
+import CourseLayout from '../../../../../layouts/CourseLayout.astro';
+import CourseProgress from '../../../../../components/course/CourseProgress.astro';
+import { getCourse, courseStaticPaths } from '../../../../../lib/course-data';
+import { t, type Lang } from '../../../../../i18n';
+
+export const getStaticPaths = courseStaticPaths;
+const lang = Astro.params.lang as Lang;
+const { courseId } = Astro.props as { courseId: string };
+const course = await getCourse(courseId);
+---
+
+<CourseLayout
+  lang={lang}
+  course={course}
+  title={t(lang, 'page.progress.title')}
+  description={t(lang, 'page.progress.lead')}
+>
+  <div class="container page">
+    <CourseProgress lang={lang} courseId={courseId} />
+  </div>
+</CourseLayout>

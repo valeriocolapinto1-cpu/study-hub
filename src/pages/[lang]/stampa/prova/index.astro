@@ -1,0 +1,23 @@
+---
+/**
+ * Stampa di una prova d'esame (testo o soluzioni) con parametri nella query
+ * (vedi `printQuery` in src/engine/exam.ts). Apre la finestra di stampa: "Salva come PDF".
+ */
+import 'katex/dist/katex.min.css';
+import '../../../../islands/islands.css';
+import { getCollection } from 'astro:content';
+import PrintLayout from '../../../../layouts/PrintLayout.astro';
+import PrintExam from '../../../../islands/PrintExam';
+import { coursePaths } from '../../../../lib/course-data';
+import { langPaths, t, type Lang } from '../../../../i18n';
+
+export const getStaticPaths = langPaths;
+const lang = Astro.params.lang as Lang;
+const dataUrls = Object.fromEntries(
+  (await getCollection('courses')).map((c) => [c.data.id, coursePaths(c.data, lang).data]),
+);
+---
+
+<PrintLayout lang={lang} title={t(lang, 'print.title')} description={t(lang, 'page.exam.lead')}>
+  <PrintExam client:load lang={lang} dataUrls={dataUrls} />
+</PrintLayout>
