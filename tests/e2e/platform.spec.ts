@@ -36,7 +36,10 @@ test.describe('Contribuisci', () => {
     await expect(page.getByRole('radio', { name: 'Suggerimento' })).toBeChecked();
     // Nessun caricamento di terze parti finché il modulo non è configurato.
     const third: string[] = [];
-    page.on('request', (r) => !r.url().startsWith('http://localhost') && third.push(r.url()));
+    page.on(
+      'request',
+      (r) => /^https?:/.test(r.url()) && !r.url().startsWith('http://localhost') && third.push(r.url()),
+    );
 
     await page.getByRole('button', { name: "Prepara l'email" }).click();
     const summary = page.getByRole('alert').filter({ hasText: 'Controlla' });
@@ -54,7 +57,7 @@ test.describe('Contribuisci', () => {
     expect(href.startsWith('mailto:valeriocolapinto1@gmail.com?')).toBe(true);
     expect(q.get('subject')).toContain('[miglioria]');
     expect(q.get('body')).toContain('Pagina: /study-hub/it/chi-sono/');
-    expect(q.get('body')).toContain('Nome: Anna');
+    expect(q.get('body')).toContain('Nome per i ringraziamenti: Anna');
     expect(third).toEqual([]);
   });
 

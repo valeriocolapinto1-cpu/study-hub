@@ -149,7 +149,11 @@ function SearchUI({ config, dialog }: { config: SearchConfig; dialog: HTMLDialog
   const links = () =>
     Array.from(list.current?.querySelectorAll<HTMLAnchorElement>('a.pf-search__link') ?? []);
   const onKeyInput = (e: KeyboardEvent) => {
-    if (e.key === 'ArrowDown') {
+    if (e.key === 'Escape') {
+      // Nel campo di ricerca Esc svuoterebbe il testo: qui chiude sempre il dialogo.
+      e.preventDefault();
+      dialog.close();
+    } else if (e.key === 'ArrowDown') {
       e.preventDefault();
       links()[0]?.focus();
     } else if (e.key === 'Enter') {

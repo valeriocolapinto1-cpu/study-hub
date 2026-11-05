@@ -30,8 +30,9 @@ test('"Segnala un errore" porta a Contribuisci con la pagina precompilata', asyn
   const link = page.locator('a.report-error').first();
   await expect(link).toHaveAttribute('href', /contribuisci\/\?pagina=%2Fstile&tipo=errore$/);
   await link.click();
-  await expect(page.locator('[data-contribute-page]')).toHaveText('/stile');
-  await expect(page.locator('[data-contribute-mail]')).toHaveAttribute('href', /subject=.*errore/);
+  // Il modulo (isola) si precompila dalla query.
+  await expect(page.getByLabel('Pagina')).toHaveValue('/stile');
+  await expect(page.getByRole('radio', { name: 'Errore' })).toBeChecked();
 });
 
 test('le pagine di stampa e le icone dichiarate esistono', async ({ request }) => {

@@ -4,6 +4,7 @@
  * pagina "sei offline", avviso di nuova versione).
  */
 import AxeBuilder from '@axe-core/playwright';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
 
 const B = '/study-hub/';
@@ -74,6 +75,8 @@ test.describe('ricerca', () => {
 
 test.describe('offline', () => {
   test.use({ serviceWorkers: 'allow' });
+  // Il secondo test modifica dist-fixtures/sw.js: niente esecuzione in parallelo.
+  test.describe.configure({ mode: 'serial' });
 
   test('scarica un corso, funziona senza rete e lo rimuove', async ({ page, context }) => {
     await page.goto(C);
@@ -113,16 +116,19 @@ test.describe('offline', () => {
     await expect(page.locator('.pf-offline')).toHaveAttribute('data-state', 'none');
   });
 
-  test('avvisa quando c’è una nuova versione e aggiorna solo su richiesta', async ({ page, context }) => {
+  test('avvisa quando c’è una nuova versione e aggiorna solo su richiesta', async ({ page }) => {
     await page.goto(`${B}it/`);
     await expect(page.locator('html')).toHaveAttribute('data-sw', 'ready', { timeout: 20_000 });
-    // Simula una nuova pubblicazione: il server restituisce un sw.js diverso.
-    await context.route(`**${B}sw.js`, async (route) => {
-      const res = await route.fetch();
-      const body = (await res.text()).replace(/"version":"[a-f0-9]+"/, '"version":"nuova-versione"');
-      await route.fulfill({ response: res, body: `${body}\n// modificato dal test` });
-    });
-    await page.evaluate(async () => (await navigator.serviceWorker.getRegistration())?.update());
+    // Simula una nuova pubblicazione: sw.js con un'altra versione sul server.
+    const file = 'dist-fixtures/sw.js';
+    const original = readFileSync(file, 'utf8');
+    test.info().attach('sw-originale', { body: original.slice(0, 120) });
+    writeFileSync(file, original.replace(/"version":"[a-f0-9]+"/, '"version":"nuova-versione"'));
+    try {
+      await page.evaluate(async () => (await navigator.serviceWorker.getRegistration())?.update());
+    } finally {
+      writeFileSync(file, original);
+    }
     const toast = page.locator('[data-pwa-update]');
     await expect(toast).toBeVisible({ timeout: 20_000 });
     await expect(toast).toContainText('Nuova versione disponibile');
