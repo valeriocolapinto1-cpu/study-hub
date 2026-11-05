@@ -22,6 +22,8 @@ export interface TopicInfo {
 
 export interface AnswerItemData {
   label: string;
+  /** Etichetta resa in HTML (matematica KaTeX), se contiene markup. */
+  labelHtml?: string;
   value: number | string;
   unit?: string;
   tol?: number;

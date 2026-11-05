@@ -97,7 +97,8 @@ export function exerciseData(e: CollectionEntry<'exercises'>['data'], lang: Lang
       bodyHtml: richHtml(tr(s.body, lang)),
     })),
     answer: (e.answer ?? []).map((a) => ({
-      label: tr(a.label, lang),
+      label: plainText(tr(a.label, lang)),
+      labelHtml: richInline(tr(a.label, lang)),
       value: a.value,
       ...(a.unit ? { unit: a.unit } : {}),
       ...(a.tol !== undefined ? { tol: a.tol } : {}),

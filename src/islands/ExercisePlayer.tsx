@@ -14,6 +14,7 @@ import { exerciseStatus, loadProgress, saveAttempt, type ProgressState } from '.
 import { formatComplex, formatNumber, parseComplex } from '../engine/units';
 import { randomSeed } from '../engine/random';
 import { renderRichClient } from './lib/rich-client';
+import { plainText } from '../engine/rich';
 import { useStored } from './lib/hooks';
 import { t, type Lang } from './lib/i18n';
 import './islands.css';
@@ -57,7 +58,7 @@ export async function generatedContent(
   const { loadCourseGenerators, runGenerator } = await import('../engine/generators/index');
   await loadCourseGenerators(courseId);
   const g = runGenerator(generator, seed, lang);
-  const [statementHtml, steps, choices] = await Promise.all([
+  const [statementHtml, steps, choices, answer] = await Promise.all([
     renderRichClient(g.statement),
     Promise.all(
       g.steps.map(async (s) => ({
@@ -74,6 +75,13 @@ export async function generatedContent(
           })),
         )
       : Promise.resolve(undefined),
+    Promise.all(
+      g.answer.map(async (a) => ({
+        ...a,
+        label: plainText(a.label),
+        labelHtml: await renderRichClient(a.label, { inlineOnly: true }),
+      })),
+    ),
   ]);
   // figura da netlist: lo schema si carica solo quando un generatore lo usa
   let figureSvg = g.figure?.svg;
@@ -84,7 +92,7 @@ export async function generatedContent(
       idPrefix: `fig-${generator.replace(/\W/g, '-')}-${seed}`,
     }).svg;
   }
-  return { statementHtml, figureSvg, steps, answer: g.answer, choices };
+  return { statementHtml, figureSvg, steps, answer, choices };
 }
 
 /** Valore atteso leggibile (per il feedback dopo la soluzione). */
@@ -281,7 +289,11 @@ export default function ExercisePlayer({
                 const id = `${uid}-f${i}`;
                 return (
                   <div class={`sh-field ${fr ? STATUS_CLASS[fr.status] : ''}`} key={`${seed}-${i}`}>
-                    <label for={id}>{a.label}</label>
+                    {a.labelHtml ? (
+                      <label for={id} dangerouslySetInnerHTML={{ __html: a.labelHtml }} />
+                    ) : (
+                      <label for={id}>{a.label}</label>
+                    )}
                     <div class="sh-field__row">
                       <input
                         id={id}
