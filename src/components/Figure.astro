@@ -11,6 +11,10 @@ interface Props {
 }
 const { caption, num, id, wide = false } = Astro.props;
 const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
+/** Didascalia in testo semplice: `V_th` o `N_{ab}` diventano pedici. */
+const captionParts = (caption ?? '')
+  .split(/(?<=[\p{L}])_(\{[^}]+\}|[\p{L}\d]+)/u)
+  .map((part, i) => ({ sub: i % 2 === 1, text: i % 2 === 1 ? part.replace(/^\{|\}$/g, '') : part }));
 ---
 
 <figure class:list={['figure', { 'figure--wide': wide }]} id={id}>
@@ -24,7 +28,7 @@ const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
           {t(lang, 'figure.label')} {num}
         </b>
       )}
-      {caption}
+      {captionParts.map((p) => (p.sub ? <sub>{p.text}</sub> : p.text))}
     </figcaption>
   )}
 </figure>

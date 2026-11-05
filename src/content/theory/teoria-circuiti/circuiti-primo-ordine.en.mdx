@@ -39,61 +39,16 @@ A circuit with a single memory element and independent sources is described by $
   num="1"
   id="fig-1"
 >
-  <svg
-    viewBox="0 0 300 170"
-    xmlns="http://www.w3.org/2000/svg"
-    stroke="currentColor"
-    stroke-width="2"
-    fill="none"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    font-family="system-ui,sans-serif"
-    font-size="14"
-    aria-hidden="true"
-    focusable="false"
-    class="diagram"
-    style="max-width: 300px"
-  >
-    <circle cx="40" cy="60" r="18" />
-    <polyline points="40 40 40 42" />
-    <polyline points="40 78 40 100" />
-    <text x="40" y="56" text-anchor="middle" fill="currentColor" stroke="none">
-      +
-    </text>
-    <text x="40" y="72" text-anchor="middle" fill="currentColor" stroke="none">
-      −
-    </text>
-    <text x="16" y="65" text-anchor="end" fill="currentColor" stroke="none">
-      v_g
-    </text>
-    <polyline points="40 40 40 30" />
-    <polyline points="40 30 70 30" />
-    <polyline points="70 30 80 30 85 21 95 39 105 21 115 39 120 30 130 30" />
-    <text x="100" y="14" text-anchor="middle" fill="currentColor" stroke="none">
-      R
-    </text>
-    <polyline points="130 30 220 30" />
-    <polyline points="220 30 220 55" />
-    <g transform="translate(220,55) rotate(90)">
-      <polyline points="0 0 24 0" />
-      <polyline points="24 -12 24 12" />
-      <polyline points="34 -12 34 12" />
-      <polyline points="34 0 60 0" />
-    </g>
-    <text x="236" y="90" text-anchor="start" fill="currentColor" stroke="none">
-      C
-    </text>
-    <polyline points="220 115 220 130" />
-    <polyline points="40 100 40 130" />
-    <polyline points="40 130 220 130" />
-    <polyline points="130 130 130 138" />
-    <polyline points="118 138 142 138" />
-    <polyline points="123 143 137 143" />
-    <polyline points="127 148 133 148" />
-    <text x="240" y="40" text-anchor="start" fill="currentColor" stroke="none">
-      v_C
-    </text>
-  </svg>
+  <Circuit
+    netlist={{
+      elements: [
+        { type: 'V', id: 'vg', a: 'in', b: '0', dc: 1 },
+        { type: 'R', id: 'R', a: 'in', b: 'o', value: 1 },
+        { type: 'C', id: 'C', a: 'o', b: '0', value: 1, show: { v: 'v_C' } },
+      ],
+    }}
+    values={false}
+  />
 </Figure>
 
 <details class="proof" data-note-id="circuiti-primo-ordine-dimostrazione-1">

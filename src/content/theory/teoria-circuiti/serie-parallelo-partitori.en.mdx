@@ -39,56 +39,16 @@ Condition for the voltage divider: the current is the same in all the resistors,
   num="1"
   id="fig-1"
 >
-  <svg
-    viewBox="0 0 260 200"
-    xmlns="http://www.w3.org/2000/svg"
-    stroke="currentColor"
-    stroke-width="2"
-    fill="none"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    font-family="system-ui,sans-serif"
-    font-size="14"
-    aria-hidden="true"
-    focusable="false"
-    class="diagram"
-    style="max-width: 260px"
-  >
-    <polyline points="40 30 130 30" />
-    <circle cx="40" cy="50" r="18" />
-    <polyline points="40 30 40 32" />
-    <polyline points="40 68 40 90" />
-    <text x="40" y="46" text-anchor="middle" fill="currentColor" stroke="none">
-      +
-    </text>
-    <text x="40" y="62" text-anchor="middle" fill="currentColor" stroke="none">
-      −
-    </text>
-    <text x="16" y="55" text-anchor="end" fill="currentColor" stroke="none">
-      V
-    </text>
-    <polyline points="40 90 40 160" />
-    <polyline points="130 30 130 30" />
-    <polyline points="130 30 130 40 121 45 139 55 121 65 139 75 130 80 130 90" />
-    <text x="148" y="64" text-anchor="start" fill="currentColor" stroke="none">
-      R₁
-    </text>
-    <polyline points="130 100 130 110 121 115 139 125 121 135 139 145 130 150 130 160" />
-    <text x="148" y="134" text-anchor="start" fill="currentColor" stroke="none">
-      R₂
-    </text>
-    <polyline points="40 160 130 160" />
-    <polyline points="130 160 130 160" />
-    <circle cx="130" cy="95" r="3" fill="currentColor" />
-    <polyline points="130 95 190 95" />
-    <text x="200" y="99" text-anchor="start" fill="currentColor" stroke="none">
-      v₂
-    </text>
-    <polyline points="40 160 40 168" />
-    <polyline points="28 168 52 168" />
-    <polyline points="33 173 47 173" />
-    <polyline points="37 178 43 178" />
-  </svg>
+  <Circuit
+    netlist={{
+      elements: [
+        { type: 'V', id: 'V', a: 'in', b: '0', dc: 1 },
+        { type: 'R', id: 'R1', a: 'in', b: 'm', value: 1 },
+        { type: 'R', id: 'R2', a: 'm', b: '0', value: 1, show: { v: 'v_2' } },
+      ],
+    }}
+    values={false}
+  />
 </Figure>
 
 <details class="proof" data-note-id="serie-parallelo-partitori-dimostrazione-1">

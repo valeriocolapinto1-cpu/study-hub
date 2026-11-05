@@ -69,22 +69,22 @@ Il **nullatore** è un bipolo con $v=0$ e $i=0$ contemporaneamente. Il **norator
     <polyline points="205 60 260 60" />
     <polyline points="205 90 260 90" />
     <text x="120" y="72" text-anchor="middle" fill="currentColor" stroke="none">
-      v=0
+      {'v=0'}
     </text>
     <text x="120" y="92" text-anchor="middle" fill="currentColor" stroke="none">
-      i=0
+      {'i=0'}
     </text>
     <text x="180" y="72" text-anchor="middle" fill="currentColor" stroke="none">
-      v, i
+      {'v, i'}
     </text>
     <text x="180" y="92" text-anchor="middle" fill="currentColor" stroke="none">
-      libere
+      {'libere'}
     </text>
     <text x="120" y="38" text-anchor="middle" fill="currentColor" stroke="none">
-      nullatore
+      {'nullatore'}
     </text>
     <text x="180" y="38" text-anchor="middle" fill="currentColor" stroke="none">
-      noratore
+      {'noratore'}
     </text>
     <circle cx="40" cy="60" r="3" fill="currentColor" />
     <circle cx="40" cy="90" r="3" fill="currentColor" />
@@ -98,60 +98,18 @@ Il **nullatore** è un bipolo con $v=0$ e $i=0$ contemporaneamente. Il **norator
   num="2"
   id="fig-2"
 >
-  <svg
-    viewBox="0 0 340 190"
-    xmlns="http://www.w3.org/2000/svg"
-    stroke="currentColor"
-    stroke-width="2"
-    fill="none"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    font-family="system-ui,sans-serif"
-    font-size="14"
-    aria-hidden="true"
-    focusable="false"
-    class="diagram"
-    style="max-width: 340px"
-  >
-    <g transform="translate(0,16)">
-      <polyline points="20 60 40 60" />
-      <polyline points="40 60 50 60 55 51 65 69 75 51 85 69 90 60 100 60" />
-      <text x="70" y="44" text-anchor="middle" fill="currentColor" stroke="none">
-        R₁
-      </text>
-      <polyline points="100 60 140 60" />
-      <polyline points="140 60 140 40" />
-      <path d="M140 30 L140 130 L240 80 Z" transform="translate(0,-5)" />
-      <polyline points="140 105 100 105" />
-      <polyline points="100 105 100 135" />
-      <polyline points="100 135 100 143" />
-      <polyline points="88 143 112 143" />
-      <polyline points="93 148 107 148" />
-      <polyline points="97 153 103 153" />
-      <polyline points="240 75 300 75" />
-      <polyline points="300 75 300 20" />
-      <polyline points="300 20 120 20" />
-      <polyline points="120 20 120 60" />
-      <circle cx="120" cy="60" r="3" fill="currentColor" />
-      <polyline points="180 20 190 20 195 11 205 29 215 11 225 29 230 20 240 20" />
-      <text x="210" y="8" text-anchor="middle" fill="currentColor" stroke="none">
-        R₂
-      </text>
-      <text x="20" y="50" text-anchor="start" fill="currentColor" stroke="none">
-        Vg
-      </text>
-      <text x="320" y="70" text-anchor="start" fill="currentColor" stroke="none">
-        Vo
-      </text>
-      <text x="150" y="64" text-anchor="start" fill="currentColor" stroke="none">
-        −
-      </text>
-      <text x="150" y="110" text-anchor="start" fill="currentColor" stroke="none">
-        +
-      </text>
-      <circle cx="300" cy="75" r="3" fill="currentColor" />
-    </g>
-  </svg>
+  <Circuit
+    netlist={{
+      elements: [
+        { type: 'V', id: 'Vg', a: 'in', b: '0', dc: 1 },
+        { type: 'R', id: 'R1', a: 'in', b: 'x', value: 1 },
+        { type: 'OA', id: 'OA1', plus: '0', minus: 'x', out: 'o' },
+        { type: 'R', id: 'R2', a: 'x', b: 'o', value: 1 },
+      ],
+      nodes: { o: { label: 'v_o' } },
+    }}
+    values={false}
+  />
 </Figure>
 
 <details class="proof" data-note-id="nullore-e-amplificatore-operazionale-dimostrazione-1">

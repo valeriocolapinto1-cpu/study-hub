@@ -43,55 +43,16 @@ It is not an inductor: it also works in DC and it is a limiting model (perfect c
   num="1"
   id="fig-1"
 >
-  <svg
-    viewBox="0 0 300 150"
-    xmlns="http://www.w3.org/2000/svg"
-    stroke="currentColor"
-    stroke-width="2"
-    fill="none"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    font-family="system-ui,sans-serif"
-    font-size="14"
-    aria-hidden="true"
-    focusable="false"
-    class="diagram"
-    style="max-width: 300px"
-  >
-    <polyline points="30 40 110 40" />
-    <path d="M110 40 a8 8 0 0 1 0 16 a8 8 0 0 1 0 16 a8 8 0 0 1 0 16" />
-    <polyline points="110 88 110 110" />
-    <polyline points="30 110 110 110" />
-    <polyline points="145 36 145 114" />
-    <polyline points="155 36 155 114" />
-    <path d="M190 40 a8 8 0 0 0 0 16 a8 8 0 0 0 0 16 a8 8 0 0 0 0 16" />
-    <polyline points="190 88 190 110" />
-    <polyline points="190 40 270 40" />
-    <polyline points="190 110 270 110" />
-    <circle cx="30" cy="40" r="3" fill="currentColor" />
-    <circle cx="30" cy="110" r="3" fill="currentColor" />
-    <circle cx="270" cy="40" r="3" fill="currentColor" />
-    <circle cx="270" cy="110" r="3" fill="currentColor" />
-    <polyline points="40 30 80 30" />
-    <polyline points="73.7,27.0 80,30 73.7,33.0" />
-    <polyline points="260 30 220 30" />
-    <polyline points="226.3,33.0 220,30 226.3,27.0" />
-    <text x="60" y="22" text-anchor="middle" fill="currentColor" stroke="none">
-      i₁
-    </text>
-    <text x="240" y="22" text-anchor="middle" fill="currentColor" stroke="none">
-      i₂
-    </text>
-    <text x="18" y="80" text-anchor="end" fill="currentColor" stroke="none">
-      v₁
-    </text>
-    <text x="282" y="80" text-anchor="start" fill="currentColor" stroke="none">
-      v₂
-    </text>
-    <text x="150" y="138" text-anchor="middle" fill="currentColor" stroke="none">
-      n : 1
-    </text>
-  </svg>
+  <Circuit
+    netlist={{
+      elements: [{ type: 'T', id: 'T1', p1a: 'a', p1b: '0', p2a: 'b', p2b: '0', n: 2, label: 'n : 1' }],
+      ports: [
+        { id: 'P1', plus: 'a', minus: '0', label: 'v_1' },
+        { id: 'P2', plus: 'b', minus: '0', label: 'v_2' },
+      ],
+    }}
+    values={false}
+  />
 </Figure>
 
 <details class="proof" data-note-id="trasformatore-ideale-dimostrazione-1">
