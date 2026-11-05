@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Un solo indirizzo, e non è una dimenticanza.
+
+  Il router del sito vive nell'hash (`#/study/mem`), e per un motore di
+  ricerca tutto ciò che segue il `#` non è un indirizzo diverso: è un punto
+  della stessa pagina. Elencare qui ventiquattro righe con l'hash sarebbe un
+  sitemap gonfiato e ignorato.
+
+  Per avere una voce per modulo servirebbe passare a percorsi veri
+  (`/study/mem`) con il trucco del 404.html per la riscrittura, oppure
+  generare una pagina statica per modulo in fase di build. Nessuna delle due
+  è gratis, e per un sito di studio personale l'indicizzazione della home
+  basta a farlo trovare.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://valeriocolapinto1-cpu.github.io/fondamenti-di-informatica-AEFIN/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

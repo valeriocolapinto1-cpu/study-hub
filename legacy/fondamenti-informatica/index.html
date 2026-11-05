@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--
+      Content-Security-Policy come `meta`, non come intestazione HTTP: GitHub
+      Pages serve file statici e non permette di impostare intestazioni.
+
+      Il sito non ha bisogno di nulla dall'esterno — i caratteri sono ospitati
+      qui, non c'è analytics, non c'è un'API da chiamare — quindi la politica
+      può essere chiusa quasi del tutto. `connect-src 'self'` lascia passare
+      solo il service worker; `frame-ancestors` non funziona via meta, ma senza
+      niente da rubare (nessuna sessione, nessun cookie) il clickjacking qui
+      non ha bersaglio.
+
+      `style-src` deve ammettere 'unsafe-inline': il sito usa attributi
+      `style` per le poche misure calcolate a runtime, per esempio la
+      larghezza della barra della carriera.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self';
+               script-src 'self';
+               style-src 'self' 'unsafe-inline';
+               img-src 'self' data:;
+               font-src 'self';
+               connect-src 'self';
+               object-src 'none';
+               base-uri 'none';
+               form-action 'none';
+               upgrade-insecure-requests"
+    />
+
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+    <meta name="theme-color" content="#0E1116" />
+    <title>AE·FIN — Palestra di Architettura degli Elaboratori</title>
+    <!--
+      Questo è il testo che finisce nei risultati di ricerca, e per questo non
+      nomina né un ateneo né una persona: accostare un'istituzione reale a uno
+      strumento indipendente suggerisce un avallo che non c'è. Descrive la
+      materia, che è ciò che si cerca davvero.
+    -->
+    <meta
+      name="description"
+      content="Palestra di Architettura degli Elaboratori: teoria da zero in diciassette moduli, ottantacinque esercizi svolti, schemi da completare e prove di autovalutazione che si correggono da sole. Complemento a 2, Karnaugh, IEEE 754, cache, pipeline, assembly."
+    />
+    <meta name="color-scheme" content="dark" />
+    <meta name="author" content="Valerio Colapinto" />
+    <meta name="copyright" content="© 2026 Valerio Colapinto" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="license" href="https://github.com/valeriocolapinto1-cpu/fondamenti-di-informatica-AEFIN/blob/main/LICENSE" />
+    <link rel="canonical" href="https://valeriocolapinto1-cpu.github.io/fondamenti-di-informatica-AEFIN/" />
+
+    <!-- Anteprima quando il collegamento finisce in una chat di gruppo. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:site_name" content="AE·FIN" />
+    <meta
+      property="og:title"
+      content="AE·FIN — Palestra di Architettura degli Elaboratori"
+    />
+    <meta
+      property="og:description"
+      content="Diciassette moduli di teoria da zero, 85 esercizi svolti, 45 schemi da completare e un generatore di prove che si correggono da sole. Strumento indipendente, scritto da uno studente."
+    />
+    <!-- Assoluta e non relativa: i crawler delle anteprime non risolvono
+         `./` rispetto alla pagina, e l'immagine resterebbe vuota. -->
+    <meta
+      property="og:url"
+      content="https://valeriocolapinto1-cpu.github.io/fondamenti-di-informatica-AEFIN/"
+    />
+    <meta
+      property="og:image"
+      content="https://valeriocolapinto1-cpu.github.io/fondamenti-di-informatica-AEFIN/social.jpg"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="AE·FIN, palestra di Architettura degli Elaboratori: 17 moduli, 85 esercizi svolti, 45 schemi da completare."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!--
+      Il segnaposto vive nell'HTML e sparisce da solo quando Preact monta
+      sopra `#app`: senza, fra il primo byte e l'esecuzione del bundle si vede
+      una pagina vuota, che su una connessione lenta si legge come un sito
+      rotto. Sta qui in linea perché deve comparire *prima* del CSS.
+    -->
+    <style>
+      #boot {
+        min-height: 100dvh;
+        display: grid;
+        place-items: center;
+        gap: 14px;
+        align-content: center;
+        background: #0e1116;
+        color: #5e6b7a;
+        font: 400 12px/1 ui-monospace, 'Geist Mono', monospace;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      #boot .g {
+        width: 44px;
+        height: 44px;
+        border: 1.5px solid #c88a4e;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        color: #c88a4e;
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0;
+        box-shadow: inset 0 0 16px rgba(200, 138, 78, 0.18);
+        animation: boot-pulse 1.5s ease-in-out infinite;
+      }
+      @keyframes boot-pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.45;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #boot .g {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div id="boot">
+        <span class="g" aria-hidden="true">AE</span>
+        <span>Caricamento…</span>
+      </div>
+    </div>
+    <noscript>
+      <p style="padding: 28px 20px; color: #e7edf4; background: #0e1116; font-family: sans-serif">
+        Questo sito genera le prove nel browser, quindi ha bisogno di JavaScript attivo. I
+        contenuti dei moduli sono comunque leggibili nel codice sorgente del progetto.
+      </p>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

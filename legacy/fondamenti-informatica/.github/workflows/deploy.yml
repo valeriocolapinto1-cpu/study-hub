@@ -1,0 +1,59 @@
+name: Build e deploy su GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un deploy alla volta, senza annullare quello in corso.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Installa le dipendenze
+        run: npm ci
+
+      # I test del motore fanno da cancello: se un generatore produce
+      # quesiti sbagliati, il sito non viene pubblicato.
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      # Richiede che Pages sia già attivo su Settings -> Pages -> Source:
+      # GitHub Actions. Non è automatizzabile da qui: `enablement: true`
+      # è stato provato e il GITHUB_TOKEN del workflow non ha il permesso di
+      # *creare* il sito Pages ("Resource not accessible by integration"),
+      # può solo pubblicarci sopra una volta che esiste.
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
