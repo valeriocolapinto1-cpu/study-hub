@@ -95,7 +95,7 @@ export type Element =
   | (Base & { type: 'K'; l1: string; l2: string; k?: number | undefined; m?: number | undefined })
   | (Base & { type: 'T'; p1a: string; p1b: string; p2a: string; p2b: string; n: number })
   | (Base & { type: 'OA'; plus: string; minus: string; out: string; gain?: number | undefined })
-  | (Base & { type: 'N'; na: string; nb: string; ra: string; rb: string })
+  | (Base & { type: 'N'; na: string; nb: string; ra: string; rb: string; at2?: Placement | undefined })
   | (Base & {
       type: 'P';
       p1a: string;

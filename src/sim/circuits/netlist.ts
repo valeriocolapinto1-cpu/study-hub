@@ -235,7 +235,16 @@ export const OpAmp = z.object({
 });
 
 /** Nullore: nullatore tra na–nb (v = 0, i = 0), noratore tra ra–rb. */
-export const Nullor = z.object({ type: z.literal('N'), ...base, na: Node, nb: Node, ra: Node, rb: Node });
+export const Nullor = z.object({
+  type: z.literal('N'),
+  ...base,
+  na: Node,
+  nb: Node,
+  ra: Node,
+  rb: Node,
+  /** Posizione del noratore (`at` è quella del nullatore). */
+  at2: Placement.optional(),
+});
 
 const Matrix2 = z.tuple([z.tuple([z.number(), z.number()]), z.tuple([z.number(), z.number()])]);
 /**
@@ -254,7 +263,7 @@ export const TwoPort = z.object({
   m: Matrix2,
 });
 
-export const Element = z.union([
+export const Element = z.discriminatedUnion('type', [
   Resistor,
   Capacitor,
   Inductor,
@@ -389,7 +398,10 @@ export const Netlist = NetlistBase.superRefine((n, ctx) => {
     }
   });
   const nodes = new Set(nodesOf(n));
-  if (!nodes.has(GROUND))
+  const touchesGround = n.elements.some((e) =>
+    M.terminals(e as ModelElement).some(([, nd]) => nd === GROUND),
+  );
+  if (!touchesGround)
     ctx.addIssue({ code: 'custom', path: ['elements'], message: 'manca il nodo di massa "0"' });
   for (const p of n.ports ?? [])
     for (const nd of [p.plus, p.minus])

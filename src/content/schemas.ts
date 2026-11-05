@@ -4,6 +4,7 @@
  * Il contratto è descritto in docs/ARCHITECTURE.md.
  */
 import { z } from 'astro/zod';
+import { Netlist } from '../sim/circuits/netlist';
 
 export const LANG_VALUES = ['it', 'en'] as const;
 
@@ -107,8 +108,12 @@ export const formulaSchema = z.strictObject({
 export type Formula = z.infer<typeof formulaSchema>;
 
 // ---------------------------------------------------------------- exercises
+/**
+ * Figura di un esercizio: netlist di un circuito (schema in src/sim/circuits/netlist.ts,
+ * disegnata con <Circuit>) oppure SVG già pronto.
+ */
 export const figureSchema = z
-  .strictObject({ netlist: z.string().min(1).optional(), svg: z.string().min(1).optional() })
+  .strictObject({ netlist: Netlist.optional(), svg: z.string().min(1).optional() })
   .refine((f) => Boolean(f.netlist) !== Boolean(f.svg), 'figure: indicare netlist oppure svg');
 
 export const stepSchema = z.strictObject({ title: localized, body: localized });
