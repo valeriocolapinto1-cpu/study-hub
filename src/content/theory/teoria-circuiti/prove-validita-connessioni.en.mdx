@@ -1,0 +1,104 @@
+---
+course: teoria-circuiti
+topic: prove-validita-connessioni
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="prove-validita-connessioni-intuizione-1">
+
+Adding the matrices only works if, after the connection, each two-port still "sees" its ports as before. If the connection creates new current paths between the two networks, the ports stop being ports and the formulas lie: the validity test is there to find out beforehand.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="prove-validita-connessioni-teoria-1">
+
+Adding the $Z$ (or $Y$) matrices is correct only if, after the connection, each two-port still has equal entering and leaving currents at each of its ports. Otherwise the connection alters the behaviour of the individual two-ports and the formulas do not hold.
+
+</div>
+
+<div data-note-id="prove-validita-connessioni-teoria-2">
+
+**Validity test** (series-series): drive the input ports with the outputs open and check that the voltage between the terminals to be connected (which will be joined) is zero; likewise for the output. If the test fails, a 1:1 isolation transformer can be inserted at one of the ports.
+
+</div>
+
+<details class="proof" data-note-id="prove-validita-connessioni-dimostrazione-1">
+<summary>Proof: Why adding $Z$ requires the port condition</summary>
+
+1. In the series-series connection the ports are in series: $v_1=v_{1a}+v_{1b}$, $v_2=v_{2a}+v_{2b}$, and the port currents are shared: $i_1=i_{1a}=i_{1b}$, $i_2=i_{2a}=i_{2b}$.
+2. Adding $\mathbf v_a=Z_a\mathbf i_a$ and $\mathbf v_b=Z_b\mathbf i_b$ with $\mathbf i_a=\mathbf i_b=\mathbf i$: $\mathbf v=(Z_a+Z_b)\mathbf i$.
+3. The assumption $\mathbf i_a=\mathbf i_b=\mathbf i$ holds only if, for each two-port, the current entering one terminal of a port equals the current leaving the other even after the connection: this is the condition checked by the validity test. $\square$
+
+</details>
+
+<Formula id="prova-validita" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="prove-validita-connessioni-esempio-1">
+
+### Test passed
+
+Two two-ports with no common connection between their ports, connected series-series.
+
+**Solution.**
+
+1. Driving the ports with the others open, the voltage between the terminals to be connected is zero: the connection is legitimate, $Z=Z_a+Z_b$.
+
+</div>
+
+<div class="worked" data-note-id="prove-validita-connessioni-esempio-2">
+
+### Test failed
+
+Two T networks with a common grounded terminal connected series-series.
+
+**Solution.**
+
+1. The direct connection short-circuits parts of the network: the current may not flow through the ports as expected; the test voltage is not zero.
+2. Remedy: an ideal 1:1 transformer at one port of one of the two two-ports.
+
+</div>
+
+<div class="worked" data-note-id="prove-validita-connessioni-esempio-3">
+
+### Parallel-parallel with a common ground
+
+Two π networks (common ground) in parallel.
+
+**Solution.**
+
+1. They already share a terminal: the parallel-parallel connection is always legitimate and $Y=Y_a+Y_b$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="prove-validita-connessioni-errore-1">
+
+- **Wrong:** Adding the matrices without checking the validity test.
+- **Right:** Always check the port condition before using the connection formulas.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="prove-validita-connessioni-esame-1">
+
+Connections and validity tests: 12-6-2000, 13-2-2001, 19-11-2003, 12-7-2007 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

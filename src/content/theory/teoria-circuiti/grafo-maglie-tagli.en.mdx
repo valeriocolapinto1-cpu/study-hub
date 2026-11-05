@@ -1,0 +1,118 @@
+---
+course: teoria-circuiti
+topic: grafo-maglie-tagli
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="grafo-maglie-tagli-intuizione-1">
+
+To write Kirchhoff's laws it does not matter whether a branch is a resistor or a source: only where it starts and where it ends matters. The graph is the "skeleton" of the circuit, the map of connections on which all topological equations rest.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="grafo-maglie-tagli-teoria-1">
+
+A **directed graph** is a set of $n$ nodes and $b$ branches, each with a direction. The graph of a circuit is obtained by ignoring the nature of the components: each one-port is a branch, its terminals are nodes. It is assumed to be _connected_ (every node can be reached from every other), otherwise the separate parts are studied.
+
+</div>
+
+<div data-note-id="grafo-maglie-tagli-teoria-2">
+
+A **loop** is a set of branches forming a closed path that passes only once through each node. A **cut set** is a minimal set of branches whose removal disconnects the graph. The branches meeting at a node form a cut set (the "node cut set").
+
+</div>
+
+<div data-note-id="grafo-maglie-tagli-teoria-3">
+
+The branch directions coincide with the reference directions of the currents (and of the voltages, with the passive sign convention). For each loop a direction of traversal is fixed; for each cut set a direction is fixed (from the node set $\mathcal N_1$ to $\mathcal N_2$).
+
+</div>
+
+<Figure caption="Complete graph with 4 nodes (0, 1, 2, 3) and 6 branches" num="1" id="fig-1">
+  <svg
+    viewBox="0 0 280 200"
+    xmlns="http://www.w3.org/2000/svg"
+    stroke="currentColor"
+    stroke-width="2"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    font-family="system-ui,sans-serif"
+    font-size="14"
+    aria-hidden="true"
+    focusable="false"
+    class="diagram"
+    style="max-width: 280px"
+  >
+    <polyline points="140 20 40 160" />
+    <polyline points="140 20 240 160" />
+    <polyline points="40 160 240 160" />
+    <polyline points="140 20 140 110" />
+    <polyline points="140 110 40 160" />
+    <polyline points="140 110 240 160" />
+    <circle cx="140" cy="20" r="3" fill="currentColor" />
+    <circle cx="40" cy="160" r="3" fill="currentColor" />
+    <circle cx="240" cy="160" r="3" fill="currentColor" />
+    <circle cx="140" cy="110" r="3" fill="currentColor" />
+    <text x="140" y="12" text-anchor="middle" fill="currentColor" stroke="none">
+      1
+    </text>
+    <text x="28" y="175" text-anchor="middle" fill="currentColor" stroke="none">
+      2
+    </text>
+    <text x="254" y="175" text-anchor="middle" fill="currentColor" stroke="none">
+      3
+    </text>
+    <text x="154" y="104" text-anchor="start" fill="currentColor" stroke="none">
+      0
+    </text>
+  </svg>
+</Figure>
+
+<Formula id="n-b" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="grafo-maglie-tagli-esempio-1">
+
+### Counting on the complete 4-node graph
+
+In the graph of the figure (4 nodes, 6 branches): how many 3-branch loops are there? How many "node" cut sets?
+
+**Solution.**
+
+1. Every triple of nodes forms a triangle: $\binom{4}{3}=4$ loops of 3 branches.
+2. One node cut set per node: 4 (but they are dependent: $n-1=3$ are enough).
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="grafo-maglie-tagli-errore-1">
+
+- **Wrong:** Calling a loop a set of branches that "closes" by passing twice through a node.
+- **Right:** In the definition of loop every node is touched only once (otherwise it is a union of loops).
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="grafo-maglie-tagli-esame-1">
+
+Topology: 18-9-2002, 30-10-2002, 24-4-2003, 12-7-2005 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

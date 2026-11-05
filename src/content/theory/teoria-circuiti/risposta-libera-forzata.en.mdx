@@ -1,0 +1,96 @@
+---
+course: teoria-circuiti
+topic: risposta-libera-forzata
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="risposta-libera-forzata-intuizione-1">
+
+The response of a circuit has two "causes": the energy it already stored (initial conditions) and what reaches it from outside (inputs). By linearity the two effects can be computed separately and then added.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="risposta-libera-forzata-teoria-1">
+
+**Zero-input** (free) response: zero input, non-zero initial conditions (it depends only on the natural modes, i.e. on the poles). **Zero-state** (forced) response: zero initial conditions and non-zero input. In a linear system the complete response is the sum $y=y_{zi}+y_{zs}$.
+
+</div>
+
+<div data-note-id="risposta-libera-forzata-teoria-2">
+
+With Laplace: in the transformed circuit set the initial conditions to zero (zero-state) or the inputs to zero (zero-input).
+
+</div>
+
+<Formula id="y-libera-forzata" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="risposta-libera-forzata-esempio-1">
+
+### RC with a step
+
+$R=2$, $C=\tfrac12$, $v_C(0)=2$, input $10u_{-1}$.
+
+**Solution.**
+
+1. Zero-input: $v_C=2e^{-t}$.
+2. Zero-state: $10(1-e^{-t})$.
+3. Sum: $10-8e^{-t}$ ✓.
+
+</div>
+
+<div class="worked" data-note-id="risposta-libera-forzata-esempio-2">
+
+### Zero-input only
+
+RL with $R=4$, $L=2$, $i(0)=3$, sources off.
+
+**Solution.**
+
+1. $i=3e^{-2t}$.
+
+</div>
+
+<div class="worked" data-note-id="risposta-libera-forzata-esempio-3">
+
+### Zero-state only
+
+$H=\dfrac1{s+1}$ with $x=u_{-1}$, zero initial conditions.
+
+**Solution.**
+
+1. $Y=\dfrac1{s(s+1)}\Rightarrow y=1-e^{-t}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="risposta-libera-forzata-errore-1">
+
+- **Wrong:** Attributing the transient to the zero-input response alone.
+- **Right:** The zero-state response also contains transient terms ($-10e^{-t}$ above).
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="risposta-libera-forzata-esame-1">
+
+Zero-input and zero-state response: 25-9-2007, 17-4-2008 (Laplace) <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

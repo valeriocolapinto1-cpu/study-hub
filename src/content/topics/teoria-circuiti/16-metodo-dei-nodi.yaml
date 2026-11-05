@@ -1,0 +1,25 @@
+id: metodo-dei-nodi
+course: teoria-circuiti
+order: 16
+title:
+  it: Metodo dei nodi
+  en: Node method
+summary:
+  it: "Analisi nodale: equazioni $G\\,\\mathbf e=\\mathbf i_s$, trattamento dei generatori di tensione e dei controllati, scelta tra nodi e maglie."
+  en: "Nodal analysis: equations $G\\,\\mathbf e=\\mathbf i_s$, handling voltage and controlled sources, choosing between nodes and meshes."
+objectives:
+  - id: metodo-dei-nodi.1
+    text:
+      it: Scrivere le equazioni ai nodi
+      en: Write the node equations
+  - id: metodo-dei-nodi.2
+    text:
+      it: Trattare generatori di tensione e controllati
+      en: Handle voltage sources and controlled sources
+  - id: metodo-dei-nodi.3
+    text:
+      it: Scegliere tra nodi e maglie
+      en: Choose between node and mesh analysis
+group:
+  it: II · Circuiti senza memoria
+  en: II · Memoryless circuits

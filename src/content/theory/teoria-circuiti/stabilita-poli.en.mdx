@@ -1,0 +1,107 @@
+---
+course: teoria-circuiti
+topic: stabilita-poli
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="stabilita-poli-intuizione-1">
+
+A circuit left to itself after a disturbance: does it return to rest, keep oscillating or "blow up"? The answer lies entirely in where the poles are: to the left of the imaginary axis the modes die out, on the axis they survive, to the right they grow without bound.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="stabilita-poli-teoria-1">
+
+A linear system is **asymptotically stable** if the zero-input response tends to zero for every initial condition; necessary and sufficient condition: all the poles of $H(s)$ (without cancellations) have negative real part. It is **marginally stable** with simple poles on the imaginary axis (and the others with negative real part); it is **unstable** with a pole with positive real part or multiple poles on the imaginary axis.
+
+</div>
+
+<div data-note-id="stabilita-poli-teoria-2">
+
+**Criteria for polynomials.** Degree 2: $s^2+a_1s+a_0$ is stable if $a_1,a_0>0$. Degree 3: $s^3+a_2s^2+a_1s+a_0$ is stable if $a_2,a_1,a_0>0$ and $a_2a_1>a_0$.
+
+</div>
+
+<details class="proof" data-note-id="stabilita-poli-dimostrazione-1">
+<summary>Proof: Stability condition: poles in the open left half-plane</summary>
+
+1. Expanding in partial fractions, every pole $p$ of multiplicity $m$ gives modes $t^ke^{pt}$ with $0\le k<m$.
+2. If $\mathrm{Re}\,p<0$: $|t^ke^{pt}|=t^ke^{\mathrm{Re}(p)t}\to0$ (the exponential beats the power).
+3. If all the poles have $\mathrm{Re}<0$, every mode, and hence the zero-input response, tends to zero.
+4. If a pole has $\mathrm{Re}\,p>0$ the mode diverges; if $\mathrm{Re}\,p=0$ the mode does not tend to zero ($|e^{j\omega t}|=1$), and if the multiplicity is $\ge2$ the term $t\,e^{j\omega t}$ appears, unbounded. $\square$
+
+</details>
+
+<Formula id="stab-poli" />
+<Formula id="routh2" />
+<Formula id="routh3" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="stabilita-poli-esempio-1">
+
+### Second order with a parameter
+
+$D(s)=s^2+(k-3)s+2$.
+
+**Solution.**
+
+1. $k-3>0$ is needed: stable for $k>3$.
+
+</div>
+
+<div class="worked" data-note-id="stabilita-poli-esempio-2">
+
+### Third order
+
+$D(s)=s^3+2s^2+3s+k$.
+
+**Solution.**
+
+1. $k>0$ and $2\cdot3>k$: stable for $0<k<6$.
+2. For $k=6$: poles on the imaginary axis ($s=\pm j\sqrt3$): marginal.
+
+</div>
+
+<div class="worked" data-note-id="stabilita-poli-esempio-3">
+
+### Pole at $+1$
+
+$H=\dfrac{1}{s-1}$.
+
+**Solution.**
+
+1. Pole at $s=1$: $h=e^{t}$ diverges, unstable.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="stabilita-poli-errore-1">
+
+- **Wrong:** Saying that a pole on the imaginary axis makes the system stable.
+- **Right:** At most marginal: the response does not decay and may become unbounded (multiple pole or resonant input).
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="stabilita-poli-esame-1">
+
+Stability, poles, stability as $k$ varies: 12-6-2000, 15-9-2000, 29-4-2002, 24-4-2003 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

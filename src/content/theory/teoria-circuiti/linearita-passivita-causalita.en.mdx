@@ -1,0 +1,101 @@
+---
+course: teoria-circuiti
+topic: linearita-passivita-causalita
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="linearita-passivita-causalita-intuizione-1">
+
+These properties answer simple questions. If I double the input, does the output double? (linearity). If I run the same experiment tomorrow, do I get the same result shifted by one day? (time invariance). Does the element "see the future"? (causality). Can it give back more energy than it received? (passivity).
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="linearita-passivita-causalita-teoria-1">
+
+An element (or circuit) is **linear** if superposition holds: if input $x_1$ produces $y_1$ and $x_2$ produces $y_2$, then $a x_1 + b x_2$ produces $a y_1 + b y_2$ (additivity and homogeneity), with zero initial conditions.
+
+</div>
+
+<div data-note-id="linearita-passivita-causalita-teoria-2">
+
+It is **time-invariant** if shifting the input in time by $T$ shifts the response by $T$: $x(t-T)\mapsto y(t-T)$. The parameters do not depend on time.
+
+</div>
+
+<div data-note-id="linearita-passivita-causalita-teoria-3">
+
+It is **causal** if the response at time $t$ depends only on the input at times $\le t$.
+
+</div>
+
+<div data-note-id="linearita-passivita-causalita-teoria-4">
+
+It is **passive** if it cannot deliver more energy than it has received: for every choice of the terminal quantities the absorbed energy $\int_{-\infty}^{t} v i\,d\tau \ge 0$ (with zero initial energy). The precise definition may vary between textbooks <span class="badge badge--warning">TO BE VERIFIED</span>.
+
+</div>
+
+<div data-note-id="linearita-passivita-causalita-teoria-5">
+
+Examples. Constant $R$, $L$, $C$ are linear, time-invariant and passive. An independent source is not passive (it can deliver energy) and, since its output is non-zero with zero input, it is not linear in the strict sense. $v = R i^3$ is nonlinear; $R(t)$ is time-varying.
+
+</div>
+
+<details class="proof" data-note-id="linearita-passivita-causalita-dimostrazione-1">
+<summary>Proof: The linear time-invariant capacitor is linear and time-invariant</summary>
+
+**Statement.** The relation $i = C\,dv/dt$ with constant $C$ defines a linear and time-invariant element.
+
+1. Linearity: if $v=a v_1+b v_2$ then $i = C\,d(a v_1+b v_2)/dt = a\,C\dot v_1 + b\,C\dot v_2 = a i_1 + b i_2$, by linearity of the derivative.
+2. Time invariance: if $v_T(t)=v(t-T)$ then $i_T = C\,\dot v_T(t) = C\,\dot v(t-T) = i(t-T)$, because $C$ does not depend on $t$. $\square$
+
+</details>
+
+<Formula id="linearita" />
+<Formula id="tempo-invarianza" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="linearita-passivita-causalita-esempio-1">
+
+### Recognising the properties
+
+Classify: (a) $v = 3i$; (b) $v = 2i^2$; (c) $v = t\,i$.
+
+**Solution.**
+
+1. (a) linear and time-invariant.
+2. (b) nonlinear: $v(2i)=8i^2\neq 2\,v(i)$; time-invariant.
+3. (c) linear but time-varying: the coefficient depends on $t$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="linearita-passivita-causalita-errore-1">
+
+- **Wrong:** Calling a circuit with an independent source "linear" and applying superposition to the total output only.
+- **Right:** Superposition applies to the effects of the individual sources (controlled sources always stay in the circuit).
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="linearita-passivita-causalita-esame-1">
+
+Circuit properties: 24-4-2003, 25-9-2003, 12-7-2005, 11-2-2008, 7-7-2008, 24-4-2009 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

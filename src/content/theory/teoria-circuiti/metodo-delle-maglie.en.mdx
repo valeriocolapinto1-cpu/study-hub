@@ -1,0 +1,88 @@
+---
+course: teoria-circuiti
+topic: metodo-delle-maglie
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="metodo-delle-maglie-intuizione-1">
+
+It is the dual of the node method: imagine a current "circulating" in each loop and express every branch current as the sum of the loop currents through it. KCL becomes automatic and one KVL per loop is all that is left to write.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="metodo-delle-maglie-teoria-1">
+
+The **mesh method** takes as unknowns the loop currents $\mathbf j$ ($b-n+1$ fundamental loops), with $\mathbf i=B^{\mathsf T}\mathbf j$. For resistors and voltage sources only:
+
+$$
+R_m\,\mathbf j=\mathbf v_s,
+$$
+
+with $R_{m,jj}=$ sum of the resistances of the loop, $R_{m,jk}=\pm$ shared resistance (negative when the two loop currents flow in opposite directions in the shared branch), $v_{s,j}=$ algebraic sum of the source voltages along the loop direction.
+
+</div>
+
+<div data-note-id="metodo-delle-maglie-teoria-2">
+
+A current source in a branch belonging to a single loop fixes that loop current; if it lies between two loops a _supermesh_ is used (KVL along the path containing them, with the constraint on the currents). It is the dual of the node method.
+
+</div>
+
+<details class="proof" data-note-id="metodo-delle-maglie-dimostrazione-1">
+<summary>Proof: Mesh equations</summary>
+
+1. KVL: $B\,\mathbf v=\mathbf v_s'$ (sources on the right-hand side); constitutive relations: $\mathbf v=\mathcal R\,\mathbf i$.
+2. With $\mathbf i=B^{\mathsf T}\mathbf j$ (KCL is automatically satisfied because $A B^{\mathsf T}=0$): $B\,\mathcal R\,B^{\mathsf T}\mathbf j=\mathbf v_s'$.
+3. Hence $R_m=B\mathcal RB^{\mathsf T}$. $\square$
+
+</details>
+
+<Formula id="maglie" />
+<Formula id="maglie-mat" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="metodo-delle-maglie-esempio-1">
+
+### Two meshes
+
+Mesh 1: a $12\,\mathrm{V}$ source and $R_1=2\,\Omega$; shared branch $R_2=4\,\Omega$; mesh 2: $R_3=2\,\Omega$. Find $j_1,j_2$.
+
+**Solution.**
+
+1. $(R_1+R_2)j_1-R_2j_2=12\Rightarrow 6j_1-4j_2=12$; $-R_2j_1+(R_2+R_3)j_2=0\Rightarrow-4j_1+6j_2=0$.
+2. $j_2=\tfrac23j_1$: $6j_1-\tfrac83j_1=12\Rightarrow\tfrac{10}3j_1=12$, $j_1=\tfrac{18}5=3.6\,\mathrm{A}$, $j_2=\tfrac{12}5=2.4\,\mathrm{A}$.
+3. Current in $R_2$: $j_1-j_2=1.2\,\mathrm{A}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="metodo-delle-maglie-errore-1">
+
+- **Wrong:** Forgetting the minus sign of the mutual terms when all the mesh currents are clockwise.
+- **Right:** With all meshes clockwise the shared branch carries opposite currents: the mutual term is $-R$.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="metodo-delle-maglie-esame-1">
+
+Mesh method and the node/mesh choice criteria: 3-7-2001, 3-7-2003, 25-9-2007, 17-4-2008, 7-7-2008 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

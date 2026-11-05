@@ -1,0 +1,99 @@
+---
+course: teoria-circuiti
+topic: equazioni-integro-differenziali
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="equazioni-integro-differenziali-intuizione-1">
+
+Con Laplace non serve più indovinare la soluzione particolare né imporre le costanti alla fine: le condizioni iniziali entrano nell'equazione trasformata fin dal primo passaggio, e tutto si riduce a risolvere per $Y(s)$ e antitrasformare.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="equazioni-integro-differenziali-teoria-1">
+
+Si trasforma l'equazione con le proprietà di derivata e integrale, ottenendo un'equazione _algebrica_ in $Y(s)$ con le condizioni iniziali già incluse; si risolve per $Y(s)$ e si antitrasforma con i fratti semplici.
+
+</div>
+
+<div data-note-id="equazioni-integro-differenziali-teoria-2">
+
+Il vantaggio rispetto al metodo classico (omogenea + particolare + costanti) è che condizioni iniziali e termine noto entrano nello stesso passaggio.
+
+</div>
+
+<Formula id="laplace-der" />
+<Formula id="laplace-der2" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="equazioni-integro-differenziali-esempio-1">
+
+### Libera del secondo ordine
+
+$\ddot y+3\dot y+2y=0$, $y(0^-)=1$, $\dot y(0^-)=0$.
+
+**Soluzione.**
+
+1. $s^2Y-s+3(sY-1)+2Y=0\Rightarrow Y=\dfrac{s+3}{(s+1)(s+2)}$.
+2. Fratti semplici: $\dfrac{2}{s+1}-\dfrac1{s+2}$, quindi $y=2e^{-t}-e^{-2t}$.
+3. Verifica: $y(0)=1$, $\dot y(0)=-2+2=0$ ✓.
+
+</div>
+
+<div class="worked" data-note-id="equazioni-integro-differenziali-esempio-2">
+
+### Con forzamento
+
+$\dot y+2y=u_{-1}(t)$, $y(0^-)=0$.
+
+**Soluzione.**
+
+1. $(s+2)Y=1/s\Rightarrow Y=\dfrac1{s(s+2)}=\tfrac12\left(\dfrac1s-\dfrac1{s+2}\right)$.
+2. $y=\tfrac12(1-e^{-2t})$.
+
+</div>
+
+<div class="worked" data-note-id="equazioni-integro-differenziali-esempio-3">
+
+### Equazione integro-differenziale
+
+$\dot y+y+\int_0^ty\,d\tau=u_{-1}(t)$, $y(0^-)=0$.
+
+**Soluzione.**
+
+1. $sY+Y+Y/s=1/s\Rightarrow Y=\dfrac{1}{s^2+s+1}$.
+2. $(s+\tfrac12)^2+\tfrac34$: $y=\dfrac{2}{\sqrt3}e^{-t/2}\sin\dfrac{\sqrt3}{2}t$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="equazioni-integro-differenziali-errore-1">
+
+- **Sbagliato:** Dimenticare $y(0^-)$ nella derivata.
+- **Corretto:** $\dot y\to sY-y(0^-)$.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="equazioni-integro-differenziali-esame-1">
+
+Laplace e uso su equazioni: 25-9-2007, 17-4-2008 <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

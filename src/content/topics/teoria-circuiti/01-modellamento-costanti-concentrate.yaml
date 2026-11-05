@@ -1,0 +1,25 @@
+id: modellamento-costanti-concentrate
+course: teoria-circuiti
+order: 1
+title:
+  it: Modellamento a costanti concentrate
+  en: Lumped-parameter modelling
+summary:
+  it: Quando un circuito fisico si può descrivere con elementi ideali e conduttori ideali, e perché da questa ipotesi discendono le leggi di Kirchhoff.
+  en: When a physical circuit can be described by ideal elements joined by ideal wires, and why Kirchhoff's laws follow from this assumption.
+objectives:
+  - id: modellamento-costanti-concentrate.1
+    text:
+      it: Enunciare le ipotesi del modello a costanti concentrate
+      en: State the assumptions of the lumped-parameter model
+  - id: modellamento-costanti-concentrate.2
+    text:
+      it: Stimare quando il modello è valido confrontando dimensioni e lunghezza d'onda
+      en: Estimate when the model is valid by comparing size and wavelength
+  - id: modellamento-costanti-concentrate.3
+    text:
+      it: Distinguere circuito fisico e modello circuitale
+      en: Distinguish the physical circuit from the circuit model
+group:
+  it: I · Costanti concentrate
+  en: I · Lumped parameters

@@ -1,0 +1,85 @@
+---
+course: teoria-circuiti
+topic: modellamento-costanti-concentrate
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="modellamento-costanti-concentrate-intuizione-1">
+
+Immagina di guardare un circuito «da lontano»: se il segnale cambia lentamente rispetto al tempo che impiega a percorrere il circuito, ogni punto di un filo vede la stessa corrente nello stesso istante. Allora ogni componente si riassume in due numeri ai suoi morsetti, tensione e corrente, e la geometria non conta più: conta solo come sono collegati i pezzi.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="modellamento-costanti-concentrate-teoria-1">
+
+Un circuito fisico è un insieme di dispositivi collegati da conduttori. Il **modello a costanti concentrate** sostituisce ogni dispositivo con un elemento ideale (resistore, condensatore, induttore, generatore…) e i collegamenti con conduttori ideali, in cui tensione e corrente sono grandezze ben definite ai morsetti.
+
+</div>
+
+<div data-note-id="modellamento-costanti-concentrate-teoria-2">
+
+L'ipotesi fondamentale è che i fenomeni di propagazione siano trascurabili: se $L$ è la dimensione massima del circuito e $\lambda = c/f$ la lunghezza d'onda ($c\approx 3\cdot10^{8}\,\mathrm{m/s}$), il modello è ragionevole quando $L \ll \lambda$, cioè quando il tempo di propagazione $L/c$ è molto minore del periodo $T=1/f$ del segnale.
+
+</div>
+
+<div data-note-id="modellamento-costanti-concentrate-teoria-3">
+
+In questo regime i campi elettrico e magnetico sono confinati nei componenti: l'energia elettrica è «concentrata» nei condensatori, quella magnetica negli induttori, la dissipazione nei resistori. Ne seguono due fatti: la corrente ha lo stesso valore all'ingresso e all'uscita di un conduttore (valgono le leggi di Kirchhoff), e la tensione tra due punti non dipende dal cammino scelto fuori dai componenti.
+
+</div>
+
+<div data-note-id="modellamento-costanti-concentrate-teoria-4">
+
+**Ordini di grandezza.** A $50\,\mathrm{Hz}$: $\lambda = 6000\,\mathrm{km}$, quindi un circuito da banco è concentrato, una linea di trasmissione lunga centinaia di km no. A $1\,\mathrm{GHz}$: $\lambda = 30\,\mathrm{cm}$, e già un cavo di $10\,\mathrm{cm}$ non è un semplice filo.
+
+</div>
+
+<Formula id="lambda" />
+<Formula id="concentrate" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="modellamento-costanti-concentrate-esempio-1">
+
+### Quando un circuito è «concentrato»?
+
+Un circuito di dimensione massima $L = 20\,\mathrm{cm}$ lavora a $f = 10\,\mathrm{MHz}$. Si può usare il modello a costanti concentrate?
+
+**Soluzione.**
+
+1. $\lambda = c/f = 3\cdot10^{8}/10^{7} = 30\,\mathrm{m}$.
+2. $L/\lambda = 0{,}2/30 \approx 0{,}0067 \ll 1$: l'ipotesi è ben soddisfatta (di solito si richiede almeno $L/\lambda \lesssim 0{,}1$).
+3. Alla stessa dimensione, a $f=1\,\mathrm{GHz}$ sarebbe $\lambda=0{,}3\,\mathrm{m}$ e $L/\lambda \approx 0{,}67$: il modello non è più valido.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="modellamento-costanti-concentrate-errore-1">
+
+- **Sbagliato:** Applicare le leggi di Kirchhoff a una linea lunga o ad alta frequenza «perché valgono sempre».
+- **Corretto:** Le leggi di Kirchhoff derivano dal modello a costanti concentrate: vanno applicate solo se $L \ll \lambda$.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="modellamento-costanti-concentrate-esame-1">
+
+La domanda sulle proprietà dei circuiti (linearità, permanenza, passività, costanti concentrate) compare negli appelli del 24-4-2003, 25-9-2003, 12-7-2005, 11-2-2008, 7-7-2008, 24-4-2009 <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

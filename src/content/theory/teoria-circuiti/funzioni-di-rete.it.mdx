@@ -1,0 +1,108 @@
+---
+course: teoria-circuiti
+topic: funzioni-di-rete
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="funzioni-di-rete-intuizione-1">
+
+La funzione di rete è la «carta d'identità» di un circuito visto da un ingresso a un'uscita: un rapporto di polinomi in $s$ che contiene tutto il comportamento del circuito a riposo. I suoi poli dicono come il circuito «vibra» da solo, i suoi zeri quali segnali blocca.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="funzioni-di-rete-teoria-1">
+
+La **funzione di rete** è $H(s)=\dfrac{Y(s)}{X(s)}$ con condizioni iniziali nulle, tra una grandezza d'uscita $Y$ e una d'ingresso $X$. Se ingresso e uscita sono sulla stessa porta si parla di impedenza o ammettenza di punto pilota; altrimenti di funzione di trasferimento (rapporto di tensioni, correnti, transimpedenza, transammettenza).
+
+</div>
+
+<div data-note-id="funzioni-di-rete-teoria-2">
+
+Per circuiti lineari tempo-invarianti a costanti concentrate $H(s)=\dfrac{N(s)}{D(s)}$ è _razionale a coefficienti reali_. Le radici di $D$ sono i **poli**, quelle di $N$ gli **zeri**; poli e zeri non reali sono in coppie complesse coniugate.
+
+</div>
+
+<details class="proof" data-note-id="funzioni-di-rete-dimostrazione-1">
+<summary>Dimostrazione: Le funzioni di rete sono razionali a coefficienti reali</summary>
+
+1. Nel dominio di $s$, con condizioni iniziali nulle, ogni elemento ha una relazione algebrica: $V=RI$, $V=sLI$, $I=sCV$, con $R,L,C$ reali; i generatori controllati hanno guadagni reali.
+2. KCL e KVL hanno coefficienti $0,\pm1$. Il circuito è quindi descritto da un sistema lineare $\mathcal A(s)\mathbf z=\mathbf b$ i cui coefficienti sono polinomi in $s$ a coefficienti reali.
+3. Per la regola di Cramer ogni incognita è $\det\mathcal A_k(s)/\det\mathcal A(s)$: rapporto di polinomi in $s$ a coefficienti reali.
+4. Quindi $H=Y/X$ è un rapporto di polinomi reali. I polinomi reali hanno radici non reali in coppie coniugate. $\square$
+
+</details>
+
+<Formula id="h-def" />
+<Formula id="h-razionale" />
+<Formula id="h-rc-lp" />
+<Formula id="h-rc-hp" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="funzioni-di-rete-esempio-1">
+
+### RC passa-basso
+
+$R=2$, $C=\tfrac12$, uscita su $C$: $H(s)$, poli, zeri.
+
+**Soluzione.**
+
+1. $H=\dfrac{1/(sC)}{R+1/(sC)}=\dfrac{1}{1+sRC}=\dfrac{1}{s+1}$.
+2. Polo in $-1$, nessuno zero.
+
+</div>
+
+<div class="worked" data-note-id="funzioni-di-rete-esempio-2">
+
+### RL passa-alto
+
+$R=1$, $L=1$, uscita su $L$.
+
+**Soluzione.**
+
+1. $H=\dfrac{sL}{R+sL}=\dfrac{s}{s+1}$: zero in $0$, polo in $-1$.
+
+</div>
+
+<div class="worked" data-note-id="funzioni-di-rete-esempio-3">
+
+### Impedenza di punto pilota
+
+$Z(s)$ di una serie $R=1$, $C=1$.
+
+**Soluzione.**
+
+1. $Z=1+\dfrac1s=\dfrac{s+1}{s}$: zero in $-1$, polo in $0$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="funzioni-di-rete-errore-1">
+
+- **Sbagliato:** Calcolare $H(s)$ con $v_C(0^-)\ne0$ senza metterlo a zero.
+- **Corretto:** La funzione di rete è definita con condizioni iniziali nulle.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="funzioni-di-rete-esame-1">
+
+Funzioni di rete razionali a coefficienti reali: 4-7-2000 <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

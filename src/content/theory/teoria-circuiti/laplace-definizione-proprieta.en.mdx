@@ -1,0 +1,128 @@
+---
+course: teoria-circuiti
+topic: laplace-definizione-proprieta
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="laplace-definizione-proprieta-intuizione-1">
+
+The Laplace transform "photographs" a signal by decomposing it into complex exponentials $e^{st}$. In this new domain differentiating becomes multiplying by $s$ and the initial conditions show up by themselves: a differential equation is solved with algebra.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="laplace-definizione-proprieta-teoria-1">
+
+The unilateral transform of $x(t)$ (zero for $t<0^-$) is $X(s)=\int_{0^-}^{\infty}x(t)e^{-st}\,dt$, with $s=\sigma+j\omega$, defined in the half-plane of convergence. The lower limit $0^-$ includes impulses at $t=0$ and makes the initial conditions $x(0^-)$ natural.
+
+</div>
+
+<div data-note-id="laplace-definizione-proprieta-teoria-2">
+
+**Properties.** Linearity: $ax+by\to aX+bY$. Derivative: $\dot x\to sX-x(0^-)$; $\ddot x\to s^2X-sx(0^-)-\dot x(0^-)$. Integral: $\int_{0^-}^{t}x\to X/s$. Time delay: $x(t-T)u_{-1}(t-T)\to e^{-sT}X$. Frequency shift: $e^{-at}x\to X(s+a)$. Convolution: $x*y\to XY$.
+
+</div>
+
+<div data-note-id="laplace-definizione-proprieta-teoria-3">
+
+**Value theorems.** Initial value: $x(0^+)=\lim_{s\to\infty}sX(s)$. Final value: $\lim_{t\to\infty}x(t)=\lim_{s\to0}sX(s)$ if all the poles of $sX(s)$ have negative real part.
+
+</div>
+
+<details class="proof" data-note-id="laplace-definizione-proprieta-dimostrazione-1">
+<summary>Proof: Transform of the derivative</summary>
+
+**Statement.** $\mathcal L\{\dot x\}=sX(s)-x(0^-)$.
+
+1. By definition $\mathcal L\{\dot x\}=\int_{0^-}^{\infty}\dot x(t)e^{-st}dt$.
+2. Integrating by parts: $\left[x(t)e^{-st}\right]_{0^-}^{\infty}+s\int_{0^-}^{\infty}x(t)e^{-st}dt$.
+3. In the region of convergence the term at infinity vanishes: what remains is $-x(0^-)+sX(s)$. $\square$
+
+</details>
+
+<Formula id="laplace-def" />
+<Formula id="laplace-lin" />
+<Formula id="laplace-der" />
+<Formula id="laplace-der2" />
+<Formula id="laplace-int" />
+<Formula id="laplace-ritardo" />
+<Formula id="laplace-shift" />
+<Formula id="laplace-conv" />
+<Formula id="val-iniz" />
+<Formula id="val-fin" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="laplace-definizione-proprieta-esempio-1">
+
+### Derivative of an exponential
+
+$x=e^{-2t}u_{-1}(t)$, $x(0^-)=0$: check $\mathcal L\{\dot x\}$.
+
+**Solution.**
+
+1. $X=1/(s+2)$; $sX-0=\dfrac{s}{s+2}$.
+2. Directly: $\dot x=-2e^{-2t}u_{-1}+\delta(t)\to\dfrac{-2}{s+2}+1=\dfrac{s}{s+2}$ ✓ (the impulse appears thanks to the $0^-$ limit).
+
+</div>
+
+<div class="worked" data-note-id="laplace-definizione-proprieta-esempio-2">
+
+### Initial and final values
+
+$X(s)=\dfrac{3}{s(s+1)}$.
+
+**Solution.**
+
+1. $sX=\dfrac3{s+1}$: $x(0^+)=\lim_{s\to\infty}=0$, $x(\infty)=\lim_{s\to0}=3$ (the pole $-1$ is stable).
+
+</div>
+
+<div class="worked" data-note-id="laplace-definizione-proprieta-esempio-3">
+
+### Time delay
+
+$x(t)=e^{-t}u_{-1}(t)$ delayed by $2$.
+
+**Solution.**
+
+1. $\mathcal L\{x(t-2)u_{-1}(t-2)\}=\dfrac{e^{-2s}}{s+1}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="laplace-definizione-proprieta-errore-1">
+
+- **Wrong:** Using the final-value theorem with poles on the imaginary axis.
+- **Right:** $sX(s)$ must have all its poles in the open left half-plane.
+
+</div>
+
+<div data-note-id="laplace-definizione-proprieta-errore-2">
+
+- **Wrong:** Forgetting $x(0^-)$ in the transform of the derivative.
+- **Right:** $\dot x\to sX-x(0^-)$.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="laplace-definizione-proprieta-esame-1">
+
+Laplace, properties and use: 14-7-2000, 29-4-2002 (L–Z), 25-9-2007, 17-4-2008 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

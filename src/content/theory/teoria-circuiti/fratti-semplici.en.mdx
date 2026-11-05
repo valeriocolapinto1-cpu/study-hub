@@ -1,0 +1,99 @@
+---
+course: teoria-circuiti
+topic: fratti-semplici
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="fratti-semplici-intuizione-1">
+
+A complicated rational function is a sum of simple pieces, one per pole, and each piece corresponds to a known exponential. The residue tells "how much" each exponential weighs in the response.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="fratti-semplici-teoria-1">
+
+An $F(s)=N(s)/D(s)$ with $\deg N<\deg D$ is expanded into partial fractions. For a simple pole $p$ the term is $\dfrac{r}{s-p}$ with residue $r=\lim_{s\to p}(s-p)F(s)$ and it gives $re^{pt}$. If $\deg N\ge\deg D$, first carry out the division (a polynomial term in $s$ appears, i.e. impulses).
+
+</div>
+
+<div data-note-id="fratti-semplici-teoria-2">
+
+For a double pole $p$: $\dfrac{r_2}{(s-p)^2}+\dfrac{r_1}{s-p}$ with $r_2=\lim(s-p)^2F$, $r_1=\lim\dfrac{d}{ds}\left[(s-p)^2F\right]$; it gives $(r_2t+r_1)e^{pt}$.
+
+</div>
+
+<Formula id="residuo" />
+<Formula id="polo-doppio" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="fratti-semplici-esempio-1">
+
+### Two real poles
+
+$F(s)=\dfrac{3s+5}{(s+1)(s+3)}$.
+
+**Solution.**
+
+1. $A=\left.\dfrac{3s+5}{s+3}\right|_{-1}=1$, $B=\left.\dfrac{3s+5}{s+1}\right|_{-3}=2$.
+2. $f(t)=e^{-t}+2e^{-3t}$ ($t>0$).
+
+</div>
+
+<div class="worked" data-note-id="fratti-semplici-esempio-2">
+
+### Double pole
+
+$F(s)=\dfrac{1}{s(s+1)^2}$.
+
+**Solution.**
+
+1. $\dfrac1s-\dfrac1{s+1}-\dfrac1{(s+1)^2}$.
+2. $f(t)=1-e^{-t}-te^{-t}$.
+3. Check at $s=1$: $1-\tfrac12-\tfrac14=\tfrac14$ ✓.
+
+</div>
+
+<div class="worked" data-note-id="fratti-semplici-esempio-3">
+
+### Equal degree
+
+$F(s)=\dfrac{s+3}{s+1}$.
+
+**Solution.**
+
+1. $F=1+\dfrac2{s+1}$.
+2. $f(t)=\delta(t)+2e^{-t}u_{-1}(t)$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="fratti-semplici-errore-1">
+
+- **Wrong:** Expanding without dividing when $\deg N=\deg D$.
+- **Right:** Divide first: the quotient gives an impulse.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="fratti-semplici-esame-1">
+
+The inverse transform by partial fractions is step 6 of the analysis exercise <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

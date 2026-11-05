@@ -1,0 +1,25 @@
+id: fasori-e-laplace
+course: teoria-circuiti
+order: 38
+title:
+  it: Relazione tra fasori e trasformata di Laplace
+  en: Relation between phasors and the Laplace transform
+summary:
+  it: Il legame $H(j\omega)=H(s)\big|_{s=j\omega}$, modulo e fase, e quando vale.
+  en: The link $H(j\omega)=H(s)\big|_{s=j\omega}$, magnitude and phase, and when it holds.
+objectives:
+  - id: fasori-e-laplace.1
+    text:
+      it: Collegare $H(s)$ a $H(j\omega)$
+      en: Relate $H(s)$ to $H(j\omega)$
+  - id: fasori-e-laplace.2
+    text:
+      it: Calcolare modulo e fase
+      en: Compute magnitude and phase
+  - id: fasori-e-laplace.3
+    text:
+      it: Sapere quando il legame vale
+      en: Know when the relation holds
+group:
+  it: V · Funzioni di rete e stabilità
+  en: V · Network functions and stability

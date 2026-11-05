@@ -1,0 +1,25 @@
+id: metodo-delle-maglie
+course: teoria-circuiti
+order: 17
+title:
+  it: Metodo delle maglie
+  en: Mesh method
+summary:
+  it: "Analisi alle maglie: equazioni $R_m\\,\\mathbf j=\\mathbf v_s$, supermaglia per i generatori di corrente, dualità con il metodo dei nodi."
+  en: "Mesh analysis: equations $R_m\\,\\mathbf j=\\mathbf v_s$, supermesh for current sources, duality with the node method."
+objectives:
+  - id: metodo-delle-maglie.1
+    text:
+      it: Scrivere le equazioni alle maglie
+      en: Write the mesh equations
+  - id: metodo-delle-maglie.2
+    text:
+      it: Gestire generatori di corrente con supermaglia
+      en: Handle current sources with a supermesh
+  - id: metodo-delle-maglie.3
+    text:
+      it: Confrontare il metodo con quello dei nodi
+      en: Compare the method with nodal analysis
+group:
+  it: II · Circuiti senza memoria
+  en: II · Memoryless circuits

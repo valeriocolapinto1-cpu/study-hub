@@ -1,0 +1,107 @@
+---
+course: teoria-circuiti
+topic: stabilita-poli
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="stabilita-poli-intuizione-1">
+
+Un circuito lasciato a sé stesso, dopo una perturbazione, torna a riposo, continua a oscillare o «esplode»? La risposta sta tutta nella posizione dei poli: a sinistra dell'asse immaginario i modi si spengono, sull'asse sopravvivono, a destra crescono senza limite.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="stabilita-poli-teoria-1">
+
+Un sistema lineare è **asintoticamente stabile** se la risposta libera tende a zero per ogni condizione iniziale; condizione necessaria e sufficiente: tutti i poli di $H(s)$ (senza cancellazioni) hanno parte reale negativa. È **marginalmente stabile** con poli semplici sull'asse immaginario (e gli altri a parte reale negativa); è **instabile** con un polo a parte reale positiva o poli multipli sull'asse immaginario.
+
+</div>
+
+<div data-note-id="stabilita-poli-teoria-2">
+
+**Criteri per polinomi.** Grado 2: $s^2+a_1s+a_0$ stabile se $a_1,a_0>0$. Grado 3: $s^3+a_2s^2+a_1s+a_0$ stabile se $a_2,a_1,a_0>0$ e $a_2a_1>a_0$.
+
+</div>
+
+<details class="proof" data-note-id="stabilita-poli-dimostrazione-1">
+<summary>Dimostrazione: Condizione di stabilità: poli nel semipiano sinistro aperto</summary>
+
+1. Scomponendo in fratti semplici, ogni polo $p$ di molteplicità $m$ dà modi $t^ke^{pt}$ con $0\le k<m$.
+2. Se $\mathrm{Re}\,p<0$: $|t^ke^{pt}|=t^ke^{\mathrm{Re}(p)t}\to0$ (l'esponenziale prevale sulla potenza).
+3. Se tutti i poli hanno $\mathrm{Re}<0$, ogni modo, e quindi la risposta libera, tende a zero.
+4. Se un polo ha $\mathrm{Re}\,p>0$ il modo diverge; se $\mathrm{Re}\,p=0$ il modo non tende a zero ($|e^{j\omega t}|=1$) e se la molteplicità è $\ge2$ compare $t\,e^{j\omega t}$, illimitato. $\square$
+
+</details>
+
+<Formula id="stab-poli" />
+<Formula id="routh2" />
+<Formula id="routh3" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="stabilita-poli-esempio-1">
+
+### Secondo ordine con parametro
+
+$D(s)=s^2+(k-3)s+2$.
+
+**Soluzione.**
+
+1. Serve $k-3>0$: stabile per $k>3$.
+
+</div>
+
+<div class="worked" data-note-id="stabilita-poli-esempio-2">
+
+### Terzo ordine
+
+$D(s)=s^3+2s^2+3s+k$.
+
+**Soluzione.**
+
+1. $k>0$ e $2\cdot3>k$: stabile per $0<k<6$.
+2. Per $k=6$: poli sull'asse immaginario ($s=\pm j\sqrt3$): marginale.
+
+</div>
+
+<div class="worked" data-note-id="stabilita-poli-esempio-3">
+
+### Polo in $+1$
+
+$H=\dfrac{1}{s-1}$.
+
+**Soluzione.**
+
+1. Polo in $s=1$: $h=e^{t}$ diverge, instabile.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="stabilita-poli-errore-1">
+
+- **Sbagliato:** Dire che un polo sull'asse immaginario rende il sistema stabile.
+- **Corretto:** Al più marginale: la risposta non decade e può diventare illimitata (polo multiplo o ingresso risonante).
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="stabilita-poli-esame-1">
+
+Stabilità, poli, stabilità al variare di $k$: 12-6-2000, 15-9-2000, 29-4-2002, 24-4-2003 <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

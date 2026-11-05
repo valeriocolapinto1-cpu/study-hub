@@ -1,0 +1,142 @@
+---
+course: teoria-circuiti
+topic: risposta-in-frequenza-filtri
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="risposta-in-frequenza-filtri-intuizione-1">
+
+A filter is a circuit that treats frequencies differently: an RC with the output across the capacitor lets slow variations through and "flattens" fast ones, because the capacitor cannot keep up with them. The cut-off frequency marks the border between the two regions.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="risposta-in-frequenza-filtri-teoria-1">
+
+**First-order low-pass** $H=\dfrac{1}{1+s/\omega_c}$: $|H(j\omega)|=\dfrac{1}{\sqrt{1+(\omega/\omega_c)^2}}$, phase $-\arctan(\omega/\omega_c)$. At $\omega_c$ the magnitude is $1/\sqrt2$ ($-3\,\mathrm{dB}$) and the phase $-45^\circ$; beyond $\omega_c$ it falls by $20\,\mathrm{dB/dec}$. RC: $\omega_c=1/(RC)$; RL (output across $R$): $\omega_c=R/L$.
+
+</div>
+
+<div data-note-id="risposta-in-frequenza-filtri-teoria-2">
+
+**High-pass** $H=\dfrac{s/\omega_c}{1+s/\omega_c}$: it blocks DC and passes high frequencies. The gain in dB is $20\log_{10}|H|$.
+
+</div>
+
+<Figure
+  caption="Asymptotic Bode magnitude plot of a low-pass filter: flat up to ω_c, then −20 dB/decade"
+  num="1"
+  id="fig-1"
+>
+  <svg
+    viewBox="0 0 340 200"
+    xmlns="http://www.w3.org/2000/svg"
+    stroke="currentColor"
+    stroke-width="2"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    font-family="system-ui,sans-serif"
+    font-size="14"
+    aria-hidden="true"
+    focusable="false"
+    class="diagram"
+    style="max-width: 340px"
+  >
+    <polyline points="40 20 40 160 320 160" />
+    <polyline points="40 60 160 60 300 140" />
+    <g stroke-dasharray="4 3">
+      <polyline points="160 60 160 160" />
+    </g>
+    <text x="160" y="178" text-anchor="middle" fill="currentColor" stroke="none">
+      ω_c
+    </text>
+    <text x="30" y="64" text-anchor="end" fill="currentColor" stroke="none">
+      0 dB
+    </text>
+    <text x="190" y="50" text-anchor="start" fill="currentColor" stroke="none">
+      −20 dB/dec
+    </text>
+    <text x="180" y="18" text-anchor="start" fill="currentColor" stroke="none">
+      |H| (dB)
+    </text>
+    <text x="320" y="178" text-anchor="end" fill="currentColor" stroke="none">
+      ω (log)
+    </text>
+    <circle cx="160" cy="60" r="3" fill="currentColor" />
+  </svg>
+</Figure>
+
+<Formula id="wc-rc" />
+<Formula id="wc-rl" />
+<Formula id="mod-lp" />
+<Formula id="db" />
+<Formula id="bode-pend" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="risposta-in-frequenza-filtri-esempio-1">
+
+### Cut-off of an RC
+
+$R=2\,\Omega$, $C=\tfrac12\,\mathrm F$.
+
+**Solution.**
+
+1. $\omega_c=\dfrac1{RC}=1\,\mathrm{rad/s}$, $f_c=\dfrac{\omega_c}{2\pi}\approx0.159\,\mathrm{Hz}$.
+
+</div>
+
+<div class="worked" data-note-id="risposta-in-frequenza-filtri-esempio-2">
+
+### Gain one decade above
+
+Low-pass with $\omega_c=1$: $|H|$ at $\omega=10$.
+
+**Solution.**
+
+1. $\dfrac{1}{\sqrt{101}}\approx0.0995\to-20.04\,\mathrm{dB}$ ($\approx-20\,\mathrm{dB}$).
+
+</div>
+
+<div class="worked" data-note-id="risposta-in-frequenza-filtri-esempio-3">
+
+### Type of filter
+
+$H=\dfrac{s}{s+2}$.
+
+**Solution.**
+
+1. $H(0)=0$, $|H(\infty)|=1$: high-pass with $\omega_c=2$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="risposta-in-frequenza-filtri-errore-1">
+
+- **Wrong:** Saying that the 3 dB cut-off frequency is where the magnitude is half its maximum.
+- **Right:** It is where the magnitude is $|H|_{max}/\sqrt2$ (half power).
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="risposta-in-frequenza-filtri-esame-1">
+
+Frequency response, type of filter, 3 dB cut-off: 3-7-2001, 29-4-2002, 19-6-2002, 17-7-2002, 24-4-2003, 3-7-2003, 19-11-2003, 11-2-2008 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

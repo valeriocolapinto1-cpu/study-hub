@@ -1,0 +1,25 @@
+id: risposta-in-frequenza-filtri
+course: teoria-circuiti
+order: 39
+title:
+  it: Risposta in frequenza e filtri
+  en: Frequency response and filters
+summary:
+  it: Modulo e fase della risposta in frequenza, filtri passa-basso e passa-alto del primo ordine e frequenza di taglio a 3 dB.
+  en: Magnitude and phase of the frequency response, first-order low-pass and high-pass filters and the 3 dB cut-off frequency.
+objectives:
+  - id: risposta-in-frequenza-filtri.1
+    text:
+      it: Tracciare modulo e fase della risposta in frequenza
+      en: Plot the magnitude and phase of the frequency response
+  - id: risposta-in-frequenza-filtri.2
+    text:
+      it: Riconoscere il tipo di filtro
+      en: Recognise the type of filter
+  - id: risposta-in-frequenza-filtri.3
+    text:
+      it: Calcolare la frequenza di taglio a 3 dB
+      en: Compute the 3 dB cut-off frequency
+group:
+  it: V · Funzioni di rete e stabilità
+  en: V · Network functions and stability

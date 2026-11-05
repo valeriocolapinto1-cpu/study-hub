@@ -1,0 +1,88 @@
+---
+course: teoria-circuiti
+topic: tensioni-correnti-indipendenti
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="tensioni-correnti-indipendenti-intuizione-1">
+
+A circuit with $b$ branches has $2b$ unknowns, but Kirchhoff's laws "tie" many of them together. Knowing the tree-branch voltages gives all the voltages, and knowing the cotree currents gives all the currents: this is the idea behind the node and mesh methods.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="tensioni-correnti-indipendenti-teoria-1">
+
+The $b$ branch voltages are not independent: they must satisfy KVL ($b-n+1$ constraints). **$n-1$ independent voltages** remain: for instance the tree-branch voltages $\mathbf v_t$, or the node voltages $\mathbf e$ with respect to the reference ($\mathbf v=A^{\mathsf T}\mathbf e$).
+
+</div>
+
+<div data-note-id="tensioni-correnti-indipendenti-teoria-2">
+
+Likewise for currents: KCL gives $n-1$ constraints and **$b-n+1$ independent currents** remain: those of the cotree branches $\mathbf i_c$ (loop currents $\mathbf j$, with $\mathbf i=B^{\mathsf T}\mathbf j$).
+
+</div>
+
+<div data-note-id="tensioni-correnti-indipendenti-teoria-3">
+
+In blocks: $\mathbf v_c=F^{\mathsf T}\mathbf v_t$ (from KVL $B\mathbf v=0$) and $\mathbf i_t=-F\,\mathbf i_c$ (from KCL $Q\mathbf i=0$).
+
+</div>
+
+<details class="proof" data-note-id="tensioni-correnti-indipendenti-dimostrazione-1">
+<summary>Proof: All voltages follow from the tree voltages</summary>
+
+1. KVL with $B=[-F^{\mathsf T}\ \ \mathbb1]$ gives $-F^{\mathsf T}\mathbf v_t+\mathbf v_c=0$.
+2. Hence $\mathbf v_c=F^{\mathsf T}\mathbf v_t$: the cotree voltages are determined by the tree voltages.
+3. The $n-1$ tree voltages are free: there are no further constraints (there are as many KVL equations as fundamental loops, and they have all been used). $\square$
+
+</details>
+
+<Formula id="tens-indip" />
+<Formula id="corr-indip" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="tensioni-correnti-indipendenti-esempio-1">
+
+### From the previous triangle
+
+In the triangle of example II-03 (tree $a,b$) with $v_a=5\,\mathrm{V}$, $v_b=3\,\mathrm{V}$: find $v_c$ and, given $i_c=2\,\mathrm{A}$, the currents $i_a,i_b$.
+
+**Solution.**
+
+1. $F^{\mathsf T}=(-1\ \ 1)$: $v_c=-5+3=-2\,\mathrm{V}$ (KVL: $v_a-v_b+v_c=0$ ✓).
+2. $\mathbf i_t=-F\,i_c=\begin{pmatrix}1\\-1\end{pmatrix}\cdot2=\begin{pmatrix}2\\-2\end{pmatrix}$: $i_a=2\,\mathrm{A}$, $i_b=-2\,\mathrm{A}$.
+3. KCL at node 1: $c$ leaves ($i_c=2$) and $a$ enters ($i_a=2$) ✓.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="tensioni-correnti-indipendenti-errore-1">
+
+- **Wrong:** Assigning $b$ branch voltages freely.
+- **Right:** Only $n-1$ voltages (and $b-n+1$ currents) are independent: the others follow from KVL/KCL.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="tensioni-correnti-indipendenti-esame-1">
+
+Independent voltages: 18-9-2002, 30-10-2002, 24-4-2003, 12-7-2005 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

@@ -1,0 +1,141 @@
+---
+course: teoria-circuiti
+topic: reti-n-porte
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="reti-n-porte-intuizione-1">
+
+When a circuit connects to the outside world through several pairs of terminals, it can be treated as a box with $N$ "windows". $N$ relations between the window voltages and currents are enough to describe it, provided that every pair of terminals really is a port.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="reti-n-porte-teoria-1">
+
+An **$N$-port network** is a circuit with $N$ accessible pairs of terminals (ports), for each of which the current entering one terminal equals the current leaving the other. In the linear case it is described by $N$ linear relations among the $2N$ variables $v_k,i_k$: $N$ of them are chosen as independent and the others are functions of them ($Z$, $Y$, hybrid, transmission representations).
+
+</div>
+
+<div data-note-id="reti-n-porte-teoria-2">
+
+A two-port ($N=2$) has two relations among $v_1,i_1,v_2,i_2$.
+
+</div>
+
+<Figure caption="Two-port with entering currents i1, i2 and port voltages v1, v2" num="1" id="fig-1">
+  <svg
+    viewBox="0 0 320 160"
+    xmlns="http://www.w3.org/2000/svg"
+    stroke="currentColor"
+    stroke-width="2"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    font-family="system-ui,sans-serif"
+    font-size="14"
+    aria-hidden="true"
+    focusable="false"
+    class="diagram"
+    style="max-width: 320px"
+  >
+    <rect x="100" y="30" width="120" height="100" rx="6" />
+    <polyline points="40 50 100 50" />
+    <polyline points="40 110 100 110" />
+    <polyline points="220 50 280 50" />
+    <polyline points="220 110 280 110" />
+    <circle cx="40" cy="50" r="3" fill="currentColor" />
+    <circle cx="40" cy="110" r="3" fill="currentColor" />
+    <circle cx="280" cy="50" r="3" fill="currentColor" />
+    <circle cx="280" cy="110" r="3" fill="currentColor" />
+    <polyline points="50 40 90 40" />
+    <polyline points="83.7,37.0 90,40 83.7,43.0" />
+    <polyline points="270 40 230 40" />
+    <polyline points="236.3,43.0 230,40 236.3,37.0" />
+    <text x="70" y="32" text-anchor="middle" fill="currentColor" stroke="none">
+      i₁
+    </text>
+    <text x="250" y="32" text-anchor="middle" fill="currentColor" stroke="none">
+      i₂
+    </text>
+    <text x="28" y="84" text-anchor="end" fill="currentColor" stroke="none">
+      v₁
+    </text>
+    <text x="292" y="84" text-anchor="start" fill="currentColor" stroke="none">
+      v₂
+    </text>
+    <text x="160" y="85" text-anchor="middle" fill="currentColor" stroke="none">
+      N
+    </text>
+  </svg>
+</Figure>
+
+<Formula id="nporte-rel" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="reti-n-porte-esempio-1">
+
+### Counting
+
+How many relations describe a linear 3-port network?
+
+**Solution.**
+
+1. 3 relations among 6 variables ($v_1,v_2,v_3,i_1,i_2,i_3$).
+
+</div>
+
+<div class="worked" data-note-id="reti-n-porte-esempio-2">
+
+### Port condition
+
+A two-port has $i_1=2$ entering $A$ and $1$ leaving $B$. Is it a port?
+
+**Solution.**
+
+1. No: the entering current does not equal the leaving one; the pair does not satisfy the port condition.
+
+</div>
+
+<div class="worked" data-note-id="reti-n-porte-esempio-3">
+
+### A known two-port
+
+The ideal transformer: which variables are independent?
+
+**Solution.**
+
+1. $v_1=nv_2$, $i_1=-i_2/n$: $(v_2,i_2)$ can be chosen; neither $Z$ nor $Y$ exists.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="reti-n-porte-errore-1">
+
+- **Wrong:** Treating as a port a pair of terminals that does not satisfy the port condition.
+- **Right:** Check that $i_{in}=i_{out}$.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="reti-n-porte-esame-1">
+
+$N$-port networks and two-ports: 15-9-2000, 17-7-2002, 3-7-2003, 23-9-2008 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

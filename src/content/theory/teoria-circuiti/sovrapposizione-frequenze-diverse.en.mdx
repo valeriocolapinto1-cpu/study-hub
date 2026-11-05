@@ -1,0 +1,103 @@
+---
+course: teoria-circuiti
+topic: sovrapposizione-frequenze-diverse
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="sovrapposizione-frequenze-diverse-intuizione-1">
+
+A phasor only makes sense together with its frequency: two phasors at different frequencies are like two quantities in different units, they do not add. Solve the circuit once per frequency, then add the responses in time, where everything is comparable again.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="sovrapposizione-frequenze-diverse-teoria-1">
+
+In a linear circuit with several sources at different frequencies (DC is frequency zero) the response is the sum of the responses to each source, each computed with its own method: DC with $C$ open and $L$ shorted, sinusoidal with phasors at that $\omega$.
+
+</div>
+
+<div data-note-id="sovrapposizione-frequenze-diverse-teoria-2">
+
+Never add phasors at different frequencies: they are numbers attached to different $e^{j\omega_kt}$. The sum is taken on the time-domain expressions.
+
+</div>
+
+<div data-note-id="sovrapposizione-frequenze-diverse-teoria-3">
+
+**Initial condition in the mixed case.** $x(0^-)=x_{dc}+\sum_k\mathrm{Re}\{X_k\}$ (the value at $t=0$ of each term $\mathrm{Re}\{X_ke^{j\omega_kt}\}$ is $\mathrm{Re}\{X_k\}$).
+
+</div>
+
+<Formula id="sovrapposizione" />
+<Formula id="cond-iniz-mista" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="sovrapposizione-frequenze-diverse-esempio-1">
+
+### DC plus sinusoid
+
+Series RC ($R=C=1$), $v_g=4+\cos t$ for $t<0$. Find $v_C(t)$ for $t<0$ and $v_C(0^-)$.
+
+**Solution.**
+
+1. DC: $v_C^{dc}=4$.
+2. Sinusoidal ($\omega=1$): $\tfrac12\cos t+\tfrac12\sin t$.
+3. $v_C(t)=4+\tfrac12\cos t+\tfrac12\sin t$; $v_C(0^-)=4+\tfrac12=\tfrac92$.
+
+</div>
+
+<div class="worked" data-note-id="sovrapposizione-frequenze-diverse-esempio-2">
+
+### Two sinusoids
+
+Initial condition for $v_C=\tfrac12\cos t+\tfrac12\sin t+\tfrac15\cos2t+\tfrac25\sin2t$.
+
+**Solution.**
+
+1. Value at $t=0$: $\tfrac12+\tfrac15=\tfrac7{10}$ (the sines are $0$).
+
+</div>
+
+<div class="worked" data-note-id="sovrapposizione-frequenze-diverse-esempio-3">
+
+### A typical mistake
+
+A student adds the magnitudes, $|X_1|+|X_2|$, as the total amplitude. Why is this wrong?
+
+**Solution.**
+
+1. The two sinusoids have different frequencies, so the total amplitude is not the sum of the magnitudes: the time-domain expression is the sum of the two sinusoids. The value at $t=0$ is the sum of the instantaneous values.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="sovrapposizione-frequenze-diverse-errore-1">
+
+- **Wrong:** Using the magnitude of the phasor as the initial condition.
+- **Right:** You need the value at $t=0$: the real part of the phasor.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="sovrapposizione-frequenze-diverse-esame-1">
+
+Mixed DC + sinusoidal input: 1 case out of 14 in the 2015–2024 exercises <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

@@ -1,0 +1,25 @@
+id: albero-coalbero
+course: teoria-circuiti
+order: 11
+title:
+  it: Albero, coalbero, maglie e tagli fondamentali
+  en: Tree, cotree, fundamental loops and cut sets
+summary:
+  it: Albero e coalbero di un grafo, maglie e tagli fondamentali e il loro numero.
+  en: Tree and cotree of a graph, fundamental loops and cut sets, and how many there are.
+objectives:
+  - id: albero-coalbero.1
+    text:
+      it: Definire albero e coalbero
+      en: Define tree and cotree
+  - id: albero-coalbero.2
+    text:
+      it: Costruire maglie e tagli fondamentali
+      en: Build fundamental loops and cut sets
+  - id: albero-coalbero.3
+    text:
+      it: Dimostrare che un albero ha $n-1$ rami
+      en: Prove that a tree has $n-1$ branches
+group:
+  it: II · Circuiti senza memoria
+  en: II · Memoryless circuits

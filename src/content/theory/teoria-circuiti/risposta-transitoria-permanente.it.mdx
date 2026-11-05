@@ -1,0 +1,95 @@
+---
+course: teoria-circuiti
+topic: risposta-transitoria-permanente
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="risposta-transitoria-permanente-intuizione-1">
+
+Appena si accende un ingresso, il circuito «si assesta»: per un po' convivono i suoi modi naturali e la risposta all'ingresso. In un sistema stabile i primi si spengono e resta solo la seconda, che ha la stessa forma dell'ingresso: è la risposta permanente.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="risposta-transitoria-permanente-teoria-1">
+
+Per un sistema stabile e ingresso sinusoidale $x=A\cos(\omega_0t+\varphi)$ la **risposta permanente** è $y_p=A|F(j\omega_0)|\cos(\omega_0t+\varphi+\arg F(j\omega_0))$; la **transitoria** è formata dai modi naturali (poli di $F$) e si estingue.
+
+</div>
+
+<div data-note-id="risposta-transitoria-permanente-teoria-2">
+
+Con Laplace: $Y(s)=F(s)X(s)$; nella scomposizione in fratti semplici i poli di $X$ danno la permanente, i poli di $F$ il transitorio.
+
+</div>
+
+<Formula id="y-permanente" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="risposta-transitoria-permanente-esempio-1">
+
+### RC con ingresso coseno
+
+$F=\dfrac1{s+1}$, $x=\cos t$, condizioni nulle.
+
+**Soluzione.**
+
+1. $F(j)=\dfrac{1}{1+j}=\tfrac{1}{\sqrt2}e^{-j45^\circ}$: $y_p=\tfrac1{\sqrt2}\cos(t-45^\circ)=\tfrac12\cos t+\tfrac12\sin t$.
+2. $Y=\dfrac{s}{(s+1)(s^2+1)}=\dfrac{-1/2}{s+1}+\dfrac{\tfrac12s+\tfrac12}{s^2+1}$: transitorio $-\tfrac12e^{-t}$.
+
+</div>
+
+<div class="worked" data-note-id="risposta-transitoria-permanente-esempio-2">
+
+### Tempo di estinzione
+
+Dopo quanto il transitorio $-\tfrac12e^{-t}$ è sotto l'$1\%$ dell'ampiezza di regime ($\tfrac1{\sqrt2}$)?
+
+**Soluzione.**
+
+1. $\tfrac12e^{-t}<0{,}007\Rightarrow t>\ln(71)\approx4{,}3\,\mathrm s\approx4{,}3\tau$.
+
+</div>
+
+<div class="worked" data-note-id="risposta-transitoria-permanente-esempio-3">
+
+### Ingresso gradino
+
+Stesso $F$, $x=u_{-1}$.
+
+**Soluzione.**
+
+1. Permanente: $F(0)=1$ (costante); transitoria: $-e^{-t}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="risposta-transitoria-permanente-errore-1">
+
+- **Sbagliato:** Calcolare la permanente con $F(s)$ a $s=\omega_0$.
+- **Corretto:** Si valuta $F$ in $s=j\omega_0$.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="risposta-transitoria-permanente-esame-1">
+
+Risposta permanente e transitoria da $F(s)$ e $x(t)$: 25-9-2003, 12-7-2005, 7-7-2008, 24-4-2009 <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

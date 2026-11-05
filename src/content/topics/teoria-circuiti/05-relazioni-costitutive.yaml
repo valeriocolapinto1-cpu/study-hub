@@ -1,0 +1,25 @@
+id: relazioni-costitutive
+course: teoria-circuiti
+order: 5
+title:
+  it: Relazioni costitutive di R, L, C e dei generatori
+  en: Constitutive relations of R, L, C and of sources
+summary:
+  it: Le relazioni tensione-corrente di resistore, condensatore, induttore e generatori ideali, con la continuità di $v_C$ e $i_L$.
+  en: The voltage-current relations of resistor, capacitor, inductor and ideal sources, with the continuity of $v_C$ and $i_L$.
+objectives:
+  - id: relazioni-costitutive.1
+    text:
+      it: Scrivere le relazioni costitutive di R, L, C e dei generatori ideali
+      en: Write the constitutive relations of R, L, C and of the ideal sources
+  - id: relazioni-costitutive.2
+    text:
+      it: Dimostrare la continuità di $i_L$ e $v_C$
+      en: Prove the continuity of $i_L$ and $v_C$
+  - id: relazioni-costitutive.3
+    text:
+      it: Usare i modelli ad alta e bassa frequenza (corto/aperto)
+      en: Use the high- and low-frequency models (short/open circuit)
+group:
+  it: I · Costanti concentrate
+  en: I · Lumped parameters

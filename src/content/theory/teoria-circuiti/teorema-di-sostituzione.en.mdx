@@ -1,0 +1,103 @@
+---
+course: teoria-circuiti
+topic: teorema-di-sostituzione
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="teorema-di-sostituzione-intuizione-1">
+
+If you already know the voltage and current on a piece of circuit, the rest of the circuit "does not notice" if you replace it with a source imposing exactly that value. A very simple idea, but it is the first brick of Thévenin's and Norton's theorems.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teorema-di-sostituzione-teoria-1">
+
+**Substitution theorem.** If a circuit has a unique solution and one of its one-ports (or ports) has voltage $v^*$ and current $i^*$ in that solution, it can be replaced by an ideal voltage source $v^*$ or by an ideal current source $i^*$ without changing the voltages and currents of the rest of the circuit, provided that the modified circuit still has a unique solution.
+
+</div>
+
+<div data-note-id="teorema-di-sostituzione-teoria-2">
+
+The theorem does not require linearity. It is the basis for Thévenin, Norton and for analysis by parts (a part is replaced by an equivalent source).
+
+</div>
+
+<details class="proof" data-note-id="teorema-di-sostituzione-dimostrazione-1">
+<summary>Proof: Substitution with a source</summary>
+
+1. Let $(\mathbf v^*,\mathbf i^*)$ be the solution of the original circuit.
+2. In the modified circuit the equations (KCL, KVL and the constitutive relations of the remaining elements) are the same as before, except for the relation of the replaced one-port, which becomes $v=v^*$ (or $i=i^*$).
+3. $(\mathbf v^*,\mathbf i^*)$ satisfies all of them: the replaced one-port has exactly $v=v^*$. If the solution of the modified circuit is unique, it coincides with $(\mathbf v^*,\mathbf i^*)$. $\square$
+
+</details>
+
+<Formula id="sost" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="teorema-di-sostituzione-esempio-1">
+
+### Replacing a resistor
+
+$V=12$, $R_1=2$, $R_2=4$ in series; the voltage across $R_2$ is $8\,\mathrm V$. Replace $R_2$.
+
+**Solution.**
+
+1. $R_2\to$ an $8\,\mathrm V$ voltage source: the current in $R_1$ is $\dfrac{12-8}{2}=2\,\mathrm A$, as before ($12/6$).
+
+</div>
+
+<div class="worked" data-note-id="teorema-di-sostituzione-esempio-2">
+
+### Substitution with a current source
+
+Same circuit: $R_2\to$ a $2\,\mathrm A$ current source.
+
+**Solution.**
+
+1. The voltage across $R_1$ is $2\cdot2=4\,\mathrm V$, that across the source $8\,\mathrm V$: identical ✓.
+
+</div>
+
+<div class="worked" data-note-id="teorema-di-sostituzione-esempio-3">
+
+### When it does not hold
+
+Replacing $R_2$ with a voltage source $v^*$ in parallel with another, different voltage source.
+
+**Solution.**
+
+1. It would violate KVL: the modified circuit has no solution, so the theorem does not apply.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teorema-di-sostituzione-errore-1">
+
+- **Wrong:** Applying substitution without checking that the solution is unique.
+- **Right:** The modified circuit must have a unique solution.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="teorema-di-sostituzione-esame-1">
+
+Substitution theorem: 19-11-2003, 12-7-2007 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

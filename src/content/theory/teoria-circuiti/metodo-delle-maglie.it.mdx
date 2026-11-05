@@ -1,0 +1,88 @@
+---
+course: teoria-circuiti
+topic: metodo-delle-maglie
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="metodo-delle-maglie-intuizione-1">
+
+È il duale del metodo dei nodi: si immagina una corrente che «gira» in ciascuna maglia e si esprime ogni corrente di ramo come somma delle correnti di maglia che lo attraversano. La KCL diventa automatica e resta da scrivere una KVL per maglia.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="metodo-delle-maglie-teoria-1">
+
+Il **metodo delle maglie** usa come incognite le correnti di maglia $\mathbf j$ ($b-n+1$ maglie fondamentali), con $\mathbf i=B^{\mathsf T}\mathbf j$. Per soli resistori e generatori di tensione:
+
+$$
+R_m\,\mathbf j=\mathbf v_s,
+$$
+
+con $R_{m,jj}=$ somma delle resistenze della maglia, $R_{m,jk}=\pm$ resistenza condivisa (negativa se nel ramo condiviso le due correnti di maglia hanno versi opposti), $v_{s,j}=$ somma algebrica delle tensioni dei generatori nel verso della maglia.
+
+</div>
+
+<div data-note-id="metodo-delle-maglie-teoria-2">
+
+Un generatore di corrente su un solo ramo di una maglia fissa la corrente di quella maglia; se è tra due maglie si usa la _supermaglia_ (KVL sul percorso che le contiene, con il vincolo sulle correnti). È il duale del metodo dei nodi.
+
+</div>
+
+<details class="proof" data-note-id="metodo-delle-maglie-dimostrazione-1">
+<summary>Dimostrazione: Equazioni alle maglie</summary>
+
+1. KVL: $B\,\mathbf v=\mathbf v_s'$ (generatori a secondo membro); costitutive: $\mathbf v=\mathcal R\,\mathbf i$.
+2. Con $\mathbf i=B^{\mathsf T}\mathbf j$ (la KCL è automaticamente soddisfatta perché $A B^{\mathsf T}=0$): $B\,\mathcal R\,B^{\mathsf T}\mathbf j=\mathbf v_s'$.
+3. Quindi $R_m=B\mathcal RB^{\mathsf T}$. $\square$
+
+</details>
+
+<Formula id="maglie" />
+<Formula id="maglie-mat" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="metodo-delle-maglie-esempio-1">
+
+### Due maglie
+
+Maglia 1: generatore $12\,\mathrm{V}$ e $R_1=2\,\Omega$; ramo comune $R_2=4\,\Omega$; maglia 2: $R_3=2\,\Omega$. Trova $j_1,j_2$.
+
+**Soluzione.**
+
+1. $(R_1+R_2)j_1-R_2j_2=12\Rightarrow 6j_1-4j_2=12$; $-R_2j_1+(R_2+R_3)j_2=0\Rightarrow-4j_1+6j_2=0$.
+2. $j_2=\tfrac23j_1$: $6j_1-\tfrac83j_1=12\Rightarrow\tfrac{10}3j_1=12$, $j_1=\tfrac{18}5=3{,}6\,\mathrm{A}$, $j_2=\tfrac{12}5=2{,}4\,\mathrm{A}$.
+3. Corrente in $R_2$: $j_1-j_2=1{,}2\,\mathrm{A}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="metodo-delle-maglie-errore-1">
+
+- **Sbagliato:** Dimenticare il segno meno dei termini mutui quando i versi delle correnti di maglia sono tutti orari.
+- **Corretto:** Con tutte le maglie orarie il ramo comune ha correnti opposte: il termine mutuo è $-R$.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="metodo-delle-maglie-esame-1">
+
+Metodo delle maglie e criteri di scelta nodi/maglie: 3-7-2001, 3-7-2003, 25-9-2007, 17-4-2008, 7-7-2008 <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

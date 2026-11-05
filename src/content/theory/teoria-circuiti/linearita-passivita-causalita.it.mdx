@@ -1,0 +1,101 @@
+---
+course: teoria-circuiti
+topic: linearita-passivita-causalita
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="linearita-passivita-causalita-intuizione-1">
+
+Queste proprietà rispondono a domande semplici. Se raddoppio l'ingresso, raddoppia l'uscita? (linearità). Se faccio lo stesso esperimento domani, ottengo lo stesso risultato spostato di un giorno? (tempo-invarianza). L'elemento «vede il futuro»? (causalità). Può restituire più energia di quella che ha ricevuto? (passività).
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="linearita-passivita-causalita-teoria-1">
+
+Un elemento (o circuito) è **lineare** se vale la sovrapposizione degli effetti: se all'ingresso $x_1$ corrisponde $y_1$ e a $x_2$ corrisponde $y_2$, allora a $a x_1 + b x_2$ corrisponde $a y_1 + b y_2$ (additività e omogeneità), con condizioni iniziali nulle.
+
+</div>
+
+<div data-note-id="linearita-passivita-causalita-teoria-2">
+
+È **tempo-invariante** (permanente) se traslando l'ingresso nel tempo di $T$ la risposta trasla di $T$: $x(t-T)\mapsto y(t-T)$. I parametri non dipendono dal tempo.
+
+</div>
+
+<div data-note-id="linearita-passivita-causalita-teoria-3">
+
+È **causale** se la risposta all'istante $t$ dipende solo dall'ingresso a istanti $\le t$.
+
+</div>
+
+<div data-note-id="linearita-passivita-causalita-teoria-4">
+
+È **passivo** se non può erogare più energia di quella che ha ricevuto: per ogni scelta delle grandezze ai morsetti l'energia assorbita $\int_{-\infty}^{t} v i\,d\tau \ge 0$ (con energia iniziale nulla). La definizione precisa può variare tra i testi <span class="badge badge--warning">DA VERIFICARE</span>.
+
+</div>
+
+<div data-note-id="linearita-passivita-causalita-teoria-5">
+
+Esempi. $R$, $L$, $C$ costanti sono lineari, tempo-invarianti e passivi. Un generatore indipendente non è passivo (può erogare energia) e, avendo un'uscita non nulla a ingresso nullo, non è lineare in senso stretto. $v = R i^3$ è non lineare; $R(t)$ è tempo-variante.
+
+</div>
+
+<details class="proof" data-note-id="linearita-passivita-causalita-dimostrazione-1">
+<summary>Dimostrazione: Il condensatore lineare e tempo-invariante è lineare e tempo-invariante</summary>
+
+**Enunciato.** La relazione $i = C\,dv/dt$ con $C$ costante definisce un elemento lineare e tempo-invariante.
+
+1. Linearità: se $v=a v_1+b v_2$ allora $i = C\,d(a v_1+b v_2)/dt = a\,C\dot v_1 + b\,C\dot v_2 = a i_1 + b i_2$, per linearità della derivata.
+2. Tempo-invarianza: se $v_T(t)=v(t-T)$ allora $i_T = C\,\dot v_T(t) = C\,\dot v(t-T) = i(t-T)$, perché $C$ non dipende da $t$. $\square$
+
+</details>
+
+<Formula id="linearita" />
+<Formula id="tempo-invarianza" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="linearita-passivita-causalita-esempio-1">
+
+### Riconoscere le proprietà
+
+Classifica: (a) $v = 3i$; (b) $v = 2i^2$; (c) $v = t\,i$.
+
+**Soluzione.**
+
+1. (a) lineare e tempo-invariante.
+2. (b) non lineare: $v(2i)=8i^2\neq 2\,v(i)$; tempo-invariante.
+3. (c) lineare ma tempo-variante: il coefficiente dipende da $t$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="linearita-passivita-causalita-errore-1">
+
+- **Sbagliato:** Dire che un circuito con un generatore indipendente è «lineare» e applicare la sovrapposizione alla sola uscita totale.
+- **Corretto:** La sovrapposizione si applica agli effetti dei singoli generatori (anche i controllati restano nel circuito).
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="linearita-passivita-causalita-esame-1">
+
+Proprietà dei circuiti: 24-4-2003, 25-9-2003, 12-7-2005, 11-2-2008, 7-7-2008, 24-4-2009 <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

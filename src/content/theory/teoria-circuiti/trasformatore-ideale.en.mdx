@@ -1,0 +1,152 @@
+---
+course: teoria-circuiti
+topic: trasformatore-ideale
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="trasformatore-ideale-intuizione-1">
+
+The ideal transformer is an electrical "lever": it multiplies voltage by $n$ and divides current by $n$, so their product (the power) is unchanged. A load seen "through the lever" looks larger or smaller by a factor $n^2$.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="trasformatore-ideale-teoria-1">
+
+The **ideal transformer** with ratio $n$ is a linear, memoryless two-port. With the passive sign convention on both ports:
+
+$$
+v_1 = n\,v_2,\qquad i_1 = -\frac{i_2}{n}.
+$$
+
+</div>
+
+<div data-note-id="trasformatore-ideale-teoria-2">
+
+It is not an inductor: it also works in DC and it is a limiting model (perfect coupling, infinite inductances, no losses).
+
+</div>
+
+<div data-note-id="trasformatore-ideale-teoria-3">
+
+**Properties.** The total absorbed power is zero at every instant; a load $Z_L$ at port 2 is seen from port 1 as $n^2 Z_L$ (with $n$ defined as above).
+
+</div>
+
+<Figure
+  caption="Ideal transformer with ratio n:1, entering currents i₁ and i₂ and voltages v₁, v₂"
+  num="1"
+  id="fig-1"
+>
+  <svg
+    viewBox="0 0 300 150"
+    xmlns="http://www.w3.org/2000/svg"
+    stroke="currentColor"
+    stroke-width="2"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    font-family="system-ui,sans-serif"
+    font-size="14"
+    aria-hidden="true"
+    focusable="false"
+    class="diagram"
+    style="max-width: 300px"
+  >
+    <polyline points="30 40 110 40" />
+    <path d="M110 40 a8 8 0 0 1 0 16 a8 8 0 0 1 0 16 a8 8 0 0 1 0 16" />
+    <polyline points="110 88 110 110" />
+    <polyline points="30 110 110 110" />
+    <polyline points="145 36 145 114" />
+    <polyline points="155 36 155 114" />
+    <path d="M190 40 a8 8 0 0 0 0 16 a8 8 0 0 0 0 16 a8 8 0 0 0 0 16" />
+    <polyline points="190 88 190 110" />
+    <polyline points="190 40 270 40" />
+    <polyline points="190 110 270 110" />
+    <circle cx="30" cy="40" r="3" fill="currentColor" />
+    <circle cx="30" cy="110" r="3" fill="currentColor" />
+    <circle cx="270" cy="40" r="3" fill="currentColor" />
+    <circle cx="270" cy="110" r="3" fill="currentColor" />
+    <polyline points="40 30 80 30" />
+    <polyline points="73.7,27.0 80,30 73.7,33.0" />
+    <polyline points="260 30 220 30" />
+    <polyline points="226.3,33.0 220,30 226.3,27.0" />
+    <text x="60" y="22" text-anchor="middle" fill="currentColor" stroke="none">
+      i₁
+    </text>
+    <text x="240" y="22" text-anchor="middle" fill="currentColor" stroke="none">
+      i₂
+    </text>
+    <text x="18" y="80" text-anchor="end" fill="currentColor" stroke="none">
+      v₁
+    </text>
+    <text x="282" y="80" text-anchor="start" fill="currentColor" stroke="none">
+      v₂
+    </text>
+    <text x="150" y="138" text-anchor="middle" fill="currentColor" stroke="none">
+      n : 1
+    </text>
+  </svg>
+</Figure>
+
+<details class="proof" data-note-id="trasformatore-ideale-dimostrazione-1">
+<summary>Proof: The ideal transformer absorbs no power and reflects impedances</summary>
+
+**Statement.** With $v_1=nv_2$ and $i_1=-i_2/n$: (a) $p_1+p_2=0$; (b) if $v_2=-Z_L\,i_2$ then $v_1/i_1=n^2Z_L$.
+
+1. (a) $p=v_1 i_1+v_2 i_2 = (n v_2)(-i_2/n)+v_2 i_2 = -v_2 i_2+v_2 i_2 = 0$.
+2. (b) Port 2 is closed on $Z_L$; with $i_2$ entering the transformer, the load current is $-i_2$, hence $v_2=Z_L(-i_2)$.
+3. $Z_{in}=\dfrac{v_1}{i_1}=\dfrac{n\,v_2}{-i_2/n}=n^2\,\dfrac{v_2}{-i_2}=n^2 Z_L$. $\square$
+
+</details>
+
+<Formula id="trasf-v" />
+<Formula id="trasf-i" />
+<Formula id="trasf-z" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="trasformatore-ideale-esempio-1">
+
+### Transformer with a resistive load
+
+$n=2$, load $R_L=3\,\Omega$ at port 2; at port 1 a $24\,\mathrm{V}$ source in series with $12\,\Omega$. Find $v_2$ and the load power.
+
+**Solution.**
+
+1. $R_{in}=n^2R_L=12\,\Omega$.
+2. Primary loop: $24=12\,i_1+12\,i_1\Rightarrow i_1=1\,\mathrm{A}$, $v_1=12\,\mathrm{V}$.
+3. $v_2=v_1/n=6\,\mathrm{V}$, $i_2=-n\,i_1=-2\,\mathrm{A}$ (the load current is $2\,\mathrm{A}$).
+4. $P_L=6\cdot2=12\,\mathrm{W}=v_1 i_1$: power is conserved. ✓
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="trasformatore-ideale-errore-1">
+
+- **Wrong:** Using $i_1=i_2/n$ with both currents entering.
+- **Right:** With the passive convention on both ports, $i_1=-i_2/n$ (the minus sign compensates for the directions).
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="trasformatore-ideale-esame-1">
+
+Ideal transformer: 30-10-2002 and 24-4-2009 (also with maximum power transfer); it is one of the elements of the recent analysis exercise <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

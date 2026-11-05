@@ -1,0 +1,178 @@
+---
+course: teoria-circuiti
+topic: connessioni-doppi-bipoli
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="connessioni-doppi-bipoli-intuizione-1">
+
+Collegare doppi bipoli è come combinare resistori, ma con matrici: in serie si sommano le impedenze, in parallelo le ammettenze, in cascata si «compongono» le trasmissioni. Basta scegliere la rappresentazione adatta al tipo di collegamento.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="connessioni-doppi-bipoli-teoria-1">
+
+**Serie-serie** (porte in serie): $Z=Z_a+Z_b$. **Parallelo-parallelo** (porte in parallelo): $Y=Y_a+Y_b$. **Cascata** (porta 2 di $a$ su porta 1 di $b$): $T=T_aT_b$. Le prime due valgono solo se la prova di validità (VI-08) è superata.
+
+</div>
+
+<div data-note-id="connessioni-doppi-bipoli-teoria-2">
+
+Nella cascata i versi di riferimento contano: la corrente di uscita della prima rete è $-i_2^{(a)}$ ed è la corrente di ingresso $i_1^{(b)}$ della seconda; per questo la matrice di trasmissione usa $(v_2,-i_2)$ e le matrici si moltiplicano nell'ordine in cui le reti sono collegate.
+
+</div>
+
+<Figure caption="Cascata di due doppi bipoli N_a e N_b" num="1" id="fig-1">
+  <svg
+    viewBox="0 0 380 150"
+    xmlns="http://www.w3.org/2000/svg"
+    stroke="currentColor"
+    stroke-width="2"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    font-family="system-ui,sans-serif"
+    font-size="14"
+    aria-hidden="true"
+    focusable="false"
+    class="diagram"
+    style="max-width: 380px"
+  >
+    <rect x="60" y="30" width="90" height="80" rx="5" />
+    <rect x="220" y="30" width="90" height="80" rx="5" />
+    <text x="105" y="75" text-anchor="middle" fill="currentColor" stroke="none">
+      N_a
+    </text>
+    <text x="265" y="75" text-anchor="middle" fill="currentColor" stroke="none">
+      N_b
+    </text>
+    <polyline points="20 45 60 45" />
+    <polyline points="20 95 60 95" />
+    <polyline points="150 45 220 45" />
+    <polyline points="150 95 220 95" />
+    <polyline points="310 45 350 45" />
+    <polyline points="310 95 350 95" />
+    <circle cx="20" cy="45" r="3" fill="currentColor" />
+    <circle cx="20" cy="95" r="3" fill="currentColor" />
+    <circle cx="350" cy="45" r="3" fill="currentColor" />
+    <circle cx="350" cy="95" r="3" fill="currentColor" />
+  </svg>
+</Figure>
+
+<Figure caption="Connessione serie-serie di due doppi bipoli" num="2" id="fig-2">
+  <svg
+    viewBox="0 0 380 180"
+    xmlns="http://www.w3.org/2000/svg"
+    stroke="currentColor"
+    stroke-width="2"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    font-family="system-ui,sans-serif"
+    font-size="14"
+    aria-hidden="true"
+    focusable="false"
+    class="diagram"
+    style="max-width: 380px"
+  >
+    <rect x="120" y="20" width="100" height="50" rx="5" />
+    <rect x="120" y="100" width="100" height="50" rx="5" />
+    <text x="170" y="50" text-anchor="middle" fill="currentColor" stroke="none">
+      N_a
+    </text>
+    <text x="170" y="130" text-anchor="middle" fill="currentColor" stroke="none">
+      N_b
+    </text>
+    <polyline points="40 35 120 35" />
+    <polyline points="40 135 120 135" />
+    <polyline points="220 35 300 35" />
+    <polyline points="220 135 300 135" />
+    <polyline points="120 55 100 55" />
+    <polyline points="100 55 100 115" />
+    <polyline points="100 115 120 115" />
+    <polyline points="220 55 240 55" />
+    <polyline points="240 55 240 115" />
+    <polyline points="240 115 220 115" />
+    <circle cx="40" cy="35" r="3" fill="currentColor" />
+    <circle cx="40" cy="135" r="3" fill="currentColor" />
+    <circle cx="300" cy="35" r="3" fill="currentColor" />
+    <circle cx="300" cy="135" r="3" fill="currentColor" />
+    <text x="170" y="90" text-anchor="middle" fill="currentColor" stroke="none">
+      serie-serie
+    </text>
+  </svg>
+</Figure>
+
+<Formula id="conn-ss" />
+<Formula id="conn-pp" />
+<Formula id="conn-cascata" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="connessioni-doppi-bipoli-esempio-1">
+
+### Cascata
+
+Serie $R=2$ seguita da derivazione $G=\tfrac13$.
+
+**Soluzione.**
+
+1. $T=\begin{pmatrix}1&2\\0&1\end{pmatrix}\begin{pmatrix}1&0\\1/3&1\end{pmatrix}=\begin{pmatrix}5/3&2\\1/3&1\end{pmatrix}$.
+2. Con porta 2 aperta ($i_2=0$): $Z_{in}=A/C=5\,\Omega$ (verifica: $2+3$ ✓).
+
+</div>
+
+<div class="worked" data-note-id="connessioni-doppi-bipoli-esempio-2">
+
+### Parallelo-parallelo
+
+$Y_a=\begin{pmatrix}1&-1\\-1&2\end{pmatrix}$, $Y_b=\begin{pmatrix}2&0\\0&1\end{pmatrix}$.
+
+**Soluzione.**
+
+1. $Y=\begin{pmatrix}3&-1\\-1&3\end{pmatrix}$.
+
+</div>
+
+<div class="worked" data-note-id="connessioni-doppi-bipoli-esempio-3">
+
+### Serie-serie
+
+$Z_a=\begin{pmatrix}2&1\\1&2\end{pmatrix}$, $Z_b=\begin{pmatrix}1&1\\1&3\end{pmatrix}$.
+
+**Soluzione.**
+
+1. $Z=\begin{pmatrix}3&2\\2&5\end{pmatrix}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="connessioni-doppi-bipoli-errore-1">
+
+- **Sbagliato:** Moltiplicare le matrici $Z$ in una cascata.
+- **Corretto:** Cascata: si moltiplicano le matrici di trasmissione.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="connessioni-doppi-bipoli-esame-1">
+
+Connessioni serie-serie e parallelo-parallelo: 12-6-2000, 13-2-2001, 19-11-2003, 12-7-2007 <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>
