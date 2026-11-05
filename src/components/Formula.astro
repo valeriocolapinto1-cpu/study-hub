@@ -1,0 +1,48 @@
+---
+/**
+ * Formula in display, numerabile e collegabile (#f-<id>).
+ * Fonte, in ordine: prop `tex`, contenuto (es. $$…$$ in MDX), collezione `formulas`
+ * (`<course>/<id>`, con course dedotto dall'URL se non indicato).
+ */
+import katex from 'katex';
+import { getEntry } from 'astro:content';
+import { getLangFromUrl, stripLang, t, tr, type Lang } from '../i18n';
+
+interface Props {
+  id: string;
+  tex?: string;
+  /** Numero mostrato a destra, es. "1.4". */
+  num?: string | number;
+  caption?: string;
+  course?: string;
+  lang?: Lang;
+}
+const { id, tex, num } = Astro.props;
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
+let caption = Astro.props.caption;
+let latex = tex;
+let html = Astro.slots.has('default') ? await Astro.slots.render('default') : '';
+
+if (!latex && !html) {
+  const course = Astro.props.course ?? stripLang(Astro.url.pathname).split('/')[1];
+  const entry = course ? await getEntry('formulas', `${course}/${id}`) : undefined;
+  if (!entry) throw new Error(`<Formula id="${id}">: formula non trovata nel corso "${course ?? '?'}"`);
+  latex = entry.data.latex;
+  caption ??= tr(entry.data.label, lang);
+}
+if (latex)
+  html = katex.renderToString(latex, { displayMode: true, output: 'htmlAndMathml', throwOnError: true });
+const anchor = `f-${id}`;
+---
+
+<figure class="formula" id={anchor}>
+  <div class="formula__body">
+    <div class="formula__math" set:html={html} />
+    {num !== undefined && (
+      <a class="formula__num" href={`#${anchor}`} aria-label={t(lang, 'formula.link', { num })}>
+        ({num})
+      </a>
+    )}
+  </div>
+  {caption && <figcaption class="formula__caption">{caption}</figcaption>}
+</figure>

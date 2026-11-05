@@ -1,0 +1,30 @@
+---
+/** Figura con didascalia numerata. Contenuto: SVG inline o <img> nello slot. */
+import { getLangFromUrl, t, type Lang } from '../i18n';
+interface Props {
+  caption?: string;
+  /** Numero della figura, es. "2.1". */
+  num?: string | number;
+  id?: string;
+  wide?: boolean;
+  lang?: Lang;
+}
+const { caption, num, id, wide = false } = Astro.props;
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
+---
+
+<figure class:list={['figure', { 'figure--wide': wide }]} id={id}>
+  <div class="figure__media">
+    <slot />
+  </div>
+  {(caption || num !== undefined) && (
+    <figcaption>
+      {num !== undefined && (
+        <b>
+          {t(lang, 'figure.label')} {num}
+        </b>
+      )}
+      {caption}
+    </figcaption>
+  )}
+</figure>

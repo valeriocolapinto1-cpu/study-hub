@@ -1,0 +1,21 @@
+/* Fondamenti di Informatica — verde abete. Solo variabili --accent*: chiaro, scuro esplicito, scuro di sistema. */
+html[data-course='fondamenti-informatica'] {
+  --accent: #1f6b58;
+  --accent-strong: #195a4a;
+  --accent-soft: #e1efe9;
+  --on-accent: #ffffff;
+}
+html[data-course='fondamenti-informatica'][data-theme='dark'] {
+  --accent: #79cdb5;
+  --accent-strong: #93d8c4;
+  --accent-soft: #1b2e29;
+  --on-accent: #0c1a16;
+}
+@media (prefers-color-scheme: dark) {
+  html[data-course='fondamenti-informatica']:not([data-theme='light']) {
+    --accent: #79cdb5;
+    --accent-strong: #93d8c4;
+    --accent-soft: #1b2e29;
+    --on-accent: #0c1a16;
+  }
+}

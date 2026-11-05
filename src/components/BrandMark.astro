@@ -1,0 +1,26 @@
+---
+/** Marchio: un segno di integrale in un riquadro. Monocromo (currentColor). */
+interface Props {
+  class?: string;
+  title?: string;
+}
+const { class: cls = 'brand__mark', title } = Astro.props;
+---
+
+<svg
+  class={cls}
+  viewBox="0 0 32 32"
+  aria-hidden={title ? undefined : 'true'}
+  role={title ? 'img' : undefined}
+  aria-label={title}
+  focusable="false"
+>
+  <rect x="1.5" y="1.5" width="29" height="29" rx="5" fill="none" stroke="currentColor" stroke-width="2" />
+  <path
+    d="M20.6 7.6c-.5-.9-1.3-1.3-2.2-1.2-1.6.2-2.3 1.6-2.4 3.4l-.6 12.4c-.1 1.9-.8 3.3-2.4 3.4-.9.1-1.7-.3-2.2-1.2"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2.1"
+    stroke-linecap="round"
+  />
+</svg>

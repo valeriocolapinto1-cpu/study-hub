@@ -1,0 +1,30 @@
+---
+/**
+ * Strato di una spiegazione: intuizione → formalismo → esempio svolto → errori tipici.
+ * Usato nelle pagine MDX di teoria: <Layer kind="intuizione" title="…">…</Layer>.
+ */
+import { getLangFromUrl, t, type Lang } from '../i18n';
+
+export const LAYER_KINDS = ['intuizione', 'formalismo', 'esempio', 'errori'] as const;
+export type LayerKind = (typeof LAYER_KINDS)[number];
+
+interface Props {
+  kind: LayerKind;
+  /** Titolo facoltativo dello strato (h2). */
+  title?: string;
+  lang?: Lang;
+  id?: string;
+}
+const { kind, title, id } = Astro.props;
+if (!LAYER_KINDS.includes(kind)) throw new Error(`<Layer>: kind non valido "${String(kind)}"`);
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
+const labelId = `${id ?? kind}-label`;
+---
+
+<section class="layer" data-kind={kind} id={id} aria-labelledby={title ? undefined : labelId}>
+  <p class="layer__label" id={labelId}>
+    {t(lang, `layer.${kind}`)}
+  </p>
+  {title && <h2>{title}</h2>}
+  <slot />
+</section>

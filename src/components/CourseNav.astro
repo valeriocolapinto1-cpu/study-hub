@@ -1,32 +1,53 @@
 ---
-import { localizePath, stripLang, t, type Lang } from '../i18n';
-import { COURSE_SECTIONS } from '../lib/courses';
+/** Sezioni fisse del corso + approfondimenti (extra), con stato attivo. */
+import type { Course } from '../content/schemas';
+import { localizePath, stripLang, t, tr, type Lang } from '../i18n';
+import { COURSE_SECTIONS, coursePath } from '../lib/courses';
 
 interface Props {
   lang: Lang;
-  /** Percorso del corso senza lingua, es. "anno-2/teoria-circuiti". */
-  coursePath: string;
+  course: Pick<Course, 'id' | 'year' | 'semester' | 'title' | 'extras'>;
 }
-const { lang, coursePath } = Astro.props;
-
+const { lang, course } = Astro.props;
+const base = coursePath(course);
 const current = stripLang(Astro.url.pathname);
-const isCurrent = (slug: string) => {
-  const target = slug ? `${coursePath}/${slug}` : coursePath;
-  return slug ? current === target || current.startsWith(`${target}/`) : current === target;
-};
+const isCurrent = (path: string, exact: boolean) =>
+  exact ? current === path : current === path || current.startsWith(`${path}/`);
+const yearLabel = course.semester
+  ? t(lang, 'course.yearSemester', { year: course.year, semester: course.semester })
+  : t(lang, 'home.year', { year: course.year });
 ---
 
 <nav class="course-nav" aria-label={t(lang, 'nav.course.label')}>
-  <ul class="container">
-    {COURSE_SECTIONS.map((s) => (
-      <li>
-        <a
-          href={localizePath(s.slug ? `${coursePath}/${s.slug}` : coursePath, lang)}
-          aria-current={isCurrent(s.slug) ? 'page' : undefined}
-        >
-          {t(lang, s.key)}
-        </a>
+  <span class="course-nav__year">{yearLabel}</span>
+  <a class="course-nav__title" href={localizePath(base, lang)}>
+    {tr(course.title, lang)}
+  </a>
+  <ul class="course-nav__list">
+    {COURSE_SECTIONS.map((s) => {
+      const path = s.slug ? `${base}/${s.slug}` : base;
+      return (
+        <li>
+          <a href={localizePath(path, lang)} aria-current={isCurrent(path, !s.slug) ? 'page' : undefined}>
+            {t(lang, s.key)}
+          </a>
+        </li>
+      );
+    })}
+    {course.extras.length > 0 && (
+      <li class="course-nav__sep" aria-hidden="true">
+        {t(lang, 'nav.course.extras')}
       </li>
-    ))}
+    )}
+    {course.extras.map((x) => {
+      const path = `${base}/extra/${x.slug}`;
+      return (
+        <li>
+          <a href={localizePath(path, lang)} aria-current={isCurrent(path, false) ? 'page' : undefined}>
+            {tr(x.title, lang)}
+          </a>
+        </li>
+      );
+    })}
   </ul>
 </nav>

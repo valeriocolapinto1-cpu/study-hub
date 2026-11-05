@@ -1,0 +1,54 @@
+---
+/**
+ * Voce dell'indice degli argomenti: numero, titolo in serif, sintesi, metadati
+ * e avanzamento sottile. Va usata dentro <ol class="topic-index">.
+ */
+interface Props {
+  num: number;
+  title: string;
+  href: string;
+  summary?: string | undefined;
+  /** Metadati brevi (es. "6 obiettivi", "12 esercizi"). */
+  meta?: string[];
+  /** Avanzamento 0–100; se assente la barra non compare. */
+  progress?: number | undefined;
+  progressLabel?: string | undefined;
+  topicId?: string;
+}
+const { num, title, href, summary, meta = [], progress, progressLabel, topicId } = Astro.props;
+const state =
+  progress === undefined ? undefined : progress >= 100 ? 'done' : progress > 0 ? 'started' : 'new';
+---
+
+<li class="topic-card" data-state={state} data-topic={topicId}>
+  <span class="topic-card__num" aria-hidden="true">
+    {String(num).padStart(2, '0')}
+  </span>
+  <h3 class="topic-card__title">
+    <a href={href}>{title}</a>
+  </h3>
+  {summary && <p class="topic-card__summary">{summary}</p>}
+  <div class="topic-card__foot">
+    {meta.length > 0 && (
+      <p class="meta-row">
+        {meta.map((m) => (
+          <span>{m}</span>
+        ))}
+      </p>
+    )}
+    {progress !== undefined && (
+      <div class="progress topic-card__progress">
+        <div
+          class="progress__bar"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow={progress}
+          aria-label={progressLabel}
+        >
+          <div class="progress__fill" style={`--value: ${progress}`} />
+        </div>
+      </div>
+    )}
+  </div>
+</li>

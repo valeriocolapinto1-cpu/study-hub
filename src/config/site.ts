@@ -36,6 +36,7 @@ export const SITE = {
     email: 'valeriocolapinto1@gmail.com',
     linkedin: 'https://www.linkedin.com/in/valerio-colapinto',
     github: 'https://github.com/valeriocolapinto1-cpu',
+    instagram: 'https://www.instagram.com/valerioo.c',
   },
   /**
    * Modulo "Contribuisci": endpoint del Google Apps Script e sitekey di
@@ -46,7 +47,7 @@ export const SITE = {
     endpoint: '',
     turnstileSiteKey: '',
   },
-  themeColor: { light: '#f7f5f0', dark: '#16171a' },
+  themeColor: { light: '#f7f5f0', dark: '#161513' },
 } as const;
 
 /** Repository GitHub originali dei corsi (per crediti e storia). */

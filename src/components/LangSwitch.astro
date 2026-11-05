@@ -1,4 +1,5 @@
 ---
+/** Passa all'altra lingua restando sulla stessa pagina (gli slug sono identici). */
 import { LANGS, localizePath, switchLangPath, t, type Lang } from '../i18n';
 interface Props {
   lang: Lang;
@@ -7,10 +8,16 @@ interface Props {
 }
 const { lang, samePage = true } = Astro.props;
 const other = LANGS.find((l) => l !== lang) ?? 'it';
-const href = samePage ? switchLangPath(Astro.url, other) : localizePath('', other);
+const href = samePage ? switchLangPath(Astro.url, other) + Astro.url.search : localizePath('', other);
 ---
 
-<a class="btn btn--ghost" href={href} hreflang={other} data-lang-switch={other}>
+<a
+  class="lang-switch"
+  href={href}
+  hreflang={other}
+  data-lang-switch={other}
+  title={t(lang, 'lang.switchLabel')}
+>
   <span class="visually-hidden">{t(lang, 'lang.switchLabel')}:</span>
   <span lang={other}>{other.toUpperCase()}</span>
 </a>

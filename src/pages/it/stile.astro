@@ -1,0 +1,669 @@
+---
+/**
+ * Guida di stile (noindex): mostra tutti i componenti del sistema di design.
+ * È la pagina di riferimento dei test visivi e axe; non è collegata dal menu.
+ */
+import 'katex/dist/katex.min.css';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Callout from '../../components/Callout.astro';
+import Figure from '../../components/Figure.astro';
+import Formula from '../../components/Formula.astro';
+import Icon, { ICONS, type IconName } from '../../components/Icon.astro';
+import Layer from '../../components/Layer.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Pagination from '../../components/Pagination.astro';
+import ReportError from '../../components/ReportError.astro';
+import TopicCard from '../../components/TopicCard.astro';
+import { localizePath, t } from '../../i18n';
+import katex from 'katex';
+
+const lang = 'it' as const;
+const m = (tex: string) => katex.renderToString(tex, { output: 'htmlAndMathml', throwOnError: true });
+const COLORS = [
+  '--bg',
+  '--surface',
+  '--surface-2',
+  '--text',
+  '--text-muted',
+  '--border',
+  '--border-strong',
+  '--accent',
+  '--accent-strong',
+  '--accent-soft',
+  '--on-accent',
+  '--success',
+  '--warning',
+  '--danger',
+  '--info',
+  '--focus',
+];
+const STEPS = [5, 4, 3, 2, 1, 0, -1, -2];
+const ACCENTS = ['fisica-1', 'fondamenti-informatica', 'fisica-2', 'teoria-circuiti'];
+const icons = Object.keys(ICONS) as IconName[];
+---
+
+<BaseLayout
+  lang={lang}
+  title={t(lang, 'style.title')}
+  description={t(lang, 'style.description')}
+  alternates={false}
+  noindex
+  course="fisica-2"
+>
+  <div class="container page">
+    <Breadcrumbs
+      lang={lang}
+      items={[
+        { label: t(lang, 'nav.home'), href: localizePath('', lang) },
+        { label: t(lang, 'style.title') },
+      ]}
+    />
+    <PageHeader
+      eyebrow="Sistema di design"
+      title={t(lang, 'style.title')}
+      lede="Token, tipografia e componenti del sito. Ogni elemento usa solo le variabili di tokens.css; l'accento di questa pagina è quello di Fisica Generale II."
+    >
+      <p slot="meta" class="meta-row">
+        <span>Quaderno</span>
+        <span>Source Serif 4 · Geist · Geist Mono</span>
+        <span>WCAG 2.2 AA</span>
+      </p>
+    </PageHeader>
+
+    <section class="section" aria-labelledby="s-colori">
+      <h2 class="section__title" id="s-colori">
+        Colori
+      </h2>
+      <ul class="style-swatches">
+        {COLORS.map((c) => (
+          <li>
+            <span style={`background: var(${c})`} />
+            <code>{c}</code>
+          </li>
+        ))}
+      </ul>
+      <h3 class="section__title" style="font-size: var(--step-1); margin-top: var(--space-l)">
+        Accenti dei corsi
+      </h3>
+      <ul class="style-swatches" data-accent-samples>
+        {ACCENTS.map((id) => (
+          <li data-sample-course={id}>
+            <span class="accent-sample" />
+            <code>{id}</code>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="s-tipo">
+      <h2 class="section__title" id="s-tipo">
+        Tipografia
+      </h2>
+      <div class="stack" style="--flow: var(--space-xs)">
+        {STEPS.map((s) => (
+          <p style={`font: 600 var(--step-${s}) / 1.2 var(--font-serif)`}>
+            <span class="badge">--step-{s}</span> Campo elettrico e potenziale
+          </p>
+        ))}
+        <p style="font: 500 var(--step-0) / 1.4 var(--font-sans)">
+          Geist per l'interfaccia: pulsanti, navigazione, etichette.
+        </p>
+        <p class="mono">Geist Mono per dati: 3,0 × 10⁶ V/m · R = 4,7 kΩ · 0123456789</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="s-icone">
+      <h2 class="section__title" id="s-icone">
+        Icone
+      </h2>
+      <ul class="chip-row" style="list-style: none; padding: 0; margin: 0">
+        {icons.map((name) => (
+          <li class="chip" title={name}>
+            <Icon name={name} />
+            <span class="mono">{name}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="s-controlli">
+      <h2 class="section__title" id="s-controlli">
+        Controlli
+      </h2>
+      <div class="style-grid style-grid--2">
+        <div class="stack">
+          <div class="btn-row">
+            <button class="btn btn--primary" type="button">
+              Mostra soluzione
+            </button>
+            <button class="btn" type="button">
+              Suggerimento
+            </button>
+            <button class="btn btn--ghost" type="button">
+              Salta
+            </button>
+            <button class="btn btn--danger" type="button">
+              Azzera progressi
+            </button>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn--primary btn--sm" type="button">
+              Piccolo
+            </button>
+            <button class="btn btn--lg" type="button">
+              <Icon name="printer" />
+              Stampa il formulario
+            </button>
+            <button class="btn" type="button" disabled>
+              Disattivato
+            </button>
+            <button class="icon-btn" type="button" aria-label="Chiudi">
+              <Icon name="close" />
+            </button>
+          </div>
+          <div class="segmented" role="group" aria-label="Vista">
+            <button type="button" aria-pressed="true">
+              Teoria
+            </button>
+            <button type="button" aria-pressed="false">
+              Formule
+            </button>
+            <button type="button" aria-pressed="false">
+              Esercizi
+            </button>
+          </div>
+          <div class="chip-row">
+            <button class="chip" type="button" aria-pressed="true">
+              Tutti <span class="chip__count">24</span>
+            </button>
+            <button class="chip" type="button" aria-pressed="false">
+              Da fare <span class="chip__count">9</span>
+            </button>
+            <button class="chip" type="button" aria-pressed="false">
+              Svolti <span class="chip__count">15</span>
+            </button>
+          </div>
+          <p class="btn-row">
+            <span class="badge">Esame 06/2024</span>
+            <span class="badge badge--accent">Teoria</span>
+            <span class="badge badge--success">Corretto</span>
+            <span class="badge badge--warning">Media</span>
+            <span class="badge badge--danger">Errato</span>
+            <span class="badge badge--info">Nuovo</span>
+          </p>
+          <div>
+            <button type="button" class="switch" role="switch" aria-checked="true">
+              <span class="switch__track" />
+              Ripasso spaziato attivo
+            </button>
+          </div>
+          <div>
+            <label class="switch">
+              <input type="checkbox" />
+              <span class="switch__track" />
+              Mostra le unità di misura
+            </label>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="field">
+            <label class="field__label" for="st-r">
+              Resistenza
+            </label>
+            <input
+              class="input input--mono"
+              id="st-r"
+              value="4.7e3"
+              inputmode="decimal"
+              aria-describedby="st-r-hint"
+            />
+            <span class="field__hint" id="st-r-hint">
+              In ohm; si accetta la notazione scientifica.
+            </span>
+          </div>
+          <div class="field">
+            <label class="field__label" for="st-v">
+              Tensione
+            </label>
+            <input
+              class="input input--mono"
+              id="st-v"
+              value="12,,5"
+              aria-invalid="true"
+              aria-describedby="st-v-err"
+            />
+            <span class="field__error" id="st-v-err">
+              Numero non valido.
+            </span>
+          </div>
+          <div class="field">
+            <label class="field__label" for="st-s">
+              Argomento
+            </label>
+            <select class="select" id="st-s">
+              <option>Legge di Ohm</option>
+              <option>Circuiti RC</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="st-t">
+              Nota
+            </label>
+            <textarea
+              class="textarea"
+              id="st-t"
+              placeholder="Scrivi qui il passaggio che non torna"
+            ></textarea>
+          </div>
+          <label class="check">
+            <input type="checkbox" checked /> Ho capito l'obiettivo
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="s-stato">
+      <h2 class="section__title" id="s-stato">
+        Stato e avanzamento
+      </h2>
+      <div class="style-grid style-grid--2">
+        <div class="stack">
+          <div class="progress">
+            <div class="progress__head">
+              <span>Argomenti studiati</span>
+              <span>7 / 12</span>
+            </div>
+            <div
+              class="progress__bar"
+              role="progressbar"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="58"
+              aria-label="Argomenti studiati"
+            >
+              <div class="progress__fill" style="--value: 58" />
+            </div>
+          </div>
+          <div class="tabs">
+            <div class="tabs__list" role="tablist" aria-label="Esempio di schede">
+              <button class="tabs__tab" role="tab" aria-selected="true" id="tab-1" aria-controls="tp-1">
+                Enunciato
+              </button>
+              <button
+                class="tabs__tab"
+                role="tab"
+                aria-selected="false"
+                id="tab-2"
+                aria-controls="tp-2"
+                tabindex="-1"
+              >
+                Passaggi
+              </button>
+              <button
+                class="tabs__tab"
+                role="tab"
+                aria-selected="false"
+                id="tab-3"
+                aria-controls="tp-3"
+                tabindex="-1"
+              >
+                Risultato
+              </button>
+            </div>
+            <div class="tabs__panel" role="tabpanel" id="tp-1" aria-labelledby="tab-1">
+              <p>Contenuto della prima scheda.</p>
+            </div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="toast" data-tone="success" role="status">
+            <Icon name="check-circle" />
+            <div class="toast__body">Progressi esportati nel file JSON.</div>
+          </div>
+          <div class="toast" data-tone="danger" role="status">
+            <Icon name="x-circle" />
+            <div class="toast__body">Il file scelto non è un'esportazione valida.</div>
+          </div>
+          <div class="dialog" role="dialog" aria-labelledby="dlg-t" style="position: static; width: 100%">
+            <div class="dialog__head">
+              <h3 class="dialog__title" id="dlg-t">
+                Azzerare i progressi?
+              </h3>
+              <button class="icon-btn icon-btn--bare" type="button" aria-label="Chiudi">
+                <Icon name="close" />
+              </button>
+            </div>
+            <div class="dialog__body">
+              <p>
+                Verranno cancellati gli esercizi svolti e il ripasso di questo corso. L'operazione non si può
+                annullare.
+              </p>
+            </div>
+            <div class="dialog__foot">
+              <button class="btn" type="button">
+                Annulla
+              </button>
+              <button class="btn btn--danger" type="button">
+                Azzera
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="s-tabella">
+      <h2 class="section__title" id="s-tabella">
+        Tabella dati
+      </h2>
+      <div class="data-table-wrap">
+        <table class="data-table">
+          <caption>Simulazioni d'esame svolte</caption>
+          <thead>
+            <tr>
+              <th scope="col">Data</th>
+              <th scope="col">Prova</th>
+              <th scope="col" class="num">
+                Punti
+              </th>
+              <th scope="col" class="num">
+                Tempo
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="mono">2026-10-28</td>
+              <td>Scritto completo</td>
+              <td class="num">24 / 30</td>
+              <td class="num">2 h 41 min</td>
+            </tr>
+            <tr>
+              <td class="mono">2026-10-21</td>
+              <td>Solo esercizi</td>
+              <td class="num">19 / 30</td>
+              <td class="num">1 h 55 min</td>
+            </tr>
+            <tr>
+              <td class="mono">2026-10-14</td>
+              <td>Domande di teoria</td>
+              <td class="num">27 / 30</td>
+              <td class="num">48 min</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="s-indice">
+      <h2 class="section__title" id="s-indice">
+        Indice degli argomenti
+      </h2>
+      <div class="topic-index__group">
+        <p class="topic-index__group-title">
+          <span class="mono">01</span> Elettrostatica nel vuoto
+        </p>
+        <ol class="topic-index" style="border-top: 0">
+          <TopicCard
+            num={1}
+            title="Carica elettrica e legge di Coulomb"
+            href="#s-indice"
+            summary="Quantizzazione e conservazione della carica, forza tra cariche puntiformi, principio di sovrapposizione."
+            meta={['5 obiettivi', '8 esercizi']}
+            progress={100}
+            progressLabel="Completato"
+          />
+          <TopicCard
+            num={2}
+            title="Il campo elettrico"
+            href="#s-indice"
+            summary="Definizione operativa, linee di campo, distribuzioni continue di carica."
+            meta={['6 obiettivi', '12 esercizi']}
+            progress={40}
+            progressLabel="40% completato"
+          />
+          <TopicCard
+            num={3}
+            title="Flusso e teorema di Gauss"
+            href="#s-indice"
+            summary="Flusso di un campo vettoriale, prima equazione di Maxwell, applicazioni con simmetria."
+            meta={['4 obiettivi', '10 esercizi']}
+            progress={0}
+            progressLabel="Da iniziare"
+          />
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="s-prosa">
+      <h2 class="section__title" id="s-prosa">
+        Testo lungo
+      </h2>
+      <article class="prose reading--margin">
+        <p class="lede">
+          Una carica modifica lo spazio attorno a sé: il campo elettrico descrive questa modifica punto per
+          punto, indipendentemente dalla carica di prova.
+        </p>
+        <Layer kind="intuizione" title="Perché un campo">
+          <p>
+            Invece di chiederci quale forza subisce <em>questa</em> carica, chiediamo cosa succederebbe a{' '}
+            <em>qualunque</em> carica messa in quel punto. La risposta è un vettore che dipende solo dalla
+            posizione: il campo <Fragment set:html={m('\\vec E')} />. La forza diventa allora{' '}
+            <Fragment set:html={m('\\vec F = q\\,\\vec E')} />.
+          </p>
+          <aside class="sidenote">
+            <b>Nota</b>La carica di prova deve essere piccola, per non spostare le cariche sorgenti.
+          </aside>
+        </Layer>
+        <Layer kind="formalismo" title="Definizione e sovrapposizione">
+          <p>
+            Per una carica puntiforme <Fragment set:html={m('q_0')} /> nell'origine il campo nel punto{' '}
+            <Fragment set:html={m('\\vec r')} /> vale
+          </p>
+          <Formula
+            id="campo-puntiforme"
+            num="1.4"
+            caption="Campo di una carica puntiforme"
+            tex={String.raw`\vec E(\vec r) = \frac{1}{4\pi\varepsilon_0}\,\frac{q_0}{r^2}\,\hat u_r`}
+          />
+          <p>Per una distribuzione continua di carica si somma il contributo di ogni elemento di volume:</p>
+          <Formula
+            id="sovrapposizione"
+            num="1.5"
+            caption="Sovrapposizione per distribuzioni continue"
+            tex={String.raw`\vec E(\vec r) = \frac{1}{4\pi\varepsilon_0}\int_V \frac{\rho(\vec r\,')\,(\vec r-\vec r\,')}{\lvert \vec r-\vec r\,'\rvert^{3}}\,\mathrm dV'`}
+          />
+          <table>
+            <caption>Ordini di grandezza del campo elettrico</caption>
+            <thead>
+              <tr>
+                <th scope="col">Situazione</th>
+                <th scope="col" class="num">
+                  E (V/m)
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Atmosfera, bel tempo</td>
+                <td class="num">1,0 × 10²</td>
+              </tr>
+              <tr>
+                <td>Rigidità dielettrica dell'aria</td>
+                <td class="num">3,0 × 10⁶</td>
+              </tr>
+              <tr>
+                <td>Atomo di idrogeno, raggio di Bohr</td>
+                <td class="num">5,1 × 10¹¹</td>
+              </tr>
+            </tbody>
+          </table>
+        </Layer>
+        <Layer kind="esempio" title="Anello carico sull'asse">
+          <p>
+            Un anello di raggio <Fragment set:html={m('R')} /> porta la carica <Fragment set:html={m('Q')} />.
+            Per simmetria resta solo la componente assiale:
+          </p>
+          <Formula
+            id="anello"
+            num="1.6"
+            tex={String.raw`E_z(z) = \frac{1}{4\pi\varepsilon_0}\,\frac{Q\,z}{(R^2+z^2)^{3/2}}`}
+          />
+          <Figure num="1.2" caption="Anello carico e punto di osservazione sull'asse.">
+            <svg
+              viewBox="0 0 240 120"
+              width="240"
+              height="120"
+              role="img"
+              aria-label="Anello di raggio R e punto P sull'asse z"
+            >
+              <ellipse cx="70" cy="60" rx="18" ry="46" fill="none" stroke="currentColor" stroke-width="1.5" />
+              <line
+                x1="20"
+                y1="60"
+                x2="225"
+                y2="60"
+                stroke="currentColor"
+                stroke-width="1"
+                stroke-dasharray="4 3"
+              />
+              <circle cx="190" cy="60" r="3.5" fill="currentColor" />
+              <text x="194" y="52" font-size="13" fill="currentColor" font-style="italic">
+                P
+              </text>
+              <text x="218" y="76" font-size="13" fill="currentColor" font-style="italic">
+                z
+              </text>
+              <text x="76" y="34" font-size="13" fill="currentColor" font-style="italic">
+                R
+              </text>
+            </svg>
+          </Figure>
+        </Layer>
+        <Layer kind="errori" title="Dove si sbaglia">
+          <ul>
+            <li>
+              Sommare i <em>moduli</em> dei campi invece dei vettori.
+            </li>
+            <li>
+              Dimenticare che <Fragment set:html={m('\\hat u_r')} /> punta dalla sorgente al punto di
+              osservazione.
+            </li>
+          </ul>
+          <Callout tone="esame">
+            <p>All'orale viene quasi sempre chiesta la dimostrazione di (1.6) con l'integrale esplicito.</p>
+          </Callout>
+        </Layer>
+        <details>
+          <summary>Dimostrazione</summary>
+          <p>
+            Ogni elemento <Fragment set:html={m('\\mathrm dq')} /> dell'anello dista{' '}
+            <Fragment set:html={m('\\sqrt{R^2+z^2}')} /> da P; le componenti radiali si elidono a coppie.
+          </p>
+        </details>
+      </article>
+    </section>
+
+    <section class="section" aria-labelledby="s-richiami">
+      <h2 class="section__title" id="s-richiami">
+        Richiami
+      </h2>
+      <div class="reading">
+        <Callout tone="nota">
+          <p>Le formule numerate hanno un'ancora: puoi collegarle direttamente.</p>
+        </Callout>
+        <Callout tone="attenzione">
+          <p>Il verso del versore conta: inverte il segno del campo.</p>
+        </Callout>
+        <Callout tone="errore">
+          <p>Confondere il potenziale con l'energia potenziale.</p>
+        </Callout>
+        <Callout tone="ok">
+          <p>Il campo dipende solo dalle sorgenti, non dalla carica di prova.</p>
+        </Callout>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="s-esercizio">
+      <h2 class="section__title" id="s-esercizio">
+        Esercizio
+      </h2>
+      <article class="exercise reading">
+        <header class="exercise__head">
+          <h3 class="exercise__title">Esercizio 1.2</h3>
+          <span class="badge">Stile esame</span>
+          <span class="badge badge--warning">Media</span>
+        </header>
+        <div class="exercise__body">
+          <p>
+            Due cariche <Fragment set:html={m('q_1 = 2\\,\\mu\\mathrm C')} /> e{' '}
+            <Fragment set:html={m('q_2 = -3\\,\\mu\\mathrm C')} /> distano{' '}
+            <Fragment set:html={m('d = 10\\,\\mathrm{cm}')} />. Trovare il punto dell'asse in cui il campo si
+            annulla.
+          </p>
+        </div>
+        <div class="btn-row exercise__actions">
+          <button class="btn btn--primary" type="button">
+            Mostra soluzione
+          </button>
+          <button class="btn" type="button">
+            Suggerimento
+          </button>
+          <button class="btn btn--ghost" type="button">
+            Segna come svolto
+          </button>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" aria-labelledby="s-nav">
+      <h2 class="section__title" id="s-nav">
+        Navigazione
+      </h2>
+      <div class="reading">
+        <Pagination
+          lang={lang}
+          prev={{ href: '#s-nav', title: 'Carica e legge di Coulomb' }}
+          next={{ href: '#s-nav', title: 'Teorema di Gauss' }}
+        />
+        <div class="page-tools">
+          <ReportError lang={lang} />
+          <span class="meta-row">
+            <span>Aggiornato il 5 novembre 2026</span>
+          </span>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .accent-sample {
+    background: var(--sample);
+  }
+  [data-sample-course='fisica-1'] {
+    --sample: #a3441f;
+  }
+  [data-sample-course='fondamenti-informatica'] {
+    --sample: #1f6b58;
+  }
+  [data-sample-course='fisica-2'] {
+    --sample: #1f5f8c;
+  }
+  [data-sample-course='teoria-circuiti'] {
+    --sample: #7b3a6c;
+  }
+  :global(:root[data-theme='dark']) [data-sample-course='fisica-1'] {
+    --sample: #f0a385;
+  }
+  :global(:root[data-theme='dark']) [data-sample-course='fondamenti-informatica'] {
+    --sample: #79cdb5;
+  }
+  :global(:root[data-theme='dark']) [data-sample-course='fisica-2'] {
+    --sample: #8fc1e6;
+  }
+  :global(:root[data-theme='dark']) [data-sample-course='teoria-circuiti'] {
+    --sample: #dca4cf;
+  }
+</style>

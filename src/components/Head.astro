@@ -37,6 +37,8 @@ const fullTitle = title === SITE.title[lang] ? title : `${title} — ${SITE.shor
   />
 )}
 <link rel="icon" href={withBase('favicon.svg')} type="image/svg+xml" />
+<link rel="apple-touch-icon" href={withBase('apple-touch-icon.png')} />
+<link rel="manifest" href={withBase('site.webmanifest')} />
 <link rel="sitemap" href={withBase('sitemap-index.xml')} />
 <meta name="theme-color" media="(prefers-color-scheme: light)" content={SITE.themeColor.light} />
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content={SITE.themeColor.dark} />
@@ -46,6 +48,7 @@ const fullTitle = title === SITE.title[lang] ? title : `${title} — ${SITE.shor
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
 <meta property="og:locale" content={ogLocale[lang]} />
+<meta property="og:image" content={new URL(withBase('icon-512.png'), site).href} />
 <meta name="twitter:card" content="summary" />
 <script is:inline>
   // Applica il tema salvato prima del primo disegno (evita il lampo di colore).

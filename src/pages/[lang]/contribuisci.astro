@@ -1,0 +1,82 @@
+---
+/**
+ * Contribuisci: segnalazioni di errori e proposte. Finché il modulo (Apps Script +
+ * Turnstile) non è configurato in SITE.contribute, offre i due canali diretti:
+ * email e issue GitHub, precompilati con corso, pagina e tipo dalla query
+ * (`?corso=…&pagina=…&tipo=errore`, generata da ReportError).
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { SITE } from '../../config/site';
+import { langPaths, localizePath, t, type Lang } from '../../i18n';
+
+export const getStaticPaths = langPaths;
+const lang = Astro.params.lang as Lang;
+---
+
+<BaseLayout lang={lang} title={t(lang, 'contribute.title')} description={t(lang, 'contribute.description')}>
+  <div class="container page">
+    <PageHeader title={t(lang, 'contribute.title')} lede={t(lang, 'contribute.lead')} />
+    <div class="reading stack" style="--flow: var(--space-m)">
+      <p class="callout" data-tone="nota" hidden data-contribute-context>
+        <span class="callout__body">
+          {t(lang, 'contribute.context')} <code data-contribute-page></code>
+          <span data-contribute-course></span>
+        </span>
+      </p>
+      <div class="prose">
+        <p>{t(lang, 'contribute.how')}</p>
+        <ul>
+          <li>{t(lang, 'contribute.tip1')}</li>
+          <li>{t(lang, 'contribute.tip2')}</li>
+          <li>{t(lang, 'contribute.tip3')}</li>
+        </ul>
+      </div>
+      <div class="btn-row">
+        <a
+          class="btn btn--primary"
+          href={`mailto:${SITE.contacts.email}?subject=${encodeURIComponent(t(lang, 'contribute.subject'))}`}
+          data-contribute-mail
+          data-subject={t(lang, 'contribute.subject')}
+        >
+          <Icon name="mail" />
+          {t(lang, 'contribute.byMail')}
+        </a>
+        <a class="btn" href={`${SITE.repo.issues}/new`} rel="noopener" data-contribute-issue>
+          <Icon name="code" />
+          {t(lang, 'contribute.byIssue')}
+        </a>
+      </div>
+      <p class="muted" style="font-size: var(--step--1)">
+        {t(lang, 'contribute.privacy')} <a href={localizePath('privacy', lang)}>{t(lang, 'privacy.title')}</a>{' '}
+        ·<a href={localizePath('ringraziamenti', lang)}>{t(lang, 'thanks.title')}</a>
+      </p>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const q = new URLSearchParams(location.search);
+  const page = q.get('pagina');
+  const course = q.get('corso');
+  const kind = q.get('tipo') ?? 'errore';
+  if (page) {
+    const box = document.querySelector<HTMLElement>('[data-contribute-context]');
+    const code = document.querySelector('[data-contribute-page]');
+    if (box && code) {
+      code.textContent = page;
+      if (course) document.querySelector('[data-contribute-course]')!.textContent = ` (${course})`;
+      box.hidden = false;
+    }
+    const detail = `[${kind}]${course ? ` ${course}` : ''} ${page}`;
+    const mail = document.querySelector<HTMLAnchorElement>('[data-contribute-mail]');
+    if (mail)
+      mail.href = mail.href.replace(
+        /\?.*$/,
+        `?subject=${encodeURIComponent(`${mail.dataset.subject} ${detail}`)}`,
+      );
+    const issue = document.querySelector<HTMLAnchorElement>('[data-contribute-issue]');
+    if (issue) issue.href += `?title=${encodeURIComponent(detail)}`;
+  }
+</script>
