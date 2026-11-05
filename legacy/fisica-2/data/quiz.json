@@ -1,0 +1,1096 @@
+{
+ "nota": "Banca delle domande del quiz. formato 'scelta': 'corretta' è l'indice (da 0) dell'opzione giusta, e le opzioni vengono mescolate a ogni quiz. formato 'numero': 'risposta' con tolleranza relativa 'tolleranza'. La matematica va tra $...$.",
+ "domande": [
+  {
+   "id": "q101",
+   "blocco": "b1",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Il flusso del campo elettrico attraverso una superficie chiusa che non contiene cariche è:",
+   "opzioni": [
+    "sempre nullo",
+    "nullo solo se il campo è uniforme",
+    "uguale a $Q_{est}/\\varepsilon_0$",
+    "dipendente dalla forma della superficie"
+   ],
+   "corretta": 0,
+   "spiegazione": "Per il teorema di Gauss il flusso uscente da una superficie chiusa è $Q_{int}/\\varepsilon_0$: senza cariche interne è nullo, qualunque sia il campo prodotto da cariche esterne."
+  },
+  {
+   "id": "q102",
+   "blocco": "b1",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "All'interno di un conduttore in equilibrio elettrostatico:",
+   "opzioni": [
+    "il campo è nullo e il volume è equipotenziale",
+    "il campo è uniforme e diverso da zero",
+    "la carica si distribuisce uniformemente nel volume",
+    "il potenziale è nullo"
+   ],
+   "corretta": 0,
+   "spiegazione": "Se ci fosse campo le cariche libere si muoverebbero: all'equilibrio $\\vec E=0$ nel materiale, quindi $V$ è costante e la carica in eccesso sta sulla superficie."
+  },
+  {
+   "id": "q103",
+   "blocco": "b1",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Un dipolo elettrico immerso in un campo elettrico uniforme subisce:",
+   "opzioni": [
+    "un momento meccanico ma forza risultante nulla",
+    "una forza ma nessun momento",
+    "sia forza sia momento",
+    "né forza né momento"
+   ],
+   "corretta": 0,
+   "spiegazione": "In campo uniforme le forze sulle due cariche sono uguali e opposte (forza totale nulla) ma formano una coppia: $\\vec M=\\vec p\\times\\vec E$."
+  },
+  {
+   "id": "q104",
+   "blocco": "b1",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "La forma locale della I equazione di Maxwell nel vuoto è:",
+   "opzioni": [
+    "$\\nabla\\cdot\\vec E=\\rho/\\varepsilon_0$",
+    "$\\nabla\\times\\vec E=0$",
+    "$\\nabla\\cdot\\vec E=0$",
+    "$\\nabla^2\\vec E=\\rho/\\varepsilon_0$"
+   ],
+   "corretta": 0,
+   "spiegazione": "Dal teorema di Gauss con il teorema della divergenza: $\\oint\\vec E\\cdot\\hat n\\,dS=\\int\\nabla\\cdot\\vec E\\,dV=\\int\\rho\\,dV/\\varepsilon_0$ per ogni volume."
+  },
+  {
+   "id": "q105",
+   "blocco": "b1",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Campo elettrico immediatamente all'esterno della superficie di un conduttore carico con densità $\\sigma$:",
+   "opzioni": [
+    "$\\sigma/\\varepsilon_0$, perpendicolare alla superficie",
+    "$\\sigma/(2\\varepsilon_0)$, perpendicolare",
+    "$\\sigma/\\varepsilon_0$, tangente",
+    "nullo"
+   ],
+   "corretta": 0,
+   "spiegazione": "Teorema di Coulomb: con una scatoletta a cavallo della superficie il flusso esce solo dalla faccia esterna, $E\\,dS=\\sigma dS/\\varepsilon_0$."
+  },
+  {
+   "id": "q106",
+   "blocco": "b1",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Un condensatore piano isolato (carica costante) viene riempito con un dielettrico di costante $\\varepsilon_r$. L'energia immagazzinata:",
+   "opzioni": [
+    "diminuisce di un fattore $\\varepsilon_r$",
+    "aumenta di un fattore $\\varepsilon_r$",
+    "resta uguale",
+    "raddoppia"
+   ],
+   "corretta": 0,
+   "spiegazione": "$U=Q^2/(2C)$ con $Q$ costante e $C=\\varepsilon_rC_0$: l'energia diventa $U_0/\\varepsilon_r$ (il dielettrico viene risucchiato)."
+  },
+  {
+   "id": "q107",
+   "blocco": "b1",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Alla superficie di separazione tra due dielettrici (senza cariche libere) sono continue:",
+   "opzioni": [
+    "la componente normale di $\\vec D$ e la tangenziale di $\\vec E$",
+    "la componente normale di $\\vec E$ e la tangenziale di $\\vec D$",
+    "tutte le componenti di $\\vec E$",
+    "tutte le componenti di $\\vec D$"
+   ],
+   "corretta": 0,
+   "spiegazione": "Gauss per $\\vec D$ (solo cariche libere) dà $D_{1n}=D_{2n}$; la circuitazione nulla di $\\vec E$ dà $E_{1t}=E_{2t}$."
+  },
+  {
+   "id": "q108",
+   "blocco": "b1",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Due condensatori $C_1$ e $C_2$ in serie hanno capacità equivalente:",
+   "opzioni": [
+    "$\\dfrac{C_1C_2}{C_1+C_2}$",
+    "$C_1+C_2$",
+    "$\\sqrt{C_1C_2}$",
+    "$\\dfrac{C_1+C_2}{2}$"
+   ],
+   "corretta": 0,
+   "spiegazione": "In serie hanno la stessa carica e le tensioni si sommano: $1/C=1/C_1+1/C_2$."
+  },
+  {
+   "id": "q109",
+   "blocco": "b1",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Una carica puntiforme $q=2$ nC è nel vuoto. Calcola il modulo del campo elettrico a $r=30$ cm (in V/m).",
+   "risposta": 199.7,
+   "tolleranza": 0.03,
+   "unita": "V/m",
+   "spiegazione": "$E=\\frac{q}{4\\pi\\varepsilon_0r^2}=\\frac{8{,}99\\times10^9\\cdot2\\times10^{-9}}{0{,}09}\\simeq200$ V/m."
+  },
+  {
+   "id": "q110",
+   "blocco": "b1",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Condensatore piano nel vuoto con armature di area $S=100\\ \\mathrm{cm^2}$ a distanza $d=1$ mm. Calcola la capacità in pF.",
+   "risposta": 88.54,
+   "tolleranza": 0.03,
+   "unita": "pF",
+   "spiegazione": "$C=\\varepsilon_0S/d=8{,}854\\times10^{-12}\\cdot10^{-2}/10^{-3}\\simeq88,5$ pF."
+  },
+  {
+   "id": "q111",
+   "blocco": "b1",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Lo stesso condensatore ($C\\simeq88{,}5$ pF) è caricato a $V=100$ V. Calcola l'energia immagazzinata in nJ.",
+   "risposta": 442.7,
+   "tolleranza": 0.03,
+   "unita": "nJ",
+   "spiegazione": "$U=\\tfrac12CV^2=\\tfrac12\\cdot88{,}5\\times10^{-12}\\cdot10^4\\simeq443$ nJ."
+  },
+  {
+   "id": "q112",
+   "blocco": "b1",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Sfera conduttrice di raggio $R=10$ cm con carica $Q=10$ nC. Calcola il potenziale della sfera (in V, con $V(\\infty)=0$).",
+   "risposta": 898.8,
+   "tolleranza": 0.03,
+   "unita": "V",
+   "spiegazione": "$V=\\frac{Q}{4\\pi\\varepsilon_0R}\\simeq899$ V."
+  },
+  {
+   "id": "q113",
+   "blocco": "b1",
+   "tipo": "pratica",
+   "formato": "scelta",
+   "domanda": "Una sfera isolante di raggio $R$ è uniformemente carica. A distanza $r=R/2$ dal centro il campo vale, rispetto a quello sulla superficie:",
+   "opzioni": [
+    "la metà",
+    "un quarto",
+    "il doppio",
+    "lo stesso"
+   ],
+   "corretta": 0,
+   "spiegazione": "Dentro la sfera $E=\\frac{Qr}{4\\pi\\varepsilon_0R^3}$ cresce linearmente con $r$: a $R/2$ è metà del valore sulla superficie."
+  },
+  {
+   "id": "q114",
+   "blocco": "b1",
+   "tipo": "pratica",
+   "formato": "scelta",
+   "domanda": "Un condensatore resta collegato a un generatore di tensione $V$ mentre si raddoppia la distanza tra le armature. La carica sulle armature:",
+   "opzioni": [
+    "si dimezza",
+    "raddoppia",
+    "resta uguale",
+    "si riduce a un quarto"
+   ],
+   "corretta": 0,
+   "spiegazione": "$V$ è fissata dal generatore e $C=\\varepsilon_0S/d$ si dimezza, quindi $Q=CV$ si dimezza."
+  },
+  {
+   "id": "q115",
+   "blocco": "b1",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Filo rettilineo infinito con densità lineare $\\lambda=1$ nC/m. Calcola il campo a distanza $r=2$ cm (in V/m).",
+   "risposta": 898.8,
+   "tolleranza": 0.03,
+   "unita": "V/m",
+   "spiegazione": "Con Gauss: $E=\\frac{\\lambda}{2\\pi\\varepsilon_0r}\\simeq899$ V/m."
+  },
+  {
+   "id": "q201",
+   "blocco": "b2",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "In regime stazionario l'equazione di continuità si riduce a:",
+   "opzioni": [
+    "$\\nabla\\cdot\\vec J=0$",
+    "$\\nabla\\times\\vec J=0$",
+    "$\\vec J=0$",
+    "$\\partial\\rho/\\partial t=\\nabla\\cdot\\vec J$"
+   ],
+   "corretta": 0,
+   "spiegazione": "$\\nabla\\cdot\\vec J+\\partial\\rho/\\partial t=0$ e in regime stazionario $\\partial\\rho/\\partial t=0$: da qui la legge dei nodi."
+  },
+  {
+   "id": "q202",
+   "blocco": "b2",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "La legge di Ohm in forma locale è:",
+   "opzioni": [
+    "$\\vec J=\\sigma\\vec E$",
+    "$V=RI$",
+    "$\\vec E=\\sigma\\vec J$",
+    "$\\vec J=nq\\vec E$"
+   ],
+   "corretta": 0,
+   "spiegazione": "La densità di corrente è proporzionale al campo, con costante la conducibilità $\\sigma=1/\\rho$."
+  },
+  {
+   "id": "q203",
+   "blocco": "b2",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "La velocità di deriva degli elettroni in un filo di rame percorso da qualche ampere è dell'ordine di:",
+   "opzioni": [
+    "frazioni di millimetro al secondo",
+    "$10^5$ m/s",
+    "la velocità della luce",
+    "qualche metro al secondo"
+   ],
+   "corretta": 0,
+   "spiegazione": "Con $n\\approx8\\times10^{28}\\ \\mathrm{m^{-3}}$, $v_d=J/(ne)$ risulta dell'ordine di $10^{-4}$ m/s; l'agitazione termica è invece di circa $10^5$–$10^6$ m/s."
+  },
+  {
+   "id": "q204",
+   "blocco": "b2",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Durante la carica di un condensatore da parte di un generatore ideale attraverso una resistenza $R$, l'energia dissipata per effetto Joule è:",
+   "opzioni": [
+    "uguale all'energia finale immagazzinata nel condensatore",
+    "nulla se $R$ è piccola",
+    "il doppio dell'energia immagazzinata",
+    "dipendente da $R$"
+   ],
+   "corretta": 0,
+   "spiegazione": "Il generatore fornisce $C\\mathcal E^2$: metà va nel condensatore e metà si dissipa, qualunque sia $R$."
+  },
+  {
+   "id": "q205",
+   "blocco": "b2",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Per misurare una resistenza molto grande con il metodo voltamperometrico conviene:",
+   "opzioni": [
+    "il voltmetro a monte (su resistenza e amperometro)",
+    "il voltmetro a valle (in parallelo alla sola resistenza)",
+    "indifferente",
+    "non usare l'amperometro"
+   ],
+   "corretta": 0,
+   "spiegazione": "A monte si misura $R+R_A$: l'errore è trascurabile se $R\\gg R_A$. A valle si misurerebbe il parallelo con $R_V$, molto sbagliato se $R$ è confrontabile con $R_V$."
+  },
+  {
+   "id": "q206",
+   "blocco": "b2",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "L'equivalente di Thevenin di una rete vista da due morsetti è costituito da:",
+   "opzioni": [
+    "la tensione a vuoto in serie alla resistenza vista a generatori spenti",
+    "la corrente di cortocircuito in serie a una resistenza",
+    "la tensione a vuoto in parallelo a una resistenza",
+    "la resistenza equivalente con tutti i generatori in cortocircuito"
+   ],
+   "corretta": 0,
+   "spiegazione": "$V_{Th}$ è la tensione a circuito aperto; $R_{Th}$ è la resistenza vista con i generatori ideali spenti."
+  },
+  {
+   "id": "q207",
+   "blocco": "b2",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Tre resistori da $R=6\\ \\Omega$ sono collegati in parallelo e il gruppo è in serie a un resistore da $4\\ \\Omega$. Calcola la resistenza equivalente (in Ω).",
+   "risposta": 6.0,
+   "tolleranza": 0.03,
+   "unita": "Ω",
+   "spiegazione": "Il parallelo di tre resistenze da 6 Ω vale 2 Ω; in serie a 4 Ω si ottengono 6 Ω."
+  },
+  {
+   "id": "q208",
+   "blocco": "b2",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Circuito RC con $R=10$ kΩ e $C=100$ μF. Calcola la costante di tempo (in s).",
+   "risposta": 1.0,
+   "tolleranza": 0.03,
+   "unita": "s",
+   "spiegazione": "$\\tau=RC=10^4\\cdot10^{-4}=1$ s."
+  },
+  {
+   "id": "q209",
+   "blocco": "b2",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Un condensatore si scarica attraverso una resistenza con $\\tau=2$ s. Dopo quanti secondi la sua tensione si è dimezzata?",
+   "risposta": 1.386,
+   "tolleranza": 0.03,
+   "unita": "s",
+   "spiegazione": "$V=V_0e^{-t/\\tau}=V_0/2$ per $t=\\tau\\ln2\\simeq1,39$ s."
+  },
+  {
+   "id": "q210",
+   "blocco": "b2",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Generatore con f.e.m. $\\mathcal E=12$ V e resistenza interna $r=2\\ \\Omega$. Calcola la massima potenza trasferibile a un carico (in W).",
+   "risposta": 18.0,
+   "tolleranza": 0.03,
+   "unita": "W",
+   "spiegazione": "Il massimo si ha per $R_L=r$: $P_{max}=\\mathcal E^2/(4r)=144/8=18$ W."
+  },
+  {
+   "id": "q211",
+   "blocco": "b2",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Filo di rame ($\\rho=1{,}7\\times10^{-8}\\ \\Omega\\,$m) lungo 10 m con sezione 1 mm². Calcola la resistenza (in Ω).",
+   "risposta": 0.17,
+   "tolleranza": 0.03,
+   "unita": "Ω",
+   "spiegazione": "$R=\\rho l/S=1{,}7\\times10^{-8}\\cdot10/10^{-6}=0,17\\ \\Omega$."
+  },
+  {
+   "id": "q212",
+   "blocco": "b2",
+   "tipo": "pratica",
+   "formato": "scelta",
+   "domanda": "Un condensatore $C$ carico a $V_0$ viene collegato a un secondo condensatore identico scarico. La tensione finale e l'energia finale sono:",
+   "opzioni": [
+    "$V_0/2$ ed energia dimezzata",
+    "$V_0/2$ ed energia conservata",
+    "$V_0$ ed energia dimezzata",
+    "$V_0/\\sqrt2$ ed energia conservata"
+   ],
+   "corretta": 0,
+   "spiegazione": "La carica si conserva: $V_f=CV_0/(2C)=V_0/2$. L'energia finale è $2\\cdot\\frac12C(V_0/2)^2=\\frac14CV_0^2$, metà di quella iniziale (il resto si dissipa)."
+  },
+  {
+   "id": "q213",
+   "blocco": "b2",
+   "tipo": "pratica",
+   "formato": "scelta",
+   "domanda": "Nel ponte di Wheatstone all'equilibrio ($R_1$, $R_2$ su un ramo, $R_3$, $R_4$ sull'altro) vale:",
+   "opzioni": [
+    "$R_1/R_2=R_3/R_4$",
+    "$R_1R_2=R_3R_4$",
+    "$R_1+R_2=R_3+R_4$",
+    "$R_1/R_3=R_4/R_2$"
+   ],
+   "corretta": 0,
+   "spiegazione": "All'equilibrio i punti intermedi sono allo stesso potenziale: $\\frac{R_2}{R_1+R_2}=\\frac{R_4}{R_3+R_4}$, cioè $R_1/R_2=R_3/R_4$."
+  },
+  {
+   "id": "q301",
+   "blocco": "b3",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Il lavoro compiuto dalla forza magnetica su una carica in moto è:",
+   "opzioni": [
+    "sempre nullo",
+    "positivo se la carica è positiva",
+    "uguale a $qvB$",
+    "massimo se $\\vec v\\perp\\vec B$"
+   ],
+   "corretta": 0,
+   "spiegazione": "$\\vec F=q\\vec v\\times\\vec B$ è sempre perpendicolare a $\\vec v$: la potenza $\\vec F\\cdot\\vec v$ è nulla e l'energia cinetica non cambia."
+  },
+  {
+   "id": "q302",
+   "blocco": "b3",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "La II equazione di Maxwell $\\nabla\\cdot\\vec B=0$ esprime il fatto che:",
+   "opzioni": [
+    "non esistono monopoli magnetici",
+    "il campo magnetico è conservativo",
+    "le correnti sono stazionarie",
+    "$\\vec B$ è sempre uniforme"
+   ],
+   "corretta": 0,
+   "spiegazione": "Il flusso di $\\vec B$ attraverso una superficie chiusa è nullo: le linee di campo sono chiuse e non esistono cariche magnetiche isolate."
+  },
+  {
+   "id": "q303",
+   "blocco": "b3",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Due fili paralleli percorsi da correnti nello stesso verso:",
+   "opzioni": [
+    "si attraggono",
+    "si respingono",
+    "non interagiscono",
+    "ruotano uno attorno all'altro"
+   ],
+   "corretta": 0,
+   "spiegazione": "Il campo del primo filo sul secondo, con $d\\vec F=I\\,d\\vec l\\times\\vec B$, dà una forza diretta verso il primo filo: $F/l=\\mu_0I_1I_2/(2\\pi d)$, attrattiva."
+  },
+  {
+   "id": "q304",
+   "blocco": "b3",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Una spira percorsa da corrente in un campo magnetico uniforme tende a disporsi:",
+   "opzioni": [
+    "con il momento magnetico parallelo e concorde a $\\vec B$",
+    "con il piano della spira parallelo a $\\vec B$",
+    "con il momento magnetico antiparallelo a $\\vec B$",
+    "in qualsiasi posizione (nessun momento)"
+   ],
+   "corretta": 0,
+   "spiegazione": "$\\vec M=\\vec m\\times\\vec B$ e $U=-\\vec m\\cdot\\vec B$: l'equilibrio stabile è $\\vec m\\parallel\\vec B$."
+  },
+  {
+   "id": "q305",
+   "blocco": "b3",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Nel teorema della circuitazione di Ampère (caso stazionario) compare:",
+   "opzioni": [
+    "solo la corrente concatenata con la curva",
+    "la corrente totale del circuito",
+    "la carica racchiusa",
+    "il flusso di $\\vec B$"
+   ],
+   "corretta": 0,
+   "spiegazione": "$\\oint\\vec B\\cdot d\\vec l=\\mu_0I_{conc}$: contano solo le correnti che attraversano una superficie delimitata dalla curva."
+  },
+  {
+   "id": "q306",
+   "blocco": "b3",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Un materiale paramagnetico ha suscettività magnetica:",
+   "opzioni": [
+    "piccola e positiva, decrescente con la temperatura",
+    "piccola e negativa",
+    "molto grande e dipendente dalla storia",
+    "nulla"
+   ],
+   "corretta": 0,
+   "spiegazione": "I momenti permanenti si allineano parzialmente al campo, contrastati dall'agitazione termica: $\\chi_m>0$ con legge di Curie $\\chi_m=C/T$."
+  },
+  {
+   "id": "q307",
+   "blocco": "b3",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Alla superficie di separazione tra due materiali magnetici (senza correnti libere superficiali) sono continue:",
+   "opzioni": [
+    "la componente normale di $\\vec B$ e quella tangenziale di $\\vec H$",
+    "la componente tangenziale di $\\vec B$ e quella normale di $\\vec H$",
+    "tutte le componenti di $\\vec B$",
+    "tutte le componenti di $\\vec H$"
+   ],
+   "corretta": 0,
+   "spiegazione": "$\\nabla\\cdot\\vec B=0$ dà $B_{1n}=B_{2n}$; $\\oint\\vec H\\cdot d\\vec l=I_{lib}=0$ dà $H_{1t}=H_{2t}$."
+  },
+  {
+   "id": "q308",
+   "blocco": "b3",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Filo rettilineo infinito percorso da $I=10$ A. Calcola il campo magnetico a 5 cm (in μT).",
+   "risposta": 40.0,
+   "tolleranza": 0.03,
+   "unita": "μT",
+   "spiegazione": "$B=\\frac{\\mu_0I}{2\\pi r}=\\frac{4\\pi\\times10^{-7}\\cdot10}{2\\pi\\cdot0{,}05}=40$ μT."
+  },
+  {
+   "id": "q309",
+   "blocco": "b3",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Solenoide lungo con 1000 spire/m percorso da 2 A. Calcola il campo magnetico all'interno (in mT).",
+   "risposta": 2.513,
+   "tolleranza": 0.03,
+   "unita": "mT",
+   "spiegazione": "$B=\\mu_0nI=4\\pi\\times10^{-7}\\cdot1000\\cdot2\\simeq2,51$ mT."
+  },
+  {
+   "id": "q310",
+   "blocco": "b3",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Un elettrone con velocità $v=10^6$ m/s entra perpendicolarmente in un campo $B=10$ mT. Calcola il raggio della traiettoria (in mm).",
+   "risposta": 0.5686,
+   "tolleranza": 0.03,
+   "unita": "mm",
+   "spiegazione": "$r=\\frac{m_ev}{eB}=\\frac{9{,}11\\times10^{-31}\\cdot10^6}{1{,}6\\times10^{-19}\\cdot10^{-2}}\\simeq0,569$ mm."
+  },
+  {
+   "id": "q311",
+   "blocco": "b3",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Due fili paralleli distanti 10 cm sono percorsi da 5 A ciascuno. Calcola la forza per unità di lunghezza (in μN/m).",
+   "risposta": 50.0,
+   "tolleranza": 0.03,
+   "unita": "μN/m",
+   "spiegazione": "$F/l=\\frac{\\mu_0I_1I_2}{2\\pi d}=\\frac{2\\times10^{-7}\\cdot25}{0{,}1}=50$ μN/m."
+  },
+  {
+   "id": "q312",
+   "blocco": "b3",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Spira circolare di raggio 5 cm percorsa da 3 A. Calcola il campo al centro (in μT).",
+   "risposta": 37.7,
+   "tolleranza": 0.03,
+   "unita": "μT",
+   "spiegazione": "$B=\\frac{\\mu_0I}{2R}\\simeq37,7$ μT."
+  },
+  {
+   "id": "q313",
+   "blocco": "b3",
+   "tipo": "pratica",
+   "formato": "scelta",
+   "domanda": "Un protone e un elettrone entrano con la stessa velocità, perpendicolarmente, nello stesso campo magnetico uniforme. Rispetto al raggio dell'elettrone, quello del protone è:",
+   "opzioni": [
+    "circa 1836 volte maggiore, con verso di rotazione opposto",
+    "uguale, con verso opposto",
+    "circa 1836 volte minore",
+    "uguale e con lo stesso verso"
+   ],
+   "corretta": 0,
+   "spiegazione": "$r=mv/(|q|B)$: le cariche hanno lo stesso modulo, quindi il raggio è proporzionale alla massa ($m_p/m_e\\simeq1836$); il segno opposto inverte il verso di rotazione."
+  },
+  {
+   "id": "q314",
+   "blocco": "b3",
+   "tipo": "pratica",
+   "formato": "scelta",
+   "domanda": "In un nucleo di ferro ($\\mu_r=1000$, lunghezza media $l$) si pratica un traferro di spessore $h=l/1000$. A parità di corrente, il campo nel traferro diventa circa:",
+   "opzioni": [
+    "la metà di quello senza traferro",
+    "uguale",
+    "un millesimo",
+    "il doppio"
+   ],
+   "corretta": 0,
+   "spiegazione": "$B=\\frac{\\mu_0NI}{l/\\mu_r+h}$: senza traferro il denominatore è $l/1000$, con il traferro diventa $2l/1000$, quindi $B$ si dimezza."
+  },
+  {
+   "id": "q401",
+   "blocco": "b4",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "La legge di Lenz afferma che la corrente indotta:",
+   "opzioni": [
+    "si oppone alla variazione di flusso che la genera",
+    "ha sempre il verso orario",
+    "è proporzionale al flusso",
+    "rafforza la variazione di flusso"
+   ],
+   "corretta": 0,
+   "spiegazione": "È il segno meno in $\\mathcal E=-d\\Phi/dt$ ed è una conseguenza della conservazione dell'energia."
+  },
+  {
+   "id": "q402",
+   "blocco": "b4",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "La forma locale della legge di Faraday (III equazione di Maxwell) è:",
+   "opzioni": [
+    "$\\nabla\\times\\vec E=-\\partial\\vec B/\\partial t$",
+    "$\\nabla\\cdot\\vec E=-\\partial\\vec B/\\partial t$",
+    "$\\nabla\\times\\vec B=-\\partial\\vec E/\\partial t$",
+    "$\\nabla\\times\\vec E=0$"
+   ],
+   "corretta": 0,
+   "spiegazione": "Da $\\oint\\vec E\\cdot d\\vec l=-\\frac{d}{dt}\\int\\vec B\\cdot\\hat n\\,dS$ con Stokes, per un circuito fermo."
+  },
+  {
+   "id": "q403",
+   "blocco": "b4",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "La corrente di spostamento $\\varepsilon_0\\,\\partial\\vec E/\\partial t$ è stata introdotta per:",
+   "opzioni": [
+    "rendere la legge di Ampère compatibile con la conservazione della carica",
+    "spiegare l'effetto Hall",
+    "descrivere le correnti nei dielettrici",
+    "spiegare la legge di Lenz"
+   ],
+   "corretta": 0,
+   "spiegazione": "Senza di essa $\\nabla\\cdot(\\nabla\\times\\vec B)=0$ imporrebbe $\\nabla\\cdot\\vec J=0$ anche fuori dal regime stazionario, contro l'equazione di continuità."
+  },
+  {
+   "id": "q404",
+   "blocco": "b4",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "L'energia immagazzinata in un induttore $L$ percorso da corrente $I$ è:",
+   "opzioni": [
+    "$\\frac12LI^2$",
+    "$LI^2$",
+    "$\\frac12LI$",
+    "$L^2I/2$"
+   ],
+   "corretta": 0,
+   "spiegazione": "Dal bilancio del circuito RL: il generatore compie il lavoro $\\int LI\\,dI=\\frac12LI^2$ oltre a quello dissipato."
+  },
+  {
+   "id": "q405",
+   "blocco": "b4",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "La legge di Felici afferma che la carica che attraversa un circuito di resistenza $R$ durante una variazione di flusso $\\Delta\\Phi$:",
+   "opzioni": [
+    "vale $|\\Delta\\Phi|/R$ e non dipende dalla rapidità della variazione",
+    "è proporzionale alla velocità di variazione",
+    "vale $R\\Delta\\Phi$",
+    "è sempre nulla"
+   ],
+   "corretta": 0,
+   "spiegazione": "$Q=\\int I\\,dt=\\int\\frac{-d\\Phi/dt}{R}dt=\\frac{\\Phi_i-\\Phi_f}{R}$."
+  },
+  {
+   "id": "q406",
+   "blocco": "b4",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Il coefficiente di mutua induzione tra due circuiti:",
+   "opzioni": [
+    "è simmetrico ($M_{12}=M_{21}$) e dipende solo dalla geometria",
+    "dipende dalle correnti",
+    "è sempre maggiore di $\\sqrt{L_1L_2}$",
+    "è diverso nei due versi"
+   ],
+   "corretta": 0,
+   "spiegazione": "Dalla formula di Neumann $M$ è simmetrico e puramente geometrico (per mezzi lineari); inoltre $M\\le\\sqrt{L_1L_2}$."
+  },
+  {
+   "id": "q407",
+   "blocco": "b4",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Una sbarretta lunga 20 cm scorre a 3 m/s su binari, perpendicolare a un campo $B=0{,}5$ T. Calcola la f.e.m. indotta (in V).",
+   "risposta": 0.3,
+   "tolleranza": 0.03,
+   "unita": "V",
+   "spiegazione": "$\\mathcal E=vBl=3\\cdot0{,}5\\cdot0{,}2=0{,}3$ V."
+  },
+  {
+   "id": "q408",
+   "blocco": "b4",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Solenoide di 1000 spire, lungo 50 cm, con raggio 2 cm. Calcola l'induttanza (in mH).",
+   "risposta": 3.158,
+   "tolleranza": 0.03,
+   "unita": "mH",
+   "spiegazione": "$L=\\mu_0N^2S/l=4\\pi\\times10^{-7}\\cdot10^6\\cdot\\pi(0{,}02)^2/0{,}5\\simeq3,16$ mH."
+  },
+  {
+   "id": "q409",
+   "blocco": "b4",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Circuito RL con $L=0{,}2$ H e $R=50\\ \\Omega$. Calcola la costante di tempo (in ms).",
+   "risposta": 4.0,
+   "tolleranza": 0.03,
+   "unita": "ms",
+   "spiegazione": "$\\tau=L/R=0{,}2/50=4$ ms."
+  },
+  {
+   "id": "q410",
+   "blocco": "b4",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Sbarretta conduttrice lunga 50 cm che ruota attorno a un estremo con $\\omega=100$ rad/s, perpendicolare a $B=0{,}1$ T. Calcola la d.d.p. tra gli estremi (in V).",
+   "risposta": 1.25,
+   "tolleranza": 0.03,
+   "unita": "V",
+   "spiegazione": "$\\Delta V=\\frac12B\\omega L^2=\\frac12\\cdot0{,}1\\cdot100\\cdot0{,}25=1{,}25$ V."
+  },
+  {
+   "id": "q411",
+   "blocco": "b4",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Bobina di 100 spire di area 100 cm² che ruota a 50 giri/s in $B=0{,}2$ T. Calcola l'ampiezza della f.e.m. (in V).",
+   "risposta": 62.83,
+   "tolleranza": 0.03,
+   "unita": "V",
+   "spiegazione": "$\\mathcal E_0=NBS\\omega=100\\cdot0{,}2\\cdot0{,}01\\cdot2\\pi\\cdot50\\simeq62,8$ V."
+  },
+  {
+   "id": "q412",
+   "blocco": "b4",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Calcola la densità di energia di un campo magnetico $B=1$ T nel vuoto (in kJ/m³).",
+   "risposta": 397.9,
+   "tolleranza": 0.03,
+   "unita": "kJ/m³",
+   "spiegazione": "$u=B^2/(2\\mu_0)=1/(8\\pi\\times10^{-7})\\simeq398$ kJ/m³."
+  },
+  {
+   "id": "q413",
+   "blocco": "b4",
+   "tipo": "pratica",
+   "formato": "scelta",
+   "domanda": "Una spira è ferma vicino a un filo rettilineo percorso da corrente costante. Se la spira si allontana dal filo, la corrente indotta nella spira:",
+   "opzioni": [
+    "crea un campo che, dentro la spira, ha lo stesso verso di quello del filo",
+    "crea un campo opposto a quello del filo",
+    "è nulla perché la corrente del filo è costante",
+    "non dipende dalla velocità"
+   ],
+   "corretta": 0,
+   "spiegazione": "Allontanandosi il flusso diminuisce; per Lenz la corrente indotta tende a mantenerlo, quindi produce dentro la spira un campo concorde con quello del filo."
+  },
+  {
+   "id": "q414",
+   "blocco": "b4",
+   "tipo": "pratica",
+   "formato": "scelta",
+   "domanda": "In un condensatore piano circolare (raggio $R$) che si carica con corrente $I$, il campo magnetico tra le armature a distanza $r\\lt R$ dall'asse vale:",
+   "opzioni": [
+    "$\\dfrac{\\mu_0Ir}{2\\pi R^2}$",
+    "$\\dfrac{\\mu_0I}{2\\pi r}$",
+    "zero",
+    "$\\mu_0I/(2R)$"
+   ],
+   "corretta": 0,
+   "spiegazione": "Solo la corrente di spostamento è concatenata, e in proporzione all'area: $B\\cdot2\\pi r=\\mu_0I\\,r^2/R^2$."
+  },
+  {
+   "id": "q501",
+   "blocco": "b5",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "In un'onda elettromagnetica piana nel vuoto:",
+   "opzioni": [
+    "$\\vec E$ e $\\vec B$ sono perpendicolari tra loro e alla direzione di propagazione, in fase, con $E=cB$",
+    "$\\vec E$ è parallelo alla direzione di propagazione",
+    "$\\vec E$ e $\\vec B$ sono sfasati di $90°$",
+    "$B=cE$"
+   ],
+   "corretta": 0,
+   "spiegazione": "Dalle equazioni di Maxwell l'onda è trasversale e $\\vec B=\\frac1c\\hat k\\times\\vec E$."
+  },
+  {
+   "id": "q502",
+   "blocco": "b5",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Il vettore di Poynting rappresenta:",
+   "opzioni": [
+    "la potenza per unità di superficie trasportata dall'onda",
+    "la densità di energia",
+    "la quantità di moto totale dell'onda",
+    "la polarizzazione dell'onda"
+   ],
+   "corretta": 0,
+   "spiegazione": "$\\vec S=\\vec E\\times\\vec H$ si misura in W/m² ed è il flusso di energia elettromagnetica (teorema di Poynting)."
+  },
+  {
+   "id": "q503",
+   "blocco": "b5",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "La potenza irraggiata da un dipolo oscillante è proporzionale a:",
+   "opzioni": [
+    "$\\omega^4$",
+    "$\\omega^2$",
+    "$\\omega$",
+    "$1/\\omega^2$"
+   ],
+   "corretta": 0,
+   "spiegazione": "$\\langle P\\rangle=\\frac{\\mu_0p_0^2\\omega^4}{12\\pi c}$: per questo la luce blu del cielo è diffusa più di quella rossa."
+  },
+  {
+   "id": "q504",
+   "blocco": "b5",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "La riflessione totale può avvenire quando la luce passa:",
+   "opzioni": [
+    "da un mezzo a indice maggiore a uno a indice minore, oltre l'angolo limite",
+    "da un mezzo a indice minore a uno a indice maggiore",
+    "solo all'incidenza normale",
+    "solo all'angolo di Brewster"
+   ],
+   "corretta": 0,
+   "spiegazione": "Da Snell $\\sin\\theta_2=\\frac{n_1}{n_2}\\sin\\theta_1$: se $n_1>n_2$ e $\\sin\\theta_1>n_2/n_1$ non esiste angolo di rifrazione."
+  },
+  {
+   "id": "q505",
+   "blocco": "b5",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "All'angolo di Brewster la luce riflessa è:",
+   "opzioni": [
+    "polarizzata linearmente perpendicolarmente al piano di incidenza",
+    "polarizzata nel piano di incidenza",
+    "non polarizzata",
+    "assente"
+   ],
+   "corretta": 0,
+   "spiegazione": "Per $\\tan\\theta_B=n_2/n_1$ la componente con $\\vec E$ nel piano di incidenza non viene riflessa: resta solo quella perpendicolare."
+  },
+  {
+   "id": "q506",
+   "blocco": "b5",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Nell'esperimento di Young, allontanando tra loro le due fenditure la distanza tra le frange:",
+   "opzioni": [
+    "diminuisce",
+    "aumenta",
+    "resta costante",
+    "dipende dall'intensità"
+   ],
+   "corretta": 0,
+   "spiegazione": "$\\Delta y=\\lambda D/d$: è inversamente proporzionale alla distanza $d$ tra le fenditure."
+  },
+  {
+   "id": "q507",
+   "blocco": "b5",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Nella diffrazione di Fraunhofer da una fenditura di larghezza $a$, restringendo la fenditura il massimo centrale:",
+   "opzioni": [
+    "si allarga",
+    "si restringe",
+    "resta uguale",
+    "scompare"
+   ],
+   "corretta": 0,
+   "spiegazione": "Il primo minimo è a $\\sin\\theta=\\lambda/a$: più $a$ è piccola, più il massimo centrale è largo."
+  },
+  {
+   "id": "q508",
+   "blocco": "b5",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Un'onda piana nel vuoto ha ampiezza del campo elettrico $E_0=100$ V/m. Calcola l'intensità media (in W/m²).",
+   "risposta": 13.27,
+   "tolleranza": 0.03,
+   "unita": "W/m²",
+   "spiegazione": "$I=\\frac{E_0^2}{2Z_0}=\\frac{10^4}{2\\cdot377}\\simeq13,3$ W/m²."
+  },
+  {
+   "id": "q509",
+   "blocco": "b5",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Stessa onda ($E_0=100$ V/m). Calcola l'ampiezza del campo magnetico (in μT).",
+   "risposta": 0.3336,
+   "tolleranza": 0.03,
+   "unita": "μT",
+   "spiegazione": "$B_0=E_0/c=100/(3\\times10^8)\\simeq0,334$ μT."
+  },
+  {
+   "id": "q510",
+   "blocco": "b5",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Una lampadina irraggia isotropicamente 100 W. Calcola l'intensità a 2 m (in W/m²).",
+   "risposta": 1.989,
+   "tolleranza": 0.03,
+   "unita": "W/m²",
+   "spiegazione": "$I=P/(4\\pi r^2)=100/(16\\pi)\\simeq1,99$ W/m²."
+  },
+  {
+   "id": "q511",
+   "blocco": "b5",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Calcola l'angolo limite per la riflessione totale tra vetro ($n=1{,}5$) e aria (in gradi).",
+   "risposta": 41.81,
+   "tolleranza": 0.03,
+   "unita": "°",
+   "spiegazione": "$\\sin\\theta_c=1/1{,}5$ ⇒ $\\theta_c\\simeq41,8°$."
+  },
+  {
+   "id": "q512",
+   "blocco": "b5",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Luce che passa dall'aria all'acqua ($n=1{,}33$) all'incidenza normale. Calcola la frazione di intensità riflessa (in %).",
+   "risposta": 2.006,
+   "tolleranza": 0.03,
+   "unita": "%",
+   "spiegazione": "$R=\\left(\\frac{n_1-n_2}{n_1+n_2}\\right)^2=(0{,}33/2{,}33)^2\\simeq2,01$%."
+  },
+  {
+   "id": "q513",
+   "blocco": "b5",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Young: fenditure a 0,2 mm, schermo a 2 m, λ = 600 nm. Calcola la distanza tra due frange chiare consecutive (in mm).",
+   "risposta": 6.0,
+   "tolleranza": 0.03,
+   "unita": "mm",
+   "spiegazione": "$\\Delta y=\\lambda D/d=600\\times10^{-9}\\cdot2/(2\\times10^{-4})=6$ mm."
+  },
+  {
+   "id": "q514",
+   "blocco": "b5",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Luce non polarizzata di intensità $I_0=40$ W/m² attraversa due polarizzatori con assi a 60°. Calcola l'intensità finale (in W/m²).",
+   "risposta": 5.0,
+   "tolleranza": 0.03,
+   "unita": "W/m²",
+   "spiegazione": "Il primo polarizzatore trasmette $I_0/2=20$ W/m²; il secondo, per Malus, $20\\cos^260°=5$ W/m²."
+  },
+  {
+   "id": "q515",
+   "blocco": "b5",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Calcola la lunghezza d'onda nel vuoto di un'onda a 1 GHz (in cm).",
+   "risposta": 29.98,
+   "tolleranza": 0.03,
+   "unita": "cm",
+   "spiegazione": "$\\lambda=c/\\nu=3\\times10^8/10^9\\simeq30$ cm."
+  },
+  {
+   "id": "q601",
+   "blocco": "b6",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "L'effetto Meissner consiste nel fatto che un superconduttore:",
+   "opzioni": [
+    "espelle il campo magnetico dal suo interno",
+    "ha resistenza nulla solo in campo magnetico",
+    "conserva il flusso iniziale",
+    "diventa ferromagnetico"
+   ],
+   "corretta": 0,
+   "spiegazione": "Sotto $T_c$ il superconduttore si comporta da diamagnete perfetto ($\\vec B=0$ all'interno), anche se viene raffreddato in presenza del campo."
+  },
+  {
+   "id": "q602",
+   "blocco": "b6",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Una grandezza invariante per trasformazioni di Lorentz è:",
+   "opzioni": [
+    "la carica elettrica",
+    "il campo elettrico",
+    "il campo magnetico",
+    "la densità di carica"
+   ],
+   "corretta": 0,
+   "spiegazione": "La carica totale è la stessa in tutti i riferimenti; $\\vec E$, $\\vec B$ e $\\rho$ cambiano (sono invarianti $\\vec E\\cdot\\vec B$ ed $E^2-c^2B^2$)."
+  },
+  {
+   "id": "q603",
+   "blocco": "b6",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Una carica ferma vicino a un filo neutro percorso da corrente, nel riferimento del filo:",
+   "opzioni": [
+    "non subisce alcuna forza",
+    "è attratta dal filo",
+    "è respinta dal filo",
+    "ruota attorno al filo"
+   ],
+   "corretta": 0,
+   "spiegazione": "Il filo è neutro (nessuna forza elettrica) e la carica è ferma ($\\vec v\\times\\vec B=0$). In un riferimento in cui la carica si muove, invece, compaiono forze."
+  },
+  {
+   "id": "q604",
+   "blocco": "b6",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Superata la temperatura critica un superconduttore:",
+   "opzioni": [
+    "torna a una resistività finita",
+    "diventa un isolante perfetto",
+    "mantiene resistenza nulla",
+    "espelle il campo più intensamente"
+   ],
+   "corretta": 0,
+   "spiegazione": "Sopra $T_c$ (o sopra il campo o la corrente critici) lo stato superconduttore scompare e il materiale torna normale."
+  },
+  {
+   "id": "q701",
+   "blocco": "b7",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "L'incertezza sulla media di $N$ misure indipendenti con deviazione standard $\\sigma$ vale:",
+   "opzioni": [
+    "$\\sigma/\\sqrt N$",
+    "$\\sigma/N$",
+    "$\\sigma\\sqrt N$",
+    "$\\sigma$"
+   ],
+   "corretta": 0,
+   "spiegazione": "La deviazione standard della media si riduce come $1/\\sqrt N$."
+  },
+  {
+   "id": "q702",
+   "blocco": "b7",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Gli errori sistematici:",
+   "opzioni": [
+    "non si riducono ripetendo la misura",
+    "si riducono mediando molte misure",
+    "sono sempre trascurabili",
+    "seguono una distribuzione gaussiana"
+   ],
+   "corretta": 0,
+   "spiegazione": "Spostano tutte le misure nello stesso verso: vanno individuati e corretti, per esempio con la taratura o con la correzione dell'errore di inserzione."
+  },
+  {
+   "id": "q703",
+   "blocco": "b7",
+   "tipo": "teoria",
+   "formato": "scelta",
+   "domanda": "Per ricavare $\\tau$ dalla scarica di un condensatore con un fit lineare si riporta in grafico:",
+   "opzioni": [
+    "$\\ln V$ in funzione di $t$",
+    "$V$ in funzione di $\\ln t$",
+    "$V^2$ in funzione di $t$",
+    "$1/V$ in funzione di $t$"
+   ],
+   "corretta": 0,
+   "spiegazione": "$V=V_0e^{-t/\\tau}$ ⇒ $\\ln V=\\ln V_0-t/\\tau$: una retta con pendenza $-1/\\tau$."
+  },
+  {
+   "id": "q704",
+   "blocco": "b7",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Si misurano $x=(10{,}0\\pm0{,}3)$ e $y=(4{,}0\\pm0{,}4)$ (grandezze indipendenti). Calcola l'incertezza su $x-y$.",
+   "risposta": 0.5,
+   "tolleranza": 0.03,
+   "unita": "",
+   "spiegazione": "Per somme e differenze si sommano in quadratura le incertezze assolute: $\\sqrt{0{,}3^2+0{,}4^2}=0{,}5$."
+  },
+  {
+   "id": "q705",
+   "blocco": "b7",
+   "tipo": "pratica",
+   "formato": "numero",
+   "domanda": "Una resistenza vale $R=V/I$ con $V$ noto all'1% e $I$ al 2% (indipendenti). Calcola l'incertezza relativa percentuale su $R$.",
+   "risposta": 2.236,
+   "tolleranza": 0.03,
+   "unita": "%",
+   "spiegazione": "Per un quoziente si sommano in quadratura le incertezze relative: $\\sqrt{1^2+2^2}\\simeq2,24$%."
+  },
+  {
+   "id": "q706",
+   "blocco": "b7",
+   "tipo": "pratica",
+   "formato": "scelta",
+   "domanda": "Due misure della stessa grandezza danno $(5{,}0\\pm0{,}2)$ e $(5{,}9\\pm0{,}3)$. Sono compatibili?",
+   "opzioni": [
+    "No: $t\\approx2{,}5$",
+    "Sì: $t\\approx0{,}9$",
+    "Sì, perché differiscono di meno del 20%",
+    "Non si può dire"
+   ],
+   "corretta": 0,
+   "spiegazione": "$t=\\frac{0{,}9}{\\sqrt{0{,}04+0{,}09}}\\simeq2{,}5$: oltre 2 le misure sono considerate incompatibili."
+  }
+ ]
+}

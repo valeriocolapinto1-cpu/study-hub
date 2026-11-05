@@ -1,0 +1,32 @@
+---
+import { localizePath, stripLang, t, type Lang } from '../i18n';
+import { COURSE_SECTIONS } from '../lib/courses';
+
+interface Props {
+  lang: Lang;
+  /** Percorso del corso senza lingua, es. "anno-2/teoria-circuiti". */
+  coursePath: string;
+}
+const { lang, coursePath } = Astro.props;
+
+const current = stripLang(Astro.url.pathname);
+const isCurrent = (slug: string) => {
+  const target = slug ? `${coursePath}/${slug}` : coursePath;
+  return slug ? current === target || current.startsWith(`${target}/`) : current === target;
+};
+---
+
+<nav class="course-nav" aria-label={t(lang, 'nav.course.label')}>
+  <ul class="container">
+    {COURSE_SECTIONS.map((s) => (
+      <li>
+        <a
+          href={localizePath(s.slug ? `${coursePath}/${s.slug}` : coursePath, lang)}
+          aria-current={isCurrent(s.slug) ? 'page' : undefined}
+        >
+          {t(lang, s.key)}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>

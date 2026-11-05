@@ -1,0 +1,89 @@
+<section class="t-sec" id="b5a">
+<h2>5a · Onde elettromagnetiche</h2>
+
+<h3 id="b5a-equazione">Equazione delle onde</h3>
+<p>Nel vuoto senza cariche né correnti, prendendo il rotore della III equazione e usando la IV:</p>
+<p class="t-eq">$$\nabla\times(\nabla\times\vec E)=\nabla(\nabla\cdot\vec E)-\nabla^2\vec E=-\frac{\partial}{\partial t}\nabla\times\vec B=-\mu_0\varepsilon_0\frac{\partial^2\vec E}{\partial t^2}$$</p>
+<p>Poiché $\nabla\cdot\vec E=0$ si ottiene l'<strong>equazione di d'Alembert</strong>, e la stessa equazione vale per $\vec B$:</p>
+<p class="t-eq">$$\nabla^2\vec E-\frac1{c^2}\frac{\partial^2\vec E}{\partial t^2}=0,\qquad c=\frac1{\sqrt{\mu_0\varepsilon_0}}\simeq3\times10^8\ \mathrm{m/s}$$</p>
+<p>La luce è un'onda elettromagnetica. In un mezzo lineare $v=\frac1{\sqrt{\varepsilon\mu}}=\frac cn$, con indice di rifrazione $n=\sqrt{\varepsilon_r\mu_r}$.</p>
+
+<h3 id="b5a-piane">Onde piane e sferiche</h3>
+<p>Qualunque funzione $f(x-vt)$ è soluzione in una dimensione (onda che viaggia verso $+x$). Onda piana armonica: $\vec E=\vec E_0\cos(kx-\omega t)$, con $k=\frac{2\pi}\lambda=\frac\omega v$, $\omega=2\pi\nu$ e $c=\lambda\nu$. Dalle equazioni di Maxwell:</p>
+<ul>
+<li>l'onda è <strong>trasversale</strong>: $\vec E\perp\hat k$ e $\vec B\perp\hat k$;</li>
+<li>$\vec B=\frac1v\hat k\times\vec E$, quindi $E=vB$, e $\vec E$, $\vec B$, $\hat k$ formano una terna destrorsa;</li>
+<li>$\vec E$ e $\vec B$ oscillano <strong>in fase</strong>.</li>
+</ul>
+<p><strong>Polarizzazione</strong>: lineare se $\vec E$ oscilla lungo una direzione fissa; circolare o ellittica se due componenti ortogonali sono sfasate.</p>
+<p><strong>Onde sferiche</strong> (sorgente puntiforme): $E=\frac{E_0r_0}r\cos(kr-\omega t)$. L'ampiezza decresce come $1/r$ e l'intensità come $1/r^2$, così che la potenza attraverso ogni sfera resta costante. Lontano dalla sorgente l'onda è localmente piana.</p>
+<p><strong>Onde stazionarie</strong>: tra due piani conduttori ideali a distanza $L$, $E$ deve annullarsi sulle pareti. Dalla sovrapposizione di onde che viaggiano in versi opposti si ottiene $E=2E_0\sin kx\sin\omega t$, possibile solo per $L=m\frac\lambda2$. $\vec B$ è sfasato di un quarto di periodo e ha i ventri dove $\vec E$ ha i nodi.</p>
+<p><strong>Onde in un conduttore</strong>: il campo si smorza esponenzialmente entro la <strong>profondità di penetrazione</strong> $\delta=\sqrt{\frac2{\omega\mu\sigma}}$ (effetto pelle). Per questo i metalli riflettono le onde e schermano i segnali ad alta frequenza.</p>
+
+<h3 id="b5a-spettro">Spettro elettromagnetico</h3>
+<p>Onde radio (λ da km a cm), microonde (cm–mm), infrarosso, <strong>visibile</strong> (circa 400–700 nm, dal violetto al rosso), ultravioletto, raggi X, raggi γ. La fisica è la stessa; cambiano la lunghezza d'onda, l'energia dei fotoni ($h\nu$) e l'interazione con la materia.</p>
+
+<h3 id="b5a-poynting">Energia e vettore di Poynting</h3>
+<p>Nel campo è immagazzinata energia con densità $u=\frac12\varepsilon_0E^2+\frac1{2\mu_0}B^2$; in un'onda piana le due parti sono uguali. Dalle equazioni di Maxwell si ottiene il <strong>teorema di Poynting</strong> (conservazione dell'energia):</p>
+<p class="t-eq">$$-\frac{\partial u}{\partial t}=\nabla\cdot\vec S+\vec J\cdot\vec E,\qquad\vec S=\vec E\times\vec H=\frac1{\mu_0}\vec E\times\vec B$$</p>
+<p>Il vettore di Poynting $\vec S$ (W/m²) è il flusso di energia per unità di area e tempo, diretto come la propagazione. La <strong>intensità</strong> è il suo valore medio nel tempo; per un'onda armonica nel vuoto:</p>
+<p class="t-eq">$$I=\langle S\rangle=\frac12\varepsilon_0cE_0^2=\frac{E_0^2}{2Z_0}=\frac{cB_0^2}{2\mu_0},\qquad Z_0=\sqrt{\frac{\mu_0}{\varepsilon_0}}\simeq377\ \Omega$$</p>
+<p>Una sorgente isotropa di potenza $P$ produce a distanza $r$ l'intensità $I=\frac{P}{4\pi r^2}$. L'onda trasporta anche impulso: su una superficie che la assorbe esercita la pressione di radiazione $I/c$ (il doppio se la riflette).</p>
+
+<h3 id="b5a-potenziali">Potenziali elettrodinamici e gauge di Lorentz</h3>
+<p>Da $\nabla\cdot\vec B=0$ segue $\vec B=\nabla\times\vec A$; allora la III equazione dà $\nabla\times(\vec E+\partial_t\vec A)=0$, quindi</p>
+<p class="t-eq">$$\vec E=-\nabla V-\frac{\partial\vec A}{\partial t}$$</p>
+<p>I potenziali non sono unici (trasformazioni di gauge). Con la <strong>gauge di Lorentz</strong> $\nabla\cdot\vec A+\frac1{c^2}\frac{\partial V}{\partial t}=0$ le equazioni si separano in due equazioni d'onda con sorgente:</p>
+<p class="t-eq">$$\nabla^2V-\frac1{c^2}\frac{\partial^2V}{\partial t^2}=-\frac\rho{\varepsilon_0},\qquad\nabla^2\vec A-\frac1{c^2}\frac{\partial^2\vec A}{\partial t^2}=-\mu_0\vec J$$</p>
+<p>Le soluzioni sono i <strong>potenziali ritardati</strong>: hanno la forma statica, ma le sorgenti vanno valutate all'istante $t-r/c$, perché l'informazione viaggia alla velocità della luce.</p>
+
+<h3 id="b5a-dipolo">Radiazione di un dipolo oscillante</h3>
+<p>Un dipolo $p(t)=p_0\cos\omega t$ (ad esempio un'antenna corta) irraggia. Nella <strong>zona di radiazione</strong> ($r\gg\lambda$) i campi sono trasversali e decrescono come $1/r$:</p>
+<p class="t-eq">$$E_\theta=-\frac{\mu_0p_0\omega^2}{4\pi}\frac{\sin\theta}r\cos\!\left[\omega\left(t-\frac rc\right)\right],\qquad B_\phi=\frac{E_\theta}c$$</p>
+<p class="t-eq">$$\langle S\rangle=\frac{\mu_0p_0^2\omega^4}{32\pi^2c}\frac{\sin^2\theta}{r^2},\qquad\langle P\rangle=\frac{\mu_0p_0^2\omega^4}{12\pi c}$$</p>
+<p>Il dipolo non irraggia lungo il proprio asse e irraggia al massimo sul piano equatoriale. La potenza cresce come $\omega^4$: per questo la luce diffusa dall'atmosfera è ricca di blu. Più in generale, ogni carica accelerata irraggia.</p>
+<aside class="t-tip"><strong>Domande frequenti:</strong> "ricavare l'equazione delle onde dalle equazioni di Maxwell", "proprietà delle onde piane", "ricavare il vettore di Poynting e discuterne il significato", "intensità istantanea e media di un'onda sinusoidale". Negli esercizi con sorgenti isotrope: $I=P/(4\pi r^2)$, poi $E_0=\sqrt{2Z_0I}$ e $B_0=E_0/c$.</aside>
+</section>
+
+<section class="t-sec" id="b5b">
+<h2>5b · Interazione radiazione-materia: ottica ondulatoria</h2>
+
+<h3 id="b5b-raccordo">Condizioni di raccordo</h3>
+<p>Alla superficie di separazione tra due mezzi (senza cariche e correnti libere superficiali) sono continue le componenti tangenziali di $\vec E$ e $\vec H$ e le componenti normali di $\vec D$ e $\vec B$. Da queste condizioni discendono tutte le leggi della riflessione e della rifrazione.</p>
+
+<h3 id="b5b-cinematica">Riflessione e rifrazione: caratteristiche cinematiche</h3>
+<p>Perché le condizioni valgano in ogni punto della superficie e in ogni istante, le onde incidente, riflessa e trasmessa devono avere la stessa frequenza e la stessa componente tangenziale di $\vec k$. Ne seguono:</p>
+<ul>
+<li>i raggi incidente, riflesso e rifratto stanno nel piano di incidenza;</li>
+<li>legge della riflessione: $\theta_r=\theta_i$;</li>
+<li><strong>legge di Snell</strong>: $n_1\sin\theta_1=n_2\sin\theta_2$.</li>
+</ul>
+<p>Le stesse leggi si ottengono dal <strong>principio di Fermat</strong>: la luce percorre il cammino ottico $L=\int n\,ds$ stazionario (di solito minimo).</p>
+<p><strong>Riflessione totale</strong>: passando da un mezzo più rifrangente a uno meno rifrangente ($n_1\gt n_2$), per $\theta\gt\theta_c$ con $\sin\theta_c=\frac{n_2}{n_1}$ non c'è onda trasmessa. Su questo si basano le <strong>fibre ottiche</strong>: un nucleo con $n_1$ è circondato da un mantello con $n_2\lt n_1$. L'angolo massimo di accettazione dall'aria vale $\sin\theta_{max}=\sqrt{n_1^2-n_2^2}$ (apertura numerica).</p>
+<p><strong>Aspetti dinamici</strong> (ampiezze, formule di Fresnel). All'incidenza normale:</p>
+<p class="t-eq">$$R=\left(\frac{n_1-n_2}{n_1+n_2}\right)^2,\qquad T=\frac{4n_1n_2}{(n_1+n_2)^2},\qquad R+T=1$$</p>
+<p>(vetro in aria: $R\approx4\%$). All'<strong>angolo di Brewster</strong> $\tan\theta_B=\frac{n_2}{n_1}$ la componente con $\vec E$ nel piano di incidenza non viene riflessa: la luce riflessa è polarizzata linearmente.</p>
+
+<h3 id="b5b-dispersione">Dispersione</h3>
+<p>L'indice di rifrazione dipende dalla lunghezza d'onda, perché la risposta degli elettroni legati dipende dalla frequenza. Nel visibile, per la maggior parte dei materiali trasparenti, $n$ cresce al diminuire di $\lambda$ (legge empirica di Cauchy $n=A+B/\lambda^2$). Un prisma devia di più il violetto e scompone la luce bianca nei colori (arcobaleno).</p>
+
+<h3 id="b5b-polarizzazione">Luce naturale e luce polarizzata</h3>
+<p>La luce naturale è una sovrapposizione incoerente di onde con polarizzazioni casuali. Un polarizzatore ideale ne trasmette metà ($I_0/2$). Luce polarizzata linearmente che attraversa un polarizzatore ruotato di $\theta$ rispetto alla sua direzione segue la <strong>legge di Malus</strong>: $I=I_0\cos^2\theta$. Si può polarizzare la luce anche per riflessione (all'angolo di Brewster), per diffusione o con materiali birifrangenti.</p>
+
+<h3 id="b5b-huygens">Principio di Huygens-Fresnel e teorema di Kirchhoff</h3>
+<p>Ogni punto di un fronte d'onda si comporta come sorgente di onde sferiche secondarie; il fronte successivo è l'inviluppo di queste onde (Huygens). Fresnel aggiunse che le onde secondarie <strong>interferiscono</strong>, e questo spiega la diffrazione. Il teorema integrale di Kirchhoff ne dà la giustificazione matematica a partire dall'equazione delle onde: il campo in un punto si esprime con il campo su una superficie che lo racchiude (fattore di obliquità, nessuna onda "all'indietro").</p>
+
+<h3 id="b5b-interferenza">Interferenza ed esperimento di Young</h3>
+<p>Due onde <strong>coerenti</strong> (differenza di fase costante) di intensità $I_1$ e $I_2$ si sommano nei campi, non nelle intensità:</p>
+<p class="t-eq">$$I=I_1+I_2+2\sqrt{I_1I_2}\cos\delta,\qquad\delta=\frac{2\pi}{\lambda_0}\Delta L$$</p>
+<p>dove $\Delta L$ è la differenza di cammino ottico. Si ha interferenza costruttiva per $\Delta L=m\lambda$, distruttiva per $\Delta L=(m+\frac12)\lambda$.</p>
+<p><strong>Young</strong>: due fenditure a distanza $d$ illuminate dalla stessa sorgente, schermo a distanza $D\gg d$. La differenza di cammino è $d\sin\theta$:</p>
+<p class="t-eq">$$d\sin\theta=m\lambda\ (\text{massimi}),\qquad y_m\simeq\frac{m\lambda D}d,\qquad\Delta y=\frac{\lambda D}d,\qquad I=4I_0\cos^2\frac{\pi d\sin\theta}\lambda$$</p>
+<p>Fu la prova della natura ondulatoria della luce e permette di misurare $\lambda$.</p>
+
+<h3 id="b5b-diffrazione">Diffrazione di Fraunhofer da una fenditura</h3>
+<p>La diffrazione è la deviazione dalla propagazione rettilinea quando l'onda incontra ostacoli o aperture di dimensioni paragonabili a $\lambda$. In condizioni di Fraunhofer (sorgente e schermo a grande distanza), per una fenditura di larghezza $a$ si sommano i contributi di tutti i punti dell'apertura:</p>
+<p class="t-eq">$$I(\theta)=I_0\left(\frac{\sin\beta}\beta\right)^2,\qquad\beta=\frac{\pi a\sin\theta}\lambda$$</p>
+<p>I minimi cadono a $a\sin\theta=m\lambda$ ($m\neq0$). Il massimo centrale è largo il doppio degli altri (semiapertura $\sin\theta=\lambda/a$) e contiene la maggior parte dell'energia: più la fenditura è stretta, più la luce si allarga.</p>
+<aside class="t-tip"><strong>Domande frequenti:</strong> "ricavare le leggi della riflessione e della rifrazione", "riflessione totale e fibre ottiche", "esperimento di Young", "principio di Huygens-Fresnel", "diffrazione da una fenditura". Negli esercizi di interferenza scrivi sempre il cammino ottico, compresi gli spessori di materiale con indice $n$ che aggiungono $(n-1)t$.</aside>
+</section>

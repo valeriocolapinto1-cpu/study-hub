@@ -1,0 +1,62 @@
+{
+ "id": "VI-05",
+ "obiettivi": [
+  "Definire le matrici $Z$ e $Y$",
+  "Misurare/calcolare i parametri con prove a vuoto e in corto",
+  "Riconoscere la reciprocità"
+ ],
+ "teoria": [
+  "Con correnti entranti nelle porte: $\\mathbf v=Z\\mathbf i$, cioè $v_1=z_{11}i_1+z_{12}i_2$, $v_2=z_{21}i_1+z_{22}i_2$. Parametri a <em>vuoto</em>: $z_{11}=v_1/i_1|_{i_2=0}$, $z_{21}=v_2/i_1|_{i_2=0}$, $z_{12}=v_1/i_2|_{i_1=0}$, $z_{22}=v_2/i_2|_{i_1=0}$. $\\mathbf i=Y\\mathbf v$ con parametri in <em>cortocircuito</em>: $y_{11}=i_1/v_1|_{v_2=0}$ ecc. Se esistono entrambe, $Y=Z^{-1}$.",
+  "Rete <strong>reciproca</strong> (soli $R$, $L$, $C$ e trasformatori accoppiati): $z_{12}=z_{21}$, $y_{12}=y_{21}$. Con generatori controllati può non esserlo. Il trasformatore ideale non ha né $Z$ né $Y$."
+ ],
+ "figure": [],
+ "dimostrazioni": [],
+ "esempi": [
+  {
+   "titolo": "Doppio bipolo a T",
+   "testo": "$R_a=1$ (porta 1), $R_b=2$ (porta 2), $R_c=3$ in derivazione.",
+   "soluzione": [
+    "Porta 2 aperta: $z_{11}=R_a+R_c=4$, $z_{21}=R_c=3$.",
+    "Porta 1 aperta: $z_{22}=R_b+R_c=5$, $z_{12}=R_c=3$.",
+    "$Z=\\begin{pmatrix}4&3\\\\3&5\\end{pmatrix}$ (reciproca)."
+   ]
+  },
+  {
+   "titolo": "Doppio bipolo a π",
+   "testo": "$G_a=1$ (porta 1), $G_b=2$ (porta 2), $G_c=3$ in serie tra i morsetti superiori.",
+   "soluzione": [
+    "Porta 2 in corto: $y_{11}=G_a+G_c=4$, $y_{21}=-G_c=-3$.",
+    "Porta 1 in corto: $y_{22}=G_b+G_c=5$, $y_{12}=-3$.",
+    "$Y=\\begin{pmatrix}4&-3\\\\-3&5\\end{pmatrix}$ e $Z=Y^{-1}=\\dfrac1{11}\\begin{pmatrix}5&3\\\\3&4\\end{pmatrix}$."
+   ]
+  },
+  {
+   "titolo": "Uso della matrice",
+   "testo": "$Z$ come sopra: $i_1=1$, porta 2 aperta ($i_2=0$).",
+   "soluzione": [
+    "$v_1=4$, $v_2=3$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Misurare $z_{11}$ con la porta 2 in corto.",
+   "corretto": "$z_{11}$ si misura con la porta 2 <em>aperta</em> ($i_2=0$)."
+  },
+  {
+   "sbagliato": "Segni delle correnti: assumere $i_2$ uscente.",
+   "corretto": "Convenzione standard: correnti entranti in entrambe le porte."
+  }
+ ],
+ "esame": "Doppi bipoli: matrici $Z$, $Y$ e calcolo su un circuito: 15-9-2000, 17-7-2002, 3-7-2003, 23-9-2008; compaiono solo $Z$ e $Y$ negli esercizi 2015–2024 [STORICO].",
+ "formulario": [
+  "z-def",
+  "y-def",
+  "z-y-inv",
+  "z11",
+  "y11",
+  "reciprocita",
+  "rete-t",
+  "rete-pi"
+ ]
+}

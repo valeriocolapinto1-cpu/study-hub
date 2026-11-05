@@ -1,0 +1,21 @@
+node_modules/
+dist/
+dist-ssr/
+*.local
+.DS_Store
+.vite/
+coverage/
+*.tsbuildinfo
+dev-dist/
+
+# Snapshot di pagina prodotti da playwright-cli a ogni comando: artefatti di
+# esecuzione, non sorgenti.
+.playwright-cli/
+
+# Nessun PDF nel repository.
+#
+# Le scansioni del libro di testo sono protette da copyright: possono servire
+# come riferimento mentre si lavora, ma pubblicarle in un repository pubblico
+# è ridistribuirle. Gli schemi del sito sono ridisegnati da zero apposta.
+# Tienile pure nella cartella di lavoro: non finiranno in un commit.
+*.pdf

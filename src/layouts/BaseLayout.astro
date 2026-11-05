@@ -1,0 +1,40 @@
+---
+import '../styles/base.css';
+import '../styles/components.css';
+import '../styles/prose.css';
+import '../styles/print.css';
+import Head from '../components/Head.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { htmlLang, type Lang } from '../i18n';
+
+export interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  /** Id del corso: imposta data-course (tinta d'accento). */
+  course?: string | undefined;
+  alternates?: boolean;
+  noindex?: boolean;
+}
+const { lang, title, description, course, alternates = true, noindex = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang={htmlLang[lang]} data-course={course}>
+  <head>
+    <Head lang={lang} title={title} description={description} alternates={alternates} noindex={noindex} />
+    <slot name="head" />
+  </head>
+  <body>
+    <Header lang={lang} samePage={alternates} />
+    <slot name="before-main" />
+    <main id="contenuto" tabindex="-1">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <script>
+      import '../scripts/site.ts';
+    </script>
+  </body>
+</html>

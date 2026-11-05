@@ -1,0 +1,50 @@
+{
+ "id": "III-08",
+ "obiettivi": [
+  "Spiegare lo scopo del rifasamento",
+  "Calcolare la capacità di rifasamento",
+  "Verificare il risultato con la potenza reattiva"
+ ],
+ "teoria": [
+  "Un carico induttivo con $P$ e $\\cos\\varphi_1$ assorbe $Q_1=P\\tan\\varphi_1$. Collegando in parallelo un condensatore $C$, la tensione sul carico non cambia e il condensatore assorbe $Q_C=-\\omega CV^2$. La reattiva totale diventa $Q_2=Q_1-\\omega CV^2=P\\tan\\varphi_2$, con $\\varphi_2$ nuovo sfasamento.",
+  "$$C=\\frac{P(\\tan\\varphi_1-\\tan\\varphi_2)}{\\omega V^2}\\quad(V\\text{ efficace}).$$ Lo scopo è ridurre la corrente (e quindi le perdite) a parità di $P$: $I=P/(V\\cos\\varphi)$."
+ ],
+ "figure": [],
+ "dimostrazioni": [],
+ "esempi": [
+  {
+   "titolo": "Rifasamento completo",
+   "testo": "$P=100\\,\\mathrm W$, $V=10\\,\\mathrm V$, $\\omega=10\\,\\mathrm{rad/s}$, $\\cos\\varphi_1=0{,}8$ (induttivo), $\\cos\\varphi_2=1$.",
+   "soluzione": [
+    "$\\tan\\varphi_1=3/4$, $\\tan\\varphi_2=0$.",
+    "$C=\\dfrac{100\\cdot0{,}75}{10\\cdot100}=0{,}075\\,\\mathrm F$.",
+    "Verifica: $Q_1=75\\,\\mathrm{var}$, $Q_C=-\\omega CV^2=-10\\cdot0{,}075\\cdot100=-75$: reattiva totale nulla. ✓"
+   ]
+  },
+  {
+   "titolo": "Rifasamento parziale",
+   "testo": "Stesso carico, ma si vuole $\\cos\\varphi_2=12/13$ ($\\tan\\varphi_2=5/12$).",
+   "soluzione": [
+    "$C=\\dfrac{100(3/4-5/12)}{1000}=\\dfrac{100\\cdot1/3}{1000}=\\tfrac1{30}\\approx0{,}0333\\,\\mathrm F$."
+   ]
+  },
+  {
+   "titolo": "Corrente prima e dopo",
+   "testo": "Stesso carico: confronta le correnti efficaci prima e dopo il rifasamento completo.",
+   "soluzione": [
+    "Prima: $I_1=P/(V\\cos\\varphi_1)=100/(10\\cdot0{,}8)=12{,}5\\,\\mathrm A$. Dopo: $I_2=100/10=10\\,\\mathrm A$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Collegare l'induttore di rifasamento (invece del condensatore) o il condensatore in serie.",
+   "corretto": "Il condensatore va in parallelo al carico induttivo."
+  }
+ ],
+ "esame": "Rifasamento: 19-6-2002 [STORICO].",
+ "formulario": [
+  "rifasamento-c",
+  "q-c"
+ ]
+}

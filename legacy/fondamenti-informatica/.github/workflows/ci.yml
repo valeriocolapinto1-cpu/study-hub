@@ -1,0 +1,33 @@
+name: Test
+
+# Il workflow di pubblicazione fa già da cancello: se i test falliscono, il
+# sito non viene pubblicato. Questo non ferma niente — gira anche sulle branch
+# e sulle pull request — e serve a una cosa diversa: mettere il rosso accanto
+# al commit **prima** che qualcuno faccia una merge.
+#
+# Il primo protegge chi legge il sito, il secondo protegge chi scrive il codice.
+
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Test del motore e dei contenuti
+        run: npm test
+
+      - name: Tipi e build
+        run: npm run build

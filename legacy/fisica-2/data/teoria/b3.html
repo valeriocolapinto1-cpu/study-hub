@@ -1,0 +1,89 @@
+<section class="t-sec" id="b3a">
+<h2>3a · Magnetostatica nel vuoto</h2>
+
+<h3 id="b3a-lorentz">Forza di Lorentz e vettore induzione magnetica</h3>
+<p>Una carica in moto in un campo magnetico subisce la forza di Lorentz (insieme al campo elettrico):</p>
+<p class="t-eq">$$\vec F = q\left(\vec E+\vec v\times\vec B\right)$$</p>
+<p>che definisce $\vec B$ (tesla, T). La forza magnetica è sempre perpendicolare alla velocità: <strong>non compie lavoro</strong> e non cambia l'energia cinetica.</p>
+<ul>
+<li><strong>Moto in B uniforme</strong>: circolare con $r=\frac{mv_\perp}{|q|B}$ e pulsazione di ciclotrone $\omega=\frac{|q|B}{m}$, indipendente dalla velocità. Se c'è una componente parallela a $\vec B$ il moto è elicoidale.</li>
+<li><strong>Bottiglia magnetica</strong>: in un campo che si intensifica agli estremi le particelle vengono riflesse (fasce di Van Allen).</li>
+<li><strong>Selettore di velocità</strong>: con $\vec E\perp\vec B$ passano indisturbate solo le particelle con $v=E/B$.</li>
+<li><strong>Spettrometro di massa</strong>: ioni accelerati da una d.d.p. $V$ ($\frac12mv^2=qV$) descrivono un semicerchio di raggio $r=\frac{mv}{qB}$, da cui $m=\frac{qB^2r^2}{2V}$.</li>
+<li><strong>Ciclotrone</strong>: la frequenza di rivoluzione non dipende dal raggio, quindi un campo elettrico alternato a frequenza fissa accelera la particella a ogni mezzo giro. L'energia finale è $K=\frac{q^2B^2R^2}{2m}$. Nel <strong>sincrotrone</strong> il raggio è fisso e $B$ cresce con l'impulso ($p=qBR$).</li>
+</ul>
+
+<h3 id="b3a-circuiti">Azioni meccaniche su circuiti percorsi da corrente</h3>
+<p>Su un elemento di filo percorso da corrente agisce la forza $d\vec F = I\,d\vec l\times\vec B$ (II formula di Laplace); per un filo rettilineo in campo uniforme $\vec F=I\vec L\times\vec B$. Su un circuito chiuso in campo <em>uniforme</em> la forza totale è nulla, ma agisce un momento. Per una spira piana di area $S$ si definisce il <strong>momento magnetico</strong> $\vec m = IS\hat n$ (verso con la regola della mano destra):</p>
+<p class="t-eq">$$\vec M=\vec m\times\vec B,\qquad U=-\vec m\cdot\vec B,\qquad \vec F=\nabla(\vec m\cdot\vec B)$$</p>
+<p>Il <strong>teorema di equivalenza di Ampère</strong> afferma che una spira percorsa da corrente equivale, a grande distanza, a un dipolo magnetico di momento $\vec m$: il suo campo ha la stessa forma di quello del dipolo elettrico. Su questo principio si basano motori e galvanometri.</p>
+
+<h3 id="b3a-biot">Campo prodotto da correnti stazionarie</h3>
+<p>Un elemento di corrente produce il campo dato dalla <strong>I formula di Laplace</strong> (Biot-Savart), con $\mu_0=4\pi\times10^{-7}$ H/m:</p>
+<p class="t-eq">$$d\vec B=\frac{\mu_0}{4\pi}\frac{I\,d\vec l\times\hat u_r}{r^2}$$</p>
+<ul>
+<li>Filo rettilineo infinito: $B=\frac{\mu_0I}{2\pi r}$, linee circolari (regola della mano destra). Filo finito: $B=\frac{\mu_0I}{4\pi d}(\sin\theta_2-\sin\theta_1)$.</li>
+<li>Spira circolare, sull'asse: $B=\frac{\mu_0IR^2}{2(R^2+z^2)^{3/2}}$; al centro $B=\frac{\mu_0I}{2R}$. Un arco di angolo $\alpha$ dà al centro $B=\frac{\mu_0I\alpha}{4\pi R}$ (semicerchio: $\frac{\mu_0I}{4R}$).</li>
+<li>Solenoide infinito ($n$ spire per unità di lunghezza): $B=\mu_0nI$ uniforme all'interno, nullo all'esterno. Solenoide finito, sull'asse: $B=\frac{\mu_0nI}{2}(\cos\alpha_1-\cos\alpha_2)$, con $\alpha_{1,2}$ gli angoli sotto cui si vedono le estremità.</li>
+<li>Nastro di larghezza $w$ con corrente $I$, punto sul piano del nastro a distanza $d$ dal bordo: $B=\frac{\mu_0I}{2\pi w}\ln\frac{d+w}{d}$.</li>
+<li>Carica in moto lento: $\vec B=\frac{\mu_0}{4\pi}\frac{q\vec v\times\hat u_r}{r^2}$.</li>
+</ul>
+
+<h3 id="b3a-proprieta">Proprietà di B: II e IV equazione di Maxwell (caso stazionario)</h3>
+<p>Le linee di $\vec B$ sono chiuse (non esistono monopoli magnetici). Il flusso attraverso una superficie chiusa è nullo, quindi il flusso <em>concatenato</em> con una curva non dipende dalla superficie scelta:</p>
+<p class="t-eq">$$\oint_S\vec B\cdot\hat n\,dS = 0\quad\Longleftrightarrow\quad\nabla\cdot\vec B=0$$</p>
+<p><strong>Teorema della circuitazione di Ampère</strong>: la circuitazione di $\vec B$ lungo una curva chiusa è $\mu_0$ per la corrente concatenata. Con Stokes si ottiene la forma locale:</p>
+<p class="t-eq">$$\oint_\gamma\vec B\cdot d\vec l=\mu_0I_{conc}\quad\Longleftrightarrow\quad\nabla\times\vec B=\mu_0\vec J$$</p>
+<p>Si usa come Gauss, cioè quando la simmetria lo consente:</p>
+<ul>
+<li>Cilindro pieno (raggio $R$, corrente $I$ uniforme): dentro $B=\frac{\mu_0Ir}{2\pi R^2}$, fuori $B=\frac{\mu_0I}{2\pi r}$.</li>
+<li>Cilindro cavo ($a\lt r\lt b$): $B=\frac{\mu_0I}{2\pi r}\frac{r^2-a^2}{b^2-a^2}$; nella cavità $B=0$.</li>
+<li>Cavo coassiale con correnti opposte: $B$ nullo fuori dal conduttore esterno.</li>
+<li>Toroide ($N$ spire): $B=\frac{\mu_0NI}{2\pi r}$ all'interno, nullo fuori.</li>
+<li>Cilindro con una cavità cilindrica eccentrica: per sovrapposizione, nella cavità il campo è uniforme, $\vec B=\frac{\mu_0}{2}\vec J\times\vec d$.</li>
+</ul>
+
+<h3 id="b3a-potvett">Potenziale vettore</h3>
+<p>Poiché $\nabla\cdot\vec B=0$, si può scrivere $\vec B=\nabla\times\vec A$. $\vec A$ è definito a meno del gradiente di una funzione (libertà di <em>gauge</em>); scegliendo $\nabla\cdot\vec A=0$, l'equazione di Ampère diventa un'equazione di Poisson per ogni componente:</p>
+<p class="t-eq">$$\nabla^2\vec A=-\mu_0\vec J\quad\Rightarrow\quad\vec A(\vec r)=\frac{\mu_0}{4\pi}\int\frac{\vec J(\vec r\,')}{|\vec r-\vec r\,'|}dV'$$</p>
+<p>La soluzione ha la stessa forma di quella del potenziale elettrico. Calcolandone il rotore si ritrova la I formula di Laplace. Il flusso di $\vec B$ attraverso una superficie è uguale alla circuitazione di $\vec A$ lungo il suo bordo.</p>
+
+<h3 id="b3a-interazioni">Interazioni tra circuiti ed effetto Hall</h3>
+<p>Due fili paralleli a distanza $d$ si attraggono se le correnti sono concordi e si respingono se sono discordi:</p>
+<p class="t-eq">$$\frac{F}{l}=\frac{\mu_0I_1I_2}{2\pi d}$$</p>
+<p>Questa relazione definiva l'ampere (fino al 2019: $2\times10^{-7}$ N/m tra fili a 1 m con 1 A). Tra circuiti rigidi le forze si ricavano dall'energia di interazione $U=-I_2\Phi_{21}$ (a correnti costanti $F=+\nabla(I_2\Phi_{21})$).</p>
+<p><strong>Effetto Hall</strong>: in una lamina percorsa da corrente e immersa in $\vec B$ perpendicolare, i portatori vengono deviati lateralmente finché il campo elettrico trasversale non bilancia la forza magnetica: $E_H=v_dB$. La tensione di Hall vale</p>
+<p class="t-eq">$$V_H=\frac{IB}{nqt}\qquad(t = \text{spessore nella direzione di }\vec B)$$</p>
+<p>Dal segno di $V_H$ si ricava il segno dei portatori, dal modulo la loro densità $n$; la sonda di Hall serve anche a misurare $B$.</p>
+<aside class="t-tip"><strong>Domande frequenti:</strong> "ricavare il campo di un filo infinito, di una spira sull'asse, di un solenoide infinito", "dal teorema della circuitazione ricavare la IV equazione di Maxwell in forma locale (caso stazionario)", "azioni su una spira rettangolare in campo uniforme", "forza tra due fili", "effetto Hall", "una carica in moto in B può acquistare energia dal campo? No, perché la forza è perpendicolare alla velocità".</aside>
+</section>
+
+<section class="t-sec" id="b3b">
+<h2>3b · Magnetismo nella materia</h2>
+
+<h3 id="b3b-magnetizzazione">Magnetizzazione e correnti amperiane</h3>
+<p>In un materiale i momenti magnetici atomici (orbitali e di spin) si orientano parzialmente in presenza di un campo. La <strong>magnetizzazione</strong> è il momento magnetico per unità di volume, $\vec M=n\langle\vec m\rangle$ (A/m). Il suo effetto equivale a quello di <em>correnti di magnetizzazione</em> (amperiane):</p>
+<p class="t-eq">$$\vec J_m=\nabla\times\vec M,\qquad \vec j_{s,m}=\vec M\times\hat n$$</p>
+<p>Un cilindro magnetizzato uniformemente lungo l'asse equivale a un solenoide con corrente superficiale $j_s=M$.</p>
+
+<h3 id="b3b-equazioni">Equazioni della magnetostatica nella materia</h3>
+<p>Ampère vale con tutte le correnti, libere e amperiane: $\nabla\times\vec B=\mu_0(\vec J+\vec J_m)$. Definendo il campo magnetico $\vec H$:</p>
+<p class="t-eq">$$\vec H=\frac{\vec B}{\mu_0}-\vec M,\qquad\nabla\times\vec H=\vec J_{lib},\qquad\oint\vec H\cdot d\vec l=I_{lib}$$</p>
+<p>Resta $\nabla\cdot\vec B=0$. Nei mezzi lineari $\vec M=\chi_m\vec H$ e $\vec B=\mu_0\mu_r\vec H$, con $\mu_r=1+\chi_m$. Esempio: un solenoide riempito di materiale ha $H=nI$ e $B=\mu_0\mu_rnI$.</p>
+<p><strong>Condizioni di raccordo</strong> (senza correnti libere superficiali): $B_{1n}=B_{2n}$ e $H_{1t}=H_{2t}$, quindi $\frac{\tan\theta_1}{\tan\theta_2}=\frac{\mu_1}{\mu_2}$. Entrando in un ferromagnete le linee di $\vec B$ si piegano quasi parallele alla superficie: il ferro "convoglia" il flusso.</p>
+
+<h3 id="b3b-materiali">Materiali dia-, para- e ferromagnetici</h3>
+<ul>
+<li><strong>Diamagneti</strong> ($\chi_m\approx-10^{-5}$, indipendente da $T$): il campo induce momenti orbitali opposti (legge di Lenz a livello atomico). Presente in tutti i materiali; i diamagneti sono debolmente respinti dalle zone di campo intenso. I superconduttori sono diamagneti perfetti ($\chi_m=-1$).</li>
+<li><strong>Paramagneti</strong> ($\chi_m\approx10^{-5}$–$10^{-3}$, positivo): momenti permanenti che si allineano parzialmente, contrastati dall'agitazione termica. Vale la legge di Curie $\chi_m=C/T$.</li>
+<li><strong>Ferromagneti</strong> (Fe, Co, Ni): $\mu_r$ fino a $10^3$–$10^5$, non costante. Sono formati da <em>domini di Weiss</em> già magnetizzati spontaneamente, che il campo esterno riorienta. La relazione $B(H)$ presenta un <strong>ciclo di isteresi</strong> con saturazione, magnetizzazione residua ($B_r$ a $H=0$) e campo coercitivo ($H_c$ necessario ad annullare $B$). L'area del ciclo è l'energia dissipata per unità di volume in un ciclo. Sopra la temperatura di Curie il materiale diventa paramagnetico. I materiali "dolci" (ciclo stretto) servono per trasformatori ed elettromagneti, quelli "duri" per magneti permanenti.</li>
+</ul>
+
+<h3 id="b3b-circuiti">Circuiti magnetici, elettromagneti, magneti permanenti</h3>
+<p>In un nucleo ferromagnetico chiuso il flusso $\Phi=BS$ resta confinato, come la corrente in un circuito. Dalla circuitazione di $\vec H$ si ottiene la <strong>legge di Hopkinson</strong>:</p>
+<p class="t-eq">$$NI=\mathcal R\,\Phi,\qquad\mathcal R=\sum_i\frac{l_i}{\mu_0\mu_{r,i}S_i}$$</p>
+<p>La forza magnetomotrice $NI$ corrisponde alla f.e.m. e la riluttanza $\mathcal R$ alla resistenza (le riluttanze in serie si sommano). Con un <strong>traferro</strong> di spessore $h\ll$ dimensioni trasverse:</p>
+<p class="t-eq">$$B\simeq\frac{\mu_0NI}{l/\mu_r+h}$$</p>
+<p>Anche un traferro sottile domina la riluttanza. Un <strong>elettromagnete</strong> attira un'ancora di ferro con forza $F=\frac{B^2S}{2\mu_0}$ per ogni superficie del traferro. In un <strong>magnete permanente</strong> senza correnti libere $\oint\vec H\cdot d\vec l=0$: nel materiale $\vec H$ è opposto a $\vec B$ (campo smagnetizzante).</p>
+<aside class="t-tip"><strong>All'esame.</strong> Negli esercizi con materiali, calcola prima $\vec H$ con la circuitazione (dipende solo dalle correnti libere), poi $\vec B=\mu\vec H$ in ogni mezzo, e infine $\vec M$ e le correnti amperiane ($j_s=M$ sulle superfici laterali). Domanda tipica: "discutere i tre tipi di comportamento magnetico dei materiali".</aside>
+</section>

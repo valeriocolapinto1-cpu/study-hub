@@ -1,0 +1,65 @@
+{
+ "id": "IV-02",
+ "obiettivi": [
+  "Conoscere le trasformate notevoli",
+  "Dedurle dalla definizione",
+  "Trasformare segnali a tratti con gradini ritardati"
+ ],
+ "teoria": [
+  "<div class=\"table-wrap\"><table><thead><tr><th>$x(t)$ ($t>0$)</th><th>$X(s)$</th></tr></thead><tbody><tr><td>$\\delta(t)$</td><td>$1$</td></tr><tr><td>$u_{-1}(t)$</td><td>$1/s$</td></tr><tr><td>$t$</td><td>$1/s^2$</td></tr><tr><td>$t^n/n!$</td><td>$1/s^{n+1}$</td></tr><tr><td>$e^{-at}$</td><td>$1/(s+a)$</td></tr><tr><td>$te^{-at}$</td><td>$1/(s+a)^2$</td></tr><tr><td>$\\cos\\omega t$</td><td>$s/(s^2+\\omega^2)$</td></tr><tr><td>$\\sin\\omega t$</td><td>$\\omega/(s^2+\\omega^2)$</td></tr><tr><td>$e^{-at}\\cos\\omega t$</td><td>$(s+a)/((s+a)^2+\\omega^2)$</td></tr><tr><td>$e^{-at}\\sin\\omega t$</td><td>$\\omega/((s+a)^2+\\omega^2)$</td></tr></tbody></table></div>",
+  "Un segnale a tratti si scrive con gradini ritardati: l'impulso rettangolare $A[u_{-1}(t)-u_{-1}(t-T)]$ ha trasformata $A\\,\\dfrac{1-e^{-sT}}{s}$."
+ ],
+ "figure": [],
+ "dimostrazioni": [
+  {
+   "titolo": "Trasformata di $e^{-at}$ e del coseno",
+   "passi": [
+    "$\\int_0^\\infty e^{-at}e^{-st}dt=\\left[-\\dfrac{e^{-(s+a)t}}{s+a}\\right]_0^\\infty=\\dfrac{1}{s+a}$ (per $\\mathrm{Re}\\,s>-a$).",
+    "$\\cos\\omega t=\\tfrac12(e^{j\\omega t}+e^{-j\\omega t})$: $\\mathcal L=\\tfrac12\\left(\\dfrac1{s-j\\omega}+\\dfrac1{s+j\\omega}\\right)=\\dfrac{s}{s^2+\\omega^2}$. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Combinazione lineare",
+   "testo": "$x(t)=3e^{-2t}+4\\sin3t$.",
+   "soluzione": [
+    "$X(s)=\\dfrac{3}{s+2}+\\dfrac{12}{s^2+9}$."
+   ]
+  },
+  {
+   "titolo": "Impulso rettangolare",
+   "testo": "$x=3$ per $0<t<2$, nulla altrove.",
+   "soluzione": [
+    "$x=3[u_{-1}(t)-u_{-1}(t-2)]$, $X(s)=\\dfrac{3(1-e^{-2s})}{s}$."
+   ]
+  },
+  {
+   "titolo": "Rampa troncata",
+   "testo": "$x=t$ per $0<t<1$, nulla altrove.",
+   "soluzione": [
+    "$t\\,u_{-1}(t)-t\\,u_{-1}(t-1)$ e $t\\,u_{-1}(t-1)=(t-1)u_{-1}(t-1)+u_{-1}(t-1)$.",
+    "$X(s)=\\dfrac1{s^2}-e^{-s}\\left(\\dfrac1{s^2}+\\dfrac1s\\right)$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Trasformare $\\cos\\omega t$ come $\\omega/(s^2+\\omega^2)$.",
+   "corretto": "Il coseno dà $s/(s^2+\\omega^2)$, il seno $\\omega/(s^2+\\omega^2)$."
+  }
+ ],
+ "esame": "Trasformata di un segnale a tratti: 14-7-2000, 29-4-2002 (L–Z) [STORICO].",
+ "formulario": [
+  "l-delta",
+  "l-gradino",
+  "l-rampa",
+  "l-exp",
+  "l-cos",
+  "l-sin",
+  "l-texp",
+  "l-expcos",
+  "l-expsin",
+  "l-impulso-rett"
+ ]
+}

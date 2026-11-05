@@ -1,0 +1,39 @@
+{
+  "nome": "Fisica Generale II",
+  "canale": "Canale unico",
+  "annoAccademico": "2026/2027",
+  "corsoDiLaurea": "Ingegneria Elettronica",
+  "ateneo": "Università di Roma",
+  "anno": "2° anno",
+  "semestre": "1° semestre",
+  "cfu": 12,
+  "ore": {
+    "totali": 120,
+    "aula": 72,
+    "esercitazioniLaboratorio": 48
+  },
+  "ssd": "FIS/01",
+  "prerequisiti": [
+    "Analisi Matematica 1 (propedeutica)",
+    "Consigliata: Fisica I",
+    "Concetti base di meccanica, funzioni, derivate, integrali, algebra vettoriale"
+  ],
+  "link": {
+    "dropboxEsami": "https://www.dropbox.com/sh/h50zlus8itk54c1/AADDnxDcyfbcg6YWt48s0fIQa?dl=0",
+    "paginaCorso": "https://corsidilaurea.uniroma1.it/it/course/33499/attendance/lesson/ef15b36b-943e-4643-add4-8093f9f7852c/2/1/42dd6ad6-7ee8-4472-9512-e1420dcf419c?channel=0"
+  },
+  "sito": {
+    "url": "https://valeriocolapinto1-cpu.github.io/fisica-2-ingegneria-elettronica/"
+  },
+  "contatti": {
+    "nota": "Contatto pubblico mostrato nel piè di pagina e nelle pagine Privacy/Note legali.",
+    "github": "https://github.com/valeriocolapinto1-cpu",
+    "email": "valeriocolapinto1@gmail.com",
+    "segnalazioni": "https://github.com/valeriocolapinto1-cpu/fisica-2-ingegneria-elettronica/issues",
+    "linkedin": "https://www.linkedin.com/in/valerio-colapinto"
+  },
+  "analytics": {
+    "nota": "Statistiche facoltative con GoatCounter (senza cookie). Crea un account gratuito su goatcounter.com e inserisci qui il codice del sito (es. 'fisica2'). Con null le statistiche sono disattivate e il banner è solo informativo.",
+    "goatcounter": null
+  }
+}

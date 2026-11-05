@@ -1,0 +1,49 @@
+{
+ "id": "IV-04",
+ "obiettivi": [
+  "Antitrasformare poli complessi coniugati",
+  "Ricondurre il denominatore a $(s+\\alpha)^2+\\omega^2$",
+  "Interpretare smorzamento e oscillazione"
+ ],
+ "teoria": [
+  "Poli $-\\alpha\\pm j\\omega$ compaiono in coppie coniugate per coefficienti reali. Si scrive il denominatore come $(s+\\alpha)^2+\\omega^2$ e il numeratore come $a(s+\\alpha)+c$: $$\\mathcal L^{-1}\\left\\{\\frac{as+b}{(s+\\alpha)^2+\\omega^2}\\right\\}=e^{-\\alpha t}\\left[a\\cos\\omega t+\\frac{b-a\\alpha}{\\omega}\\sin\\omega t\\right].$$",
+  "$\\alpha>0$: oscillazione smorzata; $\\alpha=0$: oscillazione permanente (marginale); $\\alpha<0$: crescente (instabile)."
+ ],
+ "figure": [],
+ "dimostrazioni": [],
+ "esempi": [
+  {
+   "titolo": "Poli immaginari puri",
+   "testo": "$F(s)=\\dfrac{2s+6}{s^2+9}$.",
+   "soluzione": [
+    "$\\alpha=0$, $\\omega=3$, $a=2$, $b=6$: $f=2\\cos3t+2\\sin3t$."
+   ]
+  },
+  {
+   "titolo": "Poli con parte reale",
+   "testo": "$F(s)=\\dfrac{s+3}{s^2+2s+5}$.",
+   "soluzione": [
+    "$(s+1)^2+4$: $\\alpha=1$, $\\omega=2$, $a=1$, $b=3$.",
+    "$f=e^{-t}\\left[\\cos2t+\\dfrac{3-1}{2}\\sin2t\\right]=e^{-t}(\\cos2t+\\sin2t)$."
+   ]
+  },
+  {
+   "titolo": "Ampiezza e fase",
+   "testo": "Scrivi $e^{-t}(\\cos2t+\\sin2t)$ in ampiezza-fase.",
+   "soluzione": [
+    "$\\cos2t+\\sin2t=\\sqrt2\\cos(2t-45^\\circ)$.",
+    "$f=\\sqrt2e^{-t}\\cos(2t-45^\\circ)$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Scomporre $s^2+2s+5$ in fattori reali.",
+   "corretto": "Ha radici complesse: si usa il completamento del quadrato."
+  }
+ ],
+ "esame": "Antitrasformate con poli complessi coniugati: errore tipico elencato per l'esercizio d'analisi [STORICO].",
+ "formulario": [
+  "complessi-antitr"
+ ]
+}

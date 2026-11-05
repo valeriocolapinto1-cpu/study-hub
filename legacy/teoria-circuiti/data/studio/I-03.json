@@ -1,0 +1,41 @@
+{
+ "id": "I-03",
+ "obiettivi": [
+  "Definire porta e bipolo",
+  "Usare le convenzioni degli utilizzatori e dei generatori",
+  "Calcolare la potenza assorbita"
+ ],
+ "teoria": [
+  "Una <strong>porta</strong> è una coppia di morsetti per cui, in ogni istante, la corrente che entra da un morsetto è uguale a quella che esce dall'altro. Un <strong>bipolo</strong> è un elemento con due morsetti che forma una porta; un <strong>doppio bipolo</strong> (due porte) ha quattro morsetti accoppiati a due a due.",
+  "Su ogni porta si fissano un verso di riferimento per la corrente $i$ e uno per la tensione $v$. Nella <strong>convenzione degli utilizzatori</strong> la corrente entra dal morsetto a potenziale di riferimento più alto (il $+$ della tensione): allora $p = v\\,i$ è la potenza <em>assorbita</em>. Nella <strong>convenzione dei generatori</strong> la corrente esce dal morsetto $+$ e $p=v\\,i$ è la potenza <em>erogata</em>.",
+  "L'energia assorbita tra $t_0$ e $t$ è $w(t_0,t)=\\int_{t_0}^{t} v(\\tau)\\,i(\\tau)\\,d\\tau$."
+ ],
+ "figure": [
+  {
+   "alt": "Bipolo con corrente i entrante nel morsetto positivo e tensione v tra i morsetti (convenzione degli utilizzatori)",
+   "svg": "<svg viewBox=\"0 0 260 130\" width=\"260\" height=\"130\" xmlns=\"http://www.w3.org/2000/svg\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" font-family=\"system-ui,sans-serif\" font-size=\"14\" aria-hidden=\"true\"><polyline points=\"20 65 90 65\"/><rect x=\"90\" y=\"40\" width=\"80\" height=\"50\"/><polyline points=\"170 65 240 65\"/><polyline points=\"30 65 85 65\"/><polyline points=\"78.7,62.0 85,65 78.7,68.0\"/><text x=\"55\" y=\"52\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">i</text><text x=\"20\" y=\"88\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">v</text><text x=\"130\" y=\"70\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">bipolo</text><circle cx=\"20\" cy=\"65\" r=\"3\" fill=\"currentColor\"/><circle cx=\"240\" cy=\"65\" r=\"3\" fill=\"currentColor\"/></svg>"
+  }
+ ],
+ "dimostrazioni": [],
+ "esempi": [
+  {
+   "titolo": "Potenza assorbita e erogata",
+   "testo": "Un bipolo ha $v = 12\\,\\mathrm{V}$ e $i = -2\\,\\mathrm{A}$ nella convenzione degli utilizzatori. Assorbe o eroga potenza?",
+   "soluzione": [
+    "$p = v\\,i = 12\\cdot(-2) = -24\\,\\mathrm{W}$ (assorbita).",
+    "Potenza assorbita negativa significa che il bipolo <em>eroga</em> $24\\,\\mathrm{W}$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Usare $p=vi$ come potenza assorbita con $i$ riferita in verso uscente dal $+$.",
+   "corretto": "Con la convenzione dei generatori $p=vi$ è erogata; per l'assorbita cambia segno."
+  }
+ ],
+ "esame": "Concetto di base; compare nelle domande sulle proprietà dei circuiti e sulle potenze [STORICO].",
+ "formulario": [
+  "potenza-istantanea",
+  "energia"
+ ]
+}

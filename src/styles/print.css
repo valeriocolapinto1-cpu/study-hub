@@ -1,0 +1,49 @@
+/* Stampa: formulari A4 e teoria. */
+@page {
+  size: A4;
+  margin: 16mm 14mm;
+}
+
+@media print {
+  :root {
+    color-scheme: light;
+    --bg: #fff;
+    --surface: #fff;
+    --surface-2: #f3f3f3;
+    --text: #000;
+    --text-muted: #333;
+    --border: #bbb;
+    --border-strong: #777;
+    --accent: #000;
+    --accent-strong: #000;
+  }
+  body {
+    font-size: 10.5pt;
+    background: #fff;
+  }
+  .site-header,
+  .site-footer,
+  .course-nav,
+  .skip-link,
+  .no-print {
+    display: none !important;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+  figure,
+  table,
+  .katex-display,
+  .print-avoid-break {
+    break-inside: avoid;
+  }
+  .page {
+    padding: 0;
+  }
+}

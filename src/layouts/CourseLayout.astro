@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import CourseNav from '../components/CourseNav.astro';
+import { tr, type Lang } from '../i18n';
+import { coursePath } from '../lib/courses';
+
+interface Props {
+  lang: Lang;
+  course: CollectionEntry<'courses'>['data'];
+  /** Titolo della pagina (senza il nome del corso). */
+  title?: string;
+  description?: string;
+}
+const { lang, course, title, description } = Astro.props;
+const courseTitle = tr(course.title, lang);
+const pageTitle = title ? `${title} — ${courseTitle}` : courseTitle;
+---
+
+<BaseLayout
+  lang={lang}
+  title={pageTitle}
+  description={description ?? tr(course.description, lang)}
+  course={course.id}
+>
+  <slot name="head" slot="head" />
+  <CourseNav slot="before-main" lang={lang} coursePath={coursePath(course)} />
+  <slot />
+</BaseLayout>

@@ -1,0 +1,16 @@
+---
+import { LANGS, localizePath, switchLangPath, t, type Lang } from '../i18n';
+interface Props {
+  lang: Lang;
+  /** false se la pagina non esiste nell'altra lingua: si punta alla home. */
+  samePage?: boolean;
+}
+const { lang, samePage = true } = Astro.props;
+const other = LANGS.find((l) => l !== lang) ?? 'it';
+const href = samePage ? switchLangPath(Astro.url, other) : localizePath('', other);
+---
+
+<a class="btn btn--ghost" href={href} hreflang={other} data-lang-switch={other}>
+  <span class="visually-hidden">{t(lang, 'lang.switchLabel')}:</span>
+  <span lang={other}>{other.toUpperCase()}</span>
+</a>

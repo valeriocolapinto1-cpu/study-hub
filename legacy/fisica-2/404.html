@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="author" content="Valerio Colapinto">
+  <meta name="copyright" content="© 2026 Valerio Colapinto">
+  <meta name="robots" content="noindex, follow">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="license" href="https://github.com/valeriocolapinto1-cpu/fisica-2-ingegneria-elettronica/blob/main/LICENSE">
+  <script>if(/github\.io$/.test(location.hostname)){document.write('<base href="/'+location.pathname.split("/")[1]+'/">')}</script>
+  <meta name="robots" content="noindex">
+  <title>Pagina non trovata — Fisica Generale II</title>
+  <meta name="description" content="La pagina richiesta non esiste.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fisica Generale II">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:title" content="Pagina non trovata — Fisica Generale II">
+  <meta property="og:description" content="La pagina richiesta non esiste.">
+  <meta property="og:url" content="https://valeriocolapinto1-cpu.github.io/fisica-2-ingegneria-elettronica/404.html">
+  <meta property="og:image" content="https://valeriocolapinto1-cpu.github.io/fisica-2-ingegneria-elettronica/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fisica Generale II — sito di studio: programma, lezioni, formulario, esercizi, laboratorio ed esame">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <script>try{var t=localStorage.getItem("fg2-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="preload" href="assets/vendor/geist/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script defer src="assets/vendor/katex/katex.min.js"></script>
+  <script defer src="assets/vendor/katex/auto-render.min.js"></script>
+  <script defer src="assets/js/common.js"></script>
+  <script defer src="assets/js/static.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#app">Vai al contenuto</a>
+  <main id="app" tabindex="-1">
+  <div class="card hero" style="margin-top:16px">
+    <p class="kicker">Errore 404</p>
+    <h1>Pagina non trovata</h1>
+    <p>L'indirizzo che hai aperto non esiste, oppure la pagina è stata spostata. Prova a cercare l'argomento o torna alla home.</p>
+    <form action="cerca.html" role="search" class="toolbar" style="margin:12px 0">
+      <label for="nf-q" class="visually-hidden">Cerca nel sito</label>
+      <input type="search" id="nf-q" name="q" placeholder="Es. Gauss, Thevenin, Poynting…" autocomplete="off">
+      <button class="btn primary" type="submit">Cerca</button>
+    </form>
+    <div class="toolbar" style="margin:0">
+      <a class="btn" href="index.html">Home</a>
+      <a class="btn" href="programma.html">Programma</a>
+      <a class="btn" href="formulario.html">Formulario</a>
+      <a class="btn" href="esercizi.html">Esercizi</a>
+    </div>
+  </div>
+  <script>
+    // precompila la ricerca con l'ultima parte dell'indirizzo sbagliato
+    (function () {
+      var last = decodeURIComponent(location.pathname.split("/").filter(Boolean).pop() || "").replace(/\.html?$/, "").replace(/[-_]+/g, " ");
+      if (last && !/^(fisica-2|404)/.test(last)) document.getElementById("nf-q").value = last;
+    })();
+  </script>
+  </main>
+</body>
+</html>

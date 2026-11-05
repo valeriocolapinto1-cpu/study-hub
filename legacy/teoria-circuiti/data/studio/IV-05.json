@@ -1,0 +1,52 @@
+{
+ "id": "IV-05",
+ "obiettivi": [
+  "Risolvere equazioni integro-differenziali con Laplace",
+  "Inserire le condizioni iniziali",
+  "Antitrasformare la soluzione"
+ ],
+ "teoria": [
+  "Si trasforma l'equazione con le proprietà di derivata e integrale, ottenendo un'equazione <em>algebrica</em> in $Y(s)$ con le condizioni iniziali già incluse; si risolve per $Y(s)$ e si antitrasforma con i fratti semplici.",
+  "Il vantaggio rispetto al metodo classico (omogenea + particolare + costanti) è che condizioni iniziali e termine noto entrano nello stesso passaggio."
+ ],
+ "figure": [],
+ "dimostrazioni": [],
+ "esempi": [
+  {
+   "titolo": "Libera del secondo ordine",
+   "testo": "$\\ddot y+3\\dot y+2y=0$, $y(0^-)=1$, $\\dot y(0^-)=0$.",
+   "soluzione": [
+    "$s^2Y-s+3(sY-1)+2Y=0\\Rightarrow Y=\\dfrac{s+3}{(s+1)(s+2)}$.",
+    "Fratti semplici: $\\dfrac{2}{s+1}-\\dfrac1{s+2}$, quindi $y=2e^{-t}-e^{-2t}$.",
+    "Verifica: $y(0)=1$, $\\dot y(0)=-2+2=0$ ✓."
+   ]
+  },
+  {
+   "titolo": "Con forzamento",
+   "testo": "$\\dot y+2y=u_{-1}(t)$, $y(0^-)=0$.",
+   "soluzione": [
+    "$(s+2)Y=1/s\\Rightarrow Y=\\dfrac1{s(s+2)}=\\tfrac12\\left(\\dfrac1s-\\dfrac1{s+2}\\right)$.",
+    "$y=\\tfrac12(1-e^{-2t})$."
+   ]
+  },
+  {
+   "titolo": "Equazione integro-differenziale",
+   "testo": "$\\dot y+y+\\int_0^ty\\,d\\tau=u_{-1}(t)$, $y(0^-)=0$.",
+   "soluzione": [
+    "$sY+Y+Y/s=1/s\\Rightarrow Y=\\dfrac{1}{s^2+s+1}$.",
+    "$(s+\\tfrac12)^2+\\tfrac34$: $y=\\dfrac{2}{\\sqrt3}e^{-t/2}\\sin\\dfrac{\\sqrt3}{2}t$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Dimenticare $y(0^-)$ nella derivata.",
+   "corretto": "$\\dot y\\to sY-y(0^-)$."
+  }
+ ],
+ "esame": "Laplace e uso su equazioni: 25-9-2007, 17-4-2008 [STORICO].",
+ "formulario": [
+  "laplace-der",
+  "laplace-der2"
+ ]
+}

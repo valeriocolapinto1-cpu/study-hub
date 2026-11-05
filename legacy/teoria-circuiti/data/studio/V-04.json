@@ -1,0 +1,60 @@
+{
+ "id": "V-04",
+ "obiettivi": [
+  "Enunciare la condizione di stabilità in termini di poli",
+  "Dimostrarla",
+  "Applicare i criteri di Routh per gradi 2 e 3"
+ ],
+ "teoria": [
+  "Un sistema lineare è <strong>asintoticamente stabile</strong> se la risposta libera tende a zero per ogni condizione iniziale; condizione necessaria e sufficiente: tutti i poli di $H(s)$ (senza cancellazioni) hanno parte reale negativa. È <strong>marginalmente stabile</strong> con poli semplici sull'asse immaginario (e gli altri a parte reale negativa); è <strong>instabile</strong> con un polo a parte reale positiva o poli multipli sull'asse immaginario.",
+  "<strong>Criteri per polinomi.</strong> Grado 2: $s^2+a_1s+a_0$ stabile se $a_1,a_0>0$. Grado 3: $s^3+a_2s^2+a_1s+a_0$ stabile se $a_2,a_1,a_0>0$ e $a_2a_1>a_0$."
+ ],
+ "figure": [],
+ "dimostrazioni": [
+  {
+   "titolo": "Condizione di stabilità: poli nel semipiano sinistro aperto",
+   "passi": [
+    "Scomponendo in fratti semplici, ogni polo $p$ di molteplicità $m$ dà modi $t^ke^{pt}$ con $0\\le k<m$.",
+    "Se $\\mathrm{Re}\\,p<0$: $|t^ke^{pt}|=t^ke^{\\mathrm{Re}(p)t}\\to0$ (l'esponenziale prevale sulla potenza).",
+    "Se tutti i poli hanno $\\mathrm{Re}<0$, ogni modo, e quindi la risposta libera, tende a zero.",
+    "Se un polo ha $\\mathrm{Re}\\,p>0$ il modo diverge; se $\\mathrm{Re}\\,p=0$ il modo non tende a zero ($|e^{j\\omega t}|=1$) e se la molteplicità è $\\ge2$ compare $t\\,e^{j\\omega t}$, illimitato. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Secondo ordine con parametro",
+   "testo": "$D(s)=s^2+(k-3)s+2$.",
+   "soluzione": [
+    "Serve $k-3>0$: stabile per $k>3$."
+   ]
+  },
+  {
+   "titolo": "Terzo ordine",
+   "testo": "$D(s)=s^3+2s^2+3s+k$.",
+   "soluzione": [
+    "$k>0$ e $2\\cdot3>k$: stabile per $0<k<6$.",
+    "Per $k=6$: poli sull'asse immaginario ($s=\\pm j\\sqrt3$): marginale."
+   ]
+  },
+  {
+   "titolo": "Polo in $+1$",
+   "testo": "$H=\\dfrac{1}{s-1}$.",
+   "soluzione": [
+    "Polo in $s=1$: $h=e^{t}$ diverge, instabile."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Dire che un polo sull'asse immaginario rende il sistema stabile.",
+   "corretto": "Al più marginale: la risposta non decade e può diventare illimitata (polo multiplo o ingresso risonante)."
+  }
+ ],
+ "esame": "Stabilità, poli, stabilità al variare di $k$: 12-6-2000, 15-9-2000, 29-4-2002, 24-4-2003 [STORICO].",
+ "formulario": [
+  "stab-poli",
+  "routh2",
+  "routh3"
+ ]
+}

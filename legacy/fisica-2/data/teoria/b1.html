@@ -1,0 +1,131 @@
+<section class="t-sec" id="b1a">
+<h2>1a · Elettrostatica nel vuoto: campo elettrico e potenziale</h2>
+
+<h3 id="b1a-carica">Carica elettrica e legge di Coulomb</h3>
+<p>La carica elettrica esiste in due segni, si <strong>conserva</strong> (in un sistema isolato la carica totale non cambia) ed è <strong>quantizzata</strong>: ogni carica è un multiplo della carica elementare $e = 1{,}602\times10^{-19}\ \mathrm{C}$. Nei <em>conduttori</em> le cariche si muovono liberamente, negli <em>isolanti</em> (dielettrici) no.</p>
+<p>Due cariche puntiformi ferme nel vuoto si scambiano una forza centrale, diretta lungo la congiungente, proporzionale al prodotto delle cariche e all'inverso del quadrato della distanza:</p>
+<p class="t-eq">$$\vec F_{12} = \frac{1}{4\pi\varepsilon_0}\,\frac{q_1 q_2}{r^2}\,\hat u_{12},\qquad \frac{1}{4\pi\varepsilon_0}\simeq 8{,}99\times10^{9}\ \mathrm{N\,m^2/C^2}$$</p>
+<p>Cariche dello stesso segno si respingono, di segno opposto si attraggono. Vale il <strong>principio di sovrapposizione</strong>: la forza su una carica dovuta a più cariche è la somma vettoriale delle forze dovute a ciascuna.</p>
+
+<h3 id="b1a-campo">Il campo elettrico</h3>
+<p>Il campo elettrico in un punto è la forza per unità di carica che subirebbe una carica di prova $q_0$ positiva e piccola: $\vec E = \vec F/q_0$ (unità: N/C = V/m). Per una carica puntiforme $\vec E = \frac{q}{4\pi\varepsilon_0 r^2}\hat u_r$. Per una distribuzione continua si somma (integra) il contributo di ogni elemento $dq = \lambda\,dl$, $\sigma\,dS$ o $\rho\,dV$:</p>
+<p class="t-eq">$$\vec E(\vec r) = \frac{1}{4\pi\varepsilon_0}\int \frac{dq\,(\vec r-\vec r\,')}{|\vec r-\vec r\,'|^3}$$</p>
+<p>Le <em>linee di campo</em> sono tangenti a $\vec E$, escono dalle cariche positive ed entrano in quelle negative; la loro densità è proporzionale al modulo del campo.</p>
+<p><strong>Risultati da saper ricavare per integrazione diretta</strong> (sfruttando le simmetrie per eliminare le componenti che si annullano):</p>
+<ul>
+<li>Filo infinito con densità $\lambda$, a distanza $r$: $E = \dfrac{\lambda}{2\pi\varepsilon_0 r}$, radiale.</li>
+<li>Filo finito, punto a distanza $d$ dall'asse: $E_\perp = \dfrac{\lambda}{4\pi\varepsilon_0 d}(\sin\theta_2-\sin\theta_1)$, $|E_\parallel| = \dfrac{\lambda}{4\pi\varepsilon_0 d}|\cos\theta_1-\cos\theta_2|$, con $\theta_{1,2}$ gli angoli (misurati dalla perpendicolare) sotto cui si vedono gli estremi.</li>
+<li>Anello di raggio $R$ e carica $q$, sull'asse a distanza $z$: $E_z = \dfrac{q\,z}{4\pi\varepsilon_0 (z^2+R^2)^{3/2}}$.</li>
+<li>Disco di raggio $R$ e densità $\sigma$, sull'asse: $E_z = \dfrac{\sigma}{2\varepsilon_0}\left(1-\dfrac{z}{\sqrt{z^2+R^2}}\right)$; per $R\to\infty$ si ottiene il piano infinito $E = \sigma/(2\varepsilon_0)$.</li>
+</ul>
+
+<h3 id="b1a-gauss">Flusso e teorema di Gauss (I equazione di Maxwell)</h3>
+<p>Il flusso del campo attraverso una superficie è $\Phi_S(\vec E) = \int_S \vec E\cdot\hat n\,dS$. Il teorema di Gauss afferma che il flusso uscente da una <strong>superficie chiusa</strong> dipende solo dalla carica racchiusa:</p>
+<p class="t-eq">$$\oint_S \vec E\cdot\hat n\,dS = \frac{Q_{\text{int}}}{\varepsilon_0}$$</p>
+<p><em>Dimostrazione (idea).</em> Per una carica puntiforme il flusso attraverso l'elemento $dS$ vale $\frac{q}{4\pi\varepsilon_0}\frac{\hat u_r\cdot\hat n\,dS}{r^2} = \frac{q}{4\pi\varepsilon_0}\,d\Omega$, dove $d\Omega$ è l'angolo solido. Se la carica è interna l'angolo solido totale è $4\pi$ e il flusso vale $q/\varepsilon_0$; se è esterna ogni cono taglia la superficie due volte con contributi opposti e il flusso è nullo. Per sovrapposizione il risultato vale per qualsiasi distribuzione. Il teorema discende dalla dipendenza $1/r^2$ della legge di Coulomb.</p>
+<p>Usando il teorema della divergenza $\oint_S\vec E\cdot\hat n\,dS=\int_V\nabla\cdot\vec E\,dV$ e $Q=\int_V\rho\,dV$, valido per ogni volume, si ottiene la <strong>forma locale</strong>:</p>
+<p class="t-eq">$$\nabla\cdot\vec E = \frac{\rho}{\varepsilon_0}$$</p>
+<p><strong>Come si usa.</strong> Gauss permette di calcolare $\vec E$ solo se la simmetria (sferica, cilindrica, piana) fissa direzione del campo e costanza del modulo sulla superficie scelta:</p>
+<ul>
+<li>Sfera uniformemente carica ($Q$, raggio $R$): fuori $E = \frac{Q}{4\pi\varepsilon_0 r^2}$, dentro $E = \frac{Q r}{4\pi\varepsilon_0 R^3}$ (cresce linearmente). Guscio sferico: dentro $E=0$.</li>
+<li>Filo o cilindro infinito: superficie cilindrica coassiale, $E\cdot 2\pi r L = \lambda_{\text{int}}L/\varepsilon_0$. Cilindro pieno ($\rho$, raggio $R$): dentro $E=\frac{\rho r}{2\varepsilon_0}$, fuori $E=\frac{\rho R^2}{2\varepsilon_0 r}$.</li>
+<li>Piano infinito: "scatoletta" che attraversa il piano, $E = \sigma/(2\varepsilon_0)$ da entrambi i lati. Lastra spessa ("muro") di spessore $2a$ e densità $\rho$: dentro $E = \rho x/\varepsilon_0$, fuori $E=\rho a/\varepsilon_0$.</li>
+</ul>
+<aside class="t-tip"><strong>All'esame.</strong> Distribuzioni con un "buco" (piano con foro, cilindro con cavità, muro con foro) si risolvono per <strong>sovrapposizione</strong>: distribuzione piena + distribuzione di densità opposta che occupa il buco. Esempio: in una cavità cilindrica eccentrica in un cilindro carico il campo è uniforme, $\vec E=\frac{\rho}{2\varepsilon_0}\vec d$, con $\vec d$ vettore tra gli assi.</aside>
+
+<h3 id="b1a-potenziale">Conservatività e potenziale elettrico</h3>
+<p>La forza di Coulomb è centrale e dipende solo dalla distanza, quindi è <strong>conservativa</strong>: il lavoro dipende solo dagli estremi e la circuitazione è nulla, $\oint\vec E\cdot d\vec l = 0$. Si definisce allora la differenza di potenziale (lavoro per unità di carica cambiato di segno):</p>
+<p class="t-eq">$$V(B)-V(A) = -\int_A^B\vec E\cdot d\vec l,\qquad \vec E = -\nabla V$$</p>
+<p>Per una carica puntiforme, con $V(\infty)=0$: $V=\frac{q}{4\pi\varepsilon_0 r}$. Per una distribuzione limitata $V(\vec r)=\frac{1}{4\pi\varepsilon_0}\int\frac{dq}{|\vec r-\vec r\,'|}$ (somma di scalari: spesso più facile che calcolare $\vec E$). L'energia potenziale di una carica è $U = qV$; $1\ \mathrm{eV} = 1{,}6\times10^{-19}\ \mathrm J$.</p>
+<ul>
+<li>Anello sull'asse: $V = \frac{q}{4\pi\varepsilon_0\sqrt{z^2+R^2}}$. Disco sull'asse: $V=\frac{\sigma}{2\varepsilon_0}\left(\sqrt{z^2+R^2}-|z|\right)$.</li>
+<li>Per distribuzioni infinite (filo, piano) non si può porre $V(\infty)=0$: filo $V(r) = -\frac{\lambda}{2\pi\varepsilon_0}\ln\frac{r}{r_0}$; piano $V(x)=-\frac{\sigma}{2\varepsilon_0}|x| + \text{cost}$.</li>
+</ul>
+<p>Le <em>superfici equipotenziali</em> sono ovunque perpendicolari alle linee di campo, e il campo punta verso i potenziali decrescenti.</p>
+<p><strong>Rotore e forma locale.</strong> Per il teorema di Stokes $\oint_\gamma\vec E\cdot d\vec l=\int_S(\nabla\times\vec E)\cdot\hat n\,dS$; essendo nulla per ogni curva, $\nabla\times\vec E = 0$. Combinando con Gauss si ottengono le equazioni di <strong>Poisson</strong> $\nabla^2V=-\rho/\varepsilon_0$ e, dove non ci sono cariche, di <strong>Laplace</strong> $\nabla^2 V=0$.</p>
+<p>Gradiente in coordinate sferiche: $\nabla V = \frac{\partial V}{\partial r}\hat u_r + \frac1r\frac{\partial V}{\partial\theta}\hat u_\theta + \frac{1}{r\sin\theta}\frac{\partial V}{\partial\phi}\hat u_\phi$.</p>
+
+<h3 id="b1a-dipolo">Il dipolo elettrico</h3>
+<p>Due cariche $+q$ e $-q$ a distanza $d$ formano un dipolo di momento $\vec p = q\vec d$ (da $-q$ verso $+q$). A grande distanza ($r\gg d$):</p>
+<p class="t-eq">$$V = \frac{p\cos\theta}{4\pi\varepsilon_0 r^2},\qquad E_r = -\frac{\partial V}{\partial r}=\frac{2p\cos\theta}{4\pi\varepsilon_0 r^3},\qquad E_\theta=-\frac1r\frac{\partial V}{\partial\theta}=\frac{p\sin\theta}{4\pi\varepsilon_0 r^3}$$</p>
+<p>Il campo decresce come $1/r^3$ (più rapidamente di quello di una carica, perché la carica totale è nulla). Sull'asse $E = \frac{2p}{4\pi\varepsilon_0 r^3}$, sul piano equatoriale $E=\frac{p}{4\pi\varepsilon_0 r^3}$ diretto opposto a $\vec p$.</p>
+<p><strong>Azioni meccaniche in un campo esterno.</strong></p>
+<ul>
+<li>Momento: $\vec M = \vec p\times\vec E$, tende ad allineare $\vec p$ al campo.</li>
+<li>Energia potenziale: $U = -\vec p\cdot\vec E$ (minima quando $\vec p\parallel\vec E$: equilibrio stabile).</li>
+<li>Forza: $\vec F = \nabla(\vec p\cdot\vec E)$; <strong>nulla in campo uniforme</strong>. In campo non uniforme il dipolo allineato è attratto verso le zone di campo più intenso (ad esempio $F=p\,\frac{dE}{dx}$ lungo $x$).</li>
+</ul>
+<aside class="t-tip"><strong>Domande di teoria frequenti:</strong> "ricavare il campo del dipolo", "azioni meccaniche su un dipolo in campo esterno", "enunciare e dimostrare il teorema di Gauss", "ricavare la forma locale della I equazione di Maxwell", "dimostrare che il campo elettrostatico è conservativo".</aside>
+</section>
+
+<section class="t-sec" id="b1b">
+<h2>1b · Conduttori, capacità ed energia elettrostatica</h2>
+
+<h3 id="b1b-equilibrio">Conduttori in equilibrio</h3>
+<p>In un conduttore in equilibrio elettrostatico le cariche libere sono ferme, quindi:</p>
+<ul>
+<li>il campo all'interno del materiale è <strong>nullo</strong>;</li>
+<li>la carica in eccesso si trova solo sulla <strong>superficie</strong> (per Gauss $\rho=0$ all'interno);</li>
+<li>il conduttore è un volume <strong>equipotenziale</strong> e il campo esterno è perpendicolare alla superficie.</li>
+</ul>
+<p><strong>Teorema di Coulomb.</strong> Con una scatoletta a cavallo della superficie (flusso solo dalla faccia esterna): $E\,dS = \sigma\,dS/\varepsilon_0$, cioè</p>
+<p class="t-eq">$$\vec E = \frac{\sigma}{\varepsilon_0}\,\hat n$$</p>
+<p><strong>Potere delle punte.</strong> Due sfere di raggi $R_1$, $R_2$ collegate da un filo hanno lo stesso potenziale: $\frac{Q_1}{R_1}=\frac{Q_2}{R_2}$, quindi $\sigma_1R_1=\sigma_2R_2$. La densità di carica, e quindi il campo, è maggiore dove il raggio di curvatura è piccolo (punte): lì l'aria può diventare conduttrice (parafulmini, effluvio).</p>
+<p><strong>Schermo elettrostatico.</strong> In una cavità vuota di un conduttore il campo è nullo, qualunque sia il campo esterno (gabbia di Faraday). Se nella cavità c'è una carica $q$, sulla parete interna si induce $-q$ e sulla superficie esterna compare $+q$ (induzione completa); collegando il conduttore a terra la carica esterna si annulla.</p>
+
+<h3 id="b1b-capacita">Capacità e condensatori</h3>
+<p>Per un conduttore isolato $Q$ e $V$ sono proporzionali: $C = Q/V$ (farad). Sfera: $C=4\pi\varepsilon_0R$; la Terra ($R\simeq6{,}4\times10^6$ m) ha $C\simeq0{,}7$ mF. Per un sistema di conduttori si definiscono i <em>coefficienti di potenziale</em> $V_i=\sum_j p_{ij}Q_j$ e di <em>induzione</em> $Q_i=\sum_j c_{ij}V_j$ (matrici simmetriche).</p>
+<p>Un <strong>condensatore</strong> è formato da due conduttori in induzione completa con cariche $\pm Q$: $C = Q/\Delta V$. Procedura: si calcola $E$ tra le armature con Gauss, si integra per avere $\Delta V$, si divide.</p>
+<ul>
+<li>Piano: $E=\sigma/\varepsilon_0$, $\Delta V = Qd/(\varepsilon_0S)$ ⇒ $C=\dfrac{\varepsilon_0S}{d}$.</li>
+<li>Sferico: $\Delta V = \frac{Q}{4\pi\varepsilon_0}\left(\frac1{R_1}-\frac1{R_2}\right)$ ⇒ $C = 4\pi\varepsilon_0\dfrac{R_1R_2}{R_2-R_1}$.</li>
+<li>Cilindrico (lunghezza $L$): $\Delta V = \frac{\lambda}{2\pi\varepsilon_0}\ln\frac{R_2}{R_1}$ ⇒ $C = \dfrac{2\pi\varepsilon_0L}{\ln(R_2/R_1)}$.</li>
+</ul>
+<p><strong>Collegamenti.</strong> In parallelo hanno la stessa $\Delta V$ e le cariche si sommano: $C_p=\sum C_i$. In serie hanno la stessa carica e le tensioni si sommano: $1/C_s=\sum 1/C_i$.</p>
+
+<h3 id="b1b-energia">Energia elettrostatica</h3>
+<p>Il lavoro per costruire una distribuzione di cariche puntiformi è $U=\frac12\sum_i q_iV_i = \sum_{i\lt j}\frac{q_iq_j}{4\pi\varepsilon_0r_{ij}}$. Per un sistema di conduttori $U=\frac12\sum Q_iV_i$; per un condensatore, caricandolo con $dW = V\,dq = \frac{q}{C}dq$:</p>
+<p class="t-eq">$$U = \frac{Q^2}{2C}=\frac12 CV^2 = \frac12QV$$</p>
+<p>Nel condensatore piano $U=\frac12\varepsilon_0E^2\,(Sd)$: l'energia è distribuita nel campo con densità</p>
+<p class="t-eq">$$u = \frac12\varepsilon_0E^2,\qquad U=\int u\,dV$$</p>
+<p>(ad esempio l'energia di una sfera carica si ottiene integrando $u$ in tutto lo spazio).</p>
+
+<h3 id="b1b-forze">Azioni meccaniche sui conduttori</h3>
+<p>Sulla superficie di un conduttore agisce una <strong>pressione elettrostatica</strong> verso l'esterno $p = \frac{\sigma^2}{2\varepsilon_0}=\frac12\varepsilon_0E^2$ (il campo che agisce sulla carica superficiale è la media dei valori dentro e fuori, $\sigma/2\varepsilon_0$). Le armature di un condensatore piano si attraggono con $F=\frac{Q^2}{2\varepsilon_0S}$.</p>
+<p><strong>Metodo dei lavori virtuali.</strong> A carica costante (sistema isolato) $F_x=-\left(\frac{\partial U}{\partial x}\right)_Q$; a potenziale costante (collegato a un generatore) $F_x=+\left(\frac{\partial U}{\partial x}\right)_V$, perché il generatore fornisce un lavoro doppio della variazione di energia del condensatore.</p>
+
+<h3 id="b1b-problema">Il problema generale dell'elettrostatica</h3>
+<p>Assegnati le cariche e i potenziali (o le cariche) dei conduttori, il potenziale è la soluzione dell'equazione di Poisson con quelle condizioni al contorno, e la soluzione è <strong>unica</strong>. Per questo basta "indovinare" una soluzione che rispetti le condizioni. Esempio: il <em>metodo delle cariche immagine</em>. Una carica $q$ a distanza $d$ da un piano conduttore a terra produce nel semispazio lo stesso campo di $q$ e di una carica $-q$ simmetrica; la carica è attratta con $F=\frac{q^2}{4\pi\varepsilon_0(2d)^2}$.</p>
+<aside class="t-tip"><strong>All'esame.</strong> Negli esercizi con lastre conduttrici inserite tra le armature si ottengono condensatori in serie, e lo spessore della lastra si sottrae a $d$. Se un condensatore resta collegato al generatore, $V$ è costante; se è isolato, $Q$ è costante. Chiediti sempre quale delle due grandezze resta fissa.</aside>
+</section>
+
+<section class="t-sec" id="b1c">
+<h2>1c · Elettrostatica nei dielettrici</h2>
+
+<h3 id="b1c-costante">Costante dielettrica</h3>
+<p>Riempiendo un condensatore isolato con un isolante la tensione scende a $V_0/\varepsilon_r$, quindi la capacità diventa $C=\varepsilon_rC_0$. La <strong>costante dielettrica relativa</strong> $\varepsilon_r\ge1$ caratterizza il materiale ($\varepsilon=\varepsilon_0\varepsilon_r$). Il campo nel dielettrico si riduce: $E=E_0/\varepsilon_r$.</p>
+
+<h3 id="b1c-micro">Interpretazione microscopica e vettore polarizzazione</h3>
+<ul>
+<li><strong>Polarizzazione per deformazione</strong> (elettronica): il campo sposta la nuvola elettronica rispetto al nucleo e induce un momento $\vec p=\alpha\vec E$. Nel modello di atomo a nube sferica uniforme $\vec p = 4\pi\varepsilon_0R^3\vec E$. Non dipende dalla temperatura.</li>
+<li><strong>Polarizzazione per orientamento</strong>: molecole polari (come l'acqua) con momento proprio $p_0$ si allineano parzialmente al campo, contrastate dall'agitazione termica: $\langle p\rangle=\frac{p_0^2E}{3k_BT}$ (dipende da $T$).</li>
+</ul>
+<p>Il <strong>vettore polarizzazione</strong> è il momento di dipolo per unità di volume, $\vec P = n\langle\vec p\rangle$. Nei dielettrici lineari e isotropi $\vec P=\varepsilon_0\chi\vec E$, con $\chi = \varepsilon_r-1$ suscettività elettrica.</p>
+<p>La polarizzazione equivale a <strong>cariche di polarizzazione</strong> (legate): $\sigma_p=\vec P\cdot\hat n$ sulla superficie e $\rho_p=-\nabla\cdot\vec P$ nel volume (nulla se $\vec P$ è uniforme). In un condensatore piano pieno di dielettrico, la $\sigma_p$ sulle facce riduce la densità efficace: $\sigma_p = \sigma\left(1-\frac1{\varepsilon_r}\right)$.</p>
+
+<h3 id="b1c-equazioni">Le equazioni con i dielettrici</h3>
+<p>Gauss vale con tutte le cariche, libere e di polarizzazione: $\nabla\cdot\vec E=(\rho_{lib}+\rho_p)/\varepsilon_0$. Definendo il vettore <strong>induzione elettrica</strong></p>
+<p class="t-eq">$$\vec D=\varepsilon_0\vec E+\vec P\quad\Rightarrow\quad \nabla\cdot\vec D=\rho_{lib},\qquad \oint_S\vec D\cdot\hat n\,dS = Q_{lib}$$</p>
+<p>Nei mezzi lineari $\vec D=\varepsilon\vec E$. Rimane $\nabla\times\vec E=0$. Procedura: si calcola $\vec D$ con Gauss dalle sole cariche libere, poi $\vec E=\vec D/\varepsilon$ in ogni mezzo, infine $\vec P$ e le cariche di polarizzazione.</p>
+
+<h3 id="b1c-contorno">Condizioni al contorno tra due dielettrici</h3>
+<p>Dalla scatoletta di Gauss (senza cariche libere sulla superficie) si ottiene $D_{1n}=D_{2n}$; dalla circuitazione nulla di $\vec E$ su un rettangolino a cavallo della superficie si ottiene $E_{1t}=E_{2t}$. Le linee di campo si "rifrangono":</p>
+<p class="t-eq">$$\frac{\tan\theta_1}{\tan\theta_2}=\frac{\varepsilon_1}{\varepsilon_2}\quad(\text{angoli dalla normale})$$</p>
+<p>Il campo normale è più intenso nel mezzo con $\varepsilon$ minore.</p>
+
+<h3 id="b1c-energia">Energia nei dielettrici e macchine elettrostatiche</h3>
+<p>La densità di energia diventa $u=\frac12\vec E\cdot\vec D=\frac12\varepsilon E^2$. Un dielettrico viene risucchiato tra le armature di un condensatore: la forza si ricava con i lavori virtuali, a $Q$ o a $V$ costante.</p>
+<p>La <strong>rigidità dielettrica</strong> è il campo massimo che il materiale sopporta senza scarica (aria: circa 3 MV/m).</p>
+<p>Il <strong>generatore di Van de Graaff</strong> sfrutta il fatto che la carica portata all'interno di un conduttore cavo si trasferisce tutta sulla superficie esterna, qualunque sia il potenziale raggiunto. Il limite è la rigidità dell'aria: $V_{max}=E_{max}R$.</p>
+<aside class="t-tip"><strong>All'esame.</strong> Dielettrici a strati paralleli alle armature equivalgono a condensatori in serie ($D$ uguale in tutti gli strati); dielettrici affiancati equivalgono a condensatori in parallelo ($E$ uguale). Con una sfera semi-immersa in un liquido, il potenziale è lo stesso nelle due metà: $E$ è uguale sopra e sotto, mentre $\sigma_{lib}$ è diversa.</aside>
+</section>

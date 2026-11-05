@@ -1,0 +1,61 @@
+{
+ "id": "V-02",
+ "obiettivi": [
+  "Definire la risposta impulsiva",
+  "Dimostrare $h=\\mathcal L^{-1}\\{H\\}$",
+  "Usare la convoluzione e la risposta al gradino"
+ ],
+ "teoria": [
+  "La <strong>risposta impulsiva</strong> $h(t)$ è l'uscita a $x=\\delta(t)$ con condizioni iniziali nulle. Per un sistema causale $h(t)=0$ per $t<0$. L'uscita a un ingresso qualsiasi (condizioni iniziali nulle) è la <strong>convoluzione</strong> $y(t)=\\int_{0}^{t}h(\\tau)x(t-\\tau)\\,d\\tau$. La risposta al gradino è l'integrale di $h$.",
+  "Il legame con la funzione di rete è $h(t)=\\mathcal L^{-1}\\{H(s)\\}$: i poli di $H$ determinano i modi di $h$ e quindi la stabilità (se $h$ è assolutamente integrabile il sistema è stabile)."
+ ],
+ "figure": [],
+ "dimostrazioni": [
+  {
+   "titolo": "Risposta impulsiva e funzione di rete",
+   "enunciato": "$h(t)=\\mathcal L^{-1}\\{H(s)\\}$ e $y=h*x$.",
+   "passi": [
+    "Per $x=\\delta(t)$ si ha $X(s)=1$.",
+    "A condizioni iniziali nulle $Y(s)=H(s)X(s)=H(s)$.",
+    "Antitrasformando $y=h=\\mathcal L^{-1}\\{H\\}$.",
+    "Per un ingresso qualsiasi $Y=HX$; poiché $\\mathcal L\\{h*x\\}=HX$ (proprietà della convoluzione), $y=h*x$. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Risposta impulsiva di un RC",
+   "testo": "$H=\\dfrac{1}{s+1}$.",
+   "soluzione": [
+    "$h(t)=e^{-t}u_{-1}(t)$."
+   ]
+  },
+  {
+   "titolo": "Risposta al gradino",
+   "testo": "Stesso sistema, ingresso $u_{-1}$.",
+   "soluzione": [
+    "$y=\\int_0^th=1-e^{-t}$ per $t>0$."
+   ]
+  },
+  {
+   "titolo": "Impulso rettangolare",
+   "testo": "Stesso sistema, ingresso $1$ per $0<t<1$.",
+   "soluzione": [
+    "$0<t<1$: $y=1-e^{-t}$.",
+    "$t>1$: $y=(1-e^{-1})e^{-(t-1)}$ (continuità in $t=1$)."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Dedurre $h$ dalla risposta al gradino senza derivare.",
+   "corretto": "$h=\\dfrac{d}{dt}y_{gradino}$."
+  }
+ ],
+ "esame": "Risposta impulsiva e funzione di rete: 18-9-2002, 19-11-2003 [STORICO].",
+ "formulario": [
+  "h-imp",
+  "y-conv",
+  "y-gradino"
+ ]
+}

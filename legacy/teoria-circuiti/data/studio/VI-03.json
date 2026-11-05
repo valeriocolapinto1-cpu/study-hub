@@ -1,0 +1,64 @@
+{
+ "id": "VI-03",
+ "obiettivi": [
+  "Enunciare Norton",
+  "Legarlo a Thevenin",
+  "Calcolare $I_N$ con la porta in corto"
+ ],
+ "teoria": [
+  "<strong>Teorema di Norton.</strong> Un bipolo lineare è equivalente a un generatore ideale di corrente $I_N$ in parallelo a un'impedenza $Z_N$: $I_N$ è la corrente di cortocircuito della porta; $Z_N=Z_{th}$ (indipendenti spenti). Legame: $I_N=V_{th}/Z_{th}$ (trasformazione di generatori).",
+  "Esiste anche se non esiste Thevenin (per $Z_{th}=0$ non esiste Norton)."
+ ],
+ "figure": [
+  {
+   "alt": "Equivalente di Norton: generatore di corrente I_N in parallelo a Z_N ai morsetti A e B",
+   "svg": "<svg viewBox=\"0 0 320 150\" width=\"320\" height=\"150\" xmlns=\"http://www.w3.org/2000/svg\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" font-family=\"system-ui,sans-serif\" font-size=\"14\" aria-hidden=\"true\"><polyline points=\"60 30 140 30\"/><polyline points=\"60 30 60 35\"/><circle cx=\"60\" cy=\"60\" r=\"18\"/><polyline points=\"60 50 60 70\"/><polyline points=\"55 56 60 50 65 56\"/><text x=\"30\" y=\"64\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">I_N</text><polyline points=\"60 78 60 90\"/><polyline points=\"140 30 140 45\"/><g transform=\"translate(140,45) rotate(90)\"><polyline points=\"0 0 10 0 15 -9 25 9 35 -9 45 9 50 0 60 0\"/></g><text x=\"160\" y=\"78\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">Z_N</text><polyline points=\"140 105 140 90\"/><polyline points=\"60 90 140 90\"/><polyline points=\"140 30 200 30\"/><circle cx=\"200\" cy=\"30\" r=\"3\" fill=\"currentColor\"/><polyline points=\"140 90 200 90\"/><circle cx=\"200\" cy=\"90\" r=\"3\" fill=\"currentColor\"/><text x=\"212\" y=\"34\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">A</text><text x=\"212\" y=\"94\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">B</text></svg>"
+  }
+ ],
+ "dimostrazioni": [
+  {
+   "titolo": "Teorema di Norton",
+   "passi": [
+    "Sostituisci il carico con un generatore di tensione $v$ (sostituzione).",
+    "Per la sovrapposizione: $i=I_{sc}-Y\\,v$, dove $I_{sc}$ è la corrente con $v=0$ (porta in corto) e $Y=1/Z_N$ è l'ammettenza vista a indipendenti spenti.",
+    "Questa è la caratteristica di un generatore di corrente $I_N=I_{sc}$ in parallelo a $Z_N$. Dal confronto con Thevenin $I_N=V_{th}/Z_{th}$ e $Z_N=Z_{th}$. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Trasformazione di generatori",
+   "testo": "$V_{th}=8\\,\\mathrm V$, $R_{th}=4\\,\\Omega$.",
+   "soluzione": [
+    "$I_N=8/4=2\\,\\mathrm A$, $R_N=4\\,\\Omega$."
+   ]
+  },
+  {
+   "titolo": "Partitore: Norton",
+   "testo": "$12\\,\\mathrm V$, $2\\,\\Omega$, $4\\,\\Omega$ (porta ai capi di $4\\,\\Omega$).",
+   "soluzione": [
+    "$I_N=\\dfrac{V_{th}}{R_{th}}=\\dfrac{8}{4/3}=6\\,\\mathrm A$.",
+    "Verifica: con la porta in corto la corrente è $12/2=6$ ✓."
+   ]
+  },
+  {
+   "titolo": "Carico sul Norton",
+   "testo": "$I_N=6$, $R_N=\\tfrac43$, carico $R_L=4$.",
+   "soluzione": [
+    "Partitore di corrente: $i_L=6\\cdot\\dfrac{4/3}{4/3+4}=6\\cdot\\tfrac14=1{,}5\\,\\mathrm A$, $v_L=6\\,\\mathrm V$; con Thevenin: $8\\cdot\\dfrac{4}{4/3+4}=6$ ✓."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Calcolare $I_N$ a porta aperta.",
+   "corretto": "$I_N$ è la corrente a porta in cortocircuito."
+  }
+ ],
+ "esame": "Norton: 13-2-2001, 29-4-2002 (A–I), 24-4-2009 A [STORICO].",
+ "formulario": [
+  "n-in",
+  "n-zn",
+  "th-norton"
+ ]
+}

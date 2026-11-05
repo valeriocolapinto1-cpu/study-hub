@@ -1,0 +1,56 @@
+---
+/** Metadati comuni: titolo, descrizione, canonical, hreflang, Open Graph, tema. */
+import { DEFAULT_LANG, LANGS, SITE } from '../config/site';
+import { htmlLang, ogLocale, switchLangPath, withBase, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  /** false per pagine senza equivalente nell'altra lingua (es. 404). */
+  alternates?: boolean;
+  noindex?: boolean;
+}
+const { lang, title, description, alternates = true, noindex = false } = Astro.props;
+const site = Astro.site ?? new URL('http://localhost');
+const canonical = new URL(Astro.url.pathname, site).href;
+const fullTitle = title === SITE.title[lang] ? title : `${title} — ${SITE.shortTitle[lang]}`;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<meta name="author" content={SITE.author} />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+{noindex && <meta name="robots" content="noindex, follow" />}
+{!noindex && <link rel="canonical" href={canonical} />}
+{alternates &&
+  LANGS.map((l) => (
+    <link rel="alternate" hreflang={htmlLang[l]} href={new URL(switchLangPath(Astro.url, l), site).href} />
+  ))}
+{alternates && (
+  <link
+    rel="alternate"
+    hreflang="x-default"
+    href={new URL(switchLangPath(Astro.url, DEFAULT_LANG), site).href}
+  />
+)}
+<link rel="icon" href={withBase('favicon.svg')} type="image/svg+xml" />
+<link rel="sitemap" href={withBase('sitemap-index.xml')} />
+<meta name="theme-color" media="(prefers-color-scheme: light)" content={SITE.themeColor.light} />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content={SITE.themeColor.dark} />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={SITE.title[lang]} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content={ogLocale[lang]} />
+<meta name="twitter:card" content="summary" />
+<script is:inline>
+  // Applica il tema salvato prima del primo disegno (evita il lampo di colore).
+  try {
+    var saved = JSON.parse(localStorage.getItem('sh:v1:global:theme') || 'null');
+    if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+  } catch (e) {}
+</script>

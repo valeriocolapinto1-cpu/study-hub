@@ -1,0 +1,59 @@
+/**
+ * Token del design system — unica fonte di verità.
+ * Portati 1:1 dal prototipo (docs/prototipo.html, blocco `:root`).
+ * Stanno in `@theme` così Tailwind li espone sia come custom property
+ * (`var(--color-copper)`) sia come utility (`text-copper`, `bg-panel`, …).
+ */
+@theme {
+  /* — superfici — */
+  --color-bg: #0e1116;
+  --color-panel: #151b23;
+  --color-panel-2: #1b232d;
+  --color-panel-3: #212c38;
+  --color-well: #0b0e13; /* fondo di <pre>, input, out-box */
+
+  /* — linee — */
+  --color-line: #2a3542;
+  --color-line-soft: #222c37;
+  /**
+   * Il reticolo di fondo ha un colore suo, più spento delle linee vere: prima
+   * usava `--color-line-soft` e la pagina sembrava carta millimetrata, con la
+   * griglia che gridava quanto il contenuto.
+   */
+  --color-grid: #1a222c;
+
+  /* — testo — */
+  --color-ink: #e7edf4;
+  --color-muted: #95a3b3;
+  --color-faint: #5e6b7a;
+  --color-prose: #c9d4df; /* corpo dei moduli di studio */
+  --color-code: #dce6f0;
+  --color-pre: #cbd6e2;
+
+  /* — accenti — */
+  --color-copper: #c88a4e;
+  --color-copper-dim: #8f6335;
+  --color-copper-hi: #d69a63; /* hover del bottone primario */
+  --color-copper-ink: #1a120a; /* testo sul bottone primario */
+  --color-cyan: #37c2d6;
+  --color-cyan-dim: #1c6470;
+
+  /* — semantici — */
+  --color-green: #4fc26e; /* corretto */
+  --color-red: #e5574e; /* errore / overflow */
+  --color-amber: #e0a458; /* trappole / avvisi */
+  --color-violet: #9b8bd6; /* label negli snippet assembly */
+
+  /* — tipografia — */
+  --font-display: 'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* — forma — */
+  --radius-panel: 14px;
+  --radius-chip: 9px;
+  --shadow-panel: 0 12px 34px -14px rgba(0, 0, 0, 0.7);
+
+  /* — griglia di sfondo — */
+  --grid-step: 46px;
+}

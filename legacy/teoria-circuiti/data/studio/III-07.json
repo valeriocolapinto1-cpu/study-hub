@@ -1,0 +1,60 @@
+{
+ "id": "III-07",
+ "obiettivi": [
+  "Dimostrare la conservazione della potenza complessa",
+  "Fare il bilancio delle potenze di un circuito",
+  "Capire cosa si conserva (P e Q) e cosa no"
+ ],
+ "teoria": [
+  "In regime sinusoidale la somma delle potenze complesse assorbite da tutti i rami (generatori inclusi, convenzione degli utilizzatori) è nulla: $\\sum_k\\dot V_k\\dot I_k^*=0$. Quindi si conservano separatamente $\\sum P_k=0$ e $\\sum Q_k=0$, mentre i moduli $|S_k|$ non si conservano.",
+  "<strong>Bilancio.</strong> La potenza attiva erogata dai generatori è uguale a quella assorbita dai resistori; la reattiva erogata è uguale alla reattiva assorbita da induttori e condensatori (con segno)."
+ ],
+ "figure": [],
+ "dimostrazioni": [
+  {
+   "titolo": "Conservazione della potenza complessa",
+   "enunciato": "$\\sum_k\\dot V_k\\dot I_k^*=0$ (valori efficaci, convenzione degli utilizzatori).",
+   "passi": [
+    "I fasori $\\dot{\\mathbf V}$ soddisfano la KVL e $\\dot{\\mathbf I}$ la KCL (le equazioni hanno coefficienti reali $0,\\pm1$).",
+    "Anche $\\dot{\\mathbf I}^*$ soddisfa la KCL, perché la coniugazione conserva le equazioni a coefficienti reali.",
+    "Per il teorema di Tellegen $\\dot{\\mathbf V}^{\\mathsf T}\\dot{\\mathbf I}^*=0$, cioè $\\sum_k\\dot V_k\\dot I_k^*=0$. Parte reale: $\\sum P_k=0$; parte immaginaria: $\\sum Q_k=0$. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Bilancio su RL serie",
+   "testo": "$\\dot V_g=10\\,\\mathrm V$ (efficace) su $R=3\\,\\Omega$ in serie a $X_L=4\\,\\Omega$. Verifica il bilancio.",
+   "soluzione": [
+    "$\\dot I=\\dfrac{10}{3+4j}=1{,}2-1{,}6j$, $|I|^2=4$.",
+    "Generatore (erogata): $S=\\dot V\\dot I^*=10(1{,}2+1{,}6j)=12+16j$.",
+    "Assorbite: $R$: $P=3\\cdot4=12$; $L$: $Q=4\\cdot4=16$. Quadra. ✓"
+   ]
+  },
+  {
+   "titolo": "Cosa non si conserva",
+   "testo": "In un circuito $|S_g|=20$, $|S_R|=12$, $|S_L|=16$. Si conservano i moduli?",
+   "soluzione": [
+    "$12+16=28\\ne20$: i moduli no; si conservano $P$ ($12$) e $Q$ ($16$)."
+   ]
+  },
+  {
+   "titolo": "Reattiva con condensatore",
+   "testo": "Carico $P=12$, $Q_L=16$ con un condensatore che assorbe $Q_C=-16$.",
+   "soluzione": [
+    "$\\sum Q=16-16=0$: il generatore eroga solo potenza attiva: rifasamento completo."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Sommare le potenze apparenti dei rami.",
+   "corretto": "Si sommano le potenze complesse (o $P$ e $Q$ separatamente)."
+  }
+ ],
+ "esame": "Conservazione e bilancio: 12-7-2005, 12-7-2007, 25-9-2007, 11-2-2008 [STORICO].",
+ "formulario": [
+  "cons-s",
+  "bilancio-p"
+ ]
+}

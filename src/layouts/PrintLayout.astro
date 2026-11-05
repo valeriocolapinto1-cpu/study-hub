@@ -1,0 +1,29 @@
+---
+/** Pagine di stampa (formulari A4, prove d'esame): niente intestazione né navigazione. */
+import '../styles/base.css';
+import '../styles/prose.css';
+import '../styles/print.css';
+import Head from '../components/Head.astro';
+import { htmlLang, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  course?: string | undefined;
+}
+const { lang, title, description, course } = Astro.props;
+---
+
+<!doctype html>
+<html lang={htmlLang[lang]} data-course={course} data-print>
+  <head>
+    <Head lang={lang} title={title} description={description} noindex />
+    <slot name="head" />
+  </head>
+  <body>
+    <main id="contenuto" class="print-page">
+      <slot />
+    </main>
+  </body>
+</html>

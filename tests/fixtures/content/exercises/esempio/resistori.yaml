@@ -1,0 +1,19 @@
+- id: ohm-base
+  topic: resistori
+  objectives: [resistori.1]
+  difficulty: 1
+  kind: static
+  statement: { it: 'Calcola V con R = 100 Ω e I = 0,02 A.', en: 'Find V with R = 100 Ω and I = 0.02 A.' }
+  steps:
+    - title: { it: Legge di Ohm, en: Ohm's law }
+      body: { it: '$V = R I = 2$ V', en: '$V = R I = 2$ V' }
+  answer:
+    - { label: { it: Tensione, en: Voltage }, value: 2, unit: V }
+  origin: originale
+- id: ohm-generato
+  topic: resistori
+  objectives: [resistori.1]
+  difficulty: 2
+  kind: generated
+  generator: esempio/legge-di-ohm
+  origin: tipologia-appello

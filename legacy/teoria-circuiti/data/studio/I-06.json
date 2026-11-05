@@ -1,0 +1,38 @@
+{
+ "id": "I-06",
+ "obiettivi": [
+  "Calcolare potenza ed energia nei bipoli elementari",
+  "Riconoscere le incongruenze degli elementi ideali",
+  "Costruire il modello di un bipolo reale"
+ ],
+ "teoria": [
+  "<strong>Energie.</strong> Resistore: potenza assorbita $p=Ri^2=v^2/R\\ge0$ (sempre dissipata). Condensatore: energia $W_C=\\tfrac12 C v^2$. Induttore: $W_L=\\tfrac12 L i^2$. Tutti e tre sono passivi per $R,C,L>0$.",
+  "<strong>Incongruenze degli elementi ideali.</strong> Gli elementi ideali possono produrre situazioni prive di soluzione o con valori impulsivi: due generatori di tensione diversi in parallelo violano la KVL; un generatore di corrente su un circuito aperto (o in serie con un altro di valore diverso) viola la KCL; un generatore di tensione in corto ha corrente indeterminata; due condensatori a tensione diversa collegati in parallelo imporrebbero un salto istantaneo di tensione.",
+  "<strong>Bipoli reali.</strong> Un componente reale si descrive con un circuito equivalente più ricco: una pila reale è un generatore di tensione $E$ con una resistenza interna $r$ in serie ($v=E-r\\,i$), oppure un generatore di corrente $E/r$ in parallelo a $r$. L'incongruenza sparisce tenendo conto delle resistenze (piccole ma non nulle) dei collegamenti."
+ ],
+ "figure": [],
+ "dimostrazioni": [],
+ "esempi": [
+  {
+   "titolo": "Due condensatori collegati in parallelo",
+   "testo": "$C_1=C_2=1\\,\\mathrm{F}$ con $v_1=2\\,\\mathrm{V}$ e $v_2=0$ vengono collegati in parallelo. Trova la tensione finale e la variazione di energia.",
+   "soluzione": [
+    "Conservazione della carica: $Q=C_1 v_1 + C_2 v_2 = 2\\,\\mathrm{C}$. Finale: $v=Q/(C_1+C_2)=1\\,\\mathrm{V}$.",
+    "Energia iniziale: $\\tfrac12\\cdot1\\cdot2^2=2\\,\\mathrm{J}$. Finale: $\\tfrac12\\cdot 2\\cdot1^2 = 1\\,\\mathrm{J}$.",
+    "Un joule va perso: nel modello ideale non c'è un elemento dissipativo, ma nel circuito reale c'è sempre una resistenza (o radiazione) che lo dissipa."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Concludere che l'energia si conserva sempre nel circuito ideale.",
+   "corretto": "Un collegamento ideale può avere transitorio impulsivo con perdita di energia: il risultato dipende da una resistenza trascurata."
+  }
+ ],
+ "esame": "Aspetti energetici e passività: 12-7-2005, 25-9-2007, 11-2-2008 (domande su potenze e proprietà) [STORICO].",
+ "formulario": [
+  "energia-c",
+  "energia-l",
+  "pila-reale"
+ ]
+}

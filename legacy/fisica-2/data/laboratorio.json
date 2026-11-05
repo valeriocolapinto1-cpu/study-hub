@@ -1,0 +1,154 @@
+{
+  "nota": "Titoli delle esperienze dal programma ufficiale (Blocco 7). Obiettivi, strumentazione e voci specifiche sono INDICATIVI (marcati 'indicativo': true) e vanno confermati con le schede/istruzioni del docente. Le relazioni vanno portate all'orale.",
+  "checklistComune": [
+    "Titolo, data, componenti del gruppo",
+    "Scopo dell'esperienza",
+    "Cenni teorici e formule utilizzate",
+    "Apparato sperimentale e strumenti (con portata e risoluzione/sensibilità)",
+    "Procedura di misura",
+    "Tabelle dei dati grezzi con unità di misura e incertezze",
+    "Analisi dati: propagazione delle incertezze, eventuali fit (minimi quadrati)",
+    "Grafici con assi etichettati, unità e barre d'errore",
+    "Confronto con i valori attesi (scarto, compatibilità)",
+    "Discussione degli errori sistematici e casuali",
+    "Conclusioni"
+  ],
+  "esperienze": [
+    {
+      "id": "lab1",
+      "titolo": "Misure in corrente continua",
+      "lezioni": [
+        20,
+        22,
+        23,
+        32
+      ],
+      "indicativo": true,
+      "obiettivo": "Misurare correnti, differenze di potenziale e resistenze in circuiti in corrente continua, valutando le incertezze e gli errori di inserzione degli strumenti.",
+      "strumentazione": [
+        "Alimentatore DC",
+        "Multimetro digitale (voltmetro / amperometro / ohmmetro)",
+        "Resistori",
+        "Breadboard e cavi"
+      ],
+      "checklistSpecifica": [
+        "Resistenze interne degli strumenti ed errori di inserzione",
+        "Verifica della legge di Ohm / resistenze equivalenti"
+      ],
+      "formule": [
+        "ohm",
+        "R-serie-par",
+        "inserzione",
+        "propagazione"
+      ]
+    },
+    {
+      "id": "lab2",
+      "titolo": "Misure su un circuito RC con multimetro",
+      "lezioni": [
+        31,
+        37
+      ],
+      "indicativo": true,
+      "obiettivo": "Studiare la carica (e/o la scarica) di un condensatore attraverso una resistenza e ricavare la costante di tempo τ = RC.",
+      "strumentazione": [
+        "Alimentatore DC",
+        "Multimetro digitale",
+        "Condensatore e resistori",
+        "Cronometro",
+        "Breadboard e cavi"
+      ],
+      "checklistSpecifica": [
+        "Tabella V_C(t) o I(t)",
+        "Linearizzazione (logaritmo) e fit per τ",
+        "Confronto tra τ misurato e RC nominale"
+      ],
+      "formule": [
+        "rc-carica",
+        "rc-scarica",
+        "minimi-quadrati"
+      ]
+    },
+    {
+      "id": "lab3",
+      "titolo": "Misure su un circuito RC con oscilloscopio",
+      "lezioni": [
+        42,
+        44,
+        51
+      ],
+      "indicativo": true,
+      "obiettivo": "Osservare all'oscilloscopio i transitori di carica e scarica di un circuito RC alimentato da un'onda quadra e misurare la costante di tempo.",
+      "strumentazione": [
+        "Generatore di funzioni (onda quadra)",
+        "Oscilloscopio",
+        "Condensatore e resistori",
+        "Sonde e cavi"
+      ],
+      "checklistSpecifica": [
+        "Impostazioni dell'oscilloscopio (scale, trigger)",
+        "Metodo di misura di τ dalla traccia",
+        "Effetto dell'impedenza d'ingresso di generatore e oscilloscopio"
+      ],
+      "formule": [
+        "rc-carica",
+        "rc-scarica"
+      ]
+    },
+    {
+      "id": "lab4",
+      "titolo": "Misure di un circuito DC tramite Thevenin",
+      "lezioni": [
+        20,
+        44,
+        51
+      ],
+      "indicativo": true,
+      "obiettivo": "Determinare sperimentalmente il circuito equivalente di Thevenin (V_Th, R_Th) di una rete in corrente continua e confrontarlo con il calcolo.",
+      "strumentazione": [
+        "Alimentatore DC",
+        "Multimetro digitale",
+        "Resistori / carico variabile",
+        "Breadboard e cavi"
+      ],
+      "checklistSpecifica": [
+        "Misura di V_Th a vuoto e di R_Th",
+        "Calcolo teorico dell'equivalente e confronto",
+        "Eventuale curva V(I) sul carico"
+      ],
+      "formule": [
+        "thevenin",
+        "max-pot",
+        "kirchhoff-maglie"
+      ]
+    },
+    {
+      "id": "lab5",
+      "titolo": "Ottica geometrica",
+      "lezioni": [
+        49,
+        50,
+        56
+      ],
+      "indicativo": true,
+      "obiettivo": "Verificare leggi dell'ottica geometrica (riflessione, rifrazione, lenti) con misure su banco ottico.",
+      "strumentazione": [
+        "Banco ottico",
+        "Sorgente luminosa / laser",
+        "Lenti e/o prismi, lastre",
+        "Schermo",
+        "Righello / goniometro"
+      ],
+      "checklistSpecifica": [
+        "Schema del banco ottico con distanze",
+        "Grandezze misurate e metodo (es. legge di Snell, lenti)",
+        "Stima dell'incertezza sulle posizioni/angoli"
+      ],
+      "formule": [
+        "snell",
+        "riflessione",
+        "rifl-totale"
+      ]
+    }
+  ]
+}

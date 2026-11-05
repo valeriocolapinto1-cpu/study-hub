@@ -1,0 +1,476 @@
+{
+  "blocchi": [
+    {
+      "id": "b1",
+      "numero": 1,
+      "titolo": "Elettrostatica nel vuoto, conduttori, dielettrici",
+      "ore": 25,
+      "capitoli": "Cap. 1-3",
+      "sezioni": [
+        {
+          "id": "b1a",
+          "titolo": "1a) Elettrostatica nel vuoto - Campo elettrico e Potenziale",
+          "testoUfficiale": "Azioni elettriche; carica elettrica e legge di Coulomb; il campo elettrico; campo elettrostatico generato da sistemi di cariche con distribuzione spaziale fissa e nota. Teorema di Gauss; la prima equazione di Maxwell; il potenziale elettrico. Il dipolo elettrico; azioni meccaniche su dipoli elettrici in un campo elettrico esterno. Rotore di un campo vettoriale. Sviluppi derivanti dalla conservatività del campo elettrostatico.",
+          "argomenti": [
+            {
+              "id": "b1a-1",
+              "testo": "Azioni elettriche"
+            },
+            {
+              "id": "b1a-2",
+              "testo": "carica elettrica e legge di Coulomb"
+            },
+            {
+              "id": "b1a-3",
+              "testo": "il campo elettrico"
+            },
+            {
+              "id": "b1a-4",
+              "testo": "campo elettrostatico generato da sistemi di cariche con distribuzione spaziale fissa e nota"
+            },
+            {
+              "id": "b1a-5",
+              "testo": "Teorema di Gauss"
+            },
+            {
+              "id": "b1a-6",
+              "testo": "la prima equazione di Maxwell"
+            },
+            {
+              "id": "b1a-7",
+              "testo": "il potenziale elettrico"
+            },
+            {
+              "id": "b1a-8",
+              "testo": "Il dipolo elettrico"
+            },
+            {
+              "id": "b1a-9",
+              "testo": "azioni meccaniche su dipoli elettrici in un campo elettrico esterno"
+            },
+            {
+              "id": "b1a-10",
+              "testo": "Rotore di un campo vettoriale"
+            },
+            {
+              "id": "b1a-11",
+              "testo": "Sviluppi derivanti dalla conservatività del campo elettrostatico"
+            }
+          ]
+        },
+        {
+          "id": "b1b",
+          "titolo": "1b) Sistemi di conduttori e campo elettrostatico",
+          "testoUfficiale": "Campo elettrostatico e distribuzioni di carica nei conduttori. Capacità elettrica. Sistemi di condensatori; energia del campo elettrostatico. Azioni meccaniche di natura elettrostatica nei conduttori. Il problema generale dell'elettrostatica in alcuni casi notevoli.",
+          "argomenti": [
+            {
+              "id": "b1b-1",
+              "testo": "Campo elettrostatico e distribuzioni di carica nei conduttori"
+            },
+            {
+              "id": "b1b-2",
+              "testo": "Capacità elettrica"
+            },
+            {
+              "id": "b1b-3",
+              "testo": "Sistemi di condensatori"
+            },
+            {
+              "id": "b1b-4",
+              "testo": "energia del campo elettrostatico"
+            },
+            {
+              "id": "b1b-5",
+              "testo": "Azioni meccaniche di natura elettrostatica nei conduttori"
+            },
+            {
+              "id": "b1b-6",
+              "testo": "Il problema generale dell'elettrostatica in alcuni casi notevoli"
+            }
+          ]
+        },
+        {
+          "id": "b1c",
+          "titolo": "1c) Elettrostatica in presenza di dielettrici",
+          "testoUfficiale": "La costante dielettrica; interpretazione microscopica. Vettore di polarizzazione elettrica (o intensità di polarizzazione). Le equazioni dell'elettrostatica in presenza di dielettrici; il problema generale dell'elettrostatica in presenza di dielettrici e le condizioni al contorno; energia elettrostatica in presenza di dielettrici; macchine elettrostatiche.",
+          "argomenti": [
+            {
+              "id": "b1c-1",
+              "testo": "La costante dielettrica"
+            },
+            {
+              "id": "b1c-2",
+              "testo": "interpretazione microscopica"
+            },
+            {
+              "id": "b1c-3",
+              "testo": "Vettore di polarizzazione elettrica (o intensità di polarizzazione)"
+            },
+            {
+              "id": "b1c-4",
+              "testo": "Le equazioni dell'elettrostatica in presenza di dielettrici"
+            },
+            {
+              "id": "b1c-5",
+              "testo": "il problema generale dell'elettrostatica in presenza di dielettrici e le condizioni al contorno"
+            },
+            {
+              "id": "b1c-6",
+              "testo": "energia elettrostatica in presenza di dielettrici"
+            },
+            {
+              "id": "b1c-7",
+              "testo": "macchine elettrostatiche"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b2",
+      "numero": 2,
+      "titolo": "Corrente elettrica stazionaria",
+      "ore": 15,
+      "capitoli": "Cap. 4",
+      "sezioni": [
+        {
+          "id": "b2a",
+          "titolo": null,
+          "testoUfficiale": "Conduttori; corrente elettrica; densità di corrente ed equazione di continuità. Resistenza elettrica e legge di Ohm; fenomeni dissipativi nei conduttori percorsi da corrente; forza elettromotrice e generatori elettrici. Resistenza elettrica di strutture conduttrici ohmiche; circuiti in corrente continua. Superconduttori; cenno ad alcuni metodi di misura di correnti, differenze di potenziale e resistenze; cariche su conduttori percorsi da corrente; circuiti percorsi da corrente quasi stazionaria.",
+          "argomenti": [
+            {
+              "id": "b2a-1",
+              "testo": "Conduttori"
+            },
+            {
+              "id": "b2a-2",
+              "testo": "corrente elettrica"
+            },
+            {
+              "id": "b2a-3",
+              "testo": "densità di corrente ed equazione di continuità"
+            },
+            {
+              "id": "b2a-4",
+              "testo": "Resistenza elettrica e legge di Ohm"
+            },
+            {
+              "id": "b2a-5",
+              "testo": "fenomeni dissipativi nei conduttori percorsi da corrente"
+            },
+            {
+              "id": "b2a-6",
+              "testo": "forza elettromotrice e generatori elettrici"
+            },
+            {
+              "id": "b2a-7",
+              "testo": "Resistenza elettrica di strutture conduttrici ohmiche"
+            },
+            {
+              "id": "b2a-8",
+              "testo": "circuiti in corrente continua"
+            },
+            {
+              "id": "b2a-9",
+              "testo": "Superconduttori"
+            },
+            {
+              "id": "b2a-10",
+              "testo": "cenno ad alcuni metodi di misura di correnti, differenze di potenziale e resistenze"
+            },
+            {
+              "id": "b2a-11",
+              "testo": "cariche su conduttori percorsi da corrente"
+            },
+            {
+              "id": "b2a-12",
+              "testo": "circuiti percorsi da corrente quasi stazionaria"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b3",
+      "numero": 3,
+      "titolo": "Fenomeni magnetici stazionari nel vuoto e nella materia",
+      "ore": 15,
+      "capitoli": "Cap. 5-6",
+      "sezioni": [
+        {
+          "id": "b3a",
+          "titolo": null,
+          "testoUfficiale": "Forza di Lorentz e vettore induzione magnetica; azioni meccaniche su circuiti percorsi da corrente stazionaria in un campo magnetico esterno. Campo magnetico generato da correnti stazionarie nel vuoto; proprietà del vettore induzione magnetica nel caso stazionario. Potenziale vettore. Interazioni fra circuiti percorsi da corrente stazionaria; effetto Hall.",
+          "argomenti": [
+            {
+              "id": "b3a-1",
+              "testo": "Forza di Lorentz e vettore induzione magnetica"
+            },
+            {
+              "id": "b3a-2",
+              "testo": "azioni meccaniche su circuiti percorsi da corrente stazionaria in un campo magnetico esterno"
+            },
+            {
+              "id": "b3a-3",
+              "testo": "Campo magnetico generato da correnti stazionarie nel vuoto"
+            },
+            {
+              "id": "b3a-4",
+              "testo": "proprietà del vettore induzione magnetica nel caso stazionario"
+            },
+            {
+              "id": "b3a-5",
+              "testo": "Potenziale vettore"
+            },
+            {
+              "id": "b3a-6",
+              "testo": "Interazioni fra circuiti percorsi da corrente stazionaria"
+            },
+            {
+              "id": "b3a-7",
+              "testo": "effetto Hall"
+            }
+          ]
+        },
+        {
+          "id": "b3b",
+          "titolo": "Magnetismo nella materia",
+          "testoUfficiale": "Polarizzazione magnetica e sue relazioni con le correnti microscopiche. Le equazioni fondamentali della magnetostatica in presenza di materia e le condizioni di raccordo per i campi magnetici; proprietà macroscopiche dei materiali dia-, para- e ferro-magnetici. Circuiti magnetici, elettromagneti e magneti permanenti.",
+          "argomenti": [
+            {
+              "id": "b3b-1",
+              "testo": "Polarizzazione magnetica e sue relazioni con le correnti microscopiche"
+            },
+            {
+              "id": "b3b-2",
+              "testo": "Le equazioni fondamentali della magnetostatica in presenza di materia e le condizioni di raccordo per i campi magnetici"
+            },
+            {
+              "id": "b3b-3",
+              "testo": "proprietà macroscopiche dei materiali dia-, para- e ferro-magnetici"
+            },
+            {
+              "id": "b3b-4",
+              "testo": "Circuiti magnetici, elettromagneti e magneti permanenti"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b4",
+      "numero": 4,
+      "titolo": "Campi elettrici e magnetici variabili nel tempo",
+      "ore": 15,
+      "capitoli": "Cap. 7",
+      "sezioni": [
+        {
+          "id": "b4a",
+          "titolo": null,
+          "testoUfficiale": "Terza e quarta equazione di Maxwell. Induzione elettromagnetica; la legge di Faraday-Neumann; interpretazione fisica del fenomeno dell'induzione elettromagnetica; forma locale della legge di Faraday-Neumann ed espressione della terza equazione di Maxwell nel caso non-stazionario; il fenomeno dell'autoinduzione e coefficiente di autoinduzione. Induzione mutua. Analisi energetica di un circuito RL. Energia magnetica ed azioni meccaniche. Elettrogeneratori e motori elettrici; la quarta equazione di Maxwell nel caso non stazionario.",
+          "argomenti": [
+            {
+              "id": "b4a-1",
+              "testo": "Terza e quarta equazione di Maxwell"
+            },
+            {
+              "id": "b4a-2",
+              "testo": "Induzione elettromagnetica"
+            },
+            {
+              "id": "b4a-3",
+              "testo": "la legge di Faraday-Neumann"
+            },
+            {
+              "id": "b4a-4",
+              "testo": "interpretazione fisica del fenomeno dell'induzione elettromagnetica"
+            },
+            {
+              "id": "b4a-5",
+              "testo": "forma locale della legge di Faraday-Neumann ed espressione della terza equazione di Maxwell nel caso non-stazionario"
+            },
+            {
+              "id": "b4a-6",
+              "testo": "il fenomeno dell'autoinduzione e coefficiente di autoinduzione"
+            },
+            {
+              "id": "b4a-7",
+              "testo": "Induzione mutua"
+            },
+            {
+              "id": "b4a-8",
+              "testo": "Analisi energetica di un circuito RL"
+            },
+            {
+              "id": "b4a-9",
+              "testo": "Energia magnetica ed azioni meccaniche"
+            },
+            {
+              "id": "b4a-10",
+              "testo": "Elettrogeneratori e motori elettrici"
+            },
+            {
+              "id": "b4a-11",
+              "testo": "la quarta equazione di Maxwell nel caso non stazionario"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b5",
+      "numero": 5,
+      "titolo": "Onde elettromagnetiche e interazione radiazione-materia",
+      "ore": 15,
+      "capitoli": "Cap. 9-10",
+      "sezioni": [
+        {
+          "id": "b5a",
+          "titolo": null,
+          "testoUfficiale": "Equazione delle onde elettromagnetiche. Onde elettromagnetiche piane e sferiche. Spettro delle onde elettromagnetiche; conservazione dell'energia e vettore di Poynting. Potenziali elettrodinamici. Gauge di Lorentz. Radiazione di un dipolo oscillante.",
+          "argomenti": [
+            {
+              "id": "b5a-1",
+              "testo": "Equazione delle onde elettromagnetiche"
+            },
+            {
+              "id": "b5a-2",
+              "testo": "Onde elettromagnetiche piane e sferiche"
+            },
+            {
+              "id": "b5a-3",
+              "testo": "Spettro delle onde elettromagnetiche"
+            },
+            {
+              "id": "b5a-4",
+              "testo": "conservazione dell'energia e vettore di Poynting"
+            },
+            {
+              "id": "b5a-5",
+              "testo": "Potenziali elettrodinamici"
+            },
+            {
+              "id": "b5a-6",
+              "testo": "Gauge di Lorentz"
+            },
+            {
+              "id": "b5a-7",
+              "testo": "Radiazione di un dipolo oscillante"
+            }
+          ]
+        },
+        {
+          "id": "b5b",
+          "titolo": "Fenomeni classici di interazione fra radiazione e materia",
+          "testoUfficiale": "Condizioni di raccordo per i campi al passaggio da un mezzo materiale ad un altro; riflessione e rifrazione delle onde elettromagnetiche. Caratteristiche cinematiche dell'onda riflessa e rifratta. Legge di Snell. Dispersione della luce. Luce naturale e radiazione polarizzata. Principio di Huygens-Fresnel e teorema di Kirchhoff. Interferenza. Esperimento di Young. Diffrazione: considerazioni introduttive. Diffrazione di Fraunhofer da fenditura rettilinea.",
+          "argomenti": [
+            {
+              "id": "b5b-1",
+              "testo": "Condizioni di raccordo per i campi al passaggio da un mezzo materiale ad un altro"
+            },
+            {
+              "id": "b5b-2",
+              "testo": "riflessione e rifrazione delle onde elettromagnetiche"
+            },
+            {
+              "id": "b5b-3",
+              "testo": "Caratteristiche cinematiche dell'onda riflessa e rifratta"
+            },
+            {
+              "id": "b5b-4",
+              "testo": "Legge di Snell"
+            },
+            {
+              "id": "b5b-5",
+              "testo": "Dispersione della luce"
+            },
+            {
+              "id": "b5b-6",
+              "testo": "Luce naturale e radiazione polarizzata"
+            },
+            {
+              "id": "b5b-7",
+              "testo": "Principio di Huygens-Fresnel e teorema di Kirchhoff"
+            },
+            {
+              "id": "b5b-8",
+              "testo": "Interferenza"
+            },
+            {
+              "id": "b5b-9",
+              "testo": "Esperimento di Young"
+            },
+            {
+              "id": "b5b-10",
+              "testo": "Diffrazione: considerazioni introduttive"
+            },
+            {
+              "id": "b5b-11",
+              "testo": "Diffrazione di Fraunhofer da fenditura rettilinea"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b6",
+      "numero": 6,
+      "titolo": "Cenni di Fisica Moderna",
+      "ore": 10,
+      "capitoli": null,
+      "sezioni": [
+        {
+          "id": "b6a",
+          "titolo": null,
+          "testoUfficiale": "I superconduttori. La relatività ristretta e l'elettromagnetismo.",
+          "argomenti": [
+            {
+              "id": "b6a-1",
+              "testo": "I superconduttori"
+            },
+            {
+              "id": "b6a-2",
+              "testo": "La relatività ristretta e l'elettromagnetismo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b7",
+      "numero": 7,
+      "titolo": "Laboratorio con relazioni",
+      "ore": 25,
+      "capitoli": null,
+      "sezioni": [
+        {
+          "id": "b7a",
+          "titolo": null,
+          "testoUfficiale": "Misure in corrente continua. Misure su un circuito RC con multimetro. Misure su un circuito RC con oscilloscopio. Misure di un circuito DC tramite Thevenin. Ottica geometrica.",
+          "argomenti": [
+            {
+              "id": "b7a-1",
+              "testo": "Misure in corrente continua"
+            },
+            {
+              "id": "b7a-2",
+              "testo": "Misure su un circuito RC con multimetro"
+            },
+            {
+              "id": "b7a-3",
+              "testo": "Misure su un circuito RC con oscilloscopio"
+            },
+            {
+              "id": "b7a-4",
+              "testo": "Misure di un circuito DC tramite Thevenin"
+            },
+            {
+              "id": "b7a-5",
+              "testo": "Ottica geometrica"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

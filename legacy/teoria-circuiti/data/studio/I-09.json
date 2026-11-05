@@ -1,0 +1,72 @@
+{
+ "id": "I-09",
+ "obiettivi": [
+  "Definire nullatore, noratore e nullore",
+  "Collegare il modello lineare dell'op-amp al nullore",
+  "Calcolare le configurazioni standard"
+ ],
+ "teoria": [
+  "Il <strong>nullatore</strong> è un bipolo con $v=0$ e $i=0$ contemporaneamente. Il <strong>noratore</strong> è un bipolo con tensione e corrente <em>qualsiasi</em>. Un <strong>nullore</strong> è il doppio bipolo formato dal nullatore (porta 1) e dal noratore (porta 2): impone $v_1=0$, $i_1=0$ e lascia libere $v_2$, $i_2$. Negli esercizi si usa di solito la versione sbilanciata (un morsetto comune).",
+  "<strong>Dal componente reale all'ideale.</strong> L'amplificatore operazionale reale è modellabile in regione lineare con resistenza di ingresso $R_i$ ($10^5$–$10^{12}\\,\\Omega$), resistenza d'uscita $R_o$ ($5$–$50\\,\\Omega$) e generatore controllato $v_o=A\\,v_d$ con $v_d=v_2-v_1$ e $A$ tra $10^5$ e $10^8$. Ha tre regioni: lineare e due di saturazione ($\\pm V_{cc}$). Nel limite ideale $A\\to\\infty$, $R_i\\to\\infty$, $R_o=0$ si ha $v_d=0$ e correnti d'ingresso nulle: è un nullore.",
+  "<strong>Due configurazioni tipiche con il nullore.</strong> (a) <em>Generatore di tensione:</em> la corrente $I_g$ che attraversa $R$ produce $V=R\\,I_g$; il generatore pilota ha tensione nulla e non eroga potenza (la potenza arriva dal nullore). (b) <em>Generatore di corrente:</em> la tensione $V_g$ è riportata su $R$ e dà $I=V_g/R$; il generatore pilota ha corrente nulla.",
+  "<div class=\"table-wrap\"><table><thead><tr><th>Circuito</th><th>Uscita</th></tr></thead><tbody><tr><td>Invertente</td><td>$v_o=-\\dfrac{R_2}{R_1}V_g$</td></tr><tr><td>Sommatore invertente</td><td>$v_o=-R_0\\left(\\dfrac{V_{g1}}{R_1}+\\dfrac{V_{g2}}{R_2}+\\dfrac{V_{g3}}{R_3}\\right)$</td></tr><tr><td>Non invertente</td><td>$v_o=\\left(1+\\dfrac{R_2}{R_1}\\right)V_g$</td></tr><tr><td>Inseguitore</td><td>$v_o=V_g$ (impedenza d'ingresso teoricamente infinita)</td></tr><tr><td>Differenziale</td><td>$v_o=\\dfrac{R_2}{R_1}(V_{g2}-V_{g1})$</td></tr></tbody></table></div>"
+ ],
+ "figure": [
+  {
+   "alt": "Nullore: nullatore (v=0, i=0) seguito da noratore (v e i libere)",
+   "svg": "<svg viewBox=\"0 0 300 150\" width=\"300\" height=\"150\" xmlns=\"http://www.w3.org/2000/svg\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" font-family=\"system-ui,sans-serif\" font-size=\"14\" aria-hidden=\"true\"><rect x=\"95\" y=\"45\" width=\"50\" height=\"60\"/><rect x=\"155\" y=\"45\" width=\"50\" height=\"60\"/><polyline points=\"40 60 95 60\"/><polyline points=\"40 90 95 90\"/><polyline points=\"205 60 260 60\"/><polyline points=\"205 90 260 90\"/><text x=\"120\" y=\"72\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">v=0</text><text x=\"120\" y=\"92\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">i=0</text><text x=\"180\" y=\"72\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">v, i</text><text x=\"180\" y=\"92\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">libere</text><text x=\"120\" y=\"38\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">nullatore</text><text x=\"180\" y=\"38\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">noratore</text><circle cx=\"40\" cy=\"60\" r=\"3\" fill=\"currentColor\"/><circle cx=\"40\" cy=\"90\" r=\"3\" fill=\"currentColor\"/><circle cx=\"260\" cy=\"60\" r=\"3\" fill=\"currentColor\"/><circle cx=\"260\" cy=\"90\" r=\"3\" fill=\"currentColor\"/></svg>"
+  },
+  {
+   "alt": "Amplificatore operazionale in configurazione invertente con R₁ in ingresso e R₂ in retroazione",
+   "svg": "<svg viewBox=\"0 0 340 190\" width=\"340\" height=\"190\" xmlns=\"http://www.w3.org/2000/svg\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" font-family=\"system-ui,sans-serif\" font-size=\"14\" aria-hidden=\"true\"><g transform=\"translate(0,16)\"><polyline points=\"20 60 40 60\"/><polyline points=\"40 60 50 60 55 51 65 69 75 51 85 69 90 60 100 60\"/><text x=\"70\" y=\"44\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">R₁</text><polyline points=\"100 60 140 60\"/><polyline points=\"140 60 140 40\"/><path d=\"M140 30 L140 130 L240 80 Z\" transform=\"translate(0,-5)\"/><polyline points=\"140 105 100 105\"/><polyline points=\"100 105 100 135\"/><polyline points=\"100 135 100 143\"/><polyline points=\"88 143 112 143\"/><polyline points=\"93 148 107 148\"/><polyline points=\"97 153 103 153\"/><polyline points=\"240 75 300 75\"/><polyline points=\"300 75 300 20\"/><polyline points=\"300 20 120 20\"/><polyline points=\"120 20 120 60\"/><circle cx=\"120\" cy=\"60\" r=\"3\" fill=\"currentColor\"/><polyline points=\"180 20 190 20 195 11 205 29 215 11 225 29 230 20 240 20\"/><text x=\"210\" y=\"8\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">R₂</text><text x=\"20\" y=\"50\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">Vg</text><text x=\"320\" y=\"70\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">Vo</text><text x=\"150\" y=\"64\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">−</text><text x=\"150\" y=\"110\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">+</text><circle cx=\"300\" cy=\"75\" r=\"3\" fill=\"currentColor\"/></g></svg>"
+  }
+ ],
+ "dimostrazioni": [
+  {
+   "titolo": "Guadagno dell'invertente: dal modello con $A$ finito al nullore",
+   "enunciato": "Con modello lineare ($R_i\\to\\infty$, $R_o=0$, guadagno $A$) il guadagno è $v_o/V_g=-\\dfrac{R_2}{R_1}\\cdot\\dfrac{1}{1+(1+R_2/R_1)/A}$, che tende a $-R_2/R_1$ per $A\\to\\infty$.",
+   "passi": [
+    "Ingresso non invertente a massa: $v_d=v_+-v_-=-v_-$, quindi $v_o=A\\,v_d=-A\\,v_-$ e $v_-=-v_o/A$.",
+    "KCL al nodo invertente (corrente d'ingresso nulla): $\\dfrac{V_g-v_-}{R_1}=\\dfrac{v_--v_o}{R_2}$.",
+    "Sostituisci $v_-$: $\\dfrac{V_g+v_o/A}{R_1}=\\dfrac{-v_o/A-v_o}{R_2}$, cioè $R_2V_g+\\dfrac{R_2}{A}v_o=-\\dfrac{R_1}{A}v_o-R_1v_o$.",
+    "Raccogli $v_o$: $R_2V_g=-v_o\\left(R_1+\\dfrac{R_1+R_2}{A}\\right)$, da cui la formula dell'enunciato.",
+    "Per $A\\to\\infty$: $v_d=-v_-=v_o/A\\to0$ (nullatore) e $v_o=-(R_2/R_1)V_g$. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Reale contro ideale",
+   "testo": "Invertente con $R_2/R_1=10$ e $A=10^5$: confronta il guadagno reale con quello ideale.",
+   "soluzione": [
+    "Ideale: $-10$.",
+    "Reale: $-10/(1+11/10^5)=-10/1{,}00011\\approx-9{,}9989$.",
+    "Differenza relativa $\\approx0{,}011\\%$: l'idealizzazione è eccellente."
+   ]
+  },
+  {
+   "titolo": "Nullore come generatore di tensione",
+   "testo": "Un nullore ha un generatore di corrente $I_g=2\\,\\mathrm{A}$ al nullatore in serie a $R=3\\,\\Omega$ verso il noratore: quanto vale la tensione impressa?",
+   "soluzione": [
+    "$I_g$ attraversa $R$ (il nullatore non assorbe corrente): $V=R\\,I_g=3\\cdot2=6\\,\\mathrm{V}$.",
+    "La tensione ai capi del nullatore è nulla: il generatore di corrente pilota non eroga potenza."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Dire che la corrente d'ingresso è nulla «perché la tensione d'ingresso è nulla» come su un corto.",
+   "corretto": "Nel nullatore tensione <em>e</em> corrente sono entrambe nulle: la corrente è nulla perché $R_i\\to\\infty$, la tensione perché $A\\to\\infty$ con retroazione."
+  }
+ ],
+ "esame": "Nullore: proprietà e configurazioni 25-10-2001 [STORICO]; presente in 4 dei 14 esercizi d'analisi 2015–2024 [STORICO].",
+ "formulario": [
+  "invertente",
+  "sommatore",
+  "non-invertente",
+  "inseguitore",
+  "differenziale",
+  "nullore-def",
+  "opamp-reale"
+ ]
+}

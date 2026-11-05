@@ -1,0 +1,52 @@
+{
+ "id": "IV-03",
+ "obiettivi": [
+  "Scomporre una funzione razionale in fratti semplici",
+  "Antitrasformare termine a termine",
+  "Trattare poli doppi"
+ ],
+ "teoria": [
+  "Una $F(s)=N(s)/D(s)$ con $\\deg N<\\deg D$ si scompone in fratti semplici. Per un polo semplice $p$ il termine è $\\dfrac{r}{s-p}$ con residuo $r=\\lim_{s\\to p}(s-p)F(s)$ e dà $re^{pt}$. Se $\\deg N\\ge\\deg D$ si esegue prima la divisione (compare un termine polinomiale in $s$, cioè impulsi).",
+  "Per un polo doppio $p$: $\\dfrac{r_2}{(s-p)^2}+\\dfrac{r_1}{s-p}$ con $r_2=\\lim(s-p)^2F$, $r_1=\\lim\\dfrac{d}{ds}\\left[(s-p)^2F\\right]$; dà $(r_2t+r_1)e^{pt}$."
+ ],
+ "figure": [],
+ "dimostrazioni": [],
+ "esempi": [
+  {
+   "titolo": "Due poli reali",
+   "testo": "$F(s)=\\dfrac{3s+5}{(s+1)(s+3)}$.",
+   "soluzione": [
+    "$A=\\left.\\dfrac{3s+5}{s+3}\\right|_{-1}=1$, $B=\\left.\\dfrac{3s+5}{s+1}\\right|_{-3}=2$.",
+    "$f(t)=e^{-t}+2e^{-3t}$ ($t>0$)."
+   ]
+  },
+  {
+   "titolo": "Polo doppio",
+   "testo": "$F(s)=\\dfrac{1}{s(s+1)^2}$.",
+   "soluzione": [
+    "$\\dfrac1s-\\dfrac1{s+1}-\\dfrac1{(s+1)^2}$.",
+    "$f(t)=1-e^{-t}-te^{-t}$.",
+    "Verifica a $s=1$: $1-\\tfrac12-\\tfrac14=\\tfrac14$ ✓."
+   ]
+  },
+  {
+   "titolo": "Grado uguale",
+   "testo": "$F(s)=\\dfrac{s+3}{s+1}$.",
+   "soluzione": [
+    "$F=1+\\dfrac2{s+1}$.",
+    "$f(t)=\\delta(t)+2e^{-t}u_{-1}(t)$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Scomporre senza dividere quando $\\deg N=\\deg D$.",
+   "corretto": "Dividi prima: il quoziente dà un impulso."
+  }
+ ],
+ "esame": "Antitrasformata con fratti semplici è il passo 6 dell'esercizio d'analisi [STORICO].",
+ "formulario": [
+  "residuo",
+  "polo-doppio"
+ ]
+}

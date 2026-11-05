@@ -1,0 +1,178 @@
+/**
+ * Livello base: sfondo, tipografia, focus.
+ * Fedele al prototipo, con in più un focus da tastiera visibile (§9).
+ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /**
+   * Il sito è una colonna alta almeno quanto la finestra, così sulle viste
+   * corte — il Simulatore prima di generare la prova, per dire — la riga di
+   * chiusura sta in fondo invece di galleggiare a metà schermo con mezzo
+   * chilometro di reticolo sotto.
+   *
+   * `100dvh` e non `100vh`: su Safari mobile la barra degli indirizzi che
+   * compare e scompare farebbe saltare l'altezza a ogni scorrimento.
+   */
+  #app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+
+  /**
+   * Substrato a griglia da datapath, più aloni rame e cyan.
+   *
+   * Sta **ancorato al documento**, non alla finestra, e alto quanto la prima
+   * schermata scarsa: è luce che cade dall'alto della pagina e finisce lì.
+   *
+   * Prima era lo sfondo del `body` a piena intensità su tutta l'altezza — così
+   * in fondo a un modulo di novemila caratteri si leggeva sopra carta
+   * millimetrata. Ancorarlo alla finestra non bastava: restando fermo davanti
+   * agli occhi, il reticolo tornava dietro al testo a ogni schermata. Scorre
+   * via con l'intestazione, e la teoria si legge su fondo pulito.
+   */
+  body {
+    position: relative;
+  }
+  body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 820px;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      linear-gradient(var(--color-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-grid) 1px, transparent 1px),
+      radial-gradient(120% 90% at 50% -12%, rgba(55, 194, 214, 0.08), transparent 58%),
+      radial-gradient(80% 70% at 93% -6%, rgba(200, 138, 78, 0.07), transparent 55%),
+      radial-gradient(60% 60% at 6% 4%, rgba(200, 138, 78, 0.04), transparent 62%);
+    background-size:
+      var(--grid-step) var(--grid-step),
+      var(--grid-step) var(--grid-step),
+      auto,
+      auto,
+      auto;
+    background-position: center top;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.42) 52%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.42) 52%, transparent 100%);
+  }
+
+  /**
+   * Velo di grana, questo sì fisso e uniforme.
+   *
+   * È un `feTurbulence` in linea, quindi nessuna richiesta di rete: a
+   * un'opacità così bassa non si vede come rumore, si vede solo che le
+   * superfici piatte smettono di sembrare campiture vuote.
+   */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    background-size: 140px 140px;
+  }
+
+  a {
+    color: var(--color-cyan);
+    text-decoration: none;
+  }
+
+  /* Link dentro un testo: sottolineati, non distinguibili solo dal colore (WCAG 1.4.1) */
+  p a:not(.btn),
+  li a:not(.btn),
+  .lead a,
+  .disclaim a,
+  .fn a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  ::selection {
+    background: rgba(55, 194, 214, 0.28);
+  }
+
+  /* Focus da tastiera sempre visibile — non c'era nel prototipo. */
+  :focus-visible {
+    outline: 2px solid var(--color-cyan);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  code,
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+    background: var(--color-panel-3);
+    padding: 1px 6px;
+    border-radius: 5px;
+    color: var(--color-code);
+  }
+
+  pre {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.55;
+    background: var(--color-well);
+    border: 1px solid var(--color-line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    color: var(--color-pre);
+  }
+  pre .kw {
+    color: var(--color-copper);
+  }
+  pre .rg {
+    color: var(--color-cyan);
+  }
+  pre .cm {
+    color: var(--color-faint);
+  }
+  pre .lb {
+    color: var(--color-violet);
+  }
+
+  /* soprallineatura per la negazione booleana: Ā */
+  .ovl {
+    text-decoration: overline;
+  }
+
+  @media (max-width: 640px) {
+    body {
+      background-size: 32px 32px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

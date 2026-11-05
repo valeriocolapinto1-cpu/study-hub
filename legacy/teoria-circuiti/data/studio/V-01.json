@@ -1,0 +1,61 @@
+{
+ "id": "V-01",
+ "obiettivi": [
+  "Definire la funzione di rete",
+  "Dimostrare che è razionale a coefficienti reali",
+  "Individuare poli e zeri"
+ ],
+ "teoria": [
+  "La <strong>funzione di rete</strong> è $H(s)=\\dfrac{Y(s)}{X(s)}$ con condizioni iniziali nulle, tra una grandezza d'uscita $Y$ e una d'ingresso $X$. Se ingresso e uscita sono sulla stessa porta si parla di impedenza o ammettenza di punto pilota; altrimenti di funzione di trasferimento (rapporto di tensioni, correnti, transimpedenza, transammettenza).",
+  "Per circuiti lineari tempo-invarianti a costanti concentrate $H(s)=\\dfrac{N(s)}{D(s)}$ è <em>razionale a coefficienti reali</em>. Le radici di $D$ sono i <strong>poli</strong>, quelle di $N$ gli <strong>zeri</strong>; poli e zeri non reali sono in coppie complesse coniugate."
+ ],
+ "figure": [],
+ "dimostrazioni": [
+  {
+   "titolo": "Le funzioni di rete sono razionali a coefficienti reali",
+   "passi": [
+    "Nel dominio di $s$, con condizioni iniziali nulle, ogni elemento ha una relazione algebrica: $V=RI$, $V=sLI$, $I=sCV$, con $R,L,C$ reali; i generatori controllati hanno guadagni reali.",
+    "KCL e KVL hanno coefficienti $0,\\pm1$. Il circuito è quindi descritto da un sistema lineare $\\mathcal A(s)\\mathbf z=\\mathbf b$ i cui coefficienti sono polinomi in $s$ a coefficienti reali.",
+    "Per la regola di Cramer ogni incognita è $\\det\\mathcal A_k(s)/\\det\\mathcal A(s)$: rapporto di polinomi in $s$ a coefficienti reali.",
+    "Quindi $H=Y/X$ è un rapporto di polinomi reali. I polinomi reali hanno radici non reali in coppie coniugate. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "RC passa-basso",
+   "testo": "$R=2$, $C=\\tfrac12$, uscita su $C$: $H(s)$, poli, zeri.",
+   "soluzione": [
+    "$H=\\dfrac{1/(sC)}{R+1/(sC)}=\\dfrac{1}{1+sRC}=\\dfrac{1}{s+1}$.",
+    "Polo in $-1$, nessuno zero."
+   ]
+  },
+  {
+   "titolo": "RL passa-alto",
+   "testo": "$R=1$, $L=1$, uscita su $L$.",
+   "soluzione": [
+    "$H=\\dfrac{sL}{R+sL}=\\dfrac{s}{s+1}$: zero in $0$, polo in $-1$."
+   ]
+  },
+  {
+   "titolo": "Impedenza di punto pilota",
+   "testo": "$Z(s)$ di una serie $R=1$, $C=1$.",
+   "soluzione": [
+    "$Z=1+\\dfrac1s=\\dfrac{s+1}{s}$: zero in $-1$, polo in $0$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Calcolare $H(s)$ con $v_C(0^-)\\ne0$ senza metterlo a zero.",
+   "corretto": "La funzione di rete è definita con condizioni iniziali nulle."
+  }
+ ],
+ "esame": "Funzioni di rete razionali a coefficienti reali: 4-7-2000 [STORICO].",
+ "formulario": [
+  "h-def",
+  "h-razionale",
+  "h-rc-lp",
+  "h-rc-hp"
+ ]
+}

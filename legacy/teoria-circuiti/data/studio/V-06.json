@@ -1,0 +1,48 @@
+{
+ "id": "V-06",
+ "obiettivi": [
+  "Collegare $H(s)$ a $H(j\\omega)$",
+  "Calcolare modulo e fase",
+  "Sapere quando il legame vale"
+ ],
+ "teoria": [
+  "La funzione di rete per i fasori è $H(j\\omega)=H(s)\\big|_{s=j\\omega}$, valida per sistemi stabili. Modulo $|H(j\\omega)|$ e fase $\\arg H(j\\omega)$ dicono come l'uscita sinusoidale a regime è scalata e sfasata rispetto all'ingresso.",
+  "Le equazioni dei fasori sono quelle di Laplace con $s=j\\omega$ e <em>senza</em> condizioni iniziali: il metodo dei fasori vede solo il regime."
+ ],
+ "figure": [],
+ "dimostrazioni": [],
+ "esempi": [
+  {
+   "titolo": "Modulo e fase",
+   "testo": "$H=\\dfrac{1}{s+1}$ a $\\omega=1$.",
+   "soluzione": [
+    "$H(j)=\\dfrac1{1+j}$: $|H|=\\tfrac1{\\sqrt2}\\approx0{,}707$, $\\arg=-45^\\circ$."
+   ]
+  },
+  {
+   "titolo": "Passa-alto",
+   "testo": "$H=\\dfrac{s}{s+1}$ a $\\omega=1$.",
+   "soluzione": [
+    "$\\dfrac{j}{1+j}=\\dfrac{j(1-j)}2=\\dfrac{1+j}{2}$: $|H|=\\tfrac1{\\sqrt2}$, $\\arg=+45^\\circ$."
+   ]
+  },
+  {
+   "titolo": "Uscita a regime",
+   "testo": "$x=4\\cos t$ nel primo sistema.",
+   "soluzione": [
+    "$y_p=4\\cdot0{,}707\\cos(t-45^\\circ)\\approx2{,}83\\cos(t-45^\\circ)$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Usare $H(j\\omega)$ per sistemi instabili.",
+   "corretto": "Il legame vale solo con poli a parte reale negativa."
+  }
+ ],
+ "esame": "Relazione fasori–Laplace; risposta in frequenza [STORICO].",
+ "formulario": [
+  "hjw-def",
+  "mod-fase"
+ ]
+}
