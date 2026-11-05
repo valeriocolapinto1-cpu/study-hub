@@ -1,47 +1,352 @@
-/* Testo lungo: teoria, pagine editoriali. */
+/* =====================================================================
+   Prose: testo lungo (teoria, pagine legali, chi sono).
+   Serif, misura ~68ch, ritmo verticale regolare, KaTeX, tabelle,
+   figure, note a margine, strati di spiegazione e formule numerate.
+   ===================================================================== */
+
 .prose {
-  max-width: var(--measure);
+  --flow: var(--space-s);
   font-family: var(--font-serif);
   font-size: var(--step-0);
   line-height: var(--leading-body);
+  font-optical-sizing: auto;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  max-width: var(--measure);
+  color: var(--text);
 }
-.prose h2,
-.prose h3 {
+.prose > * + * {
+  margin-top: var(--flow);
+}
+.prose :where(h2, h3, h4) {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-variant-numeric: lining-nums;
+}
+.prose > :where(h2) {
+  font-size: var(--step-2);
   margin-top: var(--space-xl);
 }
-.prose ul,
-.prose ol {
-  padding-left: 1.25em;
-  margin: 0 0 var(--space-m);
+.prose > :where(h3) {
+  font-size: var(--step-1);
+  margin-top: var(--space-l);
+}
+.prose > :where(h4) {
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  margin-top: var(--space-m);
+}
+.prose :where(h2, h3, h4) + * {
+  margin-top: var(--space-2xs);
+}
+.prose :where(h2, h3)[id] {
+  scroll-margin-top: 5rem;
+}
+.prose .heading-anchor {
+  margin-left: 0.3em;
+  color: var(--text-muted);
+  text-decoration: none;
+  opacity: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+.prose :where(h2, h3):hover .heading-anchor,
+.prose .heading-anchor:focus-visible {
+  opacity: 1;
+}
+
+.prose :where(strong, b) {
+  font-weight: 650;
+}
+.prose :where(ul, ol) {
+  padding-left: 1.4em;
 }
 .prose li + li {
   margin-top: var(--space-3xs);
 }
-.prose blockquote {
-  margin: var(--space-l) 0;
-  padding-left: var(--space-m);
-  border-left: 3px solid var(--border-strong);
+.prose li::marker {
   color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.9em;
+}
+.prose ol > li::marker {
+  font-variant-numeric: tabular-nums;
+}
+.prose dl > dt {
+  font-weight: 650;
+}
+.prose dl > dd {
+  margin: 0 0 var(--space-2xs) var(--space-m);
+}
+.prose blockquote {
+  border-left: 2px solid var(--border-strong);
+  padding-left: var(--space-s);
+  color: var(--text-muted);
+  font-style: italic;
 }
 .prose pre {
-  overflow-x: auto;
-  padding: var(--space-s) var(--space-m);
   background: var(--surface-2);
+  border: 1px solid var(--border);
   border-radius: var(--radius-m);
-}
-.prose table {
-  border-collapse: collapse;
-  font-family: var(--font-sans);
+  padding: var(--space-xs) var(--space-s);
+  overflow-x: auto;
   font-size: var(--step--1);
+  line-height: 1.55;
 }
-.prose th,
-.prose td {
-  border-bottom: 1px solid var(--border);
-  padding: var(--space-2xs) var(--space-s);
-  text-align: left;
+.prose hr {
+  margin: var(--space-xl) auto;
+  width: 30%;
 }
-.prose .katex-display {
+.prose .lede {
+  font-size: var(--step-1);
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* ---- KaTeX ----
+   Il corpo del serif ha occhio medio-grande: KaTeX a 1.06em si allinea al testo
+   senza sembrare sovradimensionato. Le formule in display scorrono in orizzontale
+   su schermi stretti invece di uscire dalla colonna. */
+.katex {
+  font-size: 1.06em;
+  text-rendering: auto;
+}
+.katex-display {
+  margin: var(--space-s) 0;
   overflow-x: auto;
   overflow-y: hidden;
+  padding: var(--space-3xs) 0;
+  scrollbar-width: thin;
+}
+.katex-display > .katex {
+  font-size: 1.12em;
+}
+.prose p .katex {
+  white-space: nowrap;
+}
+
+/* ---- Formula numerata <Formula id> ---- */
+.formula {
+  margin-block: var(--space-m);
+  border-block: 1px solid var(--border);
   padding-block: var(--space-2xs);
+}
+.formula__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-s);
+}
+.formula__body .katex-display {
+  margin: 0;
+}
+.formula__num {
+  font: 500 var(--step--1) / 1 var(--font-mono);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+}
+a.formula__num:hover {
+  color: var(--accent-strong);
+}
+.formula__caption {
+  display: block;
+  margin-top: var(--space-2xs);
+  padding-top: var(--space-3xs);
+  border-top: 1px dashed var(--border);
+  font: 400 var(--step--1) / 1.4 var(--font-sans);
+  color: var(--text-muted);
+}
+.formula:target {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.prose * + .formula,
+.prose .formula + * {
+  margin-top: var(--space-m);
+}
+
+/* ---- Strati di spiegazione <Layer kind> ----
+   Ogni strato ha un'etichetta in mono e un filo verticale nel margine sinistro
+   (solo da tablet in su): la struttura si legge senza riquadri. */
+.layer {
+  --layer-tone: var(--accent-strong);
+  position: relative;
+  margin-top: var(--space-xl);
+}
+.prose > .layer:first-child {
+  margin-top: var(--space-m);
+}
+.layer > * + * {
+  margin-top: var(--space-s);
+}
+.layer__label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font: 600 var(--step--2) / 1.2 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--layer-tone);
+}
+.layer__label::before {
+  content: '';
+  width: 0.55em;
+  height: 0.55em;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+}
+.layer[data-kind='formalismo'] .layer__label::before {
+  border-radius: 1px;
+}
+.layer[data-kind='esempio'] .layer__label::before {
+  background: currentColor;
+}
+.layer[data-kind='errori'] .layer__label::before {
+  border-radius: 0;
+  transform: rotate(45deg) scale(0.85);
+}
+.layer__label + :where(h2, h3) {
+  margin-top: var(--space-2xs);
+}
+.layer[data-kind='intuizione'] {
+  --layer-tone: var(--warning);
+}
+.layer[data-kind='esempio'] {
+  --layer-tone: var(--success);
+}
+.layer[data-kind='errori'] {
+  --layer-tone: var(--danger);
+}
+@media (min-width: 64em) {
+  .layer::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * var(--space-l));
+    top: 0.35em;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(var(--layer-tone) 0 1.4em, var(--border) 1.4em);
+  }
+}
+
+/* ---- Figure <Figure> ---- */
+.figure {
+  margin-block: var(--space-l);
+}
+.figure__media {
+  display: grid;
+  place-items: center;
+  padding: var(--space-s);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  overflow-x: auto;
+}
+.figure__media :where(svg, img) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  color: var(--text);
+}
+.figure figcaption {
+  margin-top: var(--space-2xs);
+  font: 400 var(--step--1) / 1.45 var(--font-sans);
+  color: var(--text-muted);
+  max-width: var(--measure);
+}
+.figure figcaption b {
+  color: var(--text);
+  font-weight: 600;
+  margin-right: 0.3em;
+}
+.figure--wide {
+  max-width: none;
+}
+
+/* ---- Tabelle in prosa ---- */
+.table-wrap {
+  overflow-x: auto;
+  margin-block: var(--space-m);
+}
+.prose table,
+.table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font: 400 var(--step--1) / 1.45 var(--font-sans);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.prose caption {
+  text-align: left;
+  caption-side: top;
+  padding-bottom: var(--space-2xs);
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.prose th {
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 1.5px solid var(--text);
+  padding: var(--space-2xs) var(--space-s) var(--space-2xs) 0;
+  vertical-align: bottom;
+}
+.prose td {
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-2xs) var(--space-s) var(--space-2xs) 0;
+  vertical-align: top;
+}
+.prose :where(td, th):last-child {
+  padding-right: 0;
+}
+.prose :where(td, th).num {
+  text-align: right;
+  font-family: var(--font-mono);
+}
+
+/* ---- Note a margine ----
+   <aside class="sidenote">: in linea su mobile, nel margine destro su schermi larghi
+   (richiede che il contenitore .reading lasci spazio a destra). */
+.sidenote {
+  font: 400 var(--step--1) / 1.5 var(--font-sans);
+  color: var(--text-muted);
+  border-left: 2px solid var(--border-strong);
+  padding-left: var(--space-xs);
+}
+.sidenote > b:first-child {
+  color: var(--text);
+  font-weight: 600;
+  margin-right: 0.35em;
+}
+@media (min-width: 90em) {
+  .reading--margin .sidenote {
+    float: right;
+    clear: right;
+    width: 15rem;
+    margin-right: calc(-15rem - var(--space-xl));
+    margin-top: 0.3em;
+    border-left: 0;
+    padding-left: 0;
+    border-top: 1px solid var(--border-strong);
+    padding-top: var(--space-2xs);
+  }
+}
+
+/* ---- Dettagli espandibili (dimostrazioni) ---- */
+.prose details {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  background: var(--surface);
+  padding: var(--space-2xs) var(--space-s);
+}
+.prose details > summary {
+  cursor: pointer;
+  font: 600 var(--step--1) / 1.4 var(--font-sans);
+  padding-block: var(--space-3xs);
+  list-style-position: outside;
+}
+.prose details[open] > summary {
+  margin-bottom: var(--space-2xs);
+}
+.prose details > :not(summary) + * {
+  margin-top: var(--space-s);
 }

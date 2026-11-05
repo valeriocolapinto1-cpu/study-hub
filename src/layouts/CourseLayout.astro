@@ -1,9 +1,20 @@
 ---
+/**
+ * Layout delle pagine di un corso: accento del corso, indice laterale su desktop
+ * (sezioni + sommario argomenti), cassetto modale su mobile, percorso, colonna di
+ * lettura e strumenti di pagina (Segnala errore).
+ */
+import 'katex/dist/katex.min.css';
 import type { CollectionEntry } from 'astro:content';
+import type { Topic } from '../content/schemas';
 import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs, { type Crumb } from '../components/Breadcrumbs.astro';
 import CourseNav from '../components/CourseNav.astro';
-import { tr, type Lang } from '../i18n';
-import { coursePath } from '../lib/courses';
+import Icon from '../components/Icon.astro';
+import ReportError from '../components/ReportError.astro';
+import TopicNav from '../components/TopicNav.astro';
+import { localizePath, stripLang, t, tr, type Lang } from '../i18n';
+import { COURSE_SECTIONS, coursePath } from '../lib/courses';
 
 interface Props {
   lang: Lang;
@@ -11,10 +22,41 @@ interface Props {
   /** Titolo della pagina (senza il nome del corso). */
   title?: string;
   description?: string;
+  /** Argomenti del corso per il sommario laterale (teoria, esercizi). */
+  topics?: Pick<Topic, 'id' | 'order' | 'title' | 'group'>[] | undefined;
+  topicSection?: 'teoria' | 'esercizi';
+  currentTopic?: string | undefined;
+  /** Percorso personalizzato; se assente si ricava dall'URL. */
+  crumbs?: Crumb[] | undefined;
+  /** Colonna larga (tabelle, simulatori) invece della misura di lettura. */
+  wide?: boolean;
 }
-const { lang, course, title, description } = Astro.props;
+const {
+  lang,
+  course,
+  title,
+  description,
+  topics,
+  topicSection = 'teoria',
+  currentTopic,
+  wide = false,
+} = Astro.props;
 const courseTitle = tr(course.title, lang);
 const pageTitle = title ? `${title} — ${courseTitle}` : courseTitle;
+const base = coursePath(course);
+
+let crumbs = Astro.props.crumbs;
+if (!crumbs) {
+  const rest = stripLang(Astro.url.pathname).slice(base.length).split('/').filter(Boolean);
+  crumbs = [
+    { label: t(lang, 'nav.home'), href: localizePath('', lang) },
+    { label: courseTitle, href: localizePath(base, lang) },
+  ];
+  const section = COURSE_SECTIONS.find((s) => s.slug && s.slug === rest[0]);
+  if (section)
+    crumbs.push({ label: t(lang, section.key), href: localizePath(`${base}/${section.slug}`, lang) });
+  if (rest.length > 1 && title) crumbs.push({ label: title });
+}
 ---
 
 <BaseLayout
@@ -24,6 +66,66 @@ const pageTitle = title ? `${title} — ${courseTitle}` : courseTitle;
   course={course.id}
 >
   <slot name="head" slot="head" />
-  <CourseNav slot="before-main" lang={lang} coursePath={coursePath(course)} />
-  <slot />
+  <div class="container course-shell">
+    <aside class="course-shell__side" aria-label={t(lang, 'nav.course.menu')}>
+      <CourseNav lang={lang} course={course} />
+      {topics && topics.length > 0 && (
+        <TopicNav
+          lang={lang}
+          coursePath={base}
+          topics={topics}
+          section={topicSection}
+          current={currentTopic}
+          idPrefix="side"
+        />
+      )}
+      <slot name="aside" />
+    </aside>
+    <div class="course-shell__main">
+      <button
+        type="button"
+        class="course-drawer-toggle"
+        data-drawer-open="indice-corso"
+        aria-haspopup="dialog"
+        aria-expanded="false"
+      >
+        <span>{courseTitle}</span>
+        <span class="meta-row">
+          <Icon name="list" />
+          {t(lang, 'nav.course.menu')}
+        </span>
+      </button>
+      <dialog id="indice-corso" class="course-drawer" aria-label={t(lang, 'nav.course.menu')}>
+        <div class="course-drawer__head">
+          <span class="eyebrow">{t(lang, 'nav.course.menu')}</span>
+          <form method="dialog">
+            <button class="icon-btn icon-btn--bare" aria-label={t(lang, 'dialog.close')}>
+              <Icon name="close" />
+            </button>
+          </form>
+        </div>
+        <div class="course-drawer__body">
+          <CourseNav lang={lang} course={course} />
+          {topics && topics.length > 0 && (
+            <TopicNav
+              lang={lang}
+              coursePath={base}
+              topics={topics}
+              section={topicSection}
+              current={currentTopic}
+              idPrefix="drawer"
+            />
+          )}
+        </div>
+      </dialog>
+      <Breadcrumbs lang={lang} items={crumbs} />
+      <div class:list={[{ reading: !wide }]}>
+        <slot />
+        <div class="page-tools">
+          <ReportError lang={lang} course={course.id} />
+          <slot name="tools" />
+        </div>
+      </div>
+    </div>
+  </div>
 </BaseLayout>

@@ -11,7 +11,13 @@ module.exports = {
     collect: {
       startServerCommand: `node tools/serve-dist.mjs ${PORT}`,
       startServerReadyPattern: 'servito su',
-      url: [`${BASE}/it/`, `${BASE}/en/`],
+      url: [
+        `${BASE}/it/`,
+        `${BASE}/en/`,
+        `${BASE}/it/chi-sono/`,
+        `${BASE}/en/privacy/`,
+        `${BASE}/it/contribuisci/`,
+      ],
       numberOfRuns: 3,
       ...(process.env.CHROME_PATH ? { chromePath: process.env.CHROME_PATH } : {}),
       settings: {

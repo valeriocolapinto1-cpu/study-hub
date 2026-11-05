@@ -1,0 +1,21 @@
+/* Fisica 1 — terracotta. Solo variabili --accent*: chiaro, scuro esplicito, scuro di sistema. */
+html[data-course='fisica-1'] {
+  --accent: #a3441f;
+  --accent-strong: #8c3a1a;
+  --accent-soft: #f6e7df;
+  --on-accent: #ffffff;
+}
+html[data-course='fisica-1'][data-theme='dark'] {
+  --accent: #f0a385;
+  --accent-strong: #f5b69d;
+  --accent-soft: #352219;
+  --on-accent: #1f120c;
+}
+@media (prefers-color-scheme: dark) {
+  html[data-course='fisica-1']:not([data-theme='light']) {
+    --accent: #f0a385;
+    --accent-strong: #f5b69d;
+    --accent-soft: #352219;
+    --on-accent: #1f120c;
+  }
+}

@@ -1,0 +1,59 @@
+---
+/** Sommario degli argomenti, raggruppati per capitolo come nel sito originale. */
+import type { Topic } from '../content/schemas';
+import { localizePath, t, tr, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  /** Percorso del corso senza lingua (coursePath). */
+  coursePath: string;
+  topics: Pick<Topic, 'id' | 'order' | 'title' | 'group'>[];
+  /** Sezione a cui puntano i link: teoria o esercizi. */
+  section?: 'teoria' | 'esercizi';
+  current?: string | undefined;
+  /** Id degli argomenti completati (segno di spunta). */
+  done?: string[];
+  /** Prefisso degli id interni (serve se il sommario compare due volte nella pagina). */
+  idPrefix?: string;
+}
+const { lang, coursePath, topics, section = 'teoria', current, done = [], idPrefix = 'tn' } = Astro.props;
+const sorted = [...topics].sort((a, b) => a.order - b.order);
+const groups: { title: string | undefined; items: typeof sorted }[] = [];
+for (const topic of sorted) {
+  const title = topic.group ? tr(topic.group, lang) : undefined;
+  const last = groups.at(-1);
+  if (last && last.title === title) last.items.push(topic);
+  else groups.push({ title, items: [topic] });
+}
+let n = 0;
+---
+
+<nav class="topic-nav" aria-label={t(lang, 'nav.topics')}>
+  {groups.map((g, gi) => (
+    <div class="topic-nav__group">
+      {g.title && (
+        <p class="topic-nav__group-title" id={`${idPrefix}-group-${gi}`}>
+          {g.title}
+        </p>
+      )}
+      <ol aria-labelledby={g.title ? `${idPrefix}-group-${gi}` : undefined}>
+        {g.items.map((topic) => {
+          n += 1;
+          return (
+            <li>
+              <a
+                href={localizePath(`${coursePath}/${section}/${topic.id}`, lang)}
+                aria-current={topic.id === current ? 'page' : undefined}
+                data-topic={topic.id}
+                data-done={done.includes(topic.id) ? 'true' : undefined}
+              >
+                <span class="topic-nav__num">{String(n).padStart(2, '0')}</span>
+                <span>{tr(topic.title, lang)}</span>
+              </a>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  ))}
+</nav>

@@ -1,26 +1,70 @@
 ---
 import { SITE } from '../config/site';
-import { localizePath, t, type Lang } from '../i18n';
+import { localizePath, stripLang, t, type Lang } from '../i18n';
+import BrandMark from './BrandMark.astro';
+import Icon from './Icon.astro';
 import LangSwitch from './LangSwitch.astro';
+import SearchButton from './SearchButton.astro';
+import SkipLink from './SkipLink.astro';
 import ThemeToggle from './ThemeToggle.astro';
 interface Props {
   lang: Lang;
   samePage?: boolean;
 }
 const { lang, samePage = true } = Astro.props;
+const here = stripLang(Astro.url.pathname);
+const links = [
+  { path: '', key: 'nav.home', active: here === '' || here.startsWith('anno-') },
+  { path: 'chi-sono', key: 'nav.about', active: here === 'chi-sono' },
+  { path: 'contribuisci', key: 'nav.contribute', active: here === 'contribuisci' },
+];
 ---
 
-<a class="skip-link" href="#contenuto">
-  {t(lang, 'skip.toContent')}
-</a>
+<SkipLink lang={lang} />
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="site-header__brand" href={localizePath('', lang)}>
-      {SITE.shortTitle[lang]}
+    <a class="brand" href={localizePath('', lang)}>
+      <BrandMark />
+      <span class="brand__name">{SITE.shortTitle[lang]}</span>
     </a>
+    <nav class="site-nav" aria-label={t(lang, 'nav.label')}>
+      <ul class="site-nav__list">
+        {links.map((l) => (
+          <li>
+            <a href={localizePath(l.path, lang)} aria-current={l.active ? 'page' : undefined}>
+              {t(lang, l.key)}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
     <div class="site-header__tools">
+      <SearchButton lang={lang} />
       <LangSwitch lang={lang} samePage={samePage} />
       <ThemeToggle lang={lang} />
+      <button
+        type="button"
+        class="icon-btn menu-toggle"
+        aria-expanded="false"
+        aria-controls="menu-mobile"
+        aria-label={t(lang, 'nav.menuOpen')}
+        data-label-open={t(lang, 'nav.menuOpen')}
+        data-label-close={t(lang, 'nav.menuClose')}
+      >
+        <Icon name="menu" class="icon-menu" />
+        <Icon name="close" class="icon-close" />
+      </button>
     </div>
   </div>
+  <nav id="menu-mobile" class="mobile-menu" aria-label={t(lang, 'nav.label')} hidden>
+    <ul class="container">
+      {links.map((l) => (
+        <li>
+          <a href={localizePath(l.path, lang)} aria-current={l.active ? 'page' : undefined}>
+            {t(lang, l.key)}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
 </header>

@@ -1,0 +1,123 @@
+---
+/** Chi sono. È l'unica pagina del sito in cui compare il nome dell'università. */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon, { type IconName } from '../../components/Icon.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { SITE } from '../../config/site';
+import { langPaths, localizePath, t, type Lang } from '../../i18n';
+
+export const getStaticPaths = langPaths;
+const lang = Astro.params.lang as Lang;
+
+const facts = [1, 2, 3, 4].map((n) => ({ k: t(lang, `about.f${n}.k`), v: t(lang, `about.f${n}.v`) }));
+const steps = [1, 2, 3].map((n) => ({ title: t(lang, `about.s${n}.t`), text: t(lang, `about.s${n}.d`) }));
+const principles = [1, 2, 3, 4].map((n) => ({
+  title: t(lang, `about.p${n}.t`),
+  text: t(lang, `about.p${n}.d`),
+}));
+const contacts: { icon: IconName; label: string; href: string; value: string }[] = [
+  {
+    icon: 'mail',
+    label: t(lang, 'contact.mail'),
+    href: `mailto:${SITE.contacts.email}`,
+    value: SITE.contacts.email,
+  },
+  { icon: 'code', label: t(lang, 'contact.github'), href: SITE.contacts.github, value: SITE.repo.owner },
+  {
+    icon: 'person',
+    label: t(lang, 'contact.linkedin'),
+    href: SITE.contacts.linkedin,
+    value: 'valerio-colapinto',
+  },
+  { icon: 'camera', label: t(lang, 'contact.instagram'), href: SITE.contacts.instagram, value: 'valerioo.c' },
+];
+---
+
+<BaseLayout lang={lang} title={t(lang, 'about.title')} description={t(lang, 'about.description')}>
+  <div class="container page">
+    <PageHeader eyebrow={t(lang, 'about.eyebrow')} title={t(lang, 'about.h1')}>
+      <p>
+        <em>{t(lang, 'about.h1b')}</em> {t(lang, 'about.lead')}
+      </p>
+      <div slot="meta" class="btn-row">
+        <a class="btn btn--primary" href={`mailto:${SITE.contacts.email}`}>
+          <Icon name="mail" />
+          {t(lang, 'about.cta1')}
+        </a>
+        <a class="btn" href={localizePath('', lang)}>
+          {t(lang, 'about.cta2')}
+        </a>
+      </div>
+    </PageHeader>
+
+    <section class="section" aria-labelledby="in-breve">
+      <h2 class="section__title" id="in-breve">
+        {t(lang, 'about.facts.title')}
+      </h2>
+      <dl class="facts">
+        {facts.map((f) => (
+          <div>
+            <dt>{f.k}</dt>
+            <dd>{f.v}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <section class="section" aria-labelledby="metodo">
+      <h2 class="section__title" id="metodo">
+        {t(lang, 'about.how.title')}
+      </h2>
+      <p class="prose">{t(lang, 'about.how.p')}</p>
+      <ol class="numbered" style="margin-top: var(--space-l)">
+        {steps.map((s) => (
+          <li>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="section" aria-labelledby="principi">
+      <h2 class="section__title" id="principi">
+        {t(lang, 'about.pr.title')}
+      </h2>
+      <dl class="facts">
+        {principles.map((p) => (
+          <div>
+            <dt>{p.title}</dt>
+            <dd class="prose">{p.text}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <section class="section" aria-labelledby="lavoro">
+      <h2 class="section__title" id="lavoro">
+        {t(lang, 'about.work.title')}
+      </h2>
+      <p class="prose">{t(lang, 'about.work.p')}</p>
+    </section>
+
+    <section class="section" aria-labelledby="contatti">
+      <h2 class="section__title" id="contatti">
+        {t(lang, 'about.ct.title')}
+      </h2>
+      <p class="prose" style="margin-bottom: var(--space-m)">
+        {t(lang, 'about.ct.sub')}
+      </p>
+      <ul class="contact-list">
+        {contacts.map((c) => (
+          <li>
+            <a href={c.href} rel={c.href.startsWith('http') ? 'noopener' : undefined}>
+              <Icon name={c.icon} />
+              <span>{c.label}</span>
+              <span class="mono">{c.value}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+</BaseLayout>

@@ -1,0 +1,30 @@
+---
+import { t, type Lang } from '../i18n';
+interface Link {
+  href: string;
+  title: string;
+}
+interface Props {
+  lang: Lang;
+  prev?: Link | undefined;
+  next?: Link | undefined;
+}
+const { lang, prev, next } = Astro.props;
+---
+
+{(prev || next) && (
+  <nav class="pagination" aria-label={t(lang, 'pagination.label')}>
+    {prev && (
+      <a class="pagination__prev" href={prev.href} rel="prev">
+        <span class="pagination__dir">← {t(lang, 'pagination.prev')}</span>
+        <span class="pagination__title">{prev.title}</span>
+      </a>
+    )}
+    {next && (
+      <a class="pagination__next" href={next.href} rel="next">
+        <span class="pagination__dir">{t(lang, 'pagination.next')} →</span>
+        <span class="pagination__title">{next.title}</span>
+      </a>
+    )}
+  </nav>
+)}

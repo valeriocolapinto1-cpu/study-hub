@@ -1,0 +1,36 @@
+---
+/** Riquadro di richiamo: nota, attenzione, errore frequente, sintesi, consiglio d'esame. */
+import Icon, { type IconName } from './Icon.astro';
+import { getLangFromUrl, t, type Lang } from '../i18n';
+
+export const CALLOUT_TONES = ['nota', 'attenzione', 'errore', 'ok', 'esame'] as const;
+export type CalloutTone = (typeof CALLOUT_TONES)[number];
+const ICON: Record<CalloutTone, IconName> = {
+  nota: 'info',
+  attenzione: 'warning',
+  errore: 'x-circle',
+  ok: 'check-circle',
+  esame: 'target',
+};
+
+interface Props {
+  tone?: CalloutTone;
+  /** Titolo; se assente si usa quello predefinito del tono. */
+  title?: string;
+  lang?: Lang;
+}
+const { tone = 'nota', title } = Astro.props;
+if (!CALLOUT_TONES.includes(tone)) throw new Error(`<Callout>: tone non valido "${String(tone)}"`);
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
+const role = tone === 'attenzione' || tone === 'errore' ? 'note' : undefined;
+---
+
+<aside class="callout" data-tone={tone} role={role}>
+  <p class="callout__title">
+    <Icon name={ICON[tone]} />
+    {title ?? t(lang, `callout.${tone}`)}
+  </p>
+  <div class="callout__body">
+    <slot />
+  </div>
+</aside>

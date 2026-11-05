@@ -1,0 +1,29 @@
+---
+/** Intestazione di pagina: occhiello, titolo serif, attacco e metadati (slot "meta"). */
+interface Props {
+  title: string;
+  eyebrow?: string | undefined;
+  lede?: string | undefined;
+  compact?: boolean;
+  id?: string;
+}
+const { title, eyebrow, lede, compact = false, id } = Astro.props;
+---
+
+<header class:list={['page-header', { 'page-header--compact': compact }]}>
+  {eyebrow && <p class="eyebrow page-header__eyebrow">{eyebrow}</p>}
+  <h1 class="page-header__title" id={id}>
+    {title}
+  </h1>
+  {lede && <p class="page-header__lede">{lede}</p>}
+  {Astro.slots.has('default') && (
+    <div class="page-header__lede">
+      <slot />
+    </div>
+  )}
+  {Astro.slots.has('meta') && (
+    <div class="page-header__meta">
+      <slot name="meta" />
+    </div>
+  )}
+</header>
