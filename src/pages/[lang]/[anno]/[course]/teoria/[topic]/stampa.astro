@@ -1,0 +1,69 @@
+---
+/** Versione stampabile (A4) della teoria di un argomento. */
+import { render } from 'astro:content';
+import PrintLayout from '../../../../../../layouts/PrintLayout.astro';
+import Layer from '../../../../../../components/Layer.astro';
+import Formula from '../../../../../../components/Formula.astro';
+import Figure from '../../../../../../components/Figure.astro';
+import Callout from '../../../../../../components/Callout.astro';
+import {
+  coursePaths,
+  courseTopics,
+  sectionPath,
+  theoryEntry,
+  type CourseData,
+  type TopicData,
+} from '../../../../../../lib/course-pages';
+import { localizePath, t, tr, type Lang } from '../../../../../../i18n';
+
+export async function getStaticPaths() {
+  const out = [];
+  for (const p of await coursePaths()) {
+    for (const topic of await courseTopics(p.props.course.id)) {
+      const { entry } = await theoryEntry(p.props.course.id, topic.id, p.params.lang);
+      if (entry) out.push({ params: { ...p.params, topic: topic.id }, props: { ...p.props, topic } });
+    }
+  }
+  return out;
+}
+interface Props {
+  course: CourseData;
+  topic: TopicData;
+}
+const { course, topic } = Astro.props;
+const lang = Astro.params.lang as Lang;
+const { entry } = await theoryEntry(course.id, topic.id, lang);
+const { Content } = await render(entry!);
+---
+
+<PrintLayout
+  lang={lang}
+  course={course.id}
+  variant="theory"
+  title={`${tr(topic.title, lang)} — ${tr(course.title, lang)}`}
+  description={tr(topic.summary, lang)}
+  backHref={localizePath(sectionPath(course, 'teoria', topic.id), lang)}
+>
+  <header class="print-head">
+    <p class="eyebrow">
+      {tr(course.title, lang)}
+      {topic.group && ` · ${tr(topic.group, lang)}`}
+    </p>
+    <h1>{tr(topic.title, lang)}</h1>
+    <p class="lede">{tr(topic.summary, lang)}</p>
+    <h2 class="eyebrow">{t(lang, 'theory.objectives')}</h2>
+    <ul>
+      {topic.objectives.map((o) => (
+        <li>{tr(o.text, lang)}</li>
+      ))}
+    </ul>
+  </header>
+  <article class="prose">
+    <Content components={{ Layer, Formula, Figure, Callout }} />
+  </article>
+</PrintLayout>
+
+<script>
+  // In stampa le dimostrazioni (details) devono essere aperte.
+  for (const d of document.querySelectorAll('details')) d.open = true;
+</script>

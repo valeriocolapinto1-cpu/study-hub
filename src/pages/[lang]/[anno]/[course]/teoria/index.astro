@@ -1,0 +1,58 @@
+---
+/** Indice della teoria: argomenti nell'ordine e nei gruppi del sito originale. */
+import CourseLayout from '../../../../../layouts/CourseLayout.astro';
+import PageHeader from '../../../../../components/PageHeader.astro';
+import TopicCard from '../../../../../components/TopicCard.astro';
+import {
+  coursePaths,
+  courseTopics,
+  groupTopics,
+  sectionPath,
+  type CourseData,
+} from '../../../../../lib/course-pages';
+import { localizePath, t, tr, type Lang } from '../../../../../i18n';
+
+export const getStaticPaths = coursePaths;
+interface Props {
+  course: CourseData;
+}
+const { course } = Astro.props;
+const lang = Astro.params.lang as Lang;
+const topics = await courseTopics(course.id);
+const groups = groupTopics(topics, lang);
+---
+
+<CourseLayout
+  lang={lang}
+  course={course}
+  title={t(lang, 'nav.course.theory')}
+  topics={topics}
+  topicSection="teoria"
+>
+  <PageHeader
+    eyebrow={tr(course.title, lang)}
+    title={t(lang, 'nav.course.theory')}
+    lede={t(lang, 'theory.indexLede', { n: topics.length })}
+  />
+  {groups.map((g, gi) => (
+    <section class="topic-index__group" aria-labelledby={`g-${gi + 1}`}>
+      {g.title && (
+        <h2 class="topic-index__group-title" id={`g-${gi + 1}`}>
+          {g.title}
+        </h2>
+      )}
+      <ol class="topic-index">
+        {g.items.map((x) => (
+          <TopicCard
+            num={x.order}
+            title={tr(x.title, lang)}
+            href={localizePath(sectionPath(course, 'teoria', x.id), lang)}
+            summary={tr(x.summary, lang)}
+            meta={[t(lang, 'theory.objectivesCount', { n: x.objectives.length })]}
+            topicId={x.id}
+          />
+        ))}
+      </ol>
+    </section>
+  ))}
+</CourseLayout>

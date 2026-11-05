@@ -1,0 +1,87 @@
+---
+/** Pagina di teoria di un argomento: obiettivi, strati della spiegazione (MDX), navigazione. */
+import { render } from 'astro:content';
+import CourseLayout from '../../../../../layouts/CourseLayout.astro';
+import PageHeader from '../../../../../components/PageHeader.astro';
+import Pagination from '../../../../../components/Pagination.astro';
+import FallbackNotice from '../../../../../components/FallbackNotice.astro';
+import Layer from '../../../../../components/Layer.astro';
+import Formula from '../../../../../components/Formula.astro';
+import Figure from '../../../../../components/Figure.astro';
+import Callout from '../../../../../components/Callout.astro';
+import Notes from '../../../../../components/course/Notes.astro';
+import Icon from '../../../../../components/Icon.astro';
+import {
+  coursePaths,
+  courseTopics,
+  sectionPath,
+  theoryEntry,
+  type CourseData,
+  type TopicData,
+} from '../../../../../lib/course-pages';
+import { localizePath, t, tr, type Lang } from '../../../../../i18n';
+
+export async function getStaticPaths() {
+  const out = [];
+  for (const p of await coursePaths()) {
+    const topics = await courseTopics(p.props.course.id);
+    for (const topic of topics) {
+      const { entry } = await theoryEntry(p.props.course.id, topic.id, p.params.lang);
+      if (entry) out.push({ params: { ...p.params, topic: topic.id }, props: { ...p.props, topic, topics } });
+    }
+  }
+  return out;
+}
+interface Props {
+  course: CourseData;
+  topic: TopicData;
+  topics: TopicData[];
+}
+const { course, topic, topics } = Astro.props;
+const lang = Astro.params.lang as Lang;
+const { entry, fallback } = await theoryEntry(course.id, topic.id, lang);
+const { Content } = await render(entry!);
+const i = topics.findIndex((x) => x.id === topic.id);
+const link = (x: TopicData | undefined) =>
+  x && { href: localizePath(sectionPath(course, 'teoria', x.id), lang), title: tr(x.title, lang) };
+---
+
+<CourseLayout
+  lang={lang}
+  course={course}
+  title={tr(topic.title, lang)}
+  description={tr(topic.summary, lang)}
+  topics={topics}
+  topicSection="teoria"
+  currentTopic={topic.id}
+>
+  <PageHeader
+    eyebrow={topic.group ? tr(topic.group, lang) : t(lang, 'nav.course.theory')}
+    title={tr(topic.title, lang)}
+    lede={tr(topic.summary, lang)}
+  />
+  <FallbackNotice lang={lang} show={fallback} />
+  <section class="objectives" aria-labelledby="obiettivi">
+    <h2 id="obiettivi" class="eyebrow">
+      {t(lang, 'theory.objectives')}
+    </h2>
+    <ul>
+      {topic.objectives.map((o) => (
+        <li data-objective={o.id}>{tr(o.text, lang)}</li>
+      ))}
+    </ul>
+  </section>
+  <article class="prose" data-topic={topic.id}>
+    <Content components={{ Layer, Formula, Figure, Callout }} />
+  </article>
+  <Pagination lang={lang} prev={link(topics[i - 1])} next={link(topics[i + 1])} />
+  <a
+    slot="tools"
+    class="report-error"
+    href={localizePath(sectionPath(course, 'teoria', topic.id, 'stampa'), lang)}
+  >
+    <Icon name="printer" />
+    {t(lang, 'print.version')}
+  </a>
+  <Notes lang={lang} scope={course.id} />
+</CourseLayout>
