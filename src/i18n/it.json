@@ -534,5 +534,20 @@
   "offline.body": "Questa pagina non è stata salvata sul dispositivo. Le pagine principali e i corsi scaricati per l'offline restano consultabili.",
   "offline.retry": "Riprova",
   "offline.courses": "Corsi disponibili offline",
-  "offline.none": "Nessun corso scaricato: usa «Scarica per l'offline» nella panoramica di un corso quando sei online."
+  "offline.none": "Nessun corso scaricato: usa «Scarica per l'offline» nella panoramica di un corso quando sei online.",
+  "offlineCourse.title": "Disponibile offline",
+  "offlineCourse.checking": "Verifico lo stato del download…",
+  "offlineCourse.waiting": "Il sito si sta preparando per l'uso offline: tra poco potrai scaricare il corso.",
+  "offlineCourse.waitingSize": "Il sito si sta preparando per l'uso offline: tra poco potrai scaricare il corso (circa {size}).",
+  "offlineCourse.none": "Salva teoria, formulario, esercizi e ripasso di questo corso sul dispositivo per studiare senza connessione: circa {size}.",
+  "offlineCourse.download": "Scarica per l'offline",
+  "offlineCourse.starting": "Avvio del download…",
+  "offlineCourse.progress": "Download in corso: {done} di {total}",
+  "offlineCourse.progressLabel": "Avanzamento del download",
+  "offlineCourse.complete": "Corso salvato sul dispositivo ({size}): funziona anche senza connessione e si aggiorna con il sito.",
+  "offlineCourse.partial": "Ci sono aggiornamenti da scaricare: {files} file ({size}).",
+  "offlineCourse.update": "Aggiorna",
+  "offlineCourse.remove": "Rimuovi dal dispositivo",
+  "offlineCourse.error": "Download interrotto: controlla la connessione e riprova.",
+  "offlineCourse.retry": "Riprova"
 }

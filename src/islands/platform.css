@@ -180,3 +180,45 @@ h2.pf-cf-result__title {
   gap: var(--space-2xs);
   font: 400 var(--step--1) / 1.4 var(--font-sans);
 }
+
+/* =========================== Corso offline =========================== */
+.pf-offline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s) var(--space-m);
+  margin-block: var(--space-xl) 0;
+  padding: var(--space-s) var(--space-m);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l);
+  background: var(--surface);
+  font: 400 var(--step--1) / 1.45 var(--font-sans);
+}
+.pf-offline__text {
+  display: grid;
+  gap: var(--space-3xs);
+  flex: 1 1 18rem;
+}
+.pf-offline__title {
+  margin: 0;
+  font: 600 var(--step-0) / 1.3 var(--font-sans);
+}
+.pf-offline__status {
+  margin: 0;
+  color: var(--text-muted);
+}
+.pf-offline__status[data-tone='ok']::before,
+.pf-offline__status[data-tone='warn']::before {
+  content: '';
+  display: inline-block;
+  inline-size: 0.55em;
+  block-size: 0.55em;
+  margin-inline-end: 0.45em;
+  border-radius: 50%;
+  background: var(--success);
+  vertical-align: 0.05em;
+}
+.pf-offline__status[data-tone='warn']::before {
+  background: var(--warning);
+}

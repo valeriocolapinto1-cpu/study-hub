@@ -534,5 +534,20 @@
   "offline.body": "This page has not been saved on this device. The main pages and the courses downloaded for offline use are still available.",
   "offline.retry": "Try again",
   "offline.courses": "Courses available offline",
-  "offline.none": "No course downloaded: use “Download for offline” on a course overview when you are online."
+  "offline.none": "No course downloaded: use “Download for offline” on a course overview when you are online.",
+  "offlineCourse.title": "Available offline",
+  "offlineCourse.checking": "Checking the download status…",
+  "offlineCourse.waiting": "The site is getting ready for offline use: you will be able to download the course shortly.",
+  "offlineCourse.waitingSize": "The site is getting ready for offline use: you will be able to download the course shortly (about {size}).",
+  "offlineCourse.none": "Save the theory, formulas, exercises and review of this course on your device to study without a connection: about {size}.",
+  "offlineCourse.download": "Download for offline",
+  "offlineCourse.starting": "Starting the download…",
+  "offlineCourse.progress": "Downloading: {done} of {total}",
+  "offlineCourse.progressLabel": "Download progress",
+  "offlineCourse.complete": "Course saved on this device ({size}): it works without a connection and updates with the site.",
+  "offlineCourse.partial": "There are updates to download: {files} files ({size}).",
+  "offlineCourse.update": "Update",
+  "offlineCourse.remove": "Remove from device",
+  "offlineCourse.error": "Download interrupted: check your connection and try again.",
+  "offlineCourse.retry": "Try again"
 }

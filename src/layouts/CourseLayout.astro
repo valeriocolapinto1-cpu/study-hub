@@ -13,7 +13,8 @@ import CourseNav from '../components/CourseNav.astro';
 import Icon from '../components/Icon.astro';
 import ReportError from '../components/ReportError.astro';
 import TopicNav from '../components/TopicNav.astro';
-import { localizePath, stripLang, t, tr, type Lang } from '../i18n';
+import OfflineCourse from '../islands/OfflineCourse';
+import { localizePath, stripLang, t, texts, tr, withBase, type Lang } from '../i18n';
 import { COURSE_SECTIONS, coursePath } from '../lib/courses';
 
 interface Props {
@@ -44,6 +45,9 @@ const {
 const courseTitle = tr(course.title, lang);
 const pageTitle = title ? `${title} — ${courseTitle}` : courseTitle;
 const base = coursePath(course);
+
+// Panoramica del corso: offre il download per l'offline (service worker).
+const isOverview = stripLang(Astro.url.pathname) === base;
 
 let crumbs = Astro.props.crumbs;
 if (!crumbs) {
@@ -118,10 +122,21 @@ if (!crumbs) {
           )}
         </div>
       </dialog>
-      <Breadcrumbs lang={lang} items={crumbs} />
+      <div data-pagefind-ignore>
+        <Breadcrumbs lang={lang} items={crumbs} />
+      </div>
       <div class:list={[{ reading: !wide }]}>
         <slot />
-        <div class="page-tools">
+        {isOverview && (
+          <OfflineCourse
+            client:visible
+            lang={lang}
+            courseId={course.id}
+            summaryUrl={withBase('offline-summary.json')}
+            texts={texts(lang, 'offlineCourse.')}
+          />
+        )}
+        <div class="page-tools" data-pagefind-ignore>
           <ReportError lang={lang} course={course.id} />
           <slot name="tools" />
         </div>
