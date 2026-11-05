@@ -100,6 +100,12 @@ export const formulaSchema = z.strictObject({
   latex: z.string().min(1),
   label: localized,
   note: localized.optional(),
+  /** Significato dei simboli e unità di misura. */
+  symbols: localized.optional(),
+  /** Quando e come si usa. */
+  usage: localized.optional(),
+  /** Errore tipico nell'uso della formula. */
+  pitfall: localized.optional(),
 });
 export type Formula = z.infer<typeof formulaSchema>;
 

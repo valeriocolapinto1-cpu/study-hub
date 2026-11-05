@@ -1,0 +1,136 @@
+---
+/**
+ * Panoramica del corso: cos'è, struttura d'esame, date suggerite, come usare il sito, mappa degli argomenti.
+ * Un corso può aggiungere un'introduzione propria in src/courses/<courseId>/Overview.astro (prop `lang`).
+ */
+import CourseLayout from '../../../../layouts/CourseLayout.astro';
+import PageHeader from '../../../../components/PageHeader.astro';
+import TopicCard from '../../../../components/TopicCard.astro';
+import {
+  coursePaths,
+  courseTopics,
+  groupTopics,
+  sectionPath,
+  type CourseData,
+} from '../../../../lib/course-pages';
+import { COURSE_SECTIONS } from '../../../../lib/courses';
+import { localizePath, t, tr, type Lang } from '../../../../i18n';
+
+export const getStaticPaths = coursePaths;
+interface Props {
+  course: CourseData;
+}
+const { course } = Astro.props;
+const lang = Astro.params.lang as Lang;
+const topics = await courseTopics(course.id);
+const groups = groupTopics(topics, lang);
+const intros = import.meta.glob<{ default: (props: { lang: Lang }) => unknown }>(
+  '../../../../courses/*/Overview.astro',
+  { eager: true },
+);
+const Intro = Object.entries(intros).find(([k]) => k.includes(`/courses/${course.id}/`))?.[1].default;
+const fmtDate = (d: string) =>
+  new Intl.DateTimeFormat(lang === 'it' ? 'it-IT' : 'en-GB', { dateStyle: 'long', timeZone: 'UTC' }).format(
+    new Date(`${d}T12:00:00Z`),
+  );
+const total = course.exam.structure.reduce((s, x) => s + (x.points ?? 0), 0);
+const howto = COURSE_SECTIONS.filter((s) => s.slug).map((s) => ({
+  href: localizePath(sectionPath(course, s.slug), lang),
+  title: t(lang, s.key),
+  text: t(lang, `overview.howto.${s.slug}`),
+}));
+---
+
+<CourseLayout lang={lang} course={course} topics={topics} topicSection="teoria">
+  <PageHeader
+    eyebrow={t(lang, 'course.yearSemester', { year: course.year, semester: course.semester ?? 1 })}
+    title={tr(course.title, lang)}
+    lede={tr(course.description, lang)}
+  />
+  <div class="prose">
+    {Intro && <Intro lang={lang} />}
+
+    <h2 id="esame">{t(lang, 'overview.exam')}</h2>
+    <p>
+      {t(lang, `overview.format.${course.exam.format}`)}
+      {course.exam.durationMin && ` · ${t(lang, 'overview.duration', { min: course.exam.durationMin })}`}
+    </p>
+    {course.exam.structure.length > 0 && (
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">{t(lang, 'overview.part')}</th>
+              <th scope="col" class="num">
+                {t(lang, 'overview.points')}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {course.exam.structure.map((s) => (
+              <tr>
+                <td>{tr(s.label, lang)}</td>
+                <td class="num">{s.points ?? '—'}</td>
+              </tr>
+            ))}
+          </tbody>
+          {total > 0 && (
+            <tfoot>
+              <tr>
+                <th scope="row">{t(lang, 'overview.total')}</th>
+                <td class="num">{total}</td>
+              </tr>
+            </tfoot>
+          )}
+        </table>
+      </div>
+    )}
+    {course.examDates && course.examDates.length > 0 && (
+      <>
+        <h3>{t(lang, 'overview.dates')}</h3>
+        <ul>
+          {course.examDates.map((d) => (
+            <li>
+              <time datetime={d}>{fmtDate(d)}</time>
+            </li>
+          ))}
+        </ul>
+        <p class="muted">{t(lang, 'overview.datesNote')}</p>
+      </>
+    )}
+
+    <h2 id="come-usare">{t(lang, 'overview.howto')}</h2>
+    <dl>
+      {howto.map((h) => (
+        <>
+          <dt>
+            <a href={h.href}>{h.title}</a>
+          </dt>
+          <dd>{h.text}</dd>
+        </>
+      ))}
+    </dl>
+
+    <h2 id="mappa">{t(lang, 'overview.map', { n: topics.length })}</h2>
+  </div>
+  {groups.map((g, gi) => (
+    <section class="topic-index__group" aria-labelledby={`m-${gi + 1}`}>
+      {g.title && (
+        <h3 class="topic-index__group-title" id={`m-${gi + 1}`}>
+          {g.title}
+        </h3>
+      )}
+      <ol class="topic-index">
+        {g.items.map((x) => (
+          <TopicCard
+            num={x.order}
+            title={tr(x.title, lang)}
+            href={localizePath(sectionPath(course, 'teoria', x.id), lang)}
+            summary={tr(x.summary, lang)}
+            topicId={x.id}
+          />
+        ))}
+      </ol>
+    </section>
+  ))}
+</CourseLayout>

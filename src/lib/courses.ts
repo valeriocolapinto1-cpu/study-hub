@@ -1,4 +1,4 @@
-import type { Course } from '../content/schemas';
+import type { Course, Topic } from '../content/schemas';
 
 /** Percorso di un corso senza base né lingua: `anno-<year>/<id>`. */
 export const coursePath = (course: Pick<Course, 'year' | 'id'>): string => `anno-${course.year}/${course.id}`;
@@ -17,3 +17,15 @@ export const COURSE_SECTIONS = [
   { slug: 'esame', key: 'nav.course.exam' },
   { slug: 'progressi', key: 'nav.course.progress' },
 ] as const;
+
+/** Gruppi consecutivi (blocchi, capitoli) nell'ordine degli argomenti. */
+export function groupTopics<T extends Pick<Topic, 'group'>>(topics: T[], lang: 'it' | 'en') {
+  const out: { title: string | undefined; items: T[] }[] = [];
+  for (const t of topics) {
+    const title = t.group ? (lang === 'en' && t.group.en ? t.group.en : t.group.it) : undefined;
+    const last = out.at(-1);
+    if (last && last.title === title) last.items.push(t);
+    else out.push({ title, items: [t] });
+  }
+  return out;
+}

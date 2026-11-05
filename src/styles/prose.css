@@ -350,3 +350,24 @@ a.formula__num:hover {
 .prose details > :not(summary) + * {
   margin-top: var(--space-s);
 }
+
+/* ---- Blocchi annotabili, esempi svolti, dimostrazioni ----
+   I contenuti di teoria avvolgono ogni paragrafo in un blocco con `data-note-id` stabile
+   (appunti personali): il ritmo verticale resta quello della prosa. */
+.prose [data-note-id] > * + * {
+  margin-top: var(--space-s);
+}
+.prose .worked {
+  border-left: 2px solid var(--border);
+  padding-left: var(--space-s);
+}
+.prose .worked > h3 {
+  margin-top: 0;
+  font-size: var(--step-1);
+}
+.prose * + .worked {
+  margin-top: var(--space-l);
+}
+.prose .proof > summary {
+  color: var(--text);
+}

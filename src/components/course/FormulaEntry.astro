@@ -1,0 +1,87 @@
+---
+/** Voce del formulario: formula, simboli, uso, errore tipico, rimando alla teoria e segnalibro. */
+import Formula from '../Formula.astro';
+import { localizePath, t, tr, type Lang } from '../../i18n';
+import type { Formula as FormulaData } from '../../content/schemas';
+
+interface Props {
+  lang: Lang;
+  formula: FormulaData;
+  theoryHref?: string | undefined;
+  topicTitle?: string | undefined;
+  /** Mostra il pulsante segnalibro (non in stampa). */
+  bookmark?: boolean;
+  compact?: boolean;
+}
+const { lang, formula: f, theoryHref, topicTitle, bookmark = true, compact = false } = Astro.props;
+const label = tr(f.label, lang);
+const search = [label, f.symbols && tr(f.symbols, lang), f.usage && tr(f.usage, lang), topicTitle, f.id]
+  .filter(Boolean)
+  .join(' ')
+  .toLowerCase();
+---
+
+<article
+  class="formula-entry"
+  data-formula={f.id}
+  data-note-id={`formula-${f.id}`}
+  data-search={search}
+  id={`voce-${f.id}`}
+>
+  <div class="formula-entry__head">
+    <h3 class="formula-entry__title">{label}</h3>
+    {bookmark && (
+      <button
+        type="button"
+        class="icon-btn icon-btn--bare formula-entry__star no-print"
+        data-bookmark={f.id}
+        aria-pressed="false"
+        aria-label={t(lang, 'formulary.bookmark', { name: label })}
+      >
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+          <path
+            d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linejoin="round"
+          ></path>
+        </svg>
+      </button>
+    )}
+  </div>
+  <Formula id={f.id} tex={f.latex} />
+  {!compact && (
+    <dl class="formula-entry__meta">
+      {f.symbols && (
+        <>
+          <dt>{t(lang, 'formulary.symbols')}</dt>
+          <dd>{tr(f.symbols, lang)}</dd>
+        </>
+      )}
+      {f.usage && (
+        <>
+          <dt>{t(lang, 'formulary.usage')}</dt>
+          <dd>{tr(f.usage, lang)}</dd>
+        </>
+      )}
+      {f.pitfall && (
+        <>
+          <dt>{t(lang, 'formulary.pitfall')}</dt>
+          <dd>{tr(f.pitfall, lang)}</dd>
+        </>
+      )}
+      {f.note && (
+        <>
+          <dt>{t(lang, 'callout.nota')}</dt>
+          <dd>{tr(f.note, lang)}</dd>
+        </>
+      )}
+    </dl>
+  )}
+  {theoryHref && topicTitle && !compact && (
+    <p class="formula-entry__link">
+      <a href={theoryHref}>{t(lang, 'formulary.theory', { topic: topicTitle })}</a>
+    </p>
+  )}
+</article>
