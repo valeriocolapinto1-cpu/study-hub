@@ -3,6 +3,8 @@
  *
  * Sottoinsieme di Markdown pensato per enunciati e soluzioni: paragrafi,
  * a capo, elenchi puntati e numerati, **grassetto**, *corsivo*, `codice`,
+ * blocchi preformattati fra righe ``` (tabelle di verità, listati, conti in
+ * colonna: spazi conservati, nessuna altra sintassi al loro interno)
  * e matematica `$…$`, `$$…$$`, `\(…\)`, `\[…\]`. L'HTML in ingresso viene
  * sempre sottoposto a escape: nessun markup arbitrario entra nella pagina.
  *
@@ -58,12 +60,35 @@ function inline(s: string): string {
 }
 
 /** Converte testo ricco in HTML (blocchi). `inlineOnly` evita i `<p>` per testi brevi (etichette, opzioni). */
+const CODE_PLACEHOLDER = (i: number) => `\u0000C${i}\u0000`;
+
+/** Estrae i blocchi ``` … ``` prima di tutto il resto: dentro non vale né Markdown né matematica. */
+function extractCode(text: string): { text: string; code: string[] } {
+  const code: string[] = [];
+  const out = text.replace(/(^|\n)```[^\n]*\n([\s\S]*?)\n```(?=\n|$)/g, (_, pre: string, body: string) => {
+    code.push(`<pre class="rich-pre"><code>${escapeHtml(body)}</code></pre>`);
+    return `${pre}\n\n${CODE_PLACEHOLDER(code.length - 1)}\n\n`;
+  });
+  return { text: out, code };
+}
+
 export function renderRich(
   source: string,
   render: MathRenderer = plainMath,
   opts: { inlineOnly?: boolean } = {},
 ): string {
-  const { text, math } = extractMath(source.replace(/\r\n?/g, '\n').trim(), render);
+  const normalized = source.replace(/\r\n?/g, '\n').trim();
+  if (!opts.inlineOnly && normalized.includes('```')) {
+    const { text: rest, code } = extractCode(normalized);
+    return rest
+      .split(/\n{2,}/)
+      .map((block) => {
+        const m = /^\u0000C(\d+)\u0000$/.exec(block.trim());
+        return m ? (code[Number(m[1])] ?? '') : block.trim() ? renderRich(block, render) : '';
+      })
+      .join('');
+  }
+  const { text, math } = extractMath(normalized, render);
   const restore = (html: string) =>
     html.replace(/\u0000M(\d+)\u0000/g, (_, i: string) => math[Number(i)] ?? '');
   if (opts.inlineOnly) return restore(inline(text));
@@ -93,6 +118,7 @@ export function renderRich(
 /** Testo semplice (per aria-label, ricerca, anteprime): via la sintassi, la matematica resta in TeX. */
 export function plainText(source: string): string {
   return source
+    .replace(/^```[^\n]*$/gm, '')
     .replace(/\$\$?|\\[()[\]]/g, '')
     .replace(/\*\*|__|`/g, '')
     .replace(/(^|\s)[*_]([^*_]+)[*_]/g, '$1$2')

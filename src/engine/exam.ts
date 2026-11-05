@@ -255,6 +255,8 @@ export const toAnswerSpec = (a: AnswerItemData): AnswerSpec => ({
   value: a.value,
   ...(a.unit ? { unit: a.unit } : {}),
   ...(a.tol !== undefined ? { tol: a.tol } : {}),
+  ...(a.kind ? { kind: a.kind } : {}),
+  ...(a.accept?.length ? { accept: a.accept } : {}),
 });
 
 export function gradeQuestion(

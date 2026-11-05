@@ -101,6 +101,8 @@ export function exerciseData(e: CollectionEntry<'exercises'>['data'], lang: Lang
       value: a.value,
       ...(a.unit ? { unit: a.unit } : {}),
       ...(a.tol !== undefined ? { tol: a.tol } : {}),
+      ...(a.kind ? { kind: a.kind } : {}),
+      ...(a.accept?.length ? { accept: a.accept } : {}),
     })),
     ...(e.choices
       ? {

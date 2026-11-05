@@ -127,6 +127,10 @@ export const answerItemSchema = z.strictObject({
   unit: z.string().optional(),
   /** Tolleranza relativa; se assente vale 0.01. */
   tol: z.number().positive().max(1).optional(),
+  /** Confronto: dedotto dal valore se assente; `text` per codici (binario, esadecimale, nomi). */
+  kind: z.enum(['number', 'complex', 'text']).optional(),
+  /** Solo per `text`: altre forme accettate (es. `0xAD`, `1010 1101`). */
+  accept: z.array(z.string().min(1)).optional(),
 });
 
 export const choiceSchema = z.strictObject({

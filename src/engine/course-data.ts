@@ -25,6 +25,8 @@ export interface AnswerItemData {
   value: number | string;
   unit?: string;
   tol?: number;
+  kind?: 'number' | 'complex' | 'text';
+  accept?: string[];
 }
 
 export interface ChoiceData {

@@ -212,3 +212,16 @@ abbr[title] {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Blocchi preformattati dei testi ricchi (enunciati, svolgimenti, flashcard): src/engine/rich.ts */
+pre.rich-pre {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  padding: var(--space-xs) var(--space-s);
+  overflow-x: auto;
+  font-size: var(--step--1);
+  line-height: 1.55;
+  margin-block: var(--space-xs);
+  tab-size: 4;
+}
