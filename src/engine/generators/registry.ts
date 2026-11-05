@@ -8,7 +8,7 @@
  * degli esercizi statici.
  */
 import type { Lang } from '../../config/site';
-import { GENERATOR_RE, OBJECTIVE_RE, KEBAB_RE } from '../../content/schemas';
+import { GENERATOR_RE, OBJECTIVE_RE, KEBAB_RE } from '../../content/ids';
 import type { NetlistInput } from '../../sim/circuits/netlist';
 
 export type { Lang };

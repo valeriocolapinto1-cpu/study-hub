@@ -14,4 +14,29 @@ export function loadAllGenerators() {
   return listGenerators();
 }
 
+const lazy = import.meta.glob('../../courses/*/generators/*.ts');
+const courseLoaded = new Set<string>();
+
+/**
+ * Carica solo i generatori di un corso (per le isole nel browser: evita di
+ * scaricare quelli degli altri corsi). Idempotente.
+ */
+export async function loadCourseGenerators(courseId: string) {
+  if (!courseLoaded.has(courseId)) {
+    const prefix = `../../courses/${courseId}/generators/`;
+    await Promise.all(
+      Object.entries(lazy)
+        .filter(([path]) => path.startsWith(prefix))
+        .map(([, load]) => load()),
+    );
+    if (import.meta.env.PUBLIC_STUDY_HUB_FIXTURES === '1') {
+      // Corso finto dei test end-to-end (solo nella build delle fixture).
+      const fixtures = import.meta.glob('../../../tests/fixtures/generators/*.ts');
+      if (courseId === 'esempio') await Promise.all(Object.values(fixtures).map((load) => load()));
+    }
+    courseLoaded.add(courseId);
+  }
+  return listGenerators(courseId);
+}
+
 export * from './registry';

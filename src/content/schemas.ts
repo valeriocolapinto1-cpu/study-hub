@@ -8,12 +8,9 @@ import { Netlist } from '../sim/circuits/netlist';
 
 export const LANG_VALUES = ['it', 'en'] as const;
 
-/** kebab-case: minuscole, cifre e trattini singoli. */
-export const KEBAB_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-/** Id di un obiettivo: `<topicId>.<n>`. */
-export const OBJECTIVE_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*\.[1-9]\d*$/;
-/** Id di un generatore: `<courseId>/<name>`. */
-export const GENERATOR_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*\/[a-z0-9]+(?:-[a-z0-9]+)*$/;
+import { GENERATOR_RE, KEBAB_RE, OBJECTIVE_RE } from './ids';
+
+export { GENERATOR_RE, KEBAB_RE, OBJECTIVE_RE };
 
 export const kebabId = z.string().regex(KEBAB_RE, 'id in kebab-case');
 export const objectiveId = z.string().regex(OBJECTIVE_RE, 'id obiettivo nella forma <topicId>.<n>');

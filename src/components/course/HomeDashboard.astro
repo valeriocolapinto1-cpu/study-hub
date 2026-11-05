@@ -1,0 +1,37 @@
+---
+/** Riepilogo multi-corso per la home (nessun output se non ci sono corsi). */
+import { getCollection } from 'astro:content';
+import ProgressDashboard from '../../islands/ProgressDashboard';
+import { getCourseData } from '../../lib/course-data';
+import { sortCourses } from '../../lib/courses';
+import { localizePath, t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const entries = sortCourses((await getCollection('courses')).map((c) => c.data));
+const courses = await Promise.all(
+  entries.map(async (c) => {
+    const d = await getCourseData(c.id, lang);
+    return {
+      id: c.id,
+      title: d.title,
+      examDates: d.examDates,
+      exerciseIds: d.exercises.map((e) => e.id),
+      cardIds: d.cards.map((x) => x.id),
+      paths: { overview: d.paths.overview, review: d.paths.review, progress: d.paths.progress },
+    };
+  }),
+);
+---
+
+{courses.length > 0 && (
+  <>
+    <ProgressDashboard client:idle lang={lang} courses={courses} reviewPath={localizePath('ripasso', lang)} />
+    <p class="sh-home-links">
+      <a href={localizePath('appunti', lang)}>{t(lang, 'notes.all')}</a>
+      <a href={localizePath('i-miei-dati', lang)}>{t(lang, 'page.sync.title')}</a>
+    </p>
+  </>
+)}

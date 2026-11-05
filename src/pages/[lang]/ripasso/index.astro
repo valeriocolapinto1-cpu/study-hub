@@ -1,0 +1,28 @@
+---
+/** Ripasso globale: una sola coda FSRS con le flashcard di tutti i corsi (dati caricati su richiesta). */
+import 'katex/dist/katex.min.css';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ReviewSession from '../../../islands/ReviewSession';
+import SectionHeader from '../../../components/course/SectionHeader.astro';
+import { coursePaths } from '../../../lib/course-data';
+import { sortCourses } from '../../../lib/courses';
+import { langPaths, t, tr, type Lang } from '../../../i18n';
+
+export const getStaticPaths = langPaths;
+const lang = Astro.params.lang as Lang;
+const courses = sortCourses((await getCollection('courses')).map((c) => c.data));
+const decks = courses.map((c) => ({
+  courseId: c.id,
+  title: tr(c.title, lang),
+  dataUrl: coursePaths(c, lang).data,
+  examDates: c.examDates ?? [],
+}));
+---
+
+<BaseLayout lang={lang} title={t(lang, 'page.globalReview.title')} description={t(lang, 'page.review.lead')}>
+  <div class="container page">
+    <SectionHeader title={t(lang, 'page.globalReview.title')} lead={t(lang, 'page.review.lead')} />
+    <ReviewSession client:load lang={lang} decks={decks} />
+  </div>
+</BaseLayout>

@@ -1,0 +1,28 @@
+---
+/**
+ * Livello appunti: pulsante su ogni elemento con `data-note-id` della pagina.
+ * Uso: <Notes lang={lang} scope={course.id} /> una volta per pagina (teoria, formulario, esercizi).
+ */
+import NotesLayer from '../../islands/NotesLayer';
+import { t, stripLang, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+  /** Id del corso (scope di storage) oppure 'global'. */
+  scope: string;
+}
+const { lang, scope } = Astro.props;
+const labels = {
+  add: t(lang, 'notes.add'),
+  edit: t(lang, 'notes.edit'),
+  title: t(lang, 'notes.title'),
+  placeholder: t(lang, 'notes.placeholder'),
+  save: t(lang, 'engine.save'),
+  delete: t(lang, 'engine.delete'),
+  cancel: t(lang, 'engine.cancel'),
+  saved: t(lang, 'notes.saved'),
+  deleted: t(lang, 'notes.deleted'),
+};
+---
+
+<NotesLayer client:idle scope={scope} page={stripLang(Astro.url.pathname)} labels={labels} />

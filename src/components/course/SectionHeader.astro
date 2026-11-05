@@ -1,0 +1,15 @@
+---
+/** Intestazione standard delle sezioni generiche del corso (usa PageHeader del sistema di design). */
+import PageHeader from '../PageHeader.astro';
+
+interface Props {
+  title: string;
+  lead?: string | undefined;
+  eyebrow?: string | undefined;
+}
+const { title, lead, eyebrow } = Astro.props;
+---
+
+<PageHeader title={title} lede={lead} eyebrow={eyebrow}>
+  {Astro.slots.has('default') && <slot />}
+</PageHeader>

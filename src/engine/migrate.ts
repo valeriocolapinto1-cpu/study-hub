@@ -46,6 +46,25 @@ export const MIGRATIONS: Migration[] = [
 
 export const MIGRATIONS_AREA = 'migrations';
 
+/**
+ * Registra una migrazione da un modulo del corso (`src/courses/<id>/migrations.ts`)
+ * senza modificare questo file. Id duplicati con definizione diversa sono un errore.
+ */
+export function registerMigration(m: Migration): Migration {
+  const existing = MIGRATIONS.find((x) => x.id === m.id);
+  if (existing && existing !== m) throw new Error(`migrazione già registrata: "${m.id}"`);
+  if (!existing) MIGRATIONS.push(m);
+  return m;
+}
+
+/** Trasformazione JSON comune: `parse` riceve il valore legacy già decodificato. */
+export function jsonTransform(parse: (value: unknown) => unknown): (raw: string) => unknown {
+  return (raw) => {
+    const v = parseJson(raw);
+    return v === undefined ? undefined : parse(v);
+  };
+}
+
 export interface MigrationReport {
   applied: string[];
   skipped: string[];

@@ -42,7 +42,8 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
-      - run: npm test
+      # vitest con copertura: soglia del 90 % di righe su src/engine (vitest.config.ts)
+      - run: npm run test:coverage
 
   build:
     name: Build e test dei contenuti
@@ -60,10 +61,18 @@ jobs:
         run: npx vitest run tests/content
       - name: Link interni del sito compilato
         run: node tools/check-links.mjs
+      - name: Build delle fixture (corso finto per i test delle isole del motore)
+        run: npm run build:fixtures
       - uses: actions/upload-artifact@v6
         with:
           name: dist
           path: dist
+          include-hidden-files: true
+          retention-days: 3
+      - uses: actions/upload-artifact@v6
+        with:
+          name: dist-fixtures
+          path: dist-fixtures
           include-hidden-files: true
           retention-days: 3
 
@@ -87,6 +96,10 @@ jobs:
         with:
           name: dist
           path: dist
+      - uses: actions/download-artifact@v7
+        with:
+          name: dist-fixtures
+          path: dist-fixtures
       - name: Verifica baseline visive
         run: |
           if [ -z "$(ls -A tests/e2e/__screenshots__ 2>/dev/null)" ]; then
