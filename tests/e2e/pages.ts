@@ -20,4 +20,5 @@ export const SAMPLE_PAGES: SamplePage[] = [
   { name: 'note-legali-en', path: `${BASE}en/note-legali/` },
   { name: 'ringraziamenti-it', path: `${BASE}it/ringraziamenti/` },
   { name: 'contribuisci-it', path: `${BASE}it/contribuisci/` },
+  { name: 'stile-circuiti', path: `${BASE}it/stile/circuiti/` },
 ];

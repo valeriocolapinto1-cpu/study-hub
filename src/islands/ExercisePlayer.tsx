@@ -74,7 +74,16 @@ export async function generatedContent(
         )
       : Promise.resolve(undefined),
   ]);
-  return { statementHtml, figureSvg: g.figure?.svg, steps, answer: g.answer, choices };
+  // figura da netlist: lo schema si carica solo quando un generatore lo usa
+  let figureSvg = g.figure?.svg;
+  if (!figureSvg && g.figure?.netlist) {
+    const { renderSchematic } = await import('../sim/circuits/schematic');
+    figureSvg = renderSchematic(g.figure.netlist, {
+      lang,
+      idPrefix: `fig-${generator.replace(/\W/g, '-')}-${seed}`,
+    }).svg;
+  }
+  return { statementHtml, figureSvg, steps, answer: g.answer, choices };
 }
 
 /** Valore atteso leggibile (per il feedback dopo la soluzione). */

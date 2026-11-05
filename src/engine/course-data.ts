@@ -49,8 +49,8 @@ export interface ExerciseData {
   /** Anteprima in testo semplice (elenchi, aria-label). */
   title: string;
   statementHtml?: string;
+  /** SVG della figura (le netlist sono già rese a build-time da src/sim/circuits/schematic.ts). */
   figureSvg?: string;
-  netlist?: string;
   steps: StepData[];
   answer: AnswerItemData[];
   choices?: ChoiceData[];

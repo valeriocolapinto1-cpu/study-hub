@@ -17,6 +17,7 @@ import { pick, tr, localizePath, type Lang } from '../i18n';
 import { coursePath } from './courses';
 import { plainText } from '../engine/rich';
 import { richHtml, richInline } from './rich-server';
+import { renderSchematic } from '../sim/circuits/schematic';
 
 type CourseEntry = CollectionEntry<'courses'>['data'];
 
@@ -85,8 +86,12 @@ export function exerciseData(e: CollectionEntry<'exercises'>['data'], lang: Lang
     ...(e.generator ? { generator: e.generator } : {}),
     title: statement ? plainText(statement.text).slice(0, 140) : e.id,
     ...(statement ? { statementHtml: richHtml(statement.text) } : {}),
-    ...(e.figure?.svg ? { figureSvg: e.figure.svg } : {}),
-    ...(e.figure?.netlist ? { netlist: e.figure.netlist } : {}),
+    // la netlist diventa SVG a build-time (stessa funzione del risolutore, zero JS nel browser)
+    ...(e.figure?.svg
+      ? { figureSvg: e.figure.svg }
+      : e.figure?.netlist
+        ? { figureSvg: renderSchematic(e.figure.netlist, { lang, idPrefix: `fig-${e.id}` }).svg }
+        : {}),
     steps: e.steps.map((s) => ({
       titleHtml: richInline(tr(s.title, lang)),
       bodyHtml: richHtml(tr(s.body, lang)),

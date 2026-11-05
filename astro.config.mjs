@@ -31,7 +31,7 @@ export default defineConfig({
     sitemap({
       i18n: { defaultLocale: 'it', locales: { it: 'it-IT', en: 'en-US' } },
       // La radice reindirizza e la 404 non va indicizzata.
-      filter: (page) => /\/study-hub\/(it|en)\//.test(page),
+      filter: (page) => /\/study-hub\/(it|en)\//.test(page) && !page.includes('/stile/'),
     }),
   ],
   vite: {

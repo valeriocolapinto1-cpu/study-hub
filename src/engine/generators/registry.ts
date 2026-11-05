@@ -9,6 +9,7 @@
  */
 import type { Lang } from '../../config/site';
 import { GENERATOR_RE, OBJECTIVE_RE, KEBAB_RE } from '../../content/ids';
+import type { NetlistInput } from '../../sim/circuits/netlist';
 
 export type { Lang };
 
@@ -18,8 +19,8 @@ export interface ExerciseStep {
 }
 
 export interface ExerciseFigure {
-  /** Netlist testuale (vedi src/sim/circuits/netlist.ts). */
-  netlist?: string;
+  /** Netlist del circuito (formato in src/sim/circuits/netlist.ts, guida in docs/SIM.md). */
+  netlist?: NetlistInput;
   /** SVG inline. */
   svg?: string;
 }
