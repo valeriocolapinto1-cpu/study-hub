@@ -51,9 +51,23 @@ function ask(
   });
 }
 
+/** Il worker risponde ai messaggi solo dopo l'attivazione (alla prima visita può essere ancora in corso). */
+function activated(w: ServiceWorker): Promise<ServiceWorker> {
+  if (w.state === 'activated') return Promise.resolve(w);
+  return new Promise((resolve) => {
+    const on = () => {
+      if (w.state === 'activated') {
+        w.removeEventListener('statechange', on);
+        resolve(w);
+      }
+    };
+    w.addEventListener('statechange', on);
+  });
+}
+
 async function activeWorker(timeoutMs: number): Promise<ServiceWorker | null> {
   if (!('serviceWorker' in navigator)) return null;
-  const ready = navigator.serviceWorker.ready.then((r) => r.active);
+  const ready = navigator.serviceWorker.ready.then((r) => (r.active ? activated(r.active) : null));
   const timeout = new Promise<null>((r) => setTimeout(() => r(null), timeoutMs));
   return Promise.race([ready, timeout]);
 }

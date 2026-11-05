@@ -71,7 +71,7 @@ if (!crumbs) {
 >
   <slot name="head" slot="head" />
   <div class="container course-shell">
-    <aside class="course-shell__side" aria-label={t(lang, 'nav.course.menu')}>
+    <aside class="course-shell__side" data-pagefind-ignore aria-label={t(lang, 'nav.course.menu')}>
       <CourseNav lang={lang} course={course} />
       {topics && topics.length > 0 && (
         <TopicNav
@@ -89,6 +89,7 @@ if (!crumbs) {
       <button
         type="button"
         class="course-drawer-toggle"
+        data-pagefind-ignore
         data-drawer-open="indice-corso"
         aria-haspopup="dialog"
         aria-expanded="false"
@@ -99,7 +100,12 @@ if (!crumbs) {
           {t(lang, 'nav.course.menu')}
         </span>
       </button>
-      <dialog id="indice-corso" class="course-drawer" aria-label={t(lang, 'nav.course.menu')}>
+      <dialog
+        id="indice-corso"
+        class="course-drawer"
+        data-pagefind-ignore
+        aria-label={t(lang, 'nav.course.menu')}
+      >
         <div class="course-drawer__head">
           <span class="eyebrow">{t(lang, 'nav.course.menu')}</span>
           <form method="dialog">

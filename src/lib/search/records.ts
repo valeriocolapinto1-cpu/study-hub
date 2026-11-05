@@ -37,10 +37,8 @@ export function pageSearchType(rest: string, course?: string): SearchType | null
   return 'pagina';
 }
 
-/** Valore di `data-pagefind-filter` (sintassi Pagefind: `nome:valore, nome:valore`). */
-export function pagefindFilters(type: SearchType, course?: string): string {
-  return course ? `tipo:${type}, corso:${course}` : `tipo:${type}`;
-}
+/** Valore di `data-pagefind-filter` per un filtro (sintassi Pagefind: `nome:valore`, uno per elemento). */
+export const pagefindFilter = (name: 'tipo' | 'corso', value: string): string => `${name}:${value}`;
 
 export interface SearchRecord {
   url: string;

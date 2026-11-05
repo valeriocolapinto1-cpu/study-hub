@@ -10,7 +10,7 @@ import { getCollection } from 'astro:content';
 import { BASE_URL } from '../config/site';
 import { htmlLang, stripLang, t, texts, tr, type Lang } from '../i18n';
 import { sortCourses } from '../lib/courses';
-import { pageSearchType, pagefindFilters } from '../lib/search/records';
+import { pageSearchType, pagefindFilter } from '../lib/search/records';
 
 // Tinte d'accento dei corsi: ogni file ridefinisce solo --accent* sotto html[data-course].
 import.meta.glob('../styles/courses/*.css', { eager: true });
@@ -53,8 +53,9 @@ const searchConfig = {
       id="contenuto"
       tabindex="-1"
       data-pagefind-body={searchType ? '' : undefined}
-      data-pagefind-filter={searchType ? pagefindFilters(searchType, course) : undefined}
+      data-pagefind-filter={searchType ? pagefindFilter('tipo', searchType) : undefined}
     >
+      {searchType && course && <span hidden data-pagefind-filter={pagefindFilter('corso', course)} />}
       <slot />
     </main>
     <Footer lang={lang} />
