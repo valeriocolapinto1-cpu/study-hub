@@ -56,7 +56,12 @@ export function yamlListLoader(base: string): Loader {
           const id = `${course}/${String(item.id)}`;
           if (store.has(id)) throw new Error(`${file}: id duplicato "${id}"`);
           const data = await parseData({ id, data: item, filePath: file });
-          store.set({ id, data, digest: generateDigest(data), filePath: relative(fileURLToPath(config.root), file) });
+          store.set({
+            id,
+            data,
+            digest: generateDigest(data),
+            filePath: relative(fileURLToPath(config.root), file),
+          });
         }
       };
       await sync();

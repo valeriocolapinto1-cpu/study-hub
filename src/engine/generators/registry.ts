@@ -59,7 +59,8 @@ export interface GeneratorDefinition {
 const registry = new Map<string, GeneratorDefinition>();
 
 export function registerGenerator(def: GeneratorDefinition): GeneratorDefinition {
-  if (!GENERATOR_RE.test(def.id)) throw new Error(`id generatore non valido: "${def.id}" (atteso <courseId>/<nome>)`);
+  if (!GENERATOR_RE.test(def.id))
+    throw new Error(`id generatore non valido: "${def.id}" (atteso <courseId>/<nome>)`);
   if (!KEBAB_RE.test(def.topic)) throw new Error(`${def.id}: topic non valido "${def.topic}"`);
   if (def.objectives.length === 0) throw new Error(`${def.id}: almeno un obiettivo`);
   for (const o of def.objectives) {
@@ -95,10 +96,13 @@ export function validateGenerated(ex: GeneratedExercise): string[] {
     problems.push('nessuna risposta');
   }
   for (const a of ex.answer) {
-    if (typeof a.value === 'number' && !Number.isFinite(a.value)) problems.push(`risposta "${a.label}" non finita`);
-    if (a.tol !== undefined && !(a.tol > 0 && a.tol <= 1)) problems.push(`tolleranza di "${a.label}" fuori intervallo`);
+    if (typeof a.value === 'number' && !Number.isFinite(a.value))
+      problems.push(`risposta "${a.label}" non finita`);
+    if (a.tol !== undefined && !(a.tol > 0 && a.tol <= 1))
+      problems.push(`tolleranza di "${a.label}" fuori intervallo`);
   }
-  if (ex.figure && Boolean(ex.figure.netlist) === Boolean(ex.figure.svg)) problems.push('figura: netlist oppure svg');
+  if (ex.figure && Boolean(ex.figure.netlist) === Boolean(ex.figure.svg))
+    problems.push('figura: netlist oppure svg');
   return problems;
 }
 

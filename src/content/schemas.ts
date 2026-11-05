@@ -53,7 +53,7 @@ export const courseSchema = z.strictObject({
   }),
   extras: z.array(z.strictObject({ slug: kebabId, title: localized })).default([]),
   examDates: z.array(isoDate).optional(),
-  /** Nome del repository originale (es. "fisica-2-ingegneria-elettronica"). */
+  /** Nome del repository originale (nome, non URL). */
   legacyRepo: z.string().min(1),
   order: z.number().int(),
 });
@@ -147,15 +147,32 @@ export const exerciseSchema = z
   })
   .superRefine((ex, ctx) => {
     if (ex.kind === 'generated') {
-      if (!ex.generator) ctx.addIssue({ code: 'custom', path: ['generator'], message: 'esercizio generato senza generatore' });
+      if (!ex.generator)
+        ctx.addIssue({ code: 'custom', path: ['generator'], message: 'esercizio generato senza generatore' });
       else if (!ex.generator.startsWith(`${ex.course}/`))
-        ctx.addIssue({ code: 'custom', path: ['generator'], message: 'il generatore deve appartenere al corso' });
+        ctx.addIssue({
+          code: 'custom',
+          path: ['generator'],
+          message: 'il generatore deve appartenere al corso',
+        });
     } else {
-      if (ex.generator) ctx.addIssue({ code: 'custom', path: ['generator'], message: 'solo gli esercizi generati hanno un generatore' });
-      if (!ex.statement) ctx.addIssue({ code: 'custom', path: ['statement'], message: 'esercizio statico senza testo' });
-      if (ex.steps.length === 0) ctx.addIssue({ code: 'custom', path: ['steps'], message: 'esercizio statico senza svolgimento' });
+      if (ex.generator)
+        ctx.addIssue({
+          code: 'custom',
+          path: ['generator'],
+          message: 'solo gli esercizi generati hanno un generatore',
+        });
+      if (!ex.statement)
+        ctx.addIssue({ code: 'custom', path: ['statement'], message: 'esercizio statico senza testo' });
+      if (ex.steps.length === 0)
+        ctx.addIssue({ code: 'custom', path: ['steps'], message: 'esercizio statico senza svolgimento' });
     }
-    if (ex.answer && ex.choices) ctx.addIssue({ code: 'custom', path: ['choices'], message: 'usare answer oppure choices, non entrambi' });
+    if (ex.answer && ex.choices)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['choices'],
+        message: 'usare answer oppure choices, non entrambi',
+      });
     if (ex.choices && !ex.choices.some((c) => c.correct))
       ctx.addIssue({ code: 'custom', path: ['choices'], message: 'nessuna risposta corretta' });
   });

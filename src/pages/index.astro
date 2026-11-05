@@ -24,7 +24,10 @@ const enHref = localizePath('', 'en');
         var saved = JSON.parse(localStorage.getItem('sh:v1:global:lang') || 'null');
         if (saved === 'en') target = enHref;
         else if (saved !== 'it') {
-          var langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+          var langs =
+            navigator.languages && navigator.languages.length
+              ? navigator.languages
+              : [navigator.language || ''];
           for (var i = 0; i < langs.length; i++) {
             var l = String(langs[i]).toLowerCase();
             if (l.indexOf('it') === 0) break;
@@ -37,10 +40,14 @@ const enHref = localizePath('', 'en');
       } catch (e) {}
       location.replace(target + location.search + location.hash);
     </script>
-    <noscript><meta http-equiv="refresh" content={`0; url=${itHref}`} /></noscript>
+    <noscript>
+      <meta http-equiv="refresh" content={`0; url=${itHref}`} />
+    </noscript>
     <style>
       body {
-        font: 1rem/1.6 system-ui, sans-serif;
+        font:
+          1rem/1.6 system-ui,
+          sans-serif;
         margin: 3rem auto;
         max-width: 36rem;
         padding: 0 1rem;
@@ -51,7 +58,15 @@ const enHref = localizePath('', 'en');
     <main>
       <h1>{t('it', 'redirect.title')}</h1>
       <p>{t('it', 'redirect.body')}</p>
-      <p><a href={itHref} hreflang="it">Italiano</a> · <a href={enHref} hreflang="en" lang="en">English</a></p>
+      <p>
+        <a href={itHref} hreflang="it">
+          Italiano
+        </a>{' '}
+        ·{' '}
+        <a href={enHref} hreflang="en" lang="en">
+          English
+        </a>
+      </p>
     </main>
   </body>
 </html>

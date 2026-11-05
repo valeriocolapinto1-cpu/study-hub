@@ -2,13 +2,13 @@
 # Ogni voce: it (termine italiano), en (traduzione da usare), note (facoltativa).
 # Ordine alfabetico per `it`. Un test verifica che non ci siano duplicati.
 - { it: ammettenza, en: admittance }
-- { it: amplificatore operazionale, en: operational amplifier, note: "abbreviato op-amp" }
-- { it: anello, en: loop, note: "maglia: mesh" }
+- { it: amplificatore operazionale, en: operational amplifier, note: 'abbreviato op-amp' }
+- { it: anello, en: loop, note: 'maglia: mesh' }
 - { it: appello, en: exam session }
 - { it: bipolo, en: two-terminal element }
 - { it: campo elettrico, en: electric field }
 - { it: campo magnetico, en: magnetic field }
-- { it: capacità, en: capacitance, note: "componente: capacitor (condensatore)" }
+- { it: capacità, en: capacitance, note: 'componente: capacitor (condensatore)' }
 - { it: carica, en: charge }
 - { it: circuito, en: circuit }
 - { it: componente, en: component }
@@ -32,8 +32,8 @@
 - { it: induttanza, en: inductance }
 - { it: induttore, en: inductor }
 - { it: lavoro, en: work }
-- { it: legge di Kirchhoff delle correnti, en: Kirchhoff's current law, note: "KCL" }
-- { it: legge di Kirchhoff delle tensioni, en: Kirchhoff's voltage law, note: "KVL" }
+- { it: legge di Kirchhoff delle correnti, en: Kirchhoff's current law, note: 'KCL' }
+- { it: legge di Kirchhoff delle tensioni, en: Kirchhoff's voltage law, note: 'KVL' }
 - { it: maglia, en: mesh }
 - { it: metodo dei nodi, en: nodal analysis }
 - { it: metodo delle maglie, en: mesh analysis }
@@ -46,7 +46,7 @@
 - { it: prova d'esame, en: practice exam }
 - { it: quantità di moto, en: momentum }
 - { it: regime sinusoidale, en: sinusoidal steady state }
-- { it: resistenza, en: resistance, note: "componente: resistor (resistore)" }
+- { it: resistenza, en: resistance, note: 'componente: resistor (resistore)' }
 - { it: resistore, en: resistor }
 - { it: ripasso spaziato, en: spaced repetition }
 - { it: risposta in frequenza, en: frequency response }

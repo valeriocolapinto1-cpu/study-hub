@@ -9,7 +9,7 @@ export const LANGS = ['it', 'en'] as const;
 export type Lang = (typeof LANGS)[number];
 export const DEFAULT_LANG: Lang = 'it';
 
-/** Percorso base con barra finale, es. "/study-hub/". */
+/** Percorso base con barra finale (da astro.config.mjs). */
 export const BASE_URL: string = (() => {
   const raw = import.meta.env.BASE_URL ?? '/';
   return raw.endsWith('/') ? raw : `${raw}/`;

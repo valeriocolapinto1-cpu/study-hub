@@ -23,7 +23,11 @@ export const isLang = (value: unknown): value is Lang =>
  * con `params.nome`. Se la chiave manca in inglese si usa l'italiano; se manca
  * ovunque si restituisce la chiave (e i test sulle traduzioni la segnalano).
  */
-export function t(lang: Lang, key: MessageKey | (string & {}), params?: Record<string, string | number>): string {
+export function t(
+  lang: Lang,
+  key: MessageKey | (string & {}),
+  params?: Record<string, string | number>,
+): string {
   const msg = dictionaries[lang][key] ?? dictionaries[DEFAULT_LANG][key] ?? key;
   if (!params) return msg;
   return msg.replace(/\{(\w+)\}/g, (match, name: string) =>
@@ -45,7 +49,7 @@ const trimSlashes = (s: string) => s.replace(/^\/+|\/+$/g, '');
 
 /**
  * Costruisce un percorso interno localizzato con base e barra finale.
- * `localizePath('anno-2/teoria-circuiti', 'en')` → `/study-hub/en/anno-2/teoria-circuiti/`.
+ * `localizePath('anno-2/teoria-circuiti', 'en')` → `<base>en/anno-2/teoria-circuiti/`.
  * Ancore e query sono conservate.
  */
 export function localizePath(path: string, lang: Lang): string {
@@ -61,7 +65,7 @@ export function withBase(path: string): string {
   return `${BASE_URL}${trimSlashes(path)}`;
 }
 
-/** Togli base e lingua: `/study-hub/en/anno-2/x/` → `anno-2/x`. */
+/** Togli base e lingua: `<base>en/anno-2/x/` → `anno-2/x`. */
 export function stripLang(pathname: string): string {
   let rest = pathname.startsWith(BASE_URL) ? pathname.slice(BASE_URL.length) : trimSlashes(pathname);
   rest = trimSlashes(rest);

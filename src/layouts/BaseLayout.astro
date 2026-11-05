@@ -27,7 +27,7 @@ const { lang, title, description, course, alternates = true, noindex = false } =
     <slot name="head" />
   </head>
   <body>
-    <Header lang={lang} />
+    <Header lang={lang} samePage={alternates} />
     <slot name="before-main" />
     <main id="contenuto" tabindex="-1">
       <slot />

@@ -1,19 +1,35 @@
-# Siti di studio — Valerio Colapinto
+# Siti di studio — Ingegneria Elettronica
 
-Portfolio statico (HTML/CSS/JS, nessun build) che raccoglie i siti di studio di Ingegneria Elettronica. Italiano e inglese. Progetto personale e non ufficiale.
+Un unico sito, bilingue (italiano e inglese), che riunisce i siti di studio dei corsi del corso di laurea in
+Ingegneria Elettronica: teoria spiegata a strati, formulari, esercizi con soluzione passo per passo,
+ripasso spaziato e simulazioni d'esame. Progetto personale e non ufficiale.
 
-## Pagine
-- `index.html`: elenco dei siti di studio. `chi-sono.html`: pagina personale (testi IT/EN in `assets/app.js`, chiavi `cs.*`; contatti in fondo alla pagina e nel footer).
-- `note-legali.html`, `privacy.html`, `404.html`: pagine legali (generate).
+Sito: <https://valeriocolapinto1-cpu.github.io/study-hub/>
 
-## Aggiungere o aggiornare un sito
-Modifica solo `data/projects.json`. Per una card con sito: `"status": "online"`, `"site"` (percorso dopo `https://valeriocolapinto1-cpu.github.io/`), `"repo"`, `"metrics"`. Senza questi campi la card resta "in arrivo".
+## Sviluppo
 
-## Provarlo in locale
-`python3 -m http.server 8000` e apri http://localhost:8000
+Richiede Node 22 (`.nvmrc`).
+
+```sh
+npm ci
+npm run dev        # http://localhost:4321/study-hub/
+npm run check      # astro check + tsc
+npm test           # vitest: unit e contenuti
+npm run build      # dist/
+npm run test:e2e   # Playwright su dist/
+```
+
+Architettura, contratti (contenuti, generatori, storage, design token) e procedura per aggiungere un corso:
+[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md). Decisioni: [`docs/decisions.md`](docs/decisions.md).
+Regole per i contenuti: [`docs/CONTRIBUTING-CONTENT.md`](docs/CONTRIBUTING-CONTENT.md).
+
+I siti originali sono conservati con la loro storia in `legacy/` (esclusi dalla build):
+`legacy/teoria-circuiti`, `legacy/fondamenti-informatica`, `legacy/fisica-2`, `legacy/fisica-1` e il vecchio hub in `legacy/hub`.
 
 ## Pubblicazione
-Repo `study-hub` → Settings → Pages → Deploy from branch → `main` / root.
+
+A ogni push su `main` il workflow `deploy.yml` compila e pubblica su GitHub Pages
+(Settings → Pages → Source: **GitHub Actions**).
 
 ## Note legali e contatti
 

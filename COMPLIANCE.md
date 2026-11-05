@@ -1,25 +1,26 @@
 # Provenienza dei contenuti e conformità
 
-*Ultima revisione: 2 novembre 2026.*
+*Ultima revisione: 5 novembre 2026.*
 
 Questo documento dice **da dove viene** quello che si legge nel sito *Siti di studio — Valerio Colapinto*, con quali criteri è stato verificato
 e come chiedere di rimuovere qualcosa. Non è un disclaimer: elenca i criteri applicati.
 
 ## In breve
 
-Questa pagina è un portfolio-indice: presenta i siti di studio dell'autore e rimanda a ciascuno. Testi, descrizioni e interfaccia sono scritti dall'autore. Nessun materiale di terzi è riprodotto.
+Il sito riunisce in un'unica pubblicazione i siti di studio dell'autore (teoria, formulari, esercizi, ripasso, simulazioni d'esame). Testi, esercizi, figure e interfaccia sono scritti dall'autore. Nessun materiale di terzi è riprodotto. Questo è l'unico documento di conformità del progetto: i `COMPLIANCE.md` dei siti originali in `legacy/` restano solo come storia.
 
 ## Provenienza
 
-- **Testi della pagina** (presentazione, descrizioni dei corsi) in italiano e inglese: scritti dall'autore.
-- **Dati dei progetti** (`data/projects.json`): nomi, descrizioni e metriche dei siti collegati.
-- **Siti collegati**: ciascuno ha le proprie note legali e il proprio `COMPLIANCE.md` nel suo repository.
+- **Testi del sito** (spiegazioni, esercizi, flashcard, interfaccia) in italiano e inglese: scritti dall'autore; le traduzioni inglesi sono dell'autore, con un glossario dei termini (`src/i18n/glossary.yaml`).
+- **Esercizi "tipo appello"**: originali, riproducono solo la tipologia delle prove (struttura e argomenti), mai il testo dei docenti.
+- **Sorgenti dei siti originali** (`legacy/`): conservati con la loro storia come riferimento; non sono pubblicati.
 
 ## Che cosa il sito NON contiene
 
 - Testi, figure, slide, dispense o prove d'esame di terzi.
 - Loghi o marchi di università o di altri enti.
 - Dati personali di terzi, credenziali, chiavi API o file privati (il repository viene controllato prima di ogni pubblicazione).
+- Strumenti di analisi del traffico (analytics) o servizi di correzione automatica: i dati di studio restano nel browser.
 
 ## Rapporto con università e docenti
 

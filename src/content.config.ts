@@ -33,8 +33,14 @@ const theory = defineCollection({
   schema: theorySchema,
 });
 
-const formulas = defineCollection({ loader: yamlListLoader('./src/content/formulas/'), schema: formulaSchema });
-const exercises = defineCollection({ loader: yamlListLoader('./src/content/exercises/'), schema: exerciseSchema });
+const formulas = defineCollection({
+  loader: yamlListLoader('./src/content/formulas/'),
+  schema: formulaSchema,
+});
+const exercises = defineCollection({
+  loader: yamlListLoader('./src/content/exercises/'),
+  schema: exerciseSchema,
+});
 const cards = defineCollection({ loader: yamlListLoader('./src/content/cards/'), schema: cardSchema });
 
 export const collections = { courses, topics, theory, formulas, exercises, cards };

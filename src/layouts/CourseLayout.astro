@@ -17,7 +17,12 @@ const courseTitle = tr(course.title, lang);
 const pageTitle = title ? `${title} — ${courseTitle}` : courseTitle;
 ---
 
-<BaseLayout lang={lang} title={pageTitle} description={description ?? tr(course.description, lang)} course={course.id}>
+<BaseLayout
+  lang={lang}
+  title={pageTitle}
+  description={description ?? tr(course.description, lang)}
+  course={course.id}
+>
   <slot name="head" slot="head" />
   <CourseNav slot="before-main" lang={lang} coursePath={coursePath(course)} />
   <slot />

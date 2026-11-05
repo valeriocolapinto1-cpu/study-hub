@@ -5,16 +5,21 @@ import LangSwitch from './LangSwitch.astro';
 import ThemeToggle from './ThemeToggle.astro';
 interface Props {
   lang: Lang;
+  samePage?: boolean;
 }
-const { lang } = Astro.props;
+const { lang, samePage = true } = Astro.props;
 ---
 
-<a class="skip-link" href="#contenuto">{t(lang, 'skip.toContent')}</a>
+<a class="skip-link" href="#contenuto">
+  {t(lang, 'skip.toContent')}
+</a>
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="site-header__brand" href={localizePath('', lang)}>{SITE.shortTitle[lang]}</a>
+    <a class="site-header__brand" href={localizePath('', lang)}>
+      {SITE.shortTitle[lang]}
+    </a>
     <div class="site-header__tools">
-      <LangSwitch lang={lang} />
+      <LangSwitch lang={lang} samePage={samePage} />
       <ThemeToggle lang={lang} />
     </div>
   </div>

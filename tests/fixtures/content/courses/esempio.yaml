@@ -1,0 +1,17 @@
+id: esempio
+year: 1
+semester: 1
+title: { it: Corso d'esempio, en: Sample course }
+description: { it: Corso usato solo dai test., en: Course used only by the tests. }
+accent: blu
+exam:
+  format: scritto+orale
+  durationMin: 120
+  structure:
+    - { label: { it: Esercizio 1, en: Exercise 1 }, points: 15, kind: esercizio }
+    - { label: { it: Domanda di teoria, en: Theory question }, kind: teoria }
+extras:
+  - { slug: simulatore, title: { it: Simulatore, en: Simulator } }
+examDates: ['2027-01-20', '2027-02-15']
+legacyRepo: esempio
+order: 1

@@ -27,7 +27,8 @@ export function createRng(seed: number): Rng {
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
   const int = (min: number, max: number) => {
-    if (!Number.isInteger(min) || !Number.isInteger(max) || max < min) throw new RangeError('int(min, max) non valido');
+    if (!Number.isInteger(min) || !Number.isInteger(max) || max < min)
+      throw new RangeError('int(min, max) non valido');
     return min + Math.floor(next() * (max - min + 1));
   };
   return {
