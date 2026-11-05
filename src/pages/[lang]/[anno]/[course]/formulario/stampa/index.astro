@@ -1,0 +1,74 @@
+---
+/** Formulario stampabile (A4, due colonne), opzionalmente solo i segnalibri (?preferiti). */
+import PrintLayout from '../../../../../../layouts/PrintLayout.astro';
+import Formula from '../../../../../../components/Formula.astro';
+import {
+  courseFormulas,
+  coursePaths,
+  courseTopics,
+  groupTopics,
+  sectionPath,
+  type CourseData,
+} from '../../../../../../lib/course-pages';
+import { localizePath, t, tr, type Lang } from '../../../../../../i18n';
+
+export const getStaticPaths = coursePaths;
+interface Props {
+  course: CourseData;
+}
+const { course } = Astro.props;
+const lang = Astro.params.lang as Lang;
+const topics = await courseTopics(course.id);
+const formulas = await courseFormulas(course.id);
+const groups = groupTopics(topics, lang)
+  .map((g) => ({
+    title: g.title,
+    formulas: g.items.flatMap((tp) => formulas.filter((f) => f.topic === tp.id)),
+  }))
+  .filter((g) => g.formulas.length > 0);
+---
+
+<PrintLayout
+  lang={lang}
+  course={course.id}
+  variant="formulary"
+  title={`${t(lang, 'nav.course.formulas')} — ${tr(course.title, lang)}`}
+  description={t(lang, 'formulary.lede', { n: formulas.length })}
+  backHref={localizePath(sectionPath(course, 'formulario'), lang)}
+>
+  <h1>
+    {t(lang, 'nav.course.formulas')} · {tr(course.title, lang)}
+  </h1>
+  <label class="check no-print" data-course={course.id}>
+    <input type="checkbox" data-only-marks />
+    <span>{t(lang, 'formulary.onlyBookmarks')}</span>
+  </label>
+  <div class="formula-sheet">
+    {groups.map((g) => (
+      <section>
+        <h2>{g.title}</h2>
+        {g.formulas.map((f) => (
+          <div data-formula={f.id}>
+            <Formula id={f.id} tex={f.latex} caption={tr(f.label, lang)} />
+          </div>
+        ))}
+      </section>
+    ))}
+  </div>
+</PrintLayout>
+
+<script>
+  import { read } from '../../../../../../engine/storage';
+  const box = document.querySelector<HTMLElement>('[data-only-marks]');
+  const course = box?.closest<HTMLElement>('[data-course]')?.dataset.course;
+  if (box instanceof HTMLInputElement && course) {
+    const marks = new Set(read<{ bookmarks?: string[] }>(course, 'formulary', {}).bookmarks ?? []);
+    const apply = () => {
+      for (const el of document.querySelectorAll<HTMLElement>('[data-formula]'))
+        el.hidden = box.checked && !marks.has(el.dataset.formula!);
+    };
+    box.checked = new URLSearchParams(location.search).has('preferiti') && marks.size > 0;
+    box.addEventListener('change', apply);
+    apply();
+  }
+</script>

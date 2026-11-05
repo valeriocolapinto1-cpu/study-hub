@@ -1,0 +1,167 @@
+---
+/**
+ * Formulario del corso: tutte le formule raggruppate per capitolo e argomento, con ricerca,
+ * filtro per capitolo, segnalibri (salvati in sh:v1:<courseId>:formulary) e versione stampabile.
+ */
+import CourseLayout from '../../../../../layouts/CourseLayout.astro';
+import PageHeader from '../../../../../components/PageHeader.astro';
+import FormulaEntry from '../../../../../components/course/FormulaEntry.astro';
+import Notes from '../../../../../components/course/Notes.astro';
+import Icon from '../../../../../components/Icon.astro';
+import {
+  courseFormulas,
+  coursePaths,
+  courseTopics,
+  groupTopics,
+  sectionPath,
+  type CourseData,
+} from '../../../../../lib/course-pages';
+import { localizePath, t, tr, type Lang } from '../../../../../i18n';
+
+export const getStaticPaths = coursePaths;
+interface Props {
+  course: CourseData;
+}
+const { course } = Astro.props;
+const lang = Astro.params.lang as Lang;
+const topics = await courseTopics(course.id);
+const formulas = await courseFormulas(course.id);
+const groups = groupTopics(topics, lang)
+  .map((g) => ({
+    ...g,
+    items: g.items
+      .map((tp) => ({ topic: tp, formulas: formulas.filter((f) => f.topic === tp.id) }))
+      .filter((x) => x.formulas.length > 0),
+  }))
+  .filter((g) => g.items.length > 0);
+---
+
+<CourseLayout lang={lang} course={course} title={t(lang, 'nav.course.formulas')} wide>
+  <PageHeader
+    eyebrow={tr(course.title, lang)}
+    title={t(lang, 'nav.course.formulas')}
+    lede={t(lang, 'formulary.lede', { n: formulas.length })}
+  />
+  <div class="formulary-tools no-print" data-formulary={course.id}>
+    <div class="field">
+      <label class="field__label" for="fq">
+        {t(lang, 'formulary.search')}
+      </label>
+      <input id="fq" class="input" type="search" autocomplete="off" data-fq />
+    </div>
+    <div class="field">
+      <label class="field__label" for="fg">
+        {t(lang, 'formulary.group')}
+      </label>
+      <select id="fg" class="select" data-fg>
+        <option value="">{t(lang, 'formulary.allGroups')}</option>
+        {groups.map((g, i) => (
+          <option value={String(i)}>{g.title}</option>
+        ))}
+      </select>
+    </div>
+    <label class="check">
+      <input type="checkbox" data-fstar />
+      <span>{t(lang, 'formulary.onlyBookmarks')}</span>
+    </label>
+    <a class="btn btn--ghost btn--sm" href={localizePath(sectionPath(course, 'formulario', 'stampa'), lang)}>
+      <Icon name="printer" />
+      {t(lang, 'print.version')}
+    </a>
+    <p class="muted formulary-tools__count" aria-live="polite" data-fcount></p>
+  </div>
+  <div class="formulary">
+    {groups.map((g, gi) => (
+      <section class="formulary__group" data-group={String(gi)} aria-labelledby={`fg-${gi}`}>
+        <h2 class="topic-index__group-title" id={`fg-${gi}`}>
+          {g.title}
+        </h2>
+        {g.items.map(({ topic, formulas: fs }) => (
+          <section class="formulary__topic" aria-labelledby={`ft-${topic.id}`}>
+            <h3 class="eyebrow" id={`ft-${topic.id}`}>
+              {String(topic.order).padStart(2, '0')} · {tr(topic.title, lang)}
+            </h3>
+            <div class="formulary__grid">
+              {fs.map((f) => (
+                <FormulaEntry
+                  lang={lang}
+                  formula={f}
+                  topicTitle={tr(topic.title, lang)}
+                  theoryHref={localizePath(sectionPath(course, 'teoria', topic.id), lang)}
+                />
+              ))}
+            </div>
+          </section>
+        ))}
+      </section>
+    ))}
+  </div>
+  <p class="muted" data-fempty hidden>
+    {t(lang, 'formulary.empty')}
+  </p>
+  <Notes lang={lang} scope={course.id} />
+</CourseLayout>
+
+<script>
+  import { read, write } from '../../../../../engine/storage';
+
+  const root = document.querySelector<HTMLElement>('[data-formulary]');
+  if (root) {
+    const course = root.dataset.formulary!;
+    const q = root.querySelector<HTMLInputElement>('[data-fq]')!;
+    const g = root.querySelector<HTMLSelectElement>('[data-fg]')!;
+    const star = root.querySelector<HTMLInputElement>('[data-fstar]')!;
+    const count = root.querySelector<HTMLElement>('[data-fcount]')!;
+    const empty = document.querySelector<HTMLElement>('[data-fempty]')!;
+    const entries = [...document.querySelectorAll<HTMLElement>('.formula-entry')];
+    const groups = [...document.querySelectorAll<HTMLElement>('.formulary__group')];
+    const marks = new Set(read<{ bookmarks?: string[] }>(course, 'formulary', {}).bookmarks ?? []);
+    const fmt = count.textContent ?? '';
+    const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+
+    const apply = () => {
+      const words = norm(q.value).split(/\s+/).filter(Boolean);
+      let shown = 0;
+      for (const grp of groups) {
+        const inGroup = !g.value || grp.dataset.group === g.value;
+        let any = false;
+        for (const topic of grp.querySelectorAll<HTMLElement>('.formulary__topic')) {
+          let anyT = false;
+          for (const e of topic.querySelectorAll<HTMLElement>('.formula-entry')) {
+            const hay = norm(e.dataset.search ?? '');
+            const ok =
+              inGroup &&
+              words.every((w) => hay.includes(w)) &&
+              (!star.checked || marks.has(e.dataset.formula!));
+            e.hidden = !ok;
+            if (ok) {
+              anyT = true;
+              shown++;
+            }
+          }
+          topic.hidden = !anyT;
+          any ||= anyT;
+        }
+        grp.hidden = !any;
+      }
+      count.textContent = `${shown} / ${entries.length}`;
+      empty.hidden = shown > 0;
+    };
+    for (const b of document.querySelectorAll<HTMLButtonElement>('[data-bookmark]')) {
+      const id = b.dataset.bookmark!;
+      b.setAttribute('aria-pressed', String(marks.has(id)));
+      b.addEventListener('click', () => {
+        if (marks.has(id)) marks.delete(id);
+        else marks.add(id);
+        b.setAttribute('aria-pressed', String(marks.has(id)));
+        write(course, 'formulary', { bookmarks: [...marks] });
+        if (star.checked) apply();
+      });
+    }
+    q.addEventListener('input', apply);
+    g.addEventListener('change', apply);
+    star.addEventListener('change', apply);
+    void fmt;
+    apply();
+  }
+</script>
