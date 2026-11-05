@@ -1,0 +1,3711 @@
+{
+ "_nota": "Generato da tools/build-content.mjs. Domande riformulate; rubriche e risposte campione originali.",
+ "domande": [
+  {
+   "id": "T-01",
+   "blocco": "VI",
+   "argomenti": [
+    "VI-02"
+   ],
+   "titolo": "Teorema di Thevenin: enunciato e condizioni",
+   "domanda": "Enuncia il teorema di Thevenin, precisando le ipotesi e come si calcolano i due elementi dell'equivalente.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Ipotesi: bipolo lineare",
+      "peso": 2,
+      "any_of": [
+       "lineare",
+       "lineari"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Equivalente: generatore di tensione in serie a un'impedenza",
+      "peso": 3,
+      "any_of": [
+       "generatore tensione serie impedenza",
+       "generatore tensione serie resistenza",
+       "tensione serie impedenza"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "$V_{th}$ è la tensione a vuoto",
+      "peso": 2,
+      "any_of": [
+       "tensione vuoto",
+       "circuito aperto",
+       "porta aperta"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "$Z_{th}$ si calcola con i generatori indipendenti spenti (o generatore di prova)",
+      "peso": 3,
+      "any_of": [
+       "generatori indipendenti spenti",
+       "spegnere generatori indipendenti",
+       "generatore prova",
+       "indipendenti spenti"
+      ]
+     }
+    ],
+    "forbidden": [
+     {
+      "id": "f1",
+      "msg": "Non si spengono i generatori controllati",
+      "any_of": [
+       "spengono anche controllati",
+       "spegnere anche controllati",
+       "spegnere controllati"
+      ],
+      "penalita": 2
+     }
+    ]
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Un bipolo lineare può essere sostituito, rispetto a un carico collegato ai suoi morsetti, da un generatore ideale di tensione Vth in serie a un'impedenza Zth. Vth è la tensione a vuoto, cioè a circuito aperto. Zth è l'impedenza vista dai morsetti dopo aver spento i generatori indipendenti (i controllati restano), oppure si trova con un generatore di prova.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Il bipolo si sostituisce con un generatore di tensione in serie a una impedenza; la tensione è quella a vuoto.",
+     "min": 4,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "Il teorema dice che la potenza sul carico è massima quando il carico è uguale all'impedenza del generatore.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Thevenin: 4-7-2000, 13-2-2002, 29-4-2002 (L–Z), 30-10-2002, 24-4-2009 B"
+  },
+  {
+   "id": "T-02",
+   "blocco": "VI",
+   "argomenti": [
+    "VI-02"
+   ],
+   "titolo": "Teorema di Thevenin: dimostrazione",
+   "domanda": "Dimostra il teorema di Thevenin.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Si sostituisce il carico con un generatore di tensione (teorema di sostituzione)",
+      "peso": 3,
+      "any_of": [
+       "sostituzione",
+       "sostituire carico generatore tensione"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Si usa la sovrapposizione degli effetti (linearità)",
+      "peso": 3,
+      "any_of": [
+       "sovrapposizione",
+       "sovrapposizione effetti"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Un contributo con i generatori interni accesi e il generatore del carico spento dà la tensione a vuoto",
+      "peso": 2,
+      "any_of": [
+       "tensione vuoto",
+       "circuito aperto",
+       "generatori interni accesi"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "L'altro contributo, a generatori interni spenti, è proporzionale alla corrente: $-Z_{th}i$",
+      "peso": 2,
+      "any_of": [
+       "generatori spenti",
+       "impedenza equivalente",
+       "proporzionale corrente"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Si sostituisce il carico con un generatore di tensione che impone la stessa tensione v (teorema di sostituzione, la soluzione è unica). Per la sovrapposizione degli effetti la corrente è somma di due contributi: quello dei generatori interni con generatore di carico spento, che equivale alla tensione a vuoto, e quello del generatore v con gli interni spenti, proporzionale a v tramite l'impedenza equivalente. Si ricava v = Vth - Zth i.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Si sostituisce il carico con un generatore di tensione e poi si applica la sovrapposizione.",
+     "min": 2,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "Si scrive la legge di Ohm e si dimostra che la corrente è massima a risonanza.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Thevenin: 4-7-2000, 13-2-2002, 30-10-2002"
+  },
+  {
+   "id": "T-03",
+   "blocco": "VI",
+   "argomenti": [
+    "VI-02"
+   ],
+   "titolo": "Thevenin: esempio di non applicabilità",
+   "domanda": "Fai un esempio di bipolo per il quale il teorema di Thevenin non si applica e spiega perché.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Bipolo non lineare (es. diodo)",
+      "peso": 4,
+      "any_of": [
+       "non lineare",
+       "diodo"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Manca l'equivalente lineare/la sovrapposizione degli effetti non vale",
+      "peso": 3,
+      "any_of": [
+       "sovrapposizione",
+       "equivalente lineare",
+       "linearita"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Oppure bipolo con generatore ideale di corrente: non esiste Thevenin (impedenza infinita)",
+      "peso": 3,
+      "any_of": [
+       "generatore corrente",
+       "impedenza infinita",
+       "norton"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Se il bipolo contiene un diodo, cioè è non lineare, non vale la sovrapposizione degli effetti e non esiste un equivalente lineare di Thevenin. Anche un generatore ideale di corrente non ha Thevenin perché l'impedenza sarebbe infinita; esiste invece Norton.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Non si applica a un bipolo non lineare come un diodo.",
+     "min": 3,
+     "max": 6
+    },
+    {
+     "livello": "errata",
+     "testo": "Il teorema non si applica ai circuiti con resistenze perché servono i condensatori.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Thevenin: 29-4-2002 (L–Z), 24-4-2009 B"
+  },
+  {
+   "id": "T-04",
+   "blocco": "VI",
+   "argomenti": [
+    "VI-03"
+   ],
+   "titolo": "Teorema di Norton",
+   "domanda": "Enuncia il teorema di Norton e dimostra il legame con l'equivalente di Thevenin.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Equivalente: generatore di corrente in parallelo a un'impedenza",
+      "peso": 3,
+      "any_of": [
+       "generatore corrente parallelo impedenza",
+       "corrente parallelo impedenza",
+       "corrente parallelo resistenza"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "$I_N$ è la corrente di cortocircuito della porta",
+      "peso": 3,
+      "any_of": [
+       "corrente cortocircuito",
+       "corrente corto",
+       "porta cortocircuito"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "$Z_N=Z_{th}$ (generatori indipendenti spenti)",
+      "peso": 2,
+      "any_of": [
+       "generatori indipendenti spenti",
+       "stessa impedenza",
+       "indipendenti spenti"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Legame $I_N=V_{th}/Z_{th}$ (trasformazione di generatori)",
+      "peso": 2,
+      "any_of": [
+       "vth zth",
+       "trasformazione generatori",
+       "trasformazione sorgenti"
+      ],
+      "formule": [
+       "I_N=V_{th}/Z_{th}",
+       "In=Vth/Zth"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Un bipolo lineare è equivalente a un generatore di corrente In in parallelo a un'impedenza Zn. In è la corrente di cortocircuito della porta e Zn è l'impedenza con i generatori indipendenti spenti, uguale a Zth. Dalla trasformazione di generatori In = Vth/Zth.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Un generatore di corrente in parallelo a una impedenza; la corrente è quella di cortocircuito.",
+     "min": 4,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "Norton dice che la somma delle correnti in un nodo è nulla.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Norton: 13-2-2001, 29-4-2002 (A–I), 24-4-2009 A"
+  },
+  {
+   "id": "T-05",
+   "blocco": "VI",
+   "argomenti": [
+    "VI-03"
+   ],
+   "titolo": "Norton: non applicabilità e confronto",
+   "domanda": "Indica quando Norton esiste ma non Thevenin (e viceversa) e come si ottiene $I_N$ in pratica.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Thevenin non esiste per un generatore ideale di corrente ($Z_{th}=\\infty$)",
+      "peso": 3,
+      "any_of": [
+       "generatore corrente",
+       "impedenza infinita"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Norton non esiste per un generatore ideale di tensione (conduttanza infinita)",
+      "peso": 3,
+      "any_of": [
+       "generatore tensione",
+       "conduttanza infinita",
+       "impedenza nulla"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "$I_N$ si misura/calcola con la porta in cortocircuito",
+      "peso": 2,
+      "any_of": [
+       "cortocircuito",
+       "corto"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Entrambi richiedono linearità",
+      "peso": 2,
+      "any_of": [
+       "lineare",
+       "lineari",
+       "linearita"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Per un generatore ideale di corrente non esiste Thevenin perché l'impedenza è infinita; per un generatore ideale di tensione non esiste Norton perché l'impedenza è nulla e la conduttanza infinita. In si calcola con la porta in cortocircuito. Entrambi i teoremi richiedono un bipolo lineare.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Per il generatore ideale di corrente non esiste Thevenin; In si calcola con il corto.",
+     "min": 4,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "Norton non esiste mai perché serve la risonanza.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Norton: 13-2-2001, 29-4-2002"
+  },
+  {
+   "id": "T-06",
+   "blocco": "VI",
+   "argomenti": [
+    "VI-09"
+   ],
+   "titolo": "Massimo trasferimento di potenza: dimostrazione",
+   "domanda": "Dimostra che la potenza attiva ceduta a un carico $Z_L$ da un equivalente di Thevenin è massima per $Z_L=Z_{th}^*$ e calcola $P_{max}$.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Scrive la potenza attiva sul carico in funzione di $R_L$ e $X_L$",
+      "peso": 2,
+      "any_of": [
+       "potenza attiva carico",
+       "potenza carico",
+       "corrente carico"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Per $X_L=-X_{th}$ si massimizza la corrente (reattanza totale nulla)",
+      "peso": 3,
+      "any_of": [
+       "reattanza nulla",
+       "reattanze opposte",
+       "x_l -x_th",
+       "annulla reattanza"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Si deriva rispetto a $R_L$: massimo per $R_L=R_{th}$",
+      "peso": 3,
+      "any_of": [
+       "deriva",
+       "derivata",
+       "rl rth",
+       "resistenze uguali"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "$P_{max}=|V_{th}|^2/(8R_{th})$ con ampiezze di picco (o $/(4R_{th})$ con efficaci)",
+      "peso": 2,
+      "any_of": [
+       "8 rth",
+       "4 rth",
+       "vth quadro"
+      ],
+      "formule": [
+       "|V_{th}|^2/(8R_{th})",
+       "Vth^2/(8Rth)",
+       "Vth^2/(4Rth)",
+       "|V_{th}|^2/(4R_{th})"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "La corrente nel carico è Vth/(Zth+ZL); la potenza attiva è metà del prodotto R_L per il modulo quadro della corrente. Scegliendo X_L = -X_th la reattanza totale è nulla e il modulo della corrente è massimo. Poi si deriva rispetto a R_L e si trova il massimo per R_L = R_th, quindi ZL = Zth coniugata. Pmax = |Vth|^2/(8 Rth) con valori di picco.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Si annulla la reattanza totale e poi si deriva rispetto alla resistenza del carico.",
+     "min": 4,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "Il massimo si ha quando il carico è un cortocircuito perché la corrente è massima.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Massimo trasferimento: 12-6-2000, 19-6-2002, 30-10-2002, 23-9-2008, 24-4-2009"
+  },
+  {
+   "id": "T-07",
+   "blocco": "VI",
+   "argomenti": [
+    "VI-09",
+    "I-08"
+   ],
+   "titolo": "Massimo trasferimento con trasformatore ideale",
+   "domanda": "Un generatore reale (equivalente $V_{th}$, $R_{th}$) alimenta un carico resistivo $R_L$ attraverso un trasformatore ideale di rapporto $n$. Come si sceglie $n$ per il massimo trasferimento e che potenza si ottiene?",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Il carico visto dal primario è $n^2R_L$ (impedenza riportata)",
+      "peso": 4,
+      "any_of": [
+       "impedenza riportata",
+       "riportato primario",
+       "n quadro"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Condizione di adattamento: $n^2R_L=R_{th}$",
+      "peso": 3,
+      "any_of": [
+       "adattamento",
+       "resistenza uguale",
+       "rth uguale"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "La potenza massima è $|V_{th}|^2/(8R_{th})$ (picco): non dipende da $n$",
+      "peso": 3,
+      "any_of": [
+       "potenza massima",
+       "pmax"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Il carico visto dal primario è l'impedenza riportata n^2 R_L. Per il massimo trasferimento si impone l'adattamento n^2 R_L = R_th, quindi n = sqrt(R_th/R_L). La potenza massima è Vth^2/(8 R_th) con valori di picco e non dipende dal rapporto scelto.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Si usa l'impedenza riportata e si impone che sia uguale a R_th.",
+     "min": 4,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "Il trasformatore ideale aumenta la potenza moltiplicandola per n.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Massimo trasferimento con trasformatore e n: 30-10-2002, 24-4-2009"
+  },
+  {
+   "id": "T-08",
+   "blocco": "II",
+   "argomenti": [
+    "II-05"
+   ],
+   "titolo": "Teorema di Tellegen: enunciato e dimostrazione",
+   "domanda": "Enuncia e dimostra il teorema di Tellegen.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Enunciato: $\\mathbf v^{T}\\mathbf i=0$ per $\\mathbf v$ che soddisfa KVL e $\\mathbf i$ che soddisfa KCL, stesso grafo",
+      "peso": 3,
+      "any_of": [
+       "stesso grafo",
+       "soddisfa kvl",
+       "sommatoria prodotti nulla",
+       "prodotto scalare nullo"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Usa $\\mathbf v=A^{T}\\mathbf e$ (tensioni di nodo)",
+      "peso": 3,
+      "any_of": [
+       "tensioni nodo",
+       "potenziali nodo",
+       "matrice incidenza"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Usa $A\\mathbf i=0$ (KCL)",
+      "peso": 2,
+      "any_of": [
+       "kcl",
+       "incidenza corrente nullo"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Conclude $\\mathbf e^{T}A\\mathbf i=0$; dipende solo dalla topologia",
+      "peso": 2,
+      "any_of": [
+       "topologia",
+       "e a i nullo"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Teorema: dati un vettore di tensioni v che soddisfa la KVL e un vettore di correnti i che soddisfa la KCL, definiti sullo stesso grafo, il prodotto scalare v^T i è nullo. Dimostrazione: la KVL implica v = A^T e con e tensioni di nodo; allora v^T i = e^T A i = 0 perché per la KCL A i = 0. Dipende solo dalla topologia.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "La somma dei prodotti tensione per corrente è nulla; si usano le tensioni di nodo.",
+     "min": 3,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "Il teorema afferma che la potenza dissipata dai resistori è sempre massima.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Tellegen: 1-6-2000, 19-6-2002, 12-7-2007, 23-9-2008"
+  },
+  {
+   "id": "T-09",
+   "blocco": "II",
+   "argomenti": [
+    "II-05"
+   ],
+   "titolo": "Ortogonalità tra tensioni e correnti",
+   "domanda": "Spiega in che senso il vettore delle tensioni di ramo e quello delle correnti sono ortogonali e quali conseguenze ha sulla potenza.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Le tensioni stanno in $\\mathrm{Im}A^T$, le correnti in $\\ker A$",
+      "peso": 4,
+      "any_of": [
+       "immagine",
+       "nucleo",
+       "sottospazio",
+       "sottospazi"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "I due sottospazi sono ortogonali, con dimensioni $(n-1)$ e $(b-n+1)$ che sommano a $b$",
+      "peso": 3,
+      "any_of": [
+       "ortogonali",
+       "ortogonalita",
+       "ortogonale"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Conseguenza: somma delle potenze assorbite nulla (conservazione)",
+      "peso": 3,
+      "any_of": [
+       "conservazione potenza",
+       "somma potenze nulla",
+       "potenze assorbite"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "I vettori v delle tensioni ammissibili appartengono allo spazio immagine di A^T, quelli i delle correnti al nucleo di A. I due sottospazi sono ortogonali e le dimensioni (n-1) e (b-n+1) sommano a b. Quindi v^T i = 0 e la somma delle potenze assorbite è nulla: conservazione della potenza.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Tensioni e correnti sono ortogonali e quindi la somma delle potenze è nulla.",
+     "min": 3,
+     "max": 6
+    },
+    {
+     "livello": "errata",
+     "testo": "L'ortogonalità significa che tensione e corrente sono sfasate di 90 gradi in ogni ramo.",
+     "min": 0,
+     "max": 3
+    }
+   ],
+   "esame": "Tellegen e ortogonalità tra vettore delle tensioni e delle correnti: 1-6-2000, 19-6-2002, 12-7-2007"
+  },
+  {
+   "id": "T-10",
+   "blocco": "II",
+   "argomenti": [
+    "II-02",
+    "II-03"
+   ],
+   "titolo": "Albero, coalbero e matrici A e B",
+   "domanda": "Definisci albero e coalbero, maglie e tagli fondamentali, e scrivi la relazione tra i blocchi di $A$ e $B$.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Albero: sottografo connesso con tutti i nodi e senza maglie, $n-1$ rami; coalbero $b-n+1$",
+      "peso": 3,
+      "any_of": [
+       "connesso senza maglie",
+       "n-1 rami",
+       "albero coalbero"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Maglia fondamentale: albero + un ramo di coalbero; taglio fondamentale: un ramo d'albero",
+      "peso": 2,
+      "any_of": [
+       "maglia fondamentale",
+       "taglio fondamentale"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Dalla KVL/KCL: $A B^{T}=0$",
+      "peso": 2,
+      "any_of": [
+       "a b trasposta nullo",
+       "ortogonali",
+       "ortogonalita"
+      ],
+      "formule": [
+       "AB^T=0",
+       "A B^T=0"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Forma a blocchi: $B_t=-(A_t^{-1}A_c)^{T}$ (con $B_c=1$)",
+      "peso": 3,
+      "any_of": [
+       "blocchi",
+       "forma blocchi",
+       "a_t inversa"
+      ],
+      "formule": [
+       "B_t=-(A_t^{-1}A_c)^T",
+       "B_t=-F^T"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Un albero è un sottografo connesso che contiene tutti i nodi e non ha maglie: ha n-1 rami; il coalbero ha b-n+1 rami. Ogni ramo di coalbero individua una maglia fondamentale, ogni ramo d'albero un taglio fondamentale. Dalla KVL e KCL si ha A B^T = 0. In forma a blocchi, con A = [At Ac] e B = [Bt 1], si ottiene B_t = -(A_t^{-1} A_c)^T, cioè -F^T.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Un albero ha n-1 rami e il coalbero b-n+1; ci sono maglie fondamentali e tagli fondamentali.",
+     "min": 3,
+     "max": 6
+    },
+    {
+     "livello": "errata",
+     "testo": "B è uguale a meno A trasposta come matrici complete.",
+     "min": 0,
+     "max": 3
+    }
+   ],
+   "esame": "Topologia, B=-A^T: 18-9-2002, 30-10-2002, 24-4-2003, 12-7-2005"
+  },
+  {
+   "id": "T-11",
+   "blocco": "II",
+   "argomenti": [
+    "II-04"
+   ],
+   "titolo": "Tensioni e correnti indipendenti",
+   "domanda": "Quante tensioni e correnti di ramo sono indipendenti? Come si esprimono le altre?",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "$n-1$ tensioni indipendenti (rami d'albero o tensioni di nodo)",
+      "peso": 3,
+      "any_of": [
+       "n-1 tensioni",
+       "tensioni albero",
+       "tensioni nodo"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "$b-n+1$ correnti indipendenti (rami di coalbero, correnti di maglia)",
+      "peso": 3,
+      "any_of": [
+       "b-n+1 correnti",
+       "correnti coalbero",
+       "correnti maglia"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Le altre si ottengono da KVL/KCL: $v_c=F^Tv_t$, $i_t=-Fi_c$",
+      "peso": 2,
+      "any_of": [
+       "kvl kcl",
+       "ricavano"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Conseguenza: base dei metodi dei nodi e delle maglie",
+      "peso": 2,
+      "any_of": [
+       "metodo nodi",
+       "metodo maglie"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Le tensioni di ramo indipendenti sono n-1: quelle dei rami d'albero, o le tensioni di nodo. Le correnti indipendenti sono b-n+1, quelle dei rami di coalbero, cioè le correnti di maglia. Le altre grandezze si ottengono dalle KVL e KCL. È la base del metodo dei nodi e del metodo delle maglie.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Ci sono n-1 tensioni indipendenti e b-n+1 correnti indipendenti.",
+     "min": 5,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "Tutte le tensioni di ramo sono indipendenti, quindi ce ne sono b.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Topologia e tensioni indipendenti: 18-9-2002, 30-10-2002, 24-4-2003"
+  },
+  {
+   "id": "T-12",
+   "blocco": "II",
+   "argomenti": [
+    "II-07",
+    "II-08"
+   ],
+   "titolo": "Metodo dei nodi e criteri di scelta",
+   "domanda": "Descrivi il metodo dei nodi e spiega quando conviene rispetto al metodo delle maglie.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Incognite: le $n-1$ tensioni di nodo rispetto a un riferimento",
+      "peso": 2,
+      "any_of": [
+       "tensioni nodo",
+       "nodo riferimento"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Si scrive la KCL a ogni nodo con le costitutive: $G\\mathbf e=\\mathbf i_s$",
+      "peso": 3,
+      "any_of": [
+       "kcl nodo",
+       "kcl ogni nodo",
+       "matrice conduttanze"
+      ],
+      "formule": [
+       "Ge=i_s",
+       "G e = i_s"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Generatori di tensione: supernodo o corrente come incognita",
+      "peso": 2,
+      "any_of": [
+       "supernodo",
+       "analisi nodale modificata"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Conviene se $n-1<b-n+1$ (pochi nodi)",
+      "peso": 3,
+      "any_of": [
+       "pochi nodi",
+       "n-1 minore",
+       "meno nodi maglie"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Le incognite sono le n-1 tensioni di nodo rispetto a un nodo di riferimento. Si scrive la KCL a ciascun nodo con le relazioni costitutive, ottenendo G e = i_s, con G matrice delle conduttanze. I generatori di tensione si trattano con il supernodo. Conviene quando n-1 è minore del numero di maglie indipendenti, cioè con pochi nodi.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Si scrivono le KCL ai nodi con le tensioni di nodo come incognite.",
+     "min": 3,
+     "max": 6
+    },
+    {
+     "livello": "errata",
+     "testo": "Il metodo dei nodi usa come incognite le correnti di maglia e le KVL.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Metodo dei nodi e criteri: 3-7-2001, 3-7-2003, 25-9-2007, 17-4-2008, 7-7-2008"
+  },
+  {
+   "id": "T-13",
+   "blocco": "II",
+   "argomenti": [
+    "II-08"
+   ],
+   "titolo": "Metodo delle maglie",
+   "domanda": "Descrivi il metodo delle maglie e come si tratta un generatore di corrente.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Incognite: correnti di maglia ($b-n+1$)",
+      "peso": 3,
+      "any_of": [
+       "correnti maglia",
+       "maglie fondamentali"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "KVL alle maglie: $R\\mathbf j=\\mathbf v_s$, con $R_{jj}$ somma delle resistenze, $R_{jk}$ negativo",
+      "peso": 3,
+      "any_of": [
+       "kvl maglia",
+       "matrice resistenze"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Generatore di corrente: fissa la corrente di maglia o si usa la supermaglia",
+      "peso": 2,
+      "any_of": [
+       "supermaglia",
+       "fissa corrente"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Duale del metodo dei nodi",
+      "peso": 2,
+      "any_of": [
+       "duale",
+       "dualita"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Si assumono come incognite le correnti di maglia, in numero b-n+1. Si scrive la KVL a ogni maglia ottenendo R j = v_s: sulla diagonale la somma delle resistenze della maglia, fuori diagonale la resistenza condivisa con segno negativo. Un generatore di corrente fissa la corrente di maglia, oppure si usa la supermaglia. È il duale del metodo dei nodi.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Incognite sono le correnti di maglia e si scrive la KVL.",
+     "min": 3,
+     "max": 6
+    },
+    {
+     "livello": "errata",
+     "testo": "Si usano le tensioni di nodo e le KCL.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Metodo delle maglie: 3-7-2001, 3-7-2003, 25-9-2007, 17-4-2008, 7-7-2008"
+  },
+  {
+   "id": "T-14",
+   "blocco": "III",
+   "argomenti": [
+    "III-02",
+    "III-04"
+   ],
+   "titolo": "Fasori: validità e applicabilità",
+   "domanda": "Quando si può usare il metodo dei fasori? Applicalo a un circuito dato fuori dalle ipotesi: cosa succede?",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Ipotesi: circuito lineare e tempo-invariante",
+      "peso": 3,
+      "any_of": [
+       "lineare",
+       "tempo invariante",
+       "permanente"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Generatori sinusoidali alla stessa frequenza",
+      "peso": 2,
+      "any_of": [
+       "stessa frequenza",
+       "una frequenza",
+       "sinusoidali"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Si ottiene solo la risposta a regime (e il sistema deve essere stabile)",
+      "peso": 3,
+      "any_of": [
+       "regime",
+       "stabile",
+       "permanente"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Con frequenze diverse si sovrappongono le risposte nel tempo",
+      "peso": 2,
+      "any_of": [
+       "frequenze diverse",
+       "sovrapposizione"
+      ]
+     }
+    ],
+    "forbidden": [
+     {
+      "id": "f1",
+      "msg": "Somma di fasori a frequenze diverse",
+      "any_of": [
+       "sommare fasori frequenze diverse",
+       "somma fasori frequenze diverse"
+      ],
+      "penalita": 2
+     }
+    ]
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Il metodo dei fasori vale per circuiti lineari e tempo-invarianti con generatori sinusoidali alla stessa frequenza e dà la risposta di regime, purché il sistema sia stabile. Con frequenze diverse si analizzano separatamente e si sommano le risposte nel tempo.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Si usa per circuiti lineari con generatori sinusoidali alla stessa frequenza.",
+     "min": 2,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "I fasori si applicano a qualsiasi circuito, anche non lineare, e danno anche il transitorio.",
+     "min": 0,
+     "max": 3
+    }
+   ],
+   "esame": "Fasori: 1-6-2000, 13-2-2002, 29-4-2002 (A–I), 23-9-2008"
+  },
+  {
+   "id": "T-15",
+   "blocco": "III",
+   "argomenti": [
+    "III-06"
+   ],
+   "titolo": "Potenze attiva, reattiva e complessa",
+   "domanda": "Definisci potenza attiva, reattiva, apparente e complessa e il fattore di potenza in regime sinusoidale.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Attiva $P=VI\\cos\\varphi$ (media della potenza istantanea)",
+      "peso": 3,
+      "any_of": [
+       "potenza attiva",
+       "valor medio",
+       "vi cos"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Reattiva $Q=VI\\sin\\varphi$",
+      "peso": 2,
+      "any_of": [
+       "potenza reattiva",
+       "vi sin"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Complessa $S=\\dot V\\dot I^{*}=P+jQ$, apparente $|S|=VI$",
+      "peso": 3,
+      "any_of": [
+       "potenza complessa",
+       "coniugato",
+       "apparente"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Fattore di potenza $\\cos\\varphi=P/|S|$",
+      "peso": 2,
+      "any_of": [
+       "fattore potenza",
+       "cos phi"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "La potenza attiva P = V I cos phi è il valor medio della potenza istantanea. La reattiva è Q = V I sin phi. La potenza complessa è S = V I coniugato = P + jQ, con modulo la potenza apparente V I. Il fattore di potenza è cos phi = P/|S|.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "La potenza attiva è V I cos phi e la reattiva V I sin phi.",
+     "min": 4,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "La potenza attiva è il prodotto del picco di tensione per il picco di corrente senza fase.",
+     "min": 0,
+     "max": 3
+    }
+   ],
+   "esame": "Potenze: 1-6-2000, 14-7-2000, 15-9-2000, 13-2-2001, 13-2-2002, 12-7-2005, 12-7-2007, 25-9-2007, 11-2-2008"
+  },
+  {
+   "id": "T-16",
+   "blocco": "III",
+   "argomenti": [
+    "III-06"
+   ],
+   "titolo": "Potenza reattiva ed energie immagazzinate",
+   "domanda": "Dimostra che $Q=2\\omega(W_L-W_C)$, con $W_L$, $W_C$ energie medie immagazzinate in induttori e condensatori.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Parte da $S=\\dot V\\dot I^*$ e sfrutta le impedenze $j\\omega L$ e $1/(j\\omega C)$",
+      "peso": 3,
+      "any_of": [
+       "impedenza",
+       "jwl",
+       "induttore condensatore"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Per l'induttore $Q_L=\\omega LI^2$ e $W_L=\\tfrac14LI_m^2$ (efficace $\\tfrac12LI^2$ medio)",
+      "peso": 3,
+      "any_of": [
+       "energia media",
+       "energia induttore",
+       "omega l i"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Analogamente per il condensatore con segno opposto",
+      "peso": 2,
+      "any_of": [
+       "condensatore segno",
+       "segno opposto",
+       "negativa"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Somma sulla rete via conservazione della potenza complessa",
+      "peso": 2,
+      "any_of": [
+       "conservazione",
+       "tellegen",
+       "somma"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Partendo da S = V I coniugato, per un induttore con impedenza j omega L si ha Q_L = omega L I^2 = 2 omega W_L dove W_L è l'energia media immagazzinata. Per un condensatore la reattanza è negativa e Q_C = -2 omega W_C. Per la conservazione della potenza complessa si sommano i contributi di tutta la rete.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "La reattiva dell'induttore dipende dall'energia media immagazzinata.",
+     "min": 3,
+     "max": 6
+    },
+    {
+     "livello": "errata",
+     "testo": "La potenza reattiva è l'energia dissipata dai resistori.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Potenza reattiva ↔ energia media: 1-6-2000, 14-7-2000, 15-9-2000, 13-2-2002"
+  },
+  {
+   "id": "T-17",
+   "blocco": "III",
+   "argomenti": [
+    "III-07"
+   ],
+   "titolo": "Conservazione della potenza complessa e bilancio",
+   "domanda": "Dimostra la conservazione della potenza complessa e usala per un bilancio di potenze.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Si applica Tellegen ai fasori: $\\sum\\dot V_k\\dot I_k^*=0$",
+      "peso": 4,
+      "any_of": [
+       "tellegen",
+       "fasori",
+       "somma nulla"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Il coniugato dei fasori delle correnti soddisfa ancora la KCL (coefficienti reali)",
+      "peso": 2,
+      "any_of": [
+       "coniugato",
+       "coefficienti reali"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Si conservano $P$ e $Q$ separatamente, non i moduli",
+      "peso": 2,
+      "any_of": [
+       "parte reale parte immaginaria",
+       "p e q",
+       "moduli"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Bilancio: potenza erogata dai generatori = assorbita dagli elementi",
+      "peso": 2,
+      "any_of": [
+       "bilancio",
+       "erogata assorbita"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Si applica il teorema di Tellegen ai fasori: le correnti coniugate soddisfano ancora la KCL perché i coefficienti sono reali, quindi la somma dei prodotti V_k I_k coniugato è nulla. Separando parte reale e immaginaria si conservano P e Q, ma non i moduli. Nel bilancio la potenza erogata dai generatori è uguale a quella assorbita dagli altri elementi.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Si usa Tellegen: la somma delle potenze complesse è nulla.",
+     "min": 4,
+     "max": 6
+    },
+    {
+     "livello": "errata",
+     "testo": "Si conserva la somma dei moduli delle potenze apparenti.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Bilancio e conservazione: 12-7-2005, 12-7-2007, 25-9-2007, 11-2-2008"
+  },
+  {
+   "id": "T-18",
+   "blocco": "III",
+   "argomenti": [
+    "III-08"
+   ],
+   "titolo": "Rifasamento",
+   "domanda": "Che cos'è il rifasamento? Ricava la capacità da collegare in parallelo a un carico induttivo.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Obiettivo: ridurre la potenza reattiva scambiata con la rete (alzare il fattore di potenza)",
+      "peso": 3,
+      "any_of": [
+       "potenza reattiva",
+       "fattore potenza"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Condensatore in parallelo al carico (non modifica la tensione)",
+      "peso": 2,
+      "any_of": [
+       "condensatore parallelo",
+       "parallelo"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "$Q_C=P(\\tan\\varphi_1-\\tan\\varphi_2)$",
+      "peso": 3,
+      "any_of": [
+       "tan",
+       "tangente"
+      ],
+      "formule": [
+       "P(\\tan\\varphi_1-\\tan\\varphi_2)",
+       "P(tanphi1-tanphi2)"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "$C=\\dfrac{P(\\tan\\varphi_1-\\tan\\varphi_2)}{\\omega V^2}$",
+      "peso": 2,
+      "any_of": [
+       "omega v quadro"
+      ],
+      "formule": [
+       "\\omega V^2",
+       "wV^2"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Il rifasamento riduce la potenza reattiva scambiata con la rete, aumentando il fattore di potenza. Si collega un condensatore in parallelo al carico induttivo, così la tensione non cambia. La reattiva del condensatore è Q_C = P (tan phi1 - tan phi2) = omega C V^2, da cui C = P (tan phi1 - tan phi2) / (omega V^2).",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Si mette un condensatore in parallelo per ridurre la potenza reattiva.",
+     "min": 4,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "Si mette un induttore in serie per aumentare la potenza attiva.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Rifasamento: 19-6-2002"
+  },
+  {
+   "id": "T-19",
+   "blocco": "IV",
+   "argomenti": [
+    "IV-01",
+    "IV-02"
+   ],
+   "titolo": "Trasformata di Laplace: proprietà",
+   "domanda": "Definisci la trasformata di Laplace unilatera e enuncia le proprietà principali (linearità, derivata, integrale, traslazione, convoluzione).",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Definizione: $X(s)=\\int_{0^-}^{\\infty}x(t)e^{-st}dt$",
+      "peso": 3,
+      "any_of": [
+       "integrale",
+       "esponenziale"
+      ],
+      "formule": [
+       "\\int_{0^-}^{\\infty}x(t)e^{-st}dt"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Linearità",
+      "peso": 1,
+      "any_of": [
+       "linearita",
+       "lineare"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Derivata: $sX(s)-x(0^-)$; integrale: $X(s)/s$",
+      "peso": 3,
+      "any_of": [
+       "derivata",
+       "condizione iniziale",
+       "integrale"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Traslazione temporale $e^{-sT}X(s)$",
+      "peso": 1,
+      "any_of": [
+       "traslazione",
+       "ritardo"
+      ]
+     },
+     {
+      "id": "c5",
+      "desc": "Convoluzione ↔ prodotto",
+      "peso": 2,
+      "any_of": [
+       "convoluzione",
+       "prodotto"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "X(s) è l'integrale da 0 meno a infinito di x(t) e^{-st}. La trasformata è lineare. La derivata si trasforma in s X(s) - x(0-), l'integrale in X(s)/s. Un ritardo T dà il fattore e^{-sT} (traslazione nel tempo). La convoluzione nel tempo diventa prodotto in frequenza.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "È l'integrale di x(t) per e^{-st}; è lineare e la derivata dà s X(s) meno la condizione iniziale.",
+     "min": 4,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "La trasformata di Laplace trasforma la derivata in una derivata rispetto a s.",
+     "min": 0,
+     "max": 3
+    }
+   ],
+   "esame": "Laplace: 14-7-2000, 29-4-2002 (L–Z), 25-9-2007, 17-4-2008"
+  },
+  {
+   "id": "T-20",
+   "blocco": "IV",
+   "argomenti": [
+    "IV-01",
+    "IV-02"
+   ],
+   "titolo": "Trasformata di un segnale a tratti",
+   "domanda": "Trasforma un impulso rettangolare di ampiezza $A$ e durata $T$ ($0<t<T$) e spiega il procedimento.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Esprime il segnale con gradini: $A[u_{-1}(t)-u_{-1}(t-T)]$",
+      "peso": 4,
+      "any_of": [
+       "gradini",
+       "gradino",
+       "differenza"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Trasformata del gradino $1/s$",
+      "peso": 2,
+      "any_of": [
+       "1 s",
+       "gradino"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Ritardo: $e^{-sT}$",
+      "peso": 2,
+      "any_of": [
+       "ritardo",
+       "traslazione",
+       "e^{-sT}"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Risultato $A(1-e^{-sT})/s$",
+      "peso": 2,
+      "any_of": [
+       "1 e",
+       "risultato"
+      ],
+      "formule": [
+       "A(1-e^{-sT})/s"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Si scrive il segnale come differenza di due gradini: A[u(t) - u(t-T)]. Il gradino ha trasformata 1/s e il ritardo di T moltiplica per e^{-sT}. Il risultato è A(1 - e^{-sT})/s.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Si scrive con due gradini.",
+     "min": 3,
+     "max": 6
+    },
+    {
+     "livello": "errata",
+     "testo": "Si integra A su tutto l'asse reale ottenendo A T.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Trasformata di un segnale a tratti: 14-7-2000, 29-4-2002"
+  },
+  {
+   "id": "T-21",
+   "blocco": "V",
+   "argomenti": [
+    "V-04"
+   ],
+   "titolo": "Stabilità e poli",
+   "domanda": "Enuncia e dimostra la condizione di stabilità asintotica di un sistema lineare in termini dei poli.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Condizione: tutti i poli con parte reale negativa (semipiano sinistro aperto)",
+      "peso": 3,
+      "any_of": [
+       "parte reale negativa",
+       "semipiano sinistro"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Antitrasformata: ogni polo $p$ dà un modo $e^{pt}$ (o $t^ke^{pt}$)",
+      "peso": 3,
+      "any_of": [
+       "modo",
+       "esponenziale",
+       "fratti semplici"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Se $\\mathrm{Re}\\,p<0$ i modi decadono a zero",
+      "peso": 2,
+      "any_of": [
+       "decadono",
+       "tendono zero",
+       "decrescente"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Se c'è un polo con $\\mathrm{Re}\\,p>0$ (o doppio sull'asse) il modo diverge",
+      "peso": 2,
+      "any_of": [
+       "diverge",
+       "instabile",
+       "cresce"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Il sistema è asintoticamente stabile se e solo se tutti i poli hanno parte reale negativa, cioè stanno nel semipiano sinistro aperto. Si scompone H(s) in fratti semplici: ogni polo p dà un modo esponenziale e^{pt}. Se la parte reale è negativa il modo decade a zero; se è positiva il modo diverge e il sistema è instabile.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Il sistema è stabile se i poli hanno parte reale negativa.",
+     "min": 3,
+     "max": 5
+    },
+    {
+     "livello": "errata",
+     "testo": "Il sistema è stabile quando gli zeri sono nel semipiano destro.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Stabilità: 12-6-2000, 15-9-2000, 29-4-2002, 24-4-2003"
+  },
+  {
+   "id": "T-22",
+   "blocco": "V",
+   "argomenti": [
+    "V-04"
+   ],
+   "titolo": "Stabilità al variare di un parametro",
+   "domanda": "Data $D(s)=s^3+2s^2+3s+k$, determina per quali $k$ il sistema è stabile e spiega il metodo.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Criterio di Routh/Hurwitz",
+      "peso": 3,
+      "any_of": [
+       "routh",
+       "hurwitz"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Coefficienti tutti positivi: $k>0$",
+      "peso": 2,
+      "any_of": [
+       "coefficienti positivi",
+       "k maggiore 0"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Condizione $a_2a_1>a_0$: $6>k$",
+      "peso": 3,
+      "any_of": [
+       "prodotto",
+       "a2 a1"
+      ],
+      "formule": [
+       "6>k",
+       "k<6"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Risultato $0<k<6$",
+      "peso": 2,
+      "any_of": [
+       "0 k 6"
+      ],
+      "formule": [
+       "0<k<6"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Si applica il criterio di Routh-Hurwitz per un polinomio di terzo grado: i coefficienti devono essere tutti positivi, quindi k > 0, e deve valere a2 a1 > a0, cioè 2 per 3 maggiore di k, k < 6. Il sistema è stabile per 0 < k < 6.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Con il criterio di Routh si trova che k deve essere positivo.",
+     "min": 3,
+     "max": 6
+    },
+    {
+     "livello": "errata",
+     "testo": "Il sistema è stabile per ogni k perché i coefficienti sono positivi.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Stabilità al variare di k: 29-4-2002, 24-4-2003"
+  },
+  {
+   "id": "T-23",
+   "blocco": "V",
+   "argomenti": [
+    "V-07"
+   ],
+   "titolo": "Risposta in frequenza, tipo di filtro e taglio a 3 dB",
+   "domanda": "Spiega come si ricava la risposta in frequenza di un circuito dalla funzione di rete, come si riconosce il tipo di filtro e cosa significa frequenza di taglio a 3 dB.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "$H(j\\omega)$ si ottiene da $H(s)$ con $s=j\\omega$ (sistema stabile)",
+      "peso": 3,
+      "any_of": [
+       "s j omega",
+       "sostituzione",
+       "jw"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Modulo e fase dell'uscita sinusoidale a regime",
+      "peso": 2,
+      "any_of": [
+       "modulo",
+       "fase"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Il tipo di filtro dall'andamento di $|H|$ (passa-basso, passa-alto, passa-banda…)",
+      "peso": 2,
+      "any_of": [
+       "passa basso",
+       "passa alto",
+       "passa banda"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Taglio a 3 dB: $|H|$ scende a $|H|_{max}/\\sqrt2$",
+      "peso": 3,
+      "any_of": [
+       "radice 2",
+       "3 db",
+       "meno 3 db"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Si sostituisce s = j omega in H(s), purché il sistema sia stabile, e si ottiene modulo e fase della risposta sinusoidale a regime. Dall'andamento del modulo si riconosce se il filtro è passa-basso, passa-alto o passa-banda. La frequenza di taglio a 3 dB è quella in cui il modulo scende a |H|max diviso radice di 2.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Si pone s = j omega e si guarda il modulo per capire se è passa-basso.",
+     "min": 4,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "La frequenza di taglio è quella in cui il modulo vale zero.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Risposta in frequenza e filtri: 3-7-2001, 29-4-2002, 19-6-2002, 17-7-2002, 24-4-2003, 3-7-2003, 19-11-2003, 11-2-2008"
+  },
+  {
+   "id": "T-24",
+   "blocco": "V",
+   "argomenti": [
+    "V-08"
+   ],
+   "titolo": "Circuito risonante serie",
+   "domanda": "Analizza il circuito RLC serie: pulsazione di risonanza, fattore di merito, banda.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "$\\omega_0=1/\\sqrt{LC}$: reattanza totale nulla, impedenza minima e uguale a $R$",
+      "peso": 3,
+      "any_of": [
+       "reattanza nulla",
+       "impedenza minima",
+       "resistiva"
+      ],
+      "formule": [
+       "\\omega_0=1/\\sqrt{LC}",
+       "w0=1/sqrt(LC)"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "$Q=\\omega_0L/R$",
+      "peso": 3,
+      "any_of": [
+       "fattore merito",
+       "coefficiente risonanza"
+      ],
+      "formule": [
+       "Q=\\omega_0L/R",
+       "Q=w0L/R"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Banda a 3 dB $B=\\omega_0/Q=R/L$",
+      "peso": 2,
+      "any_of": [
+       "banda"
+      ],
+      "formule": [
+       "B=\\omega_0/Q",
+       "B=R/L"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Alla risonanza tensioni su $L$ e $C$ pari a $Q$ volte quella del generatore",
+      "peso": 2,
+      "any_of": [
+       "sovratensione",
+       "tensione condensatore",
+       "q volte"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Alla pulsazione di risonanza omega0 = 1/sqrt(LC) la reattanza totale è nulla e l'impedenza è minima e puramente resistiva, uguale a R. Il fattore di merito è Q = omega0 L / R. La banda a 3 dB è B = omega0/Q = R/L. Alla risonanza le tensioni su L e C sono Q volte la tensione del generatore.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "La pulsazione di risonanza è 1/sqrt(LC) e il fattore di merito è omega0 L / R.",
+     "min": 3,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "La risonanza si ha per omega = R/L e l'impedenza è massima.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Circuiti risonanti serie: 4-7-2000, 25-10-2001, 25-9-2003, 7-7-2008"
+  },
+  {
+   "id": "T-25",
+   "blocco": "V",
+   "argomenti": [
+    "V-08"
+   ],
+   "titolo": "Circuito risonante parallelo",
+   "domanda": "Analizza il circuito RLC parallelo: risonanza, $Q$ e banda, e confrontalo con il serie.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "$\\omega_0=1/\\sqrt{LC}$ con ammettenza minima e impedenza massima",
+      "peso": 3,
+      "any_of": [
+       "impedenza massima",
+       "ammettenza minima"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "$Q=R/(\\omega_0L)=\\omega_0RC$",
+      "peso": 3,
+      "any_of": [
+       "fattore merito"
+      ],
+      "formule": [
+       "Q=R/(\\omega_0L)",
+       "Q=\\omega_0RC"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "$B=\\omega_0/Q=1/(RC)$",
+      "peso": 2,
+      "any_of": [
+       "banda"
+      ],
+      "formule": [
+       "B=1/(RC)",
+       "B=\\omega_0/Q"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Dualità con il circuito serie",
+      "peso": 2,
+      "any_of": [
+       "duale",
+       "dualita"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Nel parallelo alla pulsazione omega0 = 1/sqrt(LC) l'ammettenza è minima e l'impedenza è massima. Il fattore di merito è Q = R/(omega0 L) = omega0 R C e la banda è B = omega0/Q = 1/(RC). È il circuito duale del serie.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Alla risonanza l'impedenza del parallelo è massima e Q = R/(omega0 L).",
+     "min": 3,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "Nel parallelo la risonanza ha impedenza minima come nel serie.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Circuiti risonanti: 4-7-2000, 25-10-2001, 25-9-2003, 7-7-2008"
+  },
+  {
+   "id": "T-26",
+   "blocco": "V",
+   "argomenti": [
+    "V-05"
+   ],
+   "titolo": "Risposta permanente e transitoria",
+   "domanda": "Data $F(s)$ stabile e un ingresso sinusoidale, come si distinguono risposta permanente e transitoria? Come si ricavano?",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Permanente: sinusoide alla stessa frequenza con $|F(j\\omega_0)|$ e fase",
+      "peso": 3,
+      "any_of": [
+       "stessa frequenza",
+       "f jw",
+       "modulo fase"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Transitoria: modi naturali (poli di $F$) che decadono",
+      "peso": 3,
+      "any_of": [
+       "modi naturali",
+       "poli",
+       "decadono"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Si scompone $Y(s)=F(s)X(s)$ in fratti semplici: poli di $X$ → permanente, poli di $F$ → transitorio",
+      "peso": 3,
+      "any_of": [
+       "fratti semplici",
+       "poli ingresso"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "La condizione di stabilità garantisce che il transitorio si estingua",
+      "peso": 1,
+      "any_of": [
+       "stabile",
+       "stabilita"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Se il sistema è stabile la risposta permanente è una sinusoide alla stessa frequenza dell'ingresso, con modulo |F(j omega0)| e fase arg F. La transitoria è formata dai modi naturali, cioè dai poli di F, che decadono. Scomponendo Y(s) = F(s) X(s) in fratti semplici i poli di X danno la permanente e quelli di F il transitorio. La stabilità garantisce l'estinzione.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "La permanente è una sinusoide alla stessa frequenza; la transitoria decade.",
+     "min": 4,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "La risposta transitoria è quella a regime e la permanente è quella iniziale.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Risposta permanente e transitoria: 25-9-2003, 12-7-2005, 7-7-2008, 24-4-2009"
+  },
+  {
+   "id": "T-27",
+   "blocco": "V",
+   "argomenti": [
+    "V-03",
+    "IV-07"
+   ],
+   "titolo": "Risposta libera e forzata con Laplace",
+   "domanda": "Spiega come si ottengono risposta libera e forzata con il metodo di Laplace per un circuito con memoria.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Condizioni iniziali come generatori ($vC(0^-)/s$, $L\\,iL(0^-)$)",
+      "peso": 3,
+      "any_of": [
+       "condizioni iniziali",
+       "generatori equivalenti"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Forzata: condizioni iniziali nulle, ingresso non nullo",
+      "peso": 2,
+      "any_of": [
+       "forzata"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Libera: ingresso nullo, condizioni iniziali non nulle",
+      "peso": 2,
+      "any_of": [
+       "libera"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Sovrapposizione: risposta totale = libera + forzata",
+      "peso": 3,
+      "any_of": [
+       "sovrapposizione",
+       "somma"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Con Laplace le condizioni iniziali diventano generatori: v_C(0-)/s in serie al condensatore e L i_L(0-) in serie all'induttore. La risposta forzata si ha con condizioni iniziali nulle e ingresso non nullo, quella libera con ingresso nullo e condizioni iniziali non nulle. Per la sovrapposizione la risposta totale è la somma.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "La risposta libera ha ingresso nullo e la forzata condizioni iniziali nulle.",
+     "min": 4,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "La risposta libera si calcola con i fasori.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Laplace e circuiti con memoria: 25-9-2007, 17-4-2008"
+  },
+  {
+   "id": "T-28",
+   "blocco": "V",
+   "argomenti": [
+    "V-02"
+   ],
+   "titolo": "Risposta impulsiva e funzione di rete",
+   "domanda": "Dimostra che la funzione di rete è la trasformata della risposta impulsiva.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "L'impulso ha trasformata $1$",
+      "peso": 3,
+      "any_of": [
+       "impulso",
+       "delta"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Uscita all'impulso: $Y(s)=H(s)\\cdot1$",
+      "peso": 3,
+      "any_of": [
+       "condizioni iniziali nulle",
+       "h s"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Quindi $h(t)=\\mathcal L^{-1}\\{H(s)\\}$",
+      "peso": 2,
+      "any_of": [
+       "antitrasformata",
+       "trasformata inversa"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Conseguenza: $y=h*x$ per un ingresso qualsiasi",
+      "peso": 2,
+      "any_of": [
+       "convoluzione"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "La trasformata dell'impulso unitario è 1. Con condizioni iniziali nulle l'uscita è Y(s) = H(s) per 1 = H(s), quindi la risposta impulsiva è l'antitrasformata di H(s). Per un ingresso qualsiasi l'uscita è la convoluzione y = h * x.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "L'impulso ha trasformata 1 quindi h è l'antitrasformata di H.",
+     "min": 5,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "La risposta impulsiva è la derivata della risposta in frequenza.",
+     "min": 0,
+     "max": 3
+    }
+   ],
+   "esame": "Risposta impulsiva e funzione di rete: 18-9-2002, 19-11-2003"
+  },
+  {
+   "id": "T-29",
+   "blocco": "V",
+   "argomenti": [
+    "V-02"
+   ],
+   "titolo": "Risposta impulsiva di un RC",
+   "domanda": "Ricava la risposta impulsiva di un circuito RC (uscita sul condensatore).",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "$H(s)=\\dfrac{1/(RC)}{s+1/(RC)}$",
+      "peso": 4,
+      "any_of": [
+       "partitore",
+       "funzione rete"
+      ],
+      "formule": [
+       "H(s)=1/(1+sRC)",
+       "1/(RC)/(s+1/(RC))"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Polo in $-1/(RC)$",
+      "peso": 2,
+      "any_of": [
+       "polo"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "$h(t)=\\dfrac1{RC}e^{-t/(RC)}u_{-1}(t)$",
+      "peso": 4,
+      "any_of": [
+       "esponenziale"
+      ],
+      "formule": [
+       "h(t)=(1/RC)e^{-t/RC}",
+       "1/(RC)e^{-t/(RC)}"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Con il partitore H(s) = (1/sC)/(R + 1/sC) = (1/RC)/(s + 1/RC), con un polo in -1/(RC). Antitrasformando h(t) = (1/(RC)) e^{-t/(RC)} u(t), un esponenziale decrescente.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "H(s) ha un polo in -1/(RC) quindi h(t) è un esponenziale.",
+     "min": 3,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "La risposta impulsiva è un gradino di ampiezza R C.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Risposta impulsiva: 18-9-2002, 19-11-2003"
+  },
+  {
+   "id": "T-30",
+   "blocco": "V",
+   "argomenti": [
+    "V-01"
+   ],
+   "titolo": "Funzioni di rete razionali a coefficienti reali",
+   "domanda": "Dimostra che le funzioni di rete di circuiti a costanti concentrate lineari tempo-invarianti sono razionali a coefficienti reali.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Le equazioni nel dominio di $s$ sono algebriche lineari con coefficienti reali ($R$, $sL$, $sC$ con $L,C,R$ reali)",
+      "peso": 4,
+      "any_of": [
+       "coefficienti reali",
+       "algebriche"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "La soluzione si ottiene con la regola di Cramer: rapporto di determinanti",
+      "peso": 3,
+      "any_of": [
+       "cramer",
+       "determinanti",
+       "rapporto polinomi"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Quindi $H(s)=N(s)/D(s)$ con polinomi a coefficienti reali",
+      "peso": 3,
+      "any_of": [
+       "razionale",
+       "polinomi"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Con Laplace le equazioni del circuito diventano algebriche e lineari con coefficienti reali, perché R, sL e sC hanno L, C ed R reali. La soluzione, con la regola di Cramer, è un rapporto di determinanti, cioè di polinomi in s a coefficienti reali. Quindi H(s) è una funzione razionale a coefficienti reali.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Le equazioni sono algebriche con coefficienti reali.",
+     "min": 3,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "Le funzioni di rete sono funzioni trascendenti con esponenziali.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Funzioni di rete razionali a coefficienti reali: 4-7-2000"
+  },
+  {
+   "id": "T-31",
+   "blocco": "VI",
+   "argomenti": [
+    "VI-05",
+    "VI-06"
+   ],
+   "titolo": "Doppi bipoli: matrici Z, Y e T inversa",
+   "domanda": "Definisci le matrici $Z$, $Y$ e di trasmissione inversa di un doppio bipolo e indica come si misurano i parametri.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "$\\mathbf v=Z\\mathbf i$: $z_{11}$, $z_{21}$ con la porta 2 aperta; $z_{12}$, $z_{22}$ con la porta 1 aperta",
+      "peso": 3,
+      "any_of": [
+       "porta aperta",
+       "a vuoto"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "$\\mathbf i=Y\\mathbf v$: parametri con una porta in cortocircuito",
+      "peso": 3,
+      "any_of": [
+       "cortocircuito",
+       "corto"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Relazione $Y=Z^{-1}$ (se esiste)",
+      "peso": 2,
+      "any_of": [
+       "inversa",
+       "invertibile"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Matrice di trasmissione inversa: lega $(v_1,i_1)$ a $(v_2,-i_2)$, utile per la cascata",
+      "peso": 2,
+      "any_of": [
+       "trasmissione",
+       "cascata"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "La matrice Z lega le tensioni alle correnti, v = Z i: z11 e z21 si misurano con la porta 2 aperta, z12 e z22 con la porta 1 aperta. La matrice Y è definita da i = Y v e i parametri si misurano con una porta in cortocircuito. Se esistono Y = Z^{-1}, cioè la matrice inversa. La matrice di trasmissione lega (v1,i1) a (v2,-i2) ed è utile per la cascata.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Z lega tensioni e correnti con porte aperte; Y con le porte in cortocircuito.",
+     "min": 4,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "La matrice Z si misura con le porte in cortocircuito e dà le correnti.",
+     "min": 0,
+     "max": 3
+    }
+   ],
+   "esame": "Doppi bipoli Z, Y, T: 15-9-2000, 17-7-2002, 3-7-2003, 23-9-2008"
+  },
+  {
+   "id": "T-32",
+   "blocco": "VI",
+   "argomenti": [
+    "VI-05"
+   ],
+   "titolo": "Calcolo di Z di un doppio bipolo a T",
+   "domanda": "Calcola la matrice $Z$ di un doppio bipolo a T con $R_a=1$, $R_b=2$ in serie e $R_c=3$ in derivazione.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "$z_{11}=R_a+R_c=4$",
+      "peso": 3,
+      "any_of": [
+       "z11 4",
+       "4"
+      ],
+      "formule": [
+       "z11=4",
+       "z_{11}=4"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "$z_{22}=R_b+R_c=5$",
+      "peso": 3,
+      "any_of": [
+       "z22 5",
+       "5"
+      ],
+      "formule": [
+       "z22=5",
+       "z_{22}=5"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "$z_{12}=z_{21}=R_c=3$",
+      "peso": 3,
+      "any_of": [
+       "z12 3",
+       "3"
+      ],
+      "formule": [
+       "z12=3",
+       "z_{12}=3"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Rete reciproca",
+      "peso": 1,
+      "any_of": [
+       "reciproca",
+       "simmetrica"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Con la porta 2 aperta z11 = Ra + Rc = 4 e z21 = Rc = 3. Con la porta 1 aperta z22 = Rb + Rc = 5 e z12 = Rc = 3. La rete è reciproca perché z12 = z21: la matrice Z ha z11 = 4, z12 = 3, z22 = 5.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "z11 = 4 e z22 = 5.",
+     "min": 4,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "La matrice è diagonale con tutti i parametri uguali a 3.",
+     "min": 0,
+     "max": 3
+    }
+   ],
+   "esame": "Doppi bipoli: calcolo su un circuito: 15-9-2000, 17-7-2002, 3-7-2003"
+  },
+  {
+   "id": "T-33",
+   "blocco": "VI",
+   "argomenti": [
+    "VI-07"
+   ],
+   "titolo": "Connessioni serie-serie e parallelo-parallelo",
+   "domanda": "Descrivi la connessione serie-serie e parallelo-parallelo di doppi bipoli e le matrici risultanti.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Serie-serie: porte in serie, $Z=Z_a+Z_b$",
+      "peso": 4,
+      "any_of": [
+       "serie serie",
+       "zeta somma",
+       "impedenze somma"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Parallelo-parallelo: porte in parallelo, $Y=Y_a+Y_b$",
+      "peso": 4,
+      "any_of": [
+       "parallelo parallelo",
+       "ammettenze somma"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Valide solo se le correnti di porta non cambiano (prova di validità)",
+      "peso": 2,
+      "any_of": [
+       "prova validita",
+       "validita"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Nella connessione serie-serie le porte sono collegate in serie e le matrici delle impedenze si sommano: Z = Za + Zb. Nella parallelo-parallelo le porte sono in parallelo e si sommano le ammettenze: Y = Ya + Yb. Le formule valgono solo se la prova di validità è soddisfatta, cioè le correnti di porta non cambiano dopo la connessione.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "In serie-serie si sommano le Z e in parallelo-parallelo le Y.",
+     "min": 5,
+     "max": 8
+    },
+    {
+     "livello": "errata",
+     "testo": "Le matrici si moltiplicano sempre.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Connessioni: 12-6-2000, 13-2-2001, 19-11-2003, 12-7-2007"
+  },
+  {
+   "id": "T-34",
+   "blocco": "VI",
+   "argomenti": [
+    "VI-08"
+   ],
+   "titolo": "Prove di validità delle connessioni",
+   "domanda": "Spiega perché servono le prove di validità e come si eseguono per la connessione serie-serie.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Le formule di somma valgono solo se le correnti entranti e uscenti di ogni porta restano uguali",
+      "peso": 4,
+      "any_of": [
+       "correnti porta",
+       "porta uguali"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "La prova: si alimentano le porte a vuoto e si verifica che tra i morsetti da collegare la tensione sia nulla",
+      "peso": 3,
+      "any_of": [
+       "tensione nulla",
+       "a vuoto"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Rimedio: trasformatore di isolamento 1:1",
+      "peso": 3,
+      "any_of": [
+       "trasformatore",
+       "isolamento"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Le formule di somma delle matrici valgono solo se, dopo il collegamento, le correnti di ogni porta restano uguali (entrante e uscente). Per la prova si alimentano le porte a vuoto e si controlla che la tensione tra i morsetti da collegare sia nulla. Se la prova fallisce si inserisce un trasformatore di isolamento 1:1.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Serve che le correnti di porta restino uguali dopo il collegamento.",
+     "min": 3,
+     "max": 6
+    },
+    {
+     "livello": "errata",
+     "testo": "La prova serve a verificare che la rete sia stabile.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Prove di validità delle connessioni: 12-6-2000, 13-2-2001, 19-11-2003, 12-7-2007"
+  },
+  {
+   "id": "T-35",
+   "blocco": "I",
+   "argomenti": [
+    "I-09"
+   ],
+   "titolo": "Nullore: proprietà e configurazioni",
+   "domanda": "Definisci nullatore, noratore e nullore e descrivi le due configurazioni tipiche.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Nullatore: $v=0$ e $i=0$; noratore: $v$ e $i$ qualsiasi",
+      "peso": 3,
+      "any_of": [
+       "nullatore",
+       "noratore"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Il nullore è nullatore + noratore (versione sbilanciata)",
+      "peso": 2,
+      "any_of": [
+       "nullore",
+       "sbilanciata"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Generatore di tensione: $V=R\\,I_g$, il pilota non eroga potenza",
+      "peso": 3,
+      "any_of": [
+       "generatore tensione",
+       "non eroga potenza"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Generatore di corrente: $I=V_g/R$",
+      "peso": 2,
+      "any_of": [
+       "generatore corrente",
+       "vg r"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Il nullatore è un bipolo con tensione e corrente nulle, il noratore ha tensione e corrente qualsiasi. Il nullore è formato da nullatore e noratore, di solito nella versione sbilanciata. Come generatore di tensione si ha V = R Ig e il generatore pilota non eroga potenza; come generatore di corrente si ha I = Vg/R.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Il nullatore ha v=0 e i=0 e il noratore ha tensione e corrente qualsiasi.",
+     "min": 3,
+     "max": 6
+    },
+    {
+     "livello": "errata",
+     "testo": "Il nullatore ha corrente qualsiasi e il noratore tensione nulla.",
+     "min": 0,
+     "max": 3
+    }
+   ],
+   "esame": "Nullore: 25-10-2001"
+  },
+  {
+   "id": "T-36",
+   "blocco": "I",
+   "argomenti": [
+    "I-09"
+   ],
+   "titolo": "Dall'amplificatore operazionale reale al nullore",
+   "domanda": "Spiega come dal modello lineare dell'amplificatore operazionale reale si arriva al nullore.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Modello: $R_i$, $R_o$ e generatore controllato $v_o=A\\,v_d$",
+      "peso": 3,
+      "any_of": [
+       "modello lineare",
+       "generatore controllato"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Ordini di grandezza: $A$ molto grande, $R_i$ molto grande, $R_o$ piccola",
+      "peso": 3,
+      "any_of": [
+       "ordini grandezza",
+       "guadagno grande"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Limite ideale: $A\\to\\infty$, $R_i\\to\\infty$, $R_o\\to0$",
+      "peso": 2,
+      "any_of": [
+       "limite ideale",
+       "infinito"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Quindi $v_d=0$ e correnti d'ingresso nulle: nullore",
+      "peso": 2,
+      "any_of": [
+       "vd nullo",
+       "corrente ingresso nulla"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Il modello lineare ha una resistenza d'ingresso Ri, una d'uscita Ro e un generatore controllato v_o = A v_d. Gli ordini di grandezza sono A molto grande, Ri molto grande e Ro piccola. Nel limite ideale A e Ri tendono a infinito e Ro a zero, quindi v_d è nulla e le correnti d'ingresso sono nulle: è un nullore.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Nel limite ideale il guadagno è infinito e quindi la tensione differenziale è nulla.",
+     "min": 2,
+     "max": 6
+    },
+    {
+     "livello": "errata",
+     "testo": "L'amplificatore ideale ha guadagno unitario e resistenza d'ingresso nulla.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Nullore e op-amp: 25-10-2001"
+  },
+  {
+   "id": "T-37",
+   "blocco": "I",
+   "argomenti": [
+    "I-08"
+   ],
+   "titolo": "Trasformatore ideale",
+   "domanda": "Scrivi le equazioni del trasformatore ideale, dimostra che non assorbe potenza e spiega l'impedenza riportata.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "$v_1=nv_2$, $i_1=-i_2/n$",
+      "peso": 3,
+      "any_of": [
+       "rapporto",
+       "convenzione utilizzatori"
+      ],
+      "formule": [
+       "v_1=nv_2",
+       "i_1=-i_2/n"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Potenza assorbita nulla: $v_1i_1+v_2i_2=0$",
+      "peso": 3,
+      "any_of": [
+       "potenza nulla",
+       "non assorbe"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Impedenza riportata $Z_{in}=n^2Z_L$",
+      "peso": 3,
+      "any_of": [
+       "impedenza riportata",
+       "n quadro"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Non è un induttore: funziona anche in continua",
+      "peso": 1,
+      "any_of": [
+       "continua"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Con convenzione degli utilizzatori su entrambe le porte v1 = n v2 e i1 = -i2/n. La potenza assorbita è v1 i1 + v2 i2 = n v2 (-i2/n) + v2 i2 = 0, quindi non assorbe potenza. Un carico ZL è visto dal primario come impedenza riportata n^2 ZL. È un elemento algebrico che funziona anche in continua.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "v1 = n v2 e i1 = -i2/n e la potenza assorbita è nulla.",
+     "min": 5,
+     "max": 8
+    },
+    {
+     "livello": "errata",
+     "testo": "Il trasformatore ideale ha v1 = n v2 e i1 = n i2 e amplifica la potenza.",
+     "min": 0,
+     "max": 3
+    }
+   ],
+   "esame": "Trasformatore ideale: 30-10-2002, 24-4-2009"
+  },
+  {
+   "id": "T-38",
+   "blocco": "I",
+   "argomenti": [
+    "I-08",
+    "VI-09"
+   ],
+   "titolo": "Trasformatore ideale e circuito equivalente",
+   "domanda": "Un trasformatore ideale con $n=2$ ha il carico $Z_L$ al secondario. Che impedenza vede il primario e come cambiano tensione e corrente?",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "$Z_{in}=n^2Z_L=4Z_L$",
+      "peso": 4,
+      "any_of": [
+       "impedenza riportata",
+       "n quadro"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "$v_2=v_1/n$",
+      "peso": 2,
+      "any_of": [
+       "tensione secondario",
+       "meta"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "$i_2=-n\\,i_1$ (in modulo la corrente raddoppia)",
+      "peso": 2,
+      "any_of": [
+       "corrente secondario",
+       "doppia"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "La potenza si conserva",
+      "peso": 2,
+      "any_of": [
+       "potenza conserva",
+       "potenza uguale"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Il primario vede l'impedenza riportata n^2 ZL = 4 ZL. La tensione al secondario è v2 = v1/n, cioè la metà, e la corrente al secondario in modulo è n volte quella al primario, cioè doppia. La potenza si conserva.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Il primario vede l'impedenza riportata, 4 volte il carico.",
+     "min": 3,
+     "max": 5
+    },
+    {
+     "livello": "errata",
+     "testo": "Il primario vede la stessa impedenza del carico.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Trasformatore ideale: 30-10-2002, 24-4-2009"
+  },
+  {
+   "id": "T-39",
+   "blocco": "VI",
+   "argomenti": [
+    "VI-01"
+   ],
+   "titolo": "Teorema di sostituzione",
+   "domanda": "Enuncia il teorema di sostituzione e discutine le condizioni.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Un bipolo (o una porta) può essere sostituito da un generatore ideale di tensione (o corrente) che impone la stessa tensione (o corrente)",
+      "peso": 4,
+      "any_of": [
+       "generatore ideale",
+       "sostituito"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "I valori sono quelli della soluzione del circuito originale",
+      "peso": 2,
+      "any_of": [
+       "stessa tensione",
+       "stessa corrente",
+       "soluzione"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Il circuito modificato deve avere soluzione unica",
+      "peso": 3,
+      "any_of": [
+       "soluzione unica",
+       "unicita"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Non richiede linearità",
+      "peso": 1,
+      "any_of": [
+       "non lineare",
+       "non richiede linearita"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Un bipolo si può sostituire con un generatore ideale di tensione che impone la stessa tensione, o con un generatore di corrente che impone la stessa corrente, assunti i valori della soluzione del circuito originale. Il circuito modificato deve avere soluzione unica. Non richiede la linearità.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Un bipolo si può sostituire con un generatore ideale di tensione con la stessa tensione.",
+     "min": 4,
+     "max": 6
+    },
+    {
+     "livello": "errata",
+     "testo": "Un bipolo si sostituisce sempre con una resistenza uguale al rapporto v/i in ogni istante e il teorema vale solo se lineare.",
+     "min": 0,
+     "max": 3
+    }
+   ],
+   "esame": "Teorema di sostituzione: 19-11-2003, 12-7-2007"
+  },
+  {
+   "id": "T-40",
+   "blocco": "VI",
+   "argomenti": [
+    "VI-01",
+    "VI-02"
+   ],
+   "titolo": "Uso del teorema di sostituzione",
+   "domanda": "Mostra come il teorema di sostituzione serve a dimostrare Thevenin e a calcolare una grandezza interna.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Si sostituisce il carico con un generatore di tensione o corrente",
+      "peso": 3,
+      "any_of": [
+       "sostituzione",
+       "carico generatore"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Si applica la sovrapposizione degli effetti (circuiti lineari)",
+      "peso": 3,
+      "any_of": [
+       "sovrapposizione",
+       "lineare"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Si ottiene la relazione $v=V_{th}-Z_{th}i$",
+      "peso": 2,
+      "any_of": [
+       "vth",
+       "zth"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Si sostituisce un ramo noto per semplificare il resto",
+      "peso": 2,
+      "any_of": [
+       "semplifica",
+       "ramo noto"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Si sostituisce il carico con un generatore di tensione che impone la stessa tensione, grazie al teorema di sostituzione. Con la sovrapposizione degli effetti per circuiti lineari si ottiene la relazione v = Vth - Zth i. Il teorema serve anche a sostituire un ramo di cui si conosce la tensione per semplificare il resto del circuito.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Si sostituisce il carico con un generatore e si usa la sovrapposizione.",
+     "min": 5,
+     "max": 8
+    },
+    {
+     "livello": "errata",
+     "testo": "Il teorema permette di spegnere tutti i generatori.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Teorema di sostituzione: 19-11-2003, 12-7-2007"
+  },
+  {
+   "id": "T-41",
+   "blocco": "I",
+   "argomenti": [
+    "I-04",
+    "I-01"
+   ],
+   "titolo": "Linearità e permanenza",
+   "domanda": "Definisci linearità e permanenza (tempo-invarianza) e mostra che un condensatore costante le soddisfa.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Linearità: sovrapposizione (additività e omogeneità)",
+      "peso": 3,
+      "any_of": [
+       "sovrapposizione",
+       "additivita",
+       "omogeneita"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Permanenza: traslazione nel tempo dell'ingresso → stessa traslazione dell'uscita",
+      "peso": 3,
+      "any_of": [
+       "traslazione",
+       "tempo invariante",
+       "permanente"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "$i=C\\,dv/dt$ lineare perché la derivata è lineare",
+      "peso": 2,
+      "any_of": [
+       "derivata lineare",
+       "derivata"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Tempo-invariante perché $C$ non dipende da $t$",
+      "peso": 2,
+      "any_of": [
+       "non dipende dal tempo",
+       "costante"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Un elemento è lineare se vale la sovrapposizione: additività e omogeneità. È permanente se traslando l'ingresso nel tempo l'uscita trasla della stessa quantità. Per il condensatore i = C dv/dt è lineare perché la derivata è un operatore lineare, ed è tempo invariante perché C è costante e non dipende dal tempo.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "La linearità è la sovrapposizione degli effetti e la permanenza è la traslazione nel tempo.",
+     "min": 5,
+     "max": 8
+    },
+    {
+     "livello": "errata",
+     "testo": "La linearità significa che la corrente è proporzionale al quadrato della tensione.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Proprietà dei circuiti: 24-4-2003, 25-9-2003, 12-7-2005, 11-2-2008, 7-7-2008, 24-4-2009"
+  },
+  {
+   "id": "T-42",
+   "blocco": "I",
+   "argomenti": [
+    "I-04"
+   ],
+   "titolo": "Passività",
+   "domanda": "Definisci la passività di un bipolo e verifica quella di $R$, $L$, $C$; porta un esempio di elemento non passivo.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Passivo: l'energia assorbita non è mai negativa",
+      "peso": 3,
+      "any_of": [
+       "energia assorbita",
+       "non negativa"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "$R$: $p=Ri^2\\ge0$",
+      "peso": 2,
+      "any_of": [
+       "resistore",
+       "ri quadro"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "$L$, $C$: energia immagazzinata $\\tfrac12Li^2$, $\\tfrac12Cv^2\\ge0$",
+      "peso": 3,
+      "any_of": [
+       "energia immagazzinata",
+       "mezzo"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Non passivi: generatori indipendenti, controllati, resistenza negativa",
+      "peso": 2,
+      "any_of": [
+       "generatore",
+       "resistenza negativa"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Un bipolo è passivo se l'energia assorbita non è mai negativa. Per il resistore la potenza p = R i^2 è non negativa. Per induttore e condensatore l'energia immagazzinata ½ L i^2 e ½ C v^2 è non negativa. Non sono passivi i generatori, i controllati e una resistenza negativa.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Il resistore ha potenza R i^2 non negativa quindi è passivo.",
+     "min": 3,
+     "max": 6
+    },
+    {
+     "livello": "errata",
+     "testo": "Un bipolo è passivo se non ha resistenza.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Proprietà dei circuiti (passività): 12-7-2005, 11-2-2008"
+  },
+  {
+   "id": "T-43",
+   "blocco": "I",
+   "argomenti": [
+    "I-01"
+   ],
+   "titolo": "Costanti concentrate",
+   "domanda": "Quando è lecito il modello a costanti concentrate? Che cosa cambia altrimenti?",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Dimensioni molto minori della lunghezza d'onda ($L\\ll\\lambda$)",
+      "peso": 4,
+      "any_of": [
+       "lunghezza onda",
+       "dimensioni piccole"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Tempi di propagazione trascurabili rispetto al periodo",
+      "peso": 2,
+      "any_of": [
+       "propagazione",
+       "periodo"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Valgono le leggi di Kirchhoff",
+      "peso": 2,
+      "any_of": [
+       "kirchhoff"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Altrimenti servono parametri distribuiti (linee)",
+      "peso": 2,
+      "any_of": [
+       "distribuiti",
+       "linea",
+       "linee"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Il modello a costanti concentrate è lecito quando le dimensioni del circuito sono molto minori della lunghezza d'onda, cioè i tempi di propagazione sono trascurabili rispetto al periodo. In tal caso valgono le leggi di Kirchhoff. Altrimenti servono modelli a parametri distribuiti, come le linee di trasmissione.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Le dimensioni devono essere molto minori della lunghezza d'onda.",
+     "min": 4,
+     "max": 6
+    },
+    {
+     "livello": "errata",
+     "testo": "Il modello vale solo in continua, a frequenza zero, dove non esistono onde.",
+     "min": 0,
+     "max": 3
+    }
+   ],
+   "esame": "Costanti concentrate: 24-4-2003, 25-9-2003, 12-7-2005, 11-2-2008"
+  },
+  {
+   "id": "T-44",
+   "blocco": "III",
+   "argomenti": [
+    "III-01"
+   ],
+   "titolo": "Costante di tempo e scarica RC",
+   "domanda": "Ricava la scarica di un condensatore su un resistore e definisci la costante di tempo.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Equazione $RC\\,\\dot v+v=0$ con $v(0)=V_0$",
+      "peso": 3,
+      "any_of": [
+       "equazione",
+       "derivata",
+       "kvl"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Soluzione $v(t)=V_0e^{-t/\\tau}$",
+      "peso": 3,
+      "any_of": [
+       "esponenziale"
+      ],
+      "formule": [
+       "v(t)=V_0e^{-t/\\tau}"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "$\\tau=RC$",
+      "peso": 2,
+      "any_of": [
+       "costante tempo"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Dopo $5\\tau$ il transitorio è esaurito (<1%)",
+      "peso": 2,
+      "any_of": [
+       "5 tau",
+       "esaurito"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "La KVL dà R C dv/dt + v = 0 con v(0) = V0. La soluzione è un esponenziale decrescente v(t) = V0 e^{-t/tau} con costante di tempo tau = RC. Dopo 5 tau il transitorio è esaurito, meno dell'1 per cento.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "La tensione decresce con andamento esponenziale e costante di tempo RC.",
+     "min": 4,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "La tensione decresce linearmente con pendenza R C.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Costante di tempo e RC: 14-7-2000, 3-7-2001, 18-9-2002, 25-9-2007, 17-4-2008"
+  },
+  {
+   "id": "T-45",
+   "blocco": "III",
+   "argomenti": [
+    "III-01",
+    "I-05"
+   ],
+   "titolo": "Carica di un condensatore e continuità",
+   "domanda": "Descrivi la carica di un RC con generatore costante e spiega la continuità di $v_C$.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "$v_C(t)=V_g+(V_0-V_g)e^{-t/\\tau}$",
+      "peso": 4,
+      "any_of": [
+       "esponenziale",
+       "carica"
+      ],
+      "formule": [
+       "v_C(t)=V_g+(V_0-V_g)e^{-t/\\tau}"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "$v_C$ è continua perché la corrente è limitata",
+      "peso": 3,
+      "any_of": [
+       "continua",
+       "corrente limitata"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "A regime il condensatore è un circuito aperto",
+      "peso": 3,
+      "any_of": [
+       "circuito aperto",
+       "regime"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "La tensione sul condensatore è vC(t) = Vg + (V0 - Vg) e^{-t/tau}: una carica esponenziale verso Vg. vC è continua perché la corrente è limitata e quindi l'integrale è continuo. A regime il condensatore si comporta come un circuito aperto.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "La tensione di carica è esponenziale e tende a Vg; a regime il condensatore è un circuito aperto.",
+     "min": 5,
+     "max": 8
+    },
+    {
+     "livello": "errata",
+     "testo": "La tensione sul condensatore salta istantaneamente a Vg.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Costante di tempo, carica RC: 14-7-2000, 3-7-2001"
+  },
+  {
+   "id": "T-46",
+   "blocco": "I",
+   "argomenti": [
+    "I-02"
+   ],
+   "titolo": "Leggi di Kirchhoff",
+   "domanda": "Enuncia le leggi di Kirchhoff e dimostra la KCL per un taglio.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "KCL: somma algebrica delle correnti in un nodo nulla",
+      "peso": 2,
+      "any_of": [
+       "kcl",
+       "correnti nodo"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "KVL: somma algebrica delle tensioni di una maglia nulla",
+      "peso": 2,
+      "any_of": [
+       "kvl",
+       "tensioni maglia"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Per il taglio: somma delle KCL dei nodi interni",
+      "peso": 3,
+      "any_of": [
+       "nodi interni",
+       "somma kcl"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Le correnti dei rami interni si cancellano a coppie",
+      "peso": 3,
+      "any_of": [
+       "cancellano",
+       "rami interni"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "La KCL dice che la somma algebrica delle correnti in un nodo è nulla; la KVL che la somma algebrica delle tensioni di una maglia è nulla. Per un taglio si sommano le KCL dei nodi interni a una delle due parti: le correnti dei rami interni compaiono due volte con segno opposto e si cancellano, restano quelle del taglio.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "La KCL dice che la somma delle correnti in un nodo è nulla e la KVL che la somma delle tensioni in una maglia è nulla.",
+     "min": 3,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "Le leggi di Kirchhoff valgono solo per circuiti con soli resistori in continua.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Kirchhoff (base di tutti gli esercizi) [STORICO]"
+  },
+  {
+   "id": "T-47",
+   "blocco": "II",
+   "argomenti": [
+    "II-06"
+   ],
+   "titolo": "Serie, parallelo e partitori",
+   "domanda": "Ricava le formule di resistenza equivalente serie e parallelo e del partitore di tensione.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Serie: stessa corrente, $R_{eq}=\\sum R_k$ (KVL)",
+      "peso": 3,
+      "any_of": [
+       "serie",
+       "stessa corrente"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Parallelo: stessa tensione, $G_{eq}=\\sum G_k$ (KCL)",
+      "peso": 3,
+      "any_of": [
+       "parallelo",
+       "stessa tensione"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Partitore: $v_k=v\\,R_k/\\sum R_j$",
+      "peso": 3,
+      "any_of": [
+       "partitore",
+       "rapporto resistenze"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Condizione: nessun carico a valle",
+      "peso": 1,
+      "any_of": [
+       "carico",
+       "senza carico"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "In serie i resistori hanno la stessa corrente e per la KVL la resistenza equivalente è la somma. In parallelo hanno la stessa tensione e per la KCL si sommano le conduttanze. Il partitore di tensione dà v_k = v R_k/somma delle R, purché non ci sia un carico a valle che sottrae corrente.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "In serie le resistenze si sommano.",
+     "min": 3,
+     "max": 5
+    },
+    {
+     "livello": "errata",
+     "testo": "Le resistenze si moltiplicano sempre.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Resistori e partitori (base) [STORICO]"
+  },
+  {
+   "id": "T-48",
+   "blocco": "IV",
+   "argomenti": [
+    "IV-06",
+    "IV-07"
+   ],
+   "titolo": "Metodo di Laplace per circuiti con memoria",
+   "domanda": "Descrivi il metodo di Laplace per studiare un circuito con elementi di memoria con condizioni iniziali non nulle.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "Si trasforma il circuito: $R$, $sL$, $1/(sC)$",
+      "peso": 3,
+      "any_of": [
+       "impedenze",
+       "sl"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Condizioni iniziali come generatori equivalenti",
+      "peso": 3,
+      "any_of": [
+       "condizioni iniziali",
+       "generatori"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "Si risolve il circuito resistivo ottenendo $V(s)$ razionale",
+      "peso": 2,
+      "any_of": [
+       "razionale",
+       "partitore",
+       "maglie"
+      ]
+     },
+     {
+      "id": "c4",
+      "desc": "Si antitrasforma con i fratti semplici",
+      "peso": 2,
+      "any_of": [
+       "fratti semplici",
+       "antitrasformata"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Si trasforma il circuito: R resta R, l'induttore diventa sL e il condensatore 1/(sC). Le condizioni iniziali diventano generatori equivalenti. Si risolve il circuito con partitori o maglie ottenendo V(s) razionale e si antitrasforma con la scomposizione in fratti semplici.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Si sostituiscono le impedenze sL e 1/(sC) e si antitrasforma.",
+     "min": 4,
+     "max": 7
+    },
+    {
+     "livello": "errata",
+     "testo": "Si usano i fasori e si ignorano i valori di partenza.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Laplace e circuiti con memoria: 25-9-2007, 17-4-2008"
+  },
+  {
+   "id": "T-49",
+   "blocco": "V",
+   "argomenti": [
+    "V-06"
+   ],
+   "titolo": "Relazione fasori–Laplace",
+   "domanda": "Spiega la relazione tra metodo dei fasori e trasformata di Laplace.",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "$H(j\\omega)=H(s)|_{s=j\\omega}$",
+      "peso": 4,
+      "any_of": [
+       "s j omega",
+       "valutata"
+      ],
+      "formule": [
+       "H(j\\omega)=H(s)",
+       "jw"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "Vale per sistemi stabili: il regime esiste",
+      "peso": 3,
+      "any_of": [
+       "stabile",
+       "stabilita"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "I fasori danno la risposta permanente, Laplace anche il transitorio",
+      "peso": 3,
+      "any_of": [
+       "permanente",
+       "transitorio"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "La funzione H(jω) per i fasori si ottiene da H(s) ponendo s = jω. Vale per sistemi stabili perché solo allora esiste il regime. I fasori forniscono la risposta permanente, mentre la trasformata di Laplace fornisce anche il transitorio.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Si ottiene H(jω) ponendo s = jω in H(s).",
+     "min": 4,
+     "max": 6
+    },
+    {
+     "livello": "errata",
+     "testo": "I fasori e Laplace sono la stessa cosa perché s è sempre uguale a ω.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Risposta permanente da F(s): 25-9-2003, 12-7-2005, 7-7-2008, 24-4-2009"
+  },
+  {
+   "id": "T-50",
+   "blocco": "II",
+   "argomenti": [
+    "II-01",
+    "II-02",
+    "II-04"
+   ],
+   "titolo": "Contare le equazioni indipendenti",
+   "domanda": "Un circuito ha $n$ nodi e $b$ rami. Quante equazioni indipendenti di KCL e KVL si possono scrivere e perché?",
+   "rubrica": {
+    "max": 10,
+    "criteri": [
+     {
+      "id": "c1",
+      "desc": "KCL indipendenti: $n-1$ (la somma di tutte le KCL dei nodi è nulla)",
+      "peso": 4,
+      "any_of": [
+       "n-1",
+       "dipendenti"
+      ]
+     },
+     {
+      "id": "c2",
+      "desc": "KVL indipendenti: $b-n+1$ (maglie fondamentali)",
+      "peso": 4,
+      "any_of": [
+       "b-n+1",
+       "maglie fondamentali"
+      ]
+     },
+     {
+      "id": "c3",
+      "desc": "In totale $b$ equazioni topologiche, più $b$ costitutive per $2b$ incognite",
+      "peso": 2,
+      "any_of": [
+       "costitutive",
+       "2b"
+      ]
+     }
+    ],
+    "forbidden": []
+   },
+   "campioni": [
+    {
+     "livello": "ottima",
+     "testo": "Le KCL indipendenti sono n-1, perché la somma delle KCL di tutti i nodi è nulla (ogni corrente compare due volte con segno opposto). Le KVL indipendenti sono b-n+1, le maglie fondamentali. In totale b equazioni topologiche, a cui si aggiungono le b relazioni costitutive per le 2b incognite.",
+     "min": 8,
+     "max": 10
+    },
+    {
+     "livello": "parziale",
+     "testo": "Le KCL indipendenti sono n-1 e le KVL b-n+1.",
+     "min": 6,
+     "max": 8
+    },
+    {
+     "livello": "errata",
+     "testo": "Le equazioni indipendenti sono tante quanti i rami, b per KCL e b per KVL.",
+     "min": 0,
+     "max": 2
+    }
+   ],
+   "esame": "Topologia: 18-9-2002, 30-10-2002, 24-4-2003, 12-7-2005"
+  }
+ ]
+}

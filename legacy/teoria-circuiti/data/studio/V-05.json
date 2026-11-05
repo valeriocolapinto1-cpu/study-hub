@@ -1,0 +1,48 @@
+{
+ "id": "V-05",
+ "obiettivi": [
+  "Separare transitoria e permanente",
+  "Ricavarle da $F(s)$ e $x(t)$",
+  "Calcolare la permanente con $F(j\\omega)$"
+ ],
+ "teoria": [
+  "Per un sistema stabile e ingresso sinusoidale $x=A\\cos(\\omega_0t+\\varphi)$ la <strong>risposta permanente</strong> è $y_p=A|F(j\\omega_0)|\\cos(\\omega_0t+\\varphi+\\arg F(j\\omega_0))$; la <strong>transitoria</strong> è formata dai modi naturali (poli di $F$) e si estingue.",
+  "Con Laplace: $Y(s)=F(s)X(s)$; nella scomposizione in fratti semplici i poli di $X$ danno la permanente, i poli di $F$ il transitorio."
+ ],
+ "figure": [],
+ "dimostrazioni": [],
+ "esempi": [
+  {
+   "titolo": "RC con ingresso coseno",
+   "testo": "$F=\\dfrac1{s+1}$, $x=\\cos t$, condizioni nulle.",
+   "soluzione": [
+    "$F(j)=\\dfrac{1}{1+j}=\\tfrac{1}{\\sqrt2}e^{-j45^\\circ}$: $y_p=\\tfrac1{\\sqrt2}\\cos(t-45^\\circ)=\\tfrac12\\cos t+\\tfrac12\\sin t$.",
+    "$Y=\\dfrac{s}{(s+1)(s^2+1)}=\\dfrac{-1/2}{s+1}+\\dfrac{\\tfrac12s+\\tfrac12}{s^2+1}$: transitorio $-\\tfrac12e^{-t}$."
+   ]
+  },
+  {
+   "titolo": "Tempo di estinzione",
+   "testo": "Dopo quanto il transitorio $-\\tfrac12e^{-t}$ è sotto l'$1\\%$ dell'ampiezza di regime ($\\tfrac1{\\sqrt2}$)?",
+   "soluzione": [
+    "$\\tfrac12e^{-t}<0{,}007\\Rightarrow t>\\ln(71)\\approx4{,}3\\,\\mathrm s\\approx4{,}3\\tau$."
+   ]
+  },
+  {
+   "titolo": "Ingresso gradino",
+   "testo": "Stesso $F$, $x=u_{-1}$.",
+   "soluzione": [
+    "Permanente: $F(0)=1$ (costante); transitoria: $-e^{-t}$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Calcolare la permanente con $F(s)$ a $s=\\omega_0$.",
+   "corretto": "Si valuta $F$ in $s=j\\omega_0$."
+  }
+ ],
+ "esame": "Risposta permanente e transitoria da $F(s)$ e $x(t)$: 25-9-2003, 12-7-2005, 7-7-2008, 24-4-2009 [STORICO].",
+ "formulario": [
+  "y-permanente"
+ ]
+}

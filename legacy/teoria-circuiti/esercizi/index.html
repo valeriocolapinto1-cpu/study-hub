@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self'; manifest-src 'self'">
+<meta name="description" content="Esercizi originali di Teoria dei Circuiti con numeri generati e soluzione passo-passo verificata.">
+<meta name="author" content="Valerio Colapinto">
+<meta name="copyright" content="© 2026 Valerio Colapinto">
+<meta name="robots" content="index, follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://valeriocolapinto1-cpu.github.io/teoria-dei-circuiti-ingegneria-elettronica/esercizi/">
+<link rel="license" href="https://github.com/valeriocolapinto1-cpu/teoria-dei-circuiti-ingegneria-elettronica/blob/main/LICENSE">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Teoria dei Circuiti — sito di studio">
+<meta property="og:title" content="Esercizi di allenamento">
+<meta property="og:description" content="Esercizi originali di Teoria dei Circuiti con numeri generati e soluzione passo-passo verificata.">
+<meta property="og:url" content="https://valeriocolapinto1-cpu.github.io/teoria-dei-circuiti-ingegneria-elettronica/esercizi/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b1530">
+<link rel="manifest" href="../manifest.webmanifest">
+<title>Esercizi di allenamento</title>
+<link rel="preload" href="../assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<main>
+<h1>Esercizi di allenamento</h1>
+<p>Esercizi generati con numeri originali, nel formato dell'esercizio d'analisi: «determinare <i>v</i><sub>out</sub>(<i>t</i>) per tutto l'asse dei tempi». Ogni esercizio è calcolato in modo esatto e verificato prima di essere mostrato.</p>
+<form id="ctl" class="card">
+  <div class="row">
+    <div data-for="completo guidato passo"><label for="lvl">Difficoltà</label>
+      <select id="lvl"><option value="1">1 · Base (continua)</option><option value="2">2 · Esame (sinusoidale / 2-porte)</option><option value="3">3 · Avanzato (misto, nullore + 2-porte)</option></select></div>
+    <button class="btn primary" type="submit">Genera</button>
+    <button class="btn" type="button" id="new">Nuovo esercizio</button>
+  </div>
+  <details id="adv" style="margin-top:12px"><summary>Opzioni avanzate (altre modalità, tipo di circuito, seed)</summary>
+    <div class="chips" role="tablist" aria-label="Modalità" id="modes">
+      <button class="btn chip" type="button" role="tab" data-m="completo" aria-pressed="true">Esercizio completo</button>
+      <button class="btn chip" type="button" role="tab" data-m="guidato" aria-pressed="false">Guidato (8 passi)</button>
+      <button class="btn chip" type="button" role="tab" data-m="passo" aria-pressed="false">Allenamento per passo</button>
+      <button class="btn chip" type="button" role="tab" data-m="applicate" aria-pressed="false">Domande applicate</button>
+    </div>
+    <div class="row">
+      <div data-for="completo guidato"><label for="tpl">Tipo di circuito</label><select id="tpl"></select></div>
+      <div data-for="passo"><label for="stepk">Passo da allenare</label><select id="stepk"></select></div>
+      <div data-for="applicate"><label for="appk">Argomento</label><select id="appk"></select></div>
+      <div><label for="seed">Seed</label><input id="seed" type="text" inputmode="numeric" style="max-width:140px"></div>
+    </div>
+    <p><button class="btn" type="button" id="same">Stessa struttura, altri numeri</button></p>
+  </details>
+</form>
+<div id="ex" aria-live="polite"></div>
+</main>
+<script type="module" src="../assets/js/app.js"></script>
+<script type="module" src="../assets/js/pages/esercizi.js"></script>
+</body>
+</html>

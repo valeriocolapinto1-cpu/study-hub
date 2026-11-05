@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self'; manifest-src 'self'">
+<meta name="description" content="Tema, backup dei dati e correzione facoltativa con AI.">
+<meta name="author" content="Valerio Colapinto">
+<meta name="copyright" content="© 2026 Valerio Colapinto">
+<meta name="robots" content="index, follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://valeriocolapinto1-cpu.github.io/teoria-dei-circuiti-ingegneria-elettronica/impostazioni/">
+<link rel="license" href="https://github.com/valeriocolapinto1-cpu/teoria-dei-circuiti-ingegneria-elettronica/blob/main/LICENSE">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="Teoria dei Circuiti — sito di studio">
+<meta property="og:title" content="Impostazioni">
+<meta property="og:description" content="Tema, backup dei dati e correzione facoltativa con AI.">
+<meta property="og:url" content="https://valeriocolapinto1-cpu.github.io/teoria-dei-circuiti-ingegneria-elettronica/impostazioni/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b1530">
+<link rel="manifest" href="../manifest.webmanifest">
+<title>Impostazioni</title>
+<link rel="preload" href="../assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%230b1530%27/%3E%3Cpath d=%27M18 4 8 19h7l-2 9 11-16h-7z%27 fill=%27%23ffb84d%27/%3E%3C/svg%3E">
+</head>
+<body>
+<main>
+<h1>Impostazioni</h1>
+<section class="card"><h2>Tema</h2>
+<label for="tema">Aspetto</label>
+<select id="tema"><option value="auto">Automatico (sistema)</option><option value="chiaro">Chiaro</option><option value="scuro">Scuro</option></select></section>
+<section class="card"><h2>Salvataggio dei dati</h2>
+<p>Progresso e impostazioni restano <strong>solo in questo browser</strong>. Esporta un backup per spostarli su un altro dispositivo. La chiave API non viene mai inclusa nell'export.</p>
+<div class="row"><button class="btn primary" id="exp">Esporta JSON</button>
+<label class="btn" for="imp" style="margin:0">Importa JSON…</label><input id="imp" type="file" accept="application/json,.json" hidden></div>
+<div id="imp-prev" class="notice" hidden></div></section>
+<section class="card"><h2>Azzera</h2>
+<p class="muted">Cancella i dati di una sezione. L'operazione non si può annullare: esporta prima un backup.</p>
+<div class="row" id="reset-row"></div></section>
+<section class="card" id="ai"><h2>Correzione con AI (facoltativa)</h2>
+<div class="notice"><strong>Costi, privacy e sicurezza.</strong> Inserendo una chiave API personale, la risposta dello studente e la rubrica vengono inviate al provider scelto, che può addebitarti dei costi. La chiave resta <strong>solo nel tuo browser</strong> (di default per la sola sessione), non entra nel repository né nell'export, ed è inviata solo al provider. Una chiave usata in una pagina web è esposta a chi controlla il tuo browser: usa una chiave con limiti di spesa. Senza chiave resta attiva la correzione offline.</div>
+<label for="prov">Provider</label>
+<select id="prov"><option value="anthropic">Anthropic</option><option value="openai">Endpoint compatibile OpenAI</option></select>
+<div id="p-anthropic"><label for="a-url">Indirizzo base</label><input id="a-url" type="text"><label for="a-model">Modello (modificabile)</label><input id="a-model" type="text"><label for="a-ver">Versione API (intestazione anthropic-version)</label><input id="a-ver" type="text"><label for="a-hdr">Intestazione per l'accesso dal browser (vuota per disattivarla)</label><input id="a-hdr" type="text"><p class="muted">L'intestazione per l'accesso diretto dal browser non è documentata nelle pagine ufficiali consultate: è un'impostazione modificabile <span class="badge b-DAVERIFICARE">DA VERIFICARE</span>. Se il provider blocca la chiamata (CORS) vedrai un messaggio chiaro.</p></div>
+<div id="p-openai" hidden><label for="o-url">Indirizzo base (…/v1)</label><input id="o-url" type="text"><label for="o-model">Modello</label><input id="o-model" type="text"></div>
+<label for="key">Chiave API</label><input id="key" type="password" autocomplete="off" placeholder="la chiave non viene mai mostrata di nuovo">
+<label style="font-weight:400"><input type="checkbox" id="rem" style="min-height:auto;width:auto;margin-right:6px">Ricorda la chiave su questo dispositivo (altrimenti solo per questa sessione)</label>
+<div class="row" style="margin-top:10px"><button class="btn primary" id="ai-save">Salva</button><button class="btn" id="ai-test">Testa connessione</button><button class="btn danger" id="ai-clear">Cancella chiave</button></div>
+<p id="ai-msg" role="status"></p></section>
+<p id="msg" role="status" class="muted"></p>
+</main>
+<script type="module" src="../assets/js/app.js"></script>
+<script type="module" src="../assets/js/pages/impostazioni.js"></script>
+</body>
+</html>

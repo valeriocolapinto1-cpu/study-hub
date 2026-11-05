@@ -1,0 +1,45 @@
+{
+ "id": "II-08",
+ "obiettivi": [
+  "Scrivere le equazioni alle maglie",
+  "Gestire generatori di corrente con supermaglia",
+  "Confrontare il metodo con quello dei nodi"
+ ],
+ "teoria": [
+  "Il <strong>metodo delle maglie</strong> usa come incognite le correnti di maglia $\\mathbf j$ ($b-n+1$ maglie fondamentali), con $\\mathbf i=B^{\\mathsf T}\\mathbf j$. Per soli resistori e generatori di tensione: $$R_m\\,\\mathbf j=\\mathbf v_s,$$ con $R_{m,jj}=$ somma delle resistenze della maglia, $R_{m,jk}=\\pm$ resistenza condivisa (negativa se le correnti hanno verso concorde nel ramo), $v_{s,j}=$ somma algebrica delle tensioni dei generatori nel verso della maglia.",
+  "Un generatore di corrente su un solo ramo di una maglia fissa la corrente di quella maglia; se è tra due maglie si usa la <em>supermaglia</em> (KVL sul percorso che le contiene, con il vincolo sulle correnti). È il duale del metodo dei nodi."
+ ],
+ "figure": [],
+ "dimostrazioni": [
+  {
+   "titolo": "Equazioni alle maglie",
+   "passi": [
+    "KVL: $B\\,\\mathbf v=\\mathbf v_s'$ (generatori a secondo membro); costitutive: $\\mathbf v=\\mathcal R\\,\\mathbf i$.",
+    "Con $\\mathbf i=B^{\\mathsf T}\\mathbf j$ (la KCL è automaticamente soddisfatta perché $A B^{\\mathsf T}=0$): $B\\,\\mathcal R\\,B^{\\mathsf T}\\mathbf j=\\mathbf v_s'$.",
+    "Quindi $R_m=B\\mathcal RB^{\\mathsf T}$. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Due maglie",
+   "testo": "Maglia 1: generatore $12\\,\\mathrm{V}$ e $R_1=2\\,\\Omega$; ramo comune $R_2=4\\,\\Omega$; maglia 2: $R_3=2\\,\\Omega$. Trova $j_1,j_2$.",
+   "soluzione": [
+    "$(R_1+R_2)j_1-R_2j_2=12\\Rightarrow 6j_1-4j_2=12$; $-R_2j_1+(R_2+R_3)j_2=0\\Rightarrow-4j_1+6j_2=0$.",
+    "$j_2=\\tfrac23j_1$: $6j_1-\\tfrac83j_1=12\\Rightarrow\\tfrac{10}3j_1=12$, $j_1=\\tfrac{18}5=3{,}6\\,\\mathrm{A}$, $j_2=\\tfrac{12}5=2{,}4\\,\\mathrm{A}$.",
+    "Corrente in $R_2$: $j_1-j_2=1{,}2\\,\\mathrm{A}$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Dimenticare il segno meno dei termini mutui quando i versi delle correnti di maglia sono tutti orari.",
+   "corretto": "Con tutte le maglie orarie il ramo comune ha correnti opposte: il termine mutuo è $-R$."
+  }
+ ],
+ "esame": "Metodo delle maglie e criteri di scelta nodi/maglie: 3-7-2001, 3-7-2003, 25-9-2007, 17-4-2008, 7-7-2008 [STORICO].",
+ "formulario": [
+  "maglie",
+  "maglie-mat"
+ ]
+}

@@ -1,0 +1,54 @@
+{
+ "id": "III-03",
+ "obiettivi": [
+  "Definire impedenza e ammettenza",
+  "Scrivere le impedenze di $R$, $L$, $C$",
+  "Ridurre reti con serie, parallelo e partitori complessi"
+ ],
+ "teoria": [
+  "In regime sinusoidale un bipolo lineare ha <strong>impedenza</strong> $Z=\\dot V/\\dot I$ (convenzione degli utilizzatori) e <strong>ammettenza</strong> $Y=1/Z$. $Z=R+jX$: $R$ resistenza, $X$ reattanza; $Y=G+jB$.",
+  "$Z_R=R$, $Z_L=j\\omega L$, $Z_C=\\dfrac1{j\\omega C}=-\\dfrac{j}{\\omega C}$. Il <strong>circuito fittizio nel dominio dei fasori</strong> si ottiene sostituendo ogni bipolo con la sua impedenza e ogni generatore con il suo fasore: valgono KCL, KVL, serie, parallelo, partitori, Thevenin, nodi e maglie con numeri complessi.",
+  "Un induttore ha reattanza positiva (ritarda la corrente rispetto alla tensione), un condensatore negativa. A bassa frequenza $C$ si comporta come aperto e $L$ come corto; ad alta frequenza il contrario."
+ ],
+ "figure": [],
+ "dimostrazioni": [],
+ "esempi": [
+  {
+   "titolo": "RL serie",
+   "testo": "$R=3\\,\\Omega$, $L=2\\,\\mathrm H$, $\\omega=2\\,\\mathrm{rad/s}$. Trova $Z$ e $Y$.",
+   "soluzione": [
+    "$Z=3+j\\cdot2\\cdot2=3+4j=5e^{j53{,}13^\\circ}$.",
+    "$Y=\\dfrac1Z=\\dfrac{3-4j}{25}=0{,}12-0{,}16j\\,\\mathrm S$."
+   ]
+  },
+  {
+   "titolo": "RC parallelo",
+   "testo": "$R=1\\,\\Omega$ in parallelo a $C=1\\,\\mathrm F$, $\\omega=1$. Trova $Z$.",
+   "soluzione": [
+    "$Y=1+j$, $Z=\\dfrac1{1+j}=\\tfrac12-\\tfrac12j$."
+   ]
+  },
+  {
+   "titolo": "Partitore complesso",
+   "testo": "$R=1$ in serie con $C=1$ ($\\omega=1$), $\\dot V_g=1$. Tensione sul condensatore?",
+   "soluzione": [
+    "$\\dot V_C=\\dot V_g\\dfrac{-j}{1-j}=\\dfrac{-j(1+j)}{2}=\\dfrac{1-j}{2}$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Scrivere $Z_C=j\\omega C$.",
+   "corretto": "$Z_C=1/(j\\omega C)=-j/(\\omega C)$."
+  }
+ ],
+ "esame": "Impedenze e partitori complessi sono alla base della parte «$t<0$ sinusoidale» dell'esercizio d'analisi [STORICO].",
+ "formulario": [
+  "imped-r",
+  "imped-l",
+  "imped-c",
+  "ammettenza",
+  "serie-imped",
+  "part-v-fasori"
+ ]
+}

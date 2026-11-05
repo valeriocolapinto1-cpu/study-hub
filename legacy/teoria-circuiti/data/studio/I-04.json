@@ -1,0 +1,48 @@
+{
+ "id": "I-04",
+ "obiettivi": [
+  "Definire linearità, tempo-invarianza, passività e causalità",
+  "Verificare le proprietà su un elemento dato",
+  "Citare esempi di elementi che le violano"
+ ],
+ "teoria": [
+  "Un elemento (o circuito) è <strong>lineare</strong> se vale la sovrapposizione degli effetti: se all'ingresso $x_1$ corrisponde $y_1$ e a $x_2$ corrisponde $y_2$, allora a $a x_1 + b x_2$ corrisponde $a y_1 + b y_2$ (additività e omogeneità), con condizioni iniziali nulle.",
+  "È <strong>tempo-invariante</strong> (permanente) se traslando l'ingresso nel tempo di $T$ la risposta trasla di $T$: $x(t-T)\\mapsto y(t-T)$. I parametri non dipendono dal tempo.",
+  "È <strong>causale</strong> se la risposta all'istante $t$ dipende solo dall'ingresso a istanti $\\le t$.",
+  "È <strong>passivo</strong> se non può erogare più energia di quella che ha ricevuto: per ogni scelta delle grandezze ai morsetti l'energia assorbita $\\int_{-\\infty}^{t} v i\\,d\\tau \\ge 0$ (con energia iniziale nulla). La definizione precisa può variare tra i testi [DA VERIFICARE].",
+  "Esempi. $R$, $L$, $C$ costanti sono lineari, tempo-invarianti e passivi. Un generatore indipendente non è passivo (può erogare energia) e, avendo un'uscita non nulla a ingresso nullo, non è lineare in senso stretto. $v = R i^3$ è non lineare; $R(t)$ è tempo-variante."
+ ],
+ "figure": [],
+ "dimostrazioni": [
+  {
+   "titolo": "Il condensatore lineare e tempo-invariante è lineare e tempo-invariante",
+   "enunciato": "La relazione $i = C\\,dv/dt$ con $C$ costante definisce un elemento lineare e tempo-invariante.",
+   "passi": [
+    "Linearità: se $v=a v_1+b v_2$ allora $i = C\\,d(a v_1+b v_2)/dt = a\\,C\\dot v_1 + b\\,C\\dot v_2 = a i_1 + b i_2$, per linearità della derivata.",
+    "Tempo-invarianza: se $v_T(t)=v(t-T)$ allora $i_T = C\\,\\dot v_T(t) = C\\,\\dot v(t-T) = i(t-T)$, perché $C$ non dipende da $t$. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Riconoscere le proprietà",
+   "testo": "Classifica: (a) $v = 3i$; (b) $v = 2i^2$; (c) $v = t\\,i$.",
+   "soluzione": [
+    "(a) lineare e tempo-invariante.",
+    "(b) non lineare: $v(2i)=8i^2\\neq 2\\,v(i)$; tempo-invariante.",
+    "(c) lineare ma tempo-variante: il coefficiente dipende da $t$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Dire che un circuito con un generatore indipendente è «lineare» e applicare la sovrapposizione alla sola uscita totale.",
+   "corretto": "La sovrapposizione si applica agli effetti dei singoli generatori (anche i controllati restano nel circuito)."
+  }
+ ],
+ "esame": "Proprietà dei circuiti: 24-4-2003, 25-9-2003, 12-7-2005, 11-2-2008, 7-7-2008, 24-4-2009 [STORICO].",
+ "formulario": [
+  "linearita",
+  "tempo-invarianza"
+ ]
+}

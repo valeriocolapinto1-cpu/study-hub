@@ -1,0 +1,51 @@
+{
+ "id": "I-05",
+ "obiettivi": [
+  "Scrivere le relazioni costitutive di R, L, C e dei generatori ideali",
+  "Dimostrare la continuità di $i_L$ e $v_C$",
+  "Usare i modelli ad alta e bassa frequenza (corto/aperto)"
+ ],
+ "teoria": [
+  "<strong>Resistore.</strong> $v = R\\,i$, ovvero $i = G\\,v$ con $G=1/R$. Cortocircuito: $R=0$ ($v=0$ per ogni $i$). Circuito aperto: $G=0$ ($i=0$ per ogni $v$).",
+  "<strong>Condensatore.</strong> $i = C\\,\\dfrac{dv}{dt}$, e $v(t) = v(t_0) + \\dfrac{1}{C}\\int_{t_0}^{t} i\\,d\\tau$. In continua ($dv/dt=0$) si comporta come un circuito aperto.",
+  "<strong>Induttore.</strong> $v = L\\,\\dfrac{di}{dt}$, e $i(t) = i(t_0)+\\dfrac{1}{L}\\int_{t_0}^{t} v\\,d\\tau$. In continua è un cortocircuito.",
+  "<strong>Generatori ideali.</strong> Il generatore di tensione impone $v=e(t)$ per ogni corrente; quello di corrente impone $i=j(t)$ per ogni tensione. Con valore nullo, il primo è un corto, il secondo un aperto.",
+  "Questi elementi sono <em>circuiti con memoria</em> ($C$, $L$: la risposta dipende dalla storia) o <em>senza memoria</em> ($R$, generatori)."
+ ],
+ "figure": [],
+ "dimostrazioni": [
+  {
+   "titolo": "Continuità della corrente nell'induttore e della tensione nel condensatore",
+   "enunciato": "Se la tensione $v$ ai capi di un induttore è limitata in un intorno di $t_0$, la corrente $i_L$ è continua in $t_0$. Analogamente $v_C$ è continua se $i_C$ è limitata.",
+   "passi": [
+    "Dalla costitutiva: $i_L(t_0+\\varepsilon)-i_L(t_0-\\varepsilon) = \\dfrac{1}{L}\\int_{t_0-\\varepsilon}^{t_0+\\varepsilon} v\\,d\\tau$.",
+    "Se $|v|\\le M$ nell'intorno, il modulo del secondo membro è $\\le 2M\\varepsilon/L$.",
+    "Per $\\varepsilon\\to0$ il membro di destra tende a zero, quindi $i_L(t_0^+)=i_L(t_0^-)$. La dimostrazione per $v_C$ è identica scambiando i ruoli ($v_C=\\frac1C\\int i\\,d\\tau$). $\\square$"
+   ],
+   "nota": "Se $v$ contiene impulsi (casi con elementi ideali incongruenti) la continuità può cadere: vedi [DA VERIFICARE] la trattazione del docente."
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Carica di un condensatore a corrente costante",
+   "testo": "Un condensatore $C = 2\\,\\mathrm{F}$, inizialmente scarico, è attraversato da $i = 3\\,\\mathrm{A}$ per $4\\,\\mathrm{s}$. Trova $v$ finale ed energia accumulata.",
+   "soluzione": [
+    "$v(4)=\\dfrac{1}{2}\\int_0^4 3\\,d\\tau = \\dfrac{12}{2}=6\\,\\mathrm{V}$.",
+    "$W = \\tfrac12 C v^2 = \\tfrac12\\cdot 2\\cdot 36 = 36\\,\\mathrm{J}$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Imporre $v_C(0^+)=0$ per t>0 «perché il generatore si spegne».",
+   "corretto": "$v_C$ è continua: $v_C(0^+)=v_C(0^-)$ è il valore raggiunto nel regime precedente."
+  }
+ ],
+ "esame": "Costante di tempo e scarica/carica RC compaiono in 14-7-2000, 3-7-2001, 18-9-2002, 25-9-2007, 17-4-2008 [STORICO]; la continuità di $v_C$ e $i_L$ è il passo 8 della procedura dell'esercizio d'analisi.",
+ "formulario": [
+  "resistore",
+  "condensatore",
+  "induttore",
+  "cont-vc-il"
+ ]
+}

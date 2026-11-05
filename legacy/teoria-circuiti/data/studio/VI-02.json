@@ -1,0 +1,74 @@
+{
+ "id": "VI-02",
+ "obiettivi": [
+  "Enunciare Thevenin con le ipotesi",
+  "Dimostrarlo",
+  "Calcolare $V_{th}$ e $R_{th}$ anche con generatori controllati"
+ ],
+ "teoria": [
+  "<strong>Teorema di Thevenin.</strong> Un bipolo lineare (che non sia accoppiato con il carico) è equivalente, ai fini del carico collegato, a un generatore ideale di tensione $V_{th}$ in serie con un'impedenza $Z_{th}$: $V_{th}$ è la tensione a vuoto; $Z_{th}$ è l'impedenza vista ai morsetti con i generatori <em>indipendenti</em> spenti (tensione → corto, corrente → aperto), oppure $V_{th}/I_{sc}$. Con generatori controllati, $Z_{th}$ si trova con un generatore di prova ($V/I$) lasciando i controllati.",
+  "<strong>Non applicabilità.</strong> Il teorema non vale se il bipolo contiene elementi non lineari, o se tra bipolo e carico c'è un accoppiamento (controlli incrociati). Per un generatore ideale di corrente $Z_{th}=\\infty$: esiste solo Norton."
+ ],
+ "figure": [
+  {
+   "alt": "Un bipolo ai morsetti A e B e il suo equivalente di Thevenin: generatore V_th in serie a Z_th",
+   "svg": "<svg viewBox=\"0 0 320 150\" width=\"320\" height=\"150\" xmlns=\"http://www.w3.org/2000/svg\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" font-family=\"system-ui,sans-serif\" font-size=\"14\" aria-hidden=\"true\"><circle cx=\"50\" cy=\"50\" r=\"18\"/><polyline points=\"50 30 50 32\"/><polyline points=\"50 68 50 90\"/><text x=\"50\" y=\"46\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">+</text><text x=\"50\" y=\"62\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">−</text><text x=\"26\" y=\"55\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">V_th</text><polyline points=\"50 30 90 30\"/><polyline points=\"90 30 100 30 105 21 115 39 125 21 135 39 140 30 150 30\"/><text x=\"120\" y=\"14\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">Z_th</text><polyline points=\"150 30 200 30\"/><circle cx=\"200\" cy=\"30\" r=\"3\" fill=\"currentColor\"/><text x=\"212\" y=\"34\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">A</text><polyline points=\"50 90 200 90\"/><circle cx=\"200\" cy=\"90\" r=\"3\" fill=\"currentColor\"/><text x=\"212\" y=\"94\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">B</text></svg>"
+  }
+ ],
+ "dimostrazioni": [
+  {
+   "titolo": "Teorema di Thevenin",
+   "enunciato": "Per un bipolo lineare $\\mathcal N$ con morsetti $A$, $B$: $v=V_{th}-Z_{th}\\,i$ (con $i$ entrante nel carico).",
+   "passi": [
+    "Collega al bipolo un carico qualsiasi; per il teorema di sostituzione lo si sostituisce con un generatore di corrente $i$ (la corrente che esce dal bipolo).",
+    "Il circuito è lineare: per la sovrapposizione degli effetti la tensione $v$ ai morsetti è la somma di due contributi.",
+    "Primo contributo: generatori interni accesi e generatore di corrente $i$ spento (circuito aperto): è la tensione a vuoto $V_{th}$.",
+    "Secondo contributo: generatori indipendenti interni spenti e solo il generatore $i$ acceso: per linearità è proporzionale a $i$, $-Z_{th}\\,i$, con $Z_{th}$ impedenza vista dai morsetti a indipendenti spenti.",
+    "$v=V_{th}-Z_{th}i$ è la caratteristica di un generatore $V_{th}$ in serie a $Z_{th}$. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Partitore",
+   "testo": "$12\\,\\mathrm V$ in serie a $R_1=2\\,\\Omega$, poi $R_2=4\\,\\Omega$ verso massa; porta ai capi di $R_2$.",
+   "soluzione": [
+    "$V_{th}=12\\cdot\\dfrac46=8\\,\\mathrm V$, $R_{th}=2\\parallel4=\\dfrac43\\,\\Omega$."
+   ]
+  },
+  {
+   "titolo": "Con generatore controllato",
+   "testo": "$V_g=4\\,\\mathrm V$, $R_1=2\\,\\Omega$ tra $a$ e $o$; un VCCS assorbe tra $o$ e massa la corrente $i=\\tfrac12v_o$. Porta in $o$.",
+   "soluzione": [
+    "Il VCCS si comporta come un resistore da $2\\,\\Omega$ verso massa e <em>non si spegne</em>.",
+    "$V_{th}=4\\cdot\\dfrac{2}{2+2}=2\\,\\mathrm V$.",
+    "Generatore di prova $1\\,\\mathrm A$ in $o$ (con $V_g$ in corto): $v_o=1/(\\tfrac12+\\tfrac12)=1\\,\\mathrm V$, $R_{th}=1\\,\\Omega$."
+   ]
+  },
+  {
+   "titolo": "Verifica con corto",
+   "testo": "Stesso esempio: corrente di cortocircuito.",
+   "soluzione": [
+    "Con $o$ in corto ($v_o=0$) il VCCS non assorbe: $I_{sc}=4/2=2\\,\\mathrm A$.",
+    "$V_{th}/R_{th}=2/1=2$ ✓."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Spegnere anche i generatori controllati per trovare $R_{th}$.",
+   "corretto": "Si spengono solo gli indipendenti; i controllati restano e si usa il generatore di prova."
+  },
+  {
+   "sbagliato": "Applicare Thevenin a un bipolo non lineare.",
+   "corretto": "Serve la linearità."
+  }
+ ],
+ "esame": "Thevenin: enunciato, dimostrazione, condizioni, esempio di non applicabilità: 4-7-2000, 13-2-2002, 29-4-2002 (L–Z), 30-10-2002, 24-4-2009 B; negli esercizi 2015–2024 compare in 9 casi su 14 [STORICO].",
+ "formulario": [
+  "th-vth",
+  "th-zth",
+  "th-eq",
+  "th-prova"
+ ]
+}

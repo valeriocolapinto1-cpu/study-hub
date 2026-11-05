@@ -1,0 +1,57 @@
+{
+ "id": "III-02",
+ "obiettivi": [
+  "Associare a una sinusoide il suo fasore e viceversa",
+  "Eseguire somme e derivate con i fasori",
+  "Passare tra forma $a\\cos+b\\sin$ e ampiezza-fase"
+ ],
+ "teoria": [
+  "A $v(t)=V_m\\cos(\\omega t+\\varphi)$ si associa il <strong>fasore</strong> $\\dot V=V_me^{j\\varphi}$, con $v(t)=\\mathrm{Re}\\{\\dot Ve^{j\\omega t}\\}$. Il fasore è un numero complesso costante: la dipendenza dal tempo è nel fattore $e^{j\\omega t}$, comune a tutte le grandezze e sottinteso.",
+  "La corrispondenza è lineare: somma di sinusoidi alla stessa frequenza ↔ somma di fasori. La derivata ↔ moltiplicazione per $j\\omega$, l'integrale ↔ divisione per $j\\omega$. Il seno si riduce al coseno: $\\sin\\omega t=\\cos(\\omega t-90^\\circ)$, fasore $-j$.",
+  "Forma cartesiana ↔ ampiezza-fase: $a\\cos\\omega t+b\\sin\\omega t=\\mathrm{Re}\\{(a-jb)e^{j\\omega t}\\}=\\sqrt{a^2+b^2}\\cos(\\omega t-\\arctan(b/a))$ (per $a>0$; in generale $\\varphi=\\mathrm{atan2}(-b,a)$)."
+ ],
+ "figure": [],
+ "dimostrazioni": [],
+ "esempi": [
+  {
+   "titolo": "Somma di una sinusoide e una cosinusoide",
+   "testo": "Scrivi $3\\cos t+4\\sin t$ in ampiezza-fase.",
+   "soluzione": [
+    "Fasore: $3-4j$, modulo $5$, fase $-\\arctan(4/3)\\approx-53{,}13^\\circ$.",
+    "$3\\cos t+4\\sin t=5\\cos(t-53{,}13^\\circ)$."
+   ]
+  },
+  {
+   "titolo": "Derivata di una sinusoide",
+   "testo": "$v(t)=10\\cos(2t+30^\\circ)$. Trova $\\dot v$.",
+   "soluzione": [
+    "$\\dot V=10e^{j30^\\circ}$; $j\\omega\\dot V=2e^{j90^\\circ}\\cdot10e^{j30^\\circ}=20e^{j120^\\circ}$.",
+    "$\\dot v=20\\cos(2t+120^\\circ)=-20\\sin(2t+30^\\circ)$ ✓."
+   ]
+  },
+  {
+   "titolo": "Fasore di un seno",
+   "testo": "Fasore di $5\\sin(3t)$ nella convenzione del coseno?",
+   "soluzione": [
+    "$5\\sin3t=5\\cos(3t-90^\\circ)$, quindi $\\dot V=5e^{-j90^\\circ}=-5j$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Dimenticare che il seno ha fase $-90^\\circ$ rispetto al coseno e usare il fasore $+5j$.",
+   "corretto": "$\\sin\\omega t\\leftrightarrow-j$."
+  },
+  {
+   "sbagliato": "Confondere ampiezza di picco ed efficace: $V_m=\\sqrt2V$.",
+   "corretto": "Dichiara sempre se i fasori sono di picco o efficaci (cambia $P$, $Q$)."
+  }
+ ],
+ "esame": "Fasori: validità e applicabilità: 1-6-2000, 13-2-2002, 29-4-2002 (A–I), 23-9-2008 [STORICO].",
+ "formulario": [
+  "fasore",
+  "fasore-sin",
+  "deriv-fasore",
+  "cos-sin-ampl"
+ ]
+}

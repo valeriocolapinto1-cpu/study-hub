@@ -1,0 +1,66 @@
+{
+ "id": "III-06",
+ "obiettivi": [
+  "Definire P, Q, S e il fattore di potenza",
+  "Dimostrare $Q=2\\omega(W_L-W_C)$",
+  "Calcolare le potenze da $v(t)$ e $i(t)$"
+ ],
+ "teoria": [
+  "Con $v=V_m\\cos\\omega t$, $i=I_m\\cos(\\omega t-\\varphi)$ la potenza istantanea è $p=\\tfrac12V_mI_m[\\cos\\varphi+\\cos(2\\omega t-\\varphi)]$. La <strong>potenza attiva</strong> è il valor medio: $P=\\tfrac12V_mI_m\\cos\\varphi=VI\\cos\\varphi$ (efficaci $V=V_m/\\sqrt2$). La <strong>reattiva</strong> è $Q=VI\\sin\\varphi$, la <strong>complessa</strong> $S=\\dot V\\dot I^*=P+jQ$, l'<strong>apparente</strong> $|S|=VI$. Il <strong>fattore di potenza</strong> è $\\cos\\varphi=P/|S|$.",
+  "Per un bipolo di impedenza $Z=R+jX$ con corrente efficace $I$: $P=RI^2$, $Q=XI^2$. Per $R$: $Q=0$; per $L$: $Q=\\omega LI^2>0$; per $C$: $Q=-I^2/(\\omega C)<0$ (convenzione degli utilizzatori)."
+ ],
+ "figure": [],
+ "dimostrazioni": [
+  {
+   "titolo": "Relazione tra potenza reattiva ed energie medie",
+   "enunciato": "In regime sinusoidale, per un circuito con induttori e condensatori, $Q=2\\omega(W_L-W_C)$, con $W_L$, $W_C$ somme delle energie medie immagazzinate.",
+   "passi": [
+    "Induttore: $Q_L=\\omega LI^2$ (efficace). L'energia istantanea $\\tfrac12Li^2$ ha valor medio $W_L=\\tfrac12L\\,\\overline{i^2}=\\tfrac12LI^2$, quindi $Q_L=2\\omega W_L$.",
+    "Condensatore: $Q_C=-\\dfrac{I^2}{\\omega C}=-\\omega CV_C^2$ e $W_C=\\tfrac12CV_C^2$ (efficace), quindi $Q_C=-2\\omega W_C$.",
+    "Resistore: $Q_R=0$ e nessuna energia immagazzinata.",
+    "Per la conservazione della potenza complessa (Tellegen) la reattiva totale assorbita dagli elementi è nulla se si include il generatore; la reattiva erogata dai generatori è la somma $\\sum Q_k=2\\omega(W_L-W_C)$ degli elementi passivi. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Potenze da $v(t)$ e $i(t)$",
+   "testo": "$v=20\\cos\\omega t$, $i=4\\cos(\\omega t-\\varphi)$, $\\cos\\varphi=3/5$ ($\\sin\\varphi=4/5$). Trova $P$, $Q$, $|S|$.",
+   "soluzione": [
+    "$\\tfrac12V_mI_m=40$.",
+    "$P=40\\cdot\\tfrac35=24\\,\\mathrm W$, $Q=40\\cdot\\tfrac45=32\\,\\mathrm{var}$, $|S|=40\\,\\mathrm{VA}$ (verifica: $\\sqrt{24^2+32^2}=40$)."
+   ]
+  },
+  {
+   "titolo": "Da $Z$ alle potenze",
+   "testo": "$Z=3+4j\\,\\Omega$, corrente efficace $I=2\\,\\mathrm A$.",
+   "soluzione": [
+    "$P=RI^2=12\\,\\mathrm W$, $Q=XI^2=16\\,\\mathrm{var}$, $|S|=20\\,\\mathrm{VA}$, $\\cos\\varphi=0{,}6$."
+   ]
+  },
+  {
+   "titolo": "Fattore di potenza",
+   "testo": "$P=300\\,\\mathrm W$, $Q=400\\,\\mathrm{var}$.",
+   "soluzione": [
+    "$|S|=500\\,\\mathrm{VA}$, $\\cos\\varphi=0{,}6$ (carico induttivo)."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Usare $P=V_mI_m\\cos\\varphi$ con valori di picco.",
+   "corretto": "Con picchi serve il fattore $\\tfrac12$; con efficaci no."
+  }
+ ],
+ "esame": "Potenze attiva, reattiva, complessa, fattore di potenza; $Q\\leftrightarrow$ energia media: 1-6-2000, 14-7-2000, 15-9-2000, 13-2-2001, 13-2-2002, 12-7-2005, 12-7-2007, 25-9-2007, 11-2-2008 [STORICO].",
+ "formulario": [
+  "p-picco",
+  "p-eff",
+  "q-eff",
+  "s-compl",
+  "cosphi",
+  "p-ri2",
+  "q-xi2",
+  "q-energia"
+ ]
+}

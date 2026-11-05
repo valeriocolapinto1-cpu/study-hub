@@ -1,0 +1,47 @@
+{
+ "id": "II-07",
+ "obiettivi": [
+  "Scrivere le equazioni ai nodi",
+  "Trattare generatori di tensione e controllati",
+  "Scegliere tra nodi e maglie"
+ ],
+ "teoria": [
+  "Il <strong>metodo dei nodi</strong> usa come incognite le $n-1$ tensioni di nodo $\\mathbf e$ rispetto a un nodo di riferimento. Per circuiti con soli resistori e generatori di corrente: $$G\\,\\mathbf e=\\mathbf i_s,$$ con $G_{jj}=$ somma delle conduttanze collegate al nodo $j$, $G_{jk}=-$ conduttanza tra $j$ e $k$, $i_{s,j}=$ somma delle correnti dei generatori che <em>entrano</em> nel nodo $j$.",
+  "<strong>Generatori di tensione.</strong> Se ideale e collegato al riferimento fissa il potenziale del nodo; altrimenti si usa un <em>supernodo</em> (KCL sul taglio che li contiene più il vincolo $e_j-e_k=E$) oppure si aggiunge la sua corrente come incognita (analisi nodale modificata). I generatori controllati si trattano esprimendo la grandezza di controllo con le $\\mathbf e$.",
+  "<strong>Criterio.</strong> Conviene l'analisi nodale se $n-1<b-n+1$, cioè pochi nodi; quella alle maglie se le maglie indipendenti sono meno dei nodi."
+ ],
+ "figure": [],
+ "dimostrazioni": [
+  {
+   "titolo": "Equazioni ai nodi per rete resistiva",
+   "passi": [
+    "KCL al nodo $j$ in forma matriciale: $A\\,\\mathbf i=\\mathbf i_s$ (correnti dei generatori portate a secondo membro).",
+    "Costitutive: $\\mathbf i=\\mathcal G\\,\\mathbf v$ con $\\mathcal G=\\operatorname{diag}(G_k)$. KVL: $\\mathbf v=A^{\\mathsf T}\\mathbf e$.",
+    "Sostituisci: $A\\,\\mathcal G\\,A^{\\mathsf T}\\mathbf e=\\mathbf i_s$, quindi $G=A\\mathcal GA^{\\mathsf T}$, matrice simmetrica (se non ci sono controllati) e definita positiva per $G_k>0$ con grafo connesso. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Due nodi indipendenti",
+   "testo": "Generatore di corrente $3\\,\\mathrm{A}$ nel nodo 1; resistenze: nodo 1–riferimento $2\\,\\Omega$, nodo 1–nodo 2 $1\\,\\Omega$, nodo 2–riferimento $4\\,\\Omega$. Trova $e_1,e_2$.",
+   "soluzione": [
+    "$G_{11}=\\tfrac12+1=\\tfrac32$, $G_{12}=-1$, $G_{22}=1+\\tfrac14=\\tfrac54$.",
+    "Sistema: $\\tfrac32e_1-e_2=3$; $-e_1+\\tfrac54e_2=0$.",
+    "Dalla seconda $e_1=\\tfrac54e_2$; nella prima $\\tfrac{15}{8}e_2-e_2=3\\Rightarrow\\tfrac78e_2=3$, $e_2=\\tfrac{24}7\\,\\mathrm{V}\\approx3{,}43\\,\\mathrm{V}$, $e_1=\\tfrac{30}7\\,\\mathrm{V}\\approx4{,}29\\,\\mathrm{V}$.",
+    "Verifica KCL nodo 1: $\\tfrac{30/7}{2}+\\tfrac{30/7-24/7}{1}=\\tfrac{15}7+\\tfrac67=3$ ✓."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Inserire nell'equazione di nodo la corrente di un generatore di tensione ignota senza scriverne il vincolo.",
+   "corretto": "Usa il supernodo oppure aggiungi la corrente del generatore come incognita con l'equazione $e_j-e_k=E$."
+  }
+ ],
+ "esame": "Metodo dei nodi e criteri di scelta nodi/maglie: 3-7-2001, 3-7-2003, 25-9-2007, 17-4-2008, 7-7-2008 [STORICO].",
+ "formulario": [
+  "nodi",
+  "nodi-mat"
+ ]
+}

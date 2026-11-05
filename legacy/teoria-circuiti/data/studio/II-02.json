@@ -1,0 +1,51 @@
+{
+ "id": "II-02",
+ "obiettivi": [
+  "Definire albero e coalbero",
+  "Costruire maglie e tagli fondamentali",
+  "Dimostrare che un albero ha $n-1$ rami"
+ ],
+ "teoria": [
+  "Un <strong>albero</strong> è un sottografo connesso che contiene tutti i nodi e nessuna maglia. I rami non appartenenti all'albero formano il <strong>coalbero</strong> (rami di <em>corda</em>). Un albero ha $n-1$ rami, il coalbero $b-n+1$.",
+  "Aggiungendo all'albero un ramo di coalbero si chiude una e una sola maglia: la <strong>maglia fondamentale</strong> di quel ramo (percorsa nel verso del ramo di coalbero). Ci sono $b-n+1$ maglie fondamentali, linearmente indipendenti. Togliendo dal grafo un ramo d'albero, l'albero si divide in due parti: i rami che collegano le due parti (il ramo d'albero più i rami di coalbero che le uniscono) formano il <strong>taglio fondamentale</strong> del ramo. Ce ne sono $n-1$, indipendenti.",
+  "La scelta dell'albero non è unica: le maglie e i tagli fondamentali dipendono da essa."
+ ],
+ "figure": [
+  {
+   "alt": "Grafo di 4 nodi con albero evidenziato (rami 0-1, 0-2, 0-3) e coalbero tratteggiato",
+   "svg": "<svg viewBox=\"0 0 280 200\" width=\"280\" height=\"200\" xmlns=\"http://www.w3.org/2000/svg\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" font-family=\"system-ui,sans-serif\" font-size=\"14\" aria-hidden=\"true\"><g stroke-width=\"4\"><polyline points=\"140 20 140 110\"/><polyline points=\"140 110 40 160\"/><polyline points=\"140 110 240 160\"/></g><g stroke-dasharray=\"6 5\"><polyline points=\"140 20 40 160\"/><polyline points=\"140 20 240 160\"/><polyline points=\"40 160 240 160\"/></g><circle cx=\"140\" cy=\"20\" r=\"3\" fill=\"currentColor\"/><circle cx=\"40\" cy=\"160\" r=\"3\" fill=\"currentColor\"/><circle cx=\"240\" cy=\"160\" r=\"3\" fill=\"currentColor\"/><circle cx=\"140\" cy=\"110\" r=\"3\" fill=\"currentColor\"/><text x=\"140\" y=\"12\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">1</text><text x=\"28\" y=\"175\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">2</text><text x=\"254\" y=\"175\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">3</text><text x=\"154\" y=\"104\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">0</text><text x=\"90\" y=\"130\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">albero</text></svg>"
+  }
+ ],
+ "dimostrazioni": [
+  {
+   "titolo": "Un albero con $n$ nodi ha $n-1$ rami",
+   "passi": [
+    "Per induzione su $n$. Con $n=1$ non ci sono rami: $0=n-1$.",
+    "Un albero con $n\\ge2$ nodi ha almeno due nodi di grado 1 (foglie): partendo da un nodo, si segue un percorso senza maglie; si arriva a un nodo da cui non si può proseguire senza richiudere una maglia, cioè una foglia, e lo stesso vale dall'altro estremo.",
+    "Si rimuove una foglia con il suo unico ramo: resta un albero con $n-1$ nodi che per ipotesi ha $n-2$ rami.",
+    "Quindi l'albero originale ha $(n-2)+1=n-1$ rami. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Maglie e tagli fondamentali su 4 nodi",
+   "testo": "Nel grafo della figura (albero: 0-1, 0-2, 0-3) elenca maglie e tagli fondamentali.",
+   "soluzione": [
+    "$n=4$, $b=6$: albero 3 rami, coalbero 3 rami (1-2, 2-3, 1-3).",
+    "Maglie fondamentali: (1-2)+(0-1)+(0-2); (2-3)+(0-2)+(0-3); (1-3)+(0-1)+(0-3): 3 maglie da 3 rami.",
+    "Tagli fondamentali: 3, uno per ramo d'albero. Il taglio di 0-1 separa il nodo 1 dal resto: contiene 0-1, 1-2, 1-3."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Scegliere come «albero» un insieme di $n-1$ rami che contiene una maglia (e lascia un nodo isolato).",
+   "corretto": "$n-1$ rami sono un albero solo se connettono tutti i nodi senza maglie."
+  }
+ ],
+ "esame": "Topologia (maglie e tagli fondamentali): 18-9-2002, 24-4-2003, 12-7-2005 [STORICO].",
+ "formulario": [
+  "albero-coalbero"
+ ]
+}

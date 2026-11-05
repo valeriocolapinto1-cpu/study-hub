@@ -1,0 +1,38 @@
+{
+ "id": "I-01",
+ "obiettivi": [
+  "Enunciare le ipotesi del modello a costanti concentrate",
+  "Stimare quando il modello è valido confrontando dimensioni e lunghezza d'onda",
+  "Distinguere circuito fisico e modello circuitale"
+ ],
+ "teoria": [
+  "Un circuito fisico è un insieme di dispositivi collegati da conduttori. Il <strong>modello a costanti concentrate</strong> sostituisce ogni dispositivo con un elemento ideale (resistore, condensatore, induttore, generatore…) e i collegamenti con conduttori ideali, in cui tensione e corrente sono grandezze ben definite ai morsetti.",
+  "L'ipotesi fondamentale è che i fenomeni di propagazione siano trascurabili: se $L$ è la dimensione massima del circuito e $\\lambda = c/f$ la lunghezza d'onda ($c\\approx 3\\cdot10^{8}\\,\\mathrm{m/s}$), il modello è ragionevole quando $L \\ll \\lambda$, cioè quando il tempo di propagazione $L/c$ è molto minore del periodo $T=1/f$ del segnale.",
+  "In questo regime i campi elettrico e magnetico sono confinati nei componenti: l'energia elettrica è «concentrata» nei condensatori, quella magnetica negli induttori, la dissipazione nei resistori. Ne seguono due fatti: la corrente ha lo stesso valore all'ingresso e all'uscita di un conduttore (valgono le leggi di Kirchhoff), e la tensione tra due punti non dipende dal cammino scelto fuori dai componenti.",
+  "<strong>Ordini di grandezza.</strong> A $50\\,\\mathrm{Hz}$: $\\lambda = 6000\\,\\mathrm{km}$, quindi un circuito da banco è concentrato, una linea di trasmissione lunga centinaia di km no. A $1\\,\\mathrm{GHz}$: $\\lambda = 30\\,\\mathrm{cm}$, e già un cavo di $10\\,\\mathrm{cm}$ non è un semplice filo."
+ ],
+ "figure": [],
+ "dimostrazioni": [],
+ "esempi": [
+  {
+   "titolo": "Quando un circuito è «concentrato»?",
+   "testo": "Un circuito di dimensione massima $L = 20\\,\\mathrm{cm}$ lavora a $f = 10\\,\\mathrm{MHz}$. Si può usare il modello a costanti concentrate?",
+   "soluzione": [
+    "$\\lambda = c/f = 3\\cdot10^{8}/10^{7} = 30\\,\\mathrm{m}$.",
+    "$L/\\lambda = 0{,}2/30 \\approx 0{,}0067 \\ll 1$: l'ipotesi è ben soddisfatta (di solito si richiede almeno $L/\\lambda \\lesssim 0{,}1$).",
+    "Alla stessa dimensione, a $f=1\\,\\mathrm{GHz}$ sarebbe $\\lambda=0{,}3\\,\\mathrm{m}$ e $L/\\lambda \\approx 0{,}67$: il modello non è più valido."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Applicare le leggi di Kirchhoff a una linea lunga o ad alta frequenza «perché valgono sempre».",
+   "corretto": "Le leggi di Kirchhoff derivano dal modello a costanti concentrate: vanno applicate solo se $L \\ll \\lambda$."
+  }
+ ],
+ "esame": "La domanda sulle proprietà dei circuiti (linearità, permanenza, passività, costanti concentrate) compare negli appelli del 24-4-2003, 25-9-2003, 12-7-2005, 11-2-2008, 7-7-2008, 24-4-2009 [STORICO].",
+ "formulario": [
+  "lambda",
+  "concentrate"
+ ]
+}

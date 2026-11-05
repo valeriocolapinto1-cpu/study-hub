@@ -1,0 +1,54 @@
+{
+ "id": "I-08",
+ "obiettivi": [
+  "Scrivere le equazioni del trasformatore ideale",
+  "Dimostrare che non assorbe potenza netta",
+  "Riportare impedenze da una porta all'altra"
+ ],
+ "teoria": [
+  "Il <strong>trasformatore ideale</strong> con rapporto $n$ è un doppio bipolo lineare e senza memoria. Con la convenzione degli utilizzatori su entrambe le porte: $$v_1 = n\\,v_2,\\qquad i_1 = -\\frac{i_2}{n}.$$",
+  "Non è un induttore: funziona anche in continua ed è un modello limite (accoppiamento perfetto, induttanze infinite, perdite nulle).",
+  "<strong>Proprietà.</strong> La potenza assorbita complessiva è nulla in ogni istante; un carico $Z_L$ alla porta 2 è visto dalla porta 1 come $n^2 Z_L$ (con $n$ definito come sopra)."
+ ],
+ "figure": [
+  {
+   "alt": "Trasformatore ideale con rapporto n:1, correnti i₁ e i₂ entranti e tensioni v₁, v₂",
+   "svg": "<svg viewBox=\"0 0 300 150\" width=\"300\" height=\"150\" xmlns=\"http://www.w3.org/2000/svg\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" font-family=\"system-ui,sans-serif\" font-size=\"14\" aria-hidden=\"true\"><polyline points=\"30 40 110 40\"/><path d=\"M110 40 a8 8 0 0 1 0 16 a8 8 0 0 1 0 16 a8 8 0 0 1 0 16\"/><polyline points=\"110 88 110 110\"/><polyline points=\"30 110 110 110\"/><polyline points=\"145 36 145 114\"/><polyline points=\"155 36 155 114\"/><path d=\"M190 40 a8 8 0 0 0 0 16 a8 8 0 0 0 0 16 a8 8 0 0 0 0 16\"/><polyline points=\"190 88 190 110\"/><polyline points=\"190 40 270 40\"/><polyline points=\"190 110 270 110\"/><circle cx=\"30\" cy=\"40\" r=\"3\" fill=\"currentColor\"/><circle cx=\"30\" cy=\"110\" r=\"3\" fill=\"currentColor\"/><circle cx=\"270\" cy=\"40\" r=\"3\" fill=\"currentColor\"/><circle cx=\"270\" cy=\"110\" r=\"3\" fill=\"currentColor\"/><polyline points=\"40 30 80 30\"/><polyline points=\"73.7,27.0 80,30 73.7,33.0\"/><polyline points=\"260 30 220 30\"/><polyline points=\"226.3,33.0 220,30 226.3,27.0\"/><text x=\"60\" y=\"22\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">i₁</text><text x=\"240\" y=\"22\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">i₂</text><text x=\"18\" y=\"80\" text-anchor=\"end\" fill=\"currentColor\" stroke=\"none\">v₁</text><text x=\"282\" y=\"80\" text-anchor=\"start\" fill=\"currentColor\" stroke=\"none\">v₂</text><text x=\"150\" y=\"138\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\">n : 1</text></svg>"
+  }
+ ],
+ "dimostrazioni": [
+  {
+   "titolo": "Il trasformatore ideale non assorbe potenza e riporta le impedenze",
+   "enunciato": "Con $v_1=nv_2$ e $i_1=-i_2/n$: (a) $p_1+p_2=0$; (b) se $v_2=-Z_L\\,i_2$ allora $v_1/i_1=n^2Z_L$.",
+   "passi": [
+    "(a) $p=v_1 i_1+v_2 i_2 = (n v_2)(-i_2/n)+v_2 i_2 = -v_2 i_2+v_2 i_2 = 0$.",
+    "(b) La porta 2 è chiusa su $Z_L$; con $i_2$ entrante nel trasformatore, la corrente nel carico è $-i_2$, quindi $v_2=Z_L(-i_2)$.",
+    "$Z_{in}=\\dfrac{v_1}{i_1}=\\dfrac{n\\,v_2}{-i_2/n}=n^2\\,\\dfrac{v_2}{-i_2}=n^2 Z_L$. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Trasformatore con carico resistivo",
+   "testo": "$n=2$, carico $R_L=3\\,\\Omega$ alla porta 2; alla porta 1 un generatore $24\\,\\mathrm{V}$ in serie con $12\\,\\Omega$. Trova $v_2$ e la potenza nel carico.",
+   "soluzione": [
+    "$R_{in}=n^2R_L=12\\,\\Omega$.",
+    "Maglia primaria: $24=12\\,i_1+12\\,i_1\\Rightarrow i_1=1\\,\\mathrm{A}$, $v_1=12\\,\\mathrm{V}$.",
+    "$v_2=v_1/n=6\\,\\mathrm{V}$, $i_2=-n\\,i_1=-2\\,\\mathrm{A}$ (la corrente nel carico è $2\\,\\mathrm{A}$).",
+    "$P_L=6\\cdot2=12\\,\\mathrm{W}=v_1 i_1$: la potenza si conserva. ✓"
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Usare $i_1=i_2/n$ con entrambe le correnti entranti.",
+   "corretto": "Con convenzione degli utilizzatori su entrambe le porte, $i_1=-i_2/n$ (il segno meno compensa i versi)."
+  }
+ ],
+ "esame": "Trasformatore ideale: 30-10-2002 e 24-4-2009 (anche con massimo trasferimento di potenza); compare tra gli elementi dell'esercizio d'analisi recente [STORICO].",
+ "formulario": [
+  "trasf-v",
+  "trasf-i",
+  "trasf-z"
+ ]
+}

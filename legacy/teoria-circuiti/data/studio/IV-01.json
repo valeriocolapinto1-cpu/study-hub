@@ -1,0 +1,72 @@
+{
+ "id": "IV-01",
+ "obiettivi": [
+  "Definire la trasformata di Laplace unilatera",
+  "Conoscere le proprietà fondamentali",
+  "Dimostrare la proprietà della derivata"
+ ],
+ "teoria": [
+  "La trasformata unilatera di $x(t)$ (nulla per $t<0^-$) è $X(s)=\\int_{0^-}^{\\infty}x(t)e^{-st}\\,dt$, con $s=\\sigma+j\\omega$, definita nel semipiano di convergenza. Il limite inferiore $0^-$ include gli impulsi in $t=0$ e rende naturali le condizioni iniziali $x(0^-)$.",
+  "<strong>Proprietà.</strong> Linearità: $ax+by\\to aX+bY$. Derivata: $\\dot x\\to sX-x(0^-)$; $\\ddot x\\to s^2X-sx(0^-)-\\dot x(0^-)$. Integrale: $\\int_{0^-}^{t}x\\to X/s$. Ritardo: $x(t-T)u_{-1}(t-T)\\to e^{-sT}X$. Traslazione in frequenza: $e^{-at}x\\to X(s+a)$. Convoluzione: $x*y\\to XY$.",
+  "<strong>Teoremi dei valori.</strong> Valore iniziale: $x(0^+)=\\lim_{s\\to\\infty}sX(s)$. Valore finale: $\\lim_{t\\to\\infty}x(t)=\\lim_{s\\to0}sX(s)$ se tutti i poli di $sX(s)$ hanno parte reale negativa."
+ ],
+ "figure": [],
+ "dimostrazioni": [
+  {
+   "titolo": "Trasformata della derivata",
+   "enunciato": "$\\mathcal L\\{\\dot x\\}=sX(s)-x(0^-)$.",
+   "passi": [
+    "Per definizione $\\mathcal L\\{\\dot x\\}=\\int_{0^-}^{\\infty}\\dot x(t)e^{-st}dt$.",
+    "Integrando per parti: $\\left[x(t)e^{-st}\\right]_{0^-}^{\\infty}+s\\int_{0^-}^{\\infty}x(t)e^{-st}dt$.",
+    "Nella regione di convergenza il termine all'infinito è nullo: resta $-x(0^-)+sX(s)$. $\\square$"
+   ]
+  }
+ ],
+ "esempi": [
+  {
+   "titolo": "Derivata di un esponenziale",
+   "testo": "$x=e^{-2t}u_{-1}(t)$, $x(0^-)=0$: verifica $\\mathcal L\\{\\dot x\\}$.",
+   "soluzione": [
+    "$X=1/(s+2)$; $sX-0=\\dfrac{s}{s+2}$.",
+    "Diretto: $\\dot x=-2e^{-2t}u_{-1}+\\delta(t)\\to\\dfrac{-2}{s+2}+1=\\dfrac{s}{s+2}$ ✓ (l'impulso compare grazie al limite $0^-$)."
+   ]
+  },
+  {
+   "titolo": "Valori iniziale e finale",
+   "testo": "$X(s)=\\dfrac{3}{s(s+1)}$.",
+   "soluzione": [
+    "$sX=\\dfrac3{s+1}$: $x(0^+)=\\lim_{s\\to\\infty}=0$, $x(\\infty)=\\lim_{s\\to0}=3$ (il polo $-1$ è stabile)."
+   ]
+  },
+  {
+   "titolo": "Ritardo",
+   "testo": "$x(t)=e^{-t}u_{-1}(t)$ ritardato di $2$.",
+   "soluzione": [
+    "$\\mathcal L\\{x(t-2)u_{-1}(t-2)\\}=\\dfrac{e^{-2s}}{s+1}$."
+   ]
+  }
+ ],
+ "errori": [
+  {
+   "sbagliato": "Usare il teorema del valore finale con poli sull'asse immaginario.",
+   "corretto": "Serve che $sX(s)$ abbia tutti i poli nel semipiano sinistro aperto."
+  },
+  {
+   "sbagliato": "Dimenticare $x(0^-)$ nella trasformata della derivata.",
+   "corretto": "$\\dot x\\to sX-x(0^-)$."
+  }
+ ],
+ "esame": "Laplace: proprietà e uso: 14-7-2000, 29-4-2002 (L–Z), 25-9-2007, 17-4-2008 [STORICO].",
+ "formulario": [
+  "laplace-def",
+  "laplace-lin",
+  "laplace-der",
+  "laplace-der2",
+  "laplace-int",
+  "laplace-ritardo",
+  "laplace-shift",
+  "laplace-conv",
+  "val-iniz",
+  "val-fin"
+ ]
+}
