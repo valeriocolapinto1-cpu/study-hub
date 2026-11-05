@@ -1,0 +1,31 @@
+---
+import { SITE } from '../config/site';
+import { t, type Lang } from '../i18n';
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const year = 2026;
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div>
+      <p>{t(lang, 'home.unofficial')}</p>
+      <p>© {year} {SITE.author}. {t(lang, 'footer.license')}</p>
+      <p>
+        {t(lang, 'footer.star')}
+        <a href={SITE.repo.url} rel="noopener">{t(lang, 'footer.source')}</a> ·
+        <a href={SITE.repo.issues} rel="noopener">{t(lang, 'footer.issues')}</a>
+      </p>
+    </div>
+    <nav aria-label={t(lang, 'footer.contacts')}>
+      <p>{t(lang, 'footer.contacts')}</p>
+      <ul>
+        <li><a href={`mailto:${SITE.contacts.email}`}>Email</a></li>
+        <li><a href={SITE.contacts.linkedin} rel="noopener">LinkedIn</a></li>
+        <li><a href={SITE.contacts.github} rel="noopener">GitHub</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>

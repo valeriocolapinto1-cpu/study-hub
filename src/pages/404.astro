@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { localizePath, t } from '../i18n';
+---
+
+<BaseLayout lang="it" title={t('it', 'notFound.title')} description={t('it', 'notFound.body')} alternates={false} noindex>
+  <div class="container page">
+    <p class="eyebrow">404</p>
+    <h1>{t('it', 'notFound.title')}</h1>
+    <p class="lead">{t('it', 'notFound.body')}</p>
+    <p><a class="btn btn--primary" href={localizePath('', 'it')}>{t('it', 'notFound.home')}</a></p>
+    <div lang="en">
+      <h2>{t('en', 'notFound.title')}</h2>
+      <p>{t('en', 'notFound.body')}</p>
+      <p><a href={localizePath('', 'en')} hreflang="en">{t('en', 'notFound.home')}</a></p>
+    </div>
+  </div>
+</BaseLayout>

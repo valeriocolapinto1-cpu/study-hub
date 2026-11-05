@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../config/site';
+import { langPaths, localizePath, t, tr, type Lang } from '../../i18n';
+import { coursePath, sortCourses } from '../../lib/courses';
+
+export const getStaticPaths = langPaths;
+
+const lang = Astro.params.lang as Lang;
+const courses = sortCourses((await getCollection('courses')).map((c) => c.data));
+const years = [...new Set(courses.map((c) => c.year))];
+---
+
+<BaseLayout lang={lang} title={SITE.title[lang]} description={SITE.description[lang]}>
+  <div class="container page">
+    <h1>{t(lang, 'home.title')}</h1>
+    <p class="lead">{t(lang, 'home.lead')}</p>
+
+    <section aria-labelledby="corsi">
+      <h2 id="corsi">{t(lang, 'home.courses')}</h2>
+      {courses.length === 0 && <p class="notice">{t(lang, 'home.empty')}</p>}
+      {
+        years.map((year) => (
+          <section aria-labelledby={`anno-${year}`}>
+            <h3 id={`anno-${year}`}>{t(lang, 'home.year', { year })}</h3>
+            <ul class="course-list">
+              {courses
+                .filter((c) => c.year === year)
+                .map((c) => (
+                  <li class="course-list__item" data-course={c.id}>
+                    <h4>
+                      <a href={localizePath(coursePath(c), lang)}>{tr(c.title, lang)}</a>
+                    </h4>
+                    {c.semester && <p class="eyebrow">{t(lang, 'home.semester', { semester: c.semester })}</p>}
+                    <p>{tr(c.description, lang)}</p>
+                  </li>
+                ))}
+            </ul>
+          </section>
+        ))
+      }
+    </section>
+  </div>
+</BaseLayout>

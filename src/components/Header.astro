@@ -1,0 +1,21 @@
+---
+import { SITE } from '../config/site';
+import { localizePath, t, type Lang } from '../i18n';
+import LangSwitch from './LangSwitch.astro';
+import ThemeToggle from './ThemeToggle.astro';
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+---
+
+<a class="skip-link" href="#contenuto">{t(lang, 'skip.toContent')}</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__brand" href={localizePath('', lang)}>{SITE.shortTitle[lang]}</a>
+    <div class="site-header__tools">
+      <LangSwitch lang={lang} />
+      <ThemeToggle lang={lang} />
+    </div>
+  </div>
+</header>

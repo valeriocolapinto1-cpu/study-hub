@@ -1,0 +1,10 @@
+legacy/
+dist/
+.astro/
+node_modules/
+package-lock.json
+test-results/
+playwright-report/
+.lighthouseci/
+tests/e2e/**/*-snapshots/
+*.md

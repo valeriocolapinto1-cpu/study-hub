@@ -1,0 +1,14 @@
+---
+import { LANGS, switchLangPath, t, type Lang } from '../i18n';
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const other = LANGS.find((l) => l !== lang) ?? 'it';
+const href = switchLangPath(Astro.url, other);
+---
+
+<a class="btn btn--ghost" href={href} hreflang={other} data-lang-switch={other}>
+  <span class="visually-hidden">{t(lang, 'lang.switchLabel')}:</span>
+  <span lang={other}>{other.toUpperCase()}</span>
+</a>
