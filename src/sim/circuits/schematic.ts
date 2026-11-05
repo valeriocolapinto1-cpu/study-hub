@@ -689,10 +689,6 @@ function manualLayout(net: Netlist, labels: Labels, vMarks: Map<string, string>)
       place(e, e.at2, 'nor', e.ra, e.rb);
     } else place(e, e.at);
   }
-  for (const p of net.ports ?? []) {
-    const at = net.nodes?.[p.plus]?.at;
-    void at;
-  }
   return parts;
 }
 
@@ -1213,7 +1209,6 @@ function drawTwo(c: Ctx, p: TwoPart): void {
     } else text(c, x, my + 5, p.name, { anchor, size: 15, cls: 'sch-name' });
   } else {
     const above = p.side !== 'below';
-    const label = value ? `${p.name}  ${value}` : p.name;
     // nome in corsivo e valore in tondo sulla stessa riga
     const y = above ? my - off - 1 : my + off + 12;
     const wN = textWidth(p.name, 15);
@@ -1221,14 +1216,10 @@ function drawTwo(c: Ctx, p: TwoPart): void {
     const x0 = mx - (wN + wV) / 2;
     text(c, x0, y, p.name, { anchor: 'start', size: 15, cls: 'sch-name' });
     if (value) text(c, x0 + wN + 6, y, value, { anchor: 'start', size: 12.5, cls: 'sch-val' });
-    void label;
   }
   // tensione: + vicino ad a, − vicino a b, sul lato opposto all'etichetta
   if (p.vMark) {
-    const sgn = vertical ? (p.side === 'left' ? 1 : -1) : p.side === 'below' ? -1 : 1;
-    // lato opposto: per verticali con etichetta a destra, segni a sinistra
-    const t = vertical ? -sgn * 0 : 0;
-    void t;
+    // lato opposto all'etichetta: per verticali con etichetta a destra, segni a sinistra
     const d = Math.max(BODY[p.sym] / 2, 8) + 9;
     if (vertical) {
       const x = mx + (p.side === 'left' ? d : -d);
@@ -1249,21 +1240,17 @@ function drawTwo(c: Ctx, p: TwoPart): void {
       minus(c, x2, y, 3.5);
       text(c, mx, y + 5, p.vMark, { size: 14, cls: 'sch-name sch-hl' });
     }
-    void sgn;
   }
   // corrente: freccia sul reoforo dal lato di a, diretta verso il corpo (a → b)
   if (p.iMark) {
     const leadLen = len / 2 - half;
     const s0 = -half - Math.min(leadLen * 0.5, 16);
     const [tx, ty] = P(s0 + 4);
-    const [sx, sy] = P(s0 - 4);
     const [l1x, l1y] = [tx - ux * 7 + nx * 4, ty - uy * 7 + ny * 4];
     const [l2x, l2y] = [tx - ux * 7 - nx * 4, ty - uy * 7 - ny * 4];
     c.out.push(
       `<polygon class="sch-arrow" stroke="none" style="fill:var(--accent,currentColor)" points="${n2(tx)},${n2(ty)} ${n2(l1x)},${n2(l1y)} ${n2(l2x)},${n2(l2y)}"/>`,
     );
-    void sx;
-    void sy;
     const [lx, ly] = P(s0, vertical ? 0 : 10);
     if (vertical)
       text(c, lx + (p.side === 'left' ? 8 : -8), ly + 4, p.iMark, {
