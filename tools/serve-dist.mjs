@@ -25,6 +25,9 @@ const TYPES = {
   '.ico': 'image/x-icon',
   '.woff2': 'font/woff2',
   '.pdf': 'application/pdf',
+  '.wasm': 'application/wasm',
+  '.pagefind': 'application/octet-stream',
+  '.pf_meta': 'application/octet-stream',
 };
 
 const send = (res, status, file) => {

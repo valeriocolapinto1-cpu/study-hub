@@ -59,6 +59,7 @@ type Status =
   | { kind: 'idle' }
   | { kind: 'sending'; sent: number; total: number }
   | { kind: 'done'; id: string }
+  | { kind: 'mail' }
   | { kind: 'error'; code: string };
 
 const TURNSTILE_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
@@ -279,6 +280,8 @@ export default function ContributeForm(props: ContributeFormProps) {
       return;
     }
     if (!online) {
+      setStatus({ kind: 'mail' });
+      requestAnimationFrame(() => result.current?.focus());
       location.href = mailto;
       return;
     }
@@ -667,6 +670,18 @@ export default function ContributeForm(props: ContributeFormProps) {
         <div class="pf-cf__captcha">
           <div ref={widget} />
           {tsState === 'failed' && <p class="pf-note">{T.turnstileFailed}</p>}
+        </div>
+      )}
+
+      {status.kind === 'mail' && (
+        <div class="pf-cf-result" data-tone="success" role="status" tabIndex={-1} ref={result}>
+          <p class="pf-cf-result__title">{T.mailReady}</p>
+          <p>{fmt(T.mailReadyBody ?? '', { email })}</p>
+          <p>
+            <a class="btn btn--sm" href={mailto} data-contribute-mailto>
+              {T.mailOpen}
+            </a>
+          </p>
         </div>
       )}
 
