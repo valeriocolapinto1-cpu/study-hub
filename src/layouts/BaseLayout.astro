@@ -6,7 +6,11 @@ import '../styles/print.css';
 import Head from '../components/Head.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { htmlLang, type Lang } from '../i18n';
+import { getCollection } from 'astro:content';
+import { BASE_URL } from '../config/site';
+import { htmlLang, stripLang, t, texts, tr, type Lang } from '../i18n';
+import { sortCourses } from '../lib/courses';
+import { pageSearchType, pagefindFilters } from '../lib/search/records';
 
 // Tinte d'accento dei corsi: ogni file ridefinisce solo --accent* sotto html[data-course].
 import.meta.glob('../styles/courses/*.css', { eager: true });
@@ -23,6 +27,17 @@ export interface Props {
   bodyClass?: string | undefined;
 }
 const { lang, title, description, course, alternates = true, noindex = false, bodyClass } = Astro.props;
+// Ricerca: solo le pagine indicizzabili espongono il contenuto a Pagefind, con tipo e corso.
+const searchType = noindex ? null : pageSearchType(stripLang(Astro.url.pathname), course);
+const searchConfig = {
+  lang,
+  base: BASE_URL,
+  courses: sortCourses((await getCollection('courses')).map((c) => c.data)).map((c) => ({
+    id: c.id,
+    title: tr(c.title, lang),
+  })),
+  texts: { ...texts(lang, 'search.'), label: t(lang, 'search.label') },
+};
 ---
 
 <!doctype html>
@@ -34,10 +49,23 @@ const { lang, title, description, course, alternates = true, noindex = false, bo
   <body class={bodyClass}>
     <Header lang={lang} samePage={alternates} />
     <slot name="before-main" />
-    <main id="contenuto" tabindex="-1">
+    <main
+      id="contenuto"
+      tabindex="-1"
+      data-pagefind-body={searchType ? '' : undefined}
+      data-pagefind-filter={searchType ? pagefindFilters(searchType, course) : undefined}
+    >
       <slot />
     </main>
     <Footer lang={lang} />
+    <script type="application/json" id="sh-search-config" set:html={JSON.stringify(searchConfig)} />
+    <template
+      id="sh-pwa-texts"
+      data-title={t(lang, 'pwa.title')}
+      data-body={t(lang, 'pwa.body')}
+      data-reload={t(lang, 'pwa.reload')}
+      data-later={t(lang, 'pwa.later')}
+    ></template>
     <script>
       import '../scripts/site.ts';
     </script>
