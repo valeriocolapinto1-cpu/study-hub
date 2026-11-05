@@ -165,7 +165,7 @@ self.addEventListener('fetch', (event) => {
 
 /* ------------------------------------------------------------------ messaggi */
 
-async function status(course, lang) {
+async function courseState(course, lang) {
   const entries = MANIFEST.courses[course]?.[lang];
   if (!entries) return { state: 'unknown' };
   const name = courseCacheName(course, lang);
@@ -206,12 +206,12 @@ self.addEventListener('message', (event) => {
       reply({ type: 'version', version: MANIFEST.version });
       break;
     case 'COURSE_STATUS':
-      event.waitUntil(status(data.course, data.lang).then((s) => reply({ type: 'status', ...s })));
+      event.waitUntil(courseState(data.course, data.lang).then((s) => reply({ type: 'status', ...s })));
       break;
     case 'COURSE_DOWNLOAD':
       event.waitUntil(
         download(data.course, data.lang, port)
-          .then(() => status(data.course, data.lang))
+          .then(() => courseState(data.course, data.lang))
           .then((s) => reply({ type: 'done', ...s }))
           .catch((err) => reply({ type: 'error', message: String(err?.message ?? err) })),
       );
@@ -222,7 +222,7 @@ self.addEventListener('message', (event) => {
           const name = courseCacheName(data.course, data.lang);
           await caches.delete(name);
           await writeMeta(name, null);
-          reply({ type: 'status', ...(await status(data.course, data.lang)) });
+          reply({ type: 'status', ...(await courseState(data.course, data.lang)) });
         })(),
       );
       break;

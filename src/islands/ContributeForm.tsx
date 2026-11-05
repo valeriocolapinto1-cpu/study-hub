@@ -11,7 +11,6 @@
  * la pagina senza compilarla non scarica nulla da terze parti.
  */
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
-import type { JSX } from 'preact';
 import {
   ACCEPT,
   CONTRIB_TYPES,
@@ -269,7 +268,7 @@ export default function ContributeForm(props: ContributeFormProps) {
     });
   };
 
-  const onSubmit = async (ev: JSX.TargetedEvent<HTMLFormElement, Event>) => {
+  const onSubmit = async (ev: Event) => {
     ev.preventDefault();
     const errs = validateFields(f, files);
     setErrors(errs);

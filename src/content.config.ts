@@ -1,9 +1,10 @@
 import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { file, glob } from 'astro/loaders';
 import { yamlListLoader } from './content/loaders';
 import {
   cardSchema,
   courseSchema,
+  creditSchema,
   exerciseSchema,
   formulaSchema,
   theorySchema,
@@ -49,4 +50,7 @@ const exercises = defineCollection({
 });
 const cards = defineCollection({ loader: yamlListLoader(`${ROOT}/cards/`), schema: cardSchema });
 
-export const collections = { courses, topics, theory, formulas, exercises, cards };
+// Ringraziamenti: sempre dal sito vero (non sono contenuti di un corso).
+const credits = defineCollection({ loader: file('./src/content/credits.yaml'), schema: creditSchema });
+
+export const collections = { courses, topics, theory, formulas, exercises, cards, credits };
