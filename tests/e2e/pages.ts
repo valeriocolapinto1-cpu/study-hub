@@ -13,4 +13,5 @@ export const SAMPLE_PAGES: SamplePage[] = [
   { name: 'home-it', path: `${BASE}it/` },
   { name: 'home-en', path: `${BASE}en/` },
   { name: '404', path: `${BASE}pagina-inesistente/` },
+  { name: 'stile-circuiti', path: `${BASE}it/stile/circuiti/` },
 ];

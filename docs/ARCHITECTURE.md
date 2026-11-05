@@ -29,7 +29,7 @@ src/components/                 Head, Header, Footer, LangSwitch, ThemeToggle, C
 src/lib/courses.ts              coursePath(), sortCourses(), COURSE_SECTIONS
 src/engine/                     TS puro: storage.ts, migrate.ts, random.ts, generators/{registry,index}.ts, …
 src/islands/                    componenti Preact interattivi
-src/sim/                        kit simulatori
+src/sim/                        kit simulatori e circuiti (netlist, MNA, schemi SVG, Plot, Scope…): guida in docs/SIM.md
 src/courses/<courseId>/         codice specifico: generators/*.ts, sims/*.tsx, extras/*
 src/content/                    content collections (dati)
 src/scripts/site.ts             script globale (tema, lingua, migrazioni)

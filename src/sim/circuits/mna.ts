@@ -729,11 +729,11 @@ export function dc(input: AnyNetlist, opts: StaticOptions = {}): DcSolution {
   const net = prepare(input);
   const t = opts.t ?? -Infinity;
   const src = (e: Source): Complex =>
-    Complex.from(t === -Infinity ? decompose(net, e, 'before').dc : waveDcAt(net, e, t));
+    Complex.from(t === -Infinity ? decompose(net, e, 'before').dc : waveDcAt(e, t));
   return new DcSolution(solveSystem(net, { s: Complex.ZERO, src, t, omega: 0 }));
 }
 
-function waveDcAt(net: Netlist, e: Source, t: number): number {
+function waveDcAt(e: Source, t: number): number {
   if (!e.wave) return e.dc ?? 0;
   if (e.wave.kind === 'sin') return e.wave.offset;
   return waveAt(e.wave, t);

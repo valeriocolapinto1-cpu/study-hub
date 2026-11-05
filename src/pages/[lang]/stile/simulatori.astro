@@ -1,15 +1,10 @@
 ---
 /**
- * Pagina di prova del kit dei simulatori (non indicizzata): schemi generati
- * dalle netlist, grafici statici (zero JS) e isole interattive (client:visible).
+ * Pagina di prova del kit dei simulatori (non indicizzata): isole interattive
+ * caricate con client:visible. Schemi e grafici statici sono in stile/circuiti.
  */
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { langPaths, type Lang } from '../../../i18n';
-import Circuit from '../../../sim/Circuit.astro';
-import { EXAMPLES } from '../../../sim/circuits/examples';
-import { sweep } from '../../../sim/circuits/mna';
-import { Plot, BodePlot } from '../../../sim/Plot';
-import { PhasorPlane } from '../../../sim/PhasorPlane';
+import { langPaths, localizePath, type Lang } from '../../../i18n';
 import RcFilterDemo from '../../../sim/demo/RcFilterDemo';
 import RlcTransientDemo from '../../../sim/demo/RlcTransientDemo';
 import PhasorDemo from '../../../sim/demo/PhasorDemo';
@@ -33,6 +28,7 @@ const T = {
     bodeStatic: 'Bode di un RLC serie (passa-banda sulla resistenza)',
     sine: 'Seno e coseno',
     phasors: 'Fasori di tensione e corrente',
+    toStatic: 'Schemi dei circuiti e grafici statici (zero JavaScript)',
     interactive: 'Simulazioni interattive',
     interactiveLead: 'Isole Preact caricate solo quando entrano nello schermo.',
   },
@@ -47,21 +43,11 @@ const T = {
     bodeStatic: 'Bode plot of a series RLC (band-pass on the resistor)',
     sine: 'Sine and cosine',
     phasors: 'Voltage and current phasors',
+    toStatic: 'Circuit diagrams and static plots (zero JavaScript)',
     interactive: 'Interactive simulations',
     interactiveLead: 'Preact islands, loaded only when they scroll into view.',
   },
 }[lang];
-
-const rlc = {
-  elements: [
-    { type: 'V', id: 'V1', a: 'a', b: '0', ac: 1 },
-    { type: 'L', id: 'L1', a: 'a', b: 'b', value: 0.01 },
-    { type: 'C', id: 'C1', a: 'b', b: 'c', value: 1e-6 },
-    { type: 'R', id: 'R1', a: 'c', b: '0', value: 20 },
-  ],
-} as const;
-const bode = sweep(rlc, 'V1', { v: 'c' }, { omegaMin: 1e3, omegaMax: 1e5, points: 121 });
-const ts = Array.from({ length: 121 }, (_, i) => (i / 120) * 2 * Math.PI);
 ---
 
 <BaseLayout lang={lang} title={T.title} description={T.lead} noindex alternates>
@@ -69,42 +55,9 @@ const ts = Array.from({ length: 121 }, (_, i) => (i / 120) * 2 * Math.PI);
     <h1>{T.title}</h1>
     <p class="lead">{T.lead}</p>
 
-    <h2>{T.circuits}</h2>
-    <p>{T.circuitsLead}</p>
-    {Object.entries(EXAMPLES).map(([id, net]) => (
-      <Circuit netlist={net} lang={lang} caption={net.title} class={`demo-${id}`} />
-    ))}
-
-    <h2>{T.static}</h2>
-    <p>{T.staticLead}</p>
-    <BodePlot
-      lang={lang}
-      title={T.bodeStatic}
-      x={bode.omega}
-      axis="omega"
-      curves={[{ label: 'H', magDb: bode.magDb, phaseDeg: bode.phaseDeg }]}
-    />
-    <Plot
-      lang={lang}
-      title={T.sine}
-      cursor={false}
-      xLabel="ωt"
-      formatX={(v) => `${(v / Math.PI).toFixed(1).replace('.', lang === 'it' ? ',' : '.')}π`}
-      series={[
-        { label: 'sin ωt', x: ts, y: ts.map(Math.sin), fill: true },
-        { label: 'cos ωt', x: ts, y: ts.map(Math.cos), dash: '6 4' },
-      ]}
-    />
-    <PhasorPlane
-      lang={lang}
-      title={T.phasors}
-      unit="V"
-      phasors={[
-        { label: 'V', re: 10, im: 0 },
-        { label: 'I', re: 6, im: -4 },
-        { label: 'V_L', re: 0, im: 5, dash: true },
-      ]}
-    />
+    <p>
+      <a href={localizePath('stile/circuiti', lang)}>{T.toStatic}</a>
+    </p>
 
     <h2>{T.interactive}</h2>
     <p>{T.interactiveLead}</p>
