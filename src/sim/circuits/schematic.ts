@@ -1084,7 +1084,6 @@ function drawTwo(c: Ctx, p: TwoPart): void {
   const my = (ay + by) / 2;
   const half = BODY[p.sym] / 2;
   const P = (s: number, t = 0): [number, number] => [mx + ux * s + nx * t, my + uy * s + ny * t];
-  const g: string[] = [];
   c.out.push(
     `<g class="sch-el" data-id="${escapeXml(p.el.id)}"${p.sym === 'port' || p.sym === 'probe' ? ` data-kind="${p.sym}"` : ''}>`,
   );
@@ -1176,7 +1175,6 @@ function drawTwo(c: Ctx, p: TwoPart): void {
       `<circle class="sch-open" style="fill:var(--bg,#fff)" cx="${n2(ax)}" cy="${n2(ay)}" r="3.5"/><circle class="sch-open" style="fill:var(--bg,#fff)" cx="${n2(bx)}" cy="${n2(by)}" r="3.5"/>`,
     );
   }
-  void g;
   // etichette
   const vertical = Math.abs(uy) > Math.abs(ux);
   const swAt =
