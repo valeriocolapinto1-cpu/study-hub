@@ -3,7 +3,7 @@
 import { getCollection } from 'astro:content';
 import CourseLayout from '../../../../../../layouts/CourseLayout.astro';
 import TopicExercises from '../../../../../../components/course/TopicExercises.astro';
-import { getCourse } from '../../../../../../lib/course-data';
+import { getCourse, courseTopicsNav } from '../../../../../../lib/course-data';
 import { t, tr, type Lang } from '../../../../../../i18n';
 
 export async function getStaticPaths() {
@@ -34,15 +34,17 @@ const { courseId, topicId, topicTitle } = Astro.props as {
   topicTitle: { it: string; en?: string };
 };
 const course = await getCourse(courseId);
+const topics = await courseTopicsNav(courseId);
 ---
 
 <CourseLayout
   lang={lang}
   course={course}
+  topics={topics}
+  topicSection="esercizi"
+  currentTopic={topicId}
   title={t(lang, 'page.topicExercises', { topic: tr(topicTitle, lang) })}
   description={t(lang, 'page.exercises.lead')}
 >
-  <div class="container page">
-    <TopicExercises lang={lang} courseId={courseId} topicId={topicId} />
-  </div>
+  <TopicExercises lang={lang} courseId={courseId} topicId={topicId} />
 </CourseLayout>

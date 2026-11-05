@@ -188,7 +188,7 @@ test('Progressi: data d’esame, piano, mappa', async ({ page }) => {
   await page.getByRole('button', { name: 'Mostra tutto il piano' }).click();
   await expect(page.locator('.sh-day')).toHaveCount(15);
   await expect(page.locator('.sh-plan')).toContainText('Studia «Resistori e legge di Ohm»');
-  await page.getByText('Resistori e legge di Ohm', { exact: true }).first().click();
+  await page.locator('.sh-topic summary', { hasText: 'Resistori e legge di Ohm' }).click();
   await expect(page.locator('.sh-objectives').first()).toContainText('Applicare la legge di Ohm');
   await page.getByRole('radio', { name: 'Un’altra data' }).check();
   await page.getByLabel('Un’altra data').last().fill('2027-01-07');

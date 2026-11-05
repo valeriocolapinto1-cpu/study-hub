@@ -5,22 +5,24 @@
  */
 import CourseLayout from '../../../../../layouts/CourseLayout.astro';
 import CourseExam from '../../../../../components/course/CourseExam.astro';
-import { getCourse, courseStaticPaths } from '../../../../../lib/course-data';
+import { getCourse, courseStaticPaths, courseTopicsNav } from '../../../../../lib/course-data';
 import { t, type Lang } from '../../../../../i18n';
 
 export const getStaticPaths = courseStaticPaths;
 const lang = Astro.params.lang as Lang;
 const { courseId } = Astro.props as { courseId: string };
 const course = await getCourse(courseId);
+const topics = await courseTopicsNav(courseId);
 ---
 
 <CourseLayout
   lang={lang}
   course={course}
+  topics={topics}
+  topicSection="esercizi"
+  wide
   title={t(lang, 'page.exam.title')}
   description={t(lang, 'page.exam.lead')}
 >
-  <div class="container page">
-    <CourseExam lang={lang} courseId={courseId} />
-  </div>
+  <CourseExam lang={lang} courseId={courseId} />
 </CourseLayout>

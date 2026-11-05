@@ -2,22 +2,23 @@
 /** Pagina generica della sezione Esercizi (sostituibile con una pagina statica allo stesso percorso). */
 import CourseLayout from '../../../../../layouts/CourseLayout.astro';
 import CourseExercises from '../../../../../components/course/CourseExercises.astro';
-import { getCourse, courseStaticPaths } from '../../../../../lib/course-data';
+import { getCourse, courseStaticPaths, courseTopicsNav } from '../../../../../lib/course-data';
 import { t, type Lang } from '../../../../../i18n';
 
 export const getStaticPaths = courseStaticPaths;
 const lang = Astro.params.lang as Lang;
 const { courseId } = Astro.props as { courseId: string };
 const course = await getCourse(courseId);
+const topics = await courseTopicsNav(courseId);
 ---
 
 <CourseLayout
   lang={lang}
   course={course}
+  topics={topics}
+  topicSection="esercizi"
   title={t(lang, 'page.exercises.title')}
   description={t(lang, 'page.exercises.lead')}
 >
-  <div class="container page">
-    <CourseExercises lang={lang} courseId={courseId} />
-  </div>
+  <CourseExercises lang={lang} courseId={courseId} />
 </CourseLayout>

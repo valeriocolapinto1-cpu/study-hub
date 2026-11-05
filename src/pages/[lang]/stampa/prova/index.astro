@@ -18,6 +18,11 @@ const dataUrls = Object.fromEntries(
 );
 ---
 
-<PrintLayout lang={lang} title={t(lang, 'print.title')} description={t(lang, 'page.exam.lead')}>
+<PrintLayout
+  lang={lang}
+  title={t(lang, 'print.title')}
+  description={t(lang, 'page.exam.lead')}
+  variant="exam"
+>
   <PrintExam client:load lang={lang} dataUrls={dataUrls} />
 </PrintLayout>

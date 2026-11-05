@@ -94,11 +94,6 @@ export default function PrintExam({ lang, dataUrls }: PrintExamProps) {
             </div>
           </dl>
         )}
-        <p class="sh-print__screen">
-          <button type="button" class="btn btn--primary" onClick={() => window.print()}>
-            {t(lang, 'print.print')}
-          </button>
-        </p>
       </header>
       <ol class="sh-print__questions">
         {exam.questions.map((q) => {

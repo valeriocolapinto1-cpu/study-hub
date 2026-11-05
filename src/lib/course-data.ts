@@ -159,6 +159,19 @@ export function getCourseData(courseId: string, lang: Lang): Promise<CourseData>
   return p;
 }
 
+/** Argomenti nella forma del sommario laterale di CourseLayout (TopicNav). */
+export async function courseTopicsNav(courseId: string) {
+  return (await getCollection('topics'))
+    .filter((t) => t.data.course === courseId)
+    .map(({ data: t }) => ({
+      id: t.id,
+      order: t.order,
+      title: t.title,
+      ...(t.group ? { group: t.group } : {}),
+    }))
+    .sort((a, b) => a.order - b.order);
+}
+
 /** Percorsi statici `[lang]/[anno]/[course]` di tutti i corsi. */
 export async function courseStaticPaths() {
   const courses = await getCollection('courses');
