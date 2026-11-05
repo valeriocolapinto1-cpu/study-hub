@@ -33,15 +33,14 @@ const thev: Build = (rng, lang) => {
   };
   const t = thevenin(c, 'b', '0');
   const [vth, rth, isc] = [t.vth.re, t.zth.re, t.isc!.re];
-  const net = JSON.parse(kitNetlist(c)) as Record<string, unknown>;
-  net.ports = [{ id: 'AB', plus: 'b', minus: '0', label: 'A–B' }];
+  const net = { ...kitNetlist(c), ports: [{ id: 'AB', plus: 'b', minus: '0', label: 'A–B' }] };
   return {
     statement: tr(
       lang,
       `Nel circuito in figura (valori in V e Ω) determinare l'equivalente di Thevenin e di Norton visto dai morsetti $A$–$B$ ($A$ è il nodo a destra, $B$ il riferimento).`,
       `In the circuit of the figure (values in V and Ω) find the Thévenin and Norton equivalents seen from terminals $A$–$B$ ($A$ is the right-hand node, $B$ the reference).`,
     ),
-    figure: { netlist: JSON.stringify(net) },
+    figure: { netlist: net },
     steps: [
       step(
         lang,
