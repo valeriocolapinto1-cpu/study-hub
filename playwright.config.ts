@@ -1,6 +1,9 @@
+import { existsSync } from 'node:fs';
 import { defineConfig, devices } from '@playwright/test';
 
 const PORT = 4321;
+/** Build delle fixture (corso finto) per i test delle isole del motore. */
+const FIXTURES_PORT = 4322;
 // In locale si può indicare un Chromium già installato (es. /opt/pw-browsers/chromium).
 const executablePath = process.env.PW_CHROMIUM_PATH;
 
@@ -27,13 +30,31 @@ export default defineConfig({
     ...(executablePath ? { launchOptions: { executablePath } } : {}),
   },
   projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'] }, testIgnore: /visual\.spec\.ts/ },
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] }, testIgnore: [/visual\.spec\.ts/, /engine\//] },
+    {
+      name: 'engine',
+      use: { ...devices['Desktop Chrome'], baseURL: `http://localhost:${FIXTURES_PORT}` },
+      testMatch: /engine\/.*\.spec\.ts/,
+    },
     { name: 'visual', use: { ...devices['Desktop Chrome'] }, testMatch: /visual\.spec\.ts/ },
   ],
-  webServer: {
-    command: `node tools/serve-dist.mjs ${PORT}`,
-    url: `http://localhost:${PORT}/study-hub/it/`,
-    reuseExistingServer: !process.env.CI,
-    timeout: 30_000,
-  },
+  webServer: [
+    {
+      command: `node tools/serve-dist.mjs ${PORT}`,
+      url: `http://localhost:${PORT}/study-hub/it/`,
+      reuseExistingServer: !process.env.CI,
+      timeout: 30_000,
+    },
+    // Solo se la build delle fixture esiste (npm run build:fixtures); senza, i test `engine` falliscono.
+    ...(existsSync('dist-fixtures')
+      ? [
+          {
+            command: `node tools/serve-dist.mjs ${FIXTURES_PORT} dist-fixtures`,
+            url: `http://localhost:${FIXTURES_PORT}/study-hub/it/`,
+            reuseExistingServer: !process.env.CI,
+            timeout: 30_000,
+          },
+        ]
+      : []),
+  ],
 });

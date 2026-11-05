@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import HomeDashboard from '../../components/course/HomeDashboard.astro';
 import { SITE } from '../../config/site';
 import { langPaths, localizePath, t, tr, type Lang } from '../../i18n';
 import { coursePath, sortCourses } from '../../lib/courses';
@@ -16,6 +17,7 @@ const years = [...new Set(courses.map((c) => c.year))];
   <div class="container page">
     <h1>{t(lang, 'home.title')}</h1>
     <p class="lead">{t(lang, 'home.lead')}</p>
+    <HomeDashboard lang={lang} />
 
     <section aria-labelledby="corsi">
       <h2 id="corsi">{t(lang, 'home.courses')}</h2>

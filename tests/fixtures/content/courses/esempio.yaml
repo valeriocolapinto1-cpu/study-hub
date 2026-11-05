@@ -9,7 +9,8 @@ exam:
   durationMin: 120
   structure:
     - { label: { it: Esercizio 1, en: Exercise 1 }, points: 15, kind: esercizio }
-    - { label: { it: Domanda di teoria, en: Theory question }, kind: teoria }
+    - { label: { it: Quiz, en: Quiz }, points: 5, kind: quiz }
+    - { label: { it: Domanda di teoria, en: Theory question }, points: 10, kind: teoria }
 extras:
   - { slug: simulatore, title: { it: Simulatore, en: Simulator } }
 examDates: ['2027-01-20', '2027-02-15']

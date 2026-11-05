@@ -2,14 +2,14 @@
 /**
  * Server statico di dist/ sotto il percorso base, come GitHub Pages:
  * index.html per le cartelle, 404.html per il resto. Usato da Playwright e Lighthouse CI.
- * Uso: node tools/serve-dist.mjs [porta]
+ * Uso: node tools/serve-dist.mjs [porta] [cartella, default dist]
  */
 import { createReadStream, existsSync, statSync } from 'node:fs';
 import { createServer } from 'node:http';
 import { extname, join, normalize, resolve } from 'node:path';
 import { BASE } from './site-base.mjs';
 
-const DIST = resolve(import.meta.dirname, '../dist');
+const DIST = resolve(import.meta.dirname, '..', process.argv[3] ?? 'dist');
 const PORT = Number(process.argv[2] ?? process.env.PORT ?? 4321);
 const TYPES = {
   '.html': 'text/html; charset=utf-8',

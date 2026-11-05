@@ -150,7 +150,7 @@ export function subscribe(scope: Scope, area: string, callback: () => void): () 
   const key = storageKey(scope, area);
   const local = (e: Event) => {
     const d = (e as CustomEvent<{ scope: string; area: string }>).detail;
-    if (d && d.scope === scope && d.area === area) callback();
+    if (d && (d.scope === '*' || (d.scope === scope && d.area === area))) callback();
   };
   const other = (e: StorageEvent) => {
     if (e.key === key || e.key === null) callback();
@@ -175,4 +175,50 @@ export function createMemoryBackend(initial: Record<string, string> = {}): Stora
       return map.size;
     },
   };
+}
+
+/** localStorage è utilizzabile (non in sola memoria, non bloccato)? */
+export function isStorageAvailable(): boolean {
+  const probe = `${STORAGE_PREFIX}global:probe`;
+  try {
+    const backend = getBackend();
+    if (!backend) return false;
+    backend.setItem(probe, '1');
+    backend.removeItem(probe);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/** Tutti i valori del sito (eventualmente di un solo scope) come `{ chiave: valore JSON }`. */
+export function readAll(scope?: Scope): Record<string, unknown> {
+  const out: Record<string, unknown> = {};
+  for (const key of listKeys(scope)) {
+    const raw = readRaw(key);
+    if (raw === null) continue;
+    try {
+      out[key] = JSON.parse(raw);
+    } catch {
+      /* valore corrotto: escluso */
+    }
+  }
+  return out;
+}
+
+/** Cancella tutte le chiavi di uno scope (o di tutto il sito). Le chiavi legacy non sono toccate. */
+export function clearScope(scope?: Scope): number {
+  const keys = listKeys(scope);
+  for (const key of keys) {
+    const parsed = parseKey(key);
+    if (parsed) remove(parsed.scope, parsed.area);
+  }
+  return keys.length;
+}
+
+/** Byte occupati dalle chiavi del sito (stima UTF-16, come la quota del browser). */
+export function usageBytes(): number {
+  let total = 0;
+  for (const key of listKeys()) total += (key.length + (readRaw(key)?.length ?? 0)) * 2;
+  return total;
 }

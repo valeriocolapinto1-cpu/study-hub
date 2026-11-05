@@ -1,0 +1,16 @@
+- id: energia-condensatore
+  topic: condensatori
+  objectives: [condensatori.1]
+  difficulty: 1
+  kind: static
+  statement:
+    {
+      it: 'Calcola l''energia in $C = 10\,\mu\text{F}$ carico a $V = 10$ V.',
+      en: 'Find the energy in $C = 10\,\mu\text{F}$ charged to $V = 10$ V.',
+    }
+  steps:
+    - title: { it: Energia, en: Energy }
+      body: { it: '$E = \tfrac12 C V^2 = 0{,}5$ mJ', en: '$E = \tfrac12 C V^2 = 0.5$ mJ' }
+  answer:
+    - { label: { it: Energia, en: Energy }, value: 0.0005, unit: J }
+  origin: originale

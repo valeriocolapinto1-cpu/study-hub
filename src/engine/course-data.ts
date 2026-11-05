@@ -1,0 +1,111 @@
+/**
+ * Forma "di consegna" dei dati di un corso alle isole: già localizzata nella
+ * lingua della pagina e con i testi ricchi già resi in HTML (KaTeX a
+ * build-time). La produce `src/lib/course-data.ts` dalle content collections;
+ * la stessa forma è servita come JSON da `<corso>/dati.json` per le isole che
+ * caricano i dati su richiesta (prova d'esame, stampa, ripasso globale).
+ */
+import type { Lang } from '../config/site';
+
+export interface ObjectiveInfo {
+  id: string;
+  text: string;
+}
+
+export interface TopicInfo {
+  id: string;
+  order: number;
+  title: string;
+  objectives: ObjectiveInfo[];
+  group?: string;
+}
+
+export interface AnswerItemData {
+  label: string;
+  value: number | string;
+  unit?: string;
+  tol?: number;
+}
+
+export interface ChoiceData {
+  html: string;
+  correct: boolean;
+  explanationHtml?: string;
+}
+
+export interface StepData {
+  titleHtml: string;
+  bodyHtml: string;
+}
+
+export interface ExerciseData {
+  id: string;
+  topic: string;
+  objectives: string[];
+  difficulty: 1 | 2 | 3;
+  kind: 'static' | 'generated';
+  /** `<courseId>/<nome>` per gli esercizi generati. */
+  generator?: string;
+  /** Anteprima in testo semplice (elenchi, aria-label). */
+  title: string;
+  statementHtml?: string;
+  figureSvg?: string;
+  netlist?: string;
+  steps: StepData[];
+  answer: AnswerItemData[];
+  choices?: ChoiceData[];
+  /** Mostrato in italiano perché manca la traduzione. */
+  fallback?: boolean;
+}
+
+export interface CardData {
+  id: string;
+  topic: string;
+  objectives: string[];
+  kind: 'definizione' | 'formula' | 'orale' | 'concetto';
+  frontHtml: string;
+  backHtml: string;
+  fallback?: boolean;
+}
+
+export interface ExamPartData {
+  label: string;
+  points?: number;
+  kind: string;
+}
+
+export interface CoursePaths {
+  overview: string;
+  theory: string;
+  exercises: string;
+  review: string;
+  exam: string;
+  progress: string;
+  data: string;
+  print: string;
+}
+
+export interface CourseSummary {
+  id: string;
+  lang: Lang;
+  year: number;
+  title: string;
+  examFormat: 'scritto' | 'orale' | 'scritto+orale';
+  durationMin?: number;
+  structure: ExamPartData[];
+  examDates: string[];
+  paths: CoursePaths;
+}
+
+export interface CourseData extends CourseSummary {
+  topics: TopicInfo[];
+  exercises: ExerciseData[];
+  cards: CardData[];
+}
+
+/** Mappa id → obiettivi (per padronanza e piano di studio, senza i testi). */
+export function objectivesIndex(
+  items: ReadonlyArray<{ id: string; objectives: string[] }>,
+): Record<string, string[]> {
+  return Object.fromEntries(items.map((i) => [i.id, i.objectives]));
+}

@@ -1,0 +1,50 @@
+---
+/** Esercizi di un argomento (una pagina per argomento che ha esercizi). */
+import { getCollection } from 'astro:content';
+import CourseLayout from '../../../../../../layouts/CourseLayout.astro';
+import TopicExercises from '../../../../../../components/course/TopicExercises.astro';
+import { getCourse, courseTopicsNav } from '../../../../../../lib/course-data';
+import { t, tr, type Lang } from '../../../../../../i18n';
+
+export async function getStaticPaths() {
+  const [courses, topics, exercises] = await Promise.all([
+    getCollection('courses'),
+    getCollection('topics'),
+    getCollection('exercises'),
+  ]);
+  return courses.flatMap(({ data: c }) =>
+    topics
+      .filter(
+        (tp) =>
+          tp.data.course === c.id &&
+          exercises.some((e) => e.data.course === c.id && e.data.topic === tp.data.id),
+      )
+      .flatMap((tp) =>
+        (['it', 'en'] as const).map((lang) => ({
+          params: { lang, anno: `anno-${c.year}`, course: c.id, topic: tp.data.id },
+          props: { courseId: c.id, topicId: tp.data.id, topicTitle: tp.data.title },
+        })),
+      ),
+  );
+}
+const lang = Astro.params.lang as Lang;
+const { courseId, topicId, topicTitle } = Astro.props as {
+  courseId: string;
+  topicId: string;
+  topicTitle: { it: string; en?: string };
+};
+const course = await getCourse(courseId);
+const topics = await courseTopicsNav(courseId);
+---
+
+<CourseLayout
+  lang={lang}
+  course={course}
+  topics={topics}
+  topicSection="esercizi"
+  currentTopic={topicId}
+  title={t(lang, 'page.topicExercises', { topic: tr(topicTitle, lang) })}
+  description={t(lang, 'page.exercises.lead')}
+>
+  <TopicExercises lang={lang} courseId={courseId} topicId={topicId} />
+</CourseLayout>

@@ -1,0 +1,20 @@
+---
+/** Esportazione/importazione dei dati locali (file e QR). */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ExportImport from '../../../islands/ExportImport';
+import { langPaths, t, tr, type Lang } from '../../../i18n';
+
+export const getStaticPaths = langPaths;
+const lang = Astro.params.lang as Lang;
+const courseTitles = Object.fromEntries(
+  (await getCollection('courses')).map((c) => [c.data.id, tr(c.data.title, lang)]),
+);
+---
+
+<BaseLayout lang={lang} title={t(lang, 'page.sync.title')} description={t(lang, 'sync.lead')}>
+  <div class="container page">
+    <h1>{t(lang, 'page.sync.title')}</h1>
+    <ExportImport client:load lang={lang} courseTitles={courseTitles} />
+  </div>
+</BaseLayout>

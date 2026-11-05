@@ -17,3 +17,67 @@
   kind: generated
   generator: esempio/legge-di-ohm
   origin: tipologia-appello
+- id: partitore
+  topic: resistori
+  objectives: [resistori.1]
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un partitore con $R_1 = 1\,\text{k}\Omega$ e $R_2 = 3\,\text{k}\Omega$ è alimentato a $V = 8$ V. Calcola la corrente e la tensione su $R_2$.'
+    en: 'A divider with $R_1 = 1\,\text{k}\Omega$ and $R_2 = 3\,\text{k}\Omega$ is supplied with $V = 8$ V. Find the current and the voltage across $R_2$.'
+  steps:
+    - title: { it: Resistenza equivalente, en: Equivalent resistance }
+      body: { it: '$R = R_1 + R_2 = 4\,\text{k}\Omega$', en: '$R = R_1 + R_2 = 4\,\text{k}\Omega$' }
+    - title: { it: Corrente, en: Current }
+      body: { it: '$I = V/R = 2$ mA', en: '$I = V/R = 2$ mA' }
+    - title: { it: Tensione su R2, en: Voltage across R2 }
+      body: { it: '$V_2 = R_2 I = 6$ V', en: '$V_2 = R_2 I = 6$ V' }
+  answer:
+    - { label: { it: Corrente, en: Current }, value: 0.002, unit: A }
+    - { label: { it: Tensione su R2, en: Voltage across R2 }, value: 6, unit: V }
+  origin: originale
+- id: impedenza-rl
+  topic: resistori
+  objectives: [resistori.1]
+  difficulty: 3
+  kind: static
+  statement:
+    it: 'Calcola l''impedenza di una serie con $R = 3\,\Omega$ e reattanza induttiva $X_L = 4\,\Omega$.'
+    en: 'Find the impedance of a series with $R = 3\,\Omega$ and inductive reactance $X_L = 4\,\Omega$.'
+  steps:
+    - title: { it: Somma in serie, en: Series sum }
+      body:
+        {
+          it: '$Z = R + jX_L = 3 + j4\,\Omega = 5\angle 53{,}13^\circ\,\Omega$',
+          en: '$Z = R + jX_L = 3 + j4\,\Omega = 5\angle 53.13^\circ\,\Omega$',
+        }
+  answer:
+    - { label: { it: Z, en: Z }, value: '3+4j', unit: Ω }
+  origin: originale
+- id: quiz-ohm
+  topic: resistori
+  objectives: [resistori.1]
+  difficulty: 1
+  kind: static
+  statement:
+    {
+      it: 'Raddoppiando $R$ a tensione costante, la corrente:',
+      en: 'Doubling $R$ at constant voltage, the current:',
+    }
+  steps:
+    - title: { it: Legge di Ohm, en: Ohm's law }
+      body:
+        { it: '$I = V/R$: se $R$ raddoppia, $I$ si dimezza.', en: '$I = V/R$: if $R$ doubles, $I$ halves.' }
+  choices:
+    - { text: { it: raddoppia, en: doubles }, correct: false }
+    - {
+        text: { it: si dimezza, en: halves },
+        correct: true,
+        explanation:
+          {
+            it: 'Corrente e resistenza sono inversamente proporzionali.',
+            en: 'Current and resistance are inversely proportional.',
+          },
+      }
+    - { text: { it: resta uguale, en: stays the same }, correct: false }
+  origin: originale

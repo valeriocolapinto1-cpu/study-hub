@@ -12,5 +12,13 @@ export default getViteConfig({
     include: ['tests/unit/**/*.test.ts', 'tests/content/**/*.test.ts', 'src/**/*.test.ts'],
     exclude: ['legacy/**', 'node_modules/**', 'dist/**'],
     environment: 'node',
+    coverage: {
+      provider: 'v8',
+      include: ['src/engine/**/*.ts'],
+      // import.meta.glob: coperto dai test end-to-end, non da vitest.
+      exclude: ['src/engine/generators/index.ts'],
+      reporter: ['text-summary', 'text'],
+      thresholds: { lines: 90, statements: 90 },
+    },
   },
 });

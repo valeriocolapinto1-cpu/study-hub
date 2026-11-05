@@ -1,0 +1,49 @@
+---
+/**
+ * Sezione Progressi: data d'esame, piano di studio e mappa della preparazione.
+ * Uso: <CourseProgress lang={lang} courseId="fisica-2" />
+ */
+import ExamDatePicker from '../../islands/ExamDatePicker';
+import StudyPlan from '../../islands/StudyPlan';
+import MasteryMap from '../../islands/MasteryMap';
+import SectionHeader from './SectionHeader.astro';
+import { getCourseData } from '../../lib/course-data';
+import { objectivesIndex } from '../../engine/course-data';
+import { t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+  courseId: string;
+}
+const { lang, courseId } = Astro.props;
+const data = await getCourseData(courseId, lang);
+const common = {
+  courseId,
+  topics: data.topics,
+  exerciseObjectives: objectivesIndex(data.exercises),
+  cardObjectives: objectivesIndex(data.cards),
+};
+---
+
+<SectionHeader title={t(lang, 'page.progress.title')} lead={t(lang, 'page.progress.lead')} />
+<div class="sh-progress-grid">
+  <ExamDatePicker client:load lang={lang} courseId={courseId} suggested={data.examDates} />
+  <StudyPlan
+    client:load
+    lang={lang}
+    {...common}
+    suggestedDates={data.examDates}
+    mockExams={data.examFormat !== 'orale'}
+    {...(data.durationMin ? { mockMinutes: data.durationMin } : {})}
+    examPath={data.paths.exam}
+    exercisesPath={data.paths.exercises}
+    theoryPath={data.paths.theory}
+    reviewPath={data.paths.review}
+  />
+</div>
+<MasteryMap
+  client:load
+  lang={lang}
+  {...common}
+  paths={{ theory: data.paths.theory, exercises: data.paths.exercises }}
+/>
