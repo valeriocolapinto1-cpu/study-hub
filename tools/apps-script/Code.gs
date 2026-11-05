@@ -86,7 +86,17 @@ function handleSubmit_(body) {
 
   const hasFiles = data.files.length > 0;
   const sheet = sheet_(cfg);
-  const row = appendRow_(sheet, buildSheetRow(id, now.toISOString(), data, hasFiles ? STATUS.uploading : STATUS.new, [], folder ? folder.getUrl() : ''));
+  const row = appendRow_(
+    sheet,
+    buildSheetRow(
+      id,
+      now.toISOString(),
+      data,
+      hasFiles ? STATUS.uploading : STATUS.new,
+      [],
+      folder ? folder.getUrl() : '',
+    ),
+  );
 
   if (!hasFiles) {
     notify_(cfg, id, data, [], folder);
@@ -100,7 +110,16 @@ function handleSubmit_(body) {
     folderId: folder.getId(),
     data: data,
     files: data.files.map(function (f) {
-      return { name: f.name, mimeType: f.mimeType, ext: f.ext, size: f.size, chunks: f.chunks, received: 0, sessionUrl: '', fileId: '' };
+      return {
+        name: f.name,
+        mimeType: f.mimeType,
+        ext: f.ext,
+        size: f.size,
+        chunks: f.chunks,
+        received: 0,
+        sessionUrl: '',
+        fileId: '',
+      };
     }),
   });
   return result(true, { id: id, uploadToken: uploadToken, chunkBytes: LIMITS.chunkBytes });
@@ -123,7 +142,9 @@ function handleChunk_(body) {
     if (ci === 0 && !sniffMatches(file.ext, bytes)) return result(false, { error: 'file_content' });
 
     if (file.chunks === 1) {
-      const created = DriveApp.getFolderById(state.folderId).createFile(Utilities.newBlob(bytes, file.mimeType, file.name));
+      const created = DriveApp.getFolderById(state.folderId).createFile(
+        Utilities.newBlob(bytes, file.mimeType, file.name),
+      );
       file.fileId = created.getId();
     } else {
       if (ci === 0) file.sessionUrl = startResumableUpload_(file, state.folderId);
@@ -233,9 +254,11 @@ function consumeRateLimit_(email, clientId) {
   lock.waitLock(10000);
   try {
     const names = Object.keys(keys);
-    const stored = cache.getAll(names.map(function (n) {
-      return keys[n];
-    }));
+    const stored = cache.getAll(
+      names.map(function (n) {
+        return keys[n];
+      }),
+    );
     const counts = {};
     names.forEach(function (n) {
       counts[n] = Number(stored[keys[n]] || 0);
@@ -284,20 +307,24 @@ function loadUpload_(id) {
 
 /** Apre una sessione di upload ripristinabile di Drive e ne restituisce l'URL. */
 function startResumableUpload_(file, folderId) {
-  const res = UrlFetchApp.fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=resumable&supportsAllDrives=true', {
-    method: 'post',
-    contentType: 'application/json; charset=UTF-8',
-    headers: {
-      Authorization: 'Bearer ' + ScriptApp.getOAuthToken(),
-      'X-Upload-Content-Type': file.mimeType,
-      'X-Upload-Content-Length': String(file.size),
+  const res = UrlFetchApp.fetch(
+    'https://www.googleapis.com/upload/drive/v3/files?uploadType=resumable&supportsAllDrives=true',
+    {
+      method: 'post',
+      contentType: 'application/json; charset=UTF-8',
+      headers: {
+        Authorization: 'Bearer ' + ScriptApp.getOAuthToken(),
+        'X-Upload-Content-Type': file.mimeType,
+        'X-Upload-Content-Length': String(file.size),
+      },
+      payload: JSON.stringify({ name: file.name, parents: [folderId], mimeType: file.mimeType }),
+      muteHttpExceptions: true,
     },
-    payload: JSON.stringify({ name: file.name, parents: [folderId], mimeType: file.mimeType }),
-    muteHttpExceptions: true,
-  });
+  );
   const headers = res.getHeaders();
   const location = headers.Location || headers.location;
-  if (res.getResponseCode() !== 200 || !location) throw new Error('Sessione di upload non aperta: HTTP ' + res.getResponseCode());
+  if (res.getResponseCode() !== 200 || !location)
+    throw new Error('Sessione di upload non aperta: HTTP ' + res.getResponseCode());
   return location;
 }
 

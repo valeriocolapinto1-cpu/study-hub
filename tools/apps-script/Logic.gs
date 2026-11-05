@@ -92,7 +92,10 @@ const COURSE_RE = /^[a-z0-9][a-z0-9/-]*$/;
 function cleanText(value, max) {
   if (typeof value !== 'string') return '';
   // eslint-disable-next-line no-control-regex
-  const s = value.replace(/\r\n?/g, '\n').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '').trim();
+  const s = value
+    .replace(/\r\n?/g, '\n')
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '')
+    .trim();
   return typeof max === 'number' ? s.slice(0, max) : s;
 }
 
@@ -226,8 +229,10 @@ function isLikelySpam(payload) {
 function evaluateRateLimit(counts) {
   const c = counts || {};
   if ((c.global || 0) >= RATE_LIMITS.global) return { allowed: false, reason: 'global' };
-  if (c.email !== undefined && c.email !== null && c.email >= RATE_LIMITS.perEmail) return { allowed: false, reason: 'email' };
-  if (c.client !== undefined && c.client !== null && c.client >= RATE_LIMITS.perClient) return { allowed: false, reason: 'client' };
+  if (c.email !== undefined && c.email !== null && c.email >= RATE_LIMITS.perEmail)
+    return { allowed: false, reason: 'email' };
+  if (c.client !== undefined && c.client !== null && c.client >= RATE_LIMITS.perClient)
+    return { allowed: false, reason: 'client' };
   return { allowed: true };
 }
 
@@ -260,7 +265,8 @@ function checkTurnstileResult(result, allowedHosts, expectedAction) {
   if (result.hostname && allowedHosts.indexOf(String(result.hostname).toLowerCase()) === -1) {
     return { ok: false, reason: 'hostname' };
   }
-  if (expectedAction && result.action && result.action !== expectedAction) return { ok: false, reason: 'action' };
+  if (expectedAction && result.action && result.action !== expectedAction)
+    return { ok: false, reason: 'action' };
   return { ok: true };
 }
 
@@ -308,7 +314,10 @@ function makeSubmissionId(date, randomHex) {
     pad(d.getUTCMinutes()) +
     pad(d.getUTCSeconds()) +
     '-' +
-    String(randomHex).replace(/[^a-f0-9]/gi, '').slice(0, 6).toLowerCase()
+    String(randomHex)
+      .replace(/[^a-f0-9]/gi, '')
+      .slice(0, 6)
+      .toLowerCase()
   );
 }
 
@@ -369,8 +378,14 @@ function sniffMatches(ext, bytes) {
 
 /** Testo dell'email di notifica. */
 function buildNotification(id, data, fileLinks, sheetUrl, folderUrl) {
-  const labels = { errore: 'Segnalazione di errore', miglioria: 'Suggerimento', appunti: 'Appunti / materiali', altro: 'Messaggio' };
-  const subject = '[study-hub] ' + (labels[data.tipo] || data.tipo) + ' · ' + (data.corso || 'generale') + ' · ' + id;
+  const labels = {
+    errore: 'Segnalazione di errore',
+    miglioria: 'Suggerimento',
+    appunti: 'Appunti / materiali',
+    altro: 'Messaggio',
+  };
+  const subject =
+    '[study-hub] ' + (labels[data.tipo] || data.tipo) + ' · ' + (data.corso || 'generale') + ' · ' + id;
   const lines = [
     'Nuovo contributo dal modulo di study-hub.',
     '',
