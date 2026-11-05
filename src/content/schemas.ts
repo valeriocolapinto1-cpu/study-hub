@@ -113,10 +113,10 @@ export type Formula = z.infer<typeof formulaSchema>;
 // ---------------------------------------------------------------- exercises
 /**
  * Figura di un esercizio: netlist di un circuito (schema in src/sim/circuits/netlist.ts,
- * disegnata con <Circuit>) oppure SVG già pronto.
+ * disegnata con <Circuit>) oppure SVG già pronto (anche in due lingue, se contiene testo).
  */
 export const figureSchema = z
-  .strictObject({ netlist: Netlist.optional(), svg: z.string().min(1).optional() })
+  .strictObject({ netlist: Netlist.optional(), svg: z.union([z.string().min(1), localized]).optional() })
   .refine((f) => Boolean(f.netlist) !== Boolean(f.svg), 'figure: indicare netlist oppure svg');
 
 export const stepSchema = z.strictObject({ title: localized, body: localized });

@@ -1,0 +1,224 @@
+---
+course: fondamenti-informatica
+topic: algebra-di-boole
+lang: it
+---
+
+<Callout tone="ok" title="In due minuti">
+
+<div data-note-id="teoria/algebra-di-boole/in-due-minuti">
+
+- Sei porte da riconoscere **a memoria** dalla tabella di verità: AND, OR, NOT, NAND, NOR, XOR.
+- **De Morgan**: la negazione di un prodotto è la somma delle negazioni, e viceversa. È il teorema che serve per passare a sole NAND o sole NOR.
+- NAND (o NOR) da sola è **funzionalmente completa**: con quella si costruisce qualunque rete.
+- Dalla tabella: **SOP** = un termine prodotto per ogni riga a 1; **POS** = un termine somma per ogni riga a 0.
+- L'algebra degli **insiemi** è la stessa algebra: ∪ ↔ OR, ∩ ↔ AND, complemento ↔ NOT. Le proprietà (commutativa, associativa, distributiva) valgono identiche.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/algebra-di-boole/da-dove-si-parte">
+
+## Da dove si parte
+
+**Cosa serve sapere prima:** che un segnale elettrico può valere solo 0 o 1 (lo hai visto nel modulo sui [numeri binari](../numeri-binari/)). Nient’altro.
+
+**Che problema risolve.** Abbiamo dei fili che valgono 0 o 1 e vogliamo costruirci sopra qualcosa che **decida**: accendi il motore se la porta è chiusa *e* il pulsante è premuto *ma non* se è scattato l’allarme. Serve un’algebra per scrivere e manipolare frasi di questo tipo, e serve che a ogni operazione dell’algebra corrisponda un pezzo di circuito. L’algebra di Boole è esattamente questo: una matematica con due soli valori, in cui ogni formula è un circuito e ogni circuito è una formula.
+
+**Le parole nuove.** Una **porta logica** è il circuito elementare che realizza un’operazione (AND, OR, NOT…). Una **tabella di verità** elenca l’uscita per *tutte* le combinazioni degli ingressi: con n ingressi ha 2ⁿ righe, e descrive la funzione senza ambiguità. Un **letterale** è una variabile o la sua negazione (A oppure Ā). Un **mintermine** è un prodotto che vale 1 su **una sola** riga della tabella. **SOP** significa somma di prodotti (OR di AND), **POS** prodotto di somme (AND di OR).
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/algebra-di-boole/le-porte-fondamentali">
+
+## Le porte fondamentali
+
+Su due ingressi `A` e `B` le uscite valgono, nell'ordine 00, 01, 10, 11:
+
+```
+AND  (A∧B)   0 0 0 1      NAND   1 1 1 0
+OR   (A∨B)   0 1 1 1      NOR    1 0 0 0
+XOR  (A⊕B)   0 1 1 0      XNOR   1 0 0 1
+```
+
+Il NOT ha un solo ingresso e inverte. Si legge una tabella di verità «per righe»: la porta è quella la cui colonna di uscita coincide riga per riga.
+
+</div>
+
+<div data-note-id="teoria/algebra-di-boole/assiomi-e-teoremi-che-servono-davvero">
+
+## Assiomi e teoremi che servono davvero
+
+- **Commutatività**: `A∧B = B∧A`, `A∨B = B∨A`
+- **Associatività**: `(A∧B)∧C = A∧(B∧C)`, e lo stesso per ∨
+- Identità: `A∧1 = A`, `A∨0 = A`
+- Annullamento: `A∧0 = 0`, `A∨1 = 1`
+- Idempotenza: `A∧A = A`, `A∨A = A`
+- Complemento: `A∧A̅ = 0`, `A∨A̅ = 1`
+- Involuzione: $\overline{\overline{A}}$ `= A`
+- **Assorbimento**: `A∨(A∧B) = A`, `A∧(A∨B) = A`
+- Distributività: `A∧(B∨C) = (A∧B)∨(A∧C)` e, cosa che sorprende chi viene dall'algebra ordinaria, anche `A∨(B∧C) = (A∨B)∧(A∨C)`
+
+L'assorbimento è il teorema che fa collassare le espressioni ridondanti: `A ∨ (A∧B̅) = A`. È esattamente ciò che rende **non minima** una SOP scritta senza raggruppare.
+
+</div>
+
+<div data-note-id="teoria/algebra-di-boole/de-morgan">
+
+## De Morgan
+
+$\overline{A\cdot B}$ = $\overline{A}$ + $\overline{B}$  e  $\overline{A+B}$ = $\overline{A}$ · $\overline{B}$. In parole: la negazione di un prodotto è la somma delle negazioni, e viceversa.
+
+Valgono anche per più di due fattori: $\overline{A\cdot B\cdot C}$ = $\overline{A}$+$\overline{B}$+$\overline{C}$. Il modo pratico di applicarli è «spezza la barra e cambia l'operatore».
+
+</div>
+
+<div data-note-id="teoria/algebra-di-boole/insiemi-funzionalmente-completi">
+
+## Insiemi funzionalmente completi
+
+Con soli `AND` e `OR` (∧, ∨) non si sintetizza qualsiasi funzione: manca la negazione, e non si ottiene combinandoli — qualunque composizione di AND e OR è una funzione **monotòna**, mentre il NOT non lo è.
+
+Sono invece **universali** sia `NAND` sia `NOR`, da soli. Con il NAND:
+
+- `NOT A` = A NAND A
+- `A AND B` = NOT(A NAND B) = (A NAND B) NAND (A NAND B)
+- `A OR B` = $\overline{A}$ NAND $\overline{B}$ (per De Morgan)
+
+Avendo NOT, AND e OR si costruisce qualunque rete combinatoria: ecco perché basta un solo tipo di porta.
+
+</div>
+
+<div data-note-id="teoria/algebra-di-boole/dalla-tabella-all-espressione-sop-e-pos">
+
+## Dalla tabella all'espressione: SOP e POS
+
+Ogni funzione si scrive in due forme canoniche:
+
+- **SOP** (somma di prodotti): un **mintermine** per ogni riga con uscita 1, in cui ogni variabile compare diretta se vale 1, negata se vale 0. Si sommano i mintermini.
+- **POS** (prodotto di somme): un **maxtermine** per ogni riga con uscita 0, con le variabili invertite rispetto al mintermine. Si moltiplicano i maxtermini.
+
+La forma canonica è sempre corretta ma quasi mai minima: minimizzarla è il lavoro della mappa di Karnaugh.
+
+</div>
+
+<div data-note-id="teoria/algebra-di-boole/l-algebra-booleana-degli-insiemi">
+
+## L'algebra booleana degli insiemi
+
+La stessa struttura algebrica descrive due mondi diversi: la logica della commutazione e gli insiemi. Le operazioni si corrispondono una a una:
+
+```
+logica          insiemi                significato
+A ∨ B  (OR)     A ∪ B  (unione)        sta in almeno uno dei due
+A ∧ B  (AND)    A ∩ B  (intersezione)  sta in entrambi
+NOT A           complemento di A        tutto ciò che non sta in A
+1               insieme universo
+0               insieme vuoto
+A ⊕ B  (XOR)    differenza simmetrica   sta in uno solo dei due
+```
+
+Ecco perché le stesse leggi valgono di là: De Morgan diventa «il complemento dell'unione è l'intersezione dei complementi», e i diagrammi di Venn sono una dimostrazione visiva dei teoremi booleani. All'esame la domanda arriva in entrambe le direzioni: quale operazione insiemistica corrisponde all'OR (l'**unione**), e quale proprietà è fondamentale nell'algebra di Boole (la **commutatività** — l'AND è associativo e commutativo come l'OR, contrariamente a quanto suggeriscono certe abitudini di disegno).
+
+</div>
+
+<div data-note-id="teoria/algebra-di-boole/xor-che-torna-spesso">
+
+## XOR, che torna spesso
+
+`A⊕0 = A`, `A⊕1 = A̅`, `A⊕A = 0`. Lo XOR vale 1 quando gli ingressi sono **diversi**, quindi è il rilevatore di disuguaglianza (e lo XNOR il comparatore di uguaglianza). È anche il generatore di parità e, come si è visto, il rilevatore di overflow in CP2.
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/algebra-di-boole/esempio-svolto">
+
+## Esempio svolto
+
+**Funzione maggioranza:** Y vale 1 quando almeno due dei tre ingressi valgono 1.
+
+```
+A B C │ Y
+0 0 0 │ 0      Righe a 1: 011, 101, 110, 111
+0 0 1 │ 0
+0 1 0 │ 0
+0 1 1 │ 1
+1 0 0 │ 0
+1 0 1 │ 1
+1 1 0 │ 1
+1 1 1 │ 1
+```
+
+SOP canonica — un termine per ogni riga a 1:
+
+```
+Y = Ā·B·C + A·B̄·C + A·B·C̄ + A·B·C
+```
+
+Si semplifica raccogliendo, e il trucco è **riusare** l'ultimo termine tre volte (è lecito: `x + x = x`):
+
+```
+Y = (Ā·B·C + A·B·C) + (A·B̄·C + A·B·C) + (A·B·C̄ + A·B·C)
+  = B·C·(Ā + A) + A·C·(B̄ + B) + A·B·(C̄ + C)
+  = A·B + A·C + B·C
+```
+
+Da quattro termini di tre letterali a tre termini di due: la funzione è la stessa, il circuito è quasi la metà.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/algebra-di-boole/errori-tipici">
+
+## Errori tipici
+
+- Applicare De Morgan a metà: `A·B` negato è `Ā + B̄` — cambia **anche** l'operatore, non solo le variabili.
+- Scambiare SOP e POS: la SOP guarda le righe a **1**, la POS quelle a **0** (e lì le variabili si scrivono negate).
+- Dimenticare che `x + x = x`: è proprio ciò che permette di riusare un mintermine in più raccoglimenti.
+
+</div>
+
+<Callout tone="attenzione" title="Porte AND a più di due ingressi">
+
+<div data-note-id="teoria/algebra-di-boole/trap-and-assoc">
+
+Una porta a tre o più ingressi è una comodità del disegno: in hardware si costruisce con porte a due ingressi. Scomporla nello schema mostra che conosci la struttura reale, ed è l'unico modo di far vedere quanti livelli di ritardo attraversa il segnale.
+
+</div>
+
+</Callout>
+
+<Callout tone="attenzione" title="Simboli dell’algebra di Boole">
+
+<div data-note-id="teoria/algebra-di-boole/trap-simboli">
+
+In algebra di Boole la notazione corrente è `∧` e `∨` (oppure `·` e `+`); «AND» e «OR» per esteso appartengono alla descrizione dei circuiti. Le due si equivalgono: quello che conta è **non mescolarle nella stessa espressione**, perché una riga scritta metà in un modo e metà nell’altro si legge male.
+
+</div>
+
+</Callout>
+
+<Callout tone="attenzione" title="De Morgan vale anche a più fattori">
+
+<div data-note-id="teoria/algebra-di-boole/trap-demorgan">
+
+Le due leggi si ricordano su due variabili, ma valgono su quante ne vuoi: la negazione di un prodotto di *n* fattori è la somma delle *n* negazioni, e viceversa. Applicarle solo alle coppie è un errore che compare quando l’espressione si allunga.
+
+</div>
+
+</Callout>
+
+</Layer>

@@ -1,0 +1,637 @@
+- id: algebra-di-boole-es-1
+  topic: algebra-di-boole
+  objectives:
+    - algebra-di-boole.4
+    - algebra-di-boole.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Una funzione di tre variabili vale 1 sulle righe `000`, `010`, `101`, `111`. Scrivi la forma SOP e la
+      forma POS, poi semplifica la SOP.
+    en: A function of three variables is 1 on rows `000`, `010`, `101`, `111`. Write the SOP form and the POS
+      form, then simplify the SOP.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: La SOP prende una riga a 1 per volta; la POS prende le righe a 0 e **nega** ogni variabile rispetto alla
+          SOP. Per semplificare, raccogli guardando quali variabili restano costanti.
+        en: The SOP takes one row at 1 at a time; the POS takes the rows at 0 and **negates** each variable with
+          respect to the SOP. To simplify, factor by looking at which variables stay constant.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          A B C │ Y
+
+          0 0 0 │ 1
+
+          0 0 1 │ 0
+
+          0 1 0 │ 1
+
+          0 1 1 │ 0
+
+          1 0 0 │ 0
+
+          1 0 1 │ 1
+
+          1 1 0 │ 0
+
+          1 1 1 │ 1
+
+          ```
+
+
+          **SOP** — un termine per ogni riga a 1, con la variabile negata dove vale 0:
+
+
+          ```
+
+          Y = Ā·B̄·C̄ + Ā·B·C̄ + A·B̄·C + A·B·C
+
+          ```
+
+
+          **POS** — un termine somma per ogni riga a 0, con la variabile negata dove vale 1:
+
+
+          ```
+
+          Y = (A+B+C̄)·(A+B̄+C̄)·(Ā+B+C)·(Ā+B̄+C)
+
+          ```
+
+
+          **Semplificazione**: nei primi due termini B compare una volta negata e una no, quindi sparisce;
+          idem negli ultimi due.
+
+
+          ```
+
+          Y = Ā·C̄·(B̄ + B) + A·C·(B̄ + B) = Ā·C̄ + A·C
+
+          ```
+
+
+          Che è la funzione «A e C sono uguali», cioè lo **XNOR** di A e C: B non conta affatto.
+        en: >-
+          ```
+
+          A B C │ Y
+
+          0 0 0 │ 1
+
+          0 0 1 │ 0
+
+          0 1 0 │ 1
+
+          0 1 1 │ 0
+
+          1 0 0 │ 0
+
+          1 0 1 │ 1
+
+          1 1 0 │ 0
+
+          1 1 1 │ 1
+
+          ```
+
+
+          **SOP** — one term for each row at 1, with the variable negated where it is 0:
+
+
+          ```
+
+          Y = Ā·B̄·C̄ + Ā·B·C̄ + A·B̄·C + A·B·C
+
+          ```
+
+
+          **POS** — one sum term for each row at 0, with the variable negated where it is 1:
+
+
+          ```
+
+          Y = (A+B+C̄)·(A+B̄+C̄)·(Ā+B+C)·(Ā+B̄+C)
+
+          ```
+
+
+          **Simplification**: in the first two terms B appears once negated and once not, so it disappears;
+          the same in the last two.
+
+
+          ```
+
+          Y = Ā·C̄·(B̄ + B) + A·C·(B̄ + B) = Ā·C̄ + A·C
+
+          ```
+
+
+          Which is the function “A and C are equal”, i.e. the **XNOR** of A and C: B does not matter at all.
+  origin: originale
+- id: algebra-di-boole-es-2
+  topic: algebra-di-boole
+  objectives:
+    - algebra-di-boole.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Dimostra che `A + Ā·B = A + B`.
+    en: Prove that `A + Ā·B = A + B`.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: "Due strade: la tabella di verità (otto righe, quattro qui) oppure l’algebra, aggiungendo un termine che
+          non cambia nulla."
+        en: "Two ways: the truth table (eight rows in general, four here) or algebra, adding a term that changes
+          nothing."
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          **Per tabella**:
+
+
+          ```
+
+          A B │ Ā·B │ A + Ā·B │ A + B
+
+          0 0 │  0  │    0    │   0
+
+          0 1 │  1  │    1    │   1
+
+          1 0 │  0  │    1    │   1
+
+          1 1 │  0  │    1    │   1
+
+          ```
+
+
+          Le due colonne coincidono. **Per algebra**, sfruttando A = A + A·B (assorbimento):
+
+
+          ```
+
+          A + Ā·B = A + A·B + Ā·B = A + B·(A + Ā) = A + B·1 = A + B
+
+          ```
+
+
+          Intuizione: se A vale 1 la somma vale 1 comunque; se A vale 0, allora Ā·B si riduce a B. In entrambi
+          i casi il risultato è «A oppure B».
+        en: >-
+          **By table**:
+
+
+          ```
+
+          A B │ Ā·B │ A + Ā·B │ A + B
+
+          0 0 │  0  │    0    │   0
+
+          0 1 │  1  │    1    │   1
+
+          1 0 │  0  │    1    │   1
+
+          1 1 │  0  │    1    │   1
+
+          ```
+
+
+          The two columns match. **By algebra**, using A = A + A·B (absorption):
+
+
+          ```
+
+          A + Ā·B = A + A·B + Ā·B = A + B·(A + Ā) = A + B·1 = A + B
+
+          ```
+
+
+          Intuition: if A is 1 the sum is 1 anyway; if A is 0, then Ā·B reduces to B. In both cases the result
+          is “A or B”.
+  origin: originale
+- id: algebra-di-boole-es-3
+  topic: algebra-di-boole
+  objectives:
+    - algebra-di-boole.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: Nega l’espressione `Y = (A + B̄)·(C + D)` e portala in somma di prodotti.
+    en: Negate the expression `Y = (A + B̄)·(C + D)` and bring it to sum-of-products form.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: "De Morgan due volte: prima sul prodotto esterno, poi dentro ciascuna somma. Ricorda che cambia anche
+          l’operatore, non solo le variabili."
+        en: "De Morgan twice: first on the outer product, then inside each sum. Remember that the operator changes
+          too, not just the variables."
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          Ȳ = [ (A + B̄)·(C + D) ]̅
+
+
+          primo De Morgan (il prodotto diventa somma):
+
+          Ȳ = (A + B̄)̅ + (C + D)̅
+
+
+          secondo De Morgan (dentro le parentesi):
+
+          (A + B̄)̅ = Ā·B
+
+          (C + D)̅ = C̄·D̄
+
+
+          Ȳ = Ā·B + C̄·D̄
+
+          ```
+
+
+          Controllo su un caso: con A=0, B=1, C=0, D=0 l’espressione di partenza vale (0+0)·(0+0) = 0, quindi
+          Ȳ deve valere 1 — e infatti Ā·B = 1·1 = 1 ✓.
+        en: >-
+          ```
+
+          Ȳ = [ (A + B̄)·(C + D) ]̅
+
+
+          first De Morgan (the product becomes a sum):
+
+          Ȳ = (A + B̄)̅ + (C + D)̅
+
+
+          second De Morgan (inside the brackets):
+
+          (A + B̄)̅ = Ā·B
+
+          (C + D)̅ = C̄·D̄
+
+
+          Ȳ = Ā·B + C̄·D̄
+
+          ```
+
+
+          Check on one case: with A=0, B=1, C=0, D=0 the original expression is (0+0)·(0+0) = 0, so Ȳ must be
+          1 — and indeed Ā·B = 1·1 = 1 ✓.
+  origin: originale
+- id: algebra-di-boole-es-4
+  topic: algebra-di-boole
+  objectives:
+    - algebra-di-boole.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: Realizza `Y = A·B + C` usando **solo porte NAND**. Quante ne servono?
+    en: Implement `Y = A·B + C` using **NAND gates only**. How many are needed?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: "Parti dalla forma negata due volte: `Y = (Ȳ)̅`. Una NAND con i due ingressi uniti è un NOT."
+        en: "Start from the doubly negated form: `Y = (Ȳ)̅`. A NAND with its two inputs tied together is a NOT."
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          Si applica la doppia negazione e poi De Morgan:
+
+
+          ```
+
+          Y = A·B + C = [ (A·B)̅ · C̄ ]̅
+
+          ```
+
+
+          che è esattamente la NAND fra `(A·B)̅` e `C̄`. Servono **tre** NAND:
+
+
+          ```
+
+          N1 = A NAND B          → vale (A·B)̅
+
+          N2 = C NAND C          → vale C̄  (NOT con ingressi uniti)
+
+          Y  = N1 NAND N2        → vale A·B + C
+
+          ```
+
+
+          Verifica con A=1, B=1, C=0: N1 = 0, N2 = 1, Y = (0·1)̅ = 1 ✓. E con A=0, B=1, C=0: N1 = 1, N2 = 1, Y
+          = (1·1)̅ = 0 ✓.
+        en: >-
+          Apply double negation and then De Morgan:
+
+
+          ```
+
+          Y = A·B + C = [ (A·B)̅ · C̄ ]̅
+
+          ```
+
+
+          which is exactly the NAND of `(A·B)̅` and `C̄`. **Three** NANDs are needed:
+
+
+          ```
+
+          N1 = A NAND B          → gives (A·B)̅
+
+          N2 = C NAND C          → gives C̄  (NOT with tied inputs)
+
+          Y  = N1 NAND N2        → gives A·B + C
+
+          ```
+
+
+          Check with A=1, B=1, C=0: N1 = 0, N2 = 1, Y = (0·1)̅ = 1 ✓. And with A=0, B=1, C=0: N1 = 1, N2 = 1,
+          Y = (1·1)̅ = 0 ✓.
+  origin: originale
+- id: algebra-di-boole-es-5
+  topic: algebra-di-boole
+  objectives:
+    - algebra-di-boole.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: "In un’aula, **A** è l’insieme di chi ha superato Analisi e **B** quello di chi ha superato Fisica.
+      Traduci in algebra booleana: «ha superato **esattamente uno** dei due esami» e «non ne ha superato
+      nessuno». Semplifica dove possibile."
+    en: "In a classroom, **A** is the set of students who passed Calculus and **B** the set of those who passed
+      Physics. Translate into Boolean algebra: “passed **exactly one** of the two exams” and “passed neither”.
+      Simplify where possible."
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: "Insiemi e algebra di Boole sono la stessa struttura: unione ↔ OR, intersezione ↔ AND, complemento ↔ NOT.
+          Traduci la frase in insiemi e poi sostituisci gli operatori."
+        en: "Sets and Boolean algebra are the same structure: union ↔ OR, intersection ↔ AND, complement ↔ NOT.
+          Translate the sentence into sets and then replace the operators."
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          **Esattamente uno** significa «A e non B, oppure B e non A»:
+
+
+          ```
+
+          (A ∩ B̄) ∪ (Ā ∩ B)   →   A·B̄ + Ā·B   =   A ⊕ B
+
+          ```
+
+
+          È la definizione stessa dello **XOR**, che infatti si chiama anche «somma disgiuntiva».
+
+
+          **Nessuno dei due** è il complemento dell’unione:
+
+
+          ```
+
+          (A ∪ B)̅   →   (A + B)̅   =   Ā·B̄
+
+          ```
+
+
+          e il passaggio dall’una all’altra forma è **De Morgan**: il complemento di un’unione è
+          l’intersezione dei complementi. È lo stesso teorema che si usa sui circuiti, scritto con simboli
+          diversi.
+        en: >-
+          **Exactly one** means “A and not B, or B and not A”:
+
+
+          ```
+
+          (A ∩ B̄) ∪ (Ā ∩ B)   →   A·B̄ + Ā·B   =   A ⊕ B
+
+          ```
+
+
+          It is the very definition of **XOR**, which is in fact also called “exclusive sum”.
+
+
+          **Neither** is the complement of the union:
+
+
+          ```
+
+          (A ∪ B)̅   →   (A + B)̅   =   Ā·B̄
+
+          ```
+
+
+          and moving from one form to the other is **De Morgan**: the complement of a union is the
+          intersection of the complements. It is the same theorem used on circuits, written with different
+          symbols.
+  origin: originale
+- id: gen-porta-logica
+  topic: algebra-di-boole
+  objectives:
+    - algebra-di-boole.1
+  difficulty: 1
+  kind: generated
+  generator: fondamenti-informatica/porta-logica
+  origin: originale
+- id: gen-tabella-espressione
+  topic: algebra-di-boole
+  objectives:
+    - algebra-di-boole.4
+    - algebra-di-boole.2
+  difficulty: 2
+  kind: generated
+  generator: fondamenti-informatica/tabella-espressione
+  origin: originale
+- id: mcq-bool-01
+  topic: algebra-di-boole
+  objectives:
+    - algebra-di-boole.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Quali operatori rendono l'algebra di Boole funzionalmente completa da soli?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: NAND e NOR
+  choices:
+    - text:
+        it: AND e OR
+      correct: false
+    - text:
+        it: NAND e NOR
+      correct: true
+    - text:
+        it: NOT e AND
+      correct: false
+    - text:
+        it: XOR e OR
+      correct: false
+  origin: originale
+- id: mcq-bool-02
+  topic: algebra-di-boole
+  objectives:
+    - algebra-di-boole.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Con soli AND e OR, perché non si sintetizza ogni funzione?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Manca la negazione
+  choices:
+    - text:
+        it: Manca la negazione
+      correct: true
+    - text:
+        it: Sono troppo lenti
+      correct: false
+    - text:
+        it: Non sono associativi
+      correct: false
+    - text:
+        it: Consumano troppo
+      correct: false
+  origin: originale
+- id: mcq-bool-03
+  topic: algebra-di-boole
+  objectives:
+    - algebra-di-boole.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Quale porta logica si ottiene combinando due NAND?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: AND
+  choices:
+    - text:
+        it: OR
+      correct: false
+    - text:
+        it: AND
+      correct: true
+    - text:
+        it: NOR
+      correct: false
+    - text:
+        it: XNOR
+      correct: false
+  origin: originale
+- id: mcq-bool-04
+  topic: algebra-di-boole
+  objectives:
+    - algebra-di-boole.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Per il teorema di assorbimento, `A ∨ (A ∧ B)` equivale a:"
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: A
+  choices:
+    - text:
+        it: A
+      correct: true
+    - text:
+        it: B
+      correct: false
+    - text:
+        it: A ∧ B
+      correct: false
+    - text:
+        it: A ⊕ B
+      correct: false
+  origin: originale
+- id: mcq-bool-05
+  topic: algebra-di-boole
+  objectives:
+    - algebra-di-boole.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: In una forma canonica SOP, quanti mintermini si scrivono?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Uno per ogni riga della tabella con uscita 1
+  choices:
+    - text:
+        it: Uno per ogni riga della tabella con uscita 1
+      correct: true
+    - text:
+        it: Uno per ogni riga della tabella con uscita 0
+      correct: false
+    - text:
+        it: Uno per ogni variabile
+      correct: false
+    - text:
+        it: Sempre quattro
+      correct: false
+  origin: originale
+- id: mcq-bool-06
+  topic: algebra-di-boole
+  objectives:
+    - algebra-di-boole.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Quanto vale `A ⊕ A`?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: "0"
+  choices:
+    - text:
+        it: "0"
+      correct: true
+    - text:
+        it: "1"
+      correct: false
+    - text:
+        it: A
+      correct: false
+    - text:
+        it: NOT A
+      correct: false
+  origin: originale

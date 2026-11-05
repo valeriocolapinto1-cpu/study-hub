@@ -1,0 +1,224 @@
+---
+course: fondamenti-informatica
+topic: algebra-di-boole
+lang: en
+---
+
+<Callout tone="ok" title="In two minutes">
+
+<div data-note-id="teoria/algebra-di-boole/in-due-minuti">
+
+- Six gates to recognise **by heart** from the truth table: AND, OR, NOT, NAND, NOR, XOR.
+- **De Morgan**: the negation of a product is the sum of the negations, and vice versa. It is the theorem you need to move to NAND-only or NOR-only circuits.
+- NAND (or NOR) alone is **functionally complete**: with it you can build any network.
+- From the table: **SOP** = one product term for every row at 1; **POS** = one sum term for every row at 0.
+- The algebra of **sets** is the same algebra: ∪ ↔ OR, ∩ ↔ AND, complement ↔ NOT. The properties (commutative, associative, distributive) hold identically.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/algebra-di-boole/da-dove-si-parte">
+
+## Where we start
+
+**What you need to know first:** that an electrical signal can only be 0 or 1 (you saw it in the module on [binary numbers](../numeri-binari/)). Nothing else.
+
+**What problem it solves.** We have wires that are 0 or 1 and we want to build on them something that **decides**: start the motor if the door is closed *and* the button is pressed *but not* if the alarm has gone off. We need an algebra to write and manipulate sentences of this kind, and every operation of that algebra must correspond to a piece of circuit. Boolean algebra is exactly that: a mathematics with only two values, in which every formula is a circuit and every circuit is a formula.
+
+**New words.** A **logic gate** is the elementary circuit that performs an operation (AND, OR, NOT…). A **truth table** lists the output for *all* input combinations: with n inputs it has 2ⁿ rows, and it describes the function unambiguously. A **literal** is a variable or its negation (A or Ā). A **minterm** is a product that is 1 on **exactly one** row of the table. **SOP** means sum of products (OR of ANDs), **POS** product of sums (AND of ORs).
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/algebra-di-boole/le-porte-fondamentali">
+
+## The fundamental gates
+
+On two inputs `A` and `B` the outputs are, in the order 00, 01, 10, 11:
+
+```
+AND  (A∧B)   0 0 0 1      NAND   1 1 1 0
+OR   (A∨B)   0 1 1 1      NOR    1 0 0 0
+XOR  (A⊕B)   0 1 1 0      XNOR   1 0 0 1
+```
+
+NOT has a single input and inverts it. You read a truth table “by rows”: the gate is the one whose output column matches row by row.
+
+</div>
+
+<div data-note-id="teoria/algebra-di-boole/assiomi-e-teoremi-che-servono-davvero">
+
+## The axioms and theorems you really need
+
+- **Commutativity**: `A∧B = B∧A`, `A∨B = B∨A`
+- **Associativity**: `(A∧B)∧C = A∧(B∧C)`, and the same for ∨
+- Identity: `A∧1 = A`, `A∨0 = A`
+- Annihilation: `A∧0 = 0`, `A∨1 = 1`
+- Idempotence: `A∧A = A`, `A∨A = A`
+- Complement: `A∧A̅ = 0`, `A∨A̅ = 1`
+- Involution: $\overline{\overline{A}}$ `= A`
+- **Absorption**: `A∨(A∧B) = A`, `A∧(A∨B) = A`
+- Distributivity: `A∧(B∨C) = (A∧B)∨(A∧C)` and, which surprises anyone coming from ordinary algebra, also `A∨(B∧C) = (A∨B)∧(A∨C)`
+
+Absorption is the theorem that collapses redundant expressions: `A ∨ (A∧B̅) = A`. It is exactly what makes an SOP written without grouping **non-minimal**.
+
+</div>
+
+<div data-note-id="teoria/algebra-di-boole/de-morgan">
+
+## De Morgan
+
+$\overline{A\cdot B}$ = $\overline{A}$ + $\overline{B}$  and  $\overline{A+B}$ = $\overline{A}$ · $\overline{B}$. In words: the negation of a product is the sum of the negations, and vice versa.
+
+They also hold for more than two factors: $\overline{A\cdot B\cdot C}$ = $\overline{A}$+$\overline{B}$+$\overline{C}$. The practical way to apply them is “break the bar and change the operator”.
+
+</div>
+
+<div data-note-id="teoria/algebra-di-boole/insiemi-funzionalmente-completi">
+
+## Functionally complete sets
+
+With only `AND` and `OR` (∧, ∨) you cannot synthesise every function: negation is missing, and you cannot obtain it by combining them — any composition of AND and OR is a **monotone** function, while NOT is not.
+
+On the other hand both `NAND` and `NOR` are **universal** on their own. With NAND:
+
+- `NOT A` = A NAND A
+- `A AND B` = NOT(A NAND B) = (A NAND B) NAND (A NAND B)
+- `A OR B` = $\overline{A}$ NAND $\overline{B}$ (by De Morgan)
+
+Having NOT, AND and OR you can build any combinational network: that is why a single type of gate is enough.
+
+</div>
+
+<div data-note-id="teoria/algebra-di-boole/dalla-tabella-all-espressione-sop-e-pos">
+
+## From the table to the expression: SOP and POS
+
+Every function can be written in two canonical forms:
+
+- **SOP** (sum of products): one **minterm** for each row whose output is 1, in which each variable appears plain if it is 1 and negated if it is 0. The minterms are summed.
+- **POS** (product of sums): one **maxterm** for each row whose output is 0, with the variables inverted with respect to the minterm. The maxterms are multiplied.
+
+The canonical form is always correct but almost never minimal: minimising it is the job of the Karnaugh map.
+
+</div>
+
+<div data-note-id="teoria/algebra-di-boole/l-algebra-booleana-degli-insiemi">
+
+## The Boolean algebra of sets
+
+The same algebraic structure describes two different worlds: switching logic and sets. The operations correspond one to one:
+
+```
+logic           sets                   meaning
+A ∨ B  (OR)     A ∪ B  (union)         is in at least one of the two
+A ∧ B  (AND)    A ∩ B  (intersection)  is in both
+NOT A           complement of A        everything not in A
+1               universal set
+0               empty set
+A ⊕ B  (XOR)    symmetric difference   is in exactly one of the two
+```
+
+That is why the same laws hold there: De Morgan becomes “the complement of the union is the intersection of the complements”, and Venn diagrams are a visual proof of the Boolean theorems. The exam question comes in both directions: which set operation corresponds to OR (the **union**), and which property is fundamental in Boolean algebra (**commutativity** — AND is associative and commutative just like OR, contrary to what certain drawing habits suggest).
+
+</div>
+
+<div data-note-id="teoria/algebra-di-boole/xor-che-torna-spesso">
+
+## XOR, which keeps coming back
+
+`A⊕0 = A`, `A⊕1 = A̅`, `A⊕A = 0`. XOR is 1 when the inputs are **different**, so it is the inequality detector (and XNOR the equality comparator). It is also the parity generator and, as we have seen, the overflow detector in two's complement.
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/algebra-di-boole/esempio-svolto">
+
+## Worked example
+
+**Majority function:** Y is 1 when at least two of the three inputs are 1.
+
+```
+A B C │ Y
+0 0 0 │ 0      Rows at 1: 011, 101, 110, 111
+0 0 1 │ 0
+0 1 0 │ 0
+0 1 1 │ 1
+1 0 0 │ 0
+1 0 1 │ 1
+1 1 0 │ 1
+1 1 1 │ 1
+```
+
+Canonical SOP — one term for each row at 1:
+
+```
+Y = Ā·B·C + A·B̄·C + A·B·C̄ + A·B·C
+```
+
+You simplify by factoring, and the trick is to **reuse** the last term three times (it is allowed: `x + x = x`):
+
+```
+Y = (Ā·B·C + A·B·C) + (A·B̄·C + A·B·C) + (A·B·C̄ + A·B·C)
+  = B·C·(Ā + A) + A·C·(B̄ + B) + A·B·(C̄ + C)
+  = A·B + A·C + B·C
+```
+
+From four three-literal terms to three two-literal terms: the function is the same, the circuit is almost half.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/algebra-di-boole/errori-tipici">
+
+## Common mistakes
+
+- Applying De Morgan halfway: the negation of `A·B` is `Ā + B̄` — the operator changes **too**, not just the variables.
+- Swapping SOP and POS: the SOP looks at the rows at **1**, the POS at the rows at **0** (and there the variables are written negated).
+- Forgetting that `x + x = x`: it is precisely what lets you reuse a minterm in several groupings.
+
+</div>
+
+<Callout tone="attenzione" title="AND gates with more than two inputs">
+
+<div data-note-id="teoria/algebra-di-boole/trap-and-assoc">
+
+A gate with three or more inputs is a drawing convenience: in hardware it is built from two-input gates. Breaking it up in the diagram shows that you know the real structure, and it is the only way to show how many levels of delay the signal goes through.
+
+</div>
+
+</Callout>
+
+<Callout tone="attenzione" title="Symbols of Boolean algebra">
+
+<div data-note-id="teoria/algebra-di-boole/trap-simboli">
+
+In Boolean algebra the usual notation is `∧` and `∨` (or `·` and `+`); “AND” and “OR” spelled out belong to the description of circuits. The two are equivalent: what matters is **not to mix them in the same expression**, because a line written half one way and half the other is hard to read.
+
+</div>
+
+</Callout>
+
+<Callout tone="attenzione" title="De Morgan also holds for more factors">
+
+<div data-note-id="teoria/algebra-di-boole/trap-demorgan">
+
+The two laws are remembered on two variables, but they hold for as many as you like: the negation of a product of *n* factors is the sum of the *n* negations, and vice versa. Applying them only to pairs is a mistake that shows up when the expression gets longer.
+
+</div>
+
+</Callout>
+
+</Layer>

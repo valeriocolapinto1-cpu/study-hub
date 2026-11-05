@@ -1,0 +1,33 @@
+id: algebra-di-boole
+course: fondamenti-informatica
+order: 2
+title:
+  it: Algebra di Boole & porte logiche
+  en: Boolean algebra & logic gates
+summary:
+  it: Assiomi, De Morgan, SOP e POS, insiemi funzionalmente completi.
+  en: Axioms, De Morgan, SOP and POS, functionally complete sets.
+group:
+  it: Numeri e logica
+  en: Numbers and logic
+objectives:
+  - id: algebra-di-boole.1
+    text:
+      it: Riconoscere AND, OR, NOT, NAND, NOR, XOR, XNOR dalla tabella di verità.
+      en: Recognise AND, OR, NOT, NAND, NOR, XOR, XNOR from the truth table.
+  - id: algebra-di-boole.2
+    text:
+      it: Applicare assiomi e teoremi (assorbimento, De Morgan) per semplificare un’espressione.
+      en: Apply axioms and theorems (absorption, De Morgan) to simplify an expression.
+  - id: algebra-di-boole.3
+    text:
+      it: Realizzare una funzione con sole NAND o sole NOR.
+      en: Implement a function with NAND gates only or NOR gates only.
+  - id: algebra-di-boole.4
+    text:
+      it: Scrivere SOP e POS canoniche a partire dalla tabella di verità.
+      en: Write the canonical SOP and POS from the truth table.
+  - id: algebra-di-boole.5
+    text:
+      it: Tradurre fra algebra degli insiemi e algebra di Boole.
+      en: Translate between set algebra and Boolean algebra.

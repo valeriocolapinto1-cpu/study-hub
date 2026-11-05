@@ -88,7 +88,7 @@ export function exerciseData(e: CollectionEntry<'exercises'>['data'], lang: Lang
     ...(statement ? { statementHtml: richHtml(statement.text) } : {}),
     // la netlist diventa SVG a build-time (stessa funzione del risolutore, zero JS nel browser)
     ...(e.figure?.svg
-      ? { figureSvg: e.figure.svg }
+      ? { figureSvg: typeof e.figure.svg === 'string' ? e.figure.svg : tr(e.figure.svg, lang) }
       : e.figure?.netlist
         ? { figureSvg: renderSchematic(e.figure.netlist, { lang, idPrefix: `fig-${e.id}` }).svg }
         : {}),

@@ -42,7 +42,7 @@ export const LEGACY_TO_ID = {
 };
 
 const ROOT = resolve(fileURLToPath(new URL('../..', import.meta.url)));
-const DEFAULT_DIR = join(ROOT, 'legacy', COURSE_ID);
+export const DEFAULT_DIR = join(ROOT, 'legacy', COURSE_ID);
 
 /** Decodifica un letterale stringa JS ('…', "…" o `…` senza interpolazioni). */
 function unquote(literal) {
@@ -78,7 +78,7 @@ export function extractTopics(dir = DEFAULT_DIR) {
   for (const m of groupsSrc[1].matchAll(groupRe)) {
     const group = { id: unquote(m[1]), title: unquote(m[2]) };
     groups.push(group);
-    for (const t of m[3].matchAll(/'([^']+)'/g)) groupOf.set(t[1], group.id);
+    for (const t of m[3].matchAll(/'([^']+)'/g)) groupOf.set(t[1], group);
   }
 
   const titleRe = new RegExp(String.raw`^\s*title:\s*${STRING},`, 'm');
@@ -90,7 +90,7 @@ export function extractTopics(dir = DEFAULT_DIR) {
     if (!id) throw new Error(`id legacy senza corrispondenza: ${legacyId}`);
     const group = groupOf.get(legacyId);
     if (!group) throw new Error(`modulo fuori da ogni gruppo: ${legacyId}`);
-    return { id, legacyId, order: i + 1, title: unquote(t[1]), group };
+    return { id, legacyId, order: i + 1, title: unquote(t[1]), group: group.title, groupId: group.id };
   });
 }
 

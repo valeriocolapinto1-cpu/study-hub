@@ -1,0 +1,205 @@
+---
+course: fondamenti-informatica
+topic: numeri-binari
+lang: en
+---
+
+<Callout tone="ok" title="In two minutes">
+
+<div data-note-id="teoria/numeri-binari/in-due-minuti">
+
+- A notation is **positional** when the value of a digit depends on its position: the number is worth Σ digit × base^position. Changing base means changing that *weight*, not the rules.
+- A hexadecimal digit is worth exactly **4 bits** because 16 = 2⁴: you convert in groups of four, always **starting from the right**.
+- In two's complement the most significant bit weighs **−2ᴺ⁻¹**. Negating = inverting every bit and adding 1.
+- On N bits the range is −2ᴺ⁻¹ … +2ᴺ⁻¹−1: **asymmetric**, with a single zero.
+- **Overflow ≠ carry-out.** Overflow is the XOR between the carry into and the carry out of the sign bit.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/numeri-binari/da-dove-si-parte">
+
+## Where we start
+
+**What you need to know first:** nothing. This is the first module, and the whole course rests on it. Being able to count and do division with remainder is enough.
+
+**What problem it solves.** A computer is made of switches: every wire can only be high or low, on or off, 1 or 0. There is no wire “worth 7”. If we want a machine built like this to handle numbers, we have to decide **how to write a number with only two symbols** — and how to write **negative** numbers too, since there is no wire for the “−” sign. This module answers both questions.
+
+**New words.** A **bit** is a binary digit, i.e. a cell that holds 0 or 1. A **byte** is eight bits. The **most significant** bit (MSB) is the leftmost one, the one that weighs the most; the **least significant** bit (LSB) is the rightmost. A **representation** is an agreement on how to interpret a sequence of bits: the same eight bits can mean 200 or −56, depending on the agreement we chose. Nothing in the bits says so: the program knows.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/numeri-binari/basi-e-conversioni">
+
+## Bases and conversions
+
+A number in base `b` is a sum of weighted digits: `1011₂ = 1·2³ + 0·2² + 1·2¹ + 1·2⁰ = 11`. To convert from decimal to binary you divide repeatedly by 2 and read the remainders **from bottom to top**.
+
+Hexadecimal and octal only serve to shorten the writing: a hex digit is worth **4 bits**, an octal one **3 bits**. You convert by grouping, without going through decimal:
+
+```
+1011 0110₂  →  B    6    →  0xB6
+   ↑    ↑        11   6
+```
+
+From decimal to hexadecimal it is quicker to divide by 16: `182 = 11·16 + 6 → B6`.
+
+</div>
+
+<div data-note-id="teoria/numeri-binari/che-cosa-rende-posizionale-una-notazione">
+
+## What makes a notation “positional”
+
+In a positional notation the value of a digit depends on **where** it sits: each position weighs a power of the base. Two ingredients are needed, and only two:
+
+- **b distinct symbols** for the digits, from 0 to b−1;
+- a **zero**, to say “this position is empty” — without it you cannot tell 12 from 102.
+
+Changing base means changing how many objects fit in a position before “carrying” to the next one. In base 10 you carry at ten, in base 2 at two, in base 20 at twenty. The conversion rule is always the same: **successive divisions by the base**, reading the remainders from the bottom.
+
+A system that uses groups of objects — pebbles on an abacus, the dots and bars of the Maya numerals, which are **vigesimal** (base 20) — adapts to another base simply by redefining *when* a group turns into a higher-order symbol. To move to base 8 you need eight symbols and the carry fires at eight; for base 16 you need sixteen and the carry fires at sixteen. The positional mechanism does not change: only the grouping threshold does, and how many distinct symbols have to be invented.
+
+</div>
+
+<div data-note-id="teoria/numeri-binari/rappresentazioni-con-segno">
+
+## Signed representations
+
+With N bits you can encode 2ᴺ patterns: the question is how to spend them between positives and negatives.
+
+- **Sign-magnitude**: the most significant bit is the sign, the rest is the absolute value. Symmetric range, but **two** encodings of zero (+0 and −0), and arithmetic requires comparing the signs.
+- **Ones' complement**: the negative is obtained by inverting every bit. Still **two** zeros, and addition needs the end-around carry.
+- **Two's complement**: the negative is obtained by inverting the bits and adding 1. **A single** encoding of zero and an asymmetric range.
+
+</div>
+
+<Callout tone="esame" title="Why two's complement is the one used">
+
+<div data-note-id="teoria/numeri-binari/perche-all-esame-si-usa-il-complemento-a-2">
+
+It is not an arbitrary convention: in two's complement **subtraction becomes addition**, because `A − B = A + (−B)` and the negative can be obtained with an inverter and an input carry. So **a single adder** serves both operations, and there is no special case to handle for the signs.
+
+The most significant bit has **negative** weight: on 4 bits, `1011₂ = −8 + 0 + 2 + 1 = −5`. It is the quickest way to read a two's complement number without doing the inversion.
+
+</div>
+
+</Callout>
+
+<div data-note-id="teoria/numeri-binari/range">
+
+## Range
+
+- Unsigned: from `0` to `2ᴺ−1` (with 8 bits → 0…255).
+- Two's complement: from `−2ᴺ⁻¹` to `+2ᴺ⁻¹−1` (with 8 bits → −128…+127).
+- Ones' complement and sign-magnitude: from `−(2ᴺ⁻¹−1)` to `+2ᴺ⁻¹−1`, symmetric.
+
+The asymmetry of two's complement is the reason why `−128` exists on 8 bits but `+128` does not: its opposite is not representable, and invert-and-add-1 on `10000000` gives back the number itself.
+
+</div>
+
+<div data-note-id="teoria/numeri-binari/estensione-del-segno">
+
+## Sign extension
+
+To widen a two's complement number from N to M bits (M &gt; N) you **replicate the sign bit** on the left, you do not pad with zeros: `1011` (−5 on 4 bits) becomes `11111011` on 8 bits. Padding with zeros would give 251.
+
+</div>
+
+<div data-note-id="teoria/numeri-binari/overflow-e-perche-non-e-il-riporto-uscente">
+
+## Overflow — and why it is not the carry-out
+
+Overflow occurs when the result falls outside the representable range. Two equivalent rules:
+
+- **By signs**: adding two operands of the **same sign** gives a result of the opposite sign. Adding two operands of opposite sign overflow is impossible. In subtraction the risky case is the one between operands of **opposite sign**.
+- **In hardware**: `overflow = Cin ⊕ Cout` on the sign bit, i.e. the XOR between the carry entering the most significant bit and the one leaving it.
+
+The **carry-out on its own means nothing** in two's complement. Two counterexamples to keep in mind:
+
+```
+4 bits:  −1 + 1  →  1111 + 0001 = 0000   carry=1  overflow=0
+4 bits:   4 + 4  →  0100 + 0100 = 1000   carry=0  overflow=1
+```
+
+The carry-out signals overflow only in **unsigned** arithmetic. Mixing them up is a classic way to lose points: in the “Binary adder” tool the two flags are shown separately on purpose.
+
+</div>
+
+<div data-note-id="teoria/numeri-binari/shift">
+
+## Shifts
+
+A left shift by k positions ≈ multiplication by 2ᵏ; a right shift ≈ integer division by 2ᵏ. Watch out for the kind of right shift:
+
+- **Logical**: a 0 enters from the left. Correct for unsigned numbers.
+- **Arithmetic**: replicates the sign bit. Needed in two's complement, otherwise a negative number becomes positive.
+
+Dropping the least significant bit of an unsigned integer is the same as dividing it by 2.
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/numeri-binari/esempio-svolto">
+
+## Worked example
+
+**Represent −45 on 8 bits and check the result.**
+
+```
+45 = 32 + 8 + 4 + 1        →  0010 1101
+invert every bit           →  1101 0010
+add 1                      →  1101 0011   =  D3₁₆
+```
+
+Check: 45 + (−45) must give 0. `0010 1101 + 1101 0011 = 1 0000 0000`: the eight low bits are all zero, the ninth is the **carry-out**, which is discarded. Carry-out = 1, overflow = 0 — and that is the proof that the two flags are different things.
+
+**Now 45 − 60 on 8 bits.** Add the two's complement of 60:
+
+```
+60 = 0011 1100  →  −60 = 1100 0100
+
+  0010 1101   (45)
++ 1100 0100   (−60)
+= 1111 0001   →  negative: invert and +1 → 0000 1111 = 15, so −15 ✓
+```
+
+Carry-out 0, overflow 0: the addends have opposite signs, so overflow is **impossible** by construction.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/numeri-binari/errori-tipici">
+
+## Common mistakes
+
+- Inverting the bits and **forgetting the +1**: you get the ones' complement, which is a different representation.
+- Extending a negative number by padding with zeros: sign extension replicates the **most significant bit**, not zero.
+- Calling the carry-out an overflow. In two's complement the carry-out alone signals **nothing**.
+- Grouping bits for hexadecimal starting from the left: you always start **from the right**, padding with leading zeros if needed.
+
+</div>
+
+<Callout tone="attenzione" title="RAM does not mean “random access”">
+
+<div data-note-id="teoria/numeri-binari/trap-ram">
+
+The acronym is a false friend: **random access** does not mean that access happens at random, but that the **access time does not depend on the position** of the data in memory. The opposite is the sequential access of a tape, where to read the end you have to scroll through everything.
+
+</div>
+
+</Callout>
+
+</Layer>
