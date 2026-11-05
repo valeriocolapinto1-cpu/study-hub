@@ -1,0 +1,999 @@
+{
+  "nota": "Formule in LaTeX (renderizzate con KaTeX). Nel campo 'tex' i backslash vanno raddoppiati (JSON). Nel campo 'note' la matematica inline va tra $...$. Notazione SI standard: confronta sempre con il Mencuccini-Silvestrini.",
+  "blocchi": [
+    {
+      "blocco": "b1",
+      "gruppi": [
+        {
+          "titolo": "Legge di Coulomb e campo elettrico",
+          "formule": [
+            {
+              "id": "coulomb",
+              "nome": "Legge di Coulomb",
+              "tex": "\\vec F_{12} = \\frac{1}{4\\pi\\varepsilon_0}\\,\\frac{q_1 q_2}{r^2}\\,\\hat u_{r}",
+              "note": "$\\varepsilon_0 \\simeq 8.854\\times10^{-12}\\ \\mathrm{F/m}$; $\\frac{1}{4\\pi\\varepsilon_0}\\simeq 8.99\\times10^{9}\\ \\mathrm{N\\,m^2/C^2}$"
+            },
+            {
+              "id": "campo-def",
+              "nome": "Definizione di campo elettrico",
+              "tex": "\\vec E = \\frac{\\vec F}{q_0}"
+            },
+            {
+              "id": "campo-distr",
+              "nome": "Campo di una distribuzione continua",
+              "tex": "\\vec E(\\vec r) = \\frac{1}{4\\pi\\varepsilon_0}\\int_V \\frac{\\rho(\\vec r\\,')\\,(\\vec r-\\vec r\\,')}{|\\vec r-\\vec r\\,'|^3}\\,dV'",
+              "note": "Analogamente con $\\lambda\\,dl'$ (lineare) e $\\sigma\\,dS'$ (superficiale)."
+            },
+            {
+              "id": "filo-inf",
+              "nome": "Filo rettilineo infinito",
+              "tex": "E = \\frac{\\lambda}{2\\pi\\varepsilon_0\\, r}",
+              "note": "Campo radiale, r distanza dal filo."
+            },
+            {
+              "id": "piano-inf",
+              "nome": "Piano infinito uniformemente carico",
+              "tex": "E = \\frac{\\sigma}{2\\varepsilon_0}",
+              "note": "Uniforme, perpendicolare al piano."
+            },
+            {
+              "id": "sfera-unif",
+              "nome": "Sfera uniformemente carica (raggio R, carica Q)",
+              "tex": "E(r) = \\begin{cases} \\dfrac{Q\\,r}{4\\pi\\varepsilon_0 R^3} & r<R \\\\[2mm] \\dfrac{Q}{4\\pi\\varepsilon_0 r^2} & r\\ge R \\end{cases}"
+            }
+          ]
+        },
+        {
+          "titolo": "Teorema di Gauss — I equazione di Maxwell",
+          "formule": [
+            {
+              "id": "gauss-int",
+              "nome": "Teorema di Gauss (forma integrale)",
+              "tex": "\\Phi_S(\\vec E) = \\oint_S \\vec E\\cdot\\hat n\\,dS = \\frac{Q_{\\text{int}}}{\\varepsilon_0}"
+            },
+            {
+              "id": "maxwell1-loc",
+              "nome": "I equazione di Maxwell (forma locale, vuoto)",
+              "tex": "\\nabla\\cdot\\vec E = \\frac{\\rho}{\\varepsilon_0}"
+            },
+            {
+              "id": "divergenza",
+              "nome": "Teorema della divergenza",
+              "tex": "\\oint_S \\vec F\\cdot\\hat n\\,dS = \\int_V \\nabla\\cdot\\vec F\\,dV"
+            }
+          ]
+        },
+        {
+          "titolo": "Potenziale elettrostatico e conservatività",
+          "formule": [
+            {
+              "id": "ddp",
+              "nome": "Differenza di potenziale",
+              "tex": "V(B)-V(A) = -\\int_A^B \\vec E\\cdot d\\vec l"
+            },
+            {
+              "id": "grad",
+              "nome": "Campo come gradiente del potenziale",
+              "tex": "\\vec E = -\\nabla V"
+            },
+            {
+              "id": "grad-sfer",
+              "nome": "Gradiente in coordinate sferiche",
+              "tex": "\\nabla V = \\frac{\\partial V}{\\partial r}\\hat u_r + \\frac{1}{r}\\frac{\\partial V}{\\partial \\theta}\\hat u_\\theta + \\frac{1}{r\\sin\\theta}\\frac{\\partial V}{\\partial \\phi}\\hat u_\\phi"
+            },
+            {
+              "id": "pot-distr",
+              "nome": "Potenziale di una distribuzione",
+              "tex": "V(\\vec r) = \\frac{1}{4\\pi\\varepsilon_0}\\int_V \\frac{\\rho(\\vec r\\,')}{|\\vec r-\\vec r\\,'|}\\,dV'",
+              "note": "Riferimento V = 0 all'infinito (distribuzioni limitate)."
+            },
+            {
+              "id": "rot-E",
+              "nome": "Conservatività del campo elettrostatico",
+              "tex": "\\oint_\\gamma \\vec E\\cdot d\\vec l = 0 \\quad\\Longleftrightarrow\\quad \\nabla\\times\\vec E = 0"
+            },
+            {
+              "id": "stokes",
+              "nome": "Teorema di Stokes",
+              "tex": "\\oint_\\gamma \\vec F\\cdot d\\vec l = \\int_S (\\nabla\\times\\vec F)\\cdot\\hat n\\,dS"
+            },
+            {
+              "id": "poisson",
+              "nome": "Equazioni di Poisson e di Laplace",
+              "tex": "\\nabla^2 V = -\\frac{\\rho}{\\varepsilon_0} \\qquad\\qquad \\nabla^2 V = 0\\ \\ (\\rho=0)"
+            }
+          ]
+        },
+        {
+          "titolo": "Dipolo elettrico",
+          "formule": [
+            {
+              "id": "dipolo-p",
+              "nome": "Momento di dipolo",
+              "tex": "\\vec p = q\\,\\vec d",
+              "note": "d orientato dalla carica negativa alla positiva."
+            },
+            {
+              "id": "dipolo-V",
+              "nome": "Potenziale del dipolo (r ≫ d)",
+              "tex": "V(r,\\theta) = \\frac{1}{4\\pi\\varepsilon_0}\\frac{\\vec p\\cdot\\hat u_r}{r^2} = \\frac{p\\cos\\theta}{4\\pi\\varepsilon_0 r^2}"
+            },
+            {
+              "id": "dipolo-E",
+              "nome": "Campo del dipolo (r ≫ d)",
+              "tex": "E_r = \\frac{2p\\cos\\theta}{4\\pi\\varepsilon_0 r^3},\\qquad E_\\theta = \\frac{p\\sin\\theta}{4\\pi\\varepsilon_0 r^3}"
+            },
+            {
+              "id": "dipolo-mom",
+              "nome": "Momento meccanico su dipolo",
+              "tex": "\\vec M = \\vec p\\times\\vec E"
+            },
+            {
+              "id": "dipolo-U",
+              "nome": "Energia potenziale del dipolo",
+              "tex": "U = -\\vec p\\cdot\\vec E"
+            },
+            {
+              "id": "dipolo-F",
+              "nome": "Forza su dipolo rigido",
+              "tex": "\\vec F = \\nabla(\\vec p\\cdot\\vec E) = (\\vec p\\cdot\\nabla)\\vec E",
+              "note": "La seconda uguaglianza vale per $\\nabla\\times\\vec E = 0$. In campo uniforme $\\vec F = 0$."
+            }
+          ]
+        },
+        {
+          "titolo": "Conduttori e capacità",
+          "formule": [
+            {
+              "id": "th-coulomb",
+              "nome": "Teorema di Coulomb",
+              "tex": "\\vec E = \\frac{\\sigma}{\\varepsilon_0}\\,\\hat n",
+              "note": "Campo immediatamente all'esterno della superficie di un conduttore in equilibrio."
+            },
+            {
+              "id": "capacita",
+              "nome": "Capacità",
+              "tex": "C = \\frac{Q}{V}\\qquad \\text{(condensatore: } C = Q/\\Delta V)"
+            },
+            {
+              "id": "cap-sfera",
+              "nome": "Conduttore sferico isolato",
+              "tex": "C = 4\\pi\\varepsilon_0 R"
+            },
+            {
+              "id": "cap-piano",
+              "nome": "Condensatore piano",
+              "tex": "C = \\frac{\\varepsilon_0 S}{d}"
+            },
+            {
+              "id": "cap-sferico",
+              "nome": "Condensatore sferico",
+              "tex": "C = 4\\pi\\varepsilon_0\\,\\frac{R_1 R_2}{R_2-R_1}"
+            },
+            {
+              "id": "cap-cil",
+              "nome": "Condensatore cilindrico",
+              "tex": "C = \\frac{2\\pi\\varepsilon_0\\, L}{\\ln(R_2/R_1)}"
+            },
+            {
+              "id": "cap-serie-par",
+              "nome": "Condensatori in serie e in parallelo",
+              "tex": "\\frac{1}{C_s} = \\sum_i \\frac{1}{C_i}\\qquad\\qquad C_p = \\sum_i C_i"
+            }
+          ]
+        },
+        {
+          "titolo": "Energia e forze elettrostatiche",
+          "formule": [
+            {
+              "id": "U-cariche",
+              "nome": "Energia di un sistema di cariche",
+              "tex": "U = \\frac{1}{2}\\sum_{i} q_i V_i = \\frac{1}{4\\pi\\varepsilon_0}\\sum_{i<j}\\frac{q_i q_j}{r_{ij}}"
+            },
+            {
+              "id": "U-cond",
+              "nome": "Energia di un condensatore",
+              "tex": "U = \\frac{1}{2}QV = \\frac{1}{2}CV^2 = \\frac{Q^2}{2C}"
+            },
+            {
+              "id": "u-E",
+              "nome": "Densità di energia (vuoto)",
+              "tex": "u = \\frac{1}{2}\\varepsilon_0 E^2"
+            },
+            {
+              "id": "press-el",
+              "nome": "Pressione elettrostatica",
+              "tex": "p = \\frac{\\sigma^2}{2\\varepsilon_0} = \\frac{1}{2}\\varepsilon_0 E^2"
+            },
+            {
+              "id": "forza-lav-virt",
+              "nome": "Forza con il metodo dei lavori virtuali",
+              "tex": "F_x = -\\left(\\frac{\\partial U}{\\partial x}\\right)_{Q} = +\\left(\\frac{\\partial U}{\\partial x}\\right)_{V}",
+              "note": "A carica costante (sistema isolato) o a potenziale costante (collegato a generatore)."
+            }
+          ]
+        },
+        {
+          "titolo": "Dielettrici",
+          "formule": [
+            {
+              "id": "eps-r",
+              "nome": "Costante dielettrica relativa",
+              "tex": "\\varepsilon = \\varepsilon_0\\varepsilon_r,\\qquad C = \\varepsilon_r C_0"
+            },
+            {
+              "id": "P-vett",
+              "nome": "Vettore di polarizzazione",
+              "tex": "\\vec P = n\\,\\langle\\vec p\\,\\rangle,\\qquad \\vec P = \\varepsilon_0(\\varepsilon_r-1)\\vec E = \\varepsilon_0\\chi\\,\\vec E",
+              "note": "La relazione lineare vale per dielettrici lineari e isotropi; χ suscettività elettrica."
+            },
+            {
+              "id": "cariche-pol",
+              "nome": "Cariche di polarizzazione",
+              "tex": "\\sigma_p = \\vec P\\cdot\\hat n,\\qquad \\rho_p = -\\nabla\\cdot\\vec P"
+            },
+            {
+              "id": "D-vett",
+              "nome": "Induzione elettrica D",
+              "tex": "\\vec D = \\varepsilon_0\\vec E + \\vec P = \\varepsilon\\,\\vec E\\ \\ \\text{(mezzo lineare)}"
+            },
+            {
+              "id": "gauss-D",
+              "nome": "Gauss per D",
+              "tex": "\\oint_S \\vec D\\cdot\\hat n\\,dS = Q_{\\text{lib}},\\qquad \\nabla\\cdot\\vec D = \\rho_{\\text{lib}}"
+            },
+            {
+              "id": "raccordo-diel",
+              "nome": "Condizioni al contorno tra due dielettrici",
+              "tex": "D_{1n} = D_{2n},\\qquad E_{1t} = E_{2t},\\qquad \\frac{\\tan\\theta_1}{\\tan\\theta_2} = \\frac{\\varepsilon_1}{\\varepsilon_2}",
+              "note": "In assenza di cariche libere sulla superficie; angoli misurati dalla normale."
+            },
+            {
+              "id": "u-diel",
+              "nome": "Densità di energia con dielettrici",
+              "tex": "u = \\frac{1}{2}\\vec E\\cdot\\vec D"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "blocco": "b2",
+      "gruppi": [
+        {
+          "titolo": "Corrente e densità di corrente",
+          "formule": [
+            {
+              "id": "corrente",
+              "nome": "Intensità di corrente",
+              "tex": "I = \\frac{dq}{dt} = \\int_S \\vec J\\cdot\\hat n\\,dS"
+            },
+            {
+              "id": "J",
+              "nome": "Densità di corrente",
+              "tex": "\\vec J = n\\,q\\,\\vec v_d"
+            },
+            {
+              "id": "continuita",
+              "nome": "Equazione di continuità",
+              "tex": "\\nabla\\cdot\\vec J + \\frac{\\partial\\rho}{\\partial t} = 0 \\qquad\\text{(stazionario: } \\nabla\\cdot\\vec J = 0)"
+            }
+          ]
+        },
+        {
+          "titolo": "Legge di Ohm, resistenza, effetto Joule",
+          "formule": [
+            {
+              "id": "ohm",
+              "nome": "Legge di Ohm",
+              "tex": "V = R\\,I"
+            },
+            {
+              "id": "ohm-loc",
+              "nome": "Legge di Ohm locale",
+              "tex": "\\vec J = \\sigma\\vec E = \\frac{\\vec E}{\\rho}"
+            },
+            {
+              "id": "resistenza",
+              "nome": "Resistenza di un conduttore omogeneo a sezione costante",
+              "tex": "R = \\rho\\,\\frac{l}{S}",
+              "note": "In generale $R = \\int \\rho\\,\\frac{dl}{S(l)}$ lungo le linee di corrente."
+            },
+            {
+              "id": "rho-T",
+              "nome": "Dipendenza della resistività dalla temperatura (metalli)",
+              "tex": "\\rho(T) \\simeq \\rho_0\\,[1+\\alpha\\,(T-T_0)]"
+            },
+            {
+              "id": "joule",
+              "nome": "Effetto Joule",
+              "tex": "P = VI = RI^2 = \\frac{V^2}{R}"
+            },
+            {
+              "id": "joule-loc",
+              "nome": "Legge di Joule locale",
+              "tex": "\\frac{dP}{d\\tau} = \\vec J\\cdot\\vec E = \\rho J^2"
+            },
+            {
+              "id": "R-serie-par",
+              "nome": "Resistenze in serie e in parallelo",
+              "tex": "R_s = \\sum_i R_i\\qquad\\qquad \\frac{1}{R_p} = \\sum_i\\frac{1}{R_i}"
+            }
+          ]
+        },
+        {
+          "titolo": "Generatori e reti in corrente continua",
+          "formule": [
+            {
+              "id": "fem",
+              "nome": "Forza elettromotrice",
+              "tex": "\\mathcal E = \\oint \\vec E^{*}\\cdot d\\vec l",
+              "note": "$\\vec E^*$ campo elettromotore (non conservativo) interno al generatore."
+            },
+            {
+              "id": "gen-reale",
+              "nome": "Generatore reale",
+              "tex": "V_{AB} = \\mathcal E - r\\,I",
+              "note": "r resistenza interna."
+            },
+            {
+              "id": "kirchhoff-nodi",
+              "nome": "I legge di Kirchhoff (nodi)",
+              "tex": "\\sum_k I_k = 0"
+            },
+            {
+              "id": "kirchhoff-maglie",
+              "nome": "II legge di Kirchhoff (maglie)",
+              "tex": "\\sum_k R_k I_k = \\sum_k \\mathcal E_k"
+            },
+            {
+              "id": "partitori",
+              "nome": "Partitore di tensione e di corrente",
+              "tex": "V_2 = V\\,\\frac{R_2}{R_1+R_2}\\qquad\\qquad I_1 = I\\,\\frac{R_2}{R_1+R_2}"
+            },
+            {
+              "id": "thevenin",
+              "nome": "Teorema di Thevenin",
+              "tex": "V_{Th} = V_{AB}\\big|_{\\text{circuito aperto}},\\qquad R_{Th} = R_{AB}\\big|_{\\text{generatori spenti}}",
+              "note": "Generatori ideali di tensione sostituiti da cortocircuiti, di corrente da circuiti aperti."
+            },
+            {
+              "id": "max-pot",
+              "nome": "Massimo trasferimento di potenza",
+              "tex": "R_L = R_{Th}\\ \\Rightarrow\\ P_{\\max} = \\frac{V_{Th}^2}{4R_{Th}}"
+            },
+            {
+              "id": "wheatstone",
+              "nome": "Ponte di Wheatstone (equilibrio)",
+              "tex": "\\frac{R_1}{R_2} = \\frac{R_3}{R_4}",
+              "note": "R1, R2 in serie su un ramo, R3, R4 sull'altro; il rivelatore collega i punti intermedi."
+            },
+            {
+              "id": "inserzione",
+              "nome": "Misura voltamperometrica: errori di inserzione",
+              "tex": "\\text{voltmetro a valle: } R_{mis} = \\frac{R\\,R_V}{R+R_V}\\qquad \\text{voltmetro a monte: } R_{mis} = R + R_A",
+              "note": "R_A resistenza dell'amperometro, R_V del voltmetro. Verifica la nomenclatura usata dal docente."
+            }
+          ]
+        },
+        {
+          "titolo": "Correnti quasi stazionarie: circuito RC",
+          "formule": [
+            {
+              "id": "rc-carica",
+              "nome": "Carica di un condensatore",
+              "tex": "q(t) = C\\mathcal E\\left(1-e^{-t/\\tau}\\right),\\qquad I(t) = \\frac{\\mathcal E}{R}\\,e^{-t/\\tau},\\qquad \\tau = RC"
+            },
+            {
+              "id": "rc-scarica",
+              "nome": "Scarica di un condensatore",
+              "tex": "q(t) = Q_0\\,e^{-t/\\tau},\\qquad V_C(t) = V_0\\,e^{-t/\\tau}"
+            },
+            {
+              "id": "rc-energia",
+              "nome": "Bilancio energetico della carica",
+              "tex": "W_{gen} = C\\mathcal E^2,\\qquad U_C = \\tfrac{1}{2}C\\mathcal E^2,\\qquad W_{Joule} = \\tfrac{1}{2}C\\mathcal E^2"
+            },
+            {
+              "id": "diel-perdita",
+              "nome": "Condensatore con dielettrico in perdita",
+              "tex": "\\tau = RC = \\varepsilon\\,\\rho = \\frac{\\varepsilon_0\\varepsilon_r}{\\sigma}",
+              "note": "Indipendente dalla geometria (dielettrico omogeneo che riempie il condensatore)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "blocco": "b3",
+      "gruppi": [
+        {
+          "titolo": "Forza di Lorentz e moto di cariche",
+          "formule": [
+            {
+              "id": "lorentz",
+              "nome": "Forza di Lorentz",
+              "tex": "\\vec F = q\\left(\\vec E + \\vec v\\times\\vec B\\right)"
+            },
+            {
+              "id": "ciclotrone",
+              "nome": "Moto circolare in B uniforme",
+              "tex": "r = \\frac{m v_\\perp}{|q| B},\\qquad \\omega = \\frac{|q| B}{m},\\qquad T = \\frac{2\\pi m}{|q| B}"
+            },
+            {
+              "id": "selettore",
+              "nome": "Selettore di velocità",
+              "tex": "v = \\frac{E}{B}"
+            }
+          ]
+        },
+        {
+          "titolo": "Azioni meccaniche su circuiti",
+          "formule": [
+            {
+              "id": "laplace2",
+              "nome": "Forza su un elemento di circuito (II formula di Laplace)",
+              "tex": "d\\vec F = I\\,d\\vec l\\times\\vec B"
+            },
+            {
+              "id": "mom-magn",
+              "nome": "Momento magnetico di una spira piana",
+              "tex": "\\vec m = I\\,S\\,\\hat n"
+            },
+            {
+              "id": "coppia-spira",
+              "nome": "Momento meccanico ed energia potenziale",
+              "tex": "\\vec M = \\vec m\\times\\vec B,\\qquad U = -\\vec m\\cdot\\vec B"
+            },
+            {
+              "id": "hall",
+              "nome": "Effetto Hall",
+              "tex": "E_H = v_d B,\\qquad V_H = \\frac{I\\,B}{n\\,q\\,t}",
+              "note": "t spessore della lamina nella direzione di B."
+            }
+          ]
+        },
+        {
+          "titolo": "Campo generato da correnti stazionarie",
+          "formule": [
+            {
+              "id": "biot-savart",
+              "nome": "I formula di Laplace (Biot-Savart)",
+              "tex": "d\\vec B = \\frac{\\mu_0}{4\\pi}\\,\\frac{I\\,d\\vec l\\times\\hat u_r}{r^2}",
+              "note": "$\\mu_0 = 4\\pi\\times10^{-7}\\ \\mathrm{H/m}$ (valore esatto prima della revisione SI del 2019, oggi con ottima approssimazione)."
+            },
+            {
+              "id": "carica-moto",
+              "nome": "Campo di una carica in moto (non relativistico)",
+              "tex": "\\vec B = \\frac{\\mu_0}{4\\pi}\\,\\frac{q\\,\\vec v\\times\\hat u_r}{r^2}"
+            },
+            {
+              "id": "B-filo",
+              "nome": "Filo rettilineo infinito",
+              "tex": "B = \\frac{\\mu_0 I}{2\\pi r}"
+            },
+            {
+              "id": "B-spira",
+              "nome": "Spira circolare, sull'asse",
+              "tex": "B(z) = \\frac{\\mu_0 I R^2}{2\\,(R^2+z^2)^{3/2}}",
+              "note": "Per $z\\gg R$: campo di dipolo con $m = I\\pi R^2$."
+            },
+            {
+              "id": "B-sol-inf",
+              "nome": "Solenoide infinito",
+              "tex": "B = \\mu_0\\, n\\, I",
+              "note": "n numero di spire per unità di lunghezza; campo nullo all'esterno."
+            },
+            {
+              "id": "B-sol-fin",
+              "nome": "Solenoide finito (lunghezza L, raggio R), sull'asse",
+              "tex": "B(z) = \\frac{\\mu_0 n I}{2}\\left[\\frac{z+L/2}{\\sqrt{(z+L/2)^2+R^2}} - \\frac{z-L/2}{\\sqrt{(z-L/2)^2+R^2}}\\right]",
+              "note": "z misurato dal centro del solenoide."
+            },
+            {
+              "id": "fili-paralleli",
+              "nome": "Forza tra due fili paralleli",
+              "tex": "\\frac{F}{l} = \\frac{\\mu_0 I_1 I_2}{2\\pi d}"
+            }
+          ]
+        },
+        {
+          "titolo": "Proprietà di B — II e IV equazione di Maxwell (caso stazionario)",
+          "formule": [
+            {
+              "id": "maxwell2",
+              "nome": "II equazione di Maxwell",
+              "tex": "\\oint_S \\vec B\\cdot\\hat n\\,dS = 0\\qquad\\Longleftrightarrow\\qquad \\nabla\\cdot\\vec B = 0"
+            },
+            {
+              "id": "ampere",
+              "nome": "Teorema della circuitazione di Ampère (IV eq., caso stazionario)",
+              "tex": "\\oint_\\gamma \\vec B\\cdot d\\vec l = \\mu_0 I_{\\text{conc}}\\qquad\\Longleftrightarrow\\qquad \\nabla\\times\\vec B = \\mu_0\\vec J"
+            },
+            {
+              "id": "pot-vett",
+              "nome": "Potenziale vettore",
+              "tex": "\\vec B = \\nabla\\times\\vec A,\\qquad \\nabla^2\\vec A = -\\mu_0\\vec J\\ \\ (\\nabla\\cdot\\vec A = 0)"
+            },
+            {
+              "id": "pot-vett-sol",
+              "nome": "Soluzione per il potenziale vettore",
+              "tex": "\\vec A(\\vec r) = \\frac{\\mu_0}{4\\pi}\\int_V \\frac{\\vec J(\\vec r\\,')}{|\\vec r-\\vec r\\,'|}\\,dV'"
+            }
+          ]
+        },
+        {
+          "titolo": "Magnetismo nella materia",
+          "formule": [
+            {
+              "id": "M-vett",
+              "nome": "Intensità di magnetizzazione",
+              "tex": "\\vec M = n\\,\\langle\\vec m\\rangle"
+            },
+            {
+              "id": "correnti-magn",
+              "nome": "Correnti amperiane (di magnetizzazione)",
+              "tex": "\\vec J_m = \\nabla\\times\\vec M,\\qquad \\vec j_{s,m} = \\vec M\\times\\hat n"
+            },
+            {
+              "id": "H-vett",
+              "nome": "Campo H",
+              "tex": "\\vec H = \\frac{\\vec B}{\\mu_0} - \\vec M,\\qquad \\nabla\\times\\vec H = \\vec J_{\\text{lib}},\\qquad \\oint\\vec H\\cdot d\\vec l = I_{\\text{lib}}"
+            },
+            {
+              "id": "mezzi-lin",
+              "nome": "Mezzi lineari",
+              "tex": "\\vec M = \\chi_m\\vec H,\\qquad \\vec B = \\mu_0\\mu_r\\vec H,\\qquad \\mu_r = 1+\\chi_m",
+              "note": "Diamagneti: $\\chi_m<0$, $|\\chi_m|\\ll1$; paramagneti: $\\chi_m>0$, $\\chi_m\\ll1$ (legge di Curie $\\chi_m\\propto 1/T$); ferromagneti: $\\mu_r\\gg1$, non lineari, con isteresi."
+            },
+            {
+              "id": "raccordo-magn",
+              "nome": "Condizioni di raccordo",
+              "tex": "B_{1n} = B_{2n},\\qquad H_{1t} = H_{2t},\\qquad \\frac{\\tan\\theta_1}{\\tan\\theta_2} = \\frac{\\mu_1}{\\mu_2}",
+              "note": "In assenza di correnti libere superficiali; angoli misurati dalla normale."
+            },
+            {
+              "id": "hopkinson",
+              "nome": "Legge di Hopkinson (circuiti magnetici)",
+              "tex": "N I = \\mathcal R\\,\\Phi,\\qquad \\mathcal R = \\sum_i \\frac{l_i}{\\mu_0\\mu_{r,i} S_i}"
+            },
+            {
+              "id": "elettromagnete",
+              "nome": "Elettromagnete con traferro h",
+              "tex": "B \\simeq \\frac{\\mu_0 N I}{l/\\mu_r + h}",
+              "note": "l lunghezza del ferro; si trascura la dispersione del flusso nel traferro."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "blocco": "b4",
+      "gruppi": [
+        {
+          "titolo": "Induzione elettromagnetica",
+          "formule": [
+            {
+              "id": "faraday",
+              "nome": "Legge di Faraday-Neumann-Lenz",
+              "tex": "\\mathcal E_i = -\\frac{d\\Phi(\\vec B)}{dt}"
+            },
+            {
+              "id": "maxwell3",
+              "nome": "III equazione di Maxwell (caso non stazionario)",
+              "tex": "\\oint_\\gamma \\vec E\\cdot d\\vec l = -\\frac{d}{dt}\\int_S \\vec B\\cdot\\hat n\\,dS\\qquad\\Longleftrightarrow\\qquad \\nabla\\times\\vec E = -\\frac{\\partial\\vec B}{\\partial t}"
+            },
+            {
+              "id": "fem-moto",
+              "nome": "F.e.m. di movimento (flusso tagliato)",
+              "tex": "\\mathcal E = \\oint (\\vec v\\times\\vec B)\\cdot d\\vec l,\\qquad \\text{sbarretta: } \\mathcal E = vBl"
+            },
+            {
+              "id": "sbarretta-rot",
+              "nome": "Sbarretta che ruota in B uniforme (perpendicolare)",
+              "tex": "\\Delta V = \\frac{1}{2}B\\,\\omega\\,L^2"
+            },
+            {
+              "id": "felici",
+              "nome": "Legge di Felici",
+              "tex": "Q = \\frac{\\Phi_i - \\Phi_f}{R}"
+            },
+            {
+              "id": "alternatore",
+              "nome": "Alternatore (N spire, area S)",
+              "tex": "\\mathcal E(t) = N B S\\omega\\,\\sin\\omega t"
+            }
+          ]
+        },
+        {
+          "titolo": "Autoinduzione e mutua induzione",
+          "formule": [
+            {
+              "id": "autoind",
+              "nome": "Coefficiente di autoinduzione",
+              "tex": "\\Phi = L\\,I,\\qquad \\mathcal E_L = -L\\frac{dI}{dt}"
+            },
+            {
+              "id": "L-sol",
+              "nome": "Induttanza di un solenoide",
+              "tex": "L = \\mu_0 n^2 S\\,l = \\frac{\\mu_0 N^2 S}{l}"
+            },
+            {
+              "id": "L-bifilare",
+              "nome": "Linea bifilare (per unità di lunghezza)",
+              "tex": "\\frac{L}{l} \\simeq \\frac{\\mu_0}{\\pi}\\ln\\frac{d}{a}\\qquad (d\\gg a)",
+              "note": "a raggio dei fili, d distanza tra gli assi; trascurato il flusso interno ai conduttori."
+            },
+            {
+              "id": "L-coass",
+              "nome": "Cavo coassiale (per unità di lunghezza)",
+              "tex": "\\frac{L}{l} = \\frac{\\mu_0}{2\\pi}\\ln\\frac{b}{a}\\ \\left(+\\frac{\\mu_0}{8\\pi}\\right)",
+              "note": "Il termine tra parentesi si aggiunge se il conduttore interno è pieno con corrente uniforme."
+            },
+            {
+              "id": "mutua",
+              "nome": "Mutua induzione",
+              "tex": "\\Phi_{21} = M\\,I_1,\\qquad M_{12} = M_{21} = M"
+            },
+            {
+              "id": "mutua-sol",
+              "nome": "Mutua induzione di due solenoidi coassiali",
+              "tex": "M = \\mu_0\\, n_1 n_2\\, S\\, l",
+              "note": "S sezione del solenoide interno, stessa lunghezza l."
+            }
+          ]
+        },
+        {
+          "titolo": "Circuito RL ed energia magnetica",
+          "formule": [
+            {
+              "id": "rl-chiusura",
+              "nome": "Circuito RL: chiusura dell'interruttore",
+              "tex": "I(t) = \\frac{\\mathcal E}{R}\\left(1-e^{-t/\\tau}\\right),\\qquad \\tau = \\frac{L}{R}"
+            },
+            {
+              "id": "rl-apertura",
+              "nome": "Circuito RL: apertura (extracorrente)",
+              "tex": "I(t) = I_0\\,e^{-t/\\tau}"
+            },
+            {
+              "id": "U-L",
+              "nome": "Energia magnetica di un induttore",
+              "tex": "U = \\frac{1}{2}L I^2"
+            },
+            {
+              "id": "U-mutua",
+              "nome": "Energia di due circuiti accoppiati",
+              "tex": "U = \\frac{1}{2}L_1 I_1^2 + \\frac{1}{2}L_2 I_2^2 + M I_1 I_2"
+            },
+            {
+              "id": "u-B",
+              "nome": "Densità di energia magnetica",
+              "tex": "u = \\frac{B^2}{2\\mu_0}\\ \\ \\text{(vuoto)},\\qquad u = \\frac{1}{2}\\vec H\\cdot\\vec B"
+            },
+            {
+              "id": "forza-magn",
+              "nome": "Forze magnetiche (lavori virtuali)",
+              "tex": "F_x = +\\left(\\frac{\\partial U}{\\partial x}\\right)_{I} = -\\left(\\frac{\\partial U}{\\partial x}\\right)_{\\Phi}"
+            }
+          ]
+        },
+        {
+          "titolo": "Corrente di spostamento — IV equazione di Maxwell",
+          "formule": [
+            {
+              "id": "spostamento",
+              "nome": "Densità di corrente di spostamento",
+              "tex": "\\vec J_s = \\varepsilon_0\\frac{\\partial\\vec E}{\\partial t}\\ \\ \\left(\\frac{\\partial\\vec D}{\\partial t}\\ \\text{nei mezzi}\\right)"
+            },
+            {
+              "id": "maxwell4",
+              "nome": "IV equazione di Maxwell (caso non stazionario)",
+              "tex": "\\oint_\\gamma \\vec B\\cdot d\\vec l = \\mu_0 I_{\\text{conc}} + \\mu_0\\varepsilon_0\\frac{d}{dt}\\int_S\\vec E\\cdot\\hat n\\,dS\\qquad\\Longleftrightarrow\\qquad \\nabla\\times\\vec B = \\mu_0\\vec J + \\mu_0\\varepsilon_0\\frac{\\partial\\vec E}{\\partial t}"
+            }
+          ]
+        },
+        {
+          "titolo": "Le quattro equazioni di Maxwell (sintesi)",
+          "formule": [
+            {
+              "id": "maxwell-int",
+              "nome": "Forma integrale (vuoto)",
+              "tex": "\\begin{aligned} &\\text{I:} && \\oint_S \\vec E\\cdot\\hat n\\,dS = \\frac{Q}{\\varepsilon_0} \\\\ &\\text{II:} && \\oint_S \\vec B\\cdot\\hat n\\,dS = 0 \\\\ &\\text{III:} && \\oint_\\gamma \\vec E\\cdot d\\vec l = -\\frac{d}{dt}\\int_S\\vec B\\cdot\\hat n\\,dS \\\\ &\\text{IV:} && \\oint_\\gamma \\vec B\\cdot d\\vec l = \\mu_0 I + \\mu_0\\varepsilon_0\\frac{d}{dt}\\int_S\\vec E\\cdot\\hat n\\,dS \\end{aligned}"
+            },
+            {
+              "id": "maxwell-loc",
+              "nome": "Forma locale (vuoto)",
+              "tex": "\\begin{aligned} &\\nabla\\cdot\\vec E = \\frac{\\rho}{\\varepsilon_0} && \\nabla\\cdot\\vec B = 0 \\\\ &\\nabla\\times\\vec E = -\\frac{\\partial\\vec B}{\\partial t} && \\nabla\\times\\vec B = \\mu_0\\vec J + \\mu_0\\varepsilon_0\\frac{\\partial\\vec E}{\\partial t} \\end{aligned}"
+            },
+            {
+              "id": "maxwell-mat",
+              "nome": "Forma locale nella materia",
+              "tex": "\\begin{aligned} &\\nabla\\cdot\\vec D = \\rho_{\\text{lib}} && \\nabla\\cdot\\vec B = 0 \\\\ &\\nabla\\times\\vec E = -\\frac{\\partial\\vec B}{\\partial t} && \\nabla\\times\\vec H = \\vec J_{\\text{lib}} + \\frac{\\partial\\vec D}{\\partial t} \\end{aligned}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "blocco": "b5",
+      "gruppi": [
+        {
+          "titolo": "Equazione delle onde e onde piane",
+          "formule": [
+            {
+              "id": "eq-onde",
+              "nome": "Equazione delle onde elettromagnetiche",
+              "tex": "\\nabla^2\\vec E - \\frac{1}{v^2}\\frac{\\partial^2\\vec E}{\\partial t^2} = 0,\\qquad \\nabla^2\\vec B - \\frac{1}{v^2}\\frac{\\partial^2\\vec B}{\\partial t^2} = 0"
+            },
+            {
+              "id": "vel-luce",
+              "nome": "Velocità di propagazione e indice di rifrazione",
+              "tex": "c = \\frac{1}{\\sqrt{\\varepsilon_0\\mu_0}},\\qquad v = \\frac{c}{n},\\qquad n = \\sqrt{\\varepsilon_r\\mu_r}"
+            },
+            {
+              "id": "onda-piana",
+              "nome": "Onda piana armonica",
+              "tex": "\\vec E = \\vec E_0\\cos(\\vec k\\cdot\\vec r-\\omega t),\\qquad k = \\frac{\\omega}{v} = \\frac{2\\pi}{\\lambda},\\qquad c = \\lambda\\nu"
+            },
+            {
+              "id": "E-B-onda",
+              "nome": "Relazione tra E e B nell'onda piana",
+              "tex": "\\vec B = \\frac{1}{v}\\,\\hat k\\times\\vec E,\\qquad |\\vec E| = v\\,|\\vec B|",
+              "note": "Onda trasversale: E, B e k formano una terna destrorsa."
+            },
+            {
+              "id": "onda-sferica",
+              "nome": "Onda sferica",
+              "tex": "E(r,t) = \\frac{E_0\\,r_0}{r}\\cos(kr-\\omega t)",
+              "note": "Ampiezza ∝ 1/r, intensità ∝ 1/r²."
+            },
+            {
+              "id": "skin",
+              "nome": "Profondità di penetrazione in un buon conduttore",
+              "tex": "\\delta = \\sqrt{\\frac{2}{\\omega\\mu\\sigma}}"
+            }
+          ]
+        },
+        {
+          "titolo": "Energia: vettore di Poynting",
+          "formule": [
+            {
+              "id": "poynting",
+              "nome": "Vettore di Poynting",
+              "tex": "\\vec S = \\vec E\\times\\vec H = \\frac{1}{\\mu_0}\\vec E\\times\\vec B\\ \\ \\text{(vuoto)}"
+            },
+            {
+              "id": "u-em",
+              "nome": "Densità di energia elettromagnetica",
+              "tex": "u = \\frac{1}{2}\\varepsilon_0 E^2 + \\frac{1}{2\\mu_0}B^2"
+            },
+            {
+              "id": "th-poynting",
+              "nome": "Teorema di Poynting (conservazione dell'energia)",
+              "tex": "-\\frac{\\partial u}{\\partial t} = \\nabla\\cdot\\vec S + \\vec J\\cdot\\vec E"
+            },
+            {
+              "id": "intensita",
+              "nome": "Intensità media di un'onda piana armonica",
+              "tex": "I = \\langle S\\rangle = \\frac{1}{2}\\varepsilon_0 c\\,E_0^2 = \\frac{E_0^2}{2Z_0},\\qquad Z_0 = \\sqrt{\\frac{\\mu_0}{\\varepsilon_0}}\\simeq 377\\ \\Omega"
+            }
+          ]
+        },
+        {
+          "titolo": "Potenziali elettrodinamici e dipolo oscillante",
+          "formule": [
+            {
+              "id": "potenziali-ed",
+              "nome": "Potenziali elettrodinamici",
+              "tex": "\\vec B = \\nabla\\times\\vec A,\\qquad \\vec E = -\\nabla V - \\frac{\\partial\\vec A}{\\partial t}"
+            },
+            {
+              "id": "gauge-lorentz",
+              "nome": "Gauge di Lorentz",
+              "tex": "\\nabla\\cdot\\vec A + \\frac{1}{c^2}\\frac{\\partial V}{\\partial t} = 0"
+            },
+            {
+              "id": "dalembert",
+              "nome": "Equazioni per i potenziali (gauge di Lorentz)",
+              "tex": "\\nabla^2 V - \\frac{1}{c^2}\\frac{\\partial^2 V}{\\partial t^2} = -\\frac{\\rho}{\\varepsilon_0},\\qquad \\nabla^2\\vec A - \\frac{1}{c^2}\\frac{\\partial^2\\vec A}{\\partial t^2} = -\\mu_0\\vec J"
+            },
+            {
+              "id": "dipolo-osc",
+              "nome": "Dipolo oscillante: campi a grande distanza",
+              "tex": "E_\\theta = -\\frac{\\mu_0\\, p_0\\,\\omega^2}{4\\pi}\\,\\frac{\\sin\\theta}{r}\\cos\\!\\left[\\omega\\left(t-\\frac{r}{c}\\right)\\right],\\qquad B_\\phi = \\frac{E_\\theta}{c}",
+              "note": "$p(t) = p_0\\cos\\omega t$; zona di radiazione $r\\gg\\lambda$. Il segno dipende dalle convenzioni: confronta con il testo."
+            },
+            {
+              "id": "dipolo-S",
+              "nome": "Dipolo oscillante: Poynting medio e potenza irraggiata",
+              "tex": "\\langle S\\rangle = \\frac{\\mu_0\\, p_0^2\\,\\omega^4}{32\\pi^2 c}\\,\\frac{\\sin^2\\theta}{r^2},\\qquad \\langle P\\rangle = \\frac{\\mu_0\\, p_0^2\\,\\omega^4}{12\\pi c}"
+            }
+          ]
+        },
+        {
+          "titolo": "Riflessione e rifrazione",
+          "formule": [
+            {
+              "id": "raccordo-em",
+              "nome": "Condizioni di raccordo dei campi",
+              "tex": "E_{1t} = E_{2t},\\quad H_{1t} = H_{2t},\\quad D_{1n} = D_{2n},\\quad B_{1n} = B_{2n}",
+              "note": "In assenza di cariche e correnti libere superficiali."
+            },
+            {
+              "id": "riflessione",
+              "nome": "Legge della riflessione",
+              "tex": "\\theta_r = \\theta_i"
+            },
+            {
+              "id": "snell",
+              "nome": "Legge di Snell",
+              "tex": "n_1\\sin\\theta_1 = n_2\\sin\\theta_2"
+            },
+            {
+              "id": "rifl-totale",
+              "nome": "Angolo limite (riflessione totale, n₁ > n₂)",
+              "tex": "\\sin\\theta_c = \\frac{n_2}{n_1}"
+            },
+            {
+              "id": "fibra",
+              "nome": "Apertura numerica di una fibra ottica",
+              "tex": "\\mathrm{NA} = \\sin\\theta_{\\max} = \\sqrt{n_{core}^2-n_{clad}^2}",
+              "note": "Ingresso dall'aria."
+            },
+            {
+              "id": "fresnel-s",
+              "nome": "Coefficienti di Fresnel (polarizzazione s, E ⊥ piano di incidenza)",
+              "tex": "r_s = \\frac{n_1\\cos\\theta_i - n_2\\cos\\theta_t}{n_1\\cos\\theta_i + n_2\\cos\\theta_t},\\qquad t_s = \\frac{2n_1\\cos\\theta_i}{n_1\\cos\\theta_i + n_2\\cos\\theta_t}",
+              "note": "Mezzi non magnetici (μr = 1)."
+            },
+            {
+              "id": "fresnel-p",
+              "nome": "Coefficienti di Fresnel (polarizzazione p, E ∥ piano di incidenza)",
+              "tex": "r_p = \\frac{n_2\\cos\\theta_i - n_1\\cos\\theta_t}{n_2\\cos\\theta_i + n_1\\cos\\theta_t},\\qquad t_p = \\frac{2n_1\\cos\\theta_i}{n_2\\cos\\theta_i + n_1\\cos\\theta_t}",
+              "note": "Il segno di r_p dipende dalla convenzione sui versi dei campi: confronta con il testo."
+            },
+            {
+              "id": "fresnel-norm",
+              "nome": "Incidenza normale",
+              "tex": "R = \\left(\\frac{n_1-n_2}{n_1+n_2}\\right)^2,\\qquad T = \\frac{4n_1n_2}{(n_1+n_2)^2}"
+            },
+            {
+              "id": "brewster",
+              "nome": "Angolo di Brewster",
+              "tex": "\\tan\\theta_B = \\frac{n_2}{n_1}"
+            },
+            {
+              "id": "fermat",
+              "nome": "Cammino ottico e principio di Fermat",
+              "tex": "L = \\int_\\gamma n\\,ds,\\qquad \\delta L = 0"
+            }
+          ]
+        },
+        {
+          "titolo": "Polarizzazione, interferenza, diffrazione",
+          "formule": [
+            {
+              "id": "malus",
+              "nome": "Legge di Malus",
+              "tex": "I = I_0\\cos^2\\theta",
+              "note": "Luce naturale attraverso un polarizzatore ideale: I = I₀/2."
+            },
+            {
+              "id": "interferenza",
+              "nome": "Interferenza di due onde coerenti",
+              "tex": "I = I_1 + I_2 + 2\\sqrt{I_1 I_2}\\cos\\delta,\\qquad \\delta = \\frac{2\\pi}{\\lambda_0}\\,\\Delta L"
+            },
+            {
+              "id": "young",
+              "nome": "Esperimento di Young (fenditure a distanza d, schermo a distanza D)",
+              "tex": "d\\sin\\theta = m\\lambda\\ \\text{(max)},\\qquad d\\sin\\theta = \\left(m+\\tfrac{1}{2}\\right)\\lambda\\ \\text{(min)},\\qquad \\Delta y = \\frac{\\lambda D}{d}"
+            },
+            {
+              "id": "young-I",
+              "nome": "Intensità nell'esperimento di Young",
+              "tex": "I(\\theta) = 4I_0\\cos^2\\!\\left(\\frac{\\pi d\\sin\\theta}{\\lambda}\\right)"
+            },
+            {
+              "id": "fraunhofer",
+              "nome": "Diffrazione di Fraunhofer da fenditura di larghezza a",
+              "tex": "I(\\theta) = I_0\\left(\\frac{\\sin\\beta}{\\beta}\\right)^2,\\quad \\beta = \\frac{\\pi a\\sin\\theta}{\\lambda};\\qquad \\text{minimi: } a\\sin\\theta = m\\lambda,\\ m\\neq0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "blocco": "b6",
+      "gruppi": [
+        {
+          "titolo": "Relatività ristretta ed elettromagnetismo",
+          "formule": [
+            {
+              "id": "gamma",
+              "nome": "Fattore di Lorentz",
+              "tex": "\\beta = \\frac{v}{c},\\qquad \\gamma = \\frac{1}{\\sqrt{1-\\beta^2}}"
+            },
+            {
+              "id": "trasf-lorentz",
+              "nome": "Trasformazioni di Lorentz (moto lungo x)",
+              "tex": "x' = \\gamma(x-vt),\\quad y' = y,\\quad z' = z,\\quad t' = \\gamma\\left(t-\\frac{v x}{c^2}\\right)"
+            },
+            {
+              "id": "trasf-campi",
+              "nome": "Trasformazione dei campi",
+              "tex": "\\vec E'_\\parallel = \\vec E_\\parallel,\\quad \\vec B'_\\parallel = \\vec B_\\parallel,\\quad \\vec E'_\\perp = \\gamma\\left(\\vec E+\\vec v\\times\\vec B\\right)_\\perp,\\quad \\vec B'_\\perp = \\gamma\\left(\\vec B-\\frac{\\vec v\\times\\vec E}{c^2}\\right)_\\perp"
+            },
+            {
+              "id": "invarianti",
+              "nome": "Invarianti del campo elettromagnetico",
+              "tex": "\\vec E\\cdot\\vec B,\\qquad E^2 - c^2B^2"
+            }
+          ]
+        },
+        {
+          "titolo": "Superconduttori",
+          "formule": [
+            {
+              "id": "meissner",
+              "nome": "Effetto Meissner",
+              "tex": "\\rho = 0\\ \\ (T<T_c),\\qquad \\vec B_{\\text{int}} = 0\\ \\ (\\chi_m = -1)"
+            },
+            {
+              "id": "campo-critico",
+              "nome": "Campo critico (relazione empirica)",
+              "tex": "H_c(T) \\simeq H_c(0)\\left[1-\\left(\\frac{T}{T_c}\\right)^2\\right]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "blocco": "b7",
+      "gruppi": [
+        {
+          "titolo": "Teoria della misura",
+          "formule": [
+            {
+              "id": "media",
+              "nome": "Valor medio",
+              "tex": "\\bar x = \\frac{1}{N}\\sum_{i=1}^N x_i"
+            },
+            {
+              "id": "dev-std",
+              "nome": "Deviazione standard campionaria ed errore sulla media",
+              "tex": "\\sigma_x = \\sqrt{\\frac{1}{N-1}\\sum_{i=1}^N (x_i-\\bar x)^2},\\qquad \\sigma_{\\bar x} = \\frac{\\sigma_x}{\\sqrt N}"
+            },
+            {
+              "id": "chebyshev",
+              "nome": "Disuguaglianza di Chebyshev",
+              "tex": "P\\left(|x-\\mu|\\ge k\\sigma\\right)\\le\\frac{1}{k^2}"
+            },
+            {
+              "id": "propagazione",
+              "nome": "Propagazione delle incertezze (grandezze indipendenti)",
+              "tex": "\\sigma_f^2 = \\sum_i\\left(\\frac{\\partial f}{\\partial x_i}\\right)^2\\sigma_i^2",
+              "note": "Stima dell'errore massimo: $\\Delta f = \\sum_i\\left|\\frac{\\partial f}{\\partial x_i}\\right|\\Delta x_i$."
+            },
+            {
+              "id": "media-pesata",
+              "nome": "Media pesata",
+              "tex": "\\bar x = \\frac{\\sum_i x_i/\\sigma_i^2}{\\sum_i 1/\\sigma_i^2},\\qquad \\sigma_{\\bar x} = \\frac{1}{\\sqrt{\\sum_i 1/\\sigma_i^2}}"
+            },
+            {
+              "id": "minimi-quadrati",
+              "nome": "Minimi quadrati: retta y = a + b x (incertezze uguali su y)",
+              "tex": "b = \\frac{N\\sum x_iy_i - \\sum x_i\\sum y_i}{\\Delta},\\quad a = \\frac{\\sum x_i^2\\sum y_i - \\sum x_i\\sum x_iy_i}{\\Delta},\\quad \\Delta = N\\sum x_i^2-\\left(\\sum x_i\\right)^2"
+            },
+            {
+              "id": "confronto",
+              "nome": "Confronto tra misure",
+              "tex": "\\text{scarto relativo} = \\frac{|x_{mis}-x_{rif}|}{|x_{rif}|},\\qquad t = \\frac{|x_1-x_2|}{\\sqrt{\\sigma_1^2+\\sigma_2^2}}",
+              "note": "Verifica la definizione esatta e le soglie di compatibilità usate nelle dispense del docente."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

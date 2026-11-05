@@ -1,0 +1,58 @@
+<section class="t-sec" id="b2a">
+<h2>2 · Corrente elettrica stazionaria</h2>
+
+<h3 id="b2a-corrente">Corrente, densità di corrente, continuità</h3>
+<p>Nei metalli gli elettroni di conduzione hanno velocità di agitazione termica molto alte (circa $10^5$–$10^6$ m/s) ma dirette a caso. Un campo elettrico sovrappone una piccola <strong>velocità di deriva</strong> $v_d$ (frazioni di mm/s) opposta al campo. L'intensità di corrente è la carica che attraversa una sezione nell'unità di tempo:</p>
+<p class="t-eq">$$I=\frac{dq}{dt}=\int_S\vec J\cdot\hat n\,dS,\qquad \vec J = nq\vec v_d$$</p>
+<p>($n$ = portatori per unità di volume). La conservazione della carica, in forma locale, è l'<strong>equazione di continuità</strong>:</p>
+<p class="t-eq">$$\nabla\cdot\vec J+\frac{\partial\rho}{\partial t}=0$$</p>
+<p>In regime <strong>stazionario</strong> $\nabla\cdot\vec J=0$: il flusso di $\vec J$ attraverso una superficie chiusa è nullo. Da qui la <strong>I legge di Kirchhoff</strong>: in un nodo la somma delle correnti entranti è uguale a quella delle uscenti.</p>
+
+<h3 id="b2a-ohm">Legge di Ohm e resistenza</h3>
+<p>Per molti conduttori (ohmici) $\vec J$ è proporzionale a $\vec E$: $\vec J = \sigma\vec E$ (<strong>legge di Ohm locale</strong>), dove $\sigma = 1/\rho$ è la conducibilità. Nel modello di Drude, con $\tau$ tempo medio tra gli urti, $v_d = eE\tau/m$ e quindi $\sigma=\frac{ne^2\tau}{m}$. Integrando su un conduttore si ottiene $V=RI$ con</p>
+<p class="t-eq">$$R=\int\rho\frac{dl}{S(l)}\qquad(\text{sezione costante: } R=\rho\frac{l}{S})$$</p>
+<ul>
+<li>Tra due cilindri coassiali (corrente radiale, lunghezza $L$): $R=\dfrac{\rho}{2\pi L}\ln\dfrac{b}{a}$.</li>
+<li>Tra due gusci sferici concentrici: $R=\dfrac{\rho}{4\pi}\left(\dfrac1a-\dfrac1b\right)$.</li>
+<li>Nei metalli $\rho(T)\simeq\rho_0[1+\alpha(T-T_0)]$; nei semiconduttori $\rho$ diminuisce con $T$.</li>
+</ul>
+<p><strong>Superconduttori</strong>: sotto una temperatura critica $T_c$ la resistività si annulla (vedi blocco 6).</p>
+
+<h3 id="b2a-joule">Effetto Joule</h3>
+<p>Il campo compie lavoro sui portatori, e questo lavoro viene ceduto al reticolo come calore. La potenza dissipata per unità di volume è $\frac{dP}{d\tau}=\vec J\cdot\vec E=\rho J^2$; per un resistore</p>
+<p class="t-eq">$$P = VI = RI^2 = \frac{V^2}{R}$$</p>
+
+<h3 id="b2a-fem">Forza elettromotrice e generatori</h3>
+<p>Un campo elettrostatico non può mantenere una corrente in un circuito chiuso, perché $\oint\vec E\cdot d\vec l=0$. Serve un <strong>generatore</strong>, cioè una regione con un campo elettromotore non conservativo $\vec E^*$ (di origine chimica, meccanica, ecc.). La <strong>forza elettromotrice</strong> è $\mathcal E=\oint\vec E^*\cdot d\vec l$, il lavoro per unità di carica compiuto dal generatore in un giro. Un generatore reale ha una resistenza interna $r$: $V_{AB}=\mathcal E-rI$.</p>
+<p><strong>Massimo trasferimento di potenza.</strong> Su un carico $R_L$ la potenza è $P=\frac{\mathcal E^2R_L}{(r+R_L)^2}$; è massima per $R_L=r$ e vale $\frac{\mathcal E^2}{4r}$ (rendimento del 50%).</p>
+
+<h3 id="b2a-reti">Circuiti in corrente continua</h3>
+<ul>
+<li>Serie: $R_s=\sum R_i$ (stessa corrente). Parallelo: $1/R_p=\sum1/R_i$ (stessa tensione).</li>
+<li>Partitore di tensione: $V_2=V\frac{R_2}{R_1+R_2}$. Partitore di corrente: $I_1=I\frac{R_2}{R_1+R_2}$.</li>
+<li><strong>II legge di Kirchhoff</strong> (maglie): lungo una maglia $\sum R_kI_k=\sum\mathcal E_k$, con i segni fissati da un verso di percorrenza. Metodo: si assegnano correnti di verso arbitrario, si scrivono $n-1$ equazioni ai nodi e le equazioni delle maglie indipendenti, si risolve. Una corrente negativa ha semplicemente verso opposto.</li>
+<li><strong>Legge di Ohm generalizzata</strong>: tra due punti di un ramo $V_A-V_B=\sum RI-\sum\mathcal E$ (segni secondo il verso da A a B).</li>
+<li><strong>Sovrapposizione</strong>: in una rete lineare la corrente in un ramo è la somma di quelle prodotte da ciascun generatore agendo da solo (gli altri spenti: generatori di tensione in cortocircuito, di corrente aperti).</li>
+<li><strong>Thevenin</strong>: una rete lineare vista da due morsetti equivale a un generatore $V_{Th}$ (tensione a vuoto) in serie a $R_{Th}$ (resistenza vista con i generatori spenti). Norton: generatore di corrente $I_{N}=V_{Th}/R_{Th}$ in parallelo a $R_{Th}$.</li>
+</ul>
+
+<h3 id="b2a-misure">Misure di correnti, tensioni e resistenze</h3>
+<p>L'<strong>amperometro</strong> si inserisce in serie e deve avere resistenza interna $R_A$ piccola; il <strong>voltmetro</strong> si mette in parallelo e deve avere $R_V$ grande. Nella misura voltamperometrica di $R$ si commette un <em>errore di inserzione</em>:</p>
+<ul>
+<li>voltmetro a valle (in parallelo al solo resistore): $R_{mis}=\frac{RR_V}{R+R_V}\lt R$, adatto per $R\ll R_V$;</li>
+<li>voltmetro a monte (su resistore + amperometro): $R_{mis}=R+R_A$, adatto per $R\gg R_A$.</li>
+</ul>
+<p><strong>Ponte di Wheatstone</strong>: quattro resistori a rombo con un rivelatore tra i punti intermedi. All'equilibrio (corrente nulla nel rivelatore) $R_1/R_2=R_3/R_4$, e si ricava la resistenza incognita senza errori di inserzione.</p>
+
+<h3 id="b2a-cariche">Cariche su conduttori percorsi da corrente</h3>
+<p>Un conduttore percorso da corrente non è equipotenziale: sulla sua superficie si formano piccole cariche che guidano il campo lungo il filo. All'interfaccia tra due conduttori di conducibilità diversa, la continuità di $J_n$ ($\sigma_1E_1=\sigma_2E_2$) impone un salto di $E$, e quindi una carica libera superficiale $\sigma_s=\varepsilon_0(E_2-E_1)$.</p>
+
+<h3 id="b2a-rc">Correnti quasi stazionarie: il circuito RC</h3>
+<p>Se le variazioni sono lente rispetto al tempo di propagazione dei segnali, in ogni istante valgono le leggi di Kirchhoff. <strong>Carica</strong> di $C$ attraverso $R$ con f.e.m. $\mathcal E$: $\mathcal E = RI+\frac qC$, con $I=\frac{dq}{dt}$, da cui</p>
+<p class="t-eq">$$q(t)=C\mathcal E\left(1-e^{-t/\tau}\right),\qquad I(t)=\frac{\mathcal E}{R}e^{-t/\tau},\qquad\tau=RC$$</p>
+<p><strong>Scarica</strong>: $q(t)=Q_0e^{-t/\tau}$. Dopo $\tau$ la carica raggiunge il 63% del valore finale; il tempo di dimezzamento vale $\tau\ln2$.</p>
+<p><strong>Bilancio energetico della carica</strong>: il generatore fornisce $\mathcal E Q = C\mathcal E^2$; metà si accumula nel condensatore ($\frac12C\mathcal E^2$), metà si dissipa per effetto Joule, <em>indipendentemente da $R$</em>.</p>
+<p><strong>Condensatore che si scarica su un altro</strong> ($C_1$ carico a $V_0$ collegato a $C_2$ scarico): la carica si conserva, quindi $V_f = \frac{C_1V_0}{C_1+C_2}$; l'energia dissipata è $\Delta U = \frac12\frac{C_1C_2}{C_1+C_2}V_0^2$.</p>
+<p><strong>Dielettrico con perdite</strong> (conducibilità $\sigma$ non nulla): il condensatore si scarica attraverso il dielettrico stesso con $\tau=RC=\varepsilon\rho=\varepsilon_0\varepsilon_r/\sigma$, indipendente dalla geometria.</p>
+<aside class="t-tip"><strong>All'esame.</strong> Nei transitori valuta il circuito in due istanti. A $t=0^+$: la tensione su un condensatore e la corrente in un induttore non possono cambiare di colpo. A regime ($t\to\infty$, corrente continua): un condensatore si comporta come un circuito aperto, un induttore come un cortocircuito. La costante di tempo è $R_{Th}C$ (o $L/R_{Th}$), con $R_{Th}$ la resistenza vista dai morsetti dell'elemento.</aside>
+</section>

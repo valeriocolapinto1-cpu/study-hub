@@ -1,0 +1,39 @@
+<section class="t-sec" id="b7a">
+<h2>7 · Laboratorio e teoria della misura</h2>
+
+<h3 id="b7a-errori">Incertezze di misura</h3>
+<p>Ogni misura va data con la sua incertezza e l'unità: $x=(\bar x\pm\sigma_x)$ unità, con l'incertezza a 1–2 cifre significative e il valore arrotondato alla stessa cifra decimale.</p>
+<ul>
+<li><strong>Errori sistematici</strong>: spostano tutte le misure nello stesso verso (taratura, errore di inserzione, metodo). Non si riducono ripetendo la misura: vanno individuati e corretti.</li>
+<li><strong>Errori casuali</strong>: fluttuazioni in entrambi i versi. Si riducono mediando più misure.</li>
+<li><strong>Risoluzione</strong> dello strumento: per una singola lettura si assume un'incertezza pari alla risoluzione o, con distribuzione uniforme, $\sigma=\Delta/\sqrt{12}$. Nei multimetri digitali si usano le specifiche del costruttore (percentuale della lettura + digit).</li>
+</ul>
+
+<h3 id="b7a-statistica">Distribuzioni, media, deviazione standard</h3>
+<p>Misure ripetute si distribuiscono secondo una funzione di distribuzione, spesso gaussiana. Le stime migliori sono:</p>
+<p class="t-eq">$$\bar x=\frac1N\sum x_i,\qquad\sigma_x=\sqrt{\frac1{N-1}\sum(x_i-\bar x)^2},\qquad\sigma_{\bar x}=\frac{\sigma_x}{\sqrt N}$$</p>
+<p>$\sigma_x$ misura la dispersione della singola misura, $\sigma_{\bar x}$ l'incertezza sulla media. Per una gaussiana il 68,3% delle misure cade entro $\pm\sigma$, il 95,4% entro $\pm2\sigma$, il 99,7% entro $\pm3\sigma$. La <strong>disuguaglianza di Chebyshev</strong> vale per ogni distribuzione: $P(|x-\mu|\ge k\sigma)\le1/k^2$.</p>
+
+<h3 id="b7a-propagazione">Propagazione delle incertezze</h3>
+<p>Per $f(x,y,\dots)$ con grandezze indipendenti:</p>
+<p class="t-eq">$$\sigma_f=\sqrt{\left(\frac{\partial f}{\partial x}\right)^2\sigma_x^2+\left(\frac{\partial f}{\partial y}\right)^2\sigma_y^2+\dots}$$</p>
+<p>Somme e differenze: si sommano in quadratura le incertezze assolute. Prodotti e quozienti: si sommano in quadratura le incertezze <em>relative</em>. Per una potenza $x^n$: $\sigma_f/f=|n|\sigma_x/x$. Stima dell'errore massimo: $\Delta f=\sum\left|\frac{\partial f}{\partial x_i}\right|\Delta x_i$.</p>
+
+<h3 id="b7a-confronto">Media pesata, confronto, minimi quadrati</h3>
+<ul>
+<li><strong>Media pesata</strong> di misure con incertezze diverse: $\bar x=\frac{\sum x_i/\sigma_i^2}{\sum1/\sigma_i^2}$, $\sigma_{\bar x}=\left(\sum1/\sigma_i^2\right)^{-1/2}$.</li>
+<li><strong>Confronto tra misure</strong>: $t=\frac{|x_1-x_2|}{\sqrt{\sigma_1^2+\sigma_2^2}}$. Si considerano compatibili se $t\lesssim2$ (in genere; con poche misure si usa la distribuzione t di Student). Lo scarto relativo rispetto a un valore atteso è $|x-x_{rif}|/x_{rif}$.</li>
+<li><strong>Minimi quadrati</strong> (retta $y=a+bx$ con uguale incertezza su $y$): si minimizza $\sum(y_i-a-bx_i)^2$, ottenendo
+$b=\frac{N\sum x_iy_i-\sum x_i\sum y_i}{\Delta}$ e $a=\frac{\sum x_i^2\sum y_i-\sum x_i\sum x_iy_i}{\Delta}$, con $\Delta=N\sum x_i^2-(\sum x_i)^2$. Le leggi esponenziali si <strong>linearizzano</strong> con il logaritmo (ad esempio $\ln V=\ln V_0-t/\tau$).</li>
+</ul>
+
+<h3 id="b7a-esperienze">Le esperienze di laboratorio</h3>
+<ul>
+<li><strong>Misure in corrente continua</strong>: uso del multimetro come voltmetro (in parallelo), amperometro (in serie) e ohmmetro (circuito non alimentato). Verifica della legge di Ohm e delle resistenze equivalenti; attenzione agli errori di inserzione e alle portate.</li>
+<li><strong>RC con multimetro</strong>: si registra $V_C(t)$ durante la carica o la scarica con il cronometro. Il grafico di $\ln V$ contro $t$ è una retta di pendenza $-1/\tau$; si confronta $\tau$ misurato con $RC$ nominale e si tiene conto della resistenza interna del voltmetro, che può scaricare il condensatore.</li>
+<li><strong>RC con oscilloscopio</strong>: un generatore di onda quadra (periodo molto maggiore di $\tau$) carica e scarica $C$. Si imposta la scala tempi (s/div), la scala tensioni (V/div) e il trigger, poi si misura $\tau$ come tempo per arrivare al 63% (o $t_{1/2}=\tau\ln2$). Vanno considerate le impedenze di uscita del generatore (tipicamente 50 Ω) e di ingresso dell'oscilloscopio (1 MΩ).</li>
+<li><strong>Thevenin</strong>: si misura la tensione a vuoto $V_{Th}$ ai morsetti; $R_{Th}$ si ottiene spegnendo i generatori e misurando la resistenza, oppure da $V$ su un carico noto ($V=V_{Th}\frac{R_L}{R_L+R_{Th}}$). Il risultato si confronta con il calcolo teorico.</li>
+<li><strong>Ottica geometrica</strong>: verifica della legge di Snell ($\sin\theta_1$ contro $\sin\theta_2$ è una retta di pendenza $n_2/n_1$), riflessione totale, lenti sottili: $\frac1p+\frac1q=\frac1f$, ingrandimento $G=-q/p$.</li>
+</ul>
+<aside class="t-tip"><strong>All'orale</strong> porta le relazioni e sappi spiegare scopo, schema del circuito o del banco, procedura, come hai stimato le incertezze, come hai fatto il fit e se il risultato è compatibile con il valore atteso.</aside>
+</section>

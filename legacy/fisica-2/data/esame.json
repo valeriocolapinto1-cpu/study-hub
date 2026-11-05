@@ -1,0 +1,99 @@
+{
+  "scritto": {
+    "descrizione": "4 esercizi + 2 domande di teoria",
+    "durata": "2 ore e 30 minuti",
+    "materiale": "Nessun materiale ammesso",
+    "composizione": [
+      {
+        "voce": "Esercizi",
+        "numero": 4,
+        "puntiCadauno": 6,
+        "totale": 24
+      },
+      {
+        "voce": "Domande di teoria",
+        "numero": 2,
+        "puntiCadauno": 3,
+        "totale": 6
+      }
+    ],
+    "massimo": 30,
+    "soglia": 18
+  },
+  "orale": {
+    "descrizione": "3 domande di teoria",
+    "composizione": [
+      {
+        "voce": "Domande di teoria",
+        "numero": 3,
+        "puntiCadauno": 10,
+        "totale": 30
+      }
+    ],
+    "massimo": 30,
+    "note": [
+      "Possono essere incluse domande sulle esperienze di laboratorio.",
+      "Lo studente deve portare le relazioni di laboratorio svolte durante il corso."
+    ]
+  },
+  "votoFinale": "Media tra il punteggio della prova scritta e della prova orale.",
+  "risultatiApprendimento": {
+    "nota": "Il programma ufficiale elenca 6 livelli, da conoscenza di base fino a problem solving avanzato su induzione elettromagnetica e onde em. Il testo esatto non era disponibile: copialo dalla pagina ufficiale del corso del corso sostituendo i segnaposto.",
+    "livelli": [
+      {
+        "id": "ra1",
+        "livello": 1,
+        "testo": "Conoscenza di base",
+        "placeholder": true
+      },
+      {
+        "id": "ra2",
+        "livello": 2,
+        "testo": "[Testo ufficiale da inserire]",
+        "placeholder": true
+      },
+      {
+        "id": "ra3",
+        "livello": 3,
+        "testo": "[Testo ufficiale da inserire]",
+        "placeholder": true
+      },
+      {
+        "id": "ra4",
+        "livello": 4,
+        "testo": "[Testo ufficiale da inserire]",
+        "placeholder": true
+      },
+      {
+        "id": "ra5",
+        "livello": 5,
+        "testo": "[Testo ufficiale da inserire]",
+        "placeholder": true
+      },
+      {
+        "id": "ra6",
+        "livello": 6,
+        "testo": "Problem solving avanzato su induzione elettromagnetica e onde elettromagnetiche",
+        "placeholder": true
+      }
+    ]
+  },
+  "criteri": [
+    {
+      "id": "cr1",
+      "testo": "Capacità di derivare e applicare le equazioni di Maxwell"
+    },
+    {
+      "id": "cr2",
+      "testo": "Risolvere problemi di elettrostatica, magnetostatica e circuiti"
+    },
+    {
+      "id": "cr3",
+      "testo": "Fenomeni di induzione elettromagnetica"
+    },
+    {
+      "id": "cr4",
+      "testo": "Fenomeni ondulatori: potenza trasportata, riflessione, rifrazione, interferenza"
+    }
+  ]
+}

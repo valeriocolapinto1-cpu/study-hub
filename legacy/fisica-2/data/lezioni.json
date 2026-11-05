@@ -1,0 +1,559 @@
+{
+  "nota": "Il campo 'sezioni' collega ogni lezione alle sezioni del programma (id in programma.json). Il collegamento è indicativo, ricavato dal titolo della lezione. Il campo 'tipo' può essere: teoria, esercitazione, laboratorio, misura, altro.",
+  "lezioni": [
+    {
+      "n": 1,
+      "titolo": "Introduzione, azioni elettriche, cariche elettriche, legge di Coulomb, Campo elettrico",
+      "capitoli": "Cap. 1",
+      "tipo": "teoria",
+      "sezioni": [
+        "b1a"
+      ]
+    },
+    {
+      "n": 2,
+      "titolo": "Campo elettrico generato da sistemi di cariche, densità di carica, esercizi sul campo elettrico: filo infinito",
+      "capitoli": "Cap. 1",
+      "tipo": "teoria",
+      "sezioni": [
+        "b1a"
+      ]
+    },
+    {
+      "n": 3,
+      "titolo": "Teorema di Gauss, campo elettrico da distribuzione a simmetria sferica",
+      "capitoli": "Cap. 1",
+      "tipo": "teoria",
+      "sezioni": [
+        "b1a"
+      ]
+    },
+    {
+      "n": 4,
+      "titolo": "Divergenza di un campo vettoriale, I equazione di Maxwell, campo elettrico di un filo infinito con Gauss, di un cilindro pieno e vuoto, di una spira e di un piano infinito (senza e con Gauss)",
+      "capitoli": "Cap. 1",
+      "tipo": "teoria",
+      "sezioni": [
+        "b1a"
+      ]
+    },
+    {
+      "n": 5,
+      "titolo": "Il potenziale elettrico, definizione di gradiente, potenziale di distribuzioni di cariche, potenziale di piano e filo infinito, rotore del campo elettrico",
+      "capitoli": "Cap. 1",
+      "tipo": "teoria",
+      "sezioni": [
+        "b1a"
+      ]
+    },
+    {
+      "n": 6,
+      "titolo": "Campo E da filo di lunghezza finita carico uniformemente, potenziale e campo su asse da disco carico e campo da muro spesso; forza su carica puntiforme da distribuzione lineare semi-infinita",
+      "capitoli": "Cap. 1",
+      "tipo": "teoria",
+      "sezioni": [
+        "b1a"
+      ]
+    },
+    {
+      "n": 7,
+      "titolo": "Gradiente in coordinate sferiche, il dipolo elettrico, potenziale e campo elettrico del dipolo, azioni meccaniche sui dipoli elettrici: forza e momento",
+      "capitoli": "Cap. 1",
+      "tipo": "teoria",
+      "sezioni": [
+        "b1a"
+      ]
+    },
+    {
+      "n": 8,
+      "titolo": "Azioni meccaniche sui dipoli elettrici: energia potenziale. Conduttori in equilibrio nel campo elettrostatico e loro proprietà. Teorema di Coulomb, schermo elettrostatico e potere delle punte",
+      "capitoli": "Cap. 1-2",
+      "tipo": "teoria",
+      "sezioni": [
+        "b1a",
+        "b1b"
+      ]
+    },
+    {
+      "n": 9,
+      "titolo": "Capacità di un conduttore isolato, capacità della terra, coefficienti di potenziale e di induzione, doppio strato, condensatori, capacità di condensatore piano, sferico e cilindrico",
+      "capitoli": "Cap. 2",
+      "tipo": "teoria",
+      "sezioni": [
+        "b1b"
+      ]
+    },
+    {
+      "n": 10,
+      "titolo": "Condensatori in serie e in parallelo, energia elettrostatica di cariche puntiformi, energia elettrostatica di conduttori e condensatori. Esercizio: distanza di equilibrio nucleo di atomo in E esterno",
+      "capitoli": null,
+      "tipo": "teoria",
+      "sezioni": [
+        "b1b"
+      ]
+    },
+    {
+      "n": 11,
+      "titolo": "Esercizi su applicazione del principio di sovrapposizione degli effetti: campo E nello spazio da guscio cilindrico uniformemente carico con taglio verticale; campo E da piano carico infinito con foro circolare; campo del muro spesso con foro cilindrico verticale",
+      "capitoli": "Cap. 2",
+      "tipo": "esercitazione",
+      "sezioni": [
+        "b1a",
+        "b1b"
+      ]
+    },
+    {
+      "n": 12,
+      "titolo": "Densità di energia elettrostatica, pressione elettrostatica e densità di energia, azioni meccaniche di natura elettrostatica nei conduttori, cenni all'equazione di Poisson e di Laplace. Campo elettrico lato nastro infinito",
+      "capitoli": "Cap. 2",
+      "tipo": "teoria",
+      "sezioni": [
+        "b1b"
+      ]
+    },
+    {
+      "n": 13,
+      "titolo": "Campo elettrico nei dielettrici, costante dielettrica relativa, polarizzazione per deformazione ed orientamento, vettore intensità di polarizzazione",
+      "capitoli": "Cap. 3",
+      "tipo": "teoria",
+      "sezioni": [
+        "b1c"
+      ]
+    },
+    {
+      "n": 14,
+      "titolo": "Equazioni dell'elettrostatica in presenza di dielettrici, campo elettrico sulla superficie di separazione tra due dielettrici, energia elettrostatica con dielettrici, generatore Van der Graaf",
+      "capitoli": "Cap. 3",
+      "tipo": "teoria",
+      "sezioni": [
+        "b1c"
+      ]
+    },
+    {
+      "n": 15,
+      "titolo": "Velocità termica e di deriva nei conduttori, corrente elettrica, trasferimento di potenza dal campo elettrico alla corrente, densità di corrente. Esercizio: conduttore sferico con dielettrico",
+      "capitoli": "Cap. 4",
+      "tipo": "teoria",
+      "sezioni": [
+        "b2a",
+        "b1c"
+      ]
+    },
+    {
+      "n": 16,
+      "titolo": "Esercizi su condensatori con lastra conduttrice tra le armature; circuito capacitivo; sfera conduttrice con foro cilindrico",
+      "capitoli": null,
+      "tipo": "esercitazione",
+      "sezioni": [
+        "b1b"
+      ]
+    },
+    {
+      "n": 17,
+      "titolo": "Equazione di continuità, leggi di Kirchhoff, resistenza elettrica e legge di Ohm, calcolo di resistenze elettriche di strutture, dipendenza della resistività dalla temperatura, legge di Ohm locale. Esercizio: condensatore piano con dielettrico in serie",
+      "capitoli": "Cap. 4",
+      "tipo": "teoria",
+      "sezioni": [
+        "b2a",
+        "b1c"
+      ]
+    },
+    {
+      "n": 18,
+      "titolo": "Fenomeni dissipativi nei conduttori di corrente, legge di Joule anche locale, forza elettromotrice e generatori elettrici. Esercizio: condensatore piano con dielettrico in parallelo",
+      "capitoli": "Cap. 4",
+      "tipo": "teoria",
+      "sezioni": [
+        "b2a",
+        "b1c"
+      ]
+    },
+    {
+      "n": 19,
+      "titolo": "Resistenze in serie e in parallelo e resistenza equivalente, legge di Ohm generalizzata, legge delle maglie. Esercizi sulle reti, partitore di tensione e di corrente",
+      "capitoli": "Cap. 4",
+      "tipo": "teoria",
+      "sezioni": [
+        "b2a"
+      ]
+    },
+    {
+      "n": 20,
+      "titolo": "Teorema di Thevenin e di sovrapposizione, misurazioni di correnti, differenze di potenziale e resistenze, errori di inserzione, ponte di Wheatstone, correnti quasi-stazionarie, scarica di un condensatore, condensatore piano e generico con dielettrico in perdita",
+      "capitoli": "Cap. 4",
+      "tipo": "teoria",
+      "sezioni": [
+        "b2a"
+      ]
+    },
+    {
+      "n": 21,
+      "titolo": "Esercizi di elettrostatica con dielettrici: sfera conduttrice carica semi-immersa in olio; cubo dielettrico non uniforme; conduttore carico di forma irregolare immerso in dielettrico; capacità di condensatore piano riempito di dielettrico; campo E da carica puntiforme in sfera di plexiglass",
+      "capitoli": null,
+      "tipo": "esercitazione",
+      "sezioni": [
+        "b1c"
+      ]
+    },
+    {
+      "n": 22,
+      "titolo": "Errori sistematici e casuali ed incertezza, funzione di distribuzione, valor medio, varianza e deviazione standard, disuguaglianza di Chebyshev, propagazione delle incertezze, confronto tra misure: scarto, scarto relativo e t di Student",
+      "capitoli": null,
+      "tipo": "misura",
+      "sezioni": [
+        "b7a"
+      ]
+    },
+    {
+      "n": 23,
+      "titolo": "Minimi quadrati ed esempi, media pesata e risultato di varie misure con incertezze, misure DC, esercizi: scarica di un condensatore, analisi energetica di carica e scarica di condensatori",
+      "capitoli": null,
+      "tipo": "misura",
+      "sezioni": [
+        "b7a",
+        "b2a"
+      ]
+    },
+    {
+      "n": 24,
+      "titolo": "Forza di Lorentz e vettore di induzione magnetica, applicazioni: moto di una carica in campo magnetico, bottiglia magnetica, selettore di velocità, spettrometro di massa. Esercizi su circuiti con condensatori con Thevenin",
+      "capitoli": "Cap. 5",
+      "tipo": "teoria",
+      "sezioni": [
+        "b3a",
+        "b2a"
+      ]
+    },
+    {
+      "n": 25,
+      "titolo": "Sincrotrone, ciclotrone, coppia di forze su spira in campo di induzione magnetica uniforme, momento magnetico, teorema di equivalenza di Ampere",
+      "capitoli": "Cap. 5",
+      "tipo": "teoria",
+      "sezioni": [
+        "b3a"
+      ]
+    },
+    {
+      "n": 26,
+      "titolo": "Esercizi sui circuiti RC",
+      "capitoli": null,
+      "tipo": "esercitazione",
+      "sezioni": [
+        "b2a"
+      ]
+    },
+    {
+      "n": 27,
+      "titolo": "Campo magnetico da correnti stazionarie nel vuoto, esempi: filo rettilineo infinito, nastro, asse spira ed equivalenza con dipolo elettrico, campo asse solenoide finito ed infinito",
+      "capitoli": "Cap. 5",
+      "tipo": "teoria",
+      "sezioni": [
+        "b3a"
+      ]
+    },
+    {
+      "n": 28,
+      "titolo": "Proprietà del campo di induzione magnetica, II equazione di Maxwell, flusso concatenato, teorema della circuitazione di Ampere, IV equazione di Maxwell in caso stazionario, esercizi dei circuiti con Thevenin",
+      "capitoli": "Cap. 5",
+      "tipo": "teoria",
+      "sezioni": [
+        "b3a",
+        "b2a"
+      ]
+    },
+    {
+      "n": 29,
+      "titolo": "Potenziale vettore, equazione del potenziale vettore in caso stazionario, I formula di Laplace tramite potenziale vettore e sua soluzione. Proprietà del potenziale vettore. Forze tra circuiti rigidi, forze tra due fili paralleli e definizione dell'ampere",
+      "capitoli": "Cap. 5",
+      "tipo": "teoria",
+      "sezioni": [
+        "b3a"
+      ]
+    },
+    {
+      "n": 30,
+      "titolo": "Teorema del massimo trasferimento di potenza con esercizio (incluso Thevenin), scarica di un condensatore su un altro condensatore",
+      "capitoli": null,
+      "tipo": "esercitazione",
+      "sezioni": [
+        "b2a"
+      ]
+    },
+    {
+      "n": 31,
+      "titolo": "Spiegazione sulle misure RC di laboratorio. Campo magnetico di solenoide infinito, campo magnetico di carica in moto non relativistico. Campo magnetico di cilindro infinito, cilindro cavo e cilindro bucato, effetto Hall",
+      "capitoli": "Cap. 5",
+      "tipo": "teoria",
+      "sezioni": [
+        "b3a",
+        "b7a"
+      ]
+    },
+    {
+      "n": 32,
+      "titolo": "Esperienza di laboratorio su misure in corrente continua",
+      "capitoli": null,
+      "tipo": "laboratorio",
+      "sezioni": [
+        "b7a"
+      ]
+    },
+    {
+      "n": 33,
+      "titolo": "Energia potenziale meccanica di una spira in campo magnetico. Forza di risucchio di una spira in solenoide, campo di induzione magnetica in presenza di materiali, intensità di magnetizzazione, correnti microscopiche e relazione con vettore intensità di magnetizzazione",
+      "capitoli": "Cap. 5-6",
+      "tipo": "teoria",
+      "sezioni": [
+        "b3a",
+        "b3b"
+      ]
+    },
+    {
+      "n": 34,
+      "titolo": "Campo magnetico e di induzione magnetica in presenza di materiali, campi alla separazione tra due mezzi, materiali dia-para e ferro-magnetici",
+      "capitoli": "Cap. 6",
+      "tipo": "teoria",
+      "sezioni": [
+        "b3b"
+      ]
+    },
+    {
+      "n": 35,
+      "titolo": "Esercizi su elettrostatica con dielettrici e rigidità dielettrica; calcolo della forza su dipolo elettrico e momento di dipolo di due distribuzioni sferiche",
+      "capitoli": null,
+      "tipo": "esercitazione",
+      "sezioni": [
+        "b1c",
+        "b1a"
+      ]
+    },
+    {
+      "n": 36,
+      "titolo": "Legge di Faraday-Neumann-Lenz, flusso tagliato e interpretazione fisica della legge",
+      "capitoli": "Cap. 7",
+      "tipo": "teoria",
+      "sezioni": [
+        "b4a"
+      ]
+    },
+    {
+      "n": 37,
+      "titolo": "Esperienza di laboratorio sulla carica di un condensatore",
+      "capitoli": null,
+      "tipo": "laboratorio",
+      "sezioni": [
+        "b7a"
+      ]
+    },
+    {
+      "n": 38,
+      "titolo": "III equazione di Maxwell, coefficiente di autoinduzione per solenoide e linea bifilare, studio di un circuito RL, apertura e chiusura di un interruttore",
+      "capitoli": "Cap. 7",
+      "tipo": "teoria",
+      "sezioni": [
+        "b4a"
+      ]
+    },
+    {
+      "n": 39,
+      "titolo": "Legge di Felici, mutua induzione ed esempi, analisi energetica circuito RL",
+      "capitoli": "Cap. 7",
+      "tipo": "teoria",
+      "sezioni": [
+        "b4a"
+      ]
+    },
+    {
+      "n": 40,
+      "titolo": "Materiali ferromagnetici: domini di Weiss, ciclo d'isteresi, legge di Hopkinson, elettromagnete, esercizio su calcolo di B da grondaia infinita con Js",
+      "capitoli": "Cap. 6",
+      "tipo": "teoria",
+      "sezioni": [
+        "b3b"
+      ]
+    },
+    {
+      "n": 41,
+      "titolo": "Densità di energia di B, correnti di Foucault, freno elettromagnetico e trasformatore, dinamo ed alternatori, potenza istantanea e potenza media, motori, ddp di sbarretta conduttrice che ruota in B",
+      "capitoli": "Cap. 7",
+      "tipo": "teoria",
+      "sezioni": [
+        "b4a"
+      ]
+    },
+    {
+      "n": 42,
+      "titolo": "Presentazione su oscilloscopio, IV equazione di Maxwell nel caso non stazionario e corrente di spostamento, induttanza ed energia magnetica di un cilindro coassiale percorso da corrente",
+      "capitoli": "Cap. 7",
+      "tipo": "teoria",
+      "sezioni": [
+        "b4a",
+        "b7a"
+      ]
+    },
+    {
+      "n": 43,
+      "titolo": "Le equazioni di Maxwell, equazione delle onde elettromagnetiche",
+      "capitoli": "Cap. 9",
+      "tipo": "teoria",
+      "sezioni": [
+        "b4a",
+        "b5a"
+      ]
+    },
+    {
+      "n": 44,
+      "titolo": "Spiegazione esperienza RC+Thevenin, proprietà delle onde elettromagnetiche piane",
+      "capitoli": "Cap. 9",
+      "tipo": "teoria",
+      "sezioni": [
+        "b5a",
+        "b7a"
+      ]
+    },
+    {
+      "n": 45,
+      "titolo": "Esercitazione: striscia di corrente non uniforme, B sull'asse di due spire, magnete con traferro e circuiti magnetici",
+      "capitoli": null,
+      "tipo": "esercitazione",
+      "sezioni": [
+        "b3a",
+        "b3b"
+      ]
+    },
+    {
+      "n": 46,
+      "titolo": "Esercitazione: anello conduttore in rotazione con velocità angolare parallela al campo B esterno. Dinamo a disco; applicazione legge di Felici",
+      "capitoli": null,
+      "tipo": "esercitazione",
+      "sezioni": [
+        "b4a"
+      ]
+    },
+    {
+      "n": 47,
+      "titolo": "Onde sferiche, onde stazionarie nello spazio tra due conduttori ideali, onde em in un conduttore, profondità di penetrazione",
+      "capitoli": "Cap. 9",
+      "tipo": "teoria",
+      "sezioni": [
+        "b5a"
+      ]
+    },
+    {
+      "n": 48,
+      "titolo": "Spettro delle onde elettromagnetiche, vettore di Poynting, intensità istantanea e media di un'onda",
+      "capitoli": "Cap. 9",
+      "tipo": "teoria",
+      "sezioni": [
+        "b5a"
+      ]
+    },
+    {
+      "n": 49,
+      "titolo": "Condizioni di raccordo dei campi elettromagnetici, riflessione e rifrazione di onde piane, caratteristiche cinematiche, principio di Fermat, riflessione totale, fibre ottiche",
+      "capitoli": "Cap. 10",
+      "tipo": "teoria",
+      "sezioni": [
+        "b5b"
+      ]
+    },
+    {
+      "n": 50,
+      "titolo": "Spiegazione esperienza di laboratorio sull'ottica, interferenza, cammino ottico, teorema di Kirchhoff e principio di Huygens-Fresnel",
+      "capitoli": "Cap. 10",
+      "tipo": "teoria",
+      "sezioni": [
+        "b5b",
+        "b7a"
+      ]
+    },
+    {
+      "n": 51,
+      "titolo": "Esperienza di laboratorio su: RC con oscilloscopio, Thevenin",
+      "capitoli": null,
+      "tipo": "laboratorio",
+      "sezioni": [
+        "b7a"
+      ]
+    },
+    {
+      "n": 52,
+      "titolo": "Applicazione della legge di Faraday-Neumann-Lenz, esercizi su spire in solenoide con B variabile",
+      "capitoli": null,
+      "tipo": "esercitazione",
+      "sezioni": [
+        "b4a"
+      ]
+    },
+    {
+      "n": 53,
+      "titolo": "Esperimento di Young, esercizi sull'interferenza, cenni sulla diffrazione, campo elettrico di un solenoide con I(t), campo magnetico di condensatore in scarica",
+      "capitoli": "Cap. 10",
+      "tipo": "teoria",
+      "sezioni": [
+        "b5b",
+        "b4a"
+      ]
+    },
+    {
+      "n": 54,
+      "titolo": "Esercitazione sulle onde elettromagnetiche",
+      "capitoli": null,
+      "tipo": "esercitazione",
+      "sezioni": [
+        "b5a",
+        "b5b"
+      ]
+    },
+    {
+      "n": 55,
+      "titolo": "Potenziali elettrodinamici, cenno ai potenziali ritardati, il dipolo oscillante: campi elettrici e magnetici a grande distanza, vettore di Poynting e valor medio",
+      "capitoli": "Cap. 10",
+      "tipo": "teoria",
+      "sezioni": [
+        "b5a"
+      ]
+    },
+    {
+      "n": 56,
+      "titolo": "Esperienza di laboratorio sull'ottica",
+      "capitoli": null,
+      "tipo": "laboratorio",
+      "sezioni": [
+        "b7a"
+      ]
+    },
+    {
+      "n": 57,
+      "titolo": "Relatività ristretta ed elettromagnetismo (parte 1)",
+      "capitoli": null,
+      "tipo": "teoria",
+      "sezioni": [
+        "b6a"
+      ]
+    },
+    {
+      "n": 58,
+      "titolo": "Relatività ristretta ed elettromagnetismo (parte 2)",
+      "capitoli": null,
+      "tipo": "teoria",
+      "sezioni": [
+        "b6a"
+      ]
+    },
+    {
+      "n": 59,
+      "titolo": "Visita ai Laboratori Nazionali di Frascati",
+      "capitoli": null,
+      "tipo": "altro",
+      "sezioni": []
+    },
+    {
+      "n": 60,
+      "titolo": "Esercitazione su prove d'esame",
+      "capitoli": null,
+      "tipo": "esercitazione",
+      "sezioni": []
+    }
+  ]
+}
