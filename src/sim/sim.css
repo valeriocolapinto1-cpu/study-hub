@@ -1,0 +1,317 @@
+/* Kit dei simulatori e schemi dei circuiti. Solo token del design system. */
+
+/* ---------- schemi dei circuiti ---------- */
+.circuit {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  color: var(--text);
+  overflow: visible;
+}
+.circuit-figure {
+  margin: var(--space-l) 0;
+  overflow-x: auto;
+}
+.circuit-figure figcaption {
+  margin-top: var(--space-xs);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}
+
+/* ---------- contenitore di una simulazione ---------- */
+.sim {
+  display: grid;
+  gap: var(--space-m);
+  padding: var(--space-m);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-1);
+  margin: var(--space-l) 0;
+}
+.sim__title {
+  margin: 0;
+  font: 600 var(--step-0) / var(--leading-tight) var(--font-sans);
+}
+.sim__panel {
+  display: grid;
+  gap: var(--space-s) var(--space-l);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  align-items: start;
+}
+.sim-note {
+  margin: 0;
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}
+.sim-error {
+  font-size: var(--step--1);
+  color: var(--danger);
+}
+
+/* ---------- canvas ---------- */
+.sim-canvas {
+  width: 100%;
+  min-width: 0;
+}
+.sim-canvas canvas {
+  display: block;
+  border-radius: var(--radius-m);
+}
+
+/* ---------- comandi ---------- */
+.sim-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+}
+.sim-controls__speed {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}
+.sim-controls select,
+.sim-number input {
+  min-height: 2.75rem;
+  padding: 0 var(--space-xs);
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-m);
+}
+.sim-controls .sim-note {
+  flex-basis: 100%;
+}
+
+/* ---------- cursori e campi numerici ---------- */
+.sim-slider {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--space-3xs) var(--space-s);
+}
+.sim-slider__label,
+.sim-number label {
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--text);
+}
+.sim-slider__value {
+  font: 500 var(--step--1) / 1 var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-strong);
+  text-align: right;
+}
+.sim-slider input[type='range'] {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 2.75rem;
+  margin: 0;
+  accent-color: var(--accent);
+  background: transparent;
+}
+.sim-slider .sim-note {
+  grid-column: 1 / -1;
+}
+.sim-number {
+  display: grid;
+  gap: var(--space-3xs);
+}
+.sim-number__field {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+.sim-number input {
+  width: 8rem;
+  font-family: var(--font-mono);
+}
+.sim-number input[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+.sim-number__unit {
+  color: var(--text-muted);
+}
+
+/* ---------- grafici ---------- */
+.sim-plot {
+  margin: 0;
+  min-width: 0;
+}
+.sim-plot__area {
+  border-radius: var(--radius-m);
+}
+.sim-plot svg {
+  display: block;
+  overflow: visible;
+  font-family: var(--font-sans);
+  font-size: 11px;
+}
+.sim-plot__grid line {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+.sim-plot__axis rect {
+  stroke: var(--border-strong);
+}
+.sim-plot__axis text {
+  fill: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.sim-plot__axis .sim-plot__label {
+  fill: var(--text);
+  font-size: 12px;
+}
+.sim-plot__area-fill {
+  opacity: 0.14;
+}
+.sim-plot__marker line,
+.sim-plot__marker circle {
+  stroke: var(--text-muted);
+  fill: var(--text-muted);
+}
+.sim-plot__marker text {
+  fill: var(--text-muted);
+}
+.sim-plot__cursor line {
+  stroke: var(--text);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+.sim-plot__cursor circle {
+  stroke: var(--surface);
+  stroke-width: 1.5;
+}
+.sim-readout {
+  margin: var(--space-3xs) 0 0;
+  min-height: 1.5em;
+  font: var(--step--1) / 1.4 var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}
+.sim-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs) var(--space-m);
+  margin: 0 0 var(--space-2xs);
+  padding: 0;
+  list-style: none;
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}
+.sim-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3xs);
+}
+.sim-data {
+  margin-top: var(--space-2xs);
+  font-size: var(--step--1);
+}
+.sim-data summary {
+  cursor: pointer;
+  color: var(--accent-strong);
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+}
+.sim-data__scroll {
+  max-height: 18rem;
+  overflow: auto;
+}
+.sim-data table {
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.sim-data caption {
+  text-align: left;
+  color: var(--text-muted);
+  padding-bottom: var(--space-3xs);
+}
+.sim-data th,
+.sim-data td {
+  padding: var(--space-3xs) var(--space-s);
+  border-bottom: 1px solid var(--border);
+  text-align: right;
+}
+.sim-bode {
+  display: grid;
+  gap: var(--space-s);
+}
+
+/* ---------- fasori ---------- */
+.sim-phasor {
+  margin: 0;
+}
+.sim-phasor svg {
+  display: block;
+  margin-inline: auto;
+  font-family: var(--font-serif);
+  font-size: 14px;
+}
+.sim-phasor__axes circle,
+.sim-phasor__axes line {
+  stroke: var(--border-strong);
+  stroke-width: 1;
+}
+.sim-phasor__axes text {
+  fill: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 11px;
+}
+.sim-phasor__label {
+  font-style: italic;
+}
+.sim-phasor__proj line {
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+/* ---------- oscilloscopio e campi ---------- */
+.sim-scope,
+.sim-field {
+  margin: 0;
+  min-width: 0;
+}
+.sim-scope__readout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs) var(--space-m);
+  margin-top: var(--space-2xs);
+  font: var(--step--1) / 1.4 var(--font-mono);
+  color: var(--text-muted);
+}
+.sim-scope__ch::before {
+  content: '';
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
+  margin-right: 0.35em;
+  border-radius: 50%;
+  background: var(--ch, var(--accent));
+  vertical-align: -0.05em;
+}
+
+/* Focus visibile per tutti i controlli del kit. */
+.sim :focus-visible,
+.sim-plot__area:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+@media print {
+  .sim-controls,
+  .sim-slider input,
+  .sim-data summary {
+    display: none;
+  }
+  .sim {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+}

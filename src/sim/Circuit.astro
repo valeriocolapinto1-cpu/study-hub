@@ -1,0 +1,32 @@
+---
+/**
+ * Schema di un circuito generato a build-time dalla netlist (zero JS nel browser).
+ * Uso: <Circuit netlist={net} lang={lang} caption="…" />
+ * La netlist è validata con lo schema Zod: un errore ferma la build con un
+ * messaggio che indica il campo sbagliato.
+ */
+import './sim.css';
+import { parseNetlist, type NetlistInput } from './circuits/netlist';
+import { renderSchematic } from './circuits/schematic';
+import type { Lang } from './units';
+
+export interface Props {
+  netlist: NetlistInput;
+  lang: Lang;
+  /** Didascalia visibile sotto la figura. */
+  caption?: string;
+  /** Titolo accessibile (default: titolo della netlist). */
+  title?: string;
+  /** Mostra i valori dei componenti (default true). */
+  values?: boolean;
+  class?: string;
+}
+const { netlist, lang, caption, title, values, class: cls } = Astro.props;
+const net = parseNetlist(netlist);
+const { svg } = renderSchematic(net, { lang, title, values });
+---
+
+<figure class:list={['circuit-figure', cls]}>
+  <Fragment set:html={svg} />
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
