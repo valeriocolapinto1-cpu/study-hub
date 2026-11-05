@@ -1,0 +1,62 @@
+---
+/** Extra «Archivio degli appelli»: solo date e argomenti delle prove passate, nessun testo. */
+import Reliability from '../components/Reliability.astro';
+import { ARCHIVE, ARCHIVE_TOPICS_EN } from '../data';
+import type { Lang } from '../../../i18n';
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+const fmt = new Intl.DateTimeFormat(it ? 'it-IT' : 'en-GB', { dateStyle: 'medium', timeZone: 'UTC' });
+const topic = (t: string) => (it ? t : (ARCHIVE_TOPICS_EN[t] ?? t));
+const counts = new Map<string, number>();
+for (const a of ARCHIVE) for (const t of a.topics) counts.set(t, (counts.get(t) ?? 0) + 1);
+const top = [...counts].sort((a, b) => b[1] - a[1]).slice(0, 10);
+---
+
+<div class="prose">
+  <p class="lede">
+    {it
+      ? 'Argomenti delle prove scritte 2000–2009, con parole nostre: servono a capire che cosa ricorre. Non ci sono testi, figure, numeri o soluzioni dei docenti.'
+      : 'Topics of the 2000–2009 written exams, in our own words: they show what recurs. There are no texts, figures, numbers or solutions by the lecturers.'}
+    <Reliability kind="storico" lang={lang} />
+  </p>
+  <p>
+    {it
+      ? "Per il periodo 2015–2024 è nota solo una sintesi aggregata: 14 esercizi risolti di 11 appelli, tutti nella forma «determinare v_out(t) per tutto l'asse dei tempi»."
+      : 'For 2015–2024 only an aggregate summary is known: 14 solved exercises from 11 sessions, all of the form "find v_out(t) over the whole time axis".'}
+  </p>
+  <h2 id="ricorrenti">{it ? 'Gli argomenti più ricorrenti' : 'The most recurrent topics'}</h2>
+  <ol>
+    {top.map(([t, n]) => (
+      <li>
+        {topic(t)} <span class="muted">({n})</span>
+      </li>
+    ))}
+  </ol>
+  <h2 id="appelli">{it ? 'Appelli' : 'Sessions'}</h2>
+</div>
+<div class="data-table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th scope="col">{it ? 'Data' : 'Date'}</th>
+        <th scope="col">{it ? 'Argomenti' : 'Topics'}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {ARCHIVE.map((a) => (
+        <tr>
+          <td class="num">
+            <time datetime={a.date}>{fmt.format(new Date(`${a.date}T12:00:00Z`))}</time>
+          </td>
+          <td>
+            {a.topics.map(topic).join(', ')}
+            {a.note && <span class="muted"> ({a.note[lang]})</span>}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
