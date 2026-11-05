@@ -1,0 +1,128 @@
+- id: q-iv-021
+  topic: poli-complessi-coniugati
+  objectives:
+    - poli-complessi-coniugati.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Poli $s=\\pm j\\omega_0$ danno un contributo temporale:"
+    en: "Poles $s=\\pm j\\omega_0$ give a time-domain contribution that is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Oscillazione permanente.
+        en: Sustained oscillation.
+  choices:
+    - text:
+        it: sinusoidale non smorzato
+        en: undamped sinusoidal
+      correct: true
+    - text:
+        it: costante
+        en: constant
+      correct: false
+    - text:
+        it: esponenziale decrescente
+        en: a decreasing exponential
+      correct: false
+    - text:
+        it: esponenziale crescente
+        en: an increasing exponential
+      correct: false
+  origin: originale
+- id: q-iv-022
+  topic: poli-complessi-coniugati
+  objectives:
+    - poli-complessi-coniugati.3
+  difficulty: 3
+  kind: static
+  statement:
+    it: "Poli $-a\\pm j\\omega$ con $a>0$ danno:"
+    en: "Poles $-a\\pm j\\omega$ with $a>0$ give:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Parte reale negativa: smorzamento.'
+        en: 'Negative real part: damping.'
+  choices:
+    - text:
+        it: esponenziale puro
+        en: a pure exponential
+      correct: false
+    - text:
+        it: sinusoide smorzata $e^{-at}\cos(\omega t+\phi)$
+        en: a damped sinusoid $e^{-at}\cos(\omega t+\phi)$
+      correct: true
+    - text:
+        it: impulso
+        en: an impulse
+      correct: false
+    - text:
+        it: sinusoide crescente
+        en: a growing sinusoid
+      correct: false
+  origin: originale
+- id: q-iv-023
+  topic: poli-complessi-coniugati
+  objectives:
+    - poli-complessi-coniugati.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: "$\\mathcal L^{-1}\\left\\{\\dfrac{2s+6}{s^2+9}\\right\\}$ per $t>0$ è:"
+    en: "$\\mathcal L^{-1}\\left\\{\\dfrac{2s+6}{s^2+9}\\right\\}$ for $t>0$ is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $2\frac{s}{s^2+9}+\frac{6}{3}\frac{3}{s^2+9}$.
+        en: $2\frac{s}{s^2+9}+\frac{6}{3}\frac{3}{s^2+9}$.
+  choices:
+    - text:
+        it: $2\cos3t+2\sin3t$
+        en: $2\cos3t+2\sin3t$
+      correct: true
+    - text:
+        it: $6\cos3t$
+        en: $6\cos3t$
+      correct: false
+    - text:
+        it: $2e^{-3t}$
+        en: $2e^{-3t}$
+      correct: false
+    - text:
+        it: $2\cos3t+6\sin3t$
+        en: $2\cos3t+6\sin3t$
+      correct: false
+  origin: originale
+- id: q-iv-024
+  topic: poli-complessi-coniugati
+  objectives:
+    - poli-complessi-coniugati.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Poli complessi di una funzione razionale a coefficienti reali compaiono in coppie coniugate.
+    en: Complex poles of a rational function with real coefficients come in conjugate pairs.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: I coefficienti reali implicano la simmetria.
+        en: Real coefficients imply the symmetry.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale

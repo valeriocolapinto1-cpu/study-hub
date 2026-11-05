@@ -1,0 +1,154 @@
+- id: q-iii-001
+  topic: circuiti-primo-ordine
+  objectives:
+    - circuiti-primo-ordine.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'In un circuito RC la costante di tempo è:'
+    en: 'In an RC circuit the time constant is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\tau=R_{eq}C$.
+        en: $\tau=R_{eq}C$.
+  choices:
+    - text:
+        it: $R/C$
+        en: $R/C$
+      correct: false
+    - text:
+        it: $1/(RC)$
+        en: $1/(RC)$
+      correct: false
+    - text:
+        it: $RC$
+        en: $RC$
+      correct: true
+    - text:
+        it: $C/R$
+        en: $C/R$
+      correct: false
+  origin: originale
+- id: q-iii-002
+  topic: circuiti-primo-ordine
+  objectives:
+    - circuiti-primo-ordine.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Dopo un tempo pari a $5\\tau$ una scarica esponenziale ha raggiunto circa:"
+    en: "After a time equal to $5\\tau$ an exponential discharge has reached about:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $e^{-5}\approx0{,}0067$.
+        en: $e^{-5}\approx0.0067$.
+  choices:
+    - text:
+        it: esattamente zero
+        en: exactly zero
+      correct: false
+    - text:
+        it: il $10\%$ del valore iniziale
+        en: $10\%$ of the initial value
+      correct: false
+    - text:
+        it: meno dell'$1\%$ del valore iniziale
+        en: less than $1\%$ of the initial value
+      correct: true
+    - text:
+        it: il $50\%$ del valore iniziale
+        en: $50\%$ of the initial value
+      correct: false
+  origin: originale
+- id: q-iii-003
+  topic: circuiti-primo-ordine
+  objectives:
+    - circuiti-primo-ordine.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Per un RL con $L=2\,\mathrm H$ e $R_{eq}=5\,\Omega$, $\tau=$
+    en: For an RL with $L=2\,\mathrm H$ and $R_{eq}=5\,\Omega$, $\tau=$
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\tau=L/R_{eq}=2/5$.
+        en: $\tau=L/R_{eq}=2/5$.
+  choices:
+    - text:
+        it: $7\,\mathrm s$
+        en: $7\,\mathrm s$
+      correct: false
+    - text:
+        it: $2{,}5\,\mathrm s$
+        en: $2.5\,\mathrm s$
+      correct: false
+    - text:
+        it: $0{,}4\,\mathrm s$
+        en: $0.4\,\mathrm s$
+      correct: true
+    - text:
+        it: $10\,\mathrm s$
+        en: $10\,\mathrm s$
+      correct: false
+  origin: originale
+- id: q-iii-004
+  topic: circuiti-primo-ordine
+  objectives:
+    - circuiti-primo-ordine.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: Nella risposta a $t>0$ con generatori spenti, $R_{eq}$ si calcola con un generatore di prova ai morsetti dell'elemento con memoria.
+    en: In the response for $t>0$ with the sources off, $R_{eq}$ is computed with a test source at the terminals of the memory element.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Gli indipendenti sono spenti, i controllati restano.
+        en: The independent sources are off, the controlled ones stay.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-iii-005
+  topic: circuiti-primo-ordine
+  objectives:
+    - circuiti-primo-ordine.2
+  difficulty: 3
+  kind: static
+  statement:
+    it: Se $\tau$ risulta negativa, la risposta libera è una esponenziale decrescente.
+    en: If $\tau$ turns out negative, the zero-input response is a decreasing exponential.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "$e^{-t/\\tau}$ con $\\tau<0$ cresce: instabilità."
+        en: "$e^{-t/\\tau}$ with $\\tau<0$ grows: instability."
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale

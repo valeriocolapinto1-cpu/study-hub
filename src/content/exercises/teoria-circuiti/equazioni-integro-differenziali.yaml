@@ -1,0 +1,60 @@
+- id: q-iv-025
+  topic: equazioni-integro-differenziali
+  objectives:
+    - equazioni-integro-differenziali.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: L'equazione $\dot y+2y=0$ con $y(0^-)=3$ ha trasformata $Y(s)=$
+    en: The equation $\dot y+2y=0$ with $y(0^-)=3$ has transform $Y(s)=$
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $sY-3+2Y=0$.
+        en: $sY-3+2Y=0$.
+  choices:
+    - text:
+        it: $\dfrac{2}{s+3}$
+        en: $\dfrac{2}{s+3}$
+      correct: false
+    - text:
+        it: $\dfrac{3s}{s+2}$
+        en: $\dfrac{3s}{s+2}$
+      correct: false
+    - text:
+        it: $\dfrac{3}{s-2}$
+        en: $\dfrac{3}{s-2}$
+      correct: false
+    - text:
+        it: $\dfrac{3}{s+2}$
+        en: $\dfrac{3}{s+2}$
+      correct: true
+  origin: originale
+- id: q-iv-026
+  topic: equazioni-integro-differenziali
+  objectives:
+    - equazioni-integro-differenziali.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Con il metodo di Laplace le condizioni iniziali compaiono direttamente nell'equazione trasformata.
+    en: With the Laplace method the initial conditions appear directly in the transformed equation.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Tramite i termini $x(0^-)$.
+        en: Through the terms $x(0^-)$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale

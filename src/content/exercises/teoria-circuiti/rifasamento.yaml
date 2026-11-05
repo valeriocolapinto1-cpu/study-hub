@@ -1,0 +1,154 @@
+- id: q-iii-033
+  topic: rifasamento
+  objectives:
+    - rifasamento.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Rifasare significa:'
+    en: 'Power-factor correction means:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Tipicamente con un condensatore in parallelo al carico induttivo.
+        en: Typically with a capacitor in parallel with the inductive load.
+  choices:
+    - text:
+        it: ridurre la potenza attiva
+        en: reducing the active power
+      correct: false
+    - text:
+        it: aumentare la tensione
+        en: raising the voltage
+      correct: false
+    - text:
+        it: ridurre la potenza reattiva scambiata con la rete, aumentando il fattore di potenza
+        en: reducing the reactive power exchanged with the grid, raising the power factor
+      correct: true
+    - text:
+        it: eliminare la frequenza
+        en: removing the frequency
+      correct: false
+  origin: originale
+- id: q-iii-034
+  topic: rifasamento
+  objectives:
+    - rifasamento.2
+  difficulty: 3
+  kind: static
+  statement:
+    it: 'Formula della capacità di rifasamento (valori efficaci):'
+    en: 'Formula of the correction capacitance (RMS values):'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $Q_C=P(\tan\varphi_1-\tan\varphi_2)=\omega CV^2$.
+        en: $Q_C=P(\tan\varphi_1-\tan\varphi_2)=\omega CV^2$.
+  choices:
+    - text:
+        it: $C=\dfrac{P}{\omega V^2}$
+        en: $C=\dfrac{P}{\omega V^2}$
+      correct: false
+    - text:
+        it: $C=\dfrac{P(\tan\varphi_1-\tan\varphi_2)}{\omega V^2}$
+        en: $C=\dfrac{P(\tan\varphi_1-\tan\varphi_2)}{\omega V^2}$
+      correct: true
+    - text:
+        it: $C=\dfrac{Q}{V}$
+        en: $C=\dfrac{Q}{V}$
+      correct: false
+    - text:
+        it: $C=\dfrac{\omega V^2}{P}$
+        en: $C=\dfrac{\omega V^2}{P}$
+      correct: false
+  origin: originale
+- id: q-iii-035
+  topic: rifasamento
+  objectives:
+    - rifasamento.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: "$P=100\\,\\mathrm W$, $V=10\\,\\mathrm V$, $\\omega=10$, $\\tan\\varphi_1=3/4$, rifasamento completo: $C=$"
+    en: "$P=100\\,\\mathrm W$, $V=10\\,\\mathrm V$, $\\omega=10$, $\\tan\\varphi_1=3/4$, full correction: $C=$"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $C=100\cdot0{,}75/(10\cdot100)=0{,}075$.
+        en: $C=100\cdot0.75/(10\cdot100)=0.075$.
+  choices:
+    - text:
+        it: $0{,}01\,\mathrm F$
+        en: $0.01\,\mathrm F$
+      correct: false
+    - text:
+        it: $0{,}75\,\mathrm F$
+        en: $0.75\,\mathrm F$
+      correct: false
+    - text:
+        it: $0{,}075\,\mathrm F$
+        en: $0.075\,\mathrm F$
+      correct: true
+    - text:
+        it: $7{,}5\,\mathrm F$
+        en: $7.5\,\mathrm F$
+      correct: false
+  origin: originale
+- id: q-iii-036
+  topic: rifasamento
+  objectives:
+    - rifasamento.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Il condensatore di rifasamento si collega in parallelo al carico.
+    en: The correction capacitor is connected in parallel with the load.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Così non cambia la tensione sul carico.
+        en: This way the load voltage does not change.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-iii-042
+  topic: rifasamento
+  objectives:
+    - rifasamento.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Per rifasare un carico induttivo si collega un induttore in parallelo.
+    en: To correct the power factor of an inductive load an inductor is connected in parallel.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Si usa un condensatore.
+        en: A capacitor is used.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale

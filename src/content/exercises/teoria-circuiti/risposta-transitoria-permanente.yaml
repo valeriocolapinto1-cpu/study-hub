@@ -1,0 +1,120 @@
+- id: q-v-020
+  topic: risposta-transitoria-permanente
+  objectives:
+    - risposta-transitoria-permanente.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'La risposta permanente a un ingresso sinusoidale (sistema stabile) è:'
+    en: 'The steady-state response to a sinusoidal input (stable system) is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Linearità e permanenza: stessa frequenza, modulo e fase cambiati da $H(j\\omega)$."
+        en: "Linearity and time invariance: same frequency, magnitude and phase changed by $H(j\\omega)$."
+  choices:
+    - text:
+        it: esponenziale
+        en: exponential
+      correct: false
+    - text:
+        it: costante
+        en: constant
+      correct: false
+    - text:
+        it: nulla
+        en: zero
+      correct: false
+    - text:
+        it: sinusoidale alla stessa frequenza
+        en: sinusoidal at the same frequency
+      correct: true
+  origin: originale
+- id: q-v-021
+  topic: risposta-transitoria-permanente
+  objectives:
+    - risposta-transitoria-permanente.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'La risposta transitoria si estingue se:'
+    en: 'The transient response dies out if:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: I modi naturali decadono.
+        en: The natural modes decay.
+  choices:
+    - text:
+        it: l'ingresso è nullo
+        en: the input is zero
+      correct: false
+    - text:
+        it: $\omega=0$
+        en: $\omega=0$
+      correct: false
+    - text:
+        it: $H(0)=0$
+        en: $H(0)=0$
+      correct: false
+    - text:
+        it: il sistema è asintoticamente stabile
+        en: the system is asymptotically stable
+      correct: true
+  origin: originale
+- id: q-v-022
+  topic: risposta-transitoria-permanente
+  objectives:
+    - risposta-transitoria-permanente.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: La risposta permanente a $x(t)=A\cos\omega_0t$ è $A|H(j\omega_0)|\cos(\omega_0t+\arg H(j\omega_0))$.
+    en: The steady-state response to $x(t)=A\cos\omega_0t$ is $A|H(j\omega_0)|\cos(\omega_0t+\arg H(j\omega_0))$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Il metodo dei fasori.
+        en: The phasor method.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-v-023
+  topic: risposta-transitoria-permanente
+  objectives:
+    - risposta-transitoria-permanente.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Con un polo in $s=-1/\tau$ il transitorio decade con costante di tempo $\tau$.
+    en: With a pole at $s=-1/\tau$ the transient decays with time constant $\tau$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $e^{-t/\tau}$.
+        en: $e^{-t/\tau}$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale

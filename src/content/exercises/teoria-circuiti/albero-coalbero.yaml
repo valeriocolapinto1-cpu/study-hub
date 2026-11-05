@@ -1,0 +1,214 @@
+- id: q-ii-005
+  topic: albero-coalbero
+  objectives:
+    - albero-coalbero.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Un albero di un grafo con $n$ nodi ha:'
+    en: 'A tree of a graph with $n$ nodes has:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Albero: connette tutti i nodi senza maglie, $n-1$ rami.'
+        en: 'Tree: it connects all the nodes without loops, $n-1$ branches.'
+  choices:
+    - text:
+        it: $n$ rami
+        en: $n$ branches
+      correct: false
+    - text:
+        it: $n-1$ rami
+        en: $n-1$ branches
+      correct: true
+    - text:
+        it: $b-n+1$ rami
+        en: $b-n+1$ branches
+      correct: false
+    - text:
+        it: $2n$ rami
+        en: $2n$ branches
+      correct: false
+  origin: originale
+- id: q-ii-006
+  topic: albero-coalbero
+  objectives:
+    - albero-coalbero.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Il coalbero di un grafo con $n$ nodi e $b$ rami ha:'
+    en: 'The cotree of a graph with $n$ nodes and $b$ branches has:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $b-(n-1)=b-n+1$.
+        en: $b-(n-1)=b-n+1$.
+  choices:
+    - text:
+        it: $b-n+1$ rami
+        en: $b-n+1$ branches
+      correct: true
+    - text:
+        it: $b$ rami
+        en: $b$ branches
+      correct: false
+    - text:
+        it: $n-1$ rami
+        en: $n-1$ branches
+      correct: false
+    - text:
+        it: $b-n$ rami
+        en: $b-n$ branches
+      correct: false
+  origin: originale
+- id: q-ii-007
+  topic: albero-coalbero
+  objectives:
+    - albero-coalbero.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Il grafo ha $n=5$ e $b=9$. Le maglie fondamentali sono:'
+    en: 'The graph has $n=5$ and $b=9$. The fundamental loops are:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $b-n+1=9-5+1=5$.
+        en: $b-n+1=9-5+1=5$.
+  choices:
+    - text:
+        it: $5$
+        en: $5$
+      correct: true
+    - text:
+        it: $9$
+        en: $9$
+      correct: false
+    - text:
+        it: $4$
+        en: $4$
+      correct: false
+    - text:
+        it: $14$
+        en: $14$
+      correct: false
+  origin: originale
+- id: q-ii-008
+  topic: albero-coalbero
+  objectives:
+    - albero-coalbero.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Il grafo ha $n=5$ e $b=9$. I tagli fondamentali sono:'
+    en: 'The graph has $n=5$ and $b=9$. The fundamental cut sets are:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $n-1=4$.
+        en: $n-1=4$.
+  choices:
+    - text:
+        it: $5$
+        en: $5$
+      correct: false
+    - text:
+        it: $9$
+        en: $9$
+      correct: false
+    - text:
+        it: $8$
+        en: $8$
+      correct: false
+    - text:
+        it: $4$
+        en: $4$
+      correct: true
+  origin: originale
+- id: q-ii-009
+  topic: albero-coalbero
+  objectives:
+    - albero-coalbero.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Aggiungendo all'albero un ramo di coalbero si chiude una e una sola maglia.
+    en: Adding a cotree branch to the tree closes one and only one loop.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: È la maglia fondamentale di quel ramo.
+        en: It is the fundamental loop of that branch.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-ii-010
+  topic: albero-coalbero
+  objectives:
+    - albero-coalbero.2
+  difficulty: 3
+  kind: static
+  statement:
+    it: L'albero di un grafo è unico.
+    en: The tree of a graph is unique.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: In generale ci sono molti alberi; le maglie e i tagli fondamentali dipendono dalla scelta.
+        en: In general there are many trees; the fundamental loops and cut sets depend on the choice.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-ii-041
+  topic: albero-coalbero
+  objectives:
+    - albero-coalbero.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Un albero di un grafo con $n$ nodi ha $b-n+1$ rami.
+    en: A tree of a graph with $n$ nodes has $b-n+1$ branches.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Ha $n-1$ rami; $b-n+1$ sono quelli del coalbero.
+        en: It has $n-1$ branches; $b-n+1$ are those of the cotree.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale

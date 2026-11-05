@@ -1,0 +1,274 @@
+- id: q-i-033
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Il nullatore impone:'
+    en: 'The nullator imposes:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Nullatore: tensione e corrente entrambe nulle.'
+        en: 'Nullator: voltage and current both zero.'
+  choices:
+    - text:
+        it: $i=0$, $v$ qualsiasi
+        en: $i=0$, any $v$
+      correct: false
+    - text:
+        it: $v=0$, $i$ qualsiasi
+        en: $v=0$, any $i$
+      correct: false
+    - text:
+        it: $v=i$
+        en: $v=i$
+      correct: false
+    - text:
+        it: $v=0$ e $i=0$
+        en: $v=0$ and $i=0$
+      correct: true
+  origin: originale
+- id: q-i-034
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Il noratore è un bipolo con:'
+    en: 'The norator is a one-port with:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Noratore: $v$ e $i$ libere, determinate dal resto del circuito.'
+        en: 'Norator: $v$ and $i$ are free, determined by the rest of the circuit.'
+  choices:
+    - text:
+        it: solo tensione nulla
+        en: only zero voltage
+      correct: false
+    - text:
+        it: tensione e corrente qualsiasi
+        en: arbitrary voltage and current
+      correct: true
+    - text:
+        it: solo corrente nulla
+        en: only zero current
+      correct: false
+    - text:
+        it: tensione e corrente nulle
+        en: zero voltage and current
+      correct: false
+  origin: originale
+- id: q-i-035
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Op-amp ideale in configurazione invertente con $R_1=2\\,\\Omega$, $R_2=8\\,\\Omega$ e $V_g=1\\,\\mathrm V$: $v_o=$"
+    en: "Ideal op-amp in the inverting configuration with $R_1=2\\,\\Omega$, $R_2=8\\,\\Omega$ and $V_g=1\\,\\mathrm V$: $v_o=$"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $v_o=-R_2/R_1\cdot V_g=-4\,\mathrm V$.
+        en: $v_o=-R_2/R_1\cdot V_g=-4\,\mathrm V$.
+  choices:
+    - text:
+        it: $4\,\mathrm V$
+        en: $4\,\mathrm V$
+      correct: false
+    - text:
+        it: $-0{,}25\,\mathrm V$
+        en: $-0.25\,\mathrm V$
+      correct: false
+    - text:
+        it: $5\,\mathrm V$
+        en: $5\,\mathrm V$
+      correct: false
+    - text:
+        it: $-4\,\mathrm V$
+        en: $-4\,\mathrm V$
+      correct: true
+  origin: originale
+- id: q-i-036
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Op-amp non invertente con $R_1=1\\,\\Omega$ (verso massa) e $R_2=3\\,\\Omega$ (retroazione): il guadagno è"
+    en: "Non-inverting op-amp with $R_1=1\\,\\Omega$ (to ground) and $R_2=3\\,\\Omega$ (feedback): the gain is"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $1+R_2/R_1=4$.
+        en: $1+R_2/R_1=4$.
+  choices:
+    - text:
+        it: $1/4$
+        en: $1/4$
+      correct: false
+    - text:
+        it: $-3$
+        en: $-3$
+      correct: false
+    - text:
+        it: $4$
+        en: $4$
+      correct: true
+    - text:
+        it: $3$
+        en: $3$
+      correct: false
+  origin: originale
+- id: q-i-037
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Nel nullore la potenza erogata dal generatore pilota (di corrente) è nulla perché ai suoi capi la tensione è nulla.
+    en: In the nullor the power delivered by the driving (current) source is zero because the voltage across it is zero.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Nel nullatore $v=0$ e $i=0$: nessuna potenza scambiata.'
+        en: 'In the nullator $v=0$ and $i=0$: no power is exchanged.'
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-i-038
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.2
+  difficulty: 3
+  kind: static
+  statement:
+    it: "Il modello lineare dell'amplificatore operazionale reale ha tre regioni di funzionamento: lineare e due di saturazione."
+    en: 'The linear model of the real operational amplifier has three operating regions: linear and two saturation regions.'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Saturazione a $\pm V_{cc}$.
+        en: Saturation at $\pm V_{cc}$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-i-039
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: L'inseguitore di tensione ha guadagno ___.
+    en: The voltage follower has a gain of ___.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $v_o=V_g$, con impedenza d'ingresso teoricamente infinita.
+        en: $v_o=V_g$, with a theoretically infinite input impedance.
+  choices:
+    - text:
+        it: '0'
+        en: '0'
+      correct: false
+    - text:
+        it: '1'
+        en: '1'
+      correct: true
+    - text:
+        it: $-1$
+        en: $-1$
+      correct: false
+    - text:
+        it: $\infty$
+        en: $\infty$
+      correct: false
+  origin: originale
+- id: q-i-044
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Nel nullatore la corrente può essere qualsiasi purché la tensione sia nulla.
+    en: In the nullator the current can be anything as long as the voltage is zero.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Nel nullatore sia $v$ sia $i$ sono nulle.
+        en: In the nullator both $v$ and $i$ are zero.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-i-045
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Un amplificatore operazionale ideale ha resistenza di uscita infinita.
+    en: An ideal operational amplifier has infinite output resistance.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Ideale: $R_o=0$, $R_i=\\infty$, $A\\to\\infty$."
+        en: "Ideal: $R_o=0$, $R_i=\\infty$, $A\\to\\infty$."
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale

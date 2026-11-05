@@ -1,0 +1,214 @@
+- id: q-iii-006
+  topic: fasori
+  objectives:
+    - fasori.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Al segnale $v(t)=V_m\\cos(\\omega t+\\varphi)$ corrisponde il fasore:"
+    en: "The signal $v(t)=V_m\\cos(\\omega t+\\varphi)$ corresponds to the phasor:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\dot V=V_me^{j\varphi}$ con $v(t)=\mathrm{Re}\{\dot Ve^{j\omega t}\}$.
+        en: $\dot V=V_me^{j\varphi}$ with $v(t)=\mathrm{Re}\{\dot Ve^{j\omega t}\}$.
+  choices:
+    - text:
+        it: $V_me^{-j\varphi}$
+        en: $V_me^{-j\varphi}$
+      correct: false
+    - text:
+        it: $V_m\cos\varphi$
+        en: $V_m\cos\varphi$
+      correct: false
+    - text:
+        it: $V_me^{j\varphi}$
+        en: $V_me^{j\varphi}$
+      correct: true
+    - text:
+        it: $V_m\sin\varphi$
+        en: $V_m\sin\varphi$
+      correct: false
+  origin: originale
+- id: q-iii-007
+  topic: fasori
+  objectives:
+    - fasori.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Il fasore di $5\\sin(\\omega t)$ (nella convenzione cos) è:"
+    en: "The phasor of $5\\sin(\\omega t)$ (cosine convention) is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\sin\omega t=\cos(\omega t-90^\circ)$, fasore $5e^{-j\pi/2}=-5j$.
+        en: $\sin\omega t=\cos(\omega t-90^\circ)$, phasor $5e^{-j\pi/2}=-5j$.
+  choices:
+    - text:
+        it: $5j$
+        en: $5j$
+      correct: false
+    - text:
+        it: $-5$
+        en: $-5$
+      correct: false
+    - text:
+        it: $-5j$
+        en: $-5j$
+      correct: true
+    - text:
+        it: $5$
+        en: $5$
+      correct: false
+  origin: originale
+- id: q-iii-008
+  topic: fasori
+  objectives:
+    - fasori.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'La derivata nel tempo corrisponde, nel dominio dei fasori, alla moltiplicazione per:'
+    en: 'In the phasor domain, the time derivative corresponds to multiplication by:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\frac{d}{dt}\to j\omega$.
+        en: $\frac{d}{dt}\to j\omega$.
+  choices:
+    - text:
+        it: $\omega$
+        en: $\omega$
+      correct: false
+    - text:
+        it: $j\omega$
+        en: $j\omega$
+      correct: true
+    - text:
+        it: $1/(j\omega)$
+        en: $1/(j\omega)$
+      correct: false
+    - text:
+        it: $-\omega$
+        en: $-\omega$
+      correct: false
+  origin: originale
+- id: q-iii-009
+  topic: fasori
+  objectives:
+    - fasori.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Il fasore dipende dal tempo.
+    en: The phasor depends on time.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: È un numero complesso costante; la dipendenza da $t$ è nel fattore $e^{j\omega t}$.
+        en: It is a constant complex number; the dependence on $t$ lies in the factor $e^{j\omega t}$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-iii-010
+  topic: fasori
+  objectives:
+    - fasori.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: A $\omega_0=1$ e $\dot V=\tfrac12-\tfrac12j$ corrisponde $v(t)=\tfrac12\cos t+\tfrac12\sin t$.
+    en: At $\omega_0=1$ the phasor $\dot V=\tfrac12-\tfrac12j$ corresponds to $v(t)=\tfrac12\cos t+\tfrac12\sin t$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\mathrm{Re}\{(a-jb)e^{jt}\}=a\cos t+b\sin t$.
+        en: $\mathrm{Re}\{(a-jb)e^{jt}\}=a\cos t+b\sin t$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-iii-037
+  topic: fasori
+  objectives:
+    - fasori.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: "Il circuito RC serie ($R=C=1$) con $v_g=\\cos t$: l'espressione di $v_C$ in regime è:"
+    en: "Series RC circuit ($R=C=1$) with $v_g=\\cos t$: the steady-state expression of $v_C$ is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\dot V_C=\dfrac{1}{1+j}=\tfrac12-\tfrac12j$.
+        en: $\dot V_C=\dfrac{1}{1+j}=\tfrac12-\tfrac12j$.
+  choices:
+    - text:
+        it: $\sin t$
+        en: $\sin t$
+      correct: false
+    - text:
+        it: $\tfrac12\cos t-\tfrac12\sin t$
+        en: $\tfrac12\cos t-\tfrac12\sin t$
+      correct: false
+    - text:
+        it: $\cos t$
+        en: $\cos t$
+      correct: false
+    - text:
+        it: $\tfrac12\cos t+\tfrac12\sin t$
+        en: $\tfrac12\cos t+\tfrac12\sin t$
+      correct: true
+  origin: originale
+- id: q-iii-038
+  topic: fasori
+  objectives:
+    - fasori.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Il fasore di una sinusoide dipende dal tempo come $e^{j\omega t}$.
+    en: The phasor of a sinusoid depends on time as $e^{j\omega t}$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Il fasore è costante: $e^{j\\omega t}$ si sottintende."
+        en: "The phasor is constant: $e^{j\\omega t}$ is implied."
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale

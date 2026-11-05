@@ -1,0 +1,68 @@
+- id: q-vi-016
+  topic: reti-n-porte
+  objectives:
+    - reti-n-porte.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un doppio bipolo (2 porte) è caratterizzato, nei casi lineari, da:'
+    en: 'In the linear case, a two-port (2 ports) is characterised by:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Due equazioni lineari tra le quattro variabili.
+        en: Two linear equations among the four variables.
+  choices:
+    - text:
+        it: $1$ relazione
+        en: $1$ relation
+      correct: false
+    - text:
+        it: $6$ relazioni
+        en: $6$ relations
+      correct: false
+    - text:
+        it: $2$ relazioni tra $v_1,v_2,i_1,i_2$
+        en: $2$ relations among $v_1,v_2,i_1,i_2$
+      correct: true
+    - text:
+        it: $4$ relazioni
+        en: $4$ relations
+      correct: false
+  origin: originale
+- id: q-vi-038
+  topic: reti-n-porte
+  objectives:
+    - reti-n-porte.2
+  difficulty: 3
+  kind: static
+  statement:
+    it: 'Una rete a $N$ porte lineare è descritta da:'
+    en: 'A linear $N$-port network is described by:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Una relazione per porta.
+        en: One relation per port.
+  choices:
+    - text:
+        it: $2N$ relazioni
+        en: $2N$ relations
+      correct: false
+    - text:
+        it: $N^2$ relazioni
+        en: $N^2$ relations
+      correct: false
+    - text:
+        it: una relazione
+        en: a single relation
+      correct: false
+    - text:
+        it: $N$ relazioni lineari tra le $2N$ variabili di porta
+        en: $N$ linear relations among the $2N$ port variables
+      correct: true
+  origin: originale

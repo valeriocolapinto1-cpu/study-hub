@@ -1,0 +1,334 @@
+- id: q-vi-004
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: "L'equivalente di Thevenin è formato da:"
+    en: 'The Thévenin equivalent is made of:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $V_{th}$ in serie a $Z_{th}$.
+        en: $V_{th}$ in series with $Z_{th}$.
+  choices:
+    - text:
+        it: due generatori
+        en: two sources
+      correct: false
+    - text:
+        it: solo un resistore
+        en: a resistor only
+      correct: false
+    - text:
+        it: generatore di tensione in serie a un'impedenza
+        en: a voltage source in series with an impedance
+      correct: true
+    - text:
+        it: generatore di corrente in parallelo a un'impedenza
+        en: a current source in parallel with an impedance
+      correct: false
+  origin: originale
+- id: q-vi-005
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'La tensione di Thevenin è:'
+    en: 'The Thévenin voltage is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $V_{th}=v_{oc}$.
+        en: $V_{th}=v_{oc}$.
+  choices:
+    - text:
+        it: la tensione a vuoto della porta
+        en: the open-circuit voltage of the port
+      correct: true
+    - text:
+        it: la corrente di cortocircuito
+        en: the short-circuit current
+      correct: false
+    - text:
+        it: nulla
+        en: zero
+      correct: false
+    - text:
+        it: la tensione a carico
+        en: the loaded voltage
+      correct: false
+  origin: originale
+- id: q-vi-006
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Per trovare $R_{th}$ con un generatore di prova:'
+    en: 'To find $R_{th}$ with a test source:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: I controllati restano.
+        en: The controlled sources stay.
+  choices:
+    - text:
+        it: si apre la porta con gli indipendenti accesi
+        en: the port is opened with the independent sources on
+      correct: false
+    - text:
+        it: si spengono anche i controllati
+        en: the controlled sources are switched off as well
+      correct: false
+    - text:
+        it: si spengono gli indipendenti e si calcola $V/I$
+        en: the independent sources are switched off and $V/I$ is computed
+      correct: true
+    - text:
+        it: si cortocircuita la porta
+        en: the port is short-circuited
+      correct: false
+  origin: originale
+- id: q-vi-007
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "$12\\,\\mathrm V$ in serie a $2\\,\\Omega$ con $4\\,\\Omega$ verso massa: la porta ai capi di $4\\,\\Omega$ ha $V_{th}$ e $R_{th}$:"
+    en: "$12\\,\\mathrm V$ in series with $2\\,\\Omega$ and $4\\,\\Omega$ to ground: the port across $4\\,\\Omega$ has $V_{th}$ and $R_{th}$:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Partitore $12\cdot4/6=8$; $R_{th}=2\parallel4=4/3$.
+        en: Divider $12\cdot4/6=8$; $R_{th}=2\parallel4=4/3$.
+  choices:
+    - text:
+        it: $12\,\mathrm V$ e $2\,\Omega$
+        en: $12\,\mathrm V$ and $2\,\Omega$
+      correct: false
+    - text:
+        it: $8\,\mathrm V$ e $4/3\,\Omega$
+        en: $8\,\mathrm V$ and $4/3\,\Omega$
+      correct: true
+    - text:
+        it: $8\,\mathrm V$ e $6\,\Omega$
+        en: $8\,\mathrm V$ and $6\,\Omega$
+      correct: false
+    - text:
+        it: $4\,\mathrm V$ e $6\,\Omega$
+        en: $4\,\mathrm V$ and $6\,\Omega$
+      correct: false
+  origin: originale
+- id: q-vi-008
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Il teorema di Thevenin vale per circuiti lineari.
+    en: Thévenin's theorem holds for linear circuits.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Serve la linearità del bipolo.
+        en: The one-port must be linear.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-vi-009
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Il teorema di Thevenin non si applica se il bipolo contiene un elemento non lineare.
+    en: Thévenin's theorem does not apply if the one-port contains a nonlinear element.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Non esiste l'equivalente lineare.
+        en: There is no linear equivalent.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-vi-010
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.3
+  difficulty: 3
+  kind: static
+  statement:
+    it: Il teorema di Thevenin non si applica se il carico contiene generatori controllati da grandezze interne al bipolo (accoppiamento tra bipolo e carico).
+    en: Thévenin's theorem does not apply if the load contains sources controlled by quantities inside the one-port (coupling between one-port and load).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Il bipolo e il carico non devono avere accoppiamenti (controlli) tra loro.
+        en: The one-port and the load must not be coupled (controls) with each other.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-vi-011
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Un bipolo può non avere equivalente di Thevenin ma avere quello di Norton.
+    en: A one-port may have no Thévenin equivalent but have a Norton one.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Es.: il generatore ideale di corrente (Thevenin richiederebbe $Z_{th}=\\infty$)."
+        en: E.g. the ideal current source (Thévenin would require $Z_{th}=\infty$).
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-vi-039
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: 'Il teorema di Thevenin si dimostra con:'
+    en: "Thévenin's theorem is proved with:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Si sostituisce il carico con un generatore di tensione e si sovrappongono gli effetti.
+        en: The load is replaced by a source and the effects are superposed.
+  choices:
+    - text:
+        it: il teorema di Tellegen
+        en: Tellegen's theorem
+      correct: false
+    - text:
+        it: il teorema di sostituzione e la sovrapposizione degli effetti
+        en: the substitution theorem and superposition
+      correct: true
+    - text:
+        it: la trasformata di Laplace
+        en: the Laplace transform
+      correct: false
+    - text:
+        it: i fasori
+        en: phasors
+      correct: false
+  origin: originale
+- id: q-vi-042
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: Per calcolare $R_{th}$ si lasciano accesi tutti i generatori indipendenti.
+    en: To compute $R_{th}$ all the independent sources are left on.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Si spengono gli indipendenti.
+        en: The independent sources are switched off.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-vi-046
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: $V_{th}$ è la tensione ___ della porta.
+    en: $V_{th}$ is the ___ voltage of the port.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Porta aperta.
+        en: Port open.
+  choices:
+    - text:
+        it: a carico
+        en: loaded
+      correct: false
+    - text:
+        it: media
+        en: average
+      correct: false
+    - text:
+        it: a vuoto
+        en: open-circuit
+      correct: true
+    - text:
+        it: in cortocircuito
+        en: short-circuit
+      correct: false
+  origin: originale

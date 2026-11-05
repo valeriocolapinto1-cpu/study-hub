@@ -1,0 +1,120 @@
+- id: q-i-030
+  topic: trasformatore-ideale
+  objectives:
+    - trasformatore-ideale.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Nel trasformatore ideale con $v_1=nv_2$ e convenzione degli utilizzatori su entrambe le porte, la corrente $i_1$ vale:'
+    en: 'In the ideal transformer with $v_1=nv_2$ and the passive convention on both ports, the current $i_1$ equals:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: '$i_1=-i_2/n$: la potenza assorbita totale è nulla.'
+        en: '$i_1=-i_2/n$: the total absorbed power is zero.'
+  choices:
+    - text:
+        it: $i_2/n$
+        en: $i_2/n$
+      correct: false
+    - text:
+        it: $-i_2/n$
+        en: $-i_2/n$
+      correct: true
+    - text:
+        it: $n\,i_2$
+        en: $n\,i_2$
+      correct: false
+    - text:
+        it: $-n\,i_2$
+        en: $-n\,i_2$
+      correct: false
+  origin: originale
+- id: q-i-031
+  topic: trasformatore-ideale
+  objectives:
+    - trasformatore-ideale.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Con $n=2$, un carico $Z_L=3\\,\\Omega$ alla porta 2 è visto dalla porta 1 come:"
+    en: "With $n=2$, a load $Z_L=3\\,\\Omega$ at port 2 is seen from port 1 as:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $Z_{in}=n^2Z_L=4\cdot3=12\,\Omega$.
+        en: $Z_{in}=n^2Z_L=4\cdot3=12\,\Omega$.
+  choices:
+    - text:
+        it: $12\,\Omega$
+        en: $12\,\Omega$
+      correct: true
+    - text:
+        it: $6\,\Omega$
+        en: $6\,\Omega$
+      correct: false
+    - text:
+        it: $1{,}5\,\Omega$
+        en: $1.5\,\Omega$
+      correct: false
+    - text:
+        it: $0{,}75\,\Omega$
+        en: $0.75\,\Omega$
+      correct: false
+  origin: originale
+- id: q-i-032
+  topic: trasformatore-ideale
+  objectives:
+    - trasformatore-ideale.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Il trasformatore ideale funziona anche in continua.
+    en: The ideal transformer also works in DC.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: È un doppio bipolo algebrico (senza memoria), non un induttore.
+        en: It is an algebraic (memoryless) two-port, not an inductor.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-i-043
+  topic: trasformatore-ideale
+  objectives:
+    - trasformatore-ideale.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Il trasformatore ideale con rapporto $n$ riporta un'impedenza moltiplicandola per $n$ (anziché $n^2$).
+    en: The ideal transformer with ratio $n$ reflects an impedance multiplying it by $n$ (instead of $n^2$).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $Z_{in}=n^2Z_L$.
+        en: $Z_{in}=n^2Z_L$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale

@@ -1,0 +1,102 @@
+- id: q-iv-027
+  topic: circuiti-dominio-laplace
+  objectives:
+    - circuiti-dominio-laplace.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Nel dominio di Laplace l'induttore ($i_L(0^-)=0$) ha impedenza:"
+    en: 'In the Laplace domain the inductor ($i_L(0^-)=0$) has impedance:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $Z_L=sL$.
+        en: $Z_L=sL$.
+  choices:
+    - text:
+        it: $L$
+        en: $L$
+      correct: false
+    - text:
+        it: $1/(sL)$
+        en: $1/(sL)$
+      correct: false
+    - text:
+        it: $s/L$
+        en: $s/L$
+      correct: false
+    - text:
+        it: $sL$
+        en: $sL$
+      correct: true
+  origin: originale
+- id: q-iv-028
+  topic: circuiti-dominio-laplace
+  objectives:
+    - circuiti-dominio-laplace.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Nel dominio di Laplace il condensatore ($v_C(0^-)=0$) ha impedenza:'
+    en: 'In the Laplace domain the capacitor ($v_C(0^-)=0$) has impedance:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $Z_C=1/(sC)$.
+        en: $Z_C=1/(sC)$.
+  choices:
+    - text:
+        it: $s/C$
+        en: $s/C$
+      correct: false
+    - text:
+        it: $sC$
+        en: $sC$
+      correct: false
+    - text:
+        it: $C/s$
+        en: $C/s$
+      correct: false
+    - text:
+        it: $1/(sC)$
+        en: $1/(sC)$
+      correct: true
+  origin: originale
+- id: q-iv-033
+  topic: circuiti-dominio-laplace
+  objectives:
+    - circuiti-dominio-laplace.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "$R=2\\,\\Omega$, $C=1\\,\\mathrm F$, $v_C(0^-)=4\\,\\mathrm V$, generatori spenti: $V_C(s)=$"
+    en: "$R=2\\,\\Omega$, $C=1\\,\\mathrm F$, $v_C(0^-)=4\\,\\mathrm V$, sources off: $V_C(s)=$"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\tau=2$, polo in $-1/2$, $K=4$.
+        en: $\tau=2$, pole at $-1/2$, $K=4$.
+  choices:
+    - text:
+        it: $\dfrac{4}{s+1/2}$
+        en: $\dfrac{4}{s+1/2}$
+      correct: true
+    - text:
+        it: $\dfrac{4}{s+2}$
+        en: $\dfrac{4}{s+2}$
+      correct: false
+    - text:
+        it: $\dfrac{4s}{s+1/2}$
+        en: $\dfrac{4s}{s+1/2}$
+      correct: false
+    - text:
+        it: $\dfrac{2}{s+4}$
+        en: $\dfrac{2}{s+4}$
+      correct: false
+  origin: originale

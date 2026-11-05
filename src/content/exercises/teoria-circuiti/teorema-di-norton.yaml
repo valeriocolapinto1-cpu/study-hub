@@ -1,0 +1,188 @@
+- id: q-vi-012
+  topic: teorema-di-norton
+  objectives:
+    - teorema-di-norton.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: "L'equivalente di Norton è:"
+    en: 'The Norton equivalent is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $I_N$ in parallelo a $Z_N$.
+        en: $I_N$ in parallel with $Z_N$.
+  choices:
+    - text:
+        it: generatore di tensione in serie a un'impedenza
+        en: a voltage source in series with an impedance
+      correct: false
+    - text:
+        it: generatore di corrente in parallelo a un'impedenza
+        en: a current source in parallel with an impedance
+      correct: true
+    - text:
+        it: un solo generatore
+        en: a single source
+      correct: false
+    - text:
+        it: un trasformatore
+        en: a transformer
+      correct: false
+  origin: originale
+- id: q-vi-013
+  topic: teorema-di-norton
+  objectives:
+    - teorema-di-norton.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: '$I_N$ si calcola come:'
+    en: '$I_N$ is computed as:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $I_N=i_{sc}=V_{th}/Z_{th}$.
+        en: $I_N=i_{sc}=V_{th}/Z_{th}$.
+  choices:
+    - text:
+        it: $Z_{th}/V_{th}$
+        en: $Z_{th}/V_{th}$
+      correct: false
+    - text:
+        it: $V_{th}\cdot Z_{th}$
+        en: $V_{th}\cdot Z_{th}$
+      correct: false
+    - text:
+        it: tensione a vuoto
+        en: the open-circuit voltage
+      correct: false
+    - text:
+        it: corrente di corto circuito della porta
+        en: the short-circuit current of the port
+      correct: true
+  origin: originale
+- id: q-vi-014
+  topic: teorema-di-norton
+  objectives:
+    - teorema-di-norton.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "$V_{th}=8\\,\\mathrm V$, $R_{th}=4\\,\\Omega$: $I_N=$"
+    en: "$V_{th}=8\\,\\mathrm V$, $R_{th}=4\\,\\Omega$: $I_N=$"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $8/4=2$.
+        en: $8/4=2$.
+  choices:
+    - text:
+        it: $32\,\mathrm A$
+        en: $32\,\mathrm A$
+      correct: false
+    - text:
+        it: $8\,\mathrm A$
+        en: $8\,\mathrm A$
+      correct: false
+    - text:
+        it: $2\,\mathrm A$
+        en: $2\,\mathrm A$
+      correct: true
+    - text:
+        it: $0{,}5\,\mathrm A$
+        en: $0.5\,\mathrm A$
+      correct: false
+  origin: originale
+- id: q-vi-015
+  topic: teorema-di-norton
+  objectives:
+    - teorema-di-norton.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: $Z_N=Z_{th}$.
+    en: $Z_N=Z_{th}$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Stessa impedenza equivalente.
+        en: The same equivalent impedance.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-vi-040
+  topic: teorema-di-norton
+  objectives:
+    - teorema-di-norton.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Il teorema di Norton si dimostra dualmente a quello di Thevenin, sostituendo il carico con un generatore di corrente.
+    en: Norton's theorem is proved dually to Thévenin's, replacing the load with a current source.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Duale.
+        en: Dual.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-vi-047
+  topic: teorema-di-norton
+  objectives:
+    - teorema-di-norton.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: $I_N=V_{th}/\square$.
+    en: $I_N=V_{th}/\square$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Trasformazione di generatori.
+        en: Source transformation.
+  choices:
+    - text:
+        it: $Z_L$
+        en: $Z_L$
+      correct: false
+    - text:
+        it: $Z_{th}$
+        en: $Z_{th}$
+      correct: true
+    - text:
+        it: $V_{th}$
+        en: $V_{th}$
+      correct: false
+    - text:
+        it: $Z_{th}^2$
+        en: $Z_{th}^2$
+      correct: false
+  origin: originale

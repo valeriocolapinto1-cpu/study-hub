@@ -1,0 +1,332 @@
+- id: q-iv-008
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: $\mathcal L\{u_{-1}(t)\}=$
+    en: $\mathcal L\{u_{-1}(t)\}=$
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Gradino: $1/s$.'
+        en: 'Step: $1/s$.'
+  choices:
+    - text:
+        it: $s$
+        en: $s$
+      correct: false
+    - text:
+        it: $1$
+        en: $1$
+      correct: false
+    - text:
+        it: $1/s^2$
+        en: $1/s^2$
+      correct: false
+    - text:
+        it: $1/s$
+        en: $1/s$
+      correct: true
+  origin: originale
+- id: q-iv-009
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: $\mathcal L\{e^{-at}u_{-1}(t)\}=$
+    en: $\mathcal L\{e^{-at}u_{-1}(t)\}=$
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $1/(s+a)$.
+        en: $1/(s+a)$.
+  choices:
+    - text:
+        it: $\dfrac{s}{s+a}$
+        en: $\dfrac{s}{s+a}$
+      correct: false
+    - text:
+        it: $\dfrac{a}{s}$
+        en: $\dfrac{a}{s}$
+      correct: false
+    - text:
+        it: $\dfrac{1}{s-a}$
+        en: $\dfrac{1}{s-a}$
+      correct: false
+    - text:
+        it: $\dfrac{1}{s+a}$
+        en: $\dfrac{1}{s+a}$
+      correct: true
+  origin: originale
+- id: q-iv-010
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: $\mathcal L\{\delta(t)\}=$
+    en: $\mathcal L\{\delta(t)\}=$
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: L'impulso ha trasformata $1$.
+        en: The impulse has transform $1$.
+  choices:
+    - text:
+        it: $1/s$
+        en: $1/s$
+      correct: false
+    - text:
+        it: $0$
+        en: $0$
+      correct: false
+    - text:
+        it: $1$
+        en: $1$
+      correct: true
+    - text:
+        it: $s$
+        en: $s$
+      correct: false
+  origin: originale
+- id: q-iv-011
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: $\mathcal L\{t\,u_{-1}(t)\}=$
+    en: $\mathcal L\{t\,u_{-1}(t)\}=$
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Rampa: $1/s^2$.'
+        en: 'Ramp: $1/s^2$.'
+  choices:
+    - text:
+        it: $1/s$
+        en: $1/s$
+      correct: false
+    - text:
+        it: $1/s^2$
+        en: $1/s^2$
+      correct: true
+    - text:
+        it: $s^2$
+        en: $s^2$
+      correct: false
+    - text:
+        it: $2/s^3$
+        en: $2/s^3$
+      correct: false
+  origin: originale
+- id: q-iv-012
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: $\mathcal L\{\cos(\omega t)u_{-1}(t)\}=$
+    en: $\mathcal L\{\cos(\omega t)u_{-1}(t)\}=$
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Coseno: $s/(s^2+\\omega^2)$."
+        en: "Cosine: $s/(s^2+\\omega^2)$."
+  choices:
+    - text:
+        it: $\dfrac{\omega}{s^2+\omega^2}$
+        en: $\dfrac{\omega}{s^2+\omega^2}$
+      correct: false
+    - text:
+        it: $\dfrac{1}{s+\omega}$
+        en: $\dfrac{1}{s+\omega}$
+      correct: false
+    - text:
+        it: $\dfrac{s}{s^2+\omega^2}$
+        en: $\dfrac{s}{s^2+\omega^2}$
+      correct: true
+    - text:
+        it: $\dfrac{s}{s^2-\omega^2}$
+        en: $\dfrac{s}{s^2-\omega^2}$
+      correct: false
+  origin: originale
+- id: q-iv-013
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: $\mathcal L\{\sin(\omega t)u_{-1}(t)\}=$
+    en: $\mathcal L\{\sin(\omega t)u_{-1}(t)\}=$
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Seno: $\\omega/(s^2+\\omega^2)$."
+        en: "Sine: $\\omega/(s^2+\\omega^2)$."
+  choices:
+    - text:
+        it: $\dfrac{\omega}{s^2-\omega^2}$
+        en: $\dfrac{\omega}{s^2-\omega^2}$
+      correct: false
+    - text:
+        it: $\dfrac{1}{s^2+\omega^2}$
+        en: $\dfrac{1}{s^2+\omega^2}$
+      correct: false
+    - text:
+        it: $\dfrac{s}{s^2+\omega^2}$
+        en: $\dfrac{s}{s^2+\omega^2}$
+      correct: false
+    - text:
+        it: $\dfrac{\omega}{s^2+\omega^2}$
+        en: $\dfrac{\omega}{s^2+\omega^2}$
+      correct: true
+  origin: originale
+- id: q-iv-014
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: '$x(t)=3$ per $0<t<2$, zero altrove: $X(s)=$'
+    en: '$x(t)=3$ for $0<t<2$, zero elsewhere: $X(s)=$'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $3[u_{-1}(t)-u_{-1}(t-2)]$.
+        en: $3[u_{-1}(t)-u_{-1}(t-2)]$.
+  choices:
+    - text:
+        it: $3(1-e^{-2s})$
+        en: $3(1-e^{-2s})$
+      correct: false
+    - text:
+        it: $\dfrac{3}{s}$
+        en: $\dfrac{3}{s}$
+      correct: false
+    - text:
+        it: $\dfrac{3e^{-2s}}{s}$
+        en: $\dfrac{3e^{-2s}}{s}$
+      correct: false
+    - text:
+        it: $\dfrac{3(1-e^{-2s})}{s}$
+        en: $\dfrac{3(1-e^{-2s})}{s}$
+      correct: true
+  origin: originale
+- id: q-iv-015
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: $\mathcal L\{e^{-at}\cos(\omega t)\}$ si ottiene da $\mathcal L\{\cos\omega t\}$ sostituendo $s$ con $\square$.
+    en: $\mathcal L\{e^{-at}\cos(\omega t)\}$ is obtained from $\mathcal L\{\cos\omega t\}$ by replacing $s$ with $\square$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Traslazione in frequenza.
+        en: Frequency shift.
+  choices:
+    - text:
+        it: $s-a$
+        en: $s-a$
+      correct: false
+    - text:
+        it: $s+a$
+        en: $s+a$
+      correct: true
+    - text:
+        it: $as$
+        en: $as$
+      correct: false
+    - text:
+        it: $s/a$
+        en: $s/a$
+      correct: false
+  origin: originale
+- id: q-iv-035
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: La trasformata di Laplace del gradino unitario è $1/s^2$.
+    en: The Laplace transform of the unit step is $1/s^2$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: È $1/s$; $1/s^2$ è la rampa.
+        en: It is $1/s$; $1/s^2$ is the ramp.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-iv-038
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: $\mathcal L\{e^{-at}\}=\dfrac{1}{s+\square}$.
+    en: $\mathcal L\{e^{-at}\}=\dfrac{1}{s+\square}$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Esponenziale decrescente.
+        en: Decreasing exponential.
+  choices:
+    - text:
+        it: $a^2$
+        en: $a^2$
+      correct: false
+    - text:
+        it: $1/a$
+        en: $1/a$
+      correct: false
+    - text:
+        it: $a$
+        en: $a$
+      correct: true
+    - text:
+        it: $-a$
+        en: $-a$
+      correct: false
+  origin: originale

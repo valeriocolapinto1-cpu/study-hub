@@ -1,0 +1,128 @@
+- id: q-ii-017
+  topic: tensioni-correnti-indipendenti
+  objectives:
+    - tensioni-correnti-indipendenti.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Quante tensioni di ramo indipendenti ci sono in un circuito con $n$ nodi e $b$ rami?
+    en: How many independent branch voltages are there in a circuit with $n$ nodes and $b$ branches?
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "$n-1$: sono le tensioni dei rami d'albero (o di nodo)."
+        en: '$n-1$: the tree-branch voltages (or the node voltages).'
+  choices:
+    - text:
+        it: $n-1$
+        en: $n-1$
+      correct: true
+    - text:
+        it: $b-n+1$
+        en: $b-n+1$
+      correct: false
+    - text:
+        it: $n$
+        en: $n$
+      correct: false
+    - text:
+        it: $b$
+        en: $b$
+      correct: false
+  origin: originale
+- id: q-ii-018
+  topic: tensioni-correnti-indipendenti
+  objectives:
+    - tensioni-correnti-indipendenti.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Quante correnti di ramo indipendenti ci sono?
+    en: How many independent branch currents are there?
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Le correnti dei rami di coalbero (di maglia).
+        en: The cotree-branch (loop) currents.
+  choices:
+    - text:
+        it: $n-1$
+        en: $n-1$
+      correct: false
+    - text:
+        it: $n$
+        en: $n$
+      correct: false
+    - text:
+        it: $b$
+        en: $b$
+      correct: false
+    - text:
+        it: $b-n+1$
+        en: $b-n+1$
+      correct: true
+  origin: originale
+- id: q-ii-019
+  topic: tensioni-correnti-indipendenti
+  objectives:
+    - tensioni-correnti-indipendenti.2
+  difficulty: 3
+  kind: static
+  statement:
+    it: Le tensioni di coalbero si ricavano da quelle d'albero con $\mathbf v_c=F^{\mathsf T}\mathbf v_t$.
+    en: The cotree voltages follow from the tree voltages through $\mathbf v_c=F^{\mathsf T}\mathbf v_t$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Dalla KVL $-F^{\mathsf T}\mathbf v_t+\mathbf v_c=0$.
+        en: From KVL, $-F^{\mathsf T}\mathbf v_t+\mathbf v_c=0$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-ii-039
+  topic: tensioni-correnti-indipendenti
+  objectives:
+    - tensioni-correnti-indipendenti.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Se $\mathbf v_t=(5,3)^{\mathsf T}$ e $F^{\mathsf T}=(-1\ \ 1)$, allora $v_c=$
+    en: If $\mathbf v_t=(5,3)^{\mathsf T}$ and $F^{\mathsf T}=(-1\ \ 1)$, then $v_c=$
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $v_c=F^{\mathsf T}\mathbf v_t=-5+3=-2$.
+        en: $v_c=F^{\mathsf T}\mathbf v_t=-5+3=-2$.
+  choices:
+    - text:
+        it: $-2$
+        en: $-2$
+      correct: true
+    - text:
+        it: $2$
+        en: $2$
+      correct: false
+    - text:
+        it: $8$
+        en: $8$
+      correct: false
+    - text:
+        it: $-8$
+        en: $-8$
+      correct: false
+  origin: originale

@@ -1,0 +1,120 @@
+- id: q-i-013
+  topic: linearita-passivita-causalita
+  objectives:
+    - linearita-passivita-causalita.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Quale relazione descrive un elemento lineare e tempo-invariante?
+    en: Which relation describes a linear time-invariant element?
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $v=3i$ è omogenea, additiva e senza parametri dipendenti da $t$.
+        en: $v=3i$ is homogeneous, additive and has no parameters depending on $t$.
+  choices:
+    - text:
+        it: $v=3i$
+        en: $v=3i$
+      correct: true
+    - text:
+        it: $v=t\,i$
+        en: $v=t\,i$
+      correct: false
+    - text:
+        it: $v=i+1$
+        en: $v=i+1$
+      correct: false
+    - text:
+        it: $v=2i^2$
+        en: $v=2i^2$
+      correct: false
+  origin: originale
+- id: q-i-014
+  topic: linearita-passivita-causalita
+  objectives:
+    - linearita-passivita-causalita.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "L'elemento $v=t\\,i$ è:"
+    en: "The element $v=t\\,i$ is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: È lineare in $i$, ma il coefficiente dipende da $t$.
+        en: It is linear in $i$, but the coefficient depends on $t$.
+  choices:
+    - text:
+        it: non lineare e tempo-variante
+        en: nonlinear and time-varying
+      correct: false
+    - text:
+        it: lineare e tempo-variante
+        en: linear and time-varying
+      correct: true
+    - text:
+        it: lineare e tempo-invariante
+        en: linear and time-invariant
+      correct: false
+    - text:
+        it: non lineare e tempo-invariante
+        en: nonlinear and time-invariant
+      correct: false
+  origin: originale
+- id: q-i-015
+  topic: linearita-passivita-causalita
+  objectives:
+    - linearita-passivita-causalita.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Un generatore indipendente di tensione non nulla è un elemento passivo.
+    en: An independent voltage source with non-zero value is a passive element.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Può erogare energia: non è passivo.'
+        en: 'It can deliver energy: it is not passive.'
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-i-016
+  topic: linearita-passivita-causalita
+  objectives:
+    - linearita-passivita-causalita.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Un elemento causale ha una risposta che a $t$ dipende solo dall'ingresso agli istanti $\le t$.
+    en: A causal element has a response at $t$ that depends only on the input at instants $\le t$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: È la definizione di causalità.
+        en: This is the definition of causality.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale

@@ -1,0 +1,316 @@
+- id: q-v-026
+  topic: risposta-in-frequenza-filtri
+  objectives:
+    - risposta-in-frequenza-filtri.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Un RC con uscita sul condensatore è un filtro:'
+    en: 'An RC with the output across the capacitor is a filter that is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $|H|\to1$ a bassa frequenza.
+        en: $|H|\to1$ at low frequency.
+  choices:
+    - text:
+        it: elimina-banda
+        en: band-stop
+      correct: false
+    - text:
+        it: passa-alto
+        en: high-pass
+      correct: false
+    - text:
+        it: passa-basso
+        en: low-pass
+      correct: true
+    - text:
+        it: passa-banda
+        en: band-pass
+      correct: false
+  origin: originale
+- id: q-v-027
+  topic: risposta-in-frequenza-filtri
+  objectives:
+    - risposta-in-frequenza-filtri.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: "La pulsazione di taglio a $3\\,\\mathrm{dB}$ di un RC è:"
+    en: "The $3\\,\\mathrm{dB}$ cut-off angular frequency of an RC is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Polo in $-1/(RC)$.
+        en: Pole at $-1/(RC)$.
+  choices:
+    - text:
+        it: $\omega_c=RC$
+        en: $\omega_c=RC$
+      correct: false
+    - text:
+        it: $\omega_c=1/(RC)$
+        en: $\omega_c=1/(RC)$
+      correct: true
+    - text:
+        it: $\omega_c=C/R$
+        en: $\omega_c=C/R$
+      correct: false
+    - text:
+        it: $\omega_c=R/C$
+        en: $\omega_c=R/C$
+      correct: false
+  origin: originale
+- id: q-v-028
+  topic: risposta-in-frequenza-filtri
+  objectives:
+    - risposta-in-frequenza-filtri.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "A $\\omega_c$ il modulo di un passa-basso del primo ordine vale:"
+    en: "At $\\omega_c$ the magnitude of a first-order low-pass is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $-3\,\mathrm{dB}$.
+        en: $-3\,\mathrm{dB}$.
+  choices:
+    - text:
+        it: $0$
+        en: $0$
+      correct: false
+    - text:
+        it: $|H|_{max}/2$
+        en: $|H|_{max}/2$
+      correct: false
+    - text:
+        it: $|H|_{max}/\sqrt2$
+        en: $|H|_{max}/\sqrt2$
+      correct: true
+    - text:
+        it: $|H|_{max}$
+        en: $|H|_{max}$
+      correct: false
+  origin: originale
+- id: q-v-029
+  topic: risposta-in-frequenza-filtri
+  objectives:
+    - risposta-in-frequenza-filtri.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Il guadagno in dB è:'
+    en: 'The gain in dB is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Per grandezze di campo: $20\\log_{10}$."
+        en: "For field quantities: $20\\log_{10}$."
+  choices:
+    - text:
+        it: $20\log_{10}|H|$
+        en: $20\log_{10}|H|$
+      correct: true
+    - text:
+        it: $10\log_{10}|H|$
+        en: $10\log_{10}|H|$
+      correct: false
+    - text:
+        it: $|H|^2$
+        en: $|H|^2$
+      correct: false
+    - text:
+        it: $\ln|H|$
+        en: $\ln|H|$
+      correct: false
+  origin: originale
+- id: q-v-030
+  topic: risposta-in-frequenza-filtri
+  objectives:
+    - risposta-in-frequenza-filtri.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Oltre $\\omega_c$ un passa-basso del primo ordine scende di:"
+    en: "Beyond $\\omega_c$ a first-order low-pass falls by:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Pendenza $-20\,\mathrm{dB/dec}$.
+        en: Slope $-20\,\mathrm{dB/dec}$.
+  choices:
+    - text:
+        it: $20\,\mathrm{dB}$/decade
+        en: $20\,\mathrm{dB}$/decade
+      correct: true
+    - text:
+        it: $40\,\mathrm{dB}$/decade
+        en: $40\,\mathrm{dB}$/decade
+      correct: false
+    - text:
+        it: $3\,\mathrm{dB}$/decade
+        en: $3\,\mathrm{dB}$/decade
+      correct: false
+    - text:
+        it: non scende
+        en: it does not fall
+      correct: false
+  origin: originale
+- id: q-v-031
+  topic: risposta-in-frequenza-filtri
+  objectives:
+    - risposta-in-frequenza-filtri.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'RL con uscita sul resistore (serie $L$, $R$) è:'
+    en: 'RL with the output across the resistor (series $L$, $R$) is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $H=\dfrac{R}{R+sL}$.
+        en: $H=\dfrac{R}{R+sL}$.
+  choices:
+    - text:
+        it: passa-basso con $\omega_c=L/R$
+        en: low-pass with $\omega_c=L/R$
+      correct: false
+    - text:
+        it: passa-basso con $\omega_c=R/L$
+        en: low-pass with $\omega_c=R/L$
+      correct: true
+    - text:
+        it: passa-alto con $\omega_c=R/L$
+        en: high-pass with $\omega_c=R/L$
+      correct: false
+    - text:
+        it: passa-tutto
+        en: all-pass
+      correct: false
+  origin: originale
+- id: q-v-032
+  topic: risposta-in-frequenza-filtri
+  objectives:
+    - risposta-in-frequenza-filtri.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: Un filtro passa-alto del primo ordine ha $|H(j\omega)|\to0$ per $\omega\to0$.
+    en: A first-order high-pass filter has $|H(j\omega)|\to0$ as $\omega\to0$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Blocca la continua.
+        en: It blocks DC.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-v-033
+  topic: risposta-in-frequenza-filtri
+  objectives:
+    - risposta-in-frequenza-filtri.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: La fase di un RC passa-basso a $\omega_c$ è $-45^\circ$.
+    en: The phase of an RC low-pass at $\omega_c$ is $-45^\circ$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $H(j\omega_c)=1/(1+j)$.
+        en: $H(j\omega_c)=1/(1+j)$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-v-043
+  topic: risposta-in-frequenza-filtri
+  objectives:
+    - risposta-in-frequenza-filtri.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Un filtro passa-basso del primo ordine ha guadagno nullo a frequenza zero.
+    en: A first-order low-pass filter has zero gain at zero frequency.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: È massimo in continua.
+        en: It is maximum in DC.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-v-047
+  topic: risposta-in-frequenza-filtri
+  objectives:
+    - risposta-in-frequenza-filtri.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: A $\omega_c$ il modulo di $H$ è ridotto di ___ rispetto al massimo.
+    en: At $\omega_c$ the magnitude of $H$ is reduced by ___ with respect to the maximum.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Frequenza di taglio a 3 dB.
+        en: 3 dB cut-off frequency.
+  choices:
+    - text:
+        it: $0\,\mathrm{dB}$
+        en: $0\,\mathrm{dB}$
+      correct: false
+    - text:
+        it: $20\,\mathrm{dB}$
+        en: $20\,\mathrm{dB}$
+      correct: false
+    - text:
+        it: $3\,\mathrm{dB}$
+        en: $3\,\mathrm{dB}$
+      correct: true
+    - text:
+        it: $6\,\mathrm{dB}$
+        en: $6\,\mathrm{dB}$
+      correct: false
+  origin: originale

@@ -1,0 +1,86 @@
+- id: q-vi-001
+  topic: teorema-di-sostituzione
+  objectives:
+    - teorema-di-sostituzione.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Il teorema di sostituzione consente di sostituire un bipolo con:'
+    en: 'The substitution theorem allows a one-port to be replaced by:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Ferma restando l'unicità della soluzione.
+        en: Provided that the solution is unique.
+  choices:
+    - text:
+        it: un aperto
+        en: an open circuit
+      correct: false
+    - text:
+        it: un resistore
+        en: a resistor
+      correct: false
+    - text:
+        it: un generatore ideale di tensione (o corrente) che impone la stessa tensione (o corrente) della soluzione
+        en: an ideal voltage (or current) source imposing the same voltage (or current) as in the solution
+      correct: true
+    - text:
+        it: un corto
+        en: a short circuit
+      correct: false
+  origin: originale
+- id: q-vi-002
+  topic: teorema-di-sostituzione
+  objectives:
+    - teorema-di-sostituzione.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Il teorema di sostituzione richiede che il circuito modificato abbia soluzione unica.
+    en: The substitution theorem requires the modified circuit to have a unique solution.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Altrimenti la sostituzione non è equivalente.
+        en: Otherwise the substitution is not equivalent.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-vi-003
+  topic: teorema-di-sostituzione
+  objectives:
+    - teorema-di-sostituzione.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Il teorema di sostituzione vale anche per circuiti non lineari.
+    en: The substitution theorem also holds for nonlinear circuits.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Non richiede linearità, solo l'unicità della soluzione.
+        en: It does not require linearity, only a unique solution.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale

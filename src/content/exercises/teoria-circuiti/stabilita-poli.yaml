@@ -1,0 +1,282 @@
+- id: q-v-013
+  topic: stabilita-poli
+  objectives:
+    - stabilita-poli.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Un sistema lineare è asintoticamente stabile se:'
+    en: 'A linear system is asymptotically stable if:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Poli nel semipiano sinistro aperto.
+        en: Poles in the open left half-plane.
+  choices:
+    - text:
+        it: i poli sono sull'asse immaginario
+        en: the poles are on the imaginary axis
+      correct: false
+    - text:
+        it: tutti gli zeri hanno parte reale negativa
+        en: all the zeros have negative real part
+      correct: false
+    - text:
+        it: tutti i poli hanno parte reale negativa
+        en: all the poles have negative real part
+      correct: true
+    - text:
+        it: ha almeno un polo reale
+        en: it has at least one real pole
+      correct: false
+  origin: originale
+- id: q-v-014
+  topic: stabilita-poli
+  objectives:
+    - stabilita-poli.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "$H(s)=\\dfrac{1}{s^2+2s+5}$ è:"
+    en: "$H(s)=\\dfrac{1}{s^2+2s+5}$ is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Parte reale $-1<0$.
+        en: Real part $-1<0$.
+  choices:
+    - text:
+        it: non razionale
+        en: not rational
+      correct: false
+    - text:
+        it: marginale
+        en: marginal
+      correct: false
+    - text:
+        it: stabile (poli $-1\pm2j$)
+        en: stable (poles $-1\pm2j$)
+      correct: true
+    - text:
+        it: instabile
+        en: unstable
+      correct: false
+  origin: originale
+- id: q-v-015
+  topic: stabilita-poli
+  objectives:
+    - stabilita-poli.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "$H(s)=\\dfrac{1}{s^2+4}$ ha poli in $\\pm2j$: il sistema è"
+    en: "$H(s)=\\dfrac{1}{s^2+4}$ has poles at $\\pm2j$: the system is"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Poli semplici sull'asse immaginario.
+        en: Simple poles on the imaginary axis.
+  choices:
+    - text:
+        it: asintoticamente stabile
+        en: asymptotically stable
+      correct: false
+    - text:
+        it: instabile con crescita esponenziale
+        en: unstable with exponential growth
+      correct: false
+    - text:
+        it: marginalmente stabile (oscillazioni non smorzate)
+        en: marginally stable (undamped oscillations)
+      correct: true
+    - text:
+        it: tempo-variante
+        en: time-varying
+      correct: false
+  origin: originale
+- id: q-v-016
+  topic: stabilita-poli
+  objectives:
+    - stabilita-poli.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "$H(s)=\\dfrac{1}{s-1}$ è:"
+    en: "$H(s)=\\dfrac{1}{s-1}$ is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Polo in $+1$: $e^{t}$ cresce.'
+        en: 'Pole at $+1$: $e^{t}$ grows.'
+  choices:
+    - text:
+        it: un derivatore
+        en: a differentiator
+      correct: false
+    - text:
+        it: marginale
+        en: marginal
+      correct: false
+    - text:
+        it: stabile
+        en: stable
+      correct: false
+    - text:
+        it: instabile
+        en: unstable
+      correct: true
+  origin: originale
+- id: q-v-017
+  topic: stabilita-poli
+  objectives:
+    - stabilita-poli.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Un polo doppio sull'asse immaginario rende il sistema instabile.
+    en: A double pole on the imaginary axis makes the system unstable.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Compare $t\cos(\omega t)$, illimitato.
+        en: The term $t\cos(\omega t)$ appears, unbounded.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-v-018
+  topic: stabilita-poli
+  objectives:
+    - stabilita-poli.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Una cancellazione polo-zero può nascondere nella $H(s)$ un polo instabile, che resta presente nel comportamento interno.
+    en: A pole-zero cancellation can hide an unstable pole in $H(s)$, which remains present in the internal behaviour.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: La stabilità interna richiede di guardare anche i modi non osservabili/controllabili.
+        en: Internal stability requires looking at the unobservable/uncontrollable modes as well.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-v-019
+  topic: stabilita-poli
+  objectives:
+    - stabilita-poli.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: '$D(s)=s^2+(k-3)s+2$: stabile per'
+    en: '$D(s)=s^2+(k-3)s+2$: stable for'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Coefficienti dello stesso segno: $k-3>0$.'
+        en: 'Coefficients with the same sign: $k-3>0$.'
+  choices:
+    - text:
+        it: $k<3$
+        en: $k<3$
+      correct: false
+    - text:
+        it: $k>0$
+        en: $k>0$
+      correct: false
+    - text:
+        it: $k>3$
+        en: $k>3$
+      correct: true
+    - text:
+        it: ogni $k$
+        en: every $k$
+      correct: false
+  origin: originale
+- id: q-v-042
+  topic: stabilita-poli
+  objectives:
+    - stabilita-poli.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Un sistema con un polo in $s=+3$ è asintoticamente stabile.
+    en: A system with a pole at $s=+3$ is asymptotically stable.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Il modo $e^{3t}$ diverge.
+        en: The mode $e^{3t}$ diverges.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-v-046
+  topic: stabilita-poli
+  objectives:
+    - stabilita-poli.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Un sistema è stabile se tutti i poli hanno parte ___.
+    en: A system is stable if all the poles have ___ part.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Semipiano sinistro aperto.
+        en: Open left half-plane.
+  choices:
+    - text:
+        it: reale nulla
+        en: zero real
+      correct: false
+    - text:
+        it: reale negativa
+        en: negative real
+      correct: true
+    - text:
+        it: reale positiva
+        en: positive real
+      correct: false
+    - text:
+        it: immaginaria nulla
+        en: zero imaginary
+      correct: false
+  origin: originale

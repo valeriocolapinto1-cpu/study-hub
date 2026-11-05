@@ -1,0 +1,248 @@
+- id: q-vi-031
+  topic: massimo-trasferimento-potenza
+  objectives:
+    - massimo-trasferimento-potenza.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Il massimo trasferimento di potenza attiva si ha per:'
+    en: 'Maximum active power transfer occurs for:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Adattamento coniugato.
+        en: Conjugate matching.
+  choices:
+    - text:
+        it: $Z_L=Z_{th}^{*}$
+        en: $Z_L=Z_{th}^{*}$
+      correct: true
+    - text:
+        it: $Z_L=0$
+        en: $Z_L=0$
+      correct: false
+    - text:
+        it: $Z_L=\infty$
+        en: $Z_L=\infty$
+      correct: false
+    - text:
+        it: $Z_L=Z_{th}$
+        en: $Z_L=Z_{th}$
+      correct: false
+  origin: originale
+- id: q-vi-032
+  topic: massimo-trasferimento-potenza
+  objectives:
+    - massimo-trasferimento-potenza.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: "$|V_{th}|=10\\,\\mathrm V$ (picco), $R_{th}=5\\,\\Omega$: $P_{max}=$"
+    en: "$|V_{th}|=10\\,\\mathrm V$ (peak), $R_{th}=5\\,\\Omega$: $P_{max}=$"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $|V_{th}|^2/(8R_{th})=100/40=2{,}5$.
+        en: $|V_{th}|^2/(8R_{th})=100/40=2.5$.
+  choices:
+    - text:
+        it: $2{,}5\,\mathrm W$
+        en: $2.5\,\mathrm W$
+      correct: true
+    - text:
+        it: $10\,\mathrm W$
+        en: $10\,\mathrm W$
+      correct: false
+    - text:
+        it: $20\,\mathrm W$
+        en: $20\,\mathrm W$
+      correct: false
+    - text:
+        it: $5\,\mathrm W$
+        en: $5\,\mathrm W$
+      correct: false
+  origin: originale
+- id: q-vi-033
+  topic: massimo-trasferimento-potenza
+  objectives:
+    - massimo-trasferimento-potenza.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Con valori efficaci $|V_{th}|=10\\,\\mathrm V$, $R_{th}=5\\,\\Omega$: $P_{max}=$"
+    en: "With RMS values $|V_{th}|=10\\,\\mathrm V$, $R_{th}=5\\,\\Omega$: $P_{max}=$"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $|V_{th}|^2/(4R_{th})=100/20=5$.
+        en: $|V_{th}|^2/(4R_{th})=100/20=5$.
+  choices:
+    - text:
+        it: $5\,\mathrm W$
+        en: $5\,\mathrm W$
+      correct: true
+    - text:
+        it: $2{,}5\,\mathrm W$
+        en: $2.5\,\mathrm W$
+      correct: false
+    - text:
+        it: $10\,\mathrm W$
+        en: $10\,\mathrm W$
+      correct: false
+    - text:
+        it: $20\,\mathrm W$
+        en: $20\,\mathrm W$
+      correct: false
+  origin: originale
+- id: q-vi-034
+  topic: massimo-trasferimento-potenza
+  objectives:
+    - massimo-trasferimento-potenza.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Con carico puramente resistivo $R_L$ e $Z_{th}=R_{th}+jX_{th}$ il massimo si ha per:'
+    en: 'With a purely resistive load $R_L$ and $Z_{th}=R_{th}+jX_{th}$, the maximum occurs for:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Vincolo: $X_L=0$; il massimo è per $R_L=\\sqrt{R_{th}^2+X_{th}^2}$."
+        en: "Constraint: $X_L=0$; the maximum is at $R_L=\\sqrt{R_{th}^2+X_{th}^2}$."
+  choices:
+    - text:
+        it: $R_L=X_{th}$
+        en: $R_L=X_{th}$
+      correct: false
+    - text:
+        it: $R_L=|Z_{th}|$
+        en: $R_L=|Z_{th}|$
+      correct: true
+    - text:
+        it: $R_L=R_{th}$
+        en: $R_L=R_{th}$
+      correct: false
+    - text:
+        it: $R_L=0$
+        en: $R_L=0$
+      correct: false
+  origin: originale
+- id: q-vi-035
+  topic: massimo-trasferimento-potenza
+  objectives:
+    - massimo-trasferimento-potenza.3
+  difficulty: 3
+  kind: static
+  statement:
+    it: Nell'adattamento coniugato il rendimento è del $50\%$ (potenza sul carico / potenza erogata dal generatore equivalente).
+    en: With conjugate matching the efficiency is $50\%$ (load power / power delivered by the equivalent source).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: La stessa potenza si dissipa su $R_{th}$ e su $R_L$.
+        en: The same power is dissipated in $R_{th}$ and in $R_L$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-vi-036
+  topic: massimo-trasferimento-potenza
+  objectives:
+    - massimo-trasferimento-potenza.3
+  difficulty: 3
+  kind: static
+  statement:
+    it: "Con trasformatore ideale $1{:}n$ (rapporto $n$) tra generatore e carico $R_L$, per l'adattamento si ha:"
+    en: 'With an ideal transformer $1{:}n$ (ratio $n$) between source and load $R_L$, matching requires:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Il carico riportato al primario deve essere pari a $R_{th}$ (con la convenzione scelta per $n$).
+        en: The load reflected to the primary must equal $R_{th}$ (with the convention chosen for $n$).
+  choices:
+    - text:
+        it: $n^2R_L=R_{th}$ (carico riportato)
+        en: $n^2R_L=R_{th}$ (reflected load)
+      correct: true
+    - text:
+        it: $nR_L=R_{th}$
+        en: $nR_L=R_{th}$
+      correct: false
+    - text:
+        it: $R_L=0$
+        en: $R_L=0$
+      correct: false
+    - text:
+        it: $R_L=nR_{th}$
+        en: $R_L=nR_{th}$
+      correct: false
+  origin: originale
+- id: q-vi-037
+  topic: massimo-trasferimento-potenza
+  objectives:
+    - massimo-trasferimento-potenza.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Il massimo trasferimento di potenza attiva coincide con il massimo rendimento.
+    en: Maximum active power transfer coincides with maximum efficiency.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Il rendimento tende a 1 per $R_L\gg R_{th}$ ma la potenza tende a 0.
+        en: The efficiency tends to 1 for $R_L\gg R_{th}$ but the power tends to 0.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-vi-045
+  topic: massimo-trasferimento-potenza
+  objectives:
+    - massimo-trasferimento-potenza.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Il massimo trasferimento di potenza attiva si ha per $Z_L=Z_{th}$.
+    en: Maximum active power transfer occurs for $Z_L=Z_{th}$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Si ha per $Z_L=Z_{th}^*$.
+        en: It occurs for $Z_L=Z_{th}^*$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
