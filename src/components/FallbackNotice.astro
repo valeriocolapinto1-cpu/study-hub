@@ -1,0 +1,15 @@
+---
+/** Avviso mostrato quando un contenuto in inglese ripiega sull'italiano. */
+import { t, type Lang } from '../i18n';
+interface Props {
+  lang: Lang;
+  show: boolean;
+}
+const { lang, show } = Astro.props;
+---
+
+{show && lang !== 'it' && (
+  <aside class="callout lang-notice" data-tone="nota">
+    <p class="callout__body">{t(lang, 'lang.fallbackNotice')}</p>
+  </aside>
+)}

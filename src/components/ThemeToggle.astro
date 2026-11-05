@@ -1,4 +1,10 @@
 ---
+/**
+ * Interruttore unico chiaro/scuro. La logica è in src/scripts/site.ts
+ * (delegazione sul click di [data-theme-toggle]); lo stato iniziale lo applica
+ * lo script inline di Head.astro prima del primo disegno.
+ */
+import Icon from './Icon.astro';
 import { t, type Lang } from '../i18n';
 interface Props {
   lang: Lang;
@@ -8,26 +14,13 @@ const { lang } = Astro.props;
 
 <button
   type="button"
-  class="btn btn--ghost theme-toggle"
+  class="icon-btn theme-toggle"
   data-theme-toggle
   aria-pressed="false"
   aria-label={t(lang, 'theme.toggle')}
   data-label-light={t(lang, 'theme.toLight')}
   data-label-dark={t(lang, 'theme.toDark')}
 >
-  <svg class="theme-toggle__icon icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path
-      fill="currentColor"
-      d="M20.7 14.6A8.5 8.5 0 0 1 9.4 3.3a.6.6 0 0 0-.8-.7 9.5 9.5 0 1 0 12.8 12.8.6.6 0 0 0-.7-.8Z"
-    ></path>
-  </svg>
-  <svg class="theme-toggle__icon icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <circle cx="12" cy="12" r="4.5" fill="currentColor"></circle>
-    <path
-      stroke="currentColor"
-      stroke-width="1.8"
-      stroke-linecap="round"
-      d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"
-    ></path>
-  </svg>
+  <Icon name="moon" class="icon-moon" />
+  <Icon name="sun" class="icon-sun" />
 </button>

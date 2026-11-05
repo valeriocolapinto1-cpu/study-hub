@@ -1,18 +1,30 @@
 ---
-/** Pagine di stampa (formulari A4, prove d'esame): niente intestazione né navigazione. */
+/**
+ * Pagine di stampa (formulari A4, prove d'esame, teoria): niente intestazione né
+ * navigazione; su schermo una barra con "Stampa" e il ritorno alla pagina.
+ * `variant` attiva le regole di print.css (formulary | theory | exam).
+ */
+import 'katex/dist/katex.min.css';
 import '../styles/base.css';
+import '../styles/components.css';
 import '../styles/prose.css';
 import '../styles/print.css';
 import Head from '../components/Head.astro';
-import { htmlLang, type Lang } from '../i18n';
+import Icon from '../components/Icon.astro';
+import { htmlLang, t, type Lang } from '../i18n';
+
+import.meta.glob('../styles/courses/*.css', { eager: true });
 
 interface Props {
   lang: Lang;
   title: string;
   description: string;
   course?: string | undefined;
+  variant?: 'formulary' | 'theory' | 'exam';
+  /** Pagina da cui si arriva (link "indietro" su schermo). */
+  backHref?: string | undefined;
 }
-const { lang, title, description, course } = Astro.props;
+const { lang, title, description, course, variant = 'theory', backHref } = Astro.props;
 ---
 
 <!doctype html>
@@ -21,9 +33,25 @@ const { lang, title, description, course } = Astro.props;
     <Head lang={lang} title={title} description={description} noindex />
     <slot name="head" />
   </head>
-  <body>
-    <main id="contenuto" class="print-page">
+  <body class={`print-${variant}`}>
+    <div class="container print-bar no-print">
+      {backHref && (
+        <a class="btn btn--ghost btn--sm" href={backHref}>
+          <Icon name="chevron-left" />
+          {t(lang, 'print.back')}
+        </a>
+      )}
+      <button type="button" class="btn btn--primary btn--sm" data-print-now>
+        <Icon name="printer" />
+        {t(lang, 'print.action')}
+      </button>
+    </div>
+    <main id="contenuto" class="container print-page">
       <slot />
     </main>
+    <script>
+      for (const b of document.querySelectorAll('[data-print-now]'))
+        b.addEventListener('click', () => print());
+    </script>
   </body>
 </html>

@@ -8,6 +8,9 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { htmlLang, type Lang } from '../i18n';
 
+// Tinte d'accento dei corsi: ogni file ridefinisce solo --accent* sotto html[data-course].
+import.meta.glob('../styles/courses/*.css', { eager: true });
+
 export interface Props {
   lang: Lang;
   title: string;
@@ -16,8 +19,10 @@ export interface Props {
   course?: string | undefined;
   alternates?: boolean;
   noindex?: boolean;
+  /** Classe di <body> (es. varianti di stampa). */
+  bodyClass?: string | undefined;
 }
-const { lang, title, description, course, alternates = true, noindex = false } = Astro.props;
+const { lang, title, description, course, alternates = true, noindex = false, bodyClass } = Astro.props;
 ---
 
 <!doctype html>
@@ -26,7 +31,7 @@ const { lang, title, description, course, alternates = true, noindex = false } =
     <Head lang={lang} title={title} description={description} alternates={alternates} noindex={noindex} />
     <slot name="head" />
   </head>
-  <body>
+  <body class={bodyClass}>
     <Header lang={lang} samePage={alternates} />
     <slot name="before-main" />
     <main id="contenuto" tabindex="-1">

@@ -110,6 +110,7 @@ voci `{ id, legacyKey, scope, area, transform, merge? }`. Le chiavi legacy non s
 Tema: `html[data-theme="light"|"dark"]`, senza attributo segue `prefers-color-scheme`; scelta salvata in `sh:v1:global:theme`
 e applicata prima del disegno da uno script inline in `Head.astro`. Accento: `html[data-course="<id>"]` (impostato da
 `BaseLayout` con la prop `course`) in `src/styles/courses/<id>.css`, che ridefinisce solo `--accent*`.
+Principi, componenti e regole d'uso: `docs/design/README.md`; catalogo visivo di tutti i componenti in `/it/stile/`.
 
 ## Aggiungere un corso
 

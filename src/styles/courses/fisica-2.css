@@ -1,0 +1,21 @@
+/* Fisica Generale II — blu di Prussia. Solo variabili --accent*: chiaro, scuro esplicito, scuro di sistema. */
+html[data-course='fisica-2'] {
+  --accent: #1f5f8c;
+  --accent-strong: #1a5178;
+  --accent-soft: #e2edf5;
+  --on-accent: #ffffff;
+}
+html[data-course='fisica-2'][data-theme='dark'] {
+  --accent: #8fc1e6;
+  --accent-strong: #a6cdeb;
+  --accent-soft: #1b2a36;
+  --on-accent: #0c1720;
+}
+@media (prefers-color-scheme: dark) {
+  html[data-course='fisica-2']:not([data-theme='light']) {
+    --accent: #8fc1e6;
+    --accent-strong: #a6cdeb;
+    --accent-soft: #1b2a36;
+    --on-accent: #0c1720;
+  }
+}

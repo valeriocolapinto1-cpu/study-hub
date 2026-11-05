@@ -1,0 +1,22 @@
+---
+/**
+ * Accesso alla ricerca. Il motore (Pagefind) lo collega la PR piattaforma:
+ * quando è pronto imposta `document.documentElement.dataset.search = 'ready'`
+ * (il pulsante diventa visibile) e ascolta l'evento `sh:search-open` su document,
+ * emesso dal clic e dal tasto "/" (vedi src/scripts/site.ts).
+ */
+import Icon from './Icon.astro';
+import { t, type Lang } from '../i18n';
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+---
+
+<button type="button" class="search-trigger" data-search-trigger aria-label={t(lang, 'search.label')}>
+  <Icon name="search" />
+  <span class="search-trigger__label" aria-hidden="true">
+    {t(lang, 'search.short')}
+  </span>
+  <kbd aria-hidden="true">/</kbd>
+</button>

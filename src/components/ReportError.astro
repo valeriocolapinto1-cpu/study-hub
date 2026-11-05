@@ -1,0 +1,21 @@
+---
+/** Link "Segnala un errore" precompilato verso la pagina Contribuisci. */
+import Icon from './Icon.astro';
+import { localizePath, stripLang, t, type Lang } from '../i18n';
+interface Props {
+  lang: Lang;
+  /** Id del corso, se la pagina appartiene a un corso. */
+  course?: string | undefined;
+}
+const { lang, course } = Astro.props;
+const params = new URLSearchParams();
+if (course) params.set('corso', course);
+params.set('pagina', `/${stripLang(Astro.url.pathname)}`);
+params.set('tipo', 'errore');
+const href = `${localizePath('contribuisci', lang)}?${params.toString()}`;
+---
+
+<a class="report-error" href={href} rel="nofollow">
+  <Icon name="flag" />
+  {t(lang, 'report.error')}
+</a>

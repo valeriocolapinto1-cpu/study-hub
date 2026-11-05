@@ -1,0 +1,28 @@
+---
+import { t, type Lang } from '../i18n';
+export interface Crumb {
+  label: string;
+  href?: string | undefined;
+}
+interface Props {
+  lang: Lang;
+  items: Crumb[];
+}
+const { lang, items } = Astro.props;
+---
+
+<nav class="breadcrumbs" aria-label={t(lang, 'breadcrumbs.label')}>
+  <ol>
+    {items.map((c, i) =>
+      i === items.length - 1 || !c.href ? (
+        <li>
+          <span aria-current={i === items.length - 1 ? 'page' : undefined}>{c.label}</span>
+        </li>
+      ) : (
+        <li>
+          <a href={c.href}>{c.label}</a>
+        </li>
+      ),
+    )}
+  </ol>
+</nav>

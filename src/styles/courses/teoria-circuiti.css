@@ -1,0 +1,21 @@
+/* Teoria dei Circuiti — prugna. Solo variabili --accent*: chiaro, scuro esplicito, scuro di sistema. */
+html[data-course='teoria-circuiti'] {
+  --accent: #7b3a6c;
+  --accent-strong: #69305c;
+  --accent-soft: #f2e6ef;
+  --on-accent: #ffffff;
+}
+html[data-course='teoria-circuiti'][data-theme='dark'] {
+  --accent: #dca4cf;
+  --accent-strong: #e5b8da;
+  --accent-soft: #33232f;
+  --on-accent: #1d1019;
+}
+@media (prefers-color-scheme: dark) {
+  html[data-course='teoria-circuiti']:not([data-theme='light']) {
+    --accent: #dca4cf;
+    --accent-strong: #e5b8da;
+    --accent-soft: #33232f;
+    --on-accent: #1d1019;
+  }
+}

@@ -1,6 +1,8 @@
 ---
 import { SITE } from '../config/site';
-import { t, type Lang } from '../i18n';
+import { localizePath, t, type Lang } from '../i18n';
+import BrandMark from './BrandMark.astro';
+import Icon from './Icon.astro';
 interface Props {
   lang: Lang;
 }
@@ -10,13 +12,46 @@ const year = 2026;
 
 <footer class="site-footer">
   <div class="container site-footer__grid">
-    <div>
-      <p>{t(lang, 'home.unofficial')}</p>
-      <p>
-        © {year} {SITE.author}. {t(lang, 'footer.license')}
+    <div class="site-footer__about">
+      <p class="brand" aria-hidden="true">
+        <BrandMark />
+        <span class="brand__name">{SITE.shortTitle[lang]}</span>
       </p>
-      <p>{t(lang, 'footer.star')}</p>
+      <p>{t(lang, 'home.unofficial')}</p>
+      <p>{t(lang, 'footer.privacyShort')}</p>
+      <p class="site-footer__star">
+        <a class="btn btn--sm" href={SITE.repo.url} rel="noopener">
+          <Icon name="star" />
+          {t(lang, 'footer.star')}
+        </a>
+      </p>
+    </div>
+    <nav aria-labelledby="footer-site">
+      <h2 id="footer-site">{t(lang, 'footer.site')}</h2>
       <ul>
+        <li>
+          <a href={localizePath('', lang)}>{t(lang, 'nav.home')}</a>
+        </li>
+        <li>
+          <a href={localizePath('chi-sono', lang)}>{t(lang, 'nav.about')}</a>
+        </li>
+        <li>
+          <a href={localizePath('contribuisci', lang)}>{t(lang, 'nav.contribute')}</a>
+        </li>
+        <li>
+          <a href={localizePath('ringraziamenti', lang)}>{t(lang, 'thanks.title')}</a>
+        </li>
+      </ul>
+    </nav>
+    <nav aria-labelledby="footer-legal">
+      <h2 id="footer-legal">{t(lang, 'footer.legal')}</h2>
+      <ul>
+        <li>
+          <a href={localizePath('note-legali', lang)}>{t(lang, 'legal.title')}</a>
+        </li>
+        <li>
+          <a href={localizePath('privacy', lang)}>{t(lang, 'privacy.title')}</a>
+        </li>
         <li>
           <a href={SITE.repo.url} rel="noopener">
             {t(lang, 'footer.source')}
@@ -28,24 +63,41 @@ const year = 2026;
           </a>
         </li>
       </ul>
-    </div>
-    <nav aria-label={t(lang, 'footer.contacts')}>
-      <p>{t(lang, 'footer.contacts')}</p>
+    </nav>
+    <nav aria-labelledby="footer-contacts">
+      <h2 id="footer-contacts">{t(lang, 'footer.contacts')}</h2>
       <ul>
         <li>
-          <a href={`mailto:${SITE.contacts.email}`}>Email</a>
-        </li>
-        <li>
-          <a href={SITE.contacts.linkedin} rel="noopener">
-            LinkedIn
+          <a href={`mailto:${SITE.contacts.email}`}>
+            <Icon name="mail" />
+            Email
           </a>
         </li>
         <li>
           <a href={SITE.contacts.github} rel="noopener">
+            <Icon name="code" />
             GitHub
+          </a>
+        </li>
+        <li>
+          <a href={SITE.contacts.linkedin} rel="noopener">
+            <Icon name="person" />
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href={SITE.contacts.instagram} rel="noopener">
+            <Icon name="camera" />
+            Instagram
           </a>
         </li>
       </ul>
     </nav>
+  </div>
+  <div class="container site-footer__legal">
+    <p>
+      © {year} {SITE.author}. {t(lang, 'footer.license')}
+    </p>
+    <p>{t(lang, 'footer.noTracking')}</p>
   </div>
 </footer>
