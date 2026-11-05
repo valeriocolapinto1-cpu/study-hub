@@ -1,3 +1,25 @@
+- id: gen-analisi-trasformatore-1
+  topic: trasformatore-ideale
+  objectives: &a1
+    - trasformatore-ideale.3
+  difficulty: 1
+  kind: generated
+  generator: teoria-circuiti/analisi-trasformatore-1
+  origin: tipologia-appello
+- id: gen-analisi-trasformatore-2
+  topic: trasformatore-ideale
+  objectives: *a1
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/analisi-trasformatore-2
+  origin: tipologia-appello
+- id: gen-analisi-trasformatore-3
+  topic: trasformatore-ideale
+  objectives: *a1
+  difficulty: 3
+  kind: generated
+  generator: teoria-circuiti/analisi-trasformatore-3
+  origin: tipologia-appello
 - id: q-i-030
   topic: trasformatore-ideale
   objectives:

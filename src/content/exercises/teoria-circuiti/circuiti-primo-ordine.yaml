@@ -1,3 +1,26 @@
+- id: gen-analisi-primo-ordine-1
+  topic: circuiti-primo-ordine
+  objectives: &a1
+    - circuiti-primo-ordine.1
+    - circuiti-primo-ordine.3
+  difficulty: 1
+  kind: generated
+  generator: teoria-circuiti/analisi-primo-ordine-1
+  origin: tipologia-appello
+- id: gen-analisi-primo-ordine-2
+  topic: circuiti-primo-ordine
+  objectives: *a1
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/analisi-primo-ordine-2
+  origin: tipologia-appello
+- id: gen-analisi-primo-ordine-3
+  topic: circuiti-primo-ordine
+  objectives: *a1
+  difficulty: 3
+  kind: generated
+  generator: teoria-circuiti/analisi-primo-ordine-3
+  origin: tipologia-appello
 - id: q-iii-001
   topic: circuiti-primo-ordine
   objectives:

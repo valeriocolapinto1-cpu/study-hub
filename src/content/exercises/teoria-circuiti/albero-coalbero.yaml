@@ -1,3 +1,11 @@
+- id: gen-albero-maglie-tagli
+  topic: albero-coalbero
+  objectives:
+    - albero-coalbero.2
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/albero-maglie-tagli
+  origin: tipologia-appello
 - id: q-ii-005
   topic: albero-coalbero
   objectives:

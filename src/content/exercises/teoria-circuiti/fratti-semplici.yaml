@@ -1,3 +1,20 @@
+- id: gen-antitrasformata-fratti-semplici
+  topic: fratti-semplici
+  objectives:
+    - fratti-semplici.1
+    - fratti-semplici.2
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/antitrasformata-fratti-semplici
+  origin: tipologia-appello
+- id: gen-antitrasformata-polo-semplice
+  topic: fratti-semplici
+  objectives:
+    - fratti-semplici.2
+  difficulty: 1
+  kind: generated
+  generator: teoria-circuiti/antitrasformata-polo-semplice
+  origin: tipologia-appello
 - id: q-iv-016
   topic: fratti-semplici
   objectives:

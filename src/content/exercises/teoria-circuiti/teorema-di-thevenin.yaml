@@ -1,3 +1,19 @@
+- id: gen-passo-thevenin-memoria
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.3
+  difficulty: 1
+  kind: generated
+  generator: teoria-circuiti/passo-thevenin-memoria
+  origin: tipologia-appello
+- id: gen-thevenin-norton
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.3
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/thevenin-norton
+  origin: tipologia-appello
 - id: q-vi-004
   topic: teorema-di-thevenin
   objectives:

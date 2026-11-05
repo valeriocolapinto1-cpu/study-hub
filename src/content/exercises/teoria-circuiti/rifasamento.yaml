@@ -1,3 +1,11 @@
+- id: gen-rifasamento
+  topic: rifasamento
+  objectives:
+    - rifasamento.2
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/rifasamento
+  origin: tipologia-appello
 - id: q-iii-033
   topic: rifasamento
   objectives:

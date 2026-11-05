@@ -1,3 +1,11 @@
+- id: gen-stabilita-parametro
+  topic: stabilita-poli
+  objectives:
+    - stabilita-poli.3
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/stabilita-parametro
+  origin: tipologia-appello
 - id: q-v-013
   topic: stabilita-poli
   objectives:

@@ -1,3 +1,11 @@
+- id: gen-risonanza
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/risonanza
+  origin: tipologia-appello
 - id: q-v-034
   topic: circuiti-risonanti
   objectives:

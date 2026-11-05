@@ -1,3 +1,11 @@
+- id: gen-laplace-segnale-a-tratti
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.3
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/laplace-segnale-a-tratti
+  origin: tipologia-appello
 - id: q-iv-008
   topic: trasformate-notevoli
   objectives:

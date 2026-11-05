@@ -1,3 +1,11 @@
+- id: gen-potenze
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.3
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/potenze
+  origin: tipologia-appello
 - id: q-iii-022
   topic: potenza-complessa
   objectives:

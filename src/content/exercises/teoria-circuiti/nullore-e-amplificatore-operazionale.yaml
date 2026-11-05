@@ -1,3 +1,41 @@
+- id: gen-amplificatore-operazionale
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.3
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/amplificatore-operazionale
+  origin: tipologia-appello
+- id: gen-analisi-nullore-1
+  topic: nullore-e-amplificatore-operazionale
+  objectives: &a1
+    - nullore-e-amplificatore-operazionale.3
+  difficulty: 1
+  kind: generated
+  generator: teoria-circuiti/analisi-nullore-1
+  origin: tipologia-appello
+- id: gen-analisi-nullore-2
+  topic: nullore-e-amplificatore-operazionale
+  objectives: *a1
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/analisi-nullore-2
+  origin: tipologia-appello
+- id: gen-analisi-nullore-3
+  topic: nullore-e-amplificatore-operazionale
+  objectives: *a1
+  difficulty: 3
+  kind: generated
+  generator: teoria-circuiti/analisi-nullore-3
+  origin: tipologia-appello
+- id: gen-passo-nullore
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.3
+  difficulty: 1
+  kind: generated
+  generator: teoria-circuiti/passo-nullore
+  origin: tipologia-appello
 - id: q-i-033
   topic: nullore-e-amplificatore-operazionale
   objectives:

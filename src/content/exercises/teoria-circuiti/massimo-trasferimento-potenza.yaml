@@ -1,3 +1,11 @@
+- id: gen-massimo-trasferimento
+  topic: massimo-trasferimento-potenza
+  objectives:
+    - massimo-trasferimento-potenza.2
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/massimo-trasferimento
+  origin: tipologia-appello
 - id: q-vi-031
   topic: massimo-trasferimento-potenza
   objectives:

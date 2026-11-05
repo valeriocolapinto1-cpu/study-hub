@@ -1,3 +1,34 @@
+- id: gen-analisi-doppio-bipolo-1
+  topic: doppi-bipoli-z-y
+  objectives: &a1
+    - doppi-bipoli-z-y.1
+    - doppi-bipoli-z-y.2
+  difficulty: 1
+  kind: generated
+  generator: teoria-circuiti/analisi-doppio-bipolo-1
+  origin: tipologia-appello
+- id: gen-analisi-doppio-bipolo-2
+  topic: doppi-bipoli-z-y
+  objectives: *a1
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/analisi-doppio-bipolo-2
+  origin: tipologia-appello
+- id: gen-analisi-doppio-bipolo-3
+  topic: doppi-bipoli-z-y
+  objectives: *a1
+  difficulty: 3
+  kind: generated
+  generator: teoria-circuiti/analisi-doppio-bipolo-3
+  origin: tipologia-appello
+- id: gen-matrici-z-y
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.2
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/matrici-z-y
+  origin: tipologia-appello
 - id: q-vi-017
   topic: doppi-bipoli-z-y
   objectives:

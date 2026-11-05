@@ -1,3 +1,11 @@
+- id: gen-risposta-impulsiva
+  topic: risposta-impulsiva-convoluzione
+  objectives:
+    - risposta-impulsiva-convoluzione.2
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/risposta-impulsiva
+  origin: tipologia-appello
 - id: q-v-005
   topic: risposta-impulsiva-convoluzione
   objectives:
