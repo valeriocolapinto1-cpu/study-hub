@@ -1,0 +1,29 @@
+id: processore
+course: fondamenti-informatica
+order: 8
+title:
+  it: "Processore: datapath & unità di controllo"
+  en: "Processor: datapath & control unit"
+summary:
+  it: Registri, ciclo fetch-decode-execute, bus interni, controllo cablato vs microprogrammato.
+  en: Registers, fetch-decode-execute cycle, internal buses, hardwired vs microprogrammed control.
+group:
+  it: Il processore
+  en: The processor
+objectives:
+  - id: processore.1
+    text:
+      it: Nominare e descrivere PC, IR, MAR, MDR, registri generali e registro di stato.
+      en: Name and describe PC, IR, MAR, MDR, general-purpose registers and the status register.
+  - id: processore.2
+    text:
+      it: Scrivere in RTN il ciclo di prelievo ed esecuzione e le sequenze di controllo.
+      en: Write the fetch-execute cycle and control sequences in RTN.
+  - id: processore.3
+    text:
+      it: Confrontare datapath a bus singolo e a tre bus (passi, cicli, costo).
+      en: Compare single-bus and three-bus datapaths (steps, cycles, cost).
+  - id: processore.4
+    text:
+      it: Confrontare unità di controllo cablata e microprogrammata.
+      en: Compare hardwired and microprogrammed control units.

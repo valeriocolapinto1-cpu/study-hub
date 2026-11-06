@@ -1,0 +1,594 @@
+- id: dal-sorgente-all-esecuzione-es-1
+  topic: dal-sorgente-all-esecuzione
+  objectives:
+    - dal-sorgente-all-esecuzione.2
+    - dal-sorgente-all-esecuzione.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Dato questo sorgente, elenca gli indirizzi assegnati a ogni riga e scrivi la **tabella dei simboli**. Le
+      parole sono a 32 bit e la memoria è indirizzata al byte.
+    en: Given this source, list the addresses assigned to each line and write the **symbol table**. Words are 32
+      bits and memory is byte-addressed.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: "Tieni un contatore di posizione che parte dal valore di ORIGIN e cresce di 4 a ogni istruzione. Le
+          etichette non occupano spazio: nominano l’indirizzo della riga su cui stanno."
+        en: "Keep a location counter that starts at the ORIGIN value and grows by 4 at every instruction. Labels take
+          no space: they name the address of the line they are on."
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+                    ORIGIN 200
+          PARTE:    Move  R1, #0        ; 200
+                    Move  R2, CONT      ; 204
+          GIRO:     Add   R1, R1, R2    ; 208
+                    Sub   R2, R2, #1    ; 212
+                    Branch>0 GIRO       ; 216
+                    Move  TOT, R1       ; 220
+          CONT:     DATAWORD 8          ; 224
+
+          TOT:      RESERVE 4           ; 228
+                    END PARTE
+          ```
+
+
+          Tabella dei simboli al termine della prima passata:
+
+
+          ```
+
+          PARTE → 200      GIRO → 208      CONT → 224      TOT → 228
+
+          ```
+
+
+          Attenzione a due cose: `DATAWORD` e `RESERVE` **occupano memoria** e fanno avanzare il contatore
+          esattamente come le istruzioni; `ORIGIN` e `END` no, perché sono istruzioni per l’assemblatore e non
+          finiscono in memoria.
+        en: >-
+          ```
+                    ORIGIN 200
+          PARTE:    Move  R1, #0        ; 200
+                    Move  R2, CONT      ; 204
+          GIRO:     Add   R1, R1, R2    ; 208
+                    Sub   R2, R2, #1    ; 212
+                    Branch>0 GIRO       ; 216
+                    Move  TOT, R1       ; 220
+          CONT:     DATAWORD 8          ; 224
+
+          TOT:      RESERVE 4           ; 228
+                    END PARTE
+          ```
+
+
+          Symbol table at the end of the first pass:
+
+
+          ```
+
+          PARTE → 200      GIRO → 208      CONT → 224      TOT → 228
+
+          ```
+
+
+          Watch out for two things: `DATAWORD` and `RESERVE` **take memory** and advance the counter exactly
+          like instructions; `ORIGIN` and `END` do not, because they are instructions for the assembler and do
+          not end up in memory.
+  origin: originale
+- id: dal-sorgente-all-esecuzione-es-2
+  topic: dal-sorgente-all-esecuzione
+  objectives:
+    - dal-sorgente-all-esecuzione.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: L’assemblatore segnala «simbolo `FINE` non definito». In quale delle due passate se ne accorge, e perché
+      non prima?
+    en: The assembler reports “undefined symbol `FINE`”. In which of the two passes does it notice, and why not
+      earlier?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: Chiediti che cosa fa ciascuna passata e quando l’assemblatore è in grado di sapere che un’etichetta
+          **non** esiste.
+        en: Ask yourself what each pass does and when the assembler is able to know that a label does **not** exist.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          Se ne accorge nella **seconda** passata, cioè quando prova a tradurre l’istruzione che nomina `FINE`
+          e non trova la voce nella tabella dei simboli.
+
+
+          Non può accorgersene prima perché durante la prima passata l’etichetta potrebbe semplicemente
+          **essere più avanti**: incontrare un riferimento a un nome ancora ignoto è la situazione normale,
+          non un errore. Solo a scansione conclusa la tabella è completa, e da quel momento un nome assente è
+          davvero assente.
+
+
+          È lo stesso motivo per cui esistono due passate: la prima **raccoglie**, la seconda **usa**. Un
+          assemblatore a una sola passata dovrebbe tenere una lista dei riferimenti in sospeso e tornare a
+          correggerli alla fine — che è, di fatto, una seconda passata mascherata.
+        en: >-
+          It notices in the **second** pass, i.e. when it tries to translate the instruction naming `FINE` and
+          does not find the entry in the symbol table.
+
+
+          It cannot notice earlier because during the first pass the label might simply **be further on**:
+          meeting a reference to a name not yet known is the normal situation, not an error. Only once the
+          scan is complete is the table complete, and from then on a missing name is really missing.
+
+
+          It is the same reason why there are two passes: the first **collects**, the second **uses**. A
+          one-pass assembler would have to keep a list of pending references and go back to fix them at the
+          end — which is, in fact, a disguised second pass.
+  origin: originale
+- id: dal-sorgente-all-esecuzione-es-3
+  topic: dal-sorgente-all-esecuzione
+  objectives:
+    - dal-sorgente-all-esecuzione.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Con `ORIGIN 100`, calcola l’indirizzo di ogni riga: due istruzioni, poi `RESERVE 20`, poi `DATAWORD 7`,
+      poi un’altra istruzione, infine l’etichetta `DOPO`. Parole a 32 bit, memoria al byte."
+    en: "With `ORIGIN 100`, compute the address of each line: two instructions, then `RESERVE 20`, then `DATAWORD
+      7`, then another instruction, finally the label `DOPO`. 32-bit words, byte-addressed memory."
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: "`RESERVE` prende il numero di **byte** indicato, non di parole. Le istruzioni ne occupano 4 ciascuna."
+        en: "`RESERVE` takes the indicated number of **bytes**, not words. Instructions take 4 each."
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+                    ORIGIN 100
+                    Move R1, #0        →  100
+                    Move R2, #1        →  104
+          BUFFER:   RESERVE 20         →  108   (occupa 108…127)
+
+          COST:     DATAWORD 7         →  128
+                    Add  R1, R1, R2    →  132
+          DOPO:     ...                →  136
+
+          ```
+
+
+          Il punto delicato è `RESERVE 20`: riserva venti **byte**, cioè cinque parole, quindi il contatore
+          salta da 108 a 128. Chi lo legge come «venti parole» sbaglia tutti gli indirizzi successivi; chi lo
+          legge come «una riga come le altre» avanza di 4 e sbaglia comunque.
+
+
+          Nota anche che `RESERVE` **non inizializza**: quei venti byte contengono valori indefiniti finché il
+          programma non ci scrive.
+        en: >-
+          ```
+                    ORIGIN 100
+                    Move R1, #0        →  100
+                    Move R2, #1        →  104
+          BUFFER:   RESERVE 20         →  108   (takes 108…127)
+
+          COST:     DATAWORD 7         →  128
+                    Add  R1, R1, R2    →  132
+          DOPO:     ...                →  136
+
+          ```
+
+
+          The tricky point is `RESERVE 20`: it reserves twenty **bytes**, i.e. five words, so the counter
+          jumps from 108 to 128. Whoever reads it as “twenty words” gets all the following addresses wrong;
+          whoever reads it as “a line like any other” advances by 4 and is wrong anyway.
+
+
+          Note also that `RESERVE` **does not initialise**: those twenty bytes hold undefined values until the
+          program writes to them.
+  origin: originale
+- id: dal-sorgente-all-esecuzione-es-4
+  topic: dal-sorgente-all-esecuzione
+  objectives:
+    - dal-sorgente-all-esecuzione.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: Una libreria grafica occupa 2 MB. Cinque programmi la usano e sono in esecuzione contemporaneamente.
+      Quanta memoria serve con collegamento **statico** e quanta con collegamento **dinamico**?
+    en: A graphics library takes 2 MB. Five programs use it and run at the same time. How much memory is needed
+      with **static** linking and how much with **dynamic** linking?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: Con lo statico la libreria entra dentro ogni eseguibile. Con il dinamico esiste una copia sola, condivisa.
+        en: With static linking the library goes inside every executable. With dynamic linking there is a single
+          shared copy.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          STATICO    5 programmi × 2 MB = 10 MB di codice di libreria in memoria
+                     (più 2 MB dentro ciascun file eseguibile su disco)
+
+          DINAMICO   una copia sola = 2 MB, mappata nello spazio di indirizzi
+                     di tutti e cinque i processi
+          ```
+
+
+          Il dinamico vince anche sull’**aggiornamento**: correggere un difetto nella libreria significa
+          sostituire un file, senza ricollegare i cinque programmi.
+
+
+          Che cosa costa: l’eseguibile non è più autosufficiente. Se la libreria manca, è di versione
+          sbagliata o è stata sostituita in modo incompatibile, il programma non parte o si comporta male — il
+          classico «manca una DLL». Lo statico paga spazio per comprare indipendenza.
+        en: >-
+          ```
+
+          STATIC     5 programs × 2 MB = 10 MB of library code in memory
+                     (plus 2 MB inside each executable file on disk)
+
+          DYNAMIC    a single copy = 2 MB, mapped into the address space
+                     of all five processes
+          ```
+
+
+          Dynamic linking also wins on **updates**: fixing a bug in the library means replacing one file,
+          without relinking the five programs.
+
+
+          What it costs: the executable is no longer self-sufficient. If the library is missing, of the wrong
+          version or replaced incompatibly, the program does not start or misbehaves — the classic “missing
+          DLL”. Static linking pays space to buy independence.
+  origin: originale
+- id: dal-sorgente-all-esecuzione-es-5
+  topic: dal-sorgente-all-esecuzione
+  objectives:
+    - dal-sorgente-all-esecuzione.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Attribuisci ciascun messaggio d’errore allo strumento che lo produce — compilatore, assemblatore,
+      collegatore, caricatore o esecuzione: «manca il punto e virgola» · «simbolo `stampa` non definito» ·
+      «indirizzo non allineato» · «riferimento esterno `sqrt` irrisolto» · «memoria insufficiente per caricare
+      il programma»."
+    en: "Attribute each error message to the tool that produces it — compiler, assembler, linker, loader or
+      execution: “missing semicolon” · “undefined symbol `stampa`” · “misaligned address” · “unresolved
+      external reference `sqrt`” · “not enough memory to load the program”."
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: "Ogni strumento vede solo una cosa: il compilatore la sintassi, l’assemblatore un modulo per volta, il
+          collegatore i rapporti fra moduli, il caricatore la memoria disponibile."
+        en: "Each tool sees only one thing: the compiler the syntax, the assembler one module at a time, the linker
+          the relations between modules, the loader the available memory."
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          «manca il punto e virgola»            → compilatore (analisi sintattica)
+
+          «simbolo stampa non definito»          → assemblatore (etichetta assente
+                                                   dentro QUESTO modulo)
+          «riferimento esterno sqrt irrisolto»   → collegatore (nessun modulo o
+                                                   libreria lo definisce)
+          «memoria insufficiente per caricare»   → caricatore
+
+          «indirizzo non allineato»              → esecuzione (eccezione
+                                                   sollevata dall'hardware)
+          ```
+
+
+          La coppia che si confonde più spesso è la seconda con la terza. Se il nome dovrebbe stare **nello
+          stesso file** ed è assente, se ne accorge l’assemblatore in seconda passata. Se il nome è dichiarato
+          esterno e va cercato **in un altro modulo**, l’assemblatore lascia il buco e la palla passa al
+          collegatore.
+        en: >-
+          ```
+
+          “missing semicolon”                     → compiler (syntax analysis)
+
+          “undefined symbol stampa”               → assembler (label missing
+                                                    inside THIS module)
+          “unresolved external reference sqrt”    → linker (no module or
+                                                    library defines it)
+          “not enough memory to load”             → loader
+
+          “misaligned address”                    → execution (exception
+                                                    raised by the hardware)
+          ```
+
+
+          The pair most often confused is the second with the third. If the name should be **in the same
+          file** and is missing, the assembler notices in the second pass. If the name is declared external
+          and must be looked up **in another module**, the assembler leaves the hole and the ball passes to
+          the linker.
+  origin: originale
+- id: mcq-sw-01
+  topic: dal-sorgente-all-esecuzione
+  objectives:
+    - dal-sorgente-all-esecuzione.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Perché un assemblatore lavora in **due passate**?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Perché nella prima passata costruisce la tabella dei simboli, e solo allora può risolvere i salti in
+          avanti
+  choices:
+    - text:
+        it: Per controllare due volte la sintassi
+      correct: false
+    - text:
+        it: Perché nella prima passata costruisce la tabella dei simboli, e solo allora può risolvere i salti in
+          avanti
+      correct: true
+    - text:
+        it: Perché deve tradurre prima i dati e poi le istruzioni
+      correct: false
+    - text:
+        it: Per ottimizzare il codice generato
+      correct: false
+  origin: originale
+- id: mcq-sw-02
+  topic: dal-sorgente-all-esecuzione
+  objectives:
+    - dal-sorgente-all-esecuzione.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Che cosa produce la direttiva `DATAWORD 42`?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Una parola di memoria inizializzata a 42, non un’istruzione
+  choices:
+    - text:
+        it: Un’istruzione che carica 42 in un registro
+      correct: false
+    - text:
+        it: Una parola di memoria inizializzata a 42, non un’istruzione
+      correct: true
+    - text:
+        it: Una costante simbolica utilizzabile nel sorgente
+      correct: false
+    - text:
+        it: Una riserva di 42 byte non inizializzati
+      correct: false
+  origin: originale
+- id: mcq-sw-03
+  topic: dal-sorgente-all-esecuzione
+  objectives:
+    - dal-sorgente-all-esecuzione.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Di che cosa si occupa il **collegatore** (linker)?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Di risolvere i riferimenti esterni fra moduli oggetto e librerie, producendo l’eseguibile
+  choices:
+    - text:
+        it: Di tradurre i mnemonici in codici operativi
+      correct: false
+    - text:
+        it: Di risolvere i riferimenti esterni fra moduli oggetto e librerie, producendo l’eseguibile
+      correct: true
+    - text:
+        it: Di copiare il programma in memoria e avviarlo
+      correct: false
+    - text:
+        it: Di allocare la memoria ai processi durante l’esecuzione
+      correct: false
+  origin: originale
+- id: mcq-sw-04
+  topic: dal-sorgente-all-esecuzione
+  objectives:
+    - dal-sorgente-all-esecuzione.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: In quali casi il sistema operativo riprende il controllo del processore?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Solo su chiamata di sistema, interruzione o eccezione
+  choices:
+    - text:
+        it: In continuazione, perché gira in parallelo al programma utente
+      correct: false
+    - text:
+        it: Solo su chiamata di sistema, interruzione o eccezione
+      correct: true
+    - text:
+        it: A ogni istruzione, che verifica prima di eseguirla
+      correct: false
+    - text:
+        it: Solo quando il programma termina
+      correct: false
+  origin: originale
+- id: schema-catena-software
+  topic: dal-sorgente-all-esecuzione
+  objectives:
+    - dal-sorgente-all-esecuzione.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Dal sorgente al programma oggetto»: scrivi per ogni posizione numerata l'etichetta
+      giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Assemblatore · Caricatore · Collegatore · Compilatore · File oggetto · File sorgente ·
+      Interprete · Libreria · Programma oggetto · Sistema operativo · Sorgente assembly · Tabella dei simboli
+    en: >-
+      Complete the diagram “From source to object program”: for each numbered position write the right label.
+      The list contains more labels than positions.
+
+
+      Labels: Assembler · Assembly source · Compiler · Interpreter · Library · Linker · Loader · Object file ·
+      Object program · Operating system · Source file · Symbol table
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 470" role="img"
+        aria-labelledby="ex-catena-software-t ex-catena-software-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-catena-software-t">Dal sorgente al
+        programma oggetto</title><desc id="ex-catena-software-d">Schema con 8 posizioni numerate da
+        completare.</desc><defs><marker id="ex-catena-software-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="20" width="160"
+        height="34" rx="16"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-catena-software-arrow)" x1="280" y1="54" x2="280" y2="90"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="210" y="90" width="140" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-catena-software-arrow)" x1="280" y1="130" x2="280" y2="165"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="165" width="160" height="34" rx="16"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-catena-software-arrow)" x1="280" y1="199" x2="280" y2="230"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="210" y="230" width="140" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-catena-software-arrow)" x1="280" y1="270" x2="280" y2="300"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="300" width="160" height="34" rx="16"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="20" y="300" width="140" height="34" rx="16"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-catena-software-arrow)" x1="160" y1="317" x2="205" y2="360"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-catena-software-arrow)" x1="280" y1="334" x2="280" y2="360"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="210" y="360" width="140" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-catena-software-arrow)" x1="280" y1="400" x2="280" y2="426"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="426" width="160" height="34" rx="16"/><circle cx="280" cy="37" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="37" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="280" cy="110" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="110" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="280" cy="182" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="182" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="280" cy="250" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="250" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="280" cy="317" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="317" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="90" cy="317" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="90" y="317" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="280" cy="380" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="380" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text><circle cx="280" cy="443" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="443" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">8</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 470" role="img"
+        aria-labelledby="ex-catena-software-t ex-catena-software-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-catena-software-t">From source to object
+        program</title><desc id="ex-catena-software-d">Diagram with 8 numbered positions to fill
+        in.</desc><defs><marker id="ex-catena-software-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="20" width="160"
+        height="34" rx="16"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-catena-software-arrow)" x1="280" y1="54" x2="280" y2="90"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="210" y="90" width="140" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-catena-software-arrow)" x1="280" y1="130" x2="280" y2="165"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="165" width="160" height="34" rx="16"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-catena-software-arrow)" x1="280" y1="199" x2="280" y2="230"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="210" y="230" width="140" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-catena-software-arrow)" x1="280" y1="270" x2="280" y2="300"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="300" width="160" height="34" rx="16"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="20" y="300" width="140" height="34" rx="16"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-catena-software-arrow)" x1="160" y1="317" x2="205" y2="360"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-catena-software-arrow)" x1="280" y1="334" x2="280" y2="360"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="210" y="360" width="140" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-catena-software-arrow)" x1="280" y1="400" x2="280" y2="426"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="426" width="160" height="34" rx="16"/><circle cx="280" cy="37" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="37" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="280" cy="110" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="110" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="280" cy="182" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="182" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="280" cy="250" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="250" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="280" cy="317" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="317" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="90" cy="317" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="90" y="317" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="280" cy="380" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="380" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text><circle cx="280" cy="443" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="443" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">8</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. File sorgente
+          2. Compilatore
+          3. Sorgente assembly
+          4. Assemblatore
+          5. File oggetto
+          6. Libreria
+          7. Collegatore
+          8. Programma oggetto
+        en: |-
+          1. Source file
+          2. Compiler
+          3. Assembly source
+          4. Assembler
+          5. Object file
+          6. Library
+          7. Linker
+          8. Object program
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: File sorgente
+      kind: text
+      accept:
+        - Source file
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Compilatore
+      kind: text
+      accept:
+        - Compiler
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Sorgente assembly
+      kind: text
+      accept:
+        - Assembly source
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Assemblatore
+      kind: text
+      accept:
+        - Assembler
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: File oggetto
+      kind: text
+      accept:
+        - Object file
+    - label:
+        it: Posizione 6
+        en: Position 6
+      value: Libreria
+      kind: text
+      accept:
+        - Library
+    - label:
+        it: Posizione 7
+        en: Position 7
+      value: Collegatore
+      kind: text
+      accept:
+        - Linker
+    - label:
+        it: Posizione 8
+        en: Position 8
+      value: Programma oggetto
+      kind: text
+      accept:
+        - Object program
+  origin: originale

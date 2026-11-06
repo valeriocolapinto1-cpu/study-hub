@@ -1,0 +1,142 @@
+- id: processore-verifica-1
+  topic: processore
+  objectives:
+    - processore.2
+  kind: concetto
+  front:
+    it: Scrivi in RTN il prelievo dell'istruzione.
+    en: Write the instruction fetch in RTN.
+  back:
+    it: "`PCout, MARin, Read` · `MDRout, IRin`, con `PC ← [PC] + 4` eseguito mentre si attende la memoria. La
+      destinazione non porta parentesi, le sorgenti sì."
+    en: "`PCout, MARin, Read` · `MDRout, IRin`, with `PC ← [PC] + 4` performed while waiting for memory. The
+      destination has no brackets, the sources do."
+- id: processore-verifica-2
+  topic: processore
+  objectives:
+    - processore.3
+  kind: concetto
+  front:
+    it: Perché il datapath a bus singolo richiede più cicli per la stessa istruzione?
+    en: Why does the single-bus datapath need more cycles for the same instruction?
+  back:
+    it: "Perché sul bus può viaggiare un solo dato per volta: i due operandi della ALU vanno portati in cicli
+      distinti, appoggiandoli a un registro temporaneo. Con tre bus i due operandi e il risultato viaggiano
+      insieme."
+    en: "Because only one piece of data can travel on the bus at a time: the two ALU operands must be brought in
+      separate cycles, parking one in a temporary register. With three buses the two operands and the result
+      travel together."
+- id: processore-verifica-3
+  topic: processore
+  objectives:
+    - processore.4
+  kind: concetto
+  front:
+    it: Differenza fra unità di controllo cablata e microprogrammata.
+    en: Difference between a hardwired and a microprogrammed control unit.
+  back:
+    it: "La cablata è una rete logica fissa: veloce, ma cambiare un'istruzione significa ridisegnarla. La
+      microprogrammata legge microistruzioni da una memoria di controllo: più lenta, ma si modifica
+      riscrivendo il microcodice."
+    en: "The hardwired one is a fixed logic network: fast, but changing an instruction means redesigning it. The
+      microprogrammed one reads microinstructions from a control store: slower, but it is modified by
+      rewriting the microcode."
+- id: open-cpu-01
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.2
+  kind: orale
+  front:
+    it: Descrivi il ciclo di prelievo di un'istruzione, nominando i registri coinvolti.
+  back:
+    it: "In RTN: `MAR ← [PC]`, avvio della lettura, `PC ← [PC]+4`, `IR ← [MDR]`; segue la decodifica e poi
+      l'esecuzione. **MAR** presenta l'indirizzo alla memoria e **MDR** raccoglie il dato: il processore non
+      parla mai direttamente con la memoria. **IR** trattiene l'istruzione per la decodifica, **PC** punta
+      alla prossima. L'incremento del PC avviene subito dopo l'invio dell'indirizzo, non a fine istruzione:
+      l'esecuzione è sequenziale per default, quindi conviene preparare l'indirizzo successivo mentre la
+      memoria risponde. I salti si limitano a sovrascrivere il PC."
+- id: open-cpu-02
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.2
+  kind: orale
+  front:
+    it: Confronta unità di controllo cablata e microprogrammata, e datapath a bus singolo e a tre bus.
+  back:
+    it: "L'unità **cablata** è una rete sequenziale progettata su misura: veloce, ma cambiare l'insieme di
+      istruzioni richiede di riprogettare il circuito — scelta tipica dei RISC. La **microprogrammata** tiene
+      i segnali di controllo in una memoria di controllo ed esegue un microprogramma: flessibile e adatta a
+      ISA complessi, ma più lenta perché ogni passo costa una lettura — scelta storica dei CISC. Quanto al
+      datapath: con un **bus singolo** si può fare un solo trasferimento per volta, quindi un'operazione fra
+      registri richiede più cicli; con **tre bus** (due di lettura e uno di scrittura) entrambi gli operandi
+      raggiungono la ALU e il risultato viene riscritto nello stesso ciclo — più hardware, ma è ciò che rende
+      praticabile la pipeline."
+- id: def-pc
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.2
+  kind: definizione
+  front:
+    it: Program Counter (PC)
+  back:
+    it: |-
+      Registro che contiene l’indirizzo della prossima istruzione da prelevare.
+
+      Si incrementa subito dopo il prelievo; i salti lo sovrascrivono.
+- id: def-ir
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.2
+  kind: definizione
+  front:
+    it: Instruction Register (IR)
+  back:
+    it: |-
+      Registro che trattiene l’istruzione prelevata durante la decodifica.
+
+      undefined
+- id: def-marmdr
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.2
+  kind: definizione
+  front:
+    it: MAR e MDR
+  back:
+    it: |-
+      Registri d’interfaccia verso la memoria: MAR contiene l’indirizzo, MDR il dato in transito.
+
+      undefined
+- id: def-rtn
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.2
+  kind: definizione
+  front:
+    it: RTN
+  back:
+    it: |-
+      Notazione dei trasferimenti fra registri, in cui le parentesi quadre significano «contenuto di».
+
+      `Add R1,R2,R3` → `R1 ← [R2]+[R3]`: la destinazione non ha parentesi.
+- id: def-controllo
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.2
+  kind: definizione
+  front:
+    it: Unità di controllo cablata / microprogrammata
+  back:
+    it: >-
+      Cablata: rete sequenziale su misura, veloce ma rigida. Microprogrammata: segnali letti da una memoria di
+      controllo, flessibile ma più lenta.
+
+
+      undefined

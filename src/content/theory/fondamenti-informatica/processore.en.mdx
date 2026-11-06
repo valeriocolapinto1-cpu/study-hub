@@ -1,0 +1,233 @@
+---
+course: fondamenti-informatica
+topic: processore
+lang: en
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In two minutes">
+
+<div data-note-id="teoria/processore/in-due-minuti">
+
+- Registers you must be able to name: **PC** (next instruction), **IR** (current instruction), **MAR** and **MDR** (interface with memory), plus the general-purpose register file.
+- The cycle is always the same: **fetch → decode → execute**, and it is described in RTN.
+- **Single-bus** datapath: one transfer at a time, hence more cycles per instruction. **Three-bus**: two sources and one destination together, one ALU operation per cycle.
+- The control unit generates the signals: **hardwired** (fast, rigid) or **microprogrammed** (flexible, slower — typical of CISC).
+- In RTN **square brackets** mean “the contents of”, so they go on the sources and not on the destination.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/processore/da-dove-si-parte">
+
+## Where we start
+
+**What you need to know first:** [flip-flops and registers](../circuiti-sequenziali/) (to understand what “holds” a value) and [combinational networks](../reti-combinatorie/), multiplexers in particular.
+
+**What problem it solves.** We have bricks that compute and bricks that remember. Now they are put together to build the machine that **runs programs**: a circuit that takes a sequence of instructions from memory and carries them out one after the other, knowing nothing about what that program does. The module answers two questions: what pieces are inside (the datapath) and who decides in what order to move them (the control unit).
+
+**New words.** The **datapath** is the set of registers, ALU and connections on which data travels; the **control unit** is what, instant by instant, opens and closes the right passages. The **ALU** is the arithmetic-logic unit, i.e. the piece that computes. A **bus** is a shared bundle of wires on which one piece of data travels at a time. **RTN** (Register Transfer Notation) is the notation in which those transfers are written: `R1 ← [R2] + [R3]` reads “R1 gets the sum of the contents of R2 and R3”.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/processore/i-registri-che-devi-saper-nominare">
+
+## The registers you must be able to name
+
+- **PC** (Program Counter): address of the **next** instruction.
+- **IR** (Instruction Register): the instruction just fetched, waiting to be decoded.
+- **MAR** (Memory Address Register): the address presented to memory.
+- **MDR** (Memory Data Register): the data in transit to/from memory.
+- **General-purpose registers** (R0…Rn): the operands the ALU works on.
+
+MAR and MDR are the interface to the bus: the processor never talks directly to memory.
+
+</div>
+
+<div data-note-id="teoria/processore/il-ciclo-fetch-decode-execute-in-rtn">
+
+## The fetch–decode–execute cycle in RTN
+
+Fetching an instruction is always the same sequence, whatever the instruction:
+
+```
+; fetch phase
+      MAR ← [PC]
+      Start memory read
+      PC  ← [PC] + 4        ; immediate increment
+      IR  ← [MDR]
+; then decode and execute, depending on the instruction
+```
+
+**Why the PC is incremented right away**, and not at the end of the instruction: execution is sequential by default, so it pays to prepare the next address while memory is still responding. That way, when it is needed, the PC is already ready — useful above all in a pipeline, where the fetch of the following instruction starts early. Branches simply **overwrite** the PC with a new address.
+
+</div>
+
+<div data-note-id="teoria/processore/datapath-a-bus-singolo">
+
+## Single-bus datapath
+
+All registers face a single internal bus. It is cheap, but it allows **only one transfer at a time**: an addition between two registers needs several steps (bring the first operand into a temporary register, then the second to the ALU, then write the result). Instructions therefore last several clock cycles.
+
+</div>
+
+<div data-note-id="teoria/processore/datapath-a-tre-bus">
+
+## Three-bus datapath
+
+Two read buses and one write bus make it possible to present **both** operands to the ALU and write its result **in the same cycle**. The cost is more hardware and more connections, the gain is that a register-register operation completes in a single step. It is the structure that makes pipelining practical.
+
+</div>
+
+<div data-note-id="teoria/processore/la-alu">
+
+## The ALU
+
+It performs arithmetic and logic operations. It receives the operands from the registers and **writes** the result back there: the intermediate values of a computation live in registers, not in memory. It also produces the status **flags** (zero, sign, carry, overflow) on which conditional branches are based.
+
+</div>
+
+<div data-note-id="teoria/processore/unita-di-controllo">
+
+## Control unit
+
+It generates, cycle by cycle, the signals that open the buffers, enable register writes and select the ALU operation. Two implementations:
+
+- **Hardwired**: a custom-designed sequential network. Fast, but changing the instruction set means redesigning the circuit. It is the typical choice of RISC.
+- **Microprogrammed**: the control signals are words stored in a control store, executed as a microprogram. Flexible and suited to complex instruction sets, but slower because every step requires a read. It is the historical choice of CISC.
+
+</div>
+
+<div data-note-id="teoria/processore/rtn-la-notazione-richiesta">
+
+## RTN, the required notation
+
+Square brackets mean “contents of”. `Add R1,R2,R3` is written `R1 ← [R2]+[R3]`. “Increase the value in R1 by LOC” becomes `R1 ← [LOC]+[R1]`. Writing `R1 ← R2 + R3` without brackets means adding the *register numbers*, not their contents.
+
+</div>
+
+<div data-note-id="teoria/processore/che-cosa-succede-in-un-ciclo-di-clock">
+
+## What happens in one clock cycle
+
+A “step” of the RTN sequences is not an abstraction: it is exactly what happens between two consecutive clock edges. In order:
+
+1. On the edge, the registers capture what they had at their input: the processor state advances by one step.
+2. The control unit, based on the instruction and the current step, activates the control signals — which registers put their contents on the bus, which take it, which operation the ALU performs.
+3. The data crosses the combinational logic: bus, multiplexers, ALU. This is where time is spent, and the slowest path is the critical path.
+4. Before the next edge everything must have settled, with the margin required by the registers' setup.
+
+This shows why the clock period cannot be shortened at will, and why a single-bus datapath needs more steps: not because it is “slow”, but because each step can move only one piece of data, so more steps are needed for the same operation.
+
+</div>
+
+<div data-note-id="teoria/processore/il-registro-di-stato">
+
+## The status register
+
+Besides PC, IR, MAR and MDR there is a register the exam often asks about and that is easy to forget: the **status register**, which collects the condition bits produced by the ALU:
+
+```
+Z  (zero)      the result is 0
+N  (negative)  the result has the sign bit at 1
+V  (overflow)  two's complement overflow
+C  (carry)     carry-out
+```
+
+They serve **conditional branches**: `Branch>0` does not re-examine the result, it looks at the flags left by the previous operation. The status register also holds system information — the mode (user or supervisor) and the interrupt masking level — and that is why it must be saved together with the PC when an interrupt arrives: without it, the program could not be resumed in the same conditions.
+
+</div>
+
+<div data-note-id="teoria/processore/microprogrammazione-piu-da-vicino">
+
+## Microprogramming, more closely
+
+In a **microprogrammed** control unit every step of the RTN sequences corresponds to a **microinstruction** kept in a control store. In the simplest form, each bit of the microinstruction directly drives a control signal:
+
+```
+microinstruction = [ PC_out | MAR_in | Read | IR_in | R1_out | … | WMFC | End ]
+                     1        1        1      0       0            1      0
+```
+
+This encoding is called **horizontal**: maximum freedom (several signals can be activated together) but very wide microinstructions. **Vertical** encoding compresses mutually exclusive signals into encoded fields — fewer bits, but a decoder is needed and arbitrary combinations are no longer possible.
+
+Executing a machine instruction then becomes executing a **microprogram**: a microinstruction counter walks through the sequence, and the instruction's opcode determines the starting address. It is literally a small processor inside the processor — and it explains both the flexibility of CISC and its cost in cycles.
+
+</div>
+
+## Diagrams
+
+<Schema id="unita-funzionali" lang="en" num="1" />
+
+<Schema id="processore-3bus" lang="en" num="2" />
+
+<Schema id="processore-memoria" lang="en" num="3" />
+
+<Schema id="componenti-processore" lang="en" num="4" />
+
+<Schema id="cinque-stadi" lang="en" num="5" />
+
+<Schema id="datapath" lang="en" num="6" />
+
+<Schema id="controllo-cablato" lang="en" num="7" />
+
+<Schema id="controllo-microprogrammato" lang="en" num="8" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/processore/esempio-svolto">
+
+## Worked example
+
+**Write the complete control sequence of `Add R1, R2, R3` on a single-bus datapath** (R1 ← [R2] + [R3]).
+
+```
+1.  PC_out, MAR_in, Read, Select4, Add, Z_in     ; fetch + PC ← [PC]+4
+2.  Z_out, PC_in, WMFC                          ; wait for memory
+3.  MDR_out, IR_in                              ; instruction into IR
+4.  R2_out, Y_in                                ; first operand into the temporary
+5.  R3_out, SelectY, Add, Z_in                  ; ALU: [Y] + [R3] → Z
+6.  Z_out, R1_in, End                           ; result into the register
+```
+
+Six steps, and the first three are **always the same**: the fetch does not depend on the instruction. Register `Y` is needed because only one operand can travel on the single bus at a time: the first one must be parked. `WMFC` (*wait for memory function completed*) is the wait for memory, which is much slower than the processor.
+
+On a **three-bus** datapath steps 4-6 collapse into one: the two operands go out together on buses A and B and the result comes back on bus C in the same cycle.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/processore/errori-tipici">
+
+## Common mistakes
+
+- Putting square brackets on the destination: you write `R1 ← [R2] + [R3]`, never `[R1] ←`. Brackets mean “the contents of”, and contents are not a destination.
+- Forgetting the PC increment, or giving it a step of its own: it is done **during** the memory wait, which would otherwise be wasted time.
+- Skipping the `WMFC` and reading MDR too early.
+
+</div>
+
+<Callout tone="attenzione" title="The form of RTN notation">
+
+<div data-note-id="teoria/processore/trap-rtn">
+
+In register transfers square brackets denote the **contents**, and they go only on the sources: `Add R1,R2,R3` becomes `R1 ← [R2]+[R3]`. Writing `[R1] ←` on the left would mean assigning to a value instead of to a register.
+
+</div>
+
+</Callout>
+
+</Layer>

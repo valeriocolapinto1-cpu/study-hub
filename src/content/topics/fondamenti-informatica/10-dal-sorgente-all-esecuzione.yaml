@@ -1,0 +1,33 @@
+id: dal-sorgente-all-esecuzione
+course: fondamenti-informatica
+order: 10
+title:
+  it: Dal sorgente all’esecuzione
+  en: From source to execution
+summary:
+  it: Assemblatore, collegatore, caricatore e il ruolo del sistema operativo.
+  en: Assembler, linker, loader and the role of the operating system.
+group:
+  it: Il processore
+  en: The processor
+objectives:
+  - id: dal-sorgente-all-esecuzione.1
+    text:
+      it: Descrivere in ordine compilazione, assemblaggio, collegamento e caricamento.
+      en: Describe compilation, assembly, linking and loading in order.
+  - id: dal-sorgente-all-esecuzione.2
+    text:
+      it: Costruire la tabella dei simboli con le due passate dell’assemblatore.
+      en: Build the symbol table with the assembler’s two passes.
+  - id: dal-sorgente-all-esecuzione.3
+    text:
+      it: Calcolare gli indirizzi tenendo conto delle direttive (ORIGIN, DATAWORD, RESERVE, EQU, END).
+      en: Compute addresses taking the directives into account (ORIGIN, DATAWORD, RESERVE, EQU, END).
+  - id: dal-sorgente-all-esecuzione.4
+    text:
+      it: Confrontare collegamento statico e dinamico e spiegare la rilocazione.
+      en: Compare static and dynamic linking and explain relocation.
+  - id: dal-sorgente-all-esecuzione.5
+    text:
+      it: Spiegare quando interviene il sistema operativo e attribuire gli errori allo strumento giusto.
+      en: Explain when the operating system steps in and attribute errors to the right tool.

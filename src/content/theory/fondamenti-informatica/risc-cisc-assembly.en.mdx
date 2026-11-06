@@ -1,0 +1,202 @@
+---
+course: fondamenti-informatica
+topic: risc-cisc-assembly
+lang: en
+---
+
+<Callout tone="ok" title="In two minutes">
+
+<div data-note-id="teoria/risc-cisc-assembly/in-due-minuti">
+
+- **RISC**: fixed-length instructions, only load/store access memory, many registers. **CISC**: variable-length instructions, operands in memory, microcode.
+- Addressing modes to recognise: immediate, register, direct, indirect, **base + displacement**, indexed, PC-relative.
+- Conditional branches read the **flags** (Z, N, V, C) or compare two registers directly.
+- Subroutines: the return address goes into a register or onto the **stack**; the stack also holds parameters, local variables and saved registers.
+- **Big-endian / little-endian**: byte order within the word. It matters when reading data written by another machine.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/risc-cisc-assembly/da-dove-si-parte">
+
+## Where we start
+
+**What you need to know first:** how a processor is built and what PC, IR and general-purpose registers are, from the module on the [processor](../processore/).
+
+**What problem it solves.** The processor executes instructions: but *which* ones? How many are needed, how are they written, how do you tell an instruction where to take its data? The **instruction set architecture** is the contract between hardware and software: everything a programmer must know about the machine, and everything the manufacturer undertakes to keep. It is the level at which you decide whether to have few simple instructions or many complex ones — the RISC/CISC opposition.
+
+**New words.** A **mnemonic** is the readable name of an instruction (`Add`) instead of its binary code. The **opcode** is the field that says which operation it is. An **addressing mode** is the rule by which the instruction indicates where an operand is: the value itself, a register, a cell, or a computation. The **stack** is a memory area managed with the “last in, first out” rule, used for procedure calls.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/risc-cisc-assembly/risc">
+
+## RISC
+
+- Simple instructions of **fixed length** (one word): decoding is immediate and fetching predictable.
+- **Load/store** model: only `Load` and `Store` touch memory; all others operate between registers. No memory-to-memory operations.
+- Few addressing modes, many general-purpose registers.
+- The compiler does more work, the hardware less: a fast circuit well suited to pipelining. Examples: ARM, Nios II.
+
+</div>
+
+<div data-note-id="teoria/risc-cisc-assembly/cisc">
+
+## CISC
+
+- Complex instructions of **variable length**; a single instruction can read from memory, compute and write back.
+- Many addressing modes; shorter programs in number of instructions.
+- Costly decoding and variable duration: the pipeline is harder to fill. Examples: Intel IA-32, ColdFire.
+
+The right comparison is not “which is faster” but **where the complexity moves**: into the compiler (RISC) or into the hardware (CISC).
+
+</div>
+
+<div data-note-id="teoria/risc-cisc-assembly/modi-di-indirizzamento">
+
+## Addressing modes
+
+They answer the question: where is the operand?
+
+- **Immediate** — the value is in the instruction. `Move R1, #5` → `R1 ← 5`
+- **Register** — the operand is in a register. `Move R1, R2` → `R1 ← [R2]`
+- **Absolute/direct** — the instruction contains the address. `Load R1, LOC` → `R1 ← [LOC]`
+- **Register indirect** — the register contains the address. `Load R1, (R2)` → `R1 ← [[R2]]`
+- **Indexed / base+displacement** — address = register + constant. `Load R1, 8(R2)` → `R1 ← [[R2]+8]`. It is how the fields of a structure and the elements of an array are accessed.
+- **Autoincrement / autodecrement** — like indirect, but the register advances by itself after (or before) the access: it walks an array with no extra instructions.
+- **PC-relative** — address = PC + displacement. Used by branches, it makes code relocatable.
+
+</div>
+
+<div data-note-id="teoria/risc-cisc-assembly/salti-e-condizioni">
+
+## Branches and conditions
+
+An **unconditional** branch overwrites the PC. A **conditional** branch does so only if a condition on the flags holds: typically a `CMP` is executed first (a subtraction that updates the flags without saving the result) and then a `BEQ`, `BGT`, `BLT`… Comparison and branch are two separate instructions.
+
+</div>
+
+<div data-note-id="teoria/risc-cisc-assembly/sottoprogrammi">
+
+## Subroutines
+
+A call must remember **where to return**. Two mechanisms:
+
+- **Link register**: the call instruction saves the return PC in a dedicated register. Fast, but one level only: if the subroutine calls another one, the value is overwritten.
+- **Stack**: the return address is pushed. It supports **nesting and recursion**, which the link register alone cannot handle.
+
+</div>
+
+<div data-note-id="teoria/risc-cisc-assembly/la-pila">
+
+## The stack
+
+A LIFO structure in memory, managed by the **stack pointer** (SP) that points to the top. It typically grows towards **lower** addresses:
+
+```
+; push R1
+      Sub  SP, SP, #4
+      Store R1, (SP)
+; pop into R1
+      Load R1, (SP)
+      Add  SP, SP, #4
+```
+
+The stack carries the return address, parameters, local variables and the registers the subroutine must preserve: together they are called the **activation record**.
+
+</div>
+
+<div data-note-id="teoria/risc-cisc-assembly/un-programma-completo">
+
+## A complete program
+
+```
+; multiplication by repeated addition (RISC style)
+      Load  LOC1, NUM1
+      Load  LOC2, NUM2
+      Clear LOC3
+CICLO: Sub   LOC2, LOC2, 1
+      Add   LOC3, LOC3, LOC1
+      Branch_if_[LOC2]>0  CICLO
+      Store LOC3, RES
+```
+
+Read it like this: the accumulator is cleared, the multiplicand is added as many times as the multiplier's value, decrementing the counter at every iteration. The branch is **at the end**, so the body is executed at least once.
+
+</div>
+
+<div data-note-id="teoria/risc-cisc-assembly/ordinamento-dei-byte">
+
+## Byte ordering
+
+**Big endian**: the most significant byte at the lowest address — the sign bit is therefore at the start. **Little endian**: the least significant first. It matters when exchanging data between different machines or accessing a word byte by byte.
+
+</div>
+
+<div data-note-id="teoria/risc-cisc-assembly/dalla-sorgente-all-esecuzione">
+
+## From source to execution
+
+The **compiler** translates into machine language producing object files; the **linker** combines them resolving external references; the **loader** brings the program into memory applying the necessary displacement. They are three distinct steps, and the exam asks about them separately.
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/risc-cisc-assembly/esempio-svolto">
+
+## Worked example
+
+**Sum of the first n elements of an array**, with the addressing modes highlighted:
+
+```
+      Move  R2, #NUM      ; immediate: R2 ← address of the array
+      Move  R3, N         ; direct: R3 ← contents of cell N
+      Clear R1
+CICLO: Add   R1, (R2)      ; indirect: R1 ← [R1] + contents pointed to by R2
+      Add   R2, #4        ; advance by one word
+      Sub   R3, #1
+      Branch>0 CICLO      ; PC-relative
+      Move  SOMMA, R1
+```
+
+Four different modes in seven lines, and this is what the exam wants to see recognised. Mind the difference between `#NUM` (the **address**) and `NUM` (the **contents**): it is the mistake that costs the most points of all.
+
+With base+displacement addressing the two middle lines become one, using a growing index: `Add R1, VETT(R2)` with `R2` advancing by 4.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/risc-cisc-assembly/errori-tipici">
+
+## Common mistakes
+
+- Confusing address and contents: `Move R2, #NUM` puts **the address** into R2; without the hash it puts the value stored there.
+- Advancing the pointer by 1 instead of by the word size (4 bytes if words are 32 bits and memory is byte-addressed).
+- Forgetting to initialise the accumulator, or putting the branch **before** the counter update.
+
+</div>
+
+<Callout tone="attenzione" title="The form of RTN notation">
+
+<div data-note-id="teoria/risc-cisc-assembly/trap-rtn">
+
+In register transfers square brackets denote the **contents**, and they go only on the sources: `Add R1,R2,R3` becomes `R1 ← [R2]+[R3]`. Writing `[R1] ←` on the left would mean assigning to a value instead of to a register.
+
+</div>
+
+</Callout>
+
+</Layer>

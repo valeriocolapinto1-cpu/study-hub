@@ -1,0 +1,138 @@
+- id: risc-cisc-assembly-verifica-1
+  topic: risc-cisc-assembly
+  objectives:
+    - risc-cisc-assembly.2
+  kind: concetto
+  front:
+    it: Che cosa fa `Load R1, 20(R2)`?
+    en: What does `Load R1, 20(R2)` do?
+  back:
+    it: "È base + spiazzamento: calcola l'indirizzo `[R2] + 20` e carica in R1 il **contenuto** di quella cella.
+      R2 non viene modificato, e lo spiazzamento è una costante nell'istruzione."
+    en: "It is base + displacement: it computes the address `[R2] + 20` and loads into R1 the **contents** of that
+      cell. R2 is not modified, and the displacement is a constant in the instruction."
+- id: risc-cisc-assembly-verifica-2
+  topic: risc-cisc-assembly
+  objectives:
+    - risc-cisc-assembly.1
+  kind: concetto
+  front:
+    it: Perché i RISC usano istruzioni di lunghezza fissa?
+    en: Why do RISC processors use fixed-length instructions?
+  back:
+    it: "Perché prelievo e decodifica diventano regolari: ogni istruzione occupa lo stesso spazio e i campi stanno
+      sempre nelle stesse posizioni. È la condizione che rende efficiente la pipeline."
+    en: "Because fetch and decode become regular: every instruction takes the same space and the fields are always
+      in the same positions. It is the condition that makes the pipeline efficient."
+- id: risc-cisc-assembly-verifica-3
+  topic: risc-cisc-assembly
+  objectives:
+    - risc-cisc-assembly.4
+  kind: concetto
+  front:
+    it: Perché l'indirizzo di ritorno finisce sulla pila e non sempre in un registro?
+    en: Why does the return address end up on the stack and not always in a register?
+  back:
+    it: Con le chiamate annidate un singolo registro verrebbe sovrascritto dalla seconda chiamata. La pila,
+      essendo LIFO, conserva un indirizzo di ritorno per ogni livello di annidamento.
+    en: With nested calls a single register would be overwritten by the second call. The stack, being LIFO, keeps
+      one return address per nesting level.
+- id: open-isa-01
+  topic: risc-cisc-assembly
+  objectives:
+    - risc-cisc-assembly.3
+    - risc-cisc-assembly.5
+  kind: orale
+  front:
+    it: Perché conviene aggiornare il PC all'istruzione successiva e non a quella corrente?
+  back:
+    it: "Per la sequenzialità dell'esecuzione: dopo il fetch, incrementare il PC prepara la prossima istruzione
+      senza ricalcolo, utile in pipeline (fetch anticipato). I salti (branch) caricano un nuovo indirizzo nel
+      PC."
+- id: open-isa-02
+  topic: risc-cisc-assembly
+  objectives:
+    - risc-cisc-assembly.3
+    - risc-cisc-assembly.5
+  kind: orale
+  front:
+    it: Confronta le architetture RISC e CISC.
+  back:
+    it: "**RISC**: istruzioni semplici, di lunghezza fissa (una parola); modello **load/store** (i dati vanno
+      portati in registro prima di essere elaborati, niente operazioni memoria-memoria); pochi modi di
+      indirizzamento → decodifica semplice e circuito veloce, adatto alla pipeline. Esempi: ARM, Nios II.
+      **CISC**: istruzioni complesse di lunghezza variabile, operazioni anche su operandi in memoria; i
+      programmi risultano più corti ma la decodifica è più onerosa. Esempi: Intel IA-32, ColdFire."
+- id: def-risc
+  topic: risc-cisc-assembly
+  objectives:
+    - risc-cisc-assembly.3
+    - risc-cisc-assembly.5
+  kind: definizione
+  front:
+    it: RISC
+  back:
+    it: >-
+      Architettura con istruzioni semplici di lunghezza fissa e modello load/store: solo Load e Store toccano
+      la memoria.
+
+
+      undefined
+- id: def-cisc
+  topic: risc-cisc-assembly
+  objectives:
+    - risc-cisc-assembly.3
+    - risc-cisc-assembly.5
+  kind: definizione
+  front:
+    it: CISC
+  back:
+    it: >-
+      Architettura con istruzioni complesse di lunghezza variabile, che possono operare direttamente su
+      operandi in memoria.
+
+
+      undefined
+- id: def-indicizzato
+  topic: risc-cisc-assembly
+  objectives:
+    - risc-cisc-assembly.3
+    - risc-cisc-assembly.5
+  kind: definizione
+  front:
+    it: Indirizzamento indicizzato
+  back:
+    it: |-
+      L’indirizzo dell’operando è la somma di un registro base e di uno spiazzamento costante.
+
+      undefined
+- id: def-pila
+  topic: risc-cisc-assembly
+  objectives:
+    - risc-cisc-assembly.3
+    - risc-cisc-assembly.5
+  kind: definizione
+  front:
+    it: Pila (stack)
+  back:
+    it: >-
+      Struttura LIFO in memoria, gestita dallo stack pointer, su cui viaggiano indirizzo di ritorno, parametri
+      e variabili locali.
+
+
+      È ciò che rende possibili annidamento e ricorsione, che il solo link register non regge.
+- id: def-linker
+  topic: risc-cisc-assembly
+  objectives:
+    - risc-cisc-assembly.3
+    - risc-cisc-assembly.5
+  kind: definizione
+  front:
+    it: Compilatore, linker, loader
+  back:
+    it: >-
+      Il compilatore traduce in linguaggio macchina, il linker combina i file oggetto risolvendo i riferimenti
+      esterni, il loader porta il programma in memoria.
+
+
+      undefined
