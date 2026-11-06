@@ -1,0 +1,548 @@
+- id: mappe-di-karnaugh-es-1
+  topic: mappe-di-karnaugh
+  objectives:
+    - mappe-di-karnaugh.2
+    - mappe-di-karnaugh.4
+  difficulty: 1
+  kind: static
+  statement:
+    it: Minimizza con la mappa di Karnaugh `Y(A,B,C) = Σm(1,2,3,6)`.
+    en: Minimise with the Karnaugh map `Y(A,B,C) = Σm(1,2,3,6)`.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: Disegna la mappa con le colonne in ordine 00, 01, 11, 10. Poi cerca i gruppi più grandi possibile,
+          ricordando che possono sovrapporsi.
+        en: Draw the map with the columns in the order 00, 01, 11, 10. Then look for the largest possible groups,
+          remembering that they can overlap.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+                  BC
+                00  01  11  10
+          A 0 │  0   1   1   1
+            1 │  0   0   0   1
+          ```
+
+
+          Gruppi individuabili: `m1,m3` (riga A=0, colonne con C=1) → **Ā·C**; `m2,m3` (riga A=0, colonne con
+          B=1) → **Ā·B**; `m2,m6` (colonna BC=10, entrambe le righe) → **B·C̄**.
+
+
+          Quali sono **essenziali**? m1 è coperto solo da Ā·C, m6 solo da B·C̄: entrambi obbligatori. Presi
+          quei due, restano coperti anche m3 e m2, quindi Ā·B non serve.
+
+
+          ```
+
+          Y = Ā·C + B·C̄      (2 termini, 4 letterali)
+
+          ```
+        en: >-
+          ```
+                  BC
+                00  01  11  10
+          A 0 │  0   1   1   1
+            1 │  0   0   0   1
+          ```
+
+
+          Possible groups: `m1,m3` (row A=0, columns with C=1) → **Ā·C**; `m2,m3` (row A=0, columns with B=1)
+          → **Ā·B**; `m2,m6` (column BC=10, both rows) → **B·C̄**.
+
+
+          Which are **essential**? m1 is covered only by Ā·C, m6 only by B·C̄: both mandatory. With those two,
+          m3 and m2 are covered as well, so Ā·B is not needed.
+
+
+          ```
+
+          Y = Ā·C + B·C̄      (2 terms, 4 literals)
+
+          ```
+  origin: originale
+- id: mappe-di-karnaugh-es-2
+  topic: mappe-di-karnaugh
+  objectives:
+    - mappe-di-karnaugh.1
+    - mappe-di-karnaugh.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Minimizza `Y(A,B,C,D) = Σm(0,2,8,10)`.
+    en: Minimise `Y(A,B,C,D) = Σm(0,2,8,10)`.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: "Segna i quattro mintermini sulla mappa a 4 variabili e guarda **dove finiscono**. L’adiacenza è
+          circolare: i bordi opposti si toccano."
+        en: "Mark the four minterms on the 4-variable map and look at **where they end up**. Adjacency is circular:
+          opposite edges touch."
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+                    CD
+                 00  01  11  10
+          AB 00 │  1   0   0   1
+             01 │  0   0   0   0
+             11 │  0   0   0   0
+             10 │  1   0   0   1
+          ```
+
+
+          I quattro 1 stanno nei **quattro angoli**. Non è un caso: prima e ultima riga sono adiacenti (AB =
+          00 e 10 differiscono di un bit), e così prima e ultima colonna. I quattro angoli formano quindi un
+          gruppo di 4 celle valido.
+
+
+          Dentro il gruppo A cambia (0 e 1) e C cambia (0 e 1); restano costanti B = 0 e D = 0:
+
+
+          ```
+
+          Y = B̄·D̄      (1 termine, 2 letterali)
+
+          ```
+
+
+          Chi non usa il wrap-around scrive quattro termini di quattro letterali invece di uno di due.
+        en: >-
+          ```
+                    CD
+                 00  01  11  10
+          AB 00 │  1   0   0   1
+             01 │  0   0   0   0
+             11 │  0   0   0   0
+             10 │  1   0   0   1
+          ```
+
+
+          The four 1s sit in the **four corners**. It is no coincidence: first and last row are adjacent (AB =
+          00 and 10 differ in one bit), and so are first and last column. The four corners therefore form a
+          valid group of 4 cells.
+
+
+          Within the group A changes (0 and 1) and C changes (0 and 1); B = 0 and D = 0 stay constant:
+
+
+          ```
+
+          Y = B̄·D̄      (1 term, 2 literals)
+
+          ```
+
+
+          Whoever does not use wrap-around writes four four-literal terms instead of one two-literal term.
+  origin: originale
+- id: mappe-di-karnaugh-es-3
+  topic: mappe-di-karnaugh
+  objectives:
+    - mappe-di-karnaugh.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: Minimizza `Y(A,B,C,D) = Σm(1,3,7,11,15) + d(0,2,5)`, dove `d` sono le **indifferenze**.
+    en: Minimise `Y(A,B,C,D) = Σm(1,3,7,11,15) + d(0,2,5)`, where `d` are the **don’t cares**.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: "Le indifferenze si prendono come 1 **solo se allargano un gruppo**. Valutale una per una: quelle che non
+          servono restano 0."
+        en: "Don’t cares are taken as 1 **only if they enlarge a group**. Judge them one by one: those that do not
+          help stay 0."
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+                    CD
+                 00  01  11  10
+          AB 00 │  x   1   1   x
+             01 │  0   x   1   0
+             11 │  0   0   1   0
+             10 │  0   0   1   0
+          ```
+
+
+          Primo gruppo evidente: la colonna `CD = 11` per intero — m3, m7, m15, m11 — dove restano costanti C
+          = 1 e D = 1:
+
+
+          ```
+
+          C·D
+
+          ```
+
+
+          Resta scoperto m1. Da solo darebbe Ā·B̄·C̄·D, quattro letterali. Ma prendendo le indifferenze m0 e
+          m2 (più m3, già a 1) si forma il quadrato della riga AB = 00:
+
+
+          ```
+
+          Ā·B̄        ← copre m0, m1, m2, m3
+
+          ```
+
+
+          L’indifferenza m5 invece non aiuta nessun gruppo e resta a 0.
+
+
+          ```
+
+          Y = C·D + Ā·B̄      (2 termini, 4 letterali)
+
+          ```
+
+
+          Senza sfruttare le indifferenze si sarebbe ottenuto `C·D + Ā·B̄·C̄·D`: corretto, ma con due
+          letterali in più — cioè meno punti.
+        en: >-
+          ```
+                    CD
+                 00  01  11  10
+          AB 00 │  x   1   1   x
+             01 │  0   x   1   0
+             11 │  0   0   1   0
+             10 │  0   0   1   0
+          ```
+
+
+          First obvious group: the whole `CD = 11` column — m3, m7, m15, m11 — where C = 1 and D = 1 stay
+          constant:
+
+
+          ```
+
+          C·D
+
+          ```
+
+
+          m1 is left uncovered. On its own it would give Ā·B̄·C̄·D, four literals. But taking the don’t cares
+          m0 and m2 (plus m3, already at 1) forms the square of row AB = 00:
+
+
+          ```
+
+          Ā·B̄        ← covers m0, m1, m2, m3
+
+          ```
+
+
+          The don’t care m5, on the other hand, helps no group and stays 0.
+
+
+          ```
+
+          Y = C·D + Ā·B̄      (2 terms, 4 literals)
+
+          ```
+
+
+          Without exploiting the don’t cares you would have obtained `C·D + Ā·B̄·C̄·D`: correct, but with two
+          more literals — that is, fewer points.
+  origin: originale
+- id: mappe-di-karnaugh-es-4
+  topic: mappe-di-karnaugh
+  objectives:
+    - mappe-di-karnaugh.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: Minimizza `Y(A,B,C) = Σm(0,1,2,5,6,7)`. Quanti implicanti **essenziali** ci sono?
+    en: Minimise `Y(A,B,C) = Σm(0,1,2,5,6,7)`. How many **essential** implicants are there?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: Elenca tutti gli implicanti primi e, per ogni mintermine, conta da quanti è coperto. Un mintermine coperto
+          da un solo primo rende quel primo essenziale.
+        en: List all the prime implicants and, for each minterm, count how many cover it. A minterm covered by a
+          single prime makes that prime essential.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+                  BC
+                00  01  11  10
+          A 0 │  1   1   0   1
+            1 │  0   1   1   1
+          ```
+
+
+          Implicanti primi (tutte coppie, nessun gruppo di 4 è possibile):
+
+
+          ```
+
+          Ā·B̄ (m0,m1)   Ā·C̄ (m0,m2)   B̄·C (m1,m5)
+
+          B·C̄ (m2,m6)   A·C  (m5,m7)   A·B  (m6,m7)
+
+          ```
+
+
+          Ogni mintermine è coperto da **esattamente due** primi: m0 da Ā·B̄ e Ā·C̄, m1 da Ā·B̄ e B̄·C, e così
+          via. Quindi **nessun implicante è essenziale**: la mappa è *ciclica*, ed è il caso in cui la regola
+          «prendi gli essenziali» non basta.
+
+
+          Si sceglie allora una copertura minima per tentativi: servono tre termini, e ce ne sono due
+          possibili, entrambe accettabili.
+
+
+          ```
+
+          Y = Ā·B̄ + B·C̄ + A·C      oppure      Y = Ā·C̄ + B̄·C + A·B
+
+          ```
+        en: >-
+          ```
+                  BC
+                00  01  11  10
+          A 0 │  1   1   0   1
+            1 │  0   1   1   1
+          ```
+
+
+          Prime implicants (all pairs, no group of 4 is possible):
+
+
+          ```
+
+          Ā·B̄ (m0,m1)   Ā·C̄ (m0,m2)   B̄·C (m1,m5)
+
+          B·C̄ (m2,m6)   A·C  (m5,m7)   A·B  (m6,m7)
+
+          ```
+
+
+          Every minterm is covered by **exactly two** primes: m0 by Ā·B̄ and Ā·C̄, m1 by Ā·B̄ and B̄·C, and so
+          on. So **no implicant is essential**: the map is *cyclic*, and this is the case where the “take the
+          essentials” rule is not enough.
+
+
+          A minimal cover is then chosen by trial: three terms are needed, and there are two possible covers,
+          both acceptable.
+
+
+          ```
+
+          Y = Ā·B̄ + B·C̄ + A·C      or      Y = Ā·C̄ + B̄·C + A·B
+
+          ```
+  origin: originale
+- id: mappe-di-karnaugh-es-5
+  topic: mappe-di-karnaugh
+  objectives:
+    - mappe-di-karnaugh.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: Per la stessa funzione dell’esercizio precedente — `Y(A,B,C) = Σm(0,1,2,5,6,7)` — ricava la forma **POS**
+      raggruppando gli zeri. È più corta della SOP?
+    en: For the same function as the previous exercise — `Y(A,B,C) = Σm(0,1,2,5,6,7)` — derive the **POS** form by
+      grouping the zeros. Is it shorter than the SOP?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: Raggruppando gli zeri si minimizza Ȳ. Poi si nega il risultato con De Morgan per tornare a Y.
+        en: Grouping the zeros minimises Ȳ. Then negate the result with De Morgan to get back to Y.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          Gli zeri sono due soli: m3 (011) e m4 (100). Non sono adiacenti — differiscono in tutti e tre i bit
+          — quindi restano due termini isolati:
+
+
+          ```
+
+          Ȳ = Ā·B·C + A·B̄·C̄
+
+          ```
+
+
+          Negando con De Morgan (il complemento di una somma di prodotti è un prodotto di somme, con ogni
+          letterale invertito):
+
+
+          ```
+
+          Y = (A + B̄ + C̄) · (Ā + B + C)      (2 termini, 6 letterali)
+
+          ```
+
+
+          Confronto con la SOP minima trovata prima (3 termini, 6 letterali): la POS usa **un termine in
+          meno** a parità di letterali. Con pochi zeri conviene quasi sempre provarla, ed è per questo che il
+          raggruppamento degli zeri va sempre tentato prima di consegnare.
+        en: >-
+          There are only two zeros: m3 (011) and m4 (100). They are not adjacent — they differ in all three
+          bits — so they remain two isolated terms:
+
+
+          ```
+
+          Ȳ = Ā·B·C + A·B̄·C̄
+
+          ```
+
+
+          Negating with De Morgan (the complement of a sum of products is a product of sums, with every
+          literal inverted):
+
+
+          ```
+
+          Y = (A + B̄ + C̄) · (Ā + B + C)      (2 terms, 6 literals)
+
+          ```
+
+
+          Compared with the minimal SOP found before (3 terms, 6 literals): the POS uses **one term fewer**
+          for the same literals. With few zeros it is almost always worth trying, and that is why grouping the
+          zeros should always be attempted before handing in.
+  origin: originale
+- id: gen-karnaugh
+  topic: mappe-di-karnaugh
+  objectives:
+    - mappe-di-karnaugh.2
+    - mappe-di-karnaugh.3
+  difficulty: 3
+  kind: generated
+  generator: fondamenti-informatica/karnaugh
+  origin: originale
+- id: mcq-karnaugh-01
+  topic: mappe-di-karnaugh
+  objectives:
+    - mappe-di-karnaugh.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: In quale ordine si dispongono le colonne di una mappa di Karnaugh?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: 00, 01, 11, 10
+  choices:
+    - text:
+        it: 00, 01, 10, 11
+      correct: false
+    - text:
+        it: 00, 01, 11, 10
+      correct: true
+    - text:
+        it: 11, 10, 01, 00
+      correct: false
+    - text:
+        it: L'ordine è indifferente
+      correct: false
+  origin: originale
+- id: mcq-karnaugh-02
+  topic: mappe-di-karnaugh
+  objectives:
+    - mappe-di-karnaugh.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Quale dimensione NON può avere un gruppo in una mappa di Karnaugh?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: "6"
+  choices:
+    - text:
+        it: "2"
+      correct: false
+    - text:
+        it: "4"
+      correct: false
+    - text:
+        it: "6"
+      correct: true
+    - text:
+        it: "8"
+      correct: false
+  origin: originale
+- id: mcq-karnaugh-03
+  topic: mappe-di-karnaugh
+  objectives:
+    - mappe-di-karnaugh.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Un implicante primo si dice **essenziale** quando:"
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Copre almeno un 1 che nessun altro implicante primo copre
+  choices:
+    - text:
+        it: È il gruppo più grande della mappa
+      correct: false
+    - text:
+        it: Copre almeno un 1 che nessun altro implicante primo copre
+      correct: true
+    - text:
+        it: Contiene almeno una indifferenza
+      correct: false
+    - text:
+        it: Ha un solo letterale
+      correct: false
+  origin: originale
+- id: mcq-karnaugh-04
+  topic: mappe-di-karnaugh
+  objectives:
+    - mappe-di-karnaugh.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Come si trattano le indifferenze (x) in una mappa?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Si valutano una per una, prendendole a 1 solo se allargano un gruppo
+  choices:
+    - text:
+        it: Si pongono tutte a 1
+      correct: false
+    - text:
+        it: Si pongono tutte a 0
+      correct: false
+    - text:
+        it: Si valutano una per una, prendendole a 1 solo se allargano un gruppo
+      correct: true
+    - text:
+        it: Si escludono dalla mappa
+      correct: false
+  origin: originale

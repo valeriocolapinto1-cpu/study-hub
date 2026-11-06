@@ -1,0 +1,99 @@
+- id: reti-combinatorie-verifica-1
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.2
+  kind: concetto
+  front:
+    it: Come realizzi Y = A·B + C con un multiplexer a 3 selettori?
+    en: How do you implement Y = A·B + C with a multiplexer with 3 selects?
+  back:
+    it: "Si collegano A, B, C ai tre selettori e su ciascuno degli 8 ingressi dati si mette la costante 0 o 1 pari
+      al valore della funzione per quel mintermine: gli ingressi dati **sono** la colonna d'uscita della
+      tabella di verità."
+    en: "Wire A, B, C to the three selects and on each of the 8 data inputs put the constant 0 or 1 equal to the
+      value of the function for that minterm: the data inputs **are** the output column of the truth table."
+- id: reti-combinatorie-verifica-2
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.4
+  kind: concetto
+  front:
+    it: Perché due uscite non tri-state non possono essere collegate allo stesso filo?
+    en: Why can’t two non-tri-state outputs be connected to the same wire?
+  back:
+    it: "Se una impone 0 e l'altra 1 si crea un percorso diretto fra alimentazione e massa: valore d'uscita
+      indefinito e corrente elevata. Il tri-state consente a tutte tranne una di «staccarsi»."
+    en: "If one drives 0 and the other 1, a direct path between supply and ground is created: undefined output
+      value and high current. Tri-state lets all but one of them “disconnect”."
+- id: reti-combinatorie-verifica-3
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.1
+  kind: concetto
+  front:
+    it: A che serve l'ingresso di abilitazione di un decoder?
+    en: What is the enable input of a decoder for?
+  back:
+    it: "A spegnere tutte le uscite. Serve per comporre decoder grandi con decoder piccoli: i bit più
+      significativi abilitano il blocco giusto, i meno significativi scelgono la riga."
+    en: "To switch all outputs off. It is used to compose large decoders from small ones: the most significant
+      bits enable the right block, the least significant ones choose the row."
+- id: open-comb-01
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.1
+    - reti-combinatorie.2
+  kind: orale
+  front:
+    it: Che cosa fanno decodificatore e multiplexer? Come si sintetizza una funzione con un MUX?
+  back:
+    it: "Il **decodificatore** ha n ingressi e 2ⁿ uscite e ne attiva **una sola**, quella il cui indice
+      corrisponde al numero presentato: ogni uscita è il mintermine corrispondente. Serve a selezionare una
+      fra molte cose — un chip di memoria, un registro. Il **multiplexer** fa l'opposto sul lato dati: sceglie
+      uno fra 2ⁿ ingressi in base a n linee di selezione, ed è l'interruttore programmabile del circuito
+      (dentro il processore decide quale sorgente va alla ALU). Per **sintetizzare una funzione** di n
+      variabili con un MUX a n selezioni si collegano le variabili alle selezioni e si fissa ciascun ingresso
+      dati al valore che la funzione assume in quella riga: gli ingressi dati *sono* la colonna delle uscite
+      della tabella di verità. Con lo stesso MUX si copre anche una funzione di n+1 variabili, collegando a
+      ogni ingresso dati non una costante ma la variabile residua, il suo complemento, 0 oppure 1."
+- id: def-decoder
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.1
+    - reti-combinatorie.2
+  kind: definizione
+  front:
+    it: Decodificatore
+  back:
+    it: |-
+      Rete con n ingressi e 2ⁿ uscite che attiva la sola uscita corrispondente al numero in ingresso.
+
+      undefined
+- id: def-mux
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.1
+    - reti-combinatorie.2
+  kind: definizione
+  front:
+    it: Multiplexer
+  back:
+    it: >-
+      Rete che porta in uscita uno fra 2ⁿ ingressi dati, scelto da n linee di selezione.
+
+
+      Con n selezioni realizza qualunque funzione di n variabili: gli ingressi dati sono la colonna delle
+      uscite.
+- id: def-tristate
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.1
+    - reti-combinatorie.2
+  kind: definizione
+  front:
+    it: Buffer tri-state
+  back:
+    it: |-
+      Buffer la cui uscita, oltre a 0 e 1, può assumere lo stato di alta impedenza, scollegandosi dal filo.
+
+      È ciò che permette a più dispositivi di condividere un bus senza cortocircuitarsi.

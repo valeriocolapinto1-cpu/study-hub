@@ -1,0 +1,33 @@
+id: reti-combinatorie
+course: fondamenti-informatica
+order: 3
+title:
+  it: Reti combinatorie notevoli
+  en: Notable combinational networks
+summary:
+  it: Decoder, encoder, multiplexer, comparatori, buffer tri-state.
+  en: Decoders, encoders, multiplexers, comparators, tri-state buffers.
+group:
+  it: Reti logiche
+  en: Logic networks
+objectives:
+  - id: reti-combinatorie.1
+    text:
+      it: Descrivere decoder, encoder e codificatore di priorità e comporre decoder grandi da decoder piccoli.
+      en: Describe decoders, encoders and priority encoders, and build large decoders from small ones.
+  - id: reti-combinatorie.2
+    text:
+      it: Realizzare una funzione qualsiasi con un multiplexer (n o n+1 variabili).
+      en: Implement any function with a multiplexer (n or n+1 variables).
+  - id: reti-combinatorie.3
+    text:
+      it: Progettare comparatori di uguaglianza e di maggioranza.
+      en: Design equality and magnitude comparators.
+  - id: reti-combinatorie.4
+    text:
+      it: Spiegare il buffer tri-state e la condivisione di un bus.
+      en: Explain the tri-state buffer and bus sharing.
+  - id: reti-combinatorie.5
+    text:
+      it: Usare una ROM come tabella di verità e motivare la forma a due livelli.
+      en: Use a ROM as a truth table and justify the two-level form.

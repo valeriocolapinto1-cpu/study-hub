@@ -1,0 +1,867 @@
+- id: tempi-e-tecnologia-es-1
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Tre porte hanno ritardo 3 ns, 2 ns e 4 ns. Qual è il ritardo totale se sono **in cascata**? E se le prime
+      due lavorano **in parallelo** e la terza riceve entrambe le uscite?
+    en: Three gates have delays of 3 ns, 2 ns and 4 ns. What is the total delay if they are **in cascade**? And if
+      the first two work **in parallel** and the third receives both outputs?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: "In cascata i ritardi si sommano perché il segnale le attraversa una dopo l’altra. In parallelo no: il
+          risultato è pronto quando è pronto il **più lento** dei due rami."
+        en: "In cascade the delays add up because the signal crosses them one after the other. In parallel they do
+          not: the result is ready when the **slower** of the two branches is."
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          in cascata:   3 + 2 + 4 = 9 ns
+
+
+          in parallelo: max(3, 2) + 4 = 3 + 4 = 7 ns
+
+          ```
+
+
+          È l’errore più comune dell’argomento: sommare anche i rami paralleli, ottenendo 9 ns anche nel
+          secondo caso. Il ritardo di una rete è quello del suo **cammino critico**, cioè il percorso
+          ingresso→uscita più lento, non la somma di tutti i ritardi presenti.
+        en: >-
+          ```
+
+          in cascade:   3 + 2 + 4 = 9 ns
+
+
+          in parallel:  max(3, 2) + 4 = 3 + 4 = 7 ns
+
+          ```
+
+
+          It is the most common mistake on this topic: adding the parallel branches too, getting 9 ns in the
+          second case as well. The delay of a network is that of its **critical path**, i.e. the slowest
+          input→output path, not the sum of all the delays present.
+  origin: originale
+- id: tempi-e-tecnologia-es-2
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Una porta ha ritardo 1,5 ns quando pilota un solo ingresso, e ogni carico aggiuntivo aggiunge 0,2 ns.
+      Quanto ritarda se pilota **otto** ingressi?
+    en: A gate has a delay of 1.5 ns when it drives a single input, and each additional load adds 0.2 ns. What is
+      its delay when it drives **eight** inputs?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: "Il carico è capacitivo: ogni ingresso collegato è una capacità in più da caricare, e caricare più
+          capacità richiede più tempo."
+        en: "The load is capacitive: every connected input is one more capacitance to charge, and charging more
+          capacitance takes more time."
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          t = 1,5 + (8 − 1) × 0,2 = 1,5 + 1,4 = 2,9 ns
+
+          ```
+
+
+          Quasi il doppio. Quando il fan-out è alto conviene inserire un **buffer**: paradossalmente si
+          aggiunge un ritardo (quello del buffer) ma se ne toglie di più, perché la porta originale si trova a
+          pilotare un solo ingresso e il buffer è progettato per erogare più corrente.
+
+
+          È lo stesso ragionamento per cui i segnali di clock, che devono raggiungere migliaia di flip-flop,
+          viaggiano su un *albero* di buffer e non su un filo unico.
+        en: >-
+          ```
+
+          t = 1.5 + (8 − 1) × 0.2 = 1.5 + 1.4 = 2.9 ns
+
+          ```
+
+
+          Almost double. When fan-out is high it pays to insert a **buffer**: paradoxically you add a delay
+          (that of the buffer) but remove more, because the original gate ends up driving a single input and
+          the buffer is designed to deliver more current.
+
+
+          It is the same reasoning by which clock signals, which must reach thousands of flip-flops, travel on
+          a *tree* of buffers and not on a single wire.
+  origin: originale
+- id: tempi-e-tecnologia-es-3
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: Un sommatore a 16 bit va inserito fra due registri. Con il **ripple-carry** ogni stadio costa 2 ns; con il
+      **carry-lookahead** l’intera somma costa 6 ns. Il resto dello stadio (propagazione del flip-flop più
+      setup) costa 3 ns. Calcola la frequenza massima nei due casi.
+    en: A 16-bit adder must be placed between two registers. With **ripple-carry** each stage costs 2 ns; with
+      **carry-lookahead** the whole addition costs 6 ns. The rest of the stage (flip-flop propagation plus
+      setup) costs 3 ns. Compute the maximum frequency in the two cases.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: Il periodo minimo è la somma di tutto ciò che deve accadere fra due fronti di clock consecutivi.
+        en: The minimum period is the sum of everything that must happen between two consecutive clock edges.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          RIPPLE-CARRY
+
+          T ≥ 3 + (16 × 2) = 3 + 32 = 35 ns
+
+          f_max = 1 / 35 ns ≈ 28,6 MHz
+
+
+          CARRY-LOOKAHEAD
+
+          T ≥ 3 + 6 = 9 ns
+
+          f_max = 1 / 9 ns ≈ 111 MHz
+
+          ```
+
+
+          Quasi quattro volte tanto. Il prezzo è in **area**: la logica di lookahead richiede molte più porte,
+          e cresce rapidamente con il numero di bit — per questo nei sommatori larghi si usano blocchi di
+          lookahead a 4 bit messi in cascata, che è un compromesso fra le due soluzioni.
+
+
+          Nota che il termine fisso di 3 ns non sparisce mai: è il motivo per cui, oltre un certo punto,
+          accorciare il combinatorio smette di pagare.
+        en: >-
+          ```
+
+          RIPPLE-CARRY
+
+          T ≥ 3 + (16 × 2) = 3 + 32 = 35 ns
+
+          f_max = 1 / 35 ns ≈ 28.6 MHz
+
+
+          CARRY-LOOKAHEAD
+
+          T ≥ 3 + 6 = 9 ns
+
+          f_max = 1 / 9 ns ≈ 111 MHz
+
+          ```
+
+
+          Almost four times as much. The price is in **area**: the lookahead logic requires many more gates,
+          and it grows quickly with the number of bits — which is why wide adders use cascaded 4-bit lookahead
+          blocks, a compromise between the two solutions.
+
+
+          Note that the fixed 3 ns term never disappears: it is why, beyond a certain point, shortening the
+          combinational logic stops paying off.
+  origin: originale
+- id: tempi-e-tecnologia-es-4
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: Un circuito CMOS consuma 4 W a 1 GHz con alimentazione 1,0 V. Quanto consumerà a **2 GHz** a parità di
+      tensione? E a 2 GHz con la tensione alzata a **1,2 V**?
+    en: A CMOS circuit consumes 4 W at 1 GHz with a 1.0 V supply. How much will it consume at **2 GHz** with the
+      same voltage? And at 2 GHz with the voltage raised to **1.2 V**?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: "Il consumo dinamico è proporzionale a f·C·V². La capacità non cambia: cambiano frequenza e tensione, e la
+          tensione pesa al quadrato."
+        en: "Dynamic power is proportional to f·C·V². The capacitance does not change: frequency and voltage change,
+          and voltage counts squared."
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          P ∝ f · C · V²
+
+
+          a 2 GHz, 1,0 V:   P = 4 × (2/1) = 8 W
+
+
+          a 2 GHz, 1,2 V:   P = 8 × (1,2/1,0)² = 8 × 1,44 = 11,5 W
+
+          ```
+
+
+          Raddoppiare la frequenza raddoppia il consumo; alzare la tensione del 20 % lo aumenta di un altro 44
+          %. E in pratica salire di frequenza **richiede** più tensione, perché i transistor devono commutare
+          più in fretta: le due cose vanno insieme, e il consumo cresce quasi con il cubo.
+
+
+          È esattamente questa curva ad aver fermato la corsa ai gigahertz e spostato l’industria sul
+          **multicore**: due core a 1 GHz consumano circa quanto uno a 1 GHz raddoppiato in area, ma molto
+          meno di uno a 2 GHz.
+        en: >-
+          ```
+
+          P ∝ f · C · V²
+
+
+          at 2 GHz, 1.0 V:   P = 4 × (2/1) = 8 W
+
+
+          at 2 GHz, 1.2 V:   P = 8 × (1.2/1.0)² = 8 × 1.44 = 11.5 W
+
+          ```
+
+
+          Doubling the frequency doubles the power; raising the voltage by 20 % increases it by another 44 %.
+          And in practice going up in frequency **requires** more voltage, because the transistors must switch
+          faster: the two go together, and power grows almost with the cube.
+
+
+          It is exactly this curve that stopped the gigahertz race and moved the industry to **multicore**:
+          two cores at 1 GHz consume about as much as one at 1 GHz doubled in area, but much less than one at
+          2 GHz.
+  origin: originale
+- id: tempi-e-tecnologia-es-5
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: Devi realizzare quattro funzioni logiche di otto variabili in un **prototipo** che verrà modificato più
+      volte prima di essere definitivo. Scegli fra PLA, CPLD e FPGA, motivando.
+    en: You must implement four logic functions of eight variables in a **prototype** that will be modified
+      several times before being final. Choose between PLA, CPLD and FPGA, giving reasons.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: La domanda non è quale sia il più potente, ma quale costi meno **modificare**.
+        en: The question is not which is the most powerful, but which costs least to **modify**.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          La scelta è la **FPGA**. Le ragioni, nell’ordine che conta:
+
+
+          - **Riconfigurabile** quante volte si vuole: una modifica costa una nuova programmazione, non un
+          nuovo dispositivo. In un prototipo che cambia, è il criterio decisivo.
+
+          - **Capienza**: quattro funzioni di otto variabili stanno comodamente in una FPGA anche piccola,
+          mentre una PLA con otto ingressi ha un numero limitato di termini prodotto e potrebbe non bastare.
+
+          - Le **PLA/PAL** hanno piani AND-OR di dimensione fissa e, nelle versioni a fusibili, si programmano
+          **una volta sola**: perfette per la produzione di una versione definitiva, non per un prototipo.
+
+          - Il **CPLD** è la via di mezzo: riconfigurabile e con ritardi molto prevedibili, ma con meno
+          risorse di una FPGA.
+
+
+          Se la domanda fosse stata «grande volume di produzione, progetto congelato», la risposta sarebbe
+          l’opposta: lì il costo unitario premia le soluzioni fisse, fino ad arrivare al circuito integrato
+          dedicato.
+        en: >-
+          The choice is the **FPGA**. The reasons, in the order that matters:
+
+
+          - **Reconfigurable** as many times as you like: a change costs a new programming, not a new device.
+          In a prototype that changes, it is the decisive criterion.
+
+          - **Capacity**: four functions of eight variables fit comfortably in even a small FPGA, while a PLA
+          with eight inputs has a limited number of product terms and might not be enough.
+
+          - **PLAs/PALs** have fixed-size AND-OR planes and, in the fuse versions, can be programmed **only
+          once**: perfect for producing a final version, not for a prototype.
+
+          - The **CPLD** is the middle way: reconfigurable and with very predictable delays, but with fewer
+          resources than an FPGA.
+
+
+          Had the question been “high production volume, frozen design”, the answer would be the opposite:
+          there the unit cost rewards fixed solutions, all the way to a dedicated integrated circuit.
+  origin: originale
+- id: mcq-tech-01
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.1
+    - tempi-e-tecnologia.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Il **ritardo di propagazione** di una porta si misura:"
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Fra gli istanti in cui ingresso e uscita attraversano il 50% dell'escursione
+  choices:
+    - text:
+        it: Fra il 10% e il 90% del fronte d'uscita
+      correct: false
+    - text:
+        it: Fra gli istanti in cui ingresso e uscita attraversano il 50% dell'escursione
+      correct: true
+    - text:
+        it: Fra due fronti di clock consecutivi
+      correct: false
+    - text:
+        it: Dal momento dell'accensione
+      correct: false
+  origin: originale
+- id: mcq-tech-02
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.1
+    - tempi-e-tecnologia.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: "In una rete combinatoria con più porte **in cascata**, il ritardo complessivo:"
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: È la somma dei ritardi lungo il cammino più lento (cammino critico)
+  choices:
+    - text:
+        it: È quello della porta più veloce
+      correct: false
+    - text:
+        it: È la somma dei ritardi lungo il cammino più lento (cammino critico)
+      correct: true
+    - text:
+        it: È sempre uguale a quello di una singola porta
+      correct: false
+    - text:
+        it: Si annulla se la rete è minimizzata
+      correct: false
+  origin: originale
+- id: mcq-tech-03
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.1
+    - tempi-e-tecnologia.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Che cosa fissa il **periodo minimo di clock** di un circuito sincrono?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Il cammino critico fra due registri, più il tempo di setup
+  choices:
+    - text:
+        it: Il numero di flip-flop
+      correct: false
+    - text:
+        it: Il cammino critico fra due registri, più il tempo di setup
+      correct: true
+    - text:
+        it: La tensione di alimentazione
+      correct: false
+    - text:
+        it: Il numero di ingressi del circuito
+      correct: false
+  origin: originale
+- id: mcq-tech-04
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.1
+    - tempi-e-tecnologia.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Il **fan-out** di una porta indica:"
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Quante altre porte la sua uscita può pilotare
+  choices:
+    - text:
+        it: Quanti ingressi accetta
+      correct: false
+    - text:
+        it: Quante altre porte la sua uscita può pilotare
+      correct: true
+    - text:
+        it: Il suo ritardo di propagazione
+      correct: false
+    - text:
+        it: Il numero di transistor che la compongono
+      correct: false
+  origin: originale
+- id: mcq-tech-05
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.1
+    - tempi-e-tecnologia.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: "In un circuito CMOS la corrente scorre in modo significativo:"
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Quasi solo durante le commutazioni
+  choices:
+    - text:
+        it: Costantemente, anche a riposo
+      correct: false
+    - text:
+        it: Quasi solo durante le commutazioni
+      correct: true
+    - text:
+        it: Solo quando l’uscita vale 1
+      correct: false
+    - text:
+        it: Solo quando l’uscita vale 0
+      correct: false
+  origin: originale
+- id: mcq-tech-06
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.1
+    - tempi-e-tecnologia.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Una **PLA** è organizzata come:"
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Una matrice di AND seguita da una matrice di OR, entrambe programmabili
+  choices:
+    - text:
+        it: Una matrice di AND seguita da una matrice di OR, entrambe programmabili
+      correct: true
+    - text:
+        it: Una matrice di flip-flop
+      correct: false
+    - text:
+        it: Una memoria a sola lettura
+      correct: false
+    - text:
+        it: Un insieme di multiplexer in cascata
+      correct: false
+  origin: originale
+- id: schema-cmos-struttura
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.4
+    - tempi-e-tecnologia.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Struttura di un circuito CMOS»: scrivi per ogni posizione numerata l'etichetta
+      giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Alimentazione · Clock · Condensatore di memoria · Ingressi · Massa · Resistenza di carico ·
+      Rete di pull-down (nMOS) · Rete di pull-up (pMOS) · Riporto · Uscita
+    en: >-
+      Complete the diagram “Structure of a CMOS circuit”: for each numbered position write the right label.
+      The list contains more labels than positions.
+
+
+      Labels: Carry · Clock · Ground · Inputs · Load resistor · Output · Pull-down network (nMOS) · Pull-up
+      network (pMOS) · Storage capacitor · Supply
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 340" role="img"
+        aria-labelledby="ex-cmos-struttura-t ex-cmos-struttura-d"
+        style="width:100%;height:auto;max-width:520px"><title id="ex-cmos-struttura-t">Struttura di un
+        circuito CMOS</title><desc id="ex-cmos-struttura-d">Schema con 6 posizioni numerate da
+        completare.</desc><defs><marker id="ex-cmos-struttura-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><line
+        style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="180" y1="45" x2="420" y2="45"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="300" y1="45" x2="300" y2="65"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="65" width="200" height="50" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="300" y1="115" x2="300" y2="215"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="215" width="200" height="50" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="300" y1="265" x2="300" y2="295"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="240" y1="295" x2="360" y2="295"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="260" y1="305" x2="340" y2="305"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cmos-struttura-arrow)" x1="300" y1="165" x2="420" y2="165"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="120" y1="90" x2="200" y2="90"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="120" y1="240" x2="200" y2="240"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="120" y1="90" x2="120" y2="240"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cmos-struttura-arrow)" x1="90" y1="165" x2="120" y2="165"/><circle cx="300" cy="90" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="300" y="90" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="300" cy="240" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="300" y="240" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="300" cy="25" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="300" y="25" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="300" cy="315" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="300" y="315" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="448" cy="165" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="448" y="165" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="72" cy="165" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="72" y="165" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 340" role="img"
+        aria-labelledby="ex-cmos-struttura-t ex-cmos-struttura-d"
+        style="width:100%;height:auto;max-width:520px"><title id="ex-cmos-struttura-t">Structure of a CMOS
+        circuit</title><desc id="ex-cmos-struttura-d">Diagram with 6 numbered positions to fill
+        in.</desc><defs><marker id="ex-cmos-struttura-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><line
+        style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="180" y1="45" x2="420" y2="45"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="300" y1="45" x2="300" y2="65"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="65" width="200" height="50" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="300" y1="115" x2="300" y2="215"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="215" width="200" height="50" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="300" y1="265" x2="300" y2="295"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="240" y1="295" x2="360" y2="295"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="260" y1="305" x2="340" y2="305"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cmos-struttura-arrow)" x1="300" y1="165" x2="420" y2="165"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="120" y1="90" x2="200" y2="90"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="120" y1="240" x2="200" y2="240"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="120" y1="90" x2="120" y2="240"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cmos-struttura-arrow)" x1="90" y1="165" x2="120" y2="165"/><circle cx="300" cy="90" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="300" y="90" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="300" cy="240" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="300" y="240" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="300" cy="25" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="300" y="25" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="300" cy="315" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="300" y="315" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="448" cy="165" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="448" y="165" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="72" cy="165" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="72" y="165" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Rete di pull-up (pMOS)
+          2. Rete di pull-down (nMOS)
+          3. Alimentazione
+          4. Massa
+          5. Uscita
+          6. Ingressi
+        en: |-
+          1. Pull-up network (pMOS)
+          2. Pull-down network (nMOS)
+          3. Supply
+          4. Ground
+          5. Output
+          6. Inputs
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Rete di pull-up (pMOS)
+      kind: text
+      accept:
+        - Pull-up network (pMOS)
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Rete di pull-down (nMOS)
+      kind: text
+      accept:
+        - Pull-down network (nMOS)
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Alimentazione
+      kind: text
+      accept:
+        - Supply
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Massa
+      kind: text
+      accept:
+        - Ground
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Uscita
+      kind: text
+      accept:
+        - Output
+    - label:
+        it: Posizione 6
+        en: Position 6
+      value: Ingressi
+      kind: text
+      accept:
+        - Inputs
+  origin: originale
+- id: schema-pld-blocchi
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.4
+    - tempi-e-tecnologia.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Schema a blocchi di un PLD»: scrivi per ogni posizione numerata l'etichetta giusta.
+      L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Blocco logico riconfigurabile · Buffer di ingresso e invertitori · Buffer di uscita · Clock ·
+      Flip-flop · Memoria di controllo · Piano AND · Piano OR · Termini prodotto
+    en: >-
+      Complete the diagram “Block diagram of a PLD”: for each numbered position write the right label. The
+      list contains more labels than positions.
+
+
+      Labels: AND plane · Clock · Control store · Flip-flop · Input buffers and inverters · OR plane · Output
+      buffers · Product terms · Reconfigurable logic block
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" role="img"
+        aria-labelledby="ex-pld-blocchi-t ex-pld-blocchi-d"
+        style="width:100%;height:auto;max-width:640px"><title id="ex-pld-blocchi-t">Schema a blocchi di un
+        PLD</title><desc id="ex-pld-blocchi-d">Schema con 5 posizioni numerate da
+        completare.</desc><defs><marker id="ex-pld-blocchi-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="30" y="95" width="130"
+        height="70" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="230" y="45" width="130" height="70" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="230" y="165" width="130" height="70" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="440" y="165" width="130" height="70" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-pld-blocchi-arrow)" x1="160" y1="130" x2="230" y2="90"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-pld-blocchi-arrow)" x1="290" y1="115" x2="290" y2="165"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-pld-blocchi-arrow)" x1="360" y1="200" x2="440" y2="200"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-pld-blocchi-arrow)" x1="570" y1="200" x2="615" y2="200"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-pld-blocchi-arrow)" x1="15" y1="130" x2="30" y2="130"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="14" y="118" font-size="10">x₁ … xₙ</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="580" y="188" font-size="10">f₁ … f_m</text><circle cx="90" cy="130" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="90" y="130" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="290" cy="80" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="290" y="80" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="290" cy="200" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="290" y="200" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="500" cy="200" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="500" y="200" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="400" cy="130" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="400" y="130" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" role="img"
+        aria-labelledby="ex-pld-blocchi-t ex-pld-blocchi-d"
+        style="width:100%;height:auto;max-width:640px"><title id="ex-pld-blocchi-t">Block diagram of a
+        PLD</title><desc id="ex-pld-blocchi-d">Diagram with 5 numbered positions to fill
+        in.</desc><defs><marker id="ex-pld-blocchi-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="30" y="95" width="130"
+        height="70" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="230" y="45" width="130" height="70" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="230" y="165" width="130" height="70" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="440" y="165" width="130" height="70" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-pld-blocchi-arrow)" x1="160" y1="130" x2="230" y2="90"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-pld-blocchi-arrow)" x1="290" y1="115" x2="290" y2="165"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-pld-blocchi-arrow)" x1="360" y1="200" x2="440" y2="200"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-pld-blocchi-arrow)" x1="570" y1="200" x2="615" y2="200"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-pld-blocchi-arrow)" x1="15" y1="130" x2="30" y2="130"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="14" y="118" font-size="10">x₁ … xₙ</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="580" y="188" font-size="10">f₁ … f_m</text><circle cx="90" cy="130" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="90" y="130" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="290" cy="80" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="290" y="80" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="290" cy="200" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="290" y="200" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="500" cy="200" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="500" y="200" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="400" cy="130" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="400" y="130" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Buffer di ingresso e invertitori
+          2. Piano AND
+          3. Piano OR
+          4. Buffer di uscita
+          5. Termini prodotto
+        en: |-
+          1. Input buffers and inverters
+          2. AND plane
+          3. OR plane
+          4. Output buffers
+          5. Product terms
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Buffer di ingresso e invertitori
+      kind: text
+      accept:
+        - Input buffers and inverters
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Piano AND
+      kind: text
+      accept:
+        - AND plane
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Piano OR
+      kind: text
+      accept:
+        - OR plane
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Buffer di uscita
+      kind: text
+      accept:
+        - Output buffers
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Termini prodotto
+      kind: text
+      accept:
+        - Product terms
+  origin: originale
+- id: schema-fpga
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.4
+    - tempi-e-tecnologia.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Schema concettuale di una FPGA»: scrivi per ogni posizione numerata l'etichetta
+      giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Blocchi di I/O · Blocco logico · Cache · Fili di interconnessione · Interruttore di
+      interconnessione · Memoria di controllo · Piano AND fisso · Sommatore
+    en: >-
+      Complete the diagram “Conceptual diagram of an FPGA”: for each numbered position write the right label.
+      The list contains more labels than positions.
+
+
+      Labels: Adder · Cache · Control store · Fixed AND plane · I/O blocks · Interconnection switch ·
+      Interconnection wires · Logic block
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 420" role="img" aria-labelledby="ex-fpga-t
+        ex-fpga-d" style="width:100%;height:auto;max-width:520px"><title id="ex-fpga-t">Schema concettuale di
+        una FPGA</title><desc id="ex-fpga-d">Schema con 5 posizioni numerate da
+        completare.</desc><defs><marker id="ex-fpga-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="15" width="340"
+        height="34" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="330" width="340" height="34" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="25" y="70" width="34" height="250" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="460" y="70" width="34" height="250" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="150" y="140" width="46" height="46" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="270" y="140" width="46" height="46" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="150" y="250" width="46" height="46" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="270" y="250" width="46" height="46" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="370" y="140" width="46" height="46" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="370" y="250" width="46" height="46" rx="4"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="120" y1="80" x2="120" y2="320"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="235" y1="80" x2="235" y2="320"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="345" y1="80" x2="345" y2="320"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="440" y1="80" x2="440" y2="320"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="70" y1="115" x2="450" y2="115"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="70" y1="220" x2="450" y2="220"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="70" y1="320" x2="450" y2="320"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="260" y="410" font-size="11">griglia programmabile</text><circle cx="260" cy="30" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="260" y="30" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="57" cy="210" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="57" y="210" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="200" cy="210" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="200" y="210" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="335" cy="275" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="335" y="275" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="260" cy="390" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="260" y="390" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 420" role="img" aria-labelledby="ex-fpga-t
+        ex-fpga-d" style="width:100%;height:auto;max-width:520px"><title id="ex-fpga-t">Conceptual diagram of
+        an FPGA</title><desc id="ex-fpga-d">Diagram with 5 numbered positions to fill in.</desc><defs><marker
+        id="ex-fpga-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6"
+        orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="15" width="340"
+        height="34" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="330" width="340" height="34" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="25" y="70" width="34" height="250" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="460" y="70" width="34" height="250" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="150" y="140" width="46" height="46" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="270" y="140" width="46" height="46" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="150" y="250" width="46" height="46" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="270" y="250" width="46" height="46" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="370" y="140" width="46" height="46" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="370" y="250" width="46" height="46" rx="4"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="120" y1="80" x2="120" y2="320"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="235" y1="80" x2="235" y2="320"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="345" y1="80" x2="345" y2="320"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="440" y1="80" x2="440" y2="320"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="70" y1="115" x2="450" y2="115"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="70" y1="220" x2="450" y2="220"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="70" y1="320" x2="450" y2="320"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="260" y="410" font-size="11">programmable grid</text><circle cx="260" cy="30" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="260" y="30" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="57" cy="210" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="57" y="210" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="200" cy="210" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="200" y="210" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="335" cy="275" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="335" y="275" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="260" cy="390" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="260" y="390" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Blocchi di I/O
+          2. Blocchi di I/O
+          3. Blocco logico
+          4. Interruttore di interconnessione
+          5. Fili di interconnessione
+        en: |-
+          1. I/O blocks
+          2. I/O blocks
+          3. Logic block
+          4. Interconnection switch
+          5. Interconnection wires
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Blocchi di I/O
+      kind: text
+      accept:
+        - I/O blocks
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Blocchi di I/O
+      kind: text
+      accept:
+        - I/O blocks
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Blocco logico
+      kind: text
+      accept:
+        - Logic block
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Interruttore di interconnessione
+      kind: text
+      accept:
+        - Interconnection switch
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Fili di interconnessione
+      kind: text
+      accept:
+        - Interconnection wires
+  origin: originale

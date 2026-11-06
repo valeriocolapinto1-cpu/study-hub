@@ -1,0 +1,29 @@
+id: aritmetica-hardware
+course: fondamenti-informatica
+order: 5
+title:
+  it: "Aritmetica hardware: sommatori & moltiplicazione"
+  en: "Hardware arithmetic: adders & multiplication"
+summary:
+  it: Semisommatore, sommatore completo, ripple-carry, carry-lookahead, moltiplicazione.
+  en: Half adder, full adder, ripple-carry, carry-lookahead, multiplication.
+group:
+  it: Reti logiche
+  en: Logic networks
+objectives:
+  - id: aritmetica-hardware.1
+    text:
+      it: Ricavare semisommatore e sommatore completo dalla tabella di verità.
+      en: Derive the half adder and the full adder from the truth table.
+  - id: aritmetica-hardware.2
+    text:
+      it: Confrontare ripple-carry e carry-lookahead (ritardo e costo) e calcolare generate, propagate e riporti.
+      en: Compare ripple-carry and carry-lookahead (delay and cost) and compute generate, propagate and carries.
+  - id: aritmetica-hardware.3
+    text:
+      it: Usare un unico circuito per somma e sottrazione e leggere riporto uscente e overflow.
+      en: Use a single circuit for addition and subtraction and read carry-out and overflow.
+  - id: aritmetica-hardware.4
+    text:
+      it: Moltiplicare per somme e spostamenti e descrivere la divisione restoring/non-restoring.
+      en: Multiply by shift-and-add and describe restoring/non-restoring division.

@@ -1,0 +1,160 @@
+---
+course: fondamenti-informatica
+topic: tempi-e-tecnologia
+lang: en
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In two minutes">
+
+<div data-note-id="teoria/tempi-e-tecnologia/in-due-minuti">
+
+- **Propagation delay** t<sub>PD</sub>: time between the change of the input and that of the output, measured at 50% of the swing.
+- In cascade the delays **add up** along the path: the longest is the **critical path** and sets the maximum clock frequency.
+- **Fan-in** = how many inputs a gate has. **Fan-out** = how many gates it can drive: more load, more capacitance, more delay.
+- A **CMOS** gate has a pMOS pull-up network and an nMOS pull-down network, complementary: at rest there is no path between supply and ground, so static power is almost zero.
+- Programmable logic: **PLA/PAL** (AND-OR planes), **CPLD** and **FPGA** (reconfigurable cells and interconnect).
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/tempi-e-tecnologia/da-dove-si-parte">
+
+## Where we start
+
+**What you need to know first:** what a logic gate is ([Boolean algebra](../algebra-di-boole/)) and that sequential circuits are paced by a clock ([flip-flops](../circuiti-sequenziali/)).
+
+**What problem it solves.** So far gates have been treated as ideal objects: apply the inputs, the output appears. In reality the output appears **later**, because the transistors must charge and discharge capacitances, and that delay accumulates along the chain. This is where the limit on the clock frequency comes from: not from how “powerful” the processor is, but from how long the slowest signal takes to cross the logic between two registers. This module explains where that number comes from, and how gates are physically built.
+
+**New words.** The **propagation delay** is the time between the change of the input and that of the output. The **critical path** is the slowest path between two registers, and it sets the minimum period. **Fan-in** is the number of inputs of a gate, **fan-out** how many gates a single output can drive. **CMOS** is the technology with which almost all gates are built today, made of complementary transistors.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/tempi-e-tecnologia/ritardo-di-propagazione">
+
+## Propagation delay
+
+A logic gate does not switch instantly: the signal takes time to make its way through the transistors. The **propagation delay** is the interval between the moment the input crosses 50% of its swing and the moment the output does the same.
+
+```
+input      ──────╲__________
+                  ╲ 50%
+                   │← t_p →│
+output     ────────────╲______
+                        ╲ 50%
+```
+
+Not to be confused with the **transition time**, which is how long the signal takes to go from 10% to 90% of its value: that describes the *slope* of the edge, the delay describes the *shift in time*.
+
+</div>
+
+<div data-note-id="teoria/tempi-e-tecnologia/porte-in-cascata-il-cammino-critico">
+
+## Gates in cascade: the critical path
+
+This is the question that comes up in the exam. When several gates are in cascade, **the delays add up**: the final output is valid only after the signal has crossed the whole chain. The overall delay of a combinational network is that of its **critical path**, i.e. the slowest input→output path of all.
+
+Two practical consequences:
+
+- The **minimum clock period** is dictated by the critical path between two registers, plus the setup time of the second. The frequency cannot be raised beyond that limit.
+- Minimising a function is not only about spending fewer gates: a two-level SOP (AND then OR) has a short path, while an expression nested five levels deep is correspondingly slower. It is another reason why the minimal form matters.
+
+An n-bit ripple-carry is slow precisely for this reason: the carry crosses n stages in a row.
+
+</div>
+
+<div data-note-id="teoria/tempi-e-tecnologia/fan-in-e-fan-out">
+
+## Fan-in and fan-out
+
+- **Fan-in**: how many inputs a gate has. It cannot grow at will — more inputs mean transistors in series, hence a slower gate. It is the technical reason why gates with many inputs are built as trees of 2-input gates.
+- **Fan-out**: how many other gates an output can drive. Beyond the limit switching slows down and the logic levels degrade; the remedy is to insert buffers.
+
+</div>
+
+<div data-note-id="teoria/tempi-e-tecnologia/come-e-fatta-una-porta-cmos">
+
+## How a gate is built: CMOS
+
+The dominant technology uses complementary pairs of transistors: **PMOS** conduct when the input is low, **NMOS** when it is high. In a CMOS inverter the PMOS connects the output to the supply and the NMOS to ground: whatever the input, **only one of the two conducts**.
+
+The advantage is power: at rest there is no direct path between supply and ground, so current flows almost only **during** switching. That is why the power of a digital circuit grows with the clock frequency.
+
+The transfer characteristic is steep around the threshold: small input variations at mid-scale produce large output variations. It is this non-linearity that regenerates the logic levels and prevents noise from accumulating along the chain.
+
+</div>
+
+<div data-note-id="teoria/tempi-e-tecnologia/dispositivi-logici-programmabili">
+
+## Programmable logic devices
+
+Instead of fabricating a custom chip you can use a generic device and configure it:
+
+- **PLA** (Programmable Logic Array): an AND array followed by an OR array, both programmable. It is the sum-of-products structure turned into hardware: each row of the AND array is a product term, the OR array sums them.
+- **PAL**: like the PLA but with a fixed OR array — less flexible, cheaper and faster.
+- **CPLD**: several PAL-like blocks on a single chip, joined by a programmable interconnection network.
+- **FPGA**: a chessboard of small **logic blocks** (typically stored truth tables, called look-up tables, plus a flip-flop) immersed in a network of programmable connections, with I/O blocks on the edge. It allows complex networks, sequential ones included, to be built and reconfigured.
+
+The underlying trade-off is always the same: a dedicated circuit is faster and more efficient, a programmable one is available at once and can be fixed without remaking the chip.
+
+</div>
+
+## Diagrams
+
+<Schema id="cmos-struttura" lang="en" num="1" />
+
+<Schema id="pld-blocchi" lang="en" num="2" />
+
+<Schema id="fpga" lang="en" num="3" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/tempi-e-tecnologia/esempio-svolto">
+
+## Worked example
+
+**What is the maximum frequency of this stage?** Between two registers there is a combinational network whose longest path crosses four gates of 2 ns each; the flip-flop has a propagation time of 1 ns and a setup time of 1 ns.
+
+```
+minimum period = t_propagation + t_critical_path + t_setup
+               = 1 ns + (4 × 2 ns) + 1 ns
+               = 10 ns
+
+f_max = 1 / 10 ns = 100 MHz
+```
+
+Now split the network into two stages of two gates, putting a register in between:
+
+```
+period = 1 + (2 × 2) + 1 = 6 ns   →   f_max ≈ 167 MHz
+```
+
+The frequency rises by 67 %, not 100 %: the flip-flop times remain and are now paid twice. It is the limit that explains why it does not pay to push a pipeline beyond a certain number of stages.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/tempi-e-tecnologia/errori-tipici">
+
+## Common mistakes
+
+- Adding up the delays of **parallel** branches: the delay of the network is that of the longest path, not the sum of all of them.
+- Confusing propagation delay (between the 50 % points of input and output) with **transition** time (from 10 % to 90 % of the output).
+- Forgetting the flip-flop's setup and propagation in the period calculation: the combinational logic is not all the time available.
+
+</div>
+
+</Layer>

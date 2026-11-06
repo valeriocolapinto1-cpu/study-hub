@@ -1,0 +1,33 @@
+id: tempi-e-tecnologia
+course: fondamenti-informatica
+order: 7
+title:
+  it: Tempi, tecnologia & dispositivi programmabili
+  en: Timing, technology & programmable devices
+summary:
+  it: Ritardo di propagazione, cammino critico, fan-in/fan-out, CMOS, PLA e FPGA.
+  en: Propagation delay, critical path, fan-in/fan-out, CMOS, PLAs and FPGAs.
+group:
+  it: Reti logiche
+  en: Logic networks
+objectives:
+  - id: tempi-e-tecnologia.1
+    text:
+      it: Calcolare il ritardo di una rete dal cammino critico (cascata e rami paralleli).
+      en: Compute the delay of a network from its critical path (cascade and parallel branches).
+  - id: tempi-e-tecnologia.2
+    text:
+      it: Ricavare il periodo minimo e la frequenza massima di uno stadio fra registri.
+      en: Derive the minimum period and maximum frequency of a stage between registers.
+  - id: tempi-e-tecnologia.3
+    text:
+      it: Spiegare fan-in, fan-out e l’uso dei buffer.
+      en: Explain fan-in, fan-out and the use of buffers.
+  - id: tempi-e-tecnologia.4
+    text:
+      it: Descrivere la porta CMOS e stimare il consumo dinamico (f·C·V²).
+      en: Describe the CMOS gate and estimate dynamic power (f·C·V²).
+  - id: tempi-e-tecnologia.5
+    text:
+      it: Scegliere fra PLA, PAL, CPLD e FPGA motivando.
+      en: Choose between PLA, PAL, CPLD and FPGA with reasons.

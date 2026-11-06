@@ -1,0 +1,33 @@
+id: circuiti-sequenziali
+course: fondamenti-informatica
+order: 6
+title:
+  it: Circuiti sequenziali & flip-flop
+  en: Sequential circuits & flip-flops
+summary:
+  it: Latch, flip-flop D/JK/T, master-slave, registri e contatori.
+  en: Latches, D/JK/T flip-flops, master-slave, registers and counters.
+group:
+  it: Reti logiche
+  en: Logic networks
+objectives:
+  - id: circuiti-sequenziali.1
+    text:
+      it: Distinguere reti combinatorie e sequenziali e spiegare il ruolo della retroazione.
+      en: Distinguish combinational and sequential networks and explain the role of feedback.
+  - id: circuiti-sequenziali.2
+    text:
+      it: Descrivere latch SR e D e la differenza fra sensibilità al livello e al fronte.
+      en: Describe SR and D latches and the difference between level and edge sensitivity.
+  - id: circuiti-sequenziali.3
+    text:
+      it: Usare i flip-flop D, JK e T e la struttura master-slave.
+      en: Use D, JK and T flip-flops and the master-slave structure.
+  - id: circuiti-sequenziali.4
+    text:
+      it: Progettare registri a scorrimento e contatori (anche modulo n).
+      en: Design shift registers and counters (including modulo n).
+  - id: circuiti-sequenziali.5
+    text:
+      it: Verificare i vincoli di setup e hold e ricavare la frequenza massima.
+      en: Check setup and hold constraints and derive the maximum frequency.

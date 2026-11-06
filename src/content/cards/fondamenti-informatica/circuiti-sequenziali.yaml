@@ -1,0 +1,101 @@
+- id: circuiti-sequenziali-verifica-1
+  topic: circuiti-sequenziali
+  objectives:
+    - circuiti-sequenziali.2
+  kind: concetto
+  front:
+    it: Perché un latch D trasparente non basta a costruire un registro di pipeline?
+    en: Why is a transparent D latch not enough to build a pipeline register?
+  back:
+    it: "Perché finché l'abilitazione è alta l'uscita insegue l'ingresso: il dato può attraversare più stadi nello
+      stesso colpo di clock. Il flip-flop campiona **solo sul fronte**, quindi ogni stadio avanza di un passo
+      per periodo."
+    en: "Because while the enable is high the output follows the input: data can cross several stages in the same
+      clock cycle. The flip-flop samples **only on the edge**, so each stage advances one step per period."
+- id: circuiti-sequenziali-verifica-2
+  topic: circuiti-sequenziali
+  objectives:
+    - circuiti-sequenziali.5
+  kind: concetto
+  front:
+    it: Che differenza c'è fra setup time e hold time?
+    en: What is the difference between setup time and hold time?
+  back:
+    it: Il **setup** è quanto tempo prima del fronte il dato deve essere già stabile; l'**hold** è quanto deve
+      restarlo dopo il fronte. Sono due vincoli diversi e vanno rispettati entrambi.
+    en: "**Setup** is how long before the edge the data must already be stable; **hold** is how long it must stay
+      so after the edge. They are two different constraints and both must be respected."
+- id: circuiti-sequenziali-verifica-3
+  topic: circuiti-sequenziali
+  objectives:
+    - circuiti-sequenziali.4
+  kind: concetto
+  front:
+    it: Come si ottiene un contatore modulo 10 da un contatore binario a 4 bit?
+    en: How do you get a modulo-10 counter from a 4-bit binary counter?
+  back:
+    it: "Si rileva con una porta la configurazione 1010 e la si usa per azzerare il contatore: si contano così i
+      valori da 0 a 9 e si riparte."
+    en: "Detect the pattern 1010 with a gate and use it to reset the counter: the values 0 to 9 are counted and
+      then it starts over."
+- id: open-ff-01
+  topic: circuiti-sequenziali
+  objectives:
+    - circuiti-sequenziali.3
+  kind: orale
+  front:
+    it: Che cos'è un flip-flop? Distingui dispositivi sincroni e asincroni.
+  back:
+    it: "Un flip-flop è un elemento **bistabile** che memorizza 1 bit: realizzato con porte logiche retroazionate,
+      mantiene uno dei due stati stabili finché un ingresso non lo commuta. È il mattone di registri e
+      contatori. I dispositivi **sincroni** (edge-triggered) cambiano stato solo sul fronte del clock, quindi
+      l'istante di commutazione è prevedibile; gli **asincroni** reagiscono immediatamente agli ingressi,
+      senza clock."
+- id: open-ff-02
+  topic: circuiti-sequenziali
+  objectives:
+    - circuiti-sequenziali.3
+  kind: orale
+  front:
+    it: Descrivi il flip-flop master-slave e spiega perché serve la struttura a due stadi.
+  back:
+    it: "Due latch D in serie: il **master** campiona l'ingresso mentre il clock è alto, lo **slave** ne
+      trasferisce il valore in uscita quando il clock commuta. Poiché i due stadi non sono mai trasparenti
+      contemporaneamente, l'ingresso non può «attraversare» il dispositivo nello stesso ciclo: si evita
+      l'instabilità (corse) e l'uscita cambia in un solo istante ben definito, il fronte del clock."
+- id: def-flipflop
+  topic: circuiti-sequenziali
+  objectives:
+    - circuiti-sequenziali.3
+  kind: definizione
+  front:
+    it: Flip-flop
+  back:
+    it: |-
+      Elemento bistabile che memorizza un bit e commuta solo sul fronte del clock.
+
+      Il **latch** è invece sensibile al livello: mentre l’abilitazione è alta resta trasparente.
+- id: def-masterslave
+  topic: circuiti-sequenziali
+  objectives:
+    - circuiti-sequenziali.3
+  kind: definizione
+  front:
+    it: Master-slave
+  back:
+    it: |-
+      Due latch in serie con clock opposti, mai trasparenti insieme, così l’uscita cambia in un solo istante.
+
+      Evita le corse e le inconsistenze di lettura-scrittura sui registri.
+- id: def-setup
+  topic: circuiti-sequenziali
+  objectives:
+    - circuiti-sequenziali.3
+  kind: definizione
+  front:
+    it: Tempo di setup
+  back:
+    it: |-
+      Intervallo in cui il dato deve essere già stabile prima del fronte di clock.
+
+      undefined

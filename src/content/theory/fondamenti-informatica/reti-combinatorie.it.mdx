@@ -1,0 +1,233 @@
+---
+course: fondamenti-informatica
+topic: reti-combinatorie
+lang: it
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In due minuti">
+
+<div data-note-id="teoria/reti-combinatorie/in-due-minuti">
+
+- I blocchi standard esistono perché certe funzioni ricorrono sempre: scegliere, indirizzare, confrontare.
+- **Decoder** n → 2ⁿ: attiva **una sola** uscita, quella indirizzata. È il selettore di righe di una memoria o di un registro.
+- **MUX** 2ⁿ → 1: sceglie un ingresso con n segnali di selezione. Con i selettori collegati alle variabili e le costanti sugli ingressi realizza **qualunque** funzione di n variabili.
+- **Comparatore**: l'uguaglianza si costruisce con XNOR bit a bit e una AND finale.
+- **Tri-state**: la terza condizione è l'alta impedenza, cioè «staccato». È ciò che permette a più sorgenti di condividere un bus, una sola abilitata per volta.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/reti-combinatorie/da-dove-si-parte">
+
+## Da dove si parte
+
+**Cosa serve sapere prima:** le porte logiche e le tabelle di verità, dal modulo su [algebra di Boole](../algebra-di-boole/).
+
+**Che problema risolve.** Con AND, OR e NOT si può costruire qualunque funzione, ma partire ogni volta dalle porte è come costruire una casa mattone per mattone senza usare porte e finestre già fatte. Certe funzioni ricorrono in continuazione — «attiva la riga numero k», «lascia passare uno di questi otto segnali», «questi due numeri sono uguali?» — e conviene averle pronte come **blocchi** con un nome. Sono i mattoni con cui si disegnano memorie, processori e bus.
+
+**Le parole nuove.** Una rete è **combinatoria** quando l’uscita dipende *solo* dagli ingressi presenti in questo istante: nessuna memoria, nessun passato (le reti con memoria arrivano nel modulo sui [flip-flop](../circuiti-sequenziali/)). **Decodificare** significa trasformare un numero in «accendi la riga numero quel-numero»; **multiplare** significa scegliere uno fra più segnali. **Alta impedenza** è la terza condizione di un’uscita tri-state: non 0, non 1, ma «scollegato».
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/reti-combinatorie/perche-esistono-i-blocchi-standard">
+
+## Perché esistono i blocchi standard
+
+Ogni funzione si può sintetizzare da zero con la mappa di Karnaugh, ma alcune ricorrono così spesso da avere un nome e un simbolo propri. Riconoscerle fa risparmiare tempo: invece di minimizzare una tabella a 4 variabili si dice «è un multiplexer» e si passa oltre.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/decodificatore-decoder">
+
+## Decodificatore (decoder)
+
+Ha **n ingressi** e **2ⁿ uscite**, e attiva **una sola** uscita per volta: quella il cui indice corrisponde al numero binario presentato in ingresso.
+
+```
+x₁ x₀ │ y₃ y₂ y₁ y₀
+ 0  0 │  0  0  0  1
+ 0  1 │  0  0  1  0
+ 1  0 │  0  1  0  0
+ 1  1 │  1  0  0  0
+```
+
+Ogni uscita è il **mintermine** corrispondente: `y₀ = x̅₁·x̅₀`, `y₁ = x̅₁·x₀` e così via. Serve a selezionare una fra molte cose: un chip di memoria dato l'indirizzo, un registro dato il suo numero, una cifra di un display.
+
+Quasi sempre ha un ingresso di **abilitazione** (enable): se è a 0 tutte le uscite restano spente, il che permette di comporre decoder piccoli per farne uno grande.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/codificatore-encoder">
+
+## Codificatore (encoder)
+
+L'operazione inversa: 2ⁿ ingressi, n uscite, restituisce l'**indice** dell'ingresso attivo. Il problema è cosa fare se ne sono attivi due: il **priority encoder** lo risolve dando la precedenza all'indice più alto. È il circuito che decide quale richiesta di interruzione servire quando ne arrivano più d'una insieme.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/multiplexer-mux">
+
+## Multiplexer (MUX)
+
+Sceglie **uno fra 2ⁿ ingressi dati** e lo porta in uscita, in base a n linee di selezione. Con due ingressi dati e una selezione:
+
+```
+f = s̅·w₀ + s·w₁
+```
+
+È l'interruttore programmabile del circuito: dentro il processore serve a scegliere quale sorgente presentare alla ALU o quale valore scrivere nel PC. Il **demultiplexer** fa il contrario: instrada un unico ingresso verso l'uscita selezionata.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/sintetizzare-una-funzione-qualsiasi-con-un-mux">
+
+## Sintetizzare una funzione qualsiasi con un MUX
+
+Un multiplexer a n selezioni realizza **qualunque** funzione di n variabili: si collegano le variabili alle selezioni e si fissa ciascun ingresso dati al valore che la funzione assume in quella riga della tabella di verità. Gli ingressi dati sono, letteralmente, la colonna delle uscite.
+
+Con un MUX si può anche coprire una funzione di **n+1** variabili: si usano n variabili per le selezioni e a ogni ingresso dati si collega, invece di una costante, la variabile rimanente, il suo complemento, 0 oppure 1.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/comparatori">
+
+## Comparatori
+
+L'uguaglianza fra due bit è lo **XNOR**: vale 1 quando sono uguali. Per confrontare parole di n bit si mettono in AND gli XNOR di tutte le posizioni. Per stabilire quale dei due è maggiore si procede dal bit più significativo verso il basso, decidendo alla prima posizione in cui differiscono. In alternativa si sottrae e si leggono i flag: è ciò che fa l'istruzione `CMP`.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/buffer-tri-state">
+
+## Buffer tri-state
+
+Una porta normale ha due stati d'uscita, 0 e 1, e li impone sempre. Un **buffer tri-state** ne ha un terzo, l'**alta impedenza**: quando l'abilitazione è spenta l'uscita si **scollega** elettricamente, come se il filo fosse tagliato.
+
+Serve a far condividere un **bus** a più dispositivi. Su un bus a un certo istante deve parlare uno solo: tutti gli altri mettono le loro uscite in alta impedenza. Senza tri-state, due dispositivi che pilotano lo stesso filo con valori opposti creerebbero un cortocircuito. È il motivo per cui, nello schema del processore, i registri si affacciano sul bus interno attraverso questi buffer.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/demultiplexer-il-decoder-visto-al-contrario">
+
+## Demultiplexer: il decoder visto al contrario
+
+Il multiplexer sceglie uno fra molti ingressi e lo porta su un’unica uscita. Il **demultiplexer** fa l’opposto: prende un ingresso e lo instrada su una fra molte uscite, secondo i selettori.
+
+La cosa interessante è che un demultiplexer **è** un decoder con l’abilitazione usata come ingresso dati: il decoder attiva l’uscita indirizzata, e se al posto della costante 1 gli si dà un segnale, quel segnale compare sull’uscita scelta e nient’altro. Un solo circuito, due usi.
+
+La coppia MUX-DEMUX è ciò che permette di condividere un collegamento: si multipla da una parte, si trasmette su un solo filo, si demultipla dall’altra. È il principio della multiplazione a divisione di tempo, dai bus interni alle linee di comunicazione.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/codificatore-di-priorita">
+
+## Codificatore di priorità
+
+Un codificatore semplice presuppone che sia attivo **un solo** ingresso: se se ne attivano due l’uscita è priva di senso. È un’ipotesi irrealistica — pensa a otto dispositivi che possono chiedere attenzione insieme.
+
+Il **codificatore di priorità** risolve stabilendo un ordine: se più ingressi sono attivi, l’uscita è l’indice del **più prioritario**. Ha inoltre un’uscita di validità che distingue «nessun ingresso attivo» da «è attivo l’ingresso 0», due situazioni che altrimenti darebbero lo stesso codice.
+
+È esattamente il circuito che serve nella gestione delle interruzioni per decidere quale dispositivo servire quando ne chiamano più d’uno, e nell’arbitraggio di un bus quando più unità lo richiedono insieme.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/una-rom-e-una-tabella-di-verita">
+
+## Una ROM è una tabella di verità
+
+Una memoria di sola lettura con n bit di indirizzo e m bit di dato contiene 2ⁿ parole da m bit. Ma se al posto di «indirizzo» si legge «combinazione degli ingressi» e al posto di «parola» si legge «valore delle uscite», quella memoria è **letteralmente** una tabella di verità di n ingressi e m uscite.
+
+```
+indirizzo (ingressi)  →  contenuto (uscite)
+   000                     0 1
+   001                     1 1
+   010                     1 0
+   …
+```
+
+Dentro, una ROM è fatta proprio così: un **decoder** n→2ⁿ che attiva una riga, e una matrice di collegamenti che determina i bit di uscita. Realizzare una funzione logica con una ROM significa scriverne la tabella di verità e basta — nessuna minimizzazione, nessun disegno di porte.
+
+Il limite è la crescita esponenziale: con 8 ingressi bastano 256 parole, con 20 ne servirebbero un milione. Per questo le PLA fanno un passo indietro rispetto alla ROM: invece di generare **tutti** i mintermini, generano solo i termini prodotto che servono davvero — meno flessibilità, molta meno area.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/perche-due-livelli">
+
+## Perché due livelli
+
+Ogni funzione booleana si può scrivere in forma SOP, cioè come un livello di AND seguito da un livello di OR. Questo significa che, ignorando il fan-in, **qualunque** funzione è realizzabile con un ritardo di soli due livelli di porte — è il motivo per cui la forma a due livelli è il riferimento sia per il costo sia per la velocità, ed è la forma che PLA e mappe di Karnaugh producono.
+
+Nella pratica il fan-in è limitato: una AND a 12 ingressi non esiste, e va costruita con più porte in cascata, aggiungendo livelli e quindi ritardo. Il progetto reale è sempre un compromesso fra il numero di livelli (velocità) e il fan-in delle singole porte (fattibilità).
+
+</div>
+
+## Schemi
+
+<Schema id="decoder-2-4" lang="it" num="1" />
+
+<Schema id="mux-4-1" lang="it" num="2" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/reti-combinatorie/esempio-svolto">
+
+## Esempio svolto
+
+**Realizza la funzione maggioranza (Y = 1 con almeno due ingressi a 1) in due modi.**
+
+**Con un MUX 8→1.** I tre ingressi A, B, C vanno ai **selettori**; sugli otto ingressi dati si mettono le costanti della colonna d'uscita, nell'ordine dei mintermini:
+
+```
+selettori: S₂S₁S₀ = A B C
+ingressi dati: I₀…I₇ = 0, 0, 0, 1, 0, 1, 1, 1
+                      (m0)        (m3)  (m5)(m6)(m7)
+```
+
+Nessuna porta logica: la tabella di verità **è** il cablaggio. È il motivo per cui un MUX a n selettori realizza qualunque funzione di n variabili.
+
+**Con un decoder 3→8 e una OR.** Il decoder attiva l'uscita corrispondente alla combinazione presente; basta collegare a una OR le uscite dei mintermini a 1:
+
+```
+Y = m₃ + m₅ + m₆ + m₇
+```
+
+Il decoder genera **tutti** i mintermini, la OR sceglie quali servono. Con più funzioni delle stesse variabili si riusa lo stesso decoder cambiando solo le OR.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/reti-combinatorie/errori-tipici">
+
+## Errori tipici
+
+- Collegare le variabili agli ingressi **dati** del MUX invece che ai selettori: sono i selettori a scegliere, i dati sono le costanti della tabella.
+- Dimenticare l'ordine dei mintermini: I₀ corrisponde a S = 000, I₇ a S = 111.
+- Unire due uscite normali sullo stesso filo per «fare l'OR»: serve una porta, o dei buffer tri-state con una sola abilitazione attiva.
+
+</div>
+
+<Callout tone="attenzione" title="Porte AND a più di due ingressi">
+
+<div data-note-id="teoria/reti-combinatorie/trap-and-assoc">
+
+Una porta a tre o più ingressi è una comodità del disegno: in hardware si costruisce con porte a due ingressi. Scomporla nello schema mostra che conosci la struttura reale, ed è l'unico modo di far vedere quanti livelli di ritardo attraversa il segnale.
+
+</div>
+
+</Callout>
+
+</Layer>

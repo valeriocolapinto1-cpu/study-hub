@@ -1,0 +1,120 @@
+- id: aritmetica-hardware-verifica-1
+  topic: aritmetica-hardware
+  objectives:
+    - aritmetica-hardware.2
+  kind: concetto
+  front:
+    it: Perché il ripple-carry è lento, e quanto?
+    en: Why is ripple-carry slow, and by how much?
+  back:
+    it: "Il riporto di ogni stadio dipende da quello precedente, quindi il risultato è pronto solo dopo che il
+      riporto ha attraversato tutti gli stadi: il ritardo è circa n volte quello di un sommatore completo,
+      cioè cresce **linearmente** col numero di bit."
+    en: "Each stage's carry depends on the previous one, so the result is ready only after the carry has crossed
+      every stage: the delay is about n times that of a full adder, i.e. it grows **linearly** with the number
+      of bits."
+- id: aritmetica-hardware-verifica-2
+  topic: aritmetica-hardware
+  objectives:
+    - aritmetica-hardware.2
+  kind: concetto
+  front:
+    it: Che cosa significa che uno stadio «genera» o «propaga» il riporto?
+    en: What does it mean for a stage to “generate” or “propagate” the carry?
+  back:
+    it: "**Genera** se produce un riporto da solo, indipendentemente da quello entrante: succede quando A = B = 1,
+      cioè G = A·B. **Propaga** se lascia passare il riporto entrante: succede quando A ⊕ B = 1. Da queste due
+      funzioni si ricavano tutti i riporti in parallelo."
+    en: "It **generates** if it produces a carry by itself, regardless of the incoming one: this happens when A =
+      B = 1, i.e. G = A·B. It **propagates** if it lets the incoming carry through: this happens when A ⊕ B =
+      1. From these two functions all carries are obtained in parallel."
+- id: aritmetica-hardware-verifica-3
+  topic: aritmetica-hardware
+  objectives:
+    - aritmetica-hardware.3
+  kind: concetto
+  front:
+    it: Come si esegue una sottrazione avendo solo un sommatore?
+    en: How do you subtract having only an adder?
+  back:
+    it: "Si invertono i bit del sottraendo e si mette a 1 il riporto entrante del primo stadio: invertire + 1 è
+      esattamente il complemento a 2, quindi A + (−B) senza circuiti aggiuntivi."
+    en: "Invert the bits of the subtrahend and set the incoming carry of the first stage to 1: invert + 1 is
+      exactly the two's complement, so A + (−B) with no extra circuitry."
+- id: open-arith-01
+  topic: aritmetica-hardware
+  objectives:
+    - aritmetica-hardware.1
+    - aritmetica-hardware.3
+  kind: orale
+  front:
+    it: Perché un sommatore ripple-carry è lento, e come lo risolve il carry-lookahead?
+  back:
+    it: "Nel **ripple-carry** gli stadi sono in cascata: il riporto uscente di ciascun sommatore completo entra
+      nel successivo, quindi lo stadio più significativo produce il risultato definitivo solo dopo che il
+      riporto ha attraversato **tutti** gli stadi. Il ritardo cresce **linearmente con n**, e siccome questo è
+      il cammino critico è lui a fissare il periodo minimo di clock. Il **carry-lookahead** non aspetta il
+      riporto: lo calcola. Per ogni posizione definisce due funzioni che dipendono solo dagli operandi, quindi
+      disponibili subito — `Gᵢ = aᵢ·bᵢ` (la posizione genera un riporto da sé) e `Pᵢ = aᵢ ⊕ bᵢ` (la posizione
+      propaga quello che riceve) — da cui `cᵢ₊₁ = Gᵢ + Pᵢ·cᵢ`. Espandendo la ricorsione ogni riporto si
+      esprime in funzione del solo `c₀`, quindi tutti i riporti si ottengono **in parallelo** con due livelli
+      di porte. Il costo è il numero di porte, che esplode con n: per questo si fanno blocchi da 4 bit e si
+      applica lo stesso schema a un livello superiore."
+- id: open-arith-02
+  topic: aritmetica-hardware
+  objectives:
+    - aritmetica-hardware.1
+    - aritmetica-hardware.3
+  kind: orale
+  front:
+    it: Descrivi semisommatore e sommatore completo, e spiega come si ottiene un sommatore/sottrattore unico.
+  back:
+    it: "Il **semisommatore** somma due bit: `s = a ⊕ b` (vale 1 quando sono diversi) e `c = a·b` (il riporto esce
+      solo se sono entrambi 1). Non accetta riporto entrante, e per questo non basta oltre la posizione meno
+      significativa. Il **sommatore completo** ha tre ingressi: `s = a ⊕ b ⊕ cᵢₙ`, cioè 1 quando il numero di
+      ingressi a 1 è dispari, e `cₒᵤₜ = a·b + cᵢₙ·(a ⊕ b)`. Si costruisce con due semisommatori più una OR.
+      Per il **sommatore/sottrattore** si sfrutta il fatto che in complemento a 2 `A − B = A + B̅ + 1`: ogni
+      bit di B passa per uno XOR con la linea di controllo `Sub`, che lo inverte quando vale 1, e la stessa
+      linea entra come riporto iniziale fornendo il «+1». Un solo circuito fa entrambe le operazioni: è la
+      ragione pratica per cui si usa il complemento a 2."
+- id: def-fulladder
+  topic: aritmetica-hardware
+  objectives:
+    - aritmetica-hardware.1
+    - aritmetica-hardware.3
+  kind: definizione
+  front:
+    it: Sommatore completo
+  back:
+    it: |-
+      Rete a tre ingressi (due addendi e il riporto entrante) che produce somma e riporto uscente.
+
+      s = a ⊕ b ⊕ cᵢₙ; cₒᵤₜ = a·b + cᵢₙ·(a ⊕ b).
+- id: def-ripple
+  topic: aritmetica-hardware
+  objectives:
+    - aritmetica-hardware.1
+    - aritmetica-hardware.3
+  kind: definizione
+  front:
+    it: Sommatore ripple-carry
+  back:
+    it: |-
+      Sommatori completi in cascata, con il riporto che si propaga da uno stadio al successivo.
+
+      Semplice, ma il ritardo cresce linearmente col numero di bit.
+- id: def-lookahead
+  topic: aritmetica-hardware
+  objectives:
+    - aritmetica-hardware.1
+    - aritmetica-hardware.3
+  kind: definizione
+  front:
+    it: Carry-lookahead
+  back:
+    it: >-
+      Tecnica che calcola tutti i riporti in parallelo dalle funzioni di generazione e propagazione, invece di
+      aspettarli.
+
+
+      G = a·b (genera), P = a ⊕ b (propaga), cᵢ₊₁ = Gᵢ + Pᵢ·cᵢ.

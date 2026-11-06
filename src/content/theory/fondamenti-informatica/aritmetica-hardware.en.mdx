@@ -1,0 +1,236 @@
+---
+course: fondamenti-informatica
+topic: aritmetica-hardware
+lang: en
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In two minutes">
+
+<div data-note-id="teoria/aritmetica-hardware/in-due-minuti">
+
+- **Half adder**: S = A ⊕ B, carry = A · B. **Full adder**: adds the incoming carry, S = A ⊕ B ⊕ Cin.
+- **Ripple-carry**: n full adders in cascade. Simple, but the delay grows **linearly** with n because the carry must cross all of them.
+- **Carry-lookahead**: G = A·B (generate), P = A ⊕ B (propagate); the carries are computed in parallel. Almost constant delay, many more gates.
+- A single circuit for addition and subtraction: A − B = A + B̅ + 1, i.e. the bits of B are inverted and the incoming carry is forced to 1.
+- Multiplication = **adds and shifts**; Booth's algorithm handles two's complement numbers without special cases.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/aritmetica-hardware/da-dove-si-parte">
+
+## Where we start
+
+**What you need to know first:** two's complement from the module on [binary numbers](../numeri-binari/), and the basic logic gates from the module on [Boolean algebra](../algebra-di-boole/).
+
+**What problem it solves.** We know how to *represent* numbers, but a computer must also *compute*. Here we build the circuit that actually adds — starting from AND, OR and XOR gates — and discover that adding is easy, while **adding fast** is the real design problem: the carry has to cross every bit, and this puts a limit on the frequency of the whole processor.
+
+**New words.** The **carry** is the “carry the one” of column addition. A **half adder** adds two bits; a **full adder** adds two plus the incoming carry, and is the brick everything is built from. **Ripple-carry** means “with carry propagation”: adders in a row, each waiting for the previous one. **Carry-lookahead** means computing the carry in parallel instead of waiting for it.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/aritmetica-hardware/semisommatore-half-adder">
+
+## Half adder
+
+It adds **two** bits and produces sum and carry. It does not accept an incoming carry, which is why it is called “half”:
+
+```
+a  b │  s   c
+0  0 │  0   0
+0  1 │  1   0
+1  0 │  1   0
+1  1 │  0   1
+```
+
+It can be read directly from the table: `s = a ⊕ b` and `c = a · b`. The sum is an XOR because it is 1 when the bits are **different**; the carry is an AND because it comes out only when both are 1.
+
+</div>
+
+<div data-note-id="teoria/aritmetica-hardware/sommatore-completo-full-adder">
+
+## Full adder
+
+To add multi-bit numbers every stage must also accept the **incoming carry** `ci` produced by the previous stage. With three inputs:
+
+- `si = ai ⊕ bi ⊕ ci` — the sum is 1 when the number of inputs at 1 is **odd**.
+- `ci+1 = ai·bi + ci·(ai ⊕ bi)` — the carry comes out if both addends are 1, or if one of them is and there was already an incoming carry.
+
+It is built from two half adders plus an OR. In the drawing remember to break it into 2-input gates.
+
+</div>
+
+<div data-note-id="teoria/aritmetica-hardware/ripple-carry-semplice-ma-lento">
+
+## Ripple-carry: simple but slow
+
+Putting n full adders in cascade, with the carry-out of each connected to the carry-in of the next, gives an n-bit adder:
+
+```
+   a₃b₃      a₂b₂      a₁b₁      a₀b₀
+    │ │       │ │       │ │       │ │
+  ┌─▼─▼─┐   ┌─▼─▼─┐   ┌─▼─▼─┐   ┌─▼─▼─┐
+c₄│ FA  │◄c₃│ FA  │◄c₂│ FA  │◄c₁│ FA  │◄ c₀
+  └──┬──┘   └──┬──┘   └──┬──┘   └──┬──┘
+     s₃        s₂        s₁        s₀
+```
+
+The flaw is in the name: the carry **ripples** through. The most significant stage cannot produce the final result until the carry arrives, after crossing all the previous stages. The delay grows **linearly with n**: doubling the bits doubles the addition time. It is the worst case that sets the clock period.
+
+</div>
+
+<div data-note-id="teoria/aritmetica-hardware/carry-lookahead-calcolare-i-riporti-in-anticipo">
+
+## Carry-lookahead: computing the carries in advance
+
+The idea is not to wait for the carry but to **predict** it. For each position two functions are defined that depend only on the operands, hence available at once:
+
+- **Generate** `Gi = ai · bi` — this position *generates* a carry on its own, whatever comes from the right.
+- **Propagate** `Pi = ai ⊕ bi` — this position *propagates* the carry it receives.
+
+Hence `ci+1 = Gi + Pi·ci`. Expanding the recursion, **every** carry is expressed directly in terms of `c0`:
+
+```
+c₁ = G₀ + P₀c₀
+c₂ = G₁ + P₁G₀ + P₁P₀c₀
+c₃ = G₂ + P₂G₁ + P₂P₁G₀ + P₂P₁P₀c₀
+```
+
+All carries are computed **in parallel**, with only two gate levels: the delay becomes almost independent of n. The price is the number of gates, which grows quickly — so 4-bit blocks are built and cascaded, applying the same scheme one level up (hierarchical lookahead).
+
+</div>
+
+<div data-note-id="teoria/aritmetica-hardware/sommatore-sottrattore-unico">
+
+## Single adder/subtractor
+
+In two's complement subtraction is the addition of the opposite, and the opposite is “invert and add 1”. So a single control signal `Sub` is enough:
+
+- each bit of B goes through an XOR with `Sub`: if `Sub = 1` it is inverted, if it is 0 it passes unchanged;
+- `Sub` also enters as the initial carry `c0`, supplying the “+1”.
+
+A single circuit performs both operations: it is the practical reason why two's complement is used rather than sign-magnitude.
+
+</div>
+
+<div data-note-id="teoria/aritmetica-hardware/moltiplicazione-per-somme-e-spostamenti">
+
+## Multiplication by shift and add
+
+The method is the one used by hand: for each bit of the multiplier, if it is 1 you add the multiplicand suitably **shifted**, otherwise you add zero.
+
+```
+    1 1 0 1   (13)
+  × 1 0 1 1   (11)
+  ─────────
+    1 1 0 1     ← bit 0 = 1
+   1 1 0 1      ← bit 1 = 1, shifted by 1
+  0 0 0 0       ← bit 2 = 0
+ 1 1 0 1        ← bit 3 = 1, shifted by 3
+ ───────────
+ 1 0 0 0 1 1 1 1   (143)
+```
+
+In hardware it is built with an array of adders (*array multiplier*), or sequentially with an accumulator and a shift register — which is exactly what the assembly program “multiplication by repeated addition” does. The product of two n-bit numbers takes **2n bits**.
+
+With signed numbers naive shift-and-add goes wrong: sign extension of the partial products is needed, or **Booth**'s algorithm, which recodes the multiplier looking at pairs of adjacent bits and replaces long runs of 1s with a subtraction plus an addition.
+
+</div>
+
+<div data-note-id="teoria/aritmetica-hardware/divisione">
+
+## Division
+
+Here too the hand procedure is imitated: the divisor is compared with the partial remainder, subtracted when it fits and a 1 is written in the quotient, otherwise a 0 is written. In the **restoring** variant the subtraction is always performed and, if the result is negative, the remainder is restored by adding the divisor back; in the **non-restoring** one restoring is avoided by alternating additions and subtractions. Division by zero is typically an **exception**.
+
+</div>
+
+<Callout tone="esame" title="Why it matters in the exam">
+
+<div data-note-id="teoria/aritmetica-hardware/perche-conta-all-esame">
+
+This is the part that links Boolean algebra to the processor: the ALU is built like this, and questions about **delay** arise here — a 32-bit ripple-carry is slow because the carry crosses 32 stages in cascade, and it is this path that sets the minimum clock period. The expression $\overline{a}$·b + a·$\overline{b}$ that you recognise as XOR is the sum of the half adder.
+
+</div>
+
+</Callout>
+
+## Diagrams
+
+<Schema id="sommatore-ripple" lang="en" num="1" />
+
+<Schema id="sommatore-sottrattore" lang="en" num="2" />
+
+<Schema id="carry-lookahead" lang="en" num="3" />
+
+<Schema id="moltiplicatore-sequenziale" lang="en" num="4" />
+
+<Schema id="divisione-binaria" lang="en" num="5" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/aritmetica-hardware/esempio-svolto">
+
+## Worked example
+
+**Add 5 + 6 on 4 bits with a ripple-carry, showing the carries.**
+
+```
+carries:  0 1 1 0
+   A   =    0 1 0 1   (5)
+   B   =    0 1 1 0   (6)
+  ────────────────────
+   S   =    1 0 1 1   (−5 read in two's complement!)
+```
+
+The carry **into** the sign bit is 1, the carry **out** is 0: 1 ⊕ 0 = 1, hence **overflow**. And rightly so: on 4 bits the maximum is +7, and 11 does not fit. The result read in two's complement is −5 and makes no sense — the machine does not notice on its own, which is why the flag exists.
+
+**Now 5 − 6 with the same circuit.** Invert the bits of B and force the incoming carry to 1:
+
+```
+B = 0110  →  B̄ = 1001,  Cin = 1
+
+  0101 + 1001 + 1 = 1111  =  −1 ✓
+carry out 0, carry into the sign bit 0  →  no overflow
+```
+
+A single adder performs both operations: the control line that chooses addition or subtraction drives both the XORs that invert B and the incoming carry.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/aritmetica-hardware/errori-tipici">
+
+## Common mistakes
+
+- Inverting B and forgetting the incoming carry at 1: you subtract B+1 instead of B.
+- Declaring overflow by looking only at the carry-out: you need the **XOR** of the two carries on the sign bit.
+- In multiplication, adding the partial products without **sign extension** when working in two's complement (the problem Booth's algorithm solves).
+
+</div>
+
+<Callout tone="attenzione" title="AND gates with more than two inputs">
+
+<div data-note-id="teoria/aritmetica-hardware/trap-and-assoc">
+
+A gate with three or more inputs is a drawing convenience: in hardware it is built from two-input gates. Breaking it up in the diagram shows that you know the real structure, and it is the only way to show how many levels of delay the signal goes through.
+
+</div>
+
+</Callout>
+
+</Layer>

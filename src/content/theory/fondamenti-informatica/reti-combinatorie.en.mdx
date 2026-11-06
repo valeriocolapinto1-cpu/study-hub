@@ -1,0 +1,233 @@
+---
+course: fondamenti-informatica
+topic: reti-combinatorie
+lang: en
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In two minutes">
+
+<div data-note-id="teoria/reti-combinatorie/in-due-minuti">
+
+- Standard blocks exist because certain functions keep recurring: selecting, addressing, comparing.
+- **Decoder** n → 2ⁿ: activates **a single** output, the addressed one. It is the row selector of a memory or a register file.
+- **MUX** 2ⁿ → 1: chooses one input with n select signals. With the selects wired to the variables and constants on the inputs it implements **any** function of n variables.
+- **Comparator**: equality is built from bitwise XNORs and a final AND.
+- **Tri-state**: the third condition is high impedance, i.e. “disconnected”. It is what lets several sources share a bus, only one enabled at a time.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/reti-combinatorie/da-dove-si-parte">
+
+## Where we start
+
+**What you need to know first:** logic gates and truth tables, from the module on [Boolean algebra](../algebra-di-boole/).
+
+**What problem it solves.** With AND, OR and NOT you can build any function, but starting from the gates every time is like building a house brick by brick without using ready-made doors and windows. Certain functions recur all the time — “activate row number k”, “let one of these eight signals through”, “are these two numbers equal?” — and it pays to have them ready as named **blocks**. They are the bricks with which memories, processors and buses are drawn.
+
+**New words.** A network is **combinational** when the output depends *only* on the inputs present at this instant: no memory, no past (networks with memory come in the module on [flip-flops](../circuiti-sequenziali/)). **Decoding** means turning a number into “switch on row number that-number”; **multiplexing** means choosing one of several signals. **High impedance** is the third condition of a tri-state output: not 0, not 1, but “disconnected”.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/reti-combinatorie/perche-esistono-i-blocchi-standard">
+
+## Why standard blocks exist
+
+Every function can be synthesised from scratch with the Karnaugh map, but some recur so often that they have their own name and symbol. Recognising them saves time: instead of minimising a 4-variable table you say “it is a multiplexer” and move on.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/decodificatore-decoder">
+
+## Decoder
+
+It has **n inputs** and **2ⁿ outputs**, and activates **only one** output at a time: the one whose index matches the binary number presented at the input.
+
+```
+x₁ x₀ │ y₃ y₂ y₁ y₀
+ 0  0 │  0  0  0  1
+ 0  1 │  0  0  1  0
+ 1  0 │  0  1  0  0
+ 1  1 │  1  0  0  0
+```
+
+Each output is the corresponding **minterm**: `y₀ = x̅₁·x̅₀`, `y₁ = x̅₁·x₀` and so on. It is used to select one among many things: a memory chip given the address, a register given its number, a digit of a display.
+
+It almost always has an **enable** input: if it is 0 all outputs stay off, which lets you compose small decoders into a large one.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/codificatore-encoder">
+
+## Encoder
+
+The inverse operation: 2ⁿ inputs, n outputs, it returns the **index** of the active input. The problem is what to do if two are active: the **priority encoder** solves it by giving precedence to the highest index. It is the circuit that decides which interrupt request to serve when several arrive together.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/multiplexer-mux">
+
+## Multiplexer (MUX)
+
+It chooses **one of 2ⁿ data inputs** and brings it to the output, according to n select lines. With two data inputs and one select:
+
+```
+f = s̅·w₀ + s·w₁
+```
+
+It is the programmable switch of the circuit: inside the processor it chooses which source to present to the ALU or which value to write into the PC. The **demultiplexer** does the opposite: it routes a single input to the selected output.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/sintetizzare-una-funzione-qualsiasi-con-un-mux">
+
+## Synthesising any function with a MUX
+
+A multiplexer with n selects implements **any** function of n variables: wire the variables to the selects and tie each data input to the value the function takes in that row of the truth table. The data inputs are, literally, the output column.
+
+A MUX can also cover a function of **n+1** variables: n variables go to the selects and each data input gets, instead of a constant, the remaining variable, its complement, 0 or 1.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/comparatori">
+
+## Comparators
+
+Equality between two bits is **XNOR**: it is 1 when they are equal. To compare n-bit words you AND the XNORs of all positions. To establish which of the two is larger you proceed from the most significant bit downwards, deciding at the first position where they differ. Alternatively you subtract and read the flags: that is what the `CMP` instruction does.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/buffer-tri-state">
+
+## Tri-state buffer
+
+A normal gate has two output states, 0 and 1, and always drives them. A **tri-state buffer** has a third one, **high impedance**: when the enable is off the output is electrically **disconnected**, as if the wire had been cut.
+
+It lets several devices share a **bus**. On a bus only one may talk at a given instant: all the others put their outputs in high impedance. Without tri-state, two devices driving the same wire with opposite values would create a short circuit. That is why, in the processor diagram, the registers face the internal bus through these buffers.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/demultiplexer-il-decoder-visto-al-contrario">
+
+## Demultiplexer: the decoder seen backwards
+
+The multiplexer chooses one of many inputs and brings it to a single output. The **demultiplexer** does the opposite: it takes one input and routes it to one of many outputs, according to the selects.
+
+The interesting thing is that a demultiplexer **is** a decoder with the enable used as the data input: the decoder activates the addressed output, and if instead of the constant 1 you give it a signal, that signal appears on the chosen output and nowhere else. One circuit, two uses.
+
+The MUX–DEMUX pair is what makes it possible to share a link: multiplex on one side, transmit on a single wire, demultiplex on the other. It is the principle of time-division multiplexing, from internal buses to communication lines.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/codificatore-di-priorita">
+
+## Priority encoder
+
+A simple encoder assumes that **only one** input is active: if two become active the output is meaningless. It is an unrealistic assumption — think of eight devices that can ask for attention at the same time.
+
+The **priority encoder** solves it by establishing an order: if several inputs are active, the output is the index of the **highest-priority** one. It also has a valid output that distinguishes “no input active” from “input 0 is active”, two situations that would otherwise give the same code.
+
+It is exactly the circuit needed in interrupt handling to decide which device to serve when several call at once, and in bus arbitration when several units request it together.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/una-rom-e-una-tabella-di-verita">
+
+## A ROM is a truth table
+
+A read-only memory with n address bits and m data bits contains 2ⁿ words of m bits. But if instead of “address” you read “combination of the inputs” and instead of “word” you read “value of the outputs”, that memory is **literally** a truth table with n inputs and m outputs.
+
+```
+address (inputs)   →   contents (outputs)
+   000                     0 1
+   001                     1 1
+   010                     1 0
+   …
+```
+
+Inside, a ROM is made exactly like this: an n→2ⁿ **decoder** that activates a row, and a matrix of connections that determines the output bits. Implementing a logic function with a ROM means writing its truth table and nothing else — no minimisation, no gate drawing.
+
+The limit is exponential growth: with 8 inputs 256 words suffice, with 20 a million would be needed. That is why PLAs take a step back from the ROM: instead of generating **all** minterms, they generate only the product terms that are really needed — less flexibility, far less area.
+
+</div>
+
+<div data-note-id="teoria/reti-combinatorie/perche-due-livelli">
+
+## Why two levels
+
+Every Boolean function can be written in SOP form, i.e. as a level of ANDs followed by a level of ORs. This means that, ignoring fan-in, **any** function can be implemented with a delay of only two gate levels — which is why the two-level form is the reference for both cost and speed, and is the form that PLAs and Karnaugh maps produce.
+
+In practice fan-in is limited: a 12-input AND does not exist, and must be built from several cascaded gates, adding levels and therefore delay. Real design is always a compromise between the number of levels (speed) and the fan-in of the individual gates (feasibility).
+
+</div>
+
+## Diagrams
+
+<Schema id="decoder-2-4" lang="en" num="1" />
+
+<Schema id="mux-4-1" lang="en" num="2" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/reti-combinatorie/esempio-svolto">
+
+## Worked example
+
+**Implement the majority function (Y = 1 with at least two inputs at 1) in two ways.**
+
+**With an 8→1 MUX.** The three inputs A, B, C go to the **selects**; on the eight data inputs you put the constants of the output column, in minterm order:
+
+```
+selects: S₂S₁S₀ = A B C
+data inputs: I₀…I₇ = 0, 0, 0, 1, 0, 1, 1, 1
+                    (m0)        (m3)  (m5)(m6)(m7)
+```
+
+No logic gates: the truth table **is** the wiring. That is why a MUX with n selects implements any function of n variables.
+
+**With a 3→8 decoder and an OR.** The decoder activates the output corresponding to the present combination; you just connect to an OR the outputs of the minterms at 1:
+
+```
+Y = m₃ + m₅ + m₆ + m₇
+```
+
+The decoder generates **all** the minterms, the OR chooses which ones are needed. With several functions of the same variables you reuse the same decoder and change only the ORs.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/reti-combinatorie/errori-tipici">
+
+## Common mistakes
+
+- Wiring the variables to the MUX **data** inputs instead of the selects: it is the selects that choose, the data are the constants of the table.
+- Forgetting the minterm order: I₀ corresponds to S = 000, I₇ to S = 111.
+- Joining two normal outputs on the same wire “to make the OR”: you need a gate, or tri-state buffers with a single active enable.
+
+</div>
+
+<Callout tone="attenzione" title="AND gates with more than two inputs">
+
+<div data-note-id="teoria/reti-combinatorie/trap-and-assoc">
+
+A gate with three or more inputs is a drawing convenience: in hardware it is built from two-input gates. Breaking it up in the diagram shows that you know the real structure, and it is the only way to show how many levels of delay the signal goes through.
+
+</div>
+
+</Callout>
+
+</Layer>

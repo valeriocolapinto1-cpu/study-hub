@@ -1,0 +1,205 @@
+---
+course: fondamenti-informatica
+topic: mappe-di-karnaugh
+lang: en
+---
+
+<Callout tone="ok" title="In two minutes">
+
+<div data-note-id="teoria/mappe-di-karnaugh/in-due-minuti">
+
+- The columns go in **Gray** order — 00, 01, 11, 10 — because only one bit may change between neighbouring cells. Getting the order wrong invalidates every grouping.
+- Groups of 1, 2, 4, 8 cells: **never 3**. Each doubling removes one variable, so it shortens the term by one literal.
+- Groups as large as possible, **overlapping**, with **circular** adjacency: opposite edges and the four corners are neighbours.
+- **Prime** implicant = a group that cannot be enlarged. **Essential** = it covers a 1 no other prime covers: those must be taken.
+- **Don’t cares** are taken as 1 only if they enlarge a group, judging them one by one.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/mappe-di-karnaugh/da-dove-si-parte">
+
+## Where we start
+
+**What you need to know first:** truth tables, minterms and SOP form, from the module on [Boolean algebra](../algebra-di-boole/).
+
+**What problem it solves.** From a truth table you can always derive an SOP, writing one term for every row at 1. But that form is almost always **longer than necessary**: more terms mean more gates, more cost, more power and more delay. Simplifying with algebra works, but it requires guessing which factorings to try. The Karnaugh map turns that intuition into a **visual** procedure: simplifiable terms become neighbouring cells, and simplifying becomes “circle the largest groups”.
+
+**New words.** The **Gray code** is an ordering in which only one bit changes between two consecutive values: that is why the columns go 00, 01, 11, 10. An **implicant** is a valid group of cells at 1; it is **prime** if it cannot be enlarged, **essential** if it is the only one covering a certain cell. A **don’t care** (written `x`) is a combination that never occurs or whose output value does not matter: it can be used as 1 or as 0, as you like.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/mappe-di-karnaugh/idea">
+
+## Idea
+
+The map arranges the minterms in adjacent cells according to the **Gray code**: between two neighbouring cells **only one variable** changes. Grouping the `1`s in blocks whose size is a power of 2 removes the variables that change within the group, leaving only the constant ones.
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/come-si-dispone-la-mappa">
+
+## How the map is laid out
+
+The column order is **not** 00, 01, 10, 11 but **00, 01, 11, 10**: that is the sequence in which one bit changes at a time. With 4 variables the same order applies to the rows too:
+
+```
+        CD
+       00  01  11  10
+AB 00 | m0  m1  m3  m2
+   01 | m4  m5  m7  m6
+   11 | m12 m13 m15 m14
+   10 | m8  m9  m11 m10
+```
+
+Getting the order wrong is the most common mistake: the map stops being adjacent and the groupings become invalid.
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/regole-di-raggruppamento">
+
+## Grouping rules
+
+- Groups have size 1, 2, 4, 8… never 3 or 6.
+- They are made **as large as possible**: a group of 2ᵏ cells removes k variables, so every doubling shortens the term by one literal.
+- Groups may **overlap**: a cell already covered can join another group if that allows it to grow.
+- Adjacency is **circular**: first and last column are neighbours, as are first and last row (wrap-around). The four corners of a 4-variable map form a valid group.
+- Every `1` must end up in at least one group, and no zeros may be covered.
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/implicanti-primi-ed-essenziali">
+
+## Prime and essential implicants
+
+An **implicant** is a valid group; it is **prime** if it cannot be enlarged any further. It is **essential** if it covers at least one `1` that no other prime implicant covers: essentials must be taken. The cover is then completed with the fewest remaining prime implicants.
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/perche-funziona-l-adiacenza-e-algebra">
+
+## Why it works: adjacency is algebra
+
+The map looks like a visual trick, but underneath there is a single theorem. Take two neighbouring cells, which by construction differ in **only one** variable — say A. The two corresponding minterms are written X·A and X·Ā, where X is the product of the variables that do *not* change:
+
+```
+X·A + X·Ā = X·(A + Ā) = X·1 = X
+```
+
+The variable that changes **disappears**. That is why a group of 2 cells removes one variable, a group of 4 removes two (the theorem is applied twice), one of 8 removes three. It also shows why groups must have a power-of-2 size: only then do the cells form a set in which, for every “internal” variable, **both** polarities appear in all combinations of the others. With 3 cells that does not happen, and the factoring cannot be done.
+
+The same argument explains the Gray ordering of the columns: closeness on the map must correspond to a one-bit difference, otherwise the formula above does not apply and circling contiguous cells produces wrong terms.
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/la-procedura-in-cinque-passi">
+
+## The procedure, in five steps
+
+In the exam it pays to always follow it in the same order, instead of looking for groups at random:
+
+1. **Fill the map** from the truth table, checking the Gray order of the headers. A mistake here invalidates everything else.
+2. **Look for the largest possible groups**, starting from those of 8, then 4, then 2, then isolated cells. Remember the edges and the corners.
+3. **Identify the essential implicants**: for each 1, count how many groups cover it. If only one, that group is mandatory — mark it.
+4. **Complete the cover** by choosing, among the remaining groups, the fewest that cover the 1s still uncovered.
+5. **Write the terms**: for each group, the product of the variables that stay constant, negated where they are 0.
+
+At the end, two quick checks: is every 1 covered? does no group cover a 0? If both answers are yes, the form is **correct**; minimality depends on having done steps 2-4 properly.
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/quando-la-regola-degli-essenziali-non-basta">
+
+## When the essentials rule is not enough
+
+There are maps in which **no** implicant is essential, because every 1 is covered by at least two groups. They are called **cyclic**. There step 3 produces nothing and you have to choose by trial, checking which combination gives the lowest cost. These are the cases with **several different minimal solutions**, all equally acceptable: if yours does not match the instructor's, check the number of terms and literals before deciding you are wrong.
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/oltre-le-quattro-variabili">
+
+## Beyond four variables
+
+With five variables the map becomes two four-variable maps side by side, one for E = 0 and one for E = 1: they are adjacent “in depth”, i.e. cells in the same position of the two maps form a valid group. It is manageable but awkward; from six up the visual representation loses meaning.
+
+For those cases there is the **Quine–McCluskey** method: the same idea — combining terms that differ in one bit — carried out in a tabular, systematic and therefore programmable way. It is the algorithm inside automatic synthesis tools, and it is also the one this site uses to check that the solution shown is really minimal.
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/le-indifferenze-x">
+
+## Don’t cares (x)
+
+They are combinations that never occur, or whose output value is irrelevant. They can be taken **as 1 when they help enlarge a group**, or left at 0 when they are not needed: they are judged **one by one**, not all together, and must never be covered on their own (a group of don’t cares only is useless).
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/pos-dalla-mappa">
+
+## POS from the map
+
+Grouping the **zeros** instead of the ones gives $\overline{Y}$; negating with De Morgan yields the POS form. Sometimes it is shorter than the SOP: if the map has few zeros, it is worth trying.
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/dal-risultato-al-circuito">
+
+## From the result to the circuit
+
+Each product term becomes an AND gate, the final sum an OR gate, the negated variables inverters. In the drawing **break into 2-input gates**: a product of three literals is built with two cascaded ANDs.
+
+Practise with the generated Karnaugh exercises of this module: the solution shown is computed by an exact minimiser, so it is always truly minimal.
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/mappe-di-karnaugh/esempio-svolto">
+
+## Worked example
+
+Let `Y(A,B,C) = 1` for minterms 1, 3, 5, 7 — that is, whenever `C = 1`, regardless of A and B. The group of 4 cells removes two variables and the minimal SOP is simply:
+
+```
+Y = C          (1 term, 1 literal)
+```
+
+Writing `Y = A̅·C + A·C` is **correct but not minimal**: absorption reduces it to `C`, and in the exam non-minimality is penalised.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/mappe-di-karnaugh/errori-tipici">
+
+## Common mistakes
+
+- Writing the columns in the order 00, 01, 10, 11: the map loses adjacency and **all** the groupings become wrong.
+- Stopping at a correct but non-minimal cover, having missed a larger group or the adjacency across the edges.
+- Covering a group of don’t cares only: it is useless, because no 1 is covered.
+- Forgetting the **essential** implicants: they must be taken first, and they often close almost the whole cover on their own.
+
+</div>
+
+<Callout tone="attenzione" title="AND gates with more than two inputs">
+
+<div data-note-id="teoria/mappe-di-karnaugh/trap-and-assoc">
+
+A gate with three or more inputs is a drawing convenience: in hardware it is built from two-input gates. Breaking it up in the diagram shows that you know the real structure, and it is the only way to show how many levels of delay the signal goes through.
+
+</div>
+
+</Callout>
+
+</Layer>

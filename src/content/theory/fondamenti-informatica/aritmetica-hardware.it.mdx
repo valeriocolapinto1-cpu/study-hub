@@ -1,0 +1,236 @@
+---
+course: fondamenti-informatica
+topic: aritmetica-hardware
+lang: it
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In due minuti">
+
+<div data-note-id="teoria/aritmetica-hardware/in-due-minuti">
+
+- **Semisommatore**: S = A ⊕ B, riporto = A · B. **Sommatore completo**: aggiunge il riporto entrante, S = A ⊕ B ⊕ Cin.
+- **Ripple-carry**: n sommatori completi in cascata. Semplice, ma il ritardo cresce **linearmente** con n perché il riporto deve attraversarli tutti.
+- **Carry-lookahead**: G = A·B (genera), P = A ⊕ B (propaga); i riporti si calcolano in parallelo. Ritardo quasi costante, molte più porte.
+- Un solo circuito per somma e sottrazione: A − B = A + B̅ + 1, cioè si invertono i bit di B e si forza a 1 il riporto entrante.
+- Moltiplicazione = **somme e spostamenti**; l'algoritmo di Booth tratta i numeri in complemento a 2 senza casi particolari.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/aritmetica-hardware/da-dove-si-parte">
+
+## Da dove si parte
+
+**Cosa serve sapere prima:** il complemento a 2 dal modulo sui [numeri binari](../numeri-binari/), e le porte logiche di base dal modulo su [algebra di Boole](../algebra-di-boole/).
+
+**Che problema risolve.** Sappiamo *rappresentare* i numeri, ma un calcolatore deve anche *calcolare*. Qui si costruisce il circuito che somma davvero — a partire da porte AND, OR e XOR — e si scopre che sommare è facile, mentre **sommare in fretta** è il vero problema di progetto: il riporto deve attraversare tutti i bit, e questo mette un limite alla frequenza dell’intero processore.
+
+**Le parole nuove.** Il **riporto** (carry) è il «me ne porto uno» della somma in colonna. Un **semisommatore** somma due bit; un **sommatore completo** ne somma due più il riporto entrante, ed è il mattone da cui si costruisce tutto. **Ripple-carry** vuol dire «a propagazione di riporto»: i sommatori in fila, ognuno che aspetta il precedente. **Carry-lookahead** significa «riporto anticipato»: calcolarlo in parallelo invece di aspettarlo.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/aritmetica-hardware/semisommatore-half-adder">
+
+## Semisommatore (half adder)
+
+Somma **due** bit e produce somma e riporto. Non accetta un riporto entrante, ed è per questo che si chiama «mezzo»:
+
+```
+a  b │  s   c
+0  0 │  0   0
+0  1 │  1   0
+1  0 │  1   0
+1  1 │  0   1
+```
+
+Si legge direttamente dalla tabella: `s = a ⊕ b` e `c = a · b`. La somma è uno XOR perché vale 1 quando i bit sono **diversi**; il riporto è un AND perché esce solo quando sono entrambi 1.
+
+</div>
+
+<div data-note-id="teoria/aritmetica-hardware/sommatore-completo-full-adder">
+
+## Sommatore completo (full adder)
+
+Per sommare numeri di più bit ogni stadio deve accettare anche il **riporto entrante** `ci` prodotto dallo stadio precedente. Con tre ingressi:
+
+- `si = ai ⊕ bi ⊕ ci` — la somma vale 1 quando il numero di ingressi a 1 è **dispari**.
+- `ci+1 = ai·bi + ci·(ai ⊕ bi)` — il riporto esce se entrambi gli addendi valgono 1, oppure se ne vale uno e c'era già un riporto entrante.
+
+Si realizza con due semisommatori più una OR. Nel disegno ricordati di scomporre in porte a 2 ingressi.
+
+</div>
+
+<div data-note-id="teoria/aritmetica-hardware/ripple-carry-semplice-ma-lento">
+
+## Ripple-carry: semplice ma lento
+
+Mettendo n sommatori completi in cascata, con il riporto uscente di ciascuno collegato al riporto entrante del successivo, si ottiene un sommatore a n bit:
+
+```
+   a₃b₃      a₂b₂      a₁b₁      a₀b₀
+    │ │       │ │       │ │       │ │
+  ┌─▼─▼─┐   ┌─▼─▼─┐   ┌─▼─▼─┐   ┌─▼─▼─┐
+c₄│ FA  │◄c₃│ FA  │◄c₂│ FA  │◄c₁│ FA  │◄ c₀
+  └──┬──┘   └──┬──┘   └──┬──┘   └──┬──┘
+     s₃        s₂        s₁        s₀
+```
+
+Il difetto è nel nome: il riporto **si propaga a ondate**. Lo stadio più significativo non può produrre il risultato definitivo finché non gli arriva il riporto, che ha attraversato tutti gli stadi precedenti. Il ritardo cresce **linearmente con n**: raddoppiare i bit raddoppia il tempo di somma. È il caso peggiore che detta il periodo di clock.
+
+</div>
+
+<div data-note-id="teoria/aritmetica-hardware/carry-lookahead-calcolare-i-riporti-in-anticipo">
+
+## Carry-lookahead: calcolare i riporti in anticipo
+
+L'idea è non aspettare il riporto ma **prevederlo**. Per ogni posizione si definiscono due funzioni che dipendono solo dagli operandi, quindi disponibili subito:
+
+- **Generate** `Gi = ai · bi` — questa posizione *genera* un riporto per conto suo, qualunque cosa arrivi da destra.
+- **Propagate** `Pi = ai ⊕ bi` — questa posizione *propaga* il riporto che riceve.
+
+Da cui `ci+1 = Gi + Pi·ci`. Espandendo la ricorsione si esprime **ogni** riporto direttamente in funzione di `c0`:
+
+```
+c₁ = G₀ + P₀c₀
+c₂ = G₁ + P₁G₀ + P₁P₀c₀
+c₃ = G₂ + P₂G₁ + P₂P₁G₀ + P₂P₁P₀c₀
+```
+
+Tutti i riporti si calcolano **in parallelo**, con due soli livelli di porte: il ritardo diventa quasi indipendente da n. Il prezzo è il numero di porte, che cresce rapidamente — perciò si costruiscono blocchi da 4 bit e li si mette in cascata, applicando lo stesso schema un livello più su (lookahead gerarchico).
+
+</div>
+
+<div data-note-id="teoria/aritmetica-hardware/sommatore-sottrattore-unico">
+
+## Sommatore/sottrattore unico
+
+In complemento a 2 la sottrazione è la somma dell'opposto, e l'opposto è «inverti e aggiungi 1». Basta quindi un segnale di controllo `Sub`:
+
+- ogni bit di B passa per uno XOR con `Sub`: se `Sub = 1` viene invertito, se vale 0 passa intatto;
+- `Sub` entra anche come riporto iniziale `c0`, fornendo il «+1».
+
+Un solo circuito fa entrambe le operazioni: è la ragione pratica per cui si usa il complemento a 2 e non il modulo e segno.
+
+</div>
+
+<div data-note-id="teoria/aritmetica-hardware/moltiplicazione-per-somme-e-spostamenti">
+
+## Moltiplicazione per somme e spostamenti
+
+Il metodo è quello che si usa a mano: per ogni bit del moltiplicatore, se vale 1 si somma il moltiplicando opportunamente **spostato**, altrimenti si somma zero.
+
+```
+    1 1 0 1   (13)
+  × 1 0 1 1   (11)
+  ─────────
+    1 1 0 1     ← bit 0 = 1
+   1 1 0 1      ← bit 1 = 1, spostato di 1
+  0 0 0 0       ← bit 2 = 0
+ 1 1 0 1        ← bit 3 = 1, spostato di 3
+ ───────────
+ 1 0 0 0 1 1 1 1   (143)
+```
+
+In hardware si realizza con una matrice di sommatori (*array multiplier*), oppure in modo sequenziale con un accumulatore e un registro a scorrimento — che è esattamente ciò che fa il programma assembly «moltiplicazione tramite somme ripetute». Il prodotto di due numeri a n bit occupa **2n bit**.
+
+Con i numeri con segno la somma-e-sposta ingenua sbaglia: serve l'estensione del segno sui prodotti parziali, oppure l'algoritmo di **Booth**, che ricodifica il moltiplicatore guardando coppie di bit adiacenti e sostituisce lunghe sequenze di 1 con una sottrazione più una somma.
+
+</div>
+
+<div data-note-id="teoria/aritmetica-hardware/divisione">
+
+## Divisione
+
+Anche qui si imita il procedimento a mano: si confronta il divisore con il resto parziale, si sottrae quando ci sta e si scrive 1 nel quoziente, altrimenti si scrive 0. Nella variante **restoring** la sottrazione si esegue sempre e, se il risultato è negativo, si ripristina il resto sommando indietro il divisore; nella **non-restoring** si evita il ripristino alternando somme e sottrazioni. La divisione per zero è tipicamente un'**eccezione**.
+
+</div>
+
+<Callout tone="esame" title="Perché conta all'esame">
+
+<div data-note-id="teoria/aritmetica-hardware/perche-conta-all-esame">
+
+Questa è la parte che collega l'algebra di Boole al processore: la ALU è fatta così, e le domande sul **ritardo** nascono qui — un ripple-carry a 32 bit è lento perché il riporto attraversa 32 stadi in cascata, ed è questo cammino a fissare il periodo minimo di clock. L'espressione $\overline{a}$·b + a·$\overline{b}$ che riconosci come XOR è la somma del semisommatore.
+
+</div>
+
+</Callout>
+
+## Schemi
+
+<Schema id="sommatore-ripple" lang="it" num="1" />
+
+<Schema id="sommatore-sottrattore" lang="it" num="2" />
+
+<Schema id="carry-lookahead" lang="it" num="3" />
+
+<Schema id="moltiplicatore-sequenziale" lang="it" num="4" />
+
+<Schema id="divisione-binaria" lang="it" num="5" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/aritmetica-hardware/esempio-svolto">
+
+## Esempio svolto
+
+**Somma 5 + 6 su 4 bit con un ripple-carry, mostrando i riporti.**
+
+```
+riporti:  0 1 1 0
+   A   =    0 1 0 1   (5)
+   B   =    0 1 1 0   (6)
+  ────────────────────
+   S   =    1 0 1 1   (−5 letto in CP2!)
+```
+
+Il riporto **entrante** nel bit di segno è 1, quello **uscente** è 0: 1 ⊕ 0 = 1, quindi **overflow**. Ed è giusto: su 4 bit il massimo è +7, e 11 non ci sta. Il risultato letto in CP2 vale −5 e non ha senso — la macchina non se ne accorge da sola, per questo esiste il flag.
+
+**Ora 5 − 6 con lo stesso circuito.** Si invertono i bit di B e si forza a 1 il riporto entrante:
+
+```
+B = 0110  →  B̄ = 1001,  Cin = 1
+
+  0101 + 1001 + 1 = 1111  =  −1 ✓
+riporto uscente 0, riporto entrante nel segno 0  →  nessun overflow
+```
+
+Un unico sommatore fa entrambe le operazioni: la linea di controllo che sceglie somma o sottrazione pilota sia gli XOR che invertono B, sia il riporto entrante.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/aritmetica-hardware/errori-tipici">
+
+## Errori tipici
+
+- Invertire B e dimenticare il riporto entrante a 1: si sottrae B+1 invece di B.
+- Dichiarare overflow guardando solo il riporto uscente: serve lo **XOR** dei due riporti sul bit di segno.
+- Nella moltiplicazione, sommare i prodotti parziali senza **estendere il segno** quando si lavora in complemento a 2 (è il problema che l'algoritmo di Booth risolve).
+
+</div>
+
+<Callout tone="attenzione" title="Porte AND a più di due ingressi">
+
+<div data-note-id="teoria/aritmetica-hardware/trap-and-assoc">
+
+Una porta a tre o più ingressi è una comodità del disegno: in hardware si costruisce con porte a due ingressi. Scomporla nello schema mostra che conosci la struttura reale, ed è l'unico modo di far vedere quanti livelli di ritardo attraversa il segnale.
+
+</div>
+
+</Callout>
+
+</Layer>

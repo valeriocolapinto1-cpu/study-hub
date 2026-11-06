@@ -1,0 +1,174 @@
+---
+course: fondamenti-informatica
+topic: circuiti-sequenziali
+lang: it
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In due minuti">
+
+<div data-note-id="teoria/circuiti-sequenziali/in-due-minuti">
+
+- **Combinatorio**: l'uscita dipende solo dagli ingressi adesso. **Sequenziale**: dipende anche dallo **stato**, cioè dal passato.
+- **Latch** = sensibile al **livello** (trasparente finché l'abilitazione è attiva). **Flip-flop** = sensibile al **fronte**.
+- SR ha la combinazione proibita S = R = 1; il D la elimina; il JK la usa per commutare; il T commuta a comando.
+- **Master-slave**: due latch in cascata con clock opposti — il dato entra su un fronte ed esce sull'altro, quindi si campiona una volta per periodo.
+- Registri a scorrimento e contatori si costruiscono con flip-flop D o T; l'accesso può essere seriale o parallelo.
+- **Setup** e **hold** vanno rispettati attorno al fronte: violarli porta a metastabilità, cioè a un'uscita che non si decide.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/circuiti-sequenziali/da-dove-si-parte">
+
+## Da dove si parte
+
+**Cosa serve sapere prima:** le porte logiche dal modulo su [algebra di Boole](../algebra-di-boole/). Aiuta aver visto le [reti combinatorie](../reti-combinatorie/), ma non è indispensabile.
+
+**Che problema risolve.** Finora ogni circuito visto dimentica tutto: cambia l’ingresso, cambia l’uscita, e del passato non resta traccia. Ma un calcolatore deve **ricordare**: il valore di un registro, il contenuto di una cella, il punto del programma a cui è arrivato. Serve un circuito che, tolto l’ingresso, **mantenga** il valore. Si ottiene con un’idea sola: prendere l’uscita e riportarla all’ingresso, creando un anello che si sostiene da sé. Da lì nascono latch, flip-flop, registri e contatori — e con essi la nozione di **stato**.
+
+**Le parole nuove.** Lo **stato** è ciò che il circuito ricorda. La **retroazione** è l’uscita riportata all’ingresso. Il **clock** è il segnale periodico che scandisce quando aggiornare lo stato; il **livello** è il suo valore (alto o basso), il **fronte** è l’istante in cui cambia. Un circuito **trasparente** lascia passare l’ingresso all’uscita mentre è abilitato; uno sensibile al fronte campiona solo nell’istante del cambiamento.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/circuiti-sequenziali/combinatorio-vs-sequenziale">
+
+## Combinatorio vs sequenziale
+
+In una rete **combinatoria** l'uscita dipende solo dagli ingressi attuali. In una rete **sequenziale** dipende anche dallo **stato**, cioè dalla storia passata: serve un elemento di memoria, ottenuto con la **retroazione** (l'uscita rientra come ingresso).
+
+</div>
+
+<div data-note-id="teoria/circuiti-sequenziali/il-latch-sr">
+
+## Il latch SR
+
+Due porte NOR retroazionate incrociate. Con `S=1, R=0` l'uscita va a 1 (set); con `S=0, R=1` va a 0 (reset); con `S=R=0` **mantiene** lo stato precedente — è la memoria. La combinazione `S=R=1` è **proibita**: forza entrambe le uscite allo stesso valore e, al rilascio, lo stato finale è imprevedibile (dipende da quale porta commuta prima).
+
+</div>
+
+<div data-note-id="teoria/circuiti-sequenziali/il-latch-d-e-il-problema-della-trasparenza">
+
+## Il latch D e il problema della trasparenza
+
+Il latch D elimina lo stato proibito generando `R` come negazione di `S`: c'è un solo ingresso dato. Con un segnale di abilitazione (**gated latch**) il dato passa solo quando il clock è alto — ma finché resta alto il latch è **trasparente**: ogni variazione dell'ingresso attraversa il dispositivo. In una rete retroazionata questo provoca corse e stati instabili.
+
+</div>
+
+<div data-note-id="teoria/circuiti-sequenziali/flip-flop-il-fronte-non-il-livello">
+
+## Flip-flop: il fronte, non il livello
+
+Un **flip-flop** è un elemento bistabile che memorizza **1 bit** e commuta solo sul **fronte** del clock (edge-triggered), non sul livello. L'istante di campionamento è quindi puntuale e prevedibile.
+
+- **Sincroni**: cambiano stato solo al fronte di clock.
+- **Asincroni**: reagiscono immediatamente agli ingressi, senza clock. Tipici gli ingressi di preset/clear, che agiscono comunque.
+
+</div>
+
+<div data-note-id="teoria/circuiti-sequenziali/master-slave">
+
+## Master-slave
+
+Due latch D in serie con clock opposti: il **master** campiona l'ingresso mentre il clock è alto, lo **slave** ne trasferisce il valore in uscita quando il clock commuta. Poiché i due stadi **non sono mai trasparenti contemporaneamente**, l'ingresso non può attraversare il dispositivo nello stesso ciclo: si evitano le corse e l'uscita cambia in un solo istante ben definito.
+
+</div>
+
+<Callout tone="esame" title="I tipi che escono all'esame">
+
+<div data-note-id="teoria/circuiti-sequenziali/i-tipi-che-escono-all-esame">
+
+- **D**: `Q⁺ = D`. È il registro elementare.
+- **JK**: `J=K=0` mantiene, `J=1,K=0` set, `J=0,K=1` reset, `J=K=1` **commuta** (toggle). Non ha combinazioni proibite.
+- **T**: `T=0` mantiene, `T=1` commuta. È un JK con gli ingressi uniti; è il mattone dei contatori.
+
+</div>
+
+</Callout>
+
+<div data-note-id="teoria/circuiti-sequenziali/registri-e-contatori">
+
+## Registri e contatori
+
+N flip-flop D in parallelo sullo stesso clock formano un **registro** a N bit. Collegandoli in cascata, con l'uscita di uno nell'ingresso del successivo, si ottiene un **registro a scorrimento** (shift register), usato per moltiplicare/dividere per 2 e per la conversione serie-parallelo.
+
+Un **contatore** si costruisce con flip-flop T. Nella versione **asincrona** (ripple) il clock di ogni stadio è l'uscita del precedente: semplice, ma i ritardi si accumulano e le uscite non cambiano tutte insieme. Nella versione **sincrona** tutti condividono lo stesso clock e la logica combinatoria decide chi commuta: più veloce e senza stati spuri.
+
+</div>
+
+<Callout tone="esame" title="Varianti che escono all'esame">
+
+<div data-note-id="teoria/circuiti-sequenziali/varianti-che-escono-all-esame">
+
+- **Latch SR con NAND**: stessa struttura del NOR ma con la logica invertita — gli ingressi sono attivi **bassi** e la combinazione proibita è `S=R=0`.
+- **Registro a scorrimento ad accesso parallelo**: oltre a scorrere, può essere caricato in un colpo solo su tutti i bit. Un multiplexer davanti a ogni flip-flop sceglie fra «prendi dal vicino» (scorrimento) e «prendi dall'ingresso parallelo» (caricamento). È il ponte fra formato seriale e parallelo.
+- **Contatore su/giù**: la logica combinatoria fra gli stadi viene commutata da una linea di direzione, così lo stesso circuito conta in avanti o all'indietro.
+
+</div>
+
+</Callout>
+
+<div data-note-id="teoria/circuiti-sequenziali/tempi">
+
+## Tempi
+
+Il dato deve essere stabile un po' **prima** del fronte (*setup time*) e restare stabile un po' **dopo** (*hold time*). Il periodo minimo di clock è vincolato dal ritardo di propagazione più lungo fra due registri, più il setup.
+
+</div>
+
+## Schemi
+
+<Schema id="master-slave" lang="it" num="1" />
+
+<Schema id="registro-scorrimento" lang="it" num="2" />
+
+<Schema id="contatore-3bit" lang="it" num="3" />
+
+<Schema id="macchina-stati" lang="it" num="4" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/circuiti-sequenziali/esempio-svolto">
+
+## Esempio svolto
+
+**Stesso ingresso, due componenti diversi.** Il clock è alto nella prima metà del periodo; D cambia due volte *durante* quella metà:
+
+```
+clock   ‾‾‾|___|‾‾‾|___
+D       0  1 0 1   1
+latch D 0  1 0 1   1     ← trasparente: insegue D per tutto il livello alto
+FF-D ↑  0  1 1 1   1     ← campiona SOLO sul fronte di salita
+```
+
+Il latch ha seguito ogni variazione; il flip-flop ha registrato solo il valore presente **sul fronte**. È esattamente la ragione per cui i registri di una pipeline sono flip-flop: garantiscono un avanzamento per periodo, qualunque cosa faccia il combinatorio nel frattempo.
+
+**Contatore modulo 6** (0…5) con flip-flop D: si conta in binario su 3 bit e si rileva con una AND la configurazione `110` (cioè 6), usandone l'uscita per azzerare il contatore. Il conteggio diventa 0,1,2,3,4,5,0,… — e lo stesso schema con `1010` dà il modulo 10.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/circuiti-sequenziali/errori-tipici">
+
+## Errori tipici
+
+- Dire «il latch è più lento»: non è una questione di velocità ma di **quando** campiona — livello contro fronte.
+- Dimenticare che nel JK la combinazione J = K = 1 **commuta** lo stato invece di essere proibita: è il motivo per cui esiste.
+- Costruire un contatore asincrono (ogni flip-flop pilotato dall'uscita del precedente) e stupirsi dei **glitch**: i ritardi si sommano e le uscite non cambiano tutte insieme.
+
+</div>
+
+</Layer>
