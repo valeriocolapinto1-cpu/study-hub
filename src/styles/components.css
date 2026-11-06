@@ -345,7 +345,9 @@ a.chip:hover {
   color: var(--text);
 }
 .chip[aria-pressed='true'],
-.chip[aria-current] {
+.chip[aria-current],
+button.chip[aria-pressed='true']:hover,
+a.chip[aria-current]:hover {
   background: var(--text);
   border-color: var(--text);
   color: var(--bg);

@@ -1,45 +1,342 @@
 ---
+/**
+ * Home: per chi torna, la preparazione (ripasso del giorno, progressi per corso,
+ * prossimo esame, appunti recenti: isola HomeStudy); per chi arriva, una presentazione
+ * sobria con numeri reali calcolati dalle collections, i corsi per anno, cosa offre il
+ * sito e chi lo cura. Con zero corsi resta coerente (avviso al posto dell'elenco).
+ */
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import HomeDashboard from '../../components/course/HomeDashboard.astro';
-import { SITE } from '../../config/site';
-import { langPaths, localizePath, t, tr, type Lang } from '../../i18n';
+import HomeStudy from '../../islands/HomeStudy';
+import Icon from '../../components/Icon.astro';
+import { BASE_URL, SITE } from '../../config/site';
+import { langPaths, localizePath, t, texts, tr, type Lang } from '../../i18n';
+import { coursePaths } from '../../lib/course-data';
 import { coursePath, sortCourses } from '../../lib/courses';
 
 export const getStaticPaths = langPaths;
 
 const lang = Astro.params.lang as Lang;
-const courses = sortCourses((await getCollection('courses')).map((c) => c.data));
+const [courseEntries, topics, exercises, cards, formulas] = await Promise.all([
+  getCollection('courses'),
+  getCollection('topics'),
+  getCollection('exercises'),
+  getCollection('cards'),
+  getCollection('formulas'),
+]);
+const courses = sortCourses(courseEntries.map((c) => c.data));
 const years = [...new Set(courses.map((c) => c.year))];
+const count = <T extends { data: { course: string } }>(list: T[], id: string) =>
+  list.filter((x) => x.data.course === id).length;
+const perCourse = Object.fromEntries(
+  courses.map((c) => [
+    c.id,
+    {
+      topics: count(topics, c.id),
+      exercises: count(exercises, c.id),
+      cards: count(cards, c.id),
+      formulas: count(formulas, c.id),
+      extras: c.extras.length,
+    },
+  ]),
+);
+const totals = {
+  courses: courses.length,
+  topics: topics.length,
+  exercises: exercises.length,
+  cards: cards.length,
+  formulas: formulas.length,
+  extras: courses.reduce((s, c) => s + c.extras.length, 0),
+};
+const nf = new Intl.NumberFormat(lang === 'it' ? 'it-IT' : 'en-GB');
+const metrics = (
+  [
+    ['courses', totals.courses],
+    ['topics', totals.topics],
+    ['exercises', totals.exercises],
+    ['cards', totals.cards],
+    ['formulas', totals.formulas],
+    ['extras', totals.extras],
+  ] as const
+).filter(([, n]) => n > 0);
+
+const studyCourses = courses.map((c) => {
+  const paths = coursePaths(c, lang);
+  return {
+    id: c.id,
+    title: tr(c.title, lang),
+    examDates: c.examDates ?? [],
+    exerciseIds: exercises.filter((e) => e.data.course === c.id).map((e) => e.data.id),
+    cardIds: cards.filter((x) => x.data.course === c.id).map((x) => x.data.id),
+    paths: {
+      overview: paths.overview,
+      review: paths.review,
+      progress: paths.progress,
+      exercises: paths.exercises,
+    },
+  };
+});
+const offers = ['theory', 'exercises', 'review', 'exam', 'offline', 'data'] as const;
+const metaLine = (id: string) => {
+  const m = perCourse[id]!;
+  return [
+    m.topics && t(lang, 'home.meta.topics', { n: m.topics }),
+    m.exercises && t(lang, 'home.meta.exercises', { n: m.exercises }),
+    m.cards && t(lang, 'home.meta.cards', { n: m.cards }),
+  ].filter(Boolean);
+};
 ---
 
 <BaseLayout lang={lang} title={SITE.title[lang]} description={SITE.description[lang]}>
-  <div class="container page">
-    <h1>{t(lang, 'home.title')}</h1>
-    <p class="lead">{t(lang, 'home.lead')}</p>
-    <HomeDashboard lang={lang} />
+  <script is:inline slot="head">
+    // Chi ha già dati di studio vede subito "La tua preparazione" (prima del disegno: niente salti).
+    try {
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i) || '';
+        if (/^sh:v1:[a-z0-9-]+:(progress|srs|notes|exam)$/.test(k) || k === 'sh:v1:global:examDates') {
+          document.documentElement.dataset.returning = '';
+          break;
+        }
+      }
+    } catch (e) {}
+  </script>
+  <div class="container page home">
+    <header class="home-hero">
+      <p class="eyebrow">{t(lang, 'home.eyebrow')}</p>
+      <h1>{t(lang, 'home.title')}</h1>
+      <p class="lead">{t(lang, 'home.lead')}</p>
+      {metrics.length > 0 && (
+        <dl class="home-metrics" aria-label={t(lang, 'home.metricsLabel')}>
+          {metrics.map(([k, n]) => (
+            <div>
+              <dt>{t(lang, `home.metric.${k}`)}</dt>
+              <dd>{nf.format(n)}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+      {courses.length > 0 && (
+        <p class="btn-row home-hero__actions">
+          <a class="btn btn--primary" href="#corsi">
+            {t(lang, 'home.chooseCourse')}
+          </a>
+          <a class="btn" href={localizePath('ripasso', lang)}>
+            {t(lang, 'home.reviewCta')}
+          </a>
+        </p>
+      )}
+    </header>
 
-    <section aria-labelledby="corsi">
+    {courses.length > 0 && (
+      <div class="home-study" data-pagefind-ignore>
+        <HomeStudy
+          client:idle
+          lang={lang}
+          base={BASE_URL}
+          courses={studyCourses}
+          reviewPath={localizePath('ripasso', lang)}
+          notesPath={localizePath('appunti', lang)}
+          texts={texts(lang, 'homeStudy.')}
+        />
+      </div>
+    )}
+
+    <section class="home-section" aria-labelledby="corsi">
       <h2 id="corsi">{t(lang, 'home.courses')}</h2>
       {courses.length === 0 && <p class="notice">{t(lang, 'home.empty')}</p>}
       {years.map((year) => (
-        <section aria-labelledby={`anno-${year}`}>
-          <h3 id={`anno-${year}`}>{t(lang, 'home.year', { year })}</h3>
-          <ul class="course-list">
+        <section class="home-year" aria-labelledby={`anno-${year}`}>
+          <h3 id={`anno-${year}`} class="home-year__title">
+            {t(lang, 'home.year', { year })}
+          </h3>
+          <ul class="home-courses">
             {courses
               .filter((c) => c.year === year)
               .map((c) => (
-                <li class="course-list__item" data-course={c.id}>
-                  <h4>
-                    <a href={localizePath(coursePath(c), lang)}>{tr(c.title, lang)}</a>
-                  </h4>
-                  {c.semester && <p class="eyebrow">{t(lang, 'home.semester', { semester: c.semester })}</p>}
-                  <p>{tr(c.description, lang)}</p>
+                <li class="home-course" data-course={c.id}>
+                  <div class="home-course__head">
+                    <h4 class="home-course__title">
+                      <a href={localizePath(coursePath(c), lang)}>{tr(c.title, lang)}</a>
+                    </h4>
+                    {c.semester && (
+                      <p class="eyebrow">{t(lang, 'home.semester', { semester: c.semester })}</p>
+                    )}
+                  </div>
+                  <p class="home-course__desc">{tr(c.description, lang)}</p>
+                  {metaLine(c.id).length > 0 && (
+                    <p class="meta-row home-course__meta">
+                      {metaLine(c.id).map((m) => (
+                        <span>{m}</span>
+                      ))}
+                    </p>
+                  )}
                 </li>
               ))}
           </ul>
         </section>
       ))}
     </section>
+
+    <section class="home-section" aria-labelledby="offerta">
+      <h2 id="offerta">{t(lang, 'home.offer.title')}</h2>
+      <ul class="home-offer">
+        {offers.map((k) => (
+          <li>
+            <h3>{t(lang, `home.offer.${k}.title`)}</h3>
+            <p>{t(lang, `home.offer.${k}.text`)}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="home-section home-about" aria-labelledby="chi">
+      <h2 id="chi">{t(lang, 'home.about.title')}</h2>
+      <p>{t(lang, 'home.about.text')}</p>
+      <p class="btn-row">
+        <a class="btn" href={localizePath('chi-sono', lang)}>
+          {t(lang, 'home.about.who')}
+        </a>
+        <a class="btn" href={localizePath('contribuisci', lang)}>
+          {t(lang, 'home.about.contribute')}
+        </a>
+        <a class="btn btn--ghost" href={SITE.repo.url} rel="noopener">
+          <Icon name="star" />
+          {t(lang, 'footer.star')}
+        </a>
+      </p>
+    </section>
   </div>
 </BaseLayout>
+
+<style>
+  .home-hero {
+    max-width: 52rem;
+    padding-block: var(--space-l) var(--space-xl);
+  }
+  .home-hero h1 {
+    margin: var(--space-2xs) 0 var(--space-s);
+  }
+  .home-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s) var(--space-xl);
+    margin: var(--space-l) 0 0;
+    padding: var(--space-s) 0;
+    border-block: 1px solid var(--border);
+  }
+  .home-metrics div {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .home-metrics dt {
+    font: 400 var(--step--1) / 1.3 var(--font-sans);
+    color: var(--text-muted);
+  }
+  .home-metrics dd {
+    margin: 0;
+    font: 600 var(--step-2) / 1.1 var(--font-serif);
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  .home-hero__actions {
+    margin-top: var(--space-l);
+  }
+  .home-study {
+    margin-block: var(--space-l) var(--space-2xl);
+  }
+  :global(html:not([data-returning])) .home-study {
+    display: none;
+  }
+  .home-section {
+    margin-block: var(--space-2xl);
+  }
+  .home-year + .home-year {
+    margin-top: var(--space-l);
+  }
+  .home-year__title {
+    margin: var(--space-m) 0 0;
+    padding-bottom: var(--space-2xs);
+    border-bottom: 1px solid var(--border-strong);
+    font: 600 var(--step--1) / 1.3 var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .home-courses {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+  }
+  @media (min-width: 56em) {
+    .home-courses {
+      grid-template-columns: 1fr 1fr;
+      column-gap: var(--space-xl);
+    }
+  }
+  .home-course {
+    display: grid;
+    gap: var(--space-2xs);
+    padding-block: var(--space-m);
+    border-bottom: 1px solid var(--border);
+  }
+  .home-course__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2xs) var(--space-s);
+  }
+  .home-course__head .eyebrow {
+    margin: 0;
+  }
+  .home-course__title {
+    margin: 0;
+    font: 600 var(--step-1) / 1.25 var(--font-serif);
+  }
+  .home-course__title a {
+    color: var(--accent-strong);
+    text-decoration: none;
+  }
+  .home-course__title a:hover {
+    text-decoration: underline;
+  }
+  .home-course__desc {
+    margin: 0;
+    max-width: var(--measure);
+  }
+  .home-course__meta {
+    margin: 0;
+  }
+  .home-offer {
+    list-style: none;
+    margin: var(--space-s) 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0 var(--space-xl);
+  }
+  @media (min-width: 48em) {
+    .home-offer {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 72em) {
+    .home-offer {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  .home-offer li {
+    padding-block: var(--space-s);
+    border-top: 1px solid var(--border);
+  }
+  .home-offer h3 {
+    margin: 0 0 var(--space-3xs);
+    font: 600 var(--step-0) / 1.3 var(--font-sans);
+  }
+  .home-offer p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: var(--step--1);
+  }
+  .home-about {
+    max-width: var(--measure);
+  }
+</style>

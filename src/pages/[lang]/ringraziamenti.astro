@@ -1,45 +1,89 @@
 ---
 /**
- * Ringraziamenti. L'elenco parte vuoto: si popola aggiungendo voci a THANKS
- * (solo persone che hanno chiesto di comparire, con il nome da loro indicato).
+ * Ringraziamenti: la collection `credits` (src/content/credits.yaml), cioè chi ha
+ * contribuito e ha chiesto di comparire, con il nome da lui indicato. Le voci si
+ * aggiungono quando un contributo viene integrato (docs/CONTRIBUTI.md).
  */
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import { langPaths, localizePath, t, type Lang } from '../../i18n';
+import { langPaths, localizePath, t, tr, type Lang } from '../../i18n';
 
 export const getStaticPaths = langPaths;
 const lang = Astro.params.lang as Lang;
-
-interface Thanks {
-  name: string;
-  /** Cosa ha fatto, in breve (es. "errori in Teoria dei Circuiti"). */
-  what?: { it: string; en: string };
-}
-const THANKS: Thanks[] = [];
+const courseTitles = Object.fromEntries(
+  (await getCollection('courses')).map((c) => [c.data.id, tr(c.data.title, lang)]),
+);
+const credits = (await getCollection('credits'))
+  .map((c) => c.data)
+  .sort((a, b) => b.date.localeCompare(a.date) || a.name.localeCompare(b.name));
+const fmt = (d: string) =>
+  new Intl.DateTimeFormat(lang === 'it' ? 'it-IT' : 'en-GB', {
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(`${d}T12:00:00Z`));
 ---
 
 <BaseLayout lang={lang} title={t(lang, 'thanks.title')} description={t(lang, 'thanks.description')}>
   <div class="container page">
     <PageHeader title={t(lang, 'thanks.title')} lede={t(lang, 'thanks.lead')} />
-    <div class="prose">
-      {THANKS.length > 0 ? (
-        <ul>
-          {THANKS.map((p) => (
-            <li>
-              <strong>{p.name}</strong>
-              {p.what && ` — ${p.what[lang]}`}
+    <div class="reading">
+      {credits.length > 0 ? (
+        <ul class="credits">
+          {credits.map((p) => (
+            <li class="credits__item">
+              <span class="credits__name">{p.name}</span>
+              <span class="credits__what">
+                {tr(p.contribution, lang)}
+                {p.course && courseTitles[p.course] && ` · ${courseTitles[p.course]}`}
+              </span>
+              <time class="credits__date" datetime={p.date}>
+                {fmt(p.date)}
+              </time>
             </li>
           ))}
         </ul>
       ) : (
         <p class="muted">{t(lang, 'thanks.empty')}</p>
       )}
-      <p>{t(lang, 'thanks.how')}</p>
-      <p>
-        <a class="btn btn--primary" href={localizePath('contribuisci', lang)}>
-          {t(lang, 'thanks.cta')}
-        </a>
-      </p>
+      <div class="prose">
+        <p>{t(lang, 'thanks.how')}</p>
+        <p>
+          <a class="btn btn--primary" href={localizePath('contribuisci', lang)}>
+            {t(lang, 'thanks.cta')}
+          </a>
+        </p>
+      </div>
     </div>
   </div>
 </BaseLayout>
+
+<style>
+  .credits {
+    list-style: none;
+    margin: 0 0 var(--space-l);
+    padding: 0;
+  }
+  .credits__item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0 var(--space-s);
+    padding-block: var(--space-xs);
+    border-bottom: 1px solid var(--border);
+  }
+  .credits__name {
+    font: 600 var(--step-0) / 1.35 var(--font-serif);
+  }
+  .credits__what {
+    grid-column: 1;
+    font: 400 var(--step--1) / 1.45 var(--font-sans);
+    color: var(--text-muted);
+  }
+  .credits__date {
+    grid-column: 2;
+    grid-row: 1;
+    font: 400 var(--step--2) / 1.6 var(--font-mono);
+    color: var(--text-muted);
+  }
+</style>

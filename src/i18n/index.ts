@@ -92,3 +92,14 @@ export const ogLocale: Record<Lang, string> = { it: 'it_IT', en: 'en_US' };
 
 /** Per getStaticPaths: una voce per lingua. */
 export const langPaths = () => LANGS.map((lang) => ({ params: { lang } }));
+
+/**
+ * Testi con un prefisso, senza il prefisso (`texts('it', 'cf.')` → `{ submit: '…' }`):
+ * le isole li ricevono come props, così il dizionario intero non entra nel bundle.
+ */
+export function texts(lang: Lang, prefix: string): Record<string, string> {
+  const out: Record<string, string> = {};
+  for (const [k, v] of Object.entries(dictionaries[DEFAULT_LANG]))
+    if (k.startsWith(prefix)) out[k.slice(prefix.length)] = dictionaries[lang][k] ?? v;
+  return out;
+}

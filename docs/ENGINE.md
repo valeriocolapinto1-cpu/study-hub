@@ -21,7 +21,8 @@ Appena esistono `src/content/courses/<id>.yaml` e i contenuti, le pagine generic
 
 Pagine globali: `/<lang>/ripasso/` (coda FSRS di tutti i corsi), `/<lang>/appunti/` (tutti gli appunti),
 `/<lang>/i-miei-dati/` (export/import, QR), `/<lang>/stampa/prova/?…` (stampa della prova, `noindex`).
-La home mostra `ProgressDashboard` (via `HomeDashboard.astro`) quando esiste almeno un corso.
+La home usa l'isola `HomeStudy` della piattaforma (stessi dati, testi via props, più appunti recenti);
+`ProgressDashboard`/`HomeDashboard.astro` restano disponibili per altre pagine.
 
 Un corso che vuole una pagina diversa crea un file **statico** allo stesso percorso (es.
 `src/pages/[lang]/anno-2/fisica-2/esame/index.astro`): le rotte statiche hanno la precedenza su quelle dinamiche.

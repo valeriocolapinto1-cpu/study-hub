@@ -201,3 +201,17 @@ export const cardSchema = z.strictObject({
   back: localized,
 });
 export type Card = z.infer<typeof cardSchema>;
+
+// ---------------------------------------------------------------- credits
+/** Persone che hanno contribuito e hanno chiesto di comparire (src/content/credits.yaml). */
+export const creditSchema = z.strictObject({
+  id: kebabId,
+  /** Nome come indicato nel modulo "Nome per i ringraziamenti". */
+  name: z.string().trim().min(1).max(80),
+  /** Cosa ha fatto, in breve (es. "errori nel formulario"). */
+  contribution: localized,
+  course: kebabId.optional(),
+  /** Data di integrazione del contributo. */
+  date: isoDate,
+});
+export type Credit = z.infer<typeof creditSchema>;

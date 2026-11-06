@@ -27,6 +27,8 @@ export default defineConfig({
   use: {
     baseURL: `http://localhost:${PORT}`,
     trace: 'retain-on-failure',
+    // Il service worker (cache offline) è attivo solo nei test che lo chiedono (test.use).
+    serviceWorkers: 'block',
     ...(executablePath ? { launchOptions: { executablePath } } : {}),
   },
   projects: [

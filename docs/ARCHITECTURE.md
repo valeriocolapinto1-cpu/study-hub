@@ -138,6 +138,34 @@ Correzione, ripasso FSRS, prove d'esame stampabili, padronanza, piano di studio,
 sono generate da `src/pages/[lang]/[anno]/[course]/` (sostituibili con pagine statiche allo stesso percorso);
 pagine globali `/<lang>/ripasso/`, `/<lang>/appunti/`, `/<lang>/i-miei-dati/`, `/<lang>/stampa/prova/`.
 
+## Piattaforma: ricerca, offline, contributi, home
+
+- **Ricerca** (Pagefind 1.6, `tools/integrations/pagefind.mjs`, eseguita da `tools/integrations/platform.mjs`
+  dopo la build): un indice per lingua in `dist/pagefind/<it|en>/` (stemming corretto), solo il contenuto di
+  `<main data-pagefind-body>` (BaseLayout) delle pagine indicizzabili (`pageSearchType` in
+  `src/lib/search/records.ts`: teoria e pagine sì; esercizi, formulario, ripasso, esame, progressi, dati
+  personali e strumenti no) con filtri `tipo` e `corso`; in più un record per ogni formula (`formulario/#f-<id>`),
+  esercizio statico (`esercizi/<topic>/#<id>`) e flashcard (`ripasso/#<id>`), generati da
+  `src/pages/search-records.json.ts` (file rimosso dopo l'indicizzazione). Interfaccia propria
+  (`src/islands/SearchDialog.tsx`), caricata alla prima apertura da `src/scripts/search.ts`: `/`, Ctrl/⌘+K o il
+  pulsante dell'intestazione; filtri corso, tipo, lingua; funziona offline.
+- **PWA** (`tools/integrations/pwa.mjs` → `dist/sw.js` e `dist/offline-summary.json`): un solo service worker
+  (`src/pwa/sw.js` + funzioni pure `src/pwa/sw-core.js`) con il manifest di ogni file (hash e dimensione).
+  Shell in precache (pagine globali, 404, radice, indice di ricerca, icone e le risorse che richiamano, solo
+  import statici e font latin woff2); ogni corso, per lingua, scaricabile su richiesta da "Scarica per
+  l'offline" nella panoramica (`src/islands/OfflineCourse.tsx`, inserita da `CourseLayout`). Aggiornamenti
+  incrementali (solo i file cambiati), attivati dopo conferma ("Nuova versione disponibile",
+  `src/scripts/pwa.ts`); offline, le pagine non salvate portano a `/<lingua>/offline/`. Cache: `sh-shell`,
+  `sh-course:<id>:<lingua>`, `sh-runtime` (≤ 120 voci, svuotata a ogni versione), `sh-meta`.
+  Nei test Playwright il service worker è bloccato salvo `test.use({ serviceWorkers: 'allow' })`.
+- **Contributi**: modulo `/<lingua>/contribuisci/` + Google Apps Script — vedi [CONTRIBUTI.md](CONTRIBUTI.md).
+  Crediti nella collection `credits` (`src/content/credits.yaml`), pagina `/<lingua>/ringraziamenti/`.
+- **Home**: vetrina con numeri reali dalle collections (corsi, argomenti, esercizi, flashcard, formule,
+  simulatori/approfondimenti), corsi per anno, cosa offre il sito, chi lo cura; per chi ha già dati locali
+  (`html[data-returning]`, impostato prima del disegno) l'isola `HomeStudy`: ripasso del giorno di tutti i
+  corsi, esercizi risolti per corso, prossimo esame, appunti recenti. Le isole della piattaforma ricevono i
+  testi come props (`texts(lang, prefisso)` di `src/i18n`), non il dizionario intero.
+
 ## Comandi
 
 | Comando | Cosa fa |

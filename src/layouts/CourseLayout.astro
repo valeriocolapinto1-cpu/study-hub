@@ -13,7 +13,8 @@ import CourseNav from '../components/CourseNav.astro';
 import Icon from '../components/Icon.astro';
 import ReportError from '../components/ReportError.astro';
 import TopicNav from '../components/TopicNav.astro';
-import { localizePath, stripLang, t, tr, type Lang } from '../i18n';
+import OfflineCourse from '../islands/OfflineCourse';
+import { localizePath, stripLang, t, texts, tr, withBase, type Lang } from '../i18n';
 import { COURSE_SECTIONS, coursePath } from '../lib/courses';
 
 interface Props {
@@ -45,6 +46,9 @@ const courseTitle = tr(course.title, lang);
 const pageTitle = title ? `${title} — ${courseTitle}` : courseTitle;
 const base = coursePath(course);
 
+// Panoramica del corso: offre il download per l'offline (service worker).
+const isOverview = stripLang(Astro.url.pathname) === base;
+
 let crumbs = Astro.props.crumbs;
 if (!crumbs) {
   const rest = stripLang(Astro.url.pathname).slice(base.length).split('/').filter(Boolean);
@@ -67,7 +71,7 @@ if (!crumbs) {
 >
   <slot name="head" slot="head" />
   <div class="container course-shell">
-    <aside class="course-shell__side" aria-label={t(lang, 'nav.course.menu')}>
+    <aside class="course-shell__side" data-pagefind-ignore aria-label={t(lang, 'nav.course.menu')}>
       <CourseNav lang={lang} course={course} />
       {topics && topics.length > 0 && (
         <TopicNav
@@ -85,6 +89,7 @@ if (!crumbs) {
       <button
         type="button"
         class="course-drawer-toggle"
+        data-pagefind-ignore
         data-drawer-open="indice-corso"
         aria-haspopup="dialog"
         aria-expanded="false"
@@ -95,7 +100,12 @@ if (!crumbs) {
           {t(lang, 'nav.course.menu')}
         </span>
       </button>
-      <dialog id="indice-corso" class="course-drawer" aria-label={t(lang, 'nav.course.menu')}>
+      <dialog
+        id="indice-corso"
+        class="course-drawer"
+        data-pagefind-ignore
+        aria-label={t(lang, 'nav.course.menu')}
+      >
         <div class="course-drawer__head">
           <span class="eyebrow">{t(lang, 'nav.course.menu')}</span>
           <form method="dialog">
@@ -118,10 +128,21 @@ if (!crumbs) {
           )}
         </div>
       </dialog>
-      <Breadcrumbs lang={lang} items={crumbs} />
+      <div data-pagefind-ignore>
+        <Breadcrumbs lang={lang} items={crumbs} />
+      </div>
       <div class:list={[{ reading: !wide }]}>
         <slot />
-        <div class="page-tools">
+        {isOverview && (
+          <OfflineCourse
+            client:visible
+            lang={lang}
+            courseId={course.id}
+            summaryUrl={withBase('offline-summary.json')}
+            texts={texts(lang, 'offlineCourse.')}
+          />
+        )}
+        <div class="page-tools" data-pagefind-ignore>
           <ReportError lang={lang} course={course.id} />
           <slot name="tools" />
         </div>

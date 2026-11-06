@@ -4,6 +4,8 @@
  */
 import { GLOBAL_SCOPE, read, write } from '../engine/storage';
 import { runMigrations } from '../engine/migrate';
+import './search';
+import './pwa';
 
 type Theme = 'light' | 'dark';
 
