@@ -2,7 +2,7 @@
 
 - No accounts, no cookies, no traffic analytics, no trackers, no advertising.
 - Preferences and progress stay **only in your browser** (`localStorage`) and are never sent to anyone.
-- The **Contribute** form sends the site owner only what you write, when you decide to send it.
+- The **Contribute** form sends the controller only what you write, when you decide to send it; you can ask for it to be deleted at any time.
 
 ## Data controller
 
@@ -28,17 +28,24 @@ This data never leaves your device. From the **Progress** page of each course yo
 
 ## The “Contribute” form
 
-If you use the form to report an error or suggest content, the following is sent: the text you write, the page and course it refers to, the type of report and, **only if you fill them in**, a name (for the acknowledgements) and an email address (for a reply).
+If you use the form to report an error, suggest an improvement or send notes, the following is sent: the type of contribution, the course and page it refers to, the text you write, the three declarations (privacy, rights to the material, publication), the page language and, **only if you add them**, attachments, a name (for the acknowledgements) and an email address (for a reply).
 
-- Submissions go through the owner's **Google Apps Script** and are stored in a sheet on the owner's **Google Drive** (Google Ireland Ltd. / Google LLC, privacy policy: policies.google.com/privacy). They are used only to fix the site and reply, are never shared and are deleted when the report is closed, at the latest after 12 months.
-- To block spam the form uses **Cloudflare Turnstile** (Cloudflare, Inc., privacy policy: cloudflare.com/privacypolicy). Turnstile is loaded only on the Contribute page and may process your IP address and some browser characteristics to tell people from bots; it does not set profiling cookies.
-- Legal basis: your consent, given by submitting the form (Art. 6(1)(a) GDPR). You can ask for a report to be deleted at any time.
+- **Where it goes.** Submissions go through the controller's **Google Apps Script**: a row in a Google Sheet, the attachments in a dedicated folder on the controller's **Google Drive** and a notification email in the controller's Gmail inbox. Google (Google Ireland Ltd. / Google LLC) acts as **data processor** on behalf of the controller, under the Google Workspace terms and the policy at policies.google.com/privacy; data may be transferred to the United States with the safeguards Google provides (standard contractual clauses, EU-U.S. Data Privacy Framework).
+- **Anti-spam.** The form uses **Cloudflare Turnstile** (Cloudflare, Inc., policy at cloudflare.com/privacypolicy), loaded **only when you start filling in the form**: it may process your IP address and some browser characteristics to tell people from bots, and sets no profiling cookies. The script checks the result of the challenge and does not keep it. To limit repeated submissions the script keeps for one hour, as a SHA-256 hash, the email address and a random browser identifier (key `sh:v1:global:contribClient` in `localStorage`, created on the first submission); both expire by themselves after one hour.
+- **Use and retention.** The data is used only to fix and improve the site and to reply to you; it is never shared. The text and attachments may be read by an automated process (a coding assistant run by the controller) that prepares the proposed change, which is always approved by hand. Rows and attachments are deleted when the contribution is closed (included or rejected), **at the latest after 12 months**; your email is never published.
+- **Publication.** If the contribution is included, its content (possibly reworked) is published on the site and in the public repository; the name you gave appears on the **Acknowledgements** page and in the repository file `src/content/credits.yaml`. You can ask for it to be removed at any time.
+- **Legal basis.** Your consent, given with the dedicated checkbox (Art. 6(1)(a) GDPR), which you can withdraw at any time without affecting processing already carried out.
+- **Erasure.** To have a contribution deleted, write to the controller quoting the **contribution code** shown after sending (or the date and email address used): the row, the attachments and the notification email are deleted within 30 days.
 
-If you prefer, you can write directly by email or open an issue on GitHub (subject to GitHub's privacy statement).
+If you prefer, you can write directly by email or open an issue on GitHub (public and subject to GitHub's privacy statement).
+
+## Offline use
+
+The site can be installed as an app and also works without a connection: a *service worker* stores in the browser's memory (Cache Storage) the main pages and, **only if you ask for it** with “Download for offline” on a course overview, the pages of that course. These are copies of the site's public pages: no personal data. You can remove them from the same page or by clearing the site data in your browser.
 
 ## Hosting
 
-The site is hosted on **GitHub Pages** (GitHub, Inc.): like any web server, GitHub may log visitors' IP addresses for security purposes (policy: docs.github.com, “GitHub General Privacy Statement”). Fonts, formulas and scripts are served from the same domain: no other external resource is loaded, except Turnstile on the Contribute page.
+The site is hosted on **GitHub Pages** (GitHub, Inc.): like any web server, GitHub may log visitors' IP addresses for security purposes (policy: docs.github.com, “GitHub General Privacy Statement”). Fonts, formulas and scripts are served from the same domain: no other external resource is loaded, except Turnstile when you fill in the Contribute form.
 
 ## Your rights
 

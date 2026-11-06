@@ -1,0 +1,71 @@
+---
+/**
+ * Pagina servita dal service worker quando si è senza connessione e la pagina
+ * richiesta non è stata salvata. Elenca i corsi scaricati per l'offline.
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { langPaths, localizePath, t, tr, type Lang } from '../../i18n';
+import { coursePath, sortCourses } from '../../lib/courses';
+
+export const getStaticPaths = langPaths;
+const lang = Astro.params.lang as Lang;
+const courses = sortCourses((await getCollection('courses')).map((c) => c.data)).map((c) => ({
+  id: c.id,
+  title: tr(c.title, lang),
+  href: localizePath(coursePath(c), lang),
+}));
+---
+
+<BaseLayout lang={lang} title={t(lang, 'offline.title')} description={t(lang, 'offline.body')} noindex>
+  <div class="container page">
+    <PageHeader title={t(lang, 'offline.title')} lede={t(lang, 'offline.body')} />
+    <div class="reading stack">
+      <p class="btn-row">
+        <button type="button" class="btn btn--primary" data-offline-retry>
+          {t(lang, 'offline.retry')}
+        </button>
+        <a class="btn" href={localizePath('', lang)}>
+          {t(lang, 'nav.home')}
+        </a>
+      </p>
+      <section aria-labelledby="offline-courses" data-offline-courses hidden>
+        <h2 id="offline-courses">{t(lang, 'offline.courses')}</h2>
+        <ul data-offline-list></ul>
+      </section>
+      <p class="muted" data-offline-none>
+        {t(lang, 'offline.none')}
+      </p>
+    </div>
+  </div>
+  <script type="application/json" id="offline-data" set:html={JSON.stringify({ lang, courses })} />
+</BaseLayout>
+
+<script>
+  document.querySelector('[data-offline-retry]')?.addEventListener('click', () => location.reload());
+  const data = JSON.parse(document.getElementById('offline-data')?.textContent ?? '{}') as {
+    lang: string;
+    courses: { id: string; title: string; href: string }[];
+  };
+  const keys = 'caches' in globalThis ? await caches.keys().catch(() => []) : [];
+  const saved = new Set(
+    keys
+      .map((k) => /^sh-course:([a-z0-9-]+):(it|en)$/.exec(k))
+      .flatMap((m) => (m && m[2] === data.lang ? [m[1]] : [])),
+  );
+  const list = document.querySelector('[data-offline-list]');
+  const available = (data.courses ?? []).filter((c) => saved.has(c.id));
+  if (list && available.length) {
+    for (const c of available) {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = c.href;
+      a.textContent = c.title;
+      li.append(a);
+      list.append(li);
+    }
+    document.querySelector<HTMLElement>('[data-offline-courses]')!.hidden = false;
+    document.querySelector<HTMLElement>('[data-offline-none]')!.hidden = true;
+  }
+</script>

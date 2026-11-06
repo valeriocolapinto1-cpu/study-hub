@@ -6,6 +6,7 @@ import sitemap from '@astrojs/sitemap';
 import { unified } from '@astrojs/markdown-remark';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import platform from './tools/integrations/platform.mjs';
 
 // Unica impostazione di dominio e percorso base del sito: tutto il resto
 // (link, hreflang, canonical, sitemap) si ricava da qui tramite import.meta.env.
@@ -31,8 +32,11 @@ export default defineConfig({
     sitemap({
       i18n: { defaultLocale: 'it', locales: { it: 'it-IT', en: 'en-US' } },
       // La radice reindirizza e la 404 non va indicizzata.
-      filter: (page) => /\/study-hub\/(it|en)\//.test(page) && !page.includes('/stile/'),
+      filter: (page) =>
+        /\/study-hub\/(it|en)\//.test(page) && !page.includes('/stile/') && !/\/offline\/$/.test(page),
     }),
+    // Dopo la build: indice di ricerca (Pagefind) e service worker con i manifest dell'offline.
+    platform(),
   ],
   vite: {
     server: { watch: { ignored: ['**/legacy/**'] } },
