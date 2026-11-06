@@ -18,7 +18,12 @@ for (const theme of ['light', 'dark'] as const) {
         await page.emulateMedia({ colorScheme: theme, reducedMotion: 'reduce' });
         await page.goto(p.path);
         await page.evaluate(() => document.fonts.ready);
-        await expect(page).toHaveScreenshot(`${p.name}-${theme}-${vp.name}.png`, { fullPage: true });
+        // Pagine lunghe (formulario, teoria): lo screenshot a pagina intera va ripetuto finché è stabile e
+        // supera i 5 s predefiniti.
+        await expect(page).toHaveScreenshot(`${p.name}-${theme}-${vp.name}.png`, {
+          fullPage: true,
+          timeout: 20_000,
+        });
       });
     }
   }
