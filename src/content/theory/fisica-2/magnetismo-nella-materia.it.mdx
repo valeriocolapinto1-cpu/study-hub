@@ -1,0 +1,92 @@
+---
+course: fisica-2
+topic: magnetismo-nella-materia
+lang: it
+---
+
+<Layer kind="intuizione">
+
+Ogni atomo è un minuscolo circuito: gli elettroni che orbitano e il loro spin hanno un momento magnetico. In un campo esterno questi momenti reagiscono in tre modi: si oppongono debolmente (diamagneti), si allineano debolmente (paramagneti) oppure, nei ferromagneti, si allineano in blocchi interi già magnetizzati, i domini, amplificando il campo di migliaia di volte.
+
+Come per i dielettrici, non vogliamo inseguire le correnti microscopiche: il campo $\vec H$ ha circuitazione che dipende solo dalle correnti **libere**, quelle che facciamo passare nei fili. Nei circuiti magnetici il ferro fa con il flusso ciò che un filo fa con la corrente: lo guida, e un sottile strato d'aria (il traferro) diventa la "resistenza" dominante.
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Magnetizzazione e correnti amperiane
+
+In un materiale i momenti magnetici atomici (orbitali e di spin) si orientano parzialmente in presenza di un campo. La **magnetizzazione** è il momento magnetico per unità di volume, $\vec M=n\langle\vec m\rangle$ (A/m). Il suo effetto equivale a quello di _correnti di magnetizzazione_ (amperiane):
+
+$$
+\vec J_m=\nabla\times\vec M,\qquad \vec j_{s,m}=\vec M\times\hat n
+$$
+
+Un cilindro magnetizzato uniformemente lungo l'asse equivale a un solenoide con corrente superficiale $j_s=M$.
+
+## Equazioni della magnetostatica nella materia
+
+Ampère vale con tutte le correnti, libere e amperiane: $\nabla\times\vec B=\mu_0(\vec J+\vec J_m)$. Definendo il campo magnetico $\vec H$:
+
+$$
+\vec H=\frac{\vec B}{\mu_0}-\vec M,\qquad\nabla\times\vec H=\vec J_{lib},\qquad\oint\vec H\cdot d\vec l=I_{lib}
+$$
+
+Resta $\nabla\cdot\vec B=0$. Nei mezzi lineari $\vec M=\chi_m\vec H$ e $\vec B=\mu_0\mu_r\vec H$, con $\mu_r=1+\chi_m$. Esempio: un solenoide riempito di materiale ha $H=nI$ e $B=\mu_0\mu_rnI$.
+
+**Condizioni di raccordo** (senza correnti libere superficiali): $B_{1n}=B_{2n}$ e $H_{1t}=H_{2t}$, quindi $\frac{\tan\theta_1}{\tan\theta_2}=\frac{\mu_1}{\mu_2}$. Entrando in un ferromagnete le linee di $\vec B$ si piegano quasi parallele alla superficie: il ferro "convoglia" il flusso.
+
+## Materiali dia-, para- e ferromagnetici
+
+- **Diamagneti** ($\chi_m\approx-10^{-5}$, indipendente da $T$): il campo induce momenti orbitali opposti (legge di Lenz a livello atomico). Presente in tutti i materiali; i diamagneti sono debolmente respinti dalle zone di campo intenso. I superconduttori sono diamagneti perfetti ($\chi_m=-1$).
+- **Paramagneti** ($\chi_m\approx10^{-5}$–$10^{-3}$, positivo): momenti permanenti che si allineano parzialmente, contrastati dall'agitazione termica. Vale la legge di Curie $\chi_m=C/T$.
+- **Ferromagneti** (Fe, Co, Ni): $\mu_r$ fino a $10^3$–$10^5$, non costante. Sono formati da _domini di Weiss_ già magnetizzati spontaneamente, che il campo esterno riorienta. La relazione $B(H)$ presenta un **ciclo di isteresi** con saturazione, magnetizzazione residua ($B_r$ a $H=0$) e campo coercitivo ($H_c$ necessario ad annullare $B$). L'area del ciclo è l'energia dissipata per unità di volume in un ciclo. Sopra la temperatura di Curie il materiale diventa paramagnetico. I materiali "dolci" (ciclo stretto) servono per trasformatori ed elettromagneti, quelli "duri" per magneti permanenti.
+
+## Circuiti magnetici, elettromagneti, magneti permanenti
+
+In un nucleo ferromagnetico chiuso il flusso $\Phi=BS$ resta confinato, come la corrente in un circuito. Dalla circuitazione di $\vec H$ si ottiene la **legge di Hopkinson**:
+
+$$
+NI=\mathcal R\,\Phi,\qquad\mathcal R=\sum_i\frac{l_i}{\mu_0\mu_{r,i}S_i}
+$$
+
+La forza magnetomotrice $NI$ corrisponde alla f.e.m. e la riluttanza $\mathcal R$ alla resistenza (le riluttanze in serie si sommano). Con un **traferro** di spessore $h\ll$ dimensioni trasverse:
+
+$$
+B\simeq\frac{\mu_0NI}{l/\mu_r+h}
+$$
+
+Anche un traferro sottile domina la riluttanza. Un **elettromagnete** attira un'ancora di ferro con forza $F=\frac{B^2S}{2\mu_0}$ per ogni superficie del traferro. In un **magnete permanente** senza correnti libere $\oint\vec H\cdot d\vec l=0$: nel materiale $\vec H$ è opposto a $\vec B$ (campo smagnetizzante).
+
+<Callout tone="esame" title="All'esame">
+Negli esercizi con materiali, calcola prima $\vec H$ con la circuitazione (dipende solo dalle correnti libere), poi $\vec B=\mu\vec H$ in ogni mezzo, e infine $\vec M$ e le correnti amperiane ($j_s=M$ sulle superfici laterali). Domanda tipica: "discutere i tre tipi di comportamento magnetico dei materiali".
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Esempio svolto: toroide di ferro con traferro
+
+Un toroide di ferro ($\mu_r=2000$) con lunghezza media $l=50\ \mathrm{cm}$ e sezione $S=4\ \mathrm{cm^2}$ ha un traferro di spessore $h=2\ \mathrm{mm}$; è avvolto da $N=500$ spire percorse da $I=2\ \mathrm A$.
+
+1. **Circuitazione di $\vec H$** lungo la linea media: $H_Fl+H_0h=NI=1000\ \mathrm A$.
+2. **Continuità di $B$ normale** attraverso le facce del traferro: $B$ è lo stesso nel ferro e nell'aria, quindi $H_F=B/(\mu_0\mu_r)$ e $H_0=B/\mu_0$.
+3. **Campo.** $B=\dfrac{\mu_0NI}{l/\mu_r+h}=\dfrac{1{,}257\times10^{-3}}{2{,}5\times10^{-4}+2\times10^{-3}}\simeq 0{,}56\ \mathrm T$ e il flusso è $\Phi=BS\simeq 2{,}2\times10^{-4}\ \mathrm{Wb}$.
+4. **Chi "consuma" la f.m.m.** $H_Fl\simeq 111\ \mathrm A$ nel ferro, $H_0h\simeq 889\ \mathrm A$ nel traferro: 2 mm d'aria pesano otto volte più di 50 cm di ferro.
+
+**Controllo.** Senza traferro si otterrebbe $B=\mu_0\mu_rNI/l\simeq 5\ \mathrm T$, oltre la saturazione del ferro (circa 2 T): il modello lineare non varrebbe più.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Errori tipici
+
+- **Usare la corrente amperiana nella circuitazione di $\vec H$.** $\oint\vec H\cdot d\vec l$ conta solo le correnti libere.
+- **Imporre la continuità di $H$ normale.** All'interfaccia si conservano $B_n$ e (senza correnti libere superficiali) $H_t$.
+- **Trattare un ferromagnete come lineare sempre.** $\mu_r$ dipende da $H$ e dalla storia (isteresi); la formula del circuito magnetico vale lontano dalla saturazione.
+- **Dimenticare il traferro.** Anche pochi millimetri d'aria dominano la riluttanza totale.
+- **Confondere il segno di $\chi_m$.** Diamagneti $\chi_m<0$ (respinti dal campo intenso), paramagneti e ferromagneti $\chi_m>0$.
+
+</Layer>

@@ -1,0 +1,110 @@
+---
+course: fisica-2
+topic: radiazione-materia
+lang: it
+---
+
+<Layer kind="intuizione">
+
+Quando un'onda arriva sulla superficie fra due materiali, i campi devono "raccordarsi": le componenti tangenziali di $\vec E$ e $\vec H$ non possono saltare. Questa sola richiesta, imposta in ogni punto e in ogni istante, fissa le direzioni delle onde riflessa e trasmessa: ne escono la legge della riflessione e quella di Snell. Il rapporto fra le velocità nei due mezzi, cioè l'indice di rifrazione, decide quanto si piega il raggio.
+
+L'ottica ondulatoria nasce dal fatto che le onde si **sommano nei campi**, non nelle intensità. Due onde coerenti possono rinforzarsi o cancellarsi a seconda della differenza di cammino: è l'interferenza. La diffrazione è la stessa cosa vista da un'unica apertura, in cui ogni punto si comporta come una sorgente secondaria (Huygens-Fresnel).
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Condizioni di raccordo
+
+Alla superficie di separazione tra due mezzi (senza cariche e correnti libere superficiali) sono continue le componenti tangenziali di $\vec E$ e $\vec H$ e le componenti normali di $\vec D$ e $\vec B$. Da queste condizioni discendono tutte le leggi della riflessione e della rifrazione.
+
+## Riflessione e rifrazione: caratteristiche cinematiche
+
+Perché le condizioni valgano in ogni punto della superficie e in ogni istante, le onde incidente, riflessa e trasmessa devono avere la stessa frequenza e la stessa componente tangenziale di $\vec k$. Ne seguono:
+
+- i raggi incidente, riflesso e rifratto stanno nel piano di incidenza;
+- legge della riflessione: $\theta_r=\theta_i$;
+- **legge di Snell**: $n_1\sin\theta_1=n_2\sin\theta_2$.
+
+Le stesse leggi si ottengono dal **principio di Fermat**: la luce percorre il cammino ottico $L=\int n\,ds$ stazionario (di solito minimo).
+
+**Riflessione totale**: passando da un mezzo più rifrangente a uno meno rifrangente ($n_1\gt n_2$), per $\theta\gt\theta_c$ con $\sin\theta_c=\frac{n_2}{n_1}$ non c'è onda trasmessa. Su questo si basano le **fibre ottiche**: un nucleo con $n_1$ è circondato da un mantello con $n_2\lt n_1$. L'angolo massimo di accettazione dall'aria vale $\sin\theta_{max}=\sqrt{n_1^2-n_2^2}$ (apertura numerica).
+
+**Aspetti dinamici** (ampiezze, formule di Fresnel). All'incidenza normale:
+
+$$
+R=\left(\frac{n_1-n_2}{n_1+n_2}\right)^2,\qquad T=\frac{4n_1n_2}{(n_1+n_2)^2},\qquad R+T=1
+$$
+
+(vetro in aria: $R\approx4\%$). All'**angolo di Brewster** $\tan\theta_B=\frac{n_2}{n_1}$ la componente con $\vec E$ nel piano di incidenza non viene riflessa: la luce riflessa è polarizzata linearmente.
+
+## Dispersione
+
+L'indice di rifrazione dipende dalla lunghezza d'onda, perché la risposta degli elettroni legati dipende dalla frequenza. Nel visibile, per la maggior parte dei materiali trasparenti, $n$ cresce al diminuire di $\lambda$ (legge empirica di Cauchy $n=A+B/\lambda^2$). Un prisma devia di più il violetto e scompone la luce bianca nei colori (arcobaleno).
+
+## Luce naturale e luce polarizzata
+
+La luce naturale è una sovrapposizione incoerente di onde con polarizzazioni casuali. Un polarizzatore ideale ne trasmette metà ($I_0/2$). Luce polarizzata linearmente che attraversa un polarizzatore ruotato di $\theta$ rispetto alla sua direzione segue la **legge di Malus**: $I=I_0\cos^2\theta$. Si può polarizzare la luce anche per riflessione (all'angolo di Brewster), per diffusione o con materiali birifrangenti.
+
+## Principio di Huygens-Fresnel e teorema di Kirchhoff
+
+Ogni punto di un fronte d'onda si comporta come sorgente di onde sferiche secondarie; il fronte successivo è l'inviluppo di queste onde (Huygens). Fresnel aggiunse che le onde secondarie **interferiscono**, e questo spiega la diffrazione. Il teorema integrale di Kirchhoff ne dà la giustificazione matematica a partire dall'equazione delle onde: il campo in un punto si esprime con il campo su una superficie che lo racchiude (fattore di obliquità, nessuna onda "all'indietro").
+
+## Interferenza ed esperimento di Young
+
+Due onde **coerenti** (differenza di fase costante) di intensità $I_1$ e $I_2$ si sommano nei campi, non nelle intensità:
+
+$$
+I=I_1+I_2+2\sqrt{I_1I_2}\cos\delta,\qquad\delta=\frac{2\pi}{\lambda_0}\Delta L
+$$
+
+dove $\Delta L$ è la differenza di cammino ottico. Si ha interferenza costruttiva per $\Delta L=m\lambda$, distruttiva per $\Delta L=(m+\frac12)\lambda$.
+
+**Young**: due fenditure a distanza $d$ illuminate dalla stessa sorgente, schermo a distanza $D\gg d$. La differenza di cammino è $d\sin\theta$:
+
+$$
+d\sin\theta=m\lambda\ (\text{massimi}),\qquad y_m\simeq\frac{m\lambda D}d,\qquad\Delta y=\frac{\lambda D}d,\qquad I=4I_0\cos^2\frac{\pi d\sin\theta}\lambda
+$$
+
+Fu la prova della natura ondulatoria della luce e permette di misurare $\lambda$.
+
+## Diffrazione di Fraunhofer da una fenditura
+
+La diffrazione è la deviazione dalla propagazione rettilinea quando l'onda incontra ostacoli o aperture di dimensioni paragonabili a $\lambda$. In condizioni di Fraunhofer (sorgente e schermo a grande distanza), per una fenditura di larghezza $a$ si sommano i contributi di tutti i punti dell'apertura:
+
+$$
+I(\theta)=I_0\left(\frac{\sin\beta}\beta\right)^2,\qquad\beta=\frac{\pi a\sin\theta}\lambda
+$$
+
+I minimi cadono a $a\sin\theta=m\lambda$ ($m\neq0$). Il massimo centrale è largo il doppio degli altri (semiapertura $\sin\theta=\lambda/a$) e contiene la maggior parte dell'energia: più la fenditura è stretta, più la luce si allarga.
+
+<Callout tone="esame" title="Domande frequenti">
+"ricavare le leggi della riflessione e della rifrazione", "riflessione totale e fibre ottiche", "esperimento di Young", "principio di Huygens-Fresnel", "diffrazione da una fenditura". Negli esercizi di interferenza scrivi sempre il cammino ottico, compresi gli spessori di materiale con indice $n$ che aggiungono $(n-1)t$.
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Esempio svolto: Young con una lastrina sottile
+
+Due fenditure distanti $d=0{,}5\ \mathrm{mm}$ sono illuminate con luce di $\lambda=600\ \mathrm{nm}$; lo schermo è a $D=1{,}5\ \mathrm m$. Davanti a una fenditura si mette una lastrina di vetro ($n=1{,}5$) spessa $t=10\ \mathrm{\mu m}$.
+
+1. **Interfrangia.** Senza lastrina $\Delta y=\dfrac{\lambda D}{d}=1{,}8\ \mathrm{mm}$.
+2. **Cammino ottico in più.** La lastrina sostituisce uno spessore $t$ d'aria con vetro: $\Delta L=(n-1)t=5\ \mathrm{\mu m}$, cioè $\Delta L/\lambda\simeq 8{,}33$ lunghezze d'onda.
+3. **Spostamento delle frange.** La figura si sposta, verso la fenditura coperta, di $8{,}33$ interfrange: $\Delta y_{tot}=\dfrac{(n-1)tD}{d}=15\ \mathrm{mm}$. L'interfrangia non cambia.
+4. **Uso pratico.** Contando le frange che scorrono mentre si inserisce la lastrina si misura $(n-1)t$: è il principio degli interferometri.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Errori tipici
+
+- **Sommare le intensità di onde coerenti.** Si sommano i campi: compare il termine di interferenza $2\sqrt{I_1I_2}\cos\delta$.
+- **Dimenticare l'indice nel cammino ottico.** In un mezzo il cammino ottico è $nL$; una lastrina aggiunge $(n-1)t$.
+- **Confondere massimi di interferenza e minimi di diffrazione.** Young: massimi a $d\sin\theta=m\lambda$; fenditura singola: **minimi** a $a\sin\theta=m\lambda$ con $m\neq0$.
+- **Riflessione totale nel verso sbagliato.** Esiste solo passando da $n_1$ a $n_2<n_1$, e $\sin\theta_c=n_2/n_1$.
+- **Angoli misurati dalla superficie.** Nella legge di Snell gli angoli si misurano dalla normale.
+
+</Layer>

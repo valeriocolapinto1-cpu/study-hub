@@ -1,0 +1,141 @@
+---
+course: fisica-2
+topic: campi-variabili
+lang: it
+---
+
+<Layer kind="intuizione">
+
+Finché i campi sono statici, elettricità e magnetismo vivono separati. Quando cambiano nel tempo si accoppiano: un flusso magnetico che varia genera un campo elettrico, e un campo elettrico che varia genera un campo magnetico. La prima metà della storia è l'**induzione**: basta muovere un magnete vicino a una spira, o la spira nel campo, perché nella spira compaia una f.e.m.
+
+Il segno meno della legge di Faraday (Lenz) è conservazione dell'energia: la corrente indotta si oppone sempre alla causa, altrimenti avremmo un moto perpetuo. L'induttanza è l'"inerzia" di un circuito rispetto alle variazioni di corrente, e l'energia spesa per stabilire una corrente resta immagazzinata nel campo magnetico. Con la corrente di spostamento le equazioni diventano simmetriche e aprono la strada alle onde.
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Legge di Faraday-Neumann-Lenz
+
+Quando il flusso di $\vec B$ concatenato con un circuito varia nel tempo, nel circuito compare una forza elettromotrice indotta:
+
+$$
+\mathcal E_i=-\frac{d\Phi(\vec B)}{dt}
+$$
+
+Il segno meno esprime la **legge di Lenz**: la corrente indotta ha un verso tale da opporsi alla variazione di flusso che l'ha generata (conservazione dell'energia). Il flusso può variare perché cambia $B$, perché cambia l'area o perché cambia l'orientazione.
+
+## Interpretazione fisica
+
+- **Circuito in moto in un campo costante** (flusso tagliato): la f.e.m. è dovuta alla forza di Lorentz sui portatori, $\mathcal E=\oint(\vec v\times\vec B)\cdot d\vec l$. Per una sbarretta di lunghezza $l$ che scorre su due binari con velocità $v$: $\mathcal E=vBl$. Con resistenza $R$ circola $I=vBl/R$, e sulla sbarretta agisce una forza frenante $F=\frac{B^2l^2v}{R}$: la potenza meccanica spesa è uguale a quella dissipata, $Fv=\mathcal E I$. Sotto una forza costante $F_0$ la sbarretta raggiunge la velocità limite $v_\infty=\frac{F_0R}{B^2l^2}$. Una sbarretta che ruota con velocità angolare $\omega$ attorno a un estremo in $B$ uniforme ha ai capi $\Delta V=\frac12B\omega L^2$.
+- **Circuito fermo e B variabile**: nessuna forza di Lorentz può spiegare la f.e.m. È il campo magnetico variabile a generare un **campo elettrico indotto**, non conservativo, con linee chiuse.
+
+## Forma locale: III equazione di Maxwell
+
+Per un circuito fermo $\oint\vec E\cdot d\vec l=-\frac{d}{dt}\int_S\vec B\cdot\hat n\,dS$; con Stokes, valendo per ogni superficie:
+
+$$
+\nabla\times\vec E=-\frac{\partial\vec B}{\partial t}
+$$
+
+Il campo elettrico non è più conservativo e il potenziale elettrostatico da solo non basta a descriverlo. **Esempio**: solenoide infinito di raggio $a$ con corrente $I(t)$. Per simmetria $\vec E$ è tangente a circonferenze coassiali e $E\cdot2\pi r=-\frac{d\Phi}{dt}$:
+
+$$
+E=\frac{\mu_0n}{2}\,r\,\frac{dI}{dt}\ (r\lt a),\qquad E=\frac{\mu_0n}{2}\frac{a^2}{r}\frac{dI}{dt}\ (r\gt a)
+$$
+
+Una carica ferma in quella regione subisce la forza $qE$.
+
+## Autoinduzione
+
+La corrente di un circuito produce un flusso concatenato con il circuito stesso, proporzionale alla corrente: $\Phi=LI$, dove $L$ (henry) è il coefficiente di autoinduzione, che dipende solo dalla geometria. Una corrente variabile induce la f.e.m. $\mathcal E_L=-L\frac{dI}{dt}$.
+
+- Solenoide (N spire, lunghezza $l$, sezione $S$): $\Phi = N\cdot\mu_0\frac NlIS$ ⇒ $L=\mu_0\frac{N^2S}{l}=\mu_0n^2Sl$.
+- Cavo coassiale per unità di lunghezza: $\frac{L}{l}=\frac{\mu_0}{2\pi}\ln\frac ba$, più $\frac{\mu_0}{8\pi}$ se il conduttore interno è pieno (flusso interno, calcolabile dall'energia).
+- Linea bifilare (fili di raggio $a$ a distanza $d\gg a$): $\frac Ll\simeq\frac{\mu_0}{\pi}\ln\frac da$.
+
+## Induzione mutua
+
+Il flusso che il circuito 1 produce nel circuito 2 è $\Phi_{21}=MI_1$, e vale $M_{12}=M_{21}=M$: si può calcolare il flusso nel verso più comodo. Vale $M\le\sqrt{L_1L_2}$. Esempi:
+
+- Due solenoidi coassiali di uguale lunghezza $l$: $M=\mu_0n_1n_2S_{int}l$.
+- Filo infinito e spira rettangolare complanare (lati $a$ parallelo al filo e $b$, a distanza $d$): $\Phi=\int_d^{d+b}\frac{\mu_0I}{2\pi r}a\,dr$ ⇒ $M=\frac{\mu_0a}{2\pi}\ln\frac{d+b}{d}$.
+
+Il **trasformatore** ideale (nucleo comune, senza perdite) ha $\frac{V_2}{V_1}=\frac{N_2}{N_1}$.
+
+## Circuito RL e analisi energetica
+
+Alla chiusura: $\mathcal E=RI+L\frac{dI}{dt}$, da cui
+
+$$
+I(t)=\frac{\mathcal E}{R}\left(1-e^{-t/\tau}\right),\qquad\tau=\frac LR
+$$
+
+All'apertura (con un percorso di scarica di resistenza $R$): $I=I_0e^{-t/\tau}$. Aprendo bruscamente un circuito induttivo si genera una sovratensione (extracorrente di apertura). Moltiplicando l'equazione della maglia per $I\,dt$: $\mathcal EI\,dt=RI^2dt+d\left(\frac12LI^2\right)$. Il lavoro del generatore va in calore e nell'**energia magnetica** $U=\frac12LI^2$.
+
+**Legge di Felici**: la carica che attraversa un circuito di resistenza $R$ quando il flusso passa da $\Phi_i$ a $\Phi_f$ è $Q=\int I\,dt=\frac{\Phi_i-\Phi_f}{R}$, indipendentemente dalla rapidità della variazione. Si usa per misurare campi magnetici.
+
+## Energia magnetica e azioni meccaniche
+
+Dal solenoide ($U=\frac12LI^2=\frac{B^2}{2\mu_0}Sl$) si ricava la densità di energia del campo magnetico:
+
+$$
+u_B=\frac{B^2}{2\mu_0}\quad\left(\text{nei materiali }u=\tfrac12\vec H\cdot\vec B\right),\qquad U=\int u_B\,dV
+$$
+
+Per due circuiti accoppiati $U=\frac12L_1I_1^2+\frac12L_2I_2^2+MI_1I_2$. Le forze si ricavano con i lavori virtuali: $F_x=+\left(\frac{\partial U}{\partial x}\right)_I=-\left(\frac{\partial U}{\partial x}\right)_\Phi$. Ad esempio una spira viene risucchiata all'interno di un solenoide, verso la zona di campo più intenso.
+
+## Generatori, motori, correnti di Foucault
+
+- **Alternatore**: una bobina di $N$ spire e area $S$ che ruota con velocità $\omega$ in $B$ uniforme ha $\Phi=NBS\cos\omega t$, quindi $\mathcal E=NBS\omega\sin\omega t$. Su un carico resistivo la potenza istantanea è $\mathcal E^2/R$ e quella media vale $\frac{\mathcal E_0^2}{2R}$ (valore efficace $\mathcal E_0/\sqrt2$).
+- **Dinamo a disco** (disco di Faraday): un disco conduttore che ruota in $B$ assiale produce tra centro e bordo $\mathcal E=\frac12B\omega R^2$.
+- **Motore**: una spira percorsa da corrente in $B$ subisce un momento; la rotazione induce una forza controelettromotrice che limita la corrente.
+- **Correnti di Foucault**: in un conduttore massiccio con flusso variabile circolano correnti parassite che dissipano energia e frenano il moto (freno elettromagnetico). Nei trasformatori si usano nuclei laminati per ridurle.
+
+## Corrente di spostamento e IV equazione di Maxwell
+
+La legge di Ampère $\nabla\times\vec B=\mu_0\vec J$ è incompatibile con la continuità nel caso non stazionario, perché implicherebbe $\nabla\cdot\vec J=0$. Durante la carica di un condensatore, ad esempio, la circuitazione di $\vec B$ darebbe risultati diversi per superfici che tagliano il filo o che passano tra le armature. Maxwell aggiunse la **corrente di spostamento** $\vec J_s=\varepsilon_0\frac{\partial\vec E}{\partial t}$: per Gauss $\nabla\cdot\vec J_s=\frac{\partial\rho}{\partial t}$, e la somma $\vec J+\vec J_s$ ha divergenza nulla.
+
+$$
+\nabla\times\vec B=\mu_0\vec J+\mu_0\varepsilon_0\frac{\partial\vec E}{\partial t}\qquad\left(\text{nella materia: }\nabla\times\vec H=\vec J+\frac{\partial\vec D}{\partial t}\right)
+$$
+
+**Esempio**: condensatore piano circolare (raggio $R$) che si carica con corrente $I$. Tra le armature, a distanza $r\lt R$ dall'asse: $B\cdot2\pi r=\mu_0\varepsilon_0\pi r^2\frac{dE}{dt}$, cioè $B=\frac{\mu_0Ir}{2\pi R^2}$; fuori dalle armature $B=\frac{\mu_0I}{2\pi r}$, come per il filo.
+
+## Le equazioni di Maxwell
+
+$$
+\nabla\cdot\vec E=\frac\rho{\varepsilon_0},\qquad\nabla\cdot\vec B=0,\qquad\nabla\times\vec E=-\frac{\partial\vec B}{\partial t},\qquad\nabla\times\vec B=\mu_0\vec J+\mu_0\varepsilon_0\frac{\partial\vec E}{\partial t}
+$$
+
+Insieme alla forza di Lorentz descrivono tutto l'elettromagnetismo classico. La simmetria tra le ultime due (un $\vec B$ variabile genera $\vec E$ e viceversa) permette l'esistenza delle onde elettromagnetiche.
+
+<Callout tone="esame" title="Domande frequenti">
+"ricavare la forma locale della legge di Faraday", "coefficiente di autoinduzione di un solenoide", "analisi energetica del circuito RL", "densità di energia magnetica", "legge di Felici", "definire la corrente di spostamento e spiegarne la necessità", "ricavare la IV equazione nel caso non stazionario". Negli esercizi: prima calcola il flusso in funzione del tempo o della posizione, poi derivalo, poi usa Ohm e il bilancio energetico.
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Esempio svolto: sbarretta su rotaie
+
+Una sbarretta conduttrice di massa $m=100\ \mathrm g$ e lunghezza $l=20\ \mathrm{cm}$ scorre senza attrito su due rotaie orizzontali chiuse da una resistenza $R=2\ \Omega$, in un campo uniforme verticale $B=0{,}5\ \mathrm T$. Viene tirata da una forza costante $F_0=50\ \mathrm{mN}$ e parte da ferma.
+
+1. **F.e.m. e corrente.** Il flusso concatenato cresce come $Blx$, quindi $|\mathcal E|=Blv$ e $I=Blv/R$ (verso dato da Lenz: la corrente si oppone all'aumento di flusso).
+2. **Forza frenante.** Sulla sbarretta agisce $F_B=IlB=\dfrac{B^2l^2}{R}v$, opposta al moto. L'equazione del moto è $m\dot v=F_0-\dfrac{B^2l^2}{R}v$.
+3. **Velocità limite e tempo caratteristico.** $v_\infty=\dfrac{F_0R}{B^2l^2}=10\ \mathrm{m/s}$, raggiunta con legge $v(t)=v_\infty\left(1-e^{-t/\tau}\right)$ e $\tau=\dfrac{mR}{B^2l^2}=20\ \mathrm s$.
+4. **Bilancio a regime.** $\mathcal E=Blv_\infty=1\ \mathrm V$, $I=0{,}5\ \mathrm A$: la potenza meccanica $F_0v_\infty=0{,}5\ \mathrm W$ coincide con quella dissipata $RI^2=0{,}5\ \mathrm W$.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Errori tipici
+
+- **Dimenticare Lenz.** Il verso della corrente indotta si sceglie in modo che si opponga alla variazione di flusso: controllalo sempre con la regola della mano destra.
+- **Contare una sola spira.** In una bobina il flusso concatenato è $N$ volte il flusso di una spira, sia per la f.e.m. sia per $L$.
+- **Cercare un potenziale per il campo indotto.** Il campo elettrico indotto ha circuitazione non nulla: la "differenza di potenziale" dipende dal percorso.
+- **Sbagliare $\tau$ del circuito RL.** È $L/R$, non $RL$ né $R/L$; con più resistenze si usa la resistenza vista dall'induttore.
+- **Applicare Ampère senza corrente di spostamento.** Fra le armature di un condensatore in carica non c'è corrente di conduzione, ma $\vec B$ non è nullo.
+
+</Layer>

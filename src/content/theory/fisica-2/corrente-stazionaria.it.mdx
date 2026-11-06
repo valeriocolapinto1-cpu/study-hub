@@ -1,0 +1,133 @@
+---
+course: fisica-2
+topic: corrente-stazionaria
+lang: it
+---
+
+import Circuit from '../../../sim/Circuit.astro';
+
+<Layer kind="intuizione">
+
+Una corrente è carica in moto ordinato. Nei metalli gli elettroni si muovono già velocissimi ma a caso; il campo aggiunge una deriva lentissima, e basta questa a trasportare carica. La legge di Ohm dice che, in molti materiali, la deriva è proporzionale al campo: la resistenza misura quanto il materiale "frena" i portatori, e l'energia persa negli urti diventa calore (effetto Joule).
+
+Perché la corrente circoli in un anello chiuso serve qualcosa che non sia elettrostatico: il **generatore**, che spinge le cariche "in salita". Da qui nascono le reti: due leggi di conservazione (carica ai nodi, energia lungo le maglie) bastano a risolverle tutte, e Thevenin permette di ridurre qualunque rete lineare a un generatore e una resistenza. Con un condensatore la corrente non è più costante ma decresce in modo esponenziale, con tempo caratteristico $\tau=RC$.
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Corrente, densità di corrente, continuità
+
+Nei metalli gli elettroni di conduzione hanno velocità di agitazione termica molto alte (circa $10^5$–$10^6$ m/s) ma dirette a caso. Un campo elettrico sovrappone una piccola **velocità di deriva** $v_d$ (frazioni di mm/s) opposta al campo. L'intensità di corrente è la carica che attraversa una sezione nell'unità di tempo:
+
+$$
+I=\frac{dq}{dt}=\int_S\vec J\cdot\hat n\,dS,\qquad \vec J = nq\vec v_d
+$$
+
+($n$ = portatori per unità di volume). La conservazione della carica, in forma locale, è l'**equazione di continuità**:
+
+$$
+\nabla\cdot\vec J+\frac{\partial\rho}{\partial t}=0
+$$
+
+In regime **stazionario** $\nabla\cdot\vec J=0$: il flusso di $\vec J$ attraverso una superficie chiusa è nullo. Da qui la **I legge di Kirchhoff**: in un nodo la somma delle correnti entranti è uguale a quella delle uscenti.
+
+## Legge di Ohm e resistenza
+
+Per molti conduttori (ohmici) $\vec J$ è proporzionale a $\vec E$: $\vec J = \sigma\vec E$ (**legge di Ohm locale**), dove $\sigma = 1/\rho$ è la conducibilità. Nel modello di Drude, con $\tau$ tempo medio tra gli urti, $v_d = eE\tau/m$ e quindi $\sigma=\frac{ne^2\tau}{m}$. Integrando su un conduttore si ottiene $V=RI$ con
+
+$$
+R=\int\rho\frac{dl}{S(l)}\qquad(\text{sezione costante: } R=\rho\frac{l}{S})
+$$
+
+- Tra due cilindri coassiali (corrente radiale, lunghezza $L$): $R=\dfrac{\rho}{2\pi L}\ln\dfrac{b}{a}$.
+- Tra due gusci sferici concentrici: $R=\dfrac{\rho}{4\pi}\left(\dfrac1a-\dfrac1b\right)$.
+- Nei metalli $\rho(T)\simeq\rho_0[1+\alpha(T-T_0)]$; nei semiconduttori $\rho$ diminuisce con $T$.
+
+**Superconduttori**: sotto una temperatura critica $T_c$ la resistività si annulla (vedi blocco 6).
+
+## Effetto Joule
+
+Il campo compie lavoro sui portatori, e questo lavoro viene ceduto al reticolo come calore. La potenza dissipata per unità di volume è $\frac{dP}{d\tau}=\vec J\cdot\vec E=\rho J^2$; per un resistore
+
+$$
+P = VI = RI^2 = \frac{V^2}{R}
+$$
+
+## Forza elettromotrice e generatori
+
+Un campo elettrostatico non può mantenere una corrente in un circuito chiuso, perché $\oint\vec E\cdot d\vec l=0$. Serve un **generatore**, cioè una regione con un campo elettromotore non conservativo $\vec E^*$ (di origine chimica, meccanica, ecc.). La **forza elettromotrice** è $\mathcal E=\oint\vec E^*\cdot d\vec l$, il lavoro per unità di carica compiuto dal generatore in un giro. Un generatore reale ha una resistenza interna $r$: $V_{AB}=\mathcal E-rI$.
+
+**Massimo trasferimento di potenza.** Su un carico $R_L$ la potenza è $P=\frac{\mathcal E^2R_L}{(r+R_L)^2}$; è massima per $R_L=r$ e vale $\frac{\mathcal E^2}{4r}$ (rendimento del 50%).
+
+## Circuiti in corrente continua
+
+- Serie: $R_s=\sum R_i$ (stessa corrente). Parallelo: $1/R_p=\sum1/R_i$ (stessa tensione).
+- Partitore di tensione: $V_2=V\frac{R_2}{R_1+R_2}$. Partitore di corrente: $I_1=I\frac{R_2}{R_1+R_2}$.
+- **II legge di Kirchhoff** (maglie): lungo una maglia $\sum R_kI_k=\sum\mathcal E_k$, con i segni fissati da un verso di percorrenza. Metodo: si assegnano correnti di verso arbitrario, si scrivono $n-1$ equazioni ai nodi e le equazioni delle maglie indipendenti, si risolve. Una corrente negativa ha semplicemente verso opposto.
+- **Legge di Ohm generalizzata**: tra due punti di un ramo $V_A-V_B=\sum RI-\sum\mathcal E$ (segni secondo il verso da A a B).
+- **Sovrapposizione**: in una rete lineare la corrente in un ramo è la somma di quelle prodotte da ciascun generatore agendo da solo (gli altri spenti: generatori di tensione in cortocircuito, di corrente aperti).
+- **Thevenin**: una rete lineare vista da due morsetti equivale a un generatore $V_{Th}$ (tensione a vuoto) in serie a $R_{Th}$ (resistenza vista con i generatori spenti). Norton: generatore di corrente $I_{N}=V_{Th}/R_{Th}$ in parallelo a $R_{Th}$.
+
+## Misure di correnti, tensioni e resistenze
+
+L'**amperometro** si inserisce in serie e deve avere resistenza interna $R_A$ piccola; il **voltmetro** si mette in parallelo e deve avere $R_V$ grande. Nella misura voltamperometrica di $R$ si commette un _errore di inserzione_:
+
+- voltmetro a valle (in parallelo al solo resistore): $R_{mis}=\frac{RR_V}{R+R_V}\lt R$, adatto per $R\ll R_V$;
+- voltmetro a monte (su resistore + amperometro): $R_{mis}=R+R_A$, adatto per $R\gg R_A$.
+
+**Ponte di Wheatstone**: quattro resistori a rombo con un rivelatore tra i punti intermedi. All'equilibrio (corrente nulla nel rivelatore) $R_1/R_2=R_3/R_4$, e si ricava la resistenza incognita senza errori di inserzione.
+
+## Cariche su conduttori percorsi da corrente
+
+Un conduttore percorso da corrente non è equipotenziale: sulla sua superficie si formano piccole cariche che guidano il campo lungo il filo. All'interfaccia tra due conduttori di conducibilità diversa, la continuità di $J_n$ ($\sigma_1E_1=\sigma_2E_2$) impone un salto di $E$, e quindi una carica libera superficiale $\sigma_s=\varepsilon_0(E_2-E_1)$.
+
+## Correnti quasi stazionarie: il circuito RC
+
+Se le variazioni sono lente rispetto al tempo di propagazione dei segnali, in ogni istante valgono le leggi di Kirchhoff. **Carica** di $C$ attraverso $R$ con f.e.m. $\mathcal E$: $\mathcal E = RI+\frac qC$, con $I=\frac{dq}{dt}$, da cui
+
+$$
+q(t)=C\mathcal E\left(1-e^{-t/\tau}\right),\qquad I(t)=\frac{\mathcal E}{R}e^{-t/\tau},\qquad\tau=RC
+$$
+
+**Scarica**: $q(t)=Q_0e^{-t/\tau}$. Dopo $\tau$ la carica raggiunge il 63% del valore finale; il tempo di dimezzamento vale $\tau\ln2$.
+
+**Bilancio energetico della carica**: il generatore fornisce $\mathcal E Q = C\mathcal E^2$; metà si accumula nel condensatore ($\frac12C\mathcal E^2$), metà si dissipa per effetto Joule, _indipendentemente da $R$_.
+
+**Condensatore che si scarica su un altro** ($C_1$ carico a $V_0$ collegato a $C_2$ scarico): la carica si conserva, quindi $V_f = \frac{C_1V_0}{C_1+C_2}$; l'energia dissipata è $\Delta U = \frac12\frac{C_1C_2}{C_1+C_2}V_0^2$.
+
+**Dielettrico con perdite** (conducibilità $\sigma$ non nulla): il condensatore si scarica attraverso il dielettrico stesso con $\tau=RC=\varepsilon\rho=\varepsilon_0\varepsilon_r/\sigma$, indipendente dalla geometria.
+
+<Callout tone="esame" title="All'esame">
+Nei transitori valuta il circuito in due istanti. A $t=0^+$: la tensione su un condensatore e la corrente in un induttore non possono cambiare di colpo. A regime ($t\to\infty$, corrente continua): un condensatore si comporta come un circuito aperto, un induttore come un cortocircuito. La costante di tempo è $R_{Th}C$ (o $L/R_{Th}$), con $R_{Th}$ la resistenza vista dai morsetti dell'elemento.
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Esempio svolto: carica di un condensatore attraverso un partitore
+
+Nel circuito l'interruttore si chiude a $t=0$ con il condensatore scarico; $\mathcal E=12\ \mathrm V$, $R_1=R_2=1\ \mathrm{k\Omega}$, $C=10\ \mathrm{\mu F}$.
+
+<Circuit lang="it" netlist={{ elements: [ { type: "V", id: "E", a: "a", b: "0", dc: 12 }, { type: "SW", id: "S", a: "a", b: "b", closed: false, toggleAt: 0 }, { type: "R", id: "R1", a: "b", b: "c", value: "1k" }, { type: "R", id: "R2", a: "c", b: "0", value: "1k" }, { type: "C", id: "C", a: "c", b: "0", value: "10u", show: { v: "v_C" } } ] }} caption="Partitore resistivo che carica un condensatore." />
+
+1. **Thevenin ai capi di $C$.** Tensione a vuoto $V_{Th}=\mathcal E\,\frac{R_2}{R_1+R_2}=6\ \mathrm V$; resistenza vista con il generatore spento $R_{Th}=R_1\parallel R_2=500\ \Omega$.
+2. **Costante di tempo.** $\tau=R_{Th}C=5\ \mathrm{ms}$.
+3. **Andamento.** $v_C(t)=V_{Th}\left(1-e^{-t/\tau}\right)$: dopo $t=\tau$ vale $6(1-e^{-1})\simeq 3{,}79\ \mathrm V$; a regime $6\ \mathrm V$ (il condensatore è un circuito aperto e resta il partitore).
+4. **Correnti.** A $t=0^+$ il condensatore è un cortocircuito: $i_1(0^+)=\mathcal E/R_1=12\ \mathrm{mA}$, tutta in $C$. A regime $i_1=i_2=\mathcal E/(R_1+R_2)=6\ \mathrm{mA}$.
+5. **Energia.** A regime nel condensatore c'è $\frac12CV_{Th}^2=180\ \mathrm{\mu J}$; il partitore continua invece a dissipare $\mathcal E^2/(R_1+R_2)=72\ \mathrm{mW}$.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Errori tipici
+
+- **Usare $\tau=R_1C$.** La costante di tempo usa la resistenza vista dai morsetti del condensatore con i generatori spenti, non quella del ramo in serie.
+- **Segni nelle maglie.** Fissa un verso di percorrenza e tienilo: una f.e.m. si conta positiva se la si attraversa dal $-$ al $+$; le cadute $RI$ hanno il segno della corrente rispetto al verso scelto.
+- **Confondere conducibilità e resistività.** $\vec J=\sigma\vec E$ con $\sigma=1/\rho$; la resistenza cresce con $\rho$ e con la lunghezza, diminuisce con la sezione.
+- **Pensare che l'energia dissipata nella carica dipenda da $R$.** Durante la carica da un generatore ideale si dissipa sempre metà dell'energia fornita, qualunque sia $R$.
+- **Strumenti inseriti male.** L'amperometro va in serie (resistenza piccola), il voltmetro in parallelo (resistenza grande); l'errore di inserzione dipende dal confronto tra $R$ e le resistenze degli strumenti.
+
+</Layer>

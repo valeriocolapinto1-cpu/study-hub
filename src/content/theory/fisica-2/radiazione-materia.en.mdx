@@ -1,0 +1,110 @@
+---
+course: fisica-2
+topic: radiazione-materia
+lang: en
+---
+
+<Layer kind="intuizione">
+
+When a wave reaches the surface between two materials, the fields must "match": the tangential components of $\vec E$ and $\vec H$ cannot jump. This single requirement, imposed at every point and at every instant, fixes the directions of the reflected and transmitted waves: out come the law of reflection and Snell's law. The ratio of the speeds in the two media, that is the refractive index, decides how much the ray bends.
+
+Wave optics arises from the fact that waves **add as fields**, not as intensities. Two coherent waves can reinforce or cancel each other depending on the path difference: this is interference. Diffraction is the same thing seen from a single aperture, in which every point behaves as a secondary source (Huygens-Fresnel).
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Boundary conditions
+
+At the surface separating two media (without free surface charges and currents) the tangential components of $\vec E$ and $\vec H$ and the normal components of $\vec D$ and $\vec B$ are continuous. All the laws of reflection and refraction follow from these conditions.
+
+## Reflection and refraction: kinematic features
+
+For the conditions to hold at every point of the surface and at every instant, the incident, reflected and transmitted waves must have the same frequency and the same tangential component of $\vec k$. It follows that:
+
+- the incident, reflected and refracted rays lie in the plane of incidence;
+- law of reflection: $\theta_r=\theta_i$;
+- **Snell's law**: $n_1\sin\theta_1=n_2\sin\theta_2$.
+
+The same laws follow from **Fermat's principle**: light travels along a stationary (usually minimum) optical path $L=\int n\,ds$.
+
+**Total internal reflection**: going from a more refractive to a less refractive medium ($n_1\gt n_2$), for $\theta\gt\theta_c$ with $\sin\theta_c=\frac{n_2}{n_1}$ there is no transmitted wave. **Optical fibres** rely on this: a core with $n_1$ is surrounded by a cladding with $n_2\lt n_1$. The maximum acceptance angle from air is $\sin\theta_{max}=\sqrt{n_1^2-n_2^2}$ (numerical aperture).
+
+**Dynamic aspects** (amplitudes, Fresnel formulas). At normal incidence:
+
+$$
+R=\left(\frac{n_1-n_2}{n_1+n_2}\right)^2,\qquad T=\frac{4n_1n_2}{(n_1+n_2)^2},\qquad R+T=1
+$$
+
+(glass in air: $R\approx4\%$). At **Brewster's angle** $\tan\theta_B=\frac{n_2}{n_1}$ the component with $\vec E$ in the plane of incidence is not reflected: the reflected light is linearly polarised.
+
+## Dispersion
+
+The refractive index depends on the wavelength, because the response of bound electrons depends on frequency. In the visible, for most transparent materials, $n$ increases as $\lambda$ decreases (Cauchy's empirical law $n=A+B/\lambda^2$). A prism deviates violet more and splits white light into colours (rainbow).
+
+## Natural and polarised light
+
+Natural light is an incoherent superposition of waves with random polarisations. An ideal polariser transmits half of it ($I_0/2$). Linearly polarised light crossing a polariser rotated by $\theta$ with respect to its direction obeys **Malus's law**: $I=I_0\cos^2\theta$. Light can also be polarised by reflection (at Brewster's angle), by scattering or with birefringent materials.
+
+## Huygens-Fresnel principle and Kirchhoff's theorem
+
+Every point of a wavefront behaves as a source of secondary spherical waves; the next wavefront is the envelope of these waves (Huygens). Fresnel added that the secondary waves **interfere**, which explains diffraction. Kirchhoff's integral theorem gives the mathematical justification starting from the wave equation: the field at a point is expressed through the field on a surface enclosing it (obliquity factor, no "backward" wave).
+
+## Interference and Young's experiment
+
+Two **coherent** waves (constant phase difference) with intensities $I_1$ and $I_2$ add as fields, not as intensities:
+
+$$
+I=I_1+I_2+2\sqrt{I_1I_2}\cos\delta,\qquad\delta=\frac{2\pi}{\lambda_0}\Delta L
+$$
+
+where $\Delta L$ is the optical path difference. Interference is constructive for $\Delta L=m\lambda$, destructive for $\Delta L=(m+\frac12)\lambda$.
+
+**Young**: two slits a distance $d$ apart lit by the same source, screen at distance $D\gg d$. The path difference is $d\sin\theta$:
+
+$$
+d\sin\theta=m\lambda\ (\text{maxima}),\qquad y_m\simeq\frac{m\lambda D}d,\qquad\Delta y=\frac{\lambda D}d,\qquad I=4I_0\cos^2\frac{\pi d\sin\theta}\lambda
+$$
+
+It was the proof of the wave nature of light, and it allows $\lambda$ to be measured.
+
+## Fraunhofer diffraction by a slit
+
+Diffraction is the departure from straight-line propagation when the wave meets obstacles or apertures comparable in size with $\lambda$. In Fraunhofer conditions (source and screen far away), for a slit of width $a$ one adds the contributions of all points of the aperture:
+
+$$
+I(\theta)=I_0\left(\frac{\sin\beta}\beta\right)^2,\qquad\beta=\frac{\pi a\sin\theta}\lambda
+$$
+
+The minima fall at $a\sin\theta=m\lambda$ ($m\neq0$). The central maximum is twice as wide as the others (half-width $\sin\theta=\lambda/a$) and contains most of the energy: the narrower the slit, the more the light spreads.
+
+<Callout tone="esame" title="Frequent questions">
+"derive the laws of reflection and refraction", "total internal reflection and optical fibres", "Young's experiment", "Huygens-Fresnel principle", "diffraction by a slit". In interference problems always write the optical path, including thicknesses of material with index $n$ that add $(n-1)t$.
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Worked example: Young's experiment with a thin plate
+
+Two slits $d=0.5\ \mathrm{mm}$ apart are illuminated with light of $\lambda=600\ \mathrm{nm}$; the screen is at $D=1.5\ \mathrm m$. A glass plate ($n=1.5$) of thickness $t=10\ \mathrm{\mu m}$ is placed in front of one slit.
+
+1. **Fringe spacing.** Without the plate $\Delta y=\dfrac{\lambda D}{d}=1.8\ \mathrm{mm}$.
+2. **Extra optical path.** The plate replaces a thickness $t$ of air with glass: $\Delta L=(n-1)t=5\ \mathrm{\mu m}$, that is $\Delta L/\lambda\simeq 8.33$ wavelengths.
+3. **Fringe shift.** The pattern shifts, towards the covered slit, by $8.33$ fringe spacings: $\Delta y_{tot}=\dfrac{(n-1)tD}{d}=15\ \mathrm{mm}$. The fringe spacing does not change.
+4. **Practical use.** Counting the fringes that move while the plate is inserted measures $(n-1)t$: this is the principle of interferometers.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Common mistakes
+
+- **Adding the intensities of coherent waves.** The fields add: the interference term $2\sqrt{I_1I_2}\cos\delta$ appears.
+- **Forgetting the index in the optical path.** In a medium the optical path is $nL$; a plate adds $(n-1)t$.
+- **Confusing interference maxima and diffraction minima.** Young: maxima at $d\sin\theta=m\lambda$; single slit: **minima** at $a\sin\theta=m\lambda$ with $m\neq0$.
+- **Total internal reflection in the wrong direction.** It exists only going from $n_1$ to $n_2<n_1$, and $\sin\theta_c=n_2/n_1$.
+- **Angles measured from the surface.** In Snell's law angles are measured from the normal.
+
+</Layer>

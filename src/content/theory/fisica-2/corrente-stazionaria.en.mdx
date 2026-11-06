@@ -1,0 +1,133 @@
+---
+course: fisica-2
+topic: corrente-stazionaria
+lang: en
+---
+
+import Circuit from '../../../sim/Circuit.astro';
+
+<Layer kind="intuizione">
+
+A current is charge in ordered motion. In metals the electrons already move very fast but at random; the field adds an extremely slow drift, and that alone carries charge. Ohm's law says that in many materials the drift is proportional to the field: resistance measures how much the material "brakes" the carriers, and the energy lost in collisions becomes heat (Joule heating).
+
+For current to flow around a closed loop something non-electrostatic is needed: the **generator**, which pushes charges "uphill". Networks follow from this: two conservation laws (charge at the nodes, energy around the loops) are enough to solve them all, and Thevenin reduces any linear network to one generator and one resistor. With a capacitor the current is no longer constant but decays exponentially, with characteristic time $\tau=RC$.
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Current, current density, continuity
+
+In metals the conduction electrons have very high thermal velocities (about $10^5$–$10^6$ m/s) but in random directions. An electric field superimposes a small **drift velocity** $v_d$ (fractions of a mm/s) opposite to the field. The current is the charge crossing a cross-section per unit time:
+
+$$
+I=\frac{dq}{dt}=\int_S\vec J\cdot\hat n\,dS,\qquad \vec J = nq\vec v_d
+$$
+
+($n$ = carriers per unit volume). Charge conservation, in local form, is the **continuity equation**:
+
+$$
+\nabla\cdot\vec J+\frac{\partial\rho}{\partial t}=0
+$$
+
+In the **steady** regime $\nabla\cdot\vec J=0$: the flux of $\vec J$ through a closed surface vanishes. Hence **Kirchhoff's first law**: at a node the sum of the incoming currents equals the sum of the outgoing ones.
+
+## Ohm's law and resistance
+
+For many (ohmic) conductors $\vec J$ is proportional to $\vec E$: $\vec J = \sigma\vec E$ (**local Ohm's law**), where $\sigma = 1/\rho$ is the conductivity. In the Drude model, with $\tau$ the mean time between collisions, $v_d = eE\tau/m$ and therefore $\sigma=\frac{ne^2\tau}{m}$. Integrating over a conductor one gets $V=RI$ with
+
+$$
+R=\int\rho\frac{dl}{S(l)}\qquad(\text{constant cross-section: } R=\rho\frac{l}{S})
+$$
+
+- Between two coaxial cylinders (radial current, length $L$): $R=\dfrac{\rho}{2\pi L}\ln\dfrac{b}{a}$.
+- Between two concentric spherical shells: $R=\dfrac{\rho}{4\pi}\left(\dfrac1a-\dfrac1b\right)$.
+- In metals $\rho(T)\simeq\rho_0[1+\alpha(T-T_0)]$; in semiconductors $\rho$ decreases with $T$.
+
+**Superconductors**: below a critical temperature $T_c$ the resistivity vanishes (see block 6).
+
+## Joule heating
+
+The field does work on the carriers, and this work is transferred to the lattice as heat. The power dissipated per unit volume is $\frac{dP}{d\tau}=\vec J\cdot\vec E=\rho J^2$; for a resistor
+
+$$
+P = VI = RI^2 = \frac{V^2}{R}
+$$
+
+## Electromotive force and generators
+
+An electrostatic field cannot sustain a current in a closed circuit, because $\oint\vec E\cdot d\vec l=0$. A **generator** is needed, that is a region with a non-conservative electromotive field $\vec E^*$ (of chemical, mechanical, … origin). The **electromotive force** is $\mathcal E=\oint\vec E^*\cdot d\vec l$, the work per unit charge done by the generator in one loop. A real generator has an internal resistance $r$: $V_{AB}=\mathcal E-rI$.
+
+**Maximum power transfer.** On a load $R_L$ the power is $P=\frac{\mathcal E^2R_L}{(r+R_L)^2}$; it is maximum for $R_L=r$ and equals $\frac{\mathcal E^2}{4r}$ (50% efficiency).
+
+## DC circuits
+
+- Series: $R_s=\sum R_i$ (same current). Parallel: $1/R_p=\sum1/R_i$ (same voltage).
+- Voltage divider: $V_2=V\frac{R_2}{R_1+R_2}$. Current divider: $I_1=I\frac{R_2}{R_1+R_2}$.
+- **Kirchhoff's second law** (loops): around a loop $\sum R_kI_k=\sum\mathcal E_k$, with signs fixed by a direction of travel. Method: assign currents with arbitrary directions, write $n-1$ node equations and the independent loop equations, solve. A negative current simply flows the other way.
+- **Generalised Ohm's law**: between two points of a branch $V_A-V_B=\sum RI-\sum\mathcal E$ (signs according to the direction from A to B).
+- **Superposition**: in a linear network the current in a branch is the sum of those produced by each generator acting alone (the others switched off: voltage generators short-circuited, current generators open).
+- **Thevenin**: a linear network seen from two terminals is equivalent to a generator $V_{Th}$ (open-circuit voltage) in series with $R_{Th}$ (resistance seen with the generators switched off). Norton: current generator $I_{N}=V_{Th}/R_{Th}$ in parallel with $R_{Th}$.
+
+## Measuring currents, voltages and resistances
+
+The **ammeter** is inserted in series and must have a small internal resistance $R_A$; the **voltmeter** is placed in parallel and must have a large $R_V$. In the voltmeter-ammeter measurement of $R$ there is an _insertion error_:
+
+- voltmeter downstream (across the resistor only): $R_{mis}=\frac{RR_V}{R+R_V}\lt R$, suitable for $R\ll R_V$;
+- voltmeter upstream (across resistor + ammeter): $R_{mis}=R+R_A$, suitable for $R\gg R_A$.
+
+**Wheatstone bridge**: four resistors in a diamond with a detector between the middle points. At balance (no current in the detector) $R_1/R_2=R_3/R_4$, and the unknown resistance is found without insertion errors.
+
+## Charges on current-carrying conductors
+
+A conductor carrying current is not equipotential: small charges form on its surface and guide the field along the wire. At the interface between two conductors of different conductivity, the continuity of $J_n$ ($\sigma_1E_1=\sigma_2E_2$) imposes a jump in $E$, and hence a free surface charge $\sigma_s=\varepsilon_0(E_2-E_1)$.
+
+## Quasi-steady currents: the RC circuit
+
+If the changes are slow compared with the propagation time of signals, Kirchhoff's laws hold at every instant. **Charging** $C$ through $R$ with emf $\mathcal E$: $\mathcal E = RI+\frac qC$, with $I=\frac{dq}{dt}$, hence
+
+$$
+q(t)=C\mathcal E\left(1-e^{-t/\tau}\right),\qquad I(t)=\frac{\mathcal E}{R}e^{-t/\tau},\qquad\tau=RC
+$$
+
+**Discharging**: $q(t)=Q_0e^{-t/\tau}$. After $\tau$ the charge reaches 63% of its final value; the half-life is $\tau\ln2$.
+
+**Energy balance of charging**: the generator supplies $\mathcal E Q = C\mathcal E^2$; half is stored in the capacitor ($\frac12C\mathcal E^2$), half is dissipated by Joule heating, _independently of $R$_.
+
+**Capacitor discharging into another** ($C_1$ charged to $V_0$ connected to an uncharged $C_2$): charge is conserved, so $V_f = \frac{C_1V_0}{C_1+C_2}$; the dissipated energy is $\Delta U = \frac12\frac{C_1C_2}{C_1+C_2}V_0^2$.
+
+**Lossy dielectric** (non-zero conductivity $\sigma$): the capacitor discharges through the dielectric itself with $\tau=RC=\varepsilon\rho=\varepsilon_0\varepsilon_r/\sigma$, independent of the geometry.
+
+<Callout tone="esame" title="At the exam">
+In transients, evaluate the circuit at two instants. At $t=0^+$: the voltage across a capacitor and the current in an inductor cannot change abruptly. At steady state ($t\to\infty$, direct current): a capacitor behaves as an open circuit, an inductor as a short circuit. The time constant is $R_{Th}C$ (or $L/R_{Th}$), with $R_{Th}$ the resistance seen from the element's terminals.
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Worked example: charging a capacitor through a divider
+
+In the circuit the switch closes at $t=0$ with the capacitor uncharged; $\mathcal E=12\ \mathrm V$, $R_1=R_2=1\ \mathrm{k\Omega}$, $C=10\ \mathrm{\mu F}$.
+
+<Circuit lang="en" netlist={{ elements: [ { type: "V", id: "E", a: "a", b: "0", dc: 12 }, { type: "SW", id: "S", a: "a", b: "b", closed: false, toggleAt: 0 }, { type: "R", id: "R1", a: "b", b: "c", value: "1k" }, { type: "R", id: "R2", a: "c", b: "0", value: "1k" }, { type: "C", id: "C", a: "c", b: "0", value: "10u", show: { v: "v_C" } } ] }} caption="Resistive divider charging a capacitor." />
+
+1. **Thevenin across $C$.** Open-circuit voltage $V_{Th}=\mathcal E\,\frac{R_2}{R_1+R_2}=6\ \mathrm V$; resistance seen with the generator switched off $R_{Th}=R_1\parallel R_2=500\ \Omega$.
+2. **Time constant.** $\tau=R_{Th}C=5\ \mathrm{ms}$.
+3. **Time evolution.** $v_C(t)=V_{Th}\left(1-e^{-t/\tau}\right)$: after $t=\tau$ it is $6(1-e^{-1})\simeq 3.79\ \mathrm V$; at steady state $6\ \mathrm V$ (the capacitor is an open circuit and only the divider remains).
+4. **Currents.** At $t=0^+$ the capacitor is a short circuit: $i_1(0^+)=\mathcal E/R_1=12\ \mathrm{mA}$, all of it into $C$. At steady state $i_1=i_2=\mathcal E/(R_1+R_2)=6\ \mathrm{mA}$.
+5. **Energy.** At steady state the capacitor holds $\frac12CV_{Th}^2=180\ \mathrm{\mu J}$; the divider, instead, keeps dissipating $\mathcal E^2/(R_1+R_2)=72\ \mathrm{mW}$.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Common mistakes
+
+- **Using $\tau=R_1C$.** The time constant uses the resistance seen from the capacitor's terminals with the generators switched off, not the resistance of the series branch.
+- **Signs in the loops.** Fix a direction of travel and keep it: an emf counts as positive if you cross it from $-$ to $+$; the $RI$ drops take the sign of the current relative to the chosen direction.
+- **Confusing conductivity and resistivity.** $\vec J=\sigma\vec E$ with $\sigma=1/\rho$; resistance grows with $\rho$ and with length, and decreases with cross-section.
+- **Thinking that the energy dissipated while charging depends on $R$.** When charging from an ideal generator, half of the energy supplied is always dissipated, whatever $R$ is.
+- **Wrongly connected instruments.** The ammeter goes in series (small resistance), the voltmeter in parallel (large resistance); the insertion error depends on how $R$ compares with the instruments' resistances.
+
+</Layer>
