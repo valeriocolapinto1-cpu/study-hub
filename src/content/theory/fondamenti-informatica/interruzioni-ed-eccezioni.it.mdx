@@ -1,0 +1,173 @@
+---
+course: fondamenti-informatica
+topic: interruzioni-ed-eccezioni
+lang: it
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In due minuti">
+
+<div data-note-id="teoria/interruzioni-ed-eccezioni/in-due-minuti">
+
+- **Interruzione** = evento esterno, asincrono, non legato all'istruzione in corso. **Eccezione** = evento generato dall'istruzione stessa (overflow, istruzione illegale, page fault).
+- Sequenza: si finisce l'istruzione corrente → si salvano PC e stato → si mascherano le interruzioni → si salta alla **ISR** → si ritorna con un'istruzione dedicata che ripristina tutto.
+- **Priorità** e **mascheramento** decidono chi può interrompere chi: l'annidamento è ammesso solo verso priorità più alte.
+- Individuare la sorgente: **polling** dei registri di stato (tempo proporzionale al numero di dispositivi) o interruzioni **vettorizzate** (il dispositivo fornisce l'indirizzo della routine).
+- La ISR deve salvare e ripristinare i registri che usa: il programma interrotto non deve accorgersi di nulla.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/interruzioni-ed-eccezioni/da-dove-si-parte">
+
+## Da dove si parte
+
+**Cosa serve sapere prima:** il ciclo prelievo-decodifica-esecuzione ([processore](../processore/)) e le chiamate di procedura con la pila ([repertorio di istruzioni](../risc-cisc-assembly/)).
+
+**Che problema risolve.** Il processore esegue un’istruzione dopo l’altra e non guarda mai fuori. Ma il mondo esterno non aspetta: un tasto viene premuto, un pacchetto arriva, un timer scade. Come fa il processore ad accorgersene senza passare la vita a controllare? La risposta è ribaltare la direzione: non è il processore a chiedere, è il dispositivo a **chiamare**. Da qui nascono le interruzioni — e con lo stesso meccanismo si gestiscono anche gli errori che un’istruzione può provocare.
+
+**Le parole nuove.** Una **ISR** (Interrupt Service Routine) è la procedura che risponde a una richiesta. **Mascherare** un’interruzione significa dire temporaneamente «non ora». Un **vettore** di interruzione è l’indirizzo della routine da eseguire, fornito dal dispositivo stesso. **Asincrono** vuol dire «non legato all’istruzione in corso», **sincrono** il contrario. Il **contesto** è l’insieme di PC, stato e registri che permette di riprendere il programma interrotto come se nulla fosse.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/interruzioni-ed-eccezioni/interruzioni">
+
+## Interruzioni
+
+Segnali **hardware asincroni** che viaggiano sulle **linee di controllo** del bus, generati da dispositivi esterni. Sono asincroni nel senso che arrivano in un istante scorrelato dal programma in esecuzione.
+
+</div>
+
+<div data-note-id="teoria/interruzioni-ed-eccezioni/che-cosa-succede-nell-ordine">
+
+## Che cosa succede, nell'ordine
+
+1. Il dispositivo alza la linea di richiesta.
+2. Il processore termina l'istruzione **in corso** — non la interrompe a metà.
+3. Salva lo **stato**: PC e registro di stato, più i registri che la routine userà.
+4. Disabilita (o abbassa) le interruzioni allo stesso livello, per non essere interrotto subito.
+5. Carica nel PC l'indirizzo della **ISR** (Interrupt Service Routine) ed esegue.
+6. Invia il riscontro al dispositivo, ripristina lo stato e riprende dall'istruzione successiva.
+
+</div>
+
+<div data-note-id="teoria/interruzioni-ed-eccezioni/priorita-e-annidamento">
+
+## Priorità e annidamento
+
+Con più dispositivi serve un ordine. A ogni sorgente si assegna un **livello di priorità**: una richiesta più urgente può interrompere una ISR in corso (**annidamento**), una meno urgente aspetta. Il processore mantiene un livello corrente e accetta solo le richieste superiori. Le interruzioni possono anche essere **mascherate** singolarmente.
+
+</div>
+
+<div data-note-id="teoria/interruzioni-ed-eccezioni/come-si-individua-chi-ha-chiamato">
+
+## Come si individua chi ha chiamato
+
+- **Polling**: il processore interroga i dispositivi in sequenza finché trova quello che ha alzato la richiesta. Semplice, ma il tempo cresce con il numero di dispositivi.
+- **Vettorializzazione**: il dispositivo mette sul bus un identificatore, con cui il processore indicizza una **tabella dei vettori** e salta direttamente alla ISR giusta. Più veloce e indipendente dal numero di dispositivi.
+
+</div>
+
+<div data-note-id="teoria/interruzioni-ed-eccezioni/eccezioni">
+
+## Eccezioni
+
+Eventi **sincroni**, generati dal processore durante l'esecuzione: divisione per zero, overflow, codice operativo illegale, violazione di protezione, chiamate di sistema. Sincroni perché riproducibili — rieseguendo lo stesso programma sugli stessi dati si ripresentano nello stesso punto.
+
+Un'eccezione è sollevata, per esempio, se un processo tenta di accedere alla memoria di altri utenti, di modificare la modalità del sistema o la priorità di altri processi.
+
+</div>
+
+<div data-note-id="teoria/interruzioni-ed-eccezioni/interruzioni-vs-eccezioni-in-breve">
+
+## Interruzioni vs eccezioni, in breve
+
+```
+                interruzione        eccezione
+origine         dispositivo esterno processore
+sincronia       asincrona           sincrona
+riproducibile   no                  sì
+tipico uso      I/O, timer          errori, system call
+```
+
+</div>
+
+<div data-note-id="teoria/interruzioni-ed-eccezioni/il-debugger">
+
+## Il debugger
+
+- **Trace mode**: un'eccezione dopo **ogni** istruzione → esecuzione passo-passo, si ispeziona lo stato a ogni passo.
+- **Breakpoint**: l'eccezione scatta solo in punti scelti → il programma corre a piena velocità fino al successivo.
+
+</div>
+
+<div data-note-id="teoria/interruzioni-ed-eccezioni/i-o-programmato-e-dma">
+
+## I/O programmato e DMA
+
+Nell'I/O **programmato** il processore trasferisce ogni parola personalmente: semplice ma spreca tempo di CPU. Con il **DMA** (Direct Memory Access) un controllore dedicato sposta interi blocchi fra periferica e memoria **senza** il processore, che riceve una sola interruzione a trasferimento concluso. È il meccanismo con cui si legge da disco senza paralizzare la macchina.
+
+</div>
+
+<div data-note-id="teoria/interruzioni-ed-eccezioni/bus-e-buffer">
+
+## Bus e buffer
+
+Un bus trasporta **dati, indirizzi e segnali di controllo**. Quando due dispositivi lavorano a velocità diverse si interpone un **buffer**, che compensa lo scarto accumulando i dati. La trasmissione può essere **parallela** (più bit insieme, corta distanza) o **seriale** (un bit per volta, come USB: meno fili, meno interferenze, distanze maggiori).
+
+Le interruzioni sono essenziali nei sistemi **real-time**, dove un evento deve essere servito entro un tempo massimo, e nei sistemi **multitasking**, dove il timer che scandisce i cambi di contesto è esso stesso una sorgente di interruzione.
+
+</div>
+
+## Schemi
+
+<Schema id="registri-controllo" lang="it" num="1" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/interruzioni-ed-eccezioni/esempio-svolto">
+
+## Esempio svolto
+
+**Due dispositivi chiamano, con priorità diverse.** Il programma principale è in esecuzione; il disco (priorità 2) chiede attenzione, e mentre la sua routine è in corso arriva il timer (priorità 5, più alta):
+
+```
+t₀  programma principale in esecuzione
+t₁  richiesta disco (p2)   → finisce l'istruzione in corso,
+                             salva PC e stato, maschera ≤ 2, salta a ISR_disco
+t₂  ISR_disco in esecuzione
+t₃  richiesta timer (p5)   → 5 > 2, quindi è accolta:
+                             salva PC e stato dell'ISR_disco, salta a ISR_timer
+t₄  ISR_timer finisce      → ripristina e torna dentro ISR_disco
+t₅  ISR_disco finisce      → ripristina e torna al programma principale
+```
+
+Due punti da notare. L'interruzione è servita **fra** due istruzioni, mai a metà: il processore completa quella in corso. E l'annidamento è ammesso solo verso l'alto: se al tempo t₃ avesse chiamato un altro dispositivo di priorità 2, sarebbe rimasto in attesa perché la maschera lo esclude.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/interruzioni-ed-eccezioni/errori-tipici">
+
+## Errori tipici
+
+- Dire che l'interruzione «blocca l'istruzione a metà»: viene servita al confine fra due istruzioni, ed è ciò che rende possibile riprendere esattamente da dove si era.
+- Dimenticare che l'ISR deve **salvare i registri che usa**: il programma interrotto non deve accorgersi di nulla.
+- Confondere la priorità con l'ordine di arrivo: chi ha priorità maggiore passa avanti anche se ha chiesto dopo.
+
+</div>
+
+</Layer>

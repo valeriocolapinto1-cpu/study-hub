@@ -1,0 +1,185 @@
+---
+course: fondamenti-informatica
+topic: input-output
+lang: en
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In two minutes">
+
+<div data-note-id="teoria/input-output/in-due-minuti">
+
+- Every device exposes three registers: **data**, **status**, **control**. Programming I/O means reading and writing those registers.
+- **Memory-mapped**: the registers occupy memory addresses and the normal load/store instructions are used. **Isolated**: a separate space and dedicated instructions (IN/OUT).
+- Three ways of transferring: **programmed** (busy waiting), **interrupt-driven**, **DMA**.
+- **DMA** transfers blocks directly to and from memory and interrupts only at the end: it steals cycles from the processor but spares it handling every word.
+- **Handshake**: two signals, request and acknowledge, to synchronise parts running at different speeds.
+- The **bus** has three groups of lines — data, address, control; modern standards (PCI Express, USB) are serial and packet-based.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/input-output/da-dove-si-parte">
+
+## Where we start
+
+**What you need to know first:** interrupts and service routines, from the module on [interrupts and exceptions](../interruzioni-ed-eccezioni/).
+
+**What problem it solves.** A computer that does not communicate with the outside is useless: it must read keyboards, write to screens, save to disks, send over the network. The trouble is that these devices are **extremely slow** compared with the processor — millions of cycles pass between one keystroke and the next — and each one works its own way. So we need a uniform way of talking to very different objects, and a strategy for not wasting time waiting for them.
+
+**New words.** An **interface** (or controller) is the circuit between the bus and the device that hides its details, exposing registers. **Memory-mapped** means those registers have memory addresses like ordinary cells. **DMA** (Direct Memory Access) is a component that transfers data between device and memory *without* going through the processor. A **handshake** is the two-signal protocol by which two parties synchronise without knowing each other's speed.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/input-output/il-problema-dell-i-o">
+
+## The I/O problem
+
+Processor and memory work in nanoseconds, a keyboard in tenths of a second, a disk in milliseconds. The whole organisation of I/O stems from this **speed gap**: the problem is not exchanging data, it is doing so without the machine standing still waiting.
+
+</div>
+
+<div data-note-id="teoria/input-output/l-interfaccia-di-un-dispositivo">
+
+## The interface of a device
+
+The processor does not talk to the peripheral but to its **interface**, which typically exposes three registers:
+
+- **DATA** — the data in transit;
+- **STATUS** — the status bits: data ready, device busy, error;
+- **CONTROL** — commands and enables, for example “raise an interrupt when you are ready”.
+
+</div>
+
+<div data-note-id="teoria/input-output/dove-vivono-quei-registri-memory-mapped-o-isolato">
+
+## Where those registers live: memory-mapped or isolated
+
+- **Memory-mapped I/O**: the interface registers occupy addresses in the same space as memory. No special instructions are needed — they are read and written with `Load` and `Store`. In exchange, address space is consumed.
+- **Isolated I/O**: a separate address space and dedicated instructions (`IN`, `OUT`), with a control line distinguishing the two spaces.
+
+RISC processors almost always adopt memory-mapped I/O, consistently with the load/store model.
+
+</div>
+
+<div data-note-id="teoria/input-output/tre-modi-di-trasferire">
+
+## Three ways of transferring
+
+1. **Programmed I/O (polling)**: the processor repeatedly queries the status bit until the device is ready, then transfers the word. Very simple, but the processor **burns** the whole waiting time in an empty loop.
+2. **Interrupt-driven**: the processor does something else; it is the device that calls when it is ready. The cost of the context switch is paid, but no waiting is wasted.
+3. **DMA**: for large blocks even one interrupt per word would be too much. A dedicated controller transfers **the whole block** between peripheral and memory by itself, and sends **a single** interrupt at the end.
+
+</div>
+
+<div data-note-id="teoria/input-output/dma-in-dettaglio">
+
+## DMA in detail
+
+The processor programs the controller by writing its registers — starting address in memory, number of words, direction — and then lets it work. The controller in turn becomes **bus master** for the time needed: when it needs the bus it requests it, and the processor hands it over. Taking bus cycles away from the CPU is called *cycle stealing*; transferring a whole block in one go, *burst* mode.
+
+An important side effect: if DMA writes to memory, the copy of that data held by the **cache** becomes stale. It is the coherence problem, which must be handled by invalidating the affected lines.
+
+</div>
+
+<div data-note-id="teoria/input-output/handshake">
+
+## Handshake
+
+Two devices at different speeds synchronise with an exchange of signals: the sender raises “data valid”, the receiver answers “taken”, and only then does the first lower it. The transfer proceeds at the pace of the **slower** of the two, without needing a common clock: it is the difference between an **asynchronous** bus (handshaking) and a **synchronous** one (everything paced by a clock, faster but constrained by the timing of the worst device).
+
+</div>
+
+<div data-note-id="teoria/input-output/il-bus">
+
+## The bus
+
+A bus carries **data, addresses and control signals**. Since several devices share it, **arbitration** is needed: a mechanism establishing who has the right to talk when two ask together. Device outputs are **tri-state**, so whoever is not talking disconnects electrically.
+
+A **buffer** placed in between compensates for the different pace of two devices, accumulating data while waiting for the slower one to consume it.
+
+</div>
+
+<div data-note-id="teoria/input-output/seriale-contro-parallelo">
+
+## Serial versus parallel
+
+Parallel sends several bits together on separate wires: fast over short distances, but wires cost and the signals arrive slightly out of step (*skew*), which limits length and frequency. Serial sends one bit at a time: fewer wires, less interference, much higher frequencies. That is why modern standards are serial — **USB**, **PCI Express** — while parallel has stayed inside the chip.
+
+</div>
+
+<div data-note-id="teoria/input-output/nei-sistemi-embedded">
+
+## In embedded systems
+
+The same mechanisms with tiny peripherals: a **timer** with its count and status registers, which generates a periodic interrupt and is the basis of multiprogramming; a **seven-segment display**, where a combinational network translates the binary digit into which segments light up — a classic synthesis exercise with a truth table.
+
+</div>
+
+## Diagrams
+
+<Schema id="interfaccia-io" lang="en" num="1" />
+
+<Schema id="sistema-calcolo" lang="en" num="2" />
+
+<Schema id="bus-singolo" lang="en" num="3" />
+
+<Schema id="interfaccia-ingresso" lang="en" num="4" />
+
+<Schema id="usb-albero" lang="en" num="5" />
+
+<Schema id="pci-sistema" lang="en" num="6" />
+
+<Schema id="dma-sistema" lang="en" num="7" />
+
+<Schema id="soc-blocchi" lang="en" num="8" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/input-output/esempio-svolto">
+
+## Worked example
+
+**Reading a 512-byte sector from disk: what does it cost the processor?** Let us compare the three ways, assuming the device delivers one word (4 bytes) at a time, i.e. 128 words.
+
+```
+Programmed I/O    128 busy waits: the processor stays blocked
+                  for the whole duration of the transfer
+
+Interrupt-driven  128 interrupts, one per word: each time
+                  state saving + ISR + restoring (tens of cycles)
+
+DMA               a single interrupt, when the block is complete.
+                  The processor sets address, count and direction,
+                  then does something else; the controller steals a few bus cycles
+```
+
+With 128 words the difference is already clear; with a one-megabyte file interrupt-driven I/O is simply impractical. That is why disks and networks use DMA and keyboards do not: with a keyboard interrupts are few and rare, and DMA would be a useless complication.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/input-output/errori-tipici">
+
+## Common mistakes
+
+- Saying that DMA “eliminates interrupts”: one remains, the end-of-block one — which is precisely the point.
+- Forgetting that DMA, by writing to memory, can make the cached copy **stale**: it is the coherence problem.
+- Confusing memory-mapped I/O (where the registers are) with the way of transferring (programmed, interrupt-driven, DMA): they are two independent choices.
+
+</div>
+
+</Layer>

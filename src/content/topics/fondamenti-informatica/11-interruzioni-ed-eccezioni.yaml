@@ -1,0 +1,29 @@
+id: interruzioni-ed-eccezioni
+course: fondamenti-informatica
+order: 11
+title:
+  it: Interruzioni, eccezioni & I/O
+  en: Interrupts, exceptions & I/O
+summary:
+  it: ISR, priorità e annidamento, vettorializzazione, polling vs interrupt, DMA.
+  en: ISRs, priority and nesting, vectoring, polling vs interrupts, DMA.
+group:
+  it: Interruzioni e I/O
+  en: Interrupts and I/O
+objectives:
+  - id: interruzioni-ed-eccezioni.1
+    text:
+      it: Distinguere interruzioni ed eccezioni (origine, sincronia, riproducibilità).
+      en: Distinguish interrupts and exceptions (origin, synchrony, reproducibility).
+  - id: interruzioni-ed-eccezioni.2
+    text:
+      it: Descrivere la sequenza di servizio e il salvataggio del contesto.
+      en: Describe the service sequence and the saving of the context.
+  - id: interruzioni-ed-eccezioni.3
+    text:
+      it: Applicare priorità, mascheramento e annidamento a una sequenza di richieste.
+      en: Apply priority, masking and nesting to a sequence of requests.
+  - id: interruzioni-ed-eccezioni.4
+    text:
+      it: Confrontare polling e interruzioni vettorizzate e calcolare latenze.
+      en: Compare polling and vectored interrupts and compute latencies.

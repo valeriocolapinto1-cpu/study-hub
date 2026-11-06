@@ -1,0 +1,117 @@
+- id: input-output-verifica-1
+  topic: input-output
+  objectives:
+    - input-output.2
+  kind: concetto
+  front:
+    it: Perché l'I/O programmato spreca tempo di processore?
+    en: Why does programmed I/O waste processor time?
+  back:
+    it: "Perché il processore interroga in continuazione il registro di stato in attesa che il dispositivo sia
+      pronto (**busy waiting**): in quel tempo non fa nient'altro, e la periferica è ordini di grandezza più
+      lenta."
+    en: "Because the processor keeps polling the status register waiting for the device to be ready (**busy
+      waiting**): during that time it does nothing else, and the peripheral is orders of magnitude slower."
+- id: input-output-verifica-2
+  topic: input-output
+  objectives:
+    - input-output.2
+  kind: concetto
+  front:
+    it: Che cosa fa il DMA che l'I/O a interruzione da solo non fa?
+    en: What does DMA do that interrupt-driven I/O alone does not?
+  back:
+    it: "Trasferisce l'**intero blocco** senza far passare i dati per il processore: una sola interruzione a fine
+      blocco invece di una per ogni parola. Il processore interviene per impostare il trasferimento e alla
+      fine."
+    en: "It transfers the **whole block** without the data passing through the processor: a single interrupt at
+      the end of the block instead of one per word. The processor steps in to set up the transfer and at the
+      end."
+- id: input-output-verifica-3
+  topic: input-output
+  objectives:
+    - input-output.1
+  kind: concetto
+  front:
+    it: Qual è il vantaggio del memory-mapped I/O, e qual è il prezzo?
+    en: What is the advantage of memory-mapped I/O, and what is the price?
+  back:
+    it: "Vantaggio: nessuna istruzione speciale — tutte le istruzioni di accesso alla memoria, con tutti i modi di
+      indirizzamento, valgono anche per i dispositivi. Prezzo: una parte dello spazio di indirizzamento non è
+      più disponibile per la memoria."
+    en: "Advantage: no special instructions — all memory-access instructions, with all addressing modes, also work
+      for devices. Price: part of the address space is no longer available for memory."
+- id: open-io-01
+  topic: input-output
+  objectives:
+    - input-output.1
+    - input-output.2
+  kind: orale
+  front:
+    it: "Confronta I/O programmato, guidato da interruzioni e DMA: quando conviene ciascuno?"
+  back:
+    it: "Tutti e tre risolvono lo stesso problema — il **divario di velocità** fra processore e periferiche.
+      Nell'**I/O programmato** il processore interroga ciclicamente il bit di stato finché il dispositivo non
+      è pronto (polling): semplicissimo da realizzare, ma brucia in un ciclo vuoto tutto il tempo dell'attesa;
+      accettabile solo se il dispositivo è veloce o se non c'è altro da fare. Nell'I/O **guidato da
+      interruzioni** il processore fa altro ed è il dispositivo a chiamare quando è pronto: si paga il costo
+      del salvataggio dello stato e del cambio di contesto, ma non si spreca attesa — è la scelta normale per
+      dispositivi lenti e sporadici come la tastiera. Con il **DMA** un controllore dedicato trasferisce da
+      solo un **intero blocco** fra periferica e memoria, diventando temporaneamente padrone del bus, e manda
+      **una sola** interruzione alla fine: indispensabile per il disco o la rete, dove un'interruzione per
+      parola sarebbe insostenibile. Il DMA introduce però il problema della **coerenza**: scrivendo in memoria
+      può rendere obsoleta la copia tenuta in cache."
+- id: def-dma
+  topic: input-output
+  objectives:
+    - input-output.1
+    - input-output.2
+  kind: definizione
+  front:
+    it: DMA
+  back:
+    it: >-
+      Trasferimento di un blocco fra periferica e memoria eseguito da un controllore dedicato, senza impegnare
+      il processore.
+
+
+      Genera una sola interruzione a fine blocco, ma può rendere obsoleta la copia in cache.
+- id: def-memorymapped
+  topic: input-output
+  objectives:
+    - input-output.1
+    - input-output.2
+  kind: definizione
+  front:
+    it: I/O memory-mapped
+  back:
+    it: |-
+      I registri delle interfacce occupano indirizzi dello spazio di memoria e si usano con Load e Store.
+
+      undefined
+- id: def-handshake
+  topic: input-output
+  objectives:
+    - input-output.1
+    - input-output.2
+  kind: definizione
+  front:
+    it: Handshake
+  back:
+    it: |-
+      Scambio di segnali «dato valido» / «preso» che sincronizza due dispositivi senza clock comune.
+
+      Il trasferimento procede al passo del più lento dei due.
+- id: def-buffer
+  topic: input-output
+  objectives:
+    - input-output.1
+    - input-output.2
+  kind: definizione
+  front:
+    it: Buffer
+  back:
+    it: |-
+      Memoria intermedia che compensa la differenza di velocità fra due dispositivi.
+
+      undefined

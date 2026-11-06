@@ -1,0 +1,185 @@
+---
+course: fondamenti-informatica
+topic: input-output
+lang: it
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In due minuti">
+
+<div data-note-id="teoria/input-output/in-due-minuti">
+
+- Ogni dispositivo espone tre registri: **dati**, **stato**, **controllo**. Programmare l'I/O significa leggere e scrivere quei registri.
+- **Memory-mapped**: i registri occupano indirizzi di memoria e si usano le normali load/store. **Isolato**: spazio separato e istruzioni dedicate (IN/OUT).
+- Tre modi di trasferire: **programmato** (attesa attiva), **a interruzione**, **DMA**.
+- Il **DMA** trasferisce blocchi direttamente da e verso la memoria e interrompe solo alla fine: ruba cicli al processore ma gli evita di gestire ogni parola.
+- **Handshake**: due segnali, richiesta e conferma, per sincronizzare parti a velocità diverse.
+- Il **bus** ha tre gruppi di linee — dati, indirizzi, controllo; gli standard moderni (PCI Express, USB) sono seriali e a pacchetti.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/input-output/da-dove-si-parte">
+
+## Da dove si parte
+
+**Cosa serve sapere prima:** le interruzioni e le routine di servizio, dal modulo su [interruzioni ed eccezioni](../interruzioni-ed-eccezioni/).
+
+**Che problema risolve.** Un calcolatore che non comunica con l’esterno non serve a niente: deve leggere tastiere, scrivere su schermi, salvare su dischi, spedire in rete. Il guaio è che questi dispositivi sono **lentissimi** rispetto al processore — fra un tasto premuto e il successivo passano milioni di cicli — e ognuno funziona a modo suo. Serve quindi un modo uniforme di parlare con oggetti diversissimi, e una strategia per non sprecare tempo aspettandoli.
+
+**Le parole nuove.** Un’**interfaccia** (o controllore) è il circuito che sta fra il bus e il dispositivo e ne nasconde i dettagli, esponendo dei registri. **Memory-mapped** significa che quei registri hanno indirizzi di memoria come le celle normali. Il **DMA** (Direct Memory Access) è un componente che trasferisce dati fra dispositivo e memoria *senza* passare per il processore. L’**handshake** è il protocollo a due segnali con cui due parti si sincronizzano senza conoscere le rispettive velocità.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/input-output/il-problema-dell-i-o">
+
+## Il problema dell'I/O
+
+Processore e memoria lavorano in nanosecondi, una tastiera in decimi di secondo, un disco in millisecondi. Tutta l'organizzazione dell'I/O nasce da questo **divario di velocità**: il problema non è scambiare i dati, è farlo senza che la macchina resti ferma ad aspettare.
+
+</div>
+
+<div data-note-id="teoria/input-output/l-interfaccia-di-un-dispositivo">
+
+## L'interfaccia di un dispositivo
+
+Il processore non parla con la periferica ma con la sua **interfaccia**, che espone tipicamente tre registri:
+
+- **DATA** — il dato in transito;
+- **STATUS** — i bit di stato: dato pronto, dispositivo occupato, errore;
+- **CONTROL** — i comandi e le abilitazioni, per esempio «genera interruzione quando sei pronto».
+
+</div>
+
+<div data-note-id="teoria/input-output/dove-vivono-quei-registri-memory-mapped-o-isolato">
+
+## Dove vivono quei registri: memory-mapped o isolato
+
+- **Memory-mapped I/O**: i registri dell'interfaccia occupano indirizzi dello stesso spazio della memoria. Non servono istruzioni speciali — si leggono e scrivono con `Load` e `Store`. In cambio si consuma spazio di indirizzamento.
+- **I/O isolato**: spazio di indirizzi separato e istruzioni dedicate (`IN`, `OUT`), con una linea di controllo che distingue i due spazi.
+
+I RISC adottano quasi sempre il memory-mapped, coerentemente con il modello load/store.
+
+</div>
+
+<div data-note-id="teoria/input-output/tre-modi-di-trasferire">
+
+## Tre modi di trasferire
+
+1. **I/O programmato (polling)**: il processore interroga ciclicamente il bit di stato finché il dispositivo non è pronto, poi trasferisce la parola. Semplicissimo, ma il processore **brucia** tutto il tempo dell'attesa in un ciclo vuoto.
+2. **Guidato da interruzioni**: il processore fa altro; è il dispositivo a chiamare quando è pronto. Si paga il costo del cambio di contesto, ma non si spreca attesa.
+3. **DMA**: per blocchi grandi anche un'interruzione per parola sarebbe troppo. Un controllore dedicato trasferisce **l'intero blocco** fra periferica e memoria da solo, e manda **una sola** interruzione alla fine.
+
+</div>
+
+<div data-note-id="teoria/input-output/dma-in-dettaglio">
+
+## DMA in dettaglio
+
+Il processore programma il controllore scrivendone i registri — indirizzo di partenza in memoria, numero di parole, direzione — e poi lo lascia lavorare. Il controllore diventa a sua volta **padrone del bus** per il tempo necessario: quando ne ha bisogno lo richiede, e il processore glielo cede. Sottraendo cicli di bus alla CPU si parla di *cycle stealing*; trasferendo un blocco intero in un colpo solo, di modalità *burst*.
+
+Effetto collaterale importante: se il DMA scrive in memoria, la copia che la **cache** tiene di quei dati diventa obsoleta. È il problema della coerenza, che va gestito invalidando le linee interessate.
+
+</div>
+
+<div data-note-id="teoria/input-output/handshake">
+
+## Handshake
+
+Due dispositivi a velocità diverse si sincronizzano con uno scambio di segnali: chi manda alza «dato valido», chi riceve risponde «preso», e solo allora il primo abbassa. Il trasferimento procede al passo del **più lento** dei due, senza bisogno di un clock comune: è la differenza fra bus **asincrono** (a handshake) e **sincrono** (tutto scandito da un clock, più veloce ma vincolato dai tempi del dispositivo peggiore).
+
+</div>
+
+<div data-note-id="teoria/input-output/il-bus">
+
+## Il bus
+
+Un bus trasporta **dati, indirizzi e segnali di controllo**. Poiché più dispositivi lo condividono, serve l'**arbitraggio**: un meccanismo che stabilisca chi ha diritto di parlare quando due lo chiedono insieme. Le uscite dei dispositivi sono **tri-state**, così chi non parla si scollega elettricamente.
+
+Un **buffer** interposto compensa la differenza di ritmo fra due dispositivi, accumulando i dati in attesa che il più lento li consumi.
+
+</div>
+
+<div data-note-id="teoria/input-output/seriale-contro-parallelo">
+
+## Seriale contro parallelo
+
+Il parallelo manda più bit insieme su fili distinti: veloce sulle distanze brevi, ma i fili costano e i segnali arrivano leggermente sfasati (*skew*), il che ne limita la lunghezza e la frequenza. Il seriale manda un bit per volta: meno fili, meno interferenze, frequenze molto più alte. Per questo gli standard moderni sono seriali — **USB**, **PCI Express** — mentre il parallelo è rimasto dentro il chip.
+
+</div>
+
+<div data-note-id="teoria/input-output/nei-sistemi-embedded">
+
+## Nei sistemi embedded
+
+Gli stessi meccanismi con periferiche minuscole: un **timer** con i suoi registri di conteggio e di stato, che genera un'interruzione periodica ed è la base della multiprogrammazione; un **display a sette segmenti**, dove una rete combinatoria traduce la cifra binaria nell'accensione dei segmenti — un classico esercizio di sintesi con tabella di verità.
+
+</div>
+
+## Schemi
+
+<Schema id="interfaccia-io" lang="it" num="1" />
+
+<Schema id="sistema-calcolo" lang="it" num="2" />
+
+<Schema id="bus-singolo" lang="it" num="3" />
+
+<Schema id="interfaccia-ingresso" lang="it" num="4" />
+
+<Schema id="usb-albero" lang="it" num="5" />
+
+<Schema id="pci-sistema" lang="it" num="6" />
+
+<Schema id="dma-sistema" lang="it" num="7" />
+
+<Schema id="soc-blocchi" lang="it" num="8" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/input-output/esempio-svolto">
+
+## Esempio svolto
+
+**Leggere un settore di 512 byte da disco: quanto costa al processore?** Confrontiamo i tre modi, supponendo che il dispositivo consegni una parola (4 byte) per volta, cioè 128 parole.
+
+```
+I/O programmato   128 attese attive: il processore resta bloccato
+                  per l'intera durata del trasferimento
+
+A interruzione    128 interruzioni, una per parola: ogni volta
+                  salvataggio stato + ISR + ripristino (decine di cicli)
+
+DMA               1 sola interruzione, a blocco completato.
+                  Il processore imposta indirizzo, conteggio e verso,
+                  poi fa altro; il controllore ruba qualche ciclo di bus
+```
+
+Con 128 parole la differenza è già netta; con un file da un megabyte l'I/O a interruzione è semplicemente impraticabile. È per questo che dischi e rete usano il DMA e la tastiera no: con la tastiera le interruzioni sono poche e rare, e il DMA sarebbe complicazione inutile.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/input-output/errori-tipici">
+
+## Errori tipici
+
+- Dire che il DMA «elimina le interruzioni»: ne resta una, quella di fine blocco — che è proprio il punto.
+- Dimenticare che il DMA scrivendo in memoria può rendere **obsoleta** la copia in cache: è il problema della coerenza.
+- Confondere memory-mapped I/O (dove stanno i registri) con il modo di trasferire (programmato, a interruzione, DMA): sono due scelte indipendenti.
+
+</div>
+
+</Layer>

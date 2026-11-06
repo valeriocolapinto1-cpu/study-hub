@@ -1,0 +1,126 @@
+- id: interruzioni-ed-eccezioni-verifica-1
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+  kind: concetto
+  front:
+    it: Qual è la differenza sostanziale fra interruzione ed eccezione?
+    en: What is the essential difference between an interrupt and an exception?
+  back:
+    it: "L'interruzione è **asincrona** e viene da fuori: capita fra un'istruzione e l'altra, indipendentemente da
+      cosa si stia eseguendo. L'eccezione è **sincrona**: la provoca l'istruzione in corso, e rieseguendo lo
+      stesso programma si ripresenta nello stesso punto."
+    en: "The interrupt is **asynchronous** and comes from outside: it happens between one instruction and the
+      next, regardless of what is being executed. The exception is **synchronous**: the current instruction
+      causes it, and re-running the same program it shows up at the same point."
+- id: interruzioni-ed-eccezioni-verifica-2
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.2
+  kind: concetto
+  front:
+    it: Perché all'ingresso della routine di servizio le interruzioni vengono in genere disabilitate?
+    en: Why are interrupts usually disabled on entering the service routine?
+  back:
+    it: "Per proteggere il salvataggio dello stato: una seconda richiesta di pari priorità, accolta prima che PC e
+      registri siano al sicuro, li sovrascriverebbe e il ritorno non sarebbe più possibile."
+    en: "To protect the saving of the state: a second request of equal priority, accepted before PC and registers
+      are safe, would overwrite them and returning would no longer be possible."
+- id: interruzioni-ed-eccezioni-verifica-3
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.4
+  kind: concetto
+  front:
+    it: "Vettorizzate o polling: qual è il vantaggio delle prime?"
+    en: "Vectored or polling: what is the advantage of the former?"
+  back:
+    it: Il dispositivo fornisce da sé l'indirizzo della propria routine, quindi il tempo di individuazione è
+      **costante** e non dipende da quanti dispositivi ci sono. Col polling si interrogano in sequenza e il
+      tempo cresce con il numero.
+    en: The device supplies the address of its own routine, so the identification time is **constant** and does
+      not depend on how many devices there are. With polling they are queried in sequence and the time grows
+      with their number.
+- id: open-irq-01
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  kind: orale
+  front:
+    it: Spiega la differenza tra interruzioni ed eccezioni.
+  back:
+    it: Le interruzioni sono segnali hardware asincroni da dispositivi esterni (sulle linee di controllo del bus);
+      le eccezioni sono eventi software sincroni generati dal processore (div/0, overflow, chiamate di
+      sistema). Entrambe sospendono il programma, salvano lo stato e invocano una routine; le eccezioni sono
+      più versatili e possono richiamare routine diverse. Cita ISR e salvataggio di PC/registri.
+- id: open-irq-02
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  kind: orale
+  front:
+    it: Come sfrutta un debugger il meccanismo delle eccezioni?
+  back:
+    it: "Il debugger usa eccezioni generate dal processore per riprendere il controllo del programma sotto esame.
+      In **trace mode** viene sollevata un'eccezione dopo *ogni* istruzione, così l'esecuzione procede
+      passo-passo e si può ispezionare lo stato a ogni passo. Con i **breakpoint** l'eccezione scatta solo in
+      punti scelti: il programma corre a piena velocità fino al breakpoint successivo. In entrambi i casi il
+      controllo passa a una routine del debugger dopo il salvataggio dello stato."
+- id: def-interruzione
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  kind: definizione
+  front:
+    it: Interruzione
+  back:
+    it: |-
+      Segnale hardware asincrono, generato da un dispositivo esterno sulle linee di controllo del bus.
+
+      Il processore termina l’istruzione in corso, salva lo stato ed esegue la ISR.
+- id: def-eccezione
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  kind: definizione
+  front:
+    it: Eccezione
+  back:
+    it: >-
+      Evento sincrono generato dal processore durante l’esecuzione: divisione per zero, overflow, codice
+      illegale, chiamata di sistema.
+
+
+      Sincrona significa riproducibile: rieseguendo lo stesso programma si ripresenta nello stesso punto.
+- id: def-isr
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  kind: definizione
+  front:
+    it: ISR
+  back:
+    it: |-
+      Routine di servizio eseguita in risposta a un’interruzione.
+
+      undefined
+- id: def-vettorializzata
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  kind: definizione
+  front:
+    it: Interruzione vettorializzata
+  back:
+    it: >-
+      Il dispositivo fornisce un identificatore con cui si indicizza la tabella dei vettori e si salta
+      direttamente alla routine giusta.
+
+
+      undefined
