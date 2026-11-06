@@ -1,0 +1,103 @@
+---
+course: fisica-2
+topic: conduttori-capacita
+lang: en
+---
+
+<Layer kind="intuizione">
+
+In a conductor charges are free to move: they rearrange until they have cancelled the field inside the material. Everything said about conductors in equilibrium follows from this fact: charge only on the surface, equipotential volume, external field perpendicular to the surface.
+
+A **capacitor** stores charge and energy by placing two conductors with opposite charges close to each other. The capacitance $C=Q/\Delta V$ depends only on the geometry and is always found with the same scheme (field from Gauss, integral for $\Delta V$, ratio). The energy spent charging it stays "in the field", with density $\frac12\varepsilon_0E^2$.
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Conductors in equilibrium
+
+In a conductor in electrostatic equilibrium the free charges are at rest, therefore:
+
+- the field inside the material is **zero**;
+- the excess charge lies only on the **surface** (by Gauss $\rho=0$ inside);
+- the conductor is an **equipotential** volume and the external field is perpendicular to the surface.
+
+**Coulomb's theorem.** With a pillbox straddling the surface (flux only through the outer face): $E\,dS = \sigma\,dS/\varepsilon_0$, that is
+
+$$
+\vec E = \frac{\sigma}{\varepsilon_0}\,\hat n
+$$
+
+**Point effect.** Two spheres of radii $R_1$, $R_2$ joined by a wire are at the same potential: $\frac{Q_1}{R_1}=\frac{Q_2}{R_2}$, hence $\sigma_1R_1=\sigma_2R_2$. The charge density, and so the field, is larger where the radius of curvature is small (tips): there the air can become conducting (lightning rods, corona discharge).
+
+**Electrostatic shielding.** In an empty cavity of a conductor the field is zero, whatever the external field (Faraday cage). If the cavity contains a charge $q$, a charge $-q$ is induced on the inner wall and $+q$ appears on the outer surface (complete induction); grounding the conductor cancels the outer charge.
+
+## Capacitance and capacitors
+
+For an isolated conductor $Q$ and $V$ are proportional: $C = Q/V$ (farad). Sphere: $C=4\pi\varepsilon_0R$; the Earth ($R\simeq6.4\times10^6$ m) has $C\simeq0.7$ mF. For a system of conductors one defines the _coefficients of potential_ $V_i=\sum_j p_{ij}Q_j$ and of _induction_ $Q_i=\sum_j c_{ij}V_j$ (symmetric matrices).
+
+A **capacitor** consists of two conductors in complete induction with charges $\pm Q$: $C = Q/\Delta V$. Procedure: compute $E$ between the plates with Gauss, integrate to get $\Delta V$, divide.
+
+- Parallel-plate: $E=\sigma/\varepsilon_0$, $\Delta V = Qd/(\varepsilon_0S)$ ⇒ $C=\dfrac{\varepsilon_0S}{d}$.
+- Spherical: $\Delta V = \frac{Q}{4\pi\varepsilon_0}\left(\frac1{R_1}-\frac1{R_2}\right)$ ⇒ $C = 4\pi\varepsilon_0\dfrac{R_1R_2}{R_2-R_1}$.
+- Cylindrical (length $L$): $\Delta V = \frac{\lambda}{2\pi\varepsilon_0}\ln\frac{R_2}{R_1}$ ⇒ $C = \dfrac{2\pi\varepsilon_0L}{\ln(R_2/R_1)}$.
+
+**Connections.** In parallel they have the same $\Delta V$ and the charges add: $C_p=\sum C_i$. In series they carry the same charge and the voltages add: $1/C_s=\sum 1/C_i$.
+
+## Electrostatic energy
+
+The work needed to assemble a set of point charges is $U=\frac12\sum_i q_iV_i = \sum_{i\lt j}\frac{q_iq_j}{4\pi\varepsilon_0r_{ij}}$. For a system of conductors $U=\frac12\sum Q_iV_i$; for a capacitor, charging it with $dW = V\,dq = \frac{q}{C}dq$:
+
+$$
+U = \frac{Q^2}{2C}=\frac12 CV^2 = \frac12QV
+$$
+
+In the parallel-plate capacitor $U=\frac12\varepsilon_0E^2\,(Sd)$: the energy is distributed in the field with density
+
+$$
+u = \frac12\varepsilon_0E^2,\qquad U=\int u\,dV
+$$
+
+(for example, the energy of a charged sphere is obtained by integrating $u$ over all space).
+
+## Mechanical actions on conductors
+
+An outward **electrostatic pressure** $p = \frac{\sigma^2}{2\varepsilon_0}=\frac12\varepsilon_0E^2$ acts on the surface of a conductor (the field acting on the surface charge is the average of the values inside and outside, $\sigma/2\varepsilon_0$). The plates of a parallel-plate capacitor attract each other with $F=\frac{Q^2}{2\varepsilon_0S}$.
+
+**Method of virtual work.** At constant charge (isolated system) $F_x=-\left(\frac{\partial U}{\partial x}\right)_Q$; at constant potential (connected to a generator) $F_x=+\left(\frac{\partial U}{\partial x}\right)_V$, because the generator supplies twice the change in the capacitor's energy.
+
+## The general problem of electrostatics
+
+Given the charges and the potentials (or the charges) of the conductors, the potential is the solution of Poisson's equation with those boundary conditions, and the solution is **unique**. That is why it is enough to "guess" a solution that satisfies the conditions. Example: the _method of image charges_. A charge $q$ at distance $d$ from a grounded conducting plane produces in the half-space the same field as $q$ together with a symmetric charge $-q$; the charge is attracted with $F=\frac{q^2}{4\pi\varepsilon_0(2d)^2}$.
+
+<Callout tone="esame" title="At the exam">
+In problems with conducting slabs inserted between the plates you get capacitors in series, and the thickness of the slab is subtracted from $d$. If a capacitor stays connected to the generator, $V$ is constant; if it is isolated, $Q$ is constant. Always ask yourself which of the two stays fixed.
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Worked example: conducting slab in a parallel-plate capacitor
+
+A parallel-plate capacitor has plates of area $S=100\ \mathrm{cm^2}$ at distance $d=2\ \mathrm{mm}$ and is charged to $V_0=100\ \mathrm V$. A conducting slab of thickness $s=1\ \mathrm{mm}$ is inserted parallel to the plates. We compare the isolated capacitor with the capacitor connected to the generator.
+
+1. **Capacitance.** Before, $C_0=\varepsilon_0S/d\simeq 44.3\ \mathrm{pF}$. Inside the slab the field is zero: two capacitors in series remain, with total gap $d-s$, so $C=\varepsilon_0S/(d-s)\simeq 88.5\ \mathrm{pF}$, independent of the position of the slab.
+2. **Isolated capacitor ($Q$ constant).** $Q=C_0V_0\simeq 4.43\ \mathrm{nC}$; after insertion $V=Q/C=50\ \mathrm V$. The energy goes from $U_0=\frac12C_0V_0^2\simeq 221\ \mathrm{nJ}$ to $U=Q^2/2C\simeq 111\ \mathrm{nJ}$: it decreases, so the slab is **pulled** in.
+3. **Connected capacitor ($V$ constant).** The charge rises to $Q'=CV_0\simeq 8.85\ \mathrm{nC}$ and the energy to $U'=\frac12CV_0^2\simeq 443\ \mathrm{nJ}$. The generator supplies $\Delta Q\,V_0\simeq 443\ \mathrm{nJ}$, twice $\Delta U\simeq 221\ \mathrm{nJ}$: half goes into the capacitor's energy, the other half is the work done on the slab, which is pulled in in this case too.
+
+**Moral.** Before using $U=Q^2/2C$ or $U=\frac12CV^2$, decide which quantity stays fixed.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Common mistakes
+
+- **Putting charge inside the volume of a conductor.** At equilibrium the excess charge lies only on the surface; inside the material $\vec E=0$.
+- **Using $\sigma/2\varepsilon_0$ next to a conductor.** Just outside the surface of a conductor the field is $\sigma/\varepsilon_0$ (Coulomb's theorem); $\sigma/2\varepsilon_0$ is the field of an isolated plane, or the field acting on the surface charge.
+- **Mixing up series and parallel.** Same charge → series (the $1/C$ add); same voltage → parallel (the $C$ add).
+- **Virtual work with the wrong sign.** At constant $Q$, $F_x=-\partial U/\partial x$; at constant $V$, $F_x=+\partial U/\partial x$: the generator supplies twice the change in energy.
+- **Forgetting complete induction.** With a charge $q$ in the cavity there is $-q$ on the inner wall and an extra $+q$ on the outer surface, on top of the shell's initial charge.
+
+</Layer>

@@ -1,0 +1,21 @@
+id: magnetostatica-nel-vuoto
+course: fisica-2
+order: 5
+title: { it: "Magnetostatica nel vuoto", en: "Magnetostatics in vacuum" }
+summary:
+  it: Forza di Lorentz e moto delle cariche, azioni sui circuiti, Biot-Savart, teorema di Ampère, potenziale vettore, forze tra fili ed effetto Hall.
+  en: Lorentz force and motion of charges, actions on circuits, Biot-Savart, Ampère's theorem, vector potential, forces between wires and the Hall effect.
+group: { it: "Fenomeni magnetici stazionari nel vuoto e nella materia", en: "Steady magnetic phenomena in vacuum and in matter" }
+objectives:
+  - id: magnetostatica-nel-vuoto.1
+    text: { it: "Usare la forza di Lorentz per descrivere il moto di una carica in B (selettore di velocità, spettrometro, ciclotrone)", en: "Use the Lorentz force to describe the motion of a charge in B (velocity selector, spectrometer, cyclotron)" }
+  - id: magnetostatica-nel-vuoto.2
+    text: { it: "Calcolare forza e momento su un circuito percorso da corrente e definire il momento magnetico", en: "Compute force and torque on a current-carrying circuit and define the magnetic moment" }
+  - id: magnetostatica-nel-vuoto.3
+    text: { it: "Ricavare con Biot-Savart il campo di filo, spira e solenoide", en: "Derive with Biot-Savart the field of a wire, a loop and a solenoid" }
+  - id: magnetostatica-nel-vuoto.4
+    text: { it: "Enunciare le equazioni di Maxwell per B stazionario e usare il teorema di Ampère con le simmetrie", en: "State Maxwell's equations for steady B and use Ampère's theorem with symmetry" }
+  - id: magnetostatica-nel-vuoto.5
+    text: { it: "Definire il potenziale vettore e le sue proprietà", en: "Define the vector potential and its properties" }
+  - id: magnetostatica-nel-vuoto.6
+    text: { it: "Calcolare la forza tra fili paralleli (definizione dell'ampere) e descrivere l'effetto Hall", en: "Compute the force between parallel wires (definition of the ampere) and describe the Hall effect" }

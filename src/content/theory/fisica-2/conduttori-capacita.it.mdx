@@ -1,0 +1,103 @@
+---
+course: fisica-2
+topic: conduttori-capacita
+lang: it
+---
+
+<Layer kind="intuizione">
+
+In un conduttore le cariche sono libere di muoversi: si spostano finché non hanno annullato il campo all'interno del materiale. Tutto ciò che si dice sui conduttori in equilibrio discende da questo fatto: carica solo in superficie, volume equipotenziale, campo esterno perpendicolare alla superficie.
+
+Un **condensatore** è un modo di immagazzinare carica ed energia mettendo due conduttori vicini con cariche opposte. La capacità $C=Q/\Delta V$ dipende solo dalla geometria: si ricava sempre con lo stesso schema (campo con Gauss, integrale per $\Delta V$, rapporto). L'energia spesa per caricarlo resta "nel campo", con densità $\frac12\varepsilon_0E^2$.
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Conduttori in equilibrio
+
+In un conduttore in equilibrio elettrostatico le cariche libere sono ferme, quindi:
+
+- il campo all'interno del materiale è **nullo**;
+- la carica in eccesso si trova solo sulla **superficie** (per Gauss $\rho=0$ all'interno);
+- il conduttore è un volume **equipotenziale** e il campo esterno è perpendicolare alla superficie.
+
+**Teorema di Coulomb.** Con una scatoletta a cavallo della superficie (flusso solo dalla faccia esterna): $E\,dS = \sigma\,dS/\varepsilon_0$, cioè
+
+$$
+\vec E = \frac{\sigma}{\varepsilon_0}\,\hat n
+$$
+
+**Potere delle punte.** Due sfere di raggi $R_1$, $R_2$ collegate da un filo hanno lo stesso potenziale: $\frac{Q_1}{R_1}=\frac{Q_2}{R_2}$, quindi $\sigma_1R_1=\sigma_2R_2$. La densità di carica, e quindi il campo, è maggiore dove il raggio di curvatura è piccolo (punte): lì l'aria può diventare conduttrice (parafulmini, effluvio).
+
+**Schermo elettrostatico.** In una cavità vuota di un conduttore il campo è nullo, qualunque sia il campo esterno (gabbia di Faraday). Se nella cavità c'è una carica $q$, sulla parete interna si induce $-q$ e sulla superficie esterna compare $+q$ (induzione completa); collegando il conduttore a terra la carica esterna si annulla.
+
+## Capacità e condensatori
+
+Per un conduttore isolato $Q$ e $V$ sono proporzionali: $C = Q/V$ (farad). Sfera: $C=4\pi\varepsilon_0R$; la Terra ($R\simeq6{,}4\times10^6$ m) ha $C\simeq0{,}7$ mF. Per un sistema di conduttori si definiscono i _coefficienti di potenziale_ $V_i=\sum_j p_{ij}Q_j$ e di _induzione_ $Q_i=\sum_j c_{ij}V_j$ (matrici simmetriche).
+
+Un **condensatore** è formato da due conduttori in induzione completa con cariche $\pm Q$: $C = Q/\Delta V$. Procedura: si calcola $E$ tra le armature con Gauss, si integra per avere $\Delta V$, si divide.
+
+- Piano: $E=\sigma/\varepsilon_0$, $\Delta V = Qd/(\varepsilon_0S)$ ⇒ $C=\dfrac{\varepsilon_0S}{d}$.
+- Sferico: $\Delta V = \frac{Q}{4\pi\varepsilon_0}\left(\frac1{R_1}-\frac1{R_2}\right)$ ⇒ $C = 4\pi\varepsilon_0\dfrac{R_1R_2}{R_2-R_1}$.
+- Cilindrico (lunghezza $L$): $\Delta V = \frac{\lambda}{2\pi\varepsilon_0}\ln\frac{R_2}{R_1}$ ⇒ $C = \dfrac{2\pi\varepsilon_0L}{\ln(R_2/R_1)}$.
+
+**Collegamenti.** In parallelo hanno la stessa $\Delta V$ e le cariche si sommano: $C_p=\sum C_i$. In serie hanno la stessa carica e le tensioni si sommano: $1/C_s=\sum 1/C_i$.
+
+## Energia elettrostatica
+
+Il lavoro per costruire una distribuzione di cariche puntiformi è $U=\frac12\sum_i q_iV_i = \sum_{i\lt j}\frac{q_iq_j}{4\pi\varepsilon_0r_{ij}}$. Per un sistema di conduttori $U=\frac12\sum Q_iV_i$; per un condensatore, caricandolo con $dW = V\,dq = \frac{q}{C}dq$:
+
+$$
+U = \frac{Q^2}{2C}=\frac12 CV^2 = \frac12QV
+$$
+
+Nel condensatore piano $U=\frac12\varepsilon_0E^2\,(Sd)$: l'energia è distribuita nel campo con densità
+
+$$
+u = \frac12\varepsilon_0E^2,\qquad U=\int u\,dV
+$$
+
+(ad esempio l'energia di una sfera carica si ottiene integrando $u$ in tutto lo spazio).
+
+## Azioni meccaniche sui conduttori
+
+Sulla superficie di un conduttore agisce una **pressione elettrostatica** verso l'esterno $p = \frac{\sigma^2}{2\varepsilon_0}=\frac12\varepsilon_0E^2$ (il campo che agisce sulla carica superficiale è la media dei valori dentro e fuori, $\sigma/2\varepsilon_0$). Le armature di un condensatore piano si attraggono con $F=\frac{Q^2}{2\varepsilon_0S}$.
+
+**Metodo dei lavori virtuali.** A carica costante (sistema isolato) $F_x=-\left(\frac{\partial U}{\partial x}\right)_Q$; a potenziale costante (collegato a un generatore) $F_x=+\left(\frac{\partial U}{\partial x}\right)_V$, perché il generatore fornisce un lavoro doppio della variazione di energia del condensatore.
+
+## Il problema generale dell'elettrostatica
+
+Assegnati le cariche e i potenziali (o le cariche) dei conduttori, il potenziale è la soluzione dell'equazione di Poisson con quelle condizioni al contorno, e la soluzione è **unica**. Per questo basta "indovinare" una soluzione che rispetti le condizioni. Esempio: il _metodo delle cariche immagine_. Una carica $q$ a distanza $d$ da un piano conduttore a terra produce nel semispazio lo stesso campo di $q$ e di una carica $-q$ simmetrica; la carica è attratta con $F=\frac{q^2}{4\pi\varepsilon_0(2d)^2}$.
+
+<Callout tone="esame" title="All'esame">
+Negli esercizi con lastre conduttrici inserite tra le armature si ottengono condensatori in serie, e lo spessore della lastra si sottrae a $d$. Se un condensatore resta collegato al generatore, $V$ è costante; se è isolato, $Q$ è costante. Chiediti sempre quale delle due grandezze resta fissa.
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Esempio svolto: lastra conduttrice in un condensatore piano
+
+Un condensatore piano ha armature di area $S=100\ \mathrm{cm^2}$ a distanza $d=2\ \mathrm{mm}$ ed è caricato a $V_0=100\ \mathrm V$. Si inserisce, parallela alle armature, una lastra conduttrice di spessore $s=1\ \mathrm{mm}$. Confrontiamo il caso del condensatore isolato e quello del condensatore collegato al generatore.
+
+1. **Capacità.** Prima $C_0=\varepsilon_0S/d\simeq 44{,}3\ \mathrm{pF}$. Nella lastra il campo è nullo: restano due condensatori in serie con spessore totale $d-s$, quindi $C=\varepsilon_0S/(d-s)\simeq 88{,}5\ \mathrm{pF}$, indipendente dalla posizione della lastra.
+2. **Condensatore isolato ($Q$ costante).** $Q=C_0V_0\simeq 4{,}43\ \mathrm{nC}$; dopo l'inserimento $V=Q/C=50\ \mathrm V$. L'energia passa da $U_0=\frac12C_0V_0^2\simeq 221\ \mathrm{nJ}$ a $U=Q^2/2C\simeq 111\ \mathrm{nJ}$: diminuisce, quindi la lastra viene **attratta** all'interno.
+3. **Condensatore collegato ($V$ costante).** La carica sale a $Q'=CV_0\simeq 8{,}85\ \mathrm{nC}$ e l'energia a $U'=\frac12CV_0^2\simeq 443\ \mathrm{nJ}$. Il generatore fornisce $\Delta Q\,V_0\simeq 443\ \mathrm{nJ}$, cioè il doppio di $\Delta U\simeq 221\ \mathrm{nJ}$: la metà va in energia del condensatore, l'altra metà è il lavoro fatto sulla lastra, che anche in questo caso è attratta.
+
+**Morale.** Prima di usare $U=Q^2/2C$ o $U=\frac12CV^2$ stabilisci quale grandezza resta fissa.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Errori tipici
+
+- **Mettere carica nel volume di un conduttore.** All'equilibrio la carica in eccesso sta solo sulla superficie; nel materiale $\vec E=0$.
+- **Usare $\sigma/2\varepsilon_0$ vicino a un conduttore.** Appena fuori dalla superficie di un conduttore il campo è $\sigma/\varepsilon_0$ (teorema di Coulomb); $\sigma/2\varepsilon_0$ è il campo di un piano isolato o quello che agisce sulla carica superficiale.
+- **Sbagliare serie e parallelo.** Stessa carica → serie ($1/C$ si sommano); stessa tensione → parallelo ($C$ si sommano).
+- **Lavori virtuali con il segno sbagliato.** A $Q$ costante $F_x=-\partial U/\partial x$, a $V$ costante $F_x=+\partial U/\partial x$: il generatore fornisce il doppio della variazione di energia.
+- **Dimenticare l'induzione completa.** Con una carica $q$ nella cavità, sulla parete interna c'è $-q$ e sulla superficie esterna $+q$ in più rispetto alla carica iniziale del guscio.
+
+</Layer>

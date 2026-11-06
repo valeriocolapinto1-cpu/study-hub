@@ -1,0 +1,23 @@
+id: conduttori-capacita
+course: fisica-2
+order: 2
+title: { it: "Conduttori, capacità ed energia elettrostatica", en: "Conductors, capacitance and electrostatic energy" }
+summary:
+  it: Conduttori in equilibrio, teorema di Coulomb, schermo elettrostatico, capacità e condensatori, energia e pressione elettrostatica, lavori virtuali e cariche immagine.
+  en: Conductors in equilibrium, Coulomb's theorem, electrostatic shielding, capacitance and capacitors, electrostatic energy and pressure, virtual work and image charges.
+group: { it: "Elettrostatica nel vuoto, conduttori, dielettrici", en: "Electrostatics in vacuum, conductors, dielectrics" }
+objectives:
+  - id: conduttori-capacita.1
+    text: { it: "Spiegare le proprietà di un conduttore in equilibrio e applicare il teorema di Coulomb", en: "Explain the properties of a conductor in equilibrium and apply Coulomb's theorem" }
+  - id: conduttori-capacita.2
+    text: { it: "Descrivere schermo elettrostatico, induzione completa e potere delle punte", en: "Describe electrostatic shielding, complete induction and the point effect" }
+  - id: conduttori-capacita.3
+    text: { it: "Ricavare la capacità di conduttore isolato e dei condensatori piano, sferico e cilindrico", en: "Derive the capacitance of an isolated conductor and of parallel-plate, spherical and cylindrical capacitors" }
+  - id: conduttori-capacita.4
+    text: { it: "Risolvere sistemi di condensatori in serie e in parallelo, anche con lastre conduttrici", en: "Solve systems of capacitors in series and in parallel, also with conducting slabs" }
+  - id: conduttori-capacita.5
+    text: { it: "Calcolare l'energia elettrostatica di cariche puntiformi, conduttori e condensatori e la densità di energia del campo", en: "Compute the electrostatic energy of point charges, conductors and capacitors and the energy density of the field" }
+  - id: conduttori-capacita.6
+    text: { it: "Calcolare pressione elettrostatica e forze con il metodo dei lavori virtuali a carica o potenziale costante", en: "Compute electrostatic pressure and forces with virtual work at constant charge or constant potential" }
+  - id: conduttori-capacita.7
+    text: { it: "Usare l'unicità della soluzione e il metodo delle cariche immagine", en: "Use the uniqueness of the solution and the method of image charges" }

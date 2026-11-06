@@ -1,0 +1,89 @@
+---
+course: fisica-2
+topic: dielettrici
+lang: en
+---
+
+<Layer kind="intuizione">
+
+In an insulator charges cannot leave, but they can **shift slightly**: atoms deform and polar molecules line up. Every element of material becomes a tiny dipole, and the dipoles together produce a field that opposes the applied one. As a result the field inside the dielectric is weaker and, for the same voltage, a capacitor stores more charge.
+
+To avoid chasing the polarisation charges, which we do not control, we introduce the vector $\vec D$: its flux depends only on the **free** charges, the ones we place on the plates. The method is always the same: first $\vec D$, then $\vec E$, finally $\vec P$.
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Dielectric constant
+
+Filling an isolated capacitor with an insulator makes the voltage drop to $V_0/\varepsilon_r$, so the capacitance becomes $C=\varepsilon_rC_0$. The **relative dielectric constant** $\varepsilon_r\ge1$ characterises the material ($\varepsilon=\varepsilon_0\varepsilon_r$). The field in the dielectric is reduced: $E=E_0/\varepsilon_r$.
+
+## Microscopic interpretation and polarisation vector
+
+- **Deformation (electronic) polarisation**: the field displaces the electron cloud with respect to the nucleus and induces a moment $\vec p=\alpha\vec E$. In the model of an atom as a uniform spherical cloud $\vec p = 4\pi\varepsilon_0R^3\vec E$. It does not depend on temperature.
+- **Orientation polarisation**: polar molecules (such as water) with a permanent moment $p_0$ partially align with the field, opposed by thermal agitation: $\langle p\rangle=\frac{p_0^2E}{3k_BT}$ (it depends on $T$).
+
+The **polarisation vector** is the dipole moment per unit volume, $\vec P = n\langle\vec p\rangle$. In linear isotropic dielectrics $\vec P=\varepsilon_0\chi\vec E$, with $\chi = \varepsilon_r-1$ the electric susceptibility.
+
+Polarisation is equivalent to (bound) **polarisation charges**: $\sigma_p=\vec P\cdot\hat n$ on the surface and $\rho_p=-\nabla\cdot\vec P$ in the volume (zero if $\vec P$ is uniform). In a parallel-plate capacitor filled with dielectric, the $\sigma_p$ on the faces reduces the effective density: $\sigma_p = \sigma\left(1-\frac1{\varepsilon_r}\right)$.
+
+## The equations with dielectrics
+
+Gauss holds with all charges, free and bound: $\nabla\cdot\vec E=(\rho_{lib}+\rho_p)/\varepsilon_0$. Defining the **electric displacement** vector
+
+$$
+\vec D=\varepsilon_0\vec E+\vec P\quad\Rightarrow\quad \nabla\cdot\vec D=\rho_{lib},\qquad \oint_S\vec D\cdot\hat n\,dS = Q_{lib}
+$$
+
+In linear media $\vec D=\varepsilon\vec E$. Still $\nabla\times\vec E=0$. Procedure: compute $\vec D$ with Gauss from the free charges only, then $\vec E=\vec D/\varepsilon$ in each medium, finally $\vec P$ and the polarisation charges.
+
+## Boundary conditions between two dielectrics
+
+From the Gauss pillbox (no free charges on the surface) one gets $D_{1n}=D_{2n}$; from the zero circulation of $\vec E$ on a small rectangle straddling the surface one gets $E_{1t}=E_{2t}$. Field lines are "refracted":
+
+$$
+\frac{\tan\theta_1}{\tan\theta_2}=\frac{\varepsilon_1}{\varepsilon_2}\quad(\text{angles from the normal})
+$$
+
+The normal field is stronger in the medium with smaller $\varepsilon$.
+
+## Energy in dielectrics and electrostatic machines
+
+The energy density becomes $u=\frac12\vec E\cdot\vec D=\frac12\varepsilon E^2$. A dielectric is sucked in between the plates of a capacitor: the force is found with virtual work, at constant $Q$ or constant $V$.
+
+The **dielectric strength** is the maximum field the material withstands without breakdown (air: about 3 MV/m).
+
+The **Van de Graaff generator** exploits the fact that charge brought inside a hollow conductor moves entirely to the outer surface, whatever potential has been reached. The limit is the dielectric strength of air: $V_{max}=E_{max}R$.
+
+<Callout tone="esame" title="At the exam">
+Dielectric layers parallel to the plates are equivalent to capacitors in series ($D$ equal in all layers); side-by-side dielectrics are equivalent to capacitors in parallel (equal $E$). With a sphere half immersed in a liquid, the potential is the same on the two halves: $E$ is equal above and below, while $\sigma_{lib}$ is different.
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Worked example: dielectric slab partly filling a capacitor
+
+An isolated parallel-plate capacitor has plates of area $S=200\ \mathrm{cm^2}$ at distance $d=4\ \mathrm{mm}$ and charge $Q=10\ \mathrm{nC}$. A dielectric slab of thickness $t=2\ \mathrm{mm}$ and $\varepsilon_r=4$ rests on one plate.
+
+1. **Electric displacement.** With a Gauss pillbox enclosing the plate: $D=\sigma=Q/S=5\times10^{-7}\ \mathrm{C/m^2}$, the same in air and in the dielectric (continuous normal component).
+2. **Fields.** In air $E_a=D/\varepsilon_0\simeq 5.65\times10^4\ \mathrm{V/m}$; in the dielectric $E_d=D/(\varepsilon_0\varepsilon_r)\simeq 1.41\times10^4\ \mathrm{V/m}$.
+3. **Voltage and capacitance.** $\Delta V=E_a(d-t)+E_dt\simeq 113+28=141\ \mathrm V$, so $C=Q/\Delta V\simeq 70.8\ \mathrm{pF}$. The same result follows from two capacitors in series: $C=\dfrac{\varepsilon_0S}{(d-t)+t/\varepsilon_r}$.
+4. **Polarisation.** $P=\varepsilon_0(\varepsilon_r-1)E_d=\sigma\left(1-\frac1{\varepsilon_r}\right)=3.75\times10^{-7}\ \mathrm{C/m^2}$: this is the density of the polarisation charges on the faces of the slab.
+
+**Check.** Without the slab $C_0=\varepsilon_0S/d\simeq 44.3\ \mathrm{pF}$: the dielectric increases the capacitance, but by less than the factor $\varepsilon_r$ because it fills only half of the gap.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Common mistakes
+
+- **Applying Gauss for $\vec D$ with the polarisation charges.** The flux of $\vec D$ counts only free charges; the flux of $\vec E$ counts all charges.
+- **Imposing continuity of the normal $\vec E$ at the interface.** What is conserved is $D_n$ (without free surface charges) and $E_t$, not $E_n$.
+- **Always dividing by $\varepsilon_r$.** $C=\varepsilon_rC_0$ and $E=E_0/\varepsilon_r$ hold only if the dielectric fills **all** the space between the plates; with layers or side-by-side halves, reason with series and parallel.
+- **Confusing $\chi$ and $\varepsilon_r$.** $\vec P=\varepsilon_0\chi\vec E$ with $\chi=\varepsilon_r-1$: in vacuum $\chi=0$, not $1$.
+- **Forgetting the temperature dependence.** Only orientation polarisation depends on $T$; deformation polarisation does not.
+
+</Layer>

@@ -1,0 +1,25 @@
+id: elettrostatica-nel-vuoto
+course: fisica-2
+order: 1
+title: { it: "Elettrostatica nel vuoto: campo elettrico e potenziale", en: "Electrostatics in vacuum: electric field and potential" }
+summary:
+  it: Legge di Coulomb, campo di distribuzioni di carica, teorema di Gauss e I equazione di Maxwell, potenziale, rotore e dipolo elettrico.
+  en: Coulomb's law, field of charge distributions, Gauss's theorem and Maxwell's first equation, potential, curl and electric dipole.
+group: { it: "Elettrostatica nel vuoto, conduttori, dielettrici", en: "Electrostatics in vacuum, conductors, dielectrics" }
+objectives:
+  - id: elettrostatica-nel-vuoto.1
+    text: { it: "Applicare la legge di Coulomb e il principio di sovrapposizione a sistemi di cariche puntiformi", en: "Apply Coulomb's law and the superposition principle to systems of point charges" }
+  - id: elettrostatica-nel-vuoto.2
+    text: { it: "Calcolare per integrazione diretta il campo di filo finito e infinito, anello e disco", en: "Compute by direct integration the field of a finite and infinite wire, a ring and a disc" }
+  - id: elettrostatica-nel-vuoto.3
+    text: { it: "Enunciare e dimostrare il teorema di Gauss e ricavare la forma locale della I equazione di Maxwell", en: "State and prove Gauss's theorem and derive the local form of Maxwell's first equation" }
+  - id: elettrostatica-nel-vuoto.4
+    text: { it: "Usare Gauss per distribuzioni a simmetria sferica, cilindrica e piana (sfera, cilindro pieno e cavo, piano, muro spesso)", en: "Use Gauss for spherically, cylindrically and plane-symmetric distributions (sphere, solid and hollow cylinder, plane, thick slab)" }
+  - id: elettrostatica-nel-vuoto.5
+    text: { it: "Risolvere distribuzioni con un foro o una cavità per sovrapposizione", en: "Solve distributions with a hole or a cavity by superposition" }
+  - id: elettrostatica-nel-vuoto.6
+    text: { it: "Calcolare il potenziale di distribuzioni di carica (anche infinite) e ricavare il campo come gradiente", en: "Compute the potential of charge distributions (infinite ones included) and obtain the field as a gradient" }
+  - id: elettrostatica-nel-vuoto.7
+    text: { it: "Dimostrare la conservatività del campo elettrostatico (rotore nullo) e scrivere le equazioni di Poisson e Laplace", en: "Prove that the electrostatic field is conservative (zero curl) and write Poisson's and Laplace's equations" }
+  - id: elettrostatica-nel-vuoto.8
+    text: { it: "Ricavare potenziale e campo del dipolo elettrico e le azioni meccaniche (forza, momento, energia) in un campo esterno", en: "Derive potential and field of the electric dipole and the mechanical actions (force, torque, energy) in an external field" }

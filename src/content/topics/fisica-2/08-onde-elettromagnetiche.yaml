@@ -1,0 +1,21 @@
+id: onde-elettromagnetiche
+course: fisica-2
+order: 8
+title: { it: "Onde elettromagnetiche", en: "Electromagnetic waves" }
+summary:
+  it: Equazione delle onde, onde piane e sferiche, spettro, energia e vettore di Poynting, potenziali elettrodinamici e radiazione del dipolo oscillante.
+  en: Wave equation, plane and spherical waves, spectrum, energy and Poynting vector, electrodynamic potentials and radiation of the oscillating dipole.
+group: { it: "Onde elettromagnetiche e interazione radiazione-materia", en: "Electromagnetic waves and radiation-matter interaction" }
+objectives:
+  - id: onde-elettromagnetiche.1
+    text: { it: "Ricavare l'equazione delle onde dalle equazioni di Maxwell nel vuoto", en: "Derive the wave equation from Maxwell's equations in vacuum" }
+  - id: onde-elettromagnetiche.2
+    text: { it: "Descrivere le proprietà delle onde piane (trasversalità, E = cB, polarizzazione)", en: "Describe the properties of plane waves (transversality, E = cB, polarisation)" }
+  - id: onde-elettromagnetiche.3
+    text: { it: "Collocare le bande dello spettro elettromagnetico", en: "Place the bands of the electromagnetic spectrum" }
+  - id: onde-elettromagnetiche.4
+    text: { it: "Dimostrare il teorema di Poynting e calcolare intensità, densità di energia e pressione di radiazione", en: "Prove Poynting's theorem and compute intensity, energy density and radiation pressure" }
+  - id: onde-elettromagnetiche.5
+    text: { it: "Introdurre i potenziali elettrodinamici e la gauge di Lorentz", en: "Introduce the electrodynamic potentials and the Lorenz gauge" }
+  - id: onde-elettromagnetiche.6
+    text: { it: "Descrivere la radiazione del dipolo oscillante (campi lontani, potenza irraggiata)", en: "Describe the radiation of the oscillating dipole (far fields, radiated power)" }

@@ -4,6 +4,8 @@
  */
 import { GLOBAL_SCOPE, read, write } from '../engine/storage';
 import { runMigrations } from '../engine/migrate';
+// Voci di migrazione dei corsi (src/courses/<id>/migrations.ts): si registrano all'import.
+import.meta.glob('../courses/*/migrations.ts', { eager: true });
 import './search';
 import './pwa';
 

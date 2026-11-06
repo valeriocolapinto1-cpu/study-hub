@@ -1,0 +1,23 @@
+id: corrente-stazionaria
+course: fisica-2
+order: 4
+title: { it: "Corrente elettrica stazionaria", en: "Steady electric current" }
+summary:
+  it: Corrente e densità di corrente, continuità, legge di Ohm e resistenza, effetto Joule, generatori, reti in continua con Kirchhoff e Thevenin, misure, circuito RC.
+  en: Current and current density, continuity, Ohm's law and resistance, Joule heating, generators, DC networks with Kirchhoff and Thevenin, measurements, the RC circuit.
+group: { it: "Corrente elettrica stazionaria", en: "Steady electric current" }
+objectives:
+  - id: corrente-stazionaria.1
+    text: { it: "Collegare corrente, densità di corrente e velocità di deriva e ricavare l'equazione di continuità", en: "Relate current, current density and drift velocity and derive the continuity equation" }
+  - id: corrente-stazionaria.2
+    text: { it: "Applicare la legge di Ohm locale e calcolare la resistenza di strutture conduttrici", en: "Apply the local Ohm's law and compute the resistance of conducting structures" }
+  - id: corrente-stazionaria.3
+    text: { it: "Calcolare la potenza dissipata per effetto Joule, anche in forma locale", en: "Compute the power dissipated by Joule heating, also in local form" }
+  - id: corrente-stazionaria.4
+    text: { it: "Definire la forza elettromotrice e trattare generatori reali e massimo trasferimento di potenza", en: "Define electromotive force and handle real generators and maximum power transfer" }
+  - id: corrente-stazionaria.5
+    text: { it: "Risolvere reti in continua con Kirchhoff, Ohm generalizzata, sovrapposizione e Thevenin", en: "Solve DC networks with Kirchhoff, generalised Ohm's law, superposition and Thevenin" }
+  - id: corrente-stazionaria.6
+    text: { it: "Valutare gli errori di inserzione di amperometro e voltmetro e usare il ponte di Wheatstone", en: "Evaluate the insertion errors of ammeter and voltmeter and use the Wheatstone bridge" }
+  - id: corrente-stazionaria.7
+    text: { it: "Studiare carica e scarica di un condensatore (costante di tempo e bilancio energetico), anche con dielettrico con perdite", en: "Study charging and discharging of a capacitor (time constant and energy balance), also with a lossy dielectric" }
