@@ -1,0 +1,143 @@
+- id: prestazioni-e-parallelismo-verifica-1
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.1
+  kind: concetto
+  front:
+    it: Un processore a 3 GHz è più veloce di uno a 2,5 GHz?
+    en: Is a 3 GHz processor faster than a 2.5 GHz one?
+  back:
+    it: "Non si può dire. Il tempo è **(N × S) / R**: la frequenza è solo uno dei tre fattori. Se il secondo
+      esegue meno istruzioni o ha un numero di cicli per istruzione più basso — cache migliore, pipeline più
+      efficace — può risultare più veloce sullo stesso programma."
+    en: "You cannot say. The time is **(N × S) / R**: frequency is only one of the three factors. If the second
+      executes fewer instructions or has fewer cycles per instruction — better cache, more effective pipeline
+      — it can turn out faster on the same program."
+- id: prestazioni-e-parallelismo-verifica-2
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.3
+  kind: concetto
+  front:
+    it: Il 30 % del tempo di un programma è speso in una parte che rendi 10 volte più veloce. Quanto guadagni in
+      tutto?
+    en: 30 % of a program’s time is spent in a part you make 10 times faster. How much do you gain overall?
+  back:
+    it: "speedup = 1 / (0,7 + 0,3/10) = 1 / 0,73 ≈ **1,37×**, cioè circa il 27 % di tempo in meno. Il 70 % non
+      toccato domina il risultato: è esattamente il punto della legge di Amdahl."
+    en: "speedup = 1 / (0.7 + 0.3/10) = 1 / 0.73 ≈ **1.37×**, i.e. about 27 % less time. The untouched 70 %
+      dominates the result: it is exactly the point of Amdahl's law."
+- id: prestazioni-e-parallelismo-verifica-3
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.4
+  kind: concetto
+  front:
+    it: Perché le suite di benchmark riassumono i risultati con la media geometrica?
+    en: Why do benchmark suites summarise results with the geometric mean?
+  back:
+    it: "Perché i punteggi sono **rapporti** rispetto a una macchina di riferimento: la media geometrica di
+      rapporti dà lo stesso ordinamento qualunque sia il riferimento scelto, mentre la media aritmetica cambia
+      risultato al cambiare della macchina di base."
+    en: "Because the scores are **ratios** with respect to a reference machine: the geometric mean of ratios gives
+      the same ranking whatever reference is chosen, while the arithmetic mean changes its result when the
+      base machine changes."
+- id: open-perf-01
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.1
+    - prestazioni-e-parallelismo.3
+  kind: orale
+  front:
+    it: Un processore a frequenza più alta è necessariamente più veloce? Motiva con l’equazione delle prestazioni.
+  back:
+    it: "No. Il tempo di esecuzione è **T = (N × S) / R**, dove N è il numero di istruzioni eseguite, S il numero
+      medio di cicli per istruzione e R la frequenza: la frequenza è **uno solo** dei tre fattori. Una
+      macchina a frequenza più bassa può risultare più veloce se esegue meno istruzioni (repertorio più
+      espressivo o compilatore migliore) o se ha un S più basso grazie a cache più efficaci e a una pipeline
+      con meno stalli. I tre fattori inoltre **non sono indipendenti**: ridurre N con istruzioni più complesse
+      tende ad alzare S, e alzare R accorcia il periodo obbligando a pipeline più profonde, quindi a penalità
+      maggiori sui salti. Per questo il confronto ha senso solo **a parità di programma** e si fa con i
+      **benchmark** (per esempio le suite SPEC, riassunte con la media geometrica dei rapporti) e non con la
+      frequenza o con i MIPS, che dipendono dal repertorio."
+- id: open-perf-02
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.1
+    - prestazioni-e-parallelismo.3
+  kind: orale
+  front:
+    it: Enuncia la legge di Amdahl e spiega perché mette un tetto al guadagno.
+  back:
+    it: "Se una frazione *f* del tempo di esecuzione viene resa *k* volte più veloce, il guadagno complessivo è
+      **1 / ((1 − f) + f/k)**. Il termine `(1 − f)` è la parte **non** migliorata e resta invariato qualunque
+      cosa si faccia: anche portando *k* all'infinito il guadagno non supera **1/(1 − f)**. Se per esempio il
+      40 % del tempo è speso in codice non parallelizzabile, il tetto è 2,5× per quanti core si aggiungano. Le
+      conseguenze pratiche sono due: conviene ottimizzare solo ciò che pesa davvero (e quindi **misurare
+      prima** di ottimizzare), e nel calcolo parallelo l'aumento del numero di processori dà rendimenti
+      decrescenti, tanto più rapidamente quanto più grande è la parte sequenziale e il costo di
+      sincronizzazione."
+- id: def-equazione-prestazioni
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.1
+    - prestazioni-e-parallelismo.3
+  kind: definizione
+  front:
+    it: Equazione delle prestazioni
+  back:
+    it: >-
+      Il tempo di esecuzione vale T = (N × S) / R: istruzioni eseguite, per cicli medi per istruzione, diviso
+      la frequenza di clock.
+
+
+      I tre fattori non sono indipendenti: ridurre N con istruzioni più complesse alza S, e alzare R obbliga a
+      pipeline più profonde. La sola frequenza **non** misura le prestazioni.
+- id: def-amdahl
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.1
+    - prestazioni-e-parallelismo.3
+  kind: definizione
+  front:
+    it: Legge di Amdahl
+  back:
+    it: >-
+      Migliorando di un fattore k una frazione f del tempo, il guadagno complessivo è 1 / ((1 − f) + f/k).
+
+
+      La parte non migliorata mette un **tetto** invalicabile: con f = 0,6 non si supera 2,5× nemmeno con k
+      infinito.
+- id: def-benchmark
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.1
+    - prestazioni-e-parallelismo.3
+  kind: definizione
+  front:
+    it: Benchmark
+  back:
+    it: >-
+      Programma reale usato per confrontare macchine, con il risultato espresso come rapporto rispetto a una
+      macchina di riferimento.
+
+
+      Le suite SPEC riassumono i punteggi con la **media geometrica**, che a differenza di quella aritmetica
+      non cambia ordinamento al cambiare della macchina di riferimento.
+- id: def-coerenza-cache
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.1
+    - prestazioni-e-parallelismo.3
+  kind: definizione
+  front:
+    it: Coerenza delle cache
+  back:
+    it: >-
+      Garanzia che tutte le copie di uno stesso blocco nelle cache dei vari core rappresentino lo stesso
+      valore.
+
+
+      I protocolli di *snooping* fanno sorvegliare il bus a ogni cache: quando un core scrive un blocco, le
+      altre copie vengono invalidate. Lo stesso problema lo crea il **DMA**, che scrive in memoria alle spalle
+      del processore.

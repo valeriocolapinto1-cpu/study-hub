@@ -1,0 +1,222 @@
+---
+course: fondamenti-informatica
+topic: memoria-virtuale
+lang: en
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In two minutes">
+
+<div data-note-id="teoria/memoria-virtuale/in-due-minuti">
+
+- Virtual memory separates the addresses the program uses from the physical ones: each process sees its own space, and processes are isolated from one another.
+- **Paging**: pages (virtual) and frames (physical) of the **same** size. In translation the **offset does not change**.
+- The **page table** maps page number → frame number, with the valid, protection, modified and use bits.
+- **Page fault**: the page is not in memory. It is an exception handled by the operating system, which loads the page from disk — it is not a program error.
+- The **TLB** is a cache of translations: without it, every memory access would cost two (first the table, then the data).
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/memoria-virtuale/da-dove-si-parte">
+
+## Where we start
+
+**What you need to know first:** the memory hierarchy and how the cache works, from the module on [memory and caches](../gerarchia-di-memoria/). The idea is the same, applied one level lower.
+
+**What problem it solves.** Two problems together. The first: programs would like more memory than is installed. The second, subtler: if several programs run together and use absolute addresses, they step on each other's toes — and one can read or damage the other's data. Virtual memory solves both with a single idea: **the addresses the program uses are not the physical ones**. Between the two there is a translation, controlled by the operating system, which can send a page to disk when memory runs out and can deny access to what is not yours.
+
+**New words.** A **virtual address** is the one the program produces; a **physical address** is the one that reaches memory. A **page** is a block of the virtual space, a **frame** the physical block that hosts it: they have the same size. The **page table** is the map between the two. The **TLB** is a small cache of the most recent translations. A **page fault** is the exception raised when the requested page is not in memory.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/memoria-virtuale/il-problema">
+
+## The problem
+
+Programs can be larger than physical memory, and several programs must coexist without stepping on each other. **Virtual memory** solves both: each process works on a **logical** address space of its own, which the system maps onto the available **physical** memory, relying on the disk for what does not fit.
+
+</div>
+
+<div data-note-id="teoria/memoria-virtuale/paginazione">
+
+## Paging
+
+The logical space is divided into fixed-size **pages**, physical memory into **frames** of the same size. Any page can be in any frame: no contiguity is needed, so there is no external fragmentation.
+
+The virtual address splits into two fields:
+
+```
+|   page number    |   offset in page    |
+        ↓ translated         ↓ unchanged
+|   frame number   |   offset in page    |
+```
+
+The offset is not touched: page and frame have the same size, so only the upper part of the address changes.
+
+</div>
+
+<div data-note-id="teoria/memoria-virtuale/la-tabella-delle-pagine">
+
+## The page table
+
+For each page it contains the frame that hosts it plus some control bits: **valid** (is the page in memory?), **dirty** (has it been modified?), **protection bits** (read/write/execute), reference bits for the replacement policies. Each process has its own table: that is how **isolation** between processes is achieved, and deliberately sharing some entries gives **sharing** of code or data.
+
+</div>
+
+<div data-note-id="teoria/memoria-virtuale/page-fault">
+
+## Page fault
+
+If the valid bit is 0 the page is not in memory: a page fault **exception** is raised. The operating system chooses a victim (typically with LRU-like criteria), writes it back to disk **only if** it is dirty, loads the requested page and has the interrupted instruction **re-executed**. The cost is that of a disk access: millions of cycles, orders of magnitude more than a cache miss. That is why replacement can afford sophisticated algorithms in software.
+
+</div>
+
+<div data-note-id="teoria/memoria-virtuale/il-tlb">
+
+## The TLB
+
+The page table lives in memory: translating an address would require one more access **for every** access: the cost of everything would double. The **TLB** (Translation Lookaside Buffer) is a small fully or set-associative cache of recently used translations.
+
+1. The processor issues a virtual address.
+2. The page number is looked up in the TLB. **TLB hit** → the frame is immediate.
+3. **TLB miss** → the page table in memory is read and the TLB is updated.
+4. If the table too says “not valid” → page fault.
+
+It works for the same reason as the cache: **locality**. A program keeps to a few pages at a time, so even a TLB of a few dozen entries achieves very high hit rates.
+
+</div>
+
+<div data-note-id="teoria/memoria-virtuale/rapporto-con-la-cache">
+
+## Relationship with the cache
+
+They are two distinct mechanisms that add up: the TLB speeds up address **translation**, the cache speeds up **data access**. An access can therefore be a TLB hit and a cache miss, or vice versa. Keep them separate in words too: the cache sits between CPU and main memory, virtual memory between main memory and disk.
+
+</div>
+
+<div data-note-id="teoria/memoria-virtuale/tabelle-a-piu-livelli">
+
+## Multi-level tables
+
+A table with one entry for every page of the virtual space is impractical: with 32-bit addresses and 4 KiB pages it takes 2²⁰ entries per process, i.e. megabytes of table — almost all referring to pages never used, because no program really occupies the whole space.
+
+The solution is to split the translation into two (or more) steps. The page number is divided into two fields: the first indexes a **directory**, which points to a second-level table; the second indexes that table, which contains the frame.
+
+```
+32-bit virtual address, 4 KiB pages:
+
+┌──────────┬──────────┬────────────┐
+│ dir 10   │ tab 10   │ offset 12  │
+└──────────┴──────────┴────────────┘
+
+directory (1024 entries) → table (1024 entries) → frame
+```
+
+The gain: second-level tables are allocated **only for the regions actually used**. A process using a few megabytes has one directory and two or three tables, i.e. a few tens of kilobytes instead of megabytes. The price is one more memory access for every translation not in the TLB — which is why the TLB, with its 99 % hit rates, becomes even more important.
+
+</div>
+
+<div data-note-id="teoria/memoria-virtuale/sostituzione-delle-pagine">
+
+## Page replacement
+
+When physical memory is full and a page must be loaded, one must be evicted. The choice matters a lot, because every mistake costs a disk access:
+
+- **Optimal**: evict the page that will be used furthest in the future. It cannot be implemented — it requires knowing the future — but it serves as a theoretical benchmark.
+- **LRU** (least recently used): approximates the optimal by betting on temporal locality. Implementing it exactly would require updating an ordering at every access, too costly.
+- **Clock** (or second chance): the approximation really used. Each page has a **use bit** that the hardware sets to 1 at every access; the operating system sweeps the pages in a circle, clearing the bits it finds at 1 and evicting the first one it finds already at 0.
+- **FIFO**: evict the oldest. Simple but blind, it can throw out a heavily used page.
+
+If the evicted page has been modified (*dirty* bit at 1) it must first be written back to disk, so the fault costs double. That is why, other things being equal, it pays to evict clean pages.
+
+</div>
+
+<div data-note-id="teoria/memoria-virtuale/thrashing-e-insieme-di-lavoro">
+
+## Thrashing and the working set
+
+If the active processes together require more pages than fit in memory, the system goes into **thrashing**: every page loaded evicts another that is needed right after, and the machine spends its time moving pages instead of computing. The symptom is unmistakable — disk at maximum, processor almost idle.
+
+The defence rests on the notion of **working set**: the set of pages a process has used in the last time interval. If the system manages to keep in memory the working set of every active process, faults remain rare; when it cannot, the countermeasure is to reduce the number of active processes, suspending some of them entirely.
+
+</div>
+
+<div data-note-id="teoria/memoria-virtuale/segmentazione-in-breve">
+
+## Segmentation, in brief
+
+Paging divides the space into blocks that are all the same, without looking at what they contain. **Segmentation** instead divides it into variable-size parts corresponding to logical units: the code, the data, the stack. The advantage is that permissions apply to entities that make sense — the code segment is read-only and executable, the data one writable and non-executable.
+
+The drawback is **external fragmentation**: segments of different sizes leave unusable holes. Real systems combine the two — segments divided into pages — taking protection from one and simple memory management from the other.
+
+</div>
+
+## Diagrams
+
+<Schema id="memoria-virtuale-tlb" lang="en" num="1" />
+
+<Schema id="memoria-virtuale-org" lang="en" num="2" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/memoria-virtuale/esempio-svolto">
+
+## Worked example
+
+**Translate the virtual address `0x00403ABC`,** with 4 KiB pages, knowing that the page sought is in frame `0x25`.
+
+```
+4 KiB pages = 2¹² bytes      →  offset = 12 bits = 3 hex digits
+
+0x00403ABC  =  0x00403 | ABC
+               ↑ page    ↑ offset
+
+page 0x00403  →  page table  →  frame 0x25
+
+physical address = frame · 4096 + offset
+                 = 0x25 << 12  |  0xABC
+                 = 0x00025ABC
+```
+
+The last three hex digits **do not change**: they are the offset, and translation touches only the upper part. It is the immediate check to see whether the exercise has been done right.
+
+**How many memory accesses does it cost?** Without a TLB: one to read the page table, one for the data — twice what is needed. With a TLB that hits 99 % of the time, the average cost goes back to practically a single access.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/memoria-virtuale/errori-tipici">
+
+## Common mistakes
+
+- Translating the offset **too**: page and frame have the same size, so the internal position stays identical.
+- Confusing TLB miss and page fault: the first costs one more access, the second a **disk** access, i.e. millions of times as much.
+- Forgetting that the page table lives in memory: it is the reason the TLB exists.
+
+</div>
+
+<Callout tone="attenzione" title="RAM does not mean “random access”">
+
+<div data-note-id="teoria/memoria-virtuale/trap-ram">
+
+The acronym is a false friend: **random access** does not mean that access happens at random, but that the **access time does not depend on the position** of the data in memory. The opposite is the sequential access of a tape, where to read the end you have to scroll through everything.
+
+</div>
+
+</Callout>
+
+</Layer>
