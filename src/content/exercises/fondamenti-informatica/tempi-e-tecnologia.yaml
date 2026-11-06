@@ -323,24 +323,30 @@
   kind: static
   statement:
     it: "Il **ritardo di propagazione** di una porta si misura:"
+    en: "The **propagation delay** of a gate is measured:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Fra gli istanti in cui ingresso e uscita attraversano il 50% dell'escursione
+        en: Between the instants at which input and output cross 50% of the swing
   choices:
     - text:
         it: Fra il 10% e il 90% del fronte d'uscita
+        en: Between 10% and 90% of the output edge
       correct: false
     - text:
         it: Fra gli istanti in cui ingresso e uscita attraversano il 50% dell'escursione
+        en: Between the instants at which input and output cross 50% of the swing
       correct: true
     - text:
         it: Fra due fronti di clock consecutivi
+        en: Between two consecutive clock edges
       correct: false
     - text:
         it: Dal momento dell'accensione
+        en: From power-on
       correct: false
   origin: originale
 - id: mcq-tech-02
@@ -352,24 +358,30 @@
   kind: static
   statement:
     it: "In una rete combinatoria con più porte **in cascata**, il ritardo complessivo:"
+    en: "In a combinational network with several gates **in cascade**, the overall delay:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: È la somma dei ritardi lungo il cammino più lento (cammino critico)
+        en: Is the sum of the delays along the slowest path (critical path)
   choices:
     - text:
         it: È quello della porta più veloce
+        en: Is that of the fastest gate
       correct: false
     - text:
         it: È la somma dei ritardi lungo il cammino più lento (cammino critico)
+        en: Is the sum of the delays along the slowest path (critical path)
       correct: true
     - text:
         it: È sempre uguale a quello di una singola porta
+        en: Is always equal to that of a single gate
       correct: false
     - text:
         it: Si annulla se la rete è minimizzata
+        en: Vanishes if the network is minimised
       correct: false
   origin: originale
 - id: mcq-tech-03
@@ -381,24 +393,30 @@
   kind: static
   statement:
     it: Che cosa fissa il **periodo minimo di clock** di un circuito sincrono?
+    en: What sets the **minimum clock period** of a synchronous circuit?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Il cammino critico fra due registri, più il tempo di setup
+        en: The critical path between two registers, plus the setup time
   choices:
     - text:
         it: Il numero di flip-flop
+        en: The number of flip-flops
       correct: false
     - text:
         it: Il cammino critico fra due registri, più il tempo di setup
+        en: The critical path between two registers, plus the setup time
       correct: true
     - text:
         it: La tensione di alimentazione
+        en: The supply voltage
       correct: false
     - text:
         it: Il numero di ingressi del circuito
+        en: The number of inputs of the circuit
       correct: false
   origin: originale
 - id: mcq-tech-04
@@ -410,24 +428,30 @@
   kind: static
   statement:
     it: "Il **fan-out** di una porta indica:"
+    en: "The **fan-out** of a gate indicates:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Quante altre porte la sua uscita può pilotare
+        en: How many other gates its output can drive
   choices:
     - text:
         it: Quanti ingressi accetta
+        en: How many inputs it accepts
       correct: false
     - text:
         it: Quante altre porte la sua uscita può pilotare
+        en: How many other gates its output can drive
       correct: true
     - text:
         it: Il suo ritardo di propagazione
+        en: Its propagation delay
       correct: false
     - text:
         it: Il numero di transistor che la compongono
+        en: The number of transistors it is made of
       correct: false
   origin: originale
 - id: mcq-tech-05
@@ -439,24 +463,30 @@
   kind: static
   statement:
     it: "In un circuito CMOS la corrente scorre in modo significativo:"
+    en: "In a CMOS circuit, significant current flows:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Quasi solo durante le commutazioni
+        en: Almost only during switching
   choices:
     - text:
         it: Costantemente, anche a riposo
+        en: Constantly, even at rest
       correct: false
     - text:
         it: Quasi solo durante le commutazioni
+        en: Almost only during switching
       correct: true
     - text:
         it: Solo quando l’uscita vale 1
+        en: Only when the output is 1
       correct: false
     - text:
         it: Solo quando l’uscita vale 0
+        en: Only when the output is 0
       correct: false
   origin: originale
 - id: mcq-tech-06
@@ -468,24 +498,30 @@
   kind: static
   statement:
     it: "Una **PLA** è organizzata come:"
+    en: "A **PLA** is organised as:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Una matrice di AND seguita da una matrice di OR, entrambe programmabili
+        en: An AND array followed by an OR array, both programmable
   choices:
     - text:
         it: Una matrice di AND seguita da una matrice di OR, entrambe programmabili
+        en: An AND array followed by an OR array, both programmable
       correct: true
     - text:
         it: Una matrice di flip-flop
+        en: An array of flip-flops
       correct: false
     - text:
         it: Una memoria a sola lettura
+        en: A read-only memory
       correct: false
     - text:
         it: Un insieme di multiplexer in cascata
+        en: A set of cascaded multiplexers
       correct: false
   origin: originale
 - id: schema-cmos-struttura

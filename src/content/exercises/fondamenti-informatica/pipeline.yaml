@@ -424,24 +424,30 @@
   kind: static
   statement:
     it: "Il miglioramento del pipelining deriva da:"
+    en: "The improvement brought by pipelining comes from:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Sovrapposizione (parallelismo) delle fasi delle istruzioni
+        en: Overlapping (parallelism) of the instruction phases
   choices:
     - text:
         it: Clock più veloce
+        en: A faster clock
       correct: false
     - text:
         it: Sovrapposizione (parallelismo) delle fasi delle istruzioni
+        en: Overlapping (parallelism) of the instruction phases
       correct: true
     - text:
         it: Meno registri
+        en: Fewer registers
       correct: false
     - text:
         it: Cache più grande
+        en: A larger cache
       correct: false
   origin: originale
 - id: mcq-pipe-02
@@ -453,24 +459,30 @@
   kind: static
   statement:
     it: "La dipendenza dai dati in pipeline si mitiga con:"
+    en: "Data dependence in a pipeline is mitigated with:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Operand forwarding
+        en: Operand forwarding
   choices:
     - text:
         it: Operand forwarding
+        en: Operand forwarding
       correct: true
     - text:
         it: Aumento del clock
+        en: Raising the clock
       correct: false
     - text:
         it: Riduzione dei registri
+        en: Reducing the registers
       correct: false
     - text:
         it: Disattivare la cache
+        en: Disabling the cache
       correct: false
   origin: originale
 - id: mcq-pipe-05
@@ -482,24 +494,30 @@
   kind: static
   statement:
     it: Quale hazard nasce dal fatto che dopo un salto non si sa quale istruzione prelevare?
+    en: Which hazard arises because after a branch it is not known which instruction to fetch?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Di controllo
+        en: Control
   choices:
     - text:
         it: Strutturale
+        en: Structural
       correct: false
     - text:
         it: Sui dati
+        en: Data
       correct: false
     - text:
         it: Di controllo
+        en: Control
       correct: true
     - text:
         it: Di parità
+        en: Parity
       correct: false
   origin: originale
 - id: mcq-pipe-06
@@ -511,24 +529,30 @@
   kind: static
   statement:
     it: Nella formula `T = (N × S) / R`, che cosa rappresenta `S`?
+    en: In the formula `T = (N × S) / R`, what does `S` represent?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: I cicli di clock medi per istruzione (CPI)
+        en: The average clock cycles per instruction (CPI)
   choices:
     - text:
         it: La frequenza di clock
+        en: The clock frequency
       correct: false
     - text:
         it: I cicli di clock medi per istruzione (CPI)
+        en: The average clock cycles per instruction (CPI)
       correct: true
     - text:
         it: Il numero di stadi della pipeline
+        en: The number of pipeline stages
       correct: false
     - text:
         it: La dimensione della cache
+        en: The cache size
       correct: false
   origin: originale
 - id: mcq-pipe-07
@@ -540,24 +564,30 @@
   kind: static
   statement:
     it: "Con una pipeline a k stadi, lo speedup ideale rispetto al caso non pipelined è:"
+    en: "With a k-stage pipeline, the ideal speedup over the non-pipelined case is:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: k
+        en: k
   choices:
     - text:
         it: "2"
+        en: "2"
       correct: false
     - text:
         it: k
+        en: k
       correct: true
     - text:
         it: k²
+        en: k²
       correct: false
     - text:
         it: Indipendente da k
+        en: Independent of k
       correct: false
   origin: originale
 - id: mcq-pipe-08
@@ -569,24 +599,30 @@
   kind: static
   statement:
     it: "Il pipelining migliora soprattutto:"
+    en: "Pipelining mainly improves:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Il throughput, cioè le istruzioni completate per unità di tempo
+        en: Throughput, i.e. the instructions completed per unit of time
   choices:
     - text:
         it: La latenza della singola istruzione
+        en: The latency of a single instruction
       correct: false
     - text:
         it: Il throughput, cioè le istruzioni completate per unità di tempo
+        en: Throughput, i.e. the instructions completed per unit of time
       correct: true
     - text:
         it: La dimensione del codice
+        en: Code size
       correct: false
     - text:
         it: Il consumo energetico
+        en: Energy consumption
       correct: false
   origin: originale
 - id: schema-pipeline-5-stadi

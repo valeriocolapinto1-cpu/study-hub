@@ -47,11 +47,16 @@
   kind: definizione
   front:
     it: IEEE 754
+    en: IEEE 754
   back:
     it: |-
       Standard della virgola mobile: segno, esponente polarizzato e mantissa con bit implicito.
 
       Singola precisione: 1 + 8 + 23 bit, bias 127. Doppia: 1 + 11 + 52, bias 1023.
+    en: |-
+      Floating-point standard: sign, biased exponent and mantissa with a hidden bit.
+
+      Single precision: 1 + 8 + 23 bits, bias 127. Double: 1 + 11 + 52, bias 1023.
 - id: def-bias
   topic: virgola-mobile
   objectives:
@@ -60,10 +65,8 @@
   kind: definizione
   front:
     it: Esponente polarizzato (bias)
+    en: Biased exponent
   back:
-    it: >-
-      Esponente memorizzato come valore reale + bias, così da rappresentare esponenti negativi senza un
-      secondo segno.
-
-
-      undefined
+    it: Esponente memorizzato come valore reale + bias, così da rappresentare esponenti negativi senza un secondo
+      segno.
+    en: Exponent stored as real value + bias, so as to represent negative exponents without a second sign.

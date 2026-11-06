@@ -50,6 +50,7 @@
   kind: orale
   front:
     it: Un processore a frequenza più alta è necessariamente più veloce? Motiva con l’equazione delle prestazioni.
+    en: Is a processor with a higher frequency necessarily faster? Justify with the performance equation.
   back:
     it: "No. Il tempo di esecuzione è **T = (N × S) / R**, dove N è il numero di istruzioni eseguite, S il numero
       medio di cicli per istruzione e R la frequenza: la frequenza è **uno solo** dei tre fattori. Una
@@ -60,6 +61,15 @@
       maggiori sui salti. Per questo il confronto ha senso solo **a parità di programma** e si fa con i
       **benchmark** (per esempio le suite SPEC, riassunte con la media geometrica dei rapporti) e non con la
       frequenza o con i MIPS, che dipendono dal repertorio."
+    en: "No. The execution time is **T = (N × S) / R**, where N is the number of instructions executed, S the
+      average number of cycles per instruction and R the frequency: frequency is **only one** of the three
+      factors. A lower-frequency machine can turn out faster if it executes fewer instructions (more
+      expressive instruction set or better compiler) or has a lower S thanks to more effective caches and a
+      pipeline with fewer stalls. Moreover the three factors **are not independent**: reducing N with more
+      complex instructions tends to raise S, and raising R shortens the period, forcing deeper pipelines and
+      thus larger branch penalties. That is why the comparison makes sense only **on the same program** and is
+      done with **benchmarks** (for example the SPEC suites, summarised with the geometric mean of the ratios)
+      and not with frequency or MIPS, which depend on the instruction set."
 - id: open-perf-02
   topic: prestazioni-e-parallelismo
   objectives:
@@ -68,6 +78,7 @@
   kind: orale
   front:
     it: Enuncia la legge di Amdahl e spiega perché mette un tetto al guadagno.
+    en: State Amdahl's law and explain why it caps the gain.
   back:
     it: "Se una frazione *f* del tempo di esecuzione viene resa *k* volte più veloce, il guadagno complessivo è
       **1 / ((1 − f) + f/k)**. Il termine `(1 − f)` è la parte **non** migliorata e resta invariato qualunque
@@ -77,6 +88,13 @@
       prima** di ottimizzare), e nel calcolo parallelo l'aumento del numero di processori dà rendimenti
       decrescenti, tanto più rapidamente quanto più grande è la parte sequenziale e il costo di
       sincronizzazione."
+    en: "If a fraction *f* of the execution time is made *k* times faster, the overall gain is **1 / ((1 − f) +
+      f/k)**. The term `(1 − f)` is the part **not** improved and stays unchanged whatever you do: even taking
+      *k* to infinity the gain does not exceed **1/(1 − f)**. If for example 40 % of the time is spent in code
+      that cannot be parallelised, the ceiling is 2.5× however many cores are added. There are two practical
+      consequences: it only pays to optimise what really weighs (and therefore to **measure first**), and in
+      parallel computing increasing the number of processors gives diminishing returns, all the faster the
+      larger the sequential part and the cost of synchronisation."
 - id: def-equazione-prestazioni
   topic: prestazioni-e-parallelismo
   objectives:
@@ -85,6 +103,7 @@
   kind: definizione
   front:
     it: Equazione delle prestazioni
+    en: Performance equation
   back:
     it: >-
       Il tempo di esecuzione vale T = (N × S) / R: istruzioni eseguite, per cicli medi per istruzione, diviso
@@ -93,6 +112,13 @@
 
       I tre fattori non sono indipendenti: ridurre N con istruzioni più complesse alza S, e alzare R obbliga a
       pipeline più profonde. La sola frequenza **non** misura le prestazioni.
+    en: >-
+      Execution time is T = (N × S) / R: instructions executed, times average cycles per instruction, divided
+      by the clock rate.
+
+
+      The three factors are not independent: reducing N with more complex instructions raises S, and raising R
+      forces deeper pipelines. Frequency alone does **not** measure performance.
 - id: def-amdahl
   topic: prestazioni-e-parallelismo
   objectives:
@@ -101,6 +127,7 @@
   kind: definizione
   front:
     it: Legge di Amdahl
+    en: Amdahl's law
   back:
     it: >-
       Migliorando di un fattore k una frazione f del tempo, il guadagno complessivo è 1 / ((1 − f) + f/k).
@@ -108,6 +135,12 @@
 
       La parte non migliorata mette un **tetto** invalicabile: con f = 0,6 non si supera 2,5× nemmeno con k
       infinito.
+    en: >-
+      Improving a fraction f of the time by a factor k, the overall gain is 1 / ((1 − f) + f/k).
+
+
+      The unimproved part sets an insurmountable **ceiling**: with f = 0.6 you do not exceed 2.5× even with
+      infinite k.
 - id: def-benchmark
   topic: prestazioni-e-parallelismo
   objectives:
@@ -116,6 +149,7 @@
   kind: definizione
   front:
     it: Benchmark
+    en: Benchmark
   back:
     it: >-
       Programma reale usato per confrontare macchine, con il risultato espresso come rapporto rispetto a una
@@ -124,6 +158,13 @@
 
       Le suite SPEC riassumono i punteggi con la **media geometrica**, che a differenza di quella aritmetica
       non cambia ordinamento al cambiare della macchina di riferimento.
+    en: >-
+      Real program used to compare machines, with the result expressed as a ratio with respect to a reference
+      machine.
+
+
+      The SPEC suites summarise scores with the **geometric mean**, which unlike the arithmetic mean does not
+      change the ranking when the reference machine changes.
 - id: def-coerenza-cache
   topic: prestazioni-e-parallelismo
   objectives:
@@ -132,6 +173,7 @@
   kind: definizione
   front:
     it: Coerenza delle cache
+    en: Cache coherence
   back:
     it: >-
       Garanzia che tutte le copie di uno stesso blocco nelle cache dei vari core rappresentino lo stesso
@@ -141,3 +183,9 @@
       I protocolli di *snooping* fanno sorvegliare il bus a ogni cache: quando un core scrive un blocco, le
       altre copie vengono invalidate. Lo stesso problema lo crea il **DMA**, che scrive in memoria alle spalle
       del processore.
+    en: >-
+      Guarantee that all copies of the same block in the caches of the various cores represent the same value.
+
+
+      *Snooping* protocols have every cache watch the bus: when a core writes a block, the other copies are
+      invalidated. **DMA** creates the same problem, writing to memory behind the processor’s back.

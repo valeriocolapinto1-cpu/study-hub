@@ -48,9 +48,12 @@
   kind: orale
   front:
     it: Che cos'è il pipelining e quale problema introduce?
+    en: What is pipelining and what problem does it introduce?
   back:
     it: Sovrapposizione delle fasi (fetch, decode, execute, memory, write) di istruzioni diverse su unità dedicate
       → maggiore throughput. Introduce la dipendenza dai dati (stalli), mitigata con operand forwarding.
+    en: Overlapping the phases (fetch, decode, execute, memory, write) of different instructions on dedicated
+      units → higher throughput. It introduces data dependence (stalls), mitigated with operand forwarding.
 - id: open-pipe-02
   topic: pipeline
   objectives:
@@ -59,6 +62,7 @@
   kind: orale
   front:
     it: Elenca i tipi di hazard in una pipeline e spiega come si mitigano.
+    en: List the kinds of hazard in a pipeline and explain how they are mitigated.
   back:
     it: "**Strutturali**: due istruzioni contendono la stessa risorsa nello stesso ciclo (per esempio un unico
       accesso alla memoria conteso fra fetch e load); si risolvono duplicando la risorsa, come cache
@@ -68,6 +72,14 @@
       uno stadio più tardi e uno stallo è inevitabile. **Di controllo**: dopo un salto non si sa quale
       istruzione prelevare, e quelle già entrate vanno scartate; si mitigano con la predizione (statica o
       dinamica), con il *delayed branch* e calcolando l'indirizzo di destinazione il prima possibile."
+    en: "**Structural**: two instructions contend for the same resource in the same cycle (for example a single
+      memory port contended by fetch and load); they are solved by duplicating the resource, such as separate
+      instruction and data caches. **Data**: an instruction needs a result not yet written to a register; they
+      are mitigated with **operand forwarding**, which sends the result directly from the ALU output to the
+      stage requiring it — but the *load-use* case remains, where the data arrives from memory one stage later
+      and a stall is unavoidable. **Control**: after a branch it is not known which instruction to fetch, and
+      those already entered must be discarded; they are mitigated with prediction (static or dynamic), with
+      the *delayed branch* and by computing the target address as early as possible."
 - id: def-pipeline
   topic: pipeline
   objectives:
@@ -76,6 +88,7 @@
   kind: definizione
   front:
     it: Pipelining
+    en: Pipelining
   back:
     it: >-
       Sovrapposizione delle fasi di istruzioni diverse su stadi hardware distinti, come in una catena di
@@ -83,6 +96,10 @@
 
 
       Non migliora la latenza della singola istruzione: migliora il **throughput**.
+    en: |-
+      Overlapping the phases of different instructions on distinct hardware stages, like an assembly line.
+
+      It does not improve the latency of a single instruction: it improves **throughput**.
 - id: def-hazard
   topic: pipeline
   objectives:
@@ -91,13 +108,12 @@
   kind: definizione
   front:
     it: Hazard
+    en: Hazard
   back:
-    it: >-
-      Situazione che impedisce alla pipeline di procedere di un’istruzione per ciclo: strutturale, sui dati o
-      di controllo.
-
-
-      undefined
+    it: "Situazione che impedisce alla pipeline di procedere di un’istruzione per ciclo: strutturale, sui dati o
+      di controllo."
+    en: "Situation that prevents the pipeline from advancing one instruction per cycle: structural, data or
+      control."
 - id: def-forwarding
   topic: pipeline
   objectives:
@@ -106,13 +122,12 @@
   kind: definizione
   front:
     it: Operand forwarding
+    en: Operand forwarding
   back:
-    it: >-
-      Inoltro del risultato direttamente dall’uscita della ALU allo stadio che lo richiede, senza attendere la
+    it: Inoltro del risultato direttamente dall’uscita della ALU allo stadio che lo richiede, senza attendere la
       scrittura in registro.
-
-
-      undefined
+    en: Sending the result directly from the ALU output to the stage that needs it, without waiting for the
+      register write.
 - id: def-cpi
   topic: pipeline
   objectives:
@@ -121,8 +136,7 @@
   kind: definizione
   front:
     it: CPI
+    en: CPI
   back:
-    it: |-
-      Numero medio di cicli di clock per istruzione; compare nell’equazione T = (N × S)/R.
-
-      undefined
+    it: Numero medio di cicli di clock per istruzione; compare nell’equazione T = (N × S)/R.
+    en: Average number of clock cycles per instruction; it appears in the equation T = (N × S)/R.

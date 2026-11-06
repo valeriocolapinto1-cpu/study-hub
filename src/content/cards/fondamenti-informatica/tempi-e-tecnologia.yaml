@@ -47,6 +47,7 @@
   kind: orale
   front:
     it: Cosa si intende per ritardo di propagazione in una rete combinatoria formata da più porte in cascata?
+    en: What is meant by propagation delay in a combinational network made of several gates in cascade?
   back:
     it: "Il **ritardo di propagazione** di una singola porta è l'intervallo fra l'istante in cui l'ingresso
       attraversa il 50% dell'escursione e quello in cui l'uscita fa altrettanto: il segnale non commuta
@@ -58,6 +59,15 @@
       due registri più il tempo di setup, e una forma minima a due livelli (AND poi OR) è preferibile anche
       per velocità, non solo per numero di porte. È lo stesso motivo per cui un ripple-carry a n bit è lento:
       il riporto attraversa n stadi in fila."
+    en: "The **propagation delay** of a single gate is the interval between the instant the input crosses 50% of
+      its swing and the instant the output does the same: the signal does not switch instantly because the
+      transistors must charge and discharge capacitances. Not to be confused with the **transition time**,
+      which measures the steepness of the edge (from 10% to 90%). When several gates are **in cascade** the
+      delays **add up**: the final output is valid only after the signal has crossed the whole chain, and the
+      delay of the network is that of its **critical path**, i.e. the slowest input→output path. Two
+      consequences: the minimum clock period is set by the critical path between two registers plus the setup
+      time, and a minimal two-level form (AND then OR) is preferable for speed too, not just for the number of
+      gates. It is the same reason why an n-bit ripple-carry is slow: the carry crosses n stages in a row."
 - id: def-ritardo
   topic: tempi-e-tecnologia
   objectives:
@@ -66,6 +76,7 @@
   kind: definizione
   front:
     it: Ritardo di propagazione
+    en: Propagation delay
   back:
     it: >-
       Tempo che intercorre fra l’istante in cui l’ingresso attraversa il 50% dell’escursione e quello in cui
@@ -74,6 +85,12 @@
 
       In una cascata di porte i ritardi si **sommano**: il ritardo della rete è quello del **cammino
       critico**, il percorso più lento, ed è lui a fissare il periodo minimo di clock.
+    en: >-
+      Time between the instant the input crosses 50% of its swing and the instant the output does.
+
+
+      In a cascade of gates the delays **add up**: the delay of the network is that of the **critical path**,
+      the slowest path, and it sets the minimum clock period.
 - id: def-fanout
   topic: tempi-e-tecnologia
   objectives:
@@ -82,8 +99,7 @@
   kind: definizione
   front:
     it: Fan-out
+    en: Fan-out
   back:
-    it: |-
-      Numero di ingressi di altre porte che una singola uscita può pilotare.
-
-      undefined
+    it: Numero di ingressi di altre porte che una singola uscita può pilotare.
+    en: Number of inputs of other gates that a single output can drive.

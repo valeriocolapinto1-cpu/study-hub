@@ -371,24 +371,30 @@
   kind: static
   statement:
     it: Che cos'è un cache **miss**?
+    en: What is a cache **miss**?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Il dato non è in cache e si scende nella gerarchia
+        en: The data is not in the cache and you go down the hierarchy
   choices:
     - text:
         it: Il dato è in cache
+        en: The data is in the cache
       correct: false
     - text:
         it: Il dato non è in cache e si scende nella gerarchia
+        en: The data is not in the cache and you go down the hierarchy
       correct: true
     - text:
         it: La cache è piena
+        en: The cache is full
       correct: false
     - text:
         it: Un errore di parità
+        en: A parity error
       correct: false
   origin: originale
 - id: mcq-mem-02
@@ -400,24 +406,30 @@
   kind: static
   statement:
     it: "Il ritardo introdotto dopo un cache miss si chiama:"
+    en: "The delay introduced after a cache miss is called:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: miss penalty
+        en: miss penalty
   choices:
     - text:
         it: hit ratio
+        en: hit ratio
       correct: false
     - text:
         it: miss penalty
+        en: miss penalty
       correct: true
     - text:
         it: write-back
+        en: write-back
       correct: false
     - text:
         it: latch delay
+        en: latch delay
       correct: false
   origin: originale
 - id: mcq-mem-03
@@ -429,24 +441,30 @@
   kind: static
   statement:
     it: Quali proprietà sfrutta la cache?
+    en: Which properties does the cache exploit?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Località spaziale e temporale
+        en: Spatial and temporal locality
   choices:
     - text:
         it: Solo temporale
+        en: Only temporal
       correct: false
     - text:
         it: Solo spaziale
+        en: Only spatial
       correct: false
     - text:
         it: Località spaziale e temporale
+        en: Spatial and temporal locality
       correct: true
     - text:
         it: Nessuna delle due
+        en: Neither
       correct: false
   origin: originale
 - id: mcq-mem-04
@@ -458,24 +476,30 @@
   kind: static
   statement:
     it: "Algoritmo di sostituzione più comune in cache:"
+    en: "The most common cache replacement algorithm:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: LRU
+        en: LRU
   choices:
     - text:
         it: FIFO
+        en: FIFO
       correct: false
     - text:
         it: LRU
+        en: LRU
       correct: true
     - text:
         it: Random
+        en: Random
       correct: false
     - text:
         it: MRU
+        en: MRU
       correct: false
   origin: originale
 - id: mcq-mem-05
@@ -487,24 +511,30 @@
   kind: static
   statement:
     it: "La EPROM si cancella:"
+    en: "An EPROM is erased:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Con raggi ultravioletti
+        en: With ultraviolet light
   choices:
     - text:
         it: Elettricamente
+        en: Electrically
       correct: false
     - text:
         it: Con raggi ultravioletti
+        en: With ultraviolet light
       correct: true
     - text:
         it: Meccanicamente
+        en: Mechanically
       correct: false
     - text:
         it: Non si cancella
+        en: It cannot be erased
       correct: false
   origin: originale
 - id: mcq-mem-06
@@ -516,24 +546,30 @@
   kind: static
   statement:
     it: "La EEPROM si cancella:"
+    en: "An EEPROM is erased:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Elettricamente
+        en: Electrically
   choices:
     - text:
         it: Con raggi UV
+        en: With UV light
       correct: false
     - text:
         it: Elettricamente
+        en: Electrically
       correct: true
     - text:
         it: Termicamente
+        en: Thermally
       correct: false
     - text:
         it: Con luce visibile
+        en: With visible light
       correct: false
   origin: originale
 - id: mcq-mem-07
@@ -545,24 +581,30 @@
   kind: static
   statement:
     it: "La memoria cache è tipicamente realizzata con:"
+    en: "Cache memory is typically built with:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: SRAM
+        en: SRAM
   choices:
     - text:
         it: DRAM
+        en: DRAM
       correct: false
     - text:
         it: SRAM
+        en: SRAM
       correct: true
     - text:
         it: EEPROM
+        en: EEPROM
       correct: false
     - text:
         it: Disco
+        en: Disk
       correct: false
   origin: originale
 - id: mcq-mem-08
@@ -574,24 +616,30 @@
   kind: static
   statement:
     it: Quale memoria è la più lenta della gerarchia?
+    en: Which memory is the slowest in the hierarchy?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Memoria secondaria
+        en: Secondary memory
   choices:
     - text:
         it: Cache L1
+        en: L1 cache
       correct: false
     - text:
         it: Registri
+        en: Registers
       correct: false
     - text:
         it: Memoria secondaria
+        en: Secondary memory
       correct: true
     - text:
         it: SRAM
+        en: SRAM
       correct: false
   origin: originale
 - id: mcq-mem-09
@@ -603,24 +651,30 @@
   kind: static
   statement:
     it: "Principale svantaggio di una DRAM molto grande:"
+    en: "Main drawback of a very large DRAM:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Ne viene compromessa la velocità
+        en: Its speed is compromised
   choices:
     - text:
         it: Consuma poco
+        en: It consumes little
       correct: false
     - text:
         it: Ne viene compromessa la velocità
+        en: Its speed is compromised
       correct: true
     - text:
         it: È troppo veloce
+        en: It is too fast
       correct: false
     - text:
         it: Non serve refresh
+        en: It needs no refresh
       correct: false
   origin: originale
 - id: mcq-mem-10
@@ -632,24 +686,30 @@
   kind: static
   statement:
     it: Perché una cella DRAM va rinfrescata periodicamente?
+    en: Why must a DRAM cell be refreshed periodically?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Il condensatore si scarica per correnti di dispersione
+        en: The capacitor discharges through leakage currents
   choices:
     - text:
         it: Il transistor si rompe
+        en: The transistor breaks
       correct: false
     - text:
         it: Il condensatore si scarica per correnti di dispersione
+        en: The capacitor discharges through leakage currents
       correct: true
     - text:
         it: Il clock si ferma
+        en: The clock stops
       correct: false
     - text:
         it: La cache la sovrascrive
+        en: The cache overwrites it
       correct: false
   origin: originale
 - id: mcq-mem-11
@@ -661,24 +721,30 @@
   kind: static
   statement:
     it: "La SRAM (celle della cache) rispetto alla DRAM:"
+    en: "SRAM (cache cells) compared with DRAM:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Non necessita di refresh
+        en: Does not need refresh
   choices:
     - text:
         it: Necessita di refresh
+        en: Needs refresh
       correct: false
     - text:
         it: Non necessita di refresh
+        en: Does not need refresh
       correct: true
     - text:
         it: È più lenta
+        en: Is slower
       correct: false
     - text:
         it: È più densa
+        en: Is denser
       correct: false
   origin: originale
 - id: mcq-mem-12
@@ -690,24 +756,30 @@
   kind: static
   statement:
     it: Con la politica **write-back**, quando la memoria principale viene aggiornata?
+    en: With the **write-back** policy, when is main memory updated?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Solo quando la linea modificata viene sfrattata
+        en: Only when the modified line is evicted
   choices:
     - text:
         it: A ogni scrittura, insieme alla cache
+        en: At every write, together with the cache
       correct: false
     - text:
         it: Solo quando la linea modificata viene sfrattata
+        en: Only when the modified line is evicted
       correct: true
     - text:
         it: Mai
+        en: Never
       correct: false
     - text:
         it: A ogni cache miss
+        en: At every cache miss
       correct: false
   origin: originale
 - id: mcq-mem-13
@@ -719,24 +791,30 @@
   kind: static
   statement:
     it: A che cosa serve il **dirty bit** di una linea di cache?
+    en: What is the **dirty bit** of a cache line for?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: A segnalare che la linea è stata modificata e va riscritta in memoria
+        en: To signal that the line has been modified and must be written back to memory
   choices:
     - text:
         it: A indicare che la linea contiene dati non validi
+        en: To indicate that the line holds invalid data
       correct: false
     - text:
         it: A segnalare che la linea è stata modificata e va riscritta in memoria
+        en: To signal that the line has been modified and must be written back to memory
       correct: true
     - text:
         it: A contare gli accessi alla linea
+        en: To count the accesses to the line
       correct: false
     - text:
         it: A marcare la linea come non sostituibile
+        en: To mark the line as non-replaceable
       correct: false
   origin: originale
 - id: mcq-mem-14
@@ -748,24 +826,30 @@
   kind: static
   statement:
     it: In quali campi si scompone un indirizzo per accedere alla cache?
+    en: Into which fields is an address split to access the cache?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Tag, indice, offset
+        en: Tag, index, offset
   choices:
     - text:
         it: Segno, esponente, mantissa
+        en: Sign, exponent, mantissa
       correct: false
     - text:
         it: Tag, indice, offset
+        en: Tag, index, offset
       correct: true
     - text:
         it: Pagina, frame, offset
+        en: Page, frame, offset
       correct: false
     - text:
         it: Opcode, operando, modo
+        en: Opcode, operand, mode
       correct: false
   origin: originale
 - id: mcq-mem-15
@@ -778,24 +862,31 @@
   statement:
     it: Il tempo medio di accesso vale `t_hit + miss_rate × miss_penalty`. Con t_hit = 1 ns, miss rate 5% e
       penalità 100 ns, quanto vale?
+    en: The average access time is `t_hit + miss_rate × miss_penalty`. With t_hit = 1 ns, a 5% miss rate and a 100
+      ns penalty, what is it?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: 6 ns
+        en: 6 ns
   choices:
     - text:
         it: 1 ns
+        en: 1 ns
       correct: false
     - text:
         it: 6 ns
+        en: 6 ns
       correct: true
     - text:
         it: 100 ns
+        en: 100 ns
       correct: false
     - text:
         it: 105 ns
+        en: 105 ns
       correct: false
   origin: originale
 - id: mcq-mem-16
@@ -807,24 +898,30 @@
   kind: static
   statement:
     it: Perché la cache trasferisce blocchi e non singole parole?
+    en: Why does the cache transfer blocks and not single words?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Per sfruttare la località spaziale
+        en: To exploit spatial locality
   choices:
     - text:
         it: Per sfruttare la località spaziale
+        en: To exploit spatial locality
       correct: true
     - text:
         it: Per ridurre il numero di tag
+        en: To reduce the number of tags
       correct: false
     - text:
         it: Perché la DRAM non sa leggere una sola parola
+        en: Because DRAM cannot read a single word
       correct: false
     - text:
         it: Per semplificare il calcolo del dirty bit
+        en: To simplify computing the dirty bit
       correct: false
   origin: originale
 - id: schema-cache-set-associativa

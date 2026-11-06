@@ -345,24 +345,30 @@
   kind: static
   statement:
     it: "Con l’I/O **memory-mapped**, per leggere un registro di interfaccia si usa:"
+    en: "With **memory-mapped** I/O, to read an interface register you use:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Una normale istruzione Load
+        en: An ordinary Load instruction
   choices:
     - text:
         it: Una istruzione dedicata IN
+        en: A dedicated IN instruction
       correct: false
     - text:
         it: Una normale istruzione Load
+        en: An ordinary Load instruction
       correct: true
     - text:
         it: Una chiamata di sistema
+        en: A system call
       correct: false
     - text:
         it: Un'interruzione software
+        en: A software interrupt
       correct: false
   origin: originale
 - id: mcq-io-02
@@ -374,24 +380,30 @@
   kind: static
   statement:
     it: Quante interruzioni genera tipicamente un trasferimento DMA di un blocco?
+    en: How many interrupts does a DMA transfer of a block typically generate?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Una sola, a trasferimento concluso
+        en: Just one, when the transfer is complete
   choices:
     - text:
         it: Una per parola trasferita
+        en: One per word transferred
       correct: false
     - text:
         it: Una sola, a trasferimento concluso
+        en: Just one, when the transfer is complete
       correct: true
     - text:
         it: Nessuna
+        en: None
       correct: false
     - text:
         it: Due per parola
+        en: Two per word
       correct: false
   origin: originale
 - id: mcq-io-03
@@ -403,24 +415,30 @@
   kind: static
   statement:
     it: "Il difetto principale dell’I/O programmato (polling) è che:"
+    en: "The main flaw of programmed I/O (polling) is that:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Il processore consuma tempo in un ciclo di attesa
+        en: The processor spends time in a waiting loop
   choices:
     - text:
         it: Richiede hardware dedicato costoso
+        en: It requires expensive dedicated hardware
       correct: false
     - text:
         it: Il processore consuma tempo in un ciclo di attesa
+        en: The processor spends time in a waiting loop
       correct: true
     - text:
         it: Non funziona con dispositivi lenti
+        en: It does not work with slow devices
       correct: false
     - text:
         it: Richiede sempre il DMA
+        en: It always requires DMA
       correct: false
   origin: originale
 - id: mcq-io-04
@@ -432,24 +450,30 @@
   kind: static
   statement:
     it: "In un trasferimento con **handshake**, la velocità è quella:"
+    en: "In a **handshake** transfer, the speed is that of:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Del dispositivo più lento fra i due
+        en: The slower of the two devices
   choices:
     - text:
         it: Del dispositivo più veloce
+        en: The faster device
       correct: false
     - text:
         it: Del dispositivo più lento fra i due
+        en: The slower of the two devices
       correct: true
     - text:
         it: Del clock di sistema
+        en: The system clock
       correct: false
     - text:
         it: Fissata dal bus, indipendente dai dispositivi
+        en: The bus, independent of the devices
       correct: false
   origin: originale
 - id: mcq-io-05
@@ -461,24 +485,30 @@
   kind: static
   statement:
     it: Quale problema introduce il DMA rispetto alla cache?
+    en: What problem does DMA introduce with respect to the cache?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Scrivendo in memoria può rendere obsoleta la copia in cache (coerenza)
+        en: By writing to memory it can make the cached copy stale (coherence)
   choices:
     - text:
         it: Rallenta il clock del processore
+        en: It slows down the processor clock
       correct: false
     - text:
         it: Scrivendo in memoria può rendere obsoleta la copia in cache (coerenza)
+        en: By writing to memory it can make the cached copy stale (coherence)
       correct: true
     - text:
         it: Impedisce le interruzioni
+        en: It prevents interrupts
       correct: false
     - text:
         it: Richiede di disabilitare la memoria virtuale
+        en: It requires disabling virtual memory
       correct: false
   origin: originale
 - id: mcq-io-06
@@ -490,24 +520,30 @@
   kind: static
   statement:
     it: Perché gli standard moderni ad alta velocità (USB, PCI Express) sono **seriali**?
+    en: Why are modern high-speed standards (USB, PCI Express) **serial**?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: "Meno fili, meno interferenze e nessuno sfasamento fra le linee: si sale in frequenza"
+        en: "Fewer wires, less interference and no skew between lines: frequency can go up"
   choices:
     - text:
         it: Perché il parallelo non permette il controllo di errore
+        en: Because parallel does not allow error checking
       correct: false
     - text:
         it: "Meno fili, meno interferenze e nessuno sfasamento fra le linee: si sale in frequenza"
+        en: "Fewer wires, less interference and no skew between lines: frequency can go up"
       correct: true
     - text:
         it: Perché costano di più
+        en: Because they cost more
       correct: false
     - text:
         it: Perché il seriale trasferisce più bit per volta
+        en: Because serial transfers more bits at a time
       correct: false
   origin: originale
 - id: schema-interfaccia-io

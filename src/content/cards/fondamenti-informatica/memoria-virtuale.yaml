@@ -46,6 +46,7 @@
   kind: orale
   front:
     it: Che cos'è la memoria virtuale? Spiega la traduzione di un indirizzo e il ruolo del TLB.
+    en: What is virtual memory? Explain address translation and the role of the TLB.
   back:
     it: "Ogni processo lavora su uno spazio di indirizzi **logico** proprio, mappato dal sistema sulla memoria
       **fisica**, appoggiandosi al disco per ciò che non ci sta: si eseguono programmi più grandi della RAM e
@@ -56,6 +57,15 @@
       ogni accesso: il **TLB** è una piccola cache associativa delle traduzioni recenti che elimina quasi
       sempre quel costo, sfruttando la località. Se la pagina non è in memoria (bit valid a 0) si ha un **page
       fault**: eccezione, caricamento da disco, riesecuzione dell'istruzione."
+    en: "Each process works on a **logical** address space of its own, mapped by the system onto **physical**
+      memory, relying on the disk for what does not fit: programs larger than RAM can run and processes are
+      isolated from one another. With **paging**, logical space and physical memory are divided into pages and
+      frames of equal size. The virtual address splits into page number + offset: only the page number is
+      translated into a frame number through the **page table**, while the **offset stays unchanged**. Since
+      the table lives in memory, translating would cost one more access at every access: the **TLB** is a
+      small associative cache of recent translations that almost always removes that cost, exploiting
+      locality. If the page is not in memory (valid bit at 0) there is a **page fault**: exception, load from
+      disk, re-execution of the instruction."
 - id: open-vm-02
   topic: memoria-virtuale
   objectives:
@@ -64,6 +74,7 @@
   kind: orale
   front:
     it: Cache e memoria virtuale risolvono lo stesso problema? Motiva.
+    en: Do cache and virtual memory solve the same problem? Explain.
   back:
     it: "No, e vanno tenute distinte anche a parole. Entrambe sfruttano la **località**, ma stanno a livelli
       diversi della gerarchia: la **cache** sta fra CPU e memoria principale e accelera l'**accesso ai dati**;
@@ -73,6 +84,13 @@
       disco — milioni di cicli — e viene gestito dal sistema operativo, che può quindi permettersi politiche
       di sostituzione sofisticate. Il **TLB** è l'anello che li avvicina: è una cache, ma delle traduzioni,
       non dei dati."
+    en: "No, and they must be kept distinct in words too. Both exploit **locality**, but they sit at different
+      levels of the hierarchy: the **cache** sits between CPU and main memory and speeds up **data access**;
+      **virtual memory** sits between main memory and disk and gives each process a space of its own larger
+      than RAM, with protection and the possibility of sharing. The costs are of different orders too: a cache
+      miss costs tens of cycles and is handled in hardware, a page fault costs a disk access — millions of
+      cycles — and is handled by the operating system, which can therefore afford sophisticated replacement
+      policies. The **TLB** is the link between them: it is a cache, but of translations, not of data."
 - id: def-memoriavirtuale
   topic: memoria-virtuale
   objectives:
@@ -81,13 +99,12 @@
   kind: definizione
   front:
     it: Memoria virtuale
+    en: Virtual memory
   back:
-    it: >-
-      Meccanismo che dà a ogni processo uno spazio di indirizzi logico proprio, mappato sulla memoria fisica e
+    it: Meccanismo che dà a ogni processo uno spazio di indirizzi logico proprio, mappato sulla memoria fisica e
       sul disco.
-
-
-      undefined
+    en: Mechanism that gives each process a logical address space of its own, mapped onto physical memory and
+      disk.
 - id: def-tlb
   topic: memoria-virtuale
   objectives:
@@ -96,11 +113,16 @@
   kind: definizione
   front:
     it: TLB
+    en: TLB
   back:
     it: |-
       Piccola cache delle traduzioni pagina→frame usate di recente.
 
       Senza, ogni accesso ne costerebbe due: uno per la tabella delle pagine e uno per il dato.
+    en: |-
+      Small cache of recently used page→frame translations.
+
+      Without it, every access would cost two: one for the page table and one for the data.
 - id: def-pagefault
   topic: memoria-virtuale
   objectives:
@@ -109,10 +131,9 @@
   kind: definizione
   front:
     it: Page fault
+    en: Page fault
   back:
-    it: >-
-      Eccezione sollevata quando la pagina richiesta non è in memoria: il sistema la carica da disco e
-      riesegue l’istruzione.
-
-
-      undefined
+    it: "Eccezione sollevata quando la pagina richiesta non è in memoria: il sistema la carica da disco e riesegue
+      l’istruzione."
+    en: "Exception raised when the requested page is not in memory: the system loads it from disk and re-executes
+      the instruction."

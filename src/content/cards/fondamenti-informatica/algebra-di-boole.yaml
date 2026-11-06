@@ -46,12 +46,18 @@
   kind: orale
   front:
     it: Enuncia i teoremi di De Morgan e spiega perché NAND e NOR sono universali.
+    en: State De Morgan's theorems and explain why NAND and NOR are universal.
   back:
     it: "De Morgan: $\\overline{A\\cdot B}$ = $\\overline{A}$ + $\\overline{B}$ e $\\overline{A+B}$ =
       $\\overline{A}$ · $\\overline{B}$; valgono anche per più di due fattori. Con soli ∧ e ∨ non si ottiene
       la negazione, quindi quell'insieme non è funzionalmente completo. NAND e NOR invece lo sono da soli: da
       ciascuno si ricava il NOT (collegando insieme gli ingressi) e, per De Morgan, anche AND e OR — quindi
       qualunque rete combinatoria."
+    en: "De Morgan: $\\overline{A\\cdot B}$ = $\\overline{A}$ + $\\overline{B}$ and $\\overline{A+B}$ =
+      $\\overline{A}$ · $\\overline{B}$; they also hold for more than two factors. With only ∧ and ∨ negation
+      cannot be obtained, so that set is not functionally complete. NAND and NOR, on the other hand, are
+      complete on their own: from each one you get NOT (tying the inputs together) and, by De Morgan, also AND
+      and OR — hence any combinational network."
 - id: def-completo
   topic: algebra-di-boole
   objectives:
@@ -59,11 +65,16 @@
   kind: definizione
   front:
     it: Insieme funzionalmente completo
+    en: Functionally complete set
   back:
     it: |-
       Insieme di operatori con cui si può esprimere qualunque funzione booleana.
 
       {AND, OR} **non** lo è: manca la negazione. NAND da solo e NOR da solo lo sono.
+    en: |-
+      Set of operators with which any Boolean function can be expressed.
+
+      {AND, OR} is **not**: negation is missing. NAND alone and NOR alone are.
 - id: def-demorgan
   topic: algebra-di-boole
   objectives:
@@ -71,6 +82,7 @@
   kind: definizione
   front:
     it: Teoremi di De Morgan
+    en: De Morgan's theorems
   back:
     it: >-
       La negazione di un prodotto è la somma delle negazioni, e la negazione di una somma è il prodotto delle
@@ -78,6 +90,12 @@
 
 
       Valgono anche per più di due fattori.
+    en: >-
+      The negation of a product is the sum of the negations, and the negation of a sum is the product of the
+      negations.
+
+
+      They also hold for more than two factors.
 - id: def-mintermine
   topic: algebra-di-boole
   objectives:
@@ -85,6 +103,7 @@
   kind: definizione
   front:
     it: Mintermine
+    en: Minterm
   back:
     it: >-
       Prodotto in cui compaiono tutte le variabili, dirette o negate, corrispondente a una riga della tabella
@@ -92,6 +111,10 @@
 
 
       La somma dei mintermini delle righe a 1 è la forma canonica SOP.
+    en: |-
+      Product in which all variables appear, plain or negated, corresponding to one row of the truth table.
+
+      The sum of the minterms of the rows at 1 is the canonical SOP form.
 - id: def-sop
   topic: algebra-di-boole
   objectives:
@@ -99,8 +122,7 @@
   kind: definizione
   front:
     it: SOP (somma di prodotti)
+    en: SOP (sum of products)
   back:
-    it: |-
-      Espressione formata da termini prodotto messi in OR.
-
-      undefined
+    it: Espressione formata da termini prodotto messi in OR.
+    en: Expression made of product terms combined with OR.

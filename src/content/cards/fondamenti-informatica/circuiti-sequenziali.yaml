@@ -45,12 +45,17 @@
   kind: orale
   front:
     it: Che cos'è un flip-flop? Distingui dispositivi sincroni e asincroni.
+    en: What is a flip-flop? Distinguish synchronous and asynchronous devices.
   back:
     it: "Un flip-flop è un elemento **bistabile** che memorizza 1 bit: realizzato con porte logiche retroazionate,
       mantiene uno dei due stati stabili finché un ingresso non lo commuta. È il mattone di registri e
       contatori. I dispositivi **sincroni** (edge-triggered) cambiano stato solo sul fronte del clock, quindi
       l'istante di commutazione è prevedibile; gli **asincroni** reagiscono immediatamente agli ingressi,
       senza clock."
+    en: "A flip-flop is a **bistable** element that stores 1 bit: built from logic gates with feedback, it holds
+      one of its two stable states until an input switches it. It is the building block of registers and
+      counters. **Synchronous** (edge-triggered) devices change state only on the clock edge, so the switching
+      instant is predictable; **asynchronous** ones react immediately to the inputs, without a clock."
 - id: open-ff-02
   topic: circuiti-sequenziali
   objectives:
@@ -58,11 +63,16 @@
   kind: orale
   front:
     it: Descrivi il flip-flop master-slave e spiega perché serve la struttura a due stadi.
+    en: Describe the master-slave flip-flop and explain why the two-stage structure is needed.
   back:
     it: "Due latch D in serie: il **master** campiona l'ingresso mentre il clock è alto, lo **slave** ne
       trasferisce il valore in uscita quando il clock commuta. Poiché i due stadi non sono mai trasparenti
       contemporaneamente, l'ingresso non può «attraversare» il dispositivo nello stesso ciclo: si evita
       l'instabilità (corse) e l'uscita cambia in un solo istante ben definito, il fronte del clock."
+    en: "Two D latches in series: the **master** samples the input while the clock is high, the **slave**
+      transfers its value to the output when the clock switches. Since the two stages are never transparent at
+      the same time, the input cannot “cross” the device in the same cycle: instability (races) is avoided and
+      the output changes at a single well-defined instant, the clock edge."
 - id: def-flipflop
   topic: circuiti-sequenziali
   objectives:
@@ -70,11 +80,16 @@
   kind: definizione
   front:
     it: Flip-flop
+    en: Flip-flop
   back:
     it: |-
       Elemento bistabile che memorizza un bit e commuta solo sul fronte del clock.
 
       Il **latch** è invece sensibile al livello: mentre l’abilitazione è alta resta trasparente.
+    en: |-
+      Bistable element that stores one bit and switches only on the clock edge.
+
+      A **latch**, by contrast, is level-sensitive: while the enable is high it stays transparent.
 - id: def-masterslave
   topic: circuiti-sequenziali
   objectives:
@@ -82,11 +97,18 @@
   kind: definizione
   front:
     it: Master-slave
+    en: Master-slave
   back:
     it: |-
       Due latch in serie con clock opposti, mai trasparenti insieme, così l’uscita cambia in un solo istante.
 
       Evita le corse e le inconsistenze di lettura-scrittura sui registri.
+    en: >-
+      Two latches in series with opposite clocks, never transparent together, so the output changes at a
+      single instant.
+
+
+      It avoids races and read-write inconsistencies on registers.
 - id: def-setup
   topic: circuiti-sequenziali
   objectives:
@@ -94,8 +116,7 @@
   kind: definizione
   front:
     it: Tempo di setup
+    en: Setup time
   back:
-    it: |-
-      Intervallo in cui il dato deve essere già stabile prima del fronte di clock.
-
-      undefined
+    it: Intervallo in cui il dato deve essere già stabile prima del fronte di clock.
+    en: Interval during which the data must already be stable before the clock edge.

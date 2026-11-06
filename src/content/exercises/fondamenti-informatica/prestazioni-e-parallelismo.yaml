@@ -332,24 +332,30 @@
   kind: static
   statement:
     it: Nell’equazione `T = (N × S) / R`, che cosa rappresenta `S`?
+    en: In the equation `T = (N × S) / R`, what does `S` represent?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Il numero medio di cicli di clock per istruzione
+        en: The average number of clock cycles per instruction
   choices:
     - text:
         it: La dimensione della cache
+        en: The cache size
       correct: false
     - text:
         it: Il numero medio di cicli di clock per istruzione
+        en: The average number of clock cycles per instruction
       correct: true
     - text:
         it: Il numero di stadi della pipeline
+        en: The number of pipeline stages
       correct: false
     - text:
         it: La frequenza di clock in GHz
+        en: The clock frequency in GHz
       correct: false
   origin: originale
 - id: mcq-perf-02
@@ -361,24 +367,30 @@
   kind: static
   statement:
     it: Il 50 % del tempo di esecuzione viene reso **4 volte** più veloce. Qual è il guadagno complessivo?
+    en: 50 % of the execution time is made **4 times** faster. What is the overall gain?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: 1,6×
+        en: 1.6×
   choices:
     - text:
         it: 4×
+        en: 4×
       correct: false
     - text:
         it: 1,6×
+        en: 1.6×
       correct: true
     - text:
         it: 2×
+        en: 2×
       correct: false
     - text:
         it: 2,5×
+        en: 2.5×
       correct: false
   origin: originale
 - id: mcq-perf-03
@@ -390,6 +402,7 @@
   kind: static
   statement:
     it: Perché i **MIPS** sono una misura poco affidabile per confrontare due processori?
+    en: Why are **MIPS** an unreliable measure for comparing two processors?
   steps:
     - title:
         it: Risposta
@@ -397,19 +410,26 @@
       body:
         it: "Perché dipendono dal repertorio di istruzioni e dal programma: la stessa quantità di lavoro richiede più
           istruzioni su una macchina che sull’altra"
+        en: "Because they depend on the instruction set and the program: the same amount of work takes more
+          instructions on one machine than on the other"
   choices:
     - text:
         it: Perché non tengono conto della frequenza di clock
+        en: Because they do not take the clock frequency into account
       correct: false
     - text:
         it: "Perché dipendono dal repertorio di istruzioni e dal programma: la stessa quantità di lavoro richiede più
           istruzioni su una macchina che sull’altra"
+        en: "Because they depend on the instruction set and the program: the same amount of work takes more
+          instructions on one machine than on the other"
       correct: true
     - text:
         it: Perché misurano solo le operazioni in virgola mobile
+        en: Because they measure only floating-point operations
       correct: false
     - text:
         it: Perché sono definiti solo per le macchine RISC
+        en: Because they are defined only for RISC machines
       correct: false
   origin: originale
 - id: mcq-perf-04
@@ -421,6 +441,7 @@
   kind: static
   statement:
     it: Qual è la ragione **fisica** per cui si è passati dall’alzare la frequenza al mettere più core?
+    en: What is the **physical** reason for moving from raising the frequency to adding more cores?
   steps:
     - title:
         it: Risposta
@@ -428,19 +449,26 @@
       body:
         it: "Il consumo dinamico cresce con f·C·V²: alzare la frequenza costa in potenza e calore molto più che
           aggiungere core"
+        en: "Dynamic power grows with f·C·V²: raising the frequency costs far more in power and heat than adding
+          cores"
   choices:
     - text:
         it: I transistor non si possono più rimpicciolire
+        en: Transistors can no longer be made smaller
       correct: false
     - text:
         it: "Il consumo dinamico cresce con f·C·V²: alzare la frequenza costa in potenza e calore molto più che
           aggiungere core"
+        en: "Dynamic power grows with f·C·V²: raising the frequency costs far more in power and heat than adding
+          cores"
       correct: true
     - text:
         it: I programmi sono tutti già paralleli
+        en: Programs are all already parallel
       correct: false
     - text:
         it: La memoria non riesce a seguire una sola pipeline
+        en: Memory cannot keep up with a single pipeline
       correct: false
   origin: originale
 - id: schema-multiprocessore-uma

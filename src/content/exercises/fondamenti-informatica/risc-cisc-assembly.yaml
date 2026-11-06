@@ -374,12 +374,24 @@
   statement:
     it: Scrivi un programma in stile RISC che calcoli la moltiplicazione di due numeri in LOC1 e LOC2 tramite
       somme successive, salvando il risultato in LOC3.
+    en: Write a RISC-style program that computes the multiplication of two numbers in LOC1 and LOC2 by repeated
+      addition, saving the result in LOC3.
   steps:
     - title:
         it: Soluzione modello
         en: Model solution
       body:
         it: |-
+          ```
+                Load  LOC1, NUM1
+                Load  LOC2, NUM2
+                Clear LOC3
+          CICLO: Sub   LOC2, LOC2, 1
+                Add   LOC3, LOC3, LOC1
+                Branch_if_[LOC2]>0  CICLO
+                Store LOC3, RES
+          ```
+        en: |-
           ```
                 Load  LOC1, NUM1
                 Load  LOC2, NUM2
@@ -398,12 +410,25 @@
   kind: static
   statement:
     it: Scrivi un programma che sommi N valori contigui a partire dall'indirizzo LIST e salvi il totale in SUM.
+    en: Write a program that adds N contiguous values starting at address LIST and saves the total in SUM.
   steps:
     - title:
         it: Soluzione modello
         en: Model solution
       body:
         it: |-
+          ```
+                Load  N, R1
+                Move  R2, #LIST
+                Clear R3
+          L:    Load  (R2), R4
+                Add   R3, R3, R4
+                Add   R2, R2, #4
+                Sub   R1, R1, #1
+                Branch_if_[R1]>0  L
+                Store R3, SUM
+          ```
+        en: |-
           ```
                 Load  N, R1
                 Move  R2, #LIST
@@ -425,24 +450,30 @@
   kind: static
   statement:
     it: "RISC sta per:"
+    en: "RISC stands for:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Reduced Instruction Set Computing
+        en: Reduced Instruction Set Computing
   choices:
     - text:
         it: Reduced Instruction Set Computing
+        en: Reduced Instruction Set Computing
       correct: true
     - text:
         it: Rapid Internal Signal Control
+        en: Rapid Internal Signal Control
       correct: false
     - text:
         it: Random Instruction Sequence Computing
+        en: Random Instruction Sequence Computing
       correct: false
     - text:
         it: Reduced Internal Storage Cache
+        en: Reduced Internal Storage Cache
       correct: false
   origin: originale
 - id: mcq-isa-02
@@ -454,24 +485,30 @@
   kind: static
   statement:
     it: "Caratteristica tipica di un'architettura RISC:"
+    en: "Typical feature of a RISC architecture:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Modello load/store con istruzioni a lunghezza fissa
+        en: Load/store model with fixed-length instructions
   choices:
     - text:
         it: Istruzioni di lunghezza variabile
+        en: Variable-length instructions
       correct: false
     - text:
         it: Operazioni memoria-memoria
+        en: Memory-to-memory operations
       correct: false
     - text:
         it: Modello load/store con istruzioni a lunghezza fissa
+        en: Load/store model with fixed-length instructions
       correct: true
     - text:
         it: Nessuna pipeline
+        en: No pipeline
       correct: false
   origin: originale
 - id: mcq-isa-03
@@ -483,24 +520,30 @@
   kind: static
   statement:
     it: In `Add R1,R2,R3`, dove finisce il risultato?
+    en: In `Add R1,R2,R3`, where does the result end up?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: In R1
+        en: In R1
   choices:
     - text:
         it: In R2
+        en: In R2
       correct: false
     - text:
         it: In R3
+        en: In R3
       correct: false
     - text:
         it: In R1
+        en: In R1
       correct: true
     - text:
         it: In memoria LOC
+        en: In memory LOC
       correct: false
   origin: originale
 - id: mcq-isa-04
@@ -512,24 +555,30 @@
   kind: static
   statement:
     it: "Il loader si occupa principalmente di:"
+    en: "The loader is mainly responsible for:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Caricare programmi in memoria (e dello spiazzamento)
+        en: Loading programs into memory (and the displacement)
   choices:
     - text:
         it: Compilare il codice
+        en: Compiling the code
       correct: false
     - text:
         it: Caricare programmi in memoria (e dello spiazzamento)
+        en: Loading programs into memory (and the displacement)
       correct: true
     - text:
         it: Gestire gli interrupt
+        en: Handling interrupts
       correct: false
     - text:
         it: Sostituire i blocchi cache
+        en: Replacing cache blocks
       correct: false
   origin: originale
 - id: mcq-isa-05
@@ -541,24 +590,30 @@
   kind: static
   statement:
     it: "Il linker serve a:"
+    en: "The linker is used to:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Combinare più file oggetto risolvendo i riferimenti esterni
+        en: Combine several object files resolving external references
   choices:
     - text:
         it: Tradurre in linguaggio macchina
+        en: Translate into machine language
       correct: false
     - text:
         it: Combinare più file oggetto risolvendo i riferimenti esterni
+        en: Combine several object files resolving external references
       correct: true
     - text:
         it: Gestire la memoria virtuale
+        en: Manage virtual memory
       correct: false
     - text:
         it: Cancellare la EPROM
+        en: Erase the EPROM
       correct: false
   origin: originale
 - id: mcq-isa-06
@@ -570,24 +625,30 @@
   kind: static
   statement:
     it: Chi traduce il codice sorgente in linguaggio macchina?
+    en: Who translates source code into machine language?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Il compilatore
+        en: The compiler
   choices:
     - text:
         it: Il sistema operativo
+        en: The operating system
       correct: false
     - text:
         it: Il compilatore
+        en: The compiler
       correct: true
     - text:
         it: Il loader
+        en: The loader
       correct: false
     - text:
         it: La ALU
+        en: The ALU
       correct: false
   origin: originale
 - id: mcq-isa-07
@@ -599,24 +660,30 @@
   kind: static
   statement:
     it: Quale istruzione ARM trasferisce un valore da un registro a un altro?
+    en: Which ARM instruction transfers a value from one register to another?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: MOV
+        en: MOV
   choices:
     - text:
         it: CMP
+        en: CMP
       correct: false
     - text:
         it: ADD
+        en: ADD
       correct: false
     - text:
         it: SUB
+        en: SUB
       correct: false
     - text:
         it: MOV
+        en: MOV
       correct: true
   origin: originale
 - id: mcq-isa-08
@@ -628,24 +695,30 @@
   kind: static
   statement:
     it: Quale istruzione realizza un salto condizionato «se maggiore»?
+    en: Which instruction performs a conditional branch “if greater”?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: BGT
+        en: BGT
   choices:
     - text:
         it: BGT
+        en: BGT
       correct: true
     - text:
         it: MOV
+        en: MOV
       correct: false
     - text:
         it: MUL
+        en: MUL
       correct: false
     - text:
         it: CLR
+        en: CLR
       correct: false
   origin: originale
 - id: mcq-isa-09
@@ -657,24 +730,30 @@
   kind: static
   statement:
     it: In `Load R1, 8(R2)`, quale modo di indirizzamento è usato?
+    en: In `Load R1, 8(R2)`, which addressing mode is used?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Indicizzato (base + spiazzamento)
+        en: Indexed (base + displacement)
   choices:
     - text:
         it: Immediato
+        en: Immediate
       correct: false
     - text:
         it: Assoluto
+        en: Absolute
       correct: false
     - text:
         it: Indicizzato (base + spiazzamento)
+        en: Indexed (base + displacement)
       correct: true
     - text:
         it: Relativo al PC
+        en: PC-relative
       correct: false
   origin: originale
 - id: mcq-isa-10
@@ -686,24 +765,30 @@
   kind: static
   statement:
     it: Perché un solo link register non basta per i sottoprogrammi ricorsivi?
+    en: Why is a single link register not enough for recursive subroutines?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Perché una nuova chiamata ne sovrascrive l'indirizzo di ritorno
+        en: Because a new call overwrites its return address
   choices:
     - text:
         it: Perché è troppo piccolo per un indirizzo
+        en: Because it is too small for an address
       correct: false
     - text:
         it: Perché una nuova chiamata ne sovrascrive l'indirizzo di ritorno
+        en: Because a new call overwrites its return address
       correct: true
     - text:
         it: Perché non è accessibile in lettura
+        en: Because it cannot be read
       correct: false
     - text:
         it: Perché va azzerato a ogni salto
+        en: Because it must be cleared at every branch
       correct: false
   origin: originale
 - id: mcq-isa-11
@@ -715,24 +800,30 @@
   kind: static
   statement:
     it: Che cosa fa tipicamente l’istruzione `CMP`?
+    en: What does the `CMP` instruction typically do?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Esegue una sottrazione aggiornando i flag senza salvare il risultato
+        en: Performs a subtraction updating the flags without saving the result
   choices:
     - text:
         it: Salta se i due operandi sono uguali
+        en: Branches if the two operands are equal
       correct: false
     - text:
         it: Copia un registro in un altro
+        en: Copies one register into another
       correct: false
     - text:
         it: Esegue una sottrazione aggiornando i flag senza salvare il risultato
+        en: Performs a subtraction updating the flags without saving the result
       correct: true
     - text:
         it: Confronta e scambia due registri
+        en: Compares and swaps two registers
       correct: false
   origin: originale
 - id: mcq-isa-12
@@ -744,23 +835,29 @@
   kind: static
   statement:
     it: In quale direzione cresce tipicamente la pila?
+    en: In which direction does the stack typically grow?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Verso gli indirizzi bassi
+        en: Towards lower addresses
   choices:
     - text:
         it: Verso gli indirizzi bassi
+        en: Towards lower addresses
       correct: true
     - text:
         it: Verso gli indirizzi alti
+        en: Towards higher addresses
       correct: false
     - text:
         it: "Non cresce: ha dimensione fissa"
+        en: "It does not grow: it has a fixed size"
       correct: false
     - text:
         it: Dipende dal valore del PC
+        en: It depends on the value of the PC
       correct: false
   origin: originale

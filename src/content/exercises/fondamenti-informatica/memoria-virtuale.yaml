@@ -373,24 +373,30 @@
   kind: static
   statement:
     it: Nella traduzione di un indirizzo virtuale paginato, quale campo resta invariato?
+    en: In translating a paged virtual address, which field stays unchanged?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: L'offset nella pagina
+        en: The offset within the page
   choices:
     - text:
         it: L'offset nella pagina
+        en: The offset within the page
       correct: true
     - text:
         it: Il numero di pagina
+        en: The page number
       correct: false
     - text:
         it: Il tag
+        en: The tag
       correct: false
     - text:
         it: Tutti i campi vengono tradotti
+        en: All fields are translated
       correct: false
   origin: originale
 - id: mcq-vm-02
@@ -402,24 +408,30 @@
   kind: static
   statement:
     it: Che cosa contiene il **TLB**?
+    en: What does the **TLB** contain?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Le traduzioni pagina→frame usate di recente
+        en: Recently used page→frame translations
   choices:
     - text:
         it: I dati usati di recente
+        en: Recently used data
       correct: false
     - text:
         it: Le traduzioni pagina→frame usate di recente
+        en: Recently used page→frame translations
       correct: true
     - text:
         it: L'elenco dei processi attivi
+        en: The list of active processes
       correct: false
     - text:
         it: I blocchi sfrattati dalla cache
+        en: The blocks evicted from the cache
       correct: false
   origin: originale
 - id: mcq-vm-03
@@ -431,24 +443,30 @@
   kind: static
   statement:
     it: Che cosa accade in caso di **page fault**?
+    en: What happens on a **page fault**?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: "Si solleva un'eccezione: il SO carica la pagina da disco e riesegue l'istruzione"
+        en: "An exception is raised: the OS loads the page from disk and re-executes the instruction"
   choices:
     - text:
         it: Il programma termina con errore
+        en: The program terminates with an error
       correct: false
     - text:
         it: "Si solleva un'eccezione: il SO carica la pagina da disco e riesegue l'istruzione"
+        en: "An exception is raised: the OS loads the page from disk and re-executes the instruction"
       correct: true
     - text:
         it: La pagina viene creata vuota e si prosegue
+        en: The page is created empty and execution continues
       correct: false
     - text:
         it: Il TLB viene svuotato e basta
+        en: The TLB is flushed and that is all
       correct: false
   origin: originale
 - id: mcq-vm-04
@@ -460,24 +478,30 @@
   kind: static
   statement:
     it: Senza TLB, quanti accessi in memoria costerebbe leggere un dato con memoria virtuale paginata?
+    en: Without a TLB, how many memory accesses would it cost to read a datum with paged virtual memory?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: "Due: uno per la tabella delle pagine e uno per il dato"
+        en: "Two: one for the page table and one for the data"
   choices:
     - text:
         it: Uno solo
+        en: Only one
       correct: false
     - text:
         it: "Due: uno per la tabella delle pagine e uno per il dato"
+        en: "Two: one for the page table and one for the data"
       correct: true
     - text:
         it: Nessuno
+        en: None
       correct: false
     - text:
         it: Dipende dalla dimensione della cache
+        en: It depends on the cache size
       correct: false
   origin: originale
 - id: mcq-vm-05
@@ -489,24 +513,30 @@
   kind: static
   statement:
     it: Come si ottiene l’isolamento fra processi nella memoria virtuale?
+    en: How is isolation between processes achieved with virtual memory?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Dando a ogni processo la propria tabella delle pagine
+        en: By giving each process its own page table
   choices:
     - text:
         it: Cifrando la memoria
+        en: By encrypting memory
       correct: false
     - text:
         it: Dando a ogni processo la propria tabella delle pagine
+        en: By giving each process its own page table
       correct: true
     - text:
         it: Assegnando a ogni processo una cache dedicata
+        en: By assigning each process a dedicated cache
       correct: false
     - text:
         it: Disabilitando le interruzioni
+        en: By disabling interrupts
       correct: false
   origin: originale
 - id: schema-memoria-virtuale-tlb

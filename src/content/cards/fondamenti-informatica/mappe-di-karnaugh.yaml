@@ -46,6 +46,7 @@
   kind: orale
   front:
     it: Descrivi la minimizzazione con la mappa di Karnaugh e il ruolo delle indifferenze.
+    en: Describe minimisation with the Karnaugh map and the role of don’t cares.
   back:
     it: "La mappa dispone i mintermini in celle adiacenti secondo il **codice Gray**: fra celle vicine cambia una
       sola variabile. Si raggruppano gli `1` in blocchi di dimensione potenza di 2, il più grandi possibile:
@@ -54,6 +55,13 @@
       tavola (wrap-around). Le **indifferenze** (x) possono essere prese come 1 quando servono ad allargare un
       gruppo, o lasciate a 0 se non aiutano: si valutano una per una, non tutte insieme. Nel disegno finale
       scomponi in porte a 2 ingressi."
+    en: "The map arranges the minterms in adjacent cells according to the **Gray code**: between neighbouring
+      cells only one variable changes. The `1`s are grouped in blocks whose size is a power of 2, as large as
+      possible: within a group the variables that change are eliminated, and the constant ones remain, forming
+      an implicant. The union of the chosen implicants gives the minimal SOP. Cells are adjacent across the
+      edges too (wrap-around). **Don’t cares** (x) can be taken as 1 when they help enlarge a group, or left
+      at 0 if they do not help: they are judged one by one, not all together. In the final drawing break into
+      2-input gates."
 - id: def-implicante
   topic: mappe-di-karnaugh
   objectives:
@@ -61,6 +69,7 @@
   kind: definizione
   front:
     it: Implicante primo
+    en: Prime implicant
   back:
     it: >-
       Gruppo valido di 1 nella mappa che non può essere ingrandito ulteriormente.
@@ -68,6 +77,12 @@
 
       È **essenziale** se copre almeno un 1 che nessun altro implicante primo copre: quelli vanno presi per
       forza.
+    en: >-
+      Valid group of 1s in the map that cannot be enlarged any further.
+
+
+      It is **essential** if it covers at least one 1 that no other prime implicant covers: those must be
+      taken.
 - id: def-indifferenza
   topic: mappe-di-karnaugh
   objectives:
@@ -75,8 +90,13 @@
   kind: definizione
   front:
     it: Condizione di indifferenza
+    en: Don’t-care condition
   back:
     it: |-
       Combinazione d’ingresso che non si presenta mai, o la cui uscita è irrilevante.
 
       Si prende a 1 solo quando allarga un gruppo, e si valuta **una per una**: mai coprirne una da sola.
+    en: |-
+      Input combination that never occurs, or whose output is irrelevant.
+
+      It is taken as 1 only when it enlarges a group, and judged **one by one**: never cover one on its own.

@@ -334,6 +334,7 @@
   kind: static
   statement:
     it: Perché un assemblatore lavora in **due passate**?
+    en: Why does an assembler work in **two passes**?
   steps:
     - title:
         it: Risposta
@@ -341,19 +342,24 @@
       body:
         it: Perché nella prima passata costruisce la tabella dei simboli, e solo allora può risolvere i salti in
           avanti
+        en: Because in the first pass it builds the symbol table, and only then can it resolve forward branches
   choices:
     - text:
         it: Per controllare due volte la sintassi
+        en: To check the syntax twice
       correct: false
     - text:
         it: Perché nella prima passata costruisce la tabella dei simboli, e solo allora può risolvere i salti in
           avanti
+        en: Because in the first pass it builds the symbol table, and only then can it resolve forward branches
       correct: true
     - text:
         it: Perché deve tradurre prima i dati e poi le istruzioni
+        en: Because it must translate the data first and then the instructions
       correct: false
     - text:
         it: Per ottimizzare il codice generato
+        en: To optimise the generated code
       correct: false
   origin: originale
 - id: mcq-sw-02
@@ -364,24 +370,30 @@
   kind: static
   statement:
     it: Che cosa produce la direttiva `DATAWORD 42`?
+    en: What does the directive `DATAWORD 42` produce?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Una parola di memoria inizializzata a 42, non un’istruzione
+        en: A memory word initialised to 42, not an instruction
   choices:
     - text:
         it: Un’istruzione che carica 42 in un registro
+        en: An instruction that loads 42 into a register
       correct: false
     - text:
         it: Una parola di memoria inizializzata a 42, non un’istruzione
+        en: A memory word initialised to 42, not an instruction
       correct: true
     - text:
         it: Una costante simbolica utilizzabile nel sorgente
+        en: A symbolic constant usable in the source
       correct: false
     - text:
         it: Una riserva di 42 byte non inizializzati
+        en: A reservation of 42 uninitialised bytes
       correct: false
   origin: originale
 - id: mcq-sw-03
@@ -392,24 +404,30 @@
   kind: static
   statement:
     it: Di che cosa si occupa il **collegatore** (linker)?
+    en: What does the **linker** do?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Di risolvere i riferimenti esterni fra moduli oggetto e librerie, producendo l’eseguibile
+        en: Resolves external references between object modules and libraries, producing the executable
   choices:
     - text:
         it: Di tradurre i mnemonici in codici operativi
+        en: Translates mnemonics into opcodes
       correct: false
     - text:
         it: Di risolvere i riferimenti esterni fra moduli oggetto e librerie, producendo l’eseguibile
+        en: Resolves external references between object modules and libraries, producing the executable
       correct: true
     - text:
         it: Di copiare il programma in memoria e avviarlo
+        en: Copies the program into memory and starts it
       correct: false
     - text:
         it: Di allocare la memoria ai processi durante l’esecuzione
+        en: Allocates memory to processes during execution
       correct: false
   origin: originale
 - id: mcq-sw-04
@@ -420,24 +438,30 @@
   kind: static
   statement:
     it: In quali casi il sistema operativo riprende il controllo del processore?
+    en: In which cases does the operating system regain control of the processor?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Solo su chiamata di sistema, interruzione o eccezione
+        en: Only on a system call, an interrupt or an exception
   choices:
     - text:
         it: In continuazione, perché gira in parallelo al programma utente
+        en: Continuously, because it runs in parallel with the user program
       correct: false
     - text:
         it: Solo su chiamata di sistema, interruzione o eccezione
+        en: Only on a system call, an interrupt or an exception
       correct: true
     - text:
         it: A ogni istruzione, che verifica prima di eseguirla
+        en: At every instruction, which it checks before executing it
       correct: false
     - text:
         it: Solo quando il programma termina
+        en: Only when the program terminates
       correct: false
   origin: originale
 - id: schema-catena-software

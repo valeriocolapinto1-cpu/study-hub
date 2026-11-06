@@ -442,24 +442,30 @@
   kind: static
   statement:
     it: In quale ordine si dispongono le colonne di una mappa di Karnaugh?
+    en: In what order are the columns of a Karnaugh map arranged?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: 00, 01, 11, 10
+        en: 00, 01, 11, 10
   choices:
     - text:
         it: 00, 01, 10, 11
+        en: 00, 01, 10, 11
       correct: false
     - text:
         it: 00, 01, 11, 10
+        en: 00, 01, 11, 10
       correct: true
     - text:
         it: 11, 10, 01, 00
+        en: 11, 10, 01, 00
       correct: false
     - text:
         it: L'ordine è indifferente
+        en: The order does not matter
       correct: false
   origin: originale
 - id: mcq-karnaugh-02
@@ -470,24 +476,30 @@
   kind: static
   statement:
     it: Quale dimensione NON può avere un gruppo in una mappa di Karnaugh?
+    en: Which size can a group in a Karnaugh map NOT have?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: "6"
+        en: "6"
   choices:
     - text:
         it: "2"
+        en: "2"
       correct: false
     - text:
         it: "4"
+        en: "4"
       correct: false
     - text:
         it: "6"
+        en: "6"
       correct: true
     - text:
         it: "8"
+        en: "8"
       correct: false
   origin: originale
 - id: mcq-karnaugh-03
@@ -498,24 +510,30 @@
   kind: static
   statement:
     it: "Un implicante primo si dice **essenziale** quando:"
+    en: "A prime implicant is called **essential** when:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Copre almeno un 1 che nessun altro implicante primo copre
+        en: It covers at least one 1 that no other prime implicant covers
   choices:
     - text:
         it: È il gruppo più grande della mappa
+        en: It is the largest group of the map
       correct: false
     - text:
         it: Copre almeno un 1 che nessun altro implicante primo copre
+        en: It covers at least one 1 that no other prime implicant covers
       correct: true
     - text:
         it: Contiene almeno una indifferenza
+        en: It contains at least one don’t care
       correct: false
     - text:
         it: Ha un solo letterale
+        en: It has a single literal
       correct: false
   origin: originale
 - id: mcq-karnaugh-04
@@ -526,23 +544,29 @@
   kind: static
   statement:
     it: Come si trattano le indifferenze (x) in una mappa?
+    en: How are don’t cares (x) treated in a map?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Si valutano una per una, prendendole a 1 solo se allargano un gruppo
+        en: They are judged one by one, taken as 1 only if they enlarge a group
   choices:
     - text:
         it: Si pongono tutte a 1
+        en: They are all set to 1
       correct: false
     - text:
         it: Si pongono tutte a 0
+        en: They are all set to 0
       correct: false
     - text:
         it: Si valutano una per una, prendendole a 1 solo se allargano un gruppo
+        en: They are judged one by one, taken as 1 only if they enlarge a group
       correct: true
     - text:
         it: Si escludono dalla mappa
+        en: They are excluded from the map
       correct: false
   origin: originale

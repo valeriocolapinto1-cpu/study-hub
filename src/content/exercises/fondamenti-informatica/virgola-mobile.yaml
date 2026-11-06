@@ -407,24 +407,30 @@
   kind: static
   statement:
     it: "Lo standard per la rappresentazione in virgola mobile è:"
+    en: "The standard for floating-point representation is:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: IEEE 754
+        en: IEEE 754
   choices:
     - text:
         it: ASCII
+        en: ASCII
       correct: false
     - text:
         it: IEEE 754
+        en: IEEE 754
       correct: true
     - text:
         it: Unicode
+        en: Unicode
       correct: false
     - text:
         it: ISO 8859
+        en: ISO 8859
       correct: false
   origin: originale
 - id: mcq-ieee-02
@@ -436,24 +442,30 @@
   kind: static
   statement:
     it: In IEEE 754 singola precisione, quanti bit hanno segno, esponente e mantissa?
+    en: In IEEE 754 single precision, how many bits do sign, exponent and mantissa have?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: 1, 8, 23
+        en: 1, 8, 23
   choices:
     - text:
         it: 1, 8, 23
+        en: 1, 8, 23
       correct: true
     - text:
         it: 1, 11, 52
+        en: 1, 11, 52
       correct: false
     - text:
         it: 1, 7, 24
+        en: 1, 7, 24
       correct: false
     - text:
         it: 2, 8, 22
+        en: 2, 8, 22
       correct: false
   origin: originale
 - id: mcq-ieee-03
@@ -465,24 +477,30 @@
   kind: static
   statement:
     it: Quanto vale la polarizzazione (bias) dell’esponente in singola precisione?
+    en: What is the exponent bias in single precision?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: "127"
+        en: "127"
   choices:
     - text:
         it: "64"
+        en: "64"
       correct: false
     - text:
         it: "127"
+        en: "127"
       correct: true
     - text:
         it: "128"
+        en: "128"
       correct: false
     - text:
         it: "1023"
+        en: "1023"
       correct: false
   origin: originale
 - id: mcq-ieee-04
@@ -494,24 +512,30 @@
   kind: static
   statement:
     it: Perché il bit «1.» davanti alla mantissa non viene memorizzato?
+    en: Why is the “1.” bit in front of the mantissa not stored?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Perché vale sempre 1 nei numeri normalizzati, quindi si guadagna un bit di precisione
+        en: Because it is always 1 in normalised numbers, so one bit of precision is gained
   choices:
     - text:
         it: Perché vale sempre 1 nei numeri normalizzati, quindi si guadagna un bit di precisione
+        en: Because it is always 1 in normalised numbers, so one bit of precision is gained
       correct: true
     - text:
         it: Perché occuperebbe troppo spazio
+        en: Because it would take too much space
       correct: false
     - text:
         it: Perché dipende dal segno
+        en: Because it depends on the sign
       correct: false
     - text:
         it: Perché lo standard lo vieta
+        en: Because the standard forbids it
       correct: false
   origin: originale
 - id: mcq-ieee-05
@@ -523,24 +547,30 @@
   kind: static
   statement:
     it: "Esponente tutto a 1 e mantissa non nulla rappresentano:"
+    en: "An exponent of all 1s with a non-zero mantissa represents:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: NaN
+        en: NaN
   choices:
     - text:
         it: Zero
+        en: Zero
       correct: false
     - text:
         it: Infinito
+        en: Infinity
       correct: false
     - text:
         it: NaN
+        en: NaN
       correct: true
     - text:
         it: Un numero denormalizzato
+        en: A denormal number
       correct: false
   origin: originale
 - id: schema-ieee-formati

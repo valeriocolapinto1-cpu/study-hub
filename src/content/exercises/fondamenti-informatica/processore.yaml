@@ -347,24 +347,30 @@
   kind: static
   statement:
     it: Quale registro presenta alla memoria l’indirizzo a cui accedere?
+    en: Which register presents to memory the address to be accessed?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: MAR
+        en: MAR
   choices:
     - text:
         it: MDR
+        en: MDR
       correct: false
     - text:
         it: MAR
+        en: MAR
       correct: true
     - text:
         it: IR
+        en: IR
       correct: false
     - text:
         it: PC
+        en: PC
       correct: false
   origin: originale
 - id: mcq-cpu-02
@@ -376,24 +382,30 @@
   kind: static
   statement:
     it: Quale registro trattiene l’istruzione durante la decodifica?
+    en: Which register holds the instruction during decoding?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: IR
+        en: IR
   choices:
     - text:
         it: PC
+        en: PC
       correct: false
     - text:
         it: MAR
+        en: MAR
       correct: false
     - text:
         it: IR
+        en: IR
       correct: true
     - text:
         it: MDR
+        en: MDR
       correct: false
   origin: originale
 - id: mcq-cpu-03
@@ -405,24 +417,30 @@
   kind: static
   statement:
     it: Perché il PC viene incrementato subito dopo il prelievo?
+    en: Why is the PC incremented right after the fetch?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Perché l'esecuzione è sequenziale e l'indirizzo successivo è così già pronto
+        en: Because execution is sequential and the next address is thus already ready
   choices:
     - text:
         it: Perché l'esecuzione è sequenziale e l'indirizzo successivo è così già pronto
+        en: Because execution is sequential and the next address is thus already ready
       correct: true
     - text:
         it: Perché altrimenti si perderebbe il contenuto di IR
+        en: Because otherwise the contents of IR would be lost
       correct: false
     - text:
         it: Per azzerare i flag della ALU
+        en: To clear the ALU flags
       correct: false
     - text:
         it: Per liberare il bus dati
+        en: To free the data bus
       correct: false
   origin: originale
 - id: mcq-cpu-04
@@ -434,24 +452,30 @@
   kind: static
   statement:
     it: "Vantaggio di un'unità di controllo microprogrammata rispetto a una cablata:"
+    en: "Advantage of a microprogrammed control unit over a hardwired one:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: "È più flessibile: cambiare l'insieme di istruzioni non richiede di riprogettare il circuito"
+        en: "It is more flexible: changing the instruction set does not require redesigning the circuit"
   choices:
     - text:
         it: È sempre più veloce
+        en: It is always faster
       correct: false
     - text:
         it: Consuma meno energia
+        en: It consumes less energy
       correct: false
     - text:
         it: "È più flessibile: cambiare l'insieme di istruzioni non richiede di riprogettare il circuito"
+        en: "It is more flexible: changing the instruction set does not require redesigning the circuit"
       correct: true
     - text:
         it: Non richiede segnali di clock
+        en: It does not require clock signals
       correct: false
   origin: originale
 - id: mcq-cpu-05
@@ -463,24 +487,30 @@
   kind: static
   statement:
     it: Cosa permette un datapath a tre bus rispetto a uno a bus singolo?
+    en: What does a three-bus datapath allow compared with a single-bus one?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Portare entrambi gli operandi alla ALU e scrivere il risultato nello stesso ciclo
+        en: Bringing both operands to the ALU and writing the result in the same cycle
   choices:
     - text:
         it: Indirizzare più memoria
+        en: Addressing more memory
       correct: false
     - text:
         it: Portare entrambi gli operandi alla ALU e scrivere il risultato nello stesso ciclo
+        en: Bringing both operands to the ALU and writing the result in the same cycle
       correct: true
     - text:
         it: Eliminare del tutto la necessità di registri
+        en: Removing the need for registers altogether
       correct: false
     - text:
         it: Eseguire istruzioni di lunghezza variabile
+        en: Executing variable-length instructions
       correct: false
   origin: originale
 - id: mcq-pipe-03
@@ -492,24 +522,30 @@
   kind: static
   statement:
     it: "Le prestazioni del processore dipendono dalla velocità di:"
+    en: "Processor performance depends on the speed of:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Prelievo (fetch) ed esecuzione
+        en: Fetch and execution
   choices:
     - text:
         it: Solo esecuzione
+        en: Execution only
       correct: false
     - text:
         it: Prelievo (fetch) ed esecuzione
+        en: Fetch and execution
       correct: true
     - text:
         it: Solo decodifica
+        en: Decoding only
       correct: false
     - text:
         it: Solo scrittura
+        en: Writing only
       correct: false
   origin: originale
 - id: mcq-pipe-04
@@ -521,24 +557,30 @@
   kind: static
   statement:
     it: Dove salva la ALU i risultati intermedi di un calcolo?
+    en: Where does the ALU store the intermediate results of a computation?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Nei registri
+        en: In the registers
   choices:
     - text:
         it: In cache
+        en: In the cache
       correct: false
     - text:
         it: Nei registri
+        en: In the registers
       correct: true
     - text:
         it: In memoria secondaria
+        en: In secondary memory
       correct: false
     - text:
         it: Nel PC
+        en: In the PC
       correct: false
   origin: originale
 - id: schema-unita-funzionali

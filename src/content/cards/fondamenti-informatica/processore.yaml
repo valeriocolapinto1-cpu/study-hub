@@ -49,6 +49,7 @@
   kind: orale
   front:
     it: Descrivi il ciclo di prelievo di un'istruzione, nominando i registri coinvolti.
+    en: Describe the fetch cycle of an instruction, naming the registers involved.
   back:
     it: "In RTN: `MAR ← [PC]`, avvio della lettura, `PC ← [PC]+4`, `IR ← [MDR]`; segue la decodifica e poi
       l'esecuzione. **MAR** presenta l'indirizzo alla memoria e **MDR** raccoglie il dato: il processore non
@@ -56,6 +57,12 @@
       alla prossima. L'incremento del PC avviene subito dopo l'invio dell'indirizzo, non a fine istruzione:
       l'esecuzione è sequenziale per default, quindi conviene preparare l'indirizzo successivo mentre la
       memoria risponde. I salti si limitano a sovrascrivere il PC."
+    en: "In RTN: `MAR ← [PC]`, start of the read, `PC ← [PC]+4`, `IR ← [MDR]`; then decoding and execution follow.
+      **MAR** presents the address to memory and **MDR** collects the data: the processor never talks directly
+      to memory. **IR** holds the instruction for decoding, **PC** points to the next one. The PC is
+      incremented right after the address is sent, not at the end of the instruction: execution is sequential
+      by default, so it pays to prepare the next address while memory responds. Branches simply overwrite the
+      PC."
 - id: open-cpu-02
   topic: processore
   objectives:
@@ -64,6 +71,7 @@
   kind: orale
   front:
     it: Confronta unità di controllo cablata e microprogrammata, e datapath a bus singolo e a tre bus.
+    en: Compare hardwired and microprogrammed control units, and single-bus and three-bus datapaths.
   back:
     it: "L'unità **cablata** è una rete sequenziale progettata su misura: veloce, ma cambiare l'insieme di
       istruzioni richiede di riprogettare il circuito — scelta tipica dei RISC. La **microprogrammata** tiene
@@ -73,6 +81,13 @@
       registri richiede più cicli; con **tre bus** (due di lettura e uno di scrittura) entrambi gli operandi
       raggiungono la ALU e il risultato viene riscritto nello stesso ciclo — più hardware, ma è ciò che rende
       praticabile la pipeline."
+    en: "The **hardwired** unit is a custom-designed sequential network: fast, but changing the instruction set
+      requires redesigning the circuit — the typical choice of RISC. The **microprogrammed** one keeps the
+      control signals in a control store and executes a microprogram: flexible and suited to complex ISAs, but
+      slower because each step costs a read — the historical choice of CISC. As for the datapath: with a
+      **single bus** only one transfer at a time is possible, so a register-to-register operation takes
+      several cycles; with **three buses** (two read, one write) both operands reach the ALU and the result is
+      written back in the same cycle — more hardware, but it is what makes pipelining practical."
 - id: def-pc
   topic: processore
   objectives:
@@ -81,11 +96,16 @@
   kind: definizione
   front:
     it: Program Counter (PC)
+    en: Program Counter (PC)
   back:
     it: |-
       Registro che contiene l’indirizzo della prossima istruzione da prelevare.
 
       Si incrementa subito dopo il prelievo; i salti lo sovrascrivono.
+    en: |-
+      Register holding the address of the next instruction to fetch.
+
+      It is incremented right after the fetch; branches overwrite it.
 - id: def-ir
   topic: processore
   objectives:
@@ -94,11 +114,10 @@
   kind: definizione
   front:
     it: Instruction Register (IR)
+    en: Instruction Register (IR)
   back:
-    it: |-
-      Registro che trattiene l’istruzione prelevata durante la decodifica.
-
-      undefined
+    it: Registro che trattiene l’istruzione prelevata durante la decodifica.
+    en: Register holding the fetched instruction during decoding.
 - id: def-marmdr
   topic: processore
   objectives:
@@ -107,11 +126,10 @@
   kind: definizione
   front:
     it: MAR e MDR
+    en: MAR and MDR
   back:
-    it: |-
-      Registri d’interfaccia verso la memoria: MAR contiene l’indirizzo, MDR il dato in transito.
-
-      undefined
+    it: "Registri d’interfaccia verso la memoria: MAR contiene l’indirizzo, MDR il dato in transito."
+    en: "Interface registers towards memory: MAR holds the address, MDR the data in transit."
 - id: def-rtn
   topic: processore
   objectives:
@@ -120,11 +138,16 @@
   kind: definizione
   front:
     it: RTN
+    en: RTN
   back:
     it: |-
       Notazione dei trasferimenti fra registri, in cui le parentesi quadre significano «contenuto di».
 
       `Add R1,R2,R3` → `R1 ← [R2]+[R3]`: la destinazione non ha parentesi.
+    en: |-
+      Register transfer notation, in which square brackets mean “contents of”.
+
+      `Add R1,R2,R3` → `R1 ← [R2]+[R3]`: the destination has no brackets.
 - id: def-controllo
   topic: processore
   objectives:
@@ -133,10 +156,9 @@
   kind: definizione
   front:
     it: Unità di controllo cablata / microprogrammata
+    en: Hardwired / microprogrammed control unit
   back:
-    it: >-
-      Cablata: rete sequenziale su misura, veloce ma rigida. Microprogrammata: segnali letti da una memoria di
-      controllo, flessibile ma più lenta.
-
-
-      undefined
+    it: "Cablata: rete sequenziale su misura, veloce ma rigida. Microprogrammata: segnali letti da una memoria di
+      controllo, flessibile ma più lenta."
+    en: "Hardwired: custom sequential network, fast but rigid. Microprogrammed: signals read from a control store,
+      flexible but slower."

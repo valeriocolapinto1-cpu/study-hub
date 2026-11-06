@@ -475,24 +475,30 @@
   kind: static
   statement:
     it: Quali operatori rendono l'algebra di Boole funzionalmente completa da soli?
+    en: Which operators make Boolean algebra functionally complete on their own?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: NAND e NOR
+        en: NAND and NOR
   choices:
     - text:
         it: AND e OR
+        en: AND and OR
       correct: false
     - text:
         it: NAND e NOR
+        en: NAND and NOR
       correct: true
     - text:
         it: NOT e AND
+        en: NOT and AND
       correct: false
     - text:
         it: XOR e OR
+        en: XOR and OR
       correct: false
   origin: originale
 - id: mcq-bool-02
@@ -503,24 +509,30 @@
   kind: static
   statement:
     it: Con soli AND e OR, perché non si sintetizza ogni funzione?
+    en: With only AND and OR, why can’t every function be synthesised?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Manca la negazione
+        en: Negation is missing
   choices:
     - text:
         it: Manca la negazione
+        en: Negation is missing
       correct: true
     - text:
         it: Sono troppo lenti
+        en: They are too slow
       correct: false
     - text:
         it: Non sono associativi
+        en: They are not associative
       correct: false
     - text:
         it: Consumano troppo
+        en: They consume too much
       correct: false
   origin: originale
 - id: mcq-bool-03
@@ -531,24 +543,30 @@
   kind: static
   statement:
     it: Quale porta logica si ottiene combinando due NAND?
+    en: Which logic gate is obtained by combining two NANDs?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: AND
+        en: AND
   choices:
     - text:
         it: OR
+        en: OR
       correct: false
     - text:
         it: AND
+        en: AND
       correct: true
     - text:
         it: NOR
+        en: NOR
       correct: false
     - text:
         it: XNOR
+        en: XNOR
       correct: false
   origin: originale
 - id: mcq-bool-04
@@ -559,24 +577,30 @@
   kind: static
   statement:
     it: "Per il teorema di assorbimento, `A ∨ (A ∧ B)` equivale a:"
+    en: "By the absorption theorem, `A ∨ (A ∧ B)` is equivalent to:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: A
+        en: A
   choices:
     - text:
         it: A
+        en: A
       correct: true
     - text:
         it: B
+        en: B
       correct: false
     - text:
         it: A ∧ B
+        en: A ∧ B
       correct: false
     - text:
         it: A ⊕ B
+        en: A ⊕ B
       correct: false
   origin: originale
 - id: mcq-bool-05
@@ -587,24 +611,30 @@
   kind: static
   statement:
     it: In una forma canonica SOP, quanti mintermini si scrivono?
+    en: In a canonical SOP form, how many minterms are written?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Uno per ogni riga della tabella con uscita 1
+        en: One for each row of the table with output 1
   choices:
     - text:
         it: Uno per ogni riga della tabella con uscita 1
+        en: One for each row of the table with output 1
       correct: true
     - text:
         it: Uno per ogni riga della tabella con uscita 0
+        en: One for each row of the table with output 0
       correct: false
     - text:
         it: Uno per ogni variabile
+        en: One for each variable
       correct: false
     - text:
         it: Sempre quattro
+        en: Always four
       correct: false
   origin: originale
 - id: mcq-bool-06
@@ -615,23 +645,29 @@
   kind: static
   statement:
     it: Quanto vale `A ⊕ A`?
+    en: What is `A ⊕ A`?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: "0"
+        en: "0"
   choices:
     - text:
         it: "0"
+        en: "0"
       correct: true
     - text:
         it: "1"
+        en: "1"
       correct: false
     - text:
         it: A
+        en: A
       correct: false
     - text:
         it: NOT A
+        en: NOT A
       correct: false
   origin: originale

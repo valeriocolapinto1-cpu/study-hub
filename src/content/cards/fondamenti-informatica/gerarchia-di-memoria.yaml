@@ -46,10 +46,14 @@
   kind: orale
   front:
     it: Differenza tra RAM e cache, definendo località spaziale e temporale.
+    en: Difference between RAM and cache, defining spatial and temporal locality.
   back:
     it: "Entrambe volatili. La cache è più piccola, veloce e costosa (SRAM), tiene copie dei dati frequenti. Nella
       RAM il tempo di accesso NON dipende dalla posizione del dato. Località temporale: dati usati di recente
       riusati a breve; spaziale: indirizzi vicini referenziati a breve."
+    en: "Both are volatile. The cache is smaller, faster and more expensive (SRAM), and holds copies of frequently
+      used data. In RAM the access time does NOT depend on the position of the data. Temporal locality:
+      recently used data reused soon; spatial: nearby addresses referenced soon."
 - id: open-mem-02
   topic: gerarchia-di-memoria
   objectives:
@@ -58,9 +62,12 @@
   kind: orale
   front:
     it: Quali sono le limitazioni di una cache L1 molto grande (rispetto ad aggiungere L2)?
+    en: What are the limitations of a very large L1 cache (compared with adding an L2)?
   back:
     it: Costo elevato, maggiore spazio fisico e soprattutto minore velocità (indirizzi più grandi → accesso più
       lento). Meglio una gerarchia L1 piccola/veloce + L2 più grande/lenta.
+    en: High cost, more physical space and above all lower speed (larger addresses → slower access). Better a
+      hierarchy of a small/fast L1 + a larger/slower L2.
 - id: open-mem-03
   topic: gerarchia-di-memoria
   objectives:
@@ -69,12 +76,18 @@
   kind: orale
   front:
     it: Descrivi la gerarchia di memoria e spiega perché conviene organizzarla a livelli.
+    en: Describe the memory hierarchy and explain why it pays to organise it in levels.
   back:
     it: "Dai registri alla cache (L1, L2), alla memoria principale DRAM, fino alla memoria secondaria: scendendo,
       la capacità cresce e il costo per bit cala, ma il tempo di accesso peggiora. La gerarchia funziona
       grazie alla **località**: i livelli alti tengono i dati usati di recente e quelli vicini, così la gran
       parte degli accessi si risolve in alto. Un solo livello grande e veloce sarebbe proibitivo per costo e
       comunque più lento, perché indirizzare molte celle rallenta l'accesso."
+    en: "From the registers to the cache (L1, L2), to DRAM main memory, down to secondary memory: going down,
+      capacity grows and cost per bit falls, but access time gets worse. The hierarchy works thanks to
+      **locality**: the upper levels hold recently used data and their neighbours, so most accesses are
+      resolved high up. A single large and fast level would be prohibitively expensive and in any case slower,
+      because addressing many cells slows access down."
 - id: open-mem-04
   topic: gerarchia-di-memoria
   objectives:
@@ -83,6 +96,7 @@
   kind: orale
   front:
     it: Confronta le tre mappature della cache (diretta, associativa, set-associativa).
+    en: Compare the three cache mappings (direct, associative, set-associative).
   back:
     it: "**Diretta**: ogni blocco di memoria può andare in una sola linea di cache; hardware semplice e confronto
       immediato, ma blocchi che mappano sulla stessa linea si sfrattano a vicenda (conflitti) anche con la
@@ -90,6 +104,12 @@
       ma richiede di confrontare il tag con tutte le linee, quindi è costosa e più lenta. **Set-associativa**:
       compromesso: la cache è divisa in insiemi, il blocco va in un insieme fisso ma in una linea qualsiasi al
       suo interno. Serve una politica di sostituzione, tipicamente **LRU**."
+    en: "**Direct**: each memory block can go into only one cache line; simple hardware and immediate comparison,
+      but blocks mapping to the same line evict each other (conflicts) even with the cache half empty.
+      **Associative**: a block can go into any line; it makes the best use of space, but requires comparing
+      the tag with all lines, so it is expensive and slower. **Set-associative**: a compromise: the cache is
+      divided into sets, the block goes into a fixed set but any line within it. A replacement policy is
+      needed, typically **LRU**."
 - id: def-ram
   topic: gerarchia-di-memoria
   objectives:
@@ -98,6 +118,7 @@
   kind: definizione
   front:
     it: RAM
+    en: RAM
   back:
     it: >-
       Memoria in cui il tempo di accesso a un dato **non dipende dalla sua posizione**.
@@ -105,6 +126,12 @@
 
       Da non tradurre «ad accesso casuale»: la definizione richiesta è quella sul tempo di accesso,
       contrapposta a nastri e dischi.
+    en: >-
+      Memory in which the access time to an item **does not depend on its position**.
+
+
+      Do not read it as “accessed at random”: the required definition is the one about access time, as opposed
+      to tapes and disks.
 - id: def-localita
   topic: gerarchia-di-memoria
   objectives:
@@ -113,6 +140,7 @@
   kind: definizione
   front:
     it: Località temporale e spaziale
+    en: Temporal and spatial locality
   back:
     it: >-
       Temporale: un dato usato di recente sarà riusato a breve. Spaziale: si accederà presto a indirizzi
@@ -120,6 +148,10 @@
 
 
       La località spaziale è il motivo per cui la cache trasferisce blocchi e non singole parole.
+    en: |-
+      Temporal: a recently used item will be reused soon. Spatial: nearby addresses will be accessed soon.
+
+      Spatial locality is why the cache transfers blocks and not single words.
 - id: def-hitmiss
   topic: gerarchia-di-memoria
   objectives:
@@ -128,11 +160,10 @@
   kind: definizione
   front:
     it: Cache hit / miss
+    en: Cache hit / miss
   back:
-    it: |-
-      Hit: il dato cercato è in cache. Miss: non c’è e va recuperato dal livello inferiore.
-
-      undefined
+    it: "Hit: il dato cercato è in cache. Miss: non c’è e va recuperato dal livello inferiore."
+    en: "Hit: the data sought is in the cache. Miss: it is not and must be fetched from the level below."
 - id: def-misspenalty
   topic: gerarchia-di-memoria
   objectives:
@@ -141,11 +172,16 @@
   kind: definizione
   front:
     it: Miss penalty
+    en: Miss penalty
   back:
     it: |-
       Ritardo aggiuntivo pagato quando un accesso fallisce in cache.
 
       Tempo medio di accesso = tₕᵢₜ + miss rate × miss penalty.
+    en: |-
+      Additional delay paid when an access misses in the cache.
+
+      Average access time = tₕᵢₜ + miss rate × miss penalty.
 - id: def-mappature
   topic: gerarchia-di-memoria
   objectives:
@@ -154,13 +190,11 @@
   kind: definizione
   front:
     it: Mappature della cache
+    en: Cache mappings
   back:
-    it: >-
-      Diretta: una sola linea possibile. Associativa: qualunque linea. Set-associativa: insieme fisso, linea
-      libera al suo interno.
-
-
-      undefined
+    it: "Diretta: una sola linea possibile. Associativa: qualunque linea. Set-associativa: insieme fisso, linea
+      libera al suo interno."
+    en: "Direct: only one possible line. Associative: any line. Set-associative: fixed set, free line within it."
 - id: def-lru
   topic: gerarchia-di-memoria
   objectives:
@@ -169,11 +203,10 @@
   kind: definizione
   front:
     it: LRU
+    en: LRU
   back:
-    it: |-
-      Politica di sostituzione che scarta il blocco non usato da più tempo.
-
-      undefined
+    it: Politica di sostituzione che scarta il blocco non usato da più tempo.
+    en: Replacement policy that discards the block unused for the longest time.
 - id: def-writeback
   topic: gerarchia-di-memoria
   objectives:
@@ -182,13 +215,12 @@
   kind: definizione
   front:
     it: Write-back / write-through
+    en: Write-back / write-through
   back:
-    it: >-
-      Write-through scrive subito anche in memoria; write-back solo allo sfratto della linea, marcata da un
+    it: Write-through scrive subito anche in memoria; write-back solo allo sfratto della linea, marcata da un
       dirty bit.
-
-
-      undefined
+    en: Write-through also writes to memory at once; write-back only when the line is evicted, marked by a dirty
+      bit.
 - id: def-sramdram
   topic: gerarchia-di-memoria
   objectives:
@@ -197,10 +229,9 @@
   kind: definizione
   front:
     it: SRAM e DRAM
+    en: SRAM and DRAM
   back:
-    it: >-
-      SRAM: cella a latch, veloce, senza refresh, usata per le cache. DRAM: cella a condensatore, densa ed
-      economica, da rinfrescare.
-
-
-      undefined
+    it: "SRAM: cella a latch, veloce, senza refresh, usata per le cache. DRAM: cella a condensatore, densa ed
+      economica, da rinfrescare."
+    en: "SRAM: latch cell, fast, no refresh, used for caches. DRAM: capacitor cell, dense and cheap, must be
+      refreshed."

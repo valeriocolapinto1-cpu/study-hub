@@ -45,10 +45,13 @@
   kind: orale
   front:
     it: Perché conviene aggiornare il PC all'istruzione successiva e non a quella corrente?
+    en: Why is it convenient to update the PC to the next instruction and not to the current one?
   back:
     it: "Per la sequenzialità dell'esecuzione: dopo il fetch, incrementare il PC prepara la prossima istruzione
       senza ricalcolo, utile in pipeline (fetch anticipato). I salti (branch) caricano un nuovo indirizzo nel
       PC."
+    en: "Because execution is sequential: after the fetch, incrementing the PC prepares the next instruction
+      without recomputation, useful in a pipeline (early fetch). Branches load a new address into the PC."
 - id: open-isa-02
   topic: risc-cisc-assembly
   objectives:
@@ -57,12 +60,18 @@
   kind: orale
   front:
     it: Confronta le architetture RISC e CISC.
+    en: Compare RISC and CISC architectures.
   back:
     it: "**RISC**: istruzioni semplici, di lunghezza fissa (una parola); modello **load/store** (i dati vanno
       portati in registro prima di essere elaborati, niente operazioni memoria-memoria); pochi modi di
       indirizzamento → decodifica semplice e circuito veloce, adatto alla pipeline. Esempi: ARM, Nios II.
       **CISC**: istruzioni complesse di lunghezza variabile, operazioni anche su operandi in memoria; i
       programmi risultano più corti ma la decodifica è più onerosa. Esempi: Intel IA-32, ColdFire."
+    en: "**RISC**: simple instructions of fixed length (one word); **load/store** model (data must be brought into
+      a register before being processed, no memory-to-memory operations); few addressing modes → simple
+      decoding and a fast circuit, suited to pipelining. Examples: ARM, Nios II. **CISC**: complex
+      variable-length instructions, operations also on operands in memory; programs are shorter but decoding
+      is more costly. Examples: Intel IA-32, ColdFire."
 - id: def-risc
   topic: risc-cisc-assembly
   objectives:
@@ -71,13 +80,12 @@
   kind: definizione
   front:
     it: RISC
+    en: RISC
   back:
-    it: >-
-      Architettura con istruzioni semplici di lunghezza fissa e modello load/store: solo Load e Store toccano
-      la memoria.
-
-
-      undefined
+    it: "Architettura con istruzioni semplici di lunghezza fissa e modello load/store: solo Load e Store toccano
+      la memoria."
+    en: "Architecture with simple fixed-length instructions and a load/store model: only Load and Store touch
+      memory."
 - id: def-cisc
   topic: risc-cisc-assembly
   objectives:
@@ -86,13 +94,11 @@
   kind: definizione
   front:
     it: CISC
+    en: CISC
   back:
-    it: >-
-      Architettura con istruzioni complesse di lunghezza variabile, che possono operare direttamente su
-      operandi in memoria.
-
-
-      undefined
+    it: Architettura con istruzioni complesse di lunghezza variabile, che possono operare direttamente su operandi
+      in memoria.
+    en: Architecture with complex variable-length instructions, which can operate directly on operands in memory.
 - id: def-indicizzato
   topic: risc-cisc-assembly
   objectives:
@@ -101,11 +107,10 @@
   kind: definizione
   front:
     it: Indirizzamento indicizzato
+    en: Indexed addressing
   back:
-    it: |-
-      L’indirizzo dell’operando è la somma di un registro base e di uno spiazzamento costante.
-
-      undefined
+    it: L’indirizzo dell’operando è la somma di un registro base e di uno spiazzamento costante.
+    en: The operand address is the sum of a base register and a constant displacement.
 - id: def-pila
   topic: risc-cisc-assembly
   objectives:
@@ -114,6 +119,7 @@
   kind: definizione
   front:
     it: Pila (stack)
+    en: Stack
   back:
     it: >-
       Struttura LIFO in memoria, gestita dallo stack pointer, su cui viaggiano indirizzo di ritorno, parametri
@@ -121,6 +127,12 @@
 
 
       È ciò che rende possibili annidamento e ricorsione, che il solo link register non regge.
+    en: >-
+      LIFO structure in memory, managed by the stack pointer, carrying the return address, parameters and
+      local variables.
+
+
+      It is what makes nesting and recursion possible, which the link register alone cannot handle.
 - id: def-linker
   topic: risc-cisc-assembly
   objectives:
@@ -129,10 +141,9 @@
   kind: definizione
   front:
     it: Compilatore, linker, loader
+    en: Compiler, linker, loader
   back:
-    it: >-
-      Il compilatore traduce in linguaggio macchina, il linker combina i file oggetto risolvendo i riferimenti
+    it: Il compilatore traduce in linguaggio macchina, il linker combina i file oggetto risolvendo i riferimenti
       esterni, il loader porta il programma in memoria.
-
-
-      undefined
+    en: The compiler translates into machine language, the linker combines object files resolving external
+      references, the loader brings the program into memory.

@@ -52,6 +52,7 @@
   front:
     it: Descrivi il percorso che porta da un sorgente assembly a un programma in esecuzione, nominando gli
       strumenti coinvolti.
+    en: Describe the path that leads from an assembly source to a running program, naming the tools involved.
   back:
     it: "Quattro passaggi. L'**assemblatore** traduce il sorgente in codice oggetto: sostituisce i mnemonici con i
       codici operativi e le etichette con gli indirizzi. Per farlo lavora in **due passate**, perché un salto
@@ -65,6 +66,17 @@
       degli indirizzi assoluti, prepara la pila e salta al punto d'ingresso. Da quel momento il programma è in
       esecuzione e il **sistema operativo** resta fermo: riprende il controllo solo su chiamata di sistema,
       interruzione o eccezione."
+    en: "Four steps. The **assembler** translates the source into object code: it replaces mnemonics with opcodes
+      and labels with addresses. To do so it works in **two passes**, because a forward branch names a label
+      not yet encountered: in the first it builds the **symbol table** keeping a location counter, in the
+      second it generates the code. **Directives** (`ORIGIN`, `DATAWORD`, `RESERVE`, `EQU`, `END`) produce no
+      instructions: they tell the assembler where to place things. The **linker** joins the object modules and
+      the libraries, resolving **external references** — the names a module uses but does not define — and
+      computing the final position of each module; linking can be static (library inside the executable) or
+      dynamic (loaded at run time and shared). The **loader** copies the executable into memory, performs
+      **relocation** of absolute addresses if needed, prepares the stack and jumps to the entry point. From
+      then on the program is running and the **operating system** stays idle: it regains control only on a
+      system call, an interrupt or an exception."
 - id: def-tabella-simboli
   topic: dal-sorgente-all-esecuzione
   objectives:
@@ -72,6 +84,7 @@
   kind: definizione
   front:
     it: Tabella dei simboli
+    en: Symbol table
   back:
     it: >-
       Struttura costruita dall’assemblatore nella prima passata, che associa a ogni etichetta l’indirizzo a
@@ -80,6 +93,13 @@
 
       È la ragione per cui servono **due passate**: senza, un salto in avanti non potrebbe essere tradotto,
       perché cita un’etichetta non ancora incontrata.
+    en: >-
+      Structure built by the assembler in the first pass, associating each label with the address it
+      corresponds to.
+
+
+      It is why **two passes** are needed: without it, a forward branch could not be translated, because it
+      names a label not yet encountered.
 - id: def-riferimento-esterno
   topic: dal-sorgente-all-esecuzione
   objectives:
@@ -87,13 +107,12 @@
   kind: definizione
   front:
     it: Riferimento esterno
+    en: External reference
   back:
-    it: >-
-      Nome che un modulo usa ma non definisce: resta un «buco» nel codice oggetto finché il collegatore non lo
-      risolve.
-
-
-      undefined
+    it: "Nome che un modulo usa ma non definisce: resta un «buco» nel codice oggetto finché il collegatore non lo
+      risolve."
+    en: "Name that a module uses but does not define: it remains a “hole” in the object code until the linker
+      resolves it."
 - id: def-rilocazione
   topic: dal-sorgente-all-esecuzione
   objectives:
@@ -101,6 +120,7 @@
   kind: definizione
   front:
     it: Rilocazione
+    en: Relocation
   back:
     it: >-
       Correzione degli indirizzi assoluti di un programma quando viene caricato a un indirizzo diverso da
@@ -109,6 +129,12 @@
 
       Con la **memoria virtuale** il problema quasi sparisce: ogni processo vede sempre lo stesso spazio
       virtuale, indipendentemente da dove si trovi in memoria fisica.
+    en: >-
+      Correction of a program’s absolute addresses when it is loaded at an address other than the one planned.
+
+
+      With **virtual memory** the problem almost disappears: every process always sees the same virtual space,
+      wherever it is in physical memory.
 - id: def-chiamata-sistema
   topic: dal-sorgente-all-esecuzione
   objectives:
@@ -116,6 +142,7 @@
   kind: definizione
   front:
     it: Chiamata di sistema
+    en: System call
   back:
     it: >-
       Richiesta di un servizio al sistema operativo, che fa passare il processore in modalità supervisore
@@ -124,3 +151,10 @@
 
       È uno dei **tre** soli modi in cui il sistema operativo riprende il controllo, insieme a interruzione ed
       eccezione.
+    en: >-
+      Request for a service from the operating system, which switches the processor to supervisor mode through
+      a controlled entry point.
+
+
+      It is one of the only **three** ways in which the operating system regains control, together with
+      interrupts and exceptions.

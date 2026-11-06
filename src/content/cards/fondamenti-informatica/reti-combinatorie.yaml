@@ -46,6 +46,7 @@
   kind: orale
   front:
     it: Che cosa fanno decodificatore e multiplexer? Come si sintetizza una funzione con un MUX?
+    en: What do the decoder and the multiplexer do? How is a function synthesised with a MUX?
   back:
     it: "Il **decodificatore** ha n ingressi e 2ⁿ uscite e ne attiva **una sola**, quella il cui indice
       corrisponde al numero presentato: ogni uscita è il mintermine corrispondente. Serve a selezionare una
@@ -56,6 +57,15 @@
       dati al valore che la funzione assume in quella riga: gli ingressi dati *sono* la colonna delle uscite
       della tabella di verità. Con lo stesso MUX si copre anche una funzione di n+1 variabili, collegando a
       ogni ingresso dati non una costante ma la variabile residua, il suo complemento, 0 oppure 1."
+    en: "The **decoder** has n inputs and 2ⁿ outputs and activates **only one**, the one whose index matches the
+      number presented: each output is the corresponding minterm. It is used to select one among many things —
+      a memory chip, a register. The **multiplexer** does the opposite on the data side: it chooses one of 2ⁿ
+      inputs according to n select lines, and is the circuit's programmable switch (inside the processor it
+      decides which source goes to the ALU). To **synthesise a function** of n variables with a MUX with n
+      selects, wire the variables to the selects and tie each data input to the value the function takes in
+      that row: the data inputs *are* the output column of the truth table. The same MUX also covers a
+      function of n+1 variables, wiring to each data input not a constant but the remaining variable, its
+      complement, 0 or 1."
 - id: def-decoder
   topic: reti-combinatorie
   objectives:
@@ -64,11 +74,10 @@
   kind: definizione
   front:
     it: Decodificatore
+    en: Decoder
   back:
-    it: |-
-      Rete con n ingressi e 2ⁿ uscite che attiva la sola uscita corrispondente al numero in ingresso.
-
-      undefined
+    it: Rete con n ingressi e 2ⁿ uscite che attiva la sola uscita corrispondente al numero in ingresso.
+    en: Network with n inputs and 2ⁿ outputs that activates only the output corresponding to the input number.
 - id: def-mux
   topic: reti-combinatorie
   objectives:
@@ -77,6 +86,7 @@
   kind: definizione
   front:
     it: Multiplexer
+    en: Multiplexer
   back:
     it: >-
       Rete che porta in uscita uno fra 2ⁿ ingressi dati, scelto da n linee di selezione.
@@ -84,6 +94,10 @@
 
       Con n selezioni realizza qualunque funzione di n variabili: gli ingressi dati sono la colonna delle
       uscite.
+    en: |-
+      Network that brings to the output one of 2ⁿ data inputs, chosen by n select lines.
+
+      With n selects it implements any function of n variables: the data inputs are the output column.
 - id: def-tristate
   topic: reti-combinatorie
   objectives:
@@ -92,8 +106,13 @@
   kind: definizione
   front:
     it: Buffer tri-state
+    en: Tri-state buffer
   back:
     it: |-
       Buffer la cui uscita, oltre a 0 e 1, può assumere lo stato di alta impedenza, scollegandosi dal filo.
 
       È ciò che permette a più dispositivi di condividere un bus senza cortocircuitarsi.
+    en: |-
+      Buffer whose output, besides 0 and 1, can take the high-impedance state, disconnecting from the wire.
+
+      It is what allows several devices to share a bus without short-circuiting.

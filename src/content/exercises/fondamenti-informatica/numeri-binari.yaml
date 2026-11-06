@@ -356,24 +356,30 @@
   kind: static
   statement:
     it: "La base del sistema numerico Maya è:"
+    en: "The base of the Maya number system is:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: 20 (vigesimale)
+        en: 20 (vigesimal)
   choices:
     - text:
         it: 10 (decimale)
+        en: 10 (decimal)
       correct: false
     - text:
         it: 20 (vigesimale)
+        en: 20 (vigesimal)
       correct: true
     - text:
         it: 16 (esadecimale)
+        en: 16 (hexadecimal)
       correct: false
     - text:
         it: 8 (ottale)
+        en: 8 (octal)
       correct: false
   origin: originale
 - id: mcq-bin-02
@@ -384,24 +390,30 @@
   kind: static
   statement:
     it: "Uno shift a sinistra di un intero equivale a:"
+    en: "A left shift of an integer is equivalent to:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Moltiplicazione per 2
+        en: Multiplication by 2
   choices:
     - text:
         it: Divisione per 2
+        en: Division by 2
       correct: false
     - text:
         it: Moltiplicazione per 2
+        en: Multiplication by 2
       correct: true
     - text:
         it: Negazione
+        en: Negation
       correct: false
     - text:
         it: Complemento a 1
+        en: Ones' complement
       correct: false
   origin: originale
 - id: mcq-bin-03
@@ -412,24 +424,30 @@
   kind: static
   statement:
     it: Quali rappresentazioni hanno due codifiche dello zero?
+    en: Which representations have two encodings of zero?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Complemento a 1 e modulo-e-segno
+        en: Ones' complement and sign-magnitude
   choices:
     - text:
         it: CP2
+        en: Two's complement
       correct: false
     - text:
         it: Senza segno
+        en: Unsigned
       correct: false
     - text:
         it: Complemento a 1 e modulo-e-segno
+        en: Ones' complement and sign-magnitude
       correct: true
     - text:
         it: Esadecimale
+        en: Hexadecimal
       correct: false
   origin: originale
 - id: mcq-bin-04
@@ -440,24 +458,30 @@
   kind: static
   statement:
     it: "Eliminare il bit meno significativo di un intero senza segno equivale a:"
+    en: "Dropping the least significant bit of an unsigned integer is equivalent to:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Dividere (intero) per 2
+        en: Dividing (integer) by 2
   choices:
     - text:
         it: Moltiplicare per 2
+        en: Multiplying by 2
       correct: false
     - text:
         it: Dividere (intero) per 2
+        en: Dividing (integer) by 2
       correct: true
     - text:
         it: Negare
+        en: Negating
       correct: false
     - text:
         it: Nulla
+        en: Nothing
       correct: false
   origin: originale
 - id: mcq-bin-05
@@ -468,24 +492,30 @@
   kind: static
   statement:
     it: "In una rappresentazione Big Endian, il bit di segno si trova:"
+    en: "In a Big Endian representation, the sign bit is found:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: All'inizio (byte più significativo)
+        en: At the start (most significant byte)
   choices:
     - text:
         it: Alla fine
+        en: At the end
       correct: false
     - text:
         it: All'inizio (byte più significativo)
+        en: At the start (most significant byte)
       correct: true
     - text:
         it: Al centro
+        en: In the middle
       correct: false
     - text:
         it: In un registro a parte
+        en: In a separate register
       correct: false
   origin: originale
 - id: mcq-bin-06
@@ -496,24 +526,30 @@
   kind: static
   statement:
     it: Quante cifre esadecimali servono per rappresentare 33?
+    en: How many hexadecimal digits are needed to represent 33?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: "2"
+        en: "2"
   choices:
     - text:
         it: "1"
+        en: "1"
       correct: false
     - text:
         it: "2"
+        en: "2"
       correct: true
     - text:
         it: "3"
+        en: "3"
       correct: false
     - text:
         it: "4"
+        en: "4"
       correct: false
   origin: originale
 - id: mcq-bin-07
@@ -524,24 +560,30 @@
   kind: static
   statement:
     it: Quale porta rileva l'overflow sommando due numeri con n bit?
+    en: Which gate detects overflow when adding two n-bit numbers?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: XOR
+        en: XOR
   choices:
     - text:
         it: AND
+        en: AND
       correct: false
     - text:
         it: OR
+        en: OR
       correct: false
     - text:
         it: XOR
+        en: XOR
       correct: true
     - text:
         it: NAND
+        en: NAND
       correct: false
   origin: originale
 - id: mcq-bin-08
@@ -552,24 +594,30 @@
   kind: static
   statement:
     it: Come ti accorgi di un overflow sommando due positivi in CP2?
+    en: How do you notice an overflow when adding two positives in two's complement?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Ottieni un numero negativo
+        en: You get a negative number
   choices:
     - text:
         it: Ottieni un numero negativo
+        en: You get a negative number
       correct: true
     - text:
         it: Ottieni zero
+        en: You get zero
       correct: false
     - text:
         it: Il risultato raddoppia
+        en: The result doubles
       correct: false
     - text:
         it: Nessun segnale
+        en: No signal
       correct: false
   origin: originale
 - id: mcq-bin-09
@@ -580,24 +628,30 @@
   kind: static
   statement:
     it: "In CP2 l'overflow può verificarsi nella:"
+    en: "In two's complement overflow can occur in the:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Sottrazione di due discordi
+        en: Subtraction of two numbers of opposite sign
   choices:
     - text:
         it: Somma di due discordi
+        en: Addition of two numbers of opposite sign
       correct: false
     - text:
         it: Sottrazione di due discordi
+        en: Subtraction of two numbers of opposite sign
       correct: true
     - text:
         it: Somma con lo zero
+        en: Addition with zero
       correct: false
     - text:
         it: Divisione
+        en: Division
       correct: false
   origin: originale
 - id: mcq-bin-10
@@ -608,24 +662,30 @@
   kind: static
   statement:
     it: "Per estendere `1011` (CP2 su 4 bit) a 8 bit si deve:"
+    en: "To extend `1011` (4-bit two's complement) to 8 bits you must:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Replicare il bit di segno → 11111011
+        en: Replicate the sign bit → 11111011
   choices:
     - text:
         it: Aggiungere zeri a sinistra → 00001011
+        en: Add zeros on the left → 00001011
       correct: false
     - text:
         it: Replicare il bit di segno → 11111011
+        en: Replicate the sign bit → 11111011
       correct: true
     - text:
         it: Aggiungere zeri a destra → 10110000
+        en: Add zeros on the right → 10110000
       correct: false
     - text:
         it: Invertire i bit e sommare 1
+        en: Invert the bits and add 1
       correct: false
   origin: originale
 - id: mcq-bin-11
@@ -636,24 +696,30 @@
   kind: static
   statement:
     it: "Per dividere per 2 un numero negativo in CP2 serve uno shift a destra:"
+    en: "To divide a negative two's complement number by 2 you need a right shift that is:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Aritmetico (replica il bit di segno)
+        en: Arithmetic (replicates the sign bit)
   choices:
     - text:
         it: Logico (entra 0 da sinistra)
+        en: Logical (a 0 enters from the left)
       correct: false
     - text:
         it: Aritmetico (replica il bit di segno)
+        en: Arithmetic (replicates the sign bit)
       correct: true
     - text:
         it: Circolare
+        en: Circular
       correct: false
     - text:
         it: A sinistra
+        en: To the left
       correct: false
   origin: originale
 - id: mcq-bin-12
@@ -664,23 +730,29 @@
   kind: static
   statement:
     it: In CP2 su N bit, quale peso ha il bit più significativo?
+    en: In N-bit two's complement, what weight does the most significant bit have?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: −2ᴺ⁻¹
+        en: −2ᴺ⁻¹
   choices:
     - text:
         it: +2ᴺ⁻¹
+        en: +2ᴺ⁻¹
       correct: false
     - text:
         it: −2ᴺ⁻¹
+        en: −2ᴺ⁻¹
       correct: true
     - text:
         it: "+1"
+        en: "+1"
       correct: false
     - text:
         it: "Nessuno: indica solo il segno"
+        en: "None: it only indicates the sign"
       correct: false
   origin: originale

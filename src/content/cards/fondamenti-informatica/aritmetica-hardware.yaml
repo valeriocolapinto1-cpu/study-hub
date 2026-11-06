@@ -49,6 +49,7 @@
   kind: orale
   front:
     it: Perché un sommatore ripple-carry è lento, e come lo risolve il carry-lookahead?
+    en: Why is a ripple-carry adder slow, and how does carry-lookahead solve it?
   back:
     it: "Nel **ripple-carry** gli stadi sono in cascata: il riporto uscente di ciascun sommatore completo entra
       nel successivo, quindi lo stadio più significativo produce il risultato definitivo solo dopo che il
@@ -60,6 +61,15 @@
       esprime in funzione del solo `c₀`, quindi tutti i riporti si ottengono **in parallelo** con due livelli
       di porte. Il costo è il numero di porte, che esplode con n: per questo si fanno blocchi da 4 bit e si
       applica lo stesso schema a un livello superiore."
+    en: "In **ripple-carry** the stages are in cascade: the carry-out of each full adder enters the next one, so
+      the most significant stage produces its final result only after the carry has crossed **all** the
+      stages. The delay grows **linearly with n**, and since this is the critical path it is what sets the
+      minimum clock period. **Carry-lookahead** does not wait for the carry: it computes it. For each position
+      it defines two functions that depend only on the operands, hence available at once — `Gᵢ = aᵢ·bᵢ` (the
+      position generates a carry by itself) and `Pᵢ = aᵢ ⊕ bᵢ` (the position propagates the one it receives) —
+      from which `cᵢ₊₁ = Gᵢ + Pᵢ·cᵢ`. Expanding the recursion every carry is expressed in terms of `c₀` alone,
+      so all carries are obtained **in parallel** with two gate levels. The cost is the number of gates, which
+      explodes with n: that is why 4-bit blocks are built and the same scheme is applied one level up."
 - id: open-arith-02
   topic: aritmetica-hardware
   objectives:
@@ -68,6 +78,7 @@
   kind: orale
   front:
     it: Descrivi semisommatore e sommatore completo, e spiega come si ottiene un sommatore/sottrattore unico.
+    en: Describe the half adder and the full adder, and explain how a single adder/subtractor is obtained.
   back:
     it: "Il **semisommatore** somma due bit: `s = a ⊕ b` (vale 1 quando sono diversi) e `c = a·b` (il riporto esce
       solo se sono entrambi 1). Non accetta riporto entrante, e per questo non basta oltre la posizione meno
@@ -77,6 +88,14 @@
       bit di B passa per uno XOR con la linea di controllo `Sub`, che lo inverte quando vale 1, e la stessa
       linea entra come riporto iniziale fornendo il «+1». Un solo circuito fa entrambe le operazioni: è la
       ragione pratica per cui si usa il complemento a 2."
+    en: "The **half adder** adds two bits: `s = a ⊕ b` (1 when they differ) and `c = a·b` (the carry comes out
+      only if both are 1). It accepts no incoming carry, which is why it is not enough beyond the least
+      significant position. The **full adder** has three inputs: `s = a ⊕ b ⊕ cᵢₙ`, i.e. 1 when the number of
+      inputs at 1 is odd, and `cₒᵤₜ = a·b + cᵢₙ·(a ⊕ b)`. It is built from two half adders plus an OR. For the
+      **adder/subtractor** you exploit the fact that in two's complement `A − B = A + B̅ + 1`: each bit of B
+      goes through an XOR with the control line `Sub`, which inverts it when it is 1, and the same line enters
+      as the initial carry, providing the “+1”. A single circuit performs both operations: it is the practical
+      reason why two's complement is used."
 - id: def-fulladder
   topic: aritmetica-hardware
   objectives:
@@ -85,9 +104,14 @@
   kind: definizione
   front:
     it: Sommatore completo
+    en: Full adder
   back:
     it: |-
       Rete a tre ingressi (due addendi e il riporto entrante) che produce somma e riporto uscente.
+
+      s = a ⊕ b ⊕ cᵢₙ; cₒᵤₜ = a·b + cᵢₙ·(a ⊕ b).
+    en: |-
+      Three-input network (two addends and the incoming carry) that produces sum and carry-out.
 
       s = a ⊕ b ⊕ cᵢₙ; cₒᵤₜ = a·b + cᵢₙ·(a ⊕ b).
 - id: def-ripple
@@ -98,11 +122,16 @@
   kind: definizione
   front:
     it: Sommatore ripple-carry
+    en: Ripple-carry adder
   back:
     it: |-
       Sommatori completi in cascata, con il riporto che si propaga da uno stadio al successivo.
 
       Semplice, ma il ritardo cresce linearmente col numero di bit.
+    en: |-
+      Full adders in cascade, with the carry propagating from one stage to the next.
+
+      Simple, but the delay grows linearly with the number of bits.
 - id: def-lookahead
   topic: aritmetica-hardware
   objectives:
@@ -111,6 +140,7 @@
   kind: definizione
   front:
     it: Carry-lookahead
+    en: Carry-lookahead
   back:
     it: >-
       Tecnica che calcola tutti i riporti in parallelo dalle funzioni di generazione e propagazione, invece di
@@ -118,3 +148,9 @@
 
 
       G = a·b (genera), P = a ⊕ b (propaga), cᵢ₊₁ = Gᵢ + Pᵢ·cᵢ.
+    en: >-
+      Technique that computes all carries in parallel from the generate and propagate functions, instead of
+      waiting for them.
+
+
+      G = a·b (generate), P = a ⊕ b (propagate), cᵢ₊₁ = Gᵢ + Pᵢ·cᵢ.

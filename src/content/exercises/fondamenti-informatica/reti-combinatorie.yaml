@@ -331,24 +331,30 @@
   kind: static
   statement:
     it: "Un **decodificatore** con n ingressi ha:"
+    en: "A **decoder** with n inputs has:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: 2ⁿ uscite, una sola attiva per volta
+        en: 2ⁿ outputs, only one active at a time
   choices:
     - text:
         it: 2ⁿ uscite, una sola attiva per volta
+        en: 2ⁿ outputs, only one active at a time
       correct: true
     - text:
         it: n uscite, tutte attive
+        en: n outputs, all active
       correct: false
     - text:
         it: 2ⁿ uscite, tutte attive per volta
+        en: 2ⁿ outputs, all active at once
       correct: false
     - text:
         it: una sola uscita
+        en: a single output
       correct: false
   origin: originale
 - id: mcq-comb-02
@@ -360,24 +366,30 @@
   kind: static
   statement:
     it: A che cosa serve un **multiplexer**?
+    en: What is a **multiplexer** for?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: A scegliere uno fra più ingressi dati in base alle linee di selezione
+        en: Choosing one of several data inputs according to the select lines
   choices:
     - text:
         it: A convertire un numero da binario a decimale
+        en: Converting a number from binary to decimal
       correct: false
     - text:
         it: A scegliere uno fra più ingressi dati in base alle linee di selezione
+        en: Choosing one of several data inputs according to the select lines
       correct: true
     - text:
         it: A memorizzare un bit
+        en: Storing a bit
       correct: false
     - text:
         it: A generare il riporto di una somma
+        en: Generating the carry of an addition
       correct: false
   origin: originale
 - id: mcq-comb-03
@@ -389,24 +401,30 @@
   kind: static
   statement:
     it: Che cos’è il **terzo stato** di un buffer tri-state?
+    en: What is the **third state** of a tri-state buffer?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: "L'alta impedenza: l'uscita si scollega elettricamente"
+        en: "High impedance: the output disconnects electrically"
   choices:
     - text:
         it: Un livello logico intermedio fra 0 e 1
+        en: An intermediate logic level between 0 and 1
       correct: false
     - text:
         it: "L'alta impedenza: l'uscita si scollega elettricamente"
+        en: "High impedance: the output disconnects electrically"
       correct: true
     - text:
         it: Uno stato di errore
+        en: An error state
       correct: false
     - text:
         it: Un ritardo programmabile
+        en: A programmable delay
       correct: false
   origin: originale
 - id: mcq-comb-04
@@ -418,24 +436,30 @@
   kind: static
   statement:
     it: Perché su un bus condiviso servono uscite tri-state?
+    en: Why are tri-state outputs needed on a shared bus?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Perché due dispositivi che pilotano lo stesso filo con valori opposti lo cortocircuiterebbero
+        en: Because two devices driving the same wire with opposite values would short-circuit it
   choices:
     - text:
         it: Per aumentare la velocità di trasmissione
+        en: To increase the transmission speed
       correct: false
     - text:
         it: Perché due dispositivi che pilotano lo stesso filo con valori opposti lo cortocircuiterebbero
+        en: Because two devices driving the same wire with opposite values would short-circuit it
       correct: true
     - text:
         it: Per ridurre il numero di fili
+        en: To reduce the number of wires
       correct: false
     - text:
         it: Per generare il segnale di clock
+        en: To generate the clock signal
       correct: false
   origin: originale
 - id: mcq-comb-05
@@ -447,24 +471,30 @@
   kind: static
   statement:
     it: Quale porta confronta due bit segnalando con 1 che sono **uguali**?
+    en: Which gate compares two bits, signalling with 1 that they are **equal**?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: XNOR
+        en: XNOR
   choices:
     - text:
         it: XOR
+        en: XOR
       correct: false
     - text:
         it: XNOR
+        en: XNOR
       correct: true
     - text:
         it: NAND
+        en: NAND
       correct: false
     - text:
         it: OR
+        en: OR
       correct: false
   origin: originale
 - id: mcq-comb-06
@@ -476,24 +506,30 @@
   kind: static
   statement:
     it: Che cosa distingue un **priority encoder** da un encoder semplice?
+    en: What distinguishes a **priority encoder** from a simple encoder?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Gestisce il caso di più ingressi attivi dando la precedenza a uno
+        en: It handles the case of several active inputs by giving precedence to one
   choices:
     - text:
         it: Ha più uscite
+        en: It has more outputs
       correct: false
     - text:
         it: Gestisce il caso di più ingressi attivi dando la precedenza a uno
+        en: It handles the case of several active inputs by giving precedence to one
       correct: true
     - text:
         it: Funziona senza alimentazione
+        en: It works without power
       correct: false
     - text:
         it: È sequenziale invece che combinatorio
+        en: It is sequential rather than combinational
       correct: false
   origin: originale
 - id: schema-decoder-2-4

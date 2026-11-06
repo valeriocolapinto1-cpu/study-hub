@@ -344,24 +344,30 @@
   kind: static
   statement:
     it: Che cos'è un flip-flop?
+    en: What is a flip-flop?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Un elemento bistabile che memorizza 1 bit
+        en: A bistable element that stores 1 bit
   choices:
     - text:
         it: Un registro a 8 bit
+        en: An 8-bit register
       correct: false
     - text:
         it: Un elemento bistabile che memorizza 1 bit
+        en: A bistable element that stores 1 bit
       correct: true
     - text:
         it: Una porta logica universale
+        en: A universal logic gate
       correct: false
     - text:
         it: Un tipo di bus
+        en: A kind of bus
       correct: false
   origin: originale
 - id: mcq-ff-02
@@ -372,24 +378,30 @@
   kind: static
   statement:
     it: "Un flip-flop master-slave è di tipo:"
+    en: "A master-slave flip-flop is:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Sincrono (edge-triggered)
+        en: Synchronous (edge-triggered)
   choices:
     - text:
         it: Asincrono
+        en: Asynchronous
       correct: false
     - text:
         it: Sincrono (edge-triggered)
+        en: Synchronous (edge-triggered)
       correct: true
     - text:
         it: Combinatorio
+        en: Combinational
       correct: false
     - text:
         it: Analogico
+        en: Analogue
       correct: false
   origin: originale
 - id: mcq-ff-03
@@ -400,24 +412,30 @@
   kind: static
   statement:
     it: In un latch SR realizzato con NOR, quale combinazione è proibita?
+    en: In an SR latch built with NORs, which combination is forbidden?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: S=1, R=1
+        en: S=1, R=1
   choices:
     - text:
         it: S=0, R=0
+        en: S=0, R=0
       correct: false
     - text:
         it: S=1, R=0
+        en: S=1, R=0
       correct: false
     - text:
         it: S=0, R=1
+        en: S=0, R=1
       correct: false
     - text:
         it: S=1, R=1
+        en: S=1, R=1
       correct: true
   origin: originale
 - id: mcq-ff-04
@@ -428,24 +446,30 @@
   kind: static
   statement:
     it: "Un flip-flop JK con `J=K=1` sul fronte di clock:"
+    en: "A JK flip-flop with `J=K=1` at the clock edge:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Commuta (toggle)
+        en: Toggles
   choices:
     - text:
         it: Mantiene lo stato
+        en: Holds its state
       correct: false
     - text:
         it: Va a 1
+        en: Goes to 1
       correct: false
     - text:
         it: Va a 0
+        en: Goes to 0
       correct: false
     - text:
         it: Commuta (toggle)
+        en: Toggles
       correct: true
   origin: originale
 - id: mcq-ff-05
@@ -456,24 +480,30 @@
   kind: static
   statement:
     it: Quale flip-flop è il mattone naturale di un contatore?
+    en: Which flip-flop is the natural building block of a counter?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Tipo T
+        en: T type
   choices:
     - text:
         it: Tipo T
+        en: T type
       correct: true
     - text:
         it: Tipo D
+        en: D type
       correct: false
     - text:
         it: Latch SR
+        en: SR latch
       correct: false
     - text:
         it: "Nessuno: servono solo porte AND"
+        en: "None: only AND gates are needed"
       correct: false
   origin: originale
 - id: mcq-ff-06
@@ -484,24 +514,30 @@
   kind: static
   statement:
     it: "Svantaggio principale di un contatore asincrono (ripple) rispetto a uno sincrono:"
+    en: "Main drawback of an asynchronous (ripple) counter compared with a synchronous one:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: I ritardi si accumulano e le uscite non cambiano tutte insieme
+        en: Delays accumulate and the outputs do not change all together
   choices:
     - text:
         it: Richiede più flip-flop
+        en: It requires more flip-flops
       correct: false
     - text:
         it: I ritardi si accumulano e le uscite non cambiano tutte insieme
+        en: Delays accumulate and the outputs do not change all together
       correct: true
     - text:
         it: Non può contare oltre 8
+        en: It cannot count beyond 8
       correct: false
     - text:
         it: Necessita di un clock più lento del sincrono per definizione
+        en: It needs a slower clock than the synchronous one by definition
       correct: false
   origin: originale
 - id: schema-master-slave

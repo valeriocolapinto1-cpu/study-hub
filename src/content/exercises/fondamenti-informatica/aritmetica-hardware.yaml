@@ -458,24 +458,30 @@
   kind: static
   statement:
     it: Quali funzioni realizza un **semisommatore**?
+    en: Which functions does a **half adder** implement?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: s = a ⊕ b, c = a · b
+        en: s = a ⊕ b, c = a · b
   choices:
     - text:
         it: s = a ⊕ b, c = a · b
+        en: s = a ⊕ b, c = a · b
       correct: true
     - text:
         it: s = a · b, c = a ⊕ b
+        en: s = a · b, c = a ⊕ b
       correct: false
     - text:
         it: s = a + b, c = a ⊕ b
+        en: s = a + b, c = a ⊕ b
       correct: false
     - text:
         it: s = a ⊕ b, c = a + b
+        en: s = a ⊕ b, c = a + b
       correct: false
   origin: originale
 - id: mcq-arith-02
@@ -487,24 +493,30 @@
   kind: static
   statement:
     it: Quanti ingressi ha un **sommatore completo**?
+    en: How many inputs does a **full adder** have?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: 3 (due addendi e il riporto entrante)
+        en: 3 (two addends and the incoming carry)
   choices:
     - text:
         it: "2"
+        en: "2"
       correct: false
     - text:
         it: 3 (due addendi e il riporto entrante)
+        en: 3 (two addends and the incoming carry)
       correct: true
     - text:
         it: "4"
+        en: "4"
       correct: false
     - text:
         it: Dipende dal numero di bit
+        en: It depends on the number of bits
       correct: false
   origin: originale
 - id: mcq-arith-03
@@ -516,24 +528,30 @@
   kind: static
   statement:
     it: Perché un sommatore **ripple-carry** a n bit è lento?
+    en: Why is an n-bit **ripple-carry** adder slow?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Perché il riporto deve attraversare tutti gli n stadi in cascata
+        en: Because the carry must cross all n stages in cascade
   choices:
     - text:
         it: Perché usa porte a molti ingressi
+        en: Because it uses gates with many inputs
       correct: false
     - text:
         it: Perché il riporto deve attraversare tutti gli n stadi in cascata
+        en: Because the carry must cross all n stages in cascade
       correct: true
     - text:
         it: Perché richiede un clock dedicato
+        en: Because it requires a dedicated clock
       correct: false
     - text:
         it: Perché somma un bit per ciclo di clock
+        en: Because it adds one bit per clock cycle
       correct: false
   origin: originale
 - id: mcq-arith-04
@@ -545,24 +563,30 @@
   kind: static
   statement:
     it: "Nel carry-lookahead, la funzione di **generazione** vale:"
+    en: "In carry-lookahead, the **generate** function is:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Gᵢ = aᵢ · bᵢ
+        en: Gᵢ = aᵢ · bᵢ
   choices:
     - text:
         it: Gᵢ = aᵢ · bᵢ
+        en: Gᵢ = aᵢ · bᵢ
       correct: true
     - text:
         it: Gᵢ = aᵢ ⊕ bᵢ
+        en: Gᵢ = aᵢ ⊕ bᵢ
       correct: false
     - text:
         it: Gᵢ = aᵢ + bᵢ
+        en: Gᵢ = aᵢ + bᵢ
       correct: false
     - text:
         it: Gᵢ = aᵢ · cᵢ
+        en: Gᵢ = aᵢ · cᵢ
       correct: false
   origin: originale
 - id: mcq-arith-05
@@ -574,24 +598,30 @@
   kind: static
   statement:
     it: "Il prodotto di due numeri da n bit occupa al massimo:"
+    en: "The product of two n-bit numbers takes at most:"
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: 2n bit
+        en: 2n bits
   choices:
     - text:
         it: n bit
+        en: n bits
       correct: false
     - text:
         it: n + 1 bit
+        en: n + 1 bits
       correct: false
     - text:
         it: 2n bit
+        en: 2n bits
       correct: true
     - text:
         it: 2n + 1 bit
+        en: 2n + 1 bits
       correct: false
   origin: originale
 - id: mcq-arith-06
@@ -603,24 +633,30 @@
   kind: static
   statement:
     it: Come si ottiene un sommatore/sottrattore unico in complemento a 2?
+    en: How do you obtain a single two's complement adder/subtractor?
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: Invertendo B con degli XOR e ponendo il riporto iniziale a 1
+        en: By inverting B with XORs and setting the initial carry to 1
   choices:
     - text:
         it: Con un secondo circuito dedicato alla sottrazione
+        en: With a second circuit dedicated to subtraction
       correct: false
     - text:
         it: Invertendo B con degli XOR e ponendo il riporto iniziale a 1
+        en: By inverting B with XORs and setting the initial carry to 1
       correct: true
     - text:
         it: Scambiando A e B quando si sottrae
+        en: By swapping A and B when subtracting
       correct: false
     - text:
         it: "Non è possibile: servono due circuiti"
+        en: "It is not possible: two circuits are needed"
       correct: false
   origin: originale
 - id: schema-sommatore-ripple

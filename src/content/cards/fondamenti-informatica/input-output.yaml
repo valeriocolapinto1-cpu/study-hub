@@ -49,6 +49,7 @@
   kind: orale
   front:
     it: "Confronta I/O programmato, guidato da interruzioni e DMA: quando conviene ciascuno?"
+    en: "Compare programmed, interrupt-driven and DMA I/O: when is each one convenient?"
   back:
     it: "Tutti e tre risolvono lo stesso problema — il **divario di velocità** fra processore e periferiche.
       Nell'**I/O programmato** il processore interroga ciclicamente il bit di stato finché il dispositivo non
@@ -61,6 +62,16 @@
       **una sola** interruzione alla fine: indispensabile per il disco o la rete, dove un'interruzione per
       parola sarebbe insostenibile. Il DMA introduce però il problema della **coerenza**: scrivendo in memoria
       può rendere obsoleta la copia tenuta in cache."
+    en: "All three solve the same problem — the **speed gap** between processor and peripherals. In **programmed
+      I/O** the processor repeatedly polls the status bit until the device is ready: very simple to implement,
+      but it burns the whole waiting time in an empty loop; acceptable only if the device is fast or there is
+      nothing else to do. In **interrupt-driven** I/O the processor does something else and the device calls
+      when it is ready: the cost of saving the state and switching context is paid, but no waiting is wasted —
+      it is the normal choice for slow, sporadic devices such as the keyboard. With **DMA** a dedicated
+      controller transfers a **whole block** between peripheral and memory by itself, temporarily becoming bus
+      master, and sends **a single** interrupt at the end: indispensable for disks or networks, where one
+      interrupt per word would be unsustainable. DMA does, however, introduce the **coherence** problem: by
+      writing to memory it can make the copy held in the cache stale."
 - id: def-dma
   topic: input-output
   objectives:
@@ -69,6 +80,7 @@
   kind: definizione
   front:
     it: DMA
+    en: DMA
   back:
     it: >-
       Trasferimento di un blocco fra periferica e memoria eseguito da un controllore dedicato, senza impegnare
@@ -76,6 +88,12 @@
 
 
       Genera una sola interruzione a fine blocco, ma può rendere obsoleta la copia in cache.
+    en: >-
+      Transfer of a block between peripheral and memory performed by a dedicated controller, without engaging
+      the processor.
+
+
+      It generates a single interrupt at the end of the block, but can make the cached copy stale.
 - id: def-memorymapped
   topic: input-output
   objectives:
@@ -84,11 +102,10 @@
   kind: definizione
   front:
     it: I/O memory-mapped
+    en: Memory-mapped I/O
   back:
-    it: |-
-      I registri delle interfacce occupano indirizzi dello spazio di memoria e si usano con Load e Store.
-
-      undefined
+    it: I registri delle interfacce occupano indirizzi dello spazio di memoria e si usano con Load e Store.
+    en: Interface registers occupy addresses of the memory space and are used with Load and Store.
 - id: def-handshake
   topic: input-output
   objectives:
@@ -97,11 +114,16 @@
   kind: definizione
   front:
     it: Handshake
+    en: Handshake
   back:
     it: |-
       Scambio di segnali «dato valido» / «preso» che sincronizza due dispositivi senza clock comune.
 
       Il trasferimento procede al passo del più lento dei due.
+    en: |-
+      Exchange of “data valid” / “taken” signals that synchronises two devices without a common clock.
+
+      The transfer proceeds at the pace of the slower of the two.
 - id: def-buffer
   topic: input-output
   objectives:
@@ -110,8 +132,7 @@
   kind: definizione
   front:
     it: Buffer
+    en: Buffer
   back:
-    it: |-
-      Memoria intermedia che compensa la differenza di velocità fra due dispositivi.
-
-      undefined
+    it: Memoria intermedia che compensa la differenza di velocità fra due dispositivi.
+    en: Intermediate memory that compensates for the speed difference between two devices.
