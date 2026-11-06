@@ -123,7 +123,10 @@ export default function ExercisePlayer({
   const uid = `ex-${exercise.id}`;
   const generated = exercise.kind === 'generated' && !!exercise.generator;
   const [seed, setSeed] = useState<number>(seed0 ?? 1);
-  const [content, setContent] = useState<Content | null>(generated ? null : staticContent(exercise));
+  const pregenerated = generated && exercise.pregeneratedSeed !== undefined;
+  const [content, setContent] = useState<Content | null>(
+    generated && !pregenerated ? null : staticContent(exercise),
+  );
   const [genError, setGenError] = useState(false);
   const [fields, setFieldsState] = useState<string[]>([]);
   // Copia sincrona: input rapidi in più campi non devono leggere uno stato vecchio.
@@ -145,6 +148,11 @@ export default function ExercisePlayer({
 
   useEffect(() => {
     if (!generated) return;
+    // variante già resa a build-time: niente generatori né KaTeX nel browser
+    if (seed === exercise.pregeneratedSeed) {
+      setContent(staticContent(exercise));
+      return;
+    }
     let alive = true;
     setContent(null);
     setGenError(false);
@@ -154,7 +162,7 @@ export default function ExercisePlayer({
     return () => {
       alive = false;
     };
-  }, [generated, seed, courseId, exercise.generator, lang]);
+  }, [generated, seed, courseId, exercise, lang]);
 
   const reset = () => {
     setFields([]);
@@ -300,6 +308,8 @@ export default function ExercisePlayer({
                       <input
                         id={id}
                         class="sh-input"
+                        // etichette di sole formule: il nome accessibile viene dal testo semplice
+                        aria-label={a.labelHtml ? a.label : undefined}
                         type="text"
                         inputMode="text"
                         autoComplete="off"

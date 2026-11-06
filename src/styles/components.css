@@ -934,9 +934,12 @@ progress.progress__bar::-moz-progress-bar {
 }
 
 /* =========================== Breadcrumbs =========================== */
+/* Una sola riga: l'altezza non cambia quando arriva il font web (niente layout shift);
+   la voce corrente, ripetuta nel titolo, si accorcia con l'ellissi. */
 .breadcrumbs ol {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  white-space: nowrap;
   align-items: center;
   list-style: none;
   margin: 0;
@@ -947,6 +950,15 @@ progress.progress__bar::-moz-progress-bar {
 .breadcrumbs li {
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
+}
+.breadcrumbs li:last-child {
+  flex-shrink: 1;
+  min-width: 0;
+}
+.breadcrumbs [aria-current] {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .breadcrumbs li + li::before {
   content: '/';

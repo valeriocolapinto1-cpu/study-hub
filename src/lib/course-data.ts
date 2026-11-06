@@ -18,6 +18,7 @@ import { coursePath } from './courses';
 import { plainText } from '../engine/rich';
 import { richHtml, richInline } from './rich-server';
 import { renderSchematic } from '../sim/circuits/schematic';
+import { loadCourseGenerators, runGenerator } from '../engine/generators/index';
 
 type CourseEntry = CollectionEntry<'courses'>['data'];
 
@@ -190,4 +191,40 @@ export async function courseStaticPaths() {
       props: { courseId: data.id },
     })),
   );
+}
+
+/**
+ * Rende a build-time la variante `seed` di un esercizio generato (stessi testi che l'isola
+ * produrrebbe nel browser). Gli esercizi statici tornano invariati.
+ */
+export async function withPregenerated(ex: ExerciseData, seed: number, lang: Lang): Promise<ExerciseData> {
+  if (ex.kind !== 'generated' || !ex.generator) return ex;
+  await loadCourseGenerators(ex.generator.split('/')[0]!);
+  const g = runGenerator(ex.generator, seed, lang);
+  const figureSvg =
+    g.figure?.svg ??
+    (g.figure?.netlist
+      ? renderSchematic(g.figure.netlist, {
+          lang,
+          idPrefix: `fig-${ex.generator.replace(/\W/g, '-')}-${seed}`,
+        }).svg
+      : undefined);
+  return {
+    ...ex,
+    statementHtml: richHtml(g.statement),
+    ...(figureSvg ? { figureSvg } : {}),
+    steps: g.steps.map((s) => ({ titleHtml: richInline(s.title), bodyHtml: richHtml(s.body) })),
+    answer: g.answer.map((a) => ({ ...a, label: plainText(a.label), labelHtml: richInline(a.label) })),
+    ...(g.choices
+      ? {
+          choices: g.choices.map((c) => ({
+            html: richInline(c.text),
+            label: plainText(c.text),
+            correct: c.correct,
+            ...(c.explanation ? { explanationHtml: richHtml(c.explanation) } : {}),
+          })),
+        }
+      : {}),
+    pregeneratedSeed: seed,
+  };
 }

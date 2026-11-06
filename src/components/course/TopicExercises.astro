@@ -7,7 +7,7 @@ import 'katex/dist/katex.min.css';
 import ExercisePlayer from '../../islands/ExercisePlayer';
 import SectionHeader from './SectionHeader.astro';
 import Notes from './Notes.astro';
-import { getCourseData } from '../../lib/course-data';
+import { getCourseData, withPregenerated } from '../../lib/course-data';
 import { hashString } from '../../engine/random';
 import { t, type Lang } from '../../i18n';
 
@@ -20,7 +20,10 @@ const { lang, courseId, topicId } = Astro.props;
 const data = await getCourseData(courseId, lang);
 const topic = data.topics.find((tp) => tp.id === topicId);
 if (!topic) throw new Error(`${courseId}: argomento sconosciuto "${topicId}"`);
-const exercises = data.exercises.filter((e) => e.topic === topicId);
+// la prima variante dei generati è resa qui: nel browser si scarica solo per «nuova variante»
+const exercises = await Promise.all(
+  data.exercises.filter((e) => e.topic === topicId).map((e) => withPregenerated(e, hashString(e.id), lang)),
+);
 ---
 
 <SectionHeader title={t(lang, 'page.topicExercises', { topic: topic.title })}>

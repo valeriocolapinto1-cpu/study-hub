@@ -62,6 +62,11 @@ export interface ExerciseData {
   choices?: ChoiceData[];
   /** Mostrato in italiano perché manca la traduzione. */
   fallback?: boolean;
+  /**
+   * Generati: seme della variante già resa a build-time nei campi sopra. L'isola la mostra
+   * senza scaricare generatori e KaTeX finché non si chiede una nuova variante.
+   */
+  pregeneratedSeed?: number;
 }
 
 export interface CardData {
