@@ -91,6 +91,29 @@ export function renderRich(
 }
 
 /** Testo semplice (per aria-label, ricerca, anteprime): via la sintassi, la matematica resta in TeX. */
+/**
+ * Lettura in testo semplice di un testo con matematica TeX, per gli attributi ARIA:
+ * toglie delimitatori, comandi di formato e graffe e trasforma i comandi in parole (\\omega → omega).
+ */
+export function speakableText(source: string): string {
+  return plainText(
+    source
+      .replace(/\\(?:mathrm|text|operatorname|vec|hat|bar|dot|ddot|left|right|displaystyle|quad|qquad)(?![a-zA-Z])|\\[,;! ]/g, ' ')
+      .replace(/\\[dt]?frac\{([^{}]*)\}\{([^{}]*)\}/g, '($1)/($2)')
+      .replace(/\\(?:cdot|times)/g, '·')
+      .replace(/\\([a-zA-Z]+)/g, '$1')
+      .replace(/[{}]/g, ''),
+  );
+}
+
+/**
+ * Solo la prosa di un testo, senza matematica: per l'indice di ricerca, dove le variabili di una
+ * lettera ($q$, $z$…) farebbero corrispondere query qualsiasi e renderebbero illeggibili gli estratti.
+ */
+export function proseText(source: string): string {
+  return plainText(source.replace(/\$\$[\s\S]*?\$\$|\$[^$]*\$|\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]/g, ' '));
+}
+
 export function plainText(source: string): string {
   return source
     .replace(/\$\$?|\\[()[\]]/g, '')

@@ -1,0 +1,77 @@
+---
+/** Laboratorio: le cinque esperienze del corso e la checklist della relazione (spunte salvate in locale). */
+import Checklist from '../islands/Checklist';
+import { LAB, LEZIONI } from '../data';
+import { localizePath, type Lang } from '../../../i18n';
+import { sectionPath, type CourseData } from '../../../lib/course-pages';
+import { getEntry } from 'astro:content';
+
+interface Props {
+  lang: Lang;
+  course: CourseData;
+}
+const { lang, course } = Astro.props;
+const it = lang === 'it';
+const tx = (x: { it: string; en: string }) => x[lang];
+const formulario = localizePath(sectionPath(course, 'formulario'), lang);
+const teoria = localizePath(sectionPath(course, 'teoria', 'laboratorio-misura'), lang);
+const lezione = (n: number) => LEZIONI.find((l) => l.n === n)!;
+const ids = [...new Set(LAB.esperienze.flatMap((e) => e.formule))];
+const labels = Object.fromEntries(
+  await Promise.all(
+    ids.map(async (f) => {
+      const entry = await getEntry('formulas', `fisica-2/${f}`);
+      if (!entry) throw new Error(`laboratorio: formula ${f} non trovata`);
+      return [f, entry.data.label[lang] ?? entry.data.label.it] as const;
+    }),
+  ),
+);
+---
+
+<div class="prose">
+  <p>
+    {it
+      ? 'Il laboratorio vale 25 ore del corso. Per ogni esperienza si scrive una relazione da portare all\'orale, dove possono esserci domande sulle esperienze. Obiettivi, strumentazione e voci specifiche sono indicativi: confrontali con le schede distribuite dai docenti.'
+      : 'The laboratory accounts for 25 hours of the course. For each experiment you write a report to bring to the oral exam, where there may be questions on the experiments. Aims, equipment and specific items are indicative: compare them with the sheets handed out by the lecturers.'}
+    {' '}
+    <a href={teoria}>{it ? 'Teoria della misura' : 'Measurement theory'}</a>
+  </p>
+  {LAB.esperienze.map((e, k) => (
+    <section aria-labelledby={`lab-${e.id}`} data-note-id={`extra/laboratorio/${e.id}`}>
+      <h2 id={`lab-${e.id}`}>{`${k + 1}. ${tx(e.titolo)}`}</h2>
+      <p>{tx(e.obiettivo)}</p>
+      <h3>{it ? 'Strumentazione' : 'Equipment'}</h3>
+      <ul>
+        {e.strumentazione.map((s) => (
+          <li>{tx(s)}</li>
+        ))}
+      </ul>
+      <h3>{it ? 'Lezioni collegate' : 'Related lessons'}</h3>
+      <ul>
+        {e.lezioni.map((n) => (
+          <li>{`${it ? 'Lezione' : 'Lesson'} ${n}: ${tx(lezione(n).title)}`}</li>
+        ))}
+      </ul>
+      <p>
+        {it ? 'Formule utili: ' : 'Useful formulas: '}
+        {e.formule.map((f, i) => (
+          <>
+            {i > 0 && ', '}
+            <a href={`${formulario}#f-${f}`}>{labels[f]}</a>
+          </>
+        ))}
+      </p>
+      <Checklist
+        client:visible
+        scope="fisica-2"
+        area="lab"
+        label={it ? `Relazione: ${tx(e.titolo)}` : `Report: ${tx(e.titolo)}`}
+        progressLabel={it ? '{done} di {total} voci' : '{done} of {total} items'}
+        groups={[
+          { id: `${e.id}-c`, title: it ? 'Voci comuni a ogni relazione' : 'Items common to every report', items: LAB.checklistComune.map((c, i) => ({ id: `${e.id}:c${i + 1}`, label: tx(c) })) },
+          { id: `${e.id}-s`, title: it ? 'Voci specifiche' : 'Specific items', items: e.checklistSpecifica.map((c, i) => ({ id: `${e.id}:s${i + 1}`, label: tx(c) })) },
+        ]}
+      />
+    </section>
+  ))}
+</div>

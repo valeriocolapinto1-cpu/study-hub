@@ -1,0 +1,84 @@
+---
+/**
+ * Appelli passati: date e tipologia (blocco del programma di ogni esercizio e domanda di teoria).
+ * Nessun testo d'esame: i testi restano nella cartella ufficiale dei docenti.
+ */
+import Checklist from '../islands/Checklist';
+import LegacyQuiz from '../islands/LegacyQuiz';
+import { APPELLI, BLOCCHI, type Blocco } from '../data';
+import { localizePath, type Lang } from '../../../i18n';
+import { sectionPath, type CourseData } from '../../../lib/course-pages';
+
+interface Props {
+  lang: Lang;
+  course: CourseData;
+}
+const { lang, course } = Astro.props;
+const it = lang === 'it';
+const fmt = (d: string) =>
+  new Intl.DateTimeFormat(it ? 'it-IT' : 'en-GB', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(`${d}T12:00:00Z`));
+const blocchi = Object.keys(BLOCCHI) as Blocco[];
+const nEs = APPELLI.reduce((s, a) => s + a.esercizi.length, 0);
+const nTh = APPELLI.reduce((s, a) => s + a.teoria.length, 0);
+const stat = blocchi
+  .map((b) => ({ b, es: APPELLI.reduce((s, a) => s + a.esercizi.filter((x) => x === b).length, 0), th: APPELLI.reduce((s, a) => s + a.teoria.filter((x) => x === b).length, 0) }))
+  .filter((r) => r.es + r.th > 0);
+const pct = (x: number, tot: number) => new Intl.NumberFormat(it ? 'it-IT' : 'en-GB', { style: 'percent' }).format(x / tot);
+const esame = localizePath(sectionPath(course, 'esame'), lang);
+const esercizi = localizePath(sectionPath(course, 'esercizi'), lang);
+const anni = [...new Set(APPELLI.map((a) => a.data.slice(0, 4)))];
+---
+
+<div class="prose">
+  <p>
+    {it
+      ? `Indice dei ${APPELLI.length} appelli pubblicati dai docenti (${nEs} esercizi e ${nTh} domande di teoria), dal più recente. Per ogni prova sono indicati solo la data e l'argomento stimato di ogni esercizio: i testi, le figure e le soluzioni appartengono ai docenti e si consultano nella cartella ufficiale del corso. L'argomento è stato assegnato automaticamente nel sito originale e può essere impreciso.`
+      : `Index of the ${APPELLI.length} exam sessions published by the lecturers (${nEs} exercises and ${nTh} theory questions), most recent first. For each paper only the date and the estimated topic of each exercise are given: texts, figures and solutions belong to the lecturers and are found in the official course folder. The topic was assigned automatically in the original site and may be inaccurate.`}
+  </p>
+  <p>
+    {it ? 'Per allenarti sulla stessa tipologia usa gli ' : 'To practise on the same pattern use the '}
+    <a href={esercizi}>{it ? 'esercizi generati' : 'generated exercises'}</a>
+    {it ? ' e la ' : ' and the '}
+    <a href={esame}>{it ? 'simulazione d\'esame' : 'exam simulation'}</a>.
+  </p>
+
+  <h2 id="distribuzione">{it ? 'Quanto pesa ogni capitolo' : 'How much each chapter weighs'}</h2>
+  <div class="table-wrap">
+    <table>
+      <caption>{it ? 'Esercizi e domande di teoria per capitolo del programma, su tutti gli appelli' : 'Exercises and theory questions per programme chapter, over all sessions'}</caption>
+      <thead>
+        <tr>
+          <th scope="col">{it ? 'Capitolo' : 'Chapter'}</th>
+          <th scope="col" class="num">{it ? 'Esercizi' : 'Exercises'}</th>
+          <th scope="col" class="num">{it ? 'Domande di teoria' : 'Theory questions'}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {stat.map((r) => (
+          <tr>
+            <td>{BLOCCHI[r.b][lang]}</td>
+            <td class="num">{`${r.es} (${pct(r.es, nEs)})`}</td>
+            <td class="num">{`${r.th} (${pct(r.th, nTh)})`}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="elenco">{it ? 'Elenco degli appelli' : 'List of sessions'}</h2>
+  <p>{it ? `Anni: ${anni.join(', ')}. Spunta gli esercizi che hai risolto sui testi ufficiali: le spunte restano in questo browser.` : `Years: ${anni.join(', ')}. Tick the exercises you have solved on the official papers: ticks stay in this browser.`}</p>
+  <Checklist
+    client:visible
+    scope="fisica-2"
+    area="appelli"
+    headingLevel={3}
+    label={it ? 'Esercizi degli appelli risolti' : 'Exam-session exercises solved'}
+    progressLabel={it ? '{done} di {total}' : '{done} of {total}'}
+    groups={APPELLI.map((a) => ({
+      id: a.id,
+      title: `${fmt(a.data)} — ${it ? 'teoria sui capitoli' : 'theory on chapters'} ${a.teoria.map((b) => b.slice(1)).join(', ') || '—'}`,
+      items: a.esercizi.map((b, i) => ({ id: `${a.id}-${i + 1}`, label: `${it ? 'Esercizio' : 'Exercise'} ${i + 1}: ${BLOCCHI[b][lang]}` })),
+    }))}
+  />
+  <LegacyQuiz client:idle lang={lang} title={it ? 'I tuoi quiz sul sito precedente' : 'Your quizzes on the previous site'} rowLabel={it ? '{ok} di {n} corrette' : '{ok} of {n} correct'} />
+</div>

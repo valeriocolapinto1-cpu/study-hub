@@ -15,7 +15,7 @@ import type {
 } from '../engine/course-data';
 import { pick, tr, localizePath, type Lang } from '../i18n';
 import { coursePath } from './courses';
-import { plainText } from '../engine/rich';
+import { plainText, speakableText } from '../engine/rich';
 import { richHtml, richInline } from './rich-server';
 import { renderSchematic } from '../sim/circuits/schematic';
 
@@ -106,6 +106,7 @@ export function exerciseData(e: CollectionEntry<'exercises'>['data'], lang: Lang
       ? {
           choices: e.choices.map((c) => ({
             html: richInline(tr(c.text, lang)),
+            ...(/\$|\\\(/.test(tr(c.text, lang)) ? { text: speakableText(tr(c.text, lang)) } : {}),
             correct: c.correct,
             ...(c.explanation ? { explanationHtml: richHtml(tr(c.explanation, lang)) } : {}),
           })),

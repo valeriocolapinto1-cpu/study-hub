@@ -99,3 +99,20 @@ for (const btn of document.querySelectorAll<HTMLButtonElement>('[data-drawer-ope
 
 syncToggles();
 runMigrations();
+
+/*
+ * Formule in display più larghe della colonna: scorrono in orizzontale (prose.css) e devono essere
+ * raggiungibili da tastiera (WCAG 2.1.1, regola axe "scrollable-region-focusable").
+ */
+function markScrollableMath(): void {
+  for (const el of document.querySelectorAll<HTMLElement>('.katex-display')) {
+    if (el.scrollWidth > el.clientWidth + 1) el.tabIndex = 0;
+    else el.removeAttribute('tabindex');
+  }
+}
+markScrollableMath();
+let mathTimer: ReturnType<typeof setTimeout> | undefined;
+globalThis.addEventListener?.('resize', () => {
+  clearTimeout(mathTimer);
+  mathTimer = setTimeout(markScrollableMath, 150);
+});

@@ -258,6 +258,7 @@ export default function ExercisePlayer({
                     <input
                       type={multiple ? 'checkbox' : 'radio'}
                       name={`${uid}-c`}
+                      aria-label={c.text}
                       checked={on}
                       onChange={() =>
                         setPicked(multiple ? (on ? picked.filter((x) => x !== i) : [...picked, i]) : [i])

@@ -39,6 +39,8 @@ module.exports = {
         `${BASE}/en/privacy/`,
         `${BASE}/it/contribuisci/`,
         `${BASE}/it/stile/circuiti/`,
+        `${BASE}/it/anno-2/fisica-2/teoria/corrente-stazionaria/`,
+        `${BASE}/en/anno-2/fisica-2/`,
       ],
       numberOfRuns: 3,
       ...(process.env.CHROME_PATH ? { chromePath: process.env.CHROME_PATH } : {}),

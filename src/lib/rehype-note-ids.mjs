@@ -8,6 +8,8 @@
  * inglese (stessa struttura) e non cambiano correggendo una parola:
  *   teoria/<topic>/s<k>        k-esimo titolo h2 della pagina (s0 = prima del primo h2)
  *   teoria/<topic>/s<k>-<n>    n-esimo blocco (h3, p, ul, ol) della sezione k
+ *   teoria/<topic>/s<k>-<n>.<i> i-esima voce di un elenco: l'id va sulle <li>, perché il pulsante
+ *                              degli appunti inserito in un <ul> violerebbe la struttura dell'elenco
  */
 
 const BLOCKS = new Set(['p', 'ul', 'ol', 'h3']);
@@ -57,7 +59,16 @@ export default function rehypeNoteIds() {
         }
         if (!nested && BLOCKS.has(tag)) {
           block += 1;
-          props.dataNoteId = `${base}/s${section}-${block}`;
+          if (tag === 'ul' || tag === 'ol') {
+            let i = 0;
+            for (const li of node.children ?? []) {
+              if (li.type !== 'element' || li.tagName !== 'li') continue;
+              i += 1;
+              (li.properties ??= {}).dataNoteId = `${base}/s${section}-${block}.${i}`;
+            }
+          } else {
+            props.dataNoteId = `${base}/s${section}-${block}`;
+          }
           return; // niente id annidati (p dentro li, ecc.)
         }
         // dentro elenchi, tabelle, matematica e richiami non si numerano blocchi interni

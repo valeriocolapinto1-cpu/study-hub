@@ -29,6 +29,11 @@ export interface AnswerItemData {
 
 export interface ChoiceData {
   html: string;
+  /**
+   * Nome accessibile in testo semplice quando la scelta contiene matematica: il nome calcolato dal
+   * solo MathML di KaTeX non è affidabile (axe lo segnala come etichetta mancante).
+   */
+  text?: string;
   correct: boolean;
   explanationHtml?: string;
 }

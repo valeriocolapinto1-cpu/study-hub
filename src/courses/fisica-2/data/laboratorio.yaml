@@ -1,0 +1,86 @@
+# Esperienze di laboratorio (legacy/fisica-2/data/laboratorio.json). Titoli dal programma ufficiale; obiettivi,
+# strumentazione e voci specifiche erano indicativi nel sito originale e vanno confermati con le schede del docente.
+checklistComune:
+  - { it: "Titolo, data, componenti del gruppo", en: "Title, date, group members" }
+  - { it: "Scopo dell'esperienza", en: "Aim of the experiment" }
+  - { it: "Cenni teorici e formule utilizzate", en: "Theoretical background and formulas used" }
+  - { it: "Apparato sperimentale e strumenti (con portata e risoluzione/sensibilità)", en: "Experimental set-up and instruments (with range and resolution/sensitivity)" }
+  - { it: "Procedura di misura", en: "Measurement procedure" }
+  - { it: "Tabelle dei dati grezzi con unità di misura e incertezze", en: "Raw data tables with units and uncertainties" }
+  - { it: "Analisi dati: propagazione delle incertezze, eventuali fit (minimi quadrati)", en: "Data analysis: propagation of uncertainties, fits if any (least squares)" }
+  - { it: "Grafici con assi etichettati, unità e barre d'errore", en: "Plots with labelled axes, units and error bars" }
+  - { it: "Confronto con i valori attesi (scarto, compatibilità)", en: "Comparison with expected values (discrepancy, compatibility)" }
+  - { it: "Discussione degli errori sistematici e casuali", en: "Discussion of systematic and random errors" }
+  - { it: "Conclusioni", en: "Conclusions" }
+esperienze:
+  - id: lab1
+    titolo: { it: "Misure in corrente continua", en: "DC measurements" }
+    lezioni: [20, 22, 23, 32]
+    obiettivo: { it: "Misurare correnti, differenze di potenziale e resistenze in circuiti in corrente continua, valutando le incertezze e gli errori di inserzione degli strumenti.", en: "Measure currents, potential differences and resistances in DC circuits, evaluating uncertainties and the insertion errors of the instruments." }
+    strumentazione:
+      - { it: "Alimentatore DC", en: "DC power supply" }
+      - { it: "Multimetro digitale (voltmetro / amperometro / ohmmetro)", en: "Digital multimeter (voltmeter / ammeter / ohmmeter)" }
+      - { it: "Resistori", en: "Resistors" }
+      - { it: "Breadboard e cavi", en: "Breadboard and leads" }
+    checklistSpecifica:
+      - { it: "Resistenze interne degli strumenti ed errori di inserzione", en: "Internal resistances of the instruments and insertion errors" }
+      - { it: "Verifica della legge di Ohm / resistenze equivalenti", en: "Verification of Ohm's law / equivalent resistances" }
+    formule: [ohm, r-serie-par, inserzione, propagazione]
+  - id: lab2
+    titolo: { it: "Misure su un circuito RC con multimetro", en: "Measurements on an RC circuit with a multimeter" }
+    lezioni: [31, 37]
+    obiettivo: { it: "Studiare la carica (e/o la scarica) di un condensatore attraverso una resistenza e ricavare la costante di tempo τ = RC.", en: "Study the charging (and/or discharging) of a capacitor through a resistance and obtain the time constant τ = RC." }
+    strumentazione:
+      - { it: "Alimentatore DC", en: "DC power supply" }
+      - { it: "Multimetro digitale", en: "Digital multimeter" }
+      - { it: "Condensatore e resistori", en: "Capacitor and resistors" }
+      - { it: "Cronometro", en: "Stopwatch" }
+      - { it: "Breadboard e cavi", en: "Breadboard and leads" }
+    checklistSpecifica:
+      - { it: "Tabella V_C(t) o I(t)", en: "Table of V_C(t) or I(t)" }
+      - { it: "Linearizzazione (logaritmo) e fit per τ", en: "Linearisation (logarithm) and fit for τ" }
+      - { it: "Confronto tra τ misurato e RC nominale", en: "Comparison between measured τ and nominal RC" }
+    formule: [rc-carica, rc-scarica, minimi-quadrati]
+  - id: lab3
+    titolo: { it: "Misure su un circuito RC con oscilloscopio", en: "Measurements on an RC circuit with an oscilloscope" }
+    lezioni: [42, 44, 51]
+    obiettivo: { it: "Osservare all'oscilloscopio i transitori di carica e scarica di un circuito RC alimentato da un'onda quadra e misurare la costante di tempo.", en: "Observe on the oscilloscope the charging and discharging transients of an RC circuit driven by a square wave and measure the time constant." }
+    strumentazione:
+      - { it: "Generatore di funzioni (onda quadra)", en: "Function generator (square wave)" }
+      - { it: "Oscilloscopio", en: "Oscilloscope" }
+      - { it: "Condensatore e resistori", en: "Capacitor and resistors" }
+      - { it: "Sonde e cavi", en: "Probes and leads" }
+    checklistSpecifica:
+      - { it: "Impostazioni dell'oscilloscopio (scale, trigger)", en: "Oscilloscope settings (scales, trigger)" }
+      - { it: "Metodo di misura di τ dalla traccia", en: "Method for measuring τ from the trace" }
+      - { it: "Effetto dell'impedenza d'ingresso di generatore e oscilloscopio", en: "Effect of the generator and oscilloscope impedances" }
+    formule: [rc-carica, rc-scarica]
+  - id: lab4
+    titolo: { it: "Misure di un circuito DC tramite Thevenin", en: "Measurements of a DC circuit with Thevenin" }
+    lezioni: [20, 44, 51]
+    obiettivo: { it: "Determinare sperimentalmente il circuito equivalente di Thevenin (V_Th, R_Th) di una rete in corrente continua e confrontarlo con il calcolo.", en: "Determine experimentally the Thevenin equivalent (V_Th, R_Th) of a DC network and compare it with the calculation." }
+    strumentazione:
+      - { it: "Alimentatore DC", en: "DC power supply" }
+      - { it: "Multimetro digitale", en: "Digital multimeter" }
+      - { it: "Resistori / carico variabile", en: "Resistors / variable load" }
+      - { it: "Breadboard e cavi", en: "Breadboard and leads" }
+    checklistSpecifica:
+      - { it: "Misura di V_Th a vuoto e di R_Th", en: "Measurement of open-circuit V_Th and of R_Th" }
+      - { it: "Calcolo teorico dell'equivalente e confronto", en: "Theoretical calculation of the equivalent and comparison" }
+      - { it: "Eventuale curva V(I) sul carico", en: "V(I) curve on the load, if measured" }
+    formule: [thevenin, max-pot, kirchhoff-maglie]
+  - id: lab5
+    titolo: { it: "Ottica geometrica", en: "Geometrical optics" }
+    lezioni: [49, 50, 56]
+    obiettivo: { it: "Verificare leggi dell'ottica geometrica (riflessione, rifrazione, lenti) con misure su banco ottico.", en: "Verify laws of geometrical optics (reflection, refraction, lenses) with measurements on an optical bench." }
+    strumentazione:
+      - { it: "Banco ottico", en: "Optical bench" }
+      - { it: "Sorgente luminosa / laser", en: "Light source / laser" }
+      - { it: "Lenti e/o prismi, lastre", en: "Lenses and/or prisms, slabs" }
+      - { it: "Schermo", en: "Screen" }
+      - { it: "Righello / goniometro", en: "Ruler / protractor" }
+    checklistSpecifica:
+      - { it: "Schema del banco ottico con distanze", en: "Layout of the optical bench with distances" }
+      - { it: "Grandezze misurate e metodo (es. legge di Snell, lenti)", en: "Measured quantities and method (e.g. Snell's law, lenses)" }
+      - { it: "Stima dell'incertezza sulle posizioni/angoli", en: "Estimate of the uncertainty on positions/angles" }
+    formule: [snell, riflessione, rifl-totale]

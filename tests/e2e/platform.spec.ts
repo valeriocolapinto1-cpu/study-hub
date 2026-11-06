@@ -219,7 +219,9 @@ test.describe('Ricerca', () => {
 
     await page.keyboard.press('Control+k');
     await expect(input).toBeFocused();
-    await input.fill('zzzzqqq');
+    // Pagefind fa corrispondere anche parole di una lettera che prefissano la query ("raggio R", "asse z"):
+    // serve una stringa senza senso che non cominci con una variabile.
+    await input.fill('jjjkkk');
     await expect(page.locator('#pf-search-status')).toHaveText(/Nessun risultato/);
   });
 

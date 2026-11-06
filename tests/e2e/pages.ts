@@ -24,4 +24,11 @@ export const SAMPLE_PAGES: SamplePage[] = [
   { name: 'contribuisci-en', path: `${BASE}en/contribuisci/` },
   { name: 'ringraziamenti-en', path: `${BASE}en/ringraziamenti/` },
   { name: 'offline-it', path: `${BASE}it/offline/` },
+  { name: 'fisica-2-panoramica-it', path: `${BASE}it/anno-2/fisica-2/` },
+  { name: 'fisica-2-teoria-it', path: `${BASE}it/anno-2/fisica-2/teoria/dielettrici/` },
+  { name: 'fisica-2-teoria-en', path: `${BASE}en/anno-2/fisica-2/teoria/corrente-stazionaria/` },
+  { name: 'fisica-2-formulario-it', path: `${BASE}it/anno-2/fisica-2/formulario/` },
+  { name: 'fisica-2-esercizi-en', path: `${BASE}en/anno-2/fisica-2/esercizi/onde-elettromagnetiche/` },
+  { name: 'fisica-2-laboratorio-en', path: `${BASE}en/anno-2/fisica-2/extra/laboratorio/` },
+  { name: 'fisica-2-appelli-it', path: `${BASE}it/anno-2/fisica-2/extra/appelli/` },
 ];
