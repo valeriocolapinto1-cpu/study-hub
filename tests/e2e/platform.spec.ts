@@ -219,7 +219,10 @@ test.describe('Ricerca', () => {
 
     await page.keyboard.press('Control+k');
     await expect(input).toBeFocused();
-    await input.fill('zzzzqqq');
+    // Pagefind, se una parola non c'è nell'indice, la accorcia finché trova un prefisso indicizzato:
+    // con i corsi l'indice contiene parole di una lettera (z, x, Q…), quindi serve un testo che
+    // non abbia nessun prefisso indicizzato.
+    await input.fill('ŋŋŋŋŋŋ');
     await expect(page.locator('#pf-search-status')).toHaveText(/Nessun risultato/);
   });
 
