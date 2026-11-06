@@ -231,3 +231,19 @@
       value: 5
       unit: W/m²
       tol: 0.03
+- id: gen-b5-young
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.6
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b5-young
+  origin: tipologia-appello
+- id: gen-b5-angolo-limite-specchio
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.2
+  difficulty: 3
+  kind: generated
+  generator: fisica-2/b5-angolo-limite-specchio
+  origin: tipologia-appello

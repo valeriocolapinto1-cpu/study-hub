@@ -1,0 +1,327 @@
+# Domande d'orale (dal generatore del sito originale) e carte del formulario.
+- id: orale-01
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.3
+  kind: orale
+  front:
+    it: Enunciare il teorema di Gauss per il campo elettrico e ricavare il campo di una distribuzione piana indefinita di carica.
+    en: State Gauss's theorem for the electric field and derive the field of an infinite plane charge distribution.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - enunciato in forma integrale e locale (prima equazione di Maxwell)
+      - scelta della superficie gaussiana e uso della simmetria
+      - risultato $E=\sigma/2\varepsilon_0$ e discontinuità del campo
+    en: |-
+      Answer outline:
+
+      - statement in integral and local form (Maxwell's first equation)
+      - choice of the Gaussian surface and use of symmetry
+      - result $E=\sigma/2\varepsilon_0$ and discontinuity of the field
+- id: orale-06
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.8
+  kind: orale
+  front:
+    it: Forza e momento meccanico che un campo elettrico esterno esercita su un dipolo.
+    en: Force and torque exerted by an external electric field on a dipole.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - momento di dipolo $\vec p$
+      - momento della forza $\vec M=\vec p\times\vec E$ ed energia $U=-\vec p\cdot\vec E$
+      - forza in un campo non uniforme
+    en: |-
+      Answer outline:
+
+      - dipole moment $\vec p$
+      - torque $\vec M=\vec p\times\vec E$ and energy $U=-\vec p\cdot\vec E$
+      - force in a non-uniform field
+- id: formula-coulomb
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.1
+  kind: formula
+  front:
+    it: Legge di Coulomb
+    en: Coulomb's law
+  back:
+    it: |-
+      $$\vec F_{12} = \frac{1}{4\pi\varepsilon_0}\,\frac{q_1 q_2}{r^2}\,\hat u_{r}$$
+
+      $\varepsilon_0 \simeq 8.854\times10^{-12}\ \mathrm{F/m}$; $\frac{1}{4\pi\varepsilon_0}\simeq 8.99\times10^{9}\ \mathrm{N\,m^2/C^2}$
+    en: |-
+      $$\vec F_{12} = \frac{1}{4\pi\varepsilon_0}\,\frac{q_1 q_2}{r^2}\,\hat u_{r}$$
+
+      $\varepsilon_0 \simeq 8.854\times10^{-12}\ \mathrm{F/m}$; $\frac{1}{4\pi\varepsilon_0}\simeq 8.99\times10^{9}\ \mathrm{N\,m^2/C^2}$
+- id: formula-campo-def
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.1
+  kind: formula
+  front:
+    it: Definizione di campo elettrico
+    en: Definition of the electric field
+  back:
+    it: $$\vec E = \frac{\vec F}{q_0}$$
+    en: $$\vec E = \frac{\vec F}{q_0}$$
+- id: formula-campo-distr
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.1
+  kind: formula
+  front:
+    it: Campo di una distribuzione continua
+    en: Field of a continuous distribution
+  back:
+    it: |-
+      $$\vec E(\vec r) = \frac{1}{4\pi\varepsilon_0}\int_V \frac{\rho(\vec r\,')\,(\vec r-\vec r\,')}{|\vec r-\vec r\,'|^3}\,dV'$$
+
+      Analogamente con $\lambda\,dl'$ (lineare) e $\sigma\,dS'$ (superficiale).
+    en: |-
+      $$\vec E(\vec r) = \frac{1}{4\pi\varepsilon_0}\int_V \frac{\rho(\vec r\,')\,(\vec r-\vec r\,')}{|\vec r-\vec r\,'|^3}\,dV'$$
+
+      Likewise with $\lambda\,dl'$ (linear) and $\sigma\,dS'$ (surface).
+- id: formula-filo-inf
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.1
+  kind: formula
+  front:
+    it: Filo rettilineo infinito
+    en: Infinite straight wire
+  back:
+    it: |-
+      $$E = \frac{\lambda}{2\pi\varepsilon_0\, r}$$
+
+      Campo radiale, r distanza dal filo.
+    en: |-
+      $$E = \frac{\lambda}{2\pi\varepsilon_0\, r}$$
+
+      Radial field, r distance from the wire.
+- id: formula-piano-inf
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.1
+  kind: formula
+  front:
+    it: Piano infinito uniformemente carico
+    en: Uniformly charged infinite plane
+  back:
+    it: |-
+      $$E = \frac{\sigma}{2\varepsilon_0}$$
+
+      Uniforme, perpendicolare al piano.
+    en: |-
+      $$E = \frac{\sigma}{2\varepsilon_0}$$
+
+      Uniform, perpendicular to the plane.
+- id: formula-sfera-unif
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.1
+  kind: formula
+  front:
+    it: Sfera uniformemente carica (raggio R, carica Q)
+    en: Uniformly charged sphere (radius R, charge Q)
+  back:
+    it: $$E(r) = \begin{cases} \dfrac{Q\,r}{4\pi\varepsilon_0 R^3} & r<R \\[2mm] \dfrac{Q}{4\pi\varepsilon_0 r^2} & r\ge R \end{cases}$$
+    en: $$E(r) = \begin{cases} \dfrac{Q\,r}{4\pi\varepsilon_0 R^3} & r<R \\[2mm] \dfrac{Q}{4\pi\varepsilon_0 r^2} & r\ge R \end{cases}$$
+- id: formula-gauss-int
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.3
+  kind: formula
+  front:
+    it: Teorema di Gauss (forma integrale)
+    en: Gauss's theorem (integral form)
+  back:
+    it: $$\Phi_S(\vec E) = \oint_S \vec E\cdot\hat n\,dS = \frac{Q_{\text{int}}}{\varepsilon_0}$$
+    en: $$\Phi_S(\vec E) = \oint_S \vec E\cdot\hat n\,dS = \frac{Q_{\text{int}}}{\varepsilon_0}$$
+- id: formula-maxwell1-loc
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.3
+  kind: formula
+  front:
+    it: I equazione di Maxwell (forma locale, vuoto)
+    en: Maxwell's first equation (local form, vacuum)
+  back:
+    it: $$\nabla\cdot\vec E = \frac{\rho}{\varepsilon_0}$$
+    en: $$\nabla\cdot\vec E = \frac{\rho}{\varepsilon_0}$$
+- id: formula-divergenza
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.3
+  kind: formula
+  front:
+    it: Teorema della divergenza
+    en: Divergence theorem
+  back:
+    it: $$\oint_S \vec F\cdot\hat n\,dS = \int_V \nabla\cdot\vec F\,dV$$
+    en: $$\oint_S \vec F\cdot\hat n\,dS = \int_V \nabla\cdot\vec F\,dV$$
+- id: formula-ddp
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.6
+  kind: formula
+  front:
+    it: Differenza di potenziale
+    en: Potential difference
+  back:
+    it: $$V(B)-V(A) = -\int_A^B \vec E\cdot d\vec l$$
+    en: $$V(B)-V(A) = -\int_A^B \vec E\cdot d\vec l$$
+- id: formula-grad
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.6
+  kind: formula
+  front:
+    it: Campo come gradiente del potenziale
+    en: Field as the gradient of the potential
+  back:
+    it: $$\vec E = -\nabla V$$
+    en: $$\vec E = -\nabla V$$
+- id: formula-grad-sfer
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.6
+  kind: formula
+  front:
+    it: Gradiente in coordinate sferiche
+    en: Gradient in spherical coordinates
+  back:
+    it: $$\nabla V = \frac{\partial V}{\partial r}\hat u_r + \frac{1}{r}\frac{\partial V}{\partial \theta}\hat u_\theta + \frac{1}{r\sin\theta}\frac{\partial V}{\partial \phi}\hat u_\phi$$
+    en: $$\nabla V = \frac{\partial V}{\partial r}\hat u_r + \frac{1}{r}\frac{\partial V}{\partial \theta}\hat u_\theta + \frac{1}{r\sin\theta}\frac{\partial V}{\partial \phi}\hat u_\phi$$
+- id: formula-pot-distr
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.6
+  kind: formula
+  front:
+    it: Potenziale di una distribuzione
+    en: Potential of a distribution
+  back:
+    it: |-
+      $$V(\vec r) = \frac{1}{4\pi\varepsilon_0}\int_V \frac{\rho(\vec r\,')}{|\vec r-\vec r\,'|}\,dV'$$
+
+      Riferimento V = 0 all'infinito (distribuzioni limitate).
+    en: |-
+      $$V(\vec r) = \frac{1}{4\pi\varepsilon_0}\int_V \frac{\rho(\vec r\,')}{|\vec r-\vec r\,'|}\,dV'$$
+
+      Reference V = 0 at infinity (bounded distributions).
+- id: formula-rot-e
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.7
+  kind: formula
+  front:
+    it: Conservatività del campo elettrostatico
+    en: Conservativeness of the electrostatic field
+  back:
+    it: $$\oint_\gamma \vec E\cdot d\vec l = 0 \quad\Longleftrightarrow\quad \nabla\times\vec E = 0$$
+    en: $$\oint_\gamma \vec E\cdot d\vec l = 0 \quad\Longleftrightarrow\quad \nabla\times\vec E = 0$$
+- id: formula-stokes
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.7
+  kind: formula
+  front:
+    it: Teorema di Stokes
+    en: Stokes' theorem
+  back:
+    it: $$\oint_\gamma \vec F\cdot d\vec l = \int_S (\nabla\times\vec F)\cdot\hat n\,dS$$
+    en: $$\oint_\gamma \vec F\cdot d\vec l = \int_S (\nabla\times\vec F)\cdot\hat n\,dS$$
+- id: formula-poisson
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.7
+  kind: formula
+  front:
+    it: Equazioni di Poisson e di Laplace
+    en: Poisson's and Laplace's equations
+  back:
+    it: $$\nabla^2 V = -\frac{\rho}{\varepsilon_0} \qquad\qquad \nabla^2 V = 0\ \ (\rho=0)$$
+    en: $$\nabla^2 V = -\frac{\rho}{\varepsilon_0} \qquad\qquad \nabla^2 V = 0\ \ (\rho=0)$$
+- id: formula-dipolo-p
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.8
+  kind: formula
+  front:
+    it: Momento di dipolo
+    en: Dipole moment
+  back:
+    it: |-
+      $$\vec p = q\,\vec d$$
+
+      d orientato dalla carica negativa alla positiva.
+    en: |-
+      $$\vec p = q\,\vec d$$
+
+      d points from the negative to the positive charge.
+- id: formula-dipolo-v
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.6
+  kind: formula
+  front:
+    it: Potenziale del dipolo (r ≫ d)
+    en: Dipole potential (r ≫ d)
+  back:
+    it: $$V(r,\theta) = \frac{1}{4\pi\varepsilon_0}\frac{\vec p\cdot\hat u_r}{r^2} = \frac{p\cos\theta}{4\pi\varepsilon_0 r^2}$$
+    en: $$V(r,\theta) = \frac{1}{4\pi\varepsilon_0}\frac{\vec p\cdot\hat u_r}{r^2} = \frac{p\cos\theta}{4\pi\varepsilon_0 r^2}$$
+- id: formula-dipolo-e
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.8
+  kind: formula
+  front:
+    it: Campo del dipolo (r ≫ d)
+    en: Dipole field (r ≫ d)
+  back:
+    it: $$E_r = \frac{2p\cos\theta}{4\pi\varepsilon_0 r^3},\qquad E_\theta = \frac{p\sin\theta}{4\pi\varepsilon_0 r^3}$$
+    en: $$E_r = \frac{2p\cos\theta}{4\pi\varepsilon_0 r^3},\qquad E_\theta = \frac{p\sin\theta}{4\pi\varepsilon_0 r^3}$$
+- id: formula-dipolo-mom
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.8
+  kind: formula
+  front:
+    it: Momento meccanico su dipolo
+    en: Torque on a dipole
+  back:
+    it: $$\vec M = \vec p\times\vec E$$
+    en: $$\vec M = \vec p\times\vec E$$
+- id: formula-dipolo-u
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.6
+  kind: formula
+  front:
+    it: Energia potenziale del dipolo
+    en: Potential energy of a dipole
+  back:
+    it: $$U = -\vec p\cdot\vec E$$
+    en: $$U = -\vec p\cdot\vec E$$
+- id: formula-dipolo-f
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.8
+  kind: formula
+  front:
+    it: Forza su dipolo rigido
+    en: Force on a rigid dipole
+  back:
+    it: |-
+      $$\vec F = \nabla(\vec p\cdot\vec E) = (\vec p\cdot\nabla)\vec E$$
+
+      La seconda uguaglianza vale per $\nabla\times\vec E = 0$. In campo uniforme $\vec F = 0$.
+    en: |-
+      $$\vec F = \nabla(\vec p\cdot\vec E) = (\vec p\cdot\nabla)\vec E$$
+
+      The second equality holds because $\nabla\times\vec E = 0$. In a uniform field $\vec F = 0$.

@@ -1,0 +1,84 @@
+# Domande d'orale (dal generatore del sito originale) e carte del formulario.
+- id: formula-media
+  topic: laboratorio-misura
+  objectives:
+    - laboratorio-misura.1
+  kind: formula
+  front:
+    it: Valor medio
+    en: Mean value
+  back:
+    it: $$\bar x = \frac{1}{N}\sum_{i=1}^N x_i$$
+    en: $$\bar x = \frac{1}{N}\sum_{i=1}^N x_i$$
+- id: formula-dev-std
+  topic: laboratorio-misura
+  objectives:
+    - laboratorio-misura.2
+  kind: formula
+  front:
+    it: Deviazione standard campionaria ed errore sulla media
+    en: Sample standard deviation and error on the mean
+  back:
+    it: $$\sigma_x = \sqrt{\frac{1}{N-1}\sum_{i=1}^N (x_i-\bar x)^2},\qquad \sigma_{\bar x} = \frac{\sigma_x}{\sqrt N}$$
+    en: $$\sigma_x = \sqrt{\frac{1}{N-1}\sum_{i=1}^N (x_i-\bar x)^2},\qquad \sigma_{\bar x} = \frac{\sigma_x}{\sqrt N}$$
+- id: formula-chebyshev
+  topic: laboratorio-misura
+  objectives:
+    - laboratorio-misura.1
+  kind: formula
+  front:
+    it: Disuguaglianza di Chebyshev
+    en: Chebyshev's inequality
+  back:
+    it: $$P\left(|x-\mu|\ge k\sigma\right)\le\frac{1}{k^2}$$
+    en: $$P\left(|x-\mu|\ge k\sigma\right)\le\frac{1}{k^2}$$
+- id: formula-propagazione
+  topic: laboratorio-misura
+  objectives:
+    - laboratorio-misura.3
+  kind: formula
+  front:
+    it: Propagazione delle incertezze (grandezze indipendenti)
+    en: Propagation of uncertainties (independent quantities)
+  back:
+    it: |-
+      $$\sigma_f^2 = \sum_i\left(\frac{\partial f}{\partial x_i}\right)^2\sigma_i^2$$
+
+      Stima dell'errore massimo: $\Delta f = \sum_i\left|\frac{\partial f}{\partial x_i}\right|\Delta x_i$.
+    en: |-
+      $$\sigma_f^2 = \sum_i\left(\frac{\partial f}{\partial x_i}\right)^2\sigma_i^2$$
+
+      Maximum-error estimate: $\Delta f = \sum_i\left|\frac{\partial f}{\partial x_i}\right|\Delta x_i$.
+- id: formula-media-pesata
+  topic: laboratorio-misura
+  objectives:
+    - laboratorio-misura.4
+  kind: formula
+  front:
+    it: Media pesata
+    en: Weighted mean
+  back:
+    it: $$\bar x = \frac{\sum_i x_i/\sigma_i^2}{\sum_i 1/\sigma_i^2},\qquad \sigma_{\bar x} = \frac{1}{\sqrt{\sum_i 1/\sigma_i^2}}$$
+    en: $$\bar x = \frac{\sum_i x_i/\sigma_i^2}{\sum_i 1/\sigma_i^2},\qquad \sigma_{\bar x} = \frac{1}{\sqrt{\sum_i 1/\sigma_i^2}}$$
+- id: formula-minimi-quadrati
+  topic: laboratorio-misura
+  objectives:
+    - laboratorio-misura.5
+  kind: formula
+  front:
+    it: "Minimi quadrati: retta y = a + b x (incertezze uguali su y)"
+    en: "Least squares: line y = a + b x (equal uncertainties on y)"
+  back:
+    it: $$b = \frac{N\sum x_iy_i - \sum x_i\sum y_i}{\Delta},\quad a = \frac{\sum x_i^2\sum y_i - \sum x_i\sum x_iy_i}{\Delta},\quad \Delta = N\sum x_i^2-\left(\sum x_i\right)^2$$
+    en: $$b = \frac{N\sum x_iy_i - \sum x_i\sum y_i}{\Delta},\quad a = \frac{\sum x_i^2\sum y_i - \sum x_i\sum x_iy_i}{\Delta},\quad \Delta = N\sum x_i^2-\left(\sum x_i\right)^2$$
+- id: formula-confronto
+  topic: laboratorio-misura
+  objectives:
+    - laboratorio-misura.1
+  kind: formula
+  front:
+    it: Confronto tra misure
+    en: Comparison of measurements
+  back:
+    it: $$\text{scarto relativo} = \frac{|x_{mis}-x_{rif}|}{|x_{rif}|},\qquad t = \frac{|x_1-x_2|}{\sqrt{\sigma_1^2+\sigma_2^2}}$$
+    en: $$\text{scarto relativo} = \frac{|x_{mis}-x_{rif}|}{|x_{rif}|},\qquad t = \frac{|x_1-x_2|}{\sqrt{\sigma_1^2+\sigma_2^2}}$$

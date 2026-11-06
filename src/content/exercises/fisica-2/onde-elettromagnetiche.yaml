@@ -197,3 +197,36 @@
       value: 29.98
       unit: cm
       tol: 0.03
+- id: gen-b5-stella
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.4
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b5-stella
+  origin: tipologia-appello
+- id: gen-b5-laser
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.4
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b5-laser
+  origin: tipologia-appello
+- id: gen-b5-spira-onda
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b5-spira-onda
+  origin: tipologia-appello
+- id: gen-b5-onda-piana
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.2
+    - onde-elettromagnetiche.4
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b5-onda-piana
+  origin: tipologia-appello

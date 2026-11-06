@@ -1,0 +1,398 @@
+# Domande d'orale (dal generatore del sito originale) e carte del formulario.
+- id: orale-18
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.2
+  kind: orale
+  front:
+    it: Enunciare la legge di Faraday–Neumann–Lenz e ricavare la terza equazione di Maxwell.
+    en: State the Faraday–Neumann–Lenz law and derive Maxwell's third equation.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - f.e.m. indotta e legge di Lenz
+      - forma integrale e passaggio alla forma locale con Stokes
+      - campo elettrico non conservativo
+    en: |-
+      Answer outline:
+
+      - induced emf and Lenz's law
+      - integral form and passage to the local form with Stokes
+      - non-conservative electric field
+- id: orale-19
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.3
+  kind: orale
+  front:
+    it: Definire il coefficiente di autoinduzione e ricavarlo per un solenoide di grande lunghezza.
+    en: Define the self-inductance and derive it for a long solenoid.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - $\Phi=LI$ e f.e.m. autoindotta
+      - flusso concatenato del solenoide
+      - $L=\mu_0n^2\ell S$
+    en: |-
+      Answer outline:
+
+      - $\Phi=LI$ and self-induced emf
+      - flux linked with the solenoid
+      - $L=\mu_0n^2\ell S$
+- id: orale-20
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.6
+  kind: orale
+  front:
+    it: Energia immagazzinata in un'induttanza e densità di energia magnetica in funzione di $B$.
+    en: Energy stored in an inductance and magnetic energy density as a function of $B$.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - lavoro del generatore contro la f.e.m. autoindotta
+      - $U=\tfrac12LI^2$
+      - densità $B^2/2\mu_0$ dal caso del solenoide
+    en: |-
+      Answer outline:
+
+      - work of the generator against the self-induced emf
+      - $U=\tfrac12LI^2$
+      - density $B^2/2\mu_0$ from the solenoid case
+- id: orale-21
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.8
+  kind: orale
+  front:
+    it: Perché la legge di Ampère va completata? Introdurre la corrente di spostamento e scrivere l'equazione di Ampère–Maxwell.
+    en: Why must Ampère's law be completed? Introduce the displacement current and write the Ampère–Maxwell equation.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - condensatore in carica e inconsistenza della legge di Ampère
+      - $\vec J_s=\varepsilon_0\partial\vec E/\partial t$
+      - equazione di Ampère–Maxwell completa
+    en: |-
+      Answer outline:
+
+      - charging capacitor and inconsistency of Ampère's law
+      - $\vec J_s=\varepsilon_0\partial\vec E/\partial t$
+      - complete Ampère–Maxwell equation
+- id: orale-22
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.3
+  kind: orale
+  front:
+    it: Definire il concetto di mutua induzione e ricavare il coefficiente di mutua induzione fra due solenoidi coassiali.
+    en: Define mutual induction and derive the mutual-inductance coefficient between two coaxial solenoids.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - flusso di un circuito concatenato con l'altro
+      - reciprocità $M_{12}=M_{21}$
+      - calcolo per i due solenoidi
+    en: |-
+      Answer outline:
+
+      - flux of one circuit linked with the other
+      - reciprocity $M_{12}=M_{21}$
+      - calculation for the two solenoids
+- id: orale-23
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+  kind: orale
+  front:
+    it: Mostrare, con una sbarra mobile in un campo magnetico, che la f.e.m. di Faraday discende dalla forza di Lorentz.
+    en: Show, with a bar moving in a magnetic field, that Faraday's emf follows from the Lorentz force.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - sbarra in moto in un campo $\vec B$ uniforme
+      - campo elettromotore $\vec v\times\vec B$
+      - confronto con $-d\Phi/dt$
+    en: |-
+      Answer outline:
+
+      - bar moving in a uniform field $\vec B$
+      - electromotive field $\vec v\times\vec B$
+      - comparison with $-d\Phi/dt$
+- id: formula-faraday
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+  kind: formula
+  front:
+    it: Legge di Faraday-Neumann-Lenz
+    en: Faraday-Neumann-Lenz law
+  back:
+    it: $$\mathcal E_i = -\frac{d\Phi(\vec B)}{dt}$$
+    en: $$\mathcal E_i = -\frac{d\Phi(\vec B)}{dt}$$
+- id: formula-maxwell3
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.2
+  kind: formula
+  front:
+    it: III equazione di Maxwell (caso non stazionario)
+    en: Maxwell's third equation (non-steady case)
+  back:
+    it: $$\oint_\gamma \vec E\cdot d\vec l = -\frac{d}{dt}\int_S \vec B\cdot\hat n\,dS\qquad\Longleftrightarrow\qquad \nabla\times\vec E = -\frac{\partial\vec B}{\partial t}$$
+    en: $$\oint_\gamma \vec E\cdot d\vec l = -\frac{d}{dt}\int_S \vec B\cdot\hat n\,dS\qquad\Longleftrightarrow\qquad \nabla\times\vec E = -\frac{\partial\vec B}{\partial t}$$
+- id: formula-fem-moto
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+  kind: formula
+  front:
+    it: F.e.m. di movimento (flusso tagliato)
+    en: Motional emf (cut flux)
+  back:
+    it: "$$\\mathcal E = \\oint (\\vec v\\times\\vec B)\\cdot d\\vec l,\\qquad \\text{sbarretta: } \\mathcal E = vBl$$"
+    en: "$$\\mathcal E = \\oint (\\vec v\\times\\vec B)\\cdot d\\vec l,\\qquad \\text{sbarretta: } \\mathcal E = vBl$$"
+- id: formula-sbarretta-rot
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+  kind: formula
+  front:
+    it: Sbarretta che ruota in B uniforme (perpendicolare)
+    en: Bar rotating in a uniform (perpendicular) B
+  back:
+    it: $$\Delta V = \frac{1}{2}B\,\omega\,L^2$$
+    en: $$\Delta V = \frac{1}{2}B\,\omega\,L^2$$
+- id: formula-felici
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.5
+  kind: formula
+  front:
+    it: Legge di Felici
+    en: Felici's law
+  back:
+    it: $$Q = \frac{\Phi_i - \Phi_f}{R}$$
+    en: $$Q = \frac{\Phi_i - \Phi_f}{R}$$
+- id: formula-alternatore
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.7
+  kind: formula
+  front:
+    it: Alternatore (N spire, area S)
+    en: Alternator (N turns, area S)
+  back:
+    it: $$\mathcal E(t) = N B S\omega\,\sin\omega t$$
+    en: $$\mathcal E(t) = N B S\omega\,\sin\omega t$$
+- id: formula-autoind
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.3
+  kind: formula
+  front:
+    it: Coefficiente di autoinduzione
+    en: Self-inductance
+  back:
+    it: $$\Phi = L\,I,\qquad \mathcal E_L = -L\frac{dI}{dt}$$
+    en: $$\Phi = L\,I,\qquad \mathcal E_L = -L\frac{dI}{dt}$$
+- id: formula-l-sol
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.3
+  kind: formula
+  front:
+    it: Induttanza di un solenoide
+    en: Inductance of a solenoid
+  back:
+    it: $$L = \mu_0 n^2 S\,l = \frac{\mu_0 N^2 S}{l}$$
+    en: $$L = \mu_0 n^2 S\,l = \frac{\mu_0 N^2 S}{l}$$
+- id: formula-l-bifilare
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.3
+  kind: formula
+  front:
+    it: Linea bifilare (per unità di lunghezza)
+    en: Two-wire line (per unit length)
+  back:
+    it: |-
+      $$\frac{L}{l} \simeq \frac{\mu_0}{\pi}\ln\frac{d}{a}\qquad (d\gg a)$$
+
+      a raggio dei fili, d distanza tra gli assi; trascurato il flusso interno ai conduttori.
+    en: |-
+      $$\frac{L}{l} \simeq \frac{\mu_0}{\pi}\ln\frac{d}{a}\qquad (d\gg a)$$
+
+      a radius of the wires, d distance between the axes; flux inside the conductors neglected.
+- id: formula-l-coass
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+  kind: formula
+  front:
+    it: Cavo coassiale (per unità di lunghezza)
+    en: Coaxial cable (per unit length)
+  back:
+    it: |-
+      $$\frac{L}{l} = \frac{\mu_0}{2\pi}\ln\frac{b}{a}\ \left(+\frac{\mu_0}{8\pi}\right)$$
+
+      Il termine tra parentesi si aggiunge se il conduttore interno è pieno con corrente uniforme.
+    en: |-
+      $$\frac{L}{l} = \frac{\mu_0}{2\pi}\ln\frac{b}{a}\ \left(+\frac{\mu_0}{8\pi}\right)$$
+
+      The term in brackets is added if the inner conductor is solid with uniform current.
+- id: formula-mutua
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.3
+  kind: formula
+  front:
+    it: Mutua induzione
+    en: Mutual inductance
+  back:
+    it: $$\Phi_{21} = M\,I_1,\qquad M_{12} = M_{21} = M$$
+    en: $$\Phi_{21} = M\,I_1,\qquad M_{12} = M_{21} = M$$
+- id: formula-mutua-sol
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.3
+  kind: formula
+  front:
+    it: Mutua induzione di due solenoidi coassiali
+    en: Mutual inductance of two coaxial solenoids
+  back:
+    it: |-
+      $$M = \mu_0\, n_1 n_2\, S\, l$$
+
+      S sezione del solenoide interno, stessa lunghezza l.
+    en: |-
+      $$M = \mu_0\, n_1 n_2\, S\, l$$
+
+      S cross-section of the inner solenoid, same length l.
+- id: formula-rl-chiusura
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.4
+  kind: formula
+  front:
+    it: "Circuito RL: chiusura dell'interruttore"
+    en: "RL circuit: closing the switch"
+  back:
+    it: $$I(t) = \frac{\mathcal E}{R}\left(1-e^{-t/\tau}\right),\qquad \tau = \frac{L}{R}$$
+    en: $$I(t) = \frac{\mathcal E}{R}\left(1-e^{-t/\tau}\right),\qquad \tau = \frac{L}{R}$$
+- id: formula-rl-apertura
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.4
+  kind: formula
+  front:
+    it: "Circuito RL: apertura (extracorrente)"
+    en: "RL circuit: opening (extra-current)"
+  back:
+    it: $$I(t) = I_0\,e^{-t/\tau}$$
+    en: $$I(t) = I_0\,e^{-t/\tau}$$
+- id: formula-u-l
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.6
+  kind: formula
+  front:
+    it: Energia magnetica di un induttore
+    en: Magnetic energy of an inductor
+  back:
+    it: $$U = \frac{1}{2}L I^2$$
+    en: $$U = \frac{1}{2}L I^2$$
+- id: formula-u-mutua
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.4
+  kind: formula
+  front:
+    it: Energia di due circuiti accoppiati
+    en: Energy of two coupled circuits
+  back:
+    it: $$U = \frac{1}{2}L_1 I_1^2 + \frac{1}{2}L_2 I_2^2 + M I_1 I_2$$
+    en: $$U = \frac{1}{2}L_1 I_1^2 + \frac{1}{2}L_2 I_2^2 + M I_1 I_2$$
+- id: formula-u-b
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.6
+  kind: formula
+  front:
+    it: Densità di energia magnetica
+    en: Magnetic energy density
+  back:
+    it: $$u = \frac{B^2}{2\mu_0}\ \ \text{(vuoto)},\qquad u = \frac{1}{2}\vec H\cdot\vec B$$
+    en: $$u = \frac{B^2}{2\mu_0}\ \ \text{(vuoto)},\qquad u = \frac{1}{2}\vec H\cdot\vec B$$
+- id: formula-forza-magn
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+  kind: formula
+  front:
+    it: Forze magnetiche (lavori virtuali)
+    en: Magnetic forces (virtual work)
+  back:
+    it: $$F_x = +\left(\frac{\partial U}{\partial x}\right)_{I} = -\left(\frac{\partial U}{\partial x}\right)_{\Phi}$$
+    en: $$F_x = +\left(\frac{\partial U}{\partial x}\right)_{I} = -\left(\frac{\partial U}{\partial x}\right)_{\Phi}$$
+- id: formula-spostamento
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.8
+  kind: formula
+  front:
+    it: Densità di corrente di spostamento
+    en: Displacement current density
+  back:
+    it: $$\vec J_s = \varepsilon_0\frac{\partial\vec E}{\partial t}\ \ \left(\frac{\partial\vec D}{\partial t}\ \text{nei mezzi}\right)$$
+    en: $$\vec J_s = \varepsilon_0\frac{\partial\vec E}{\partial t}\ \ \left(\frac{\partial\vec D}{\partial t}\ \text{nei mezzi}\right)$$
+- id: formula-maxwell4
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.2
+  kind: formula
+  front:
+    it: IV equazione di Maxwell (caso non stazionario)
+    en: Maxwell's fourth equation (non-steady case)
+  back:
+    it: $$\oint_\gamma \vec B\cdot d\vec l = \mu_0 I_{\text{conc}} + \mu_0\varepsilon_0\frac{d}{dt}\int_S\vec E\cdot\hat n\,dS\qquad\Longleftrightarrow\qquad \nabla\times\vec B = \mu_0\vec J + \mu_0\varepsilon_0\frac{\partial\vec E}{\partial t}$$
+    en: $$\oint_\gamma \vec B\cdot d\vec l = \mu_0 I_{\text{conc}} + \mu_0\varepsilon_0\frac{d}{dt}\int_S\vec E\cdot\hat n\,dS\qquad\Longleftrightarrow\qquad \nabla\times\vec B = \mu_0\vec J + \mu_0\varepsilon_0\frac{\partial\vec E}{\partial t}$$
+- id: formula-maxwell-int
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+  kind: formula
+  front:
+    it: Forma integrale (vuoto)
+    en: Integral form (vacuum)
+  back:
+    it: $$\begin{aligned} &\text{I:} && \oint_S \vec E\cdot\hat n\,dS = \frac{Q}{\varepsilon_0} \\ &\text{II:} && \oint_S \vec B\cdot\hat n\,dS = 0 \\ &\text{III:} && \oint_\gamma \vec E\cdot d\vec l = -\frac{d}{dt}\int_S\vec B\cdot\hat n\,dS \\ &\text{IV:} && \oint_\gamma \vec B\cdot d\vec l = \mu_0 I + \mu_0\varepsilon_0\frac{d}{dt}\int_S\vec E\cdot\hat n\,dS \end{aligned}$$
+    en: $$\begin{aligned} &\text{I:} && \oint_S \vec E\cdot\hat n\,dS = \frac{Q}{\varepsilon_0} \\ &\text{II:} && \oint_S \vec B\cdot\hat n\,dS = 0 \\ &\text{III:} && \oint_\gamma \vec E\cdot d\vec l = -\frac{d}{dt}\int_S\vec B\cdot\hat n\,dS \\ &\text{IV:} && \oint_\gamma \vec B\cdot d\vec l = \mu_0 I + \mu_0\varepsilon_0\frac{d}{dt}\int_S\vec E\cdot\hat n\,dS \end{aligned}$$
+- id: formula-maxwell-loc
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.2
+  kind: formula
+  front:
+    it: Forma locale (vuoto)
+    en: Local form (vacuum)
+  back:
+    it: $$\begin{aligned} &\nabla\cdot\vec E = \frac{\rho}{\varepsilon_0} && \nabla\cdot\vec B = 0 \\ &\nabla\times\vec E = -\frac{\partial\vec B}{\partial t} && \nabla\times\vec B = \mu_0\vec J + \mu_0\varepsilon_0\frac{\partial\vec E}{\partial t} \end{aligned}$$
+    en: $$\begin{aligned} &\nabla\cdot\vec E = \frac{\rho}{\varepsilon_0} && \nabla\cdot\vec B = 0 \\ &\nabla\times\vec E = -\frac{\partial\vec B}{\partial t} && \nabla\times\vec B = \mu_0\vec J + \mu_0\varepsilon_0\frac{\partial\vec E}{\partial t} \end{aligned}$$
+- id: formula-maxwell-mat
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.2
+  kind: formula
+  front:
+    it: Forma locale nella materia
+    en: Local form in matter
+  back:
+    it: $$\begin{aligned} &\nabla\cdot\vec D = \rho_{\text{lib}} && \nabla\cdot\vec B = 0 \\ &\nabla\times\vec E = -\frac{\partial\vec B}{\partial t} && \nabla\times\vec H = \vec J_{\text{lib}} + \frac{\partial\vec D}{\partial t} \end{aligned}$$
+    en: $$\begin{aligned} &\nabla\cdot\vec D = \rho_{\text{lib}} && \nabla\cdot\vec B = 0 \\ &\nabla\times\vec E = -\frac{\partial\vec B}{\partial t} && \nabla\times\vec H = \vec J_{\text{lib}} + \frac{\partial\vec D}{\partial t} \end{aligned}$$

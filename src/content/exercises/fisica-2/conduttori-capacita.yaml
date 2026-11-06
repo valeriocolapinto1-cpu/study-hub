@@ -207,3 +207,12 @@
         it: si riduce a un quarto
         en: drops to a quarter
       correct: false
+- id: gen-b1-conduttori-sferici
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.2
+    - conduttori-capacita.5
+  difficulty: 3
+  kind: generated
+  generator: fisica-2/b1-conduttori-sferici
+  origin: tipologia-appello

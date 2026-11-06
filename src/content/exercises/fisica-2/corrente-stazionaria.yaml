@@ -391,3 +391,54 @@
         it: $R_1/R_3=R_4/R_2$
         en: $R_1/R_3=R_4/R_2$
       correct: false
+- id: gen-b2-rc-scarica-tempi
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b2-rc-scarica-tempi
+  origin: tipologia-appello
+- id: gen-b2-dielettrico-perdite
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b2-dielettrico-perdite
+  origin: tipologia-appello
+- id: gen-b2-partitore-apertura
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+    - corrente-stazionaria.5
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b2-partitore-apertura
+  origin: tipologia-appello
+- id: gen-b2-carica-chiusura
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+    - corrente-stazionaria.5
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b2-carica-chiusura
+  origin: tipologia-appello
+- id: gen-b2-ripartizione-cariche
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b2-ripartizione-cariche
+  origin: tipologia-appello
+- id: gen-b2-ponte
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.6
+    - corrente-stazionaria.5
+  difficulty: 3
+  kind: generated
+  generator: fisica-2/b2-ponte
+  origin: tipologia-appello

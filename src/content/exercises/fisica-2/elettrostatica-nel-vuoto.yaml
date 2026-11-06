@@ -183,3 +183,44 @@
       value: 898.8
       unit: V/m
       tol: 0.03
+- id: gen-b1-sfera-rho-kr
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.4
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b1-sfera-rho-kr
+  origin: tipologia-appello
+- id: gen-b1-cilindro-rho-ar
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.4
+    - elettrostatica-nel-vuoto.6
+  difficulty: 3
+  kind: generated
+  generator: fisica-2/b1-cilindro-rho-ar
+  origin: tipologia-appello
+- id: gen-b1-anello-velocita
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.6
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b1-anello-velocita
+  origin: tipologia-appello
+- id: gen-b1-filo-finito
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b1-filo-finito
+  origin: tipologia-appello
+- id: gen-b1-lavoro-anello-asse
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.6
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b1-lavoro-anello-asse
+  origin: tipologia-appello

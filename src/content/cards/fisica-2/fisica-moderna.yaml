@@ -1,0 +1,67 @@
+# Domande d'orale (dal generatore del sito originale) e carte del formulario.
+- id: formula-gamma
+  topic: fisica-moderna
+  objectives:
+    - fisica-moderna.2
+  kind: formula
+  front:
+    it: Fattore di Lorentz
+    en: Lorentz factor
+  back:
+    it: $$\beta = \frac{v}{c},\qquad \gamma = \frac{1}{\sqrt{1-\beta^2}}$$
+    en: $$\beta = \frac{v}{c},\qquad \gamma = \frac{1}{\sqrt{1-\beta^2}}$$
+- id: formula-trasf-lorentz
+  topic: fisica-moderna
+  objectives:
+    - fisica-moderna.2
+  kind: formula
+  front:
+    it: Trasformazioni di Lorentz (moto lungo x)
+    en: Lorentz transformations (motion along x)
+  back:
+    it: $$x' = \gamma(x-vt),\quad y' = y,\quad z' = z,\quad t' = \gamma\left(t-\frac{v x}{c^2}\right)$$
+    en: $$x' = \gamma(x-vt),\quad y' = y,\quad z' = z,\quad t' = \gamma\left(t-\frac{v x}{c^2}\right)$$
+- id: formula-trasf-campi
+  topic: fisica-moderna
+  objectives:
+    - fisica-moderna.2
+  kind: formula
+  front:
+    it: Trasformazione dei campi
+    en: Transformation of the fields
+  back:
+    it: $$\vec E'_\parallel = \vec E_\parallel,\quad \vec B'_\parallel = \vec B_\parallel,\quad \vec E'_\perp = \gamma\left(\vec E+\vec v\times\vec B\right)_\perp,\quad \vec B'_\perp = \gamma\left(\vec B-\frac{\vec v\times\vec E}{c^2}\right)_\perp$$
+    en: $$\vec E'_\parallel = \vec E_\parallel,\quad \vec B'_\parallel = \vec B_\parallel,\quad \vec E'_\perp = \gamma\left(\vec E+\vec v\times\vec B\right)_\perp,\quad \vec B'_\perp = \gamma\left(\vec B-\frac{\vec v\times\vec E}{c^2}\right)_\perp$$
+- id: formula-invarianti
+  topic: fisica-moderna
+  objectives:
+    - fisica-moderna.1
+  kind: formula
+  front:
+    it: Invarianti del campo elettromagnetico
+    en: Invariants of the electromagnetic field
+  back:
+    it: $$\vec E\cdot\vec B,\qquad E^2 - c^2B^2$$
+    en: $$\vec E\cdot\vec B,\qquad E^2 - c^2B^2$$
+- id: formula-meissner
+  topic: fisica-moderna
+  objectives:
+    - fisica-moderna.1
+  kind: formula
+  front:
+    it: Effetto Meissner
+    en: Meissner effect
+  back:
+    it: $$\rho = 0\ \ (T<T_c),\qquad \vec B_{\text{int}} = 0\ \ (\chi_m = -1)$$
+    en: $$\rho = 0\ \ (T<T_c),\qquad \vec B_{\text{int}} = 0\ \ (\chi_m = -1)$$
+- id: formula-campo-critico
+  topic: fisica-moderna
+  objectives:
+    - fisica-moderna.1
+  kind: formula
+  front:
+    it: Campo critico (relazione empirica)
+    en: Critical field (empirical relation)
+  back:
+    it: $$H_c(T) \simeq H_c(0)\left[1-\left(\frac{T}{T_c}\right)^2\right]$$
+    en: $$H_c(T) \simeq H_c(0)\left[1-\left(\frac{T}{T_c}\right)^2\right]$$

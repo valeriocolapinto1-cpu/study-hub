@@ -323,3 +323,27 @@
         it: uguale e con lo stesso verso
         en: the same and with the same sense
       correct: false
+- id: gen-b3-coassiale
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.4
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b3-coassiale
+  origin: tipologia-appello
+- id: gen-b3-cilindro-j-kr
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.4
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b3-cilindro-j-kr
+  origin: tipologia-appello
+- id: gen-b3-spira-semicerchio
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.3
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b3-spira-semicerchio
+  origin: tipologia-appello

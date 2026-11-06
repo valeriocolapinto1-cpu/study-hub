@@ -415,3 +415,88 @@
         it: $\mu_0I/(2R)$
         en: $\mu_0I/(2R)$
       correct: false
+- id: gen-b3-spira-filo-carica
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.5
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b3-spira-filo-carica
+  origin: tipologia-appello
+- id: gen-b4-rl-apertura
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.4
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b4-rl-apertura
+  origin: tipologia-appello
+- id: gen-b4-spira-b-variabile
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+    - campi-variabili.5
+  difficulty: 3
+  kind: generated
+  generator: fisica-2/b4-spira-b-variabile
+  origin: tipologia-appello
+- id: gen-b4-barretta-rotaie
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b4-barretta-rotaie
+  origin: tipologia-appello
+- id: gen-b4-sbarra-rotante
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+    - campi-variabili.7
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b4-sbarra-rotante
+  origin: tipologia-appello
+- id: gen-b4-mutua-filo-spira
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.3
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b4-mutua-filo-spira
+  origin: tipologia-appello
+- id: gen-b4-solenoide-bobina
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+    - campi-variabili.5
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b4-solenoide-bobina
+  origin: tipologia-appello
+- id: gen-b4-spira-rotante
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.7
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b4-spira-rotante
+  origin: tipologia-appello
+- id: gen-b4-toroide-l
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.3
+    - campi-variabili.6
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b4-toroide-l
+  origin: tipologia-appello
+- id: gen-b4-rapporto-densita
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.2
+    - campi-variabili.6
+  difficulty: 3
+  kind: generated
+  generator: fisica-2/b4-rapporto-densita
+  origin: tipologia-appello

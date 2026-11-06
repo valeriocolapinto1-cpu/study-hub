@@ -67,3 +67,30 @@
         it: tutte le componenti di $\vec D$
         en: all components of $\vec D$
       correct: false
+- id: gen-b1-condensatore-cilindrico
+  topic: dielettrici
+  objectives:
+    - dielettrici.6
+    - dielettrici.7
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b1-condensatore-cilindrico
+  origin: tipologia-appello
+- id: gen-b1-piano-serie
+  topic: dielettrici
+  objectives:
+    - dielettrici.4
+    - dielettrici.6
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b1-piano-serie
+  origin: tipologia-appello
+- id: gen-b1-piano-parallelo
+  topic: dielettrici
+  objectives:
+    - dielettrici.5
+    - dielettrici.6
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b1-piano-parallelo
+  origin: tipologia-appello

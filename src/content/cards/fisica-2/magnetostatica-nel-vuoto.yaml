@@ -1,0 +1,334 @@
+# Domande d'orale (dal generatore del sito originale) e carte del formulario.
+- id: orale-12
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.3
+  kind: orale
+  front:
+    it: Enunciare la legge di Biot–Savart e ricavare il campo sull'asse di una spira circolare.
+    en: State the Biot–Savart law and derive the field on the axis of a circular loop.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - forma della legge e direzione del campo
+      - integrazione sulla spira
+      - caso limite al centro e a grande distanza (dipolo magnetico)
+    en: |-
+      Answer outline:
+
+      - form of the law and direction of the field
+      - integration over the loop
+      - limiting cases at the centre and at large distance (magnetic dipole)
+- id: orale-13
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.4
+  kind: orale
+  front:
+    it: Enunciare il teorema di Ampère e ricavare il campo di un solenoide indefinito.
+    en: State Ampère's theorem and derive the field of an infinite solenoid.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - circuitazione di $\vec B$ e corrente concatenata
+      - campo uniforme interno e nullo esterno
+      - $B=\mu_0nI$
+    en: |-
+      Answer outline:
+
+      - circulation of $\vec B$ and linked current
+      - uniform field inside and zero outside
+      - $B=\mu_0nI$
+- id: orale-14
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.1
+  kind: orale
+  front:
+    it: Determinare la forza di Lorentz e descrivere il moto di una carica in un campo magnetico uniforme.
+    en: Determine the Lorentz force and describe the motion of a charge in a uniform magnetic field.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - $\vec F=q\vec v\times\vec B$ e lavoro nullo
+      - moto circolare e raggio di Larmor
+      - moto elicoidale con velocità iniziale obliqua
+    en: |-
+      Answer outline:
+
+      - $\vec F=q\vec v\times\vec B$ and zero work
+      - circular motion and Larmor radius
+      - helical motion with an oblique initial velocity
+- id: orale-15
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.2
+  kind: orale
+  front:
+    it: Forze e momento meccanico su una spira rettangolare percorsa da corrente in un campo magnetico uniforme.
+    en: Forces and torque on a current-carrying rectangular loop in a uniform magnetic field.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - forza totale nulla
+      - momento $\vec M=\vec m\times\vec B$ con $\vec m=I\vec S$
+      - energia potenziale $U=-\vec m\cdot\vec B$
+    en: |-
+      Answer outline:
+
+      - zero total force
+      - torque $\vec M=\vec m\times\vec B$ with $\vec m=I\vec S$
+      - potential energy $U=-\vec m\cdot\vec B$
+- id: orale-16
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.6
+  kind: orale
+  front:
+    it: Descrivere l'effetto Hall e ricavare la tensione di Hall.
+    en: Describe the Hall effect and derive the Hall voltage.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - geometria e deflessione dei portatori
+      - equilibrio $qE_H=qv_dB$
+      - $V_H=\dfrac{IB}{nqt}$ e uso per ricavare il segno e la densità dei portatori
+    en: |-
+      Answer outline:
+
+      - geometry and deflection of the carriers
+      - balance $qE_H=qv_dB$
+      - $V_H=\dfrac{IB}{nqt}$ and its use to find the sign and density of the carriers
+- id: formula-lorentz
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.1
+  kind: formula
+  front:
+    it: Forza di Lorentz
+    en: Lorentz force
+  back:
+    it: $$\vec F = q\left(\vec E + \vec v\times\vec B\right)$$
+    en: $$\vec F = q\left(\vec E + \vec v\times\vec B\right)$$
+- id: formula-ciclotrone
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.1
+  kind: formula
+  front:
+    it: Moto circolare in B uniforme
+    en: Circular motion in uniform B
+  back:
+    it: $$r = \frac{m v_\perp}{|q| B},\qquad \omega = \frac{|q| B}{m},\qquad T = \frac{2\pi m}{|q| B}$$
+    en: $$r = \frac{m v_\perp}{|q| B},\qquad \omega = \frac{|q| B}{m},\qquad T = \frac{2\pi m}{|q| B}$$
+- id: formula-selettore
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.1
+  kind: formula
+  front:
+    it: Selettore di velocità
+    en: Velocity selector
+  back:
+    it: $$v = \frac{E}{B}$$
+    en: $$v = \frac{E}{B}$$
+- id: formula-laplace2
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.2
+  kind: formula
+  front:
+    it: Forza su un elemento di circuito (II formula di Laplace)
+    en: Force on a circuit element (Laplace's second formula)
+  back:
+    it: $$d\vec F = I\,d\vec l\times\vec B$$
+    en: $$d\vec F = I\,d\vec l\times\vec B$$
+- id: formula-mom-magn
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.2
+  kind: formula
+  front:
+    it: Momento magnetico di una spira piana
+    en: Magnetic moment of a plane loop
+  back:
+    it: $$\vec m = I\,S\,\hat n$$
+    en: $$\vec m = I\,S\,\hat n$$
+- id: formula-coppia-spira
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.2
+  kind: formula
+  front:
+    it: Momento meccanico ed energia potenziale
+    en: Torque and potential energy
+  back:
+    it: $$\vec M = \vec m\times\vec B,\qquad U = -\vec m\cdot\vec B$$
+    en: $$\vec M = \vec m\times\vec B,\qquad U = -\vec m\cdot\vec B$$
+- id: formula-hall
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.6
+  kind: formula
+  front:
+    it: Effetto Hall
+    en: Hall effect
+  back:
+    it: |-
+      $$E_H = v_d B,\qquad V_H = \frac{I\,B}{n\,q\,t}$$
+
+      t spessore della lamina nella direzione di B.
+    en: |-
+      $$E_H = v_d B,\qquad V_H = \frac{I\,B}{n\,q\,t}$$
+
+      t thickness of the strip along B.
+- id: formula-biot-savart
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.3
+  kind: formula
+  front:
+    it: I formula di Laplace (Biot-Savart)
+    en: Laplace's first formula (Biot-Savart)
+  back:
+    it: |-
+      $$d\vec B = \frac{\mu_0}{4\pi}\,\frac{I\,d\vec l\times\hat u_r}{r^2}$$
+
+      $\mu_0 = 4\pi\times10^{-7}\ \mathrm{H/m}$ (valore esatto prima della revisione SI del 2019, oggi con ottima approssimazione).
+    en: |-
+      $$d\vec B = \frac{\mu_0}{4\pi}\,\frac{I\,d\vec l\times\hat u_r}{r^2}$$
+
+      $\mu_0 = 4\pi\times10^{-7}\ \mathrm{H/m}$ (exact value before the 2019 SI revision, still an excellent approximation today).
+- id: formula-carica-moto
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.1
+  kind: formula
+  front:
+    it: Campo di una carica in moto (non relativistico)
+    en: Field of a moving charge (non-relativistic)
+  back:
+    it: $$\vec B = \frac{\mu_0}{4\pi}\,\frac{q\,\vec v\times\hat u_r}{r^2}$$
+    en: $$\vec B = \frac{\mu_0}{4\pi}\,\frac{q\,\vec v\times\hat u_r}{r^2}$$
+- id: formula-b-filo
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.1
+  kind: formula
+  front:
+    it: Filo rettilineo infinito
+    en: Infinite straight wire
+  back:
+    it: $$B = \frac{\mu_0 I}{2\pi r}$$
+    en: $$B = \frac{\mu_0 I}{2\pi r}$$
+- id: formula-b-spira
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.1
+  kind: formula
+  front:
+    it: Spira circolare, sull'asse
+    en: Circular loop, on the axis
+  back:
+    it: |-
+      $$B(z) = \frac{\mu_0 I R^2}{2\,(R^2+z^2)^{3/2}}$$
+
+      Per $z\gg R$: campo di dipolo con $m = I\pi R^2$.
+    en: |-
+      $$B(z) = \frac{\mu_0 I R^2}{2\,(R^2+z^2)^{3/2}}$$
+
+      For $z\gg R$: dipole field with $m = I\pi R^2$.
+- id: formula-b-sol-inf
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.3
+  kind: formula
+  front:
+    it: Solenoide infinito
+    en: Infinite solenoid
+  back:
+    it: |-
+      $$B = \mu_0\, n\, I$$
+
+      n numero di spire per unità di lunghezza; campo nullo all'esterno.
+    en: |-
+      $$B = \mu_0\, n\, I$$
+
+      n number of turns per unit length; zero field outside.
+- id: formula-b-sol-fin
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.3
+  kind: formula
+  front:
+    it: Solenoide finito (lunghezza L, raggio R), sull'asse
+    en: Finite solenoid (length L, radius R), on the axis
+  back:
+    it: |-
+      $$B(z) = \frac{\mu_0 n I}{2}\left[\frac{z+L/2}{\sqrt{(z+L/2)^2+R^2}} - \frac{z-L/2}{\sqrt{(z-L/2)^2+R^2}}\right]$$
+
+      z misurato dal centro del solenoide.
+    en: |-
+      $$B(z) = \frac{\mu_0 n I}{2}\left[\frac{z+L/2}{\sqrt{(z+L/2)^2+R^2}} - \frac{z-L/2}{\sqrt{(z-L/2)^2+R^2}}\right]$$
+
+      z measured from the centre of the solenoid.
+- id: formula-fili-paralleli
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.6
+  kind: formula
+  front:
+    it: Forza tra due fili paralleli
+    en: Force between two parallel wires
+  back:
+    it: $$\frac{F}{l} = \frac{\mu_0 I_1 I_2}{2\pi d}$$
+    en: $$\frac{F}{l} = \frac{\mu_0 I_1 I_2}{2\pi d}$$
+- id: formula-maxwell2
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.4
+  kind: formula
+  front:
+    it: II equazione di Maxwell
+    en: Maxwell's second equation
+  back:
+    it: $$\oint_S \vec B\cdot\hat n\,dS = 0\qquad\Longleftrightarrow\qquad \nabla\cdot\vec B = 0$$
+    en: $$\oint_S \vec B\cdot\hat n\,dS = 0\qquad\Longleftrightarrow\qquad \nabla\cdot\vec B = 0$$
+- id: formula-ampere
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.4
+  kind: formula
+  front:
+    it: Teorema della circuitazione di Ampère (IV eq., caso stazionario)
+    en: Ampère's circuital theorem (fourth equation, steady case)
+  back:
+    it: $$\oint_\gamma \vec B\cdot d\vec l = \mu_0 I_{\text{conc}}\qquad\Longleftrightarrow\qquad \nabla\times\vec B = \mu_0\vec J$$
+    en: $$\oint_\gamma \vec B\cdot d\vec l = \mu_0 I_{\text{conc}}\qquad\Longleftrightarrow\qquad \nabla\times\vec B = \mu_0\vec J$$
+- id: formula-pot-vett
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.5
+  kind: formula
+  front:
+    it: Potenziale vettore
+    en: Vector potential
+  back:
+    it: $$\vec B = \nabla\times\vec A,\qquad \nabla^2\vec A = -\mu_0\vec J\ \ (\nabla\cdot\vec A = 0)$$
+    en: $$\vec B = \nabla\times\vec A,\qquad \nabla^2\vec A = -\mu_0\vec J\ \ (\nabla\cdot\vec A = 0)$$
+- id: formula-pot-vett-sol
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.5
+  kind: formula
+  front:
+    it: Soluzione per il potenziale vettore
+    en: Solution for the vector potential
+  back:
+    it: $$\vec A(\vec r) = \frac{\mu_0}{4\pi}\int_V \frac{\vec J(\vec r\,')}{|\vec r-\vec r\,'|}\,dV'$$
+    en: $$\vec A(\vec r) = \frac{\mu_0}{4\pi}\int_V \frac{\vec J(\vec r\,')}{|\vec r-\vec r\,'|}\,dV'$$
