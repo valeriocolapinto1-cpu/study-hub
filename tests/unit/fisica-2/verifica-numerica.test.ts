@@ -27,15 +27,21 @@ const simpson = (f: (x: number) => number, a: number, b: number, n = 4000) => {
 };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Any = any;
+// Integrazioni numeriche e ODE su 40 semi: alcune verifiche durano qualche secondo sui runner della CI.
+const NUMERIC_TIMEOUT = 60_000;
 const each = (id: string, fn: (p: Any, v: Any, e: Any) => void) =>
-  test(`verifica numerica: ${id}`, () => {
-    const tpl = TEMPLATES[id.toLowerCase()];
-    assert.ok(tpl, `template ${id}`);
-    for (const seed of SEEDS) {
-      const e = runTemplate(tpl!, seed, 'it');
-      fn(e.parametri, e.valori, e);
-    }
-  });
+  test(
+    `verifica numerica: ${id}`,
+    () => {
+      const tpl = TEMPLATES[id.toLowerCase()];
+      assert.ok(tpl, `template ${id}`);
+      for (const seed of SEEDS) {
+        const e = runTemplate(tpl!, seed, 'it');
+        fn(e.parametri, e.valori, e);
+      }
+    },
+    NUMERIC_TIMEOUT,
+  );
 /* integratore RK4 per y' = f(t,y) (vettore) */
 function rk4(f: (t: number, y: number[]) => number[], y0: number[], t1: number, n = 20000) {
   let y = [...y0],
