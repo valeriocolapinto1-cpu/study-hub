@@ -5,19 +5,23 @@
   difficulty: 1
   kind: static
   statement:
-    it: Un’istruzione deve leggere un dato dalla memoria. Quali registri entrano in gioco, in che ordine, e a che
+    it:
+      Un’istruzione deve leggere un dato dalla memoria. Quali registri entrano in gioco, in che ordine, e a che
       serve ciascuno?
-    en: An instruction must read data from memory. Which registers come into play, in what order, and what is each
+    en:
+      An instruction must read data from memory. Which registers come into play, in what order, and what is each
       one for?
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "La memoria non parla direttamente con i registri generali: c’è sempre una coppia di registri che fa da
-          interfaccia."
-        en: "Memory does not talk directly to the general-purpose registers: there is always a pair of registers
-          acting as the interface."
+        it:
+          'La memoria non parla direttamente con i registri generali: c’è sempre una coppia di registri che fa da
+          interfaccia.'
+        en:
+          'Memory does not talk directly to the general-purpose registers: there is always a pair of registers
+          acting as the interface.'
     - title:
         it: Svolgimento
         en: Solution
@@ -72,7 +76,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: Scrivi in RTN la sequenza di **prelievo dell’istruzione** e spiega perché l’incremento del PC si colloca
+    it:
+      Scrivi in RTN la sequenza di **prelievo dell’istruzione** e spiega perché l’incremento del PC si colloca
       proprio lì.
     en: Write in RTN the **instruction fetch** sequence and explain why the PC increment is placed exactly there.
   steps:
@@ -82,7 +87,8 @@
       body:
         it: Il prelievo è uguale per tutte le istruzioni. Chiediti che cosa fa il processore mentre aspetta la
           risposta della memoria.
-        en: The fetch is the same for all instructions. Ask yourself what the processor does while it waits for memory
+        en:
+          The fetch is the same for all instructions. Ask yourself what the processor does while it waits for memory
           to answer.
     - title:
         it: Svolgimento
@@ -139,19 +145,22 @@
   difficulty: 2
   kind: static
   statement:
-    it: "Scrivi la sequenza di controllo completa dell’istruzione `Load R1, (R2)` su un datapath a **bus
-      singolo**: carica in R1 il contenuto della cella il cui indirizzo sta in R2."
-    en: "Write the complete control sequence of the instruction `Load R1, (R2)` on a **single-bus** datapath: it
-      loads into R1 the contents of the cell whose address is in R2."
+    it: 'Scrivi la sequenza di controllo completa dell’istruzione `Load R1, (R2)` su un datapath a **bus
+      singolo**: carica in R1 il contenuto della cella il cui indirizzo sta in R2.'
+    en:
+      'Write the complete control sequence of the instruction `Load R1, (R2)` on a **single-bus** datapath: it
+      loads into R1 the contents of the cell whose address is in R2.'
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Prelievo (tre passi, sempre gli stessi) più la parte specifica. La memoria va letta due volte: una per
-          l’istruzione, una per il dato."
-        en: "Fetch (three steps, always the same) plus the specific part. Memory must be read twice: once for the
-          instruction, once for the data."
+        it:
+          'Prelievo (tre passi, sempre gli stessi) più la parte specifica. La memoria va letta due volte: una per
+          l’istruzione, una per il dato.'
+        en:
+          'Fetch (three steps, always the same) plus the specific part. Memory must be read twice: once for the
+          instruction, once for the data.'
     - title:
         it: Svolgimento
         en: Solution
@@ -218,10 +227,12 @@
   difficulty: 2
   kind: static
   statement:
-    it: L’istruzione `Add R1, R2, R3` richiede 6 cicli su un datapath a bus singolo e 4 su uno a tre bus. Con un
+    it:
+      L’istruzione `Add R1, R2, R3` richiede 6 cicli su un datapath a bus singolo e 4 su uno a tre bus. Con un
       ciclo di clock da 2 ns, quanto dura l’istruzione nei due casi? E su un programma di 10⁶ istruzioni
       analoghe?
-    en: The instruction `Add R1, R2, R3` takes 6 cycles on a single-bus datapath and 4 on a three-bus one. With a
+    en:
+      The instruction `Add R1, R2, R3` takes 6 cycles on a single-bus datapath and 4 on a three-bus one. With a
       2 ns clock cycle, how long does the instruction take in the two cases? And for a program of 10⁶ similar
       instructions?
   steps:
@@ -229,7 +240,8 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Moltiplica cicli per durata del ciclo, poi scala. Chiediti anche **perché** il bus singolo richiede due
+        it:
+          Moltiplica cicli per durata del ciclo, poi scala. Chiediti anche **perché** il bus singolo richiede due
           cicli in più.
         en: Multiply cycles by cycle time, then scale. Also ask yourself **why** the single bus needs two more cycles.
     - title:
@@ -307,10 +319,11 @@
   difficulty: 2
   kind: static
   statement:
-    it: "A metà progetto il committente chiede di aggiungere dodici istruzioni complesse. L’unità di controllo era
-      prevista **cablata**: conviene cambiare idea? Che cosa si guadagna e che cosa si perde?"
-    en: "Halfway through the project the client asks to add twelve complex instructions. The control unit was
-      planned as **hardwired**: is it worth changing your mind? What do you gain and what do you lose?"
+    it:
+      'A metà progetto il committente chiede di aggiungere dodici istruzioni complesse. L’unità di controllo era
+      prevista **cablata**: conviene cambiare idea? Che cosa si guadagna e che cosa si perde?'
+    en: 'Halfway through the project the client asks to add twelve complex instructions. The control unit was
+      planned as **hardwired**: is it worth changing your mind? What do you gain and what do you lose?'
   steps:
     - title:
         it: Da dove si comincia
@@ -318,7 +331,8 @@
       body:
         it: Chiediti dove sta scritta la sequenza dei segnali di controllo nei due casi, e che cosa significa
           «modificarla».
-        en: Ask yourself where the sequence of control signals is written in the two cases, and what “modifying it”
+        en:
+          Ask yourself where the sequence of control signals is written in the two cases, and what “modifying it”
           means.
     - title:
         it: Svolgimento
@@ -477,14 +491,14 @@
   kind: static
   statement:
     it: "Vantaggio di un'unità di controllo microprogrammata rispetto a una cablata:"
-    en: "Advantage of a microprogrammed control unit over a hardwired one:"
+    en: 'Advantage of a microprogrammed control unit over a hardwired one:'
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
         it: "È più flessibile: cambiare l'insieme di istruzioni non richiede di riprogettare il circuito"
-        en: "It is more flexible: changing the instruction set does not require redesigning the circuit"
+        en: 'It is more flexible: changing the instruction set does not require redesigning the circuit'
   choices:
     - text:
         it: È sempre più veloce
@@ -496,7 +510,7 @@
       correct: false
     - text:
         it: "È più flessibile: cambiare l'insieme di istruzioni non richiede di riprogettare il circuito"
-        en: "It is more flexible: changing the instruction set does not require redesigning the circuit"
+        en: 'It is more flexible: changing the instruction set does not require redesigning the circuit'
       correct: true
     - text:
         it: Non richiede segnali di clock
@@ -546,8 +560,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Le prestazioni del processore dipendono dalla velocità di:"
-    en: "Processor performance depends on the speed of:"
+    it: 'Le prestazioni del processore dipendono dalla velocità di:'
+    en: 'Processor performance depends on the speed of:'
   steps:
     - title:
         it: Risposta

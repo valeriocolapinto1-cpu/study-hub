@@ -26,9 +26,9 @@ lang: en
 
 **What you need to know first:** that an electrical signal can only be 0 or 1 (you saw it in the module on [binary numbers](../numeri-binari/)). Nothing else.
 
-**What problem it solves.** We have wires that are 0 or 1 and we want to build on them something that **decides**: start the motor if the door is closed *and* the button is pressed *but not* if the alarm has gone off. We need an algebra to write and manipulate sentences of this kind, and every operation of that algebra must correspond to a piece of circuit. Boolean algebra is exactly that: a mathematics with only two values, in which every formula is a circuit and every circuit is a formula.
+**What problem it solves.** We have wires that are 0 or 1 and we want to build on them something that **decides**: start the motor if the door is closed _and_ the button is pressed _but not_ if the alarm has gone off. We need an algebra to write and manipulate sentences of this kind, and every operation of that algebra must correspond to a piece of circuit. Boolean algebra is exactly that: a mathematics with only two values, in which every formula is a circuit and every circuit is a formula.
 
-**New words.** A **logic gate** is the elementary circuit that performs an operation (AND, OR, NOT…). A **truth table** lists the output for *all* input combinations: with n inputs it has 2ⁿ rows, and it describes the function unambiguously. A **literal** is a variable or its negation (A or Ā). A **minterm** is a product that is 1 on **exactly one** row of the table. **SOP** means sum of products (OR of ANDs), **POS** product of sums (AND of ORs).
+**New words.** A **logic gate** is the elementary circuit that performs an operation (AND, OR, NOT…). A **truth table** lists the output for _all_ input combinations: with n inputs it has 2ⁿ rows, and it describes the function unambiguously. A **literal** is a variable or its negation (A or Ā). A **minterm** is a product that is 1 on **exactly one** row of the table. **SOP** means sum of products (OR of ANDs), **POS** product of sums (AND of ORs).
 
 </div>
 
@@ -74,7 +74,7 @@ Absorption is the theorem that collapses redundant expressions: `A ∨ (A∧B̅)
 
 ## De Morgan
 
-$\overline{A\cdot B}$ = $\overline{A}$ + $\overline{B}$  and  $\overline{A+B}$ = $\overline{A}$ · $\overline{B}$. In words: the negation of a product is the sum of the negations, and vice versa.
+$\overline{A\cdot B}$ = $\overline{A}$ + $\overline{B}$ and $\overline{A+B}$ = $\overline{A}$ · $\overline{B}$. In words: the negation of a product is the sum of the negations, and vice versa.
 
 They also hold for more than two factors: $\overline{A\cdot B\cdot C}$ = $\overline{A}$+$\overline{B}$+$\overline{C}$. The practical way to apply them is “break the bar and change the operator”.
 
@@ -215,7 +215,7 @@ In Boolean algebra the usual notation is `∧` and `∨` (or `·` and `+`); “A
 
 <div data-note-id="teoria/algebra-di-boole/trap-demorgan">
 
-The two laws are remembered on two variables, but they hold for as many as you like: the negation of a product of *n* factors is the sum of the *n* negations, and vice versa. Applying them only to pairs is a mistake that shows up when the expression gets longer.
+The two laws are remembered on two variables, but they hold for as many as you like: the negation of a product of _n_ factors is the sum of the _n_ negations, and vice versa. Applying them only to pairs is a mistake that shows up when the expression gets longer.
 
 </div>
 

@@ -15,9 +15,11 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: La SOP prende una riga a 1 per volta; la POS prende le righe a 0 e **nega** ogni variabile rispetto alla
+        it:
+          La SOP prende una riga a 1 per volta; la POS prende le righe a 0 e **nega** ogni variabile rispetto alla
           SOP. Per semplificare, raccogli guardando quali variabili restano costanti.
-        en: The SOP takes one row at 1 at a time; the POS takes the rows at 0 and **negates** each variable with
+        en:
+          The SOP takes one row at 1 at a time; the POS takes the rows at 0 and **negates** each variable with
           respect to the SOP. To simplify, factor by looking at which variables stay constant.
     - title:
         it: Svolgimento
@@ -150,10 +152,12 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Due strade: la tabella di verità (otto righe, quattro qui) oppure l’algebra, aggiungendo un termine che
-          non cambia nulla."
-        en: "Two ways: the truth table (eight rows in general, four here) or algebra, adding a term that changes
-          nothing."
+        it:
+          'Due strade: la tabella di verità (otto righe, quattro qui) oppure l’algebra, aggiungendo un termine che
+          non cambia nulla.'
+        en:
+          'Two ways: the truth table (eight rows in general, four here) or algebra, adding a term that changes
+          nothing.'
     - title:
         it: Svolgimento
         en: Solution
@@ -235,10 +239,12 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "De Morgan due volte: prima sul prodotto esterno, poi dentro ciascuna somma. Ricorda che cambia anche
-          l’operatore, non solo le variabili."
-        en: "De Morgan twice: first on the outer product, then inside each sum. Remember that the operator changes
-          too, not just the variables."
+        it:
+          'De Morgan due volte: prima sul prodotto esterno, poi dentro ciascuna somma. Ricorda che cambia anche
+          l’operatore, non solo le variabili.'
+        en:
+          'De Morgan twice: first on the outer product, then inside each sum. Remember that the operator changes
+          too, not just the variables.'
     - title:
         it: Svolgimento
         en: Solution
@@ -308,8 +314,8 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Parti dalla forma negata due volte: `Y = (Ȳ)̅`. Una NAND con i due ingressi uniti è un NOT."
-        en: "Start from the doubly negated form: `Y = (Ȳ)̅`. A NAND with its two inputs tied together is a NOT."
+        it: 'Parti dalla forma negata due volte: `Y = (Ȳ)̅`. Una NAND con i due ingressi uniti è un NOT.'
+        en: 'Start from the doubly negated form: `Y = (Ȳ)̅`. A NAND with its two inputs tied together is a NOT.'
     - title:
         it: Svolgimento
         en: Solution
@@ -382,21 +388,24 @@
   difficulty: 2
   kind: static
   statement:
-    it: "In un’aula, **A** è l’insieme di chi ha superato Analisi e **B** quello di chi ha superato Fisica.
+    it: 'In un’aula, **A** è l’insieme di chi ha superato Analisi e **B** quello di chi ha superato Fisica.
       Traduci in algebra booleana: «ha superato **esattamente uno** dei due esami» e «non ne ha superato
-      nessuno». Semplifica dove possibile."
-    en: "In a classroom, **A** is the set of students who passed Calculus and **B** the set of those who passed
+      nessuno». Semplifica dove possibile.'
+    en:
+      'In a classroom, **A** is the set of students who passed Calculus and **B** the set of those who passed
       Physics. Translate into Boolean algebra: “passed **exactly one** of the two exams” and “passed neither”.
-      Simplify where possible."
+      Simplify where possible.'
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Insiemi e algebra di Boole sono la stessa struttura: unione ↔ OR, intersezione ↔ AND, complemento ↔ NOT.
-          Traduci la frase in insiemi e poi sostituisci gli operatori."
-        en: "Sets and Boolean algebra are the same structure: union ↔ OR, intersection ↔ AND, complement ↔ NOT.
-          Translate the sentence into sets and then replace the operators."
+        it:
+          'Insiemi e algebra di Boole sono la stessa struttura: unione ↔ OR, intersezione ↔ AND, complemento ↔ NOT.
+          Traduci la frase in insiemi e poi sostituisci gli operatori.'
+        en:
+          'Sets and Boolean algebra are the same structure: union ↔ OR, intersection ↔ AND, complement ↔ NOT.
+          Translate the sentence into sets and then replace the operators.'
     - title:
         it: Svolgimento
         en: Solution
@@ -582,8 +591,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Per il teorema di assorbimento, `A ∨ (A ∧ B)` equivale a:"
-    en: "By the absorption theorem, `A ∨ (A ∧ B)` is equivalent to:"
+    it: 'Per il teorema di assorbimento, `A ∨ (A ∧ B)` equivale a:'
+    en: 'By the absorption theorem, `A ∨ (A ∧ B)` is equivalent to:'
   steps:
     - title:
         it: Risposta
@@ -657,16 +666,16 @@
         it: Risposta
         en: Answer
       body:
-        it: "0"
-        en: "0"
+        it: '0'
+        en: '0'
   choices:
     - text:
-        it: "0"
-        en: "0"
+        it: '0'
+        en: '0'
       correct: true
     - text:
-        it: "1"
-        en: "1"
+        it: '1'
+        en: '1'
       correct: false
     - text:
         it: A

@@ -5,7 +5,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: Disegna il diagramma a stadi di **quattro istruzioni indipendenti** in una pipeline a 5 stadi (F, D, E, M,
+    it:
+      Disegna il diagramma a stadi di **quattro istruzioni indipendenti** in una pipeline a 5 stadi (F, D, E, M,
       W) e conta i cicli necessari.
     en: Draw the stage diagram of **four independent instructions** in a 5-stage pipeline (F, D, E, M, W) and
       count the cycles needed.
@@ -14,10 +15,11 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Ogni istruzione entra un ciclo dopo la precedente. Il conto non è 4 × 5: chiediti quando esce
-          l’**ultima**."
-        en: "Each instruction enters one cycle after the previous one. The count is not 4 × 5: ask yourself when the
-          **last** one comes out."
+        it: 'Ogni istruzione entra un ciclo dopo la precedente. Il conto non è 4 × 5: chiediti quando esce
+          l’**ultima**.'
+        en:
+          'Each instruction enters one cycle after the previous one. The count is not 4 × 5: ask yourself when the
+          **last** one comes out.'
     - title:
         it: Svolgimento
         en: Solution
@@ -94,9 +96,11 @@
   difficulty: 1
   kind: static
   statement:
-    it: Un programma esegue 1000 istruzioni su una pipeline a 5 stadi, senza stalli. Quanti cicli servono? Qual è
+    it:
+      Un programma esegue 1000 istruzioni su una pipeline a 5 stadi, senza stalli. Quanti cicli servono? Qual è
       lo **speedup** rispetto a un processore non pipeline che impiega 5 cicli per istruzione?
-    en: A program executes 1000 instructions on a 5-stage pipeline, with no stalls. How many cycles are needed?
+    en:
+      A program executes 1000 instructions on a 5-stage pipeline, with no stalls. How many cycles are needed?
       What is the **speedup** compared with a non-pipelined processor taking 5 cycles per instruction?
   steps:
     - title:
@@ -169,18 +173,22 @@
   difficulty: 2
   kind: static
   statement:
-    it: Data la sequenza `Add R3,R1,R2` · `Sub R5,R3,R4` · `And R6,R3,R7`, individua le dipendenze e disegna il
+    it:
+      Data la sequenza `Add R3,R1,R2` · `Sub R5,R3,R4` · `And R6,R3,R7`, individua le dipendenze e disegna il
       diagramma **senza** e **con** forwarding, contando i cicli in entrambi i casi.
-    en: Given the sequence `Add R3,R1,R2` · `Sub R5,R3,R4` · `And R6,R3,R7`, identify the dependences and draw the
+    en:
+      Given the sequence `Add R3,R1,R2` · `Sub R5,R3,R4` · `And R6,R3,R7`, identify the dependences and draw the
       diagram **without** and **with** forwarding, counting the cycles in both cases.
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Cerca i registri scritti da un’istruzione e letti dalle successive. Poi chiediti in quale stadio il valore
+        it:
+          Cerca i registri scritti da un’istruzione e letti dalle successive. Poi chiediti in quale stadio il valore
           è **disponibile** e in quale **serve**.
-        en: Look for registers written by one instruction and read by the following ones. Then ask yourself in which
+        en:
+          Look for registers written by one instruction and read by the following ones. Then ask yourself in which
           stage the value is **available** and in which it is **needed**.
     - title:
         it: Svolgimento
@@ -274,18 +282,22 @@
   difficulty: 2
   kind: static
   statement:
-    it: Perché la sequenza `Load R1,(R2)` · `Add R3,R1,R4` costa uno stallo **anche con il forwarding**? Come lo
+    it:
+      Perché la sequenza `Load R1,(R2)` · `Add R3,R1,R4` costa uno stallo **anche con il forwarding**? Come lo
       elimina il compilatore?
-    en: Why does the sequence `Load R1,(R2)` · `Add R3,R1,R4` cost a stall **even with forwarding**? How does the
+    en:
+      Why does the sequence `Load R1,(R2)` · `Add R3,R1,R4` cost a stall **even with forwarding**? How does the
       compiler remove it?
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Confronta lo stadio in cui il dato diventa disponibile con quello in cui serve. Per la Load non è lo
+        it:
+          Confronta lo stadio in cui il dato diventa disponibile con quello in cui serve. Per la Load non è lo
           stesso caso di un’operazione aritmetica.
-        en: Compare the stage in which the data becomes available with the one in which it is needed. For a Load it is
+        en:
+          Compare the stage in which the data becomes available with the one in which it is needed. For a Load it is
           not the same case as for an arithmetic operation.
     - title:
         it: Svolgimento
@@ -384,10 +396,12 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Conta quante istruzioni sbagliate sono entrate in pipeline prima che l’esito fosse noto: quelle vanno
-          annullate, e ogni annullamento è un ciclo perso."
-        en: "Count how many wrong instructions entered the pipeline before the outcome was known: those must be
-          cancelled, and every cancellation is a lost cycle."
+        it:
+          'Conta quante istruzioni sbagliate sono entrate in pipeline prima che l’esito fosse noto: quelle vanno
+          annullate, e ogni annullamento è un ciclo perso.'
+        en:
+          'Count how many wrong instructions entered the pipeline before the outcome was known: those must be
+          cancelled, and every cancellation is a lost cycle.'
     - title:
         it: Svolgimento
         en: Solution
@@ -457,8 +471,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Il miglioramento del pipelining deriva da:"
-    en: "The improvement brought by pipelining comes from:"
+    it: 'Il miglioramento del pipelining deriva da:'
+    en: 'The improvement brought by pipelining comes from:'
   steps:
     - title:
         it: Risposta
@@ -492,8 +506,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "La dipendenza dai dati in pipeline si mitiga con:"
-    en: "Data dependence in a pipeline is mitigated with:"
+    it: 'La dipendenza dai dati in pipeline si mitiga con:'
+    en: 'Data dependence in a pipeline is mitigated with:'
   steps:
     - title:
         it: Risposta
@@ -597,8 +611,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Con una pipeline a k stadi, lo speedup ideale rispetto al caso non pipelined è:"
-    en: "With a k-stage pipeline, the ideal speedup over the non-pipelined case is:"
+    it: 'Con una pipeline a k stadi, lo speedup ideale rispetto al caso non pipelined è:'
+    en: 'With a k-stage pipeline, the ideal speedup over the non-pipelined case is:'
   steps:
     - title:
         it: Risposta
@@ -608,8 +622,8 @@
         en: k
   choices:
     - text:
-        it: "2"
-        en: "2"
+        it: '2'
+        en: '2'
       correct: false
     - text:
         it: k
@@ -632,8 +646,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Il pipelining migliora soprattutto:"
-    en: "Pipelining mainly improves:"
+    it: 'Il pipelining migliora soprattutto:'
+    en: 'Pipelining mainly improves:'
   steps:
     - title:
         it: Risposta

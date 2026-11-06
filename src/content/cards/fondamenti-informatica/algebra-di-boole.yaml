@@ -7,24 +7,29 @@
     it: Scrivi NOT, AND e OR usando solo porte NAND.
     en: Write NOT, AND and OR using only NAND gates.
   back:
-    it: "NOT a = `a NAND a`. AND: `(a NAND b) NAND (a NAND b)`, cioè si nega la NAND. OR: `(a NAND a) NAND (b NAND
-      b)`, che è De Morgan applicato."
-    en: "NOT a = `a NAND a`. AND: `(a NAND b) NAND (a NAND b)`, i.e. you negate the NAND. OR: `(a NAND a) NAND (b
-      NAND b)`, which is De Morgan applied."
+    it:
+      'NOT a = `a NAND a`. AND: `(a NAND b) NAND (a NAND b)`, cioè si nega la NAND. OR: `(a NAND a) NAND (b NAND
+      b)`, che è De Morgan applicato.'
+    en:
+      'NOT a = `a NAND a`. AND: `(a NAND b) NAND (a NAND b)`, i.e. you negate the NAND. OR: `(a NAND a) NAND (b
+      NAND b)`, which is De Morgan applied.'
 - id: algebra-di-boole-verifica-2
   topic: algebra-di-boole
   objectives:
     - algebra-di-boole.4
   kind: concetto
   front:
-    it: "Una funzione di 3 variabili vale 1 su tre righe: quanti termini ha la SOP canonica e quanti la POS
-      canonica?"
-    en: "A function of 3 variables is 1 on three rows: how many terms does the canonical SOP have, and how many
-      the canonical POS?"
+    it: 'Una funzione di 3 variabili vale 1 su tre righe: quanti termini ha la SOP canonica e quanti la POS
+      canonica?'
+    en:
+      'A function of 3 variables is 1 on three rows: how many terms does the canonical SOP have, and how many
+      the canonical POS?'
   back:
-    it: Tre la SOP (un mintermine per ogni riga a 1) e cinque la POS (un maxtermine per ognuna delle 8 − 3 righe a
+    it:
+      Tre la SOP (un mintermine per ogni riga a 1) e cinque la POS (un maxtermine per ognuna delle 8 − 3 righe a
       0). Le due forme descrivono la stessa funzione con costi diversi.
-    en: Three for the SOP (one minterm for each row at 1) and five for the POS (one maxterm for each of the 8 − 3
+    en:
+      Three for the SOP (one minterm for each row at 1) and five for the POS (one maxterm for each of the 8 − 3
       rows at 0). The two forms describe the same function at different costs.
 - id: algebra-di-boole-verifica-3
   topic: algebra-di-boole
@@ -35,10 +40,12 @@
     it: Vale a + a·b = a? Perché?
     en: Does a + a·b = a hold? Why?
   back:
-    it: "Sì, è l'**assorbimento**: se a = 1 la somma fa 1 comunque, se a = 0 anche a·b vale 0. Riconoscerlo serve
+    it:
+      "Sì, è l'**assorbimento**: se a = 1 la somma fa 1 comunque, se a = 0 anche a·b vale 0. Riconoscerlo serve
       a scartare i termini ridondanti prima ancora di disegnare la mappa."
-    en: "Yes, it is **absorption**: if a = 1 the sum is 1 anyway, if a = 0 then a·b is 0 too. Spotting it lets you
-      discard redundant terms before you even draw the map."
+    en:
+      'Yes, it is **absorption**: if a = 1 the sum is 1 anyway, if a = 0 then a·b is 0 too. Spotting it lets you
+      discard redundant terms before you even draw the map.'
 - id: open-bool-01
   topic: algebra-di-boole
   objectives:

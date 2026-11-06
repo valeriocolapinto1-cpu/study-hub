@@ -13,9 +13,11 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Il problema dello SR è la combinazione S = R = 1. Basta rendere impossibile che i due ingressi valgano lo
+        it:
+          Il problema dello SR è la combinazione S = R = 1. Basta rendere impossibile che i due ingressi valgano lo
           stesso valore.
-        en: The problem with SR is the combination S = R = 1. It is enough to make it impossible for the two inputs to
+        en:
+          The problem with SR is the combination S = R = 1. It is enough to make it impossible for the two inputs to
           have the same value.
     - title:
         it: Svolgimento
@@ -66,9 +68,11 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Guarda che cosa fa il JK con quella combinazione, e conta quanti fronti servono perché l’uscita torni al
+        it:
+          Guarda che cosa fa il JK con quella combinazione, e conta quanti fronti servono perché l’uscita torni al
           valore di partenza.
-        en: Look at what the JK does with that combination, and count how many edges it takes for the output to return
+        en:
+          Look at what the JK does with that combination, and count how many edges it takes for the output to return
           to its starting value.
     - title:
         it: Svolgimento
@@ -127,7 +131,8 @@
   difficulty: 2
   kind: static
   statement:
-    it: Progetta un **contatore modulo 6** sincrono (conta 0…5 e riparte) a partire da un contatore binario a 3
+    it:
+      Progetta un **contatore modulo 6** sincrono (conta 0…5 e riparte) a partire da un contatore binario a 3
       bit.
     en: Design a synchronous **modulo-6 counter** (counts 0…5 and starts over) starting from a 3-bit binary
       counter.
@@ -136,9 +141,11 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Tre bit contano fino a 7. Serve rilevare il primo valore **di troppo** e usarlo per riportare il contatore
+        it:
+          Tre bit contano fino a 7. Serve rilevare il primo valore **di troppo** e usarlo per riportare il contatore
           a zero.
-        en: Three bits count up to 7. You need to detect the first value **too many** and use it to bring the counter
+        en:
+          Three bits count up to 7. You need to detect the first value **too many** and use it to bring the counter
           back to zero.
     - title:
         it: Svolgimento
@@ -194,17 +201,20 @@
   statement:
     it: Un registro a scorrimento a 4 bit contiene `1011` e scorre **a destra**. Entrano in serie, un bit per
       colpo di clock, i valori 1, 0, 1. Scrivi il contenuto dopo ogni colpo.
-    en: A 4-bit shift register contains `1011` and shifts **right**. The values 1, 0, 1 enter serially, one bit
+    en:
+      A 4-bit shift register contains `1011` and shifts **right**. The values 1, 0, 1 enter serially, one bit
       per clock cycle. Write the contents after each cycle.
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "A ogni colpo tutti i bit si spostano di una posizione: il nuovo bit entra dalla parte opposta a quella in
-          cui esce l’ultimo."
-        en: "At every cycle all bits move one position: the new bit enters from the side opposite to the one where the
-          last bit leaves."
+        it:
+          'A ogni colpo tutti i bit si spostano di una posizione: il nuovo bit entra dalla parte opposta a quella in
+          cui esce l’ultimo.'
+        en:
+          'At every cycle all bits move one position: the new bit enters from the side opposite to the one where the
+          last bit leaves.'
     - title:
         it: Svolgimento
         en: Solution
@@ -259,17 +269,17 @@
     - label:
         it: Dopo il colpo 1
         en: After cycle 1
-      value: "1101"
+      value: '1101'
       kind: text
     - label:
         it: Dopo il colpo 2
         en: After cycle 2
-      value: "0110"
+      value: '0110'
       kind: text
     - label:
         it: Dopo il colpo 3
         en: After cycle 3
-      value: "1011"
+      value: '1011'
       kind: text
   origin: originale
 - id: circuiti-sequenziali-es-5
@@ -279,21 +289,24 @@
   difficulty: 2
   kind: static
   statement:
-    it: "In uno stadio sincrono: ritardo di propagazione del flip-flop 2 ns, rete combinatoria 7 ns nel cammino
+    it:
+      'In uno stadio sincrono: ritardo di propagazione del flip-flop 2 ns, rete combinatoria 7 ns nel cammino
       più lungo e 1 ns in quello più corto, setup 1,5 ns, hold 0,5 ns. Qual è la **frequenza massima**? Il
-      vincolo di hold è rispettato?"
-    en: "In a synchronous stage: flip-flop propagation delay 2 ns, combinational network 7 ns on the longest path
+      vincolo di hold è rispettato?'
+    en:
+      'In a synchronous stage: flip-flop propagation delay 2 ns, combinational network 7 ns on the longest path
       and 1 ns on the shortest, setup 1.5 ns, hold 0.5 ns. What is the **maximum frequency**? Is the hold
-      constraint met?"
+      constraint met?'
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Due vincoli distinti: il periodo dipende dal cammino **più lungo**, il vincolo di hold dal **più corto**
-          — e non dipende dal periodo."
-        en: "Two distinct constraints: the period depends on the **longest** path, the hold constraint on the
-          **shortest** — and it does not depend on the period."
+        it:
+          'Due vincoli distinti: il periodo dipende dal cammino **più lungo**, il vincolo di hold dal **più corto**
+          — e non dipende dal periodo.'
+        en: 'Two distinct constraints: the period depends on the **longest** path, the hold constraint on the
+          **shortest** — and it does not depend on the period.'
     - title:
         it: Svolgimento
         en: Solution
@@ -423,8 +436,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Un flip-flop master-slave è di tipo:"
-    en: "A master-slave flip-flop is:"
+    it: 'Un flip-flop master-slave è di tipo:'
+    en: 'A master-slave flip-flop is:'
   steps:
     - title:
         it: Risposta
@@ -491,8 +504,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Un flip-flop JK con `J=K=1` sul fronte di clock:"
-    en: "A JK flip-flop with `J=K=1` at the clock edge:"
+    it: 'Un flip-flop JK con `J=K=1` sul fronte di clock:'
+    en: 'A JK flip-flop with `J=K=1` at the clock edge:'
   steps:
     - title:
         it: Risposta
@@ -548,8 +561,8 @@
         en: SR latch
       correct: false
     - text:
-        it: "Nessuno: servono solo porte AND"
-        en: "None: only AND gates are needed"
+        it: 'Nessuno: servono solo porte AND'
+        en: 'None: only AND gates are needed'
       correct: false
   origin: originale
 - id: mcq-ff-06
@@ -559,8 +572,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Svantaggio principale di un contatore asincrono (ripple) rispetto a uno sincrono:"
-    en: "Main drawback of an asynchronous (ripple) counter compared with a synchronous one:"
+    it: 'Svantaggio principale di un contatore asincrono (ripple) rispetto a uno sincrono:'
+    en: 'Main drawback of an asynchronous (ripple) counter compared with a synchronous one:'
   steps:
     - title:
         it: Risposta

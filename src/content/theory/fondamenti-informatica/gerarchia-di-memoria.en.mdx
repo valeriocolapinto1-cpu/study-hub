@@ -15,7 +15,7 @@ import Schema from '../../../courses/fondamenti-informatica/components/Schema.as
 - The cache works thanks to **temporal locality** (what is needed now will be needed again) and **spatial** locality (nearby addresses will be needed): that is why **blocks** are transferred.
 - **Direct**, **fully associative**, **set-associative** mapping: what changes is how many positions a block can occupy. The address splits into **tag · index · offset**.
 - Average access time = hit time + (miss rate × miss penalty). The miss penalty is huge: that is where performance is lost.
-- Writing: **write-through** (simple, a lot of traffic) or **write-back** (*dirty* bit, written only on eviction).
+- Writing: **write-through** (simple, a lot of traffic) or **write-back** (_dirty_ bit, written only on eviction).
 
 </div>
 

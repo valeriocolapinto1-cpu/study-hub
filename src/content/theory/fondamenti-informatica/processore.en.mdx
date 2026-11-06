@@ -110,7 +110,7 @@ It generates, cycle by cycle, the signals that open the buffers, enable register
 
 ## RTN, the required notation
 
-Square brackets mean “contents of”. `Add R1,R2,R3` is written `R1 ← [R2]+[R3]`. “Increase the value in R1 by LOC” becomes `R1 ← [LOC]+[R1]`. Writing `R1 ← R2 + R3` without brackets means adding the *register numbers*, not their contents.
+Square brackets mean “contents of”. `Add R1,R2,R3` is written `R1 ← [R2]+[R3]`. “Increase the value in R1 by LOC” becomes `R1 ← [LOC]+[R1]`. Writing `R1 ← R2 + R3` without brackets means adding the _register numbers_, not their contents.
 
 </div>
 
@@ -200,7 +200,7 @@ Executing a machine instruction then becomes executing a **microprogram**: a mic
 6.  Z_out, R1_in, End                           ; result into the register
 ```
 
-Six steps, and the first three are **always the same**: the fetch does not depend on the instruction. Register `Y` is needed because only one operand can travel on the single bus at a time: the first one must be parked. `WMFC` (*wait for memory function completed*) is the wait for memory, which is much slower than the processor.
+Six steps, and the first three are **always the same**: the fetch does not depend on the instruction. Register `Y` is needed because only one operand can travel on the single bus at a time: the first one must be parked. `WMFC` (_wait for memory function completed_) is the wait for memory, which is much slower than the processor.
 
 On a **three-bus** datapath steps 4-6 collapse into one: the two operands go out together on buses A and B and the result comes back on bus C in the same cycle.
 

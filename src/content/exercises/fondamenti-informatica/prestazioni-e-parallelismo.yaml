@@ -5,9 +5,11 @@
   difficulty: 1
   kind: static
   statement:
-    it: Un programma esegue **2 × 10⁹** istruzioni con un numero medio di cicli per istruzione pari a **1,8**, su
+    it:
+      Un programma esegue **2 × 10⁹** istruzioni con un numero medio di cicli per istruzione pari a **1,8**, su
       un processore a **3 GHz**. Quanto dura?
-    en: A program executes **2 × 10⁹** instructions with an average of **1.8** cycles per instruction, on a **3
+    en:
+      A program executes **2 × 10⁹** instructions with an average of **1.8** cycles per instruction, on a **3
       GHz** processor. How long does it take?
   steps:
     - title:
@@ -63,9 +65,11 @@
   difficulty: 1
   kind: static
   statement:
-    it: La macchina A ha clock 2,5 GHz e S = 1,2. La macchina B ha clock 3 GHz e S = 1,8. Sullo stesso programma,
+    it:
+      La macchina A ha clock 2,5 GHz e S = 1,2. La macchina B ha clock 3 GHz e S = 1,8. Sullo stesso programma,
       quale è più veloce e di quanto?
-    en: Machine A has a 2.5 GHz clock and S = 1.2. Machine B has a 3 GHz clock and S = 1.8. On the same program,
+    en:
+      Machine A has a 2.5 GHz clock and S = 1.2. Machine B has a 3 GHz clock and S = 1.8. On the same program,
       which is faster and by how much?
   steps:
     - title:
@@ -137,18 +141,22 @@
   difficulty: 2
   kind: static
   statement:
-    it: Un programma spende il **25 %** del tempo in una funzione che riscrivi rendendola **8 volte** più veloce.
+    it:
+      Un programma spende il **25 %** del tempo in una funzione che riscrivi rendendola **8 volte** più veloce.
       Qual è il guadagno complessivo? E se la rendessi infinitamente veloce?
-    en: A program spends **25 %** of its time in a function that you rewrite making it **8 times** faster. What is
+    en:
+      A program spends **25 %** of its time in a function that you rewrite making it **8 times** faster. What is
       the overall gain? And if you made it infinitely fast?
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Legge di Amdahl. Attenzione: *f* è la frazione di **tempo** occupata dalla parte migliorata, non la sua
-          dimensione nel codice."
-        en: "Amdahl's law. Careful: *f* is the fraction of **time** taken by the improved part, not its size in the
+        it:
+          'Legge di Amdahl. Attenzione: *f* è la frazione di **tempo** occupata dalla parte migliorata, non la sua
+          dimensione nel codice.'
+        en:
+          "Amdahl's law. Careful: *f* is the fraction of **time** taken by the improved part, not its size in the
           code."
     - title:
         it: Svolgimento
@@ -213,9 +221,11 @@
   difficulty: 2
   kind: static
   statement:
-    it: Un programma è parallelizzabile all’**80 %**. Quanti core servono per dimezzare il tempo di esecuzione? E
+    it:
+      Un programma è parallelizzabile all’**80 %**. Quanti core servono per dimezzare il tempo di esecuzione? E
       qual è il massimo guadagno raggiungibile con infiniti core?
-    en: A program is **80 %** parallelisable. How many cores are needed to halve the execution time? And what is
+    en:
+      A program is **80 %** parallelisable. How many cores are needed to halve the execution time? And what is
       the maximum gain achievable with infinitely many cores?
   steps:
     - title:
@@ -297,12 +307,12 @@
   difficulty: 2
   kind: static
   statement:
-    it: "Due benchmark: sul primo la macchina X è **10 volte** più veloce del riferimento, sul secondo è **0,1
+    it: 'Due benchmark: sul primo la macchina X è **10 volte** più veloce del riferimento, sul secondo è **0,1
       volte** (cioè dieci volte più lenta). Calcola il punteggio con la media **aritmetica** e con la
-      **geometrica**, e di’ quale è corretta."
-    en: "Two benchmarks: on the first machine X is **10 times** faster than the reference, on the second it is
+      **geometrica**, e di’ quale è corretta.'
+    en: 'Two benchmarks: on the first machine X is **10 times** faster than the reference, on the second it is
       **0.1 times** as fast (i.e. ten times slower). Compute the score with the **arithmetic** and with the
-      **geometric** mean, and say which is correct."
+      **geometric** mean, and say which is correct.'
   steps:
     - title:
         it: Da dove si comincia
@@ -310,7 +320,8 @@
       body:
         it: La media giusta è quella che non cambia se si sceglie una macchina di riferimento diversa. Prova a
           immaginare di invertire i ruoli.
-        en: The right mean is the one that does not change if a different reference machine is chosen. Try to imagine
+        en:
+          The right mean is the one that does not change if a different reference machine is chosen. Try to imagine
           swapping the roles.
     - title:
         it: Svolgimento
@@ -459,20 +470,22 @@
         it: Risposta
         en: Answer
       body:
-        it: "Perché dipendono dal repertorio di istruzioni e dal programma: la stessa quantità di lavoro richiede più
-          istruzioni su una macchina che sull’altra"
-        en: "Because they depend on the instruction set and the program: the same amount of work takes more
-          instructions on one machine than on the other"
+        it:
+          'Perché dipendono dal repertorio di istruzioni e dal programma: la stessa quantità di lavoro richiede più
+          istruzioni su una macchina che sull’altra'
+        en: 'Because they depend on the instruction set and the program: the same amount of work takes more
+          instructions on one machine than on the other'
   choices:
     - text:
         it: Perché non tengono conto della frequenza di clock
         en: Because they do not take the clock frequency into account
       correct: false
     - text:
-        it: "Perché dipendono dal repertorio di istruzioni e dal programma: la stessa quantità di lavoro richiede più
-          istruzioni su una macchina che sull’altra"
-        en: "Because they depend on the instruction set and the program: the same amount of work takes more
-          instructions on one machine than on the other"
+        it:
+          'Perché dipendono dal repertorio di istruzioni e dal programma: la stessa quantità di lavoro richiede più
+          istruzioni su una macchina che sull’altra'
+        en: 'Because they depend on the instruction set and the program: the same amount of work takes more
+          instructions on one machine than on the other'
       correct: true
     - text:
         it: Perché misurano solo le operazioni in virgola mobile
@@ -498,20 +511,24 @@
         it: Risposta
         en: Answer
       body:
-        it: "Il consumo dinamico cresce con f·C·V²: alzare la frequenza costa in potenza e calore molto più che
-          aggiungere core"
-        en: "Dynamic power grows with f·C·V²: raising the frequency costs far more in power and heat than adding
-          cores"
+        it:
+          'Il consumo dinamico cresce con f·C·V²: alzare la frequenza costa in potenza e calore molto più che
+          aggiungere core'
+        en:
+          'Dynamic power grows with f·C·V²: raising the frequency costs far more in power and heat than adding
+          cores'
   choices:
     - text:
         it: I transistor non si possono più rimpicciolire
         en: Transistors can no longer be made smaller
       correct: false
     - text:
-        it: "Il consumo dinamico cresce con f·C·V²: alzare la frequenza costa in potenza e calore molto più che
-          aggiungere core"
-        en: "Dynamic power grows with f·C·V²: raising the frequency costs far more in power and heat than adding
-          cores"
+        it:
+          'Il consumo dinamico cresce con f·C·V²: alzare la frequenza costa in potenza e calore molto più che
+          aggiungere core'
+        en:
+          'Dynamic power grows with f·C·V²: raising the frequency costs far more in power and heat than adding
+          cores'
       correct: true
     - text:
         it: I programmi sono tutti già paralleli

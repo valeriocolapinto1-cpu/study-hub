@@ -5,17 +5,19 @@
   difficulty: 1
   kind: static
   statement:
-    it: "All’ingresso di una routine di servizio, che cosa va salvato e **chi** lo salva: l’hardware o il
-      programmatore?"
-    en: "On entering a service routine, what must be saved and **who** saves it: the hardware or the programmer?"
+    it: 'All’ingresso di una routine di servizio, che cosa va salvato e **chi** lo salva: l’hardware o il
+      programmatore?'
+    en: 'On entering a service routine, what must be saved and **who** saves it: the hardware or the programmer?'
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Alcune cose devono essere già al sicuro prima che parta la prima istruzione della routine; altre dipendono
+        it:
+          Alcune cose devono essere già al sicuro prima che parta la prima istruzione della routine; altre dipendono
           da quali registri la routine userà, e quello l’hardware non può saperlo.
-        en: Some things must already be safe before the first instruction of the routine starts; others depend on
+        en:
+          Some things must already be safe before the first instruction of the routine starts; others depend on
           which registers the routine will use, and the hardware cannot know that.
     - title:
         it: Svolgimento
@@ -72,21 +74,22 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Classifica ciascun evento come **interruzione** o **eccezione**: tasto premuto · divisione per zero ·
+    it: 'Classifica ciascun evento come **interruzione** o **eccezione**: tasto premuto · divisione per zero ·
       pacchetto di rete arrivato · istruzione non riconosciuta · timer scaduto · accesso a una pagina non
-      presente · overflow aritmetico · disco pronto."
-    en: "Classify each event as an **interrupt** or an **exception**: key pressed · division by zero · network
+      presente · overflow aritmetico · disco pronto.'
+    en: 'Classify each event as an **interrupt** or an **exception**: key pressed · division by zero · network
       packet arrived · unrecognised instruction · timer expired · access to a page not present · arithmetic
-      overflow · disk ready."
+      overflow · disk ready.'
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "La domanda decisiva è: l’evento è provocato dall’istruzione che si sta eseguendo, oppure sarebbe accaduto
-          comunque?"
-        en: "The decisive question is: is the event caused by the instruction being executed, or would it have
-          happened anyway?"
+        it:
+          'La domanda decisiva è: l’evento è provocato dall’istruzione che si sta eseguendo, oppure sarebbe accaduto
+          comunque?'
+        en: 'The decisive question is: is the event caused by the instruction being executed, or would it have
+          happened anyway?'
     - title:
         it: Svolgimento
         en: Solution
@@ -150,9 +153,11 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Una richiesta interrompe la routine in corso solo se ha priorità **maggiore**. Le altre restano in attesa,
+        it:
+          Una richiesta interrompe la routine in corso solo se ha priorità **maggiore**. Le altre restano in attesa,
           non vengono perse.
-        en: A request interrupts the running routine only if it has **higher** priority. The others wait, they are not
+        en:
+          A request interrupts the running routine only if it has **higher** priority. The others wait, they are not
           lost.
     - title:
         it: Svolgimento
@@ -241,10 +246,12 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Col polling si interrogano i dispositivi in sequenza finché non si trova quello che ha chiamato: la
-          posizione nella lista determina il costo."
-        en: "With polling the devices are queried in sequence until the one that called is found: the position in the
-          list determines the cost."
+        it:
+          'Col polling si interrogano i dispositivi in sequenza finché non si trova quello che ha chiamato: la
+          posizione nella lista determina il costo.'
+        en:
+          'With polling the devices are queried in sequence until the one that called is found: the position in the
+          list determines the cost.'
     - title:
         it: Svolgimento
         en: Solution
@@ -312,10 +319,12 @@
   difficulty: 2
   kind: static
   statement:
-    it: Clock a 500 MHz. L’istruzione più lunga dura 12 cicli, il salvataggio automatico dello stato 8 cicli, il
+    it:
+      Clock a 500 MHz. L’istruzione più lunga dura 12 cicli, il salvataggio automatico dello stato 8 cicli, il
       corpo della routine 40 cicli, il ripristino 8 cicli. Qual è la **latenza massima** fra la richiesta e
       l’inizio effettivo del servizio? E il tempo totale di gestione?
-    en: 500 MHz clock. The longest instruction takes 12 cycles, automatic state saving 8 cycles, the body of the
+    en:
+      500 MHz clock. The longest instruction takes 12 cycles, automatic state saving 8 cycles, the body of the
       routine 40 cycles, restoring 8 cycles. What is the **maximum latency** between the request and the
       actual start of service? And the total handling time?
   steps:
@@ -323,10 +332,12 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "La latenza è l’attesa **prima** di iniziare a servire: nel caso peggiore la richiesta arriva subito dopo
-          l’inizio dell’istruzione più lunga."
-        en: "Latency is the wait **before** service starts: in the worst case the request arrives right after the
-          longest instruction has started."
+        it:
+          'La latenza è l’attesa **prima** di iniziare a servire: nel caso peggiore la richiesta arriva subito dopo
+          l’inizio dell’istruzione più lunga.'
+        en:
+          'Latency is the wait **before** service starts: in the worst case the request arrives right after the
+          longest instruction has started.'
     - title:
         it: Svolgimento
         en: Solution
@@ -395,8 +406,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Le interruzioni hardware sono eventi:"
-    en: "Hardware interrupts are events that are:"
+    it: 'Le interruzioni hardware sono eventi:'
+    en: 'Hardware interrupts are events that are:'
   steps:
     - title:
         it: Risposta
@@ -430,8 +441,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Le eccezioni sono generate:"
-    en: "Exceptions are generated:"
+    it: 'Le eccezioni sono generate:'
+    en: 'Exceptions are generated:'
   steps:
     - title:
         it: Risposta
@@ -501,7 +512,7 @@
   kind: static
   statement:
     it: "La **trace mode** del debugger genera un'interruzione:"
-    en: "The debugger’s **trace mode** generates an interrupt:"
+    en: 'The debugger’s **trace mode** generates an interrupt:'
   steps:
     - title:
         it: Risposta
@@ -640,8 +651,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Gli interrupt sono particolarmente importanti nei sistemi:"
-    en: "Interrupts are particularly important in systems that are:"
+    it: 'Gli interrupt sono particolarmente importanti nei sistemi:'
+    en: 'Interrupts are particularly important in systems that are:'
   steps:
     - title:
         it: Risposta
@@ -675,8 +686,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Le interruzioni sono fondamentali per i sistemi:"
-    en: "Interrupts are fundamental for systems that are:"
+    it: 'Le interruzioni sono fondamentali per i sistemi:'
+    en: 'Interrupts are fundamental for systems that are:'
   steps:
     - title:
         it: Risposta
@@ -815,8 +826,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Vantaggio principale del DMA:"
-    en: "Main advantage of DMA:"
+    it: 'Vantaggio principale del DMA:'
+    en: 'Main advantage of DMA:'
   steps:
     - title:
         it: Risposta
@@ -850,8 +861,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Quando arriva una richiesta di interruzione, il processore:"
-    en: "When an interrupt request arrives, the processor:"
+    it: 'Quando arriva una richiesta di interruzione, il processore:'
+    en: 'When an interrupt request arrives, the processor:'
   steps:
     - title:
         it: Risposta

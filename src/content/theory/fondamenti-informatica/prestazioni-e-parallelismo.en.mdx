@@ -13,7 +13,7 @@ import Schema from '../../../courses/fondamenti-informatica/components/Schema.as
 - The equation to know by heart: **T = (N × S) / R** — instructions executed × cycles per instruction, divided by the clock rate.
 - The three factors **are not independent**: reducing N with more complex instructions (CISC) usually raises S; raising R shortens the period and forces deeper pipelines.
 - **Clock frequency does not measure performance**: two processors at the same frequency can differ by a factor of two because of S.
-- **Amdahl**'s law: if a fraction *f* of the time is improved by a factor *k*, the overall gain is **1 / ((1 − f) + f/k)**. The unimproved part sets an insurmountable ceiling.
+- **Amdahl**'s law: if a fraction _f_ of the time is improved by a factor _k_, the overall gain is **1 / ((1 − f) + f/k)**. The unimproved part sets an insurmountable ceiling.
 - Machines are compared with **benchmarks** (SPEC) and the **geometric mean**, not with MIPS: MIPS depend on the instruction set and the program.
 - Parallelism has three levels: between **instructions** (pipeline, superscalar), between **data** (SIMD), between **processes** (multicore) — and the cores share memory, hence the problem of **cache coherence**.
 
@@ -127,7 +127,7 @@ With half the program sequential, sixteen cores give less than double. Parallel 
 
 ## Amdahl's law
 
-If a part occupying fraction *f* of the total time is improved by a factor *k*, the overall gain is
+If a part occupying fraction _f_ of the total time is improved by a factor _k_, the overall gain is
 
 ```
 speedup = 1 / ( (1 − f) + f/k )
@@ -165,7 +165,7 @@ Dynamic power grows with f·C·V²: doubling the frequency costs more than doubl
 
 ## Cache coherence
 
-If each core has its own cache and all share memory, the same variable can exist in several copies. If one core modifies it, the others must notice: this is the **coherence** problem. *Snooping* protocols solve it by having every cache watch the bus: when someone writes a block, the other copies are invalidated.
+If each core has its own cache and all share memory, the same variable can exist in several copies. If one core modifies it, the others must notice: this is the **coherence** problem. _Snooping_ protocols solve it by having every cache watch the bus: when someone writes a block, the other copies are invalidated.
 
 The same problem arises with **DMA**, which writes to memory behind the processor's back: the corresponding block in the cache becomes stale and must be invalidated.
 
@@ -212,7 +212,7 @@ If a better cache brings S to 1.2, the time drops to 0.6 s: **20 %** less. If in
 ## Common mistakes
 
 - Comparing two machines by clock frequency, or by MIPS: all three factors count, and only **on the same program**.
-- Applying Amdahl to the improvement factor instead of the **fraction of time**: *f* is the share of time taken by the improved part, not its size in the code.
+- Applying Amdahl to the improvement factor instead of the **fraction of time**: _f_ is the share of time taken by the improved part, not its size in the code.
 - Summarising benchmark scores with the arithmetic mean: they are ratios, and the right mean is the **geometric** one.
 - Forgetting that on multicore the sequential part and synchronisation do not disappear: the number of cores is not the speedup.
 

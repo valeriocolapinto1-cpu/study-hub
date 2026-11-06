@@ -28,7 +28,7 @@ import Schema from '../../../courses/fondamenti-informatica/components/Schema.as
 
 **What you need to know first:** two's complement from the module on [binary numbers](../numeri-binari/), and the basic logic gates from the module on [Boolean algebra](../algebra-di-boole/).
 
-**What problem it solves.** We know how to *represent* numbers, but a computer must also *compute*. Here we build the circuit that actually adds — starting from AND, OR and XOR gates — and discover that adding is easy, while **adding fast** is the real design problem: the carry has to cross every bit, and this puts a limit on the frequency of the whole processor.
+**What problem it solves.** We know how to _represent_ numbers, but a computer must also _compute_. Here we build the circuit that actually adds — starting from AND, OR and XOR gates — and discover that adding is easy, while **adding fast** is the real design problem: the carry has to cross every bit, and this puts a limit on the frequency of the whole processor.
 
 **New words.** The **carry** is the “carry the one” of column addition. A **half adder** adds two bits; a **full adder** adds two plus the incoming carry, and is the brick everything is built from. **Ripple-carry** means “with carry propagation”: adders in a row, each waiting for the previous one. **Carry-lookahead** means computing the carry in parallel instead of waiting for it.
 
@@ -94,8 +94,8 @@ The flaw is in the name: the carry **ripples** through. The most significant sta
 
 The idea is not to wait for the carry but to **predict** it. For each position two functions are defined that depend only on the operands, hence available at once:
 
-- **Generate** `Gi = ai · bi` — this position *generates* a carry on its own, whatever comes from the right.
-- **Propagate** `Pi = ai ⊕ bi` — this position *propagates* the carry it receives.
+- **Generate** `Gi = ai · bi` — this position _generates_ a carry on its own, whatever comes from the right.
+- **Propagate** `Pi = ai ⊕ bi` — this position _propagates_ the carry it receives.
 
 Hence `ci+1 = Gi + Pi·ci`. Expanding the recursion, **every** carry is expressed directly in terms of `c0`:
 
@@ -140,7 +140,7 @@ The method is the one used by hand: for each bit of the multiplier, if it is 1 y
  1 0 0 0 1 1 1 1   (143)
 ```
 
-In hardware it is built with an array of adders (*array multiplier*), or sequentially with an accumulator and a shift register — which is exactly what the assembly program “multiplication by repeated addition” does. The product of two n-bit numbers takes **2n bits**.
+In hardware it is built with an array of adders (_array multiplier_), or sequentially with an accumulator and a shift register — which is exactly what the assembly program “multiplication by repeated addition” does. The product of two n-bit numbers takes **2n bits**.
 
 With signed numbers naive shift-and-add goes wrong: sign extension of the partial products is needed, or **Booth**'s algorithm, which recodes the multiplier looking at pairs of adjacent bits and replaces long runs of 1s with a subtraction plus an addition.
 

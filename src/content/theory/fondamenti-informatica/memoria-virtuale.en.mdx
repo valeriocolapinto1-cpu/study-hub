@@ -136,7 +136,7 @@ When physical memory is full and a page must be loaded, one must be evicted. The
 - **Clock** (or second chance): the approximation really used. Each page has a **use bit** that the hardware sets to 1 at every access; the operating system sweeps the pages in a circle, clearing the bits it finds at 1 and evicting the first one it finds already at 0.
 - **FIFO**: evict the oldest. Simple but blind, it can throw out a heavily used page.
 
-If the evicted page has been modified (*dirty* bit at 1) it must first be written back to disk, so the fault costs double. That is why, other things being equal, it pays to evict clean pages.
+If the evicted page has been modified (_dirty_ bit at 1) it must first be written back to disk, so the fault costs double. That is why, other things being equal, it pays to evict clean pages.
 
 </div>
 

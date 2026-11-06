@@ -9,7 +9,8 @@
   back:
     it: 5 + 99 = **104**. Il primo risultato esce dopo 5 cicli (riempimento), poi ne esce uno per ciclo. Senza
       pipeline sarebbero 500.
-    en: 5 + 99 = **104**. The first result comes out after 5 cycles (fill), then one comes out per cycle. Without
+    en:
+      5 + 99 = **104**. The first result comes out after 5 cycles (fill), then one comes out per cycle. Without
       a pipeline it would be 500.
 - id: pipeline-verifica-2
   topic: pipeline
@@ -23,9 +24,9 @@
     it: "No. Dopo una `Load` il dato è disponibile solo alla fine dello stadio di memoria: se l'istruzione
       successiva lo usa subito, resta uno stallo di un ciclo (**load-use hazard**). Il compilatore lo nasconde
       riordinando le istruzioni."
-    en: "No. After a `Load` the data is available only at the end of the memory stage: if the next instruction
+    en: 'No. After a `Load` the data is available only at the end of the memory stage: if the next instruction
       uses it immediately, a one-cycle stall remains (**load-use hazard**). The compiler hides it by
-      reordering instructions."
+      reordering instructions.'
 - id: pipeline-verifica-3
   topic: pipeline
   objectives:
@@ -36,10 +37,12 @@
     it: Perché una pipeline a 5 stadi non rende il processore 5 volte più veloce?
     en: Why doesn’t a 5-stage pipeline make the processor 5 times faster?
   back:
-    it: "Per tre motivi: il riempimento e lo svuotamento, gli stalli dovuti agli hazard, e lo sbilanciamento degli
-      stadi — il periodo è quello dello stadio **più lento**, più il ritardo dei registri di stadio."
-    en: "For three reasons: fill and drain, stalls due to hazards, and unbalanced stages — the period is that of
-      the **slowest** stage, plus the delay of the stage registers."
+    it:
+      'Per tre motivi: il riempimento e lo svuotamento, gli stalli dovuti agli hazard, e lo sbilanciamento degli
+      stadi — il periodo è quello dello stadio **più lento**, più il ritardo dei registri di stadio.'
+    en:
+      'For three reasons: fill and drain, stalls due to hazards, and unbalanced stages — the period is that of
+      the **slowest** stage, plus the delay of the stage registers.'
 - id: open-pipe-01
   topic: pipeline
   objectives:
@@ -50,7 +53,8 @@
     it: Che cos'è il pipelining e quale problema introduce?
     en: What is pipelining and what problem does it introduce?
   back:
-    it: Sovrapposizione delle fasi (fetch, decode, execute, memory, write) di istruzioni diverse su unità dedicate
+    it:
+      Sovrapposizione delle fasi (fetch, decode, execute, memory, write) di istruzioni diverse su unità dedicate
       → maggiore throughput. Introduce la dipendenza dai dati (stalli), mitigata con operand forwarding.
     en: Overlapping the phases (fetch, decode, execute, memory, write) of different instructions on dedicated
       units → higher throughput. It introduces data dependence (stalls), mitigated with operand forwarding.
@@ -72,14 +76,15 @@
       uno stadio più tardi e uno stallo è inevitabile. **Di controllo**: dopo un salto non si sa quale
       istruzione prelevare, e quelle già entrate vanno scartate; si mitigano con la predizione (statica o
       dinamica), con il *delayed branch* e calcolando l'indirizzo di destinazione il prima possibile."
-    en: "**Structural**: two instructions contend for the same resource in the same cycle (for example a single
+    en:
+      '**Structural**: two instructions contend for the same resource in the same cycle (for example a single
       memory port contended by fetch and load); they are solved by duplicating the resource, such as separate
       instruction and data caches. **Data**: an instruction needs a result not yet written to a register; they
       are mitigated with **operand forwarding**, which sends the result directly from the ALU output to the
       stage requiring it — but the *load-use* case remains, where the data arrives from memory one stage later
       and a stall is unavoidable. **Control**: after a branch it is not known which instruction to fetch, and
       those already entered must be discarded; they are mitigated with prediction (static or dynamic), with
-      the *delayed branch* and by computing the target address as early as possible."
+      the *delayed branch* and by computing the target address as early as possible.'
 - id: def-pipeline
   topic: pipeline
   objectives:
@@ -110,10 +115,11 @@
     it: Hazard
     en: Hazard
   back:
-    it: "Situazione che impedisce alla pipeline di procedere di un’istruzione per ciclo: strutturale, sui dati o
-      di controllo."
-    en: "Situation that prevents the pipeline from advancing one instruction per cycle: structural, data or
-      control."
+    it:
+      'Situazione che impedisce alla pipeline di procedere di un’istruzione per ciclo: strutturale, sui dati o
+      di controllo.'
+    en: 'Situation that prevents the pipeline from advancing one instruction per cycle: structural, data or
+      control.'
 - id: def-forwarding
   topic: pipeline
   objectives:
@@ -124,7 +130,8 @@
     it: Operand forwarding
     en: Operand forwarding
   back:
-    it: Inoltro del risultato direttamente dall’uscita della ALU allo stadio che lo richiede, senza attendere la
+    it:
+      Inoltro del risultato direttamente dall’uscita della ALU allo stadio che lo richiede, senza attendere la
       scrittura in registro.
     en: Sending the result directly from the ALU output to the stage that needs it, without waiting for the
       register write.

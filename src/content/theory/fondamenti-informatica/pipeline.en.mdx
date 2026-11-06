@@ -98,7 +98,7 @@ Add R3, R1, R2      ; R3 ready only at stage W
 Sub R5, R3, R4      ; but needed already at stage E
 ```
 
-Without remedies the second instruction must **stall** (bubbles are inserted) until the value is written. **Operand forwarding** solves it by sending the result **directly** from the ALU output to the input of the stage that requires it, without waiting for the register write. One case that cannot be removed entirely is *load-use*: the data arrives from memory one stage later and one stall remains necessary.
+Without remedies the second instruction must **stall** (bubbles are inserted) until the value is written. **Operand forwarding** solves it by sending the result **directly** from the ALU output to the input of the stage that requires it, without waiting for the register write. One case that cannot be removed entirely is _load-use_: the data arrives from memory one stage later and one stall remains necessary.
 
 </div>
 

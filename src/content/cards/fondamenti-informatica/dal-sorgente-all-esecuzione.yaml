@@ -10,7 +10,8 @@
     it: Perché un salto in avanti nomina un’etichetta che, al momento in cui la si incontra, non ha ancora un
       indirizzo. La **prima passata** percorre il sorgente solo per costruire la tabella dei simboli; la
       **seconda** genera il codice, quando ogni etichetta è già risolta.
-    en: Because a forward branch names a label that, when it is met, has no address yet. The **first pass** goes
+    en:
+      Because a forward branch names a label that, when it is met, has no address yet. The **first pass** goes
       through the source only to build the symbol table; the **second** generates the code, when every label
       is already resolved.
 - id: dal-sorgente-all-esecuzione-verifica-2
@@ -23,12 +24,14 @@
     it: Che differenza c’è fra il lavoro del collegatore e quello del caricatore?
     en: What is the difference between the work of the linker and that of the loader?
   back:
-    it: "Il **collegatore** unisce più moduli oggetto e le librerie risolvendo i riferimenti esterni: produce un
+    it:
+      'Il **collegatore** unisce più moduli oggetto e le librerie risolvendo i riferimenti esterni: produce un
       eseguibile. Il **caricatore** prende quell’eseguibile, lo mette in memoria, sistema gli indirizzi se
-      serve e lo avvia."
-    en: "The **linker** joins several object modules and the libraries, resolving external references: it produces
+      serve e lo avvia.'
+    en:
+      'The **linker** joins several object modules and the libraries, resolving external references: it produces
       an executable. The **loader** takes that executable, puts it in memory, fixes the addresses if needed
-      and starts it."
+      and starts it.'
 - id: dal-sorgente-all-esecuzione-verifica-3
   topic: dal-sorgente-all-esecuzione
   objectives:
@@ -38,12 +41,13 @@
     it: Il sistema operativo è in esecuzione mentre gira il tuo programma?
     en: Is the operating system running while your program runs?
   back:
-    it: "No: è un programma anche lui e la CPU è una sola. Riprende il controllo solo in tre casi — **chiamata di
+    it:
+      'No: è un programma anche lui e la CPU è una sola. Riprende il controllo solo in tre casi — **chiamata di
       sistema**, **interruzione**, **eccezione** — e in ognuno il passaggio avviene attraverso un punto
-      d’ingresso controllato, con cambio in modalità supervisore."
-    en: "No: it is a program too and there is only one CPU. It regains control only in three cases — **system
+      d’ingresso controllato, con cambio in modalità supervisore.'
+    en: 'No: it is a program too and there is only one CPU. It regains control only in three cases — **system
       call**, **interrupt**, **exception** — and in each the transfer happens through a controlled entry
-      point, switching to supervisor mode."
+      point, switching to supervisor mode.'
 - id: open-sw-01
   topic: dal-sorgente-all-esecuzione
   objectives:
@@ -54,7 +58,8 @@
       strumenti coinvolti.
     en: Describe the path that leads from an assembly source to a running program, naming the tools involved.
   back:
-    it: "Quattro passaggi. L'**assemblatore** traduce il sorgente in codice oggetto: sostituisce i mnemonici con i
+    it:
+      "Quattro passaggi. L'**assemblatore** traduce il sorgente in codice oggetto: sostituisce i mnemonici con i
       codici operativi e le etichette con gli indirizzi. Per farlo lavora in **due passate**, perché un salto
       in avanti cita un'etichetta non ancora incontrata: nella prima costruisce la **tabella dei simboli**
       tenendo un contatore di posizione, nella seconda genera il codice. Le **direttive** (`ORIGIN`,
@@ -66,7 +71,8 @@
       degli indirizzi assoluti, prepara la pila e salta al punto d'ingresso. Da quel momento il programma è in
       esecuzione e il **sistema operativo** resta fermo: riprende il controllo solo su chiamata di sistema,
       interruzione o eccezione."
-    en: "Four steps. The **assembler** translates the source into object code: it replaces mnemonics with opcodes
+    en:
+      'Four steps. The **assembler** translates the source into object code: it replaces mnemonics with opcodes
       and labels with addresses. To do so it works in **two passes**, because a forward branch names a label
       not yet encountered: in the first it builds the **symbol table** keeping a location counter, in the
       second it generates the code. **Directives** (`ORIGIN`, `DATAWORD`, `RESERVE`, `EQU`, `END`) produce no
@@ -76,7 +82,7 @@
       dynamic (loaded at run time and shared). The **loader** copies the executable into memory, performs
       **relocation** of absolute addresses if needed, prepares the stack and jumps to the entry point. From
       then on the program is running and the **operating system** stays idle: it regains control only on a
-      system call, an interrupt or an exception."
+      system call, an interrupt or an exception.'
 - id: def-tabella-simboli
   topic: dal-sorgente-all-esecuzione
   objectives:
@@ -109,10 +115,11 @@
     it: Riferimento esterno
     en: External reference
   back:
-    it: "Nome che un modulo usa ma non definisce: resta un «buco» nel codice oggetto finché il collegatore non lo
-      risolve."
-    en: "Name that a module uses but does not define: it remains a “hole” in the object code until the linker
-      resolves it."
+    it:
+      'Nome che un modulo usa ma non definisce: resta un «buco» nel codice oggetto finché il collegatore non lo
+      risolve.'
+    en: 'Name that a module uses but does not define: it remains a “hole” in the object code until the linker
+      resolves it.'
 - id: def-rilocazione
   topic: dal-sorgente-all-esecuzione
   objectives:

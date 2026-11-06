@@ -7,9 +7,11 @@
     it: Perché il cammino critico determina la frequenza di clock?
     en: Why does the critical path determine the clock frequency?
   back:
-    it: Perché il periodo deve bastare al segnale per attraversare il percorso combinatorio più lungo e arrivare
+    it:
+      Perché il periodo deve bastare al segnale per attraversare il percorso combinatorio più lungo e arrivare
       stabile al flip-flop prima del setup. Se il clock è più veloce, il dato campionato è quello sbagliato.
-    en: Because the period must be long enough for the signal to cross the longest combinational path and arrive
+    en:
+      Because the period must be long enough for the signal to cross the longest combinational path and arrive
       stable at the flip-flop before the setup. If the clock is faster, the sampled data is the wrong one.
 - id: tempi-e-tecnologia-verifica-2
   topic: tempi-e-tecnologia
@@ -17,13 +19,14 @@
     - tempi-e-tecnologia.3
   kind: concetto
   front:
-    it: "Un buffer aggiunge ritardo: perché a volte si mette lo stesso?"
-    en: "A buffer adds delay: why is it sometimes inserted anyway?"
+    it: 'Un buffer aggiunge ritardo: perché a volte si mette lo stesso?'
+    en: 'A buffer adds delay: why is it sometimes inserted anyway?'
   back:
-    it: "Per pilotare un fan-out elevato: il buffer isola la capacità di carico e la ripartisce, riducendo il
-      ritardo complessivo del ramo rispetto a una porta debole che carica tutto da sola."
-    en: "To drive a high fan-out: the buffer isolates the load capacitance and spreads it, reducing the overall
-      delay of the branch compared with a weak gate charging everything by itself."
+    it: 'Per pilotare un fan-out elevato: il buffer isola la capacità di carico e la ripartisce, riducendo il
+      ritardo complessivo del ramo rispetto a una porta debole che carica tutto da sola.'
+    en:
+      'To drive a high fan-out: the buffer isolates the load capacitance and spreads it, reducing the overall
+      delay of the branch compared with a weak gate charging everything by itself.'
 - id: tempi-e-tecnologia-verifica-3
   topic: tempi-e-tecnologia
   objectives:
@@ -33,12 +36,14 @@
     it: Perché il CMOS consuma quasi solo quando commuta?
     en: Why does CMOS consume power almost only when it switches?
   back:
-    it: "Perché a regime una delle due reti è aperta: non esiste un percorso continuo fra alimentazione e massa.
+    it:
+      'Perché a regime una delle due reti è aperta: non esiste un percorso continuo fra alimentazione e massa.
       La corrente scorre solo mentre le capacità si caricano e si scaricano, quindi il consumo dinamico cresce
-      con la frequenza."
-    en: "Because at steady state one of the two networks is open: there is no continuous path between supply and
+      con la frequenza.'
+    en:
+      'Because at steady state one of the two networks is open: there is no continuous path between supply and
       ground. Current flows only while the capacitances charge and discharge, so dynamic power grows with
-      frequency."
+      frequency.'
 - id: open-tech-01
   topic: tempi-e-tecnologia
   objectives:
@@ -59,7 +64,8 @@
       due registri più il tempo di setup, e una forma minima a due livelli (AND poi OR) è preferibile anche
       per velocità, non solo per numero di porte. È lo stesso motivo per cui un ripple-carry a n bit è lento:
       il riporto attraversa n stadi in fila."
-    en: "The **propagation delay** of a single gate is the interval between the instant the input crosses 50% of
+    en:
+      'The **propagation delay** of a single gate is the interval between the instant the input crosses 50% of
       its swing and the instant the output does the same: the signal does not switch instantly because the
       transistors must charge and discharge capacitances. Not to be confused with the **transition time**,
       which measures the steepness of the edge (from 10% to 90%). When several gates are **in cascade** the
@@ -67,7 +73,7 @@
       delay of the network is that of its **critical path**, i.e. the slowest input→output path. Two
       consequences: the minimum clock period is set by the critical path between two registers plus the setup
       time, and a minimal two-level form (AND then OR) is preferable for speed too, not just for the number of
-      gates. It is the same reason why an n-bit ripple-carry is slow: the carry crosses n stages in a row."
+      gates. It is the same reason why an n-bit ripple-carry is slow: the carry crosses n stages in a row.'
 - id: def-ritardo
   topic: tempi-e-tecnologia
   objectives:

@@ -13,7 +13,7 @@ import Schema from '../../../courses/fondamenti-informatica/components/Schema.as
 - L’equazione da sapere a memoria: **T = (N × S) / R** — istruzioni eseguite × cicli per istruzione, diviso la frequenza di clock.
 - I tre fattori **non sono indipendenti**: ridurre N con istruzioni più complesse (CISC) di solito alza S; alzare R accorcia il periodo e obbliga a pipeline più profonde.
 - La **frequenza di clock non misura le prestazioni**: due processori a pari frequenza possono differire di un fattore due a causa di S.
-- Legge di **Amdahl**: se una frazione *f* del tempo è migliorata di un fattore *k*, il guadagno globale è **1 / ((1 − f) + f/k)**. La parte non migliorata mette un tetto invalicabile.
+- Legge di **Amdahl**: se una frazione _f_ del tempo è migliorata di un fattore _k_, il guadagno globale è **1 / ((1 − f) + f/k)**. La parte non migliorata mette un tetto invalicabile.
 - Si confrontano macchine con i **benchmark** (SPEC) e la **media geometrica**, non con i MIPS: i MIPS dipendono dal repertorio e dal programma.
 - Il parallelismo ha tre livelli: fra **istruzioni** (pipeline, superscalare), fra **dati** (SIMD), fra **processi** (multicore) — e i core condividono la memoria, da cui il problema della **coerenza delle cache**.
 
@@ -127,7 +127,7 @@ Con metà del programma sequenziale, sedici core danno meno del doppio. Il calco
 
 ## La legge di Amdahl
 
-Se si migliora di un fattore *k* una parte che occupa la frazione *f* del tempo totale, il guadagno complessivo è
+Se si migliora di un fattore _k_ una parte che occupa la frazione _f_ del tempo totale, il guadagno complessivo è
 
 ```
 speedup = 1 / ( (1 − f) + f/k )
@@ -165,7 +165,7 @@ Il consumo dinamico cresce con f·C·V²: raddoppiare la frequenza costa più ch
 
 ## Coerenza delle cache
 
-Se ogni core ha la sua cache e tutti condividono la memoria, la stessa variabile può esistere in più copie. Se un core la modifica, gli altri devono accorgersene: è il problema della **coerenza**. I protocolli di *snooping* risolvono facendo sorvegliare il bus a ogni cache: quando qualcuno scrive un blocco, le altre copie vengono invalidate.
+Se ogni core ha la sua cache e tutti condividono la memoria, la stessa variabile può esistere in più copie. Se un core la modifica, gli altri devono accorgersene: è il problema della **coerenza**. I protocolli di _snooping_ risolvono facendo sorvegliare il bus a ogni cache: quando qualcuno scrive un blocco, le altre copie vengono invalidate.
 
 Lo stesso problema si presenta con il **DMA**, che scrive in memoria alle spalle del processore: il blocco corrispondente in cache diventa obsoleto e va invalidato.
 
@@ -212,7 +212,7 @@ Se una cache migliore porta S a 1,2, il tempo scende a 0,6 s: il **20 %** in men
 ## Errori tipici
 
 - Confrontare due macchine con la frequenza di clock, o con i MIPS: contano tutti e tre i fattori, e solo **a parità di programma**.
-- Applicare Amdahl al fattore di miglioramento invece che alla **frazione di tempo**: *f* è la quota di tempo occupata dalla parte migliorata, non la sua dimensione nel codice.
+- Applicare Amdahl al fattore di miglioramento invece che alla **frazione di tempo**: _f_ è la quota di tempo occupata dalla parte migliorata, non la sua dimensione nel codice.
 - Riassumere punteggi di benchmark con la media aritmetica: sono rapporti, e la media giusta è quella **geometrica**.
 - Dimenticare che nel multicore la parte sequenziale e la sincronizzazione non spariscono: il numero di core non è lo speedup.
 

@@ -7,10 +7,11 @@
     it: Perché il ripple-carry è lento, e quanto?
     en: Why is ripple-carry slow, and by how much?
   back:
-    it: "Il riporto di ogni stadio dipende da quello precedente, quindi il risultato è pronto solo dopo che il
+    it: 'Il riporto di ogni stadio dipende da quello precedente, quindi il risultato è pronto solo dopo che il
       riporto ha attraversato tutti gli stadi: il ritardo è circa n volte quello di un sommatore completo,
-      cioè cresce **linearmente** col numero di bit."
-    en: "Each stage's carry depends on the previous one, so the result is ready only after the carry has crossed
+      cioè cresce **linearmente** col numero di bit.'
+    en:
+      "Each stage's carry depends on the previous one, so the result is ready only after the carry has crossed
       every stage: the delay is about n times that of a full adder, i.e. it grows **linearly** with the number
       of bits."
 - id: aritmetica-hardware-verifica-2
@@ -22,12 +23,14 @@
     it: Che cosa significa che uno stadio «genera» o «propaga» il riporto?
     en: What does it mean for a stage to “generate” or “propagate” the carry?
   back:
-    it: "**Genera** se produce un riporto da solo, indipendentemente da quello entrante: succede quando A = B = 1,
+    it:
+      '**Genera** se produce un riporto da solo, indipendentemente da quello entrante: succede quando A = B = 1,
       cioè G = A·B. **Propaga** se lascia passare il riporto entrante: succede quando A ⊕ B = 1. Da queste due
-      funzioni si ricavano tutti i riporti in parallelo."
-    en: "It **generates** if it produces a carry by itself, regardless of the incoming one: this happens when A =
+      funzioni si ricavano tutti i riporti in parallelo.'
+    en:
+      'It **generates** if it produces a carry by itself, regardless of the incoming one: this happens when A =
       B = 1, i.e. G = A·B. It **propagates** if it lets the incoming carry through: this happens when A ⊕ B =
-      1. From these two functions all carries are obtained in parallel."
+      1. From these two functions all carries are obtained in parallel.'
 - id: aritmetica-hardware-verifica-3
   topic: aritmetica-hardware
   objectives:
@@ -37,8 +40,9 @@
     it: Come si esegue una sottrazione avendo solo un sommatore?
     en: How do you subtract having only an adder?
   back:
-    it: "Si invertono i bit del sottraendo e si mette a 1 il riporto entrante del primo stadio: invertire + 1 è
-      esattamente il complemento a 2, quindi A + (−B) senza circuiti aggiuntivi."
+    it:
+      'Si invertono i bit del sottraendo e si mette a 1 il riporto entrante del primo stadio: invertire + 1 è
+      esattamente il complemento a 2, quindi A + (−B) senza circuiti aggiuntivi.'
     en: "Invert the bits of the subtrahend and set the incoming carry of the first stage to 1: invert + 1 is
       exactly the two's complement, so A + (−B) with no extra circuitry."
 - id: open-arith-01
@@ -51,7 +55,8 @@
     it: Perché un sommatore ripple-carry è lento, e come lo risolve il carry-lookahead?
     en: Why is a ripple-carry adder slow, and how does carry-lookahead solve it?
   back:
-    it: "Nel **ripple-carry** gli stadi sono in cascata: il riporto uscente di ciascun sommatore completo entra
+    it:
+      'Nel **ripple-carry** gli stadi sono in cascata: il riporto uscente di ciascun sommatore completo entra
       nel successivo, quindi lo stadio più significativo produce il risultato definitivo solo dopo che il
       riporto ha attraversato **tutti** gli stadi. Il ritardo cresce **linearmente con n**, e siccome questo è
       il cammino critico è lui a fissare il periodo minimo di clock. Il **carry-lookahead** non aspetta il
@@ -60,8 +65,9 @@
       propaga quello che riceve) — da cui `cᵢ₊₁ = Gᵢ + Pᵢ·cᵢ`. Espandendo la ricorsione ogni riporto si
       esprime in funzione del solo `c₀`, quindi tutti i riporti si ottengono **in parallelo** con due livelli
       di porte. Il costo è il numero di porte, che esplode con n: per questo si fanno blocchi da 4 bit e si
-      applica lo stesso schema a un livello superiore."
-    en: "In **ripple-carry** the stages are in cascade: the carry-out of each full adder enters the next one, so
+      applica lo stesso schema a un livello superiore.'
+    en:
+      'In **ripple-carry** the stages are in cascade: the carry-out of each full adder enters the next one, so
       the most significant stage produces its final result only after the carry has crossed **all** the
       stages. The delay grows **linearly with n**, and since this is the critical path it is what sets the
       minimum clock period. **Carry-lookahead** does not wait for the carry: it computes it. For each position
@@ -69,7 +75,7 @@
       position generates a carry by itself) and `Pᵢ = aᵢ ⊕ bᵢ` (the position propagates the one it receives) —
       from which `cᵢ₊₁ = Gᵢ + Pᵢ·cᵢ`. Expanding the recursion every carry is expressed in terms of `c₀` alone,
       so all carries are obtained **in parallel** with two gate levels. The cost is the number of gates, which
-      explodes with n: that is why 4-bit blocks are built and the same scheme is applied one level up."
+      explodes with n: that is why 4-bit blocks are built and the same scheme is applied one level up.'
 - id: open-arith-02
   topic: aritmetica-hardware
   objectives:
@@ -80,14 +86,15 @@
     it: Descrivi semisommatore e sommatore completo, e spiega come si ottiene un sommatore/sottrattore unico.
     en: Describe the half adder and the full adder, and explain how a single adder/subtractor is obtained.
   back:
-    it: "Il **semisommatore** somma due bit: `s = a ⊕ b` (vale 1 quando sono diversi) e `c = a·b` (il riporto esce
+    it:
+      'Il **semisommatore** somma due bit: `s = a ⊕ b` (vale 1 quando sono diversi) e `c = a·b` (il riporto esce
       solo se sono entrambi 1). Non accetta riporto entrante, e per questo non basta oltre la posizione meno
       significativa. Il **sommatore completo** ha tre ingressi: `s = a ⊕ b ⊕ cᵢₙ`, cioè 1 quando il numero di
       ingressi a 1 è dispari, e `cₒᵤₜ = a·b + cᵢₙ·(a ⊕ b)`. Si costruisce con due semisommatori più una OR.
       Per il **sommatore/sottrattore** si sfrutta il fatto che in complemento a 2 `A − B = A + B̅ + 1`: ogni
       bit di B passa per uno XOR con la linea di controllo `Sub`, che lo inverte quando vale 1, e la stessa
       linea entra come riporto iniziale fornendo il «+1». Un solo circuito fa entrambe le operazioni: è la
-      ragione pratica per cui si usa il complemento a 2."
+      ragione pratica per cui si usa il complemento a 2.'
     en: "The **half adder** adds two bits: `s = a ⊕ b` (1 when they differ) and `c = a·b` (the carry comes out
       only if both are 1). It accepts no incoming carry, which is why it is not enough beyond the least
       significant position. The **full adder** has three inputs: `s = a ⊕ b ⊕ cᵢₙ`, i.e. 1 when the number of

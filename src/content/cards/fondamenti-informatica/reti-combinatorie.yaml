@@ -7,11 +7,13 @@
     it: Come realizzi Y = A·B + C con un multiplexer a 3 selettori?
     en: How do you implement Y = A·B + C with a multiplexer with 3 selects?
   back:
-    it: "Si collegano A, B, C ai tre selettori e su ciascuno degli 8 ingressi dati si mette la costante 0 o 1 pari
+    it:
+      "Si collegano A, B, C ai tre selettori e su ciascuno degli 8 ingressi dati si mette la costante 0 o 1 pari
       al valore della funzione per quel mintermine: gli ingressi dati **sono** la colonna d'uscita della
       tabella di verità."
-    en: "Wire A, B, C to the three selects and on each of the 8 data inputs put the constant 0 or 1 equal to the
-      value of the function for that minterm: the data inputs **are** the output column of the truth table."
+    en:
+      'Wire A, B, C to the three selects and on each of the 8 data inputs put the constant 0 or 1 equal to the
+      value of the function for that minterm: the data inputs **are** the output column of the truth table.'
 - id: reti-combinatorie-verifica-2
   topic: reti-combinatorie
   objectives:
@@ -23,8 +25,8 @@
   back:
     it: "Se una impone 0 e l'altra 1 si crea un percorso diretto fra alimentazione e massa: valore d'uscita
       indefinito e corrente elevata. Il tri-state consente a tutte tranne una di «staccarsi»."
-    en: "If one drives 0 and the other 1, a direct path between supply and ground is created: undefined output
-      value and high current. Tri-state lets all but one of them “disconnect”."
+    en: 'If one drives 0 and the other 1, a direct path between supply and ground is created: undefined output
+      value and high current. Tri-state lets all but one of them “disconnect”.'
 - id: reti-combinatorie-verifica-3
   topic: reti-combinatorie
   objectives:
@@ -34,10 +36,10 @@
     it: A che serve l'ingresso di abilitazione di un decoder?
     en: What is the enable input of a decoder for?
   back:
-    it: "A spegnere tutte le uscite. Serve per comporre decoder grandi con decoder piccoli: i bit più
-      significativi abilitano il blocco giusto, i meno significativi scelgono la riga."
-    en: "To switch all outputs off. It is used to compose large decoders from small ones: the most significant
-      bits enable the right block, the least significant ones choose the row."
+    it: 'A spegnere tutte le uscite. Serve per comporre decoder grandi con decoder piccoli: i bit più
+      significativi abilitano il blocco giusto, i meno significativi scelgono la riga.'
+    en: 'To switch all outputs off. It is used to compose large decoders from small ones: the most significant
+      bits enable the right block, the least significant ones choose the row.'
 - id: open-comb-01
   topic: reti-combinatorie
   objectives:
@@ -57,7 +59,8 @@
       dati al valore che la funzione assume in quella riga: gli ingressi dati *sono* la colonna delle uscite
       della tabella di verità. Con lo stesso MUX si copre anche una funzione di n+1 variabili, collegando a
       ogni ingresso dati non una costante ma la variabile residua, il suo complemento, 0 oppure 1."
-    en: "The **decoder** has n inputs and 2ⁿ outputs and activates **only one**, the one whose index matches the
+    en:
+      "The **decoder** has n inputs and 2ⁿ outputs and activates **only one**, the one whose index matches the
       number presented: each output is the corresponding minterm. It is used to select one among many things —
       a memory chip, a register. The **multiplexer** does the opposite on the data side: it chooses one of 2ⁿ
       inputs according to n select lines, and is the circuit's programmable switch (inside the processor it

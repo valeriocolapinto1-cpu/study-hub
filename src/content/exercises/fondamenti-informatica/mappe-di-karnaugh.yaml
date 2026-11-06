@@ -15,7 +15,8 @@
       body:
         it: Disegna la mappa con le colonne in ordine 00, 01, 11, 10. Poi cerca i gruppi più grandi possibile,
           ricordando che possono sovrapporsi.
-        en: Draw the map with the columns in the order 00, 01, 11, 10. Then look for the largest possible groups,
+        en:
+          Draw the map with the columns in the order 00, 01, 11, 10. Then look for the largest possible groups,
           remembering that they can overlap.
     - title:
         it: Svolgimento
@@ -92,10 +93,11 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Segna i quattro mintermini sulla mappa a 4 variabili e guarda **dove finiscono**. L’adiacenza è
-          circolare: i bordi opposti si toccano."
-        en: "Mark the four minterms on the 4-variable map and look at **where they end up**. Adjacency is circular:
-          opposite edges touch."
+        it: 'Segna i quattro mintermini sulla mappa a 4 variabili e guarda **dove finiscono**. L’adiacenza è
+          circolare: i bordi opposti si toccano.'
+        en:
+          'Mark the four minterms on the 4-variable map and look at **where they end up**. Adjacency is circular:
+          opposite edges touch.'
     - title:
         it: Svolgimento
         en: Solution
@@ -180,10 +182,12 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Le indifferenze si prendono come 1 **solo se allargano un gruppo**. Valutale una per una: quelle che non
-          servono restano 0."
-        en: "Don’t cares are taken as 1 **only if they enlarge a group**. Judge them one by one: those that do not
-          help stay 0."
+        it:
+          'Le indifferenze si prendono come 1 **solo se allargano un gruppo**. Valutale una per una: quelle che non
+          servono restano 0.'
+        en:
+          'Don’t cares are taken as 1 **only if they enlarge a group**. Judge them one by one: those that do not
+          help stay 0.'
     - title:
         it: Svolgimento
         en: Solution
@@ -304,9 +308,11 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Elenca tutti gli implicanti primi e, per ogni mintermine, conta da quanti è coperto. Un mintermine coperto
+        it:
+          Elenca tutti gli implicanti primi e, per ogni mintermine, conta da quanti è coperto. Un mintermine coperto
           da un solo primo rende quel primo essenziale.
-        en: List all the prime implicants and, for each minterm, count how many cover it. A minterm covered by a
+        en:
+          List all the prime implicants and, for each minterm, count how many cover it. A minterm covered by a
           single prime makes that prime essential.
     - title:
         it: Svolgimento
@@ -401,9 +407,11 @@
   difficulty: 2
   kind: static
   statement:
-    it: Per la stessa funzione dell’esercizio precedente — `Y(A,B,C) = Σm(0,1,2,5,6,7)` — ricava la forma **POS**
+    it:
+      Per la stessa funzione dell’esercizio precedente — `Y(A,B,C) = Σm(0,1,2,5,6,7)` — ricava la forma **POS**
       raggruppando gli zeri. È più corta della SOP?
-    en: For the same function as the previous exercise — `Y(A,B,C) = Σm(0,1,2,5,6,7)` — derive the **POS** form by
+    en:
+      For the same function as the previous exercise — `Y(A,B,C) = Σm(0,1,2,5,6,7)` — derive the **POS** form by
       grouping the zeros. Is it shorter than the SOP?
   steps:
     - title:
@@ -537,24 +545,24 @@
         it: Risposta
         en: Answer
       body:
-        it: "6"
-        en: "6"
+        it: '6'
+        en: '6'
   choices:
     - text:
-        it: "2"
-        en: "2"
+        it: '2'
+        en: '2'
       correct: false
     - text:
-        it: "4"
-        en: "4"
+        it: '4'
+        en: '4'
       correct: false
     - text:
-        it: "6"
-        en: "6"
+        it: '6'
+        en: '6'
       correct: true
     - text:
-        it: "8"
-        en: "8"
+        it: '8'
+        en: '8'
       correct: false
   origin: originale
 - id: mcq-karnaugh-03
@@ -564,8 +572,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Un implicante primo si dice **essenziale** quando:"
-    en: "A prime implicant is called **essential** when:"
+    it: 'Un implicante primo si dice **essenziale** quando:'
+    en: 'A prime implicant is called **essential** when:'
   steps:
     - title:
         it: Risposta

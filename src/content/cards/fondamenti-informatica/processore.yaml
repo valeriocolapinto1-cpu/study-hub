@@ -7,10 +7,10 @@
     it: Scrivi in RTN il prelievo dell'istruzione.
     en: Write the instruction fetch in RTN.
   back:
-    it: "`PCout, MARin, Read` · `MDRout, IRin`, con `PC ← [PC] + 4` eseguito mentre si attende la memoria. La
-      destinazione non porta parentesi, le sorgenti sì."
-    en: "`PCout, MARin, Read` · `MDRout, IRin`, with `PC ← [PC] + 4` performed while waiting for memory. The
-      destination has no brackets, the sources do."
+    it: '`PCout, MARin, Read` · `MDRout, IRin`, con `PC ← [PC] + 4` eseguito mentre si attende la memoria. La
+      destinazione non porta parentesi, le sorgenti sì.'
+    en: '`PCout, MARin, Read` · `MDRout, IRin`, with `PC ← [PC] + 4` performed while waiting for memory. The
+      destination has no brackets, the sources do.'
 - id: processore-verifica-2
   topic: processore
   objectives:
@@ -20,12 +20,13 @@
     it: Perché il datapath a bus singolo richiede più cicli per la stessa istruzione?
     en: Why does the single-bus datapath need more cycles for the same instruction?
   back:
-    it: "Perché sul bus può viaggiare un solo dato per volta: i due operandi della ALU vanno portati in cicli
+    it: 'Perché sul bus può viaggiare un solo dato per volta: i due operandi della ALU vanno portati in cicli
       distinti, appoggiandoli a un registro temporaneo. Con tre bus i due operandi e il risultato viaggiano
-      insieme."
-    en: "Because only one piece of data can travel on the bus at a time: the two ALU operands must be brought in
+      insieme.'
+    en:
+      'Because only one piece of data can travel on the bus at a time: the two ALU operands must be brought in
       separate cycles, parking one in a temporary register. With three buses the two operands and the result
-      travel together."
+      travel together.'
 - id: processore-verifica-3
   topic: processore
   objectives:
@@ -38,9 +39,10 @@
     it: "La cablata è una rete logica fissa: veloce, ma cambiare un'istruzione significa ridisegnarla. La
       microprogrammata legge microistruzioni da una memoria di controllo: più lenta, ma si modifica
       riscrivendo il microcodice."
-    en: "The hardwired one is a fixed logic network: fast, but changing an instruction means redesigning it. The
+    en:
+      'The hardwired one is a fixed logic network: fast, but changing an instruction means redesigning it. The
       microprogrammed one reads microinstructions from a control store: slower, but it is modified by
-      rewriting the microcode."
+      rewriting the microcode.'
 - id: open-cpu-01
   topic: processore
   objectives:
@@ -57,12 +59,13 @@
       alla prossima. L'incremento del PC avviene subito dopo l'invio dell'indirizzo, non a fine istruzione:
       l'esecuzione è sequenziale per default, quindi conviene preparare l'indirizzo successivo mentre la
       memoria risponde. I salti si limitano a sovrascrivere il PC."
-    en: "In RTN: `MAR ← [PC]`, start of the read, `PC ← [PC]+4`, `IR ← [MDR]`; then decoding and execution follow.
+    en:
+      'In RTN: `MAR ← [PC]`, start of the read, `PC ← [PC]+4`, `IR ← [MDR]`; then decoding and execution follow.
       **MAR** presents the address to memory and **MDR** collects the data: the processor never talks directly
       to memory. **IR** holds the instruction for decoding, **PC** points to the next one. The PC is
       incremented right after the address is sent, not at the end of the instruction: execution is sequential
       by default, so it pays to prepare the next address while memory responds. Branches simply overwrite the
-      PC."
+      PC.'
 - id: open-cpu-02
   topic: processore
   objectives:
@@ -81,13 +84,14 @@
       registri richiede più cicli; con **tre bus** (due di lettura e uno di scrittura) entrambi gli operandi
       raggiungono la ALU e il risultato viene riscritto nello stesso ciclo — più hardware, ma è ciò che rende
       praticabile la pipeline."
-    en: "The **hardwired** unit is a custom-designed sequential network: fast, but changing the instruction set
+    en:
+      'The **hardwired** unit is a custom-designed sequential network: fast, but changing the instruction set
       requires redesigning the circuit — the typical choice of RISC. The **microprogrammed** one keeps the
       control signals in a control store and executes a microprogram: flexible and suited to complex ISAs, but
       slower because each step costs a read — the historical choice of CISC. As for the datapath: with a
       **single bus** only one transfer at a time is possible, so a register-to-register operation takes
       several cycles; with **three buses** (two read, one write) both operands reach the ALU and the result is
-      written back in the same cycle — more hardware, but it is what makes pipelining practical."
+      written back in the same cycle — more hardware, but it is what makes pipelining practical.'
 - id: def-pc
   topic: processore
   objectives:
@@ -128,8 +132,8 @@
     it: MAR e MDR
     en: MAR and MDR
   back:
-    it: "Registri d’interfaccia verso la memoria: MAR contiene l’indirizzo, MDR il dato in transito."
-    en: "Interface registers towards memory: MAR holds the address, MDR the data in transit."
+    it: 'Registri d’interfaccia verso la memoria: MAR contiene l’indirizzo, MDR il dato in transito.'
+    en: 'Interface registers towards memory: MAR holds the address, MDR the data in transit.'
 - id: def-rtn
   topic: processore
   objectives:
@@ -158,7 +162,9 @@
     it: Unità di controllo cablata / microprogrammata
     en: Hardwired / microprogrammed control unit
   back:
-    it: "Cablata: rete sequenziale su misura, veloce ma rigida. Microprogrammata: segnali letti da una memoria di
-      controllo, flessibile ma più lenta."
-    en: "Hardwired: custom sequential network, fast but rigid. Microprogrammed: signals read from a control store,
-      flexible but slower."
+    it:
+      'Cablata: rete sequenziale su misura, veloce ma rigida. Microprogrammata: segnali letti da una memoria di
+      controllo, flessibile ma più lenta.'
+    en:
+      'Hardwired: custom sequential network, fast but rigid. Microprogrammed: signals read from a control store,
+      flexible but slower.'

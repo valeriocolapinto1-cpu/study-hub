@@ -14,10 +14,12 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Il processore non «parla» col dispositivo: legge e scrive i suoi registri. Prima di scrivere un dato
-          bisogna sapere se il dispositivo è pronto ad accettarlo."
-        en: "The processor does not “talk” to the device: it reads and writes its registers. Before writing data you
-          need to know whether the device is ready to accept it."
+        it:
+          'Il processore non «parla» col dispositivo: legge e scrive i suoi registri. Prima di scrivere un dato
+          bisogna sapere se il dispositivo è pronto ad accettarlo.'
+        en:
+          'The processor does not “talk” to the device: it reads and writes its registers. Before writing data you
+          need to know whether the device is ready to accept it.'
     - title:
         it: Svolgimento
         en: Solution
@@ -83,7 +85,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: Il registro di stato di una periferica è mappato in memoria all’indirizzo `0xFFFF0000`, con il bit 0 che
+    it:
+      Il registro di stato di una periferica è mappato in memoria all’indirizzo `0xFFFF0000`, con il bit 0 che
       segnala «pronto». Scrivi il codice di attesa e spiega perché con l’I/O **memory-mapped** non servono
       istruzioni speciali.
     en: The status register of a peripheral is memory-mapped at address `0xFFFF0000`, with bit 0 signalling
@@ -93,7 +96,8 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Se il registro ha un indirizzo di memoria, tutte le istruzioni che accedono alla memoria funzionano anche
+        it:
+          Se il registro ha un indirizzo di memoria, tutte le istruzioni che accedono alla memoria funzionano anche
           su di lui.
         en: If the register has a memory address, all the instructions that access memory work on it too.
     - title:
@@ -144,10 +148,12 @@
   difficulty: 2
   kind: static
   statement:
-    it: Un disco trasferisce a 100 MB/s e consegna parole da 4 byte. Con l’I/O **guidato da interruzioni**, quante
+    it:
+      Un disco trasferisce a 100 MB/s e consegna parole da 4 byte. Con l’I/O **guidato da interruzioni**, quante
       interruzioni al secondo servirebbero? Se ogni interruzione costa 500 cicli su un processore a 2 GHz,
       quanta CPU resterebbe libera?
-    en: A disk transfers at 100 MB/s and delivers 4-byte words. With **interrupt-driven** I/O, how many interrupts
+    en:
+      A disk transfers at 100 MB/s and delivers 4-byte words. With **interrupt-driven** I/O, how many interrupts
       per second would be needed? If each interrupt costs 500 cycles on a 2 GHz processor, how much CPU would
       remain free?
   steps:
@@ -157,7 +163,8 @@
       body:
         it: Una interruzione per parola. Calcola quante parole al secondo, poi quanti cicli costano in tutto e
           confrontali con quelli disponibili.
-        en: One interrupt per word. Compute how many words per second, then how many cycles they cost in total and
+        en:
+          One interrupt per word. Compute how many words per second, then how many cycles they cost in total and
           compare with those available.
     - title:
         it: Svolgimento
@@ -226,17 +233,20 @@
   statement:
     it: Descrivi la sequenza dei segnali in un **handshake completo** (a quattro fasi) fra un dispositivo che
       invia e uno che riceve, e spiega perché non basterebbe un segnale solo.
-    en: Describe the sequence of signals in a **full (four-phase) handshake** between a sending and a receiving
+    en:
+      Describe the sequence of signals in a **full (four-phase) handshake** between a sending and a receiving
       device, and explain why a single signal would not be enough.
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Servono due segnali: uno dice «c’è un dato», l’altro «l’ho preso». Il ciclo si chiude quando entrambi
-          tornano a riposo."
-        en: "Two signals are needed: one says “there is data”, the other “I have taken it”. The cycle closes when both
-          return to rest."
+        it:
+          'Servono due segnali: uno dice «c’è un dato», l’altro «l’ho preso». Il ciclo si chiude quando entrambi
+          tornano a riposo.'
+        en:
+          'Two signals are needed: one says “there is data”, the other “I have taken it”. The cycle closes when both
+          return to rest.'
     - title:
         it: Svolgimento
         en: Solution
@@ -294,7 +304,8 @@
   difficulty: 2
   kind: static
   statement:
-    it: Un controllore DMA scrive 4 KiB in memoria mentre il processore lavora. Che cosa può andare storto con la
+    it:
+      Un controllore DMA scrive 4 KiB in memoria mentre il processore lavora. Che cosa può andare storto con la
       **cache**, e come si evita?
     en: A DMA controller writes 4 KiB to memory while the processor is working. What can go wrong with the
       **cache**, and how is it avoided?
@@ -305,7 +316,8 @@
       body:
         it: Il DMA scrive direttamente in memoria, senza passare per la cache. Chiediti che cosa succede se il
           processore ha in cache una copia di quelle celle.
-        en: DMA writes directly to memory, without going through the cache. Ask yourself what happens if the processor
+        en:
+          DMA writes directly to memory, without going through the cache. Ask yourself what happens if the processor
           has a copy of those cells in its cache.
     - title:
         it: Svolgimento
@@ -355,8 +367,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Con l’I/O **memory-mapped**, per leggere un registro di interfaccia si usa:"
-    en: "With **memory-mapped** I/O, to read an interface register you use:"
+    it: 'Con l’I/O **memory-mapped**, per leggere un registro di interfaccia si usa:'
+    en: 'With **memory-mapped** I/O, to read an interface register you use:'
   steps:
     - title:
         it: Risposta
@@ -425,8 +437,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Il difetto principale dell’I/O programmato (polling) è che:"
-    en: "The main flaw of programmed I/O (polling) is that:"
+    it: 'Il difetto principale dell’I/O programmato (polling) è che:'
+    en: 'The main flaw of programmed I/O (polling) is that:'
   steps:
     - title:
         it: Risposta
@@ -460,8 +472,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "In un trasferimento con **handshake**, la velocità è quella:"
-    en: "In a **handshake** transfer, the speed is that of:"
+    it: 'In un trasferimento con **handshake**, la velocità è quella:'
+    en: 'In a **handshake** transfer, the speed is that of:'
   steps:
     - title:
         it: Risposta
@@ -537,16 +549,16 @@
         it: Risposta
         en: Answer
       body:
-        it: "Meno fili, meno interferenze e nessuno sfasamento fra le linee: si sale in frequenza"
-        en: "Fewer wires, less interference and no skew between lines: frequency can go up"
+        it: 'Meno fili, meno interferenze e nessuno sfasamento fra le linee: si sale in frequenza'
+        en: 'Fewer wires, less interference and no skew between lines: frequency can go up'
   choices:
     - text:
         it: Perché il parallelo non permette il controllo di errore
         en: Because parallel does not allow error checking
       correct: false
     - text:
-        it: "Meno fili, meno interferenze e nessuno sfasamento fra le linee: si sale in frequenza"
-        en: "Fewer wires, less interference and no skew between lines: frequency can go up"
+        it: 'Meno fili, meno interferenze e nessuno sfasamento fra le linee: si sale in frequenza'
+        en: 'Fewer wires, less interference and no skew between lines: frequency can go up'
       correct: true
     - text:
         it: Perché costano di più

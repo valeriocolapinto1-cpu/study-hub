@@ -26,9 +26,9 @@ lang: it
 
 **Cosa serve sapere prima:** che un segnale elettrico può valere solo 0 o 1 (lo hai visto nel modulo sui [numeri binari](../numeri-binari/)). Nient’altro.
 
-**Che problema risolve.** Abbiamo dei fili che valgono 0 o 1 e vogliamo costruirci sopra qualcosa che **decida**: accendi il motore se la porta è chiusa *e* il pulsante è premuto *ma non* se è scattato l’allarme. Serve un’algebra per scrivere e manipolare frasi di questo tipo, e serve che a ogni operazione dell’algebra corrisponda un pezzo di circuito. L’algebra di Boole è esattamente questo: una matematica con due soli valori, in cui ogni formula è un circuito e ogni circuito è una formula.
+**Che problema risolve.** Abbiamo dei fili che valgono 0 o 1 e vogliamo costruirci sopra qualcosa che **decida**: accendi il motore se la porta è chiusa _e_ il pulsante è premuto _ma non_ se è scattato l’allarme. Serve un’algebra per scrivere e manipolare frasi di questo tipo, e serve che a ogni operazione dell’algebra corrisponda un pezzo di circuito. L’algebra di Boole è esattamente questo: una matematica con due soli valori, in cui ogni formula è un circuito e ogni circuito è una formula.
 
-**Le parole nuove.** Una **porta logica** è il circuito elementare che realizza un’operazione (AND, OR, NOT…). Una **tabella di verità** elenca l’uscita per *tutte* le combinazioni degli ingressi: con n ingressi ha 2ⁿ righe, e descrive la funzione senza ambiguità. Un **letterale** è una variabile o la sua negazione (A oppure Ā). Un **mintermine** è un prodotto che vale 1 su **una sola** riga della tabella. **SOP** significa somma di prodotti (OR di AND), **POS** prodotto di somme (AND di OR).
+**Le parole nuove.** Una **porta logica** è il circuito elementare che realizza un’operazione (AND, OR, NOT…). Una **tabella di verità** elenca l’uscita per _tutte_ le combinazioni degli ingressi: con n ingressi ha 2ⁿ righe, e descrive la funzione senza ambiguità. Un **letterale** è una variabile o la sua negazione (A oppure Ā). Un **mintermine** è un prodotto che vale 1 su **una sola** riga della tabella. **SOP** significa somma di prodotti (OR di AND), **POS** prodotto di somme (AND di OR).
 
 </div>
 
@@ -74,7 +74,7 @@ L'assorbimento è il teorema che fa collassare le espressioni ridondanti: `A ∨
 
 ## De Morgan
 
-$\overline{A\cdot B}$ = $\overline{A}$ + $\overline{B}$  e  $\overline{A+B}$ = $\overline{A}$ · $\overline{B}$. In parole: la negazione di un prodotto è la somma delle negazioni, e viceversa.
+$\overline{A\cdot B}$ = $\overline{A}$ + $\overline{B}$ e $\overline{A+B}$ = $\overline{A}$ · $\overline{B}$. In parole: la negazione di un prodotto è la somma delle negazioni, e viceversa.
 
 Valgono anche per più di due fattori: $\overline{A\cdot B\cdot C}$ = $\overline{A}$+$\overline{B}$+$\overline{C}$. Il modo pratico di applicarli è «spezza la barra e cambia l'operatore».
 
@@ -215,7 +215,7 @@ In algebra di Boole la notazione corrente è `∧` e `∨` (oppure `·` e `+`); 
 
 <div data-note-id="teoria/algebra-di-boole/trap-demorgan">
 
-Le due leggi si ricordano su due variabili, ma valgono su quante ne vuoi: la negazione di un prodotto di *n* fattori è la somma delle *n* negazioni, e viceversa. Applicarle solo alle coppie è un errore che compare quando l’espressione si allunga.
+Le due leggi si ricordano su due variabili, ma valgono su quante ne vuoi: la negazione di un prodotto di _n_ fattori è la somma delle _n_ negazioni, e viceversa. Applicarle solo alle coppie è un errore che compare quando l’espressione si allunga.
 
 </div>
 

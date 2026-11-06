@@ -110,7 +110,7 @@ Genera, ciclo per ciclo, i segnali che aprono i buffer, abilitano le scritture n
 
 ## RTN, la notazione richiesta
 
-Le parentesi quadre significano «contenuto di». `Add R1,R2,R3` si scrive `R1 ← [R2]+[R3]`. «Aumenta di LOC il valore in R1» diventa `R1 ← [LOC]+[R1]`. Scrivere `R1 ← R2 + R3` senza parentesi significa sommare i *numeri dei registri*, non i loro contenuti.
+Le parentesi quadre significano «contenuto di». `Add R1,R2,R3` si scrive `R1 ← [R2]+[R3]`. «Aumenta di LOC il valore in R1» diventa `R1 ← [LOC]+[R1]`. Scrivere `R1 ← R2 + R3` senza parentesi significa sommare i _numeri dei registri_, non i loro contenuti.
 
 </div>
 
@@ -200,7 +200,7 @@ L’esecuzione di un’istruzione macchina diventa allora l’esecuzione di un *
 6.  Z_out, R1_in, End                           ; risultato nel registro
 ```
 
-Sei passi, e i primi tre sono **sempre gli stessi**: il prelievo non dipende dall'istruzione. Il registro `Y` serve perché sul bus singolo può viaggiare un solo operando per volta: il primo va parcheggiato. `WMFC` (*wait for memory function completed*) è l'attesa della memoria, che è molto più lenta del processore.
+Sei passi, e i primi tre sono **sempre gli stessi**: il prelievo non dipende dall'istruzione. Il registro `Y` serve perché sul bus singolo può viaggiare un solo operando per volta: il primo va parcheggiato. `WMFC` (_wait for memory function completed_) è l'attesa della memoria, che è molto più lenta del processore.
 
 Su un datapath a **tre bus** i passi 4-6 collassano in uno solo: i due operandi escono insieme su bus A e B e il risultato rientra su bus C nello stesso ciclo.
 

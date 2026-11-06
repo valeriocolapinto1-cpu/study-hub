@@ -7,10 +7,10 @@
     it: Perché la cache trasferisce blocchi e non singole parole?
     en: Why does the cache transfer blocks and not single words?
   back:
-    it: "Per la **località spaziale**: il costo di un accesso è dominato dalla latenza, non dalla quantità di
-      dati, quindi conviene portarsi dietro le celle vicine, che con ogni probabilità serviranno subito dopo."
-    en: "Because of **spatial locality**: the cost of an access is dominated by latency, not by the amount of
-      data, so it pays to bring along the neighbouring cells, which will very probably be needed right after."
+    it: 'Per la **località spaziale**: il costo di un accesso è dominato dalla latenza, non dalla quantità di
+      dati, quindi conviene portarsi dietro le celle vicine, che con ogni probabilità serviranno subito dopo.'
+    en: 'Because of **spatial locality**: the cost of an access is dominated by latency, not by the amount of
+      data, so it pays to bring along the neighbouring cells, which will very probably be needed right after.'
 - id: gerarchia-di-memoria-verifica-2
   topic: gerarchia-di-memoria
   objectives:
@@ -18,13 +18,14 @@
   kind: concetto
   front:
     it: "Cache da 8 KiB, blocchi da 32 byte, 4 vie, indirizzi a 32 bit: come si spezza l'indirizzo?"
-    en: "8 KiB cache, 32-byte blocks, 4 ways, 32-bit addresses: how is the address split?"
+    en: '8 KiB cache, 32-byte blocks, 4 ways, 32-bit addresses: how is the address split?'
   back:
-    it: "Spiazzamento **5 bit** (32 = 2⁵). Gruppi = 8192 / (32 × 4) = 64 → indice **6 bit**. Etichetta = 32 − 5 −
+    it:
+      "Spiazzamento **5 bit** (32 = 2⁵). Gruppi = 8192 / (32 × 4) = 64 → indice **6 bit**. Etichetta = 32 − 5 −
       6 = **21 bit**. I tre campi sommano sempre all'ampiezza dell'indirizzo: è il controllo che conviene fare
       sempre."
-    en: "Offset **5 bits** (32 = 2⁵). Sets = 8192 / (32 × 4) = 64 → index **6 bits**. Tag = 32 − 5 − 6 = **21
-      bits**. The three fields always add up to the address width: it is the check worth doing every time."
+    en: 'Offset **5 bits** (32 = 2⁵). Sets = 8192 / (32 × 4) = 64 → index **6 bits**. Tag = 32 − 5 − 6 = **21
+      bits**. The three fields always add up to the address width: it is the check worth doing every time.'
 - id: gerarchia-di-memoria-verifica-3
   topic: gerarchia-di-memoria
   objectives:
@@ -34,10 +35,11 @@
     it: A che serve il bit dirty nella politica write-back?
     en: What is the dirty bit for in the write-back policy?
   back:
-    it: "Segna che il blocco in cache è stato modificato e non coincide più con la memoria. Allo sfratto si
-      riscrivono **solo** i blocchi dirty: gli altri si buttano, perché la copia in memoria è già giusta."
-    en: "It marks that the block in the cache has been modified and no longer matches memory. On eviction **only**
-      dirty blocks are written back: the others are discarded, because the copy in memory is already right."
+    it: 'Segna che il blocco in cache è stato modificato e non coincide più con la memoria. Allo sfratto si
+      riscrivono **solo** i blocchi dirty: gli altri si buttano, perché la copia in memoria è già giusta.'
+    en:
+      'It marks that the block in the cache has been modified and no longer matches memory. On eviction **only**
+      dirty blocks are written back: the others are discarded, because the copy in memory is already right.'
 - id: open-mem-01
   topic: gerarchia-di-memoria
   objectives:
@@ -48,12 +50,14 @@
     it: Differenza tra RAM e cache, definendo località spaziale e temporale.
     en: Difference between RAM and cache, defining spatial and temporal locality.
   back:
-    it: "Entrambe volatili. La cache è più piccola, veloce e costosa (SRAM), tiene copie dei dati frequenti. Nella
+    it:
+      'Entrambe volatili. La cache è più piccola, veloce e costosa (SRAM), tiene copie dei dati frequenti. Nella
       RAM il tempo di accesso NON dipende dalla posizione del dato. Località temporale: dati usati di recente
-      riusati a breve; spaziale: indirizzi vicini referenziati a breve."
-    en: "Both are volatile. The cache is smaller, faster and more expensive (SRAM), and holds copies of frequently
+      riusati a breve; spaziale: indirizzi vicini referenziati a breve.'
+    en:
+      'Both are volatile. The cache is smaller, faster and more expensive (SRAM), and holds copies of frequently
       used data. In RAM the access time does NOT depend on the position of the data. Temporal locality:
-      recently used data reused soon; spatial: nearby addresses referenced soon."
+      recently used data reused soon; spatial: nearby addresses referenced soon.'
 - id: open-mem-02
   topic: gerarchia-di-memoria
   objectives:
@@ -64,7 +68,8 @@
     it: Quali sono le limitazioni di una cache L1 molto grande (rispetto ad aggiungere L2)?
     en: What are the limitations of a very large L1 cache (compared with adding an L2)?
   back:
-    it: Costo elevato, maggiore spazio fisico e soprattutto minore velocità (indirizzi più grandi → accesso più
+    it:
+      Costo elevato, maggiore spazio fisico e soprattutto minore velocità (indirizzi più grandi → accesso più
       lento). Meglio una gerarchia L1 piccola/veloce + L2 più grande/lenta.
     en: High cost, more physical space and above all lower speed (larger addresses → slower access). Better a
       hierarchy of a small/fast L1 + a larger/slower L2.
@@ -78,16 +83,17 @@
     it: Descrivi la gerarchia di memoria e spiega perché conviene organizzarla a livelli.
     en: Describe the memory hierarchy and explain why it pays to organise it in levels.
   back:
-    it: "Dai registri alla cache (L1, L2), alla memoria principale DRAM, fino alla memoria secondaria: scendendo,
+    it:
+      "Dai registri alla cache (L1, L2), alla memoria principale DRAM, fino alla memoria secondaria: scendendo,
       la capacità cresce e il costo per bit cala, ma il tempo di accesso peggiora. La gerarchia funziona
       grazie alla **località**: i livelli alti tengono i dati usati di recente e quelli vicini, così la gran
       parte degli accessi si risolve in alto. Un solo livello grande e veloce sarebbe proibitivo per costo e
       comunque più lento, perché indirizzare molte celle rallenta l'accesso."
-    en: "From the registers to the cache (L1, L2), to DRAM main memory, down to secondary memory: going down,
+    en: 'From the registers to the cache (L1, L2), to DRAM main memory, down to secondary memory: going down,
       capacity grows and cost per bit falls, but access time gets worse. The hierarchy works thanks to
       **locality**: the upper levels hold recently used data and their neighbours, so most accesses are
       resolved high up. A single large and fast level would be prohibitively expensive and in any case slower,
-      because addressing many cells slows access down."
+      because addressing many cells slows access down.'
 - id: open-mem-04
   topic: gerarchia-di-memoria
   objectives:
@@ -98,18 +104,20 @@
     it: Confronta le tre mappature della cache (diretta, associativa, set-associativa).
     en: Compare the three cache mappings (direct, associative, set-associative).
   back:
-    it: "**Diretta**: ogni blocco di memoria può andare in una sola linea di cache; hardware semplice e confronto
+    it:
+      '**Diretta**: ogni blocco di memoria può andare in una sola linea di cache; hardware semplice e confronto
       immediato, ma blocchi che mappano sulla stessa linea si sfrattano a vicenda (conflitti) anche con la
       cache semivuota. **Associativa**: un blocco può andare in qualunque linea; sfrutta al meglio lo spazio,
       ma richiede di confrontare il tag con tutte le linee, quindi è costosa e più lenta. **Set-associativa**:
       compromesso: la cache è divisa in insiemi, il blocco va in un insieme fisso ma in una linea qualsiasi al
-      suo interno. Serve una politica di sostituzione, tipicamente **LRU**."
-    en: "**Direct**: each memory block can go into only one cache line; simple hardware and immediate comparison,
+      suo interno. Serve una politica di sostituzione, tipicamente **LRU**.'
+    en:
+      '**Direct**: each memory block can go into only one cache line; simple hardware and immediate comparison,
       but blocks mapping to the same line evict each other (conflicts) even with the cache half empty.
       **Associative**: a block can go into any line; it makes the best use of space, but requires comparing
       the tag with all lines, so it is expensive and slower. **Set-associative**: a compromise: the cache is
       divided into sets, the block goes into a fixed set but any line within it. A replacement policy is
-      needed, typically **LRU**."
+      needed, typically **LRU**.'
 - id: def-ram
   topic: gerarchia-di-memoria
   objectives:
@@ -162,8 +170,8 @@
     it: Cache hit / miss
     en: Cache hit / miss
   back:
-    it: "Hit: il dato cercato è in cache. Miss: non c’è e va recuperato dal livello inferiore."
-    en: "Hit: the data sought is in the cache. Miss: it is not and must be fetched from the level below."
+    it: 'Hit: il dato cercato è in cache. Miss: non c’è e va recuperato dal livello inferiore.'
+    en: 'Hit: the data sought is in the cache. Miss: it is not and must be fetched from the level below.'
 - id: def-misspenalty
   topic: gerarchia-di-memoria
   objectives:
@@ -192,9 +200,10 @@
     it: Mappature della cache
     en: Cache mappings
   back:
-    it: "Diretta: una sola linea possibile. Associativa: qualunque linea. Set-associativa: insieme fisso, linea
-      libera al suo interno."
-    en: "Direct: only one possible line. Associative: any line. Set-associative: fixed set, free line within it."
+    it:
+      'Diretta: una sola linea possibile. Associativa: qualunque linea. Set-associativa: insieme fisso, linea
+      libera al suo interno.'
+    en: 'Direct: only one possible line. Associative: any line. Set-associative: fixed set, free line within it.'
 - id: def-lru
   topic: gerarchia-di-memoria
   objectives:
@@ -219,7 +228,8 @@
   back:
     it: Write-through scrive subito anche in memoria; write-back solo allo sfratto della linea, marcata da un
       dirty bit.
-    en: Write-through also writes to memory at once; write-back only when the line is evicted, marked by a dirty
+    en:
+      Write-through also writes to memory at once; write-back only when the line is evicted, marked by a dirty
       bit.
 - id: def-sramdram
   topic: gerarchia-di-memoria
@@ -231,7 +241,7 @@
     it: SRAM e DRAM
     en: SRAM and DRAM
   back:
-    it: "SRAM: cella a latch, veloce, senza refresh, usata per le cache. DRAM: cella a condensatore, densa ed
-      economica, da rinfrescare."
-    en: "SRAM: latch cell, fast, no refresh, used for caches. DRAM: capacitor cell, dense and cheap, must be
-      refreshed."
+    it: 'SRAM: cella a latch, veloce, senza refresh, usata per le cache. DRAM: cella a condensatore, densa ed
+      economica, da rinfrescare.'
+    en: 'SRAM: latch cell, fast, no refresh, used for caches. DRAM: capacitor cell, dense and cheap, must be
+      refreshed.'

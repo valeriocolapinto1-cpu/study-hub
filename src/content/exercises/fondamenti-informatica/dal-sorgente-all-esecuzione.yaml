@@ -6,19 +6,23 @@
   difficulty: 1
   kind: static
   statement:
-    it: Dato questo sorgente, elenca gli indirizzi assegnati a ogni riga e scrivi la **tabella dei simboli**. Le
+    it:
+      Dato questo sorgente, elenca gli indirizzi assegnati a ogni riga e scrivi la **tabella dei simboli**. Le
       parole sono a 32 bit e la memoria è indirizzata al byte.
-    en: Given this source, list the addresses assigned to each line and write the **symbol table**. Words are 32
+    en:
+      Given this source, list the addresses assigned to each line and write the **symbol table**. Words are 32
       bits and memory is byte-addressed.
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Tieni un contatore di posizione che parte dal valore di ORIGIN e cresce di 4 a ogni istruzione. Le
-          etichette non occupano spazio: nominano l’indirizzo della riga su cui stanno."
-        en: "Keep a location counter that starts at the ORIGIN value and grows by 4 at every instruction. Labels take
-          no space: they name the address of the line they are on."
+        it:
+          'Tieni un contatore di posizione che parte dal valore di ORIGIN e cresce di 4 a ogni istruzione. Le
+          etichette non occupano spazio: nominano l’indirizzo della riga su cui stanno.'
+        en:
+          'Keep a location counter that starts at the ORIGIN value and grows by 4 at every instruction. Labels take
+          no space: they name the address of the line they are on.'
     - title:
         it: Svolgimento
         en: Solution
@@ -105,16 +109,19 @@
   difficulty: 1
   kind: static
   statement:
-    it: L’assemblatore segnala «simbolo `FINE` non definito». In quale delle due passate se ne accorge, e perché
+    it:
+      L’assemblatore segnala «simbolo `FINE` non definito». In quale delle due passate se ne accorge, e perché
       non prima?
-    en: The assembler reports “undefined symbol `FINE`”. In which of the two passes does it notice, and why not
+    en:
+      The assembler reports “undefined symbol `FINE`”. In which of the two passes does it notice, and why not
       earlier?
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Chiediti che cosa fa ciascuna passata e quando l’assemblatore è in grado di sapere che un’etichetta
+        it:
+          Chiediti che cosa fa ciascuna passata e quando l’assemblatore è in grado di sapere che un’etichetta
           **non** esiste.
         en: Ask yourself what each pass does and when the assembler is able to know that a label does **not** exist.
     - title:
@@ -156,17 +163,19 @@
   difficulty: 2
   kind: static
   statement:
-    it: "Con `ORIGIN 100`, calcola l’indirizzo di ogni riga: due istruzioni, poi `RESERVE 20`, poi `DATAWORD 7`,
-      poi un’altra istruzione, infine l’etichetta `DOPO`. Parole a 32 bit, memoria al byte."
-    en: "With `ORIGIN 100`, compute the address of each line: two instructions, then `RESERVE 20`, then `DATAWORD
-      7`, then another instruction, finally the label `DOPO`. 32-bit words, byte-addressed memory."
+    it:
+      'Con `ORIGIN 100`, calcola l’indirizzo di ogni riga: due istruzioni, poi `RESERVE 20`, poi `DATAWORD 7`,
+      poi un’altra istruzione, infine l’etichetta `DOPO`. Parole a 32 bit, memoria al byte.'
+    en:
+      'With `ORIGIN 100`, compute the address of each line: two instructions, then `RESERVE 20`, then `DATAWORD
+      7`, then another instruction, finally the label `DOPO`. 32-bit words, byte-addressed memory.'
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "`RESERVE` prende il numero di **byte** indicato, non di parole. Le istruzioni ne occupano 4 ciascuna."
-        en: "`RESERVE` takes the indicated number of **bytes**, not words. Instructions take 4 each."
+        it: '`RESERVE` prende il numero di **byte** indicato, non di parole. Le istruzioni ne occupano 4 ciascuna.'
+        en: '`RESERVE` takes the indicated number of **bytes**, not words. Instructions take 4 each.'
     - title:
         it: Svolgimento
         en: Solution
@@ -234,7 +243,8 @@
   statement:
     it: Una libreria grafica occupa 2 MB. Cinque programmi la usano e sono in esecuzione contemporaneamente.
       Quanta memoria serve con collegamento **statico** e quanta con collegamento **dinamico**?
-    en: A graphics library takes 2 MB. Five programs use it and run at the same time. How much memory is needed
+    en:
+      A graphics library takes 2 MB. Five programs use it and run at the same time. How much memory is needed
       with **static** linking and how much with **dynamic** linking?
   steps:
     - title:
@@ -242,7 +252,8 @@
         en: Where to start
       body:
         it: Con lo statico la libreria entra dentro ogni eseguibile. Con il dinamico esiste una copia sola, condivisa.
-        en: With static linking the library goes inside every executable. With dynamic linking there is a single
+        en:
+          With static linking the library goes inside every executable. With dynamic linking there is a single
           shared copy.
     - title:
         it: Svolgimento
@@ -305,22 +316,24 @@
   difficulty: 2
   kind: static
   statement:
-    it: "Attribuisci ciascun messaggio d’errore allo strumento che lo produce — compilatore, assemblatore,
+    it: 'Attribuisci ciascun messaggio d’errore allo strumento che lo produce — compilatore, assemblatore,
       collegatore, caricatore o esecuzione: «manca il punto e virgola» · «simbolo `stampa` non definito» ·
       «indirizzo non allineato» · «riferimento esterno `sqrt` irrisolto» · «memoria insufficiente per caricare
-      il programma»."
-    en: "Attribute each error message to the tool that produces it — compiler, assembler, linker, loader or
+      il programma».'
+    en: 'Attribute each error message to the tool that produces it — compiler, assembler, linker, loader or
       execution: “missing semicolon” · “undefined symbol `stampa`” · “misaligned address” · “unresolved
-      external reference `sqrt`” · “not enough memory to load the program”."
+      external reference `sqrt`” · “not enough memory to load the program”.'
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Ogni strumento vede solo una cosa: il compilatore la sintassi, l’assemblatore un modulo per volta, il
-          collegatore i rapporti fra moduli, il caricatore la memoria disponibile."
-        en: "Each tool sees only one thing: the compiler the syntax, the assembler one module at a time, the linker
-          the relations between modules, the loader the available memory."
+        it:
+          'Ogni strumento vede solo una cosa: il compilatore la sintassi, l’assemblatore un modulo per volta, il
+          collegatore i rapporti fra moduli, il caricatore la memoria disponibile.'
+        en:
+          'Each tool sees only one thing: the compiler the syntax, the assembler one module at a time, the linker
+          the relations between modules, the loader the available memory.'
     - title:
         it: Svolgimento
         en: Solution
@@ -380,7 +393,8 @@
         it: Risposta
         en: Answer
       body:
-        it: Perché nella prima passata costruisce la tabella dei simboli, e solo allora può risolvere i salti in
+        it:
+          Perché nella prima passata costruisce la tabella dei simboli, e solo allora può risolvere i salti in
           avanti
         en: Because in the first pass it builds the symbol table, and only then can it resolve forward branches
   choices:
@@ -389,7 +403,8 @@
         en: To check the syntax twice
       correct: false
     - text:
-        it: Perché nella prima passata costruisce la tabella dei simboli, e solo allora può risolvere i salti in
+        it:
+          Perché nella prima passata costruisce la tabella dei simboli, e solo allora può risolvere i salti in
           avanti
         en: Because in the first pass it builds the symbol table, and only then can it resolve forward branches
       correct: true

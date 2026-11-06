@@ -10,8 +10,8 @@
     it: "Perché il processore interroga in continuazione il registro di stato in attesa che il dispositivo sia
       pronto (**busy waiting**): in quel tempo non fa nient'altro, e la periferica è ordini di grandezza più
       lenta."
-    en: "Because the processor keeps polling the status register waiting for the device to be ready (**busy
-      waiting**): during that time it does nothing else, and the peripheral is orders of magnitude slower."
+    en: 'Because the processor keeps polling the status register waiting for the device to be ready (**busy
+      waiting**): during that time it does nothing else, and the peripheral is orders of magnitude slower.'
 - id: input-output-verifica-2
   topic: input-output
   objectives:
@@ -21,12 +21,14 @@
     it: Che cosa fa il DMA che l'I/O a interruzione da solo non fa?
     en: What does DMA do that interrupt-driven I/O alone does not?
   back:
-    it: "Trasferisce l'**intero blocco** senza far passare i dati per il processore: una sola interruzione a fine
+    it:
+      "Trasferisce l'**intero blocco** senza far passare i dati per il processore: una sola interruzione a fine
       blocco invece di una per ogni parola. Il processore interviene per impostare il trasferimento e alla
       fine."
-    en: "It transfers the **whole block** without the data passing through the processor: a single interrupt at
+    en:
+      'It transfers the **whole block** without the data passing through the processor: a single interrupt at
       the end of the block instead of one per word. The processor steps in to set up the transfer and at the
-      end."
+      end.'
 - id: input-output-verifica-3
   topic: input-output
   objectives:
@@ -36,11 +38,13 @@
     it: Qual è il vantaggio del memory-mapped I/O, e qual è il prezzo?
     en: What is the advantage of memory-mapped I/O, and what is the price?
   back:
-    it: "Vantaggio: nessuna istruzione speciale — tutte le istruzioni di accesso alla memoria, con tutti i modi di
+    it:
+      'Vantaggio: nessuna istruzione speciale — tutte le istruzioni di accesso alla memoria, con tutti i modi di
       indirizzamento, valgono anche per i dispositivi. Prezzo: una parte dello spazio di indirizzamento non è
-      più disponibile per la memoria."
-    en: "Advantage: no special instructions — all memory-access instructions, with all addressing modes, also work
-      for devices. Price: part of the address space is no longer available for memory."
+      più disponibile per la memoria.'
+    en:
+      'Advantage: no special instructions — all memory-access instructions, with all addressing modes, also work
+      for devices. Price: part of the address space is no longer available for memory.'
 - id: open-io-01
   topic: input-output
   objectives:
@@ -48,8 +52,8 @@
     - input-output.2
   kind: orale
   front:
-    it: "Confronta I/O programmato, guidato da interruzioni e DMA: quando conviene ciascuno?"
-    en: "Compare programmed, interrupt-driven and DMA I/O: when is each one convenient?"
+    it: 'Confronta I/O programmato, guidato da interruzioni e DMA: quando conviene ciascuno?'
+    en: 'Compare programmed, interrupt-driven and DMA I/O: when is each one convenient?'
   back:
     it: "Tutti e tre risolvono lo stesso problema — il **divario di velocità** fra processore e periferiche.
       Nell'**I/O programmato** il processore interroga ciclicamente il bit di stato finché il dispositivo non
@@ -62,7 +66,8 @@
       **una sola** interruzione alla fine: indispensabile per il disco o la rete, dove un'interruzione per
       parola sarebbe insostenibile. Il DMA introduce però il problema della **coerenza**: scrivendo in memoria
       può rendere obsoleta la copia tenuta in cache."
-    en: "All three solve the same problem — the **speed gap** between processor and peripherals. In **programmed
+    en:
+      'All three solve the same problem — the **speed gap** between processor and peripherals. In **programmed
       I/O** the processor repeatedly polls the status bit until the device is ready: very simple to implement,
       but it burns the whole waiting time in an empty loop; acceptable only if the device is fast or there is
       nothing else to do. In **interrupt-driven** I/O the processor does something else and the device calls
@@ -71,7 +76,7 @@
       controller transfers a **whole block** between peripheral and memory by itself, temporarily becoming bus
       master, and sends **a single** interrupt at the end: indispensable for disks or networks, where one
       interrupt per word would be unsustainable. DMA does, however, introduce the **coherence** problem: by
-      writing to memory it can make the copy held in the cache stale."
+      writing to memory it can make the copy held in the cache stale.'
 - id: def-dma
   topic: input-output
   objectives:

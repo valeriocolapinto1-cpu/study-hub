@@ -1,26 +1,39 @@
 # Glossario IT → EN per le traduzioni dei contenuti.
 # Ogni voce: it (termine italiano), en (traduzione da usare), note (facoltativa).
 # Ordine alfabetico per `it`. Un test verifica che non ci siano duplicati.
+- { it: algebra di Boole, en: Boolean algebra }
+- { it: alta impedenza, en: high impedance }
 - { it: ammettenza, en: admittance }
 - { it: amplificatore operazionale, en: operational amplifier, note: 'abbreviato op-amp' }
 - { it: anello, en: loop, note: 'maglia: mesh' }
 - { it: appello, en: exam session }
+- { it: assemblatore, en: assembler }
 - { it: bipolo, en: two-terminal element }
+- { it: bit di segno, en: sign bit }
+- { it: cammino critico, en: critical path }
 - { it: campo elettrico, en: electric field }
 - { it: campo magnetico, en: magnetic field }
 - { it: capacità, en: capacitance, note: 'componente: capacitor (condensatore)' }
 - { it: carica, en: charge }
+- { it: caricatore, en: loader }
 - { it: circuito, en: circuit }
+- { it: codificatore di priorità, en: priority encoder }
+- { it: collegatore, en: linker }
+- { it: complemento a 1, en: ones' complement }
+- { it: complemento a 2, en: two's complement, note: 'abbreviato CP2 in italiano' }
 - { it: componente, en: component }
 - { it: condensatore, en: capacitor }
 - { it: conduttanza, en: conductance }
 - { it: corrente, en: current }
 - { it: corrente di cortocircuito, en: short-circuit current }
 - { it: cortocircuito, en: short circuit }
+- { it: decodificatore, en: decoder }
 - { it: doppio bipolo, en: two-port network }
 - { it: equivalente di Norton, en: Norton equivalent }
 - { it: equivalente di Thévenin, en: Thévenin equivalent }
 - { it: esercizio svolto, en: worked example }
+- { it: esponente polarizzato, en: biased exponent }
+- { it: estensione del segno, en: sign extension }
 - { it: fasore, en: phasor }
 - { it: flusso, en: flux }
 - { it: formulario, en: formula sheet }
@@ -29,17 +42,30 @@
 - { it: generatore di tensione, en: voltage source }
 - { it: generatore pilotato, en: dependent source }
 - { it: impedenza, en: impedance }
+- { it: implicante primo, en: prime implicant }
+- { it: indifferenza, en: don't care }
 - { it: induttanza, en: inductance }
 - { it: induttore, en: inductor }
+- { it: insieme funzionalmente completo, en: functionally complete set }
+- { it: interruzione, en: interrupt }
 - { it: lavoro, en: work }
 - { it: legge di Kirchhoff delle correnti, en: Kirchhoff's current law, note: 'KCL' }
 - { it: legge di Kirchhoff delle tensioni, en: Kirchhoff's voltage law, note: 'KVL' }
 - { it: maglia, en: mesh }
+- { it: mappa di Karnaugh, en: Karnaugh map }
+- { it: mappatura diretta, en: direct mapping }
+- { it: memoria virtuale, en: virtual memory }
 - { it: metodo dei nodi, en: nodal analysis }
 - { it: metodo delle maglie, en: mesh analysis }
+- { it: mintermine, en: minterm }
+- { it: modi di indirizzamento, en: addressing modes }
+- { it: modulo e segno, en: sign-magnitude }
 - { it: nodo, en: node }
 - { it: obiettivo, en: learning objective }
 - { it: orale, en: oral exam }
+- { it: percorso dati, en: datapath }
+- { it: pila, en: stack }
+- { it: polarizzazione, en: bias, note: 'esponente IEEE 754' }
 - { it: potenza attiva, en: active power }
 - { it: potenza reattiva, en: reactive power }
 - { it: potenziale elettrico, en: electric potential }
@@ -48,10 +74,22 @@
 - { it: regime sinusoidale, en: sinusoidal steady state }
 - { it: resistenza, en: resistance, note: 'componente: resistor (resistore)' }
 - { it: resistore, en: resistor }
+- { it: rilocazione, en: relocation }
 - { it: ripasso spaziato, en: spaced repetition }
+- { it: riporto, en: carry }
+- { it: riporto uscente, en: carry-out }
 - { it: risposta in frequenza, en: frequency response }
 - { it: scritto, en: written exam }
+- { it: semisommatore, en: half adder }
+- { it: set-associativa, en: set-associative }
+- { it: sommatore completo, en: full adder }
 - { it: sovrapposizione degli effetti, en: superposition }
+- { it: spiazzamento, en: offset, note: 'campo dell’indirizzo; per l’indirizzamento: displacement' }
+- { it: tabella dei simboli, en: symbol table }
+- { it: tabella delle pagine, en: page table }
+- { it: tabella di verità, en: truth table }
 - { it: tensione, en: voltage }
 - { it: tensione a vuoto, en: open-circuit voltage }
 - { it: transitorio, en: transient }
+- { it: unità di controllo, en: control unit }
+- { it: virgola mobile, en: floating point }

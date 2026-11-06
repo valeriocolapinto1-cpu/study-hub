@@ -12,10 +12,12 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Per il binario, divisioni successive per 2 leggendo i resti dal basso — oppure la somma di potenze. Poi
+        it:
+          Per il binario, divisioni successive per 2 leggendo i resti dal basso — oppure la somma di potenze. Poi
           dal binario si passa a ottale e esadecimale **raggruppando i bit**, rispettivamente a tre a tre e a
           quattro a quattro, sempre partendo da destra.
-        en: For binary, successive divisions by 2 reading the remainders from the bottom — or the sum of powers. Then
+        en:
+          For binary, successive divisions by 2 reading the remainders from the bottom — or the sum of powers. Then
           from binary you get octal and hexadecimal by **grouping the bits**, three by three and four by four
           respectively, always starting from the right.
     - title:
@@ -56,7 +58,7 @@
     - label:
         it: Binario
         en: Binary
-      value: "10101101"
+      value: '10101101'
       kind: text
       accept:
         - 1010 1101
@@ -71,7 +73,7 @@
       value: AD
       kind: text
       accept:
-        - "0xAD"
+        - '0xAD'
         - ADh
         - AD16
   origin: originale
@@ -89,10 +91,12 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Tre passaggi: il modulo in binario, l’inversione di tutti i bit, la somma di 1. Il segno non è un bit a
-          parte da mettere «a mano»."
-        en: "Three steps: the magnitude in binary, inverting every bit, adding 1. The sign is not a separate bit to
-          set “by hand”."
+        it:
+          'Tre passaggi: il modulo in binario, l’inversione di tutti i bit, la somma di 1. Il segno non è un bit a
+          parte da mettere «a mano».'
+        en:
+          'Three steps: the magnitude in binary, inverting every bit, adding 1. The sign is not a separate bit to
+          set “by hand”.'
     - title:
         it: Svolgimento
         en: Solution
@@ -129,7 +133,7 @@
     - label:
         it: CP2 su 8 bit
         en: 8-bit two's complement
-      value: "10101001"
+      value: '10101001'
       kind: text
       accept:
         - 1010 1001
@@ -139,7 +143,7 @@
       value: A9
       kind: text
       accept:
-        - "0xA9"
+        - '0xA9'
         - A9h
         - A916
   origin: originale
@@ -150,18 +154,22 @@
   difficulty: 2
   kind: static
   statement:
-    it: Su 8 bit, in complemento a 2, calcola **100 + 45**. Indica il valore che la macchina legge, il **riporto
+    it:
+      Su 8 bit, in complemento a 2, calcola **100 + 45**. Indica il valore che la macchina legge, il **riporto
       uscente** e il flag di **overflow**.
-    en: On 8 bits, in two's complement, compute **100 + 45**. State the value the machine reads, the **carry-out**
+    en:
+      On 8 bits, in two's complement, compute **100 + 45**. State the value the machine reads, the **carry-out**
       and the **overflow** flag.
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Somma i due numeri come se fossero senza segno, poi guarda separatamente il riporto che *entra* nel bit di
+        it:
+          Somma i due numeri come se fossero senza segno, poi guarda separatamente il riporto che *entra* nel bit di
           segno e quello che *esce*.
-        en: Add the two numbers as if they were unsigned, then look separately at the carry *entering* the sign bit
+        en:
+          Add the two numbers as if they were unsigned, then look separately at the carry *entering* the sign bit
           and the one *leaving* it.
     - title:
         it: Svolgimento
@@ -263,10 +271,12 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Prima leggi il valore: bit più significativo a 1 significa negativo. Poi ricorda che estendere non vuol
-          dire riempire di zeri."
-        en: "First read the value: most significant bit set means negative. Then remember that extending does not mean
-          padding with zeros."
+        it:
+          'Prima leggi il valore: bit più significativo a 1 significa negativo. Poi ricorda che estendere non vuol
+          dire riempire di zeri.'
+        en:
+          'First read the value: most significant bit set means negative. Then remember that extending does not mean
+          padding with zeros.'
     - title:
         it: Svolgimento
         en: Solution
@@ -314,14 +324,14 @@
     - label:
         it: Su 8 bit
         en: On 8 bits
-      value: "11111011"
+      value: '11111011'
       kind: text
       accept:
         - 1111 1011
     - label:
         it: Su 16 bit
         en: On 16 bits
-      value: "1111111111111011"
+      value: '1111111111111011'
       kind: text
       accept:
         - 1111 1111 1111 1011
@@ -333,18 +343,22 @@
   difficulty: 2
   kind: static
   statement:
-    it: Un abaco ha quattro aste, e su ogni asta si possono alzare da 0 a 4 palline. In che **base** conta? Scrivi
+    it:
+      Un abaco ha quattro aste, e su ogni asta si possono alzare da 0 a 4 palline. In che **base** conta? Scrivi
       **89₁₀** su quell’abaco e di’ qual è il numero più grande rappresentabile.
-    en: An abacus has four rods, and on each rod you can raise from 0 to 4 beads. In what **base** does it count?
+    en:
+      An abacus has four rods, and on each rod you can raise from 0 to 4 beads. In what **base** does it count?
       Write **89₁₀** on that abacus and state the largest representable number.
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Il numero di simboli disponibili per ogni posizione **è** la base. Poi si procede come per il binario,
+        it:
+          Il numero di simboli disponibili per ogni posizione **è** la base. Poi si procede come per il binario,
           dividendo per la base invece che per 2.
-        en: The number of symbols available for each position **is** the base. Then proceed as for binary, dividing by
+        en:
+          The number of symbols available for each position **is** the base. Then proceed as for binary, dividing by
           the base instead of by 2.
     - title:
         it: Svolgimento
@@ -453,8 +467,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "La base del sistema numerico Maya è:"
-    en: "The base of the Maya number system is:"
+    it: 'La base del sistema numerico Maya è:'
+    en: 'The base of the Maya number system is:'
   steps:
     - title:
         it: Risposta
@@ -487,8 +501,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Uno shift a sinistra di un intero equivale a:"
-    en: "A left shift of an integer is equivalent to:"
+    it: 'Uno shift a sinistra di un intero equivale a:'
+    en: 'A left shift of an integer is equivalent to:'
   steps:
     - title:
         it: Risposta
@@ -555,8 +569,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Eliminare il bit meno significativo di un intero senza segno equivale a:"
-    en: "Dropping the least significant bit of an unsigned integer is equivalent to:"
+    it: 'Eliminare il bit meno significativo di un intero senza segno equivale a:'
+    en: 'Dropping the least significant bit of an unsigned integer is equivalent to:'
   steps:
     - title:
         it: Risposta
@@ -589,8 +603,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "In una rappresentazione Big Endian, il bit di segno si trova:"
-    en: "In a Big Endian representation, the sign bit is found:"
+    it: 'In una rappresentazione Big Endian, il bit di segno si trova:'
+    en: 'In a Big Endian representation, the sign bit is found:'
   steps:
     - title:
         it: Risposta
@@ -630,24 +644,24 @@
         it: Risposta
         en: Answer
       body:
-        it: "2"
-        en: "2"
+        it: '2'
+        en: '2'
   choices:
     - text:
-        it: "1"
-        en: "1"
+        it: '1'
+        en: '1'
       correct: false
     - text:
-        it: "2"
-        en: "2"
+        it: '2'
+        en: '2'
       correct: true
     - text:
-        it: "3"
-        en: "3"
+        it: '3'
+        en: '3'
       correct: false
     - text:
-        it: "4"
-        en: "4"
+        it: '4'
+        en: '4'
       correct: false
   origin: originale
 - id: mcq-bin-07
@@ -759,7 +773,7 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Per estendere `1011` (CP2 su 4 bit) a 8 bit si deve:"
+    it: 'Per estendere `1011` (CP2 su 4 bit) a 8 bit si deve:'
     en: "To extend `1011` (4-bit two's complement) to 8 bits you must:"
   steps:
     - title:
@@ -793,7 +807,7 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Per dividere per 2 un numero negativo in CP2 serve uno shift a destra:"
+    it: 'Per dividere per 2 un numero negativo in CP2 serve uno shift a destra:'
     en: "To divide a negative two's complement number by 2 you need a right shift that is:"
   steps:
     - title:
@@ -846,11 +860,11 @@
         en: −2ᴺ⁻¹
       correct: true
     - text:
-        it: "+1"
-        en: "+1"
+        it: '+1'
+        en: '+1'
       correct: false
     - text:
-        it: "Nessuno: indica solo il segno"
-        en: "None: it only indicates the sign"
+        it: 'Nessuno: indica solo il segno'
+        en: 'None: it only indicates the sign'
       correct: false
   origin: originale

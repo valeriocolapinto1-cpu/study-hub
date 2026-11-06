@@ -7,24 +7,26 @@
     it: Un processore a 3 GHz è più veloce di uno a 2,5 GHz?
     en: Is a 3 GHz processor faster than a 2.5 GHz one?
   back:
-    it: "Non si può dire. Il tempo è **(N × S) / R**: la frequenza è solo uno dei tre fattori. Se il secondo
+    it: 'Non si può dire. Il tempo è **(N × S) / R**: la frequenza è solo uno dei tre fattori. Se il secondo
       esegue meno istruzioni o ha un numero di cicli per istruzione più basso — cache migliore, pipeline più
-      efficace — può risultare più veloce sullo stesso programma."
-    en: "You cannot say. The time is **(N × S) / R**: frequency is only one of the three factors. If the second
+      efficace — può risultare più veloce sullo stesso programma.'
+    en:
+      'You cannot say. The time is **(N × S) / R**: frequency is only one of the three factors. If the second
       executes fewer instructions or has fewer cycles per instruction — better cache, more effective pipeline
-      — it can turn out faster on the same program."
+      — it can turn out faster on the same program.'
 - id: prestazioni-e-parallelismo-verifica-2
   topic: prestazioni-e-parallelismo
   objectives:
     - prestazioni-e-parallelismo.3
   kind: concetto
   front:
-    it: Il 30 % del tempo di un programma è speso in una parte che rendi 10 volte più veloce. Quanto guadagni in
+    it:
+      Il 30 % del tempo di un programma è speso in una parte che rendi 10 volte più veloce. Quanto guadagni in
       tutto?
     en: 30 % of a program’s time is spent in a part you make 10 times faster. How much do you gain overall?
   back:
-    it: "speedup = 1 / (0,7 + 0,3/10) = 1 / 0,73 ≈ **1,37×**, cioè circa il 27 % di tempo in meno. Il 70 % non
-      toccato domina il risultato: è esattamente il punto della legge di Amdahl."
+    it: 'speedup = 1 / (0,7 + 0,3/10) = 1 / 0,73 ≈ **1,37×**, cioè circa il 27 % di tempo in meno. Il 70 % non
+      toccato domina il risultato: è esattamente il punto della legge di Amdahl.'
     en: "speedup = 1 / (0.7 + 0.3/10) = 1 / 0.73 ≈ **1.37×**, i.e. about 27 % less time. The untouched 70 %
       dominates the result: it is exactly the point of Amdahl's law."
 - id: prestazioni-e-parallelismo-verifica-3
@@ -36,12 +38,13 @@
     it: Perché le suite di benchmark riassumono i risultati con la media geometrica?
     en: Why do benchmark suites summarise results with the geometric mean?
   back:
-    it: "Perché i punteggi sono **rapporti** rispetto a una macchina di riferimento: la media geometrica di
+    it: 'Perché i punteggi sono **rapporti** rispetto a una macchina di riferimento: la media geometrica di
       rapporti dà lo stesso ordinamento qualunque sia il riferimento scelto, mentre la media aritmetica cambia
-      risultato al cambiare della macchina di base."
-    en: "Because the scores are **ratios** with respect to a reference machine: the geometric mean of ratios gives
+      risultato al cambiare della macchina di base.'
+    en:
+      'Because the scores are **ratios** with respect to a reference machine: the geometric mean of ratios gives
       the same ranking whatever reference is chosen, while the arithmetic mean changes its result when the
-      base machine changes."
+      base machine changes.'
 - id: open-perf-01
   topic: prestazioni-e-parallelismo
   objectives:
@@ -52,7 +55,8 @@
     it: Un processore a frequenza più alta è necessariamente più veloce? Motiva con l’equazione delle prestazioni.
     en: Is a processor with a higher frequency necessarily faster? Justify with the performance equation.
   back:
-    it: "No. Il tempo di esecuzione è **T = (N × S) / R**, dove N è il numero di istruzioni eseguite, S il numero
+    it:
+      'No. Il tempo di esecuzione è **T = (N × S) / R**, dove N è il numero di istruzioni eseguite, S il numero
       medio di cicli per istruzione e R la frequenza: la frequenza è **uno solo** dei tre fattori. Una
       macchina a frequenza più bassa può risultare più veloce se esegue meno istruzioni (repertorio più
       espressivo o compilatore migliore) o se ha un S più basso grazie a cache più efficaci e a una pipeline
@@ -60,8 +64,8 @@
       tende ad alzare S, e alzare R accorcia il periodo obbligando a pipeline più profonde, quindi a penalità
       maggiori sui salti. Per questo il confronto ha senso solo **a parità di programma** e si fa con i
       **benchmark** (per esempio le suite SPEC, riassunte con la media geometrica dei rapporti) e non con la
-      frequenza o con i MIPS, che dipendono dal repertorio."
-    en: "No. The execution time is **T = (N × S) / R**, where N is the number of instructions executed, S the
+      frequenza o con i MIPS, che dipendono dal repertorio.'
+    en: 'No. The execution time is **T = (N × S) / R**, where N is the number of instructions executed, S the
       average number of cycles per instruction and R the frequency: frequency is **only one** of the three
       factors. A lower-frequency machine can turn out faster if it executes fewer instructions (more
       expressive instruction set or better compiler) or has a lower S thanks to more effective caches and a
@@ -69,7 +73,7 @@
       complex instructions tends to raise S, and raising R shortens the period, forcing deeper pipelines and
       thus larger branch penalties. That is why the comparison makes sense only **on the same program** and is
       done with **benchmarks** (for example the SPEC suites, summarised with the geometric mean of the ratios)
-      and not with frequency or MIPS, which depend on the instruction set."
+      and not with frequency or MIPS, which depend on the instruction set.'
 - id: open-perf-02
   topic: prestazioni-e-parallelismo
   objectives:
@@ -80,7 +84,8 @@
     it: Enuncia la legge di Amdahl e spiega perché mette un tetto al guadagno.
     en: State Amdahl's law and explain why it caps the gain.
   back:
-    it: "Se una frazione *f* del tempo di esecuzione viene resa *k* volte più veloce, il guadagno complessivo è
+    it:
+      "Se una frazione *f* del tempo di esecuzione viene resa *k* volte più veloce, il guadagno complessivo è
       **1 / ((1 − f) + f/k)**. Il termine `(1 − f)` è la parte **non** migliorata e resta invariato qualunque
       cosa si faccia: anche portando *k* all'infinito il guadagno non supera **1/(1 − f)**. Se per esempio il
       40 % del tempo è speso in codice non parallelizzabile, il tetto è 2,5× per quanti core si aggiungano. Le
@@ -88,13 +93,14 @@
       prima** di ottimizzare), e nel calcolo parallelo l'aumento del numero di processori dà rendimenti
       decrescenti, tanto più rapidamente quanto più grande è la parte sequenziale e il costo di
       sincronizzazione."
-    en: "If a fraction *f* of the execution time is made *k* times faster, the overall gain is **1 / ((1 − f) +
+    en:
+      'If a fraction *f* of the execution time is made *k* times faster, the overall gain is **1 / ((1 − f) +
       f/k)**. The term `(1 − f)` is the part **not** improved and stays unchanged whatever you do: even taking
       *k* to infinity the gain does not exceed **1/(1 − f)**. If for example 40 % of the time is spent in code
       that cannot be parallelised, the ceiling is 2.5× however many cores are added. There are two practical
       consequences: it only pays to optimise what really weighs (and therefore to **measure first**), and in
       parallel computing increasing the number of processors gives diminishing returns, all the faster the
-      larger the sequential part and the cost of synchronisation."
+      larger the sequential part and the cost of synchronisation.'
 - id: def-equazione-prestazioni
   topic: prestazioni-e-parallelismo
   objectives:

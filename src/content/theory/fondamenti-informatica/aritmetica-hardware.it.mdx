@@ -28,7 +28,7 @@ import Schema from '../../../courses/fondamenti-informatica/components/Schema.as
 
 **Cosa serve sapere prima:** il complemento a 2 dal modulo sui [numeri binari](../numeri-binari/), e le porte logiche di base dal modulo su [algebra di Boole](../algebra-di-boole/).
 
-**Che problema risolve.** Sappiamo *rappresentare* i numeri, ma un calcolatore deve anche *calcolare*. Qui si costruisce il circuito che somma davvero — a partire da porte AND, OR e XOR — e si scopre che sommare è facile, mentre **sommare in fretta** è il vero problema di progetto: il riporto deve attraversare tutti i bit, e questo mette un limite alla frequenza dell’intero processore.
+**Che problema risolve.** Sappiamo _rappresentare_ i numeri, ma un calcolatore deve anche _calcolare_. Qui si costruisce il circuito che somma davvero — a partire da porte AND, OR e XOR — e si scopre che sommare è facile, mentre **sommare in fretta** è il vero problema di progetto: il riporto deve attraversare tutti i bit, e questo mette un limite alla frequenza dell’intero processore.
 
 **Le parole nuove.** Il **riporto** (carry) è il «me ne porto uno» della somma in colonna. Un **semisommatore** somma due bit; un **sommatore completo** ne somma due più il riporto entrante, ed è il mattone da cui si costruisce tutto. **Ripple-carry** vuol dire «a propagazione di riporto»: i sommatori in fila, ognuno che aspetta il precedente. **Carry-lookahead** significa «riporto anticipato»: calcolarlo in parallelo invece di aspettarlo.
 
@@ -94,8 +94,8 @@ Il difetto è nel nome: il riporto **si propaga a ondate**. Lo stadio più signi
 
 L'idea è non aspettare il riporto ma **prevederlo**. Per ogni posizione si definiscono due funzioni che dipendono solo dagli operandi, quindi disponibili subito:
 
-- **Generate** `Gi = ai · bi` — questa posizione *genera* un riporto per conto suo, qualunque cosa arrivi da destra.
-- **Propagate** `Pi = ai ⊕ bi` — questa posizione *propaga* il riporto che riceve.
+- **Generate** `Gi = ai · bi` — questa posizione _genera_ un riporto per conto suo, qualunque cosa arrivi da destra.
+- **Propagate** `Pi = ai ⊕ bi` — questa posizione _propaga_ il riporto che riceve.
 
 Da cui `ci+1 = Gi + Pi·ci`. Espandendo la ricorsione si esprime **ogni** riporto direttamente in funzione di `c0`:
 
@@ -140,7 +140,7 @@ Il metodo è quello che si usa a mano: per ogni bit del moltiplicatore, se vale 
  1 0 0 0 1 1 1 1   (143)
 ```
 
-In hardware si realizza con una matrice di sommatori (*array multiplier*), oppure in modo sequenziale con un accumulatore e un registro a scorrimento — che è esattamente ciò che fa il programma assembly «moltiplicazione tramite somme ripetute». Il prodotto di due numeri a n bit occupa **2n bit**.
+In hardware si realizza con una matrice di sommatori (_array multiplier_), oppure in modo sequenziale con un accumulatore e un registro a scorrimento — che è esattamente ciò che fa il programma assembly «moltiplicazione tramite somme ripetute». Il prodotto di due numeri a n bit occupa **2n bit**.
 
 Con i numeri con segno la somma-e-sposta ingenua sbaglia: serve l'estensione del segno sui prodotti parziali, oppure l'algoritmo di **Booth**, che ricodifica il moltiplicatore guardando coppie di bit adiacenti e sostituisce lunghe sequenze di 1 con una sottrazione più una somma.
 

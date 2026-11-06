@@ -7,14 +7,14 @@ subtitle:
   it: Architettura degli elaboratori
   en: Computer architecture
 description:
-  it: "Dai bit al processore: numeri binari e complemento a 2, algebra di Boole e mappe di Karnaugh, reti
+  it: 'Dai bit al processore: numeri binari e complemento a 2, algebra di Boole e mappe di Karnaugh, reti
     combinatorie e sequenziali, percorso dati e unità di controllo, assembly, interruzioni e I/O, pipeline,
     cache, memoria virtuale, prestazioni e IEEE 754. Diciassette moduli scritti per partire da zero, esercizi
-    svolti passo per passo, schemi da completare e prove generate che si correggono da sole."
-  en: "From bits to the processor: binary numbers and two’s complement, Boolean algebra and Karnaugh maps,
+    svolti passo per passo, schemi da completare e prove generate che si correggono da sole.'
+  en: 'From bits to the processor: binary numbers and two’s complement, Boolean algebra and Karnaugh maps,
     combinational and sequential networks, datapath and control unit, assembly, interrupts and I/O,
     pipelining, caches, virtual memory, performance and IEEE 754. Seventeen modules written to start from
-    scratch, step-by-step worked exercises, diagrams to complete and generated self-grading mock exams."
+    scratch, step-by-step worked exercises, diagrams to complete and generated self-grading mock exams.'
 accent: verde-abete
 exam:
   format: scritto
@@ -41,28 +41,28 @@ exam:
       points: 2.5
       kind: crocetta
     - label:
-        it: "Esercizio: schema da completare"
-        en: "Exercise: diagram to complete"
+        it: 'Esercizio: schema da completare'
+        en: 'Exercise: diagram to complete'
       points: 2.5
       kind: esercizio
     - label:
-        it: "Esercizio: schema da completare"
-        en: "Exercise: diagram to complete"
+        it: 'Esercizio: schema da completare'
+        en: 'Exercise: diagram to complete'
       points: 2.5
       kind: esercizio
     - label:
-        it: "Esercizio: dalla tabella di verità all’espressione"
-        en: "Exercise: from truth table to expression"
+        it: 'Esercizio: dalla tabella di verità all’espressione'
+        en: 'Exercise: from truth table to expression'
       points: 2.5
       kind: esercizio
     - label:
-        it: "Esercizio: dalla tabella di verità all’espressione"
-        en: "Exercise: from truth table to expression"
+        it: 'Esercizio: dalla tabella di verità all’espressione'
+        en: 'Exercise: from truth table to expression'
       points: 2.5
       kind: esercizio
     - label:
-        it: "Esercizio: sintesi con Karnaugh"
-        en: "Exercise: Karnaugh synthesis"
+        it: 'Esercizio: sintesi con Karnaugh'
+        en: 'Exercise: Karnaugh synthesis'
       points: 2.5
       kind: esercizio
     - label:
@@ -76,8 +76,8 @@ exam:
       points: 2.5
       kind: domanda-aperta
     - label:
-        it: "Esercizio: assembly"
-        en: "Exercise: assembly"
+        it: 'Esercizio: assembly'
+        en: 'Exercise: assembly'
       points: 2.5
       kind: esercizio
 extras:

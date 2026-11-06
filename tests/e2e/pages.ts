@@ -24,4 +24,9 @@ export const SAMPLE_PAGES: SamplePage[] = [
   { name: 'contribuisci-en', path: `${BASE}en/contribuisci/` },
   { name: 'ringraziamenti-en', path: `${BASE}en/ringraziamenti/` },
   { name: 'offline-it', path: `${BASE}it/offline/` },
+  { name: 'fi-panoramica-it', path: `${BASE}it/anno-1/fondamenti-informatica/` },
+  { name: 'fi-teoria-en', path: `${BASE}en/anno-1/fondamenti-informatica/teoria/gerarchia-di-memoria/` },
+  { name: 'fi-esercizi-it', path: `${BASE}it/anno-1/fondamenti-informatica/esercizi/mappe-di-karnaugh/` },
+  { name: 'fi-formulario-it', path: `${BASE}it/anno-1/fondamenti-informatica/formulario/` },
+  { name: 'fi-convertitori-en', path: `${BASE}en/anno-1/fondamenti-informatica/extra/convertitori/` },
 ];

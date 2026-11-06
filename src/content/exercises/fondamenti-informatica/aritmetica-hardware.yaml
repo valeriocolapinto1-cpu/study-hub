@@ -12,10 +12,12 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Due ingressi, quattro righe. Guarda quali righe danno S = 1 e quali danno C = 1: sono due funzioni che
-          conosci già."
-        en: "Two inputs, four rows. Look at which rows give S = 1 and which give C = 1: they are two functions you
-          already know."
+        it:
+          'Due ingressi, quattro righe. Guarda quali righe danno S = 1 e quali danno C = 1: sono due funzioni che
+          conosci già.'
+        en:
+          'Two inputs, four rows. Look at which rows give S = 1 and which give C = 1: they are two functions you
+          already know.'
     - title:
         it: Svolgimento
         en: Solution
@@ -86,19 +88,22 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Esegui `1011 + 0110` su 4 bit mostrando i riporti. Poi interpreta il risultato **come numeri senza
-      segno** e **come numeri in complemento a 2**: in quale dei due casi c’è un errore?"
-    en: "Perform `1011 + 0110` on 4 bits showing the carries. Then interpret the result **as unsigned numbers**
+    it: 'Esegui `1011 + 0110` su 4 bit mostrando i riporti. Poi interpreta il risultato **come numeri senza
+      segno** e **come numeri in complemento a 2**: in quale dei due casi c’è un errore?'
+    en:
+      "Perform `1011 + 0110` on 4 bits showing the carries. Then interpret the result **as unsigned numbers**
       and **as two's complement numbers**: in which of the two cases is there an error?"
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "I bit sono gli stessi: cambia solo come li leggi. Il riporto uscente e l’overflow segnalano problemi
-          **diversi**, uno per ciascuna interpretazione."
-        en: "The bits are the same: only how you read them changes. The carry-out and overflow signal **different**
-          problems, one for each interpretation."
+        it:
+          'I bit sono gli stessi: cambia solo come li leggi. Il riporto uscente e l’overflow segnalano problemi
+          **diversi**, uno per ciascuna interpretazione.'
+        en:
+          'The bits are the same: only how you read them changes. The carry-out and overflow signal **different**
+          problems, one for each interpretation.'
     - title:
         it: Svolgimento
         en: Solution
@@ -152,7 +157,7 @@
     - label:
         it: Somma su 4 bit
         en: 4-bit sum
-      value: "0001"
+      value: '0001'
       kind: text
     - label:
         it: Riporto uscente? (sì/no)
@@ -179,19 +184,22 @@
   difficulty: 2
   kind: static
   statement:
-    it: Con un sommatore/sottrattore a 5 bit, calcola `7 − 12` in complemento a 2. Mostra i valori in ingresso al
+    it:
+      Con un sommatore/sottrattore a 5 bit, calcola `7 − 12` in complemento a 2. Mostra i valori in ingresso al
       sommatore e i due flag.
-    en: With a 5-bit adder/subtractor, compute `7 − 12` in two's complement. Show the values entering the adder
+    en:
+      With a 5-bit adder/subtractor, compute `7 − 12` in two's complement. Show the values entering the adder
       and the two flags.
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "La sottrazione non esiste come circuito a parte: si invertono i bit del sottraendo e si forza a 1 il
-          riporto entrante."
-        en: "Subtraction does not exist as a separate circuit: invert the bits of the subtrahend and force the
-          incoming carry to 1."
+        it:
+          'La sottrazione non esiste come circuito a parte: si invertono i bit del sottraendo e si forza a 1 il
+          riporto entrante.'
+        en: 'Subtraction does not exist as a separate circuit: invert the bits of the subtrahend and force the
+          incoming carry to 1.'
     - title:
         it: Svolgimento
         en: Solution
@@ -268,7 +276,7 @@
     - label:
         it: Risultato su 5 bit
         en: 5-bit result
-      value: "11011"
+      value: '11011'
       kind: text
       accept:
         - 1 1011
@@ -292,19 +300,23 @@
   difficulty: 2
   kind: static
   statement:
-    it: Per `A = 1101` e `B = 0111` con riporto entrante 0, calcola i segnali **generate** e **propagate** di ogni
+    it:
+      Per `A = 1101` e `B = 0111` con riporto entrante 0, calcola i segnali **generate** e **propagate** di ogni
       bit e i riporti c₁…c₄ con le formule del carry-lookahead. Ricava poi la somma.
-    en: For `A = 1101` and `B = 0111` with incoming carry 0, compute the **generate** and **propagate** signals of
+    en:
+      For `A = 1101` and `B = 0111` with incoming carry 0, compute the **generate** and **propagate** signals of
       each bit and the carries c₁…c₄ with the carry-lookahead formulas. Then derive the sum.
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Per ogni posizione: gᵢ = aᵢ·bᵢ, pᵢ = aᵢ ⊕ bᵢ. Poi cᵢ₊₁ = gᵢ + pᵢ·cᵢ, applicata a catena ma calcolabile in
-          parallelo."
-        en: "For each position: gᵢ = aᵢ·bᵢ, pᵢ = aᵢ ⊕ bᵢ. Then cᵢ₊₁ = gᵢ + pᵢ·cᵢ, applied in a chain but computable in
-          parallel."
+        it:
+          'Per ogni posizione: gᵢ = aᵢ·bᵢ, pᵢ = aᵢ ⊕ bᵢ. Poi cᵢ₊₁ = gᵢ + pᵢ·cᵢ, applicata a catena ma calcolabile in
+          parallelo.'
+        en:
+          'For each position: gᵢ = aᵢ·bᵢ, pᵢ = aᵢ ⊕ bᵢ. Then cᵢ₊₁ = gᵢ + pᵢ·cᵢ, applied in a chain but computable in
+          parallel.'
     - title:
         it: Svolgimento
         en: Solution
@@ -413,7 +425,7 @@
     - label:
         it: Somma S
         en: Sum S
-      value: "0100"
+      value: '0100'
       kind: text
     - label:
         it: Riporto c₄
@@ -436,10 +448,12 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Un prodotto parziale per ogni bit del moltiplicatore: vale il moltiplicando se il bit è 1, zero se è 0, e
-          va spostato a sinistra di tante posizioni quant’è il peso del bit."
-        en: "One partial product for each bit of the multiplier: it is the multiplicand if the bit is 1, zero if it is
-          0, and it must be shifted left by as many positions as the weight of the bit."
+        it:
+          'Un prodotto parziale per ogni bit del moltiplicatore: vale il moltiplicando se il bit è 1, zero se è 0, e
+          va spostato a sinistra di tante posizioni quant’è il peso del bit.'
+        en:
+          'One partial product for each bit of the multiplier: it is the multiplicand if the bit is 1, zero if it is
+          0, and it must be shifted left by as many positions as the weight of the bit.'
     - title:
         it: Svolgimento
         en: Solution
@@ -498,7 +512,7 @@
     - label:
         it: Prodotto su 8 bit
         en: 8-bit product
-      value: "01000001"
+      value: '01000001'
       kind: text
       accept:
         - 0100 0001
@@ -570,16 +584,16 @@
         en: 3 (two addends and the incoming carry)
   choices:
     - text:
-        it: "2"
-        en: "2"
+        it: '2'
+        en: '2'
       correct: false
     - text:
         it: 3 (due addendi e il riporto entrante)
         en: 3 (two addends and the incoming carry)
       correct: true
     - text:
-        it: "4"
-        en: "4"
+        it: '4'
+        en: '4'
       correct: false
     - text:
         it: Dipende dal numero di bit
@@ -629,8 +643,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Nel carry-lookahead, la funzione di **generazione** vale:"
-    en: "In carry-lookahead, the **generate** function is:"
+    it: 'Nel carry-lookahead, la funzione di **generazione** vale:'
+    en: 'In carry-lookahead, the **generate** function is:'
   steps:
     - title:
         it: Risposta
@@ -664,8 +678,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Il prodotto di due numeri da n bit occupa al massimo:"
-    en: "The product of two n-bit numbers takes at most:"
+    it: 'Il prodotto di due numeri da n bit occupa al massimo:'
+    en: 'The product of two n-bit numbers takes at most:'
   steps:
     - title:
         it: Risposta
@@ -722,8 +736,8 @@
         en: By swapping A and B when subtracting
       correct: false
     - text:
-        it: "Non è possibile: servono due circuiti"
-        en: "It is not possible: two circuits are needed"
+        it: 'Non è possibile: servono due circuiti'
+        en: 'It is not possible: two circuits are needed'
       correct: false
   origin: originale
 - id: schema-sommatore-ripple

@@ -5,19 +5,23 @@
   difficulty: 1
   kind: static
   statement:
-    it: Tre porte hanno ritardo 3 ns, 2 ns e 4 ns. Qual è il ritardo totale se sono **in cascata**? E se le prime
+    it:
+      Tre porte hanno ritardo 3 ns, 2 ns e 4 ns. Qual è il ritardo totale se sono **in cascata**? E se le prime
       due lavorano **in parallelo** e la terza riceve entrambe le uscite?
-    en: Three gates have delays of 3 ns, 2 ns and 4 ns. What is the total delay if they are **in cascade**? And if
+    en:
+      Three gates have delays of 3 ns, 2 ns and 4 ns. What is the total delay if they are **in cascade**? And if
       the first two work **in parallel** and the third receives both outputs?
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "In cascata i ritardi si sommano perché il segnale le attraversa una dopo l’altra. In parallelo no: il
-          risultato è pronto quando è pronto il **più lento** dei due rami."
-        en: "In cascade the delays add up because the signal crosses them one after the other. In parallel they do
-          not: the result is ready when the **slower** of the two branches is."
+        it:
+          'In cascata i ritardi si sommano perché il segnale le attraversa una dopo l’altra. In parallelo no: il
+          risultato è pronto quando è pronto il **più lento** dei due rami.'
+        en:
+          'In cascade the delays add up because the signal crosses them one after the other. In parallel they do
+          not: the result is ready when the **slower** of the two branches is.'
     - title:
         it: Svolgimento
         en: Solution
@@ -73,17 +77,19 @@
   statement:
     it: Una porta ha ritardo 1,5 ns quando pilota un solo ingresso, e ogni carico aggiuntivo aggiunge 0,2 ns.
       Quanto ritarda se pilota **otto** ingressi?
-    en: A gate has a delay of 1.5 ns when it drives a single input, and each additional load adds 0.2 ns. What is
+    en:
+      A gate has a delay of 1.5 ns when it drives a single input, and each additional load adds 0.2 ns. What is
       its delay when it drives **eight** inputs?
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Il carico è capacitivo: ogni ingresso collegato è una capacità in più da caricare, e caricare più
-          capacità richiede più tempo."
-        en: "The load is capacitive: every connected input is one more capacitance to charge, and charging more
-          capacitance takes more time."
+        it: 'Il carico è capacitivo: ogni ingresso collegato è una capacità in più da caricare, e caricare più
+          capacità richiede più tempo.'
+        en:
+          'The load is capacitive: every connected input is one more capacitance to charge, and charging more
+          capacitance takes more time.'
     - title:
         it: Svolgimento
         en: Solution
@@ -133,7 +139,8 @@
   difficulty: 2
   kind: static
   statement:
-    it: Un sommatore a 16 bit va inserito fra due registri. Con il **ripple-carry** ogni stadio costa 2 ns; con il
+    it:
+      Un sommatore a 16 bit va inserito fra due registri. Con il **ripple-carry** ogni stadio costa 2 ns; con il
       **carry-lookahead** l’intera somma costa 6 ns. Il resto dello stadio (propagazione del flip-flop più
       setup) costa 3 ns. Calcola la frequenza massima nei due casi.
     en: A 16-bit adder must be placed between two registers. With **ripple-carry** each stage costs 2 ns; with
@@ -225,17 +232,20 @@
   statement:
     it: Un circuito CMOS consuma 4 W a 1 GHz con alimentazione 1,0 V. Quanto consumerà a **2 GHz** a parità di
       tensione? E a 2 GHz con la tensione alzata a **1,2 V**?
-    en: A CMOS circuit consumes 4 W at 1 GHz with a 1.0 V supply. How much will it consume at **2 GHz** with the
+    en:
+      A CMOS circuit consumes 4 W at 1 GHz with a 1.0 V supply. How much will it consume at **2 GHz** with the
       same voltage? And at 2 GHz with the voltage raised to **1.2 V**?
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Il consumo dinamico è proporzionale a f·C·V². La capacità non cambia: cambiano frequenza e tensione, e la
-          tensione pesa al quadrato."
-        en: "Dynamic power is proportional to f·C·V². The capacitance does not change: frequency and voltage change,
-          and voltage counts squared."
+        it:
+          'Il consumo dinamico è proporzionale a f·C·V². La capacità non cambia: cambiano frequenza e tensione, e la
+          tensione pesa al quadrato.'
+        en:
+          'Dynamic power is proportional to f·C·V². The capacitance does not change: frequency and voltage change,
+          and voltage counts squared.'
     - title:
         it: Svolgimento
         en: Solution
@@ -305,7 +315,8 @@
   difficulty: 2
   kind: static
   statement:
-    it: Devi realizzare quattro funzioni logiche di otto variabili in un **prototipo** che verrà modificato più
+    it:
+      Devi realizzare quattro funzioni logiche di otto variabili in un **prototipo** che verrà modificato più
       volte prima di essere definitivo. Scegli fra PLA, CPLD e FPGA, motivando.
     en: You must implement four logic functions of eight variables in a **prototype** that will be modified
       several times before being final. Choose between PLA, CPLD and FPGA, giving reasons.
@@ -368,8 +379,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Il **ritardo di propagazione** di una porta si misura:"
-    en: "The **propagation delay** of a gate is measured:"
+    it: 'Il **ritardo di propagazione** di una porta si misura:'
+    en: 'The **propagation delay** of a gate is measured:'
   steps:
     - title:
         it: Risposta
@@ -403,8 +414,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "In una rete combinatoria con più porte **in cascata**, il ritardo complessivo:"
-    en: "In a combinational network with several gates **in cascade**, the overall delay:"
+    it: 'In una rete combinatoria con più porte **in cascata**, il ritardo complessivo:'
+    en: 'In a combinational network with several gates **in cascade**, the overall delay:'
   steps:
     - title:
         it: Risposta
@@ -473,8 +484,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Il **fan-out** di una porta indica:"
-    en: "The **fan-out** of a gate indicates:"
+    it: 'Il **fan-out** di una porta indica:'
+    en: 'The **fan-out** of a gate indicates:'
   steps:
     - title:
         it: Risposta
@@ -508,8 +519,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "In un circuito CMOS la corrente scorre in modo significativo:"
-    en: "In a CMOS circuit, significant current flows:"
+    it: 'In un circuito CMOS la corrente scorre in modo significativo:'
+    en: 'In a CMOS circuit, significant current flows:'
   steps:
     - title:
         it: Risposta
@@ -543,8 +554,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Una **PLA** è organizzata come:"
-    en: "A **PLA** is organised as:"
+    it: 'Una **PLA** è organizzata come:'
+    en: 'A **PLA** is organised as:'
   steps:
     - title:
         it: Risposta

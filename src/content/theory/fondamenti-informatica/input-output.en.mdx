@@ -31,7 +31,7 @@ import Schema from '../../../courses/fondamenti-informatica/components/Schema.as
 
 **What problem it solves.** A computer that does not communicate with the outside is useless: it must read keyboards, write to screens, save to disks, send over the network. The trouble is that these devices are **extremely slow** compared with the processor — millions of cycles pass between one keystroke and the next — and each one works its own way. So we need a uniform way of talking to very different objects, and a strategy for not wasting time waiting for them.
 
-**New words.** An **interface** (or controller) is the circuit between the bus and the device that hides its details, exposing registers. **Memory-mapped** means those registers have memory addresses like ordinary cells. **DMA** (Direct Memory Access) is a component that transfers data between device and memory *without* going through the processor. A **handshake** is the two-signal protocol by which two parties synchronise without knowing each other's speed.
+**New words.** An **interface** (or controller) is the circuit between the bus and the device that hides its details, exposing registers. **Memory-mapped** means those registers have memory addresses like ordinary cells. **DMA** (Direct Memory Access) is a component that transfers data between device and memory _without_ going through the processor. A **handshake** is the two-signal protocol by which two parties synchronise without knowing each other's speed.
 
 </div>
 
@@ -84,7 +84,7 @@ RISC processors almost always adopt memory-mapped I/O, consistently with the loa
 
 ## DMA in detail
 
-The processor programs the controller by writing its registers — starting address in memory, number of words, direction — and then lets it work. The controller in turn becomes **bus master** for the time needed: when it needs the bus it requests it, and the processor hands it over. Taking bus cycles away from the CPU is called *cycle stealing*; transferring a whole block in one go, *burst* mode.
+The processor programs the controller by writing its registers — starting address in memory, number of words, direction — and then lets it work. The controller in turn becomes **bus master** for the time needed: when it needs the bus it requests it, and the processor hands it over. Taking bus cycles away from the CPU is called _cycle stealing_; transferring a whole block in one go, _burst_ mode.
 
 An important side effect: if DMA writes to memory, the copy of that data held by the **cache** becomes stale. It is the coherence problem, which must be handled by invalidating the affected lines.
 
@@ -112,7 +112,7 @@ A **buffer** placed in between compensates for the different pace of two devices
 
 ## Serial versus parallel
 
-Parallel sends several bits together on separate wires: fast over short distances, but wires cost and the signals arrive slightly out of step (*skew*), which limits length and frequency. Serial sends one bit at a time: fewer wires, less interference, much higher frequencies. That is why modern standards are serial — **USB**, **PCI Express** — while parallel has stayed inside the chip.
+Parallel sends several bits together on separate wires: fast over short distances, but wires cost and the signals arrive slightly out of step (_skew_), which limits length and frequency. Serial sends one bit at a time: fewer wires, less interference, much higher frequencies. That is why modern standards are serial — **USB**, **PCI Express** — while parallel has stayed inside the chip.
 
 </div>
 

@@ -98,7 +98,7 @@ Add R3, R1, R2      ; R3 pronto solo allo stadio W
 Sub R5, R3, R4      ; ma serve già allo stadio E
 ```
 
-Senza rimedi la seconda istruzione deve **stallare** (si inseriscono bolle) finché il valore non è scritto. L'**operand forwarding** risolve inoltrando il risultato **direttamente** dall'uscita della ALU all'ingresso dello stadio che lo richiede, senza attendere la scrittura in registro. Un caso non eliminabile del tutto è il *load-use*: il dato arriva dalla memoria uno stadio più tardi e uno stallo resta necessario.
+Senza rimedi la seconda istruzione deve **stallare** (si inseriscono bolle) finché il valore non è scritto. L'**operand forwarding** risolve inoltrando il risultato **direttamente** dall'uscita della ALU all'ingresso dello stadio che lo richiede, senza attendere la scrittura in registro. Un caso non eliminabile del tutto è il _load-use_: il dato arriva dalla memoria uno stadio più tardi e uno stallo resta necessario.
 
 </div>
 

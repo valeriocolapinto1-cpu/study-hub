@@ -5,19 +5,22 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Per ciascuna istruzione, di’ quale **modo di indirizzamento** usa e che cosa finisce in R1: `Move R1,#5`
-      · `Move R1,5` · `Move R1,(R2)` · `Move R1,20(R2)` · `Move R1,(R2)+`."
-    en: "For each instruction, state which **addressing mode** it uses and what ends up in R1: `Move R1,#5` ·
-      `Move R1,5` · `Move R1,(R2)` · `Move R1,20(R2)` · `Move R1,(R2)+`."
+    it:
+      'Per ciascuna istruzione, di’ quale **modo di indirizzamento** usa e che cosa finisce in R1: `Move R1,#5`
+      · `Move R1,5` · `Move R1,(R2)` · `Move R1,20(R2)` · `Move R1,(R2)+`.'
+    en: 'For each instruction, state which **addressing mode** it uses and what ends up in R1: `Move R1,#5` ·
+      `Move R1,5` · `Move R1,(R2)` · `Move R1,20(R2)` · `Move R1,(R2)+`.'
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "La domanda da farsi ogni volta è: il campo scritto nell’istruzione è il **dato**, l’**indirizzo del
-          dato**, o l’indirizzo di dove sta l’indirizzo?"
-        en: "The question to ask each time is: is the field written in the instruction the **data**, the **address of
-          the data**, or the address of where the address is?"
+        it:
+          'La domanda da farsi ogni volta è: il campo scritto nell’istruzione è il **dato**, l’**indirizzo del
+          dato**, o l’indirizzo di dove sta l’indirizzo?'
+        en:
+          'The question to ask each time is: is the field written in the instruction the **data**, the **address of
+          the data**, or the address of where the address is?'
     - title:
         it: Svolgimento
         en: Solution
@@ -68,16 +71,18 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Traduci in assembly questo ciclo: `somma = 0; for (i = 0; i < 10; i++) somma += i;`"
-    en: "Translate this loop into assembly: `sum = 0; for (i = 0; i < 10; i++) sum += i;`"
+    it: 'Traduci in assembly questo ciclo: `somma = 0; for (i = 0; i < 10; i++) somma += i;`'
+    en: 'Translate this loop into assembly: `sum = 0; for (i = 0; i < 10; i++) sum += i;`'
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Servono due registri (accumulatore e contatore) e un salto condizionato in coda. Occhio a dove metti il
+        it:
+          Servono due registri (accumulatore e contatore) e un salto condizionato in coda. Occhio a dove metti il
           confronto.
-        en: Two registers (accumulator and counter) and a conditional branch at the end are needed. Watch where you
+        en:
+          Two registers (accumulator and counter) and a conditional branch at the end are needed. Watch where you
           put the comparison.
     - title:
         it: Svolgimento
@@ -135,7 +140,8 @@
   difficulty: 2
   kind: static
   statement:
-    it: Scrivi un programma che trova il **valore massimo** in un vettore di N interi che comincia all’indirizzo
+    it:
+      Scrivi un programma che trova il **valore massimo** in un vettore di N interi che comincia all’indirizzo
       `VETT`.
     en: Write a program that finds the **maximum value** in an array of N integers starting at address `VETT`.
   steps:
@@ -143,9 +149,11 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Un registro tiene il massimo provvisorio, inizializzato al primo elemento; poi si scorre confrontando.
+        it:
+          Un registro tiene il massimo provvisorio, inizializzato al primo elemento; poi si scorre confrontando.
           Ricorda di avanzare il puntatore della dimensione della parola.
-        en: A register holds the provisional maximum, initialised to the first element; then you walk the array
+        en:
+          A register holds the provisional maximum, initialised to the first element; then you walk the array
           comparing. Remember to advance the pointer by the word size.
     - title:
         it: Svolgimento
@@ -207,7 +215,8 @@
   difficulty: 2
   kind: static
   statement:
-    it: Il programma A chiama la procedura B, che a sua volta chiama C. Mostra come cambia la **pila** e spiega
+    it:
+      Il programma A chiama la procedura B, che a sua volta chiama C. Mostra come cambia la **pila** e spiega
       perché non basterebbe un registro per l’indirizzo di ritorno.
     en: Program A calls procedure B, which in turn calls C. Show how the **stack** changes and explain why a
       single register for the return address would not be enough.
@@ -216,9 +225,11 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Ogni chiamata deposita qualcosa e ogni ritorno lo toglie, nell’ordine inverso. Prova a immaginare cosa
+        it:
+          Ogni chiamata deposita qualcosa e ogni ritorno lo toglie, nell’ordine inverso. Prova a immaginare cosa
           accadrebbe con un solo registro.
-        en: Every call deposits something and every return removes it, in reverse order. Try to imagine what would
+        en:
+          Every call deposits something and every return removes it, in reverse order. Try to imagine what would
           happen with a single register.
     - title:
         it: Svolgimento
@@ -283,20 +294,23 @@
   difficulty: 2
   kind: static
   statement:
-    it: "La parola `0x12345678` viene scritta a partire dall’indirizzo 100. Mostra il contenuto dei byte 100-103
+    it:
+      'La parola `0x12345678` viene scritta a partire dall’indirizzo 100. Mostra il contenuto dei byte 100-103
       in **big-endian** e in **little-endian**. Poi: leggendo un solo byte all’indirizzo 100, che cosa si
-      ottiene nei due casi?"
-    en: "The word `0x12345678` is written starting at address 100. Show the contents of bytes 100-103 in
+      ottiene nei due casi?'
+    en: 'The word `0x12345678` is written starting at address 100. Show the contents of bytes 100-103 in
       **big-endian** and in **little-endian**. Then: reading a single byte at address 100, what do you get in
-      the two cases?"
+      the two cases?'
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Big-endian mette per primo il byte «grande», cioè il più significativo. Little-endian fa il contrario.
+        it:
+          Big-endian mette per primo il byte «grande», cioè il più significativo. Little-endian fa il contrario.
           L’indirizzo della parola resta 100 in entrambi i casi.
-        en: Big-endian puts the “big” byte, i.e. the most significant one, first. Little-endian does the opposite. The
+        en:
+          Big-endian puts the “big” byte, i.e. the most significant one, first. Little-endian does the opposite. The
           address of the word stays 100 in both cases.
     - title:
         it: Svolgimento
@@ -342,21 +356,21 @@
     - label:
         it: Byte all’indirizzo 100, big-endian
         en: Byte at address 100, big-endian
-      value: "12"
+      value: '12'
       kind: text
       accept:
-        - "0x12"
+        - '0x12'
         - 12h
-        - "1216"
+        - '1216'
     - label:
         it: Byte all’indirizzo 100, little-endian
         en: Byte at address 100, little-endian
-      value: "78"
+      value: '78'
       kind: text
       accept:
-        - "0x78"
+        - '0x78'
         - 78h
-        - "7816"
+        - '7816'
   origin: originale
 - id: gen-assembly-snippet
   topic: risc-cisc-assembly
@@ -399,7 +413,8 @@
   statement:
     it: Scrivi un programma in stile RISC che calcoli la moltiplicazione di due numeri in LOC1 e LOC2 tramite
       somme successive, salvando il risultato in LOC3.
-    en: Write a RISC-style program that computes the multiplication of two numbers in LOC1 and LOC2 by repeated
+    en:
+      Write a RISC-style program that computes the multiplication of two numbers in LOC1 and LOC2 by repeated
       addition, saving the result in LOC3.
   steps:
     - title:
@@ -474,8 +489,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "RISC sta per:"
-    en: "RISC stands for:"
+    it: 'RISC sta per:'
+    en: 'RISC stands for:'
   steps:
     - title:
         it: Risposta
@@ -510,7 +525,7 @@
   kind: static
   statement:
     it: "Caratteristica tipica di un'architettura RISC:"
-    en: "Typical feature of a RISC architecture:"
+    en: 'Typical feature of a RISC architecture:'
   steps:
     - title:
         it: Risposta
@@ -579,8 +594,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Il loader si occupa principalmente di:"
-    en: "The loader is mainly responsible for:"
+    it: 'Il loader si occupa principalmente di:'
+    en: 'The loader is mainly responsible for:'
   steps:
     - title:
         it: Risposta
@@ -614,8 +629,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Il linker serve a:"
-    en: "The linker is used to:"
+    it: 'Il linker serve a:'
+    en: 'The linker is used to:'
   steps:
     - title:
         it: Risposta
@@ -878,8 +893,8 @@
         en: Towards higher addresses
       correct: false
     - text:
-        it: "Non cresce: ha dimensione fissa"
-        en: "It does not grow: it has a fixed size"
+        it: 'Non cresce: ha dimensione fissa'
+        en: 'It does not grow: it has a fixed size'
       correct: false
     - text:
         it: Dipende dal valore del PC

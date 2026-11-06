@@ -12,9 +12,11 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Con tre bit di indirizzo, uno deve decidere *quale dei due* decoder lavora e gli altri due scelgono la
+        it:
+          Con tre bit di indirizzo, uno deve decidere *quale dei due* decoder lavora e gli altri due scelgono la
           riga dentro il blocco.
-        en: With three address bits, one must decide *which of the two* decoders works and the other two choose the
+        en:
+          With three address bits, one must decide *which of the two* decoders works and the other two choose the
           row inside the block.
     - title:
         it: Svolgimento
@@ -62,8 +64,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Realizza con un multiplexer **8→1** la funzione di **parità dispari** di tre bit: `Y = A ⊕ B ⊕ C`."
-    en: "Implement with an **8→1** multiplexer the **odd parity** function of three bits: `Y = A ⊕ B ⊕ C`."
+    it: 'Realizza con un multiplexer **8→1** la funzione di **parità dispari** di tre bit: `Y = A ⊕ B ⊕ C`.'
+    en: 'Implement with an **8→1** multiplexer the **odd parity** function of three bits: `Y = A ⊕ B ⊕ C`.'
   steps:
     - title:
         it: Da dove si comincia
@@ -71,7 +73,8 @@
       body:
         it: I selettori prendono le variabili; sugli ingressi dati vanno le costanti della colonna d’uscita,
           nell’ordine dei mintermini da I₀ a I₇.
-        en: The selects take the variables; the data inputs get the constants of the output column, in minterm order
+        en:
+          The selects take the variables; the data inputs get the constants of the output column, in minterm order
           from I₀ to I₇.
     - title:
         it: Svolgimento
@@ -133,7 +136,7 @@
     - label:
         it: Ingressi I₀…I₇
         en: Inputs I₀…I₇
-      value: "01101001"
+      value: '01101001'
       kind: text
       accept:
         - 0110 1001
@@ -152,10 +155,12 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Con solo due selettori restano quattro ingressi per otto mintermini: ogni ingresso copre **due** righe,
-          che differiscono per C. Su ciascuno va 0, 1, C oppure C̄."
-        en: "With only two selects there are four inputs for eight minterms: each input covers **two** rows, which
-          differ in C. Each gets 0, 1, C or C̄."
+        it:
+          'Con solo due selettori restano quattro ingressi per otto mintermini: ogni ingresso copre **due** righe,
+          che differiscono per C. Su ciascuno va 0, 1, C oppure C̄.'
+        en:
+          'With only two selects there are four inputs for eight minterms: each input covers **two** rows, which
+          differ in C. Each gets 0, 1, C or C̄.'
     - title:
         it: Svolgimento
         en: Solution
@@ -212,18 +217,22 @@
   difficulty: 2
   kind: static
   statement:
-    it: Progetta un comparatore di **uguaglianza** fra due numeri a 2 bit, A₁A₀ e B₁B₀. Poi aggiungi l’uscita «A
+    it:
+      Progetta un comparatore di **uguaglianza** fra due numeri a 2 bit, A₁A₀ e B₁B₀. Poi aggiungi l’uscita «A
       maggiore di B».
-    en: Design an **equality** comparator between two 2-bit numbers, A₁A₀ and B₁B₀. Then add the output “A greater
+    en:
+      Design an **equality** comparator between two 2-bit numbers, A₁A₀ and B₁B₀. Then add the output “A greater
       than B”.
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Due bit sono uguali quando il loro XOR è 0, cioè quando il loro **XNOR** è 1. Per il maggiore, ragiona a
+        it:
+          Due bit sono uguali quando il loro XOR è 0, cioè quando il loro **XNOR** è 1. Per il maggiore, ragiona a
           partire dal bit più significativo.
-        en: Two bits are equal when their XOR is 0, i.e. when their **XNOR** is 1. For greater-than, reason starting
+        en:
+          Two bits are equal when their XOR is 0, i.e. when their **XNOR** is 1. For greater-than, reason starting
           from the most significant bit.
     - title:
         it: Svolgimento
@@ -285,18 +294,20 @@
   difficulty: 2
   kind: static
   statement:
-    it: Quattro registri a 8 bit devono poter scrivere sullo stesso bus a 8 bit. Quanti buffer tri-state servono,
+    it:
+      Quattro registri a 8 bit devono poter scrivere sullo stesso bus a 8 bit. Quanti buffer tri-state servono,
       quante abilitazioni possono essere attive contemporaneamente, e che cosa succede se per errore ne sono
       attive due?
-    en: Four 8-bit registers must be able to write onto the same 8-bit bus. How many tri-state buffers are needed,
+    en:
+      Four 8-bit registers must be able to write onto the same 8-bit bus. How many tri-state buffers are needed,
       how many enables can be active at the same time, and what happens if by mistake two are active?
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Il tri-state serve una linea per volta: conta quante linee ci sono in totale, non quanti registri."
-        en: "A tri-state serves one line at a time: count how many lines there are in total, not how many registers."
+        it: 'Il tri-state serve una linea per volta: conta quante linee ci sono in totale, non quanti registri.'
+        en: 'A tri-state serves one line at a time: count how many lines there are in total, not how many registers.'
     - title:
         it: Svolgimento
         en: Solution
@@ -349,8 +360,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Un **decodificatore** con n ingressi ha:"
-    en: "A **decoder** with n inputs has:"
+    it: 'Un **decodificatore** con n ingressi ha:'
+    en: 'A **decoder** with n inputs has:'
   steps:
     - title:
         it: Risposta
@@ -427,7 +438,7 @@
         en: Answer
       body:
         it: "L'alta impedenza: l'uscita si scollega elettricamente"
-        en: "High impedance: the output disconnects electrically"
+        en: 'High impedance: the output disconnects electrically'
   choices:
     - text:
         it: Un livello logico intermedio fra 0 e 1
@@ -435,7 +446,7 @@
       correct: false
     - text:
         it: "L'alta impedenza: l'uscita si scollega elettricamente"
-        en: "High impedance: the output disconnects electrically"
+        en: 'High impedance: the output disconnects electrically'
       correct: true
     - text:
         it: Uno stato di errore

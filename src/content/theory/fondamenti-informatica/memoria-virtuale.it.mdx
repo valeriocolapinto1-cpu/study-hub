@@ -136,7 +136,7 @@ Quando la memoria fisica è piena e serve caricare una pagina, bisogna sfrattarn
 - **Clock** (o seconda chance): l’approssimazione usata davvero. Ogni pagina ha un **bit di uso** che l’hardware mette a 1 a ogni accesso; il sistema operativo scorre le pagine in circolo, azzerando i bit che trova a 1 e sfrattando la prima che trova già a 0.
 - **FIFO**: sfratta la più vecchia. Semplice ma cieca, può buttare fuori una pagina usatissima.
 
-Se la pagina sfrattata è stata modificata (bit *dirty* a 1) va prima riscritta su disco, quindi il fault costa il doppio. Per questo, a parità di condizioni, conviene sfrattare pagine pulite.
+Se la pagina sfrattata è stata modificata (bit _dirty_ a 1) va prima riscritta su disco, quindi il fault costa il doppio. Per questo, a parità di condizioni, conviene sfrattare pagine pulite.
 
 </div>
 

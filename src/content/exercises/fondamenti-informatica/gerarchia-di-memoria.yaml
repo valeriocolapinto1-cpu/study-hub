@@ -7,15 +7,16 @@
   statement:
     it: Cache da **32 KiB** a mappatura **diretta**, blocchi da **16 byte**, indirizzi a **32 bit**. Come si
       spezza l’indirizzo?
-    en: "**32 KiB** **direct-mapped** cache, **16-byte** blocks, **32-bit** addresses. How is the address split?"
+    en: '**32 KiB** **direct-mapped** cache, **16-byte** blocks, **32-bit** addresses. How is the address split?'
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Tre campi, sempre nello stesso ordine: etichetta, indice, spiazzamento. Si parte dal fondo, cioè dallo
-          spiazzamento."
-        en: "Three fields, always in the same order: tag, index, offset. Start from the end, i.e. from the offset."
+        it:
+          'Tre campi, sempre nello stesso ordine: etichetta, indice, spiazzamento. Si parte dal fondo, cioè dallo
+          spiazzamento.'
+        en: 'Three fields, always in the same order: tag, index, offset. Start from the end, i.e. from the offset.'
     - title:
         it: Svolgimento
         en: Solution
@@ -86,7 +87,8 @@
   statement:
     it: Una cache ha tempo di accesso 2 ns, miss rate 5 % e penalità di miss 80 ns. Qual è il **tempo medio di
       accesso**? E se il miss rate scendesse al 2 %?
-    en: A cache has a 2 ns access time, a 5 % miss rate and an 80 ns miss penalty. What is the **average access
+    en:
+      A cache has a 2 ns access time, a 5 % miss rate and an 80 ns miss penalty. What is the **average access
       time**? And if the miss rate fell to 2 %?
   steps:
     - title:
@@ -165,7 +167,8 @@
   statement:
     it: Stessa cache dell’esercizio 1 — 32 KiB, blocchi da 16 byte, indirizzi a 32 bit — ma **associativa a 4
       vie**. Come cambiano i campi? E che problema risolve l’associatività?
-    en: Same cache as exercise 1 — 32 KiB, 16-byte blocks, 32-bit addresses — but **4-way set-associative**. How
+    en:
+      Same cache as exercise 1 — 32 KiB, 16-byte blocks, 32-bit addresses — but **4-way set-associative**. How
       do the fields change? And what problem does associativity solve?
   steps:
     - title:
@@ -173,7 +176,8 @@
         en: Where to start
       body:
         it: Con n vie l’indice non individua più un blocco ma un **gruppo** di n blocchi. Conta quanti gruppi ci sono.
-        en: With n ways the index no longer identifies a block but a **set** of n blocks. Count how many sets there
+        en:
+          With n ways the index no longer identifies a block but a **set** of n blocks. Count how many sets there
           are.
     - title:
         it: Svolgimento
@@ -259,19 +263,23 @@
   difficulty: 2
   kind: static
   statement:
-    it: Su 1000 istruzioni, il 20 % sono `store`. Il miss rate è 5 % e il 30 % dei blocchi sfrattati è *dirty*. I
+    it:
+      Su 1000 istruzioni, il 20 % sono `store`. Il miss rate è 5 % e il 30 % dei blocchi sfrattati è *dirty*. I
       blocchi sono da 16 byte, le parole da 4. Confronta il **traffico verso la memoria** con write-through e
       con write-back.
-    en: Out of 1000 instructions, 20 % are `store`s. The miss rate is 5 % and 30 % of evicted blocks are *dirty*.
+    en:
+      Out of 1000 instructions, 20 % are `store`s. The miss rate is 5 % and 30 % of evicted blocks are *dirty*.
       Blocks are 16 bytes, words 4. Compare the **traffic to memory** with write-through and with write-back.
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Conta separatamente il traffico in lettura (il caricamento dei blocchi dopo un miss, uguale nei due casi)
+        it:
+          Conta separatamente il traffico in lettura (il caricamento dei blocchi dopo un miss, uguale nei due casi)
           e quello in scrittura, che è ciò che distingue le due politiche.
-        en: Count separately the read traffic (loading blocks after a miss, the same in both cases) and the write
+        en:
+          Count separately the read traffic (loading blocks after a miss, the same in both cases) and the write
           traffic, which is what distinguishes the two policies.
     - title:
         it: Svolgimento
@@ -344,21 +352,25 @@
   difficulty: 2
   kind: static
   statement:
-    it: Cache associativa a **2 vie** con **2 gruppi** (quattro blocchi in tutto), politica **LRU**. Il gruppo si
+    it:
+      Cache associativa a **2 vie** con **2 gruppi** (quattro blocchi in tutto), politica **LRU**. Il gruppo si
       sceglie con «numero di blocco modulo 2». Traccia gli accessi ai blocchi `0, 1, 2, 0, 3, 1, 2, 4, 0`
       indicando hit e miss.
-    en: "**2-way** set-associative cache with **2 sets** (four blocks in all), **LRU** policy. The set is chosen
+    en:
+      '**2-way** set-associative cache with **2 sets** (four blocks in all), **LRU** policy. The set is chosen
       by “block number modulo 2”. Trace the accesses to blocks `0, 1, 2, 0, 3, 1, 2, 4, 0` marking hits and
-      misses."
+      misses.'
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Per ogni accesso: calcola il gruppo, guarda se il blocco c’è, e aggiorna l’ordine di uso. Si sfratta solo
-          quando il gruppo è pieno."
-        en: "For each access: compute the set, check whether the block is there, and update the order of use. Eviction
-          happens only when the set is full."
+        it:
+          'Per ogni accesso: calcola il gruppo, guarda se il blocco c’è, e aggiorna l’ordine di uso. Si sfratta solo
+          quando il gruppo è pieno.'
+        en:
+          'For each access: compute the set, check whether the block is there, and update the order of use. Eviction
+          happens only when the set is full.'
     - title:
         it: Svolgimento
         en: Solution
@@ -474,8 +486,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Il ritardo introdotto dopo un cache miss si chiama:"
-    en: "The delay introduced after a cache miss is called:"
+    it: 'Il ritardo introdotto dopo un cache miss si chiama:'
+    en: 'The delay introduced after a cache miss is called:'
   steps:
     - title:
         it: Risposta
@@ -544,8 +556,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Algoritmo di sostituzione più comune in cache:"
-    en: "The most common cache replacement algorithm:"
+    it: 'Algoritmo di sostituzione più comune in cache:'
+    en: 'The most common cache replacement algorithm:'
   steps:
     - title:
         it: Risposta
@@ -579,8 +591,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "La EPROM si cancella:"
-    en: "An EPROM is erased:"
+    it: 'La EPROM si cancella:'
+    en: 'An EPROM is erased:'
   steps:
     - title:
         it: Risposta
@@ -614,8 +626,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "La EEPROM si cancella:"
-    en: "An EEPROM is erased:"
+    it: 'La EEPROM si cancella:'
+    en: 'An EEPROM is erased:'
   steps:
     - title:
         it: Risposta
@@ -649,8 +661,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "La memoria cache è tipicamente realizzata con:"
-    en: "Cache memory is typically built with:"
+    it: 'La memoria cache è tipicamente realizzata con:'
+    en: 'Cache memory is typically built with:'
   steps:
     - title:
         it: Risposta
@@ -719,8 +731,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Principale svantaggio di una DRAM molto grande:"
-    en: "Main drawback of a very large DRAM:"
+    it: 'Principale svantaggio di una DRAM molto grande:'
+    en: 'Main drawback of a very large DRAM:'
   steps:
     - title:
         it: Risposta
@@ -789,8 +801,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "La SRAM (celle della cache) rispetto alla DRAM:"
-    en: "SRAM (cache cells) compared with DRAM:"
+    it: 'La SRAM (celle della cache) rispetto alla DRAM:'
+    en: 'SRAM (cache cells) compared with DRAM:'
   steps:
     - title:
         it: Risposta
@@ -931,7 +943,8 @@
   statement:
     it: Il tempo medio di accesso vale `t_hit + miss_rate × miss_penalty`. Con t_hit = 1 ns, miss rate 5% e
       penalità 100 ns, quanto vale?
-    en: The average access time is `t_hit + miss_rate × miss_penalty`. With t_hit = 1 ns, a 5% miss rate and a 100
+    en:
+      The average access time is `t_hit + miss_rate × miss_penalty`. With t_hit = 1 ns, a 5% miss rate and a 100
       ns penalty, what is it?
   steps:
     - title:

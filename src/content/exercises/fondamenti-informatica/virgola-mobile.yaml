@@ -12,7 +12,8 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Converti separatamente parte intera e parte frazionaria, normalizza in 1,xxx × 2ᵉ, poi somma il bias
+        it:
+          Converti separatamente parte intera e parte frazionaria, normalizza in 1,xxx × 2ᵉ, poi somma il bias
           all’esponente.
         en: Convert integer and fractional parts separately, normalise to 1.xxx × 2ᵉ, then add the bias to the
           exponent.
@@ -91,7 +92,7 @@
       value: C1460000
       kind: text
       accept:
-        - "0xC1460000"
+        - '0xC1460000'
         - C1460000h
         - C146000016
   origin: originale
@@ -111,7 +112,8 @@
       body:
         it: Scomponi i 32 bit nei tre campi, togli il bias dall’esponente e rimetti l’1 implicito davanti alla
           mantissa.
-        en: Split the 32 bits into the three fields, remove the bias from the exponent and put the implicit 1 back in
+        en:
+          Split the 32 bits into the three fields, remove the bias from the exponent and put the implicit 1 back in
           front of the mantissa.
     - title:
         it: Svolgimento
@@ -182,10 +184,12 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Guarda prima l’esponente: se è tutto 0 o tutto 1 non sei nel caso normale, e la mantissa dice quale caso
-          speciale è."
-        en: "Look at the exponent first: if it is all 0s or all 1s you are not in the normal case, and the mantissa
-          tells you which special case it is."
+        it:
+          'Guarda prima l’esponente: se è tutto 0 o tutto 1 non sei nel caso normale, e la mantissa dice quale caso
+          speciale è.'
+        en:
+          'Look at the exponent first: if it is all 0s or all 1s you are not in the normal case, and the mantissa
+          tells you which special case it is.'
     - title:
         it: Svolgimento
         en: Solution
@@ -246,18 +250,22 @@
   difficulty: 2
   kind: static
   statement:
-    it: Perché `0,1` non è rappresentabile esattamente in IEEE 754, mentre `0,5` e `0,25` sì? Che cosa comporta in
+    it:
+      Perché `0,1` non è rappresentabile esattamente in IEEE 754, mentre `0,5` e `0,25` sì? Che cosa comporta in
       pratica?
-    en: Why can `0.1` not be represented exactly in IEEE 754, while `0.5` and `0.25` can? What does it imply in
+    en:
+      Why can `0.1` not be represented exactly in IEEE 754, while `0.5` and `0.25` can? What does it imply in
       practice?
   steps:
     - title:
         it: Da dove si comincia
         en: Where to start
       body:
-        it: Un numero è rappresentabile con un numero finito di cifre binarie solo se il suo denominatore, ridotto ai
+        it:
+          Un numero è rappresentabile con un numero finito di cifre binarie solo se il suo denominatore, ridotto ai
           minimi termini, è una potenza di 2.
-        en: A number can be represented with a finite number of binary digits only if its denominator, in lowest
+        en:
+          A number can be represented with a finite number of binary digits only if its denominator, in lowest
           terms, is a power of 2.
     - title:
         it: Svolgimento
@@ -331,7 +339,8 @@
   difficulty: 2
   kind: static
   statement:
-    it: Verifica che due numeri in virgola mobile **positivi** si possano confrontare leggendo i loro bit come se
+    it:
+      Verifica che due numeri in virgola mobile **positivi** si possano confrontare leggendo i loro bit come se
       fossero interi senza segno, usando 1,0 (`0x3F800000`) e 2,0 (`0x40000000`). La proprietà vale anche per
       i negativi?
     en: Check that two **positive** floating-point numbers can be compared by reading their bits as unsigned
@@ -341,10 +350,12 @@
         it: Da dove si comincia
         en: Where to start
       body:
-        it: "Guarda l’ordine dei campi dentro la parola: segno, poi esponente, poi mantissa. Chiediti perché è proprio
-          quello."
-        en: "Look at the order of the fields within the word: sign, then exponent, then mantissa. Ask yourself why it
-          is exactly that one."
+        it:
+          'Guarda l’ordine dei campi dentro la parola: segno, poi esponente, poi mantissa. Chiediti perché è proprio
+          quello.'
+        en:
+          'Look at the order of the fields within the word: sign, then exponent, then mantissa. Ask yourself why it
+          is exactly that one.'
     - title:
         it: Svolgimento
         en: Solution
@@ -422,8 +433,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Lo standard per la rappresentazione in virgola mobile è:"
-    en: "The standard for floating-point representation is:"
+    it: 'Lo standard per la rappresentazione in virgola mobile è:'
+    en: 'The standard for floating-point representation is:'
   steps:
     - title:
         it: Risposta
@@ -499,24 +510,24 @@
         it: Risposta
         en: Answer
       body:
-        it: "127"
-        en: "127"
+        it: '127'
+        en: '127'
   choices:
     - text:
-        it: "64"
-        en: "64"
+        it: '64'
+        en: '64'
       correct: false
     - text:
-        it: "127"
-        en: "127"
+        it: '127'
+        en: '127'
       correct: true
     - text:
-        it: "128"
-        en: "128"
+        it: '128'
+        en: '128'
       correct: false
     - text:
-        it: "1023"
-        en: "1023"
+        it: '1023'
+        en: '1023'
       correct: false
   origin: originale
 - id: mcq-ieee-04
@@ -562,8 +573,8 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Esponente tutto a 1 e mantissa non nulla rappresentano:"
-    en: "An exponent of all 1s with a non-zero mantissa represents:"
+    it: 'Esponente tutto a 1 e mantissa non nulla rappresentano:'
+    en: 'An exponent of all 1s with a non-zero mantissa represents:'
   steps:
     - title:
         it: Risposta

@@ -12,7 +12,8 @@
   usage:
     it: Da una base qualsiasi al decimale; al contrario si divide ripetutamente per $b$ leggendo i resti dal
       basso.
-    en: From any base to decimal; the other way round you divide repeatedly by $b$ and read the remainders from
+    en:
+      From any base to decimal; the other way round you divide repeatedly by $b$ and read the remainders from
       the bottom.
 - id: valore-cp2
   topic: numeri-binari
@@ -26,10 +27,10 @@
     it: $a_i$ bit di posizione $i$, $N$ numero di bit.
     en: $a_i$ bit in position $i$, $N$ number of bits.
   usage:
-    it: "Il bit più significativo pesa $-2^{N-1}$: è il modo più rapido per leggere un CP2."
+    it: 'Il bit più significativo pesa $-2^{N-1}$: è il modo più rapido per leggere un CP2.'
     en: "The most significant bit weighs $-2^{N-1}$: the quickest way to read a two's complement number."
   pitfall:
-    it: "Il negativo si ottiene invertendo i bit **e sommando 1**: senza il +1 è il complemento a 1."
+    it: 'Il negativo si ottiene invertendo i bit **e sommando 1**: senza il +1 è il complemento a 1.'
     en: "The negative is obtained by inverting the bits **and adding 1**: without the +1 it is the ones'
       complement."
 - id: intervalli
@@ -41,12 +42,13 @@
     it: Intervallo del complemento a 2 su N bit
     en: Two's complement range on N bits
   usage:
-    it: "Senza segno: $[0,\\ 2^{N}-1]$. Modulo e segno e CP1 sono simmetrici: $[-(2^{N-1}-1),\\ 2^{N-1}-1]$, con
+    it:
+      "Senza segno: $[0,\\ 2^{N}-1]$. Modulo e segno e CP1 sono simmetrici: $[-(2^{N-1}-1),\\ 2^{N-1}-1]$, con
       due zeri."
     en: "Unsigned: $[0,\\ 2^{N}-1]$. Sign-magnitude and ones' complement are symmetric: $[-(2^{N-1}-1),\\
       2^{N-1}-1]$, with two zeros."
   pitfall:
-    it: "In CP2 $-2^{N-1}$ esiste ma $+2^{N-1}$ no: l’intervallo è asimmetrico."
+    it: 'In CP2 $-2^{N-1}$ esiste ma $+2^{N-1}$ no: l’intervallo è asimmetrico.'
     en: "In two's complement $-2^{N-1}$ exists but $+2^{N-1}$ does not: the range is asymmetric."
 - id: overflow-cp2
   topic: numeri-binari
@@ -60,11 +62,11 @@
     it: $C_{N-1}$ riporto entrante nel bit di segno, $C_N$ riporto uscente.
     en: $C_{N-1}$ carry into the sign bit, $C_N$ carry out.
   usage:
-    it: "Equivale a: due addendi dello stesso segno danno un risultato di segno opposto."
-    en: "Equivalent to: two addends of the same sign give a result of the opposite sign."
+    it: 'Equivale a: due addendi dello stesso segno danno un risultato di segno opposto.'
+    en: 'Equivalent to: two addends of the same sign give a result of the opposite sign.'
   pitfall:
-    it: "Il riporto uscente da solo non è overflow: lo è solo per i numeri senza segno."
-    en: "The carry-out alone is not overflow: it is so only for unsigned numbers."
+    it: 'Il riporto uscente da solo non è overflow: lo è solo per i numeri senza segno.'
+    en: 'The carry-out alone is not overflow: it is so only for unsigned numbers.'
 - id: de-morgan
   topic: algebra-di-boole
   objectives:
@@ -100,9 +102,10 @@
     it: $s$ selezione, $w_0, w_1$ ingressi dati.
     en: $s$ select, $w_0, w_1$ data inputs.
   usage:
-    it: "Con $n$ selezioni un MUX realizza qualunque funzione di $n$ variabili: gli ingressi dati sono la colonna
-      d’uscita."
-    en: "With $n$ selects a MUX implements any function of $n$ variables: the data inputs are the output column."
+    it:
+      'Con $n$ selezioni un MUX realizza qualunque funzione di $n$ variabili: gli ingressi dati sono la colonna
+      d’uscita.'
+    en: 'With $n$ selects a MUX implements any function of $n$ variables: the data inputs are the output column.'
 - id: full-adder
   topic: aritmetica-hardware
   latex: s_i = x_i \oplus y_i \oplus c_i \qquad c_{i+1} = x_i y_i + x_i c_i + y_i c_i
@@ -163,12 +166,13 @@
     it: Pipeline ideale a k stadi
     en: Ideal k-stage pipeline
   symbols:
-    it: $C$ cicli totali, $S$ speedup rispetto all’esecuzione senza pipeline, $k$ stadi, $n$ istruzioni, nessuno
+    it:
+      $C$ cicli totali, $S$ speedup rispetto all’esecuzione senza pipeline, $k$ stadi, $n$ istruzioni, nessuno
       stallo.
     en: $C$ total cycles, $S$ speedup over non-pipelined execution, $k$ stages, $n$ instructions, no stalls.
   pitfall:
-    it: "La pipeline non accorcia la singola istruzione: aumenta quante ne finiscono per ciclo."
-    en: "The pipeline does not shorten a single instruction: it increases how many finish per cycle."
+    it: 'La pipeline non accorcia la singola istruzione: aumenta quante ne finiscono per ciclo.'
+    en: 'The pipeline does not shorten a single instruction: it increases how many finish per cycle.'
 - id: tempo-medio-accesso
   topic: gerarchia-di-memoria
   latex: \bar t = h\,C + (1-h)\,M
@@ -176,7 +180,8 @@
     it: Tempo medio di accesso
     en: Average access time
   symbols:
-    it: $\bar t$ tempo medio, $h$ tasso di successo (hit rate), $C$ tempo di accesso alla cache, $M$ penalità di
+    it:
+      $\bar t$ tempo medio, $h$ tasso di successo (hit rate), $C$ tempo di accesso alla cache, $M$ penalità di
       fallimento (miss).
     en: $\bar t$ average time, $h$ hit rate, $C$ cache access time, $M$ miss penalty.
   pitfall:
@@ -193,7 +198,8 @@
   symbols:
     it: $o$ bit di offset, $i$ bit di indice, $t$ bit di tag; $B$ byte per blocco, $S$ insiemi (linee se a
       mappatura diretta), $A$ bit dell’indirizzo.
-    en: $o$ offset bits, $i$ index bits, $t$ tag bits; $B$ bytes per block, $S$ sets (lines if direct-mapped), $A$
+    en:
+      $o$ offset bits, $i$ index bits, $t$ tag bits; $B$ bytes per block, $S$ sets (lines if direct-mapped), $A$
       address bits.
   pitfall:
     it: "L’indice conta gli insiemi, non i blocchi: in una cache a $k$ vie $S = \\text{blocchi}/k$."
@@ -210,8 +216,8 @@
     it: $P$ dimensione della pagina, $VA$ indirizzo virtuale, frame dalla tabella delle pagine.
     en: $P$ page size, $VA$ virtual address, frame from the page table.
   pitfall:
-    it: "L’offset non si traduce: si sostituisce solo il numero di pagina."
-    en: "The offset is not translated: only the page number is replaced."
+    it: 'L’offset non si traduce: si sostituisce solo il numero di pagina.'
+    en: 'The offset is not translated: only the page number is replaced.'
 - id: amdahl
   topic: prestazioni-e-parallelismo
   latex: S = \frac{1}{(1-f) + f/k}
@@ -237,8 +243,8 @@
     it: $S$ segno (1 bit), $E$ esponente polarizzato (8 bit), $M$ mantissa (23 bit) senza il bit implicito.
     en: $S$ sign (1 bit), $E$ biased exponent (8 bits), $M$ mantissa (23 bits) without the hidden bit.
   usage:
-    it: "In doppia precisione: 11 bit di esponente, polarizzazione 1023, 52 bit di mantissa."
-    en: "In double precision: 11 exponent bits, bias 1023, 52 mantissa bits."
+    it: 'In doppia precisione: 11 bit di esponente, polarizzazione 1023, 52 bit di mantissa.'
+    en: 'In double precision: 11 exponent bits, bias 1023, 52 mantissa bits.'
   pitfall:
     it: Si dimentica facilmente il bit implicito «1,» o la polarizzazione dell’esponente.
     en: It is easy to forget the hidden “1.” or the exponent bias.
