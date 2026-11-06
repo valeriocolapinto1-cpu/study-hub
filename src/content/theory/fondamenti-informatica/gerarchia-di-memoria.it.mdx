@@ -1,0 +1,203 @@
+---
+course: fondamenti-informatica
+topic: gerarchia-di-memoria
+lang: it
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In due minuti">
+
+<div data-note-id="teoria/gerarchia-di-memoria/in-due-minuti">
+
+- La gerarchia esiste perché non si può avere insieme veloce, capiente ed economico: registri, cache L1/L2/L3, memoria centrale, memoria di massa.
+- **SRAM**: bistabile, veloce e costosa → cache. **DRAM**: condensatore, densa ed economica, va **rinfrescata** → memoria centrale.
+- La cache funziona per **località temporale** (ciò che serve ora servirà ancora) e **spaziale** (serviranno gli indirizzi vicini): per questo si trasferiscono **blocchi**.
+- Mappatura **diretta**, **completamente associativa**, **associativa a gruppi**: cambia quante posizioni può occupare un blocco. L'indirizzo si spezza in **etichetta · indice · spiazzamento**.
+- Tempo medio di accesso = hit time + (miss rate × miss penalty). Il miss penalty è enorme: è lì che si perdono le prestazioni.
+- Scrittura: **write-through** (semplice, molto traffico) o **write-back** (bit *dirty*, si scrive solo allo sfratto).
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/gerarchia-di-memoria/da-dove-si-parte">
+
+## Da dove si parte
+
+**Cosa serve sapere prima:** che il processore legge istruzioni e dati dalla memoria tramite MAR e MDR, dal modulo sul [processore](../processore/).
+
+**Che problema risolve.** Il processore vorrebbe una memoria enorme, velocissima ed economica. Non esiste: le memorie veloci sono piccole e costose, quelle capienti sono lente. Il divario è drammatico — un accesso alla memoria centrale costa decine o centinaia di cicli, durante i quali il processore non fa nulla. La soluzione non è un componente ma un’**organizzazione**: più livelli di memoria, dal piccolissimo e istantaneo all’enorme e lento, gestiti in modo che il dato che serve si trovi quasi sempre vicino. Funziona per una ragione statistica, non magica: i programmi non accedono alla memoria a caso.
+
+**Le parole nuove.** La **cache** è la memoria piccola e veloce interposta fra processore e memoria centrale. Un **hit** è quando il dato cercato c’è, un **miss** quando manca; il **miss penalty** è il tempo perso in quel caso. Un **blocco** (o linea) è l’unità di trasferimento fra i livelli, tipicamente qualche decina di byte. La **località** è la tendenza dei programmi a riusare gli stessi dati (temporale) e quelli vicini (spaziale).
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/gerarchia-di-memoria/la-gerarchia">
+
+## La gerarchia
+
+Scendendo dai registri alla memoria secondaria la capacità cresce e il costo per bit cala, ma il tempo di accesso peggiora di ordini di grandezza:
+
+```
+registri  →  cache L1  →  cache L2  →  memoria principale  →  disco
+ più veloce, più costosa, più piccola  ⟶  più lenta, più economica, più grande
+```
+
+Una sola memoria grande e veloce sarebbe proibitiva per costo e comunque **più lenta**: indirizzare molte celle allunga la decodifica. Meglio più livelli.
+
+</div>
+
+<div data-note-id="teoria/gerarchia-di-memoria/sram-e-dram">
+
+## SRAM e DRAM
+
+- **SRAM**: la cella è un latch a transistor. Veloce, **non richiede refresh**, ma occupa molto spazio e costa: si usa per le cache.
+- **DRAM**: la cella è un condensatore con un transistor. Densa ed economica, ma il condensatore si **scarica per correnti di dispersione** e va **rinfrescato** periodicamente. È la memoria principale.
+
+Le DRAM **sincrone** allineano gli accessi al clock e trasferiscono raffiche di parole consecutive, ammortizzando il costo dell'indirizzamento su tutto il blocco.
+
+Sulla RAM, attenzione a come la si definisce: la sigla non va tradotta «ad accesso casuale». Il punto è che il **tempo di accesso non dipende dalla posizione** del dato, a differenza di un nastro o di un disco.
+
+</div>
+
+<div data-note-id="teoria/gerarchia-di-memoria/perche-la-cache-funziona-la-localita">
+
+## Perché la cache funziona: la località
+
+- **Temporale**: un dato usato di recente sarà probabilmente riusato a breve (le variabili di un ciclo).
+- **Spaziale**: se si accede a un indirizzo, quelli vicini saranno probabilmente richiesti a breve (gli elementi di un vettore, le istruzioni in sequenza).
+
+La località spaziale è il motivo per cui la cache non trasferisce singole parole ma **blocchi** (linee) di parole contigue.
+
+</div>
+
+<div data-note-id="teoria/gerarchia-di-memoria/hit-miss-e-il-costo-del-miss">
+
+## Hit, miss e il costo del miss
+
+- **Hit**: il dato è in cache, accesso rapido.
+- **Miss**: non c'è, si scende nella gerarchia; il ritardo aggiuntivo è la **miss penalty**.
+
+Il tempo medio di accesso è quello che conta davvero:
+
+```
+t_medio = t_hit + miss_rate × miss_penalty
+```
+
+Con un hit rate del 95%, un hit da 1 ns e una penalità da 100 ns si ottiene `1 + 0,05·100 = 6 ns`: un miss su venti costa già cinque volte il tempo di un hit. Ecco perché anche piccoli miglioramenti dell'hit rate contano molto.
+
+</div>
+
+<div data-note-id="teoria/gerarchia-di-memoria/come-si-mappa-un-blocco">
+
+## Come si mappa un blocco
+
+L'indirizzo si scompone in tre campi: **tag**, **indice** (quale linea o insieme) e **offset** (quale parola dentro il blocco).
+
+- **Diretta**: ogni blocco ha una sola linea possibile, scelta dall'indice. Confronto di un solo tag, hardware minimo — ma due blocchi che mappano sulla stessa linea si sfrattano a vicenda anche con la cache semivuota (**conflitti**).
+- **Completamente associativa**: un blocco può andare ovunque. Sfrutta al meglio lo spazio, ma richiede di confrontare il tag con **tutte** le linee: costosa e più lenta.
+- **Set-associativa a n vie**: compromesso. La cache è divisa in insiemi; l'indice sceglie l'insieme, il blocco va in una qualsiasi delle n linee al suo interno. Si confrontano n tag.
+
+</div>
+
+<div data-note-id="teoria/gerarchia-di-memoria/sostituzione">
+
+## Sostituzione
+
+Quando l'insieme è pieno bisogna sfrattare qualcuno. **LRU** (least recently used) scarta il blocco non usato da più tempo ed è il più comune, perché aderisce alla località temporale. Alternative: **LFU** (meno usato in assoluto), FIFO, casuale — più economiche da realizzare, meno efficaci.
+
+</div>
+
+<div data-note-id="teoria/gerarchia-di-memoria/politiche-di-scrittura">
+
+## Politiche di scrittura
+
+- **Write-through**: si scrive contemporaneamente in cache e in memoria. Semplice e sempre coerente, ma genera molto traffico.
+- **Write-back**: si scrive solo in cache e si marca la linea con un **dirty bit**; la memoria viene aggiornata solo quando la linea è sfrattata. Molto meno traffico, ma la memoria è temporaneamente non aggiornata.
+
+</div>
+
+<div data-note-id="teoria/gerarchia-di-memoria/memorie-a-sola-lettura">
+
+## Memorie a sola lettura
+
+**ROM** scritta in fabbrica; **PROM** programmabile una volta; **EPROM** cancellabile con **raggi ultravioletti**; **EEPROM** cancellabile **elettricamente**, byte per byte; **Flash**, evoluzione della EEPROM che cancella a blocchi. La coppia EPROM/EEPROM è chiesta spesso: il discrimine è UV contro elettrico.
+
+</div>
+
+## Schemi
+
+<Schema id="cache-set-associativa" lang="it" num="1" />
+
+<Schema id="gerarchia-memoria" lang="it" num="2" />
+
+<Schema id="chip-memoria" lang="it" num="3" />
+
+<Schema id="dram-sincrona" lang="it" num="4" />
+
+<Schema id="cache-diretta" lang="it" num="5" />
+
+<Schema id="cache-associativa" lang="it" num="6" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/gerarchia-di-memoria/esempio-svolto">
+
+## Esempio svolto
+
+**Cache da 16 KiB, blocchi da 64 byte, associativa a 2 vie, indirizzi a 32 bit: come si spezza l'indirizzo?**
+
+```
+spiazzamento = log₂(64)                     = 6 bit
+numero di blocchi = 16384 / 64              = 256
+numero di gruppi  = 256 / 2 vie             = 128
+indice        = log₂(128)                   = 7 bit
+etichetta     = 32 − 6 − 7                  = 19 bit
+```
+
+Controllo che vale sempre: 19 + 7 + 6 = 32, cioè i tre campi **sommano all'ampiezza dell'indirizzo**. Se non torna, c'è un errore prima.
+
+**E quanto vale il tempo medio di accesso?** Con hit time 1 ciclo, miss rate 4 % e miss penalty 100 cicli:
+
+```
+t_medio = 1 + 0,04 × 100 = 5 cicli
+```
+
+Il 4 % di miss quintuplica il tempo medio: è il miss penalty a dominare, non l'hit time. Dimezzare il miss rate al 2 % porta a 3 cicli — un guadagno molto maggiore di qualunque ritocco all'hit time.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/gerarchia-di-memoria/errori-tipici">
+
+## Errori tipici
+
+- Confondere il numero di **blocchi** con quello dei **gruppi**: con n vie, i gruppi sono i blocchi diviso n, e l'indice si calcola sui gruppi.
+- Calcolare lo spiazzamento sul numero di parole invece che di byte, quando la memoria è indirizzata al byte.
+- Dimenticare la verifica della somma dei campi: è il controllo che intercetta quasi tutti gli errori di questo esercizio.
+
+</div>
+
+<Callout tone="attenzione" title="RAM non vuol dire «accesso casuale»">
+
+<div data-note-id="teoria/gerarchia-di-memoria/trap-ram">
+
+La sigla è un falso amico: **random access** non significa che l’accesso avvenga a caso, ma che il **tempo di accesso non dipende dalla posizione** del dato in memoria. Il contrario è l’accesso sequenziale di un nastro, dove per leggere la fine bisogna scorrere tutto.
+
+</div>
+
+</Callout>
+
+</Layer>

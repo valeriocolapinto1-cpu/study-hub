@@ -1,0 +1,206 @@
+- id: gerarchia-di-memoria-verifica-1
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+  kind: concetto
+  front:
+    it: Perché la cache trasferisce blocchi e non singole parole?
+    en: Why does the cache transfer blocks and not single words?
+  back:
+    it: "Per la **località spaziale**: il costo di un accesso è dominato dalla latenza, non dalla quantità di
+      dati, quindi conviene portarsi dietro le celle vicine, che con ogni probabilità serviranno subito dopo."
+    en: "Because of **spatial locality**: the cost of an access is dominated by latency, not by the amount of
+      data, so it pays to bring along the neighbouring cells, which will very probably be needed right after."
+- id: gerarchia-di-memoria-verifica-2
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.3
+  kind: concetto
+  front:
+    it: "Cache da 8 KiB, blocchi da 32 byte, 4 vie, indirizzi a 32 bit: come si spezza l'indirizzo?"
+    en: "8 KiB cache, 32-byte blocks, 4 ways, 32-bit addresses: how is the address split?"
+  back:
+    it: "Spiazzamento **5 bit** (32 = 2⁵). Gruppi = 8192 / (32 × 4) = 64 → indice **6 bit**. Etichetta = 32 − 5 −
+      6 = **21 bit**. I tre campi sommano sempre all'ampiezza dell'indirizzo: è il controllo che conviene fare
+      sempre."
+    en: "Offset **5 bits** (32 = 2⁵). Sets = 8192 / (32 × 4) = 64 → index **6 bits**. Tag = 32 − 5 − 6 = **21
+      bits**. The three fields always add up to the address width: it is the check worth doing every time."
+- id: gerarchia-di-memoria-verifica-3
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.5
+  kind: concetto
+  front:
+    it: A che serve il bit dirty nella politica write-back?
+    en: What is the dirty bit for in the write-back policy?
+  back:
+    it: "Segna che il blocco in cache è stato modificato e non coincide più con la memoria. Allo sfratto si
+      riscrivono **solo** i blocchi dirty: gli altri si buttano, perché la copia in memoria è già giusta."
+    en: "It marks that the block in the cache has been modified and no longer matches memory. On eviction **only**
+      dirty blocks are written back: the others are discarded, because the copy in memory is already right."
+- id: open-mem-01
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  kind: orale
+  front:
+    it: Differenza tra RAM e cache, definendo località spaziale e temporale.
+  back:
+    it: "Entrambe volatili. La cache è più piccola, veloce e costosa (SRAM), tiene copie dei dati frequenti. Nella
+      RAM il tempo di accesso NON dipende dalla posizione del dato. Località temporale: dati usati di recente
+      riusati a breve; spaziale: indirizzi vicini referenziati a breve."
+- id: open-mem-02
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  kind: orale
+  front:
+    it: Quali sono le limitazioni di una cache L1 molto grande (rispetto ad aggiungere L2)?
+  back:
+    it: Costo elevato, maggiore spazio fisico e soprattutto minore velocità (indirizzi più grandi → accesso più
+      lento). Meglio una gerarchia L1 piccola/veloce + L2 più grande/lenta.
+- id: open-mem-03
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  kind: orale
+  front:
+    it: Descrivi la gerarchia di memoria e spiega perché conviene organizzarla a livelli.
+  back:
+    it: "Dai registri alla cache (L1, L2), alla memoria principale DRAM, fino alla memoria secondaria: scendendo,
+      la capacità cresce e il costo per bit cala, ma il tempo di accesso peggiora. La gerarchia funziona
+      grazie alla **località**: i livelli alti tengono i dati usati di recente e quelli vicini, così la gran
+      parte degli accessi si risolve in alto. Un solo livello grande e veloce sarebbe proibitivo per costo e
+      comunque più lento, perché indirizzare molte celle rallenta l'accesso."
+- id: open-mem-04
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  kind: orale
+  front:
+    it: Confronta le tre mappature della cache (diretta, associativa, set-associativa).
+  back:
+    it: "**Diretta**: ogni blocco di memoria può andare in una sola linea di cache; hardware semplice e confronto
+      immediato, ma blocchi che mappano sulla stessa linea si sfrattano a vicenda (conflitti) anche con la
+      cache semivuota. **Associativa**: un blocco può andare in qualunque linea; sfrutta al meglio lo spazio,
+      ma richiede di confrontare il tag con tutte le linee, quindi è costosa e più lenta. **Set-associativa**:
+      compromesso: la cache è divisa in insiemi, il blocco va in un insieme fisso ma in una linea qualsiasi al
+      suo interno. Serve una politica di sostituzione, tipicamente **LRU**."
+- id: def-ram
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  kind: definizione
+  front:
+    it: RAM
+  back:
+    it: >-
+      Memoria in cui il tempo di accesso a un dato **non dipende dalla sua posizione**.
+
+
+      Da non tradurre «ad accesso casuale»: la definizione richiesta è quella sul tempo di accesso,
+      contrapposta a nastri e dischi.
+- id: def-localita
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  kind: definizione
+  front:
+    it: Località temporale e spaziale
+  back:
+    it: >-
+      Temporale: un dato usato di recente sarà riusato a breve. Spaziale: si accederà presto a indirizzi
+      vicini.
+
+
+      La località spaziale è il motivo per cui la cache trasferisce blocchi e non singole parole.
+- id: def-hitmiss
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  kind: definizione
+  front:
+    it: Cache hit / miss
+  back:
+    it: |-
+      Hit: il dato cercato è in cache. Miss: non c’è e va recuperato dal livello inferiore.
+
+      undefined
+- id: def-misspenalty
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  kind: definizione
+  front:
+    it: Miss penalty
+  back:
+    it: |-
+      Ritardo aggiuntivo pagato quando un accesso fallisce in cache.
+
+      Tempo medio di accesso = tₕᵢₜ + miss rate × miss penalty.
+- id: def-mappature
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  kind: definizione
+  front:
+    it: Mappature della cache
+  back:
+    it: >-
+      Diretta: una sola linea possibile. Associativa: qualunque linea. Set-associativa: insieme fisso, linea
+      libera al suo interno.
+
+
+      undefined
+- id: def-lru
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  kind: definizione
+  front:
+    it: LRU
+  back:
+    it: |-
+      Politica di sostituzione che scarta il blocco non usato da più tempo.
+
+      undefined
+- id: def-writeback
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  kind: definizione
+  front:
+    it: Write-back / write-through
+  back:
+    it: >-
+      Write-through scrive subito anche in memoria; write-back solo allo sfratto della linea, marcata da un
+      dirty bit.
+
+
+      undefined
+- id: def-sramdram
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  kind: definizione
+  front:
+    it: SRAM e DRAM
+  back:
+    it: >-
+      SRAM: cella a latch, veloce, senza refresh, usata per le cache. DRAM: cella a condensatore, densa ed
+      economica, da rinfrescare.
+
+
+      undefined

@@ -1,0 +1,232 @@
+---
+course: fondamenti-informatica
+topic: pipeline
+lang: en
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In two minutes">
+
+<div data-note-id="teoria/pipeline/in-due-minuti">
+
+- Performance equation: **T = (N × S) / R** — instructions × cycles per instruction, divided by frequency. You improve it by acting on one of the three factors, and improving one often worsens another.
+- k-stage pipeline: n instructions come out in **k + (n − 1)** cycles. The gain tends to k but never reaches it.
+- Three families of **hazards**: structural (contended resource), data (reading a value not yet written), control (branches).
+- **Forwarding**: the result is passed directly to the stage that is waiting for it, without waiting for the register write. It does not remove the stall after a load.
+- Branches cost cycles: remedies are prediction, delay slots and computing the condition early.
+- Beyond one instruction per cycle: **superscalar** (more units, decided at run time) or **VLIW** (the compiler does the packing).
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/pipeline/da-dove-si-parte">
+
+## Where we start
+
+**What you need to know first:** the execution cycle of an instruction ([processor](../processore/)) and the kinds of instructions ([instruction set](../risc-cisc-assembly/)).
+
+**What problem it solves.** Executing an instruction takes several phases: fetching it, decoding it, computing, accessing memory, writing the result. If you wait for one to finish before starting the next, at any instant **almost the whole processor is idle**: while the ALU works, the fetch unit does nothing. The idea of the pipeline is the same as the assembly line: let the next instruction in as soon as the first has freed the first stage. In theory you go k times faster with k stages; in practice everything this module describes gets in the way.
+
+**New words.** A **stage** is one of the phases into which execution is split; between two stages there is always a register that “freezes” the intermediate results. A **hazard** is a situation in which overlapping would not work and must be corrected. A **stall** (bubble) is a waiting cycle inserted to wait. **Forwarding** is the shortcut that brings a result where it is needed before it has officially been written. **CPI** is the average number of cycles per instruction.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/pipeline/l-equazione-delle-prestazioni">
+
+## The performance equation
+
+The execution time of a program breaks down into three factors:
+
+```
+T = (N × S) / R
+
+N = number of instructions executed
+S = average clock cycles per instruction (CPI)
+R = clock rate
+```
+
+It helps reason about trade-offs: a CISC reduces `N` but raises `S`; a RISC raises `N` and lowers `S`. Improving a single factor is not enough, which is why “more megahertz” does not imply “faster”.
+
+</div>
+
+<div data-note-id="teoria/pipeline/pipelining">
+
+## Pipelining
+
+Execution is divided into stages assigned to distinct hardware units, typically five:
+
+```
+F  Fetch     fetches the instruction
+D  Decode    decodes and reads the registers
+E  Execute   operates in the ALU
+M  Memory    accesses data memory
+W  Write     writes back into the destination register
+```
+
+While one instruction is in a stage, the next one occupies the previous stage: executions **overlap** as on an assembly line. The **latency** of a single instruction does not improve — it even gets slightly worse — but **throughput** grows: at steady state one instruction comes out per cycle.
+
+With k stages the ideal speedup is **k**, never fully reached because the stages are not perfectly balanced (the clock period is set by the slowest) and because the pipeline drains and refills.
+
+</div>
+
+<div data-note-id="teoria/pipeline/hazard-quando-la-sovrapposizione-non-funziona">
+
+## Hazards: when overlapping does not work
+
+- **Structural**: two instructions want the same resource in the same cycle — for example a single memory port contended by fetch and load. They are solved by duplicating the resource (separate instruction and data caches).
+- **Data**: an instruction needs a result not yet written.
+- **Control**: after a branch it is not known which instruction to fetch.
+
+</div>
+
+<div data-note-id="teoria/pipeline/dipendenza-dai-dati-e-forwarding">
+
+## Data dependence and forwarding
+
+In the classic case:
+
+```
+Add R3, R1, R2      ; R3 ready only at stage W
+Sub R5, R3, R4      ; but needed already at stage E
+```
+
+Without remedies the second instruction must **stall** (bubbles are inserted) until the value is written. **Operand forwarding** solves it by sending the result **directly** from the ALU output to the input of the stage that requires it, without waiting for the register write. One case that cannot be removed entirely is *load-use*: the data arrives from memory one stage later and one stall remains necessary.
+
+</div>
+
+<div data-note-id="teoria/pipeline/salti">
+
+## Branches
+
+The branch is known only after decoding, but meanwhile the pipeline has already fetched the following instructions, which must be discarded: this is the **branch penalty**. Mitigations:
+
+- **Prediction**: guess the outcome and carry on; if the prediction is wrong the pipeline is flushed. Static (e.g. “backward branches are taken”, typical of loops) or dynamic, based on recent history.
+- **Delayed branch**: the instructions immediately after the branch are executed anyway, and the compiler places useful work there.
+- Computing the target address as early as possible, to shorten the window of uncertainty.
+
+</div>
+
+<div data-note-id="teoria/pipeline/oltre-una-istruzione-per-ciclo">
+
+## Beyond one instruction per cycle
+
+A **superscalar** processor replicates the functional units and issues several instructions per cycle, bringing CPI below 1. It does, however, require finding independent instructions at run time, hence considerably more complex control hardware.
+
+</div>
+
+<div data-note-id="teoria/pipeline/perche-proprio-cinque-stadi">
+
+## Why exactly five stages
+
+The stages are not an arbitrary convention: they correspond to the phases an instruction goes through anyway, even without a pipeline.
+
+```
+F  Fetch      fetches the instruction from memory, increments the PC
+D  Decode     interprets the opcode, reads the source registers
+E  Execute    the ALU computes: an operation, or the address for load/store
+M  Memory     accesses data memory (only load and store)
+W  Write back writes the result into the destination register
+```
+
+Splitting into more stages allows a faster clock, because each stage contains less logic. But you cannot overdo it: every boundary costs a register, with its propagation and setup times, and those times **cannot be split**. Beyond a certain depth the gain vanishes, and on top of that the branch penalty grows — it is proportional to the number of stages crossed before discovering the outcome. That is why the very deep pipelines of the early 2000s were abandoned.
+
+</div>
+
+<div data-note-id="teoria/pipeline/hazard-strutturali">
+
+## Structural hazards
+
+These are conflicts over a **physical resource** that two stages want to use in the same cycle. The classic case: with a single memory for instructions and data, stage F of one instruction and stage M of another request memory in the same cycle.
+
+The solutions are all “more resources”: **separate** memories or caches for instructions and data (Harvard organisation, adopted at the first level by all modern processors), register files with more read and write ports, duplicated functional units. Where there is no duplication, there is a stall — which is why floating-point units, being expensive, are often not replicated and can create queues.
+
+</div>
+
+<div data-note-id="teoria/pipeline/predizione-dei-salti">
+
+## Branch prediction
+
+A branch blocks the pipeline because until its outcome is known it is not known which instruction to fetch. Instead of waiting, you **guess** and carry on; if the guess was wrong the instructions that entered are cancelled and execution restarts from the right point.
+
+- **Static prediction**: always the same choice. The rule “backward branches are taken, forward ones are not” is right very often, because backward branches are usually loops — and a loop repeats.
+- **1-bit dynamic prediction**: remember the outcome of last time and repeat it. It gets it wrong twice per loop (on entry and on exit).
+- **2-bit dynamic prediction**: it takes **two wrong guesses in a row** to change its mind. On a loop repeated a hundred times it is wrong only once, and it is the basic scheme of real predictors.
+
+With predictors exceeding 90 % accuracy the average branch penalty collapses, and this is what makes deep pipelines practical. The historical alternative is the **delay slot**: the instruction right after the branch is executed anyway, and it is up to the compiler to put something useful there.
+
+</div>
+
+<div data-note-id="teoria/pipeline/le-altre-due-dipendenze">
+
+## The other two dependences
+
+The module has dealt with the **RAW** dependence (I read after someone has written), the only true data dependence. There are two more, which arise from **reusing register names** and not from the flow of values:
+
+```
+WAR  (write after read)   B writes a register that A has yet to read
+WAW  (write after write)  A and B write the same register
+```
+
+In a simple pipeline, with instructions completing in order, they cause no problems. They become relevant in processors that execute **out of order**, and are solved by **register renaming**: the hardware assigns different physical registers to different writes, removing the name conflict.
+
+</div>
+
+## Diagrams
+
+<Schema id="pipeline-5-stadi" lang="en" num="1" />
+
+<Schema id="superscalare" lang="en" num="2" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/pipeline/esempio-svolto">
+
+## Worked example
+
+**Four instructions with one dependence:** the second uses the result of the first.
+
+```
+I1: Add  R3, R1, R2
+I2: Sub  R5, R3, R4      ← needs R3
+
+cycle      1  2  3  4  5  6  7
+I1         F  D  E  M  W
+I2 (without   F  D  ·  ·  E  M  W     three stall cycles:
+   forward)                            R3 is written only in W
+I2 (with      F  D  E  M  W            forwarding from E of I1 to E of I2
+   forward)
+```
+
+Forwarding brings the result from the ALU output directly back to its input in the next cycle, without waiting for the register write: the stall disappears completely.
+
+**But if I1 were a `Load`**, the data would be ready only at the end of stage M, i.e. one cycle later: **one** stall would remain, which no forwarding can remove. The compiler hides it by moving an independent instruction into that gap.
+
+**Cycle count**: 4 instructions in a 5-stage pipeline with no stalls need 5 + 3 = **8** cycles; with a single stall, 9.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/pipeline/errori-tipici">
+
+## Common mistakes
+
+- Computing the cycles as k × n: the pipeline exists precisely so as not to pay k cycles per instruction. It is **k + (n − 1)**.
+- Believing forwarding also solves the load-use hazard: there one cycle is lost anyway.
+- Forgetting branches: until the condition is known the fetched instructions might be the wrong ones and must be cancelled.
+
+</div>
+
+</Layer>

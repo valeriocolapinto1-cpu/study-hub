@@ -1,0 +1,232 @@
+---
+course: fondamenti-informatica
+topic: pipeline
+lang: it
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In due minuti">
+
+<div data-note-id="teoria/pipeline/in-due-minuti">
+
+- Equazione delle prestazioni: **T = (N × S) / R** — istruzioni × cicli per istruzione, diviso la frequenza. Si migliora agendo su uno dei tre fattori, e spesso migliorarne uno peggiora un altro.
+- Pipeline a k stadi: n istruzioni escono in **k + (n − 1)** cicli. Il guadagno tende a k ma non lo raggiunge mai.
+- Tre famiglie di **hazard**: strutturali (risorsa contesa), sui dati (leggo un valore non ancora scritto), di controllo (salti).
+- **Forwarding**: il risultato viene passato direttamente allo stadio che lo aspetta, senza attendere la scrittura nel registro. Non elimina lo stallo dopo una load.
+- I salti costano cicli: si rimedia con predizione, delay slot e calcolo anticipato della condizione.
+- Oltre un'istruzione per ciclo: **superscalare** (più unità, decisione a run time) o **VLIW** (è il compilatore a impacchettare).
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/pipeline/da-dove-si-parte">
+
+## Da dove si parte
+
+**Cosa serve sapere prima:** il ciclo di esecuzione di un’istruzione ([processore](../processore/)) e i tipi di istruzioni ([repertorio](../risc-cisc-assembly/)).
+
+**Che problema risolve.** Eseguire un’istruzione richiede diverse fasi: prelevarla, decodificarla, calcolare, accedere alla memoria, scrivere il risultato. Se si aspetta che una finisca prima di iniziare la successiva, in ogni istante **quasi tutto il processore è fermo**: mentre la ALU lavora, l’unità di prelievo non fa nulla. L’idea della pipeline è la stessa della catena di montaggio: far entrare l’istruzione successiva appena la prima ha liberato il primo stadio. In teoria si va k volte più veloci con k stadi; in pratica ci si mette in mezzo tutto ciò che questo modulo racconta.
+
+**Le parole nuove.** Uno **stadio** è una delle fasi in cui si spezza l’esecuzione; fra due stadi c’è sempre un registro che «congela» i risultati intermedi. Un **hazard** (alea) è una situazione in cui la sovrapposizione non funzionerebbe e va corretta. Uno **stallo** (bolla) è un ciclo di attesa inserito per aspettare. Il **forwarding** è la scorciatoia che porta un risultato dove serve prima che sia stato ufficialmente scritto. Il **CPI** è il numero medio di cicli per istruzione.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/pipeline/l-equazione-delle-prestazioni">
+
+## L'equazione delle prestazioni
+
+Il tempo di esecuzione di un programma si scompone in tre fattori:
+
+```
+T = (N × S) / R
+
+N = numero di istruzioni eseguite
+S = cicli di clock medi per istruzione (CPI)
+R = frequenza di clock
+```
+
+Serve a ragionare sui compromessi: un CISC riduce `N` ma alza `S`; un RISC alza `N` e abbassa `S`. Migliorare un solo fattore non basta, ed è il motivo per cui «più megahertz» non implica «più veloce».
+
+</div>
+
+<div data-note-id="teoria/pipeline/pipelining">
+
+## Pipelining
+
+L'esecuzione si divide in stadi affidati a unità hardware distinte, tipicamente cinque:
+
+```
+F  Fetch     preleva l'istruzione
+D  Decode    decodifica e legge i registri
+E  Execute   opera nella ALU
+M  Memory    accede alla memoria dati
+W  Write     riscrive nel registro destinazione
+```
+
+Mentre un'istruzione è in uno stadio, la successiva occupa quello precedente: le esecuzioni si **sovrappongono** come in una catena di montaggio. La **latenza** della singola istruzione non migliora — anzi peggiora un poco — ma il **throughput** cresce: a regime esce un'istruzione per ciclo.
+
+Con k stadi lo speedup ideale è **k**, mai raggiunto del tutto perché gli stadi non sono perfettamente bilanciati (il periodo di clock è dettato dal più lento) e perché la pipeline si svuota e si riempie.
+
+</div>
+
+<div data-note-id="teoria/pipeline/hazard-quando-la-sovrapposizione-non-funziona">
+
+## Hazard: quando la sovrapposizione non funziona
+
+- **Strutturali**: due istruzioni vogliono la stessa risorsa nello stesso ciclo — per esempio un unico accesso alla memoria conteso fra fetch e load. Si risolvono duplicando la risorsa (cache istruzioni e cache dati separate).
+- **Sui dati**: un'istruzione ha bisogno di un risultato non ancora scritto.
+- **Di controllo**: dopo un salto non si sa quale istruzione prelevare.
+
+</div>
+
+<div data-note-id="teoria/pipeline/dipendenza-dai-dati-e-forwarding">
+
+## Dipendenza dai dati e forwarding
+
+Nel caso classico:
+
+```
+Add R3, R1, R2      ; R3 pronto solo allo stadio W
+Sub R5, R3, R4      ; ma serve già allo stadio E
+```
+
+Senza rimedi la seconda istruzione deve **stallare** (si inseriscono bolle) finché il valore non è scritto. L'**operand forwarding** risolve inoltrando il risultato **direttamente** dall'uscita della ALU all'ingresso dello stadio che lo richiede, senza attendere la scrittura in registro. Un caso non eliminabile del tutto è il *load-use*: il dato arriva dalla memoria uno stadio più tardi e uno stallo resta necessario.
+
+</div>
+
+<div data-note-id="teoria/pipeline/salti">
+
+## Salti
+
+Il salto è noto solo dopo la decodifica, ma nel frattempo la pipeline ha già prelevato le istruzioni successive, che vanno scartate: è la **penalità di salto**. Mitigazioni:
+
+- **Predizione**: si tira a indovinare l'esito e si prosegue; se la previsione sbaglia si svuota la pipeline. Statica (es. «i salti all'indietro sono presi», tipico dei cicli) o dinamica, basata sulla storia recente.
+- **Delayed branch**: le istruzioni immediatamente successive al salto vengono eseguite comunque, e il compilatore vi colloca lavoro utile.
+- Calcolare l'indirizzo di destinazione il prima possibile, per accorciare la finestra di incertezza.
+
+</div>
+
+<div data-note-id="teoria/pipeline/oltre-una-istruzione-per-ciclo">
+
+## Oltre una istruzione per ciclo
+
+Un processore **superscalare** replica le unità funzionali e avvia più istruzioni per ciclo, portando il CPI sotto 1. Richiede però di individuare a runtime le istruzioni indipendenti, quindi hardware di controllo notevolmente più complesso.
+
+</div>
+
+<div data-note-id="teoria/pipeline/perche-proprio-cinque-stadi">
+
+## Perché proprio cinque stadi
+
+Gli stadi non sono una convenzione arbitraria: corrispondono alle fasi che un’istruzione attraversa comunque, anche senza pipeline.
+
+```
+F  Fetch      preleva l'istruzione dalla memoria, incrementa il PC
+D  Decode     interpreta il codice operativo, legge i registri sorgente
+E  Execute    la ALU calcola: operazione, o indirizzo per load/store
+M  Memory     accede alla memoria dati (solo load e store)
+W  Write back scrive il risultato nel registro destinazione
+```
+
+Spezzare in più stadi permette un clock più veloce, perché ogni stadio contiene meno logica. Ma non si può esagerare: ogni confine costa un registro, con il suo tempo di propagazione e di setup, e questi tempi **non si spezzano**. Oltre una certa profondità il guadagno si annulla, e in più cresce la penalità dei salti — che è proporzionale al numero di stadi attraversati prima di scoprire l’esito. È la ragione per cui le pipeline profondissime di inizio anni 2000 sono state abbandonate.
+
+</div>
+
+<div data-note-id="teoria/pipeline/hazard-strutturali">
+
+## Hazard strutturali
+
+Sono i conflitti su una **risorsa fisica** che due stadi vorrebbero usare nello stesso ciclo. Il caso classico: con una memoria unica per istruzioni e dati, lo stadio F di un’istruzione e lo stadio M di un’altra chiedono la memoria nello stesso ciclo.
+
+Le soluzioni sono tutte «più risorse»: memorie o cache **separate** per istruzioni e dati (organizzazione Harvard, adottata al primo livello da tutti i processori moderni), banchi di registri con più porte di lettura e scrittura, unità funzionali duplicate. Dove non si duplica, si stalla — ed è la ragione per cui le unità in virgola mobile, costose, spesso non sono replicate e possono creare code.
+
+</div>
+
+<div data-note-id="teoria/pipeline/predizione-dei-salti">
+
+## Predizione dei salti
+
+Un salto blocca la pipeline perché fino a quando non se ne conosce l’esito non si sa quale istruzione prelevare. Invece di aspettare, si **indovina** e si prosegue; se l’ipotesi era sbagliata si annullano le istruzioni entrate e si riparte dal punto giusto.
+
+- **Predizione statica**: sempre la stessa scelta. La regola «i salti all’indietro si prendono, quelli in avanti no» azzecca molto, perché i salti all’indietro sono in genere cicli — e un ciclo si ripete.
+- **Predizione dinamica a 1 bit**: si ricorda l’esito dell’ultima volta e si ripete. Sbaglia due volte per ogni ciclo (all’ingresso e all’uscita).
+- **Predizione dinamica a 2 bit**: serve **sbagliare due volte di fila** per cambiare idea. Su un ciclo che si ripete cento volte sbaglia una volta sola, ed è lo schema di base dei predittori reali.
+
+Con predittori che superano il 90 % di successo la penalità media dei salti crolla, ed è questo che rende praticabili le pipeline profonde. L’alternativa storica è il **delay slot**: l’istruzione subito dopo il salto viene eseguita comunque, e sta al compilatore metterci qualcosa di utile.
+
+</div>
+
+<div data-note-id="teoria/pipeline/le-altre-due-dipendenze">
+
+## Le altre due dipendenze
+
+Il modulo ha trattato la dipendenza **RAW** (leggo dopo che qualcuno ha scritto), l’unica che sia una dipendenza vera sui dati. Ne esistono altre due, che nascono dal **riuso dei nomi dei registri** e non dal flusso dei valori:
+
+```
+WAR  (write after read)   B scrive un registro che A deve ancora leggere
+WAW  (write after write)  A e B scrivono lo stesso registro
+```
+
+In una pipeline semplice, con istruzioni che si concludono in ordine, non danno problemi. Diventano rilevanti nei processori che eseguono **fuori ordine**, e si risolvono con la **ridenominazione dei registri**: l’hardware assegna registri fisici diversi a scritture diverse, eliminando il conflitto sul nome.
+
+</div>
+
+## Schemi
+
+<Schema id="pipeline-5-stadi" lang="it" num="1" />
+
+<Schema id="superscalare" lang="it" num="2" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/pipeline/esempio-svolto">
+
+## Esempio svolto
+
+**Quattro istruzioni con una dipendenza:** la seconda usa il risultato della prima.
+
+```
+I1: Add  R3, R1, R2
+I2: Sub  R5, R3, R4      ← ha bisogno di R3
+
+ciclo      1  2  3  4  5  6  7
+I1         F  D  E  M  W
+I2 (senza     F  D  ·  ·  E  M  W     tre cicli di stallo:
+   forward)                            R3 è scritto solo in W
+I2 (con       F  D  E  M  W            forwarding da E di I1 a E di I2
+   forward)
+```
+
+Il forwarding porta il risultato dall'uscita della ALU direttamente al suo ingresso al ciclo dopo, senza aspettare la scrittura nel registro: lo stallo sparisce del tutto.
+
+**Ma se I1 fosse una `Load`**, il dato sarebbe pronto solo alla fine dello stadio M, cioè un ciclo più tardi: resterebbe **uno** stallo, che nessun forwarding può eliminare. Il compilatore lo nasconde spostando in quel buco un'istruzione indipendente.
+
+**Conto dei cicli**: 4 istruzioni in una pipeline a 5 stadi senza stalli richiedono 5 + 3 = **8** cicli; con un solo stallo, 9.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/pipeline/errori-tipici">
+
+## Errori tipici
+
+- Calcolare i cicli come k × n: la pipeline serve proprio a non pagare k cicli per istruzione. Sono **k + (n − 1)**.
+- Credere che il forwarding risolva anche il load-use hazard: lì un ciclo si perde comunque.
+- Dimenticare i salti: fino a quando la condizione non è nota le istruzioni prelevate potrebbero essere quelle sbagliate e vanno annullate.
+
+</div>
+
+</Layer>

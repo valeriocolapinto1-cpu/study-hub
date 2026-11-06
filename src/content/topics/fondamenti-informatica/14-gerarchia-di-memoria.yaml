@@ -1,0 +1,33 @@
+id: gerarchia-di-memoria
+course: fondamenti-informatica
+order: 14
+title:
+  it: Gerarchia di memoria & cache
+  en: Memory hierarchy & caches
+summary:
+  it: SRAM/DRAM, località, mappature, politiche di scrittura, tempo medio di accesso.
+  en: SRAM/DRAM, locality, mappings, write policies, average access time.
+group:
+  it: Pipeline e memoria
+  en: Pipelines and memory
+objectives:
+  - id: gerarchia-di-memoria.1
+    text:
+      it: Spiegare la gerarchia di memoria, SRAM e DRAM e le memorie a sola lettura.
+      en: Explain the memory hierarchy, SRAM and DRAM and read-only memories.
+  - id: gerarchia-di-memoria.2
+    text:
+      it: Spiegare la località e calcolare il tempo medio di accesso.
+      en: Explain locality and compute the average access time.
+  - id: gerarchia-di-memoria.3
+    text:
+      it: Scomporre l’indirizzo in etichetta, indice e spiazzamento per ogni mappatura.
+      en: Split the address into tag, index and offset for every mapping.
+  - id: gerarchia-di-memoria.4
+    text:
+      it: Confrontare mappatura diretta, associativa e a gruppi e tracciare la sostituzione LRU.
+      en: Compare direct, fully associative and set-associative mapping and trace LRU replacement.
+  - id: gerarchia-di-memoria.5
+    text:
+      it: Confrontare write-through e write-back (traffico, bit dirty, coerenza).
+      en: Compare write-through and write-back (traffic, dirty bit, coherence).

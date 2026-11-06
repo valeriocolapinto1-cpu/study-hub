@@ -1,0 +1,128 @@
+- id: pipeline-verifica-1
+  topic: pipeline
+  objectives:
+    - pipeline.1
+  kind: concetto
+  front:
+    it: Quanti cicli servono a 100 istruzioni in una pipeline ideale a 5 stadi?
+    en: How many cycles do 100 instructions need in an ideal 5-stage pipeline?
+  back:
+    it: 5 + 99 = **104**. Il primo risultato esce dopo 5 cicli (riempimento), poi ne esce uno per ciclo. Senza
+      pipeline sarebbero 500.
+    en: 5 + 99 = **104**. The first result comes out after 5 cycles (fill), then one comes out per cycle. Without
+      a pipeline it would be 500.
+- id: pipeline-verifica-2
+  topic: pipeline
+  objectives:
+    - pipeline.3
+  kind: concetto
+  front:
+    it: Il forwarding elimina tutti gli stalli sui dati?
+    en: Does forwarding remove all data stalls?
+  back:
+    it: "No. Dopo una `Load` il dato è disponibile solo alla fine dello stadio di memoria: se l'istruzione
+      successiva lo usa subito, resta uno stallo di un ciclo (**load-use hazard**). Il compilatore lo nasconde
+      riordinando le istruzioni."
+    en: "No. After a `Load` the data is available only at the end of the memory stage: if the next instruction
+      uses it immediately, a one-cycle stall remains (**load-use hazard**). The compiler hides it by
+      reordering instructions."
+- id: pipeline-verifica-3
+  topic: pipeline
+  objectives:
+    - pipeline.1
+    - pipeline.2
+  kind: concetto
+  front:
+    it: Perché una pipeline a 5 stadi non rende il processore 5 volte più veloce?
+    en: Why doesn’t a 5-stage pipeline make the processor 5 times faster?
+  back:
+    it: "Per tre motivi: il riempimento e lo svuotamento, gli stalli dovuti agli hazard, e lo sbilanciamento degli
+      stadi — il periodo è quello dello stadio **più lento**, più il ritardo dei registri di stadio."
+    en: "For three reasons: fill and drain, stalls due to hazards, and unbalanced stages — the period is that of
+      the **slowest** stage, plus the delay of the stage registers."
+- id: open-pipe-01
+  topic: pipeline
+  objectives:
+    - pipeline.1
+    - pipeline.2
+  kind: orale
+  front:
+    it: Che cos'è il pipelining e quale problema introduce?
+  back:
+    it: Sovrapposizione delle fasi (fetch, decode, execute, memory, write) di istruzioni diverse su unità dedicate
+      → maggiore throughput. Introduce la dipendenza dai dati (stalli), mitigata con operand forwarding.
+- id: open-pipe-02
+  topic: pipeline
+  objectives:
+    - pipeline.1
+    - pipeline.2
+  kind: orale
+  front:
+    it: Elenca i tipi di hazard in una pipeline e spiega come si mitigano.
+  back:
+    it: "**Strutturali**: due istruzioni contendono la stessa risorsa nello stesso ciclo (per esempio un unico
+      accesso alla memoria conteso fra fetch e load); si risolvono duplicando la risorsa, come cache
+      istruzioni e dati separate. **Sui dati**: un'istruzione ha bisogno di un risultato non ancora scritto in
+      registro; si mitigano con l'**operand forwarding**, che inoltra il risultato direttamente dall'uscita
+      della ALU allo stadio che lo richiede — resta però il caso *load-use*, dove il dato arriva dalla memoria
+      uno stadio più tardi e uno stallo è inevitabile. **Di controllo**: dopo un salto non si sa quale
+      istruzione prelevare, e quelle già entrate vanno scartate; si mitigano con la predizione (statica o
+      dinamica), con il *delayed branch* e calcolando l'indirizzo di destinazione il prima possibile."
+- id: def-pipeline
+  topic: pipeline
+  objectives:
+    - pipeline.1
+    - pipeline.2
+  kind: definizione
+  front:
+    it: Pipelining
+  back:
+    it: >-
+      Sovrapposizione delle fasi di istruzioni diverse su stadi hardware distinti, come in una catena di
+      montaggio.
+
+
+      Non migliora la latenza della singola istruzione: migliora il **throughput**.
+- id: def-hazard
+  topic: pipeline
+  objectives:
+    - pipeline.1
+    - pipeline.2
+  kind: definizione
+  front:
+    it: Hazard
+  back:
+    it: >-
+      Situazione che impedisce alla pipeline di procedere di un’istruzione per ciclo: strutturale, sui dati o
+      di controllo.
+
+
+      undefined
+- id: def-forwarding
+  topic: pipeline
+  objectives:
+    - pipeline.1
+    - pipeline.2
+  kind: definizione
+  front:
+    it: Operand forwarding
+  back:
+    it: >-
+      Inoltro del risultato direttamente dall’uscita della ALU allo stadio che lo richiede, senza attendere la
+      scrittura in registro.
+
+
+      undefined
+- id: def-cpi
+  topic: pipeline
+  objectives:
+    - pipeline.1
+    - pipeline.2
+  kind: definizione
+  front:
+    it: CPI
+  back:
+    it: |-
+      Numero medio di cicli di clock per istruzione; compare nell’equazione T = (N × S)/R.
+
+      undefined
