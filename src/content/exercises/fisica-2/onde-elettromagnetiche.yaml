@@ -1,0 +1,199 @@
+# Quiz del sito originale (legacy/fisica-2/data/quiz.json, id "quiz-<id>") ed esercizi generati sulla tipologia degli appelli.
+- id: quiz-q501
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: "In un'onda elettromagnetica piana nel vuoto:"
+    en: "In a plane electromagnetic wave in vacuum:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Dalle equazioni di Maxwell l'onda è trasversale e $\vec B=\frac1c\hat k\times\vec E$.
+        en: From Maxwell's equations the wave is transverse and $\vec B=\frac1c\hat k\times\vec E$.
+  origin: originale
+  choices:
+    - text:
+        it: $\vec E$ e $\vec B$ sono perpendicolari tra loro e alla direzione di propagazione, in fase, con $E=cB$
+        en: $\vec E$ and $\vec B$ are perpendicular to each other and to the direction of propagation, in phase, with $E=cB$
+      correct: true
+    - text:
+        it: $\vec E$ è parallelo alla direzione di propagazione
+        en: $\vec E$ is parallel to the direction of propagation
+      correct: false
+    - text:
+        it: $\vec E$ e $\vec B$ sono sfasati di $90°$
+        en: $\vec E$ and $\vec B$ are $90°$ out of phase
+      correct: false
+    - text:
+        it: $B=cE$
+        en: $B=cE$
+      correct: false
+- id: quiz-q502
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.4
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Il vettore di Poynting rappresenta:"
+    en: "The Poynting vector represents:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\vec S=\vec E\times\vec H$ si misura in W/m² ed è il flusso di energia elettromagnetica (teorema di Poynting).
+        en: $\vec S=\vec E\times\vec H$ is measured in W/m² and is the flux of electromagnetic energy (Poynting's theorem).
+  origin: originale
+  choices:
+    - text:
+        it: la potenza per unità di superficie trasportata dall'onda
+        en: the power per unit area carried by the wave
+      correct: true
+    - text:
+        it: la densità di energia
+        en: the energy density
+      correct: false
+    - text:
+        it: la quantità di moto totale dell'onda
+        en: the total momentum of the wave
+      correct: false
+    - text:
+        it: la polarizzazione dell'onda
+        en: the polarisation of the wave
+      correct: false
+- id: quiz-q503
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: "La potenza irraggiata da un dipolo oscillante è proporzionale a:"
+    en: "The power radiated by an oscillating dipole is proportional to:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "$\\langle P\\rangle=\\frac{\\mu_0p_0^2\\omega^4}{12\\pi c}$: per questo la luce blu del cielo è diffusa più di quella rossa."
+        en: "$\\langle P\\rangle=\\frac{\\mu_0p_0^2\\omega^4}{12\\pi c}$: this is why the blue light of the sky is scattered more than the red."
+  origin: originale
+  choices:
+    - text:
+        it: $\omega^4$
+        en: $\omega^4$
+      correct: true
+    - text:
+        it: $\omega^2$
+        en: $\omega^2$
+      correct: false
+    - text:
+        it: $\omega$
+        en: $\omega$
+      correct: false
+    - text:
+        it: $1/\omega^2$
+        en: $1/\omega^2$
+      correct: false
+- id: quiz-q508
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: Un'onda piana nel vuoto ha ampiezza del campo elettrico $E_0=100$ V/m. Calcola l'intensità media (in W/m²).
+    en: A plane wave in vacuum has electric field amplitude $E_0=100$ V/m. Compute the average intensity (in W/m²).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $I=\frac{E_0^2}{2Z_0}=\frac{10^4}{2\cdot377}\simeq13,3$ W/m².
+        en: $I=\frac{E_0^2}{2Z_0}=\frac{10^4}{2\cdot377}\simeq13.3$ W/m².
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 13.27
+      unit: W/m²
+      tol: 0.03
+- id: quiz-q509
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: Stessa onda ($E_0=100$ V/m). Calcola l'ampiezza del campo magnetico (in μT).
+    en: Same wave ($E_0=100$ V/m). Compute the amplitude of the magnetic field (in μT).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $B_0=E_0/c=100/(3\times10^8)\simeq0,334$ μT.
+        en: $B_0=E_0/c=100/(3\times10^8)\simeq0.334$ μT.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 0.3336
+      unit: μT
+      tol: 0.03
+- id: quiz-q510
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: Una lampadina irraggia isotropicamente 100 W. Calcola l'intensità a 2 m (in W/m²).
+    en: A light bulb radiates 100 W isotropically. Compute the intensity at 2 m (in W/m²).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $I=P/(4\pi r^2)=100/(16\pi)\simeq1,99$ W/m².
+        en: $I=P/(4\pi r^2)=100/(16\pi)\simeq1.99$ W/m².
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 1.989
+      unit: W/m²
+      tol: 0.03
+- id: quiz-q515
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: Calcola la lunghezza d'onda nel vuoto di un'onda a 1 GHz (in cm).
+    en: Compute the vacuum wavelength of a 1 GHz wave (in cm).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\lambda=c/\nu=3\times10^8/10^9\simeq30$ cm.
+        en: $\lambda=c/\nu=3\times10^8/10^9\simeq30$ cm.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 29.98
+      unit: cm
+      tol: 0.03

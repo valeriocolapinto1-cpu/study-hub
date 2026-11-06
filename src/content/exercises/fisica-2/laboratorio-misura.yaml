@@ -1,0 +1,184 @@
+# Quiz del sito originale (legacy/fisica-2/data/quiz.json, id "quiz-<id>") ed esercizi generati sulla tipologia degli appelli.
+- id: quiz-q701
+  topic: laboratorio-misura
+  objectives:
+    - laboratorio-misura.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: "L'incertezza sulla media di $N$ misure indipendenti con deviazione standard $\\sigma$ vale:"
+    en: "The uncertainty on the mean of $N$ independent measurements with standard deviation $\\sigma$ is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: La deviazione standard della media si riduce come $1/\sqrt N$.
+        en: The standard deviation of the mean decreases as $1/\sqrt N$.
+  origin: originale
+  choices:
+    - text:
+        it: $\sigma/\sqrt N$
+        en: $\sigma/\sqrt N$
+      correct: true
+    - text:
+        it: $\sigma/N$
+        en: $\sigma/N$
+      correct: false
+    - text:
+        it: $\sigma\sqrt N$
+        en: $\sigma\sqrt N$
+      correct: false
+    - text:
+        it: $\sigma$
+        en: $\sigma$
+      correct: false
+- id: quiz-q702
+  topic: laboratorio-misura
+  objectives:
+    - laboratorio-misura.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Gli errori sistematici:"
+    en: "Systematic errors:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Spostano tutte le misure nello stesso verso: vanno individuati e corretti, per esempio con la taratura o con la correzione dell'errore di inserzione."
+        en: "They shift all measurements in the same direction: they must be identified and corrected, for example by calibration or by correcting the insertion error."
+  origin: originale
+  choices:
+    - text:
+        it: non si riducono ripetendo la misura
+        en: are not reduced by repeating the measurement
+      correct: true
+    - text:
+        it: si riducono mediando molte misure
+        en: are reduced by averaging many measurements
+      correct: false
+    - text:
+        it: sono sempre trascurabili
+        en: are always negligible
+      correct: false
+    - text:
+        it: seguono una distribuzione gaussiana
+        en: follow a Gaussian distribution
+      correct: false
+- id: quiz-q703
+  topic: laboratorio-misura
+  objectives:
+    - laboratorio-misura.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Per ricavare $\\tau$ dalla scarica di un condensatore con un fit lineare si riporta in grafico:"
+    en: "To obtain $\\tau$ from a capacitor discharge with a linear fit, one plots:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "$V=V_0e^{-t/\\tau}$ ⇒ $\\ln V=\\ln V_0-t/\\tau$: una retta con pendenza $-1/\\tau$."
+        en: "$V=V_0e^{-t/\\tau}$ ⇒ $\\ln V=\\ln V_0-t/\\tau$: a straight line with slope $-1/\\tau$."
+  origin: originale
+  choices:
+    - text:
+        it: $\ln V$ in funzione di $t$
+        en: $\ln V$ against $t$
+      correct: true
+    - text:
+        it: $V$ in funzione di $\ln t$
+        en: $V$ against $\ln t$
+      correct: false
+    - text:
+        it: $V^2$ in funzione di $t$
+        en: $V^2$ against $t$
+      correct: false
+    - text:
+        it: $1/V$ in funzione di $t$
+        en: $1/V$ against $t$
+      correct: false
+- id: quiz-q704
+  topic: laboratorio-misura
+  objectives:
+    - laboratorio-misura.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: Si misurano $x=(10{,}0\pm0{,}3)$ e $y=(4{,}0\pm0{,}4)$ (grandezze indipendenti). Calcola l'incertezza su $x-y$.
+    en: One measures $x=(10.0\pm0.3)$ and $y=(4.0\pm0.4)$ (independent quantities). Compute the uncertainty on $x-y$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Per somme e differenze si sommano in quadratura le incertezze assolute: $\\sqrt{0{,}3^2+0{,}4^2}=0{,}5$."
+        en: "For sums and differences the absolute uncertainties add in quadrature: $\\sqrt{0.3^2+0.4^2}=0.5$."
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 0.5
+      tol: 0.03
+- id: quiz-q705
+  topic: laboratorio-misura
+  objectives:
+    - laboratorio-misura.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: Una resistenza vale $R=V/I$ con $V$ noto all'1% e $I$ al 2% (indipendenti). Calcola l'incertezza relativa percentuale su $R$.
+    en: A resistance is $R=V/I$ with $V$ known to 1% and $I$ to 2% (independent). Compute the percentage relative uncertainty on $R$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Per un quoziente si sommano in quadratura le incertezze relative: $\\sqrt{1^2+2^2}\\simeq2,24$%."
+        en: "For a quotient the relative uncertainties add in quadrature: $\\sqrt{1^2+2^2}\\simeq2.24$%."
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 2.236
+      unit: "%"
+      tol: 0.03
+- id: quiz-q706
+  topic: laboratorio-misura
+  objectives:
+    - laboratorio-misura.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: Due misure della stessa grandezza danno $(5{,}0\pm0{,}2)$ e $(5{,}9\pm0{,}3)$. Sono compatibili?
+    en: Two measurements of the same quantity give $(5.0\pm0.2)$ and $(5.9\pm0.3)$. Are they compatible?
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "$t=\\frac{0{,}9}{\\sqrt{0{,}04+0{,}09}}\\simeq2{,}5$: oltre 2 le misure sono considerate incompatibili."
+        en: "$t=\\frac{0.9}{\\sqrt{0.04+0.09}}\\simeq2.5$: above 2 the measurements are considered incompatible."
+  origin: originale
+  choices:
+    - text:
+        it: "No: $t\\approx2{,}5$"
+        en: "No: $t\\approx2.5$"
+      correct: true
+    - text:
+        it: "Sì: $t\\approx0{,}9$"
+        en: "Yes: $t\\approx0.9$"
+      correct: false
+    - text:
+        it: Sì, perché differiscono di meno del 20%
+        en: Yes, because they differ by less than 20%
+      correct: false
+    - text:
+        it: Non si può dire
+        en: Cannot tell
+      correct: false

@@ -24,13 +24,13 @@ export default defineConfig({
   markdown: {
     processor: unified({
       remarkPlugins: [remarkMath],
-      rehypePlugins: [[rehypeKatex, { output: 'htmlAndMathml', strict: 'error' }]],
+      // rehypeNoteIds: id stabili per gli appunti (data-note-id) e ancore nei titoli della teoria MDX.
+      rehypePlugins: [[rehypeKatex, { output: 'htmlAndMathml', strict: 'error' }], rehypeNoteIds],
     }),
   },
   integrations: [
     preact(),
-    // Teoria: id stabili per gli appunti (data-note-id) e ancore dei titoli.
-    mdx({ rehypePlugins: [rehypeNoteIds] }),
+    mdx(),
     sitemap({
       i18n: { defaultLocale: 'it', locales: { it: 'it-IT', en: 'en-US' } },
       // La radice reindirizza e la 404 non va indicizzata.

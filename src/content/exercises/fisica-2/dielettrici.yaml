@@ -1,0 +1,69 @@
+# Quiz del sito originale (legacy/fisica-2/data/quiz.json, id "quiz-<id>") ed esercizi generati sulla tipologia degli appelli.
+- id: quiz-q106
+  topic: dielettrici
+  objectives:
+    - dielettrici.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Un condensatore piano isolato (carica costante) viene riempito con un dielettrico di costante $\\varepsilon_r$. L'energia immagazzinata:"
+    en: "An isolated parallel-plate capacitor (constant charge) is filled with a dielectric of constant $\\varepsilon_r$. The stored energy:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "$U=Q^2/(2C)$ con $Q$ costante e $C=\\varepsilon_rC_0$: l'energia diventa $U_0/\\varepsilon_r$ (il dielettrico viene risucchiato)."
+        en: "$U=Q^2/(2C)$ with constant $Q$ and $C=\\varepsilon_rC_0$: the energy becomes $U_0/\\varepsilon_r$ (the dielectric is sucked in)."
+  origin: originale
+  choices:
+    - text:
+        it: diminuisce di un fattore $\varepsilon_r$
+        en: decreases by a factor $\varepsilon_r$
+      correct: true
+    - text:
+        it: aumenta di un fattore $\varepsilon_r$
+        en: increases by a factor $\varepsilon_r$
+      correct: false
+    - text:
+        it: resta uguale
+        en: stays the same
+      correct: false
+    - text:
+        it: raddoppia
+        en: doubles
+      correct: false
+- id: quiz-q107
+  topic: dielettrici
+  objectives:
+    - dielettrici.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Alla superficie di separazione tra due dielettrici (senza cariche libere) sono continue:"
+    en: "At the interface between two dielectrics (with no free charges) the following are continuous:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Gauss per $\vec D$ (solo cariche libere) dà $D_{1n}=D_{2n}$; la circuitazione nulla di $\vec E$ dà $E_{1t}=E_{2t}$.
+        en: Gauss for $\vec D$ (free charges only) gives $D_{1n}=D_{2n}$; the zero circulation of $\vec E$ gives $E_{1t}=E_{2t}$.
+  origin: originale
+  choices:
+    - text:
+        it: la componente normale di $\vec D$ e la tangenziale di $\vec E$
+        en: the normal component of $\vec D$ and the tangential component of $\vec E$
+      correct: true
+    - text:
+        it: la componente normale di $\vec E$ e la tangenziale di $\vec D$
+        en: the normal component of $\vec E$ and the tangential component of $\vec D$
+      correct: false
+    - text:
+        it: tutte le componenti di $\vec E$
+        en: all components of $\vec E$
+      correct: false
+    - text:
+        it: tutte le componenti di $\vec D$
+        en: all components of $\vec D$
+      correct: false

@@ -1,0 +1,185 @@
+# Quiz del sito originale (legacy/fisica-2/data/quiz.json, id "quiz-<id>") ed esercizi generati sulla tipologia degli appelli.
+- id: quiz-q101
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Il flusso del campo elettrico attraverso una superficie chiusa che non contiene cariche è:"
+    en: "The flux of the electric field through a closed surface containing no charges is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Per il teorema di Gauss il flusso uscente da una superficie chiusa è $Q_{int}/\\varepsilon_0$: senza cariche interne è nullo, qualunque sia il campo prodotto da cariche esterne."
+        en: "By Gauss's theorem the outward flux through a closed surface is $Q_{int}/\\varepsilon_0$: with no charges inside it is zero, whatever field external charges produce."
+  origin: originale
+  choices:
+    - text:
+        it: sempre nullo
+        en: always zero
+      correct: true
+    - text:
+        it: nullo solo se il campo è uniforme
+        en: zero only if the field is uniform
+      correct: false
+    - text:
+        it: uguale a $Q_{est}/\varepsilon_0$
+        en: equal to $Q_{est}/\varepsilon_0$
+      correct: false
+    - text:
+        it: dipendente dalla forma della superficie
+        en: dependent on the shape of the surface
+      correct: false
+- id: quiz-q103
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.8
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Un dipolo elettrico immerso in un campo elettrico uniforme subisce:"
+    en: "An electric dipole in a uniform electric field feels:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "In campo uniforme le forze sulle due cariche sono uguali e opposte (forza totale nulla) ma formano una coppia: $\\vec M=\\vec p\\times\\vec E$."
+        en: "In a uniform field the forces on the two charges are equal and opposite (zero net force) but they form a couple: $\\vec M=\\vec p\\times\\vec E$."
+  origin: originale
+  choices:
+    - text:
+        it: un momento meccanico ma forza risultante nulla
+        en: a torque but zero net force
+      correct: true
+    - text:
+        it: una forza ma nessun momento
+        en: a force but no torque
+      correct: false
+    - text:
+        it: sia forza sia momento
+        en: both a force and a torque
+      correct: false
+    - text:
+        it: né forza né momento
+        en: neither force nor torque
+      correct: false
+- id: quiz-q104
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: "La forma locale della I equazione di Maxwell nel vuoto è:"
+    en: "The local form of Maxwell's first equation in vacuum is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Dal teorema di Gauss con il teorema della divergenza: $\\oint\\vec E\\cdot\\hat n\\,dS=\\int\\nabla\\cdot\\vec E\\,dV=\\int\\rho\\,dV/\\varepsilon_0$ per ogni volume."
+        en: "From Gauss's theorem with the divergence theorem: $\\oint\\vec E\\cdot\\hat n\\,dS=\\int\\nabla\\cdot\\vec E\\,dV=\\int\\rho\\,dV/\\varepsilon_0$ for every volume."
+  origin: originale
+  choices:
+    - text:
+        it: $\nabla\cdot\vec E=\rho/\varepsilon_0$
+        en: $\nabla\cdot\vec E=\rho/\varepsilon_0$
+      correct: true
+    - text:
+        it: $\nabla\times\vec E=0$
+        en: $\nabla\times\vec E=0$
+      correct: false
+    - text:
+        it: $\nabla\cdot\vec E=0$
+        en: $\nabla\cdot\vec E=0$
+      correct: false
+    - text:
+        it: $\nabla^2\vec E=\rho/\varepsilon_0$
+        en: $\nabla^2\vec E=\rho/\varepsilon_0$
+      correct: false
+- id: quiz-q109
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Una carica puntiforme $q=2$ nC è nel vuoto. Calcola il modulo del campo elettrico a $r=30$ cm (in V/m).
+    en: A point charge $q=2$ nC is in vacuum. Compute the magnitude of the electric field at $r=30$ cm (in V/m).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $E=\frac{q}{4\pi\varepsilon_0r^2}=\frac{8{,}99\times10^9\cdot2\times10^{-9}}{0{,}09}\simeq200$ V/m.
+        en: $E=\frac{q}{4\pi\varepsilon_0r^2}=\frac{8.99\times10^9\cdot2\times10^{-9}}{0.09}\simeq200$ V/m.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 199.7
+      unit: V/m
+      tol: 0.03
+- id: quiz-q113
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Una sfera isolante di raggio $R$ è uniformemente carica. A distanza $r=R/2$ dal centro il campo vale, rispetto a quello sulla superficie:"
+    en: "An insulating sphere of radius $R$ is uniformly charged. At distance $r=R/2$ from the centre the field, compared with that at the surface, is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Dentro la sfera $E=\\frac{Qr}{4\\pi\\varepsilon_0R^3}$ cresce linearmente con $r$: a $R/2$ è metà del valore sulla superficie."
+        en: "Inside the sphere $E=\\frac{Qr}{4\\pi\\varepsilon_0R^3}$ grows linearly with $r$: at $R/2$ it is half the surface value."
+  origin: originale
+  choices:
+    - text:
+        it: la metà
+        en: half
+      correct: true
+    - text:
+        it: un quarto
+        en: a quarter
+      correct: false
+    - text:
+        it: il doppio
+        en: twice
+      correct: false
+    - text:
+        it: lo stesso
+        en: the same
+      correct: false
+- id: quiz-q115
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: Filo rettilineo infinito con densità lineare $\lambda=1$ nC/m. Calcola il campo a distanza $r=2$ cm (in V/m).
+    en: Infinite straight wire with linear density $\lambda=1$ nC/m. Compute the field at distance $r=2$ cm (in V/m).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Con Gauss: $E=\\frac{\\lambda}{2\\pi\\varepsilon_0r}\\simeq899$ V/m."
+        en: "With Gauss: $E=\\frac{\\lambda}{2\\pi\\varepsilon_0r}\\simeq899$ V/m."
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 898.8
+      unit: V/m
+      tol: 0.03

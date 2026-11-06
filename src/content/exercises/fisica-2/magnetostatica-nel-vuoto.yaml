@@ -1,0 +1,325 @@
+# Quiz del sito originale (legacy/fisica-2/data/quiz.json, id "quiz-<id>") ed esercizi generati sulla tipologia degli appelli.
+- id: quiz-q301
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Il lavoro compiuto dalla forza magnetica su una carica in moto è:"
+    en: "The work done by the magnetic force on a moving charge is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "$\\vec F=q\\vec v\\times\\vec B$ è sempre perpendicolare a $\\vec v$: la potenza $\\vec F\\cdot\\vec v$ è nulla e l'energia cinetica non cambia."
+        en: "$\\vec F=q\\vec v\\times\\vec B$ is always perpendicular to $\\vec v$: the power $\\vec F\\cdot\\vec v$ is zero and the kinetic energy does not change."
+  origin: originale
+  choices:
+    - text:
+        it: sempre nullo
+        en: always zero
+      correct: true
+    - text:
+        it: positivo se la carica è positiva
+        en: positive if the charge is positive
+      correct: false
+    - text:
+        it: uguale a $qvB$
+        en: equal to $qvB$
+      correct: false
+    - text:
+        it: massimo se $\vec v\perp\vec B$
+        en: maximum if $\vec v\perp\vec B$
+      correct: false
+- id: quiz-q302
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.4
+  difficulty: 1
+  kind: static
+  statement:
+    it: "La II equazione di Maxwell $\\nabla\\cdot\\vec B=0$ esprime il fatto che:"
+    en: "Maxwell's second equation $\\nabla\\cdot\\vec B=0$ expresses the fact that:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Il flusso di $\\vec B$ attraverso una superficie chiusa è nullo: le linee di campo sono chiuse e non esistono cariche magnetiche isolate."
+        en: "The flux of $\\vec B$ through a closed surface is zero: field lines are closed and there are no isolated magnetic charges."
+  origin: originale
+  choices:
+    - text:
+        it: non esistono monopoli magnetici
+        en: there are no magnetic monopoles
+      correct: true
+    - text:
+        it: il campo magnetico è conservativo
+        en: the magnetic field is conservative
+      correct: false
+    - text:
+        it: le correnti sono stazionarie
+        en: the currents are steady
+      correct: false
+    - text:
+        it: $\vec B$ è sempre uniforme
+        en: $\vec B$ is always uniform
+      correct: false
+- id: quiz-q303
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Due fili paralleli percorsi da correnti nello stesso verso:"
+    en: "Two parallel wires carrying currents in the same direction:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Il campo del primo filo sul secondo, con $d\\vec F=I\\,d\\vec l\\times\\vec B$, dà una forza diretta verso il primo filo: $F/l=\\mu_0I_1I_2/(2\\pi d)$, attrattiva."
+        en: "The field of the first wire at the second, with $d\\vec F=I\\,d\\vec l\\times\\vec B$, gives a force directed towards the first wire: $F/l=\\mu_0I_1I_2/(2\\pi d)$, attractive."
+  origin: originale
+  choices:
+    - text:
+        it: si attraggono
+        en: attract each other
+      correct: true
+    - text:
+        it: si respingono
+        en: repel each other
+      correct: false
+    - text:
+        it: non interagiscono
+        en: do not interact
+      correct: false
+    - text:
+        it: ruotano uno attorno all'altro
+        en: rotate around each other
+      correct: false
+- id: quiz-q304
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Una spira percorsa da corrente in un campo magnetico uniforme tende a disporsi:"
+    en: "A current loop in a uniform magnetic field tends to settle:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "$\\vec M=\\vec m\\times\\vec B$ e $U=-\\vec m\\cdot\\vec B$: l'equilibrio stabile è $\\vec m\\parallel\\vec B$."
+        en: "$\\vec M=\\vec m\\times\\vec B$ and $U=-\\vec m\\cdot\\vec B$: the stable equilibrium is $\\vec m\\parallel\\vec B$."
+  origin: originale
+  choices:
+    - text:
+        it: con il momento magnetico parallelo e concorde a $\vec B$
+        en: with its magnetic moment parallel to and in the same direction as $\vec B$
+      correct: true
+    - text:
+        it: con il piano della spira parallelo a $\vec B$
+        en: with the plane of the loop parallel to $\vec B$
+      correct: false
+    - text:
+        it: con il momento magnetico antiparallelo a $\vec B$
+        en: with its magnetic moment antiparallel to $\vec B$
+      correct: false
+    - text:
+        it: in qualsiasi posizione (nessun momento)
+        en: in any position (no torque)
+      correct: false
+- id: quiz-q305
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.4
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Nel teorema della circuitazione di Ampère (caso stazionario) compare:"
+    en: "Ampère's circuital theorem (steady case) involves:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "$\\oint\\vec B\\cdot d\\vec l=\\mu_0I_{conc}$: contano solo le correnti che attraversano una superficie delimitata dalla curva."
+        en: "$\\oint\\vec B\\cdot d\\vec l=\\mu_0I_{conc}$: only the currents crossing a surface bounded by the curve count."
+  origin: originale
+  choices:
+    - text:
+        it: solo la corrente concatenata con la curva
+        en: only the current linked with the curve
+      correct: true
+    - text:
+        it: la corrente totale del circuito
+        en: the total current of the circuit
+      correct: false
+    - text:
+        it: la carica racchiusa
+        en: the enclosed charge
+      correct: false
+    - text:
+        it: il flusso di $\vec B$
+        en: the flux of $\vec B$
+      correct: false
+- id: quiz-q308
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: Filo rettilineo infinito percorso da $I=10$ A. Calcola il campo magnetico a 5 cm (in μT).
+    en: Infinite straight wire carrying $I=10$ A. Compute the magnetic field at 5 cm (in μT).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $B=\frac{\mu_0I}{2\pi r}=\frac{4\pi\times10^{-7}\cdot10}{2\pi\cdot0{,}05}=40$ μT.
+        en: $B=\frac{\mu_0I}{2\pi r}=\frac{4\pi\times10^{-7}\cdot10}{2\pi\cdot0.05}=40$ μT.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 40
+      unit: μT
+      tol: 0.03
+- id: quiz-q309
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: Solenoide lungo con 1000 spire/m percorso da 2 A. Calcola il campo magnetico all'interno (in mT).
+    en: Long solenoid with 1000 turns/m carrying 2 A. Compute the magnetic field inside (in mT).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $B=\mu_0nI=4\pi\times10^{-7}\cdot1000\cdot2\simeq2,51$ mT.
+        en: $B=\mu_0nI=4\pi\times10^{-7}\cdot1000\cdot2\simeq2.51$ mT.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 2.513
+      unit: mT
+      tol: 0.03
+- id: quiz-q310
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Un elettrone con velocità $v=10^6$ m/s entra perpendicolarmente in un campo $B=10$ mT. Calcola il raggio della traiettoria (in mm).
+    en: An electron with speed $v=10^6$ m/s enters perpendicularly a field $B=10$ mT. Compute the radius of its trajectory (in mm).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $r=\frac{m_ev}{eB}=\frac{9{,}11\times10^{-31}\cdot10^6}{1{,}6\times10^{-19}\cdot10^{-2}}\simeq0,569$ mm.
+        en: $r=\frac{m_ev}{eB}=\frac{9.11\times10^{-31}\cdot10^6}{1.6\times10^{-19}\cdot10^{-2}}\simeq0.569$ mm.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 0.5686
+      unit: mm
+      tol: 0.03
+- id: quiz-q311
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: Due fili paralleli distanti 10 cm sono percorsi da 5 A ciascuno. Calcola la forza per unità di lunghezza (in μN/m).
+    en: Two parallel wires 10 cm apart each carry 5 A. Compute the force per unit length (in μN/m).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $F/l=\frac{\mu_0I_1I_2}{2\pi d}=\frac{2\times10^{-7}\cdot25}{0{,}1}=50$ μN/m.
+        en: $F/l=\frac{\mu_0I_1I_2}{2\pi d}=\frac{2\times10^{-7}\cdot25}{0.1}=50$ μN/m.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 50
+      unit: μN/m
+      tol: 0.03
+- id: quiz-q312
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: Spira circolare di raggio 5 cm percorsa da 3 A. Calcola il campo al centro (in μT).
+    en: Circular loop of radius 5 cm carrying 3 A. Compute the field at the centre (in μT).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $B=\frac{\mu_0I}{2R}\simeq37,7$ μT.
+        en: $B=\frac{\mu_0I}{2R}\simeq37.7$ μT.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 37.7
+      unit: μT
+      tol: 0.03
+- id: quiz-q313
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Un protone e un elettrone entrano con la stessa velocità, perpendicolarmente, nello stesso campo magnetico uniforme. Rispetto al raggio dell'elettrone, quello del protone è:"
+    en: "A proton and an electron enter the same uniform magnetic field perpendicularly with the same speed. Compared with the electron's radius, the proton's is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "$r=mv/(|q|B)$: le cariche hanno lo stesso modulo, quindi il raggio è proporzionale alla massa ($m_p/m_e\\simeq1836$); il segno opposto inverte il verso di rotazione."
+        en: "$r=mv/(|q|B)$: the charges have the same magnitude, so the radius is proportional to the mass ($m_p/m_e\\simeq1836$); the opposite sign reverses the sense of rotation."
+  origin: originale
+  choices:
+    - text:
+        it: circa 1836 volte maggiore, con verso di rotazione opposto
+        en: about 1836 times larger, with opposite sense of rotation
+      correct: true
+    - text:
+        it: uguale, con verso opposto
+        en: the same, with opposite sense
+      correct: false
+    - text:
+        it: circa 1836 volte minore
+        en: about 1836 times smaller
+      correct: false
+    - text:
+        it: uguale e con lo stesso verso
+        en: the same and with the same sense
+      correct: false
