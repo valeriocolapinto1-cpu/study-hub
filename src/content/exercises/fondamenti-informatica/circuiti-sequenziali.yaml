@@ -112,6 +112,13 @@
 
           Putting n of them in cascade divides by 2ⁿ — and that is exactly the structure of an asynchronous
           counter, where each stage is driven by the output of the previous one.
+  answer:
+    - label:
+        it: Frequenza di Q
+        en: Frequency of Q
+      value: 50000000
+      unit: Hz
+      tol: 1e-9
   origin: originale
 - id: circuiti-sequenziali-es-3
   topic: circuiti-sequenziali
@@ -248,6 +255,22 @@
           To remember: with **serial** access n cycles are needed to load n bits, with **parallel** access
           just one. Converting between the two is exactly what a parallel-load shift register does, used in
           every serial interface.
+  answer:
+    - label:
+        it: Dopo il colpo 1
+        en: After cycle 1
+      value: "1101"
+      kind: text
+    - label:
+        it: Dopo il colpo 2
+        en: After cycle 2
+      value: "0110"
+      kind: text
+    - label:
+        it: Dopo il colpo 3
+        en: After cycle 3
+      value: "1011"
+      kind: text
   origin: originale
 - id: circuiti-sequenziali-es-5
   topic: circuiti-sequenziali
@@ -335,6 +358,29 @@
           Careful: slowing down the clock does **not** fix a hold violation, because the constraint does not
           contain the period. It can only be fixed by lengthening the short path (for example by inserting
           buffers) — which is why hold violations are considered more serious than setup ones.
+  answer:
+    - label:
+        it: Periodo minimo
+        en: Minimum period
+      value: 1.05e-8
+      unit: s
+      tol: 0.000001
+    - label:
+        it: Frequenza massima
+        en: Maximum frequency
+      value: 95238100
+      unit: Hz
+      tol: 0.01
+    - label:
+        it: Hold rispettato? (sì/no)
+        en: Hold met? (yes/no)
+      value: sì
+      kind: text
+      accept:
+        - si
+        - s
+        - yes
+        - y
   origin: originale
 - id: mcq-ff-01
   topic: circuiti-sequenziali

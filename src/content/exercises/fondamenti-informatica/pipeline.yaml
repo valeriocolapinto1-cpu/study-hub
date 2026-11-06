@@ -80,6 +80,12 @@
           The first 4 cycles are the **fill**: the pipeline has not produced anything yet. From cycle 5
           onwards one result comes out per cycle. Without a pipeline the same four instructions would have
           taken 4 × 5 = 20 cycles.
+  answer:
+    - label:
+        it: Cicli
+        en: Cycles
+      value: 8
+      tol: 1e-9
   origin: originale
 - id: pipeline-es-2
   topic: pipeline
@@ -144,6 +150,17 @@
 
           The theoretical limit is k, and in reality it is never reached: here we **assumed zero stalls**,
           which no real program guarantees, and ignored that the stages are not perfectly balanced.
+  answer:
+    - label:
+        it: Cicli con pipeline
+        en: Cycles with pipeline
+      value: 1004
+      tol: 1e-9
+    - label:
+        it: Speedup
+        en: Speedup
+      value: 4.98008
+      tol: 0.01
   origin: originale
 - id: pipeline-es-3
   topic: pipeline
@@ -238,6 +255,17 @@
           With forwarding the result of I1 is taken at the output of stage E and brought directly to the ALU
           input in the next cycle: I2 does not have to wait for the register file write. Two cycles saved over
           three instructions — on a real program, a huge gain.
+  answer:
+    - label:
+        it: Cicli senza forwarding
+        en: Cycles without forwarding
+      value: 9
+      tol: 1e-9
+    - label:
+        it: Cicli con forwarding
+        en: Cycles with forwarding
+      value: 7
+      tol: 1e-9
   origin: originale
 - id: pipeline-es-4
   topic: pipeline
@@ -406,6 +434,12 @@
           earlier, in a previous stage (reduces the penalty), **predicting** the outcome and proceeding on the
           predicted path (cancelling only when the prediction is wrong), or filling the cycles with the
           **delay slot**, leaving the compiler the task of finding useful instructions to put there.
+  answer:
+    - label:
+        it: CPI medio
+        en: Average CPI
+      value: 1.24
+      tol: 0.000001
   origin: originale
 - id: gen-cicli-pipeline
   topic: pipeline

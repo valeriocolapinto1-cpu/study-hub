@@ -60,6 +60,22 @@
           In direct mapping the index identifies **only one** possible line, so a single tag is compared:
           minimal hardware and a very fast answer. The price is **conflicts**: two blocks with the same index
           evict each other even if the rest of the cache is empty.
+  answer:
+    - label:
+        it: Bit di etichetta
+        en: Tag bits
+      value: 17
+      tol: 1e-9
+    - label:
+        it: Bit di indice
+        en: Index bits
+      value: 11
+      tol: 1e-9
+    - label:
+        it: Bit di spiazzamento
+        en: Offset bits
+      value: 4
+      tol: 1e-9
   origin: originale
 - id: gerarchia-di-memoria-es-2
   topic: gerarchia-di-memoria
@@ -125,6 +141,19 @@
           suitably sized blocks) or on the **penalty** (second-level cache) than on the hit time. It also
           shows why virtual memory, with page faults costing millions of cycles, needs an extremely low fault
           rate to be practical.
+  answer:
+    - label:
+        it: Con miss rate 5 %
+        en: With 5 % miss rate
+      value: 6e-9
+      unit: s
+      tol: 0.000001
+    - label:
+        it: Con miss rate 2 %
+        en: With 2 % miss rate
+      value: 3.6e-9
+      unit: s
+      tol: 0.000001
   origin: originale
 - id: gerarchia-di-memoria-es-3
   topic: gerarchia-di-memoria
@@ -206,6 +235,22 @@
           The cost: four tag comparisons in parallel instead of one (more hardware, slightly higher hit time)
           and the need for a **replacement** policy, which direct mapping does not need because there is no
           choice.
+  answer:
+    - label:
+        it: Bit di etichetta
+        en: Tag bits
+      value: 19
+      tol: 1e-9
+    - label:
+        it: Bit di indice
+        en: Index bits
+      value: 9
+      tol: 1e-9
+    - label:
+        it: Bit di spiazzamento
+        en: Offset bits
+      value: 4
+      tol: 1e-9
   origin: originale
 - id: gerarchia-di-memoria-es-4
   topic: gerarchia-di-memoria
@@ -278,6 +323,19 @@
 
           What you lose: with write-back memory is temporarily **out of date**, which complicates life for DMA
           and multiprocessors (it is the coherence problem) and requires a *dirty* bit for every block.
+  answer:
+    - label:
+        it: Traffico con write-through
+        en: Traffic with write-through
+      value: 1600
+      unit: B
+      tol: 1e-9
+    - label:
+        it: Traffico con write-back
+        en: Traffic with write-back
+      value: 1040
+      unit: B
+      tol: 1e-9
   origin: originale
 - id: gerarchia-di-memoria-es-5
   topic: gerarchia-di-memoria
@@ -353,6 +411,17 @@
           access respectively. LRU evicts the **least recently used**, i.e. 0 — which, however, is requested
           right after. It is the case where LRU predicts wrong: no real policy can always guess right, because
           it does not know the future.
+  answer:
+    - label:
+        it: Miss
+        en: Misses
+      value: 6
+      tol: 1e-9
+    - label:
+        it: Hit
+        en: Hits
+      value: 3
+      tol: 1e-9
   origin: originale
 - id: gen-campi-cache
   topic: gerarchia-di-memoria

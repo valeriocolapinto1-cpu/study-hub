@@ -52,6 +52,28 @@
 
           Grouping works because 8 = 2³ and 16 = 2⁴: three bits are exactly one octal digit, four are one
           hexadecimal digit. In the leftmost group, pad with leading zeros if it is not complete.
+  answer:
+    - label:
+        it: Binario
+        en: Binary
+      value: "10101101"
+      kind: text
+      accept:
+        - 1010 1101
+    - label:
+        it: Ottale
+        en: Octal
+      value: 255
+      tol: 1e-9
+    - label:
+        it: Esadecimale
+        en: Hexadecimal
+      value: AD
+      kind: text
+      accept:
+        - "0xAD"
+        - ADh
+        - AD16
   origin: originale
 - id: numeri-binari-es-2
   topic: numeri-binari
@@ -103,6 +125,23 @@
 
           Quick check: the most significant bit is 1, so the number is negative. Reading it back — invert and
           add 1 — gives 0101 0111 = 87 again, so the value is −87. ✓
+  answer:
+    - label:
+        it: CP2 su 8 bit
+        en: 8-bit two's complement
+      value: "10101001"
+      kind: text
+      accept:
+        - 1010 1001
+    - label:
+        it: Esadecimale
+        en: Hexadecimal
+      value: A9
+      kind: text
+      accept:
+        - "0xA9"
+        - A9h
+        - A916
   origin: originale
 - id: numeri-binari-es-3
   topic: numeri-binari
@@ -184,6 +223,29 @@
 
           This is why the two flags must be kept apart: here the carry-out is **zero** and yet there is
           overflow. The sign rule confirms it: two positive addends with a negative result.
+  answer:
+    - label:
+        it: Valore letto in CP2
+        en: Value read in two's complement
+      value: -111
+      tol: 1e-9
+    - label:
+        it: Riporto uscente? (sì/no)
+        en: Carry-out? (yes/no)
+      value: no
+      kind: text
+      accept:
+        - n
+    - label:
+        it: Overflow? (sì/no)
+        en: Overflow? (yes/no)
+      value: sì
+      kind: text
+      accept:
+        - si
+        - s
+        - yes
+        - y
   origin: originale
 - id: numeri-binari-es-4
   topic: numeri-binari
@@ -243,6 +305,26 @@
 
           You replicate the **sign bit**, not zero. Check on 8 bits: invert (0000 0100) and add 1 → 0000 0101
           = 5, so −5 ✓. With zeros you would have obtained 0000 1011 = +11, a different number.
+  answer:
+    - label:
+        it: Valore
+        en: Value
+      value: -5
+      tol: 1e-9
+    - label:
+        it: Su 8 bit
+        en: On 8 bits
+      value: "11111011"
+      kind: text
+      accept:
+        - 1111 1011
+    - label:
+        it: Su 16 bit
+        en: On 16 bits
+      value: "1111111111111011"
+      kind: text
+      accept:
+        - 1111 1111 1111 1011
   origin: originale
 - id: numeri-binari-es-5
   topic: numeri-binari
@@ -306,6 +388,22 @@
 
           The largest is 4444₅ = 5⁴ − 1 = **624**. The general rule holds: with n positions in base b you
           represent bⁿ values, from 0 to bⁿ − 1 — the same rule that gives 2⁸ = 256 values in a byte.
+  answer:
+    - label:
+        it: Base
+        en: Base
+      value: 5
+      tol: 1e-9
+    - label:
+        it: 89 su quell’abaco
+        en: 89 on that abacus
+      value: 324
+      tol: 1e-9
+    - label:
+        it: Massimo rappresentabile (decimale)
+        en: Largest representable (decimal)
+      value: 624
+      tol: 1e-9
   origin: originale
 - id: gen-complemento-a-2
   topic: numeri-binari

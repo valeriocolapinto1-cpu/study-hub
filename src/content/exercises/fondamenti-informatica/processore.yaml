@@ -274,6 +274,31 @@
           The price is hardware: three buses means tripling the lines and the access multiplexers of the
           register file. It is the typical cost/performance trade-off the exam asks you to be able to argue,
           not just compute.
+  answer:
+    - label:
+        it: Bus singolo, per istruzione
+        en: Single bus, per instruction
+      value: 1.2e-8
+      unit: s
+      tol: 0.000001
+    - label:
+        it: Tre bus, per istruzione
+        en: Three buses, per instruction
+      value: 8e-9
+      unit: s
+      tol: 0.000001
+    - label:
+        it: Bus singolo, 10⁶ istruzioni
+        en: Single bus, 10⁶ instructions
+      value: 0.012
+      unit: s
+      tol: 0.000001
+    - label:
+        it: Tre bus, 10⁶ istruzioni
+        en: Three buses, 10⁶ instructions
+      value: 0.008
+      unit: s
+      tol: 0.000001
   origin: originale
 - id: processore-es-5
   topic: processore

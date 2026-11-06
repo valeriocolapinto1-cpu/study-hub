@@ -65,6 +65,17 @@
           Y = Ā·C + B·C̄      (2 terms, 4 literals)
 
           ```
+  answer:
+    - label:
+        it: Termini
+        en: Terms
+      value: 2
+      tol: 1e-9
+    - label:
+        it: Letterali
+        en: Literals
+      value: 4
+      tol: 1e-9
   origin: originale
 - id: mappe-di-karnaugh-es-2
   topic: mappe-di-karnaugh
@@ -143,6 +154,17 @@
 
 
           Whoever does not use wrap-around writes four four-literal terms instead of one two-literal term.
+  answer:
+    - label:
+        it: Termini
+        en: Terms
+      value: 1
+      tol: 1e-9
+    - label:
+        it: Letterali
+        en: Literals
+      value: 2
+      tol: 1e-9
   origin: originale
 - id: mappe-di-karnaugh-es-3
   topic: mappe-di-karnaugh
@@ -256,6 +278,17 @@
 
           Without exploiting the don’t cares you would have obtained `C·D + Ā·B̄·C̄·D`: correct, but with two
           more literals — that is, fewer points.
+  answer:
+    - label:
+        it: Termini
+        en: Terms
+      value: 2
+      tol: 1e-9
+    - label:
+        it: Letterali
+        en: Literals
+      value: 4
+      tol: 1e-9
   origin: originale
 - id: mappe-di-karnaugh-es-4
   topic: mappe-di-karnaugh
@@ -349,6 +382,17 @@
           Y = Ā·B̄ + B·C̄ + A·C      or      Y = Ā·C̄ + B̄·C + A·B
 
           ```
+  answer:
+    - label:
+        it: Implicanti essenziali
+        en: Essential implicants
+      value: 0
+      tol: 1e-9
+    - label:
+        it: Termini della SOP minima
+        en: Terms of the minimal SOP
+      value: 3
+      tol: 1e-9
   origin: originale
 - id: mappe-di-karnaugh-es-5
   topic: mappe-di-karnaugh
@@ -424,6 +468,17 @@
           Compared with the minimal SOP found before (3 terms, 6 literals): the POS uses **one term fewer**
           for the same literals. With few zeros it is almost always worth trying, and that is why grouping the
           zeros should always be attempted before handing in.
+  answer:
+    - label:
+        it: Termini della POS
+        en: POS terms
+      value: 2
+      tol: 1e-9
+    - label:
+        it: Letterali della POS
+        en: POS literals
+      value: 6
+      tol: 1e-9
   origin: originale
 - id: gen-karnaugh
   topic: mappe-di-karnaugh

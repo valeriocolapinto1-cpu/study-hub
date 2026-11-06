@@ -121,6 +121,12 @@
 
           The result is 0+1+…+9 = 45. A way to check a translation in your head is always this: run it on a
           small case and compare with the formula.
+  answer:
+    - label:
+        it: Valore finale di SOMMA
+        en: Final value of SOMMA
+      value: 45
+      tol: 1e-9
   origin: originale
 - id: risc-cisc-assembly-es-3
   topic: risc-cisc-assembly
@@ -332,6 +338,25 @@
           problem when exchanging binary data — a file, a network packet, a device — between machines with
           opposite conventions. That is why network protocols fix an order (the *network byte order*,
           big-endian) and little-endian machines convert on input and output.
+  answer:
+    - label:
+        it: Byte all’indirizzo 100, big-endian
+        en: Byte at address 100, big-endian
+      value: "12"
+      kind: text
+      accept:
+        - "0x12"
+        - 12h
+        - "1216"
+    - label:
+        it: Byte all’indirizzo 100, little-endian
+        en: Byte at address 100, little-endian
+      value: "78"
+      kind: text
+      accept:
+        - "0x78"
+        - 78h
+        - "7816"
   origin: originale
 - id: gen-assembly-snippet
   topic: risc-cisc-assembly

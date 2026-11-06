@@ -84,6 +84,16 @@
           The two mistakes to avoid: putting the leading 1 into the mantissa (it is implicit, one bit of
           precision is gained) and **subtracting** the bias instead of adding it — you add when encoding,
           subtract when decoding.
+  answer:
+    - label:
+        it: Configurazione in esadecimale
+        en: Pattern in hexadecimal
+      value: C1460000
+      kind: text
+      accept:
+        - "0xC1460000"
+        - C1460000h
+        - C146000016
   origin: originale
 - id: virgola-mobile-es-2
   topic: virgola-mobile
@@ -149,6 +159,12 @@
           The procedure is exactly the inverse of encoding: split, subtract the bias, rebuild. A useful check:
           the exponent 130 is just above 127, so the number is in the units or tens — had it come out as
           10,000 there would have been a mistake somewhere.
+  answer:
+    - label:
+        it: Valore
+        en: Value
+      value: 10
+      tol: 1e-9
   origin: originale
 - id: virgola-mobile-es-3
   topic: virgola-mobile

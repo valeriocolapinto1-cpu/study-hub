@@ -48,6 +48,13 @@
           (better cache) would give 1.0 s; bringing the frequency from 3 to 3.6 GHz would give the same. The
           two routes are equivalent in result but not in cost: the first is organisation, the second is power
           and heat.
+  answer:
+    - label:
+        it: Tempo di esecuzione
+        en: Execution time
+      value: 1.2
+      unit: s
+      tol: 0.000001
   origin: originale
 - id: prestazioni-e-parallelismo-es-2
   topic: prestazioni-e-parallelismo
@@ -111,6 +118,17 @@
           It is the answer to the trick question “is a processor with a higher frequency faster?”. No:
           frequency is one factor out of three, and on its own it says nothing. The comparison makes sense
           only **on the same program**, because N too changes from machine to machine.
+  answer:
+    - label:
+        it: T_B / T_A
+        en: T_B / T_A
+      value: 1.25
+      tol: 0.000001
+    - label:
+        it: Macchina più veloce
+        en: Faster machine
+      value: A
+      kind: text
   origin: originale
 - id: prestazioni-e-parallelismo-es-3
   topic: prestazioni-e-parallelismo
@@ -176,6 +194,17 @@
           Operational consequence: **measure before optimising**. Investing weeks in a function weighing 25 %
           has a 33 % ceiling; the same effort on one weighing 70 % is worth much more. That is why profilers
           exist.
+  answer:
+    - label:
+        it: Speedup con k = 8
+        en: Speedup with k = 8
+      value: 1.28
+      tol: 0.01
+    - label:
+        it: Speedup con k → ∞
+        en: Speedup with k → ∞
+      value: 1.33333
+      tol: 0.01
   origin: originale
 - id: prestazioni-e-parallelismo-es-4
   topic: prestazioni-e-parallelismo
@@ -249,6 +278,17 @@
           And the calculation is still optimistic: it does not account for the cost of **synchronisation**,
           which grows with the number of cores and at some point can make performance *worse* as processors
           are added. That is why parallelism is not a universal solution.
+  answer:
+    - label:
+        it: Core necessari
+        en: Cores needed
+      value: 3
+      tol: 1e-9
+    - label:
+        it: Speedup massimo
+        en: Maximum speedup
+      value: 5
+      tol: 1e-9
   origin: originale
 - id: prestazioni-e-parallelismo-es-5
   topic: prestazioni-e-parallelismo
@@ -322,6 +362,17 @@
 
           That is why the SPEC suites publish geometric means, and why a summary score must always be read
           knowing **how** it was aggregated.
+  answer:
+    - label:
+        it: Media aritmetica
+        en: Arithmetic mean
+      value: 5.05
+      tol: 0.000001
+    - label:
+        it: Media geometrica
+        en: Geometric mean
+      value: 1
+      tol: 0.000001
   origin: originale
 - id: mcq-perf-01
   topic: prestazioni-e-parallelismo

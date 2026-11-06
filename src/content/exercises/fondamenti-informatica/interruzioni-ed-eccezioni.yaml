@@ -291,6 +291,19 @@
           Polling keeps one advantage, though: the query order **is** a priority, decided by software and
           changeable without touching the hardware. In systems with few devices it remains a legitimate choice
           precisely because of its simplicity.
+  answer:
+    - label:
+        it: Polling, caso medio
+        en: Polling, average case
+      value: 0.000021
+      unit: s
+      tol: 0.000001
+    - label:
+        it: Polling, caso peggiore
+        en: Polling, worst case
+      value: 0.00004
+      unit: s
+      tol: 0.000001
   origin: originale
 - id: interruzioni-ed-eccezioni-es-5
   topic: interruzioni-ed-eccezioni
@@ -360,6 +373,19 @@
           How it is reduced: by shortening the longest instruction (RISC processors were born for this too,
           with instructions of uniform duration), or by making long instructions **interruptible** — which
           complicates restoring, because you must be able to resume the instruction halfway.
+  answer:
+    - label:
+        it: Latenza massima
+        en: Maximum latency
+      value: 4e-8
+      unit: s
+      tol: 0.000001
+    - label:
+        it: Tempo totale
+        en: Total time
+      value: 1.36e-7
+      unit: s
+      tol: 0.000001
   origin: originale
 - id: mcq-irq-01
   topic: interruzioni-ed-eccezioni

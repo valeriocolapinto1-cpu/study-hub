@@ -205,6 +205,17 @@
           processor pays only the bus cycles “stolen” by the controller while it transfers. That is why every
           disk and every network card uses DMA, while the keyboard — a few dozen events per second — has no
           need for it.
+  answer:
+    - label:
+        it: Interruzioni al secondo
+        en: Interrupts per second
+      value: 25000000
+      tol: 1e-9
+    - label:
+        it: Rapporto cicli richiesti / disponibili
+        en: Ratio of cycles needed / available
+      value: 6.25
+      tol: 0.000001
   origin: originale
 - id: input-output-es-4
   topic: input-output

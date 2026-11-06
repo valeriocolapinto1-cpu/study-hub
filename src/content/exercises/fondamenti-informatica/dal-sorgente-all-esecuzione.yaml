@@ -81,6 +81,22 @@
           Watch out for two things: `DATAWORD` and `RESERVE` **take memory** and advance the counter exactly
           like instructions; `ORIGIN` and `END` do not, because they are instructions for the assembler and do
           not end up in memory.
+  answer:
+    - label:
+        it: Indirizzo di GIRO
+        en: Address of GIRO
+      value: 208
+      tol: 1e-9
+    - label:
+        it: Indirizzo di CONT
+        en: Address of CONT
+      value: 224
+      tol: 1e-9
+    - label:
+        it: Indirizzo di TOT
+        en: Address of TOT
+      value: 228
+      tol: 1e-9
   origin: originale
 - id: dal-sorgente-all-esecuzione-es-2
   topic: dal-sorgente-all-esecuzione
@@ -197,6 +213,17 @@
 
           Note also that `RESERVE` **does not initialise**: those twenty bytes hold undefined values until the
           program writes to them.
+  answer:
+    - label:
+        it: Indirizzo di COST
+        en: Address of COST
+      value: 128
+      tol: 1e-9
+    - label:
+        it: Indirizzo di DOPO
+        en: Address of DOPO
+      value: 136
+      tol: 1e-9
   origin: originale
 - id: dal-sorgente-all-esecuzione-es-4
   topic: dal-sorgente-all-esecuzione
@@ -257,6 +284,19 @@
           What it costs: the executable is no longer self-sufficient. If the library is missing, of the wrong
           version or replaced incompatibly, the program does not start or misbehaves — the classic “missing
           DLL”. Static linking pays space to buy independence.
+  answer:
+    - label:
+        it: Collegamento statico
+        en: Static linking
+      value: 10000000
+      unit: B
+      tol: 0.000001
+    - label:
+        it: Collegamento dinamico
+        en: Dynamic linking
+      value: 2000000
+      unit: B
+      tol: 0.000001
   origin: originale
 - id: dal-sorgente-all-esecuzione-es-5
   topic: dal-sorgente-all-esecuzione

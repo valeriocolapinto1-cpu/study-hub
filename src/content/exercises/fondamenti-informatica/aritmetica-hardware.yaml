@@ -148,6 +148,29 @@
 
           Same bits, same circuit, two opposite verdicts: that is why the processor computes **both** flags
           and leaves it to the program to decide which to look at.
+  answer:
+    - label:
+        it: Somma su 4 bit
+        en: 4-bit sum
+      value: "0001"
+      kind: text
+    - label:
+        it: Riporto uscente? (sì/no)
+        en: Carry-out? (yes/no)
+      value: sì
+      kind: text
+      accept:
+        - si
+        - s
+        - yes
+        - y
+    - label:
+        it: Overflow in CP2? (sì/no)
+        en: Two's complement overflow? (yes/no)
+      value: no
+      kind: text
+      accept:
+        - n
   origin: originale
 - id: aritmetica-hardware-es-3
   topic: aritmetica-hardware
@@ -241,6 +264,26 @@
 
           No overflow, as it should be: the actual operands (+7 and −12) have opposite signs, so the result
           cannot leave the range.
+  answer:
+    - label:
+        it: Risultato su 5 bit
+        en: 5-bit result
+      value: "11011"
+      kind: text
+      accept:
+        - 1 1011
+    - label:
+        it: Valore
+        en: Value
+      value: -5
+      tol: 1e-9
+    - label:
+        it: Overflow? (sì/no)
+        en: Overflow? (yes/no)
+      value: no
+      kind: text
+      accept:
+        - n
   origin: originale
 - id: aritmetica-hardware-es-4
   topic: aritmetica-hardware
@@ -366,6 +409,17 @@
           Check: 13 + 7 = 20 = 1 0100₂ ✓. The point of the exercise is that c₃ and c₄ are obtained from g and
           p **without waiting** for the previous stages: that is what makes lookahead fast, at the price of
           many more gates.
+  answer:
+    - label:
+        it: Somma S
+        en: Sum S
+      value: "0100"
+      kind: text
+    - label:
+        it: Riporto c₄
+        en: Carry c₄
+      value: 1
+      tol: 1e-9
   origin: originale
 - id: aritmetica-hardware-es-5
   topic: aritmetica-hardware
@@ -440,6 +494,19 @@
           write the product into two registers or a double register. And the method works as is only for
           **unsigned** numbers: with two's complement the partial products would have to be sign-extended,
           which is the problem Booth's algorithm solves elegantly.
+  answer:
+    - label:
+        it: Prodotto su 8 bit
+        en: 8-bit product
+      value: "01000001"
+      kind: text
+      accept:
+        - 0100 0001
+    - label:
+        it: In decimale
+        en: In decimal
+      value: 65
+      tol: 1e-9
   origin: originale
 - id: gen-somma-con-flag
   topic: aritmetica-hardware

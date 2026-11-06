@@ -50,6 +50,19 @@
           It is the most common mistake on this topic: adding the parallel branches too, getting 9 ns in the
           second case as well. The delay of a network is that of its **critical path**, i.e. the slowest
           input→output path, not the sum of all the delays present.
+  answer:
+    - label:
+        it: In cascata
+        en: In cascade
+      value: 9e-9
+      unit: s
+      tol: 0.000001
+    - label:
+        it: Con i primi due in parallelo
+        en: With the first two in parallel
+      value: 7e-9
+      unit: s
+      tol: 0.000001
   origin: originale
 - id: tempi-e-tecnologia-es-2
   topic: tempi-e-tecnologia
@@ -105,6 +118,13 @@
 
           It is the same reasoning by which clock signals, which must reach thousands of flip-flops, travel on
           a *tree* of buffers and not on a single wire.
+  answer:
+    - label:
+        it: Ritardo
+        en: Delay
+      value: 2.9e-9
+      unit: s
+      tol: 0.000001
   origin: originale
 - id: tempi-e-tecnologia-es-3
   topic: tempi-e-tecnologia
@@ -182,6 +202,19 @@
 
           Note that the fixed 3 ns term never disappears: it is why, beyond a certain point, shortening the
           combinational logic stops paying off.
+  answer:
+    - label:
+        it: Frequenza con ripple-carry
+        en: Frequency with ripple-carry
+      value: 28571400
+      unit: Hz
+      tol: 0.01
+    - label:
+        it: Frequenza con carry-lookahead
+        en: Frequency with carry-lookahead
+      value: 111111000
+      unit: Hz
+      tol: 0.01
   origin: originale
 - id: tempi-e-tecnologia-es-4
   topic: tempi-e-tecnologia
@@ -251,6 +284,19 @@
           It is exactly this curve that stopped the gigahertz race and moved the industry to **multicore**:
           two cores at 1 GHz consume about as much as one at 1 GHz doubled in area, but much less than one at
           2 GHz.
+  answer:
+    - label:
+        it: A 2 GHz e 1,0 V
+        en: At 2 GHz and 1.0 V
+      value: 8
+      unit: W
+      tol: 0.000001
+    - label:
+        it: A 2 GHz e 1,2 V
+        en: At 2 GHz and 1.2 V
+      value: 11.52
+      unit: W
+      tol: 0.01
   origin: originale
 - id: tempi-e-tecnologia-es-5
   topic: tempi-e-tecnologia

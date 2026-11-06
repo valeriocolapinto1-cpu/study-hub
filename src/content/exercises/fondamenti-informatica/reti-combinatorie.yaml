@@ -129,6 +129,14 @@
 
           Connections: S₂S₁S₀ = A B C, and the eight data inputs to the constants `0,1,1,0,1,0,0,1`. No logic
           gates: the truth table **is** the wiring.
+  answer:
+    - label:
+        it: Ingressi I₀…I₇
+        en: Inputs I₀…I₇
+      value: "01101001"
+      kind: text
+      accept:
+        - 0110 1001
   origin: originale
 - id: reti-combinatorie-es-3
   topic: reti-combinatorie
@@ -321,6 +329,17 @@
           and ground is created: the value on the line is undefined and the high current can damage the
           buffers. That is why the selection always goes through a **decoder**, which by construction
           activates a single output.
+  answer:
+    - label:
+        it: Buffer tri-state
+        en: Tri-state buffers
+      value: 32
+      tol: 1e-9
+    - label:
+        it: Abilitazioni attive al massimo
+        en: Enables active at most
+      value: 1
+      tol: 1e-9
   origin: originale
 - id: mcq-comb-01
   topic: reti-combinatorie

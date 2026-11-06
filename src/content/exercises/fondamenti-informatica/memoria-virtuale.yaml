@@ -61,6 +61,16 @@
 
           Immediate check: the last **three hex digits are still 7F4**. If in an exercise they change, the
           translation is wrong: page and frame have the same size, so the internal position cannot change.
+  answer:
+    - label:
+        it: Indirizzo fisico
+        en: Physical address
+      value: 000C37F4
+      kind: text
+      accept:
+        - "0x000C37F4"
+        - 000C37F4h
+        - 000C37F416
   origin: originale
 - id: memoria-virtuale-es-2
   topic: memoria-virtuale
@@ -125,6 +135,19 @@
           Hence the two real solutions: the **multi-level** table, in which only the branches actually used
           are allocated, and the **inverted** table, which has one entry per physical frame instead of per
           virtual page — so it grows with installed memory and not with the address space.
+  answer:
+    - label:
+        it: Tabella di un processo
+        en: Table of one process
+      value: 4
+      unit: MiB
+      tol: 1e-9
+    - label:
+        it: Tabelle di 100 processi
+        en: Tables of 100 processes
+      value: 400
+      unit: MiB
+      tol: 1e-9
   origin: originale
 - id: memoria-virtuale-es-3
   topic: memoria-virtuale
@@ -280,6 +303,12 @@
           It is the general lesson of the memory hierarchy: when penalties are huge, what matters is not the
           typical case but the **frequency of catastrophic cases**. And it explains why the operating system
           works so hard on page-replacement policies.
+  answer:
+    - label:
+        it: Cicli medi per accesso
+        en: Average cycles per access
+      value: 201
+      tol: 1e-9
   origin: originale
 - id: memoria-virtuale-es-5
   topic: memoria-virtuale
