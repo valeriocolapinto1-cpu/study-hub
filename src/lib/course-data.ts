@@ -109,6 +109,7 @@ export function exerciseData(e: CollectionEntry<'exercises'>['data'], lang: Lang
       ? {
           choices: e.choices.map((c) => ({
             html: richInline(tr(c.text, lang)),
+            label: plainText(tr(c.text, lang)),
             correct: c.correct,
             ...(c.explanation ? { explanationHtml: richHtml(tr(c.explanation, lang)) } : {}),
           })),

@@ -70,6 +70,7 @@ export async function generatedContent(
       ? Promise.all(
           g.choices.map(async (c) => ({
             html: await renderRichClient(c.text, { inlineOnly: true }),
+            label: plainText(c.text),
             correct: c.correct,
             ...(c.explanation ? { explanationHtml: await renderRichClient(c.explanation) } : {}),
           })),
@@ -267,6 +268,7 @@ export default function ExercisePlayer({
                     <input
                       type={multiple ? 'checkbox' : 'radio'}
                       name={`${uid}-c`}
+                      aria-label={c.label}
                       checked={on}
                       onChange={() =>
                         setPicked(multiple ? (on ? picked.filter((x) => x !== i) : [...picked, i]) : [i])

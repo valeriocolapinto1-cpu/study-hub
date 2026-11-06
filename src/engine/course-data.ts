@@ -33,6 +33,8 @@ export interface AnswerItemData {
 
 export interface ChoiceData {
   html: string;
+  /** Testo semplice per il nome accessibile (le scelte di sole formule non ne hanno uno). */
+  label?: string;
   correct: boolean;
   explanationHtml?: string;
 }

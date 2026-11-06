@@ -29,4 +29,9 @@ export const SAMPLE_PAGES: SamplePage[] = [
   { name: 'fi-esercizi-it', path: `${BASE}it/anno-1/fondamenti-informatica/esercizi/mappe-di-karnaugh/` },
   { name: 'fi-formulario-it', path: `${BASE}it/anno-1/fondamenti-informatica/formulario/` },
   { name: 'fi-convertitori-en', path: `${BASE}en/anno-1/fondamenti-informatica/extra/convertitori/` },
+  { name: 'tdc-panoramica-it', path: `${BASE}it/anno-2/teoria-circuiti/` },
+  { name: 'tdc-teoria-en', path: `${BASE}en/anno-2/teoria-circuiti/teoria/teorema-di-thevenin/` },
+  { name: 'tdc-formulario-it', path: `${BASE}it/anno-2/teoria-circuiti/formulario/` },
+  { name: 'tdc-esercizi-it', path: `${BASE}it/anno-2/teoria-circuiti/esercizi/circuiti-primo-ordine/` },
+  { name: 'tdc-extra-it', path: `${BASE}it/anno-2/teoria-circuiti/extra/esame-info/` },
 ];

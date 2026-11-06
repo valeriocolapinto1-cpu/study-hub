@@ -100,3 +100,14 @@ syncToggles();
 // importate qui perché la tabella sia completa prima di eseguirla.
 import.meta.glob('../courses/*/migrations.ts', { eager: true });
 runMigrations();
+
+// Formule display più larghe della colonna: scorrono in orizzontale, quindi devono
+// essere raggiungibili da tastiera (WCAG 2.1.1). Solo quelle che scorrono davvero.
+const markScrollableMath = () => {
+  for (const el of document.querySelectorAll<HTMLElement>('.katex-display')) {
+    if (el.scrollWidth > el.clientWidth + 1) el.tabIndex = 0;
+    else el.removeAttribute('tabindex');
+  }
+};
+markScrollableMath();
+globalThis.addEventListener?.('resize', markScrollableMath, { passive: true });
