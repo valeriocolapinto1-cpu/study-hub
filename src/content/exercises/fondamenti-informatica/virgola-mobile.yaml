@@ -1,0 +1,830 @@
+- id: virgola-mobile-es-1
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Rappresenta **−12,375** in singola precisione IEEE 754 e scrivi il risultato in esadecimale.
+    en: Represent **−12.375** in IEEE 754 single precision and write the result in hexadecimal.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: Converti separatamente parte intera e parte frazionaria, normalizza in 1,xxx × 2ᵉ, poi somma il bias
+          all’esponente.
+        en: Convert integer and fractional parts separately, normalise to 1.xxx × 2ᵉ, then add the bias to the
+          exponent.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          12      = 1100₂
+
+          0,375   = 0,011₂        (0,25 + 0,125)
+
+          12,375  = 1100,011₂
+
+
+          normalizzo:  1100,011 = 1,100011 × 2³
+
+
+          segno     s = 1                     (negativo)
+
+          esponente E = 3 + 127 = 130 = 1000 0010
+
+          mantissa  M = 100011 + zeri          (l'1 iniziale NON si scrive)
+
+
+          1 10000010 10001100000000000000000
+
+          = 1100 0001 0100 0110 0000 0000 0000 0000
+
+          = 0xC1460000
+
+          ```
+
+
+          I due errori da evitare: mettere l’1 iniziale dentro la mantissa (è implicito, si guadagna un bit di
+          precisione) e **sottrarre** il bias invece di sommarlo — si somma quando si codifica, si sottrae
+          quando si decodifica.
+        en: >-
+          ```
+
+          12      = 1100₂
+
+          0.375   = 0.011₂        (0.25 + 0.125)
+
+          12.375  = 1100.011₂
+
+
+          normalise:  1100.011 = 1.100011 × 2³
+
+
+          sign      s = 1                     (negative)
+
+          exponent  E = 3 + 127 = 130 = 1000 0010
+
+          mantissa  M = 100011 + zeros         (the leading 1 is NOT written)
+
+
+          1 10000010 10001100000000000000000
+
+          = 1100 0001 0100 0110 0000 0000 0000 0000
+
+          = 0xC1460000
+
+          ```
+
+
+          The two mistakes to avoid: putting the leading 1 into the mantissa (it is implicit, one bit of
+          precision is gained) and **subtracting** the bias instead of adding it — you add when encoding,
+          subtract when decoding.
+  origin: originale
+- id: virgola-mobile-es-2
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Che numero decimale rappresenta la configurazione `0x41200000` in singola precisione?
+    en: What decimal number does the pattern `0x41200000` represent in single precision?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: Scomponi i 32 bit nei tre campi, togli il bias dall’esponente e rimetti l’1 implicito davanti alla
+          mantissa.
+        en: Split the 32 bits into the three fields, remove the bias from the exponent and put the implicit 1 back in
+          front of the mantissa.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          0x41200000 = 0100 0001 0010 0000 0000 0000 0000 0000
+
+
+          segno     = 0                    → positivo
+
+          esponente = 1000 0010 = 130      → e = 130 − 127 = 3
+
+          mantissa  = 010 0000…            → 1,01₂ con l'1 implicito
+
+
+          valore = 1,01₂ × 2³ = 1010₂ = 10,0
+
+          ```
+
+
+          Il procedimento è esattamente l’inverso della codifica: separa, sottrai il bias, ricostruisci. Un
+          controllo utile: l’esponente 130 è poco sopra 127, quindi il numero è dell’ordine delle unità o
+          delle decine — se fosse venuto 10 000 ci sarebbe stato un errore da qualche parte.
+        en: >-
+          ```
+
+          0x41200000 = 0100 0001 0010 0000 0000 0000 0000 0000
+
+
+          sign      = 0                    → positive
+
+          exponent  = 1000 0010 = 130      → e = 130 − 127 = 3
+
+          mantissa  = 010 0000…            → 1.01₂ with the implicit 1
+
+
+          value = 1.01₂ × 2³ = 1010₂ = 10.0
+
+          ```
+
+
+          The procedure is exactly the inverse of encoding: split, subtract the bias, rebuild. A useful check:
+          the exponent 130 is just above 127, so the number is in the units or tens — had it come out as
+          10,000 there would have been a mistake somewhere.
+  origin: originale
+- id: virgola-mobile-es-3
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: Che cosa rappresentano queste configurazioni a 32 bit? `0x00000000` · `0x80000000` · `0x7F800000` ·
+      `0xFF800000` · `0x7FC00000`
+    en: What do these 32-bit patterns represent? `0x00000000` · `0x80000000` · `0x7F800000` · `0xFF800000` ·
+      `0x7FC00000`
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: "Guarda prima l’esponente: se è tutto 0 o tutto 1 non sei nel caso normale, e la mantissa dice quale caso
+          speciale è."
+        en: "Look at the exponent first: if it is all 0s or all 1s you are not in the normal case, and the mantissa
+          tells you which special case it is."
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          0x00000000  s=0  E=00000000  M=0   →  +0
+
+          0x80000000  s=1  E=00000000  M=0   →  −0
+
+          0x7F800000  s=0  E=11111111  M=0   →  +∞
+
+          0xFF800000  s=1  E=11111111  M=0   →  −∞
+
+          0x7FC00000  s=0  E=11111111  M≠0   →  NaN
+
+          ```
+
+
+          La regola: esponente **tutto a 0** significa zero (mantissa nulla) oppure numero **denormalizzato**
+          (mantissa diversa da zero, e allora l’1 implicito non c’è); esponente **tutto a 1** significa
+          infinito (mantissa nulla) oppure **NaN** (mantissa diversa da zero).
+
+
+          Curiosità che l’esame chiede volentieri: esistono **due zeri**, +0 e −0, e si comportano come uguali
+          nei confronti ma sono distinguibili nei bit. Il NaN invece non è uguale nemmeno a se stesso: `x ≠ x`
+          è il modo canonico per riconoscerlo.
+        en: >-
+          ```
+
+          0x00000000  s=0  E=00000000  M=0   →  +0
+
+          0x80000000  s=1  E=00000000  M=0   →  −0
+
+          0x7F800000  s=0  E=11111111  M=0   →  +∞
+
+          0xFF800000  s=1  E=11111111  M=0   →  −∞
+
+          0x7FC00000  s=0  E=11111111  M≠0   →  NaN
+
+          ```
+
+
+          The rule: exponent **all 0s** means zero (zero mantissa) or a **denormal** number (non-zero
+          mantissa, and then there is no implicit 1); exponent **all 1s** means infinity (zero mantissa) or
+          **NaN** (non-zero mantissa).
+
+
+          A curiosity the exam likes to ask: there are **two zeros**, +0 and −0, and they behave as equal in
+          comparisons but are distinguishable in their bits. NaN, on the other hand, is not even equal to
+          itself: `x ≠ x` is the canonical way to recognise it.
+  origin: originale
+- id: virgola-mobile-es-4
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: Perché `0,1` non è rappresentabile esattamente in IEEE 754, mentre `0,5` e `0,25` sì? Che cosa comporta in
+      pratica?
+    en: Why can `0.1` not be represented exactly in IEEE 754, while `0.5` and `0.25` can? What does it imply in
+      practice?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: Un numero è rappresentabile con un numero finito di cifre binarie solo se il suo denominatore, ridotto ai
+          minimi termini, è una potenza di 2.
+        en: A number can be represented with a finite number of binary digits only if its denominator, in lowest
+          terms, is a power of 2.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          0,5  = 1/2   = 2⁻¹        → 0,1₂         esatto
+
+          0,25 = 1/4   = 2⁻²        → 0,01₂        esatto
+
+          0,1  = 1/10  = 1/(2 × 5)  → il fattore 5 non è una potenza di 2
+
+          ```
+
+
+          In binario 0,1 diventa **periodico**:
+
+
+          ```
+
+          0,1₁₀ = 0,0001100110011001100110011…₂   (il gruppo 0011 si ripete)
+
+          ```
+
+
+          La mantissa ha 23 bit, quindi la sequenza viene troncata e arrotondata: il valore memorizzato è
+          leggermente diverso da 0,1 (circa 0,100000001490116…).
+
+
+          Conseguenze pratiche. Sommando dieci volte 0,1 **non** si ottiene esattamente 1, quindi confrontare
+          due float con l’uguaglianza è quasi sempre sbagliato: si confronta la differenza con una tolleranza.
+          E gli importi di denaro non si tengono in virgola mobile ma in interi (centesimi), proprio perché
+          0,10 non è rappresentabile.
+        en: >-
+          ```
+
+          0.5  = 1/2   = 2⁻¹        → 0.1₂         exact
+
+          0.25 = 1/4   = 2⁻²        → 0.01₂        exact
+
+          0.1  = 1/10  = 1/(2 × 5)  → the factor 5 is not a power of 2
+
+          ```
+
+
+          In binary 0.1 becomes **periodic**:
+
+
+          ```
+
+          0.1₁₀ = 0.0001100110011001100110011…₂   (the group 0011 repeats)
+
+          ```
+
+
+          The mantissa has 23 bits, so the sequence is truncated and rounded: the stored value differs
+          slightly from 0.1 (about 0.100000001490116…).
+
+
+          Practical consequences. Adding 0.1 ten times does **not** give exactly 1, so comparing two floats
+          with equality is almost always wrong: you compare the difference with a tolerance. And amounts of
+          money are not kept in floating point but in integers (cents), precisely because 0.10 cannot be
+          represented.
+  origin: originale
+- id: virgola-mobile-es-5
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: Verifica che due numeri in virgola mobile **positivi** si possano confrontare leggendo i loro bit come se
+      fossero interi senza segno, usando 1,0 (`0x3F800000`) e 2,0 (`0x40000000`). La proprietà vale anche per
+      i negativi?
+    en: Check that two **positive** floating-point numbers can be compared by reading their bits as unsigned
+      integers, using 1.0 (`0x3F800000`) and 2.0 (`0x40000000`). Does the property also hold for negatives?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: "Guarda l’ordine dei campi dentro la parola: segno, poi esponente, poi mantissa. Chiediti perché è proprio
+          quello."
+        en: "Look at the order of the fields within the word: sign, then exponent, then mantissa. Ask yourself why it
+          is exactly that one."
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          1,0 = 0x3F800000  →  come intero: 1 065 353 216
+
+          2,0 = 0x40000000  →  come intero: 1 073 741 824
+
+
+          1 065 353 216 < 1 073 741 824   ✓  e infatti 1,0 < 2,0
+
+          ```
+
+
+          Funziona per tre ragioni combinate: l’**esponente sta prima** della mantissa, quindi domina il
+          confronto come deve; l’esponente è in **eccesso** (bias) e non in complemento a 2, quindi è un
+          numero senza segno crescente; e la mantissa, essendo dopo, decide solo a parità di esponente.
+
+
+          Per i **negativi** la proprietà si rompe: il bit di segno a 1 rende l’intero corrispondente più
+          grande, quindi −2,0 risulterebbe «maggiore» di +1,0, e fra due negativi l’ordine si **inverte**
+          (letti come interi, i bit di −1,0 sono minori di quelli di −2,0, mentre il valore è maggiore: al
+          crescere del modulo cresce l’esponente).
+
+
+          È il motivo per cui l’hardware di confronto in virgola mobile tratta il segno a parte: la
+          scorciatoia vale solo nel semiasse positivo, ed è comunque una proprietà che il formato IEEE 754 ha
+          ottenuto **per progetto**, non per caso.
+        en: >-
+          ```
+
+          1.0 = 0x3F800000  →  as an integer: 1,065,353,216
+
+          2.0 = 0x40000000  →  as an integer: 1,073,741,824
+
+
+          1,065,353,216 < 1,073,741,824   ✓  and indeed 1.0 < 2.0
+
+          ```
+
+
+          It works for three combined reasons: the **exponent comes before** the mantissa, so it dominates the
+          comparison as it should; the exponent is **biased** and not in two's complement, so it is an
+          increasing unsigned number; and the mantissa, coming after, decides only when the exponents are
+          equal.
+
+
+          For **negatives** the property breaks: the sign bit at 1 makes the corresponding integer larger, so
+          −2.0 would come out “greater” than +1.0, and between two negatives the order is **reversed** (read
+          as integers, the bits of −1.0 are smaller than those of −2.0, while its value is larger: as the
+          magnitude grows the exponent grows).
+
+
+          That is why floating-point comparison hardware treats the sign separately: the shortcut holds only
+          on the positive half-axis, and it is still a property the IEEE 754 format obtained **by design**,
+          not by chance.
+  origin: originale
+- id: gen-ieee-754
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.1
+    - virgola-mobile.2
+  difficulty: 2
+  kind: generated
+  generator: fondamenti-informatica/ieee-754
+  origin: originale
+- id: mcq-ieee-01
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.1
+    - virgola-mobile.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Lo standard per la rappresentazione in virgola mobile è:"
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: IEEE 754
+  choices:
+    - text:
+        it: ASCII
+      correct: false
+    - text:
+        it: IEEE 754
+      correct: true
+    - text:
+        it: Unicode
+      correct: false
+    - text:
+        it: ISO 8859
+      correct: false
+  origin: originale
+- id: mcq-ieee-02
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.1
+    - virgola-mobile.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: In IEEE 754 singola precisione, quanti bit hanno segno, esponente e mantissa?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: 1, 8, 23
+  choices:
+    - text:
+        it: 1, 8, 23
+      correct: true
+    - text:
+        it: 1, 11, 52
+      correct: false
+    - text:
+        it: 1, 7, 24
+      correct: false
+    - text:
+        it: 2, 8, 22
+      correct: false
+  origin: originale
+- id: mcq-ieee-03
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.1
+    - virgola-mobile.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Quanto vale la polarizzazione (bias) dell’esponente in singola precisione?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: "127"
+  choices:
+    - text:
+        it: "64"
+      correct: false
+    - text:
+        it: "127"
+      correct: true
+    - text:
+        it: "128"
+      correct: false
+    - text:
+        it: "1023"
+      correct: false
+  origin: originale
+- id: mcq-ieee-04
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.1
+    - virgola-mobile.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Perché il bit «1.» davanti alla mantissa non viene memorizzato?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Perché vale sempre 1 nei numeri normalizzati, quindi si guadagna un bit di precisione
+  choices:
+    - text:
+        it: Perché vale sempre 1 nei numeri normalizzati, quindi si guadagna un bit di precisione
+      correct: true
+    - text:
+        it: Perché occuperebbe troppo spazio
+      correct: false
+    - text:
+        it: Perché dipende dal segno
+      correct: false
+    - text:
+        it: Perché lo standard lo vieta
+      correct: false
+  origin: originale
+- id: mcq-ieee-05
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.1
+    - virgola-mobile.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Esponente tutto a 1 e mantissa non nulla rappresentano:"
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: NaN
+  choices:
+    - text:
+        it: Zero
+      correct: false
+    - text:
+        it: Infinito
+      correct: false
+    - text:
+        it: NaN
+      correct: true
+    - text:
+        it: Un numero denormalizzato
+      correct: false
+  origin: originale
+- id: schema-ieee-formati
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.1
+    - virgola-mobile.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Formati IEEE in virgola mobile»: scrivi per ogni posizione numerata l'etichetta
+      giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Bit implicito · Esponente in eccesso 1023 (11 bit) · Esponente in eccesso 127 (8 bit) ·
+      Etichetta · Mantissa (23 bit) · Mantissa (52 bit) · Riporto · Segno (1 bit) · Spiazzamento
+    en: >-
+      Complete the diagram “IEEE floating-point formats”: for each numbered position write the right label.
+      The list contains more labels than positions.
+
+
+      Labels: Carry · Displacement · Excess-1023 exponent (11 bits) · Excess-127 exponent (8 bits) · Hidden
+      bit · Mantissa (23 bits) · Mantissa (52 bits) · Sign (1 bit) · Tag
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img"
+        aria-labelledby="ex-ieee-formati-t ex-ieee-formati-d"
+        style="width:100%;height:auto;max-width:640px"><title id="ex-ieee-formati-t">Formati IEEE in virgola
+        mobile</title><desc id="ex-ieee-formati-d">Schema con 6 posizioni numerate da
+        completare.</desc><defs><marker id="ex-ieee-formati-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><text
+        style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="20" y="30"
+        font-size="11">Singola precisione — 32 bit</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="30" y="50" width="50" height="40" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="80" y="50" width="140" height="40" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="220" y="50" width="390" height="40" rx="3"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="320" y="120" font-size="11">valore = ± 1,M × 2^(E − 127)</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="20" y="170" font-size="11">Doppia precisione — 64 bit</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="30" y="190" width="50" height="40" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="80" y="190" width="160" height="40" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="240" y="190" width="370" height="40" rx="3"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="320" y="262" font-size="11">valore = ± 1,M × 2^(E − 1023)</text><circle cx="67" cy="75" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="67" y="75" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="150" cy="75" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="150" y="75" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="420" cy="75" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="420" y="75" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="67" cy="215" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="67" y="215" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="160" cy="215" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="160" y="215" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="430" cy="215" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="430" y="215" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img"
+        aria-labelledby="ex-ieee-formati-t ex-ieee-formati-d"
+        style="width:100%;height:auto;max-width:640px"><title id="ex-ieee-formati-t">IEEE floating-point
+        formats</title><desc id="ex-ieee-formati-d">Diagram with 6 numbered positions to fill
+        in.</desc><defs><marker id="ex-ieee-formati-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><text
+        style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="20" y="30"
+        font-size="11">Single precision — 32 bits</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="30" y="50" width="50" height="40" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="80" y="50" width="140" height="40" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="220" y="50" width="390" height="40" rx="3"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="320" y="120" font-size="11">value = ± 1.M × 2^(E − 127)</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="20" y="170" font-size="11">Double precision — 64 bits</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="30" y="190" width="50" height="40" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="80" y="190" width="160" height="40" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="240" y="190" width="370" height="40" rx="3"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="320" y="262" font-size="11">value = ± 1.M × 2^(E − 1023)</text><circle cx="67" cy="75" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="67" y="75" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="150" cy="75" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="150" y="75" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="420" cy="75" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="420" y="75" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="67" cy="215" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="67" y="215" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="160" cy="215" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="160" y="215" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="430" cy="215" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="430" y="215" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Segno (1 bit)
+          2. Esponente in eccesso 127 (8 bit)
+          3. Mantissa (23 bit)
+          4. Segno (1 bit)
+          5. Esponente in eccesso 1023 (11 bit)
+          6. Mantissa (52 bit)
+        en: |-
+          1. Sign (1 bit)
+          2. Excess-127 exponent (8 bits)
+          3. Mantissa (23 bits)
+          4. Sign (1 bit)
+          5. Excess-1023 exponent (11 bits)
+          6. Mantissa (52 bits)
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Segno (1 bit)
+      kind: text
+      accept:
+        - Sign (1 bit)
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Esponente in eccesso 127 (8 bit)
+      kind: text
+      accept:
+        - Excess-127 exponent (8 bits)
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Mantissa (23 bit)
+      kind: text
+      accept:
+        - Mantissa (23 bits)
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Segno (1 bit)
+      kind: text
+      accept:
+        - Sign (1 bit)
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Esponente in eccesso 1023 (11 bit)
+      kind: text
+      accept:
+        - Excess-1023 exponent (11 bits)
+    - label:
+        it: Posizione 6
+        en: Position 6
+      value: Mantissa (52 bit)
+      kind: text
+      accept:
+        - Mantissa (52 bits)
+  origin: originale
+- id: schema-fp-somma
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.1
+    - virgola-mobile.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Unità di addizione in virgola mobile»: scrivi per ogni posizione numerata
+      l'etichetta giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Contatore di refresh · Decodificatore · Esponente del risultato · Moltiplicatore ·
+      Normalizzazione e arrotondamento · Registro di stato · Rete di controllo · Rivelatore di zeri iniziali ·
+      Scambio delle mantisse · Scorrimento della mantissa minore · Sommatore delle mantisse · Sottrattore
+      degli esponenti
+    en: >-
+      Complete the diagram “Floating-point addition unit”: for each numbered position write the right label.
+      The list contains more labels than positions.
+
+
+      Labels: Control network · Decoder · Exponent subtractor · Leading-zero detector · Mantissa adder ·
+      Mantissa swap · Multiplier · Normalisation and rounding · Refresh counter · Result exponent · Shift of
+      the smaller mantissa · Status register
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 420" role="img"
+        aria-labelledby="ex-fp-somma-t ex-fp-somma-d" style="width:100%;height:auto;max-width:620px"><title
+        id="ex-fp-somma-t">Unità di addizione in virgola mobile</title><desc id="ex-fp-somma-d">Schema con 8
+        posizioni numerate da completare.</desc><defs><marker id="ex-fp-somma-arrow" viewBox="0 0 10 10"
+        refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0
+        10 z" style="fill:var(--text-muted)"/></marker></defs><path
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M60 25 h140 l-25 40 h-90
+        z"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="350" y="25" width="160" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="350" y="105" width="160" height="40" rx="6"/>
+              <ellipse style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" cx="130" cy="175" rx="90" ry="45"/>
+              <path style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M350 195 h160 l-25 40 h-110 z"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="180" y="270" width="140" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="390" y="300" width="160" height="40" rx="6"/>
+              <path style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M60 350 h140 l-25 40 h-90 z"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-fp-somma-arrow)" x1="200" y1="45" x2="350" y2="45"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-fp-somma-arrow)" x1="430" y1="65" x2="430" y2="105"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-fp-somma-arrow)" x1="430" y1="145" x2="430" y2="195"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-fp-somma-arrow)" x1="130" y1="65" x2="130" y2="130"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-fp-somma-arrow)" x1="220" y1="175" x2="350" y2="215"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-fp-somma-arrow)" x1="390" y1="235" x2="320" y2="285"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-fp-somma-arrow)" x1="320" y1="290" x2="390" y2="315"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-fp-somma-arrow)" x1="180" y1="290" x2="130" y2="345"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="20" y="18" font-size="10">E_A, E_B</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="530" y="18" font-size="10">M_A, M_B</text><circle cx="130" cy="45" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="130" y="45" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="430" cy="45" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="430" y="45" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="430" cy="125" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="430" y="125" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="130" cy="175" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="130" y="175" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="430" cy="215" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="430" y="215" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="250" cy="290" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="250" y="290" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="470" cy="320" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="470" y="320" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text><circle cx="130" cy="370" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="130" y="370" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">8</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 420" role="img"
+        aria-labelledby="ex-fp-somma-t ex-fp-somma-d" style="width:100%;height:auto;max-width:620px"><title
+        id="ex-fp-somma-t">Floating-point addition unit</title><desc id="ex-fp-somma-d">Diagram with 8
+        numbered positions to fill in.</desc><defs><marker id="ex-fp-somma-arrow" viewBox="0 0 10 10" refX="9"
+        refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><path
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M60 25 h140 l-25 40 h-90
+        z"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="350" y="25" width="160" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="350" y="105" width="160" height="40" rx="6"/>
+              <ellipse style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" cx="130" cy="175" rx="90" ry="45"/>
+              <path style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M350 195 h160 l-25 40 h-110 z"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="180" y="270" width="140" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="390" y="300" width="160" height="40" rx="6"/>
+              <path style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M60 350 h140 l-25 40 h-90 z"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-fp-somma-arrow)" x1="200" y1="45" x2="350" y2="45"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-fp-somma-arrow)" x1="430" y1="65" x2="430" y2="105"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-fp-somma-arrow)" x1="430" y1="145" x2="430" y2="195"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-fp-somma-arrow)" x1="130" y1="65" x2="130" y2="130"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-fp-somma-arrow)" x1="220" y1="175" x2="350" y2="215"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-fp-somma-arrow)" x1="390" y1="235" x2="320" y2="285"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-fp-somma-arrow)" x1="320" y1="290" x2="390" y2="315"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-fp-somma-arrow)" x1="180" y1="290" x2="130" y2="345"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="20" y="18" font-size="10">E_A, E_B</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="530" y="18" font-size="10">M_A, M_B</text><circle cx="130" cy="45" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="130" y="45" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="430" cy="45" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="430" y="45" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="430" cy="125" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="430" y="125" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="130" cy="175" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="130" y="175" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="430" cy="215" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="430" y="215" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="250" cy="290" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="250" y="290" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="470" cy="320" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="470" y="320" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text><circle cx="130" cy="370" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="130" y="370" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">8</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Sottrattore degli esponenti
+          2. Scambio delle mantisse
+          3. Scorrimento della mantissa minore
+          4. Rete di controllo
+          5. Sommatore delle mantisse
+          6. Rivelatore di zeri iniziali
+          7. Normalizzazione e arrotondamento
+          8. Esponente del risultato
+        en: |-
+          1. Exponent subtractor
+          2. Mantissa swap
+          3. Shift of the smaller mantissa
+          4. Control network
+          5. Mantissa adder
+          6. Leading-zero detector
+          7. Normalisation and rounding
+          8. Result exponent
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Sottrattore degli esponenti
+      kind: text
+      accept:
+        - Exponent subtractor
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Scambio delle mantisse
+      kind: text
+      accept:
+        - Mantissa swap
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Scorrimento della mantissa minore
+      kind: text
+      accept:
+        - Shift of the smaller mantissa
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Rete di controllo
+      kind: text
+      accept:
+        - Control network
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Sommatore delle mantisse
+      kind: text
+      accept:
+        - Mantissa adder
+    - label:
+        it: Posizione 6
+        en: Position 6
+      value: Rivelatore di zeri iniziali
+      kind: text
+      accept:
+        - Leading-zero detector
+    - label:
+        it: Posizione 7
+        en: Position 7
+      value: Normalizzazione e arrotondamento
+      kind: text
+      accept:
+        - Normalisation and rounding
+    - label:
+        it: Posizione 8
+        en: Position 8
+      value: Esponente del risultato
+      kind: text
+      accept:
+        - Result exponent
+  origin: originale

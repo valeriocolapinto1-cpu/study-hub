@@ -1,0 +1,205 @@
+---
+course: fondamenti-informatica
+topic: virgola-mobile
+lang: en
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In two minutes">
+
+<div data-note-id="teoria/virgola-mobile/in-due-minuti">
+
+- Single precision (32 bits): **1 sign + 8 exponent + 23 mantissa**. Double (64 bits): 1 + 11 + 52.
+- The value is **(−1)<sup>s</sup> × 1.M × 2<sup>E−bias</sup>**: the 1 before the point is **implicit** and not stored, so one bit of precision is gained.
+- The **bias** (127 and 1023) makes the exponent an unsigned number: two positive floats are compared by reading their bits as integers.
+- Exponent all 0s → zero and denormals. All 1s → infinity (zero mantissa) or **NaN** (non-zero mantissa).
+- Precision is **relative**: few decimals can be represented exactly, and comparing two floats with “=” is almost always a mistake.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/virgola-mobile/da-dove-si-parte">
+
+## Where we start
+
+**What you need to know first:** binary numbering and the idea of positional notation, from the module on [binary numbers](../numeri-binari/).
+
+**What problem it solves.** With two's complement we know how to write integers, but a computer must also handle 3.14 and 6.02 × 10²³. With a fixed number of bits you cannot have everything: either you reserve a fixed number of digits after the point — and then very large and very small numbers do not fit — or you adopt the same idea as **scientific notation**, storing the significant digits and the order of magnitude separately. The second route is that of the IEEE 754 standard, and it is why the point is called “floating”: its position is decided by the exponent.
+
+**New words.** The **mantissa** (or significand) holds the significant digits; the **exponent** says by how many positions to move the point. **Normalising** means writing the number in the form 1.xxx × 2ᵉ, with a single non-zero digit before the point. The **bias** is the constant added to the exponent to make it an unsigned number. **NaN** stands for “not a number” and is the result of undefined operations. A **denormal** number is smaller than the smallest normalised one and gives up the implicit 1 to represent values very close to zero.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/virgola-mobile/perche-serve">
+
+## Why it is needed
+
+With fixed point the number of decimal places is decided once and for all and the range is narrow. Floating point spends its bits on a **binary scientific notation**, `± mantissa × 2^exponent`, obtaining an enormously wider range for the same bits — at the price of **relative** rather than absolute precision.
+
+</div>
+
+<div data-note-id="teoria/virgola-mobile/singola-precisione-32-bit">
+
+## Single precision (32 bits)
+
+```
+| S |   E (8 bits) |        M (23 bits)       |
+  1        8                    23
+```
+
+- **S**: sign, 0 positive and 1 negative.
+- **E**: **biased** exponent with bias **127**: what is stored is `E = real exponent + 127`. It serves to represent negative exponents without a second sign bit, and allows floats to be compared as if they were integers.
+- **M**: mantissa, the part after the point. The **hidden bit** “1.” is not stored: when normalising, the digit before the point is always 1, so one bit is gained for free.
+
+Value = `(−1)ˢ · 1.M · 2^(E−127)`
+
+</div>
+
+<div data-note-id="teoria/virgola-mobile/come-ci-si-arriva-la-notazione-scientifica">
+
+## How we get there: scientific notation
+
+The idea is not new: it is the one by which you write 6.02 × 10²³ instead of a twenty-four-digit number. The **significant digits** are separated from the **order of magnitude**, and two small numbers are stored instead of one huge one. In binary it becomes:
+
+```
+value = ± mantissa × 2^exponent
+```
+
+One ambiguity remains: 1.5 × 2³, 0.75 × 2⁴ and 3.0 × 2² are the same number written in three ways. Without a rule, the same quantity would have several encodings — and comparing two numbers would become complicated. So the **normalised** form is imposed: exactly one non-zero digit before the point.
+
+In binary there is only one non-zero digit: 1. So **every** normalised number starts with “1.”. And if it always starts with 1, storing it is a waste: it is taken for granted. It is the **implicit 1**, and it gives a bit of precision for free — 24 bits of effective mantissa out of 23 stored.
+
+</div>
+
+<div data-note-id="teoria/virgola-mobile/perche-il-bias-e-non-il-complemento-a-2">
+
+## Why the bias, and not two's complement
+
+The exponent must be able to be negative (for numbers smaller than 1). The obvious choice would be two's complement, which we already know. The standard does something else instead: it adds a constant, the **bias**, so that the stored exponent is always positive.
+
+```
+single precision:  E_stored = e + 127     (e goes from −126 to +127)
+double precision:  E_stored = e + 1023
+```
+
+The reason is **comparison**. Lining up sign, exponent and mantissa, and using an increasing unsigned encoding for the exponent, two positive numbers are compared **by reading their bits as if they were integers**: the one with the larger pattern is the larger number. The floating-point comparison circuit becomes the same as the integer one.
+
+With two's complement the property would be lost: a negative exponent would have its top bit at 1 and would come out “greater” than a positive one, reversing the order. The bias is a design decision taken to make the most frequent operation fast.
+
+</div>
+
+<div data-note-id="teoria/virgola-mobile/arrotondamento">
+
+## Rounding
+
+The mantissa has 23 bits: almost every result must be **rounded**. The standard defines four modes, and the default one is the subtlest:
+
+- **To nearest, ties to even**: the nearest representable value is chosen; at an exact tie the one with last bit 0 is taken. The parity constraint avoids a long chain of roundings always pushing the result in the same direction, accumulating error.
+- **Towards zero** (truncation), **towards +∞**, **towards −∞**: used mainly in interval arithmetic, where a guaranteed bound is needed.
+
+To round correctly it is not enough to look at the first discarded bit: the hardware keeps three extra working bits — **guard**, **round** and **sticky** — where the third remembers “there was still something beyond”, which is what distinguishes an exact tie from a value just above.
+
+</div>
+
+<div data-note-id="teoria/virgola-mobile/intervallo-e-precisione">
+
+## Range and precision
+
+In single precision the stored exponent goes from 1 to 254 (0 and 255 are reserved for the special cases), so e goes from −126 to +127:
+
+```
+smallest normalised number ≈ 1.18 × 10⁻³⁸
+largest number             ≈ 3.40 × 10³⁸
+significant decimal digits  ≈ 7
+
+double precision:  ≈ 10⁻³⁰⁸ … 10³⁰⁸,  ≈ 16 digits
+```
+
+The point to grasp is that precision is **relative**, not absolute: between 1 and 2 the representable numbers are about 1.2 × 10⁻⁷ apart; between one million and two million they are more than 0.06 apart. The larger the number, the sparser the representable values.
+
+Two consequences the exam asks about often. Adding a tiny number to a huge one may change nothing (**absorption**): the rounded result goes back to the starting value. And floating-point addition is **not associative**: (a + b) + c can differ from a + (b + c), so changing the order of the sums changes the result — a fact that every numerical program has to live with.
+
+</div>
+
+<div data-note-id="teoria/virgola-mobile/doppia-precisione-64-bit">
+
+## Double precision (64 bits)
+
+1 sign bit, **11** exponent bits with bias **1023**, **52** mantissa bits. Same logic, more range and more precision.
+
+</div>
+
+<div data-note-id="teoria/virgola-mobile/valori-speciali">
+
+## Special values
+
+Two exponent configurations are reserved:
+
+- `E = 0` with zero mantissa → **zero** (signed: +0 and −0 both exist).
+- `E = 0` with non-zero mantissa → **denormal** numbers, without the hidden bit: they fill the gap around zero.
+- `E = 255` (all 1s) with zero mantissa → **infinity**, signed.
+- `E = 255` with non-zero mantissa → **NaN**, the result of undefined operations such as 0/0.
+
+</div>
+
+<div data-note-id="teoria/virgola-mobile/da-ricordare">
+
+## To remember
+
+The standard is called **IEEE 754**. Two practical consequences: floating-point addition is **not associative**, because every step rounds; and many “simple” decimals such as 0.1 have no finite binary representation, so equality comparison between floats is unreliable.
+
+</div>
+
+## Diagrams
+
+<Schema id="ieee-formati" lang="en" num="1" />
+
+<Schema id="fp-somma" lang="en" num="2" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/virgola-mobile/codificare-un-numero-esempio">
+
+## Encoding a number — example
+
+Suppose we want to represent `−6.5`:
+
+1. In binary: `6.5 = 110.1₂`
+2. Normalise: `110.1 = 1.101 × 2²` → mantissa `101`, real exponent `2`
+3. Bias: `E = 2 + 127 = 129 = 10000001₂`
+4. Sign: negative → `S = 1`
+
+```
+1 10000001 10100000000000000000000
+```
+
+To **decode** you proceed backwards: subtract the bias from the exponent, put the implicit 1 back in front of the mantissa and move the point.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/virgola-mobile/errori-tipici">
+
+## Common mistakes
+
+- Storing the 1 before the point too: it is **implicit**, only the digits after it go into the mantissa.
+- Subtracting the bias instead of adding it when **encoding**: you add when writing, subtract when reading.
+- Normalising badly: the form is always `1.xxx × 2ᵉ`, with a single non-zero digit before the point.
+- Treating an exponent of all 0s or all 1s as normal numbers: they are the special cases (zero, denormals, infinity, NaN).
+
+</div>
+
+</Layer>
