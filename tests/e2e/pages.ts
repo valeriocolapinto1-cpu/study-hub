@@ -7,6 +7,11 @@ export const BASE = '/study-hub/';
 export interface SamplePage {
   name: string;
   path: string;
+  /**
+   * false per le pagine troppo lunghe per uno screenshot a pagina intera entro il timeout
+   * (es. un formulario completo): restano nei test a11y e smoke.
+   */
+  visual?: boolean;
 }
 
 export const SAMPLE_PAGES: SamplePage[] = [
@@ -31,7 +36,7 @@ export const SAMPLE_PAGES: SamplePage[] = [
   { name: 'fi-convertitori-en', path: `${BASE}en/anno-1/fondamenti-informatica/extra/convertitori/` },
   { name: 'tdc-panoramica-it', path: `${BASE}it/anno-2/teoria-circuiti/` },
   { name: 'tdc-teoria-en', path: `${BASE}en/anno-2/teoria-circuiti/teoria/teorema-di-thevenin/` },
-  { name: 'tdc-formulario-it', path: `${BASE}it/anno-2/teoria-circuiti/formulario/` },
+  { name: 'tdc-formulario-it', path: `${BASE}it/anno-2/teoria-circuiti/formulario/`, visual: false },
   { name: 'tdc-esercizi-it', path: `${BASE}it/anno-2/teoria-circuiti/esercizi/circuiti-primo-ordine/` },
   { name: 'tdc-extra-it', path: `${BASE}it/anno-2/teoria-circuiti/extra/esame-info/` },
 ];
