@@ -12,7 +12,7 @@ const VIEWPORTS = [
 
 for (const theme of ['light', 'dark'] as const) {
   for (const vp of VIEWPORTS) {
-    for (const p of SAMPLE_PAGES) {
+    for (const p of SAMPLE_PAGES.filter((x) => x.visual !== false)) {
       test(`${p.name} ${theme} ${vp.name}`, async ({ page }) => {
         await page.setViewportSize({ width: vp.width, height: vp.height });
         await page.emulateMedia({ colorScheme: theme, reducedMotion: 'reduce' });

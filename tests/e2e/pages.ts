@@ -7,6 +7,11 @@ export const BASE = '/study-hub/';
 export interface SamplePage {
   name: string;
   path: string;
+  /**
+   * false = solo axe/smoke, niente screenshot: pagine molto lunghe (un formulario completo) superano il
+   * tempo dello screenshot a pagina intera e un'immagine alta metri non aiuta a vedere le regressioni.
+   */
+  visual?: boolean;
 }
 
 export const SAMPLE_PAGES: SamplePage[] = [
@@ -27,7 +32,7 @@ export const SAMPLE_PAGES: SamplePage[] = [
   { name: 'fisica-2-panoramica-it', path: `${BASE}it/anno-2/fisica-2/` },
   { name: 'fisica-2-teoria-it', path: `${BASE}it/anno-2/fisica-2/teoria/fisica-moderna/` },
   { name: 'fisica-2-teoria-en', path: `${BASE}en/anno-2/fisica-2/teoria/magnetismo-nella-materia/` },
-  { name: 'fisica-2-formulario-it', path: `${BASE}it/anno-2/fisica-2/formulario/` },
+  { name: 'fisica-2-formulario-it', path: `${BASE}it/anno-2/fisica-2/formulario/`, visual: false },
   { name: 'fisica-2-esercizi-en', path: `${BASE}en/anno-2/fisica-2/esercizi/onde-elettromagnetiche/` },
   { name: 'fisica-2-laboratorio-en', path: `${BASE}en/anno-2/fisica-2/extra/laboratorio/` },
   { name: 'fisica-2-appelli-it', path: `${BASE}it/anno-2/fisica-2/extra/appelli/` },
