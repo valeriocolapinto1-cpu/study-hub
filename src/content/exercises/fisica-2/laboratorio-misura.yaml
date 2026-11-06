@@ -40,15 +40,15 @@
   difficulty: 1
   kind: static
   statement:
-    it: "Gli errori sistematici:"
-    en: "Systematic errors:"
+    it: 'Gli errori sistematici:'
+    en: 'Systematic errors:'
   steps:
     - title:
         it: Spiegazione
         en: Explanation
       body:
         it: "Spostano tutte le misure nello stesso verso: vanno individuati e corretti, per esempio con la taratura o con la correzione dell'errore di inserzione."
-        en: "They shift all measurements in the same direction: they must be identified and corrected, for example by calibration or by correcting the insertion error."
+        en: 'They shift all measurements in the same direction: they must be identified and corrected, for example by calibration or by correcting the insertion error.'
   origin: originale
   choices:
     - text:
@@ -146,7 +146,7 @@
         it: Risultato
         en: Result
       value: 2.236
-      unit: "%"
+      unit: '%'
       tol: 0.03
 - id: quiz-q706
   topic: laboratorio-misura

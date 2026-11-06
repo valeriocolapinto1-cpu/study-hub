@@ -16,14 +16,21 @@ interface Props {
 const { lang, course } = Astro.props;
 const it = lang === 'it';
 const fmt = (d: string) =>
-  new Intl.DateTimeFormat(it ? 'it-IT' : 'en-GB', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(`${d}T12:00:00Z`));
+  new Intl.DateTimeFormat(it ? 'it-IT' : 'en-GB', { dateStyle: 'long', timeZone: 'UTC' }).format(
+    new Date(`${d}T12:00:00Z`),
+  );
 const blocchi = Object.keys(BLOCCHI) as Blocco[];
 const nEs = APPELLI.reduce((s, a) => s + a.esercizi.length, 0);
 const nTh = APPELLI.reduce((s, a) => s + a.teoria.length, 0);
 const stat = blocchi
-  .map((b) => ({ b, es: APPELLI.reduce((s, a) => s + a.esercizi.filter((x) => x === b).length, 0), th: APPELLI.reduce((s, a) => s + a.teoria.filter((x) => x === b).length, 0) }))
+  .map((b) => ({
+    b,
+    es: APPELLI.reduce((s, a) => s + a.esercizi.filter((x) => x === b).length, 0),
+    th: APPELLI.reduce((s, a) => s + a.teoria.filter((x) => x === b).length, 0),
+  }))
   .filter((r) => r.es + r.th > 0);
-const pct = (x: number, tot: number) => new Intl.NumberFormat(it ? 'it-IT' : 'en-GB', { style: 'percent' }).format(x / tot);
+const pct = (x: number, tot: number) =>
+  new Intl.NumberFormat(it ? 'it-IT' : 'en-GB', { style: 'percent' }).format(x / tot);
 const esame = localizePath(sectionPath(course, 'esame'), lang);
 const esercizi = localizePath(sectionPath(course, 'esercizi'), lang);
 const anni = [...new Set(APPELLI.map((a) => a.data.slice(0, 4)))];
@@ -39,18 +46,26 @@ const anni = [...new Set(APPELLI.map((a) => a.data.slice(0, 4)))];
     {it ? 'Per allenarti sulla stessa tipologia usa gli ' : 'To practise on the same pattern use the '}
     <a href={esercizi}>{it ? 'esercizi generati' : 'generated exercises'}</a>
     {it ? ' e la ' : ' and the '}
-    <a href={esame}>{it ? 'simulazione d\'esame' : 'exam simulation'}</a>.
+    <a href={esame}>{it ? "simulazione d'esame" : 'exam simulation'}</a>.
   </p>
 
   <h2 id="distribuzione">{it ? 'Quanto pesa ogni capitolo' : 'How much each chapter weighs'}</h2>
   <div class="table-wrap">
     <table>
-      <caption>{it ? 'Esercizi e domande di teoria per capitolo del programma, su tutti gli appelli' : 'Exercises and theory questions per programme chapter, over all sessions'}</caption>
+      <caption>
+        {it
+          ? 'Esercizi e domande di teoria per capitolo del programma, su tutti gli appelli'
+          : 'Exercises and theory questions per programme chapter, over all sessions'}
+      </caption>
       <thead>
         <tr>
           <th scope="col">{it ? 'Capitolo' : 'Chapter'}</th>
-          <th scope="col" class="num">{it ? 'Esercizi' : 'Exercises'}</th>
-          <th scope="col" class="num">{it ? 'Domande di teoria' : 'Theory questions'}</th>
+          <th scope="col" class="num">
+            {it ? 'Esercizi' : 'Exercises'}
+          </th>
+          <th scope="col" class="num">
+            {it ? 'Domande di teoria' : 'Theory questions'}
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -66,7 +81,11 @@ const anni = [...new Set(APPELLI.map((a) => a.data.slice(0, 4)))];
   </div>
 
   <h2 id="elenco">{it ? 'Elenco degli appelli' : 'List of sessions'}</h2>
-  <p>{it ? `Anni: ${anni.join(', ')}. Spunta gli esercizi che hai risolto sui testi ufficiali: le spunte restano in questo browser.` : `Years: ${anni.join(', ')}. Tick the exercises you have solved on the official papers: ticks stay in this browser.`}</p>
+  <p>
+    {it
+      ? `Anni: ${anni.join(', ')}. Spunta gli esercizi che hai risolto sui testi ufficiali: le spunte restano in questo browser.`
+      : `Years: ${anni.join(', ')}. Tick the exercises you have solved on the official papers: ticks stay in this browser.`}
+  </p>
   <Checklist
     client:visible
     scope="fisica-2"
@@ -77,8 +96,16 @@ const anni = [...new Set(APPELLI.map((a) => a.data.slice(0, 4)))];
     groups={APPELLI.map((a) => ({
       id: a.id,
       title: `${fmt(a.data)} — ${it ? 'teoria sui capitoli' : 'theory on chapters'} ${a.teoria.map((b) => b.slice(1)).join(', ') || '—'}`,
-      items: a.esercizi.map((b, i) => ({ id: `${a.id}-${i + 1}`, label: `${it ? 'Esercizio' : 'Exercise'} ${i + 1}: ${BLOCCHI[b][lang]}` })),
+      items: a.esercizi.map((b, i) => ({
+        id: `${a.id}-${i + 1}`,
+        label: `${it ? 'Esercizio' : 'Exercise'} ${i + 1}: ${BLOCCHI[b][lang]}`,
+      })),
     }))}
   />
-  <LegacyQuiz client:idle lang={lang} title={it ? 'I tuoi quiz sul sito precedente' : 'Your quizzes on the previous site'} rowLabel={it ? '{ok} di {n} corrette' : '{ok} of {n} correct'} />
+  <LegacyQuiz
+    client:idle
+    lang={lang}
+    title={it ? 'I tuoi quiz sul sito precedente' : 'Your quizzes on the previous site'}
+    rowLabel={it ? '{ok} di {n} corrette' : '{ok} of {n} correct'}
+  />
 </div>

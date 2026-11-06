@@ -20,22 +20,32 @@ const link = (topic: string) => localizePath(sectionPath(course, 'teoria', topic
       ? 'Due laboratori virtuali per vedere ciò che la teoria descrive con le formule. Cambia i parametri e osserva come rispondono campi e circuiti.'
       : 'Two virtual labs to see what the theory describes with formulas. Change the parameters and watch how fields and circuits respond.'}
   </p>
-  <h2 id="linee-di-campo">{it ? 'Linee di campo elettrico e magnetico' : 'Electric and magnetic field lines'}</h2>
+  <h2 id="linee-di-campo">
+    {it ? 'Linee di campo elettrico e magnetico' : 'Electric and magnetic field lines'}
+  </h2>
   <p>
     {it ? 'Collegata a ' : 'Related to '}
-    <a href={link('elettrostatica-nel-vuoto')}>{it ? 'Elettrostatica nel vuoto' : 'Electrostatics in vacuum'}</a>
+    <a href={link('elettrostatica-nel-vuoto')}>
+      {it ? 'Elettrostatica nel vuoto' : 'Electrostatics in vacuum'}
+    </a>
     {it ? ' (dipolo, sovrapposizione) e a ' : ' (dipole, superposition) and to '}
-    <a href={link('magnetostatica-nel-vuoto')}>{it ? 'Magnetostatica nel vuoto' : 'Magnetostatics in vacuum'}</a>
+    <a href={link('magnetostatica-nel-vuoto')}>
+      {it ? 'Magnetostatica nel vuoto' : 'Magnetostatics in vacuum'}
+    </a>
     {it ? ' (fili paralleli, linee chiuse).' : ' (parallel wires, closed lines).'}
   </p>
   <LineeDiCampo client:visible lang={lang} />
   <h2 id="transitori">{it ? 'Transitori RC e RL' : 'RC and RL transients'}</h2>
   <p>
     {it ? 'Collegata a ' : 'Related to '}
-    <a href={link('corrente-stazionaria')}>{it ? 'Corrente elettrica stazionaria' : 'Steady electric current'}</a>
+    <a href={link('corrente-stazionaria')}>
+      {it ? 'Corrente elettrica stazionaria' : 'Steady electric current'}
+    </a>
     {it ? ' (circuito RC) e a ' : ' (RC circuit) and to '}
     <a href={link('campi-variabili')}>{it ? 'Campi variabili nel tempo' : 'Time-varying fields'}</a>
-    {it ? ' (circuito RL). Prova a prevedere la costante di tempo prima di muovere i cursori.' : ' (RL circuit). Try to predict the time constant before moving the sliders.'}
+    {it
+      ? ' (circuito RL). Prova a prevedere la costante di tempo prima di muovere i cursori.'
+      : ' (RL circuit). Try to predict the time constant before moving the sliders.'}
   </p>
   <Transitori client:visible lang={lang} />
 </div>

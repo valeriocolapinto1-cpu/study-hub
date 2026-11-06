@@ -1,23 +1,55 @@
 id: dielettrici
 course: fisica-2
 order: 3
-title: { it: "Elettrostatica nei dielettrici", en: "Electrostatics in dielectrics" }
+title: { it: 'Elettrostatica nei dielettrici', en: 'Electrostatics in dielectrics' }
 summary:
   it: Costante dielettrica, polarizzazione per deformazione e orientamento, vettori P e D, condizioni al contorno, energia con i dielettrici e macchine elettrostatiche.
   en: Dielectric constant, deformation and orientation polarisation, the vectors P and D, boundary conditions, energy with dielectrics and electrostatic machines.
-group: { it: "Elettrostatica nel vuoto, conduttori, dielettrici", en: "Electrostatics in vacuum, conductors, dielectrics" }
+group:
+  {
+    it: 'Elettrostatica nel vuoto, conduttori, dielettrici',
+    en: 'Electrostatics in vacuum, conductors, dielectrics',
+  }
 objectives:
   - id: dielettrici.1
-    text: { it: "Definire la costante dielettrica relativa e descriverne l'effetto su campo e capacità", en: "Define the relative dielectric constant and describe its effect on field and capacitance" }
+    text:
+      {
+        it: "Definire la costante dielettrica relativa e descriverne l'effetto su campo e capacità",
+        en: 'Define the relative dielectric constant and describe its effect on field and capacitance',
+      }
   - id: dielettrici.2
-    text: { it: "Spiegare la polarizzazione per deformazione e per orientamento", en: "Explain deformation and orientation polarisation" }
+    text:
+      {
+        it: 'Spiegare la polarizzazione per deformazione e per orientamento',
+        en: 'Explain deformation and orientation polarisation',
+      }
   - id: dielettrici.3
-    text: { it: "Definire il vettore polarizzazione e calcolare le cariche di polarizzazione superficiali e di volume", en: "Define the polarisation vector and compute surface and volume polarisation charges" }
+    text:
+      {
+        it: 'Definire il vettore polarizzazione e calcolare le cariche di polarizzazione superficiali e di volume',
+        en: 'Define the polarisation vector and compute surface and volume polarisation charges',
+      }
   - id: dielettrici.4
-    text: { it: "Applicare il teorema di Gauss per D con le sole cariche libere", en: "Apply Gauss's theorem for D with the free charges only" }
+    text:
+      {
+        it: 'Applicare il teorema di Gauss per D con le sole cariche libere',
+        en: "Apply Gauss's theorem for D with the free charges only",
+      }
   - id: dielettrici.5
-    text: { it: "Applicare le condizioni al contorno tra due dielettrici (D normale ed E tangente continui)", en: "Apply the boundary conditions between two dielectrics (continuous normal D and tangential E)" }
+    text:
+      {
+        it: 'Applicare le condizioni al contorno tra due dielettrici (D normale ed E tangente continui)',
+        en: 'Apply the boundary conditions between two dielectrics (continuous normal D and tangential E)',
+      }
   - id: dielettrici.6
-    text: { it: "Risolvere condensatori con dielettrici in serie e in parallelo e calcolarne l'energia", en: "Solve capacitors with dielectrics in series and in parallel and compute their energy" }
+    text:
+      {
+        it: "Risolvere condensatori con dielettrici in serie e in parallelo e calcolarne l'energia",
+        en: 'Solve capacitors with dielectrics in series and in parallel and compute their energy',
+      }
   - id: dielettrici.7
-    text: { it: "Descrivere rigidità dielettrica e generatore di Van de Graaff", en: "Describe dielectric strength and the Van de Graaff generator" }
+    text:
+      {
+        it: 'Descrivere rigidità dielettrica e generatore di Van de Graaff',
+        en: 'Describe dielectric strength and the Van de Graaff generator',
+      }

@@ -282,7 +282,7 @@
   kind: formula
   front:
     it: "Circuito RL: chiusura dell'interruttore"
-    en: "RL circuit: closing the switch"
+    en: 'RL circuit: closing the switch'
   back:
     it: $$I(t) = \frac{\mathcal E}{R}\left(1-e^{-t/\tau}\right),\qquad \tau = \frac{L}{R}$$
     en: $$I(t) = \frac{\mathcal E}{R}\left(1-e^{-t/\tau}\right),\qquad \tau = \frac{L}{R}$$
@@ -292,8 +292,8 @@
     - campi-variabili.4
   kind: formula
   front:
-    it: "Circuito RL: apertura (extracorrente)"
-    en: "RL circuit: opening (extra-current)"
+    it: 'Circuito RL: apertura (extracorrente)'
+    en: 'RL circuit: opening (extra-current)'
   back:
     it: $$I(t) = I_0\,e^{-t/\tau}$$
     en: $$I(t) = I_0\,e^{-t/\tau}$$

@@ -66,8 +66,8 @@
     - laboratorio-misura.5
   kind: formula
   front:
-    it: "Minimi quadrati: retta y = a + b x (incertezze uguali su y)"
-    en: "Least squares: line y = a + b x (equal uncertainties on y)"
+    it: 'Minimi quadrati: retta y = a + b x (incertezze uguali su y)'
+    en: 'Least squares: line y = a + b x (equal uncertainties on y)'
   back:
     it: $$b = \frac{N\sum x_iy_i - \sum x_i\sum y_i}{\Delta},\quad a = \frac{\sum x_i^2\sum y_i - \sum x_i\sum x_iy_i}{\Delta},\quad \Delta = N\sum x_i^2-\left(\sum x_i\right)^2$$
     en: $$b = \frac{N\sum x_iy_i - \sum x_i\sum y_i}{\Delta},\quad a = \frac{\sum x_i^2\sum y_i - \sum x_i\sum x_iy_i}{\Delta},\quad \Delta = N\sum x_i^2-\left(\sum x_i\right)^2$$

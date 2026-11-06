@@ -1,19 +1,43 @@
 id: magnetismo-nella-materia
 course: fisica-2
 order: 6
-title: { it: "Magnetismo nella materia", en: "Magnetism in matter" }
+title: { it: 'Magnetismo nella materia', en: 'Magnetism in matter' }
 summary:
   it: Magnetizzazione e correnti amperiane, campo H, condizioni di raccordo, materiali dia-, para- e ferromagnetici, isteresi, circuiti magnetici ed elettromagneti.
   en: Magnetisation and Amperian currents, the H field, boundary conditions, dia-, para- and ferromagnetic materials, hysteresis, magnetic circuits and electromagnets.
-group: { it: "Fenomeni magnetici stazionari nel vuoto e nella materia", en: "Steady magnetic phenomena in vacuum and in matter" }
+group:
+  {
+    it: 'Fenomeni magnetici stazionari nel vuoto e nella materia',
+    en: 'Steady magnetic phenomena in vacuum and in matter',
+  }
 objectives:
   - id: magnetismo-nella-materia.1
-    text: { it: "Definire la magnetizzazione e collegarla alle correnti amperiane", en: "Define magnetisation and relate it to Amperian currents" }
+    text:
+      {
+        it: 'Definire la magnetizzazione e collegarla alle correnti amperiane',
+        en: 'Define magnetisation and relate it to Amperian currents',
+      }
   - id: magnetismo-nella-materia.2
-    text: { it: "Scrivere le equazioni della magnetostatica nella materia con H e le condizioni di raccordo", en: "Write the equations of magnetostatics in matter with H and the boundary conditions" }
+    text:
+      {
+        it: 'Scrivere le equazioni della magnetostatica nella materia con H e le condizioni di raccordo',
+        en: 'Write the equations of magnetostatics in matter with H and the boundary conditions',
+      }
   - id: magnetismo-nella-materia.3
-    text: { it: "Distinguere materiali dia-, para- e ferromagnetici in base alla suscettività", en: "Distinguish dia-, para- and ferromagnetic materials by their susceptibility" }
+    text:
+      {
+        it: 'Distinguere materiali dia-, para- e ferromagnetici in base alla suscettività',
+        en: 'Distinguish dia-, para- and ferromagnetic materials by their susceptibility',
+      }
   - id: magnetismo-nella-materia.4
-    text: { it: "Descrivere domini di Weiss e ciclo d'isteresi", en: "Describe Weiss domains and the hysteresis loop" }
+    text:
+      {
+        it: "Descrivere domini di Weiss e ciclo d'isteresi",
+        en: 'Describe Weiss domains and the hysteresis loop',
+      }
   - id: magnetismo-nella-materia.5
-    text: { it: "Risolvere circuiti magnetici con traferro con la legge di Hopkinson", en: "Solve magnetic circuits with an air gap using Hopkinson's law" }
+    text:
+      {
+        it: 'Risolvere circuiti magnetici con traferro con la legge di Hopkinson',
+        en: "Solve magnetic circuits with an air gap using Hopkinson's law",
+      }

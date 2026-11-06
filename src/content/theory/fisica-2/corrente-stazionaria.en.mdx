@@ -99,7 +99,10 @@ $$
 **Lossy dielectric** (non-zero conductivity $\sigma$): the capacitor discharges through the dielectric itself with $\tau=RC=\varepsilon\rho=\varepsilon_0\varepsilon_r/\sigma$, independent of the geometry.
 
 <Callout tone="esame" title="At the exam">
-In transients, evaluate the circuit at two instants. At $t=0^+$: the voltage across a capacitor and the current in an inductor cannot change abruptly. At steady state ($t\to\infty$, direct current): a capacitor behaves as an open circuit, an inductor as a short circuit. The time constant is $R_{Th}C$ (or $L/R_{Th}$), with $R_{Th}$ the resistance seen from the element's terminals.
+  In transients, evaluate the circuit at two instants. At $t=0^+$: the voltage across a capacitor and the
+  current in an inductor cannot change abruptly. At steady state ($t\to\infty$, direct current): a capacitor
+  behaves as an open circuit, an inductor as a short circuit. The time constant is $R_{Th}C$ (or $L/R_{Th}$),
+  with $R_{Th}$ the resistance seen from the element's terminals.
 </Callout>
 
 </Layer>
@@ -110,7 +113,19 @@ In transients, evaluate the circuit at two instants. At $t=0^+$: the voltage acr
 
 In the circuit the switch closes at $t=0$ with the capacitor uncharged; $\mathcal E=12\ \mathrm V$, $R_1=R_2=1\ \mathrm{k\Omega}$, $C=10\ \mathrm{\mu F}$.
 
-<Circuit lang="en" netlist={{ elements: [ { type: "V", id: "E", a: "a", b: "0", dc: 12 }, { type: "SW", id: "S", a: "a", b: "b", closed: false, toggleAt: 0 }, { type: "R", id: "R1", a: "b", b: "c", value: "1k" }, { type: "R", id: "R2", a: "c", b: "0", value: "1k" }, { type: "C", id: "C", a: "c", b: "0", value: "10u", show: { v: "v_C" } } ] }} caption="Resistive divider charging a capacitor." />
+<Circuit
+  lang="en"
+  netlist={{
+    elements: [
+      { type: 'V', id: 'E', a: 'a', b: '0', dc: 12 },
+      { type: 'SW', id: 'S', a: 'a', b: 'b', closed: false, toggleAt: 0 },
+      { type: 'R', id: 'R1', a: 'b', b: 'c', value: '1k' },
+      { type: 'R', id: 'R2', a: 'c', b: '0', value: '1k' },
+      { type: 'C', id: 'C', a: 'c', b: '0', value: '10u', show: { v: 'v_C' } },
+    ],
+  }}
+  caption="Resistive divider charging a capacitor."
+/>
 
 1. **Thevenin across $C$.** Open-circuit voltage $V_{Th}=\mathcal E\,\frac{R_2}{R_1+R_2}=6\ \mathrm V$; resistance seen with the generator switched off $R_{Th}=R_1\parallel R_2=500\ \Omega$.
 2. **Time constant.** $\tau=R_{Th}C=5\ \mathrm{ms}$.

@@ -35,11 +35,23 @@ export const LAB = parse(labRaw) as { checklistComune: Text[]; esperienze: Esper
 
 /** I 7 capitoli (blocchi) del programma, come nel sito originale. */
 export const BLOCCHI: Record<Blocco, Text> = {
-  b1: { it: 'Elettrostatica nel vuoto, conduttori, dielettrici', en: 'Electrostatics in vacuum, conductors, dielectrics' },
+  b1: {
+    it: 'Elettrostatica nel vuoto, conduttori, dielettrici',
+    en: 'Electrostatics in vacuum, conductors, dielectrics',
+  },
   b2: { it: 'Corrente elettrica stazionaria', en: 'Steady electric current' },
-  b3: { it: 'Fenomeni magnetici stazionari nel vuoto e nella materia', en: 'Steady magnetic phenomena in vacuum and in matter' },
-  b4: { it: 'Campi elettrici e magnetici variabili nel tempo', en: 'Time-varying electric and magnetic fields' },
-  b5: { it: 'Onde elettromagnetiche e interazione radiazione-materia', en: 'Electromagnetic waves and radiation-matter interaction' },
+  b3: {
+    it: 'Fenomeni magnetici stazionari nel vuoto e nella materia',
+    en: 'Steady magnetic phenomena in vacuum and in matter',
+  },
+  b4: {
+    it: 'Campi elettrici e magnetici variabili nel tempo',
+    en: 'Time-varying electric and magnetic fields',
+  },
+  b5: {
+    it: 'Onde elettromagnetiche e interazione radiazione-materia',
+    en: 'Electromagnetic waves and radiation-matter interaction',
+  },
   b6: { it: 'Cenni di Fisica Moderna', en: 'Introduction to modern physics' },
   b7: { it: 'Laboratorio con relazioni', en: 'Laboratory with reports' },
 };

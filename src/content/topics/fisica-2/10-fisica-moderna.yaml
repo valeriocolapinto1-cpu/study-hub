@@ -1,15 +1,27 @@
 id: fisica-moderna
 course: fisica-2
 order: 10
-title: { it: "Cenni di fisica moderna", en: "Introduction to modern physics" }
+title: { it: 'Cenni di fisica moderna', en: 'Introduction to modern physics' }
 summary:
   it: Superconduttori (resistenza nulla, effetto Meissner) e relatività ristretta applicata all'elettromagnetismo.
   en: Superconductors (zero resistance, Meissner effect) and special relativity applied to electromagnetism.
-group: { it: "Cenni di Fisica Moderna", en: "Introduction to modern physics" }
+group: { it: 'Cenni di Fisica Moderna', en: 'Introduction to modern physics' }
 objectives:
   - id: fisica-moderna.1
-    text: { it: "Descrivere le proprietà dei superconduttori (temperatura critica, effetto Meissner)", en: "Describe the properties of superconductors (critical temperature, Meissner effect)" }
+    text:
+      {
+        it: 'Descrivere le proprietà dei superconduttori (temperatura critica, effetto Meissner)',
+        en: 'Describe the properties of superconductors (critical temperature, Meissner effect)',
+      }
   - id: fisica-moderna.2
-    text: { it: "Enunciare i postulati della relatività ristretta e le trasformazioni di Lorentz", en: "State the postulates of special relativity and the Lorentz transformations" }
+    text:
+      {
+        it: 'Enunciare i postulati della relatività ristretta e le trasformazioni di Lorentz',
+        en: 'State the postulates of special relativity and the Lorentz transformations',
+      }
   - id: fisica-moderna.3
-    text: { it: "Spiegare perché campo elettrico e magnetico dipendono dal sistema di riferimento", en: "Explain why electric and magnetic fields depend on the reference frame" }
+    text:
+      {
+        it: 'Spiegare perché campo elettrico e magnetico dipendono dal sistema di riferimento',
+        en: 'Explain why electric and magnetic fields depend on the reference frame',
+      }

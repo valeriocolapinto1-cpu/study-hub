@@ -98,7 +98,10 @@ export function renderRich(
 export function speakableText(source: string): string {
   return plainText(
     source
-      .replace(/\\(?:mathrm|text|operatorname|vec|hat|bar|dot|ddot|left|right|displaystyle|quad|qquad)(?![a-zA-Z])|\\[,;! ]/g, ' ')
+      .replace(
+        /\\(?:mathrm|text|operatorname|vec|hat|bar|dot|ddot|left|right|displaystyle|quad|qquad)(?![a-zA-Z])|\\[,;! ]/g,
+        ' ',
+      )
       .replace(/\\[dt]?frac\{([^{}]*)\}\{([^{}]*)\}/g, '($1)/($2)')
       .replace(/\\(?:cdot|times)/g, '·')
       .replace(/\\([a-zA-Z]+)/g, '$1')

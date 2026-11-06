@@ -31,7 +31,8 @@ export const TOPIC_LESSONS: Record<string, number[]> = {
   'laboratorio-misura': [22, 23, 31, 42, 44, 50],
 };
 
-const isObj = (x: unknown): x is Record<string, unknown> => typeof x === 'object' && x !== null && !Array.isArray(x);
+const isObj = (x: unknown): x is Record<string, unknown> =>
+  typeof x === 'object' && x !== null && !Array.isArray(x);
 
 /** Voci `true` di una categoria di fg2-progress-v1, come insieme di id. */
 export function legacyChecks(value: unknown, cat: string): Record<string, true> | undefined {

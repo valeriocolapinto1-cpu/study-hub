@@ -223,8 +223,8 @@
     - onde-elettromagnetiche.6
   kind: formula
   front:
-    it: "Dipolo oscillante: campi a grande distanza"
-    en: "Oscillating dipole: far fields"
+    it: 'Dipolo oscillante: campi a grande distanza'
+    en: 'Oscillating dipole: far fields'
   back:
     it: |-
       $$E_\theta = -\frac{\mu_0\, p_0\,\omega^2}{4\pi}\,\frac{\sin\theta}{r}\cos\!\left[\omega\left(t-\frac{r}{c}\right)\right],\qquad B_\phi = \frac{E_\theta}{c}$$
@@ -240,8 +240,8 @@
     - onde-elettromagnetiche.6
   kind: formula
   front:
-    it: "Dipolo oscillante: Poynting medio e potenza irraggiata"
-    en: "Oscillating dipole: average Poynting vector and radiated power"
+    it: 'Dipolo oscillante: Poynting medio e potenza irraggiata'
+    en: 'Oscillating dipole: average Poynting vector and radiated power'
   back:
     it: $$\langle S\rangle = \frac{\mu_0\, p_0^2\,\omega^4}{32\pi^2 c}\,\frac{\sin^2\theta}{r^2},\qquad \langle P\rangle = \frac{\mu_0\, p_0^2\,\omega^4}{12\pi c}$$
     en: $$\langle S\rangle = \frac{\mu_0\, p_0^2\,\omega^4}{32\pi^2 c}\,\frac{\sin^2\theta}{r^2},\qquad \langle P\rangle = \frac{\mu_0\, p_0^2\,\omega^4}{12\pi c}$$

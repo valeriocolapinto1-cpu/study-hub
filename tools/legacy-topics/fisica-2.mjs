@@ -29,7 +29,14 @@ export const TOPIC_IDS = {
 };
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-const decode = (s) => s.replace(/&amp;/g, '&').replace(/&#39;|&apos;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ');
+const decode = (s) =>
+  s
+    .replace(/&amp;/g, '&')
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&nbsp;/g, ' ');
 
 /**
  * @param {string} [legacyDir] cartella del sito originale (default: legacy/fisica-2)
@@ -42,10 +49,15 @@ function legacyTopics(legacyDir = path.join(ROOT, 'legacy/fisica-2')) {
     const html = readFileSync(path.join(legacyDir, `data/teoria/${b.id}.html`), 'utf8');
     // ogni sezione del capitolo: <section class="t-sec" id="b1a"> … <h2>1a · Titolo</h2>
     const re = /<section[^>]*\bid="([a-z0-9]+)"[^>]*>\s*<h2[^>]*>([\s\S]*?)<\/h2>/g;
-    const found = [...html.matchAll(re)].map((m) => ({ id: m[1], title: decode(m[2].replace(/<[^>]+>/g, '')).trim() }));
+    const found = [...html.matchAll(re)].map((m) => ({
+      id: m[1],
+      title: decode(m[2].replace(/<[^>]+>/g, '')).trim(),
+    }));
     const sezioni = b.sezioni.map((s) => s.id);
     if (found.map((f) => f.id).join() !== sezioni.join()) {
-      throw new Error(`Capitolo ${b.id}: sezioni della teoria (${found.map((f) => f.id)}) diverse dal programma (${sezioni})`);
+      throw new Error(
+        `Capitolo ${b.id}: sezioni della teoria (${found.map((f) => f.id)}) diverse dal programma (${sezioni})`,
+      );
     }
     for (const f of found) {
       if (!TOPIC_IDS[f.id]) throw new Error(`Sezione ${f.id} senza id stabile in TOPIC_IDS`);
@@ -69,5 +81,7 @@ export default function extract(legacyDir) {
 export { legacyTopics };
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
-  console.log(JSON.stringify(legacyTopics(process.argv[2] ? path.resolve(process.argv[2]) : undefined), null, 2));
+  console.log(
+    JSON.stringify(legacyTopics(process.argv[2] ? path.resolve(process.argv[2]) : undefined), null, 2),
+  );
 }

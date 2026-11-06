@@ -405,8 +405,8 @@
   topic: corrente-stazionaria
   latex: "\\text{voltmetro a valle: } R_{mis} = \\frac{R\\,R_V}{R+R_V}\\qquad \\text{voltmetro a monte: } R_{mis} = R + R_A"
   label:
-    it: "Misura voltamperometrica: errori di inserzione"
-    en: "Voltmeter-ammeter measurement: insertion errors"
+    it: 'Misura voltamperometrica: errori di inserzione'
+    en: 'Voltmeter-ammeter measurement: insertion errors'
   note:
     it: R_A resistenza dell'amperometro, R_V del voltmetro.
     en: R_A resistance of the ammeter, R_V of the voltmeter.
@@ -697,13 +697,13 @@
   latex: I(t) = \frac{\mathcal E}{R}\left(1-e^{-t/\tau}\right),\qquad \tau = \frac{L}{R}
   label:
     it: "Circuito RL: chiusura dell'interruttore"
-    en: "RL circuit: closing the switch"
+    en: 'RL circuit: closing the switch'
 - id: rl-apertura
   topic: campi-variabili
   latex: I(t) = I_0\,e^{-t/\tau}
   label:
-    it: "Circuito RL: apertura (extracorrente)"
-    en: "RL circuit: opening (extra-current)"
+    it: 'Circuito RL: apertura (extracorrente)'
+    en: 'RL circuit: opening (extra-current)'
 - id: u-l
   topic: campi-variabili
   latex: U = \frac{1}{2}L I^2
@@ -783,8 +783,8 @@
     it: Relazione tra E e B nell'onda piana
     en: Relation between E and B in a plane wave
   note:
-    it: "Onda trasversale: E, B e k formano una terna destrorsa."
-    en: "Transverse wave: E, B and k form a right-handed triad."
+    it: 'Onda trasversale: E, B e k formano una terna destrorsa.'
+    en: 'Transverse wave: E, B and k form a right-handed triad.'
 - id: onda-sferica
   topic: onde-elettromagnetiche
   latex: E(r,t) = \frac{E_0\,r_0}{r}\cos(kr-\omega t)
@@ -846,8 +846,8 @@
   topic: onde-elettromagnetiche
   latex: E_\theta = -\frac{\mu_0\, p_0\,\omega^2}{4\pi}\,\frac{\sin\theta}{r}\cos\!\left[\omega\left(t-\frac{r}{c}\right)\right],\qquad B_\phi = \frac{E_\theta}{c}
   label:
-    it: "Dipolo oscillante: campi a grande distanza"
-    en: "Oscillating dipole: far fields"
+    it: 'Dipolo oscillante: campi a grande distanza'
+    en: 'Oscillating dipole: far fields'
   note:
     it: $p(t) = p_0\cos\omega t$; zona di radiazione $r\gg\lambda$. Il segno dipende dalla convenzione sui versi dei versori.
     en: $p(t) = p_0\cos\omega t$; radiation zone $r\gg\lambda$. The sign depends on the orientation convention for the unit vectors.
@@ -855,8 +855,8 @@
   topic: onde-elettromagnetiche
   latex: \langle S\rangle = \frac{\mu_0\, p_0^2\,\omega^4}{32\pi^2 c}\,\frac{\sin^2\theta}{r^2},\qquad \langle P\rangle = \frac{\mu_0\, p_0^2\,\omega^4}{12\pi c}
   label:
-    it: "Dipolo oscillante: Poynting medio e potenza irraggiata"
-    en: "Oscillating dipole: average Poynting vector and radiated power"
+    it: 'Dipolo oscillante: Poynting medio e potenza irraggiata'
+    en: 'Oscillating dipole: average Poynting vector and radiated power'
 - id: raccordo-em
   topic: radiazione-materia
   latex: E_{1t} = E_{2t},\quad H_{1t} = H_{2t},\quad D_{1n} = D_{2n},\quad B_{1n} = B_{2n}
@@ -936,8 +936,8 @@
     it: Legge di Malus
     en: Malus's law
   note:
-    it: "Luce naturale attraverso un polarizzatore ideale: I = I₀/2."
-    en: "Natural light through an ideal polariser: I = I₀/2."
+    it: 'Luce naturale attraverso un polarizzatore ideale: I = I₀/2.'
+    en: 'Natural light through an ideal polariser: I = I₀/2.'
 - id: interferenza
   topic: radiazione-materia
   latex: I = I_1 + I_2 + 2\sqrt{I_1 I_2}\cos\delta,\qquad \delta = \frac{2\pi}{\lambda_0}\,\Delta L
@@ -1035,8 +1035,8 @@
   topic: laboratorio-misura
   latex: b = \frac{N\sum x_iy_i - \sum x_i\sum y_i}{\Delta},\quad a = \frac{\sum x_i^2\sum y_i - \sum x_i\sum x_iy_i}{\Delta},\quad \Delta = N\sum x_i^2-\left(\sum x_i\right)^2
   label:
-    it: "Minimi quadrati: retta y = a + b x (incertezze uguali su y)"
-    en: "Least squares: line y = a + b x (equal uncertainties on y)"
+    it: 'Minimi quadrati: retta y = a + b x (incertezze uguali su y)'
+    en: 'Least squares: line y = a + b x (equal uncertainties on y)'
 - id: confronto
   topic: laboratorio-misura
   latex: \text{scarto relativo} = \frac{|x_{mis}-x_{rif}|}{|x_{rif}|},\qquad t = \frac{|x_1-x_2|}{\sqrt{\sigma_1^2+\sigma_2^2}}

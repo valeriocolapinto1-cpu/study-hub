@@ -72,7 +72,12 @@ export default function rehypeNoteIds() {
           return; // niente id annidati (p dentro li, ecc.)
         }
         // dentro elenchi, tabelle, matematica e richiami non si numerano blocchi interni
-        const inner = nested || tag === 'li' || tag === 'table' || tag === 'aside' || /katex/.test(String(props.className ?? ''));
+        const inner =
+          nested ||
+          tag === 'li' ||
+          tag === 'table' ||
+          tag === 'aside' ||
+          /katex/.test(String(props.className ?? ''));
         for (const c of node.children ?? []) visit(c, inner);
         return;
       }

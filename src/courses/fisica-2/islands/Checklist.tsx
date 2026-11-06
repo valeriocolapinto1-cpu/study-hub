@@ -36,7 +36,9 @@ type State = Record<string, true>;
 const load = (scope: string, area: string): State => {
   const v = read<unknown>(scope, area, {});
   if (!v || typeof v !== 'object' || Array.isArray(v)) return {};
-  return Object.fromEntries(Object.entries(v as Record<string, unknown>).filter(([, x]) => x === true)) as State;
+  return Object.fromEntries(
+    Object.entries(v as Record<string, unknown>).filter(([, x]) => x === true),
+  ) as State;
 };
 
 export default function Checklist({ scope, area, groups, progressLabel, label, headingLevel = 3 }: Props) {
@@ -68,13 +70,21 @@ export default function Checklist({ scope, area, groups, progressLabel, label, h
         </div>
       </div>
       {groups.map((g) => (
-        <section key={g.id} class="f2-checklist__group" aria-labelledby={g.title ? `cl-${area}-${g.id}` : undefined}>
+        <section
+          key={g.id}
+          class="f2-checklist__group"
+          aria-labelledby={g.title ? `cl-${area}-${g.id}` : undefined}
+        >
           {g.title && <H id={`cl-${area}-${g.id}`}>{g.title}</H>}
           <ul class="f2-checklist__list">
             {g.items.map((it) => (
               <li key={it.id} data-done={state[it.id] ? '' : undefined}>
                 <label class="check">
-                  <input type="checkbox" checked={!!state[it.id]} onChange={(e) => toggle(it.id, e.currentTarget.checked)} />
+                  <input
+                    type="checkbox"
+                    checked={!!state[it.id]}
+                    onChange={(e) => toggle(it.id, e.currentTarget.checked)}
+                  />
                   <span>
                     {it.label}
                     {it.meta && <span class="badge f2-checklist__meta">{it.meta}</span>}

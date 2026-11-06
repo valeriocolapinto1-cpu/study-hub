@@ -47,8 +47,8 @@
     - corrente-stazionaria.7
   kind: orale
   front:
-    it: "Studiare la carica di un condensatore attraverso una resistenza: equazione del circuito, costante di tempo e andamento di $V(t)$."
-    en: "Study the charging of a capacitor through a resistance: circuit equation, time constant and behaviour of $V(t)$."
+    it: 'Studiare la carica di un condensatore attraverso una resistenza: equazione del circuito, costante di tempo e andamento di $V(t)$.'
+    en: 'Study the charging of a capacitor through a resistance: circuit equation, time constant and behaviour of $V(t)$.'
   back:
     it: |-
       Traccia di risposta:
@@ -68,7 +68,7 @@
     - corrente-stazionaria.5
   kind: orale
   front:
-    it: "Teorema di Thevenin: formulazione, calcolo del generatore equivalente e un esempio di applicazione."
+    it: 'Teorema di Thevenin: formulazione, calcolo del generatore equivalente e un esempio di applicazione.'
     en: "Thevenin's theorem: statement, computation of the equivalent generator and an example of application."
   back:
     it: |-
@@ -338,8 +338,8 @@
     - corrente-stazionaria.6
   kind: formula
   front:
-    it: "Misura voltamperometrica: errori di inserzione"
-    en: "Voltmeter-ammeter measurement: insertion errors"
+    it: 'Misura voltamperometrica: errori di inserzione'
+    en: 'Voltmeter-ammeter measurement: insertion errors'
   back:
     it: |-
       $$\text{voltmetro a valle: } R_{mis} = \frac{R\,R_V}{R+R_V}\qquad \text{voltmetro a monte: } R_{mis} = R + R_A$$

@@ -30,7 +30,8 @@ export default function LegacyQuiz({ lang, title, rowLabel }: Props) {
       <ul>
         {rows.map((r) => (
           <li key={r.t}>
-            <strong>{num.format(r.voto)}/30</strong> · {rowLabel.replace('{ok}', String(r.ok)).replace('{n}', String(r.n))} ·{' '}
+            <strong>{num.format(r.voto)}/30</strong> ·{' '}
+            {rowLabel.replace('{ok}', String(r.ok)).replace('{n}', String(r.n))} ·{' '}
             {date.format(new Date(r.t))}
           </li>
         ))}

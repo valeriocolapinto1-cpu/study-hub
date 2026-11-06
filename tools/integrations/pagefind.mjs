@@ -33,7 +33,10 @@ export async function buildSearchIndex(distDir, base, logger) {
     // La matematica KaTeX compare tre volte nell'HTML (MathML, resa visiva, annotazione TeX): indicizzata
     // produrrebbe parole spurie ("qqq" da $q$) ed estratti illeggibili. Le formule restano cercabili
     // tramite i record del formulario.
-    const { index, errors } = await pagefind.createIndex({ forceLanguage: lang, excludeSelectors: ['.katex'] });
+    const { index, errors } = await pagefind.createIndex({
+      forceLanguage: lang,
+      excludeSelectors: ['.katex'],
+    });
     if (!index) throw new Error(`Pagefind: ${errors.join('; ')}`);
     const pages = await index.addDirectory({ path: distDir, glob: `${lang}/**/*.html` });
     if (pages.errors.length) throw new Error(`Pagefind: ${pages.errors.join('; ')}`);

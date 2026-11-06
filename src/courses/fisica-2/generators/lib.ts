@@ -8,7 +8,12 @@
  *
  * Ogni template diventa un generatore del motore `fisica-2/<id>` (src/engine/generators/registry.ts).
  */
-import { registerGenerator, type AnswerItem, type GeneratedExercise, type Lang } from '../../../engine/generators/registry';
+import {
+  registerGenerator,
+  type AnswerItem,
+  type GeneratedExercise,
+  type Lang,
+} from '../../../engine/generators/registry';
 
 export const S = String.raw;
 export const EPS0 = 8.8541878128e-12;
@@ -35,7 +40,16 @@ export const step = (r: Rand, a: number, b: number, s: number): number =>
   +(a + s * Math.floor(r() * (Math.round((b - a) / s) + 1))).toFixed(10);
 
 /* ---------- formattazione in TeX (virgola decimale in italiano, punto in inglese) ---------- */
-const PREF: [number, string][] = [[1e-12, 'p'], [1e-9, 'n'], [1e-6, S`\mu `], [1e-3, 'm'], [1, ''], [1e3, 'k'], [1e6, 'M'], [1e9, 'G']];
+const PREF: [number, string][] = [
+  [1e-12, 'p'],
+  [1e-9, 'n'],
+  [1e-6, S`\mu `],
+  [1e-3, 'm'],
+  [1, ''],
+  [1e3, 'k'],
+  [1e6, 'M'],
+  [1e9, 'G'],
+];
 
 export interface Fmt {
   lang: Lang;

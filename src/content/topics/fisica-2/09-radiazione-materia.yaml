@@ -1,21 +1,49 @@
 id: radiazione-materia
 course: fisica-2
 order: 9
-title: { it: "Interazione radiazione-materia: ottica ondulatoria", en: "Radiation-matter interaction: wave optics" }
+title:
+  {
+    it: 'Interazione radiazione-materia: ottica ondulatoria',
+    en: 'Radiation-matter interaction: wave optics',
+  }
 summary:
   it: Condizioni di raccordo, riflessione e rifrazione, legge di Snell e riflessione totale, dispersione, polarizzazione, Huygens-Fresnel, interferenza di Young e diffrazione da una fenditura.
   en: Boundary conditions, reflection and refraction, Snell's law and total internal reflection, dispersion, polarisation, Huygens-Fresnel, Young's interference and single-slit diffraction.
-group: { it: "Onde elettromagnetiche e interazione radiazione-materia", en: "Electromagnetic waves and radiation-matter interaction" }
+group:
+  {
+    it: 'Onde elettromagnetiche e interazione radiazione-materia',
+    en: 'Electromagnetic waves and radiation-matter interaction',
+  }
 objectives:
   - id: radiazione-materia.1
-    text: { it: "Scrivere le condizioni di raccordo dei campi all'interfaccia tra due mezzi", en: "Write the boundary conditions of the fields at the interface between two media" }
+    text:
+      {
+        it: "Scrivere le condizioni di raccordo dei campi all'interfaccia tra due mezzi",
+        en: 'Write the boundary conditions of the fields at the interface between two media',
+      }
   - id: radiazione-materia.2
-    text: { it: "Ricavare le leggi della riflessione e la legge di Snell e trattare la riflessione totale", en: "Derive the laws of reflection and Snell's law and handle total internal reflection" }
+    text:
+      {
+        it: 'Ricavare le leggi della riflessione e la legge di Snell e trattare la riflessione totale',
+        en: "Derive the laws of reflection and Snell's law and handle total internal reflection",
+      }
   - id: radiazione-materia.3
-    text: { it: "Descrivere la dispersione della luce", en: "Describe the dispersion of light" }
+    text: { it: 'Descrivere la dispersione della luce', en: 'Describe the dispersion of light' }
   - id: radiazione-materia.4
-    text: { it: "Distinguere luce naturale e polarizzata e applicare la legge di Malus", en: "Distinguish natural and polarised light and apply Malus's law" }
+    text:
+      {
+        it: 'Distinguere luce naturale e polarizzata e applicare la legge di Malus',
+        en: "Distinguish natural and polarised light and apply Malus's law",
+      }
   - id: radiazione-materia.5
-    text: { it: "Enunciare il principio di Huygens-Fresnel e il ruolo del teorema di Kirchhoff", en: "State the Huygens-Fresnel principle and the role of Kirchhoff's theorem" }
+    text:
+      {
+        it: 'Enunciare il principio di Huygens-Fresnel e il ruolo del teorema di Kirchhoff',
+        en: "State the Huygens-Fresnel principle and the role of Kirchhoff's theorem",
+      }
   - id: radiazione-materia.6
-    text: { it: "Calcolare frange di interferenza nell'esperimento di Young e i minimi di diffrazione di una fenditura", en: "Compute interference fringes in Young's experiment and the diffraction minima of a slit" }
+    text:
+      {
+        it: "Calcolare frange di interferenza nell'esperimento di Young e i minimi di diffrazione di una fenditura",
+        en: "Compute interference fringes in Young's experiment and the diffraction minima of a slit",
+      }

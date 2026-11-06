@@ -31,9 +31,8 @@ const labels = Object.fromEntries(
 <div class="prose">
   <p>
     {it
-      ? 'Il laboratorio vale 25 ore del corso. Per ogni esperienza si scrive una relazione da portare all\'orale, dove possono esserci domande sulle esperienze. Obiettivi, strumentazione e voci specifiche sono indicativi: confrontali con le schede distribuite dai docenti.'
-      : 'The laboratory accounts for 25 hours of the course. For each experiment you write a report to bring to the oral exam, where there may be questions on the experiments. Aims, equipment and specific items are indicative: compare them with the sheets handed out by the lecturers.'}
-    {' '}
+      ? "Il laboratorio vale 25 ore del corso. Per ogni esperienza si scrive una relazione da portare all'orale, dove possono esserci domande sulle esperienze. Obiettivi, strumentazione e voci specifiche sono indicativi: confrontali con le schede distribuite dai docenti."
+      : 'The laboratory accounts for 25 hours of the course. For each experiment you write a report to bring to the oral exam, where there may be questions on the experiments. Aims, equipment and specific items are indicative: compare them with the sheets handed out by the lecturers.'}{' '}
     <a href={teoria}>{it ? 'Teoria della misura' : 'Measurement theory'}</a>
   </p>
   {LAB.esperienze.map((e, k) => (
@@ -68,8 +67,16 @@ const labels = Object.fromEntries(
         label={it ? `Relazione: ${tx(e.titolo)}` : `Report: ${tx(e.titolo)}`}
         progressLabel={it ? '{done} di {total} voci' : '{done} of {total} items'}
         groups={[
-          { id: `${e.id}-c`, title: it ? 'Voci comuni a ogni relazione' : 'Items common to every report', items: LAB.checklistComune.map((c, i) => ({ id: `${e.id}:c${i + 1}`, label: tx(c) })) },
-          { id: `${e.id}-s`, title: it ? 'Voci specifiche' : 'Specific items', items: e.checklistSpecifica.map((c, i) => ({ id: `${e.id}:s${i + 1}`, label: tx(c) })) },
+          {
+            id: `${e.id}-c`,
+            title: it ? 'Voci comuni a ogni relazione' : 'Items common to every report',
+            items: LAB.checklistComune.map((c, i) => ({ id: `${e.id}:c${i + 1}`, label: tx(c) })),
+          },
+          {
+            id: `${e.id}-s`,
+            title: it ? 'Voci specifiche' : 'Specific items',
+            items: e.checklistSpecifica.map((c, i) => ({ id: `${e.id}:s${i + 1}`, label: tx(c) })),
+          },
         ]}
       />
     </section>

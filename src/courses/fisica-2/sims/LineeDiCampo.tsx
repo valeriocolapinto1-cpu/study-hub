@@ -23,8 +23,10 @@ const T = {
       'fili-discordi': 'Due fili, correnti discordi',
     } as Record<Preset, string>,
     ratio: 'Rapporto fra le due sorgenti',
-    descE: 'Campo elettrico: le linee escono dalle cariche positive ed entrano in quelle negative; la loro densità indica l’intensità.',
-    descB: 'Campo magnetico di due fili perpendicolari al piano: le linee sono chiuse attorno ai fili (∇·B = 0).',
+    descE:
+      'Campo elettrico: le linee escono dalle cariche positive ed entrano in quelle negative; la loro densità indica l’intensità.',
+    descB:
+      'Campo magnetico di due fili perpendicolari al piano: le linee sono chiuse attorno ai fili (∇·B = 0).',
     note: 'Con correnti concordi i fili si attraggono, con correnti discordi si respingono; nel dipolo il campo lontano decresce come 1/r³.',
   },
   en: {
@@ -38,8 +40,10 @@ const T = {
       'fili-discordi': 'Two wires, opposite currents',
     } as Record<Preset, string>,
     ratio: 'Ratio between the two sources',
-    descE: 'Electric field: lines leave positive charges and end on negative ones; their density shows the strength.',
-    descB: 'Magnetic field of two wires perpendicular to the plane: the lines close around the wires (∇·B = 0).',
+    descE:
+      'Electric field: lines leave positive charges and end on negative ones; their density shows the strength.',
+    descB:
+      'Magnetic field of two wires perpendicular to the plane: the lines close around the wires (∇·B = 0).',
     note: 'With parallel currents the wires attract, with opposite currents they repel; for the dipole the far field falls off as 1/r³.',
   },
 };
@@ -57,7 +61,10 @@ export default function LineeDiCampo({ lang }: { lang: Lang }): preact.JSX.Eleme
       { x: 1, y: 0, q: sign * ratio },
     ];
   }, [preset, ratio]);
-  const field = useMemo(() => (magnetic ? wiresMagneticField(sources) : pointSourcesField(sources)), [sources, magnetic]);
+  const field = useMemo(
+    () => (magnetic ? wiresMagneticField(sources) : pointSourcesField(sources)),
+    [sources, magnetic],
+  );
   const bounds = useMemo(() => ({ xMin: -3, xMax: 3, yMin: -2, yMax: 2 }), []);
   const id = 'f2-sim-linee';
   return (

@@ -63,7 +63,9 @@ export default function Transitori({ lang }: { lang: Lang }): preact.JSX.Element
   const tau = rc ? R * C : L / R;
   const res = useMemo(() => {
     const charging = kind === 'rc-carica' || kind === 'rl-chiusura';
-    const wave = charging ? { kind: 'step' as const, before: 0, after: E, at: 0 } : { kind: 'step' as const, before: E, after: 0, at: 0 };
+    const wave = charging
+      ? { kind: 'step' as const, before: 0, after: E, at: 0 }
+      : { kind: 'step' as const, before: E, after: 0, at: 0 };
     const store = rc
       ? { type: 'C' as const, id: 'C1', a: 'b', b: '0', value: C }
       : { type: 'L' as const, id: 'L1', a: 'b', b: '0', value: L };
