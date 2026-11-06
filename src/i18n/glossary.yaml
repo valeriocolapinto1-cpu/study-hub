@@ -4,54 +4,101 @@
 - { it: ammettenza, en: admittance }
 - { it: amplificatore operazionale, en: operational amplifier, note: 'abbreviato op-amp' }
 - { it: anello, en: loop, note: 'maglia: mesh' }
+- { it: angolo limite, en: critical angle }
 - { it: appello, en: exam session }
+- { it: autoinduzione, en: self-induction, note: 'coefficiente: self-inductance' }
 - { it: bipolo, en: two-terminal element }
+- { it: cammino ottico, en: optical path }
 - { it: campo elettrico, en: electric field }
+- { it: campo elettromotore, en: electromotive field }
 - { it: campo magnetico, en: magnetic field }
 - { it: capacità, en: capacitance, note: 'componente: capacitor (condensatore)' }
 - { it: carica, en: charge }
+- { it: cariche di polarizzazione, en: polarisation charges, note: 'anche bound charges' }
+- { it: circuitazione, en: circulation }
 - { it: circuito, en: circuit }
 - { it: componente, en: component }
 - { it: condensatore, en: capacitor }
+- { it: condizioni di raccordo, en: boundary conditions }
 - { it: conduttanza, en: conductance }
 - { it: corrente, en: current }
 - { it: corrente di cortocircuito, en: short-circuit current }
+- { it: corrente di spostamento, en: displacement current }
+- { it: correnti amperiane, en: Amperian currents }
+- { it: correnti di Foucault, en: eddy currents }
 - { it: cortocircuito, en: short circuit }
+- { it: costante dielettrica relativa, en: relative dielectric constant, note: 'anche relative permittivity' }
+- { it: densità di corrente, en: current density }
+- { it: dielettrico, en: dielectric }
+- { it: dipolo elettrico, en: electric dipole }
 - { it: doppio bipolo, en: two-port network }
+- { it: effetto Joule, en: Joule heating }
 - { it: equivalente di Norton, en: Norton equivalent }
 - { it: equivalente di Thévenin, en: Thévenin equivalent }
+- { it: errore di inserzione, en: insertion error }
+- { it: esercitazione, en: exercise class }
 - { it: esercizio svolto, en: worked example }
+- { it: f.e.m., en: emf, note: 'forza elettromotrice: electromotive force' }
 - { it: fasore, en: phasor }
 - { it: flusso, en: flux }
+- { it: flusso concatenato, en: linked flux }
 - { it: formulario, en: formula sheet }
+- { it: frange, en: fringes, note: 'interfrangia: fringe spacing' }
 - { it: funzione di trasferimento, en: transfer function }
+- { it: gauge di Lorentz, en: Lorenz gauge, note: 'grafia di L. Lorenz' }
 - { it: generatore di corrente, en: current source }
 - { it: generatore di tensione, en: voltage source }
 - { it: generatore pilotato, en: dependent source }
 - { it: impedenza, en: impedance }
 - { it: induttanza, en: inductance }
 - { it: induttore, en: inductor }
+- { it: induzione completa, en: complete induction }
+- { it: induzione elettrica, en: electric displacement, note: 'vettore D' }
+- { it: induzione magnetica, en: magnetic induction, note: 'vettore B; campo magnetico H: magnetic field H' }
+- { it: 'intensità (di un''onda)', en: intensity }
+- { it: lavori virtuali, en: virtual work }
 - { it: lavoro, en: work }
-- { it: legge di Kirchhoff delle correnti, en: Kirchhoff's current law, note: 'KCL' }
-- { it: legge di Kirchhoff delle tensioni, en: Kirchhoff's voltage law, note: 'KVL' }
+- { it: legge di Felici, en: 'Felici''s law' }
+- { it: legge di Kirchhoff delle correnti, en: 'Kirchhoff''s current law', note: 'KCL' }
+- { it: legge di Kirchhoff delle tensioni, en: 'Kirchhoff''s voltage law', note: 'KVL' }
 - { it: maglia, en: mesh }
+- { it: magnetizzazione, en: magnetisation }
 - { it: metodo dei nodi, en: nodal analysis }
 - { it: metodo delle maglie, en: mesh analysis }
+- { it: mutua induzione, en: mutual induction, note: 'coefficiente: mutual inductance' }
 - { it: nodo, en: node }
 - { it: obiettivo, en: learning objective }
 - { it: orale, en: oral exam }
 - { it: potenza attiva, en: active power }
 - { it: potenza reattiva, en: reactive power }
 - { it: potenziale elettrico, en: electric potential }
-- { it: prova d'esame, en: practice exam }
+- { it: potere delle punte, en: point effect }
+- { it: pressione di radiazione, en: radiation pressure }
+- { it: pressione elettrostatica, en: electrostatic pressure }
+- { it: profondità di penetrazione, en: skin depth }
+- { it: 'prova d''esame', en: practice exam }
 - { it: quantità di moto, en: momentum }
 - { it: regime sinusoidale, en: sinusoidal steady state }
+- { it: relazione di laboratorio, en: laboratory report }
 - { it: resistenza, en: resistance, note: 'componente: resistor (resistore)' }
 - { it: resistore, en: resistor }
+- { it: riflessione totale, en: total internal reflection }
+- { it: rigidità dielettrica, en: dielectric strength }
+- { it: riluttanza, en: reluctance }
 - { it: ripasso spaziato, en: spaced repetition }
 - { it: risposta in frequenza, en: frequency response }
+- { it: rotore, en: curl }
+- { it: scatoletta (di Gauss), en: pillbox }
+- { it: schermo elettrostatico, en: electrostatic shielding }
 - { it: scritto, en: written exam }
 - { it: sovrapposizione degli effetti, en: superposition }
+- { it: spira, en: loop, note: 'bobina: coil; avvolgimento: winding' }
+- { it: suscettività, en: susceptibility }
 - { it: tensione, en: voltage }
 - { it: tensione a vuoto, en: open-circuit voltage }
+- { it: teorema della circuitazione di Ampère, en: 'Ampère''s circuital theorem' }
+- { it: traferro, en: air gap }
 - { it: transitorio, en: transient }
+- { it: velocità di deriva, en: drift velocity }
+- { it: vettore di Poynting, en: Poynting vector }
+- { it: vettore polarizzazione, en: polarisation vector }
