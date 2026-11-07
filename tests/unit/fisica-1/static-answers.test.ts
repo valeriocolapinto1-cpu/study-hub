@@ -5,7 +5,7 @@
  */
 import { readFileSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { load } from 'js-yaml';
+import { parse } from 'yaml';
 import { describe, expect, it } from 'vitest';
 
 const CALC: Record<string, Record<string, () => number>> = {
@@ -355,7 +355,7 @@ const CALC: Record<string, Record<string, () => number>> = {
 
 const DIR = resolve(import.meta.dirname, '../../../src/content/exercises/fisica-1');
 type Ex = { id: string; kind: string; answer?: { label: { it: string }; value: number; tol?: number }[] };
-const all = readdirSync(DIR).flatMap((f) => load(readFileSync(join(DIR, f), 'utf8')) as Ex[]);
+const all = readdirSync(DIR).flatMap((f) => parse(readFileSync(join(DIR, f), 'utf8')) as Ex[]);
 
 describe('Fisica 1: soluzioni degli esercizi statici', () => {
   it('ogni esercizio statico ha le sue espressioni di verifica', () => {

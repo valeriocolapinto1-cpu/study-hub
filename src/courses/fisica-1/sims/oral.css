@@ -1,0 +1,79 @@
+/* Simulazione dell'orale di Fisica 1: solo token del design system. */
+.oral__mode {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  padding: var(--space-s) var(--space-m);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-l);
+}
+.oral__mode legend {
+  font-weight: 600;
+  padding: 0 var(--space-2xs);
+}
+.oral__mode .sim-note {
+  flex-basis: 100%;
+}
+.oral__topic h3 {
+  margin: 0;
+  font: 600 var(--step-2) / var(--leading-tight) var(--font-serif);
+}
+.oral__topic .eyebrow {
+  margin: 0;
+}
+.oral__timer {
+  font: 600 var(--step-4) / 1 var(--font-mono);
+  margin: 0;
+  color: var(--accent-strong);
+}
+.oral__checklist,
+.oral__rate {
+  display: grid;
+  gap: var(--space-xs);
+  padding-left: var(--space-l);
+}
+.oral__checklist {
+  list-style: none;
+  padding-left: 0;
+}
+.oral__checklist label {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: baseline;
+  min-height: 44px;
+}
+.oral__rate li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-m);
+  justify-content: space-between;
+  align-items: center;
+}
+.oral__votes {
+  display: inline-flex;
+  gap: var(--space-2xs);
+}
+.oral__votes label {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 44px;
+  min-height: 44px;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-s);
+  cursor: pointer;
+}
+.oral__votes label:has(input:checked) {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+.oral__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+}
+.oral__history summary {
+  cursor: pointer;
+  font-weight: 600;
+}

@@ -91,6 +91,26 @@ for (const btn of document.querySelectorAll<HTMLButtonElement>('[data-drawer-ope
   });
 }
 
+// ---- Formule in display più larghe della colonna: scorrono in orizzontale, quindi
+// devono essere raggiungibili da tastiera (WCAG 2.1.1). Il tabindex si mette solo
+// quando la formula trabocca davvero, per non aggiungere fermate inutili al Tab.
+function focusableOverflow(): void {
+  for (const el of document.querySelectorAll<HTMLElement>('.katex-display')) {
+    if (el.scrollWidth > el.clientWidth + 1) {
+      el.tabIndex = 0;
+    } else if (el.getAttribute('tabindex') === '0') {
+      el.removeAttribute('tabindex');
+    }
+  }
+}
+focusableOverflow();
+let overflowTimer: number | undefined;
+window.addEventListener('resize', () => {
+  window.clearTimeout(overflowTimer);
+  overflowTimer = window.setTimeout(focusableOverflow, 150);
+});
+document.fonts?.ready.then(focusableOverflow).catch(() => undefined);
+
 syncToggles();
 runMigrations();
 // Migrazioni dei corsi dalle chiavi dei vecchi siti: il codice si scarica solo se nel
