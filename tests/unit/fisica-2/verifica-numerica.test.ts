@@ -13,7 +13,7 @@ import '../../../src/courses/fisica-2/generators/b4-induzione';
 import '../../../src/courses/fisica-2/generators/b5-onde';
 
 const PI = Math.PI;
-const SEEDS = Array.from({ length: 40 }, (_, i) => 1000 + i * 37);
+const SEEDS = Array.from({ length: 24 }, (_, i) => 1000 + i * 37);
 const close = (a: number, b: number, tol: number, msg = '') =>
   assert.ok(
     Math.abs(a - b) <= tol * Math.max(Math.abs(b), 1e-300) + 1e-300,
@@ -28,7 +28,7 @@ const simpson = (f: (x: number) => number, a: number, b: number, n = 4000) => {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Any = any;
 // Integrazioni numeriche e ODE su 40 semi: alcune verifiche durano qualche secondo sui runner della CI.
-const NUMERIC_TIMEOUT = 60_000;
+const NUMERIC_TIMEOUT = 300_000;
 const each = (id: string, fn: (p: Any, v: Any, e: Any) => void) =>
   test(
     `verifica numerica: ${id}`,

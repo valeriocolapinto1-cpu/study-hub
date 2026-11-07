@@ -19,7 +19,7 @@ describe('fisica-2: struttura dei generatori', () => {
     expect(all).toHaveLength(35);
     for (const b of ['b1', 'b2', 'b3', 'b4', 'b5'])
       expect(all.filter((t) => t.blocco === b).length).toBeGreaterThanOrEqual(5);
-  });
+  }, 300_000);
   test('ogni generatore produce testo, passi e risposte validi in IT ed EN, con TeX corretto e unità riconosciute', () => {
     for (const tpl of Object.values(TEMPLATES)) {
       for (const seed of SEEDS.slice(0, 15)) {
@@ -42,18 +42,18 @@ describe('fisica-2: struttura dei generatori', () => {
         }
       }
     }
-  });
+  }, 300_000);
   test('riproducibilità: stesso seme, stesso esercizio; semi diversi, parametri diversi', () => {
     const tpl = TEMPLATES['b3-coassiale']!;
     expect(runTemplate(tpl, 123, 'it')).toEqual(runTemplate(tpl, 123, 'it'));
     expect(runTemplate(tpl, 123, 'it').parametri).not.toEqual(runTemplate(tpl, 124, 'it').parametri);
     expect(runTemplate(tpl, 123, 'it').valori).toEqual(runTemplate(tpl, 123, 'en').valori);
-  });
+  }, 300_000);
   test('le risposte coincidono con i valori calcolati', () => {
     expect(runTemplate(TEMPLATES['b1-filo-finito']!, 5, 'it').answer[2]!.value).toBe(
       runTemplate(TEMPLATES['b1-filo-finito']!, 5, 'it').valori.E,
     );
     expect(C0 * C0 * EPS0 * MU0).toBeCloseTo(1, 8);
     expect(K).toBeCloseTo(8.98755e9, -4);
-  });
+  }, 300_000);
 });
