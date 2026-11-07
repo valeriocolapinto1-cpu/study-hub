@@ -9,7 +9,6 @@ Questo progetto usa i seguenti componenti, ciascuno con la propria licenza. Le l
 | qrcode-generator (Kazuhiko Arase) | vedi package.json | MIT | Disegno dei QR per spostare i dati tra dispositivi (caricato on demand) |
 | jsQR (Cosmo Wolfe) | vedi package.json | Apache-2.0 | Lettura dei QR quando il browser non offre BarcodeDetector (caricato on demand) |
 | Geist e Geist Mono (font) | variable | SIL Open Font License 1.1 | Tramite `@fontsource-variable/geist` e `geist-mono`, inclusi nel sito |
-| Source Serif 4 (font) | variable | SIL Open Font License 1.1 | Tramite `@fontsource-variable/source-serif-4`, incluso nel sito |
 | Astro, @astrojs/* , remark-math, rehype-katex | vedi package.json | MIT | Solo build |
 | Vitest, Playwright, axe-core, Lighthouse CI, Prettier, TypeScript | vedi package.json | MIT / Apache-2.0 / MPL-2.0 | Solo strumenti di sviluppo e test |
 

@@ -1,21 +1,34 @@
-/* Fisica Generale II — blu di Prussia. Solo variabili --accent*: chiaro, scuro esplicito, scuro di sistema. */
-html[data-course='fisica-2'] {
-  --accent: #1f5f8c;
-  --accent-strong: #1a5178;
-  --accent-soft: #e2edf5;
+/* Fisica Generale II — il sistema originale di Fisica II: neutri quasi neri, accento blu.
+   Ridefinisce superfici e accento; scuro di default, chiaro con data-theme="light". */
+html[data-course='fisica-2']:not([data-theme='light']) {
+  --bg: #0a0a0a;
+  --surface: #111113;
+  --surface-2: #19191c;
+  --surface-3: #222226;
+  --text: #ededed;
+  --text-muted: #a1a1aa;
+  --border: #26262b;
+  --border-strong: #6b6b75;
+  --header-bg: rgb(10 10 10 / 0.72);
+  --accent: #4f9dff;
+  --accent-strong: #7ab4ff;
+  --accent-soft: #10223d;
+  --accent-2: #a78bfa;
+  --on-accent: #0a0a0a;
+}
+html[data-course='fisica-2'][data-theme='light'] {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --surface-2: #f4f4f5;
+  --surface-3: #ececee;
+  --text: #0a0a0a;
+  --text-muted: #5f5f66;
+  --border: #e4e4e7;
+  --border-strong: #8b8b94;
+  --header-bg: rgb(250 250 250 / 0.78);
+  --accent: #0062d1;
+  --accent-strong: #0057ba;
+  --accent-soft: #e8f1fd;
+  --accent-2: #7c3aed;
   --on-accent: #ffffff;
-}
-html[data-course='fisica-2'][data-theme='dark'] {
-  --accent: #8fc1e6;
-  --accent-strong: #a6cdeb;
-  --accent-soft: #1b2a36;
-  --on-accent: #0c1720;
-}
-@media (prefers-color-scheme: dark) {
-  html[data-course='fisica-2']:not([data-theme='light']) {
-    --accent: #8fc1e6;
-    --accent-strong: #a6cdeb;
-    --accent-soft: #1b2a36;
-    --on-accent: #0c1720;
-  }
 }

@@ -770,7 +770,9 @@ progress.progress__bar::-moz-progress-bar {
   margin-left: auto;
 }
 .search-trigger {
-  display: none;
+  /* Occupa già il suo spazio (niente spostamento della barra, CLS) ma resta invisibile finché la ricerca non è pronta. */
+  display: inline-flex;
+  visibility: hidden;
   align-items: center;
   gap: var(--space-2xs);
   min-height: 2.5rem;
@@ -782,7 +784,7 @@ progress.progress__bar::-moz-progress-bar {
   font: 400 var(--step--1) / 1 var(--font-sans);
 }
 :root[data-search='ready'] .search-trigger {
-  display: inline-flex;
+  visibility: visible;
 }
 .search-trigger:hover {
   border-color: var(--border-strong);
@@ -815,8 +817,8 @@ progress.progress__bar::-moz-progress-bar {
 .theme-toggle .icon-moon {
   display: none;
 }
-:root[data-theme='dark'] .theme-toggle .icon-sun,
-:root:not([data-theme='dark']) .theme-toggle .icon-moon {
+:root:not([data-theme='light']) .theme-toggle .icon-sun,
+:root[data-theme='light'] .theme-toggle .icon-moon {
   display: block;
 }
 .menu-toggle[aria-expanded='true'] .icon-menu,

@@ -62,11 +62,11 @@ const icons = Object.keys(ICONS) as IconName[];
     <PageHeader
       eyebrow="Sistema di design"
       title={t(lang, 'style.title')}
-      lede="Token, tipografia e componenti del sito. Ogni elemento usa solo le variabili di tokens.css; l'accento di questa pagina è quello di Fisica Generale II."
+      lede="Token, tipografia e componenti del sito, nella grafica dei siti originali: vetro, sfere sfumate e gradiente ciano → viola fuori dai corsi, il sistema di Fisica II dentro i corsi. Scuro di default, chiaro con l'interruttore."
     >
       <p slot="meta" class="meta-row">
-        <span>Quaderno</span>
-        <span>Source Serif 4 · Geist · Geist Mono</span>
+        <span>Originale</span>
+        <span>Geist · Geist Mono</span>
         <span>WCAG 2.2 AA</span>
       </p>
     </PageHeader>
@@ -85,6 +85,23 @@ const icons = Object.keys(ICONS) as IconName[];
       </ul>
       <h3 class="section__title" style="font-size: var(--step-1); margin-top: var(--space-l)">
         Accenti dei corsi
+      </h3>
+      <h3 class="section__title" style="font-size: var(--step-1); margin-top: var(--space-l)">
+        Vetro e gradiente (fuori dai corsi)
+      </h3>
+      <div class="glass style-glass">
+        <p class="eyebrow">.glass</p>
+        <p>
+          Pannello in vetro sopra le sfere: <code>--glass</code>, <code>--hair</code>,{' '}
+          <code>--glass-shadow</code>.
+        </p>
+        <p class="btn-row">
+          <span class="btn btn--primary">--brand-gradient</span>
+          <span class="btn">Secondario</span>
+        </p>
+      </div>
+      <h3 class="section__title" style="font-size: var(--step-1); margin-top: var(--space-l)">
+        Tinte dei corsi
       </h3>
       <ul class="style-swatches" data-accent-samples>
         {ACCENTS.map((id) => (
@@ -642,28 +659,36 @@ const icons = Object.keys(ICONS) as IconName[];
   .accent-sample {
     background: var(--sample);
   }
+  /* Tinte d'accento dei corsi (scuro di default, chiaro con l'interruttore): vedi styles/courses/. */
   [data-sample-course='fisica-1'] {
-    --sample: #a3441f;
+    --sample: #8b93ff;
   }
   [data-sample-course='fondamenti-informatica'] {
-    --sample: #1f6b58;
+    --sample: #d69a63;
   }
   [data-sample-course='fisica-2'] {
-    --sample: #1f5f8c;
+    --sample: #4f9dff;
   }
   [data-sample-course='teoria-circuiti'] {
-    --sample: #7b3a6c;
+    --sample: #ffb84d;
   }
-  :global(:root[data-theme='dark']) [data-sample-course='fisica-1'] {
-    --sample: #f0a385;
+  :global(:root[data-theme='light']) [data-sample-course='fisica-1'] {
+    --sample: #4b50d6;
   }
-  :global(:root[data-theme='dark']) [data-sample-course='fondamenti-informatica'] {
-    --sample: #79cdb5;
+  :global(:root[data-theme='light']) [data-sample-course='fondamenti-informatica'] {
+    --sample: #96582a;
   }
-  :global(:root[data-theme='dark']) [data-sample-course='fisica-2'] {
-    --sample: #8fc1e6;
+  :global(:root[data-theme='light']) [data-sample-course='fisica-2'] {
+    --sample: #0062d1;
   }
-  :global(:root[data-theme='dark']) [data-sample-course='teoria-circuiti'] {
-    --sample: #dca4cf;
+  :global(:root[data-theme='light']) [data-sample-course='teoria-circuiti'] {
+    --sample: #9a5b00;
+  }
+  .style-glass {
+    display: grid;
+    gap: var(--space-xs);
+    padding: var(--space-m);
+    border-radius: var(--radius-xl);
+    max-width: 40rem;
   }
 </style>

@@ -33,7 +33,8 @@ export function ratio(a: string, b: string): number {
 }
 
 const tokens = readFileSync(join(STYLES, 'tokens.css'), 'utf8');
-const themes = { light: block(tokens, ':root'), dark: block(tokens, ':root[data-theme="dark"]') };
+// Scuro di default (:root), chiaro solo con l'interruttore (data-theme="light").
+const themes = { dark: block(tokens, ':root'), light: block(tokens, ':root[data-theme="light"]') };
 
 // [primo piano, sfondo, minimo]
 const TEXT_PAIRS: [string, string, number][] = [
@@ -55,6 +56,7 @@ const TEXT_PAIRS: [string, string, number][] = [
   ['--border-strong', '--surface', 3],
   ['--focus', '--bg', 3],
   ['--focus', '--surface', 3],
+  ['--brand-cyan-text', '--bg', 4.5],
 ];
 const ACCENT_PAIRS: [string, string, number][] = [
   ['--accent-strong', '--bg', 4.5],
@@ -94,9 +96,6 @@ describe('token colore — contrasto AA', () => {
         expect(ratio(v[f]!, v[b]!)).toBeGreaterThanOrEqual(min));
     }
   }
-  it('il blocco scuro di sistema coincide con quello esplicito', () => {
-    expect(block(tokens, '  :root:not([data-theme="light"])')).toEqual(themes.dark);
-  });
 });
 
 describe('accenti di corso — contrasto AA', () => {
@@ -112,17 +111,19 @@ describe('accenti di corso — contrasto AA', () => {
   for (const f of files) {
     const id = f.replace('.css', '');
     const css = readFileSync(join(STYLES, 'courses', f), 'utf8');
-    it(`${id}: contiene solo variabili --accent*`, () => {
+    it(`${id}: ridefinisce solo superfici, testo e accento`, () => {
       for (const m of css.matchAll(/(--[\w-]+)\s*:/g))
-        expect(m[1]).toMatch(/^--(accent(-strong|-soft)?|on-accent)$/);
+        expect(m[1]).toMatch(
+          /^--(accent(-strong|-soft|-2)?|on-accent|bg|surface(-2|-3)?|text(-muted)?|border(-strong)?|header-bg)$/,
+        );
     });
     const acc = {
-      light: block(css, `html[data-course="${id}"]`),
-      dark: block(css, `html[data-course="${id}"][data-theme="dark"]`),
+      dark: block(css, `html[data-course="${id}"]:not([data-theme="light"])`),
+      light: block(css, `html[data-course="${id}"][data-theme="light"]`),
     };
     for (const t of ['light', 'dark'] as const) {
       const v = { ...themes[t], ...acc[t] };
-      for (const [fg, bg, min] of ACCENT_PAIRS) {
+      for (const [fg, bg, min] of [...TEXT_PAIRS, ...ACCENT_PAIRS]) {
         it(`${id} ${t}: ${fg} su ${bg} ≥ ${min}`, () =>
           expect(ratio(v[fg]!, v[bg]!)).toBeGreaterThanOrEqual(min));
       }

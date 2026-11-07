@@ -1,6 +1,8 @@
 ---
 import { SITE } from '../config/site';
-import { localizePath, stripLang, t, type Lang } from '../i18n';
+import { localizePath, stripLang, t, tr, type Lang } from '../i18n';
+import { COURSE_SECTIONS, coursePath } from '../lib/courses';
+import type { Course } from '../content/schemas';
 import BrandMark from './BrandMark.astro';
 import Icon from './Icon.astro';
 import LangSwitch from './LangSwitch.astro';
@@ -10,9 +12,22 @@ import ThemeToggle from './ThemeToggle.astro';
 interface Props {
   lang: Lang;
   samePage?: boolean;
+  /** Nelle pagine di un corso l'intestazione è quella dei siti originali: nome del corso e sue sezioni. */
+  course?: Pick<Course, 'id' | 'year' | 'semester' | 'title'> | undefined;
 }
-const { lang, samePage = true } = Astro.props;
+const { lang, samePage = true, course } = Astro.props;
 const here = stripLang(Astro.url.pathname);
+const courseBase = course ? coursePath(course) : '';
+const courseLinks = course
+  ? COURSE_SECTIONS.map((s) => {
+      const path = s.slug ? `${courseBase}/${s.slug}` : courseBase;
+      return {
+        href: localizePath(path, lang),
+        key: s.key,
+        active: s.slug ? here === path || here.startsWith(`${path}/`) : here === path,
+      };
+    })
+  : [];
 const links = [
   { path: '', key: 'nav.home', active: here === '' || here.startsWith('anno-') },
   { path: 'chi-sono', key: 'nav.about', active: here === 'chi-sono' },
@@ -21,23 +36,45 @@ const links = [
 ---
 
 <SkipLink lang={lang} />
-<header class="site-header">
+<header class:list={['site-header', { 'site-header--course': course }]}>
   <div class="container site-header__inner">
     <a class="brand" href={localizePath('', lang)}>
       <BrandMark />
       <span class="brand__name">{SITE.shortTitle[lang]}</span>
     </a>
-    <nav class="site-nav" aria-label={t(lang, 'nav.label')}>
-      <ul class="site-nav__list">
-        {links.map((l) => (
-          <li>
-            <a href={localizePath(l.path, lang)} aria-current={l.active ? 'page' : undefined}>
-              {t(lang, l.key)}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    {course && (
+      <a class="brand-course" href={localizePath(courseBase, lang)}>
+        {tr(course.title, lang)}
+      </a>
+    )}
+    {course ? (
+      <nav
+        class="site-nav site-nav--course"
+        aria-label={`${tr(course.title, lang)}: ${t(lang, 'nav.course.label')}`}
+      >
+        <ul class="site-nav__list">
+          {courseLinks.map((l) => (
+            <li>
+              <a href={l.href} aria-current={l.active ? 'page' : undefined}>
+                {t(lang, l.key)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    ) : (
+      <nav class="site-nav" aria-label={t(lang, 'nav.label')}>
+        <ul class="site-nav__list">
+          {links.map((l) => (
+            <li>
+              <a href={localizePath(l.path, lang)} aria-current={l.active ? 'page' : undefined}>
+                {t(lang, l.key)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )}
     <div class="site-header__tools">
       <SearchButton lang={lang} />
       <LangSwitch lang={lang} samePage={samePage} />

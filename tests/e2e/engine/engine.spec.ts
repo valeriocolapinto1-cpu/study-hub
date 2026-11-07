@@ -44,6 +44,8 @@ for (const theme of ['light', 'dark'] as const) {
   for (const url of PAGES) {
     test(`axe ${theme}: ${url}`, async ({ page }) => {
       await page.emulateMedia({ colorScheme: theme });
+      // Scuro di default: il tema chiaro si attiva con la scelta salvata dall'interruttore.
+      await page.addInitScript((t) => localStorage.setItem('sh:v1:global:theme', JSON.stringify(t)), theme);
       await page.goto(url);
       await page.waitForLoadState('networkidle');
       await axe(page);

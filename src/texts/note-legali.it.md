@@ -20,7 +20,7 @@ Il sito non riproduce testi, figure, slide, dispense, soluzioni o prove d'esame 
 
 - **Contenuti originali** © 2026 Valerio Colapinto: lettura, stampa e riproduzione consentite per uso personale di studio; per ogni altro uso scrivi ai contatti.
 - **Codice** (HTML, CSS, TypeScript, configurazioni, test): licenza MIT.
-- **Componenti di terze parti** inclusi nel sito: font Geist, Geist Mono e Source Serif 4 (SIL Open Font License 1.1), KaTeX (MIT). L'elenco completo è nel file `THIRD-PARTY-NOTICES.md` del repository.
+- **Componenti di terze parti** inclusi nel sito: font Geist e Geist Mono (SIL Open Font License 1.1), KaTeX (MIT). L'elenco completo è nel file `THIRD-PARTY-NOTICES.md` del repository.
 
 ## Segnalazioni e rimozione
 
