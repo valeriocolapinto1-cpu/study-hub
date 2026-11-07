@@ -1,21 +1,34 @@
-/* Fisica 1 — terracotta. Solo variabili --accent*: chiaro, scuro esplicito, scuro di sistema. */
-html[data-course='fisica-1'] {
-  --accent: #a3441f;
-  --accent-strong: #8c3a1a;
-  --accent-soft: #f6e7df;
+/* Fisica 1 — tela scura e accento indaco del sito originale (stesso sistema di Fisica II).
+   Ridefinisce superfici e accento; scuro di default, chiaro con data-theme="light". */
+html[data-course='fisica-1']:not([data-theme='light']) {
+  --bg: #07080f;
+  --surface: #0f1222;
+  --surface-2: #171b30;
+  --surface-3: #20253f;
+  --text: #eaf0ff;
+  --text-muted: #9ba6c6;
+  --border: #232946;
+  --border-strong: #5e688a;
+  --header-bg: rgb(7 8 15 / 0.75);
+  --accent: #8b93ff;
+  --accent-strong: #b7bcff;
+  --accent-soft: #1c2042;
+  --accent-2: #c483ff;
+  --on-accent: #05060c;
+}
+html[data-course='fisica-1'][data-theme='light'] {
+  --bg: #f7f7fc;
+  --surface: #ffffff;
+  --surface-2: #f0f0f8;
+  --surface-3: #e5e6f2;
+  --text: #0b0e1f;
+  --text-muted: #4f5672;
+  --border: #dfe1ee;
+  --border-strong: #868da8;
+  --header-bg: rgb(247 247 252 / 0.78);
+  --accent: #4b50d6;
+  --accent-strong: #3d42c0;
+  --accent-soft: #eceeff;
+  --accent-2: #8a32d1;
   --on-accent: #ffffff;
-}
-html[data-course='fisica-1'][data-theme='dark'] {
-  --accent: #f0a385;
-  --accent-strong: #f5b69d;
-  --accent-soft: #352219;
-  --on-accent: #1f120c;
-}
-@media (prefers-color-scheme: dark) {
-  html[data-course='fisica-1']:not([data-theme='light']) {
-    --accent: #f0a385;
-    --accent-strong: #f5b69d;
-    --accent-soft: #352219;
-    --on-accent: #1f120c;
-  }
 }

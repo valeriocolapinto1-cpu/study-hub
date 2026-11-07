@@ -1,21 +1,34 @@
-/* Fondamenti di Informatica — verde abete. Solo variabili --accent*: chiaro, scuro esplicito, scuro di sistema. */
-html[data-course='fondamenti-informatica'] {
-  --accent: #1f6b58;
-  --accent-strong: #195a4a;
-  --accent-soft: #e1efe9;
+/* Fondamenti di Informatica — ardesia e rame del sito originale (stesso sistema di Fisica II).
+   Ridefinisce superfici e accento; scuro di default, chiaro con data-theme="light". */
+html[data-course='fondamenti-informatica']:not([data-theme='light']) {
+  --bg: #0e1116;
+  --surface: #151b23;
+  --surface-2: #1b232d;
+  --surface-3: #212c38;
+  --text: #e7edf4;
+  --text-muted: #a0adbc;
+  --border: #2a3542;
+  --border-strong: #66768a;
+  --header-bg: rgb(14 17 22 / 0.78);
+  --accent: #d69a63;
+  --accent-strong: #e0ac7b;
+  --accent-soft: #2a241f;
+  --accent-2: #37c2d6;
+  --on-accent: #1a120a;
+}
+html[data-course='fondamenti-informatica'][data-theme='light'] {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --surface-2: #eef1f4;
+  --surface-3: #e3e7ec;
+  --text: #10161d;
+  --text-muted: #4c5866;
+  --border: #d8dee5;
+  --border-strong: #84909e;
+  --header-bg: rgb(246 247 249 / 0.78);
+  --accent: #96582a;
+  --accent-strong: #864d22;
+  --accent-soft: #f7ebe0;
+  --accent-2: #13778a;
   --on-accent: #ffffff;
-}
-html[data-course='fondamenti-informatica'][data-theme='dark'] {
-  --accent: #79cdb5;
-  --accent-strong: #93d8c4;
-  --accent-soft: #1b2e29;
-  --on-accent: #0c1a16;
-}
-@media (prefers-color-scheme: dark) {
-  html[data-course='fondamenti-informatica']:not([data-theme='light']) {
-    --accent: #79cdb5;
-    --accent-strong: #93d8c4;
-    --accent-soft: #1b2e29;
-    --on-accent: #0c1a16;
-  }
 }

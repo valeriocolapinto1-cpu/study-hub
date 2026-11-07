@@ -31,7 +31,7 @@ export function readPalette(el: Element | null): Palette {
     accent: v('--accent', '#1f4f8f'),
     accentSoft: v('--accent-soft', '#e3ebf6'),
     surface: v('--surface', '#ffffff'),
-    bg: v('--bg', '#f7f5f0'),
+    bg: v('--bg', '#05060c'),
     success: v('--success', '#1e6b3a'),
     warning: v('--warning', '#8a5a00'),
     danger: v('--danger', '#a32020'),

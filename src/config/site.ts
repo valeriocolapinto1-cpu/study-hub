@@ -47,7 +47,7 @@ export const SITE = {
     endpoint: '',
     turnstileSiteKey: '',
   },
-  themeColor: { light: '#f7f5f0', dark: '#161513' },
+  themeColor: { light: '#f6f7fc', dark: '#05060c' },
 } as const;
 
 /** Repository GitHub originali dei corsi (per crediti e storia). */

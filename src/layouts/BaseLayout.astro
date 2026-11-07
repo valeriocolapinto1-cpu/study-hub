@@ -2,6 +2,7 @@
 import '../styles/base.css';
 import '../styles/components.css';
 import '../styles/prose.css';
+import '../styles/originale.css';
 import '../styles/print.css';
 import Head from '../components/Head.astro';
 import Header from '../components/Header.astro';
@@ -28,11 +29,13 @@ export interface Props {
 }
 const { lang, title, description, course, alternates = true, noindex = false, bodyClass } = Astro.props;
 // Ricerca: solo le pagine indicizzabili espongono il contenuto a Pagefind, con tipo e corso.
+const courseEntries = (await getCollection('courses')).map((c) => c.data);
+const courseData = course ? courseEntries.find((c) => c.id === course) : undefined;
 const searchType = noindex ? null : pageSearchType(stripLang(Astro.url.pathname), course);
 const searchConfig = {
   lang,
   base: BASE_URL,
-  courses: sortCourses((await getCollection('courses')).map((c) => c.data)).map((c) => ({
+  courses: sortCourses(courseEntries).map((c) => ({
     id: c.id,
     title: tr(c.title, lang),
   })),
@@ -41,13 +44,21 @@ const searchConfig = {
 ---
 
 <!doctype html>
-<html lang={htmlLang[lang]} data-course={course}>
+<html lang={htmlLang[lang]} data-course={course} data-area={course ? 'course' : 'hub'}>
   <head>
     <Head lang={lang} title={title} description={description} alternates={alternates} noindex={noindex} />
     <slot name="head" />
   </head>
   <body class={bodyClass}>
-    <Header lang={lang} samePage={alternates} />
+    {!course && (
+      <div class="bg-orbs" aria-hidden="true">
+        <span class="orb orb--1" />
+        <span class="orb orb--2" />
+        <span class="orb orb--3" />
+        <span class="bg-orbs__grid" />
+      </div>
+    )}
+    <Header lang={lang} samePage={alternates} course={courseData} />
     <slot name="before-main" />
     <main
       id="contenuto"

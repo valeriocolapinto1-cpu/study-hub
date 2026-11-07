@@ -16,9 +16,22 @@
 }
 
 @media print {
-  :root,
-  :root[data-theme='dark'],
-  :root[data-theme='light'] {
+  /* Specificità sopra quella dei file dei corsi (html[data-course]…): in stampa vince sempre la carta bianca. */
+  html:root,
+  html:root[data-theme],
+  html:root[data-course][data-theme],
+  html:root[data-course]:not([data-theme='light']) {
+    --surface-3: #ececec;
+    --header-bg: #ffffff;
+    --accent-2: #000000;
+    --glass: #ffffff;
+    --glass-solid: #ffffff;
+    --glass-hi: #ffffff;
+    --hair: #c8c8c8;
+    --hair-strong: #6b6b6b;
+    --brand-cyan-text: #000000;
+    --brand-gradient: linear-gradient(#ffffff, #ffffff);
+    --brand-gradient-text: linear-gradient(#000000, #000000);
     --bg: #ffffff;
     --surface: #ffffff;
     --surface-2: #f2f2f2;
@@ -40,6 +53,14 @@
   html {
     font-size: 10.5pt;
   }
+  .glass,
+  [data-area] * {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  .glass {
+    box-shadow: none !important;
+  }
   body {
     display: block;
     background: #fff;
@@ -50,7 +71,8 @@
     print-color-adjust: exact;
   }
 
-  /* Interfaccia nascosta */
+  /* Interfaccia nascosta (anche lo sfondo a sfere delle pagine fuori dai corsi) */
+  .bg-orbs,
   .site-header,
   .site-footer,
   .skip-link,

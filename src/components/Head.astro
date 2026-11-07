@@ -40,8 +40,7 @@ const fullTitle = title === SITE.title[lang] ? title : `${title} — ${SITE.shor
 <link rel="apple-touch-icon" href={withBase('apple-touch-icon.png')} />
 <link rel="manifest" href={withBase('site.webmanifest')} />
 <link rel="sitemap" href={withBase('sitemap-index.xml')} />
-<meta name="theme-color" media="(prefers-color-scheme: light)" content={SITE.themeColor.light} />
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content={SITE.themeColor.dark} />
+<meta name="theme-color" content={SITE.themeColor.dark} />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content={SITE.title[lang]} />
 <meta property="og:title" content={fullTitle} />

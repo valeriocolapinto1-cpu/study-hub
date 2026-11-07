@@ -198,7 +198,7 @@ export default function ContributeForm(props: ContributeFormProps) {
           sitekey: siteKey,
           action: 'contribute',
           language: lang,
-          theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'auto',
+          theme: document.documentElement.dataset.theme === 'light' ? 'light' : 'dark',
           appearance: 'interaction-only',
           callback: (tk: string) => setToken(tk),
           'expired-callback': () => setToken(''),

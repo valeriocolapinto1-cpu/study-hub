@@ -1,26 +1,31 @@
 /* =====================================================================
    Study Hub — design tokens (SOLO variabili: nessun selettore di elemento)
-   Direzione "Quaderno": carta calda, inchiostro, serif per la lettura,
-   Geist per l'interfaccia, Geist Mono per dati e numerazioni.
-   Tema: html[data-theme="light"|"dark"]; senza attributo segue il sistema.
-   Accento per corso: html[data-course="<id>"] (vedi styles/courses/).
+   Direzione "Originale": la grafica dei siti di studio originali.
+   - Fuori dai corsi: tela scura con sfere sfumate, vetro, gradienti
+     ciano → indaco → viola (vecchio study-hub).
+   - Nei corsi: il sistema di Fisica II (superfici piatte, filetti, card),
+     con la tinta di ogni corso in styles/courses/<id>.css.
+   Tipografia: Geist ovunque, Geist Mono per dati e numerazioni.
+   Tema: SCURO di default; chiaro solo con html[data-theme="light"]
+   (interruttore). Vedi docs/design/README.md.
    ===================================================================== */
 
 :root {
   /* ---- famiglie ---- */
-  --font-serif: 'Source Serif 4 Variable', 'Source Serif 4', Charter, 'Iowan Old Style', Georgia, serif;
   --font-sans: 'Geist Variable', 'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* Alias storico: i siti originali non usavano serif. Resta per compatibilità con contenuti e isole. */
+  --font-serif: var(--font-sans);
   --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  /* ---- scala tipografica fluida (320px → 1280px, rapporto ~1.2 → ~1.25) ---- */
+  /* ---- scala tipografica fluida (320px → 1280px) ---- */
   --step--2: clamp(0.72rem, 0.7rem + 0.08vw, 0.77rem);
-  --step--1: clamp(0.84rem, 0.82rem + 0.1vw, 0.9rem);
-  --step-0: clamp(1.03rem, 0.99rem + 0.19vw, 1.15rem);
-  --step-1: clamp(1.22rem, 1.15rem + 0.33vw, 1.44rem);
-  --step-2: clamp(1.44rem, 1.32rem + 0.58vw, 1.8rem);
-  --step-3: clamp(1.7rem, 1.5rem + 0.98vw, 2.3rem);
-  --step-4: clamp(2rem, 1.68rem + 1.6vw, 2.96rem);
-  --step-5: clamp(2.35rem, 1.84rem + 2.55vw, 3.88rem);
+  --step--1: clamp(0.82rem, 0.8rem + 0.1vw, 0.88rem);
+  --step-0: clamp(0.98rem, 0.95rem + 0.14vw, 1.04rem);
+  --step-1: clamp(1.1rem, 1.05rem + 0.25vw, 1.25rem);
+  --step-2: clamp(1.3rem, 1.2rem + 0.45vw, 1.55rem);
+  --step-3: clamp(1.6rem, 1.4rem + 0.9vw, 2.1rem);
+  --step-4: clamp(1.8rem, 1.2rem + 2vw, 2.4rem);
+  --step-5: clamp(2.3rem, 1.3rem + 4.4vw, 4.4rem);
   --leading-tight: 1.15;
   --leading-body: 1.65;
 
@@ -35,80 +40,89 @@
   --space-2xl: 4.5rem;
   --space-3xl: 6.5rem;
 
-  /* ---- forma ---- */
-  --radius-s: 4px;
-  --radius-m: 6px;
-  --radius-l: 10px;
-  --measure: 68ch;
-  --content-max: 1240px;
+  /* ---- forma (raggi dei siti originali) ---- */
+  --radius-s: 6px;
+  --radius-m: 9px;
+  --radius-l: 12px;
+  --radius-xl: 22px;
+  --radius-pill: 999px;
+  --measure: 72ch;
+  --content-max: 1140px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 
-  /* ---- tema chiaro (predefinito) ---- */
-  --bg: #f7f5f0;
-  --surface: #fffdf9;
-  --surface-2: #efebe3;
-  --text: #1f1d1a;
-  --text-muted: #5b564e;
-  --border: #e0dbd0;
-  --border-strong: #8a8274;
-  --success: #2c6a37;
-  --warning: #8a5200;
-  --danger: #a8362a;
-  --info: #285c86;
-  --focus: #1b5fa8;
-  --shadow-1: 0 1px 2px rgb(40 32 20 / 0.06), 0 1px 1px rgb(40 32 20 / 0.04);
-  --shadow-2: 0 2px 6px rgb(40 32 20 / 0.07), 0 12px 32px -8px rgb(40 32 20 / 0.14);
+  /* ---- gradienti del marchio (ciano → indaco → viola) ---- */
+  --brand-cyan: #3ce6ff;
+  --brand-indigo: #8b93ff;
+  --brand-violet: #c483ff;
+  --brand-gradient: linear-gradient(135deg, #6fdcff, #8b93ff 55%, #c483ff);
+  --brand-gradient-text: linear-gradient(115deg, #9fe9ff 0%, #b7bcff 45%, #e0a8ff 100%);
+  /* ciano usato come testo (occhielli, numerazioni): AA sul fondo del tema */
+  --brand-cyan-text: #3ce6ff;
 
-  /* accento globale: inchiostro blu (sovrascritto per corso) */
-  --accent: #33507f;
-  --accent-strong: #2a4470;
-  --accent-soft: #e6eaf2;
-  --on-accent: #ffffff;
+  /* ---- tema scuro (predefinito): tela del vecchio study-hub ---- */
+  --bg: #05060c;
+  --surface: #0d1020;
+  --surface-2: #151a2e;
+  --surface-3: #1d2340;
+  --text: #eaf0ff;
+  --text-muted: #9ba6c6;
+  --border: #20264a;
+  --border-strong: #5e688a;
+  --success: #5ed39a;
+  --warning: #fbbf24;
+  --danger: #ff7b72;
+  --info: #7fb2ff;
+  --focus: #3ce6ff;
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-2: 0 12px 32px rgb(0 0 0 / 0.5);
+  --header-bg: rgb(5 6 12 / 0.72);
+  /* vetro (solo pagine fuori dai corsi) */
+  --glass: rgb(18 22 40 / 0.46);
+  --glass-solid: rgb(14 17 32 / 0.92);
+  --glass-hi: rgb(255 255 255 / 0.1);
+  --hair: rgb(140 160 255 / 0.14);
+  --hair-strong: rgb(150 175 255 / 0.3);
+  --orb-opacity: 0.55;
 
-  color-scheme: light;
-}
+  /* accento globale: indaco del marchio (ridefinito per corso) */
+  --accent: #8b93ff;
+  --accent-strong: #b7bcff;
+  --accent-soft: #1a1d3d;
+  --accent-2: #c483ff;
+  --on-accent: #05060c;
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --bg: #161513;
-    --surface: #1e1d1a;
-    --surface-2: #282622;
-    --text: #ebe6dc;
-    --text-muted: #aba395;
-    --border: #36332d;
-    --border-strong: #7d766a;
-    --success: #8fcf98;
-    --warning: #e8b860;
-    --danger: #f39c8e;
-    --info: #92c1e6;
-    --focus: #8fbcff;
-    --shadow-1: 0 1px 2px rgb(0 0 0 / 0.4);
-    --shadow-2: 0 2px 6px rgb(0 0 0 / 0.35), 0 16px 40px -10px rgb(0 0 0 / 0.6);
-    --accent: #a9bce4;
-    --accent-strong: #bccbec;
-    --accent-soft: #232a38;
-    --on-accent: #12161f;
-    color-scheme: dark;
-  }
-}
-
-:root[data-theme='dark'] {
-  --bg: #161513;
-  --surface: #1e1d1a;
-  --surface-2: #282622;
-  --text: #ebe6dc;
-  --text-muted: #aba395;
-  --border: #36332d;
-  --border-strong: #7d766a;
-  --success: #8fcf98;
-  --warning: #e8b860;
-  --danger: #f39c8e;
-  --info: #92c1e6;
-  --focus: #8fbcff;
-  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.4);
-  --shadow-2: 0 2px 6px rgb(0 0 0 / 0.35), 0 16px 40px -10px rgb(0 0 0 / 0.6);
-  --accent: #a9bce4;
-  --accent-strong: #bccbec;
-  --accent-soft: #232a38;
-  --on-accent: #12161f;
   color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --bg: #f6f7fc;
+  --surface: #ffffff;
+  --surface-2: #eef0f8;
+  --surface-3: #e3e6f2;
+  --text: #0b0e1f;
+  --text-muted: #4f5672;
+  --border: #dde1ee;
+  --border-strong: #868da8;
+  --success: #16803c;
+  --warning: #8f5400;
+  --danger: #c52b1f;
+  --info: #0b5cc2;
+  --focus: #0b5cc2;
+  --shadow-1: 0 1px 2px rgb(14 20 50 / 0.05);
+  --shadow-2: 0 2px 4px rgb(14 20 50 / 0.05), 0 12px 32px rgb(14 20 50 / 0.1);
+  --header-bg: rgb(246 247 252 / 0.78);
+  --glass: rgb(255 255 255 / 0.62);
+  --glass-solid: rgb(255 255 255 / 0.94);
+  --glass-hi: rgb(255 255 255 / 0.9);
+  --hair: rgb(70 80 160 / 0.14);
+  --hair-strong: rgb(70 80 160 / 0.3);
+  --orb-opacity: 0.32;
+  --brand-gradient-text: linear-gradient(115deg, #0a7fa8 0%, #4b50d6 45%, #8a32d1 100%);
+  --brand-cyan-text: #0a6a85;
+  --accent: #4b50d6;
+  --accent-strong: #3d42c0;
+  --accent-soft: #eceeff;
+  --accent-2: #8a32d1;
+  --on-accent: #ffffff;
+  color-scheme: light;
 }
