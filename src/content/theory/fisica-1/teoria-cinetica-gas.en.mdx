@@ -1,0 +1,171 @@
+---
+course: fisica-1
+topic: teoria-cinetica-gas
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/teoria-cinetica-gas/idea">
+
+The pressure of a gas is a dense drumming of molecules on the wall: each collision is a tiny push, and the average of billions of pushes per second is a steady force. Temperature, seen from here, stops being primitive: it is simply the macroscopic name for the average kinetic agitation of the molecules.
+
+</div>
+
+<p class="muted" data-note-id="teoria/teoria-cinetica-gas/prerequisiti"><strong>Before this topic:</strong> <a href="../urti-centrali/">Central elastic and inelastic collisions</a> · <a href="../legge-di-stevino/">Pressure and Stevin's law</a></p>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/teoria-cinetica-gas/definizioni">
+
+## Definitions
+
+Kinetic theory interprets the macroscopic quantities of a gas in terms of the disordered motion of its molecules. Ideal-gas model: N identical point-like molecules, not interacting except through instantaneous elastic collisions, in chaotic and isotropic motion. Central result: the pressure on the walls is $p = \frac{1}{3}\frac{N}{V}m\langle v^2\rangle$, i.e. two thirds of the translational kinetic energy density.
+
+</div>
+
+<div data-note-id="teoria/teoria-cinetica-gas/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Elastic collision of a molecule with the wall</summary>
+
+$$
+\Delta p_x = -2mv_x
+$$
+
+A molecule with velocity component v_x towards the wall (perpendicular to x) bounces back elastically: it reverses v_x and transfers an impulse 2mv_x to the wall.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · How many molecules hit in time dt</summary>
+
+$$
+dN_{urti} = \frac{1}{2}\,n_v\,A\,v_x\,dt
+$$
+
+The wall of area A is hit by the molecules within distance v_x dt that are travelling TOWARDS the wall (half of them, by isotropy); n_v = N/V is the number density. (Rigorous treatment: average over all v_x &gt; 0.)
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Average force on the wall</summary>
+
+$$
+F = \Big\langle 2mv_x \cdot \frac{1}{2}\,n_v\,A\,v_x \Big\rangle \;\Rightarrow\; F = n_v\,m\,\langle v_x^2\rangle\,A
+$$
+
+Combining the impulse per collision and the collision rate, and averaging over v_x², the factors 2 and ½ cancel.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Pressure and isotropy</summary>
+
+$$
+p = \frac{F}{A} = n_v m\langle v_x^2\rangle; \qquad \langle v_x^2\rangle = \frac{1}{3}\langle v^2\rangle \;\Rightarrow\; p = \frac{1}{3}\,\frac{N}{V}\,m\langle v^2\rangle
+$$
+
+By isotropy ⟨v²⟩ = ⟨v_x²⟩+⟨v_y²⟩+⟨v_z²⟩ = 3⟨v_x²⟩: no direction is privileged.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Rewriting with the average kinetic energy</summary>
+
+$$
+pV = \frac{2}{3}N\,\Big\langle \frac{1}{2}mv^2 \Big\rangle
+$$
+
+Pressure times volume is 2/3 of the total translational kinetic energy: a bridge between micro and macro.
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Comparison with the ideal-gas law: meaning of temperature</summary>
+
+$$
+pV = Nk_BT \;\Rightarrow\; \Big\langle \frac{1}{2}mv^2 \Big\rangle = \frac{3}{2}k_BT, \qquad v_{qm} = \sqrt{\frac{3k_BT}{m}} = \sqrt{\frac{3RT}{M_{mol}}}
+$$
+
+Absolute temperature is the measure of the average translational kinetic energy of the molecules: the conceptually central result of the whole chapter.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/teoria-cinetica-gas/ipotesi">
+
+## Validity assumptions
+
+Ideal gas: point-like molecules (negligible own volume), no action at a distance, elastic collisions; an enormous number of molecules; chaotic and isotropic motion; stationary velocity distribution; smooth walls.
+
+</div>
+
+<div data-note-id="teoria/teoria-cinetica-gas/casi-limite">
+
+## Limiting cases
+
+High pressure or low temperature: the molecules' own volume and interactions are no longer negligible → real gases (Van der Waals). T → 0: v_rms → 0 (classically). Gas mixture: each species contributes its own partial pressure (Dalton's law, immediate from the derivation).
+
+</div>
+
+<div data-note-id="teoria/teoria-cinetica-gas/formule">
+
+## Key formulas
+
+<Formula id="teoria-cinetica-gas-f1" />
+
+<Formula id="teoria-cinetica-gas-f2" />
+
+<Formula id="teoria-cinetica-gas-f3" />
+
+<Formula id="teoria-cinetica-gas-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/teoria-cinetica-gas/esempio">
+
+Find the root-mean-square speed of the molecules: (a) of helium (M = 4.0 g/mol) at 300 K; (b) of oxygen (M = 32 g/mol) at the same temperature; (c) the average translational kinetic energy per molecule at 300 K.
+
+1. **RMS speeds.** $v_{rms} = \sqrt{3RT/M}$: helium $\sqrt{3\cdot 8.314\cdot 300/0.004} \approx 1368\ \text{m/s}$; oxygen $\approx 484\ \text{m/s}$ (ratio $\sqrt{8}$).
+2. **Average energy.** $\tfrac32 k_BT = 1.5 \cdot 1.381\cdot 10^{-23} \cdot 300 \approx 6.21\cdot 10^{-21}\ \text{J}$, the same for all gases: at equal T lighter molecules are faster.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/teoria-cinetica-gas/errori">
+
+- Forgetting the factor 1/3 (isotropy) or the factor 2 of the impulse.
+- Confusing average speed, root-mean-square speed and most probable speed.
+- Saying that temperature measures the TOTAL energy of the molecules: it measures only the average translational kinetic energy.
+- Thinking that all molecules have the same speed: there is a distribution (Maxwell–Boltzmann).
+
+</div>
+
+<div data-note-id="teoria/teoria-cinetica-gas/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- Why is the assumption of elastic collisions with the wall not essential if gas and wall are at the same temperature?
+- How would you estimate v_rms for nitrogen at room temperature?
+- What does Dalton's law of partial pressures state, and how does it follow from the kinetic derivation?
+
+</div>
+
+</Layer>

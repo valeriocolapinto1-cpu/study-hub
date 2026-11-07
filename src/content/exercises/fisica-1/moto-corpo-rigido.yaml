@@ -1,0 +1,128 @@
+- id: volano-frenato
+  topic: moto-corpo-rigido
+  objectives:
+    - moto-corpo-rigido.1
+    - moto-corpo-rigido.2
+    - moto-corpo-rigido.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un volano (disco omogeneo di massa 20 kg e raggio 0,30 m) ruota a 600 giri/min. Un freno applica un
+      momento costante di 1,5 N·m. Calcolare: (a) la decelerazione angolare; (b) il tempo per fermarlo; (c) il
+      numero di giri compiuti durante la frenata.
+    en: >-
+      A flywheel (uniform disc of mass 20 kg and radius 0.30 m) spins at 600 rpm. A brake applies a constant
+      torque of 1.5 N·m. Find: (a) the angular deceleration; (b) the time to stop it; (c) the number of
+      revolutions during braking.
+  steps:
+    - title:
+        it: Equazione del moto
+        en: Equation of motion
+      body:
+        it: \(I = \tfrac12 MR^2 = 0{,}90\ \text{kg·m}^2\); \(\alpha = \tau/I \approx 1{,}667\ \text{rad/s}^2\).
+        en: \(I = \tfrac12 MR^2 = 0.90\ \text{kg·m}^2\); \(\alpha = \tau/I \approx 1.667\ \text{rad/s}^2\).
+    - title:
+        it: Tempo
+        en: Time
+      body:
+        it: >-
+          \(\omega_0 = 600 \cdot 2\pi/60 = 20\pi \approx 62{,}83\ \text{rad/s}\); \(t = \omega_0/\alpha
+          \approx 37{,}7\ \text{s}\).
+        en: >-
+          \(\omega_0 = 600 \cdot 2\pi/60 = 20\pi \approx 62.83\ \text{rad/s}\); \(t = \omega_0/\alpha \approx
+          37.7\ \text{s}\).
+    - title:
+        it: Giri
+        en: Revolutions
+      body:
+        it: \(\Delta\theta = \omega_0^2/(2\alpha) \approx 1184\ \text{rad}\), cioè circa 188 giri.
+        en: \(\Delta\theta = \omega_0^2/(2\alpha) \approx 1184\ \text{rad}\), i.e. about 188 revolutions.
+  answer:
+    - label:
+        it: α
+        en: α
+      value: 1.667
+      unit: rad/s²
+    - label:
+        it: t
+        en: t
+      value: 37.7
+      unit: s
+    - label:
+        it: giri
+        en: revolutions
+      value: 188
+  origin: originale
+- id: rocchetto-due-masse
+  topic: moto-corpo-rigido
+  objectives:
+    - moto-corpo-rigido.1
+    - moto-corpo-rigido.2
+    - moto-corpo-rigido.3
+  difficulty: 3
+  kind: static
+  statement:
+    it: >-
+      Due masse m₁ = 3,0 kg e m₂ = 1,0 kg pendono dai due lati di una carrucola (disco di massa M = 2,0 kg e
+      raggio R = 0,10 m) con perno liscio; la fune non slitta. Calcolare: (a) l'accelerazione delle masse; (b)
+      le tensioni nei due tratti di fune; (c) la potenza istantanea del momento netto sulla carrucola quando
+      le masse hanno velocità 1,0 m/s.
+    en: >-
+      Two masses m₁ = 3.0 kg and m₂ = 1.0 kg hang on either side of a pulley (disc of mass M = 2.0 kg and
+      radius R = 0.10 m) with a smooth axle; the rope does not slip. Find: (a) the acceleration of the masses;
+      (b) the tensions in the two parts of the rope; (c) the instantaneous power of the net torque on the
+      pulley when the masses move at 1.0 m/s.
+  steps:
+    - title:
+        it: Sistema di equazioni
+        en: System of equations
+      body:
+        it: >-
+          \(m_1g - T_1 = m_1a\), \(T_2 - m_2g = m_2a\), \((T_1 - T_2)R = \tfrac12 MR^2\,a/R\). Sommando: \(a =
+          \dfrac{(m_1-m_2)g}{m_1+m_2+M/2} = \dfrac{19{,}62}{5{,}0} \approx 3{,}92\ \text{m/s}^2\).
+        en: >-
+          \(m_1g - T_1 = m_1a\), \(T_2 - m_2g = m_2a\), \((T_1 - T_2)R = \tfrac12 MR^2\,a/R\). Adding: \(a =
+          \dfrac{(m_1-m_2)g}{m_1+m_2+M/2} = \dfrac{19.62}{5.0} \approx 3.92\ \text{m/s}^2\).
+    - title:
+        it: Tensioni
+        en: Tensions
+      body:
+        it: >-
+          \(T_1 = m_1(g - a) \approx 17{,}66\ \text{N}\), \(T_2 = m_2(g + a) \approx 13{,}73\ \text{N}\):
+          diverse, perché la loro differenza accelera la carrucola.
+        en: >-
+          \(T_1 = m_1(g - a) \approx 17.66\ \text{N}\), \(T_2 = m_2(g + a) \approx 13.73\ \text{N}\):
+          different, because their difference accelerates the pulley.
+    - title:
+        it: Potenza
+        en: Power
+      body:
+        it: >-
+          \(\tau = (T_1 - T_2)R \approx 0{,}392\ \text{N·m}\), \(\omega = v/R = 10\ \text{rad/s}\): \(P =
+          \tau\omega \approx 3{,}92\ \text{W}\).
+        en: >-
+          \(\tau = (T_1 - T_2)R \approx 0.392\ \text{N·m}\), \(\omega = v/R = 10\ \text{rad/s}\): \(P =
+          \tau\omega \approx 3.92\ \text{W}\).
+  answer:
+    - label:
+        it: a
+        en: a
+      value: 3.92
+      unit: m/s²
+    - label:
+        it: T₁
+        en: T₁
+      value: 17.66
+      unit: 'N'
+    - label:
+        it: T₂
+        en: T₂
+      value: 13.73
+      unit: 'N'
+    - label:
+        it: P
+        en: P
+      value: 3.92
+      unit: W
+  origin: originale

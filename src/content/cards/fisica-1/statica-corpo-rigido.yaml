@@ -10,6 +10,7 @@
   kind: orale
   front:
     it: 'Esponi all''orale: «Statica dei corpi rigidi».'
+    en: 'Present at the oral exam: “Statics of rigid bodies”.'
   back:
     it: >-
       Equilibrio significa che le forze non spingono il corpo da nessuna parte E non lo fanno girare attorno a
@@ -32,6 +33,51 @@
       - Usare strategicamente la scelta del polo
 
       - Discutere stabilità con il criterio del potenziale/baricentro
+    en: >-
+      Equilibrium means that the forces do not push the body anywhere AND do not make it turn about any pivot.
+      Freedom in choosing the pole is a tactical weapon: placing it where the unknown forces pass makes their
+      torques vanish and simplifies the equation. Stability is geometry of the centre of gravity: a body
+      topples when the vertical through its centre of gravity leaves the base of support.
+
+
+      **Outline:**
+
+
+      - State the two equilibrium conditions and their origin in the cardinal equations
+
+      - Prove that with ΣF = 0 the torque does not depend on the pole
+
+      - Prove that the weight is equivalent to a single force at the centre of gravity
+
+      - Solve the ladder (or beam) example by setting up the 3 equations
+
+      - Use the choice of pole strategically
+
+      - Discuss stability with the potential / centre-of-gravity criterion
+- id: statica-corpo-rigido-orale-1
+  topic: statica-corpo-rigido
+  objectives:
+    - statica-corpo-rigido.5
+    - statica-corpo-rigido.6
+  kind: orale
+  front:
+    it: Perché per un corpo appoggiato la stabilità dipende dalla base d'appoggio e dall'altezza del baricentro?
+    en: >-
+      Why does the stability of a resting body depend on the base of support and on the height of the centre
+      of gravity?
+  back:
+    it: >-
+      Inclinando il corpo di un angolo, il baricentro descrive un arco attorno allo spigolo della base: finché
+      la verticale dal baricentro cade dentro la base, il momento del peso rispetto allo spigolo riporta il
+      corpo indietro (e il baricentro si è alzato: U è cresciuta). L'angolo critico di ribaltamento vale
+      \(\tan\theta_c = (b/2)/h\) per base b e baricentro ad altezza h: base larga e baricentro basso danno un
+      equilibrio più robusto.
+    en: >-
+      Tilting the body by an angle, the centre of gravity moves along an arc around the edge of the base: as
+      long as the vertical through it falls inside the base, the torque of the weight about the edge brings
+      the body back (and the centre of gravity has risen: U has grown). The critical tipping angle is
+      \(\tan\theta_c = (b/2)/h\) for base b and centre of gravity at height h: a wide base and a low centre of
+      gravity give a sturdier equilibrium.
 - id: statica-corpo-rigido-orale-2
   topic: statica-corpo-rigido
   objectives:
@@ -40,8 +86,42 @@
   kind: orale
   front:
     it: 'Una trave incastrata nel muro: quante reazioni vincolari fornisce l''incastro?'
+    en: 'A beam built into a wall: how many constraint reactions does the fixed joint provide?'
   back:
-    it: Forza + momento.
+    it: >-
+      Un incastro impedisce sia le traslazioni sia la rotazione: nel piano fornisce tre reazioni, due
+      componenti di forza (orizzontale e verticale) e un momento (coppia d'incastro). Per questo una trave a
+      sbalzo con un solo incastro è in equilibrio: le tre incognite bilanciano le tre equazioni della statica
+      piana.
+    en: >-
+      A fixed (built-in) joint prevents both translations and rotation: in the plane it provides three
+      reactions, two force components (horizontal and vertical) and a moment (fixing couple). This is why a
+      cantilever beam with a single fixed joint is in equilibrium: the three unknowns balance the three
+      equations of plane statics.
+- id: statica-corpo-rigido-orale-3
+  topic: statica-corpo-rigido
+  objectives:
+    - statica-corpo-rigido.5
+    - statica-corpo-rigido.6
+  kind: orale
+  front:
+    it: >-
+      Se le forze su un corpo sono tre e in equilibrio, perché le loro rette d'azione devono incontrarsi in un
+      punto (o essere parallele)?
+    en: >-
+      If three forces act on a body in equilibrium, why must their lines of action meet at a point (or be
+      parallel)?
+  back:
+    it: >-
+      Si prende come polo il punto d'incontro di due rette d'azione: le due forze hanno momento nullo, quindi
+      anche la terza deve avere momento nullo rispetto a quel punto, cioè la sua retta d'azione deve passarci.
+      Se due rette sono parallele (non si incontrano) la terza, per avere risultante nulla, deve essere
+      parallela anch'esse. È il "teorema delle tre forze", utile per trovare direzioni di reazioni vincolari.
+    en: >-
+      Take as pole the point where two lines of action meet: those two forces have zero torque, so the third
+      must also have zero torque about that point, i.e. its line of action must pass through it. If two lines
+      are parallel (they never meet), the third, to give zero resultant, must be parallel too. This is the
+      "three-force theorem", useful for finding the directions of constraint reactions.
 - id: statica-corpo-rigido-definizione
   topic: statica-corpo-rigido
   objectives:
@@ -49,6 +129,7 @@
   kind: definizione
   front:
     it: 'Definizione: Statica dei corpi rigidi'
+    en: 'Definition: Statics of rigid bodies'
   back:
     it: >-
       Un corpo rigido è in equilibrio statico quando è fermo e resta fermo: tutte le accelerazioni (lineari e
@@ -56,6 +137,11 @@
       \(\big(\sum\vec{F} = \vec{0}\big)\) e momento risultante nullo rispetto a un polo qualsiasi
       \(\big(\sum\vec{\tau} = \vec{0}\big)\). Nel piano si traducono in 3 equazioni scalari: due per le forze
       e una per i momenti.
+    en: >-
+      A rigid body is in static equilibrium when it is at rest and stays at rest: all accelerations (linear
+      and angular) are zero. There are two equilibrium conditions: zero resultant of the external forces
+      \(\big(\sum\vec{F} = \vec{0}\big)\) and zero resultant torque about any pole \(\big(\sum\vec{\tau} =
+      \vec{0}\big)\). In the plane they become 3 scalar equations: two for forces and one for torques.
 - id: statica-corpo-rigido-formule
   topic: statica-corpo-rigido
   objectives:
@@ -68,11 +154,17 @@
   kind: formula
   front:
     it: Le formule chiave di «Statica dei corpi rigidi»
+    en: The key formulas of “Statics of rigid bodies”
   back:
     it: |-
       - \(\sum\vec{F}^{ext} = \vec{0}\)
       - \(\sum\vec{\tau}^{ext} = \vec{0}\;\forall\text{ polo}\)
       - \(\vec{\tau}_{peso} = \vec{r}_{cm}\times M\vec{g}\)
+      - \(f_s \le \mu_s N\)
+    en: |-
+      - \(\sum\vec{F}^{ext} = \vec{0}\)
+      - \(\sum\vec{\tau}^{ext} = \vec{0}\;\forall\text{ pole}\)
+      - \(\vec{\tau}_{weight} = \vec{r}_{cm}\times M\vec{g}\)
       - \(f_s \le \mu_s N\)
 - id: statica-corpo-rigido-ipotesi
   topic: statica-corpo-rigido
@@ -86,10 +178,14 @@
   kind: concetto
   front:
     it: 'Ipotesi di validità: Statica dei corpi rigidi'
+    en: 'Validity assumptions: Statics of rigid bodies'
   back:
     it: >-
       Corpo perfettamente rigido; campo di gravità uniforme (per baricentro ≡ CM); vincoli lisci o scabri
       modellati con reazioni normali e attrito statico ≤ μ_sN.
+    en: >-
+      Perfectly rigid body; uniform gravitational field (for centre of gravity ≡ CM); smooth or rough
+      constraints modelled with normal reactions and static friction ≤ μ_sN.
 - id: statica-corpo-rigido-casi-limite
   topic: statica-corpo-rigido
   objectives:
@@ -102,11 +198,16 @@
   kind: concetto
   front:
     it: 'Casi limite: Statica dei corpi rigidi'
+    en: 'Limiting cases: Statics of rigid bodies'
   back:
     it: >-
       Corpo appoggiato al limite del ribaltamento: la reazione normale si concentra sullo spigolo. Attrito
       insufficiente: l'equilibrio è impossibile e il corpo slitta. Coppia di forze: risultante nulla ma
       momento non nullo — non c'è equilibrio, il corpo ruota.
+    en: >-
+      A body on the verge of tipping: the normal reaction concentrates on the edge. Insufficient friction:
+      equilibrium is impossible and the body slides. A couple: zero resultant but non-zero torque — no
+      equilibrium, the body rotates.
 - id: statica-corpo-rigido-errori
   topic: statica-corpo-rigido
   objectives:
@@ -119,6 +220,7 @@
   kind: concetto
   front:
     it: 'Errori da evitare: Statica dei corpi rigidi'
+    en: 'Mistakes to avoid: Statics of rigid bodies'
   back:
     it: >-
       - Imporre solo ΣF = 0 dimenticando i momenti (una coppia ha risultante nulla ma fa ruotare).
@@ -130,3 +232,13 @@
 
       - Dimenticare che l'attrito statico è un'incognita ≤ μ_sN, non uguale a μ_sN salvo al limite dello
       slittamento.
+    en: >-
+      - Imposing only ΣF = 0 and forgetting torques (a couple has zero resultant but makes things rotate).
+
+      - Changing pole halfway through the torque calculation.
+
+      - Getting the lever arm wrong (using the distance from the point of application instead of from the line
+      of action).
+
+      - Forgetting that static friction is an unknown ≤ μ_sN, not equal to μ_sN except at the verge of
+      slipping.

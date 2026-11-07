@@ -1,0 +1,171 @@
+---
+course: fisica-1
+topic: equipartizione-energia
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/equipartizione-energia/idea">
+
+At equilibrium thermal energy is perfectly democratic: continual collisions redistribute it until every 'quadratic mode' of storing it — moving along x, rotating, vibrating — owns on average the same share ½k_BT. Internal energy is the census of these modes; and the fact that it depends only on T (not on V) mirrors the absence of bonds between molecules that do not talk to each other.
+
+</div>
+
+<p class="muted" data-note-id="teoria/equipartizione-energia/prerequisiti"><strong>Before this topic:</strong> <a href="../teoria-cinetica-gas/">Kinetic theory of gases: the pressure of ideal gases</a> · <a href="../legge-gas-perfetti/">Empirical ideal-gas law</a></p>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/equipartizione-energia/definizioni">
+
+## Definitions
+
+The internal energy U of an ideal gas is the sum of the kinetic energies of its molecules (there is no intermolecular potential). The principle of equipartition of energy states that, at equilibrium at temperature T, each degree of freedom that is quadratic in the energy contributes on average $\frac{1}{2}k_BT$ per molecule. It follows that $U = \frac{f}{2}nRT$, with f the number of active degrees of freedom: f = 3 for monatomic gases, f = 5 for diatomic gases at room temperature. U depends ONLY on temperature (Joule's law).
+
+</div>
+
+<div data-note-id="teoria/equipartizione-energia/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Starting point from kinetic theory</summary>
+
+$$
+\Big\langle \frac{1}{2}mv^2 \Big\rangle = \frac{3}{2}k_BT
+$$
+
+Result of comparing kinetic pressure with the gas law: the average translational energy is (3/2)k_BT.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Reading by components: equipartition</summary>
+
+$$
+\Big\langle \frac{1}{2}mv_x^2 \Big\rangle = \Big\langle \frac{1}{2}mv_y^2 \Big\rangle = \Big\langle \frac{1}{2}mv_z^2 \Big\rangle = \frac{1}{2}k_BT
+$$
+
+By isotropy the three quadratic terms are equal: ½k_BT each. The principle generalises: EVERY quadratic term in the energy (translation, rotation, vibration) takes ½k_BT.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Monatomic gas</summary>
+
+$$
+U = N\cdot\frac{3}{2}k_BT = \frac{3}{2}nRT
+$$
+
+Translation only (f = 3): a point particle has no rotations with appreciable inertia.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Diatomic gas at room temperature</summary>
+
+$$
+f = 3 + 2 = 5 \;\Rightarrow\; U = \frac{5}{2}nRT
+$$
+
+Two rotations about the axes perpendicular to the bond are added (rotation about the molecular axis has negligible inertia). Vibration (2 quadratic terms: kinetic + elastic) is 'frozen' at room temperature for quantum reasons.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Joule's law: U = U(T)</summary>
+
+$$
+U = \frac{f}{2}nRT \;\Rightarrow\; \Delta U = \frac{f}{2}nR\,\Delta T = n\,c_V\,\Delta T \;\;\text{in EVERY transformation}
+$$
+
+In an ideal gas there is no intermolecular potential energy: U does not depend on volume. Experimental check: Joule's free expansion, T unchanged. ΔU = nc_VΔT holds for any transformation, not only isochoric ones.
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Consequence for specific heats</summary>
+
+$$
+c_V = \frac{f}{2}R: \quad \frac{3}{2}R\;(\text{mono}),\;\; \frac{5}{2}R\;(\text{diat})
+$$
+
+Equipartition directly predicts the molar heat capacities at constant volume — a bridge to the next topic.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/equipartizione-energia/ipotesi">
+
+## Validity assumptions
+
+Ideal gas (no intermolecular interactions); thermodynamic equilibrium; validity of classical mechanics for the degrees of freedom considered (it fails when rotational/vibrational energy quanta exceed k_BT).
+
+</div>
+
+<div data-note-id="teoria/equipartizione-energia/casi-limite">
+
+## Limiting cases
+
+Low temperatures: rotations 'freeze' and the diatomic gas behaves as monatomic (f→3). High temperatures: vibration is activated (f→7). These steps in the specific heats cannot be explained classically: the first historical evidence of quantisation.
+
+</div>
+
+<div data-note-id="teoria/equipartizione-energia/formule">
+
+## Key formulas
+
+<Formula id="equipartizione-energia-f1" />
+
+<Formula id="equipartizione-energia-f2" />
+
+<Formula id="equipartizione-energia-f3" />
+
+<Formula id="equipartizione-energia-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/equipartizione-energia/esempio">
+
+A rigid container holds 2.0 mol of nitrogen (diatomic) at 20 °C, which is heated to 120 °C. Find: (a) the initial internal energy (taking U = 0 at 0 K); (b) the change in internal energy; (c) the heat supplied.
+
+1. **Internal energy.** f = 5: $U = \tfrac52 nRT = 2.5 \cdot 2 \cdot 8.314 \cdot 293.15 \approx 1.219\cdot 10^4\ \text{J}$.
+2. **Change and heat.** $\Delta U = \tfrac52 nR\Delta T = 2.5 \cdot 2 \cdot 8.314 \cdot 100 \approx 4157\ \text{J}$; rigid container, W = 0, so $Q = \Delta U \approx 4157\ \text{J}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/equipartizione-energia/errori">
+
+- Counting 3 rotations for the diatomic molecule instead of 2.
+- Using ΔU = nc_VΔT only for isochoric processes: it holds for every transformation of the ideal gas.
+- Including an intermolecular potential energy in the internal energy of the ideal gas.
+- Forgetting that vibration counts 2 halves of k_BT (kinetic term + elastic term).
+
+</div>
+
+<div data-note-id="teoria/equipartizione-energia/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- Why does the free expansion into vacuum of an ideal gas not change its temperature, while for a real gas it does (slightly)?
+- How does equipartition explain the Dulong–Petit law for solids?
+- Why does the specific heat of hydrogen grow in steps with temperature?
+
+</div>
+
+</Layer>

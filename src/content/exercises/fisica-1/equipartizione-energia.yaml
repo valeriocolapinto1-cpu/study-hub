@@ -1,0 +1,107 @@
+- id: energia-interna-biatomico
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.1
+    - equipartizione-energia.2
+    - equipartizione-energia.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un recipiente rigido contiene 2,0 mol di azoto (biatomico) a 20 °C, che viene scaldato a 120 °C.
+      Calcolare: (a) l'energia interna iniziale (ponendo U = 0 a 0 K); (b) la variazione di energia interna;
+      (c) il calore fornito.
+    en: >-
+      A rigid container holds 2.0 mol of nitrogen (diatomic) at 20 °C, which is heated to 120 °C. Find: (a)
+      the initial internal energy (taking U = 0 at 0 K); (b) the change in internal energy; (c) the heat
+      supplied.
+  steps:
+    - title:
+        it: Energia interna
+        en: Internal energy
+      body:
+        it: >-
+          f = 5: \(U = \tfrac52 nRT = 2{,}5 \cdot 2 \cdot 8{,}314 \cdot 293{,}15 \approx 1{,}219\cdot 10^4\
+          \text{J}\).
+        en: >-
+          f = 5: \(U = \tfrac52 nRT = 2.5 \cdot 2 \cdot 8.314 \cdot 293.15 \approx 1.219\cdot 10^4\
+          \text{J}\).
+    - title:
+        it: Variazione e calore
+        en: Change and heat
+      body:
+        it: >-
+          \(\Delta U = \tfrac52 nR\Delta T = 2{,}5 \cdot 2 \cdot 8{,}314 \cdot 100 \approx 4157\ \text{J}\);
+          recipiente rigido, W = 0, quindi \(Q = \Delta U \approx 4157\ \text{J}\).
+        en: >-
+          \(\Delta U = \tfrac52 nR\Delta T = 2.5 \cdot 2 \cdot 8.314 \cdot 100 \approx 4157\ \text{J}\); rigid
+          container, W = 0, so \(Q = \Delta U \approx 4157\ \text{J}\).
+  answer:
+    - label:
+        it: U iniziale
+        en: initial U
+      value: 12190
+      unit: J
+    - label:
+        it: ΔU
+        en: ΔU
+      value: 4157
+      unit: J
+    - label:
+        it: Q
+        en: Q
+      value: 4157
+      unit: J
+  origin: originale
+- id: miscela-equipartizione
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.1
+    - equipartizione-energia.2
+    - equipartizione-energia.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Un recipiente isolato e rigido contiene 1,0 mol di elio a 400 K e, separata da un setto, 1,0 mol di
+      ossigeno a 250 K. Si toglie il setto e i gas si mescolano. Calcolare: (a) la temperatura finale; (b) la
+      variazione di energia interna di ciascun gas.
+    en: >-
+      A rigid insulated container holds 1.0 mol of helium at 400 K and, separated by a partition, 1.0 mol of
+      oxygen at 250 K. The partition is removed and the gases mix. Find: (a) the final temperature; (b) the
+      change in internal energy of each gas.
+  steps:
+    - title:
+        it: Energia interna totale costante
+        en: Constant total internal energy
+      body:
+        it: >-
+          Q = 0, W = 0: \(\tfrac32 R(T_f - 400) + \tfrac52 R(T_f - 250) = 0 \Rightarrow T_f =
+          \dfrac{1{,}5\cdot 400 + 2{,}5\cdot 250}{4} = 306{,}25\ \text{K}\).
+        en: >-
+          Q = 0, W = 0: \(\tfrac32 R(T_f - 400) + \tfrac52 R(T_f - 250) = 0 \Rightarrow T_f = \dfrac{1.5\cdot
+          400 + 2.5\cdot 250}{4} = 306.25\ \text{K}\).
+    - title:
+        it: Scambi
+        en: Exchanges
+      body:
+        it: >-
+          Elio: \(\Delta U = 1{,}5 \cdot 8{,}314 \cdot (-93{,}75) \approx -1169\ \text{J}\); ossigeno:
+          \(+1169\ \text{J}\). La temperatura finale non è la media aritmetica: l'ossigeno ha più gradi di
+          libertà.
+        en: >-
+          Helium: \(\Delta U = 1.5 \cdot 8.314 \cdot (-93.75) \approx -1169\ \text{J}\); oxygen: \(+1169\
+          \text{J}\). The final temperature is not the arithmetic mean: oxygen has more degrees of freedom.
+  answer:
+    - label:
+        it: T_f
+        en: T_f
+      value: 306.25
+      unit: K
+      tol: 0.005
+    - label:
+        it: ΔU elio
+        en: ΔU helium
+      value: -1169
+      unit: J
+  origin: originale

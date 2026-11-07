@@ -3,10 +3,12 @@ course: fisica-1
 order: 17
 title:
   it: Statica dei corpi rigidi
+  en: Statics of rigid bodies
 summary:
   it: >-
     Equilibrio significa che le forze non spingono il corpo da nessuna parte E non lo fanno girare attorno a
     nessun perno.
+  en: Equilibrium means that the forces do not push the body anywhere AND do not make it turn about any pivot.
 group:
   it: Sistemi di punti e corpo rigido
   en: Systems of particles and rigid bodies
@@ -14,18 +16,24 @@ objectives:
   - id: statica-corpo-rigido.1
     text:
       it: Enunciare le due condizioni di equilibrio e la loro origine dalle cardinali
+      en: State the two equilibrium conditions and their origin in the cardinal equations
   - id: statica-corpo-rigido.2
     text:
       it: Dimostrare che con ΣF = 0 il momento non dipende dal polo
+      en: Prove that with ΣF = 0 the torque does not depend on the pole
   - id: statica-corpo-rigido.3
     text:
       it: Dimostrare che il peso equivale a una forza unica nel baricentro
+      en: Prove that the weight is equivalent to a single force at the centre of gravity
   - id: statica-corpo-rigido.4
     text:
       it: Risolvere l'esempio della scala (o della trave) impostando le 3 equazioni
+      en: Solve the ladder (or beam) example by setting up the 3 equations
   - id: statica-corpo-rigido.5
     text:
       it: Usare strategicamente la scelta del polo
+      en: Use the choice of pole strategically
   - id: statica-corpo-rigido.6
     text:
       it: Discutere stabilità con il criterio del potenziale/baricentro
+      en: Discuss stability with the potential / centre-of-gravity criterion

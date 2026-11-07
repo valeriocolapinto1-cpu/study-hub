@@ -11,6 +11,7 @@
   kind: orale
   front:
     it: 'Esponi all''orale: «Pressione e legge di Stevino».'
+    en: 'Present at the oral exam: “Pressure and Stevin''s law”.'
   back:
     it: >-
       Ogni strato di fluido deve sorreggere tutto il fluido che gli sta sopra: scendendo, il carico cresce e
@@ -34,6 +35,28 @@
       - Descrivere il barometro di Torricelli
 
       - Collegare Stevino alla spinta di Archimede
+    en: >-
+      Every layer of fluid must hold up all the fluid above it: going down, the load grows and so does the
+      pressure. Its being a scalar comes from the inability of a fluid at rest to sustain tangential stresses:
+      whatever orientation I give the test surface, I feel the same normal push.
+
+
+      **Outline:**
+
+
+      - Define pressure and its units (Pa, atm, mmHg)
+
+      - State Pascal's principle (isotropy of pressure)
+
+      - Derive dp/dz = −ρg from the equilibrium of the small cylinder
+
+      - Integrate and obtain p = p₀ + ρgh
+
+      - Explain communicating vessels and the hydrostatic paradox
+
+      - Describe Torricelli's barometer
+
+      - Link Stevin to Archimedes' buoyant force
 - id: legge-di-stevino-orale-1
   topic: legge-di-stevino
   objectives:
@@ -42,8 +65,55 @@
   kind: orale
   front:
     it: Come cambia la pressione atmosferica con la quota se assumo l'aria un gas perfetto isotermo?
+    en: How does atmospheric pressure change with altitude if air is taken as an isothermal ideal gas?
   back:
-    it: Decadimento esponenziale.
+    it: >-
+      Per un gas perfetto \(\rho = pM_{mol}/(RT)\); sostituendo in \(dp/dz = -\rho g\) si ha \(dp/p =
+      -\tfrac{M_{mol}g}{RT}dz\), che con T costante si integra in \(p(z) = p_0 e^{-z/H}\), con altezza di
+      scala \(H = RT/(M_{mol}g) \approx 8\ \text{km}\) per l'aria a 0 °C. La pressione si dimezza ogni circa
+      5,5 km.
+    en: >-
+      For an ideal gas \(\rho = pM_{mol}/(RT)\); substituting into \(dp/dz = -\rho g\) gives \(dp/p =
+      -\tfrac{M_{mol}g}{RT}dz\), which at constant T integrates to \(p(z) = p_0 e^{-z/H}\), with scale height
+      \(H = RT/(M_{mol}g) \approx 8\ \text{km}\) for air at 0 °C. Pressure halves roughly every 5.5 km.
+- id: legge-di-stevino-orale-2
+  topic: legge-di-stevino
+  objectives:
+    - legge-di-stevino.6
+    - legge-di-stevino.7
+  kind: orale
+  front:
+    it: Perché una diga deve essere più spessa alla base e il suo spessore non dipende dalla lunghezza del lago?
+    en: Why must a dam be thicker at the base, and why does its thickness not depend on the length of the lake?
+  back:
+    it: >-
+      La pressione dell'acqua cresce linearmente con la profondità, quindi gli sforzi sulla diga sono massimi
+      alla base: la spinta su una striscia di altezza dh è \(\rho g h\,L\,dh\). Per Stevino la pressione
+      dipende solo dalla profondità e non da quanta acqua c'è dietro: un lago lungo chilometri e una vasca
+      sottile alta uguale spingono allo stesso modo sulla diga.
+    en: >-
+      Water pressure grows linearly with depth, so the stresses on the dam are largest at the base: the thrust
+      on a strip of height dh is \(\rho g h\,L\,dh\). By Stevin, pressure depends only on depth, not on how
+      much water is behind: a lake kilometres long and a thin tank of the same height push on the dam in the
+      same way.
+- id: legge-di-stevino-orale-3
+  topic: legge-di-stevino
+  objectives:
+    - legge-di-stevino.6
+    - legge-di-stevino.7
+  kind: orale
+  front:
+    it: 'Un corpo galleggia: che relazione c''è tra densità media e frazione immersa?'
+    en: 'A body floats: what is the relation between its average density and the immersed fraction?'
+  back:
+    it: >-
+      All'equilibrio peso e spinta si bilanciano: \(\rho_{corpo}gV = \rho_{fluido}gV_{imm}\), quindi la
+      frazione immersa è \(V_{imm}/V = \rho_{corpo}/\rho_{fluido}\). Un iceberg (ρ ≈ 917 kg/m³) in acqua di
+      mare (≈ 1025 kg/m³) è immerso per circa l'89%. Se \(\rho_{corpo} > \rho_{fluido}\) il corpo affonda.
+    en: >-
+      At equilibrium weight and buoyancy balance: \(\rho_{body}gV = \rho_{fluid}gV_{imm}\), so the immersed
+      fraction is \(V_{imm}/V = \rho_{body}/\rho_{fluid}\). An iceberg (ρ ≈ 917 kg/m³) in sea water (≈ 1025
+      kg/m³) is about 89% submerged. If \(\rho_{body} > \rho_{fluid}\) the body sinks.
 - id: legge-di-stevino-definizione
   topic: legge-di-stevino
   objectives:
@@ -51,6 +121,7 @@
   kind: definizione
   front:
     it: 'Definizione: Pressione e legge di Stevino'
+    en: 'Definition: Pressure and Stevin''s law'
   back:
     it: >-
       La pressione in un punto di un fluido è il rapporto tra la forza normale esercitata su una superficie
@@ -58,6 +129,11 @@
       punto agisce ugualmente in tutte le direzioni). La legge di Stevino dà la pressione in un fluido
       incomprimibile in quiete: \(p(h) = p_0 + \rho g h\), con h profondità sotto la superficie libera dove la
       pressione è p₀.
+    en: >-
+      The pressure at a point of a fluid is the ratio between the normal force exerted on an elementary
+      surface and the area of the surface: \(p = dF_\perp/dA\); it is a scalar (Pascal's principle: at a point
+      it acts equally in all directions). Stevin's law gives the pressure in an incompressible fluid at rest:
+      \(p(h) = p_0 + \rho g h\), with h the depth below the free surface where the pressure is p₀.
 - id: legge-di-stevino-formule
   topic: legge-di-stevino
   objectives:
@@ -71,8 +147,14 @@
   kind: formula
   front:
     it: Le formule chiave di «Pressione e legge di Stevino»
+    en: The key formulas of “Pressure and Stevin's law”
   back:
     it: |-
+      - \(p = \frac{dF_\perp}{dA}\)
+      - \(\frac{dp}{dz} = -\rho g\)
+      - \(p = p_0 + \rho g h\)
+      - \(F_{Arch} = \rho_{fl}\,g\,V_{imm}\)
+    en: |-
       - \(p = \frac{dF_\perp}{dA}\)
       - \(\frac{dp}{dz} = -\rho g\)
       - \(p = p_0 + \rho g h\)
@@ -90,10 +172,14 @@
   kind: concetto
   front:
     it: 'Ipotesi di validità: Pressione e legge di Stevino'
+    en: 'Validity assumptions: Pressure and Stevin''s law'
   back:
     it: >-
       Fluido in quiete (statica); per la forma integrata: incomprimibile (ρ costante) e g uniforme. Il fluido
       non sostiene sforzi di taglio (definizione stessa di fluido).
+    en: >-
+      Fluid at rest (statics); for the integrated form: incompressible (constant ρ) and uniform g. The fluid
+      does not sustain shear stresses (the very definition of a fluid).
 - id: legge-di-stevino-casi-limite
   topic: legge-di-stevino
   objectives:
@@ -107,11 +193,16 @@
   kind: concetto
   front:
     it: 'Casi limite: Pressione e legge di Stevino'
+    en: 'Limiting cases: Pressure and Stevin''s law'
   back:
     it: >-
       Gas su piccoli dislivelli: ρ minuscola, p quasi uniforme (si trascura Stevino nell'aria di una stanza).
       Atmosfera su grande scala: ρ non costante, integrando con il gas perfetto isotermo si ottiene
       l'esponenziale barometrica. g → 0 (orbita): niente gradiente di pressione, il fluido fluttua.
+    en: >-
+      Gases over small height differences: tiny ρ, almost uniform p (Stevin is neglected in the air of a
+      room). Atmosphere on a large scale: ρ not constant; integrating with the isothermal ideal gas gives the
+      barometric exponential. g → 0 (orbit): no pressure gradient, the fluid floats.
 - id: legge-di-stevino-errori
   topic: legge-di-stevino
   objectives:
@@ -125,6 +216,7 @@
   kind: concetto
   front:
     it: 'Errori da evitare: Pressione e legge di Stevino'
+    en: 'Mistakes to avoid: Pressure and Stevin''s law'
   back:
     it: >-
       - Pensare la pressione come vettore 'diretto verso il basso': è uno scalare, agisce in tutte le
@@ -136,3 +228,12 @@
       - Confondere pressione assoluta e relativa (manometrica).
 
       - Applicare la forma ρgh a un gas su grandi dislivelli dove ρ varia.
+    en: >-
+      - Thinking of pressure as a vector 'pointing down': it is a scalar, acting in all directions.
+
+      - Believing that the pressure on the bottom depends on the shape or on the total amount of liquid: only
+      depth matters (hydrostatic paradox).
+
+      - Confusing absolute and gauge pressure.
+
+      - Applying the ρgh form to a gas over large height differences where ρ varies.

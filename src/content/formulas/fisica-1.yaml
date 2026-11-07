@@ -375,221 +375,265 @@
   latex: \vec{v}_P = \vec{v}_{cm} + \vec{\omega}\times\vec{r}_P
   label:
     it: Moto di un corpo rigido (1)
+    en: Motion of a rigid body (1)
 - id: moto-corpo-rigido-f2
   topic: moto-corpo-rigido
   latex: \vec{F}^{ext} = M\vec{a}_{cm},\;\; \vec{\tau}_{cm} = \frac{d\vec{L}_{cm}}{dt}
   label:
     it: Moto di un corpo rigido (2)
+    en: Motion of a rigid body (2)
 - id: moto-corpo-rigido-f3
   topic: moto-corpo-rigido
   latex: I\alpha = \tau_z
   label:
     it: Moto di un corpo rigido (3)
+    en: Motion of a rigid body (3)
 - id: moto-corpo-rigido-f4
   topic: moto-corpo-rigido
   latex: P = \tau\omega
   label:
     it: Moto di un corpo rigido (4)
+    en: Motion of a rigid body (4)
 - id: statica-corpo-rigido-f1
   topic: statica-corpo-rigido
   latex: \sum\vec{F}^{ext} = \vec{0}
   label:
     it: Statica dei corpi rigidi (1)
+    en: Statics of rigid bodies (1)
 - id: statica-corpo-rigido-f2
   topic: statica-corpo-rigido
   latex: \sum\vec{\tau}^{ext} = \vec{0}\;\forall\text{ polo}
   label:
     it: Statica dei corpi rigidi (2)
+    en: Statics of rigid bodies (2)
 - id: statica-corpo-rigido-f3
   topic: statica-corpo-rigido
   latex: \vec{\tau}_{peso} = \vec{r}_{cm}\times M\vec{g}
   label:
     it: Statica dei corpi rigidi (3)
+    en: Statics of rigid bodies (3)
 - id: statica-corpo-rigido-f4
   topic: statica-corpo-rigido
   latex: f_s \le \mu_s N
   label:
     it: Statica dei corpi rigidi (4)
+    en: Statics of rigid bodies (4)
 - id: energia-corpo-rigido-f1
   topic: energia-corpo-rigido
   latex: K = \frac{1}{2}I_{asse}\omega^2
   label:
     it: Energia cinetica e meccanica di un corpo rigido (1)
+    en: Kinetic and mechanical energy of a rigid body (1)
 - id: energia-corpo-rigido-f2
   topic: energia-corpo-rigido
   latex: K = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2
   label:
     it: Energia cinetica e meccanica di un corpo rigido (2)
+    en: Kinetic and mechanical energy of a rigid body (2)
 - id: energia-corpo-rigido-f3
   topic: energia-corpo-rigido
   latex: U = Mg\,z_{cm}
   label:
     it: Energia cinetica e meccanica di un corpo rigido (3)
+    en: Kinetic and mechanical energy of a rigid body (3)
 - id: energia-corpo-rigido-f4
   topic: energia-corpo-rigido
   latex: W_{rot} = \int \tau\,d\theta
   label:
     it: Energia cinetica e meccanica di un corpo rigido (4)
+    en: Kinetic and mechanical energy of a rigid body (4)
 - id: pendolo-fisico-f1
   topic: pendolo-fisico
   latex: I\ddot{\theta} = -Mgd\sin\theta
   label:
     it: Pendolo fisico (1)
+    en: Physical (1)
 - id: pendolo-fisico-f2
   topic: pendolo-fisico
   latex: \omega = \sqrt{\frac{Mgd}{I}}
   label:
     it: Pendolo fisico (2)
+    en: Physical (2)
 - id: pendolo-fisico-f3
   topic: pendolo-fisico
   latex: T = 2\pi\sqrt{\frac{I}{Mgd}}
   label:
     it: Pendolo fisico (3)
+    en: Physical (3)
 - id: pendolo-fisico-f4
   topic: pendolo-fisico
   latex: \ell = \frac{I}{Md}
   label:
     it: Pendolo fisico (4)
+    en: Physical (4)
 - id: rotolamento-puro-f1
   topic: rotolamento-puro
   latex: v_{cm} = \omega R
   label:
     it: Rotolamento puro (1)
+    en: Pure rolling (1)
 - id: rotolamento-puro-f2
   topic: rotolamento-puro
   latex: K = \frac{1}{2}(1+\beta)Mv_{cm}^2,\;\beta = \frac{I_{cm}}{MR^2}
   label:
     it: Rotolamento puro (2)
+    en: Pure rolling (2)
 - id: rotolamento-puro-f3
   topic: rotolamento-puro
   latex: a_{cm} = \frac{g\sin\theta}{1+\beta}
   label:
     it: Rotolamento puro (3)
+    en: Pure rolling (3)
 - id: rotolamento-puro-f4
   topic: rotolamento-puro
   latex: f_s \le \mu_s Mg\cos\theta
   label:
     it: Rotolamento puro (4)
+    en: Pure rolling (4)
 - id: urti-centrali-f1
   topic: urti-centrali
   latex: m_1v_1 + m_2v_2 = m_1v_1' + m_2v_2'
   label:
     it: Urti centrali elastici e anelastici (1)
+    en: Central elastic and inelastic collisions (1)
 - id: urti-centrali-f2
   topic: urti-centrali
   latex: v_1' - v_2' = -(v_1 - v_2)\;(\text{elastico})
   label:
     it: Urti centrali elastici e anelastici (2)
+    en: Central elastic and inelastic collisions (2)
 - id: urti-centrali-f3
   topic: urti-centrali
   latex: v' = v_{cm}\;(\text{perf. anelastico})
   label:
     it: Urti centrali elastici e anelastici (3)
+    en: Central elastic and inelastic collisions (3)
 - id: urti-centrali-f4
   topic: urti-centrali
   latex: \Delta K = -\tfrac{1}{2}\mu v_{rel}^2
   label:
     it: Urti centrali elastici e anelastici (4)
+    en: Central elastic and inelastic collisions (4)
 - id: pendolo-balistico-f1
   topic: pendolo-balistico
   latex: mv_0 = (m+M)V
   label:
     it: Pendolo balistico (1)
+    en: Ballistic pendulum (1)
 - id: pendolo-balistico-f2
   topic: pendolo-balistico
   latex: \frac{1}{2}(m+M)V^2 = (m+M)gh
   label:
     it: Pendolo balistico (2)
+    en: Ballistic pendulum (2)
 - id: pendolo-balistico-f3
   topic: pendolo-balistico
   latex: v_0 = \frac{m+M}{m}\sqrt{2gh}
   label:
     it: Pendolo balistico (3)
+    en: Ballistic pendulum (3)
 - id: pendolo-balistico-f4
   topic: pendolo-balistico
   latex: h = L(1-\cos\theta_{max})
   label:
     it: Pendolo balistico (4)
+    en: Ballistic pendulum (4)
 - id: legge-di-stevino-f1
   topic: legge-di-stevino
   latex: p = \frac{dF_\perp}{dA}
   label:
     it: Pressione e legge di Stevino (1)
+    en: Pressure and Stevin's law (1)
 - id: legge-di-stevino-f2
   topic: legge-di-stevino
   latex: \frac{dp}{dz} = -\rho g
   label:
     it: Pressione e legge di Stevino (2)
+    en: Pressure and Stevin's law (2)
 - id: legge-di-stevino-f3
   topic: legge-di-stevino
   latex: p = p_0 + \rho g h
   label:
     it: Pressione e legge di Stevino (3)
+    en: Pressure and Stevin's law (3)
 - id: legge-di-stevino-f4
   topic: legge-di-stevino
   latex: F_{Arch} = \rho_{fl}\,g\,V_{imm}
   label:
     it: Pressione e legge di Stevino (4)
+    en: Pressure and Stevin's law (4)
 - id: teoria-cinetica-gas-f1
   topic: teoria-cinetica-gas
   latex: p = \frac{1}{3}\frac{N}{V}m\langle v^2\rangle
   label:
     it: Teoria cinetica dei gas (1)
+    en: Kinetic theory of gases (1)
 - id: teoria-cinetica-gas-f2
   topic: teoria-cinetica-gas
   latex: pV = \frac{2}{3}N\langle\tfrac{1}{2}mv^2\rangle
   label:
     it: Teoria cinetica dei gas (2)
+    en: Kinetic theory of gases (2)
 - id: teoria-cinetica-gas-f3
   topic: teoria-cinetica-gas
   latex: \langle\tfrac{1}{2}mv^2\rangle = \frac{3}{2}k_BT
   label:
     it: Teoria cinetica dei gas (3)
+    en: Kinetic theory of gases (3)
 - id: teoria-cinetica-gas-f4
   topic: teoria-cinetica-gas
   latex: v_{qm} = \sqrt{3RT/M_{mol}}
   label:
     it: Teoria cinetica dei gas (4)
+    en: Kinetic theory of gases (4)
 - id: legge-gas-perfetti-f1
   topic: legge-gas-perfetti
   latex: pV = nRT
   label:
     it: Legge empirica dei gas perfetti (1)
+    en: Empirical ideal-gas law (1)
 - id: legge-gas-perfetti-f2
   topic: legge-gas-perfetti
   latex: pV = Nk_BT
   label:
     it: Legge empirica dei gas perfetti (2)
+    en: Empirical ideal-gas law (2)
 - id: legge-gas-perfetti-f3
   topic: legge-gas-perfetti
   latex: \frac{p_1V_1}{T_1} = \frac{p_2V_2}{T_2}
   label:
     it: Legge empirica dei gas perfetti (3)
+    en: Empirical ideal-gas law (3)
 - id: legge-gas-perfetti-f4
   topic: legge-gas-perfetti
   latex: R = 8.314\;\text{J/(mol·K)}
   label:
     it: Legge empirica dei gas perfetti (4)
+    en: Empirical ideal-gas law (4)
 - id: equipartizione-energia-f1
   topic: equipartizione-energia
   latex: \langle E \rangle = \frac{1}{2}k_BT\;\text{per grado quadratico}
   label:
     it: Energia interna dei gas e principio di equipartizione (1)
+    en: Internal energy of gases and the equipartition principle (1)
 - id: equipartizione-energia-f2
   topic: equipartizione-energia
   latex: U = \frac{f}{2}nRT
   label:
     it: Energia interna dei gas e principio di equipartizione (2)
+    en: Internal energy of gases and the equipartition principle (2)
 - id: equipartizione-energia-f3
   topic: equipartizione-energia
   latex: \Delta U = n c_V \Delta T\;\text{(sempre)}
   label:
     it: Energia interna dei gas e principio di equipartizione (3)
+    en: Internal energy of gases and the equipartition principle (3)
 - id: equipartizione-energia-f4
   topic: equipartizione-energia
   latex: f = 3\;\text{mono},\; 5\;\text{biat}
   label:
     it: Energia interna dei gas e principio di equipartizione (4)
+    en: Internal energy of gases and the equipartition principle (4)
 - id: calori-molari-f1
   topic: calori-molari
   latex: c_V = \frac{f}{2}R

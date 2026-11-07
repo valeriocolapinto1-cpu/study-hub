@@ -1,0 +1,119 @@
+- id: cilindro-piano-inclinato
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.1
+    - rotolamento-puro.2
+    - rotolamento-puro.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Un cilindro pieno omogeneo di massa 2,0 kg rotola senza strisciare lungo un piano inclinato di 25°,
+      partendo da fermo. Calcolare: (a) l'accelerazione del centro di massa; (b) la forza di attrito statico;
+      (c) il coefficiente di attrito minimo; (d) la velocità dopo 1,5 m percorsi lungo il piano.
+    en: >-
+      A solid uniform cylinder of mass 2.0 kg rolls without slipping down a 25° incline, starting from rest.
+      Find: (a) the acceleration of the centre of mass; (b) the static friction force; (c) the minimum
+      friction coefficient; (d) the speed after 1.5 m along the plane.
+  steps:
+    - title:
+        it: Accelerazione
+        en: Acceleration
+      body:
+        it: 'β = ½: \(a = \dfrac{g\sin 25°}{1{,}5} \approx 2{,}76\ \text{m/s}^2\).'
+        en: 'β = ½: \(a = \dfrac{g\sin 25°}{1.5} \approx 2.76\ \text{m/s}^2\).'
+    - title:
+        it: Attrito
+        en: Friction
+      body:
+        it: >-
+          \(f_s = \dfrac{\beta}{1+\beta}Mg\sin\theta = \tfrac13 \cdot 2{,}0 \cdot 9{,}81 \cdot 0{,}4226
+          \approx 2{,}76\ \text{N}\); \(\mu_s \ge \tfrac13\tan 25° \approx 0{,}155\).
+        en: >-
+          \(f_s = \dfrac{\beta}{1+\beta}Mg\sin\theta = \tfrac13 \cdot 2.0 \cdot 9.81 \cdot 0.4226 \approx
+          2.76\ \text{N}\); \(\mu_s \ge \tfrac13\tan 25° \approx 0.155\).
+    - title:
+        it: Velocità
+        en: Speed
+      body:
+        it: >-
+          \(v = \sqrt{2as} \approx \sqrt{2 \cdot 2{,}764 \cdot 1{,}5} \approx 2{,}88\ \text{m/s}\) (verifica:
+          \(\sqrt{2gh/(1+\beta)}\) con h = 1,5 sin 25° dà lo stesso valore).
+        en: >-
+          \(v = \sqrt{2as} \approx \sqrt{2 \cdot 2.764 \cdot 1.5} \approx 2.88\ \text{m/s}\) (check:
+          \(\sqrt{2gh/(1+\beta)}\) with h = 1.5 sin 25° gives the same value).
+  answer:
+    - label:
+        it: a
+        en: a
+      value: 2.76
+      unit: m/s²
+    - label:
+        it: f_s
+        en: f_s
+      value: 2.76
+      unit: 'N'
+    - label:
+        it: μ_s min
+        en: min μ_s
+      value: 0.155
+    - label:
+        it: v
+        en: v
+      value: 2.88
+      unit: m/s
+  origin: originale
+- id: gara-sfera-anello
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.1
+    - rotolamento-puro.2
+    - rotolamento-puro.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Una sfera piena e un anello partono insieme da fermi dalla cima di un piano inclinato alto 1,0 m e
+      rotolano senza strisciare. Calcolare: (a) la velocità della sfera in fondo; (b) quella dell'anello; (c)
+      il rapporto tra i tempi di discesa anello/sfera.
+    en: >-
+      A solid sphere and a ring start together from rest at the top of an incline 1.0 m high and roll without
+      slipping. Find: (a) the speed of the sphere at the bottom; (b) that of the ring; (c) the ratio of
+      descent times ring/sphere.
+  steps:
+    - title:
+        it: Energia
+        en: Energy
+      body:
+        it: >-
+          \(v = \sqrt{2gh/(1+\beta)}\): sfera (β = 2/5) \(v \approx 3{,}74\ \text{m/s}\); anello (β = 1) \(v =
+          \sqrt{gh} \approx 3{,}13\ \text{m/s}\).
+        en: >-
+          \(v = \sqrt{2gh/(1+\beta)}\): sphere (β = 2/5) \(v \approx 3.74\ \text{m/s}\); ring (β = 1) \(v =
+          \sqrt{gh} \approx 3.13\ \text{m/s}\).
+    - title:
+        it: Tempi
+        en: Times
+      body:
+        it: >-
+          Moti uniformemente accelerati sulla stessa lunghezza: \(t \propto 1/\sqrt{a} \propto
+          \sqrt{1+\beta}\), quindi \(t_{anello}/t_{sfera} = \sqrt{2/1{,}4} \approx 1{,}195\).
+        en: >-
+          Uniformly accelerated motions over the same length: \(t \propto 1/\sqrt{a} \propto \sqrt{1+\beta}\),
+          so \(t_{ring}/t_{sphere} = \sqrt{2/1.4} \approx 1.195\).
+  answer:
+    - label:
+        it: v sfera
+        en: v sphere
+      value: 3.74
+      unit: m/s
+    - label:
+        it: v anello
+        en: v ring
+      value: 3.13
+      unit: m/s
+    - label:
+        it: rapporto tempi
+        en: time ratio
+      value: 1.195
+  origin: originale

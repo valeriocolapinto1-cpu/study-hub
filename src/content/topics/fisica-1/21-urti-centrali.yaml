@@ -3,10 +3,14 @@ course: fisica-1
 order: 21
 title:
   it: Urti centrali elastici e anelastici
+  en: Central elastic and inelastic collisions
 summary:
   it: >-
     In ogni urto la quantità di moto è sacra (le forze interne si scambiano impulsi uguali e opposti), mentre
     l'energia cinetica è negoziabile: può finire in deformazioni, suono, calore.
+  en: >-
+    In every collision momentum is sacred (internal forces exchange equal and opposite impulses), while
+    kinetic energy is negotiable: it can end up in deformation, sound, heat.
 group:
   it: Sistemi di punti e corpo rigido
   en: Systems of particles and rigid bodies
@@ -14,21 +18,28 @@ objectives:
   - id: urti-centrali.1
     text:
       it: Giustificare la conservazione di P con l'approssimazione impulsiva
+      en: Justify the conservation of P with the impulse approximation
   - id: urti-centrali.2
     text:
       it: Classificare gli urti (elastico, anelastico, perfettamente anelastico)
+      en: Classify collisions (elastic, inelastic, perfectly inelastic)
   - id: urti-centrali.3
     text:
       it: Ricavare l'inversione della velocità relativa nell'urto elastico
+      en: Derive the reversal of the relative velocity in the elastic collision
   - id: urti-centrali.4
     text:
       it: Scrivere le soluzioni generali e discutere i casi notevoli
+      en: Write the general solutions and discuss the notable cases
   - id: urti-centrali.5
     text:
       it: Ricavare v' = v_cm e ΔK nell'urto perfettamente anelastico
+      en: Derive v' = v_cm and ΔK in the perfectly inelastic collision
   - id: urti-centrali.6
     text:
       it: Spiegare con König perché si dissipa solo l'energia del moto relativo
+      en: Explain with König why only the energy of relative motion is dissipated
   - id: urti-centrali.7
     text:
       it: Menzionare il coefficiente di restituzione per i casi intermedi
+      en: Mention the coefficient of restitution for intermediate cases

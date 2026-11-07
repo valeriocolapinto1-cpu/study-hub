@@ -1,0 +1,161 @@
+---
+course: fisica-1
+topic: statica-corpo-rigido
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/statica-corpo-rigido/idea">
+
+Equilibrium means that the forces do not push the body anywhere AND do not make it turn about any pivot. Freedom in choosing the pole is a tactical weapon: placing it where the unknown forces pass makes their torques vanish and simplifies the equation. Stability is geometry of the centre of gravity: a body topples when the vertical through its centre of gravity leaves the base of support.
+
+</div>
+
+<p class="muted" data-note-id="teoria/statica-corpo-rigido/prerequisiti"><strong>Before this topic:</strong> <a href="../moto-corpo-rigido/">Motion of a rigid body</a></p>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/statica-corpo-rigido/definizioni">
+
+## Definitions
+
+A rigid body is in static equilibrium when it is at rest and stays at rest: all accelerations (linear and angular) are zero. There are two equilibrium conditions: zero resultant of the external forces $\big(\sum\vec{F} = \vec{0}\big)$ and zero resultant torque about any pole $\big(\sum\vec{\tau} = \vec{0}\big)$. In the plane they become 3 scalar equations: two for forces and one for torques.
+
+</div>
+
+<div data-note-id="teoria/statica-corpo-rigido/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · From the cardinal equations with zero accelerations</summary>
+
+$$
+\vec{a}_{cm} = \vec{0} \Rightarrow \sum\vec{F}^{ext} = \vec{0}; \qquad \frac{d\vec{L}}{dt} = \vec{0} \Rightarrow \sum\vec{\tau}^{ext} = \vec{0}
+$$
+
+Equilibrium is the special case of dynamics with constant P and L (both zero for a body initially at rest).
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Independence of the pole (if the resultant is zero)</summary>
+
+$$
+\vec{\tau}_{O'} = \vec{\tau}_{O} + (\vec{O'O})\times\sum\vec{F} = \vec{\tau}_{O}
+$$
+
+When ΣF = 0, the total torque is the same about any pole: you can choose the most convenient one (typically where most unknown forces pass, to eliminate them).
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Weight acts at the centre of gravity</summary>
+
+$$
+\vec{\tau}_{weight} = \sum_i \vec{r}_i\times m_i\vec{g} = \Big(\sum_i m_i\vec{r}_i\Big)\times\vec{g} = \vec{r}_{cm}\times M\vec{g}
+$$
+
+In a uniform field the total torque of the weight is that of a single force Mg applied at the centre of mass: this is why centre of gravity and CM coincide.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Guiding example: ladder leaning against a wall</summary>
+
+$$
+N_w = f_s,\quad N_f = Mg,\quad (\text{pole on the ground}):\; N_w L\sin\theta = Mg\frac{L}{2}\cos\theta \;\Rightarrow\; f_s = \frac{Mg}{2\tan\theta} \le \mu_s Mg
+$$
+
+Smooth wall, rough floor: the three equations (x, y, torques) determine the reactions; the no-slip condition gives the minimum angle tan θ ≥ 1/(2μ_s).
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Stability of equilibrium</summary>
+
+$$
+\frac{dU}{dq} = 0; \qquad \frac{d^2U}{dq^2} > 0 \text{ stable}, \quad < 0 \text{ unstable}
+$$
+
+An equilibrium is stable if small displacements raise the centre of gravity (U grows): the body comes back. Practical criterion: the vertical through the centre of gravity must fall inside the base of support.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/statica-corpo-rigido/ipotesi">
+
+## Validity assumptions
+
+Perfectly rigid body; uniform gravitational field (for centre of gravity ≡ CM); smooth or rough constraints modelled with normal reactions and static friction ≤ μ_sN.
+
+</div>
+
+<div data-note-id="teoria/statica-corpo-rigido/casi-limite">
+
+## Limiting cases
+
+A body on the verge of tipping: the normal reaction concentrates on the edge. Insufficient friction: equilibrium is impossible and the body slides. A couple: zero resultant but non-zero torque — no equilibrium, the body rotates.
+
+</div>
+
+<div data-note-id="teoria/statica-corpo-rigido/formule">
+
+## Key formulas
+
+<Formula id="statica-corpo-rigido-f1" />
+
+<Formula id="statica-corpo-rigido-f2" />
+
+<Formula id="statica-corpo-rigido-f3" />
+
+<Formula id="statica-corpo-rigido-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/statica-corpo-rigido/esempio">
+
+A uniform ladder of mass 12 kg and length 4.0 m leans against a smooth wall at an angle of 60° with the rough floor. Find: (a) the reaction of the wall; (b) the static friction force needed; (c) the minimum friction coefficient for it not to slip.
+
+1. **Torques about the foot.** $N_w L\sin 60° = Mg\,\tfrac{L}{2}\cos 60° \Rightarrow N_w = \dfrac{Mg}{2\tan 60°} \approx 33.98\ \text{N}$.
+2. **Forces.** Horizontal: $f_s = N_w \approx 33.98\ \text{N}$; vertical: $N_f = Mg \approx 117.7\ \text{N}$.
+3. **Minimum friction.** $f_s \le \mu_s N_f \Rightarrow \mu_s \ge \dfrac{1}{2\tan 60°} \approx 0.289$, independent of mass and length.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/statica-corpo-rigido/errori">
+
+- Imposing only ΣF = 0 and forgetting torques (a couple has zero resultant but makes things rotate).
+- Changing pole halfway through the torque calculation.
+- Getting the lever arm wrong (using the distance from the point of application instead of from the line of action).
+- Forgetting that static friction is an unknown ≤ μ_sN, not equal to μ_sN except at the verge of slipping.
+
+</div>
+
+<div data-note-id="teoria/statica-corpo-rigido/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- Why does the stability of a resting body depend on the base of support and on the height of the centre of gravity?
+- A beam built into a wall: how many constraint reactions does the fixed joint provide?
+- If three forces act on a body in equilibrium, why must their lines of action meet at a point (or be parallel)?
+
+</div>
+
+</Layer>

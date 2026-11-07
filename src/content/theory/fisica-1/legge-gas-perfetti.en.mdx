@@ -1,0 +1,171 @@
+---
+course: fisica-1
+topic: legge-gas-perfetti
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/legge-gas-perfetti/idea">
+
+Three independent experimental laws, discovered over two centuries, fit into a single equation provided temperature is measured from the right origin: absolute zero. Universality (the same R for all gases) shouts that at low densities molecules do not 'see' each other: only how many they are matters, not who they are — exactly what the kinetic model assumes.
+
+</div>
+
+<p class="muted" data-note-id="teoria/legge-gas-perfetti/prerequisiti"><strong>Before this topic:</strong> <a href="../legge-di-stevino/">Pressure and Stevin's law</a></p>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/legge-gas-perfetti/definizioni">
+
+## Definitions
+
+The equation of state of ideal gases, $pV = nRT$, summarises in a single relation the empirical laws found between the seventeenth and nineteenth centuries: Boyle's law (isothermal: pV = const), Gay-Lussac's/Charles's first law (isobaric: V ∝ T), Gay-Lussac's second law (isochoric: p ∝ T) and Avogadro's principle (equal volumes at the same T and p → the same number of moles). R = 8.314 J/(mol·K) is the universal gas constant; T is the absolute temperature in kelvin.
+
+</div>
+
+<div data-note-id="teoria/legge-gas-perfetti/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Boyle's law (constant T)</summary>
+
+$$
+pV = \text{const} \qquad (T\;\text{fixed})
+$$
+
+Compressing a rarefied gas isothermally, pressure and volume are inversely proportional: hyperbolas in the p-V plane.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Volta–Gay-Lussac laws (constant p or V)</summary>
+
+$$
+V = V_0(1 + \alpha t) \;\;(p\;\text{const}), \qquad p = p_0(1 + \alpha t) \;\;(V\;\text{const}), \qquad \alpha = \frac{1}{273.15\,°C}
+$$
+
+The coefficient α is THE SAME for all rarefied gases: a remarkable experimental fact that suggests universal behaviour.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Absolute temperature is born</summary>
+
+$$
+T = t + 273.15 \;\Rightarrow\; V = V_0\,\alpha\,T, \qquad p = p_0\,\alpha\,T
+$$
+
+All the extrapolated lines vanish at t = −273.15 °C: placing the zero there, the laws become direct proportionalities. Absolute zero emerges from the data, not from a postulate.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Combine the laws</summary>
+
+$$
+\frac{pV}{T} = \text{const for a given amount of gas}
+$$
+
+A two-step transformation (isothermal + isobaric) from (p₁,V₁,T₁) to (p₂,V₂,T₂): combining the two laws gives p₁V₁/T₁ = p₂V₂/T₂.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Avogadro's principle fixes the constant</summary>
+
+$$
+pV = nRT, \qquad R = 8.314\;\tfrac{\text{J}}{\text{mol·K}}
+$$
+
+At equal p, V, T every gas contains the same number of moles: the constant is proportional to n and universal. One mole at 0 °C and 1 atm occupies 22.4 L.
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Microscopic form</summary>
+
+$$
+pV = Nk_BT, \qquad k_B = \frac{R}{N_A} = 1.38\times10^{-23}\;\tfrac{\text{J}}{\text{K}}
+$$
+
+With N = nN_A molecules: Boltzmann's constant is R 'per molecule'. This form joins up with the kinetic derivation of pressure.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/legge-gas-perfetti/ipotesi">
+
+## Validity assumptions
+
+Sufficiently rarefied gas (low-density limit): all the empirical laws hold better the further the gas is from condensation; thermodynamic equilibrium (uniform, well-defined p and T).
+
+</div>
+
+<div data-note-id="teoria/legge-gas-perfetti/casi-limite">
+
+## Limiting cases
+
+High density/low T: deviations described by Van der Waals $(p + an^2/V^2)(V - nb) = nRT$. Close to liquefaction the law fails completely. In the limit p → 0 all real gases tend to ideal behaviour: this is why the ideal gas defines the temperature scale.
+
+</div>
+
+<div data-note-id="teoria/legge-gas-perfetti/formule">
+
+## Key formulas
+
+<Formula id="legge-gas-perfetti-f1" />
+
+<Formula id="legge-gas-perfetti-f2" />
+
+<Formula id="legge-gas-perfetti-f3" />
+
+<Formula id="legge-gas-perfetti-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/legge-gas-perfetti/esempio">
+
+A tyre is inflated to a gauge pressure of 2.2·10⁵ Pa at 15 °C (atmospheric pressure 1.0·10⁵ Pa). After a long trip the temperature of the air inside is 45 °C. Assuming constant volume, find: (a) the new absolute pressure; (b) the new gauge pressure; (c) the moles of air if the volume is 25 L.
+
+1. **Isochoric process with kelvin temperatures.** $p_2 = p_1 T_2/T_1 = 3.2\cdot 10^5 \cdot 318.15/288.15 \approx 3.533\cdot 10^5\ \text{Pa}$ (absolute!); gauge $\approx 2.53\cdot 10^5\ \text{Pa}$.
+2. **Moles.** $n = p_1V/(RT_1) = \dfrac{3.2\cdot 10^5 \cdot 0.025}{8.314 \cdot 288.15} \approx 3.34\ \text{mol}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/legge-gas-perfetti/errori">
+
+- Using the temperature in degrees Celsius in pV = nRT: kelvin is required.
+- Getting the units of R wrong (8.314 J/mol·K vs 0.0821 L·atm/mol·K).
+- Applying the law to vapours close to condensation.
+- Confusing n (moles) with N (molecules) and R with k_B.
+
+</div>
+
+<div data-note-id="teoria/legge-gas-perfetti/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- Why is the ideal-gas thermometer the reference instrument for defining temperature?
+- What is the physical meaning of the Van der Waals correction terms a and b?
+- Draw the isotherms of an ideal gas in the p-V plane and show how they change as T increases.
+
+</div>
+
+</Layer>

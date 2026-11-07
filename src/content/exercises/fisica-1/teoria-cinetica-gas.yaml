@@ -1,0 +1,115 @@
+- id: velocita-quadratica-media
+  topic: teoria-cinetica-gas
+  objectives:
+    - teoria-cinetica-gas.1
+    - teoria-cinetica-gas.2
+    - teoria-cinetica-gas.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Calcolare la velocità quadratica media delle molecole: (a) di elio (M = 4,0 g/mol) a 300 K; (b) di
+      ossigeno (M = 32 g/mol) alla stessa temperatura; (c) l'energia cinetica media traslazionale per molecola
+      a 300 K.
+    en: >-
+      Find the root-mean-square speed of the molecules: (a) of helium (M = 4.0 g/mol) at 300 K; (b) of oxygen
+      (M = 32 g/mol) at the same temperature; (c) the average translational kinetic energy per molecule at 300
+      K.
+  steps:
+    - title:
+        it: Velocità quadratiche medie
+        en: RMS speeds
+      body:
+        it: >-
+          \(v_{qm} = \sqrt{3RT/M}\): elio \(\sqrt{3\cdot 8{,}314\cdot 300/0{,}004} \approx 1368\ \text{m/s}\);
+          ossigeno \(\approx 484\ \text{m/s}\) (rapporto \(\sqrt{8}\)).
+        en: >-
+          \(v_{rms} = \sqrt{3RT/M}\): helium \(\sqrt{3\cdot 8.314\cdot 300/0.004} \approx 1368\ \text{m/s}\);
+          oxygen \(\approx 484\ \text{m/s}\) (ratio \(\sqrt{8}\)).
+    - title:
+        it: Energia media
+        en: Average energy
+      body:
+        it: >-
+          \(\tfrac32 k_BT = 1{,}5 \cdot 1{,}381\cdot 10^{-23} \cdot 300 \approx 6{,}21\cdot 10^{-21}\
+          \text{J}\), uguale per tutti i gas: a parità di T le molecole leggere sono più veloci.
+        en: >-
+          \(\tfrac32 k_BT = 1.5 \cdot 1.381\cdot 10^{-23} \cdot 300 \approx 6.21\cdot 10^{-21}\ \text{J}\),
+          the same for all gases: at equal T lighter molecules are faster.
+  answer:
+    - label:
+        it: v_qm elio
+        en: helium v_rms
+      value: 1368
+      unit: m/s
+    - label:
+        it: v_qm ossigeno
+        en: oxygen v_rms
+      value: 484
+      unit: m/s
+    - label:
+        it: energia media
+        en: average energy
+      value: 6.21e-21
+      unit: J
+  origin: originale
+- id: urti-sulla-parete
+  topic: teoria-cinetica-gas
+  objectives:
+    - teoria-cinetica-gas.1
+    - teoria-cinetica-gas.2
+    - teoria-cinetica-gas.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Un recipiente da 2,0 L contiene azoto (M = 28 g/mol) a 1,0·10⁵ Pa e 300 K. Calcolare: (a) il numero di
+      molecole; (b) la massa di gas; (c) la densità di energia cinetica traslazionale (J/m³) e verificare che
+      vale 3p/2.
+    en: >-
+      A 2.0 L container holds nitrogen (M = 28 g/mol) at 1.0·10⁵ Pa and 300 K. Find: (a) the number of
+      molecules; (b) the mass of gas; (c) the translational kinetic energy density (J/m³), and check that it
+      equals 3p/2.
+  steps:
+    - title:
+        it: Numero di molecole
+        en: Number of molecules
+      body:
+        it: >-
+          \(N = pV/(k_BT) = \dfrac{10^5 \cdot 2\cdot 10^{-3}}{1{,}381\cdot 10^{-23}\cdot 300} \approx
+          4{,}83\cdot 10^{22}\).
+        en: >-
+          \(N = pV/(k_BT) = \dfrac{10^5 \cdot 2\cdot 10^{-3}}{1.381\cdot 10^{-23}\cdot 300} \approx 4.83\cdot
+          10^{22}\).
+    - title:
+        it: Massa
+        en: Mass
+      body:
+        it: \(n = pV/(RT) \approx 0{,}0802\ \text{mol}\), \(m = nM \approx 2{,}25\ \text{g}\).
+        en: \(n = pV/(RT) \approx 0.0802\ \text{mol}\), \(m = nM \approx 2.25\ \text{g}\).
+    - title:
+        it: Densità di energia
+        en: Energy density
+      body:
+        it: >-
+          \(N\cdot\tfrac32 k_BT/V = \tfrac32 p = 1{,}5\cdot 10^5\ \text{J/m}^3\): pressione e densità di
+          energia cinetica sono la stessa cosa a meno del fattore 2/3.
+        en: >-
+          \(N\cdot\tfrac32 k_BT/V = \tfrac32 p = 1.5\cdot 10^5\ \text{J/m}^3\): pressure and kinetic energy
+          density are the same thing up to the factor 2/3.
+  answer:
+    - label:
+        it: 'N'
+        en: 'N'
+      value: 4.83e+22
+    - label:
+        it: massa
+        en: mass
+      value: 2.25
+      unit: g
+    - label:
+        it: densità di energia
+        en: energy density
+      value: 150000
+      unit: J/m³
+  origin: originale

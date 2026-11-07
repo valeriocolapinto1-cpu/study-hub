@@ -3,10 +3,14 @@ course: fisica-1
 order: 22
 title:
   it: Pendolo balistico
+  en: Ballistic pendulum
 summary:
   it: >-
     Il pendolo balistico è l'esempio perfetto di 'ogni fase la sua legge': l'urto è violento e rapidissimo →
     comanda la quantità di moto; la risalita è dolce e senza dissipazione → comanda l'energia.
+  en: >-
+    The ballistic pendulum is the perfect example of 'each phase has its law': the collision is violent and
+    very fast → momentum rules; the rise is gentle and dissipation-free → energy rules.
 group:
   it: Sistemi di punti e corpo rigido
   en: Systems of particles and rigid bodies
@@ -14,21 +18,28 @@ objectives:
   - id: pendolo-balistico.1
     text:
       it: Descrivere il dispositivo e il suo scopo
+      en: Describe the device and its purpose
   - id: pendolo-balistico.2
     text:
       it: Giustificare perché nell'urto si conserva P e non K
+      en: Justify why P and not K is conserved in the collision
   - id: pendolo-balistico.3
     text:
       it: Calcolare V dopo l'urto e l'energia dissipata
+      en: Compute V after the collision and the dissipated energy
   - id: pendolo-balistico.4
     text:
       it: Giustificare perché nella risalita si conserva E e non P
+      en: Justify why E and not P is conserved during the rise
   - id: pendolo-balistico.5
     text:
       it: Ricavare la formula finale v₀ = ((m+M)/m)√(2gh)
+      en: Derive the final formula v₀ = ((m+M)/m)√(2gh)
   - id: pendolo-balistico.6
     text:
       it: Esprimere h tramite l'angolo massimo
+      en: Express h through the maximum angle
   - id: pendolo-balistico.7
     text:
       it: Discutere la frazione di energia persa M/(m+M)
+      en: Discuss the fraction of energy lost M/(m+M)
