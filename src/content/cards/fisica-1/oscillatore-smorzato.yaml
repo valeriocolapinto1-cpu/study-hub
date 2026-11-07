@@ -1,0 +1,249 @@
+- id: oscillatore-smorzato-esposizione
+  topic: oscillatore-smorzato
+  objectives:
+    - oscillatore-smorzato.1
+    - oscillatore-smorzato.2
+    - oscillatore-smorzato.3
+    - oscillatore-smorzato.4
+    - oscillatore-smorzato.5
+    - oscillatore-smorzato.6
+    - oscillatore-smorzato.7
+  kind: orale
+  front:
+    it: "Esponi all'orale: «Oscillatore armonico smorzato»."
+    en: 'Present at the oral exam: “Damped harmonic oscillator”.'
+  back:
+    it: >-
+      L'attrito viscoso sottrae energia a ogni oscillazione, quindi l'ampiezza si spegne esponenzialmente; se
+      lo smorzamento è forte, l'energia viene drenata prima ancora che il sistema riesca a completare
+      un'oscillazione. Lo smorzamento critico è il punto di equilibrio perfetto tra 'tornare in fretta' e 'non
+      oltrepassare l'equilibrio'.
+
+
+      **Scaletta:**
+
+
+      - Scrivere l'equazione ẍ + 2γẋ + ω₀²x = 0 definendo γ e ω₀
+
+      - Risolvere con l'esponenziale e discutere il discriminante
+
+      - Descrivere i tre regimi con le rispettive soluzioni
+
+      - Scrivere la soluzione sottosmorzata con inviluppo e ω_s
+
+      - Dimostrare che dE/dt = −bv² ≤ 0
+
+      - Spiegare perché lo smorzamento critico è usato negli ammortizzatori
+
+      - Definire il fattore di qualità Q
+    en: >-
+      Viscous friction removes energy at every oscillation, so the amplitude dies out exponentially; if
+      damping is strong, the energy is drained before the system can even complete an oscillation. Critical
+      damping is the perfect balance between 'returning quickly' and 'not overshooting equilibrium'.
+
+
+      **Outline:**
+
+
+      - Write the equation ẍ + 2γẋ + ω₀²x = 0 defining γ and ω₀
+
+      - Solve with the exponential and discuss the discriminant
+
+      - Describe the three regimes with their solutions
+
+      - Write the underdamped solution with envelope and ω_s
+
+      - Prove that dE/dt = −bv² ≤ 0
+
+      - Explain why critical damping is used in shock absorbers
+
+      - Define the quality factor Q
+- id: oscillatore-smorzato-orale-1
+  topic: oscillatore-smorzato
+  objectives:
+    - oscillatore-smorzato.6
+    - oscillatore-smorzato.7
+  kind: orale
+  front:
+    it: Come misureresti sperimentalmente γ da un grafico x(t)?
+    en: How would you measure γ experimentally from a graph x(t)?
+  back:
+    it: >-
+      Due massimi successivi distano un periodo \(T_s = 2\pi/\omega_s\) e il loro rapporto è \(x_n/x_{n+1} =
+      e^{\gamma T_s}\). Il decremento logaritmico \(\delta = \ln(x_n/x_{n+1}) = \gamma T_s\) dà \(\gamma =
+      \delta/T_s\); per ridurre l'errore si usano massimi distanti N periodi: \(\gamma = \ln(x_0/x_N)/(N
+      T_s)\). Su carta semilogaritmica i massimi stanno su una retta di pendenza −γ.
+    en: >-
+      Two successive maxima are one period \(T_s = 2\pi/\omega_s\) apart and their ratio is \(x_n/x_{n+1} =
+      e^{\gamma T_s}\). The logarithmic decrement \(\delta = \ln(x_n/x_{n+1}) = \gamma T_s\) gives \(\gamma =
+      \delta/T_s\); to reduce the error use maxima N periods apart: \(\gamma = \ln(x_0/x_N)/(N T_s)\). On
+      semi-log paper the maxima lie on a straight line of slope −γ.
+- id: oscillatore-smorzato-orale-2
+  topic: oscillatore-smorzato
+  objectives:
+    - oscillatore-smorzato.6
+    - oscillatore-smorzato.7
+  kind: orale
+  front:
+    it: Cosa rappresenta la traiettoria nello spazio delle fasi nei tre regimi?
+    en: What does the trajectory in phase space look like in the three regimes?
+  back:
+    it: >-
+      Nel regime sottosmorzato la traiettoria (x, v) è una spirale che si avvolge verso l'origine (fuoco
+      stabile): ogni giro è un'oscillazione e il raggio si riduce come \(e^{-\gamma t}\). Nei regimi critico e
+      sovrasmorzato è un nodo stabile: le traiettorie arrivano all'origine senza girarle attorno,
+      attraversando l'asse x al più una volta. Nel caso ideale γ = 0 sarebbe un'ellisse chiusa.
+    en: >-
+      In the underdamped regime the trajectory (x, v) is a spiral winding towards the origin (stable focus):
+      each turn is one oscillation and the radius shrinks as \(e^{-\gamma t}\). In the critical and overdamped
+      regimes it is a stable node: trajectories reach the origin without circling it, crossing the x axis at
+      most once. In the ideal case γ = 0 it would be a closed ellipse.
+- id: oscillatore-smorzato-orale-3
+  topic: oscillatore-smorzato
+  objectives:
+    - oscillatore-smorzato.6
+    - oscillatore-smorzato.7
+  kind: orale
+  front:
+    it: >-
+      Perché per un attrito radente costante (non viscoso) il decadimento dell'ampiezza è lineare e non
+      esponenziale?
+    en: >-
+      Why, for constant sliding friction (not viscous), is the decay of the amplitude linear and not
+      exponential?
+  back:
+    it: >-
+      L'attrito radente ha modulo costante \(\mu_d N\) e verso opposto alla velocità: in ogni mezza
+      oscillazione dissipa \(\mu_d N \cdot\) (cammino), una quantità che dipende dall'ampiezza solo
+      linearmente. Il bilancio energetico dà che l'ampiezza cala di una quantità fissa \(2\mu_d N/k\) a ogni
+      mezzo periodo (il centro di oscillazione si sposta di \(\pm\mu_d N/k\)): decremento aritmetico, quindi
+      lineare nel tempo, e il moto si arresta in un tempo finito. Con l'attrito viscoso invece la forza è
+      proporzionale a v e la perdita relativa per ciclo è costante: decadimento esponenziale.
+    en: >-
+      Sliding friction has constant magnitude \(\mu_k N\) and points opposite to the velocity: in each half
+      oscillation it dissipates \(\mu_k N \cdot\) (path), a quantity that depends on the amplitude only
+      linearly. The energy balance shows that the amplitude drops by a fixed amount \(2\mu_k N/k\) every half
+      period (the centre of oscillation shifts by \(\pm\mu_k N/k\)): an arithmetic decrease, hence linear in
+      time, and the motion stops in a finite time. With viscous friction, instead, the force is proportional
+      to v and the relative loss per cycle is constant: exponential decay.
+- id: oscillatore-smorzato-definizione
+  topic: oscillatore-smorzato
+  objectives:
+    - oscillatore-smorzato.1
+  kind: definizione
+  front:
+    it: 'Definizione: Oscillatore armonico smorzato'
+    en: 'Definition: Damped harmonic oscillator'
+  back:
+    it: >-
+      Un oscillatore smorzato è un oscillatore armonico soggetto anche a una forza di attrito viscoso
+      proporzionale alla velocità, \(F_v = -b\dot{x}\). Si definiscono il coefficiente di smorzamento \(\gamma
+      = b/2m\) e la pulsazione propria \(\omega_0 = \sqrt{k/m}\). A seconda del rapporto tra γ e ω₀ il moto è
+      sottosmorzato (oscillazioni con ampiezza che decade esponenzialmente), criticamente smorzato o
+      sovrasmorzato (ritorno all'equilibrio senza oscillare).
+    en: >-
+      A damped oscillator is a harmonic oscillator also subject to a viscous friction force proportional to
+      the velocity, \(F_v = -b\dot{x}\). We define the damping coefficient \(\gamma = b/2m\) and the natural
+      angular frequency \(\omega_0 = \sqrt{k/m}\). Depending on the ratio between γ and ω₀ the motion is
+      underdamped (oscillations with exponentially decaying amplitude), critically damped or overdamped
+      (return to equilibrium without oscillating).
+- id: oscillatore-smorzato-formule
+  topic: oscillatore-smorzato
+  objectives:
+    - oscillatore-smorzato.1
+    - oscillatore-smorzato.2
+    - oscillatore-smorzato.3
+    - oscillatore-smorzato.4
+    - oscillatore-smorzato.5
+    - oscillatore-smorzato.6
+    - oscillatore-smorzato.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Oscillatore armonico smorzato»
+    en: The key formulas of “Damped harmonic oscillator”
+  back:
+    it: |-
+      - \(\ddot{x} + 2\gamma\dot{x} + \omega_0^2 x = 0\)
+      - \(x = Ae^{-\gamma t}\cos(\omega_s t + \varphi)\)
+      - \(\omega_s = \sqrt{\omega_0^2 - \gamma^2}\)
+      - \(\frac{dE}{dt} = -b\dot{x}^2\)
+      - \(Q = \frac{\omega_0}{2\gamma}\)
+    en: |-
+      - \(\ddot{x} + 2\gamma\dot{x} + \omega_0^2 x = 0\)
+      - \(x = Ae^{-\gamma t}\cos(\omega_s t + \varphi)\)
+      - \(\omega_s = \sqrt{\omega_0^2 - \gamma^2}\)
+      - \(\frac{dE}{dt} = -b\dot{x}^2\)
+      - \(Q = \frac{\omega_0}{2\gamma}\)
+- id: oscillatore-smorzato-ipotesi
+  topic: oscillatore-smorzato
+  objectives:
+    - oscillatore-smorzato.1
+    - oscillatore-smorzato.2
+    - oscillatore-smorzato.3
+    - oscillatore-smorzato.4
+    - oscillatore-smorzato.5
+    - oscillatore-smorzato.6
+    - oscillatore-smorzato.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Oscillatore armonico smorzato'
+    en: 'Validity assumptions: Damped harmonic oscillator'
+  back:
+    it: >-
+      Attrito puramente viscoso, lineare nella velocità (valido per moti lenti in fluidi, regime di Stokes);
+      molla ideale lineare; parametri m, b, k costanti.
+    en: >-
+      Purely viscous friction, linear in the velocity (valid for slow motion in fluids, Stokes regime); ideal
+      linear spring; constant parameters m, b, k.
+- id: oscillatore-smorzato-casi-limite
+  topic: oscillatore-smorzato
+  objectives:
+    - oscillatore-smorzato.1
+    - oscillatore-smorzato.2
+    - oscillatore-smorzato.3
+    - oscillatore-smorzato.4
+    - oscillatore-smorzato.5
+    - oscillatore-smorzato.6
+    - oscillatore-smorzato.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Oscillatore armonico smorzato'
+    en: 'Limiting cases: Damped harmonic oscillator'
+  back:
+    it: >-
+      b → 0: si ritrova l'oscillatore armonico ideale (γ = 0, ω_s = ω₀). γ ≪ ω₀: molte oscillazioni quasi
+      armoniche con ampiezza lentamente decrescente. γ ≫ ω₀: moto 'strisciante', ritorno lentissimo dominato
+      dalla radice piccola.
+    en: >-
+      b → 0: the ideal harmonic oscillator is recovered (γ = 0, ω_s = ω₀). γ ≪ ω₀: many almost harmonic
+      oscillations with slowly decreasing amplitude. γ ≫ ω₀: 'creeping' motion, very slow return dominated by
+      the small root.
+- id: oscillatore-smorzato-errori
+  topic: oscillatore-smorzato
+  objectives:
+    - oscillatore-smorzato.1
+    - oscillatore-smorzato.2
+    - oscillatore-smorzato.3
+    - oscillatore-smorzato.4
+    - oscillatore-smorzato.5
+    - oscillatore-smorzato.6
+    - oscillatore-smorzato.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Oscillatore armonico smorzato'
+    en: 'Mistakes to avoid: Damped harmonic oscillator'
+  back:
+    it: |-
+      - Scrivere che la pulsazione di oscillazione resta ω₀: è ω_s = √(ω₀² − γ²) < ω₀.
+      - Confondere il decadimento dell'ampiezza (e^{−γt}) con quello dell'energia (e^{−2γt}).
+      - Credere che il sovrasmorzato torni all'equilibrio più in fretta del critico: è il contrario.
+      - Dimenticare il fattore 2 nella definizione γ = b/2m.
+    en: >-
+      - Writing that the oscillation angular frequency stays ω₀: it is ω_s = √(ω₀² − γ²) < ω₀.
+
+      - Confusing the decay of the amplitude (e^{−γt}) with that of the energy (e^{−2γt}).
+
+      - Believing that the overdamped oscillator returns to equilibrium faster than the critical one: it is
+      the opposite.
+
+      - Forgetting the factor 2 in the definition γ = b/2m.

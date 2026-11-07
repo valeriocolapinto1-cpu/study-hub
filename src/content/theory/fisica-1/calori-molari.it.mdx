@@ -1,0 +1,175 @@
+---
+course: fisica-1
+topic: calori-molari
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/calori-molari/idea">
+
+Scaldare a volume costante è 'versare' energia solo nel serbatoio interno; scaldare a pressione costante costringe anche a pagare il pedaggio del lavoro di espansione, sempre pari a R per mole e per grado: ecco Mayer. Nei solidi ogni atomo, molla tra molle, ha sei tasche da ½k_BT: per questo materiali diversissimi condividono lo stesso calore molare 3R.
+
+</div>
+
+<div class="muted" data-note-id="teoria/calori-molari/prerequisiti">
+
+**Prima di questo argomento:** [Energia interna dei gas e principio di equipartizione](../equipartizione-energia/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/calori-molari/definizioni">
+
+## Definizioni
+
+Il calore molare è il calore necessario per innalzare di 1 K la temperatura di una mole: $c = \frac{1}{n}\frac{\delta Q}{dT}$. Dipende dalla trasformazione: a volume costante c_V, a pressione costante c_p. Per i gas perfetti vale la relazione di Mayer $c_p = c_V + R$ e si definisce $\gamma = c_p/c_V$. Per i solidi cristallini la legge di Dulong-Petit prevede c ≈ 3R, indipendente dal materiale.
+
+</div>
+
+<div data-note-id="teoria/calori-molari/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Calore molare a volume costante</summary>
+
+$$
+V = \text{cost} \Rightarrow W = 0 \Rightarrow \delta Q = dU \;\Rightarrow\; c_V = \frac{1}{n}\Big(\frac{dU}{dT}\Big) = \frac{f}{2}R
+$$
+
+Senza lavoro, tutto il calore va in energia interna: c_V misura direttamente la capacità del gas di immagazzinare energia nei suoi gradi di libertà.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Calore molare a pressione costante</summary>
+
+$$
+\delta Q = dU + p\,dV = nc_V\,dT + p\,dV
+$$
+
+A pressione costante il gas si espande scaldandosi: parte del calore paga il lavoro di espansione.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Uso l'equazione di stato per il termine di lavoro</summary>
+
+$$
+pV = nRT \;\xrightarrow{p\;\text{cost}}\; p\,dV = nR\,dT
+$$
+
+Differenzio l'equazione di stato a p costante.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Relazione di Mayer</summary>
+
+$$
+nc_p\,dT = nc_V\,dT + nR\,dT \;\Rightarrow\; c_p = c_V + R
+$$
+
+c_p supera sempre c_V esattamente di R: il sovrapprezzo è il lavoro di espansione per grado di riscaldamento. Vale per ogni gas perfetto, qualunque sia f.
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Valori numerici e rapporto γ</summary>
+
+$$
+\text{mono: } c_V = \tfrac{3}{2}R,\; c_p = \tfrac{5}{2}R,\; \gamma = \tfrac{5}{3}; \qquad \text{biat: } c_V = \tfrac{5}{2}R,\; c_p = \tfrac{7}{2}R,\; \gamma = \tfrac{7}{5}
+$$
+
+γ = 1 + 2/f è misurabile (velocità del suono, adiabatiche): conferma sperimentale del conteggio dei gradi di libertà.
+
+</details>
+
+<details id="passo-6">
+<summary>Passo 6 · Solido ideale: legge di Dulong-Petit</summary>
+
+$$
+\text{3 oscillatori} \times 2\;\text{termini quadratici} = 6 \;\Rightarrow\; U = 3nRT \;\Rightarrow\; c \approx 3R \approx 25\;\tfrac{\text{J}}{\text{mol·K}}
+$$
+
+Ogni atomo del reticolo è un oscillatore 3D: 3 termini cinetici + 3 potenziali elastici, ciascuno ½k_BT. Il calore molare è lo stesso per (quasi) tutti i solidi a temperatura ambiente; crolla a basse T per effetti quantistici (Einstein, Debye).
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/calori-molari/ipotesi">
+
+## Ipotesi di validità
+
+Gas perfetto in equilibrio; trasformazioni quasi-statiche; gradi di libertà classicamente attivi. Per Dulong-Petit: solido cristallino armonico a temperatura abbastanza alta (T sopra la temperatura di Debye).
+
+</div>
+
+<div data-note-id="teoria/calori-molari/casi-limite">
+
+## Casi limite
+
+Per i solidi a bassa T: c → 0 come T³ (Debye), Dulong-Petit fallisce. Per i gas a T crescente: c_V sale a gradini con l'attivazione di rotazioni e vibrazioni. Nei liquidi non esiste una teoria altrettanto semplice.
+
+</div>
+
+<div data-note-id="teoria/calori-molari/formule">
+
+## Formule chiave
+
+<Formula id="calori-molari-f1" />
+
+<Formula id="calori-molari-f2" />
+
+<Formula id="calori-molari-f3" />
+
+<Formula id="calori-molari-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/calori-molari/esempio">
+
+Si vogliono scaldare 3,0 mol di aria (biatomico ideale) da 290 K a 340 K. Calcolare il calore necessario: (a) a volume costante; (b) a pressione costante; (c) il lavoro compiuto dal gas nel caso (b).
+
+1. **Volume costante.** $Q_V = nc_V\Delta T = 3 \cdot 2{,}5 \cdot 8{,}314 \cdot 50 \approx 3118\ \text{J}$.
+2. **Pressione costante.** $Q_p = nc_p\Delta T = 3 \cdot 3{,}5 \cdot 8{,}314 \cdot 50 \approx 4365\ \text{J}$; la differenza è $W = nR\Delta T \approx 1247\ \text{J}$ (Mayer).
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/calori-molari/errori">
+
+- Dire che il calore molare è una proprietà unica del gas: dipende dalla trasformazione (c_V ≠ c_p, e ogni politropica ha il suo).
+- Usare c_p in ΔU = nc ΔT: l'energia interna va sempre con c_V.
+- Dimenticare che la relazione di Mayer vale solo per i gas perfetti.
+- Contare 3 gradi di libertà per l'atomo del solido invece di 6 (manca il potenziale elastico).
+
+</div>
+
+<div data-note-id="teoria/calori-molari/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Perché γ compare nell'equazione delle adiabatiche e nella velocità del suono?
+- È possibile una trasformazione con calore molare negativo?
+- Cosa misura il crollo di c dei solidi a bassa temperatura?
+
+</div>
+
+</Layer>

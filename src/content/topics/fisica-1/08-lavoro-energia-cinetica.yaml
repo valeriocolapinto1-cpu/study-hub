@@ -1,0 +1,41 @@
+id: lavoro-energia-cinetica
+course: fisica-1
+order: 8
+title:
+  it: Lavoro di una forza e teorema lavoro-energia cinetica
+  en: Work of a force and the work–kinetic energy theorem
+summary:
+  it: >-
+    Il lavoro misura quanta 'spinta utile' una forza dà lungo il moto: solo la componente della forza lungo la
+    velocità cambia il modulo della velocità.
+  en: >-
+    Work measures how much 'useful push' a force gives along the motion: only the component of the force along
+    the velocity changes the speed.
+group:
+  it: Lavoro ed energia
+  en: Work and energy
+objectives:
+  - id: lavoro-energia-cinetica.1
+    text:
+      it: Definire il lavoro come integrale di linea e discuterne il segno
+      en: Define work as a line integral and discuss its sign
+  - id: lavoro-energia-cinetica.2
+    text:
+      it: Definire l'energia cinetica e la potenza
+      en: Define kinetic energy and power
+  - id: lavoro-energia-cinetica.3
+    text:
+      it: Dimostrare il teorema partendo da F = ma e moltiplicando per v
+      en: Prove the theorem starting from F = ma and multiplying by v
+  - id: lavoro-energia-cinetica.4
+    text:
+      it: Sottolineare che vale per il lavoro totale e per qualunque forza
+      en: Stress that it holds for the total work and for any force
+  - id: lavoro-energia-cinetica.5
+    text:
+      it: Spiegare perché le forze perpendicolari alla velocità non lavorano
+      en: Explain why forces perpendicular to the velocity do no work
+  - id: lavoro-energia-cinetica.6
+    text:
+      it: Applicarlo a un esempio (frenata, caduta, piano inclinato)
+      en: Apply it to an example (braking, fall, inclined plane)

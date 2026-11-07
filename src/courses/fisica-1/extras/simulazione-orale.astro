@@ -1,0 +1,93 @@
+---
+/**
+ * Extra «Simulazione dell'orale»: estrazione pesata, timer, checklist e autovalutazione
+ * (dal sito originale). Titoli, scaletta e domande sono resi qui in HTML con KaTeX.
+ */
+import { getCollection } from 'astro:content';
+import OraleTrainer, { type OralTexts, type OralTopic } from '../sims/OraleTrainer';
+import { courseTopics, sectionPath, type CourseData } from '../../../lib/course-pages';
+import { richInline } from '../../../lib/rich-server';
+import { localizePath, tr } from '../../../i18n';
+
+interface Props {
+  lang: 'it' | 'en';
+  course: CourseData;
+}
+const { lang, course } = Astro.props;
+const it = lang === 'it';
+const topics = await courseTopics(course.id);
+const cards = await getCollection('cards', (c) => c.data.course === course.id && c.data.kind === 'orale');
+const data: OralTopic[] = topics.map((t) => ({
+  id: t.id,
+  title: richInline(tr(t.title, lang)),
+  group: t.group ? tr(t.group, lang) : '',
+  href: localizePath(sectionPath(course, 'teoria', t.id), lang),
+  checklist: t.objectives.map((o) => richInline(tr(o.text, lang))),
+  questions: cards
+    .filter((c) => c.data.topic === t.id && /-orale-\d+$/.test(c.data.id))
+    .sort((a, b) => a.data.id.localeCompare(b.data.id))
+    .map((c) => richInline(tr(c.data.front, lang))),
+}));
+const texts: OralTexts = it
+  ? {
+      intro:
+        'Ti viene estratto un argomento, con più probabilità per quelli che non hai ancora esposto o che hai valutato deboli. Esponilo a voce alta come davanti alla commissione: definizioni, ipotesi, derivazione, casi limite.',
+      mode: 'Modalità',
+      easy: 'Facile · con la scaletta',
+      hard: 'Difficile · a memoria',
+      easyHint: 'Mentre esponi vedi la scaletta e spunti i punti trattati: utile per impararla.',
+      hardHint: 'Nessun aiuto a schermo, come all’esame. Se ti blocchi puoi comunque rivelare la scaletta.',
+      start: 'Estrai l’argomento e parti',
+      drawn: 'Argomento estratto',
+      speak: 'Esponi a voce alta. Quando hai finito passa all’autovalutazione.',
+      showChecklist: 'Sono bloccato: mostra la scaletta',
+      done: 'Ho finito → autovalutazione',
+      cancel: 'Annulla',
+      rate: 'Quanto bene hai trattato ogni punto?',
+      scale: ['non trattato', 'incerto', 'quasi completo', 'completo e preciso'],
+      followUp: 'Domande che la commissione potrebbe farti dopo (risposte modello nel ripasso)',
+      save: 'Salva l’esito',
+      result: 'Tempo di esposizione {time}, media {score}/3.',
+      again: 'Estrai un altro argomento',
+      study: 'Rivedi la teoria',
+      history: 'I tuoi ultimi esiti per argomento',
+      empty: 'Nessuna simulazione ancora: gli esiti restano solo in questo browser.',
+      timer: 'Tempo trascorso',
+      avg: 'media',
+    }
+  : {
+      intro:
+        'A topic is drawn for you, more likely among those you have not presented yet or rated as weak. Present it aloud as in front of the examiners: definitions, assumptions, derivation, limiting cases.',
+      mode: 'Mode',
+      easy: 'Easy · with the outline',
+      hard: 'Hard · from memory',
+      easyHint: 'While you talk you see the outline and tick the points you covered: useful to learn it.',
+      hardHint: 'No help on screen, as in the exam. If you get stuck you can still reveal the outline.',
+      start: 'Draw a topic and start',
+      drawn: 'Topic drawn',
+      speak: 'Present it aloud. When you are done, move on to self-assessment.',
+      showChecklist: 'I am stuck: show the outline',
+      done: 'I am done → self-assessment',
+      cancel: 'Cancel',
+      rate: 'How well did you cover each point?',
+      scale: ['not covered', 'unsure', 'almost complete', 'complete and precise'],
+      followUp: 'Questions the examiners might ask next (model answers in the review section)',
+      save: 'Save the result',
+      result: 'Presentation time {time}, average {score}/3.',
+      again: 'Draw another topic',
+      study: 'Review the theory',
+      history: 'Your latest results by topic',
+      empty: 'No mock oral yet: results are kept only in this browser.',
+      timer: 'Elapsed time',
+      avg: 'average',
+    };
+---
+
+<div class="prose" data-note-id="extra/simulazione-orale">
+  <p class="lead">
+    {it
+      ? 'L’orale si prepara parlando. Qui alleni l’esposizione con il tempo che scorre: la scaletta di ogni argomento è quella degli obiettivi della teoria, e alla fine ti autovaluti punto per punto. Per il ripasso spaziato delle domande d’orale usa la sezione Ripasso; per lo scritto, la prova d’esame.'
+      : 'The oral exam is prepared by talking. Here you practise presenting with the clock running: the outline of each topic is the list of objectives in the theory, and at the end you rate yourself point by point. For spaced review of the oral questions use the Review section; for the written part, the mock exam.'}
+  </p>
+</div>
+<OraleTrainer topics={data} texts={texts} client:load />

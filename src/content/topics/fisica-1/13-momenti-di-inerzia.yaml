@@ -1,0 +1,45 @@
+id: momenti-di-inerzia
+course: fisica-1
+order: 13
+title:
+  it: Momenti di inerzia e teorema di Huygens-Steiner
+  en: Moments of inertia and the Huygens–Steiner theorem
+summary:
+  it: >-
+    Il momento di inerzia pesa la massa col quadrato della distanza dall'asse: la massa periferica conta molto
+    di più.
+  en: >-
+    The moment of inertia weighs mass by the square of the distance from the axis: peripheral mass counts much
+    more.
+group:
+  it: Sistemi di punti e corpo rigido
+  en: Systems of particles and rigid bodies
+objectives:
+  - id: momenti-di-inerzia.1
+    text:
+      it: Definire I per sistemi discreti e continui
+      en: Define I for discrete and continuous systems
+  - id: momenti-di-inerzia.2
+    text:
+      it: Mostrare come I emerge dall'energia cinetica di rotazione
+      en: Show how I emerges from rotational kinetic energy
+  - id: momenti-di-inerzia.3
+    text:
+      it: Dimostrare il teorema di Huygens-Steiner
+      en: Prove the Huygens–Steiner theorem
+  - id: momenti-di-inerzia.4
+    text:
+      it: Spiegare perché il termine misto si annulla
+      en: Explain why the mixed term vanishes
+  - id: momenti-di-inerzia.5
+    text:
+      it: Ricordare i momenti notevoli (anello, disco, sfera, asta)
+      en: Remember the notable moments (ring, disc, sphere, rod)
+  - id: momenti-di-inerzia.6
+    text:
+      it: Saper svolgere il calcolo integrale per l'asta
+      en: Be able to do the integral calculation for the rod
+  - id: momenti-di-inerzia.7
+    text:
+      it: Discutere perché I_cm è il minimo tra assi paralleli
+      en: Discuss why I_cm is the minimum among parallel axes

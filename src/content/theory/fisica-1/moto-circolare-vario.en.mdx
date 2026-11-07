@@ -1,0 +1,160 @@
+---
+course: fisica-1
+topic: moto-circolare-vario
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/moto-circolare-vario/idea">
+
+Centripetal acceleration exists because turning means continuously changing direction: even at constant speed the velocity vector rotates, and how fast it rotates is measured by v²/R. The tangential acceleration is the 'ordinary' speedometer acceleration: it tells you whether you are going faster or slower along the curve.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/moto-circolare-vario/definizioni">
+
+## Definitions
+
+A point particle moves in circular motion when its trajectory is a circle of radius R. We define the arc-length coordinate s(t) along the circle, the angular velocity $\omega = d\theta/dt$ and the angular acceleration $\alpha = d\omega/dt$. In non-uniform circular motion the speed is not constant, so the acceleration has two components: the tangential one, which changes the magnitude of the velocity, and the centripetal (or normal) one, which changes its direction and points towards the centre.
+
+</div>
+
+<div data-note-id="teoria/moto-circolare-vario/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Position and velocity in terms of the tangent unit vector</summary>
+
+$$
+\vec{v} = \frac{d\vec{r}}{dt} = v\,\hat{u}_t, \qquad v = \frac{ds}{dt} = \omega R
+$$
+
+The velocity is always tangent to the trajectory; its magnitude is related to the angular velocity by v = ωR.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Differentiate the velocity with respect to time (product rule)</summary>
+
+$$
+\vec{a} = \frac{d\vec{v}}{dt} = \frac{dv}{dt}\,\hat{u}_t + v\,\frac{d\hat{u}_t}{dt}
+$$
+
+The tangent unit vector rotates as the point moves, so its derivative is not zero.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Derivative of the tangent unit vector</summary>
+
+$$
+\frac{d\hat{u}_t}{dt} = \frac{d\theta}{dt}\,\hat{u}_n = \omega\,\hat{u}_n
+$$
+
+A unit vector rotating with angular velocity ω has a derivative of magnitude ω, perpendicular to itself and pointing towards the centre of curvature (normal unit vector û_n).
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Combining the two accelerations</summary>
+
+$$
+\vec{a} = \underbrace{\frac{dv}{dt}}_{a_t}\,\hat{u}_t + \underbrace{v\omega}_{a_n}\,\hat{u}_n = \alpha R\,\hat{u}_t + \frac{v^2}{R}\,\hat{u}_n
+$$
+
+With v = ωR we get a_t = dv/dt = αR and a_n = vω = ω²R = v²/R.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Magnitude of the total acceleration</summary>
+
+$$
+|\vec{a}| = \sqrt{a_t^2 + a_n^2} = \sqrt{(\alpha R)^2 + (\omega^2 R)^2}
+$$
+
+The two components are orthogonal, so they add in quadrature.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/moto-circolare-vario/ipotesi">
+
+## Validity assumptions
+
+Point particle constrained to a circular path of constant radius R; classical (non-relativistic) kinematics. No assumption on the cause of the motion is needed: this is pure kinematics.
+
+</div>
+
+<div data-note-id="teoria/moto-circolare-vario/casi-limite">
+
+## Limiting cases
+
+If $\alpha = 0$ (constant ω) the motion is uniform circular motion: only the centripetal acceleration $a_n = \omega^2 R$ remains. If $R \to \infty$ the path tends to a straight line and $a_n \to 0$: only the tangential acceleration remains, as in rectilinear motion. If v = 0 at some instant (reversal of motion), a_n = 0 at that instant.
+
+</div>
+
+<div data-note-id="teoria/moto-circolare-vario/formule">
+
+## Key formulas
+
+<Formula id="moto-circolare-vario-f1" />
+
+<Formula id="moto-circolare-vario-f2" />
+
+<Formula id="moto-circolare-vario-f3" />
+
+<Formula id="moto-circolare-vario-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example: A car accelerating along a bend">
+
+<div data-note-id="teoria/moto-circolare-vario/esempio">
+
+A car drives along a circular bend of radius R = 50 m. At a certain instant its speed is v = 10 m/s and the speed is increasing at a rate of 2 m/s². Find the total acceleration and the angle it makes with the radius.
+
+1. Tangential component: it is the rate of change of the speed, $a_t = dv/dt = 2\ \text{m/s}^2$.
+2. Centripetal component: $a_n = v^2/R = 100/50 = 2\ \text{m/s}^2$.
+3. Magnitude: $|\vec a| = \sqrt{a_t^2 + a_n^2} = \sqrt{8} \approx 2.83\ \text{m/s}^2$.
+4. Direction: $\tan\beta = a_t/a_n = 1$, so the acceleration is tilted 45° forward with respect to the radius pointing to the centre.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/moto-circolare-vario/errori">
+
+- Saying that in uniform circular motion the acceleration is zero because the velocity 'is constant': only its magnitude is constant, not the vector.
+- Confusing a_t = αR (due to the change in the magnitude of v) with a_n = ω²R (due to the change in direction).
+- Writing a_n = v²/R with v the angular velocity instead of the tangential speed.
+- Treating the 'centripetal force' as an extra force: it is the resultant of the real forces projected on the normal.
+
+</div>
+
+<div data-note-id="teoria/moto-circolare-vario/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- In a generic curvilinear (non-circular) motion, how does a_n generalise?
+- A car takes a bend with increasing speed: in which direction does the total acceleration point with respect to the radius?
+- Why is the work done by the resultant force zero in uniform circular motion?
+
+</div>
+
+</Layer>

@@ -1,0 +1,69 @@
+---
+/**
+ * Introduzione della Panoramica di Fisica 1: che cos'è il corso, come è organizzato
+ * (scritto + orale), da dove viene il materiale (sito «Orale Trainer») e come usarlo.
+ */
+interface Props {
+  lang: 'it' | 'en';
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+---
+
+<div data-note-id="panoramica/introduzione">
+  {it ? (
+    <>
+      <p>
+        Trentatré argomenti di <strong>meccanica e termodinamica</strong> del primo anno del corso di laurea
+        in Ingegneria Elettronica, divisi in quattro aree: cinematica e oscillazioni, lavoro ed energia,
+        sistemi di punti e corpo rigido, fluidi e termodinamica. Sono gli stessi argomenti, nello stesso
+        ordine, del sito di studio «Orale Trainer», qui riorganizzati in pagine.
+      </p>
+      <p>
+        Ogni argomento si apre con <em>l’idea in sintesi</em>, poi definizioni e una{' '}
+        <strong>derivazione da ricostruire un passaggio alla volta</strong> (prova prima a voce, poi apri il
+        passo successivo), ipotesi di validità, casi limite, formule chiave, un esempio svolto con i numeri e
+        gli errori tipici. Gli obiettivi in cima alla pagina sono la scaletta da seguire all’orale.
+      </p>
+      <p>
+        La preparazione copre <strong>scritto e orale</strong>. Per lo scritto: esercizi originali svolti
+        passo per passo e varianti generate che cambiano a ogni tentativo, raccolti nella prova simulata a
+        tempo. Per l’orale: domande d’approfondimento con risposta modello nel ripasso spaziato e la{' '}
+        <a href="extra/simulazione-orale/">simulazione dell’orale</a> con estrazione, timer e autovalutazione.
+        Per l’intuizione, otto <a href="extra/simulazioni/">simulazioni interattive</a>.
+      </p>
+      <p class="muted">
+        La struttura della prova simulata (tre problemi e due domande d’orale, punti in trentesimi) è una
+        scelta di questo sito per allenarsi, non il regolamento di un esame: modalità, durata e date sono
+        quelle indicate dal tuo corso sulle sue pagine ufficiali.
+      </p>
+    </>
+  ) : (
+    <>
+      <p>
+        Thirty-three topics in <strong>mechanics and thermodynamics</strong> from the first year of the
+        Electronic Engineering degree, grouped into four areas: kinematics and oscillations, work and energy,
+        systems of particles and rigid bodies, fluids and thermodynamics. They are the same topics, in the
+        same order, as the “Orale Trainer” study site, reorganised here into pages.
+      </p>
+      <p>
+        Each topic opens with <em>the idea in brief</em>, then definitions and a{' '}
+        <strong>derivation to rebuild one step at a time</strong> (try it aloud first, then open the next
+        step), validity assumptions, limiting cases, key formulas, a worked numerical example and common
+        mistakes. The objectives at the top of the page are the outline to follow in the oral exam.
+      </p>
+      <p>
+        Preparation covers both the <strong>written and the oral exam</strong>. For the written part: original
+        problems worked step by step and generated variants that change at every attempt, collected in the
+        timed mock exam. For the oral: follow-up questions with model answers in the spaced review and the{' '}
+        <a href="extra/simulazione-orale/">mock oral exam</a> with topic draw, timer and self-assessment. For
+        intuition, eight <a href="extra/simulazioni/">interactive simulations</a>.
+      </p>
+      <p class="muted">
+        The structure of the mock exam (three problems and two oral questions, marked out of thirty) is a
+        choice of this site for practice, not the rules of an exam: format, duration and dates are those given
+        by your course on its official pages.
+      </p>
+    </>
+  )}
+</div>

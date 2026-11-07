@@ -1,0 +1,119 @@
+- id: urto-elastico-carrelli
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.1
+    - urti-centrali.2
+    - urti-centrali.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un carrello di massa m₁ = 0,40 kg viaggia a 2,0 m/s e urta elasticamente un carrello fermo di massa m₂ =
+      1,2 kg. Calcolare: (a) le velocità dopo l'urto; (b) la frazione di energia cinetica trasferita al
+      secondo carrello.
+    en: >-
+      A cart of mass m₁ = 0.40 kg moving at 2.0 m/s collides elastically with a cart at rest of mass m₂ = 1.2
+      kg. Find: (a) the velocities after the collision; (b) the fraction of kinetic energy transferred to the
+      second cart.
+  steps:
+    - title:
+        it: Formule dell'urto elastico
+        en: Elastic collision formulas
+      body:
+        it: >-
+          \(v_1' = \dfrac{m_1 - m_2}{m_1 + m_2}v_1 = -1{,}0\ \text{m/s}\) (rimbalza), \(v_2' =
+          \dfrac{2m_1}{m_1 + m_2}v_1 = 1{,}0\ \text{m/s}\).
+        en: >-
+          \(v_1' = \dfrac{m_1 - m_2}{m_1 + m_2}v_1 = -1.0\ \text{m/s}\) (it bounces back), \(v_2' =
+          \dfrac{2m_1}{m_1 + m_2}v_1 = 1.0\ \text{m/s}\).
+    - title:
+        it: Energia trasferita
+        en: Transferred energy
+      body:
+        it: >-
+          \(K_2'/K_1 = \dfrac{1{,}2 \cdot 1{,}0^2}{0{,}40 \cdot 2{,}0^2} = 0{,}75\). Verifica: la velocità
+          relativa passa da −2 a +2 m/s. ✓
+        en: >-
+          \(K_2'/K_1 = \dfrac{1.2 \cdot 1.0^2}{0.40 \cdot 2.0^2} = 0.75\). Check: the relative velocity goes
+          from −2 to +2 m/s. ✓
+  answer:
+    - label:
+        it: v₁'
+        en: v₁'
+      value: -1
+      unit: m/s
+    - label:
+        it: v₂'
+        en: v₂'
+      value: 1
+      unit: m/s
+    - label:
+        it: frazione trasferita
+        en: transferred fraction
+      value: 0.75
+  origin: originale
+- id: urto-anelastico-auto
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.1
+    - urti-centrali.2
+    - urti-centrali.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Un'auto di 1000 kg a 20 m/s tampona un furgone di 2000 kg che procede nello stesso verso a 11 m/s; i due
+      veicoli restano agganciati. Calcolare: (a) la velocità subito dopo l'urto; (b) l'energia cinetica
+      dissipata; (c) verificare il risultato con la massa ridotta.
+    en: >-
+      A 1000 kg car at 20 m/s rear-ends a 2000 kg van moving in the same direction at 11 m/s; the two vehicles
+      stay locked together. Find: (a) the velocity right after the collision; (b) the kinetic energy
+      dissipated; (c) check the result with the reduced mass.
+  steps:
+    - title:
+        it: Conservazione di P
+        en: Conservation of P
+      body:
+        it: \(v' = \dfrac{1000\cdot 20 + 2000 \cdot 11}{3000} = 14\ \text{m/s}\).
+        en: \(v' = \dfrac{1000\cdot 20 + 2000 \cdot 11}{3000} = 14\ \text{m/s}\).
+    - title:
+        it: Energia dissipata
+        en: Dissipated energy
+      body:
+        it: >-
+          \(K_i = 2{,}0\cdot 10^5 + 1{,}21\cdot 10^5 = 3{,}21\cdot 10^5\ \text{J}\), \(K_f = \tfrac12 \cdot
+          3000 \cdot 196 = 2{,}94\cdot 10^5\ \text{J}\): dissipati \(2{,}7\cdot 10^4\ \text{J}\).
+        en: >-
+          \(K_i = 2.0\cdot 10^5 + 1.21\cdot 10^5 = 3.21\cdot 10^5\ \text{J}\), \(K_f = \tfrac12 \cdot 3000
+          \cdot 196 = 2.94\cdot 10^5\ \text{J}\): \(2.7\cdot 10^4\ \text{J}\) dissipated.
+    - title:
+        it: Massa ridotta
+        en: Reduced mass
+      body:
+        it: >-
+          \(\mu = 2000/3\ \text{kg}\), \(v_{rel} = 9\ \text{m/s}\): \(\tfrac12\mu v_{rel}^2 = 2{,}7\cdot 10^4\
+          \text{J}\). ✓ Si perde solo l'energia del moto relativo.
+        en: >-
+          \(\mu = 2000/3\ \text{kg}\), \(v_{rel} = 9\ \text{m/s}\): \(\tfrac12\mu v_{rel}^2 = 2.7\cdot 10^4\
+          \text{J}\). ✓ Only the energy of relative motion is lost.
+  answer:
+    - label:
+        it: v'
+        en: v'
+      value: 14
+      unit: m/s
+    - label:
+        it: energia dissipata
+        en: dissipated energy
+      value: 27000
+      unit: J
+  origin: originale
+- id: urto-elastico-variante
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.1
+    - urti-centrali.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/urto-elastico
+  origin: tipologia-appello

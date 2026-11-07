@@ -1,0 +1,188 @@
+---
+course: fisica-1
+topic: entropia-adiabatiche
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/entropia-adiabatiche/idea">
+
+L'entropia è il contachilometri dell'irreversibilità: registra quanta 'qualità' l'energia ha perso. Ogni processo reale lascia l'universo con più entropia di prima — non perché una forza lo imponga, ma perché gli stati disordinati sono astronomicamente più numerosi di quelli ordinati. L'adiabatica reversibile è il moto perfetto che non lascia traccia; l'espansione libera è la stessa assenza di scambi, ma con una traccia indelebile.
+
+</div>
+
+<div class="muted" data-note-id="teoria/entropia-adiabatiche/prerequisiti">
+
+**Prima di questo argomento:** [Disuguaglianza di Clausius](../disuguaglianza-di-clausius/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/entropia-adiabatiche/definizioni">
+
+## Definizioni
+
+L'entropia è la funzione di stato definita da $dS = \delta Q_{rev}/T$: la variazione tra due stati si calcola lungo una QUALSIASI trasformazione reversibile che li congiunge, $\Delta S = \int_A^B \delta Q_{rev}/T$. Per una trasformazione qualunque vale $\Delta S \ge \int_A^B \delta Q/T$ (uguaglianza se reversibile). In un sistema isolato (in particolare adiabatico: δQ = 0) l'entropia non può diminuire: $\Delta S \ge 0$ — legge dell'aumento dell'entropia.
+
+</div>
+
+<div data-note-id="teoria/entropia-adiabatiche/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · S è funzione di stato (dalla disuguaglianza di Clausius)</summary>
+
+$$
+\oint \frac{\delta Q_{rev}}{T} = 0 \;\Rightarrow\; \int_A^B \frac{\delta Q_{rev}}{T} \;\text{indipendente dal cammino reversibile}
+$$
+
+Due cammini reversibili da A a B formano un ciclo reversibile: l'integrale sul ciclo è nullo, quindi i due integrali coincidono. È lecito definire S(B) − S(A).
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Disuguaglianza per trasformazioni aperte</summary>
+
+$$
+\text{ciclo: } A \xrightarrow{irr} B \xrightarrow{rev} A \;\Rightarrow\; \int_A^B \frac{\delta Q}{T} - \Delta S \le 0 \;\Rightarrow\; \Delta S \ge \int_A^B \frac{\delta Q}{T}
+$$
+
+Chiudo la trasformazione irreversibile con un ritorno reversibile e applico Clausius al ciclo: l'entropia cresce almeno quanto il calore ridotto scambiato.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Legge dell'aumento dell'entropia</summary>
+
+$$
+\delta Q = 0 \;\Rightarrow\; \Delta S \ge 0 \qquad (= 0 \iff \text{reversibile})
+$$
+
+In un sistema adiabatico o isolato l'entropia non diminuisce mai. Le adiabatiche reversibili sono ISOENTROPICHE (S costante); le irreversibili aumentano S. Per l'universo (sistema + ambiente): ΔS_univ ≥ 0 sempre.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Entropia del gas perfetto</summary>
+
+$$
+dS = \frac{dU + p\,dV}{T} = nc_V\frac{dT}{T} + nR\frac{dV}{V} \;\Rightarrow\; \Delta S = nc_V\ln\frac{T_B}{T_A} + nR\ln\frac{V_B}{V_A}
+$$
+
+Dal primo principio in forma reversibile (δQ_rev = dU + pdV) e dall'equazione di stato: formula operativa per QUALUNQUE coppia di stati del gas perfetto, anche se collegati da processi irreversibili (S è di stato!).
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Coerenza: adiabatica reversibile come isoentropica</summary>
+
+$$
+\Delta S = 0 \Rightarrow c_V\ln\frac{T_B}{T_A} = -R\ln\frac{V_B}{V_A} \Rightarrow TV^{\gamma-1} = \text{cost}
+$$
+
+Imponendo S costante nella formula del gas perfetto si riottiene l'equazione delle adiabatiche reversibili: le due strade (primo principio / entropia) coincidono.
+
+</details>
+
+<details id="passo-6">
+<summary>Passo 6 · Esempio irreversibile: espansione libera (Joule)</summary>
+
+$$
+Q = W = 0,\; \Delta T = 0 \;\Rightarrow\; \Delta S = nR\ln\frac{V_B}{V_A} > 0
+$$
+
+Adiabatica MA irreversibile: pur senza scambi, l'entropia cresce. Si calcola con la formula di stato (o con un'isoterma reversibile ausiliaria tra gli stessi stati). Esempio-chiave della differenza tra 'adiabatico' e 'isoentropico'.
+
+</details>
+
+<details id="passo-7">
+<summary>Passo 7 · Interpretazione microscopica (cenno)</summary>
+
+$$
+S = k_B\ln\Omega
+$$
+
+Boltzmann: l'entropia conta i microstati compatibili con lo stato macroscopico. L'aumento di S è l'evoluzione spontanea verso gli stati enormemente più probabili: il disordine vince per statistica, non per forza.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/entropia-adiabatiche/ipotesi">
+
+## Ipotesi di validità
+
+Esistenza di cammini reversibili tra gli stati (stati di equilibrio); T ben definita lungo il cammino reversibile usato per il calcolo; per la legge di aumento: sistema isolato o adiabatico.
+
+</div>
+
+<div data-note-id="teoria/entropia-adiabatiche/casi-limite">
+
+## Casi limite
+
+Trasformazione reversibile adiabatica: ΔS = 0. Isoterma reversibile: ΔS = Q/T. Scambio di calore tra due corpi a temperature diverse: ΔS_univ = Q(1/T_F − 1/T_C) &gt; 0, la quintessenza dell'irreversibilità. Ciclo qualsiasi: ΔS_sistema = 0 (funzione di stato) ma ΔS_univ ≥ 0.
+
+</div>
+
+<div data-note-id="teoria/entropia-adiabatiche/formule">
+
+## Formule chiave
+
+<Formula id="entropia-adiabatiche-f1" />
+
+<Formula id="entropia-adiabatiche-f2" />
+
+<Formula id="entropia-adiabatiche-f3" />
+
+<Formula id="entropia-adiabatiche-f4" />
+
+<Formula id="entropia-adiabatiche-f5" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/entropia-adiabatiche/esempio">
+
+2,0 mol di gas perfetto si espandono liberamente nel vuoto da 10 L a 30 L in un recipiente isolato. Calcolare: (a) la variazione di temperatura; (b) la variazione di entropia del gas; (c) la variazione di entropia dell'universo.
+
+1. **Primo principio.** Q = 0, W = 0 ⇒ ΔU = 0 ⇒ ΔT = 0 per il gas perfetto.
+2. **Entropia con un cammino reversibile.** Uso un'isoterma reversibile tra gli stessi stati: $\Delta S = nR\ln(V_B/V_A) = 2 \cdot 8{,}314 \cdot \ln 3 \approx 18{,}3\ \text{J/K}$. L'ambiente non scambia nulla: $\Delta S_{univ} = 18{,}3\ \text{J/K}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/entropia-adiabatiche/errori">
+
+- Calcolare ΔS integrando δQ/T lungo la trasformazione irreversibile reale: va usato un cammino reversibile ausiliario.
+- Credere che adiabatico implichi ΔS = 0: vale solo se anche reversibile (controesempio: espansione libera).
+- Dire che l'entropia di un sistema non può mai diminuire: può, se cede calore; è quella dell'universo a non diminuire.
+- Dimenticare che in un ciclo ΔS del sistema è nullo per definizione di funzione di stato.
+
+</div>
+
+<div data-note-id="teoria/entropia-adiabatiche/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Due corpi identici a T₁ e T₂ messi a contatto: calcola ΔS totale e mostra che è positiva.
+- Perché nel piano T-S l'area sotto la curva è il calore scambiato reversibilmente?
+- In che senso l'entropia definisce la freccia del tempo mentre le leggi di Newton sono reversibili?
+
+</div>
+
+</Layer>

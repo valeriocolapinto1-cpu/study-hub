@@ -1,0 +1,233 @@
+- id: pendolo-semplice-esposizione
+  topic: pendolo-semplice
+  objectives:
+    - pendolo-semplice.1
+    - pendolo-semplice.2
+    - pendolo-semplice.3
+    - pendolo-semplice.4
+    - pendolo-semplice.5
+    - pendolo-semplice.6
+    - pendolo-semplice.7
+  kind: orale
+  front:
+    it: "Esponi all'orale: «Pendolo semplice»."
+    en: 'Present at the oral exam: “Simple pendulum”.'
+  back:
+    it: >-
+      Il pendolo oscilla perché la gravità 'preme' il punto verso il fondo dell'arco, ma l'inerzia glielo fa
+      superare. La massa sparisce dal periodo per lo stesso motivo per cui tutti i gravi cadono con la stessa
+      accelerazione: raddoppiare m raddoppia sia la forza sia l'inerzia. L come 'braccio' del richiamo:
+      pendolo lungo, richiamo angolare debole, oscillazione lenta.
+
+
+      **Scaletta:**
+
+
+      - Disegnare il diagramma delle forze e proiettare peso e tensione
+
+      - Ricavare l'equazione esatta θ̈ + (g/L) sin θ = 0
+
+      - Giustificare l'approssimazione sin θ ≈ θ e i suoi limiti di validità
+
+      - Ricavare ω = √(g/L) e T = 2π√(L/g)
+
+      - Spiegare perché il periodo non dipende dalla massa
+
+      - Calcolare la tensione del filo con l'equazione radiale
+
+      - Discutere cosa succede a grandi ampiezze
+    en: >-
+      The pendulum oscillates because gravity 'pushes' the point towards the bottom of the arc, but inertia
+      makes it overshoot. The mass disappears from the period for the same reason all bodies fall with the
+      same acceleration: doubling m doubles both the force and the inertia. L acts as the 'lever arm' of the
+      restoring action: long pendulum, weak angular restoring, slow oscillation.
+
+
+      **Outline:**
+
+
+      - Draw the free-body diagram and project weight and tension
+
+      - Derive the exact equation θ̈ + (g/L) sin θ = 0
+
+      - Justify the approximation sin θ ≈ θ and its range of validity
+
+      - Derive ω = √(g/L) and T = 2π√(L/g)
+
+      - Explain why the period does not depend on the mass
+
+      - Compute the string tension from the radial equation
+
+      - Discuss what happens at large amplitudes
+- id: pendolo-semplice-orale-1
+  topic: pendolo-semplice
+  objectives:
+    - pendolo-semplice.6
+    - pendolo-semplice.7
+  kind: orale
+  front:
+    it: Come misureresti g con un pendolo e quali sono le principali fonti di errore?
+    en: How would you measure g with a pendulum, and what are the main sources of error?
+  back:
+    it: >-
+      Si misura il tempo di molte oscillazioni (es. 20) per ridurre l'errore di reazione sul cronometro, si
+      misura L dal punto di sospensione al centro della massa e si ricava \(g = 4\pi^2 L/T^2\); meglio ancora,
+      si ripete per diverse L e si ricava g dalla pendenza di \(T^2\) in funzione di L. Fonti di errore:
+      ampiezze non piccole (T cresce come \(1 + \theta_0^2/16\)), massa non puntiforme (in realtà è un pendolo
+      fisico), attrito e resistenza dell'aria, misura imprecisa di L, filo non inestensibile.
+    en: >-
+      Time many oscillations (e.g. 20) to reduce the reaction-time error of the stopwatch, measure L from the
+      pivot to the centre of the bob and get \(g = 4\pi^2 L/T^2\); better still, repeat for several L and
+      obtain g from the slope of \(T^2\) versus L. Sources of error: amplitudes that are not small (T grows as
+      \(1 + \theta_0^2/16\)), a bob that is not point-like (it is really a physical pendulum), friction and
+      air drag, inaccurate measurement of L, a string that is not inextensible.
+- id: pendolo-semplice-orale-2
+  topic: pendolo-semplice
+  objectives:
+    - pendolo-semplice.6
+    - pendolo-semplice.7
+  kind: orale
+  front:
+    it: Cosa cambia se il pendolo è dentro un ascensore che accelera verso l'alto con accelerazione a?
+    en: What changes if the pendulum is inside a lift accelerating upwards with acceleration a?
+  back:
+    it: >-
+      Nel riferimento dell'ascensore compare la forza apparente −m\(\vec A\), diretta verso il basso se
+      l'ascensore accelera verso l'alto: si somma al peso come una gravità efficace \(g_{eff} = g + a\). Il
+      periodo diventa \(T = 2\pi\sqrt{L/(g+a)}\), più breve. In caduta libera (a = −g) il pendolo non oscilla
+      più.
+    en: >-
+      In the lift frame there is the fictitious force −m\(\vec A\), pointing down if the lift accelerates
+      upwards: it adds to the weight as an effective gravity \(g_{eff} = g + a\). The period becomes \(T =
+      2\pi\sqrt{L/(g+a)}\), shorter. In free fall (a = −g) the pendulum no longer oscillates.
+- id: pendolo-semplice-orale-3
+  topic: pendolo-semplice
+  objectives:
+    - pendolo-semplice.6
+    - pendolo-semplice.7
+  kind: orale
+  front:
+    it: Che relazione c'è tra il pendolo semplice e il pendolo fisico?
+    en: How is the simple pendulum related to the physical pendulum?
+  back:
+    it: >-
+      Il pendolo fisico ha \(T = 2\pi\sqrt{I/(mgd)}\), con I momento d'inerzia rispetto al perno e d distanza
+      perno–CM. Confrontando con il pendolo semplice si definisce la lunghezza ridotta \(\ell = I/(md)\): un
+      pendolo semplice lungo \(\ell\) oscilla con lo stesso periodo. Il pendolo semplice è il caso particolare
+      \(I = mL^2\), d = L, per cui \(\ell = L\).
+    en: >-
+      The physical pendulum has \(T = 2\pi\sqrt{I/(mgd)}\), with I the moment of inertia about the pivot and d
+      the pivot–CM distance. Comparing with the simple pendulum one defines the reduced length \(\ell =
+      I/(md)\): a simple pendulum of length \(\ell\) has the same period. The simple pendulum is the special
+      case \(I = mL^2\), d = L, so \(\ell = L\).
+- id: pendolo-semplice-definizione
+  topic: pendolo-semplice
+  objectives:
+    - pendolo-semplice.1
+  kind: definizione
+  front:
+    it: 'Definizione: Pendolo semplice'
+    en: 'Definition: Simple pendulum'
+  back:
+    it: >-
+      Il pendolo semplice è un punto materiale di massa m sospeso a un filo inestensibile e privo di massa di
+      lunghezza L, libero di oscillare in un piano verticale sotto l'azione della gravità. La posizione è
+      individuata dall'angolo θ rispetto alla verticale. Per piccole oscillazioni il moto è armonico con
+      periodo \(T = 2\pi\sqrt{L/g}\), indipendente dalla massa e dall'ampiezza.
+    en: >-
+      The simple pendulum is a point mass m hanging from an inextensible, massless string of length L, free to
+      swing in a vertical plane under gravity. The position is given by the angle θ from the vertical. For
+      small oscillations the motion is harmonic with period \(T = 2\pi\sqrt{L/g}\), independent of mass and
+      amplitude.
+- id: pendolo-semplice-formule
+  topic: pendolo-semplice
+  objectives:
+    - pendolo-semplice.1
+    - pendolo-semplice.2
+    - pendolo-semplice.3
+    - pendolo-semplice.4
+    - pendolo-semplice.5
+    - pendolo-semplice.6
+    - pendolo-semplice.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Pendolo semplice»
+    en: The key formulas of “Simple pendulum”
+  back:
+    it: |-
+      - \(\ddot{\theta} + \frac{g}{L}\sin\theta = 0\)
+      - \(\omega = \sqrt{g/L}\)
+      - \(T = 2\pi\sqrt{L/g}\)
+      - \(T_{filo} = mg\cos\theta + \frac{mv^2}{L}\)
+    en: |-
+      - \(\ddot{\theta} + \frac{g}{L}\sin\theta = 0\)
+      - \(\omega = \sqrt{g/L}\)
+      - \(T = 2\pi\sqrt{L/g}\)
+      - \(T_{string} = mg\cos\theta + \frac{mv^2}{L}\)
+- id: pendolo-semplice-ipotesi
+  topic: pendolo-semplice
+  objectives:
+    - pendolo-semplice.1
+    - pendolo-semplice.2
+    - pendolo-semplice.3
+    - pendolo-semplice.4
+    - pendolo-semplice.5
+    - pendolo-semplice.6
+    - pendolo-semplice.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Pendolo semplice'
+    en: 'Validity assumptions: Simple pendulum'
+  back:
+    it: >-
+      Filo inestensibile e di massa trascurabile; massa puntiforme; assenza di attriti e resistenza dell'aria;
+      campo di gravità uniforme; per l'isocronismo, piccole oscillazioni (sin θ ≈ θ).
+    en: >-
+      Inextensible string of negligible mass; point mass; no friction or air drag; uniform gravitational
+      field; for isochronism, small oscillations (sin θ ≈ θ).
+- id: pendolo-semplice-casi-limite
+  topic: pendolo-semplice
+  objectives:
+    - pendolo-semplice.1
+    - pendolo-semplice.2
+    - pendolo-semplice.3
+    - pendolo-semplice.4
+    - pendolo-semplice.5
+    - pendolo-semplice.6
+    - pendolo-semplice.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Pendolo semplice'
+    en: 'Limiting cases: Simple pendulum'
+  back:
+    it: >-
+      Grandi ampiezze: il periodo cresce con θ₀, \(T \approx T_0(1 + \theta_0^2/16)\). L → 0: T → 0. g → 0
+      (caduta libera, orbita): il pendolo non oscilla affatto. θ₀ = π: equilibrio instabile in cima.
+    en: >-
+      Large amplitudes: the period grows with θ₀, \(T \approx T_0(1 + \theta_0^2/16)\). L → 0: T → 0. g → 0
+      (free fall, orbit): the pendulum does not oscillate at all. θ₀ = π: unstable equilibrium at the top.
+- id: pendolo-semplice-errori
+  topic: pendolo-semplice
+  objectives:
+    - pendolo-semplice.1
+    - pendolo-semplice.2
+    - pendolo-semplice.3
+    - pendolo-semplice.4
+    - pendolo-semplice.5
+    - pendolo-semplice.6
+    - pendolo-semplice.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Pendolo semplice'
+    en: 'Mistakes to avoid: Simple pendulum'
+  back:
+    it: |-
+      - Dire che il periodo non dipende dall'ampiezza in generale: vale solo per piccole oscillazioni.
+      - Includere la massa nel periodo: si semplifica perché massa inerziale e gravitazionale coincidono.
+      - Proiettare male il peso: la componente di richiamo è mg sin θ, quella lungo il filo mg cos θ.
+      - Dimenticare che la tensione deve anche fornire la forza centripeta: T ≠ mg cos θ durante il moto.
+    en: |-
+      - Saying that the period never depends on the amplitude: this holds only for small oscillations.
+      - Including the mass in the period: it cancels because inertial and gravitational mass coincide.
+      - Projecting the weight wrongly: the restoring component is mg sin θ, the one along the string mg cos θ.
+      - Forgetting that the tension must also provide the centripetal force: T ≠ mg cos θ during the motion.

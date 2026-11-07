@@ -1,0 +1,175 @@
+---
+course: fisica-1
+topic: pendolo-fisico
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/pendolo-fisico/idea">
+
+Nel pendolo fisico il peso 'tira giù' il baricentro con braccio d, ma deve far ruotare tutta l'inerzia I distribuita nel corpo. Il rapporto I/(Md) condensa la competizione: più inerzia lontana dall'asse rallenta l'oscillazione, più braccio del peso la accelera. La lunghezza ridotta traduce tutto nel linguaggio familiare del pendolo semplice.
+
+</div>
+
+<div class="muted" data-note-id="teoria/pendolo-fisico/prerequisiti">
+
+**Prima di questo argomento:** [Pendolo semplice](../pendolo-semplice/) · [Momenti di inerzia e teorema di Huygens-Steiner](../momenti-di-inerzia/) · [Teorema del momento angolare (seconda equazione cardinale)](../teorema-momento-angolare/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/pendolo-fisico/definizioni">
+
+## Definizioni
+
+Il pendolo fisico è un corpo rigido qualsiasi libero di oscillare in un piano verticale attorno a un asse orizzontale fisso O che non passa per il centro di massa. Detta d la distanza tra l'asse e il CM e I il momento d'inerzia rispetto all'asse, per piccole oscillazioni il moto è armonico con $T = 2\pi\sqrt{I/(Mgd)}$. La lunghezza ridotta $\ell = I/(Md)$ è la lunghezza del pendolo semplice equivalente.
+
+</div>
+
+<div data-note-id="teoria/pendolo-fisico/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Seconda cardinale rispetto all'asse di sospensione</summary>
+
+$$
+I\ddot{\theta} = \tau_z = -Mgd\sin\theta
+$$
+
+L'unico momento è quello del peso, applicato nel CM a distanza d dall'asse, con braccio d sin θ; la reazione del perno non ha momento rispetto a O. Il segno meno: momento di richiamo.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Equazione del pendolo fisico</summary>
+
+$$
+\ddot{\theta} + \frac{Mgd}{I}\sin\theta = 0
+$$
+
+Stessa struttura del pendolo semplice con g/L → Mgd/I.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Piccole oscillazioni</summary>
+
+$$
+\sin\theta \approx \theta \;\Rightarrow\; \ddot{\theta} + \omega^2\theta = 0, \qquad \omega = \sqrt{\frac{Mgd}{I}}
+$$
+
+Moto armonico in θ: linearizzazione identica a quella del pendolo semplice.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Periodo e lunghezza ridotta</summary>
+
+$$
+T = 2\pi\sqrt{\frac{I}{Mgd}} = 2\pi\sqrt{\frac{\ell}{g}}, \qquad \ell = \frac{I}{Md}
+$$
+
+Il pendolo fisico oscilla come un pendolo semplice di lunghezza ℓ. Con Huygens-Steiner: ℓ = (I_cm + Md²)/(Md) = I_cm/(Md) + d ≥ d: la lunghezza ridotta supera sempre la distanza dal CM.
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Verifica di consistenza: il punto materiale</summary>
+
+$$
+I = Md^2 \;\Rightarrow\; T = 2\pi\sqrt{\frac{Md^2}{Mgd}} = 2\pi\sqrt{\frac{d}{g}}
+$$
+
+Se tutta la massa è concentrata a distanza d si riottiene il pendolo semplice: il caso generale contiene quello particolare.
+
+</details>
+
+<details id="passo-6">
+<summary>Passo 6 · Esempio: asta omogenea sospesa a un estremo</summary>
+
+$$
+I = \frac{1}{3}ML^2,\; d = \frac{L}{2} \;\Rightarrow\; T = 2\pi\sqrt{\frac{2L}{3g}}
+$$
+
+Lunghezza ridotta ℓ = 2L/3: l'asta oscilla come un pendolo semplice lungo 2/3 della sua lunghezza.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/pendolo-fisico/ipotesi">
+
+## Ipotesi di validità
+
+Corpo rigido; asse fisso orizzontale privo di attrito; campo di gravità uniforme; per l'isocronismo, piccole oscillazioni.
+
+</div>
+
+<div data-note-id="teoria/pendolo-fisico/casi-limite">
+
+## Casi limite
+
+d → 0 (sospensione nel CM): il momento di richiamo sparisce, T → ∞, equilibrio indifferente. Tutta la massa a distanza d: pendolo semplice. Esiste un d che minimizza T: d = √(I_cm/M) (raggio giratore baricentrico).
+
+</div>
+
+<div data-note-id="teoria/pendolo-fisico/formule">
+
+## Formule chiave
+
+<Formula id="pendolo-fisico-f1" />
+
+<Formula id="pendolo-fisico-f2" />
+
+<Formula id="pendolo-fisico-f3" />
+
+<Formula id="pendolo-fisico-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/pendolo-fisico/esempio">
+
+Un'asta omogenea lunga 0,90 m oscilla attorno a un asse orizzontale passante per un suo estremo. Calcolare: (a) la lunghezza ridotta; (b) il periodo delle piccole oscillazioni; (c) il periodo se l'asse passa invece a 0,15 m dal centro.
+
+1. **Estremo.** $\ell = I/(Md) = \tfrac13 L^2/(L/2) = \tfrac23 L = 0{,}60\ \text{m}$, quindi $T = 2\pi\sqrt{\ell/g} \approx 1{,}554\ \text{s}$.
+2. **Asse a 0,15 m dal centro.** $\ell = \dfrac{L^2/12}{d} + d = \dfrac{0{,}0675}{0{,}15} + 0{,}15 = 0{,}60\ \text{m}$: stesso periodo, 1,554 s! È il punto coniugato dell'estremo (distanza tra i due assi = ℓ).
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/pendolo-fisico/errori">
+
+- Usare I_cm al posto di I rispetto all'asse di sospensione (manca Md²).
+- Confondere d (distanza asse-CM) con la lunghezza del corpo.
+- Applicare la formula del pendolo semplice T = 2π√(L/g) con L lunghezza geometrica del corpo.
+- Dimenticare che la formula del periodo vale solo per piccole oscillazioni.
+
+</div>
+
+<div data-note-id="teoria/pendolo-fisico/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Come useresti un pendolo fisico per misurare g (pendolo reversibile di Kater)?
+- Perché esiste una distanza di sospensione che rende minimo il periodo, e quanto vale?
+- Cosa cambia nel periodo se l'ampiezza non è piccola?
+
+</div>
+
+</Layer>

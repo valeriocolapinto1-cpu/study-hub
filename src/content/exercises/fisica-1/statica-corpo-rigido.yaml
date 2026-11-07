@@ -1,0 +1,102 @@
+- id: scala-appoggiata
+  topic: statica-corpo-rigido
+  objectives:
+    - statica-corpo-rigido.1
+    - statica-corpo-rigido.2
+    - statica-corpo-rigido.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Una scala omogenea di massa 12 kg e lunghezza 4,0 m è appoggiata a un muro liscio e forma un angolo di
+      60° con il pavimento scabro. Calcolare: (a) la reazione del muro; (b) la forza di attrito statico
+      necessaria; (c) il coefficiente di attrito minimo perché non scivoli.
+    en: >-
+      A uniform ladder of mass 12 kg and length 4.0 m leans against a smooth wall at an angle of 60° with the
+      rough floor. Find: (a) the reaction of the wall; (b) the static friction force needed; (c) the minimum
+      friction coefficient for it not to slip.
+  steps:
+    - title:
+        it: Momenti rispetto al piede
+        en: Torques about the foot
+      body:
+        it: >-
+          \(N_m L\sin 60° = Mg\,\tfrac{L}{2}\cos 60° \Rightarrow N_m = \dfrac{Mg}{2\tan 60°} \approx 33{,}98\
+          \text{N}\).
+        en: >-
+          \(N_w L\sin 60° = Mg\,\tfrac{L}{2}\cos 60° \Rightarrow N_w = \dfrac{Mg}{2\tan 60°} \approx 33.98\
+          \text{N}\).
+    - title:
+        it: Forze
+        en: Forces
+      body:
+        it: >-
+          Orizzontale: \(f_s = N_m \approx 33{,}98\ \text{N}\); verticale: \(N_p = Mg \approx 117{,}7\
+          \text{N}\).
+        en: 'Horizontal: \(f_s = N_w \approx 33.98\ \text{N}\); vertical: \(N_f = Mg \approx 117.7\ \text{N}\).'
+    - title:
+        it: Attrito minimo
+        en: Minimum friction
+      body:
+        it: >-
+          \(f_s \le \mu_s N_p \Rightarrow \mu_s \ge \dfrac{1}{2\tan 60°} \approx 0{,}289\), indipendente da
+          massa e lunghezza.
+        en: >-
+          \(f_s \le \mu_s N_f \Rightarrow \mu_s \ge \dfrac{1}{2\tan 60°} \approx 0.289\), independent of mass
+          and length.
+  answer:
+    - label:
+        it: N_muro
+        en: N_wall
+      value: 33.98
+      unit: 'N'
+    - label:
+        it: f_s
+        en: f_s
+      value: 33.98
+      unit: 'N'
+    - label:
+        it: μ_s min
+        en: min μ_s
+      value: 0.289
+  origin: originale
+- id: trave-due-appoggi
+  topic: statica-corpo-rigido
+  objectives:
+    - statica-corpo-rigido.1
+    - statica-corpo-rigido.2
+    - statica-corpo-rigido.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Una trave omogenea di 6,0 m e massa 40 kg poggia su due appoggi alle estremità A e B. Un carico di 60 kg
+      è posto a 2,0 m da A. Calcolare le reazioni dei due appoggi.
+    en: >-
+      A uniform 6.0 m beam of mass 40 kg rests on two supports at its ends A and B. A 60 kg load is placed 2.0
+      m from A. Find the reactions of the two supports.
+  steps:
+    - title:
+        it: Momenti rispetto ad A
+        en: Torques about A
+      body:
+        it: \(R_B \cdot 6{,}0 = 40g \cdot 3{,}0 + 60g \cdot 2{,}0 \Rightarrow R_B = 40g \approx 392\ \text{N}\).
+        en: \(R_B \cdot 6.0 = 40g \cdot 3.0 + 60g \cdot 2.0 \Rightarrow R_B = 40g \approx 392\ \text{N}\).
+    - title:
+        it: Equilibrio verticale
+        en: Vertical equilibrium
+      body:
+        it: '\(R_A = 100g - R_B = 60g \approx 589\ \text{N}\): l''appoggio più vicino al carico porta di più.'
+        en: '\(R_A = 100g - R_B = 60g \approx 589\ \text{N}\): the support closer to the load carries more.'
+  answer:
+    - label:
+        it: R_A
+        en: R_A
+      value: 589
+      unit: 'N'
+    - label:
+        it: R_B
+        en: R_B
+      value: 392
+      unit: 'N'
+  origin: originale

@@ -1,0 +1,159 @@
+---
+course: fisica-1
+topic: lavoro-energia-cinetica
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/lavoro-energia-cinetica/idea">
+
+Il lavoro misura quanta 'spinta utile' una forza dà lungo il moto: solo la componente della forza lungo la velocità cambia il modulo della velocità. Il teorema dell'energia cinetica è la seconda legge di Newton 'integrata lungo il cammino': trasforma un'informazione istantanea (F = ma) in un bilancio tra due stati, spesso molto più comodo dei calcoli con le accelerazioni.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/lavoro-energia-cinetica/definizioni">
+
+## Definizioni
+
+Il lavoro elementare di una forza $\vec{F}$ su uno spostamento infinitesimo $d\vec{r}$ è $dW = \vec{F}\cdot d\vec{r} = F\,ds\cos\theta$; il lavoro lungo un cammino è l'integrale di linea $W = \int_A^B \vec{F}\cdot d\vec{r}$. L'energia cinetica di un punto materiale è $K = \frac{1}{2}mv^2$. Il teorema dell'energia cinetica (o delle forze vive) afferma che il lavoro totale di tutte le forze agenti uguaglia la variazione di energia cinetica: $W_{tot} = \Delta K$. La potenza è $P = dW/dt = \vec{F}\cdot\vec{v}$.
+
+</div>
+
+<div data-note-id="teoria/lavoro-energia-cinetica/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Parto dalla seconda legge di Newton</summary>
+
+$$
+\vec{F}_{tot} = m\frac{d\vec{v}}{dt}
+$$
+
+F_tot è la risultante di tutte le forze sul punto materiale.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Moltiplico scalarmente per lo spostamento elementare</summary>
+
+$$
+\vec{F}_{tot}\cdot d\vec{r} = m\frac{d\vec{v}}{dt}\cdot \vec{v}\,dt
+$$
+
+Uso dr = v dt: il lavoro elementare diventa una quantità puramente cinematica.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Riconosco una derivata esatta</summary>
+
+$$
+m\,\vec{v}\cdot\frac{d\vec{v}}{dt} = \frac{d}{dt}\Big(\frac{1}{2}m\,\vec{v}\cdot\vec{v}\Big) = \frac{d}{dt}\Big(\frac{1}{2}mv^2\Big)
+$$
+
+Regola di derivazione del prodotto scalare: v·dv/dt è metà della derivata di v².
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Integro lungo la traiettoria da A a B</summary>
+
+$$
+W_{tot} = \int_A^B \vec{F}_{tot}\cdot d\vec{r} = \int_{t_A}^{t_B} \frac{d}{dt}\Big(\frac{1}{2}mv^2\Big)dt = \frac{1}{2}mv_B^2 - \frac{1}{2}mv_A^2
+$$
+
+Il risultato dipende solo dai moduli iniziale e finale della velocità: W_tot = ΔK, qualunque siano le forze e la traiettoria.
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Osservazioni sul segno e sulle forze normali</summary>
+
+$$
+dW > 0 \iff \theta < 90°; \qquad \vec{F}\perp\vec{v} \Rightarrow W = 0
+$$
+
+Una forza sempre perpendicolare alla velocità (tensione nel pendolo, normale, forza centripeta, forza di Lorentz) non compie lavoro e non cambia il modulo della velocità.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/lavoro-energia-cinetica/ipotesi">
+
+## Ipotesi di validità
+
+Punto materiale (per i corpi estesi il teorema va applicato con cautela: conta lo spostamento del punto di applicazione); meccanica classica; il teorema vale per QUALSIASI tipo di forza, conservativa o no.
+
+</div>
+
+<div data-note-id="teoria/lavoro-energia-cinetica/casi-limite">
+
+## Casi limite
+
+Forza costante e parallela allo spostamento rettilineo: W = Fs (formula elementare). Forza perpendicolare: W = 0, moto circolare uniforme. Se W_tot &lt; 0 il corpo rallenta (es. frenata: W_attrito = −ΔK).
+
+</div>
+
+<div data-note-id="teoria/lavoro-energia-cinetica/formule">
+
+## Formule chiave
+
+<Formula id="lavoro-energia-cinetica-f1" />
+
+<Formula id="lavoro-energia-cinetica-f2" />
+
+<Formula id="lavoro-energia-cinetica-f3" />
+
+<Formula id="lavoro-energia-cinetica-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/lavoro-energia-cinetica/esempio">
+
+Un'auto di massa m = 1200 kg viaggia a 90 km/h e frena fino a fermarsi su un tratto rettilineo orizzontale. Calcolare: (a) il lavoro totale delle forze; (b) lo spazio di frenata se la forza frenante è costante e vale 6000 N; (c) la potenza media dissipata se la frenata dura 5,0 s.
+
+1. **Teorema dell'energia cinetica.** 90 km/h = 25 m/s. $W_{tot} = \Delta K = 0 - \tfrac12 \cdot 1200 \cdot 25^2 = -3{,}75\cdot 10^5\ \text{J}$.
+2. **Spazio di frenata.** Peso e normale non lavorano; resta la forza frenante: $-F d = \Delta K \Rightarrow d = 3{,}75\cdot 10^5/6000 = 62{,}5\ \text{m}$.
+3. **Potenza media.** $\bar P = |W|/\Delta t = 3{,}75\cdot 10^5/5{,}0 = 7{,}5\cdot 10^4\ \text{W}$ (75 kW, convertiti in calore nei freni).
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/lavoro-energia-cinetica/errori">
+
+- Applicare ΔK = W della sola forza che interessa dimenticando le altre: il teorema riguarda il lavoro TOTALE.
+- Dire che una forza 'grande' fa sempre lavoro: se è perpendicolare allo spostamento il lavoro è nullo.
+- Trattare il lavoro come una quantità che dipende solo da posizione iniziale e finale: in generale dipende dal cammino (salvo forze conservative).
+- Dimenticare che il lavoro è uno scalare con segno, non un vettore.
+
+</div>
+
+<div data-note-id="teoria/lavoro-energia-cinetica/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Il lavoro dipende dal sistema di riferimento?
+- Nel moto circolare uniforme chi fornisce la forza centripeta compie lavoro? Perché no?
+- Come si estende il teorema a un sistema di punti materiali?
+
+</div>
+
+</Layer>

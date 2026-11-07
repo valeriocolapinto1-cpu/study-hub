@@ -1,0 +1,169 @@
+---
+course: fisica-1
+topic: legge-di-stevino
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/legge-di-stevino/idea">
+
+Every layer of fluid must hold up all the fluid above it: going down, the load grows and so does the pressure. Its being a scalar comes from the inability of a fluid at rest to sustain tangential stresses: whatever orientation I give the test surface, I feel the same normal push.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/legge-di-stevino/definizioni">
+
+## Definitions
+
+The pressure at a point of a fluid is the ratio between the normal force exerted on an elementary surface and the area of the surface: $p = dF_\perp/dA$; it is a scalar (Pascal's principle: at a point it acts equally in all directions). Stevin's law gives the pressure in an incompressible fluid at rest: $p(h) = p_0 + \rho g h$, with h the depth below the free surface where the pressure is p₀.
+
+</div>
+
+<div data-note-id="teoria/legge-di-stevino/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Equilibrium of a small cylinder of fluid</summary>
+
+$$
+p(z)A - p(z+dz)A - \rho g A\,dz = 0
+$$
+
+Isolate a small horizontal cylinder of area A and height dz (z axis upwards): the lower face receives a larger push than the upper one, and the difference supports the weight ρgA dz of the fluid inside.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Fundamental equation of fluid statics</summary>
+
+$$
+\frac{dp}{dz} = -\rho g
+$$
+
+Pressure decreases going up. It holds for any fluid at rest; to integrate it one needs to know ρ(z).
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Integrate for an incompressible fluid (constant ρ)</summary>
+
+$$
+\int_{p_0}^{p} dp' = -\rho g\int_{0}^{z} dz' \;\Rightarrow\; p = p_0 - \rho g z \;\;\xrightarrow{h = -z}\;\; p = p_0 + \rho g h
+$$
+
+Stevin's law: pressure grows linearly with depth h. About 1 atm every 10 m of water.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Consequence: communicating vessels and horizontal isobars</summary>
+
+$$
+p = p(h) \;\text{only} \;\Rightarrow\; \text{horizontal isobaric surfaces}
+$$
+
+Pressure depends only on height, not on the shape of the container: in communicating vessels the liquid reaches the same level (hydrostatic paradox).
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Application: manometer and Torricelli's barometer</summary>
+
+$$
+p_{atm} = \rho_{Hg}\,g\,h_{Hg} \;\approx\; 13600 \cdot 9.81 \cdot 0.76 \approx 1.013\times10^5\;\text{Pa}
+$$
+
+In Torricelli's inverted tube the column of mercury is supported by atmospheric pressure: 760 mm of Hg.
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · From Stevin to Archimedes</summary>
+
+$$
+F_{Arch} = \oint p\,dA_{\perp,vert} = \rho_{fluid}\,g\,V_{immersed}
+$$
+
+Archimedes' buoyant force is the resultant of Stevin pressures on the surface of the body: larger below than above, so directed upwards and equal to the weight of the displaced fluid.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/legge-di-stevino/ipotesi">
+
+## Validity assumptions
+
+Fluid at rest (statics); for the integrated form: incompressible (constant ρ) and uniform g. The fluid does not sustain shear stresses (the very definition of a fluid).
+
+</div>
+
+<div data-note-id="teoria/legge-di-stevino/casi-limite">
+
+## Limiting cases
+
+Gases over small height differences: tiny ρ, almost uniform p (Stevin is neglected in the air of a room). Atmosphere on a large scale: ρ not constant; integrating with the isothermal ideal gas gives the barometric exponential. g → 0 (orbit): no pressure gradient, the fluid floats.
+
+</div>
+
+<div data-note-id="teoria/legge-di-stevino/formule">
+
+## Key formulas
+
+<Formula id="legge-di-stevino-f1" />
+
+<Formula id="legge-di-stevino-f2" />
+
+<Formula id="legge-di-stevino-f3" />
+
+<Formula id="legge-di-stevino-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/legge-di-stevino/esempio">
+
+A diver goes down to 25 m below the sea surface (ρ = 1025 kg/m³, atmospheric pressure 1.013·10⁵ Pa). Find: (a) the absolute pressure; (b) the gauge pressure; (c) the force the water exerts on the glass of the mask (area 120 cm²), neglecting the change of depth across the glass.
+
+1. **Stevin.** $p_{gauge} = \rho g h = 1025 \cdot 9.81 \cdot 25 \approx 2.514\cdot 10^5\ \text{Pa}$; $p = p_0 + p_{gauge} \approx 3.527\cdot 10^5\ \text{Pa}$ (about 3.5 atm).
+2. **Force on the glass.** Inside the mask there is air at the same absolute pressure if the diver equalises; without equalising (air at p₀) the net force is $p_{gauge}A \approx 2.514\cdot 10^5 \cdot 0.012 \approx 3.02\ \text{kN}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/legge-di-stevino/errori">
+
+- Thinking of pressure as a vector 'pointing down': it is a scalar, acting in all directions.
+- Believing that the pressure on the bottom depends on the shape or on the total amount of liquid: only depth matters (hydrostatic paradox).
+- Confusing absolute and gauge pressure.
+- Applying the ρgh form to a gas over large height differences where ρ varies.
+
+</div>
+
+<div data-note-id="teoria/legge-di-stevino/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- How does atmospheric pressure change with altitude if air is taken as an isothermal ideal gas?
+- Why must a dam be thicker at the base, and why does its thickness not depend on the length of the lake?
+- A body floats: what is the relation between its average density and the immersed fraction?
+
+</div>
+
+</Layer>

@@ -1,0 +1,109 @@
+- id: asta-pendolo-fisico
+  topic: pendolo-fisico
+  objectives:
+    - pendolo-fisico.1
+    - pendolo-fisico.2
+    - pendolo-fisico.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un'asta omogenea lunga 0,90 m oscilla attorno a un asse orizzontale passante per un suo estremo.
+      Calcolare: (a) la lunghezza ridotta; (b) il periodo delle piccole oscillazioni; (c) il periodo se l'asse
+      passa invece a 0,15 m dal centro.
+    en: >-
+      A uniform rod 0.90 m long swings about a horizontal axis through one of its ends. Find: (a) the reduced
+      length; (b) the small-oscillation period; (c) the period if the axis instead passes 0.15 m from the
+      centre.
+  steps:
+    - title:
+        it: Estremo
+        en: End
+      body:
+        it: >-
+          \(\ell = I/(Md) = \tfrac13 L^2/(L/2) = \tfrac23 L = 0{,}60\ \text{m}\), quindi \(T =
+          2\pi\sqrt{\ell/g} \approx 1{,}554\ \text{s}\).
+        en: >-
+          \(\ell = I/(Md) = \tfrac13 L^2/(L/2) = \tfrac23 L = 0.60\ \text{m}\), so \(T = 2\pi\sqrt{\ell/g}
+          \approx 1.554\ \text{s}\).
+    - title:
+        it: Asse a 0,15 m dal centro
+        en: Axis 0.15 m from the centre
+      body:
+        it: >-
+          \(\ell = \dfrac{L^2/12}{d} + d = \dfrac{0{,}0675}{0{,}15} + 0{,}15 = 0{,}60\ \text{m}\): stesso
+          periodo, 1,554 s! È il punto coniugato dell'estremo (distanza tra i due assi = ℓ).
+        en: >-
+          \(\ell = \dfrac{L^2/12}{d} + d = \dfrac{0.0675}{0.15} + 0.15 = 0.60\ \text{m}\): same period, 1.554
+          s! It is the conjugate point of the end (distance between the two axes = ℓ).
+  answer:
+    - label:
+        it: ℓ
+        en: ℓ
+      value: 0.6
+      unit: m
+    - label:
+        it: T
+        en: T
+      value: 1.554
+      unit: s
+    - label:
+        it: T (d = 0,15 m)
+        en: T (d = 0.15 m)
+      value: 1.554
+      unit: s
+  origin: originale
+- id: anello-appeso
+  topic: pendolo-fisico
+  objectives:
+    - pendolo-fisico.1
+    - pendolo-fisico.2
+    - pendolo-fisico.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Un anello sottile di raggio R = 0,25 m è appeso a un chiodo e oscilla nel proprio piano. Calcolare: (a)
+      il momento d'inerzia rispetto al chiodo in funzione di M; (b) la lunghezza ridotta; (c) il periodo delle
+      piccole oscillazioni.
+    en: >-
+      A thin ring of radius R = 0.25 m hangs on a nail and swings in its own plane. Find: (a) the moment of
+      inertia about the nail in terms of M; (b) the reduced length; (c) the small-oscillation period.
+  steps:
+    - title:
+        it: Huygens-Steiner
+        en: Huygens–Steiner
+      body:
+        it: \(I = MR^2 + MR^2 = 2MR^2\), con d = R.
+        en: \(I = MR^2 + MR^2 = 2MR^2\), with d = R.
+    - title:
+        it: Periodo
+        en: Period
+      body:
+        it: >-
+          \(\ell = 2MR^2/(MR) = 2R = 0{,}50\ \text{m}\), \(T = 2\pi\sqrt{2R/g} \approx 1{,}419\ \text{s}\):
+          come un pendolo semplice lungo quanto il diametro.
+        en: >-
+          \(\ell = 2MR^2/(MR) = 2R = 0.50\ \text{m}\), \(T = 2\pi\sqrt{2R/g} \approx 1.419\ \text{s}\): like a
+          simple pendulum as long as the diameter.
+  answer:
+    - label:
+        it: ℓ
+        en: ℓ
+      value: 0.5
+      unit: m
+    - label:
+        it: T
+        en: T
+      value: 1.419
+      unit: s
+  origin: originale
+- id: pendolo-fisico-variante
+  topic: pendolo-fisico
+  objectives:
+    - pendolo-fisico.1
+    - pendolo-fisico.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/pendolo-fisico
+  origin: tipologia-appello

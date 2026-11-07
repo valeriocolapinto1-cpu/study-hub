@@ -1,0 +1,45 @@
+id: secondo-principio
+course: fisica-1
+order: 29
+title:
+  it: Secondo principio della termodinamica
+  en: Second law of thermodynamics
+summary:
+  it: >-
+    Il primo principio dice che l'energia si conserva; il secondo dice che ha una direzione preferita di
+    degrado: il lavoro si converte in calore integralmente e spontaneamente, il contrario mai del tutto.
+  en: >-
+    The first law says energy is conserved; the second says it has a preferred direction of degradation: work
+    turns into heat completely and spontaneously, the reverse never entirely.
+group:
+  it: Fluidi e termodinamica
+  en: Fluids and thermodynamics
+objectives:
+  - id: secondo-principio.1
+    text:
+      it: Enunciare Kelvin-Planck con tutte le clausole (ciclico, unico risultato)
+      en: State Kelvin–Planck with all its clauses (cyclic, only result)
+  - id: secondo-principio.2
+    text:
+      it: Enunciare Clausius correttamente
+      en: State Clausius correctly
+  - id: secondo-principio.3
+    text:
+      it: Dimostrare l'equivalenza nei due versi (per assurdo, con le macchine composte)
+      en: Prove the equivalence both ways (by contradiction, with composite machines)
+  - id: secondo-principio.4
+    text:
+      it: Definire rendimento e mostrare η < 1
+      en: Define efficiency and show η < 1
+  - id: secondo-principio.5
+    text:
+      it: Definire i COP di frigorifero e pompa di calore
+      en: Define the COPs of refrigerator and heat pump
+  - id: secondo-principio.6
+    text:
+      it: Spiegare cos'è una trasformazione reversibile e dare esempi di irreversibilità
+      en: Explain what a reversible transformation is and give examples of irreversibility
+  - id: secondo-principio.7
+    text:
+      it: Chiarire perché l'isoterma non viola Kelvin-Planck
+      en: Make clear why the isotherm does not violate Kelvin–Planck

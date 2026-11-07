@@ -1,0 +1,133 @@
+- id: bilancia-ascensore
+  topic: sistemi-di-riferimento
+  objectives:
+    - sistemi-di-riferimento.1
+    - sistemi-di-riferimento.2
+    - sistemi-di-riferimento.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Una persona di massa m = 70 kg sta su una bilancia pesapersone dentro un ascensore. Calcolare
+      l'indicazione della bilancia (in newton) quando l'ascensore: (a) sale accelerando con A = 1,5 m/s²; (b)
+      sale a velocità costante; (c) sale frenando con decelerazione 2,0 m/s².
+    en: >-
+      A person of mass m = 70 kg stands on a bathroom scale inside a lift. Find the scale reading (in newtons)
+      when the lift: (a) goes up accelerating with A = 1.5 m/s²; (b) goes up at constant speed; (c) goes up
+      slowing down with deceleration 2.0 m/s².
+  steps:
+    - title:
+        it: Nel riferimento dell'ascensore
+        en: In the lift frame
+      body:
+        it: >-
+          La persona è ferma rispetto all'ascensore: \(N - mg - mA = 0\), con A positiva se l'accelerazione è
+          verso l'alto. Quindi \(N = m(g + A)\).
+        en: >-
+          The person is at rest relative to the lift: \(N - mg - mA = 0\), with A positive if the acceleration
+          points up. Hence \(N = m(g + A)\).
+    - title:
+        it: I tre casi
+        en: The three cases
+      body:
+        it: >-
+          (a) \(N = 70 \cdot 11{,}31 \approx 792\ \text{N}\); (b) A = 0, \(N = mg \approx 687\ \text{N}\); (c)
+          salire frenando vuol dire accelerazione verso il basso, A = −2,0 m/s²: \(N = 70 \cdot 7{,}81 \approx
+          547\ \text{N}\).
+        en: >-
+          (a) \(N = 70 \cdot 11.31 \approx 792\ \text{N}\); (b) A = 0, \(N = mg \approx 687\ \text{N}\); (c)
+          going up while slowing down means a downward acceleration, A = −2.0 m/s²: \(N = 70 \cdot 7.81
+          \approx 547\ \text{N}\).
+  answer:
+    - label:
+        it: N (a)
+        en: N (a)
+      value: 792
+      unit: 'N'
+    - label:
+        it: N (b)
+        en: N (b)
+      value: 687
+      unit: 'N'
+    - label:
+        it: N (c)
+        en: N (c)
+      value: 547
+      unit: 'N'
+  origin: originale
+- id: cassa-camion
+  topic: sistemi-di-riferimento
+  objectives:
+    - sistemi-di-riferimento.1
+    - sistemi-di-riferimento.2
+    - sistemi-di-riferimento.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Una cassa è appoggiata sul pianale di un camion; il coefficiente di attrito statico è μs = 0,35 e quello
+      dinamico μd = 0,25. (a) Qual è la massima accelerazione del camion senza che la cassa scivoli? (b) Se il
+      camion accelera con A = 4,5 m/s², quale accelerazione ha la cassa rispetto al camion? (c) E rispetto
+      alla strada?
+    en: >-
+      A crate rests on the flat bed of a lorry; the static friction coefficient is μs = 0.35 and the kinetic
+      one μd = 0.25. (a) What is the maximum acceleration of the lorry without the crate slipping? (b) If the
+      lorry accelerates with A = 4.5 m/s², what is the acceleration of the crate relative to the lorry? (c)
+      And relative to the road?
+  steps:
+    - title:
+        it: Senza scivolamento
+        en: No slipping
+      body:
+        it: >-
+          Nel riferimento del camion la forza apparente −mA va bilanciata dall'attrito statico: \(mA \le \mu_s
+          mg \Rightarrow A_{max} = \mu_s g \approx 3{,}43\ \text{m/s}^2\).
+        en: >-
+          In the lorry frame the fictitious force −mA must be balanced by static friction: \(mA \le \mu_s mg
+          \Rightarrow A_{max} = \mu_s g \approx 3.43\ \text{m/s}^2\).
+    - title:
+        it: Con scivolamento
+        en: With slipping
+      body:
+        it: >-
+          Con A = 4,5 m/s² la cassa scivola all'indietro: \(ma' = -mA + \mu_d mg \Rightarrow a' = -4{,}5 +
+          2{,}45 \approx -2{,}05\ \text{m/s}^2\).
+        en: >-
+          With A = 4.5 m/s² the crate slides backwards: \(ma' = -mA + \mu_d mg \Rightarrow a' = -4.5 + 2.45
+          \approx -2.05\ \text{m/s}^2\).
+    - title:
+        it: Rispetto alla strada
+        en: Relative to the road
+      body:
+        it: >-
+          \(a = a' + A = \mu_d g \approx 2{,}45\ \text{m/s}^2\), in avanti: è l'unica forza reale orizzontale,
+          l'attrito dinamico, ad accelerarla.
+        en: >-
+          \(a = a' + A = \mu_d g \approx 2.45\ \text{m/s}^2\), forwards: the only real horizontal force,
+          kinetic friction, is what accelerates it.
+  answer:
+    - label:
+        it: A_max
+        en: A_max
+      value: 3.43
+      unit: m/s²
+    - label:
+        it: a' (rispetto al camion)
+        en: a' (relative to the lorry)
+      value: -2.05
+      unit: m/s²
+    - label:
+        it: a (rispetto alla strada)
+        en: a (relative to the road)
+      value: 2.45
+      unit: m/s²
+  origin: originale
+- id: riferimento-accelerato-variante
+  topic: sistemi-di-riferimento
+  objectives:
+    - sistemi-di-riferimento.1
+    - sistemi-di-riferimento.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/riferimento-accelerato
+  origin: tipologia-appello

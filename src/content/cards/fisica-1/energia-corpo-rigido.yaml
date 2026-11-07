@@ -1,0 +1,222 @@
+- id: energia-corpo-rigido-esposizione
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.1
+    - energia-corpo-rigido.2
+    - energia-corpo-rigido.3
+    - energia-corpo-rigido.4
+    - energia-corpo-rigido.5
+    - energia-corpo-rigido.6
+  kind: orale
+  front:
+    it: "Esponi all'orale: «Energia cinetica e meccanica di un corpo rigido»."
+    en: 'Present at the oral exam: “Kinetic and mechanical energy of a rigid body”.'
+  back:
+    it: >-
+      Un corpo rigido immagazzina energia cinetica in due 'serbatoi': il moto d'insieme del baricentro e la
+      rotazione attorno a esso. La scelta tra le due scritture equivalenti (asse fisso vs König) è solo
+      questione di comodità: l'energia è la stessa. Il potenziale, invece, ha un solo serbatoio: la quota del
+      baricentro.
+
+
+      **Scaletta:**
+
+
+      - Ricavare K = ½Iω² per l'asse fisso
+
+      - Scrivere la forma di König e mostrare la coerenza delle due scritture
+
+      - Dimostrare U = Mgz_cm
+
+      - Spiegare perché il lavoro delle forze interne di un rigido è nullo
+
+      - Precisare le condizioni per conservare E (vincoli ideali)
+
+      - Risolvere l'esempio dell'asta incernierata che cade
+    en: >-
+      A rigid body stores kinetic energy in two 'tanks': the overall motion of the centre of mass and the
+      rotation about it. The choice between the two equivalent forms (fixed axis vs König) is only a matter of
+      convenience: the energy is the same. Potential energy, instead, has a single tank: the height of the
+      centre of mass.
+
+
+      **Outline:**
+
+
+      - Derive K = ½Iω² for the fixed axis
+
+      - Write the König form and show that the two forms agree
+
+      - Prove U = Mgz_cm
+
+      - Explain why the work of internal forces of a rigid body is zero
+
+      - State the conditions for conserving E (ideal constraints)
+
+      - Solve the example of the falling hinged rod
+- id: energia-corpo-rigido-orale-1
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.5
+    - energia-corpo-rigido.6
+  kind: orale
+  front:
+    it: Nell'asta che cade, quale punto tocca terra con velocità maggiore di quella di caduta libera?
+    en: In the falling rod, which point hits the ground faster than in free fall?
+  back:
+    it: >-
+      Dall'energia \(\omega = \sqrt{3g/L}\) quando l'asta è verticale, quindi l'estremo libero ha \(v = \omega
+      L = \sqrt{3gL}\), maggiore di \(\sqrt{2gL}\) che avrebbe un grave lasciato cadere dalla stessa quota L.
+      Non c'è contraddizione: il perno e la rigidità trasferiscono energia dalle parti vicine al perno, che
+      vanno più piano di un grave libero, all'estremo. In effetti, all'inizio l'estremo ha accelerazione
+      \(\tfrac32 g > g\).
+    en: >-
+      From energy \(\omega = \sqrt{3g/L}\) when the rod is vertical, so the free end has \(v = \omega L =
+      \sqrt{3gL}\), larger than the \(\sqrt{2gL}\) of a body dropped from the same height L. There is no
+      contradiction: the pivot and the rigidity transfer energy from the parts near the pivot, which move
+      slower than a free body, to the end. Indeed, at the start the end has acceleration \(\tfrac32 g > g\).
+- id: energia-corpo-rigido-orale-2
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.5
+    - energia-corpo-rigido.6
+  kind: orale
+  front:
+    it: Perché la reazione del perno non compie lavoro pur essendo diversa da zero?
+    en: Why does the reaction of the pivot do no work even though it is not zero?
+  back:
+    it: >-
+      Il lavoro di una forza dipende dallo spostamento del suo punto di applicazione: la reazione del perno è
+      applicata in un punto fermo (perno liscio), quindi \(dW = \vec R\cdot d\vec r = 0\). Anche il suo
+      momento rispetto all'asse è nullo. Per questo può essere grande (deve fornire anche la forza centripeta
+      del CM) senza cambiare l'energia meccanica.
+    en: >-
+      The work of a force depends on the displacement of its point of application: the reaction of the pivot
+      is applied at a fixed point (smooth pivot), so \(dW = \vec R\cdot d\vec r = 0\). Its torque about the
+      axis is also zero. That is why it can be large (it must also supply the centripetal force of the CM)
+      without changing the mechanical energy.
+- id: energia-corpo-rigido-orale-3
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.5
+    - energia-corpo-rigido.6
+  kind: orale
+  front:
+    it: Come cambia il risultato se l'asta è incernierata a 1/4 della lunghezza?
+    en: How does the result change if the rod is hinged at 1/4 of its length?
+  back:
+    it: >-
+      Con il perno a L/4 dall'estremo il CM dista d = L/4 dal perno: \(I = \tfrac{1}{12}ML^2 + M(L/4)^2 =
+      \tfrac{7}{48}ML^2\). Il CM scende di L/4, quindi \(Mg\tfrac L4 = \tfrac12 \cdot
+      \tfrac{7}{48}ML^2\omega^2 \Rightarrow \omega = \sqrt{24g/(7L)}\), più grande di \(\sqrt{3g/L}\) perché
+      l'inerzia rispetto al perno è minore.
+    en: >-
+      With the pivot L/4 from the end the CM is d = L/4 from the pivot: \(I = \tfrac{1}{12}ML^2 + M(L/4)^2 =
+      \tfrac{7}{48}ML^2\). The CM drops by L/4, so \(Mg\tfrac L4 = \tfrac12 \cdot \tfrac{7}{48}ML^2\omega^2
+      \Rightarrow \omega = \sqrt{24g/(7L)}\), larger than \(\sqrt{3g/L}\) because the inertia about the pivot
+      is smaller.
+- id: energia-corpo-rigido-definizione
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.1
+  kind: definizione
+  front:
+    it: 'Definizione: Energia cinetica e meccanica di un corpo rigido'
+    en: 'Definition: Kinetic and mechanical energy of a rigid body'
+  back:
+    it: >-
+      L'energia cinetica di un corpo rigido si scompone (König) in traslazione del CM più rotazione attorno al
+      CM: \(K = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2\). Per rotazione attorno a un asse fisso: \(K
+      = \frac{1}{2}I_{asse}\omega^2\). L'energia meccanica è E = K + U con \(U = Mgh_{cm}\) (il potenziale
+      gravitazionale di un rigido dipende solo dalla quota del CM). Se lavorano solo forze conservative e i
+      vincoli non dissipano, E si conserva.
+    en: >-
+      The kinetic energy of a rigid body splits (König) into translation of the CM plus rotation about the CM:
+      \(K = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2\). For rotation about a fixed axis: \(K =
+      \frac{1}{2}I_{axis}\omega^2\). The mechanical energy is E = K + U with \(U = Mgh_{cm}\) (the
+      gravitational potential energy of a rigid body depends only on the height of the CM). If only
+      conservative forces do work and the constraints do not dissipate, E is conserved.
+- id: energia-corpo-rigido-formule
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.1
+    - energia-corpo-rigido.2
+    - energia-corpo-rigido.3
+    - energia-corpo-rigido.4
+    - energia-corpo-rigido.5
+    - energia-corpo-rigido.6
+  kind: formula
+  front:
+    it: Le formule chiave di «Energia cinetica e meccanica di un corpo rigido»
+    en: The key formulas of “Kinetic and mechanical energy of a rigid body”
+  back:
+    it: |-
+      - \(K = \frac{1}{2}I_{asse}\omega^2\)
+      - \(K = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2\)
+      - \(U = Mg\,z_{cm}\)
+      - \(W_{rot} = \int \tau\,d\theta\)
+    en: |-
+      - \(K = \frac{1}{2}I_{axis}\omega^2\)
+      - \(K = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2\)
+      - \(U = Mg\,z_{cm}\)
+      - \(W_{rot} = \int \tau\,d\theta\)
+- id: energia-corpo-rigido-ipotesi
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.1
+    - energia-corpo-rigido.2
+    - energia-corpo-rigido.3
+    - energia-corpo-rigido.4
+    - energia-corpo-rigido.5
+    - energia-corpo-rigido.6
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Energia cinetica e meccanica di un corpo rigido'
+    en: 'Validity assumptions: Kinetic and mechanical energy of a rigid body'
+  back:
+    it: Corpo rigido; campo gravitazionale uniforme; vincoli ideali (non dissipativi); per K = ½Iω² asse fisso.
+    en: Rigid body; uniform gravitational field; ideal (non-dissipative) constraints; for K = ½Iω² a fixed axis.
+- id: energia-corpo-rigido-casi-limite
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.1
+    - energia-corpo-rigido.2
+    - energia-corpo-rigido.3
+    - energia-corpo-rigido.4
+    - energia-corpo-rigido.5
+    - energia-corpo-rigido.6
+  kind: concetto
+  front:
+    it: 'Casi limite: Energia cinetica e meccanica di un corpo rigido'
+    en: 'Limiting cases: Kinetic and mechanical energy of a rigid body'
+  back:
+    it: >-
+      Pura traslazione: K = ½Mv². Pura rotazione baricentrica: K = ½I_cmω². Rotolamento puro: entrambi i
+      termini con il vincolo v = ωR. Perno scabro o strisciamento: E non si conserva, ΔE = W_attrito.
+    en: >-
+      Pure translation: K = ½Mv². Pure rotation about the CM: K = ½I_cmω². Pure rolling: both terms with the
+      constraint v = ωR. Rough pivot or slipping: E is not conserved, ΔE = W_friction.
+- id: energia-corpo-rigido-errori
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.1
+    - energia-corpo-rigido.2
+    - energia-corpo-rigido.3
+    - energia-corpo-rigido.4
+    - energia-corpo-rigido.5
+    - energia-corpo-rigido.6
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Energia cinetica e meccanica di un corpo rigido'
+    en: 'Mistakes to avoid: Kinetic and mechanical energy of a rigid body'
+  back:
+    it: |-
+      - Sommare ½I_asse ω² (con I rispetto al perno) E ½Mv_cm²: si conta due volte la traslazione.
+      - Usare I_cm quando la rotazione è attorno a un perno decentrato (o viceversa) senza Huygens-Steiner.
+      - Calcolare U con la quota di un punto qualsiasi invece che del CM.
+      - Dimenticare di verificare che i vincoli non lavorino prima di conservare E.
+    en: |-
+      - Adding ½I_axis ω² (with I about the pivot) AND ½Mv_cm²: translation is counted twice.
+      - Using I_cm when the rotation is about an off-centre pivot (or vice versa) without Huygens–Steiner.
+      - Computing U with the height of an arbitrary point instead of the CM.
+      - Forgetting to check that the constraints do no work before conserving E.

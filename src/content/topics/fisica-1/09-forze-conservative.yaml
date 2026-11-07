@@ -1,0 +1,45 @@
+id: forze-conservative
+course: fisica-1
+order: 9
+title:
+  it: Forze conservative, energia potenziale e conservazione dell'energia meccanica
+  en: Conservative forces, potential energy and conservation of mechanical energy
+summary:
+  it: >-
+    Una forza conservativa è una 'banca perfetta' dell'energia: qualunque lavoro spendi contro di essa lo
+    riavrai per intero al ritorno.
+  en: >-
+    A conservative force is a 'perfect bank' for energy: any work you spend against it you get back in full on
+    the way back.
+group:
+  it: Lavoro ed energia
+  en: Work and energy
+objectives:
+  - id: forze-conservative.1
+    text:
+      it: Dare le due definizioni equivalenti di forza conservativa (cammino / circuitazione nulla)
+      en: Give the two equivalent definitions of a conservative force (path / zero circulation)
+  - id: forze-conservative.2
+    text:
+      it: Definire U con l'integrale e discutere l'arbitrarietà della costante
+      en: Define U through the integral and discuss the arbitrary constant
+  - id: forze-conservative.3
+    text:
+      it: Dimostrare ΔK = −ΔU ⇒ E = K + U costante
+      en: Prove ΔK = −ΔU ⇒ E = K + U constant
+  - id: forze-conservative.4
+    text:
+      it: Scrivere F = −∇U e discutere gli equilibri
+      en: Write F = −∇U and discuss equilibria
+  - id: forze-conservative.5
+    text:
+      it: Elencare esempi conservativi e non (attrito)
+      en: List conservative and non-conservative examples (friction)
+  - id: forze-conservative.6
+    text:
+      it: Usare il grafico di U(x) per discutere il moto qualitativamente
+      en: Use the graph of U(x) to discuss the motion qualitatively
+  - id: forze-conservative.7
+    text:
+      it: Risolvere un esempio (caduta, molla) con la conservazione
+      en: Solve an example (fall, spring) with conservation

@@ -1,0 +1,134 @@
+- id: uomo-sulla-barca
+  topic: centro-di-massa
+  objectives:
+    - centro-di-massa.1
+    - centro-di-massa.2
+    - centro-di-massa.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un uomo di massa m = 75 kg sta a poppa di una barca di massa M = 150 kg, lunga 4,5 m, ferma in acqua
+      calma (attrito trascurabile). L'uomo cammina fino a prua. Calcolare: (a) lo spostamento della barca; (b)
+      lo spostamento dell'uomo rispetto alla riva; (c) la velocità della barca quando l'uomo cammina a 1,2 m/s
+      rispetto alla riva.
+    en: >-
+      A man of mass m = 75 kg stands at the stern of a boat of mass M = 150 kg and length 4.5 m, at rest in
+      calm water (negligible friction). The man walks to the bow. Find: (a) the displacement of the boat; (b)
+      the displacement of the man relative to the shore; (c) the velocity of the boat when the man walks at
+      1.2 m/s relative to the shore.
+  steps:
+    - title:
+        it: Il CM resta fermo
+        en: The CM stays still
+      body:
+        it: >-
+          Nessuna forza esterna orizzontale: \(m\Delta x_u + M\Delta x_b = 0\). Lo spostamento relativo è L:
+          \(\Delta x_u - \Delta x_b = 4{,}5\ \text{m}\).
+        en: >-
+          No external horizontal force: \(m\Delta x_m + M\Delta x_b = 0\). The relative displacement is L:
+          \(\Delta x_m - \Delta x_b = 4.5\ \text{m}\).
+    - title:
+        it: Spostamenti
+        en: Displacements
+      body:
+        it: >-
+          \(\Delta x_b = -mL/(m+M) = -1{,}5\ \text{m}\) (la barca arretra), \(\Delta x_u = ML/(m+M) = 3{,}0\
+          \text{m}\).
+        en: >-
+          \(\Delta x_b = -mL/(m+M) = -1.5\ \text{m}\) (the boat moves back), \(\Delta x_m = ML/(m+M) = 3.0\
+          \text{m}\).
+    - title:
+        it: Velocità
+        en: Velocity
+      body:
+        it: 'P totale nulla: \(v_b = -m v_u/M = -0{,}60\ \text{m/s}\).'
+        en: 'Zero total P: \(v_b = -m v_m/M = -0.60\ \text{m/s}\).'
+  answer:
+    - label:
+        it: Δx barca
+        en: Δx boat
+      value: -1.5
+      unit: m
+    - label:
+        it: Δx uomo
+        en: Δx man
+      value: 3
+      unit: m
+    - label:
+        it: v barca
+        en: v boat
+      value: -0.6
+      unit: m/s
+  origin: originale
+- id: proiettile-esplode
+  topic: centro-di-massa
+  objectives:
+    - centro-di-massa.1
+    - centro-di-massa.2
+    - centro-di-massa.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Un proiettile di massa 3,0 kg è sparato verticalmente e nel punto più alto, a 80 m di quota, esplode in
+      due frammenti. Il primo, di 1,0 kg, parte orizzontalmente a 30 m/s. Calcolare: (a) la velocità del
+      secondo frammento; (b) la distanza orizzontale tra i punti di atterraggio dei due frammenti; (c) dove
+      atterra il centro di massa.
+    en: >-
+      A 3.0 kg projectile is fired vertically and at its highest point, 80 m up, it explodes into two
+      fragments. The first, of 1.0 kg, leaves horizontally at 30 m/s. Find: (a) the velocity of the second
+      fragment; (b) the horizontal distance between the landing points of the two fragments; (c) where the
+      centre of mass lands.
+  steps:
+    - title:
+        it: Conservazione di P nell'esplosione
+        en: Conservation of P in the explosion
+      body:
+        it: >-
+          Nel punto più alto P = 0 e durante l'esplosione le forze interne dominano: \(1{,}0\cdot 30 +
+          2{,}0\cdot v_2 = 0 \Rightarrow v_2 = -15\ \text{m/s}\) (orizzontale, verso opposto).
+        en: >-
+          At the top P = 0 and during the explosion internal forces dominate: \(1.0\cdot 30 + 2.0\cdot v_2 = 0
+          \Rightarrow v_2 = -15\ \text{m/s}\) (horizontal, opposite direction).
+    - title:
+        it: Caduta
+        en: Fall
+      body:
+        it: >-
+          Entrambi cadono da 80 m in \(t = \sqrt{2h/g} \approx 4{,}04\ \text{s}\): distanze 121 m e 60,6 m da
+          parti opposte, per un totale di \(45 \cdot 4{,}04 \approx 182\ \text{m}\).
+        en: >-
+          Both fall from 80 m in \(t = \sqrt{2h/g} \approx 4.04\ \text{s}\): distances 121 m and 60.6 m on
+          opposite sides, for a total of \(45 \cdot 4.04 \approx 182\ \text{m}\).
+    - title:
+        it: Centro di massa
+        en: Centre of mass
+      body:
+        it: >-
+          \(x_{cm} = (1{,}0\cdot 121 - 2{,}0\cdot 60{,}6)/3{,}0 = 0\): il CM cade esattamente sotto il punto
+          dell'esplosione, come se nulla fosse successo.
+        en: >-
+          \(x_{cm} = (1.0\cdot 121 - 2.0\cdot 60.6)/3.0 = 0\): the CM lands exactly below the explosion point,
+          as if nothing had happened.
+  answer:
+    - label:
+        it: v₂
+        en: v₂
+      value: -15
+      unit: m/s
+    - label:
+        it: distanza
+        en: distance
+      value: 182
+      unit: m
+  origin: originale
+- id: centro-di-massa-barca-variante
+  topic: centro-di-massa
+  objectives:
+    - centro-di-massa.1
+    - centro-di-massa.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/centro-di-massa-barca
+  origin: tipologia-appello

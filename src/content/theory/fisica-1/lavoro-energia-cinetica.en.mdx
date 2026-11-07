@@ -1,0 +1,159 @@
+---
+course: fisica-1
+topic: lavoro-energia-cinetica
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/lavoro-energia-cinetica/idea">
+
+Work measures how much 'useful push' a force gives along the motion: only the component of the force along the velocity changes the speed. The kinetic energy theorem is Newton's second law 'integrated along the path': it turns instantaneous information (F = ma) into a balance between two states, often much handier than calculations with accelerations.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/lavoro-energia-cinetica/definizioni">
+
+## Definitions
+
+The elementary work of a force $\vec{F}$ over an infinitesimal displacement $d\vec{r}$ is $dW = \vec{F}\cdot d\vec{r} = F\,ds\cos\theta$; the work along a path is the line integral $W = \int_A^B \vec{F}\cdot d\vec{r}$. The kinetic energy of a point particle is $K = \frac{1}{2}mv^2$. The kinetic energy theorem (or work–energy theorem) states that the total work of all the acting forces equals the change in kinetic energy: $W_{tot} = \Delta K$. Power is $P = dW/dt = \vec{F}\cdot\vec{v}$.
+
+</div>
+
+<div data-note-id="teoria/lavoro-energia-cinetica/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Start from Newton's second law</summary>
+
+$$
+\vec{F}_{tot} = m\frac{d\vec{v}}{dt}
+$$
+
+F_tot is the resultant of all the forces on the point particle.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Dot-multiply by the elementary displacement</summary>
+
+$$
+\vec{F}_{tot}\cdot d\vec{r} = m\frac{d\vec{v}}{dt}\cdot \vec{v}\,dt
+$$
+
+Using dr = v dt, the elementary work becomes a purely kinematic quantity.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Recognise an exact derivative</summary>
+
+$$
+m\,\vec{v}\cdot\frac{d\vec{v}}{dt} = \frac{d}{dt}\Big(\frac{1}{2}m\,\vec{v}\cdot\vec{v}\Big) = \frac{d}{dt}\Big(\frac{1}{2}mv^2\Big)
+$$
+
+Rule for differentiating a dot product: v·dv/dt is half the derivative of v².
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Integrate along the trajectory from A to B</summary>
+
+$$
+W_{tot} = \int_A^B \vec{F}_{tot}\cdot d\vec{r} = \int_{t_A}^{t_B} \frac{d}{dt}\Big(\frac{1}{2}mv^2\Big)dt = \frac{1}{2}mv_B^2 - \frac{1}{2}mv_A^2
+$$
+
+The result depends only on the initial and final speeds: W_tot = ΔK, whatever the forces and the path.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Remarks on the sign and on normal forces</summary>
+
+$$
+dW > 0 \iff \theta < 90°; \qquad \vec{F}\perp\vec{v} \Rightarrow W = 0
+$$
+
+A force always perpendicular to the velocity (tension in the pendulum, normal force, centripetal force, Lorentz force) does no work and does not change the speed.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/lavoro-energia-cinetica/ipotesi">
+
+## Validity assumptions
+
+Point particle (for extended bodies the theorem must be applied with care: what matters is the displacement of the point of application); classical mechanics; the theorem holds for ANY kind of force, conservative or not.
+
+</div>
+
+<div data-note-id="teoria/lavoro-energia-cinetica/casi-limite">
+
+## Limiting cases
+
+Constant force parallel to a straight displacement: W = Fs (elementary formula). Perpendicular force: W = 0, uniform circular motion. If W_tot &lt; 0 the body slows down (e.g. braking: W_friction = −ΔK).
+
+</div>
+
+<div data-note-id="teoria/lavoro-energia-cinetica/formule">
+
+## Key formulas
+
+<Formula id="lavoro-energia-cinetica-f1" />
+
+<Formula id="lavoro-energia-cinetica-f2" />
+
+<Formula id="lavoro-energia-cinetica-f3" />
+
+<Formula id="lavoro-energia-cinetica-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/lavoro-energia-cinetica/esempio">
+
+A car of mass m = 1200 kg travels at 90 km/h and brakes to a stop on a straight horizontal stretch. Find: (a) the total work of the forces; (b) the braking distance if the braking force is constant and equal to 6000 N; (c) the average power dissipated if braking lasts 5.0 s.
+
+1. **Kinetic energy theorem.** 90 km/h = 25 m/s. $W_{tot} = \Delta K = 0 - \tfrac12 \cdot 1200 \cdot 25^2 = -3.75\cdot 10^5\ \text{J}$.
+2. **Braking distance.** Weight and normal force do no work; only the braking force remains: $-F d = \Delta K \Rightarrow d = 3.75\cdot 10^5/6000 = 62.5\ \text{m}$.
+3. **Average power.** $\bar P = |W|/\Delta t = 3.75\cdot 10^5/5.0 = 7.5\cdot 10^4\ \text{W}$ (75 kW, turned into heat in the brakes).
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/lavoro-energia-cinetica/errori">
+
+- Applying ΔK = W of only the force of interest and forgetting the others: the theorem is about the TOTAL work.
+- Saying that a 'large' force always does work: if it is perpendicular to the displacement the work is zero.
+- Treating work as a quantity that depends only on the initial and final positions: in general it depends on the path (except for conservative forces).
+- Forgetting that work is a signed scalar, not a vector.
+
+</div>
+
+<div data-note-id="teoria/lavoro-energia-cinetica/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- Does work depend on the reference frame?
+- In uniform circular motion, does whatever provides the centripetal force do work? Why not?
+- How does the theorem extend to a system of point particles?
+
+</div>
+
+</Layer>

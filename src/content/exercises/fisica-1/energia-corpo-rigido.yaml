@@ -1,0 +1,114 @@
+- id: asta-che-cade
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.1
+    - energia-corpo-rigido.2
+    - energia-corpo-rigido.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un'asta omogenea lunga L = 1,2 m, incernierata senza attrito a un estremo, viene lasciata cadere da
+      ferma dalla posizione orizzontale. Calcolare, quando passa per la verticale: (a) la velocità angolare;
+      (b) la velocità dell'estremo libero; (c) la velocità del centro di massa.
+    en: >-
+      A uniform rod of length L = 1.2 m, hinged without friction at one end, is released from rest in the
+      horizontal position. When it passes through the vertical, find: (a) the angular velocity; (b) the speed
+      of the free end; (c) the speed of the centre of mass.
+  steps:
+    - title:
+        it: Conservazione dell'energia
+        en: Energy conservation
+      body:
+        it: >-
+          \(Mg\,\tfrac L2 = \tfrac12 \cdot \tfrac13 ML^2\omega^2 \Rightarrow \omega = \sqrt{3g/L} \approx
+          4{,}95\ \text{rad/s}\).
+        en: >-
+          \(Mg\,\tfrac L2 = \tfrac12 \cdot \tfrac13 ML^2\omega^2 \Rightarrow \omega = \sqrt{3g/L} \approx
+          4.95\ \text{rad/s}\).
+    - title:
+        it: Velocità
+        en: Speeds
+      body:
+        it: >-
+          Estremo: \(v = \omega L \approx 5{,}94\ \text{m/s}\); CM: \(v_{cm} = \omega L/2 \approx 2{,}97\
+          \text{m/s}\).
+        en: >-
+          End: \(v = \omega L \approx 5.94\ \text{m/s}\); CM: \(v_{cm} = \omega L/2 \approx 2.97\
+          \text{m/s}\).
+  answer:
+    - label:
+        it: ω
+        en: ω
+      value: 4.95
+      unit: rad/s
+    - label:
+        it: v estremo
+        en: v end
+      value: 5.94
+      unit: m/s
+    - label:
+        it: v_cm
+        en: v_cm
+      value: 2.97
+      unit: m/s
+  origin: originale
+- id: disco-massa-appesa-energia
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.1
+    - energia-corpo-rigido.2
+    - energia-corpo-rigido.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Una massa m = 2,0 kg è appesa a un filo avvolto su un disco (M = 4,0 kg, R = 0,25 m) libero di ruotare
+      attorno al proprio asse. Partendo da fermo, la massa scende di h = 1,5 m. Usando la conservazione
+      dell'energia calcolare: (a) la velocità della massa; (b) la frazione di energia che finisce nella
+      rotazione del disco.
+    en: >-
+      A mass m = 2.0 kg hangs from a string wound on a disc (M = 4.0 kg, R = 0.25 m) free to rotate about its
+      axis. Starting from rest, the mass descends h = 1.5 m. Using energy conservation, find: (a) the speed of
+      the mass; (b) the fraction of the energy ending up in the rotation of the disc.
+  steps:
+    - title:
+        it: Bilancio
+        en: Balance
+      body:
+        it: >-
+          \(mgh = \tfrac12 mv^2 + \tfrac12 \cdot \tfrac12 MR^2 (v/R)^2 = \tfrac12 (m + M/2) v^2 \Rightarrow v
+          = \sqrt{\dfrac{2mgh}{m+M/2}} = \sqrt{14{,}715} \approx 3{,}84\ \text{m/s}\).
+        en: >-
+          \(mgh = \tfrac12 mv^2 + \tfrac12 \cdot \tfrac12 MR^2 (v/R)^2 = \tfrac12 (m + M/2) v^2 \Rightarrow v
+          = \sqrt{\dfrac{2mgh}{m+M/2}} = \sqrt{14.715} \approx 3.84\ \text{m/s}\).
+    - title:
+        it: Ripartizione
+        en: Split
+      body:
+        it: >-
+          Frazione rotazionale \(= \dfrac{M/2}{m + M/2} = 0{,}50\): metà dell'energia potenziale persa va nel
+          disco.
+        en: >-
+          Rotational fraction \(= \dfrac{M/2}{m + M/2} = 0.50\): half of the potential energy lost goes into
+          the disc.
+  answer:
+    - label:
+        it: v
+        en: v
+      value: 3.84
+      unit: m/s
+    - label:
+        it: frazione rotazionale
+        en: rotational fraction
+      value: 0.5
+  origin: originale
+- id: asta-che-cade-variante
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.1
+    - energia-corpo-rigido.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/asta-che-cade
+  origin: tipologia-appello

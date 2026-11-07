@@ -1,0 +1,182 @@
+---
+course: fisica-1
+topic: momenti-di-inerzia
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/momenti-di-inerzia/idea">
+
+The moment of inertia weighs mass by the square of the distance from the axis: peripheral mass counts much more. That is why a flywheel has its mass on the rim (it stores rotation) and a skater speeds up by pulling in her arms (she reduces I at constant L). Huygens–Steiner says that rotating about an off-centre axis costs the body's 'own' inertia plus that of the CM treated as a point at distance d.
+
+</div>
+
+<div class="muted" data-note-id="teoria/momenti-di-inerzia/prerequisiti">
+
+**Before this topic:** [Centre of mass and the first cardinal equation](../centro-di-massa/)
+
+</div>
+
+<Callout tone="nota" title="See it in action">
+
+[Open the interactive simulation](../../extra/simulazioni/#sim-gara-piano-inclinato)
+
+</Callout>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/momenti-di-inerzia/definizioni">
+
+## Definitions
+
+The moment of inertia of a body about an axis is $I = \sum_i m_i r_i^2$ (discrete) or $I = \int r^2\,dm$ (continuous), where r is the distance of each mass element from the axis. It measures rotational inertia: how much the body 'resists' changes in angular velocity about that axis. It depends on the chosen axis and on how the mass is distributed with respect to it. The Huygens–Steiner (parallel-axis) theorem relates the moment about any axis to that about the parallel axis through the CM: $I = I_{cm} + Md^2$.
+
+</div>
+
+<div data-note-id="teoria/momenti-di-inerzia/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Origin of the definition: rotational kinetic energy</summary>
+
+$$
+K = \sum_i \frac{1}{2}m_i v_i^2 = \sum_i \frac{1}{2}m_i(\omega r_i)^2 = \frac{1}{2}\Big(\sum_i m_i r_i^2\Big)\omega^2 = \frac{1}{2}I\omega^2
+$$
+
+In a rigid body rotating about a fixed axis every point has v = ωr: collecting ω², I emerges naturally as the 'rotational mass'.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Proof of Huygens–Steiner: decompose the positions</summary>
+
+$$
+\vec{r}_i = \vec{r}_{cm} + \vec{r}_i{'}
+$$
+
+r'\_i is the position of the i-th element relative to the CM. Work in the plane perpendicular to the axis.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Expand the square of the distance from the axis</summary>
+
+$$
+I = \sum_i m_i|\vec{r}_i|^2 = \sum_i m_i(d^2 + 2\,\vec{d}\cdot\vec{r}_i{'} + r_i'^2)
+$$
+
+d is the vector (of magnitude d) from the given axis to the parallel axis through the CM, in the perpendicular plane.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · The mixed term vanishes</summary>
+
+$$
+\sum_i m_i\vec{r}_i{'} = \vec{0} \;\text{(definition of CM)} \;\Rightarrow\; I = Md^2 + I_{cm}
+$$
+
+The sum of the weighted positions relative to the CM is zero by definition: only the transport term Md² and the centroidal moment remain.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Notable moments of inertia (to know by heart)</summary>
+
+$$
+I_{ring} = MR^2,\;\; I_{disc} = \frac{1}{2}MR^2,\;\; I_{sphere} = \frac{2}{5}MR^2,\;\; I_{rod,cm} = \frac{1}{12}ML^2,\;\; I_{rod,end} = \frac{1}{3}ML^2
+$$
+
+Rod about its end: I = 1/12 ML² + M(L/2)² = 1/3 ML², an immediate example of Huygens–Steiner.
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Example of an integral calculation: uniform rod about its CM</summary>
+
+$$
+I = \int_{-L/2}^{L/2} x^2 \frac{M}{L}dx = \frac{M}{L}\cdot\frac{x^3}{3}\Big|_{-L/2}^{L/2} = \frac{ML^2}{12}
+$$
+
+dm = λ dx with linear density λ = M/L: the typical integral calculation to be able to reproduce.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/momenti-di-inerzia/ipotesi">
+
+## Validity assumptions
+
+Rigid body (fixed mutual distances); for Huygens–Steiner the two axes must be PARALLEL and one of them must pass through the CM; known density for integral calculations.
+
+</div>
+
+<div data-note-id="teoria/momenti-di-inerzia/casi-limite">
+
+## Limiting cases
+
+All the mass on the axis: I = 0. Mass concentrated at distance R: I = MR² (point particle). For equal mass and radius: ring &gt; disc &gt; sphere, because what matters is how much mass lies far from the axis. d = 0: I = I_cm, the minimum among all parallel axes.
+
+</div>
+
+<div data-note-id="teoria/momenti-di-inerzia/formule">
+
+## Key formulas
+
+<Formula id="momenti-di-inerzia-f1" />
+
+<Formula id="momenti-di-inerzia-f2" />
+
+<Formula id="momenti-di-inerzia-f3" />
+
+<Formula id="momenti-di-inerzia-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/momenti-di-inerzia/esempio">
+
+A uniform rod of mass M = 1.2 kg and length L = 0.80 m carries two point masses m = 0.30 kg at its ends. Find the moment of inertia of the system: (a) about the perpendicular axis through the centre; (b) about the parallel axis through one end; (c) check (b) with Huygens–Steiner.
+
+1. **Central axis.** $I_{cm} = \tfrac{1}{12}ML^2 + 2m(L/2)^2 = 0.064 + 0.096 = 0.160\ \text{kg·m}^2$.
+2. **Axis through one end.** $I = \tfrac13 ML^2 + m L^2 + m\cdot 0 = 0.256 + 0.192 = 0.448\ \text{kg·m}^2$.
+3. **Check.** Total mass 1.8 kg, CM at the centre, d = 0.40 m: $I_{cm} + M_{tot}d^2 = 0.160 + 0.288 = 0.448\ \text{kg·m}^2$. ✓
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/momenti-di-inerzia/errori">
+
+- Applying Huygens–Steiner between two axes neither of which passes through the CM (it must be done in two steps via I_cm).
+- Saying that I depends only on the mass: it depends above all on its distribution (r²).
+- Using the radius of the body instead of the distance from the axis in the integral.
+- Forgetting that I_cm is the minimum: I about any other parallel axis is larger.
+
+</div>
+
+<div data-note-id="teoria/momenti-di-inerzia/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- Why does a solid sphere roll down an incline faster than a ring of equal mass and radius?
+- What does the perpendicular-axis theorem state for plane figures?
+- In general I is a tensor: what does it mean that the principal axes diagonalise the inertia?
+
+</div>
+
+</Layer>

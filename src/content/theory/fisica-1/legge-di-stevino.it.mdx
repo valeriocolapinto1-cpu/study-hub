@@ -1,0 +1,169 @@
+---
+course: fisica-1
+topic: legge-di-stevino
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/legge-di-stevino/idea">
+
+Ogni strato di fluido deve sorreggere tutto il fluido che gli sta sopra: scendendo, il carico cresce e con esso la pressione. Che sia uno scalare deriva dall'incapacità del fluido fermo di sostenere sforzi tangenziali: qualunque orientazione dia alla superficie di prova, sento la stessa spinta normale.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/legge-di-stevino/definizioni">
+
+## Definizioni
+
+La pressione in un punto di un fluido è il rapporto tra la forza normale esercitata su una superficie elementare e l'area della superficie: $p = dF_\perp/dA$; è uno scalare (principio di Pascal: in un punto agisce ugualmente in tutte le direzioni). La legge di Stevino dà la pressione in un fluido incomprimibile in quiete: $p(h) = p_0 + \rho g h$, con h profondità sotto la superficie libera dove la pressione è p₀.
+
+</div>
+
+<div data-note-id="teoria/legge-di-stevino/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Equilibrio di un cilindretto di fluido</summary>
+
+$$
+p(z)A - p(z+dz)A - \rho g A\,dz = 0
+$$
+
+Isolo un cilindretto orizzontale di area A e altezza dz (asse z verso l'alto): la faccia inferiore riceve una spinta maggiore di quella superiore, e la differenza sostiene il peso ρgA dz del fluido contenuto.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Equazione fondamentale della statica dei fluidi</summary>
+
+$$
+\frac{dp}{dz} = -\rho g
+$$
+
+La pressione diminuisce salendo. Vale per qualunque fluido in quiete; per integrarla serve conoscere ρ(z).
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Integro per fluido incomprimibile (ρ costante)</summary>
+
+$$
+\int_{p_0}^{p} dp' = -\rho g\int_{0}^{z} dz' \;\Rightarrow\; p = p_0 - \rho g z \;\;\xrightarrow{h = -z}\;\; p = p_0 + \rho g h
+$$
+
+Legge di Stevino: la pressione cresce linearmente con la profondità h. Circa 1 atm ogni 10 m d'acqua.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Conseguenza: vasi comunicanti e isobare orizzontali</summary>
+
+$$
+p = p(h) \;\text{solo} \;\Rightarrow\; \text{superfici isobare orizzontali}
+$$
+
+La pressione dipende solo dalla quota, non dalla forma del recipiente: nei vasi comunicanti il liquido raggiunge lo stesso livello (paradosso idrostatico).
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Applicazione: manometro e barometro di Torricelli</summary>
+
+$$
+p_{atm} = \rho_{Hg}\,g\,h_{Hg} \;\approx\; 13600 \cdot 9.81 \cdot 0.76 \approx 1.013\times10^5\;\text{Pa}
+$$
+
+Nel tubo rovesciato di Torricelli la colonna di mercurio è sostenuta dalla pressione atmosferica: 760 mm di Hg.
+
+</details>
+
+<details id="passo-6">
+<summary>Passo 6 · Da Stevino ad Archimede</summary>
+
+$$
+F_{Arch} = \oint p\,dA_{\perp,vert} = \rho_{fluido}\,g\,V_{immerso}
+$$
+
+La spinta di Archimede è la risultante delle pressioni di Stevino sulla superficie del corpo: maggiore sotto che sopra, quindi diretta verso l'alto e pari al peso del fluido spostato.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/legge-di-stevino/ipotesi">
+
+## Ipotesi di validità
+
+Fluido in quiete (statica); per la forma integrata: incomprimibile (ρ costante) e g uniforme. Il fluido non sostiene sforzi di taglio (definizione stessa di fluido).
+
+</div>
+
+<div data-note-id="teoria/legge-di-stevino/casi-limite">
+
+## Casi limite
+
+Gas su piccoli dislivelli: ρ minuscola, p quasi uniforme (si trascura Stevino nell'aria di una stanza). Atmosfera su grande scala: ρ non costante, integrando con il gas perfetto isotermo si ottiene l'esponenziale barometrica. g → 0 (orbita): niente gradiente di pressione, il fluido fluttua.
+
+</div>
+
+<div data-note-id="teoria/legge-di-stevino/formule">
+
+## Formule chiave
+
+<Formula id="legge-di-stevino-f1" />
+
+<Formula id="legge-di-stevino-f2" />
+
+<Formula id="legge-di-stevino-f3" />
+
+<Formula id="legge-di-stevino-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/legge-di-stevino/esempio">
+
+Un subacqueo scende a 25 m di profondità in mare (ρ = 1025 kg/m³, pressione atmosferica 1,013·10⁵ Pa). Calcolare: (a) la pressione assoluta; (b) la pressione relativa; (c) la forza che l'acqua esercita sul vetro della maschera (area 120 cm²), trascurando la variazione di profondità sul vetro.
+
+1. **Stevino.** $p_{rel} = \rho g h = 1025 \cdot 9{,}81 \cdot 25 \approx 2{,}514\cdot 10^5\ \text{Pa}$; $p = p_0 + p_{rel} \approx 3{,}527\cdot 10^5\ \text{Pa}$ (circa 3,5 atm).
+2. **Forza sul vetro.** Dentro la maschera c'è aria alla stessa pressione assoluta se il sub compensa; senza compensazione (aria a p₀) la forza netta è $p_{rel}A \approx 2{,}514\cdot 10^5 \cdot 0{,}012 \approx 3{,}02\ \text{kN}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/legge-di-stevino/errori">
+
+- Pensare la pressione come vettore 'diretto verso il basso': è uno scalare, agisce in tutte le direzioni.
+- Credere che la pressione sul fondo dipenda dalla forma o dalla quantità totale di liquido: conta solo la profondità (paradosso idrostatico).
+- Confondere pressione assoluta e relativa (manometrica).
+- Applicare la forma ρgh a un gas su grandi dislivelli dove ρ varia.
+
+</div>
+
+<div data-note-id="teoria/legge-di-stevino/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Come cambia la pressione atmosferica con la quota se assumo l'aria un gas perfetto isotermo?
+- Perché una diga deve essere più spessa alla base e il suo spessore non dipende dalla lunghezza del lago?
+- Un corpo galleggia: che relazione c'è tra densità media e frazione immersa?
+
+</div>
+
+</Layer>

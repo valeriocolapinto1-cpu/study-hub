@@ -27,7 +27,7 @@ if (!latex && !html) {
   const course = Astro.props.course ?? stripLang(Astro.url.pathname).split('/')[1];
   const entry = course ? await getEntry('formulas', `${course}/${id}`) : undefined;
   if (!entry) throw new Error(`<Formula id="${id}">: formula non trovata nel corso "${course ?? '?'}"`);
-  latex = entry.data.latex;
+  latex = lang === 'en' && entry.data.latexEn ? entry.data.latexEn : entry.data.latex;
   caption ??= tr(entry.data.label, lang);
 }
 if (latex)

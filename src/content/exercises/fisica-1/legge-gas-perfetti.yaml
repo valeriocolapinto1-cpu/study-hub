@@ -1,0 +1,111 @@
+- id: pneumatico-temperatura
+  topic: legge-gas-perfetti
+  objectives:
+    - legge-gas-perfetti.1
+    - legge-gas-perfetti.2
+    - legge-gas-perfetti.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un pneumatico viene gonfiato a 2,2·10⁵ Pa di pressione relativa a 15 °C (pressione atmosferica 1,0·10⁵
+      Pa). Dopo un lungo viaggio la temperatura dell'aria interna è 45 °C. Supponendo il volume costante
+      calcolare: (a) la nuova pressione assoluta; (b) la nuova pressione relativa; (c) le moli d'aria se il
+      volume è 25 L.
+    en: >-
+      A tyre is inflated to a gauge pressure of 2.2·10⁵ Pa at 15 °C (atmospheric pressure 1.0·10⁵ Pa). After a
+      long trip the temperature of the air inside is 45 °C. Assuming constant volume, find: (a) the new
+      absolute pressure; (b) the new gauge pressure; (c) the moles of air if the volume is 25 L.
+  steps:
+    - title:
+        it: Isocora con temperature in kelvin
+        en: Isochoric process with kelvin temperatures
+      body:
+        it: >-
+          \(p_2 = p_1 T_2/T_1 = 3{,}2\cdot 10^5 \cdot 318{,}15/288{,}15 \approx 3{,}533\cdot 10^5\ \text{Pa}\)
+          (assoluta!); relativa \(\approx 2{,}53\cdot 10^5\ \text{Pa}\).
+        en: >-
+          \(p_2 = p_1 T_2/T_1 = 3.2\cdot 10^5 \cdot 318.15/288.15 \approx 3.533\cdot 10^5\ \text{Pa}\)
+          (absolute!); gauge \(\approx 2.53\cdot 10^5\ \text{Pa}\).
+    - title:
+        it: Moli
+        en: Moles
+      body:
+        it: >-
+          \(n = p_1V/(RT_1) = \dfrac{3{,}2\cdot 10^5 \cdot 0{,}025}{8{,}314 \cdot 288{,}15} \approx 3{,}34\
+          \text{mol}\).
+        en: >-
+          \(n = p_1V/(RT_1) = \dfrac{3.2\cdot 10^5 \cdot 0.025}{8.314 \cdot 288.15} \approx 3.34\
+          \text{mol}\).
+  answer:
+    - label:
+        it: p assoluta
+        en: absolute p
+      value: 353300
+      unit: Pa
+    - label:
+        it: p relativa
+        en: gauge p
+      value: 253300
+      unit: Pa
+    - label:
+        it: 'n'
+        en: 'n'
+      value: 3.34
+      unit: mol
+  origin: originale
+- id: bolla-che-risale
+  topic: legge-gas-perfetti
+  objectives:
+    - legge-gas-perfetti.1
+    - legge-gas-perfetti.2
+    - legge-gas-perfetti.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Una bolla d'aria di volume 1,0 cm³ si forma sul fondo di un lago a 20 m di profondità, dove la
+      temperatura è 6 °C, e risale fino alla superficie dove l'acqua è a 18 °C (ρ = 1000 kg/m³, p₀ = 1,013·10⁵
+      Pa). Calcolare il volume della bolla in superficie.
+    en: >-
+      An air bubble of volume 1.0 cm³ forms at the bottom of a lake 20 m deep, where the temperature is 6 °C,
+      and rises to the surface where the water is at 18 °C (ρ = 1000 kg/m³, p₀ = 1.013·10⁵ Pa). Find the
+      volume of the bubble at the surface.
+  steps:
+    - title:
+        it: Pressione sul fondo
+        en: Pressure at the bottom
+      body:
+        it: \(p_1 = p_0 + \rho g h = 1{,}013\cdot 10^5 + 1{,}962\cdot 10^5 = 2{,}975\cdot 10^5\ \text{Pa}\).
+        en: \(p_1 = p_0 + \rho g h = 1.013\cdot 10^5 + 1.962\cdot 10^5 = 2.975\cdot 10^5\ \text{Pa}\).
+    - title:
+        it: Legge combinata
+        en: Combined law
+      body:
+        it: >-
+          \(V_2 = V_1 \dfrac{p_1}{p_0}\dfrac{T_2}{T_1} = 1{,}0 \cdot 2{,}937 \cdot \dfrac{291{,}15}{279{,}15}
+          \approx 3{,}06\ \text{cm}^3\).
+        en: >-
+          \(V_2 = V_1 \dfrac{p_1}{p_0}\dfrac{T_2}{T_1} = 1.0 \cdot 2.937 \cdot \dfrac{291.15}{279.15} \approx
+          3.06\ \text{cm}^3\).
+  answer:
+    - label:
+        it: p sul fondo
+        en: p at the bottom
+      value: 297500
+      unit: Pa
+    - label:
+        it: V₂
+        en: V₂
+      value: 3.06
+      unit: cm³
+  origin: originale
+- id: legge-combinata-variante
+  topic: legge-gas-perfetti
+  objectives:
+    - legge-gas-perfetti.1
+    - legge-gas-perfetti.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/legge-combinata
+  origin: tipologia-appello

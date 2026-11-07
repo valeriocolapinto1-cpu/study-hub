@@ -1,0 +1,45 @@
+id: sistemi-di-riferimento
+course: fisica-1
+order: 5
+title:
+  it: Sistemi di riferimento inerziali e non inerziali traslatori
+  en: Inertial and non-inertial translating reference frames
+summary:
+  it: >-
+    Le forze apparenti sono il 'trucco contabile' che permette di continuare a usare Newton in un sistema che
+    accelera: siccome tutto il sistema accelera con A, ogni massa sembra ricevere una spinta −mA.
+  en: >-
+    Fictitious forces are the 'bookkeeping trick' that lets us keep using Newton in an accelerating frame:
+    since the whole frame accelerates with A, every mass seems to receive a push −mA.
+group:
+  it: Cinematica e oscillazioni
+  en: Kinematics and oscillations
+objectives:
+  - id: sistemi-di-riferimento.1
+    text:
+      it: Definire sistema inerziale tramite il principio d'inerzia
+      en: Define an inertial frame through the principle of inertia
+  - id: sistemi-di-riferimento.2
+    text:
+      it: Enunciare la relatività galileiana (sistemi in moto rettilineo uniforme tra loro)
+      en: State Galilean relativity (frames in uniform rectilinear motion relative to each other)
+  - id: sistemi-di-riferimento.3
+    text:
+      it: Ricavare a = a' + A derivando la trasformazione delle posizioni
+      en: Derive a = a' + A by differentiating the transformation of positions
+  - id: sistemi-di-riferimento.4
+    text:
+      it: Ricavare la forza apparente F_app = −mA
+      en: Derive the fictitious force F_fict = −mA
+  - id: sistemi-di-riferimento.5
+    text:
+      it: Spiegare perché le forze apparenti non hanno reazione
+      en: Explain why fictitious forces have no reaction
+  - id: sistemi-di-riferimento.6
+    text:
+      it: Discutere l'esempio dell'ascensore e il peso apparente
+      en: Discuss the lift example and apparent weight
+  - id: sistemi-di-riferimento.7
+    text:
+      it: Menzionare il caso di caduta libera (assenza di peso)
+      en: Mention the free-fall case (weightlessness)

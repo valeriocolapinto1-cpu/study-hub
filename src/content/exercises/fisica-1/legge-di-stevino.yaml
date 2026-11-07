@@ -1,0 +1,114 @@
+- id: sub-pressione-profondita
+  topic: legge-di-stevino
+  objectives:
+    - legge-di-stevino.1
+    - legge-di-stevino.2
+    - legge-di-stevino.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un subacqueo scende a 25 m di profondità in mare (ρ = 1025 kg/m³, pressione atmosferica 1,013·10⁵ Pa).
+      Calcolare: (a) la pressione assoluta; (b) la pressione relativa; (c) la forza che l'acqua esercita sul
+      vetro della maschera (area 120 cm²), trascurando la variazione di profondità sul vetro.
+    en: >-
+      A diver goes down to 25 m below the sea surface (ρ = 1025 kg/m³, atmospheric pressure 1.013·10⁵ Pa).
+      Find: (a) the absolute pressure; (b) the gauge pressure; (c) the force the water exerts on the glass of
+      the mask (area 120 cm²), neglecting the change of depth across the glass.
+  steps:
+    - title:
+        it: Stevino
+        en: Stevin
+      body:
+        it: >-
+          \(p_{rel} = \rho g h = 1025 \cdot 9{,}81 \cdot 25 \approx 2{,}514\cdot 10^5\ \text{Pa}\); \(p = p_0
+          + p_{rel} \approx 3{,}527\cdot 10^5\ \text{Pa}\) (circa 3,5 atm).
+        en: >-
+          \(p_{gauge} = \rho g h = 1025 \cdot 9.81 \cdot 25 \approx 2.514\cdot 10^5\ \text{Pa}\); \(p = p_0 +
+          p_{gauge} \approx 3.527\cdot 10^5\ \text{Pa}\) (about 3.5 atm).
+    - title:
+        it: Forza sul vetro
+        en: Force on the glass
+      body:
+        it: >-
+          Dentro la maschera c'è aria alla stessa pressione assoluta se il sub compensa; senza compensazione
+          (aria a p₀) la forza netta è \(p_{rel}A \approx 2{,}514\cdot 10^5 \cdot 0{,}012 \approx 3{,}02\
+          \text{kN}\).
+        en: >-
+          Inside the mask there is air at the same absolute pressure if the diver equalises; without
+          equalising (air at p₀) the net force is \(p_{gauge}A \approx 2.514\cdot 10^5 \cdot 0.012 \approx
+          3.02\ \text{kN}\).
+  answer:
+    - label:
+        it: p assoluta
+        en: absolute p
+      value: 352700
+      unit: Pa
+    - label:
+        it: p relativa
+        en: gauge p
+      value: 251400
+      unit: Pa
+    - label:
+        it: F
+        en: F
+      value: 3020
+      unit: 'N'
+  origin: originale
+- id: tubo-a-u-due-liquidi
+  topic: legge-di-stevino
+  objectives:
+    - legge-di-stevino.1
+    - legge-di-stevino.2
+    - legge-di-stevino.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      In un tubo a U contenente mercurio (ρ = 13600 kg/m³) si versa in un ramo una colonna d'acqua alta 27,2
+      cm. Calcolare: (a) il dislivello tra le superfici del mercurio nei due rami; (b) il dislivello tra la
+      superficie libera dell'acqua e quella del mercurio nell'altro ramo.
+    en: >-
+      Water is poured into one arm of a U-tube containing mercury (ρ = 13600 kg/m³), forming a column 27.2 cm
+      high. Find: (a) the height difference between the mercury surfaces in the two arms; (b) the height
+      difference between the free surface of the water and that of the mercury in the other arm.
+  steps:
+    - title:
+        it: Isobara alla superficie di separazione
+        en: Isobar at the interface
+      body:
+        it: >-
+          Allo stesso livello della superficie acqua-mercurio la pressione è uguale nei due rami: \(\rho_{a} g
+          h_a = \rho_{Hg} g\,\Delta h \Rightarrow \Delta h = 0{,}272 \cdot 1000/13600 = 0{,}020\ \text{m}\).
+        en: >-
+          At the level of the water–mercury interface the pressure is the same in both arms: \(\rho_{w} g h_w
+          = \rho_{Hg} g\,\Delta h \Rightarrow \Delta h = 0.272 \cdot 1000/13600 = 0.020\ \text{m}\).
+    - title:
+        it: Dislivello delle superfici libere
+        en: Difference between free surfaces
+      body:
+        it: >-
+          La superficie dell'acqua sta \(27{,}2 - 2{,}0 = 25{,}2\ \text{cm}\) sopra quella del mercurio
+          nell'altro ramo.
+        en: The water surface is \(27.2 - 2.0 = 25.2\ \text{cm}\) above the mercury surface in the other arm.
+  answer:
+    - label:
+        it: Δh mercurio
+        en: Δh mercury
+      value: 2
+      unit: cm
+    - label:
+        it: dislivello superfici
+        en: surface difference
+      value: 25.2
+      unit: cm
+  origin: originale
+- id: stevino-variante
+  topic: legge-di-stevino
+  objectives:
+    - legge-di-stevino.1
+    - legge-di-stevino.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/stevino
+  origin: tipologia-appello

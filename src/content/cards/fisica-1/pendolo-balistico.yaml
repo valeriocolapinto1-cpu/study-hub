@@ -1,0 +1,243 @@
+- id: pendolo-balistico-esposizione
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.1
+    - pendolo-balistico.2
+    - pendolo-balistico.3
+    - pendolo-balistico.4
+    - pendolo-balistico.5
+    - pendolo-balistico.6
+    - pendolo-balistico.7
+  kind: orale
+  front:
+    it: "Esponi all'orale: «Pendolo balistico»."
+    en: 'Present at the oral exam: “Ballistic pendulum”.'
+  back:
+    it: >-
+      Il pendolo balistico è l'esempio perfetto di 'ogni fase la sua legge': l'urto è violento e rapidissimo →
+      comanda la quantità di moto; la risalita è dolce e senza dissipazione → comanda l'energia. Confondere i
+      due regimi porta a errori grossolani, ed è esattamente ciò che l'esaminatore vuole verificare che tu
+      sappia distinguere.
+
+
+      **Scaletta:**
+
+
+      - Descrivere il dispositivo e il suo scopo
+
+      - Giustificare perché nell'urto si conserva P e non K
+
+      - Calcolare V dopo l'urto e l'energia dissipata
+
+      - Giustificare perché nella risalita si conserva E e non P
+
+      - Ricavare la formula finale v₀ = ((m+M)/m)√(2gh)
+
+      - Esprimere h tramite l'angolo massimo
+
+      - Discutere la frazione di energia persa M/(m+M)
+    en: >-
+      The ballistic pendulum is the perfect example of 'each phase has its law': the collision is violent and
+      very fast → momentum rules; the rise is gentle and dissipation-free → energy rules. Mixing up the two
+      regimes leads to gross errors, and that is exactly what the examiner wants to check you can tell apart.
+
+
+      **Outline:**
+
+
+      - Describe the device and its purpose
+
+      - Justify why P and not K is conserved in the collision
+
+      - Compute V after the collision and the dissipated energy
+
+      - Justify why E and not P is conserved during the rise
+
+      - Derive the final formula v₀ = ((m+M)/m)√(2gh)
+
+      - Express h through the maximum angle
+
+      - Discuss the fraction of energy lost M/(m+M)
+- id: pendolo-balistico-orale-1
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.6
+    - pendolo-balistico.7
+  kind: orale
+  front:
+    it: Se il proiettile attraversasse il blocco uscendo con velocità v₁, come cambierebbe l'analisi?
+    en: If the projectile passed through the block, leaving with speed v₁, how would the analysis change?
+  back:
+    it: >-
+      L'urto non è più perfettamente anelastico ma P si conserva comunque: \(mv_0 = mv_1 + MV\), quindi \(V =
+      m(v_0 - v_1)/M\). Nella risalita sale solo il blocco: \(V = \sqrt{2gh}\). Ne segue \(v_0 = v_1 +
+      (M/m)\sqrt{2gh}\): serve una misura in più (v₁). L'energia dissipata è \(\tfrac12 mv_0^2 - \tfrac12
+      mv_1^2 - \tfrac12 MV^2\).
+    en: >-
+      The collision is no longer perfectly inelastic but P is still conserved: \(mv_0 = mv_1 + MV\), so \(V =
+      m(v_0 - v_1)/M\). During the rise only the block goes up: \(V = \sqrt{2gh}\). Hence \(v_0 = v_1 +
+      (M/m)\sqrt{2gh}\): one more measurement (v₁) is needed. The dissipated energy is \(\tfrac12 mv_0^2 -
+      \tfrac12 mv_1^2 - \tfrac12 MV^2\).
+- id: pendolo-balistico-orale-2
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.6
+    - pendolo-balistico.7
+  kind: orale
+  front:
+    it: Perché l'urto deve durare molto meno del periodo del pendolo?
+    en: Why must the collision last much less than the period of the pendulum?
+  back:
+    it: >-
+      Perché durante l'urto il blocco deve restare praticamente nella posizione di equilibrio: così le
+      tensioni sono verticali e, insieme al peso, danno un impulso orizzontale trascurabile, e la quantità di
+      moto orizzontale si conserva. Se l'urto durasse un tempo paragonabile al periodo, il pendolo si
+      sposterebbe e la componente orizzontale della tensione darebbe un impulso apprezzabile.
+    en: >-
+      Because during the collision the block must stay practically at its equilibrium position: then the
+      tensions are vertical and, together with the weight, give negligible horizontal impulse, and horizontal
+      momentum is conserved. If the collision lasted a time comparable to the period, the pendulum would move
+      and the horizontal component of the tension would give an appreciable impulse.
+- id: pendolo-balistico-orale-3
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.6
+    - pendolo-balistico.7
+  kind: orale
+  front:
+    it: Con quali misure e propagazione degli errori stimeresti l'incertezza su v₀?
+    en: With which measurements and error propagation would you estimate the uncertainty on v₀?
+  back:
+    it: >-
+      Si misurano m e M con la bilancia, L con il metro e l'angolo massimo θ (o h). Con \(v_0 =
+      \tfrac{m+M}{m}\sqrt{2gL(1-\cos\theta)}\) si propagano gli errori relativi: \(\delta v_0/v_0 \approx
+      \delta m/m\) (pesa molto perché m è piccola) \(+ \tfrac12\delta L/L +
+      \tfrac12\,\delta(1-\cos\theta)/(1-\cos\theta)\), dove l'ultimo termine vale
+      \(\tfrac{\sin\theta}{2(1-\cos\theta)}\delta\theta\), grande per angoli piccoli. Conviene ripetere più
+      tiri e usare la media.
+    en: >-
+      Measure m and M with a scale, L with a ruler and the maximum angle θ (or h). With \(v_0 =
+      \tfrac{m+M}{m}\sqrt{2gL(1-\cos\theta)}\), propagate the relative errors: \(\delta v_0/v_0 \approx \delta
+      m/m\) (it weighs a lot because m is small) \(+ \tfrac12\delta L/L +
+      \tfrac12\,\delta(1-\cos\theta)/(1-\cos\theta)\), where the last term equals
+      \(\tfrac{\sin\theta}{2(1-\cos\theta)}\delta\theta\), large for small angles. It pays to repeat several
+      shots and use the mean.
+- id: pendolo-balistico-definizione
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.1
+  kind: definizione
+  front:
+    it: 'Definizione: Pendolo balistico'
+    en: 'Definition: Ballistic pendulum'
+  back:
+    it: >-
+      Il pendolo balistico è un dispositivo per misurare la velocità di un proiettile: un blocco di massa M
+      appeso a fili; il proiettile di massa m vi si conficca (urto perfettamente anelastico) e il sistema
+      risale di un'altezza h. Il problema si risolve in DUE fasi con leggi di conservazione diverse: nell'urto
+      si conserva la quantità di moto (non l'energia), nella risalita si conserva l'energia meccanica (non la
+      quantità di moto, perché agiscono gravità e tensioni).
+    en: >-
+      The ballistic pendulum is a device for measuring the speed of a projectile: a block of mass M hangs from
+      strings; the projectile of mass m embeds itself in it (perfectly inelastic collision) and the system
+      rises by a height h. The problem is solved in TWO phases with different conservation laws: in the
+      collision momentum is conserved (not energy), in the rise mechanical energy is conserved (not momentum,
+      because gravity and tensions act).
+- id: pendolo-balistico-formule
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.1
+    - pendolo-balistico.2
+    - pendolo-balistico.3
+    - pendolo-balistico.4
+    - pendolo-balistico.5
+    - pendolo-balistico.6
+    - pendolo-balistico.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Pendolo balistico»
+    en: The key formulas of “Ballistic pendulum”
+  back:
+    it: |-
+      - \(mv_0 = (m+M)V\)
+      - \(\frac{1}{2}(m+M)V^2 = (m+M)gh\)
+      - \(v_0 = \frac{m+M}{m}\sqrt{2gh}\)
+      - \(h = L(1-\cos\theta_{max})\)
+    en: |-
+      - \(mv_0 = (m+M)V\)
+      - \(\frac{1}{2}(m+M)V^2 = (m+M)gh\)
+      - \(v_0 = \frac{m+M}{m}\sqrt{2gh}\)
+      - \(h = L(1-\cos\theta_{max})\)
+- id: pendolo-balistico-ipotesi
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.1
+    - pendolo-balistico.2
+    - pendolo-balistico.3
+    - pendolo-balistico.4
+    - pendolo-balistico.5
+    - pendolo-balistico.6
+    - pendolo-balistico.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Pendolo balistico'
+    en: 'Validity assumptions: Ballistic pendulum'
+  back:
+    it: >-
+      Urto molto più breve del periodo del pendolo (così P si conserva e il pendolo non si sposta durante
+      l'urto); proiettile che resta conficcato; fili inestensibili e privi di massa; attriti trascurabili
+      nella risalita.
+    en: >-
+      Collision much shorter than the period of the pendulum (so P is conserved and the pendulum does not move
+      during the collision); projectile stays embedded; inextensible massless strings; negligible friction
+      during the rise.
+- id: pendolo-balistico-casi-limite
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.1
+    - pendolo-balistico.2
+    - pendolo-balistico.3
+    - pendolo-balistico.4
+    - pendolo-balistico.5
+    - pendolo-balistico.6
+    - pendolo-balistico.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Pendolo balistico'
+    en: 'Limiting cases: Ballistic pendulum'
+  back:
+    it: >-
+      m ≪ M: V ≈ (m/M)v₀ molto piccola, quasi tutta l'energia dissipata (il caso reale). m ≫ M: V ≈ v₀, quasi
+      niente si dissipa. h → 0: v₀ → 0, coerente.
+    en: >-
+      m ≪ M: V ≈ (m/M)v₀ very small, almost all the energy dissipated (the real case). m ≫ M: V ≈ v₀, almost
+      nothing is dissipated. h → 0: v₀ → 0, consistent.
+- id: pendolo-balistico-errori
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.1
+    - pendolo-balistico.2
+    - pendolo-balistico.3
+    - pendolo-balistico.4
+    - pendolo-balistico.5
+    - pendolo-balistico.6
+    - pendolo-balistico.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Pendolo balistico'
+    en: 'Mistakes to avoid: Ballistic pendulum'
+  back:
+    it: >-
+      - Conservare l'energia attraverso l'urto: ½mv₀² = (m+M)gh è SBAGLIATO e sovrastima h.
+
+      - Conservare la quantità di moto nella risalita (agiscono forze esterne non trascurabili sui tempi
+      lunghi).
+
+      - Dimenticare il fattore (m+M)/m risalendo da V a v₀.
+
+      - Usare h = L sin θ invece di h = L(1 − cos θ).
+    en: |-
+      - Conserving energy across the collision: ½mv₀² = (m+M)gh is WRONG and overestimates h.
+      - Conserving momentum during the rise (non-negligible external forces act over long times).
+      - Forgetting the factor (m+M)/m when going back from V to v₀.
+      - Using h = L sin θ instead of h = L(1 − cos θ).
