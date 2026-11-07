@@ -6,7 +6,7 @@
  * un record proprio che punta all'ancora nella pagina, e le flashcard (che non hanno una
  * pagina) un record che porta al ripasso del corso: così un risultato apre il punto esatto.
  */
-import { plainText } from '../../engine/rich';
+import { proseText as plainText } from '../../engine/rich';
 
 export const SEARCH_TYPES = ['teoria', 'esercizio', 'formula', 'flashcard', 'pagina'] as const;
 export type SearchType = (typeof SEARCH_TYPES)[number];
@@ -83,7 +83,7 @@ export function buildRecords(src: RecordSources): SearchRecord[] {
     out.push({
       url: `${p.overview}formulario/#f-${f.id}`,
       language: lang,
-      content: clip([label, plainText(pickText(f.note, lang)), f.latex].filter(Boolean).join(' — ')),
+      content: clip([label, plainText(pickText(f.note, lang))].filter(Boolean).join(' — ')),
       meta: { title: label },
       filters: { tipo: ['formula'], corso: [f.course] },
     });

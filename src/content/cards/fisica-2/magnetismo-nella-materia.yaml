@@ -1,0 +1,117 @@
+# Domande d'orale (dal generatore del sito originale) e carte del formulario.
+- id: orale-17
+  topic: magnetismo-nella-materia
+  objectives:
+    - magnetismo-nella-materia.3
+  kind: orale
+  front:
+    it: Classificare i materiali in base alla risposta a un campo magnetico (dia-, para-, ferromagneti) e scrivere le condizioni di raccordo di $\vec B$ e $\vec H$.
+    en: Classify materials by their response to a magnetic field (dia-, para-, ferromagnets) and write the boundary conditions for $\vec B$ and $\vec H$.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - dia-, para-, ferromagnetismo e suscettività
+      - definizione di $\vec H$ e $\vec M$
+      - continuità di $B_n$ e $H_t$ all'interfaccia
+    en: |-
+      Answer outline:
+
+      - dia-, para-, ferromagnetism and susceptibility
+      - definition of $\vec H$ and $\vec M$
+      - continuity of $B_n$ and $H_t$ at the interface
+- id: formula-m-vett
+  topic: magnetismo-nella-materia
+  objectives:
+    - magnetismo-nella-materia.1
+  kind: formula
+  front:
+    it: Intensità di magnetizzazione
+    en: Magnetisation
+  back:
+    it: $$\vec M = n\,\langle\vec m\rangle$$
+    en: $$\vec M = n\,\langle\vec m\rangle$$
+- id: formula-correnti-magn
+  topic: magnetismo-nella-materia
+  objectives:
+    - magnetismo-nella-materia.1
+  kind: formula
+  front:
+    it: Correnti amperiane (di magnetizzazione)
+    en: Amperian (magnetisation) currents
+  back:
+    it: $$\vec J_m = \nabla\times\vec M,\qquad \vec j_{s,m} = \vec M\times\hat n$$
+    en: $$\vec J_m = \nabla\times\vec M,\qquad \vec j_{s,m} = \vec M\times\hat n$$
+- id: formula-h-vett
+  topic: magnetismo-nella-materia
+  objectives:
+    - magnetismo-nella-materia.1
+  kind: formula
+  front:
+    it: Campo H
+    en: The H field
+  back:
+    it: $$\vec H = \frac{\vec B}{\mu_0} - \vec M,\qquad \nabla\times\vec H = \vec J_{\text{lib}},\qquad \oint\vec H\cdot d\vec l = I_{\text{lib}}$$
+    en: $$\vec H = \frac{\vec B}{\mu_0} - \vec M,\qquad \nabla\times\vec H = \vec J_{\text{lib}},\qquad \oint\vec H\cdot d\vec l = I_{\text{lib}}$$
+- id: formula-mezzi-lin
+  topic: magnetismo-nella-materia
+  objectives:
+    - magnetismo-nella-materia.1
+  kind: formula
+  front:
+    it: Mezzi lineari
+    en: Linear media
+  back:
+    it: |-
+      $$\vec M = \chi_m\vec H,\qquad \vec B = \mu_0\mu_r\vec H,\qquad \mu_r = 1+\chi_m$$
+
+      Diamagneti: $\chi_m<0$, $|\chi_m|\ll1$; paramagneti: $\chi_m>0$, $\chi_m\ll1$ (legge di Curie $\chi_m\propto 1/T$); ferromagneti: $\mu_r\gg1$, non lineari, con isteresi.
+    en: |-
+      $$\vec M = \chi_m\vec H,\qquad \vec B = \mu_0\mu_r\vec H,\qquad \mu_r = 1+\chi_m$$
+
+      Diamagnets: $\chi_m<0$, $|\chi_m|\ll1$; paramagnets: $\chi_m>0$, $\chi_m\ll1$ (Curie's law $\chi_m\propto 1/T$); ferromagnets: $\mu_r\gg1$, non-linear, with hysteresis.
+- id: formula-raccordo-magn
+  topic: magnetismo-nella-materia
+  objectives:
+    - magnetismo-nella-materia.2
+  kind: formula
+  front:
+    it: Condizioni di raccordo
+    en: Boundary conditions
+  back:
+    it: |-
+      $$B_{1n} = B_{2n},\qquad H_{1t} = H_{2t},\qquad \frac{\tan\theta_1}{\tan\theta_2} = \frac{\mu_1}{\mu_2}$$
+
+      In assenza di correnti libere superficiali; angoli misurati dalla normale.
+    en: |-
+      $$B_{1n} = B_{2n},\qquad H_{1t} = H_{2t},\qquad \frac{\tan\theta_1}{\tan\theta_2} = \frac{\mu_1}{\mu_2}$$
+
+      Without free surface currents; angles measured from the normal.
+- id: formula-hopkinson
+  topic: magnetismo-nella-materia
+  objectives:
+    - magnetismo-nella-materia.5
+  kind: formula
+  front:
+    it: Legge di Hopkinson (circuiti magnetici)
+    en: Hopkinson's law (magnetic circuits)
+  back:
+    it: $$N I = \mathcal R\,\Phi,\qquad \mathcal R = \sum_i \frac{l_i}{\mu_0\mu_{r,i} S_i}$$
+    en: $$N I = \mathcal R\,\Phi,\qquad \mathcal R = \sum_i \frac{l_i}{\mu_0\mu_{r,i} S_i}$$
+- id: formula-elettromagnete
+  topic: magnetismo-nella-materia
+  objectives:
+    - magnetismo-nella-materia.5
+  kind: formula
+  front:
+    it: Elettromagnete con traferro h
+    en: Electromagnet with air gap h
+  back:
+    it: |-
+      $$B \simeq \frac{\mu_0 N I}{l/\mu_r + h}$$
+
+      l lunghezza del ferro; si trascura la dispersione del flusso nel traferro.
+    en: |-
+      $$B \simeq \frac{\mu_0 N I}{l/\mu_r + h}$$
+
+      l length of the iron; flux leakage in the gap neglected.

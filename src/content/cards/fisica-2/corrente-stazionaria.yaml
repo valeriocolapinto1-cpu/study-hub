@@ -1,0 +1,401 @@
+# Domande d'orale (dal generatore del sito originale) e carte del formulario.
+- id: orale-07
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.3
+  kind: orale
+  front:
+    it: Ricavare la legge di Ohm in forma microscopica e l'espressione dell'effetto Joule.
+    en: Derive Ohm's law in microscopic form and the expression of Joule heating.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - $\vec J=\sigma\vec E$ e $R=\rho\ell/S$
+      - potenza per unità di volume $\vec J\cdot\vec E$
+      - $P=Ri^2$ per un conduttore filiforme
+    en: |-
+      Answer outline:
+
+      - $\vec J=\sigma\vec E$ and $R=\rho\ell/S$
+      - power per unit volume $\vec J\cdot\vec E$
+      - $P=Ri^2$ for a thin wire
+- id: orale-08
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.1
+  kind: orale
+  front:
+    it: Ricavare l'equazione di continuità della carica e discuterne il significato nel caso stazionario.
+    en: Derive the continuity equation for charge and discuss its meaning in the steady case.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - bilancio della carica in un volume
+      - $\nabla\cdot\vec J+\partial\rho/\partial t=0$
+      - caso stazionario: $\nabla\cdot\vec J=0$ e leggi di Kirchhoff
+    en: |-
+      Answer outline:
+
+      - charge balance in a volume
+      - $\nabla\cdot\vec J+\partial\rho/\partial t=0$
+      - steady case: $\nabla\cdot\vec J=0$ and Kirchhoff's laws
+- id: orale-09
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+  kind: orale
+  front:
+    it: 'Studiare la carica di un condensatore attraverso una resistenza: equazione del circuito, costante di tempo e andamento di $V(t)$.'
+    en: 'Study the charging of a capacitor through a resistance: circuit equation, time constant and behaviour of $V(t)$.'
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - equazione del circuito (maglia)
+      - soluzione esponenziale e $\tau=RC$
+      - bilancio energetico: energia dissipata ed energia immagazzinata
+    en: |-
+      Answer outline:
+
+      - circuit (loop) equation
+      - exponential solution and $\tau=RC$
+      - energy balance: dissipated and stored energy
+- id: orale-10
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.5
+  kind: orale
+  front:
+    it: 'Teorema di Thevenin: formulazione, calcolo del generatore equivalente e un esempio di applicazione.'
+    en: "Thevenin's theorem: statement, computation of the equivalent generator and an example of application."
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - generatore equivalente di tensione e resistenza equivalente
+      - come si calcolano $V_{th}$ e $R_{th}$
+      - esempio con due resistori e un generatore
+    en: |-
+      Answer outline:
+
+      - equivalent voltage generator and equivalent resistance
+      - how $V_{th}$ and $R_{th}$ are computed
+      - example with two resistors and a generator
+- id: orale-11
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.6
+  kind: orale
+  front:
+    it: Spiegare come il ponte di Wheatstone misura una resistenza incognita, deducendo la condizione di equilibrio.
+    en: Explain how the Wheatstone bridge measures an unknown resistance, deriving the balance condition.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - schema a ponte e galvanometro
+      - condizione $R_1R_x=R_2R_3$
+      - sensibilità e applicazioni
+    en: |-
+      Answer outline:
+
+      - bridge layout and galvanometer
+      - condition $R_1R_x=R_2R_3$
+      - sensitivity and applications
+- id: formula-corrente
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.1
+  kind: formula
+  front:
+    it: Intensità di corrente
+    en: Electric current
+  back:
+    it: $$I = \frac{dq}{dt} = \int_S \vec J\cdot\hat n\,dS$$
+    en: $$I = \frac{dq}{dt} = \int_S \vec J\cdot\hat n\,dS$$
+- id: formula-j
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.1
+  kind: formula
+  front:
+    it: Densità di corrente
+    en: Current density
+  back:
+    it: $$\vec J = n\,q\,\vec v_d$$
+    en: $$\vec J = n\,q\,\vec v_d$$
+- id: formula-continuita
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.1
+  kind: formula
+  front:
+    it: Equazione di continuità
+    en: Continuity equation
+  back:
+    it: "$$\\nabla\\cdot\\vec J + \\frac{\\partial\\rho}{\\partial t} = 0 \\qquad\\text{(stazionario: } \\nabla\\cdot\\vec J = 0)$$"
+    en: "$$\\nabla\\cdot\\vec J + \\frac{\\partial\\rho}{\\partial t} = 0 \\qquad\\text{(stazionario: } \\nabla\\cdot\\vec J = 0)$$"
+- id: formula-ohm
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.1
+  kind: formula
+  front:
+    it: Legge di Ohm
+    en: Ohm's law
+  back:
+    it: $$V = R\,I$$
+    en: $$V = R\,I$$
+- id: formula-ohm-loc
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.2
+  kind: formula
+  front:
+    it: Legge di Ohm locale
+    en: Local Ohm's law
+  back:
+    it: $$\vec J = \sigma\vec E = \frac{\vec E}{\rho}$$
+    en: $$\vec J = \sigma\vec E = \frac{\vec E}{\rho}$$
+- id: formula-resistenza
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.2
+  kind: formula
+  front:
+    it: Resistenza di un conduttore omogeneo a sezione costante
+    en: Resistance of a homogeneous conductor of constant cross-section
+  back:
+    it: |-
+      $$R = \rho\,\frac{l}{S}$$
+
+      In generale $R = \int \rho\,\frac{dl}{S(l)}$ lungo le linee di corrente.
+    en: |-
+      $$R = \rho\,\frac{l}{S}$$
+
+      In general $R = \int \rho\,\frac{dl}{S(l)}$ along the current lines.
+- id: formula-rho-t
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.1
+  kind: formula
+  front:
+    it: Dipendenza della resistività dalla temperatura (metalli)
+    en: Temperature dependence of resistivity (metals)
+  back:
+    it: $$\rho(T) \simeq \rho_0\,[1+\alpha\,(T-T_0)]$$
+    en: $$\rho(T) \simeq \rho_0\,[1+\alpha\,(T-T_0)]$$
+- id: formula-joule
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.3
+  kind: formula
+  front:
+    it: Effetto Joule
+    en: Joule heating
+  back:
+    it: $$P = VI = RI^2 = \frac{V^2}{R}$$
+    en: $$P = VI = RI^2 = \frac{V^2}{R}$$
+- id: formula-joule-loc
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.2
+  kind: formula
+  front:
+    it: Legge di Joule locale
+    en: Local Joule's law
+  back:
+    it: $$\frac{dP}{d\tau} = \vec J\cdot\vec E = \rho J^2$$
+    en: $$\frac{dP}{d\tau} = \vec J\cdot\vec E = \rho J^2$$
+- id: formula-r-serie-par
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.2
+  kind: formula
+  front:
+    it: Resistenze in serie e in parallelo
+    en: Resistors in series and in parallel
+  back:
+    it: $$R_s = \sum_i R_i\qquad\qquad \frac{1}{R_p} = \sum_i\frac{1}{R_i}$$
+    en: $$R_s = \sum_i R_i\qquad\qquad \frac{1}{R_p} = \sum_i\frac{1}{R_i}$$
+- id: formula-fem
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.4
+  kind: formula
+  front:
+    it: Forza elettromotrice
+    en: Electromotive force
+  back:
+    it: |-
+      $$\mathcal E = \oint \vec E^{*}\cdot d\vec l$$
+
+      $\vec E^*$ campo elettromotore (non conservativo) interno al generatore.
+    en: |-
+      $$\mathcal E = \oint \vec E^{*}\cdot d\vec l$$
+
+      $\vec E^*$ electromotive (non-conservative) field inside the generator.
+- id: formula-gen-reale
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.4
+  kind: formula
+  front:
+    it: Generatore reale
+    en: Real generator
+  back:
+    it: |-
+      $$V_{AB} = \mathcal E - r\,I$$
+
+      r resistenza interna.
+    en: |-
+      $$V_{AB} = \mathcal E - r\,I$$
+
+      r internal resistance.
+- id: formula-kirchhoff-nodi
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.5
+  kind: formula
+  front:
+    it: I legge di Kirchhoff (nodi)
+    en: Kirchhoff's first law (nodes)
+  back:
+    it: $$\sum_k I_k = 0$$
+    en: $$\sum_k I_k = 0$$
+- id: formula-kirchhoff-maglie
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.5
+  kind: formula
+  front:
+    it: II legge di Kirchhoff (maglie)
+    en: Kirchhoff's second law (loops)
+  back:
+    it: $$\sum_k R_k I_k = \sum_k \mathcal E_k$$
+    en: $$\sum_k R_k I_k = \sum_k \mathcal E_k$$
+- id: formula-partitori
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.1
+  kind: formula
+  front:
+    it: Partitore di tensione e di corrente
+    en: Voltage and current divider
+  back:
+    it: $$V_2 = V\,\frac{R_2}{R_1+R_2}\qquad\qquad I_1 = I\,\frac{R_2}{R_1+R_2}$$
+    en: $$V_2 = V\,\frac{R_2}{R_1+R_2}\qquad\qquad I_1 = I\,\frac{R_2}{R_1+R_2}$$
+- id: formula-thevenin
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.5
+  kind: formula
+  front:
+    it: Teorema di Thevenin
+    en: Thevenin's theorem
+  back:
+    it: |-
+      $$V_{Th} = V_{AB}\big|_{\text{circuito aperto}},\qquad R_{Th} = R_{AB}\big|_{\text{generatori spenti}}$$
+
+      Generatori ideali di tensione sostituiti da cortocircuiti, di corrente da circuiti aperti.
+    en: |-
+      $$V_{Th} = V_{AB}\big|_{\text{circuito aperto}},\qquad R_{Th} = R_{AB}\big|_{\text{generatori spenti}}$$
+
+      Ideal voltage generators replaced by short circuits, current generators by open circuits.
+- id: formula-max-pot
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.4
+  kind: formula
+  front:
+    it: Massimo trasferimento di potenza
+    en: Maximum power transfer
+  back:
+    it: $$R_L = R_{Th}\ \Rightarrow\ P_{\max} = \frac{V_{Th}^2}{4R_{Th}}$$
+    en: $$R_L = R_{Th}\ \Rightarrow\ P_{\max} = \frac{V_{Th}^2}{4R_{Th}}$$
+- id: formula-wheatstone
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.6
+  kind: formula
+  front:
+    it: Ponte di Wheatstone (equilibrio)
+    en: Wheatstone bridge (balance)
+  back:
+    it: |-
+      $$\frac{R_1}{R_2} = \frac{R_3}{R_4}$$
+
+      R1, R2 in serie su un ramo, R3, R4 sull'altro; il rivelatore collega i punti intermedi.
+    en: |-
+      $$\frac{R_1}{R_2} = \frac{R_3}{R_4}$$
+
+      R1, R2 in series on one branch, R3, R4 on the other; the detector connects the middle points.
+- id: formula-inserzione
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.6
+  kind: formula
+  front:
+    it: 'Misura voltamperometrica: errori di inserzione'
+    en: 'Voltmeter-ammeter measurement: insertion errors'
+  back:
+    it: |-
+      $$\text{voltmetro a valle: } R_{mis} = \frac{R\,R_V}{R+R_V}\qquad \text{voltmetro a monte: } R_{mis} = R + R_A$$
+
+      R_A resistenza dell'amperometro, R_V del voltmetro.
+    en: |-
+      $$\text{voltmetro a valle: } R_{mis} = \frac{R\,R_V}{R+R_V}\qquad \text{voltmetro a monte: } R_{mis} = R + R_A$$
+
+      R_A resistance of the ammeter, R_V of the voltmeter.
+- id: formula-rc-carica
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+  kind: formula
+  front:
+    it: Carica di un condensatore
+    en: Charging a capacitor
+  back:
+    it: $$q(t) = C\mathcal E\left(1-e^{-t/\tau}\right),\qquad I(t) = \frac{\mathcal E}{R}\,e^{-t/\tau},\qquad \tau = RC$$
+    en: $$q(t) = C\mathcal E\left(1-e^{-t/\tau}\right),\qquad I(t) = \frac{\mathcal E}{R}\,e^{-t/\tau},\qquad \tau = RC$$
+- id: formula-rc-scarica
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+  kind: formula
+  front:
+    it: Scarica di un condensatore
+    en: Discharging a capacitor
+  back:
+    it: $$q(t) = Q_0\,e^{-t/\tau},\qquad V_C(t) = V_0\,e^{-t/\tau}$$
+    en: $$q(t) = Q_0\,e^{-t/\tau},\qquad V_C(t) = V_0\,e^{-t/\tau}$$
+- id: formula-rc-energia
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+  kind: formula
+  front:
+    it: Bilancio energetico della carica
+    en: Energy balance of charging
+  back:
+    it: $$W_{gen} = C\mathcal E^2,\qquad U_C = \tfrac{1}{2}C\mathcal E^2,\qquad W_{Joule} = \tfrac{1}{2}C\mathcal E^2$$
+    en: $$W_{gen} = C\mathcal E^2,\qquad U_C = \tfrac{1}{2}C\mathcal E^2,\qquad W_{Joule} = \tfrac{1}{2}C\mathcal E^2$$
+- id: formula-diel-perdita
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+  kind: formula
+  front:
+    it: Condensatore con dielettrico in perdita
+    en: Capacitor with a lossy dielectric
+  back:
+    it: |-
+      $$\tau = RC = \varepsilon\,\rho = \frac{\varepsilon_0\varepsilon_r}{\sigma}$$
+
+      Indipendente dalla geometria (dielettrico omogeneo che riempie il condensatore).
+    en: |-
+      $$\tau = RC = \varepsilon\,\rho = \frac{\varepsilon_0\varepsilon_r}{\sigma}$$
+
+      Independent of the geometry (homogeneous dielectric filling the capacitor).

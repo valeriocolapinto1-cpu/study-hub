@@ -1,0 +1,502 @@
+# Quiz del sito originale (legacy/fisica-2/data/quiz.json, id "quiz-<id>") ed esercizi generati sulla tipologia degli appelli.
+- id: quiz-q401
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'La legge di Lenz afferma che la corrente indotta:'
+    en: "Lenz's law states that the induced current:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: È il segno meno in $\mathcal E=-d\Phi/dt$ ed è una conseguenza della conservazione dell'energia.
+        en: It is the minus sign in $\mathcal E=-d\Phi/dt$ and a consequence of energy conservation.
+  origin: originale
+  choices:
+    - text:
+        it: si oppone alla variazione di flusso che la genera
+        en: opposes the change of flux that produces it
+      correct: true
+    - text:
+        it: ha sempre il verso orario
+        en: always flows clockwise
+      correct: false
+    - text:
+        it: è proporzionale al flusso
+        en: is proportional to the flux
+      correct: false
+    - text:
+        it: rafforza la variazione di flusso
+        en: reinforces the change of flux
+      correct: false
+- id: quiz-q402
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'La forma locale della legge di Faraday (III equazione di Maxwell) è:'
+    en: "The local form of Faraday's law (Maxwell's third equation) is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Da $\oint\vec E\cdot d\vec l=-\frac{d}{dt}\int\vec B\cdot\hat n\,dS$ con Stokes, per un circuito fermo.
+        en: From $\oint\vec E\cdot d\vec l=-\frac{d}{dt}\int\vec B\cdot\hat n\,dS$ with Stokes, for a circuit at rest.
+  origin: originale
+  choices:
+    - text:
+        it: $\nabla\times\vec E=-\partial\vec B/\partial t$
+        en: $\nabla\times\vec E=-\partial\vec B/\partial t$
+      correct: true
+    - text:
+        it: $\nabla\cdot\vec E=-\partial\vec B/\partial t$
+        en: $\nabla\cdot\vec E=-\partial\vec B/\partial t$
+      correct: false
+    - text:
+        it: $\nabla\times\vec B=-\partial\vec E/\partial t$
+        en: $\nabla\times\vec B=-\partial\vec E/\partial t$
+      correct: false
+    - text:
+        it: $\nabla\times\vec E=0$
+        en: $\nabla\times\vec E=0$
+      correct: false
+- id: quiz-q403
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.8
+  difficulty: 1
+  kind: static
+  statement:
+    it: "La corrente di spostamento $\\varepsilon_0\\,\\partial\\vec E/\\partial t$ è stata introdotta per:"
+    en: "The displacement current $\\varepsilon_0\\,\\partial\\vec E/\\partial t$ was introduced to:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Senza di essa $\nabla\cdot(\nabla\times\vec B)=0$ imporrebbe $\nabla\cdot\vec J=0$ anche fuori dal regime stazionario, contro l'equazione di continuità.
+        en: Without it $\nabla\cdot(\nabla\times\vec B)=0$ would impose $\nabla\cdot\vec J=0$ even outside the steady regime, contradicting the continuity equation.
+  origin: originale
+  choices:
+    - text:
+        it: rendere la legge di Ampère compatibile con la conservazione della carica
+        en: make Ampère's law consistent with charge conservation
+      correct: true
+    - text:
+        it: spiegare l'effetto Hall
+        en: explain the Hall effect
+      correct: false
+    - text:
+        it: descrivere le correnti nei dielettrici
+        en: describe currents in dielectrics
+      correct: false
+    - text:
+        it: spiegare la legge di Lenz
+        en: explain Lenz's law
+      correct: false
+- id: quiz-q404
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: "L'energia immagazzinata in un induttore $L$ percorso da corrente $I$ è:"
+    en: 'The energy stored in an inductor $L$ carrying a current $I$ is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Dal bilancio del circuito RL: il generatore compie il lavoro $\\int LI\\,dI=\\frac12LI^2$ oltre a quello dissipato."
+        en: "From the balance of the RL circuit: the generator does the work $\\int LI\\,dI=\\frac12LI^2$ in addition to what is dissipated."
+  origin: originale
+  choices:
+    - text:
+        it: $\frac12LI^2$
+        en: $\frac12LI^2$
+      correct: true
+    - text:
+        it: $LI^2$
+        en: $LI^2$
+      correct: false
+    - text:
+        it: $\frac12LI$
+        en: $\frac12LI$
+      correct: false
+    - text:
+        it: $L^2I/2$
+        en: $L^2I/2$
+      correct: false
+- id: quiz-q405
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: "La legge di Felici afferma che la carica che attraversa un circuito di resistenza $R$ durante una variazione di flusso $\\Delta\\Phi$:"
+    en: "Felici's law states that the charge flowing through a circuit of resistance $R$ during a flux change $\\Delta\\Phi$:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $Q=\int I\,dt=\int\frac{-d\Phi/dt}{R}dt=\frac{\Phi_i-\Phi_f}{R}$.
+        en: $Q=\int I\,dt=\int\frac{-d\Phi/dt}{R}dt=\frac{\Phi_i-\Phi_f}{R}$.
+  origin: originale
+  choices:
+    - text:
+        it: vale $|\Delta\Phi|/R$ e non dipende dalla rapidità della variazione
+        en: equals $|\Delta\Phi|/R$ and does not depend on how fast the change is
+      correct: true
+    - text:
+        it: è proporzionale alla velocità di variazione
+        en: is proportional to the rate of change
+      correct: false
+    - text:
+        it: vale $R\Delta\Phi$
+        en: equals $R\Delta\Phi$
+      correct: false
+    - text:
+        it: è sempre nulla
+        en: is always zero
+      correct: false
+- id: quiz-q406
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Il coefficiente di mutua induzione tra due circuiti:'
+    en: 'The mutual-inductance coefficient between two circuits:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Dalla formula di Neumann $M$ è simmetrico e puramente geometrico (per mezzi lineari); inoltre $M\le\sqrt{L_1L_2}$.
+        en: From Neumann's formula $M$ is symmetric and purely geometric (for linear media); moreover $M\le\sqrt{L_1L_2}$.
+  origin: originale
+  choices:
+    - text:
+        it: è simmetrico ($M_{12}=M_{21}$) e dipende solo dalla geometria
+        en: is symmetric ($M_{12}=M_{21}$) and depends only on the geometry
+      correct: true
+    - text:
+        it: dipende dalle correnti
+        en: depends on the currents
+      correct: false
+    - text:
+        it: è sempre maggiore di $\sqrt{L_1L_2}$
+        en: is always greater than $\sqrt{L_1L_2}$
+      correct: false
+    - text:
+        it: è diverso nei due versi
+        en: differs in the two directions
+      correct: false
+- id: quiz-q407
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Una sbarretta lunga 20 cm scorre a 3 m/s su binari, perpendicolare a un campo $B=0{,}5$ T. Calcola la f.e.m. indotta (in V).
+    en: A 20 cm bar slides at 3 m/s on rails, perpendicular to a field $B=0.5$ T. Compute the induced emf (in V).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\mathcal E=vBl=3\cdot0{,}5\cdot0{,}2=0{,}3$ V.
+        en: $\mathcal E=vBl=3\cdot0.5\cdot0.2=0.3$ V.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 0.3
+      unit: V
+      tol: 0.03
+- id: quiz-q408
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: Solenoide di 1000 spire, lungo 50 cm, con raggio 2 cm. Calcola l'induttanza (in mH).
+    en: Solenoid with 1000 turns, 50 cm long, radius 2 cm. Compute its inductance (in mH).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $L=\mu_0N^2S/l=4\pi\times10^{-7}\cdot10^6\cdot\pi(0{,}02)^2/0{,}5\simeq3,16$ mH.
+        en: $L=\mu_0N^2S/l=4\pi\times10^{-7}\cdot10^6\cdot\pi(0.02)^2/0.5\simeq3.16$ mH.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 3.158
+      unit: mH
+      tol: 0.03
+- id: quiz-q409
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: Circuito RL con $L=0{,}2$ H e $R=50\ \Omega$. Calcola la costante di tempo (in ms).
+    en: RL circuit with $L=0.2$ H and $R=50\ \Omega$. Compute the time constant (in ms).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\tau=L/R=0{,}2/50=4$ ms.
+        en: $\tau=L/R=0.2/50=4$ ms.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 4
+      unit: ms
+      tol: 0.03
+- id: quiz-q410
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Sbarretta conduttrice lunga 50 cm che ruota attorno a un estremo con $\omega=100$ rad/s, perpendicolare a $B=0{,}1$ T. Calcola la d.d.p. tra gli estremi (in V).
+    en: A 50 cm conducting bar rotates about one end with $\omega=100$ rad/s, perpendicular to $B=0.1$ T. Compute the potential difference between its ends (in V).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\Delta V=\frac12B\omega L^2=\frac12\cdot0{,}1\cdot100\cdot0{,}25=1{,}25$ V.
+        en: $\Delta V=\frac12B\omega L^2=\frac12\cdot0.1\cdot100\cdot0.25=1.25$ V.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 1.25
+      unit: V
+      tol: 0.03
+- id: quiz-q411
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: Bobina di 100 spire di area 100 cm² che ruota a 50 giri/s in $B=0{,}2$ T. Calcola l'ampiezza della f.e.m. (in V).
+    en: A coil of 100 turns of area 100 cm² rotates at 50 revolutions/s in $B=0.2$ T. Compute the amplitude of the emf (in V).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\mathcal E_0=NBS\omega=100\cdot0{,}2\cdot0{,}01\cdot2\pi\cdot50\simeq62,8$ V.
+        en: $\mathcal E_0=NBS\omega=100\cdot0.2\cdot0.01\cdot2\pi\cdot50\simeq62.8$ V.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 62.83
+      unit: V
+      tol: 0.03
+- id: quiz-q412
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: Calcola la densità di energia di un campo magnetico $B=1$ T nel vuoto (in kJ/m³).
+    en: Compute the energy density of a magnetic field $B=1$ T in vacuum (in kJ/m³).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $u=B^2/(2\mu_0)=1/(8\pi\times10^{-7})\simeq398$ kJ/m³.
+        en: $u=B^2/(2\mu_0)=1/(8\pi\times10^{-7})\simeq398$ kJ/m³.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 397.9
+      unit: kJ/m³
+      tol: 0.03
+- id: quiz-q413
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Una spira è ferma vicino a un filo rettilineo percorso da corrente costante. Se la spira si allontana dal filo, la corrente indotta nella spira:'
+    en: 'A loop is at rest near a straight wire carrying a constant current. If the loop moves away from the wire, the current induced in the loop:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Allontanandosi il flusso diminuisce; per Lenz la corrente indotta tende a mantenerlo, quindi produce dentro la spira un campo concorde con quello del filo.
+        en: Moving away, the flux decreases; by Lenz the induced current tends to keep it, so it produces inside the loop a field in the same direction as the wire's.
+  origin: originale
+  choices:
+    - text:
+        it: crea un campo che, dentro la spira, ha lo stesso verso di quello del filo
+        en: creates a field that, inside the loop, has the same direction as the wire's field
+      correct: true
+    - text:
+        it: crea un campo opposto a quello del filo
+        en: creates a field opposite to the wire's field
+      correct: false
+    - text:
+        it: è nulla perché la corrente del filo è costante
+        en: is zero because the wire's current is constant
+      correct: false
+    - text:
+        it: non dipende dalla velocità
+        en: does not depend on the speed
+      correct: false
+- id: quiz-q414
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.8
+  difficulty: 2
+  kind: static
+  statement:
+    it: "In un condensatore piano circolare (raggio $R$) che si carica con corrente $I$, il campo magnetico tra le armature a distanza $r\\lt R$ dall'asse vale:"
+    en: "In a circular parallel-plate capacitor (radius $R$) charging with current $I$, the magnetic field between the plates at distance $r\\lt R$ from the axis is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Solo la corrente di spostamento è concatenata, e in proporzione all'area: $B\\cdot2\\pi r=\\mu_0I\\,r^2/R^2$."
+        en: "Only the displacement current is linked, in proportion to the area: $B\\cdot2\\pi r=\\mu_0I\\,r^2/R^2$."
+  origin: originale
+  choices:
+    - text:
+        it: $\dfrac{\mu_0Ir}{2\pi R^2}$
+        en: $\dfrac{\mu_0Ir}{2\pi R^2}$
+      correct: true
+    - text:
+        it: $\dfrac{\mu_0I}{2\pi r}$
+        en: $\dfrac{\mu_0I}{2\pi r}$
+      correct: false
+    - text:
+        it: zero
+        en: zero
+      correct: false
+    - text:
+        it: $\mu_0I/(2R)$
+        en: $\mu_0I/(2R)$
+      correct: false
+- id: gen-b3-spira-filo-carica
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.5
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b3-spira-filo-carica
+  origin: tipologia-appello
+- id: gen-b4-rl-apertura
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.4
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b4-rl-apertura
+  origin: tipologia-appello
+- id: gen-b4-spira-b-variabile
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+    - campi-variabili.5
+  difficulty: 3
+  kind: generated
+  generator: fisica-2/b4-spira-b-variabile
+  origin: tipologia-appello
+- id: gen-b4-barretta-rotaie
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b4-barretta-rotaie
+  origin: tipologia-appello
+- id: gen-b4-sbarra-rotante
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+    - campi-variabili.7
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b4-sbarra-rotante
+  origin: tipologia-appello
+- id: gen-b4-mutua-filo-spira
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.3
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b4-mutua-filo-spira
+  origin: tipologia-appello
+- id: gen-b4-solenoide-bobina
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.1
+    - campi-variabili.5
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b4-solenoide-bobina
+  origin: tipologia-appello
+- id: gen-b4-spira-rotante
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.7
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b4-spira-rotante
+  origin: tipologia-appello
+- id: gen-b4-toroide-l
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.3
+    - campi-variabili.6
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b4-toroide-l
+  origin: tipologia-appello
+- id: gen-b4-rapporto-densita
+  topic: campi-variabili
+  objectives:
+    - campi-variabili.2
+    - campi-variabili.6
+  difficulty: 3
+  kind: generated
+  generator: fisica-2/b4-rapporto-densita
+  origin: tipologia-appello

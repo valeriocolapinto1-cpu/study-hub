@@ -1,0 +1,128 @@
+---
+course: fisica-2
+topic: onde-elettromagnetiche
+lang: it
+---
+
+<Layer kind="intuizione">
+
+Le equazioni di Maxwell contengono un circolo virtuoso: un campo magnetico che varia produce un campo elettrico che varia, che a sua volta produce un campo magnetico che varia, e così via. Questa perturbazione si stacca dalle sorgenti e viaggia da sola nello spazio vuoto, alla velocità $c=1/\sqrt{\mu_0\varepsilon_0}$: è un'onda elettromagnetica, e la luce ne è un caso particolare.
+
+In un'onda piana $\vec E$ e $\vec B$ sono perpendicolari tra loro e alla direzione di propagazione, oscillano in fase e hanno rapporto fisso $E=cB$. L'onda trasporta energia (il vettore di Poynting dice quanta e in che direzione) e impulso (pressione di radiazione). Le onde nascono da cariche accelerate: il dipolo oscillante è il modello più semplice di antenna.
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Equazione delle onde
+
+Nel vuoto senza cariche né correnti, prendendo il rotore della III equazione e usando la IV:
+
+$$
+\nabla\times(\nabla\times\vec E)=\nabla(\nabla\cdot\vec E)-\nabla^2\vec E=-\frac{\partial}{\partial t}\nabla\times\vec B=-\mu_0\varepsilon_0\frac{\partial^2\vec E}{\partial t^2}
+$$
+
+Poiché $\nabla\cdot\vec E=0$ si ottiene l'**equazione di d'Alembert**, e la stessa equazione vale per $\vec B$:
+
+$$
+\nabla^2\vec E-\frac1{c^2}\frac{\partial^2\vec E}{\partial t^2}=0,\qquad c=\frac1{\sqrt{\mu_0\varepsilon_0}}\simeq3\times10^8\ \mathrm{m/s}
+$$
+
+La luce è un'onda elettromagnetica. In un mezzo lineare $v=\frac1{\sqrt{\varepsilon\mu}}=\frac cn$, con indice di rifrazione $n=\sqrt{\varepsilon_r\mu_r}$.
+
+## Onde piane e sferiche
+
+Qualunque funzione $f(x-vt)$ è soluzione in una dimensione (onda che viaggia verso $+x$). Onda piana armonica: $\vec E=\vec E_0\cos(kx-\omega t)$, con $k=\frac{2\pi}\lambda=\frac\omega v$, $\omega=2\pi\nu$ e $c=\lambda\nu$. Dalle equazioni di Maxwell:
+
+- l'onda è **trasversale**: $\vec E\perp\hat k$ e $\vec B\perp\hat k$;
+- $\vec B=\frac1v\hat k\times\vec E$, quindi $E=vB$, e $\vec E$, $\vec B$, $\hat k$ formano una terna destrorsa;
+- $\vec E$ e $\vec B$ oscillano **in fase**.
+
+**Polarizzazione**: lineare se $\vec E$ oscilla lungo una direzione fissa; circolare o ellittica se due componenti ortogonali sono sfasate.
+
+**Onde sferiche** (sorgente puntiforme): $E=\frac{E_0r_0}r\cos(kr-\omega t)$. L'ampiezza decresce come $1/r$ e l'intensità come $1/r^2$, così che la potenza attraverso ogni sfera resta costante. Lontano dalla sorgente l'onda è localmente piana.
+
+**Onde stazionarie**: tra due piani conduttori ideali a distanza $L$, $E$ deve annullarsi sulle pareti. Dalla sovrapposizione di onde che viaggiano in versi opposti si ottiene $E=2E_0\sin kx\sin\omega t$, possibile solo per $L=m\frac\lambda2$. $\vec B$ è sfasato di un quarto di periodo e ha i ventri dove $\vec E$ ha i nodi.
+
+**Onde in un conduttore**: il campo si smorza esponenzialmente entro la **profondità di penetrazione** $\delta=\sqrt{\frac2{\omega\mu\sigma}}$ (effetto pelle). Per questo i metalli riflettono le onde e schermano i segnali ad alta frequenza.
+
+## Spettro elettromagnetico
+
+Onde radio (λ da km a cm), microonde (cm–mm), infrarosso, **visibile** (circa 400–700 nm, dal violetto al rosso), ultravioletto, raggi X, raggi γ. La fisica è la stessa; cambiano la lunghezza d'onda, l'energia dei fotoni ($h\nu$) e l'interazione con la materia.
+
+## Energia e vettore di Poynting
+
+Nel campo è immagazzinata energia con densità $u=\frac12\varepsilon_0E^2+\frac1{2\mu_0}B^2$; in un'onda piana le due parti sono uguali. Dalle equazioni di Maxwell si ottiene il **teorema di Poynting** (conservazione dell'energia):
+
+$$
+-\frac{\partial u}{\partial t}=\nabla\cdot\vec S+\vec J\cdot\vec E,\qquad\vec S=\vec E\times\vec H=\frac1{\mu_0}\vec E\times\vec B
+$$
+
+Il vettore di Poynting $\vec S$ (W/m²) è il flusso di energia per unità di area e tempo, diretto come la propagazione. La **intensità** è il suo valore medio nel tempo; per un'onda armonica nel vuoto:
+
+$$
+I=\langle S\rangle=\frac12\varepsilon_0cE_0^2=\frac{E_0^2}{2Z_0}=\frac{cB_0^2}{2\mu_0},\qquad Z_0=\sqrt{\frac{\mu_0}{\varepsilon_0}}\simeq377\ \Omega
+$$
+
+Una sorgente isotropa di potenza $P$ produce a distanza $r$ l'intensità $I=\frac{P}{4\pi r^2}$. L'onda trasporta anche impulso: su una superficie che la assorbe esercita la pressione di radiazione $I/c$ (il doppio se la riflette).
+
+## Potenziali elettrodinamici e gauge di Lorentz
+
+Da $\nabla\cdot\vec B=0$ segue $\vec B=\nabla\times\vec A$; allora la III equazione dà $\nabla\times(\vec E+\partial_t\vec A)=0$, quindi
+
+$$
+\vec E=-\nabla V-\frac{\partial\vec A}{\partial t}
+$$
+
+I potenziali non sono unici (trasformazioni di gauge). Con la **gauge di Lorentz** $\nabla\cdot\vec A+\frac1{c^2}\frac{\partial V}{\partial t}=0$ le equazioni si separano in due equazioni d'onda con sorgente:
+
+$$
+\nabla^2V-\frac1{c^2}\frac{\partial^2V}{\partial t^2}=-\frac\rho{\varepsilon_0},\qquad\nabla^2\vec A-\frac1{c^2}\frac{\partial^2\vec A}{\partial t^2}=-\mu_0\vec J
+$$
+
+Le soluzioni sono i **potenziali ritardati**: hanno la forma statica, ma le sorgenti vanno valutate all'istante $t-r/c$, perché l'informazione viaggia alla velocità della luce.
+
+## Radiazione di un dipolo oscillante
+
+Un dipolo $p(t)=p_0\cos\omega t$ (ad esempio un'antenna corta) irraggia. Nella **zona di radiazione** ($r\gg\lambda$) i campi sono trasversali e decrescono come $1/r$:
+
+$$
+E_\theta=-\frac{\mu_0p_0\omega^2}{4\pi}\frac{\sin\theta}r\cos\!\left[\omega\left(t-\frac rc\right)\right],\qquad B_\phi=\frac{E_\theta}c
+$$
+
+$$
+\langle S\rangle=\frac{\mu_0p_0^2\omega^4}{32\pi^2c}\frac{\sin^2\theta}{r^2},\qquad\langle P\rangle=\frac{\mu_0p_0^2\omega^4}{12\pi c}
+$$
+
+Il dipolo non irraggia lungo il proprio asse e irraggia al massimo sul piano equatoriale. La potenza cresce come $\omega^4$: per questo la luce diffusa dall'atmosfera è ricca di blu. Più in generale, ogni carica accelerata irraggia.
+
+<Callout tone="esame" title="Domande frequenti">
+"ricavare l'equazione delle onde dalle equazioni di Maxwell", "proprietà delle onde piane", "ricavare il vettore di Poynting e discuterne il significato", "intensità istantanea e media di un'onda sinusoidale". Negli esercizi con sorgenti isotrope: $I=P/(4\pi r^2)$, poi $E_0=\sqrt{2Z_0I}$ e $B_0=E_0/c$.
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Esempio svolto: lampada isotropa
+
+Una sorgente puntiforme irraggia in modo isotropo una potenza media $P=100\ \mathrm W$. Si vogliono i campi e la pressione di radiazione a $r=2\ \mathrm m$.
+
+1. **Intensità.** La potenza attraversa sfere concentriche: $I=\dfrac{P}{4\pi r^2}=\dfrac{100}{4\pi\cdot4}\simeq 1{,}99\ \mathrm{W/m^2}$.
+2. **Ampiezza del campo elettrico.** Da $I=\dfrac{E_0^2}{2Z_0}$: $E_0=\sqrt{2Z_0I}\simeq\sqrt{2\cdot377\cdot1{,}99}\simeq 38{,}7\ \mathrm{V/m}$.
+3. **Campo magnetico.** $B_0=E_0/c\simeq 1{,}29\times10^{-7}\ \mathrm T$: in unità SI il campo magnetico di un'onda è "piccolo", ma porta la stessa energia di quello elettrico.
+4. **Densità di energia e pressione.** $\langle u\rangle=I/c\simeq 6{,}6\times10^{-9}\ \mathrm{J/m^3}$; su una superficie assorbente $p=I/c\simeq 6{,}6\times10^{-9}\ \mathrm{Pa}$, il doppio se riflettente.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Errori tipici
+
+- **Confondere intensità istantanea e media.** $S$ oscilla tra $0$ e $\varepsilon_0cE_0^2$; il valore medio ha il fattore $\frac12$. Con i valori efficaci $I=E_{eff}^2/Z_0$.
+- **Prendere $B=E$.** Nel SI $B=E/c$; sono le densità di energia elettrica e magnetica a essere uguali.
+- **Direzione di $\vec B$.** $\vec B=\frac1c\hat k\times\vec E$: $\vec E$, $\vec B$ e $\hat k$ formano una terna destrorsa (per $\hat k=\hat x$ ed $\vec E\parallel\hat y$, $\vec B\parallel\hat z$).
+- **Pressione di radiazione.** $I/c$ per assorbimento totale, $2I/c$ per riflessione totale con incidenza normale.
+- **Onde sferiche.** Il campo decresce come $1/r$, l'intensità come $1/r^2$: non confondere i due andamenti.
+
+</Layer>

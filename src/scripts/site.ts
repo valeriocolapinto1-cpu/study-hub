@@ -118,3 +118,5 @@ const markScrollableMath = () => {
 };
 markScrollableMath();
 globalThis.addEventListener?.('resize', markScrollableMath, { passive: true });
+// I font di KaTeX e del testo arrivano dopo: le formule possono diventare più larghe della colonna.
+void document.fonts?.ready.then(markScrollableMath);

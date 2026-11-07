@@ -1,0 +1,142 @@
+---
+course: fisica-2
+topic: magnetostatica-nel-vuoto
+lang: it
+---
+
+<Layer kind="intuizione">
+
+Il campo magnetico agisce solo sulle cariche **in moto** e sempre di traverso rispetto alla velocità: curva le traiettorie senza mai cambiare l'energia. È per questo che una particella in $\vec B$ uniforme gira in cerchio, e che un filo percorso da corrente in un campo sente una forza perpendicolare a sé stesso.
+
+A loro volta le correnti producono campo magnetico. Le sue linee non hanno né inizio né fine (non esistono "cariche magnetiche"), quindi il flusso uscente da una superficie chiusa è sempre nullo. Il ruolo che in elettrostatica ha Gauss qui lo ha **Ampère**: la circuitazione di $\vec B$ lungo una curva chiusa conta la corrente che la attraversa. Con la simmetria giusta (filo, cilindro, solenoide, toroide) dà il campo in una riga; altrimenti si integra la formula di Biot-Savart.
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Forza di Lorentz e vettore induzione magnetica
+
+Una carica in moto in un campo magnetico subisce la forza di Lorentz (insieme al campo elettrico):
+
+$$
+\vec F = q\left(\vec E+\vec v\times\vec B\right)
+$$
+
+che definisce $\vec B$ (tesla, T). La forza magnetica è sempre perpendicolare alla velocità: **non compie lavoro** e non cambia l'energia cinetica.
+
+- **Moto in B uniforme**: circolare con $r=\frac{mv_\perp}{|q|B}$ e pulsazione di ciclotrone $\omega=\frac{|q|B}{m}$, indipendente dalla velocità. Se c'è una componente parallela a $\vec B$ il moto è elicoidale.
+- **Bottiglia magnetica**: in un campo che si intensifica agli estremi le particelle vengono riflesse (fasce di Van Allen).
+- **Selettore di velocità**: con $\vec E\perp\vec B$ passano indisturbate solo le particelle con $v=E/B$.
+- **Spettrometro di massa**: ioni accelerati da una d.d.p. $V$ ($\frac12mv^2=qV$) descrivono un semicerchio di raggio $r=\frac{mv}{qB}$, da cui $m=\frac{qB^2r^2}{2V}$.
+- **Ciclotrone**: la frequenza di rivoluzione non dipende dal raggio, quindi un campo elettrico alternato a frequenza fissa accelera la particella a ogni mezzo giro. L'energia finale è $K=\frac{q^2B^2R^2}{2m}$. Nel **sincrotrone** il raggio è fisso e $B$ cresce con l'impulso ($p=qBR$).
+
+## Azioni meccaniche su circuiti percorsi da corrente
+
+Su un elemento di filo percorso da corrente agisce la forza $d\vec F = I\,d\vec l\times\vec B$ (II formula di Laplace); per un filo rettilineo in campo uniforme $\vec F=I\vec L\times\vec B$. Su un circuito chiuso in campo _uniforme_ la forza totale è nulla, ma agisce un momento. Per una spira piana di area $S$ si definisce il **momento magnetico** $\vec m = IS\hat n$ (verso con la regola della mano destra):
+
+$$
+\vec M=\vec m\times\vec B,\qquad U=-\vec m\cdot\vec B,\qquad \vec F=\nabla(\vec m\cdot\vec B)
+$$
+
+Il **teorema di equivalenza di Ampère** afferma che una spira percorsa da corrente equivale, a grande distanza, a un dipolo magnetico di momento $\vec m$: il suo campo ha la stessa forma di quello del dipolo elettrico. Su questo principio si basano motori e galvanometri.
+
+## Campo prodotto da correnti stazionarie
+
+Un elemento di corrente produce il campo dato dalla **I formula di Laplace** (Biot-Savart), con $\mu_0=4\pi\times10^{-7}$ H/m:
+
+$$
+d\vec B=\frac{\mu_0}{4\pi}\frac{I\,d\vec l\times\hat u_r}{r^2}
+$$
+
+- Filo rettilineo infinito: $B=\frac{\mu_0I}{2\pi r}$, linee circolari (regola della mano destra). Filo finito: $B=\frac{\mu_0I}{4\pi d}(\sin\theta_2-\sin\theta_1)$.
+- Spira circolare, sull'asse: $B=\frac{\mu_0IR^2}{2(R^2+z^2)^{3/2}}$; al centro $B=\frac{\mu_0I}{2R}$. Un arco di angolo $\alpha$ dà al centro $B=\frac{\mu_0I\alpha}{4\pi R}$ (semicerchio: $\frac{\mu_0I}{4R}$).
+- Solenoide infinito ($n$ spire per unità di lunghezza): $B=\mu_0nI$ uniforme all'interno, nullo all'esterno. Solenoide finito, sull'asse: $B=\frac{\mu_0nI}{2}(\cos\alpha_1-\cos\alpha_2)$, con $\alpha_{1,2}$ gli angoli sotto cui si vedono le estremità.
+- Nastro di larghezza $w$ con corrente $I$, punto sul piano del nastro a distanza $d$ dal bordo: $B=\frac{\mu_0I}{2\pi w}\ln\frac{d+w}{d}$.
+- Carica in moto lento: $\vec B=\frac{\mu_0}{4\pi}\frac{q\vec v\times\hat u_r}{r^2}$.
+
+## Proprietà di B: II e IV equazione di Maxwell (caso stazionario)
+
+Le linee di $\vec B$ sono chiuse (non esistono monopoli magnetici). Il flusso attraverso una superficie chiusa è nullo, quindi il flusso _concatenato_ con una curva non dipende dalla superficie scelta:
+
+$$
+\oint_S\vec B\cdot\hat n\,dS = 0\quad\Longleftrightarrow\quad\nabla\cdot\vec B=0
+$$
+
+**Teorema della circuitazione di Ampère**: la circuitazione di $\vec B$ lungo una curva chiusa è $\mu_0$ per la corrente concatenata. Con Stokes si ottiene la forma locale:
+
+$$
+\oint_\gamma\vec B\cdot d\vec l=\mu_0I_{conc}\quad\Longleftrightarrow\quad\nabla\times\vec B=\mu_0\vec J
+$$
+
+Si usa come Gauss, cioè quando la simmetria lo consente:
+
+- Cilindro pieno (raggio $R$, corrente $I$ uniforme): dentro $B=\frac{\mu_0Ir}{2\pi R^2}$, fuori $B=\frac{\mu_0I}{2\pi r}$.
+- Cilindro cavo ($a\lt r\lt b$): $B=\frac{\mu_0I}{2\pi r}\frac{r^2-a^2}{b^2-a^2}$; nella cavità $B=0$.
+- Cavo coassiale con correnti opposte: $B$ nullo fuori dal conduttore esterno.
+- Toroide ($N$ spire): $B=\frac{\mu_0NI}{2\pi r}$ all'interno, nullo fuori.
+- Cilindro con una cavità cilindrica eccentrica: per sovrapposizione, nella cavità il campo è uniforme, $\vec B=\frac{\mu_0}{2}\vec J\times\vec d$.
+
+## Potenziale vettore
+
+Poiché $\nabla\cdot\vec B=0$, si può scrivere $\vec B=\nabla\times\vec A$. $\vec A$ è definito a meno del gradiente di una funzione (libertà di _gauge_); scegliendo $\nabla\cdot\vec A=0$, l'equazione di Ampère diventa un'equazione di Poisson per ogni componente:
+
+$$
+\nabla^2\vec A=-\mu_0\vec J\quad\Rightarrow\quad\vec A(\vec r)=\frac{\mu_0}{4\pi}\int\frac{\vec J(\vec r\,')}{|\vec r-\vec r\,'|}dV'
+$$
+
+La soluzione ha la stessa forma di quella del potenziale elettrico. Calcolandone il rotore si ritrova la I formula di Laplace. Il flusso di $\vec B$ attraverso una superficie è uguale alla circuitazione di $\vec A$ lungo il suo bordo.
+
+## Interazioni tra circuiti ed effetto Hall
+
+Due fili paralleli a distanza $d$ si attraggono se le correnti sono concordi e si respingono se sono discordi:
+
+$$
+\frac{F}{l}=\frac{\mu_0I_1I_2}{2\pi d}
+$$
+
+Questa relazione definiva l'ampere (fino al 2019: $2\times10^{-7}$ N/m tra fili a 1 m con 1 A). Tra circuiti rigidi le forze si ricavano dall'energia di interazione $U=-I_2\Phi_{21}$ (a correnti costanti $F=+\nabla(I_2\Phi_{21})$).
+
+**Effetto Hall**: in una lamina percorsa da corrente e immersa in $\vec B$ perpendicolare, i portatori vengono deviati lateralmente finché il campo elettrico trasversale non bilancia la forza magnetica: $E_H=v_dB$. La tensione di Hall vale
+
+$$
+V_H=\frac{IB}{nqt}\qquad(t = \text{spessore nella direzione di }\vec B)
+$$
+
+Dal segno di $V_H$ si ricava il segno dei portatori, dal modulo la loro densità $n$; la sonda di Hall serve anche a misurare $B$.
+
+<Callout tone="esame" title="Domande frequenti">
+  "ricavare il campo di un filo infinito, di una spira sull'asse, di un solenoide infinito", "dal teorema
+  della circuitazione ricavare la IV equazione di Maxwell in forma locale (caso stazionario)", "azioni su una
+  spira rettangolare in campo uniforme", "forza tra due fili", "effetto Hall", "una carica in moto in B può
+  acquistare energia dal campo? No, perché la forza è perpendicolare alla velocità".
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Esempio svolto: campo di un cavo coassiale
+
+Un cavo coassiale indefinito ha conduttore interno pieno di raggio $a=1\ \mathrm{mm}$ e conduttore esterno cilindrico con raggi $b=4\ \mathrm{mm}$ e $c=5\ \mathrm{mm}$; i due conduttori portano correnti opposte $I=10\ \mathrm A$, distribuite uniformemente nelle sezioni.
+
+1. **Simmetria.** Le linee di $\vec B$ sono circonferenze coassiali e sul contorno di raggio $r$ il modulo è costante: Ampère dà $B\,2\pi r=\mu_0I_{conc}(r)$.
+2. **Dentro il conduttore interno** ($r<a$): $I_{conc}=I\,r^2/a^2$, quindi $B=\frac{\mu_0Ir}{2\pi a^2}$; a $r=0{,}5\ \mathrm{mm}$ vale $1{,}0\ \mathrm{mT}$.
+3. **Fra i conduttori** ($a<r<b$): $I_{conc}=I$, $B=\frac{\mu_0I}{2\pi r}$; a $r=2\ \mathrm{mm}$ vale $1{,}0\ \mathrm{mT}$.
+4. **Nel conduttore esterno** ($b<r<c$): $I_{conc}=I\left(1-\frac{r^2-b^2}{c^2-b^2}\right)=I\,\frac{c^2-r^2}{c^2-b^2}$; a $r=4{,}5\ \mathrm{mm}$ si ottiene $B\simeq 0{,}23\ \mathrm{mT}$.
+5. **Fuori** ($r>c$): la corrente concatenata totale è nulla e $B=0$: per questo il cavo coassiale non disturba l'esterno.
+
+**Controllo.** Il campo è continuo in $r=a$, $r=b$ e $r=c$, perché non ci sono correnti superficiali.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Errori tipici
+
+- **Attribuire lavoro alla forza magnetica.** $q\vec v\times\vec B$ è perpendicolare alla velocità: cambia la direzione, non il modulo, della velocità.
+- **Sbagliare il verso con la mano destra.** Pollice nel verso della corrente, dita nel verso di $\vec B$ attorno al filo; per una spira il pollice dà il verso di $\vec m$ e del campo al centro.
+- **Usare Ampère senza simmetria.** Il teorema vale per ogni curva, ma dà $B$ solo se modulo e direzione sono noti lungo la curva (per un filo finito si usa Biot-Savart).
+- **Dimenticare la corrente concatenata parziale.** Dentro un conduttore conta solo la corrente che attraversa la superficie delimitata dalla curva.
+- **Forza netta su una spira in campo uniforme.** È nulla: agisce solo il momento $\vec m\times\vec B$. Una forza netta compare solo in campo non uniforme.
+
+</Layer>

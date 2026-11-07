@@ -1,0 +1,59 @@
+id: campi-variabili
+course: fisica-2
+order: 7
+title:
+  { it: 'Campi elettrici e magnetici variabili nel tempo', en: 'Time-varying electric and magnetic fields' }
+summary:
+  it: Legge di Faraday-Neumann-Lenz e III equazione di Maxwell, autoinduzione e mutua induzione, circuito RL, energia magnetica, generatori e motori, corrente di spostamento.
+  en: Faraday-Neumann-Lenz law and Maxwell's third equation, self- and mutual induction, the RL circuit, magnetic energy, generators and motors, displacement current.
+group:
+  { it: 'Campi elettrici e magnetici variabili nel tempo', en: 'Time-varying electric and magnetic fields' }
+objectives:
+  - id: campi-variabili.1
+    text:
+      {
+        it: 'Applicare la legge di Faraday-Neumann-Lenz a spire in B variabile e a conduttori in moto',
+        en: 'Apply the Faraday-Neumann-Lenz law to loops in a varying B and to moving conductors',
+      }
+  - id: campi-variabili.2
+    text:
+      {
+        it: 'Ricavare la forma locale della legge di Faraday (III equazione di Maxwell)',
+        en: "Derive the local form of Faraday's law (Maxwell's third equation)",
+      }
+  - id: campi-variabili.3
+    text:
+      {
+        it: 'Calcolare coefficienti di autoinduzione e di mutua induzione (solenoide, toroide, linea bifilare)',
+        en: 'Compute self- and mutual-inductance coefficients (solenoid, toroid, two-wire line)',
+      }
+  - id: campi-variabili.4
+    text:
+      {
+        it: 'Studiare apertura e chiusura di un circuito RL e il suo bilancio energetico',
+        en: 'Study opening and closing of an RL circuit and its energy balance',
+      }
+  - id: campi-variabili.5
+    text:
+      {
+        it: 'Usare la legge di Felici per la carica circolata',
+        en: "Use Felici's law for the charge that flows",
+      }
+  - id: campi-variabili.6
+    text:
+      {
+        it: "Calcolare l'energia magnetica e la sua densità e le azioni meccaniche",
+        en: 'Compute the magnetic energy and its density and the mechanical actions',
+      }
+  - id: campi-variabili.7
+    text:
+      {
+        it: 'Descrivere alternatori, motori, correnti di Foucault e trasformatore',
+        en: 'Describe alternators, motors, eddy currents and the transformer',
+      }
+  - id: campi-variabili.8
+    text:
+      {
+        it: 'Introdurre la corrente di spostamento e scrivere le quattro equazioni di Maxwell',
+        en: 'Introduce the displacement current and write the four Maxwell equations',
+      }

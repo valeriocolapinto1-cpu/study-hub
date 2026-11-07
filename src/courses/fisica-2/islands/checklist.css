@@ -1,0 +1,47 @@
+/* Elenchi spuntabili di Fisica Generale II: solo token del design. */
+.f2-checklist {
+  display: grid;
+  gap: var(--space-m);
+}
+.f2-checklist__group h3,
+.f2-checklist__group h4 {
+  margin: 0 0 var(--space-2xs);
+  font: 600 var(--step-0) / var(--leading-tight) var(--font-sans);
+}
+.f2-checklist__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3xs);
+}
+.f2-checklist__list li {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  padding: var(--space-3xs) 0;
+  border-bottom: 1px solid var(--border);
+}
+.f2-checklist__list li[data-done] .check > span {
+  color: var(--text-muted);
+}
+.f2-checklist__list .check {
+  align-items: flex-start;
+  min-height: 1.75rem;
+}
+.f2-checklist__list .check input {
+  margin-top: 0.15rem;
+  flex: none;
+}
+.f2-checklist__meta {
+  margin-inline-start: var(--space-2xs);
+}
+.f2-checklist__link {
+  flex: none;
+  min-width: 1.75rem;
+  min-height: 1.75rem;
+  display: inline-grid;
+  place-items: center;
+  text-decoration: none;
+}

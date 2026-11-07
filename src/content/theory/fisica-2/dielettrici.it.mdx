@@ -1,0 +1,92 @@
+---
+course: fisica-2
+topic: dielettrici
+lang: it
+---
+
+<Layer kind="intuizione">
+
+In un isolante le cariche non possono andarsene, ma possono **spostarsi di poco**: gli atomi si deformano e le molecole polari si orientano. Ogni elemento di materiale diventa un piccolo dipolo, e l'insieme dei dipoli produce un campo che si oppone a quello applicato. Risultato: dentro il dielettrico il campo è più debole e, a parità di tensione, un condensatore accumula più carica.
+
+Per non dover inseguire le cariche di polarizzazione, che non controlliamo, si introduce il vettore $\vec D$: il suo flusso dipende solo dalle cariche **libere**, quelle che mettiamo noi sulle armature. Il metodo è sempre lo stesso: prima $\vec D$, poi $\vec E$, infine $\vec P$.
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Costante dielettrica
+
+Riempiendo un condensatore isolato con un isolante la tensione scende a $V_0/\varepsilon_r$, quindi la capacità diventa $C=\varepsilon_rC_0$. La **costante dielettrica relativa** $\varepsilon_r\ge1$ caratterizza il materiale ($\varepsilon=\varepsilon_0\varepsilon_r$). Il campo nel dielettrico si riduce: $E=E_0/\varepsilon_r$.
+
+## Interpretazione microscopica e vettore polarizzazione
+
+- **Polarizzazione per deformazione** (elettronica): il campo sposta la nuvola elettronica rispetto al nucleo e induce un momento $\vec p=\alpha\vec E$. Nel modello di atomo a nube sferica uniforme $\vec p = 4\pi\varepsilon_0R^3\vec E$. Non dipende dalla temperatura.
+- **Polarizzazione per orientamento**: molecole polari (come l'acqua) con momento proprio $p_0$ si allineano parzialmente al campo, contrastate dall'agitazione termica: $\langle p\rangle=\frac{p_0^2E}{3k_BT}$ (dipende da $T$).
+
+Il **vettore polarizzazione** è il momento di dipolo per unità di volume, $\vec P = n\langle\vec p\rangle$. Nei dielettrici lineari e isotropi $\vec P=\varepsilon_0\chi\vec E$, con $\chi = \varepsilon_r-1$ suscettività elettrica.
+
+La polarizzazione equivale a **cariche di polarizzazione** (legate): $\sigma_p=\vec P\cdot\hat n$ sulla superficie e $\rho_p=-\nabla\cdot\vec P$ nel volume (nulla se $\vec P$ è uniforme). In un condensatore piano pieno di dielettrico, la $\sigma_p$ sulle facce riduce la densità efficace: $\sigma_p = \sigma\left(1-\frac1{\varepsilon_r}\right)$.
+
+## Le equazioni con i dielettrici
+
+Gauss vale con tutte le cariche, libere e di polarizzazione: $\nabla\cdot\vec E=(\rho_{lib}+\rho_p)/\varepsilon_0$. Definendo il vettore **induzione elettrica**
+
+$$
+\vec D=\varepsilon_0\vec E+\vec P\quad\Rightarrow\quad \nabla\cdot\vec D=\rho_{lib},\qquad \oint_S\vec D\cdot\hat n\,dS = Q_{lib}
+$$
+
+Nei mezzi lineari $\vec D=\varepsilon\vec E$. Rimane $\nabla\times\vec E=0$. Procedura: si calcola $\vec D$ con Gauss dalle sole cariche libere, poi $\vec E=\vec D/\varepsilon$ in ogni mezzo, infine $\vec P$ e le cariche di polarizzazione.
+
+## Condizioni al contorno tra due dielettrici
+
+Dalla scatoletta di Gauss (senza cariche libere sulla superficie) si ottiene $D_{1n}=D_{2n}$; dalla circuitazione nulla di $\vec E$ su un rettangolino a cavallo della superficie si ottiene $E_{1t}=E_{2t}$. Le linee di campo si "rifrangono":
+
+$$
+\frac{\tan\theta_1}{\tan\theta_2}=\frac{\varepsilon_1}{\varepsilon_2}\quad(\text{angoli dalla normale})
+$$
+
+Il campo normale è più intenso nel mezzo con $\varepsilon$ minore.
+
+## Energia nei dielettrici e macchine elettrostatiche
+
+La densità di energia diventa $u=\frac12\vec E\cdot\vec D=\frac12\varepsilon E^2$. Un dielettrico viene risucchiato tra le armature di un condensatore: la forza si ricava con i lavori virtuali, a $Q$ o a $V$ costante.
+
+La **rigidità dielettrica** è il campo massimo che il materiale sopporta senza scarica (aria: circa 3 MV/m).
+
+Il **generatore di Van de Graaff** sfrutta il fatto che la carica portata all'interno di un conduttore cavo si trasferisce tutta sulla superficie esterna, qualunque sia il potenziale raggiunto. Il limite è la rigidità dell'aria: $V_{max}=E_{max}R$.
+
+<Callout tone="esame" title="All'esame">
+  Dielettrici a strati paralleli alle armature equivalgono a condensatori in serie ($D$ uguale in tutti gli
+  strati); dielettrici affiancati equivalgono a condensatori in parallelo ($E$ uguale). Con una sfera
+  semi-immersa in un liquido, il potenziale è lo stesso nelle due metà: $E$ è uguale sopra e sotto, mentre
+  $\sigma_{lib}$ è diversa.
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Esempio svolto: lastra dielettrica che riempie in parte un condensatore
+
+Un condensatore piano isolato ha armature di area $S=200\ \mathrm{cm^2}$ a distanza $d=4\ \mathrm{mm}$ e carica $Q=10\ \mathrm{nC}$. Su un'armatura è appoggiata una lastra di dielettrico di spessore $t=2\ \mathrm{mm}$ e $\varepsilon_r=4$.
+
+1. **Induzione elettrica.** Con una scatoletta di Gauss che racchiude l'armatura: $D=\sigma=Q/S=5\times10^{-7}\ \mathrm{C/m^2}$, uguale nell'aria e nel dielettrico (componente normale continua).
+2. **Campi.** In aria $E_a=D/\varepsilon_0\simeq 5{,}65\times10^4\ \mathrm{V/m}$; nel dielettrico $E_d=D/(\varepsilon_0\varepsilon_r)\simeq 1{,}41\times10^4\ \mathrm{V/m}$.
+3. **Tensione e capacità.** $\Delta V=E_a(d-t)+E_dt\simeq 113+28=141\ \mathrm V$, quindi $C=Q/\Delta V\simeq 70{,}8\ \mathrm{pF}$. Lo stesso risultato si ottiene con due condensatori in serie: $C=\dfrac{\varepsilon_0S}{(d-t)+t/\varepsilon_r}$.
+4. **Polarizzazione.** $P=\varepsilon_0(\varepsilon_r-1)E_d=\sigma\left(1-\frac1{\varepsilon_r}\right)=3{,}75\times10^{-7}\ \mathrm{C/m^2}$: è la densità delle cariche di polarizzazione sulle facce della lastra.
+
+**Controllo.** Senza lastra $C_0=\varepsilon_0S/d\simeq 44{,}3\ \mathrm{pF}$: il dielettrico aumenta la capacità, ma meno del fattore $\varepsilon_r$ perché riempie solo metà dello spazio.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Errori tipici
+
+- **Applicare Gauss per $\vec D$ con le cariche di polarizzazione.** Il flusso di $\vec D$ conta solo le cariche libere; quello di $\vec E$ conta tutte le cariche.
+- **Imporre la continuità di $\vec E$ normale all'interfaccia.** Si conservano $D_n$ (senza cariche libere superficiali) ed $E_t$, non $E_n$.
+- **Dividere sempre per $\varepsilon_r$.** $C=\varepsilon_rC_0$ ed $E=E_0/\varepsilon_r$ valgono solo se il dielettrico riempie **tutto** lo spazio fra le armature; con strati o metà affiancate si ragiona con serie e parallelo.
+- **Confondere $\chi$ ed $\varepsilon_r$.** $\vec P=\varepsilon_0\chi\vec E$ con $\chi=\varepsilon_r-1$: nel vuoto $\chi=0$, non $1$.
+- **Dimenticare la dipendenza dalla temperatura.** Solo la polarizzazione per orientamento dipende da $T$; quella per deformazione no.
+
+</Layer>

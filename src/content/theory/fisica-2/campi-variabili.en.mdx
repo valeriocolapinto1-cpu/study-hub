@@ -1,0 +1,144 @@
+---
+course: fisica-2
+topic: campi-variabili
+lang: en
+---
+
+<Layer kind="intuizione">
+
+As long as fields are static, electricity and magnetism live apart. When they change in time they couple: a changing magnetic flux generates an electric field, and a changing electric field generates a magnetic field. The first half of the story is **induction**: moving a magnet near a loop, or the loop in the field, is enough for an emf to appear in the loop.
+
+The minus sign in Faraday's law (Lenz) is energy conservation: the induced current always opposes its cause, otherwise we would have perpetual motion. Inductance is a circuit's "inertia" with respect to changes of current, and the energy spent to establish a current is stored in the magnetic field. With the displacement current the equations become symmetric and pave the way to waves.
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Faraday-Neumann-Lenz law
+
+When the flux of $\vec B$ linked with a circuit changes in time, an induced electromotive force appears in the circuit:
+
+$$
+\mathcal E_i=-\frac{d\Phi(\vec B)}{dt}
+$$
+
+The minus sign expresses **Lenz's law**: the induced current flows in the direction that opposes the change of flux that produced it (energy conservation). The flux can change because $B$ changes, because the area changes or because the orientation changes.
+
+## Physical interpretation
+
+- **Circuit moving in a constant field** (cut flux): the emf is due to the Lorentz force on the carriers, $\mathcal E=\oint(\vec v\times\vec B)\cdot d\vec l$. For a bar of length $l$ sliding on two rails with speed $v$: $\mathcal E=vBl$. With resistance $R$ a current $I=vBl/R$ flows, and a braking force $F=\frac{B^2l^2v}{R}$ acts on the bar: the mechanical power spent equals the dissipated power, $Fv=\mathcal E I$. Under a constant force $F_0$ the bar reaches the terminal velocity $v_\infty=\frac{F_0R}{B^2l^2}$. A bar rotating with angular velocity $\omega$ about one end in a uniform $B$ has $\Delta V=\frac12B\omega L^2$ across its ends.
+- **Circuit at rest and varying B**: no Lorentz force can explain the emf. It is the changing magnetic field that generates an **induced electric field**, non-conservative, with closed lines.
+
+## Local form: Maxwell's third equation
+
+For a circuit at rest $\oint\vec E\cdot d\vec l=-\frac{d}{dt}\int_S\vec B\cdot\hat n\,dS$; with Stokes, since it holds for every surface:
+
+$$
+\nabla\times\vec E=-\frac{\partial\vec B}{\partial t}
+$$
+
+The electric field is no longer conservative and the electrostatic potential alone is not enough to describe it. **Example**: infinite solenoid of radius $a$ with current $I(t)$. By symmetry $\vec E$ is tangent to coaxial circles and $E\cdot2\pi r=-\frac{d\Phi}{dt}$:
+
+$$
+E=\frac{\mu_0n}{2}\,r\,\frac{dI}{dt}\ (r\lt a),\qquad E=\frac{\mu_0n}{2}\frac{a^2}{r}\frac{dI}{dt}\ (r\gt a)
+$$
+
+A charge at rest in that region feels the force $qE$.
+
+## Self-induction
+
+The current of a circuit produces a flux linked with the circuit itself, proportional to the current: $\Phi=LI$, where $L$ (henry) is the self-inductance, which depends only on the geometry. A changing current induces the emf $\mathcal E_L=-L\frac{dI}{dt}$.
+
+- Solenoid (N turns, length $l$, cross-section $S$): $\Phi = N\cdot\mu_0\frac NlIS$ ⇒ $L=\mu_0\frac{N^2S}{l}=\mu_0n^2Sl$.
+- Coaxial cable per unit length: $\frac{L}{l}=\frac{\mu_0}{2\pi}\ln\frac ba$, plus $\frac{\mu_0}{8\pi}$ if the inner conductor is solid (internal flux, computable from the energy).
+- Two-wire line (wires of radius $a$ at distance $d\gg a$): $\frac Ll\simeq\frac{\mu_0}{\pi}\ln\frac da$.
+
+## Mutual induction
+
+The flux that circuit 1 produces in circuit 2 is $\Phi_{21}=MI_1$, and $M_{12}=M_{21}=M$: the flux can be computed in whichever direction is easier. Moreover $M\le\sqrt{L_1L_2}$. Examples:
+
+- Two coaxial solenoids of equal length $l$: $M=\mu_0n_1n_2S_{int}l$.
+- Infinite wire and coplanar rectangular loop (side $a$ parallel to the wire and side $b$, at distance $d$): $\Phi=\int_d^{d+b}\frac{\mu_0I}{2\pi r}a\,dr$ ⇒ $M=\frac{\mu_0a}{2\pi}\ln\frac{d+b}{d}$.
+
+The ideal **transformer** (common core, no losses) has $\frac{V_2}{V_1}=\frac{N_2}{N_1}$.
+
+## RL circuit and energy analysis
+
+On closing: $\mathcal E=RI+L\frac{dI}{dt}$, hence
+
+$$
+I(t)=\frac{\mathcal E}{R}\left(1-e^{-t/\tau}\right),\qquad\tau=\frac LR
+$$
+
+On opening (with a discharge path of resistance $R$): $I=I_0e^{-t/\tau}$. Abruptly opening an inductive circuit produces an overvoltage (opening extra-current). Multiplying the loop equation by $I\,dt$: $\mathcal EI\,dt=RI^2dt+d\left(\frac12LI^2\right)$. The generator's work goes into heat and into the **magnetic energy** $U=\frac12LI^2$.
+
+**Felici's law**: the charge that flows through a circuit of resistance $R$ when the flux goes from $\Phi_i$ to $\Phi_f$ is $Q=\int I\,dt=\frac{\Phi_i-\Phi_f}{R}$, independently of how fast the change is. It is used to measure magnetic fields.
+
+## Magnetic energy and mechanical actions
+
+From the solenoid ($U=\frac12LI^2=\frac{B^2}{2\mu_0}Sl$) one obtains the energy density of the magnetic field:
+
+$$
+u_B=\frac{B^2}{2\mu_0}\quad\left(\text{in materials }u=\tfrac12\vec H\cdot\vec B\right),\qquad U=\int u_B\,dV
+$$
+
+For two coupled circuits $U=\frac12L_1I_1^2+\frac12L_2I_2^2+MI_1I_2$. Forces follow from virtual work: $F_x=+\left(\frac{\partial U}{\partial x}\right)_I=-\left(\frac{\partial U}{\partial x}\right)_\Phi$. For example, a loop is sucked into a solenoid, towards the region of stronger field.
+
+## Generators, motors, eddy currents
+
+- **Alternator**: a coil of $N$ turns and area $S$ rotating with angular velocity $\omega$ in a uniform $B$ has $\Phi=NBS\cos\omega t$, hence $\mathcal E=NBS\omega\sin\omega t$. On a resistive load the instantaneous power is $\mathcal E^2/R$ and the average power is $\frac{\mathcal E_0^2}{2R}$ (rms value $\mathcal E_0/\sqrt2$).
+- **Disc dynamo** (Faraday disc): a conducting disc rotating in an axial $B$ produces between centre and rim $\mathcal E=\frac12B\omega R^2$.
+- **Motor**: a current-carrying loop in $B$ feels a torque; the rotation induces a back emf that limits the current.
+- **Eddy currents**: in a bulk conductor with changing flux, parasitic currents flow that dissipate energy and brake the motion (electromagnetic brake). Transformers use laminated cores to reduce them.
+
+## Displacement current and Maxwell's fourth equation
+
+Ampère's law $\nabla\times\vec B=\mu_0\vec J$ is incompatible with continuity in the non-steady case, because it would imply $\nabla\cdot\vec J=0$. While a capacitor is charging, for example, the circulation of $\vec B$ would give different results for surfaces that cut the wire or pass between the plates. Maxwell added the **displacement current** $\vec J_s=\varepsilon_0\frac{\partial\vec E}{\partial t}$: by Gauss $\nabla\cdot\vec J_s=\frac{\partial\rho}{\partial t}$, and the sum $\vec J+\vec J_s$ has zero divergence.
+
+$$
+\nabla\times\vec B=\mu_0\vec J+\mu_0\varepsilon_0\frac{\partial\vec E}{\partial t}\qquad\left(\text{in matter: }\nabla\times\vec H=\vec J+\frac{\partial\vec D}{\partial t}\right)
+$$
+
+**Example**: circular parallel-plate capacitor (radius $R$) charging with current $I$. Between the plates, at distance $r\lt R$ from the axis: $B\cdot2\pi r=\mu_0\varepsilon_0\pi r^2\frac{dE}{dt}$, that is $B=\frac{\mu_0Ir}{2\pi R^2}$; outside the plates $B=\frac{\mu_0I}{2\pi r}$, as for the wire.
+
+## Maxwell's equations
+
+$$
+\nabla\cdot\vec E=\frac\rho{\varepsilon_0},\qquad\nabla\cdot\vec B=0,\qquad\nabla\times\vec E=-\frac{\partial\vec B}{\partial t},\qquad\nabla\times\vec B=\mu_0\vec J+\mu_0\varepsilon_0\frac{\partial\vec E}{\partial t}
+$$
+
+Together with the Lorentz force they describe all of classical electromagnetism. The symmetry between the last two (a changing $\vec B$ generates $\vec E$ and vice versa) allows electromagnetic waves to exist.
+
+<Callout tone="esame" title="Frequent questions">
+  "derive the local form of Faraday's law", "self-inductance of a solenoid", "energy analysis of the RL
+  circuit", "magnetic energy density", "Felici's law", "define the displacement current and explain why it is
+  needed", "derive the fourth equation in the non-steady case". In problems: first compute the flux as a
+  function of time or position, then differentiate it, then use Ohm's law and the energy balance.
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Worked example: bar on rails
+
+A conducting bar of mass $m=100\ \mathrm g$ and length $l=20\ \mathrm{cm}$ slides without friction on two horizontal rails closed by a resistor $R=2\ \Omega$, in a uniform vertical field $B=0.5\ \mathrm T$. It is pulled by a constant force $F_0=50\ \mathrm{mN}$ and starts from rest.
+
+1. **Emf and current.** The linked flux grows as $Blx$, so $|\mathcal E|=Blv$ and $I=Blv/R$ (direction given by Lenz: the current opposes the increase of flux).
+2. **Braking force.** The bar feels $F_B=IlB=\dfrac{B^2l^2}{R}v$, opposite to the motion. The equation of motion is $m\dot v=F_0-\dfrac{B^2l^2}{R}v$.
+3. **Terminal velocity and characteristic time.** $v_\infty=\dfrac{F_0R}{B^2l^2}=10\ \mathrm{m/s}$, reached as $v(t)=v_\infty\left(1-e^{-t/\tau}\right)$ with $\tau=\dfrac{mR}{B^2l^2}=20\ \mathrm s$.
+4. **Steady-state balance.** $\mathcal E=Blv_\infty=1\ \mathrm V$, $I=0.5\ \mathrm A$: the mechanical power $F_0v_\infty=0.5\ \mathrm W$ equals the dissipated power $RI^2=0.5\ \mathrm W$.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Common mistakes
+
+- **Forgetting Lenz.** The direction of the induced current is chosen so that it opposes the change of flux: always check it with the right-hand rule.
+- **Counting a single turn.** In a coil the linked flux is $N$ times the flux of one turn, both for the emf and for $L$.
+- **Looking for a potential for the induced field.** The induced electric field has non-zero circulation: the "potential difference" depends on the path.
+- **Getting $\tau$ of the RL circuit wrong.** It is $L/R$, not $RL$ or $R/L$; with several resistors use the resistance seen by the inductor.
+- **Applying Ampère without the displacement current.** Between the plates of a charging capacitor there is no conduction current, yet $\vec B$ is not zero.
+
+</Layer>

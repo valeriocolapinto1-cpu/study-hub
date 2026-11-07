@@ -47,10 +47,14 @@ describe('classificazione delle pagine per la ricerca', () => {
       meta: { title: "Ohm's law" },
       filters: { tipo: ['formula'], corso: ['c'] },
     });
-    expect(recs[0]!.content).toContain('V = RI');
+    // Le formule si cercano per nome e nota: la matematica non entra nell'indice (variabili di una lettera
+    // farebbero corrispondere query qualsiasi ed estratti illeggibili), come per le pagine.
+    expect(recs[0]!.content).toContain("Ohm's law");
+    expect(recs[0]!.content).not.toContain('V = RI');
     expect(recs[1]).toMatchObject({ url: '/b/en/anno-1/c/esercizi/res/#e1', meta: { title: 'Compute I' } });
     // Ripiego sull'italiano dove manca l'inglese.
-    expect(recs[1]!.content).toContain('Passo: Usa V=RI');
+    expect(recs[1]!.content).toContain('Passo: Usa');
+    expect(recs[1]!.content).not.toContain('V=RI');
     expect(recs[2]).toMatchObject({ url: '/b/en/anno-1/c/ripasso/#k1', filters: { tipo: ['flashcard'] } });
   });
 });

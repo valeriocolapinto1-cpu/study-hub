@@ -1,0 +1,90 @@
+---
+course: fisica-2
+topic: laboratorio-misura
+lang: en
+---
+
+<Layer kind="intuizione">
+
+A measurement without uncertainty says nothing: "$\tau=9.9\ \mathrm{ms}$" is compatible with $10\ \mathrm{ms}$ only if we know how much we trust that number. Measurement theory is used to estimate the uncertainty (from the instruments and from the spread of repeated measurements), to propagate it to computed quantities and to decide whether two results are compatible.
+
+The course's laboratory experiments put circuit theory into practice: DC measurements, charging and discharging a capacitor (with multimeter and oscilloscope), Thevenin's theorem and geometrical optics. The reports are brought to the oral exam.
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Measurement uncertainties
+
+Every measurement is given with its uncertainty and its unit: $x=(\bar x\pm\sigma_x)$ unit, with the uncertainty to 1–2 significant figures and the value rounded to the same decimal place.
+
+- **Systematic errors**: they shift all measurements in the same direction (calibration, insertion error, method). They are not reduced by repeating the measurement: they must be identified and corrected.
+- **Random errors**: fluctuations in both directions. They are reduced by averaging several measurements.
+- Instrument **resolution**: for a single reading one assumes an uncertainty equal to the resolution or, with a uniform distribution, $\sigma=\Delta/\sqrt{12}$. For digital multimeters use the manufacturer's specifications (percentage of reading + digits).
+
+## Distributions, mean, standard deviation
+
+Repeated measurements are distributed according to a distribution function, often Gaussian. The best estimates are:
+
+$$
+\bar x=\frac1N\sum x_i,\qquad\sigma_x=\sqrt{\frac1{N-1}\sum(x_i-\bar x)^2},\qquad\sigma_{\bar x}=\frac{\sigma_x}{\sqrt N}
+$$
+
+$\sigma_x$ measures the spread of a single measurement, $\sigma_{\bar x}$ the uncertainty on the mean. For a Gaussian, 68.3% of the measurements fall within $\pm\sigma$, 95.4% within $\pm2\sigma$, 99.7% within $\pm3\sigma$. **Chebyshev's inequality** holds for every distribution: $P(|x-\mu|\ge k\sigma)\le1/k^2$.
+
+## Propagation of uncertainties
+
+For $f(x,y,\dots)$ with independent quantities:
+
+$$
+\sigma_f=\sqrt{\left(\frac{\partial f}{\partial x}\right)^2\sigma_x^2+\left(\frac{\partial f}{\partial y}\right)^2\sigma_y^2+\dots}
+$$
+
+Sums and differences: the absolute uncertainties add in quadrature. Products and quotients: the _relative_ uncertainties add in quadrature. For a power $x^n$: $\sigma_f/f=|n|\sigma_x/x$. Maximum-error estimate: $\Delta f=\sum\left|\frac{\partial f}{\partial x_i}\right|\Delta x_i$.
+
+## Weighted mean, comparison, least squares
+
+- **Weighted mean** of measurements with different uncertainties: $\bar x=\frac{\sum x_i/\sigma_i^2}{\sum1/\sigma_i^2}$, $\sigma_{\bar x}=\left(\sum1/\sigma_i^2\right)^{-1/2}$.
+- **Comparing measurements**: $t=\frac{|x_1-x_2|}{\sqrt{\sigma_1^2+\sigma_2^2}}$. They are considered compatible if $t\lesssim2$ (in general; with few measurements Student's t distribution is used). The relative discrepancy with respect to an expected value is $|x-x_{rif}|/x_{rif}$.
+- **Least squares** (line $y=a+bx$ with equal uncertainty on $y$): minimise $\sum(y_i-a-bx_i)^2$, obtaining $b=\frac{N\sum x_iy_i-\sum x_i\sum y_i}{\Delta}$ and $a=\frac{\sum x_i^2\sum y_i-\sum x_i\sum x_iy_i}{\Delta}$, with $\Delta=N\sum x_i^2-(\sum x_i)^2$. Exponential laws are **linearised** with the logarithm (for example $\ln V=\ln V_0-t/\tau$).
+
+## The laboratory experiments
+
+- **DC measurements**: using the multimeter as a voltmeter (in parallel), ammeter (in series) and ohmmeter (circuit not powered). Verification of Ohm's law and of equivalent resistances; watch out for insertion errors and ranges.
+- **RC with multimeter**: $V_C(t)$ is recorded during charging or discharging with a stopwatch. The plot of $\ln V$ against $t$ is a straight line with slope $-1/\tau$; the measured $\tau$ is compared with the nominal $RC$, taking into account the internal resistance of the voltmeter, which can discharge the capacitor.
+- **RC with oscilloscope**: a square-wave generator (period much longer than $\tau$) charges and discharges $C$. Set the time scale (s/div), the voltage scale (V/div) and the trigger, then measure $\tau$ as the time to reach 63% (or $t_{1/2}=\tau\ln2$). The output impedance of the generator (typically 50 Ω) and the input impedance of the oscilloscope (1 MΩ) must be considered.
+- **Thevenin**: the open-circuit voltage $V_{Th}$ is measured at the terminals; $R_{Th}$ is obtained by switching off the generators and measuring the resistance, or from $V$ on a known load ($V=V_{Th}\frac{R_L}{R_L+R_{Th}}$). The result is compared with the theoretical calculation.
+- **Geometrical optics**: verification of Snell's law ($\sin\theta_1$ against $\sin\theta_2$ is a straight line with slope $n_2/n_1$), total internal reflection, thin lenses: $\frac1p+\frac1q=\frac1f$, magnification $G=-q/p$.
+
+<Callout tone="esame" title="At the oral exam">
+  bring your reports and be ready to explain aim, circuit or bench layout, procedure, how you estimated the
+  uncertainties, how you did the fit and whether the result is compatible with the expected value.
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Worked example: two measurements of the time constant
+
+The time constant of an RC circuit with $R=10\ \mathrm{k\Omega}$ and $C=1\ \mathrm{\mu F}$ (nominal value $RC=10\ \mathrm{ms}$) is measured in two ways: with the multimeter $\tau_1=(10.2\pm0.3)\ \mathrm{ms}$, with the oscilloscope $\tau_2=(9.8\pm0.2)\ \mathrm{ms}$.
+
+1. **Compatibility of the two measurements.** $t=\dfrac{|\tau_1-\tau_2|}{\sqrt{\sigma_1^2+\sigma_2^2}}=\dfrac{0.4}{0.36}\simeq1.1$: compatible.
+2. **Weighted mean.** Weights $w_i=1/\sigma_i^2$: $w_1\simeq11.1$, $w_2=25\ \mathrm{ms^{-2}}$. $\bar\tau=\dfrac{w_1\tau_1+w_2\tau_2}{w_1+w_2}\simeq9.92\ \mathrm{ms}$ and $\sigma_{\bar\tau}=(w_1+w_2)^{-1/2}\simeq0.17\ \mathrm{ms}$, so $\bar\tau=(9.92\pm0.17)\ \mathrm{ms}$.
+3. **Comparison with the expected value.** With 5% tolerance components (uniform distribution) the uncertainty on $RC$ is about $10\ \mathrm{ms}\cdot\sqrt{2}\cdot0.05/\sqrt3\simeq0.41\ \mathrm{ms}$; $t\simeq0.08/0.44\simeq0.2$: full agreement.
+
+**Note.** The weighted mean lies closer to the more precise measurement, and its uncertainty is smaller than both.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Common mistakes
+
+- **Too many digits.** The uncertainty is given with 1–2 significant figures and the value is rounded to the same decimal place.
+- **Using $\sigma_x$ instead of $\sigma_{\bar x}$.** The uncertainty on the mean of $N$ measurements is $\sigma_x/\sqrt N$.
+- **Adding independent uncertainties linearly.** They add in quadrature; the linear sum is only an estimate of the maximum error.
+- **Ignoring systematic errors.** Averaging does not reduce them: internal resistance of the voltmeter, impedances of generator and oscilloscope, calibration.
+- **Fitting an exponential with a straight line.** First linearise ($\ln V$ against $t$), then apply least squares.
+
+</Layer>

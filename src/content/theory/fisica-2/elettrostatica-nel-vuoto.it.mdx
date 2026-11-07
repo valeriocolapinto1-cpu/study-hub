@@ -1,0 +1,140 @@
+---
+course: fisica-2
+topic: elettrostatica-nel-vuoto
+lang: it
+---
+
+<Layer kind="intuizione">
+
+Tutta l'elettrostatica nasce da una sola legge sperimentale, quella di Coulomb, e da un principio: gli effetti di più cariche si **sommano**. Il campo elettrico è il modo di dire "che forza sentirebbe una carica di prova qui", e permette di separare chi produce il campo da chi lo subisce.
+
+Due proprietà del campo statico fanno tutto il lavoro negli esercizi. La prima è il **teorema di Gauss**: il flusso uscente da una superficie chiusa "conta" la carica racchiusa; quando c'è simmetria (sfera, cilindro, piano) permette di ricavare $E$ in una riga. La seconda è la **conservatività**: il lavoro non dipende dal percorso, quindi esiste un potenziale $V$, una funzione scalare che è spesso più facile da calcolare del campo e da cui il campo si ottiene derivando.
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Carica elettrica e legge di Coulomb
+
+La carica elettrica esiste in due segni, si **conserva** (in un sistema isolato la carica totale non cambia) ed è **quantizzata**: ogni carica è un multiplo della carica elementare $e = 1{,}602\times10^{-19}\ \mathrm{C}$. Nei _conduttori_ le cariche si muovono liberamente, negli _isolanti_ (dielettrici) no.
+
+Due cariche puntiformi ferme nel vuoto si scambiano una forza centrale, diretta lungo la congiungente, proporzionale al prodotto delle cariche e all'inverso del quadrato della distanza:
+
+$$
+\vec F_{12} = \frac{1}{4\pi\varepsilon_0}\,\frac{q_1 q_2}{r^2}\,\hat u_{12},\qquad \frac{1}{4\pi\varepsilon_0}\simeq 8{,}99\times10^{9}\ \mathrm{N\,m^2/C^2}
+$$
+
+Cariche dello stesso segno si respingono, di segno opposto si attraggono. Vale il **principio di sovrapposizione**: la forza su una carica dovuta a più cariche è la somma vettoriale delle forze dovute a ciascuna.
+
+## Il campo elettrico
+
+Il campo elettrico in un punto è la forza per unità di carica che subirebbe una carica di prova $q_0$ positiva e piccola: $\vec E = \vec F/q_0$ (unità: N/C = V/m). Per una carica puntiforme $\vec E = \frac{q}{4\pi\varepsilon_0 r^2}\hat u_r$. Per una distribuzione continua si somma (integra) il contributo di ogni elemento $dq = \lambda\,dl$, $\sigma\,dS$ o $\rho\,dV$:
+
+$$
+\vec E(\vec r) = \frac{1}{4\pi\varepsilon_0}\int \frac{dq\,(\vec r-\vec r\,')}{|\vec r-\vec r\,'|^3}
+$$
+
+Le _linee di campo_ sono tangenti a $\vec E$, escono dalle cariche positive ed entrano in quelle negative; la loro densità è proporzionale al modulo del campo.
+
+**Risultati da saper ricavare per integrazione diretta** (sfruttando le simmetrie per eliminare le componenti che si annullano):
+
+- Filo infinito con densità $\lambda$, a distanza $r$: $E = \dfrac{\lambda}{2\pi\varepsilon_0 r}$, radiale.
+- Filo finito, punto a distanza $d$ dall'asse: $E_\perp = \dfrac{\lambda}{4\pi\varepsilon_0 d}(\sin\theta_2-\sin\theta_1)$, $|E_\parallel| = \dfrac{\lambda}{4\pi\varepsilon_0 d}|\cos\theta_1-\cos\theta_2|$, con $\theta_{1,2}$ gli angoli (misurati dalla perpendicolare) sotto cui si vedono gli estremi.
+- Anello di raggio $R$ e carica $q$, sull'asse a distanza $z$: $E_z = \dfrac{q\,z}{4\pi\varepsilon_0 (z^2+R^2)^{3/2}}$.
+- Disco di raggio $R$ e densità $\sigma$, sull'asse: $E_z = \dfrac{\sigma}{2\varepsilon_0}\left(1-\dfrac{z}{\sqrt{z^2+R^2}}\right)$; per $R\to\infty$ si ottiene il piano infinito $E = \sigma/(2\varepsilon_0)$.
+
+## Flusso e teorema di Gauss (I equazione di Maxwell)
+
+Il flusso del campo attraverso una superficie è $\Phi_S(\vec E) = \int_S \vec E\cdot\hat n\,dS$. Il teorema di Gauss afferma che il flusso uscente da una **superficie chiusa** dipende solo dalla carica racchiusa:
+
+$$
+\oint_S \vec E\cdot\hat n\,dS = \frac{Q_{\text{int}}}{\varepsilon_0}
+$$
+
+_Dimostrazione (idea)._ Per una carica puntiforme il flusso attraverso l'elemento $dS$ vale $\frac{q}{4\pi\varepsilon_0}\frac{\hat u_r\cdot\hat n\,dS}{r^2} = \frac{q}{4\pi\varepsilon_0}\,d\Omega$, dove $d\Omega$ è l'angolo solido. Se la carica è interna l'angolo solido totale è $4\pi$ e il flusso vale $q/\varepsilon_0$; se è esterna ogni cono taglia la superficie due volte con contributi opposti e il flusso è nullo. Per sovrapposizione il risultato vale per qualsiasi distribuzione. Il teorema discende dalla dipendenza $1/r^2$ della legge di Coulomb.
+
+Usando il teorema della divergenza $\oint_S\vec E\cdot\hat n\,dS=\int_V\nabla\cdot\vec E\,dV$ e $Q=\int_V\rho\,dV$, valido per ogni volume, si ottiene la **forma locale**:
+
+$$
+\nabla\cdot\vec E = \frac{\rho}{\varepsilon_0}
+$$
+
+**Come si usa.** Gauss permette di calcolare $\vec E$ solo se la simmetria (sferica, cilindrica, piana) fissa direzione del campo e costanza del modulo sulla superficie scelta:
+
+- Sfera uniformemente carica ($Q$, raggio $R$): fuori $E = \frac{Q}{4\pi\varepsilon_0 r^2}$, dentro $E = \frac{Q r}{4\pi\varepsilon_0 R^3}$ (cresce linearmente). Guscio sferico: dentro $E=0$.
+- Filo o cilindro infinito: superficie cilindrica coassiale, $E\cdot 2\pi r L = \lambda_{\text{int}}L/\varepsilon_0$. Cilindro pieno ($\rho$, raggio $R$): dentro $E=\frac{\rho r}{2\varepsilon_0}$, fuori $E=\frac{\rho R^2}{2\varepsilon_0 r}$.
+- Piano infinito: "scatoletta" che attraversa il piano, $E = \sigma/(2\varepsilon_0)$ da entrambi i lati. Lastra spessa ("muro") di spessore $2a$ e densità $\rho$: dentro $E = \rho x/\varepsilon_0$, fuori $E=\rho a/\varepsilon_0$.
+
+<Callout tone="esame" title="All'esame">
+Distribuzioni con un "buco" (piano con foro, cilindro con cavità, muro con foro) si risolvono per **sovrapposizione**: distribuzione piena + distribuzione di densità opposta che occupa il buco. Esempio: in una cavità cilindrica eccentrica in un cilindro carico il campo è uniforme, $\vec E=\frac{\rho}{2\varepsilon_0}\vec d$, con $\vec d$ vettore tra gli assi.
+</Callout>
+
+## Conservatività e potenziale elettrico
+
+La forza di Coulomb è centrale e dipende solo dalla distanza, quindi è **conservativa**: il lavoro dipende solo dagli estremi e la circuitazione è nulla, $\oint\vec E\cdot d\vec l = 0$. Si definisce allora la differenza di potenziale (lavoro per unità di carica cambiato di segno):
+
+$$
+V(B)-V(A) = -\int_A^B\vec E\cdot d\vec l,\qquad \vec E = -\nabla V
+$$
+
+Per una carica puntiforme, con $V(\infty)=0$: $V=\frac{q}{4\pi\varepsilon_0 r}$. Per una distribuzione limitata $V(\vec r)=\frac{1}{4\pi\varepsilon_0}\int\frac{dq}{|\vec r-\vec r\,'|}$ (somma di scalari: spesso più facile che calcolare $\vec E$). L'energia potenziale di una carica è $U = qV$; $1\ \mathrm{eV} = 1{,}6\times10^{-19}\ \mathrm J$.
+
+- Anello sull'asse: $V = \frac{q}{4\pi\varepsilon_0\sqrt{z^2+R^2}}$. Disco sull'asse: $V=\frac{\sigma}{2\varepsilon_0}\left(\sqrt{z^2+R^2}-|z|\right)$.
+- Per distribuzioni infinite (filo, piano) non si può porre $V(\infty)=0$: filo $V(r) = -\frac{\lambda}{2\pi\varepsilon_0}\ln\frac{r}{r_0}$; piano $V(x)=-\frac{\sigma}{2\varepsilon_0}|x| + \text{cost}$.
+
+Le _superfici equipotenziali_ sono ovunque perpendicolari alle linee di campo, e il campo punta verso i potenziali decrescenti.
+
+**Rotore e forma locale.** Per il teorema di Stokes $\oint_\gamma\vec E\cdot d\vec l=\int_S(\nabla\times\vec E)\cdot\hat n\,dS$; essendo nulla per ogni curva, $\nabla\times\vec E = 0$. Combinando con Gauss si ottengono le equazioni di **Poisson** $\nabla^2V=-\rho/\varepsilon_0$ e, dove non ci sono cariche, di **Laplace** $\nabla^2 V=0$.
+
+Gradiente in coordinate sferiche: $\nabla V = \frac{\partial V}{\partial r}\hat u_r + \frac1r\frac{\partial V}{\partial\theta}\hat u_\theta + \frac{1}{r\sin\theta}\frac{\partial V}{\partial\phi}\hat u_\phi$.
+
+## Il dipolo elettrico
+
+Due cariche $+q$ e $-q$ a distanza $d$ formano un dipolo di momento $\vec p = q\vec d$ (da $-q$ verso $+q$). A grande distanza ($r\gg d$):
+
+$$
+V = \frac{p\cos\theta}{4\pi\varepsilon_0 r^2},\qquad E_r = -\frac{\partial V}{\partial r}=\frac{2p\cos\theta}{4\pi\varepsilon_0 r^3},\qquad E_\theta=-\frac1r\frac{\partial V}{\partial\theta}=\frac{p\sin\theta}{4\pi\varepsilon_0 r^3}
+$$
+
+Il campo decresce come $1/r^3$ (più rapidamente di quello di una carica, perché la carica totale è nulla). Sull'asse $E = \frac{2p}{4\pi\varepsilon_0 r^3}$, sul piano equatoriale $E=\frac{p}{4\pi\varepsilon_0 r^3}$ diretto opposto a $\vec p$.
+
+**Azioni meccaniche in un campo esterno.**
+
+- Momento: $\vec M = \vec p\times\vec E$, tende ad allineare $\vec p$ al campo.
+- Energia potenziale: $U = -\vec p\cdot\vec E$ (minima quando $\vec p\parallel\vec E$: equilibrio stabile).
+- Forza: $\vec F = \nabla(\vec p\cdot\vec E)$; **nulla in campo uniforme**. In campo non uniforme il dipolo allineato è attratto verso le zone di campo più intenso (ad esempio $F=p\,\frac{dE}{dx}$ lungo $x$).
+
+<Callout tone="esame" title="Domande di teoria frequenti">
+  "ricavare il campo del dipolo", "azioni meccaniche su un dipolo in campo esterno", "enunciare e dimostrare
+  il teorema di Gauss", "ricavare la forma locale della I equazione di Maxwell", "dimostrare che il campo
+  elettrostatico è conservativo".
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Esempio svolto: sfera con densità di carica non uniforme
+
+Una sfera di raggio $R=5\ \mathrm{cm}$ contiene una carica con densità $\rho(r)=\rho_0\,r/R$, con $\rho_0=2\times10^{-6}\ \mathrm{C/m^3}$. Si vuole il campo dentro e fuori e il potenziale al centro (con $V(\infty)=0$).
+
+1. **Simmetria.** La distribuzione dipende solo da $r$: $\vec E=E(r)\,\hat u_r$ e su una sfera concentrica di raggio $r$ il modulo è costante. Gauss dà $E(r)\,4\pi r^2=Q_{\text{int}}(r)/\varepsilon_0$.
+2. **Carica racchiusa.** Per $r<R$: $Q_{\text{int}}=\int_0^r \rho_0\frac{r'}{R}\,4\pi r'^2\,dr'=\frac{\pi\rho_0 r^4}{R}$. La carica totale è $Q=\pi\rho_0R^3\simeq 7{,}85\times10^{-10}\ \mathrm C$.
+3. **Campo.** Dentro $E=\dfrac{\rho_0 r^2}{4\varepsilon_0 R}$ (cresce come $r^2$), fuori $E=\dfrac{Q}{4\pi\varepsilon_0 r^2}$. In $r=R$ le due espressioni coincidono: $E(R)=\rho_0R/(4\varepsilon_0)\simeq 2{,}82\times10^{3}\ \mathrm{V/m}$.
+4. **Potenziale al centro.** $V(0)=\int_0^\infty E\,dr=\int_0^R\frac{\rho_0 r^2}{4\varepsilon_0R}dr+\int_R^\infty\frac{Q}{4\pi\varepsilon_0r^2}dr=\frac{\rho_0R^2}{12\varepsilon_0}+\frac{\rho_0R^2}{4\varepsilon_0}=\frac{\rho_0R^2}{3\varepsilon_0}\simeq 188\ \mathrm V$.
+
+**Controllo.** Le dimensioni tornano ($\rho_0R^2/\varepsilon_0$ è un potenziale) e il campo è continuo in $r=R$, come deve essere in assenza di cariche superficiali.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Errori tipici
+
+- **Usare Gauss senza simmetria.** Il teorema vale sempre, ma serve a calcolare $E$ solo se direzione e modulo del campo sono noti sulla superficie scelta. Per un filo finito o un disco fuori asse bisogna integrare.
+- **Dimenticare la carica racchiusa parziale.** Dentro una distribuzione di volume $Q_{\text{int}}$ dipende da $r$: non si usa la carica totale.
+- **Porre $V(\infty)=0$ per distribuzioni infinite.** Per il filo e il piano infiniti il potenziale all'infinito diverge: si sceglie un riferimento $r_0$ a distanza finita.
+- **Sommare i potenziali come vettori o i campi come scalari.** $V$ è uno scalare e si somma con il segno; $\vec E$ si somma componente per componente.
+- **Confondere forza e momento sul dipolo.** In campo uniforme la forza risultante è nulla ma il momento $\vec p\times\vec E$ no.
+
+</Layer>

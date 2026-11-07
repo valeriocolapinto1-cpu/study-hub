@@ -1,0 +1,249 @@
+# Quiz del sito originale (legacy/fisica-2/data/quiz.json, id "quiz-<id>") ed esercizi generati sulla tipologia degli appelli.
+- id: quiz-q504
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'La riflessione totale può avvenire quando la luce passa:'
+    en: 'Total internal reflection can occur when light passes:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Da Snell $\\sin\\theta_2=\\frac{n_1}{n_2}\\sin\\theta_1$: se $n_1>n_2$ e $\\sin\\theta_1>n_2/n_1$ non esiste angolo di rifrazione."
+        en: "From Snell $\\sin\\theta_2=\\frac{n_1}{n_2}\\sin\\theta_1$: if $n_1>n_2$ and $\\sin\\theta_1>n_2/n_1$ there is no refraction angle."
+  origin: originale
+  choices:
+    - text:
+        it: da un mezzo a indice maggiore a uno a indice minore, oltre l'angolo limite
+        en: from a medium of higher index to one of lower index, beyond the critical angle
+      correct: true
+    - text:
+        it: da un mezzo a indice minore a uno a indice maggiore
+        en: from a medium of lower index to one of higher index
+      correct: false
+    - text:
+        it: solo all'incidenza normale
+        en: only at normal incidence
+      correct: false
+    - text:
+        it: solo all'angolo di Brewster
+        en: only at Brewster's angle
+      correct: false
+- id: quiz-q505
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.4
+  difficulty: 1
+  kind: static
+  statement:
+    it: "All'angolo di Brewster la luce riflessa è:"
+    en: "At Brewster's angle the reflected light is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Per $\\tan\\theta_B=n_2/n_1$ la componente con $\\vec E$ nel piano di incidenza non viene riflessa: resta solo quella perpendicolare."
+        en: "For $\\tan\\theta_B=n_2/n_1$ the component with $\\vec E$ in the plane of incidence is not reflected: only the perpendicular one remains."
+  origin: originale
+  choices:
+    - text:
+        it: polarizzata linearmente perpendicolarmente al piano di incidenza
+        en: linearly polarised perpendicular to the plane of incidence
+      correct: true
+    - text:
+        it: polarizzata nel piano di incidenza
+        en: polarised in the plane of incidence
+      correct: false
+    - text:
+        it: non polarizzata
+        en: unpolarised
+      correct: false
+    - text:
+        it: assente
+        en: absent
+      correct: false
+- id: quiz-q506
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Nell'esperimento di Young, allontanando tra loro le due fenditure la distanza tra le frange:"
+    en: "In Young's experiment, moving the two slits further apart makes the fringe spacing:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "$\\Delta y=\\lambda D/d$: è inversamente proporzionale alla distanza $d$ tra le fenditure."
+        en: "$\\Delta y=\\lambda D/d$: it is inversely proportional to the slit separation $d$."
+  origin: originale
+  choices:
+    - text:
+        it: diminuisce
+        en: decrease
+      correct: true
+    - text:
+        it: aumenta
+        en: increase
+      correct: false
+    - text:
+        it: resta costante
+        en: stay constant
+      correct: false
+    - text:
+        it: dipende dall'intensità
+        en: depend on the intensity
+      correct: false
+- id: quiz-q507
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Nella diffrazione di Fraunhofer da una fenditura di larghezza $a$, restringendo la fenditura il massimo centrale:'
+    en: 'In Fraunhofer diffraction by a slit of width $a$, narrowing the slit makes the central maximum:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Il primo minimo è a $\\sin\\theta=\\lambda/a$: più $a$ è piccola, più il massimo centrale è largo."
+        en: "The first minimum is at $\\sin\\theta=\\lambda/a$: the smaller $a$, the wider the central maximum."
+  origin: originale
+  choices:
+    - text:
+        it: si allarga
+        en: wider
+      correct: true
+    - text:
+        it: si restringe
+        en: narrower
+      correct: false
+    - text:
+        it: resta uguale
+        en: unchanged
+      correct: false
+    - text:
+        it: scompare
+        en: disappear
+      correct: false
+- id: quiz-q511
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: Calcola l'angolo limite per la riflessione totale tra vetro ($n=1{,}5$) e aria (in gradi).
+    en: Compute the critical angle for total internal reflection between glass ($n=1.5$) and air (in degrees).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\sin\theta_c=1/1{,}5$ ⇒ $\theta_c\simeq41,8°$.
+        en: $\sin\theta_c=1/1.5$ ⇒ $\theta_c\simeq41.8°$.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 41.81
+      unit: °
+      tol: 0.03
+- id: quiz-q512
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: Luce che passa dall'aria all'acqua ($n=1{,}33$) all'incidenza normale. Calcola la frazione di intensità riflessa (in %).
+    en: Light passes from air to water ($n=1.33$) at normal incidence. Compute the fraction of intensity reflected (in %).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $R=\left(\frac{n_1-n_2}{n_1+n_2}\right)^2=(0{,}33/2{,}33)^2\simeq2,01$%.
+        en: $R=\left(\frac{n_1-n_2}{n_1+n_2}\right)^2=(0.33/2.33)^2\simeq2.01$%.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 2.006
+      unit: '%'
+      tol: 0.03
+- id: quiz-q513
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Young: fenditure a 0,2 mm, schermo a 2 m, λ = 600 nm. Calcola la distanza tra due frange chiare consecutive (in mm).'
+    en: 'Young: slits 0.2 mm apart, screen at 2 m, λ = 600 nm. Compute the distance between two consecutive bright fringes (in mm).'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\Delta y=\lambda D/d=600\times10^{-9}\cdot2/(2\times10^{-4})=6$ mm.
+        en: $\Delta y=\lambda D/d=600\times10^{-9}\cdot2/(2\times10^{-4})=6$ mm.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 6
+      unit: mm
+      tol: 0.03
+- id: quiz-q514
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: Luce non polarizzata di intensità $I_0=40$ W/m² attraversa due polarizzatori con assi a 60°. Calcola l'intensità finale (in W/m²).
+    en: Unpolarised light of intensity $I_0=40$ W/m² goes through two polarisers with axes at 60°. Compute the final intensity (in W/m²).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Il primo polarizzatore trasmette $I_0/2=20$ W/m²; il secondo, per Malus, $20\cos^260°=5$ W/m².
+        en: The first polariser transmits $I_0/2=20$ W/m²; the second, by Malus, $20\cos^260°=5$ W/m².
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 5
+      unit: W/m²
+      tol: 0.03
+- id: gen-b5-young
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.6
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b5-young
+  origin: tipologia-appello
+- id: gen-b5-angolo-limite-specchio
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.2
+  difficulty: 3
+  kind: generated
+  generator: fisica-2/b5-angolo-limite-specchio
+  origin: tipologia-appello

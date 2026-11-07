@@ -1,0 +1,112 @@
+# Quiz del sito originale (legacy/fisica-2/data/quiz.json, id "quiz-<id>") ed esercizi generati sulla tipologia degli appelli.
+- id: quiz-q306
+  topic: magnetismo-nella-materia
+  objectives:
+    - magnetismo-nella-materia.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Un materiale paramagnetico ha suscettività magnetica:'
+    en: 'A paramagnetic material has a magnetic susceptibility that is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "I momenti permanenti si allineano parzialmente al campo, contrastati dall'agitazione termica: $\\chi_m>0$ con legge di Curie $\\chi_m=C/T$."
+        en: "The permanent moments partially align with the field, opposed by thermal agitation: $\\chi_m>0$ with Curie's law $\\chi_m=C/T$."
+  origin: originale
+  choices:
+    - text:
+        it: piccola e positiva, decrescente con la temperatura
+        en: small and positive, decreasing with temperature
+      correct: true
+    - text:
+        it: piccola e negativa
+        en: small and negative
+      correct: false
+    - text:
+        it: molto grande e dipendente dalla storia
+        en: very large and dependent on the history
+      correct: false
+    - text:
+        it: nulla
+        en: zero
+      correct: false
+- id: quiz-q307
+  topic: magnetismo-nella-materia
+  objectives:
+    - magnetismo-nella-materia.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Alla superficie di separazione tra due materiali magnetici (senza correnti libere superficiali) sono continue:'
+    en: 'At the interface between two magnetic materials (with no free surface currents) the following are continuous:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\nabla\cdot\vec B=0$ dà $B_{1n}=B_{2n}$; $\oint\vec H\cdot d\vec l=I_{lib}=0$ dà $H_{1t}=H_{2t}$.
+        en: $\nabla\cdot\vec B=0$ gives $B_{1n}=B_{2n}$; $\oint\vec H\cdot d\vec l=I_{lib}=0$ gives $H_{1t}=H_{2t}$.
+  origin: originale
+  choices:
+    - text:
+        it: la componente normale di $\vec B$ e quella tangenziale di $\vec H$
+        en: the normal component of $\vec B$ and the tangential component of $\vec H$
+      correct: true
+    - text:
+        it: la componente tangenziale di $\vec B$ e quella normale di $\vec H$
+        en: the tangential component of $\vec B$ and the normal component of $\vec H$
+      correct: false
+    - text:
+        it: tutte le componenti di $\vec B$
+        en: all components of $\vec B$
+      correct: false
+    - text:
+        it: tutte le componenti di $\vec H$
+        en: all components of $\vec H$
+      correct: false
+- id: quiz-q314
+  topic: magnetismo-nella-materia
+  objectives:
+    - magnetismo-nella-materia.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: "In un nucleo di ferro ($\\mu_r=1000$, lunghezza media $l$) si pratica un traferro di spessore $h=l/1000$. A parità di corrente, il campo nel traferro diventa circa:"
+    en: "An air gap of thickness $h=l/1000$ is cut in an iron core ($\\mu_r=1000$, mean length $l$). For the same current, the field in the gap becomes about:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "$B=\\frac{\\mu_0NI}{l/\\mu_r+h}$: senza traferro il denominatore è $l/1000$, con il traferro diventa $2l/1000$, quindi $B$ si dimezza."
+        en: "$B=\\frac{\\mu_0NI}{l/\\mu_r+h}$: without the gap the denominator is $l/1000$, with the gap it becomes $2l/1000$, so $B$ halves."
+  origin: originale
+  choices:
+    - text:
+        it: la metà di quello senza traferro
+        en: half of that without the gap
+      correct: true
+    - text:
+        it: uguale
+        en: the same
+      correct: false
+    - text:
+        it: un millesimo
+        en: one thousandth
+      correct: false
+    - text:
+        it: il doppio
+        en: twice
+      correct: false
+- id: gen-b3-toroide-traferro
+  topic: magnetismo-nella-materia
+  objectives:
+    - magnetismo-nella-materia.5
+    - magnetismo-nella-materia.2
+  difficulty: 3
+  kind: generated
+  generator: fisica-2/b3-toroide-traferro
+  origin: tipologia-appello
