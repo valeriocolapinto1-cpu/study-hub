@@ -1,0 +1,64 @@
+- id: orale-t-17
+  topic: conservazione-potenza-complessa
+  objectives:
+    - conservazione-potenza-complessa.1
+    - conservazione-potenza-complessa.2
+  kind: orale
+  front:
+    it: '**Conservazione della potenza complessa e bilancio.** Dimostra la conservazione della potenza complessa e usala per un bilancio di potenze.'
+    en: '**Conservation of complex power and balance.** Prove the conservation of complex power and use it for a power balance.'
+  back:
+    it: |-
+      **Risposta modello.** Si applica il teorema di Tellegen ai fasori: le correnti coniugate soddisfano ancora la KCL perché i coefficienti sono reali, quindi la somma dei prodotti V_k I_k coniugato è nulla. Separando parte reale e immaginaria si conservano P e Q, ma non i moduli. Nel bilancio la potenza erogata dai generatori è uguale a quella assorbita dagli altri elementi.
+
+      **Punti da toccare:**
+
+      - Si applica Tellegen ai fasori: $\sum\dot V_k\dot I_k^*=0$
+      - Il coniugato dei fasori delle correnti soddisfa ancora la KCL (coefficienti reali)
+      - Si conservano $P$ e $Q$ separatamente, non i moduli
+      - Bilancio: potenza erogata dai generatori = assorbita dagli elementi
+    en: |-
+      **Model answer.** Tellegen's theorem is applied to phasors: the conjugate currents still satisfy KCL because the coefficients are real, so the sum of the products V_k times I_k conjugate is zero. Separating real and imaginary parts, P and Q are conserved, but not the magnitudes. In the balance the power delivered by the sources equals the power absorbed by the other elements.
+
+      **Points to cover:**
+
+      - Tellegen is applied to phasors: $\sum\dot V_k\dot I_k^*=0$
+      - The conjugates of the current phasors still satisfy KCL (real coefficients)
+      - $P$ and $Q$ are conserved separately, not the magnitudes
+      - Balance: power delivered by the sources = power absorbed by the elements
+- id: formula-cons-s
+  topic: conservazione-potenza-complessa
+  objectives:
+    - conservazione-potenza-complessa.1
+    - conservazione-potenza-complessa.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Conservazione della potenza complessa**. Uso: Bilanci di potenza.'
+    en: 'Write the formula: **Conservation of complex power**. Use: Power balances.'
+  back:
+    it: |-
+      $$\sum_k\dot V_k\dot I_k^{*}=0$$
+
+      convenzione degli utilizzatori
+    en: |-
+      $$\sum_k\dot V_k\dot I_k^{*}=0$$
+
+      passive sign convention
+- id: formula-bilancio-p
+  topic: conservazione-potenza-complessa
+  objectives:
+    - conservazione-potenza-complessa.2
+    - conservazione-potenza-complessa.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Bilancio delle potenze**. Uso: Verifica di un calcolo di potenze.'
+    en: 'Write the formula: **Power balance**. Use: Checking a power computation.'
+  back:
+    it: |-
+      $$\sum P_{gen}=\sum P_{ass},\quad \sum Q_{gen}=\sum Q_{ass}$$
+
+      P attive [W]; Q reattive [var]
+    en: |-
+      $$\sum P_{gen}=\sum P_{ass},\quad \sum Q_{gen}=\sum Q_{ass}$$
+
+      P active [W]; Q reactive [var]

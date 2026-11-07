@@ -1,0 +1,199 @@
+- id: orale-t-15
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+    - potenza-complessa.3
+  kind: orale
+  front:
+    it: '**Potenze attiva, reattiva e complessa.** Definisci potenza attiva, reattiva, apparente e complessa e il fattore di potenza in regime sinusoidale.'
+    en: '**Active, reactive and complex power.** Define active, reactive, apparent and complex power and the power factor in sinusoidal steady state.'
+  back:
+    it: |-
+      **Risposta modello.** La potenza attiva P = V I cos phi è il valor medio della potenza istantanea. La reattiva è Q = V I sin phi. La potenza complessa è S = V I coniugato = P + jQ, con modulo la potenza apparente V I. Il fattore di potenza è cos phi = P/|S|.
+
+      **Punti da toccare:**
+
+      - Attiva $P=VI\cos\varphi$ (media della potenza istantanea)
+      - Reattiva $Q=VI\sin\varphi$
+      - Complessa $S=\dot V\dot I^{*}=P+jQ$, apparente $|S|=VI$
+      - Fattore di potenza $\cos\varphi=P/|S|$
+    en: |-
+      **Model answer.** The active power P = V I cos phi is the average of the instantaneous power. The reactive power is Q = V I sin phi. The complex power is S = V times I conjugate = P + jQ, whose magnitude is the apparent power V I. The power factor is cos phi = P/|S|.
+
+      **Points to cover:**
+
+      - Active $P=VI\cos\varphi$ (average of the instantaneous power)
+      - Reactive $Q=VI\sin\varphi$
+      - Complex $S=\dot V\dot I^{*}=P+jQ$, apparent $|S|=VI$
+      - Power factor $\cos\varphi=P/|S|$
+- id: orale-t-16
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+    - potenza-complessa.2
+  kind: orale
+  front:
+    it: "**Potenza reattiva ed energie immagazzinate.** Dimostra che $Q=2\\omega(W_L-W_C)$, con $W_L$, $W_C$ energie medie immagazzinate in induttori e condensatori."
+    en: "**Reactive power and stored energies.** Prove that $Q=2\\omega(W_L-W_C)$, with $W_L$, $W_C$ the average energies stored in inductors and capacitors."
+  back:
+    it: |-
+      **Risposta modello.** Partendo da S = V I coniugato, per un induttore con impedenza j omega L si ha Q_L = omega L I^2 = 2 omega W_L dove W_L è l'energia media immagazzinata. Per un condensatore la reattanza è negativa e Q_C = -2 omega W_C. Per la conservazione della potenza complessa si sommano i contributi di tutta la rete.
+
+      **Punti da toccare:**
+
+      - Parte da $S=\dot V\dot I^*$ e sfrutta le impedenze $j\omega L$ e $1/(j\omega C)$
+      - Per l'induttore $Q_L=\omega LI^2$ e $W_L=\tfrac14LI_m^2$ (efficace $\tfrac12LI^2$ medio)
+      - Analogamente per il condensatore con segno opposto
+      - Somma sulla rete via conservazione della potenza complessa
+    en: |-
+      **Model answer.** Starting from S = V times I conjugate, for an inductor with impedance j omega L we get Q_L = omega L I^2 = 2 omega W_L, where W_L is the average stored energy. For a capacitor the reactance is negative and Q_C = -2 omega W_C. By conservation of complex power the contributions of the whole network are added.
+
+      **Points to cover:**
+
+      - Starts from $S=\dot V\dot I^*$ and uses the impedances $j\omega L$ and $1/(j\omega C)$
+      - For the inductor $Q_L=\omega LI^2$ and $W_L=\tfrac14LI_m^2$ (RMS: average $\tfrac12LI^2$)
+      - Likewise for the capacitor with the opposite sign
+      - Sum over the network via conservation of complex power
+- id: formula-p-picco
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+    - potenza-complessa.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Potenza attiva (picco)**. Uso: Valori di picco.'
+    en: 'Write the formula: **Active power (peak)**. Use: Peak values.'
+  back:
+    it: |-
+      $$P=\tfrac12V_mI_m\cos\varphi$$
+
+      V_m, I_m ampiezze di picco; φ sfasamento tensione–corrente
+    en: |-
+      $$P=\tfrac12V_mI_m\cos\varphi$$
+
+      V_m, I_m peak amplitudes; φ voltage–current phase shift
+- id: formula-p-eff
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+    - potenza-complessa.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Potenza attiva (efficaci)**. Uso: Valori efficaci.'
+    en: 'Write the formula: **Active power (RMS)**. Use: RMS values.'
+  back:
+    it: |-
+      $$P=VI\cos\varphi$$
+
+      V, I efficaci
+    en: |-
+      $$P=VI\cos\varphi$$
+
+      V, I RMS values
+- id: formula-q-eff
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+    - potenza-complessa.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Potenza reattiva**.'
+    en: 'Write the formula: **Reactive power**.'
+  back:
+    it: |-
+      $$Q=VI\sin\varphi$$
+
+      [var]
+    en: |-
+      $$Q=VI\sin\varphi$$
+
+      [var]
+- id: formula-s-compl
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+    - potenza-complessa.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Potenza complessa**.'
+    en: 'Write the formula: **Complex power**.'
+  back:
+    it: |-
+      $$S=\dot V\dot I^{*}=P+jQ,\ |S|=VI$$
+
+      [VA]
+    en: |-
+      $$S=\dot V\dot I^{*}=P+jQ,\ |S|=VI$$
+
+      [VA]
+- id: formula-cosphi
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+    - potenza-complessa.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Fattore di potenza**. Uso: Fattore di potenza e tangente dello sfasamento.'
+    en: 'Write the formula: **Power factor**. Use: Power factor and tangent of the phase angle.'
+  back:
+    it: |-
+      $$\cos\varphi=\frac{P}{|S|},\ \tan\varphi=\frac QP$$
+
+      P attiva [W]; Q reattiva [var]; |S| apparente [VA]
+    en: |-
+      $$\cos\varphi=\frac{P}{|S|},\ \tan\varphi=\frac QP$$
+
+      P active [W]; Q reactive [var]; |S| apparent [VA]
+- id: formula-p-ri2
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+    - potenza-complessa.3
+  kind: formula
+  front:
+    it: "Scrivi la formula: **Potenza attiva su un'impedenza**."
+    en: 'Write the formula: **Active power on an impedance**.'
+  back:
+    it: |-
+      $$P=RI^2$$
+
+      I efficace
+    en: |-
+      $$P=RI^2$$
+
+      I RMS value
+- id: formula-q-xi2
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+    - potenza-complessa.3
+  kind: formula
+  front:
+    it: "Scrivi la formula: **Potenza reattiva su un'impedenza**."
+    en: 'Write the formula: **Reactive power on an impedance**.'
+  back:
+    it: |-
+      $$Q=XI^2$$
+
+      X reattanza
+    en: |-
+      $$Q=XI^2$$
+
+      X reactance
+- id: formula-q-energia
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Reattiva ed energie medie**.'
+    en: 'Write the formula: **Reactive power and average energies**.'
+  back:
+    it: |-
+      $$Q=2\omega(W_L-W_C)$$
+
+      W energie medie immagazzinate [J]
+    en: |-
+      $$Q=2\omega(W_L-W_C)$$
+
+      W average stored energies [J]

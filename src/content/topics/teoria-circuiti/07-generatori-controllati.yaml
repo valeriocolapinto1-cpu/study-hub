@@ -1,0 +1,25 @@
+id: generatori-controllati
+course: teoria-circuiti
+order: 7
+title:
+  it: Generatori controllati
+  en: Controlled sources
+summary:
+  it: "I quattro generatori controllati lineari (VCVS, VCCS, CCVS, CCCS) e la regola d'oro: non si spengono mai."
+  en: 'The four linear controlled sources (VCVS, VCCS, CCVS, CCCS) and the golden rule: they are never switched off.'
+objectives:
+  - id: generatori-controllati.1
+    text:
+      it: Riconoscere i quattro tipi di generatori controllati
+      en: Recognise the four types of controlled sources
+  - id: generatori-controllati.2
+    text:
+      it: Includerli correttamente nell'analisi
+      en: Include them correctly in the analysis
+  - id: generatori-controllati.3
+    text:
+      it: Ricordare che non vanno spenti insieme agli indipendenti
+      en: Remember that they are not switched off together with the independent ones
+group:
+  it: I · Costanti concentrate
+  en: I · Lumped parameters

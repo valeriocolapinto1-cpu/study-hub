@@ -1,0 +1,25 @@
+id: altre-rappresentazioni-doppi-bipoli
+course: teoria-circuiti
+order: 46
+title:
+  it: Altre rappresentazioni dei doppi bipoli (T inversa, ibride)
+  en: Other two-port representations (inverse transmission, hybrid)
+summary:
+  it: Matrice di trasmissione inversa (ABCD), conversione da $Z$, reciprocità e parametri ibridi.
+  en: Inverse transmission (ABCD) matrix, conversion from $Z$, reciprocity and hybrid parameters.
+objectives:
+  - id: altre-rappresentazioni-doppi-bipoli.1
+    text:
+      it: Definire la matrice di trasmissione inversa
+      en: Define the inverse transmission matrix
+  - id: altre-rappresentazioni-doppi-bipoli.2
+    text:
+      it: Convertire $Z\to T$
+      en: Convert $Z\to T$
+  - id: altre-rappresentazioni-doppi-bipoli.3
+    text:
+      it: Usare ibride e trasmissione per la cascata
+      en: Use hybrid and transmission parameters for cascades
+group:
+  it: VI · Caratterizzazione esterna
+  en: VI · External characterisation

@@ -1,0 +1,64 @@
+- id: orale-t-11
+  topic: tensioni-correnti-indipendenti
+  objectives:
+    - tensioni-correnti-indipendenti.2
+    - tensioni-correnti-indipendenti.1
+  kind: orale
+  front:
+    it: '**Tensioni e correnti indipendenti.** Quante tensioni e correnti di ramo sono indipendenti? Come si esprimono le altre?'
+    en: '**Independent voltages and currents.** How many branch voltages and currents are independent? How are the others expressed?'
+  back:
+    it: |-
+      **Risposta modello.** Le tensioni di ramo indipendenti sono n-1: quelle dei rami d'albero, o le tensioni di nodo. Le correnti indipendenti sono b-n+1, quelle dei rami di coalbero, cioè le correnti di maglia. Le altre grandezze si ottengono dalle KVL e KCL. È la base del metodo dei nodi e del metodo delle maglie.
+
+      **Punti da toccare:**
+
+      - $n-1$ tensioni indipendenti (rami d'albero o tensioni di nodo)
+      - $b-n+1$ correnti indipendenti (rami di coalbero, correnti di maglia)
+      - Le altre si ottengono da KVL/KCL: $v_c=F^Tv_t$, $i_t=-Fi_c$
+      - Conseguenza: base dei metodi dei nodi e delle maglie
+    en: |-
+      **Model answer.** The independent branch voltages are n-1: those of the tree branches, or the node voltages. The independent currents are b-n+1, those of the cotree branches, i.e. the loop currents. The other quantities follow from KVL and KCL. This is the basis of the node and mesh methods.
+
+      **Points to cover:**
+
+      - $n-1$ independent voltages (tree branches or node voltages)
+      - $b-n+1$ independent currents (cotree branches, loop currents)
+      - The others follow from KVL/KCL: $v_c=F^Tv_t$, $i_t=-Fi_c$
+      - Consequence: basis of the node and mesh methods
+- id: formula-tens-indip
+  topic: tensioni-correnti-indipendenti
+  objectives:
+    - tensioni-correnti-indipendenti.1
+    - tensioni-correnti-indipendenti.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Tensioni indipendenti**. Uso: Ridurre le incognite.'
+    en: 'Write the formula: **Independent voltages**. Use: Reducing the unknowns.'
+  back:
+    it: |-
+      $$\mathbf v_c=F^{\mathsf T}\mathbf v_t$$
+
+      v_t tensioni d'albero
+    en: |-
+      $$\mathbf v_c=F^{\mathsf T}\mathbf v_t$$
+
+      v_t tree voltages
+- id: formula-corr-indip
+  topic: tensioni-correnti-indipendenti
+  objectives:
+    - tensioni-correnti-indipendenti.1
+    - tensioni-correnti-indipendenti.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Correnti indipendenti**. Uso: Ridurre le incognite.'
+    en: 'Write the formula: **Independent currents**. Use: Reducing the unknowns.'
+  back:
+    it: |-
+      $$\mathbf i_t=-F\,\mathbf i_c,\qquad \mathbf i=B^{\mathsf T}\mathbf j$$
+
+      j correnti di maglia
+    en: |-
+      $$\mathbf i_t=-F\,\mathbf i_c,\qquad \mathbf i=B^{\mathsf T}\mathbf j$$
+
+      j loop currents

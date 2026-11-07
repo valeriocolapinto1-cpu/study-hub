@@ -1,0 +1,86 @@
+---
+/** Extra «Errori tipici e strategia di studio»: errori dell'esercizio d'analisi con esempio sbagliato/corretto. */
+import Rich from '../components/Rich.astro';
+import Reliability from '../components/Reliability.astro';
+import { MISTAKES, PROCEDURE, STUDY_PLAN } from '../data';
+import { localizePath, type Lang } from '../../../i18n';
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+const theory = (topic: string) => localizePath(`anno-2/teoria-circuiti/teoria/${topic}`, lang);
+---
+
+<div class="prose">
+  <p class="lede">
+    {it
+      ? "Gli errori che costano più punti nell'esercizio d'analisi, ciascuno con un esempio sbagliato e uno corretto (numeri originali) e il passo della procedura in cui capita."
+      : 'The mistakes that cost the most points in the analysis exercise, each with a wrong and a right example (original numbers) and the step of the procedure where it happens.'}
+    <Reliability kind="storico" lang={lang} />
+  </p>
+  {MISTAKES.map((m) => (
+    <section class="worked" data-note-id={`errore-${m.id.toLowerCase()}`} aria-labelledby={`e-${m.id}`}>
+      <h3 id={`e-${m.id}`}>
+        <span class="mono">{m.id}</span> · <Rich text={m.title[lang]} inline />
+      </h3>
+      <p class="muted">
+        {it ? 'Passo' : 'Step'} {m.step}: <Rich text={PROCEDURE[m.step - 1]![lang]} inline />
+      </p>
+      <ul>
+        <li>
+          <strong>{it ? 'Sbagliato' : 'Wrong'}:</strong> <Rich text={m.wrong[lang]} inline />
+        </li>
+        <li>
+          <strong>{it ? 'Corretto' : 'Right'}:</strong> <Rich text={m.right[lang]} inline />
+        </li>
+      </ul>
+      <p>
+        {it ? 'Teoria' : 'Theory'}:{' '}
+        {m.topics.map((t, i) => (
+          <>
+            {i > 0 && ', '}
+            <a href={theory(t)}>{t.replaceAll('-', ' ')}</a>
+          </>
+        ))}
+      </p>
+    </section>
+  ))}
+  <h2 id="strategia">
+    {it ? 'Strategia di studio' : 'Study strategy'} <Reliability kind="inferenza" lang={lang} />
+  </h2>
+  <p>
+    {it
+      ? "L'esercizio vale 30 punti e ha una struttura fissa: prima si padroneggia la procedura in 8 passi, poi la teoria. Risolvi senza guardare la soluzione e poi confronta; ripeti a voce le dimostrazioni ricorrenti; verifica sempre con un controllo indipendente (τ, continuità di vC e iL, casi limite, simulazione)."
+      : 'The exercise is worth 30 points and has a fixed structure: first master the 8-step procedure, then the theory. Solve without looking at the solution and then compare; rehearse the recurring proofs aloud; always check with an independent test (τ, continuity of vC and iL, limit cases, simulation).'}
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">{it ? 'Settimane' : 'Weeks'}</th>
+          <th scope="col">{it ? 'Contenuto' : 'Content'}</th>
+          <th scope="col">{it ? 'Allenamento' : 'Practice'}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {STUDY_PLAN.map((r) => (
+          <tr>
+            <td class="num">{r.weeks}</td>
+            <td>{r.content[lang]}</td>
+            <td>
+              <Rich text={r.practice[lang]} inline />
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p>
+    {it
+      ? 'Il piano personale fino alla data d’esame è nella sezione '
+      : 'Your personal plan up to the exam date is in the '}
+    <a href={localizePath('anno-2/teoria-circuiti/progressi', lang)}>{it ? 'Progressi' : 'Progress'}</a>
+    {it ? '.' : ' section.'}
+  </p>
+</div>

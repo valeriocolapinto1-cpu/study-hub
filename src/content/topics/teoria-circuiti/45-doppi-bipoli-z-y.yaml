@@ -1,0 +1,25 @@
+id: doppi-bipoli-z-y
+course: teoria-circuiti
+order: 45
+title:
+  it: 'Doppi bipoli: matrici Z e Y'
+  en: 'Two-ports: Z and Y matrices'
+summary:
+  it: Matrici delle impedenze e delle ammettenze di un doppio bipolo, prove a vuoto e in cortocircuito, reciprocità.
+  en: Impedance and admittance matrices of a two-port, open-circuit and short-circuit tests, reciprocity.
+objectives:
+  - id: doppi-bipoli-z-y.1
+    text:
+      it: Definire le matrici $Z$ e $Y$
+      en: Define the $Z$ and $Y$ matrices
+  - id: doppi-bipoli-z-y.2
+    text:
+      it: Misurare/calcolare i parametri con prove a vuoto e in corto
+      en: Measure/compute the parameters with open- and short-circuit tests
+  - id: doppi-bipoli-z-y.3
+    text:
+      it: Riconoscere la reciprocità
+      en: Recognise reciprocity
+group:
+  it: VI · Caratterizzazione esterna
+  en: VI · External characterisation

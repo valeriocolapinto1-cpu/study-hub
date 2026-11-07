@@ -1,0 +1,116 @@
+---
+course: teoria-circuiti
+topic: applicabilita-fasori
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="applicabilita-fasori-intuizione-1">
+
+I fasori funzionano perché l'esponenziale complesso è «invariante» per derivazione: derivarlo equivale a moltiplicarlo per una costante. Questo trucco richiede però linearità, coefficienti costanti, una sola frequenza e un transitorio che si spegne: se una di queste condizioni cade, il metodo non vale più.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="applicabilita-fasori-teoria-1">
+
+Il metodo dei fasori fornisce la _risposta di regime_ (permanente) di un circuito **lineare, tempo-invariante** (a costanti concentrate) con generatori **sinusoidali alla stessa frequenza**, purché il circuito sia **stabile** (il transitorio si esaurisce).
+
+</div>
+
+<div data-note-id="applicabilita-fasori-teoria-2">
+
+Non si applica a elementi non lineari (diodi, saturazioni) né a elementi tempo-varianti, né fornisce il transitorio. Con generatori a frequenze diverse si analizzano separatamente e si sommano le risposte _nel tempo_.
+
+</div>
+
+<details class="proof" data-note-id="applicabilita-fasori-dimostrazione-1">
+<summary>Dimostrazione: Condizioni di validità del metodo dei fasori</summary>
+
+**Enunciato.** In un circuito lineare tempo-invariante con ingressi $x(t)=\mathrm{Re}\{Xe^{j\omega t}\}$ esiste una soluzione particolare $y_p(t)=\mathrm{Re}\{Ye^{j\omega t}\}$ con $Y$ ottenuto risolvendo equazioni algebriche in $j\omega$; se il circuito è stabile, $y_p$ è la risposta di regime.
+
+1. Le equazioni del circuito sono differenziali lineari a coefficienti costanti: $\sum a_k\,y^{(k)}=\sum b_k\,x^{(k)}$.
+2. Poiché $\frac{d}{dt}e^{j\omega t}=j\omega e^{j\omega t}$, ponendo $x=Xe^{j\omega t}$ e $y=Ye^{j\omega t}$ ogni derivata si riduce a una moltiplicazione per $j\omega$: $\left(\sum a_k(j\omega)^k\right)Y=\left(\sum b_k(j\omega)^k\right)X$.
+3. Se $D(j\omega)=\sum a_k(j\omega)^k\neq0$, $Y=H(j\omega)X$. I coefficienti sono reali, quindi $\mathrm{Re}\{\cdot\}$ commuta con l'operatore: $y_p=\mathrm{Re}\{Ye^{j\omega t}\}$ risolve l'equazione per l'ingresso reale $\mathrm{Re}\{Xe^{j\omega t}\}$.
+4. La soluzione generale è $y_p$ più la risposta libera: se i poli hanno parte reale negativa questa decade e resta $y_p$ (regime). Se il sistema è instabile non esiste un regime. $\square$
+
+</details>
+
+<Formula id="fasori-validita" />
+<Formula id="hjw-def" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="applicabilita-fasori-esempio-1">
+
+### Frequenze diverse
+
+$v_g=\cos t+\cos2t$ su un RC serie ($R=C=1$). Trova $v_C$ a regime.
+
+**Soluzione.**
+
+1. $\omega=1$: $\dfrac1{1+j}=\tfrac12-\tfrac12j\Rightarrow\tfrac12\cos t+\tfrac12\sin t$.
+2. $\omega=2$: $\dfrac1{1+2j}=\dfrac{1-2j}5\Rightarrow\tfrac15\cos2t+\tfrac25\sin2t$.
+3. $v_C=\tfrac12\cos t+\tfrac12\sin t+\tfrac15\cos2t+\tfrac25\sin2t$: somma _nel tempo_.
+
+</div>
+
+<div class="worked" data-note-id="applicabilita-fasori-esempio-2">
+
+### Un caso in cui non si applica
+
+Un diodo in serie a un resistore con generatore $\cos\omega t$: si possono usare i fasori?
+
+**Soluzione.**
+
+1. No: il diodo è non lineare, la risposta contiene armoniche e componente continua non descrivibili con un solo fasore.
+
+</div>
+
+<div class="worked" data-note-id="applicabilita-fasori-esempio-3">
+
+### Circuito instabile
+
+$H(s)=\dfrac{1}{s-1}$ con ingresso $\cos t$: ha senso $H(j)$?
+
+**Soluzione.**
+
+1. $H(j)$ esiste ma non descrive un regime: il modo $e^{t}$ diverge e la soluzione non tende a una sinusoide.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="applicabilita-fasori-errore-1">
+
+- **Sbagliato:** Sommare fasori di frequenze diverse.
+- **Corretto:** Sommare le risposte nel tempo.
+
+</div>
+
+<div data-note-id="applicabilita-fasori-errore-2">
+
+- **Sbagliato:** Usare i fasori per il transitorio dopo un'accensione.
+- **Corretto:** Il transitorio richiede Laplace o l'equazione differenziale.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="applicabilita-fasori-esame-1">
+
+Fasori: validità e applicabilità a un circuito dato: 1-6-2000, 13-2-2002, 29-4-2002 (A–I), 23-9-2008 <span class="badge badge--info">STORICO</span>. Dimostrazione richiesta.
+
+</div>
+
+</Callout>

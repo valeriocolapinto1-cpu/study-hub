@@ -30,7 +30,11 @@ export async function buildSearchIndex(distDir, base, logger) {
   }
 
   for (const lang of ['it', 'en']) {
-    const { index, errors } = await pagefind.createIndex({ forceLanguage: lang });
+    const { index, errors } = await pagefind.createIndex({
+      forceLanguage: lang,
+      // il testo interno di KaTeX (glifi ripetuti, sorgente TeX) renderebbe illeggibili gli estratti
+      excludeSelectors: ['.katex'],
+    });
     if (!index) throw new Error(`Pagefind: ${errors.join('; ')}`);
     const pages = await index.addDirectory({ path: distDir, glob: `${lang}/**/*.html` });
     if (pages.errors.length) throw new Error(`Pagefind: ${pages.errors.join('; ')}`);

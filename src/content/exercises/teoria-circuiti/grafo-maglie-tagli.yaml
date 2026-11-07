@@ -1,0 +1,154 @@
+- id: q-ii-001
+  topic: grafo-maglie-tagli
+  objectives:
+    - grafo-maglie-tagli.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Una maglia è:'
+    en: 'A loop is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Definizione di maglia.
+        en: Definition of a loop.
+  choices:
+    - text:
+        it: un insieme di rami che forma un percorso chiuso toccando ciascun nodo una sola volta
+        en: a set of branches forming a closed path that touches each node only once
+      correct: true
+    - text:
+        it: un insieme di rami incidenti in un nodo
+        en: a set of branches incident at a node
+      correct: false
+    - text:
+        it: un ramo con una corrente
+        en: a branch carrying a current
+      correct: false
+    - text:
+        it: un insieme di nodi
+        en: a set of nodes
+      correct: false
+  origin: originale
+- id: q-ii-002
+  topic: grafo-maglie-tagli
+  objectives:
+    - grafo-maglie-tagli.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un taglio è un insieme di rami che:'
+    en: 'A cut set is a set of branches that:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Taglio: insieme minimale la cui rimozione disconnette il grafo.'
+        en: 'Cut set: a minimal set whose removal disconnects the graph.'
+  choices:
+    - text:
+        it: forma un percorso chiuso
+        en: forms a closed path
+      correct: false
+    - text:
+        it: se rimosso rende il grafo non connesso (insieme minimale)
+        en: if removed disconnects the graph (minimal set)
+      correct: true
+    - text:
+        it: contiene un solo nodo
+        en: contains a single node
+      correct: false
+    - text:
+        it: ha tutti la stessa corrente
+        en: all carry the same current
+      correct: false
+  origin: originale
+- id: q-ii-003
+  topic: grafo-maglie-tagli
+  objectives:
+    - grafo-maglie-tagli.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: I rami incidenti in un nodo costituiscono un taglio.
+    en: The branches incident at a node form a cut set.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Rimuoverli isola il nodo dal resto del grafo.
+        en: Removing them isolates the node from the rest of the graph.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-ii-004
+  topic: grafo-maglie-tagli
+  objectives:
+    - grafo-maglie-tagli.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: In un grafo connesso con $n$ nodi e $b$ rami vale sempre $b\ge n-1$.
+    en: In a connected graph with $n$ nodes and $b$ branches, $b\ge n-1$ always holds.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Un albero ha $n-1$ rami: servono almeno tanti per connettere.'
+        en: 'A tree has $n-1$ branches: at least that many are needed to connect it.'
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-ii-046
+  topic: grafo-maglie-tagli
+  objectives:
+    - grafo-maglie-tagli.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: In un grafo connesso con $n$ nodi e $b$ rami il numero di maglie fondamentali è ___.
+    en: In a connected graph with $n$ nodes and $b$ branches the number of fundamental loops is ___.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Una per ogni ramo di coalbero.
+        en: One for each cotree branch.
+  choices:
+    - text:
+        it: $b$
+        en: $b$
+      correct: false
+    - text:
+        it: $n-1$
+        en: $n-1$
+      correct: false
+    - text:
+        it: $n$
+        en: $n$
+      correct: false
+    - text:
+        it: $b-n+1$
+        en: $b-n+1$
+      correct: true
+  origin: originale

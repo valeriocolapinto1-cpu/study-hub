@@ -1,0 +1,103 @@
+---
+course: teoria-circuiti
+topic: teorema-di-sostituzione
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="teorema-di-sostituzione-intuizione-1">
+
+Se sai già quanto valgono tensione e corrente su un pezzo di circuito, il resto del circuito «non si accorge» se al suo posto metti un generatore che impone proprio quel valore. È un'idea semplicissima, ma è il primo mattone dei teoremi di Thevenin e Norton.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teorema-di-sostituzione-teoria-1">
+
+**Teorema di sostituzione.** Se un circuito ha soluzione unica e un suo bipolo (o una sua porta) ha tensione $v^*$ e corrente $i^*$ nella soluzione, esso può essere sostituito con un generatore ideale di tensione $v^*$ o con un generatore ideale di corrente $i^*$ senza modificare tensioni e correnti del resto del circuito, purché il circuito modificato abbia ancora soluzione unica.
+
+</div>
+
+<div data-note-id="teorema-di-sostituzione-teoria-2">
+
+Il teorema non richiede la linearità. Serve da base per Thevenin, Norton e per l'analisi per parti (si sostituisce una parte con un generatore equivalente).
+
+</div>
+
+<details class="proof" data-note-id="teorema-di-sostituzione-dimostrazione-1">
+<summary>Dimostrazione: Sostituzione con un generatore</summary>
+
+1. Siano $(\mathbf v^*,\mathbf i^*)$ la soluzione del circuito originale.
+2. Nel circuito modificato le equazioni (KCL, KVL e costitutive degli elementi rimasti) sono le stesse di prima, salvo la relazione del bipolo sostituito, che diventa $v=v^*$ (o $i=i^*$).
+3. $(\mathbf v^*,\mathbf i^*)$ le soddisfa tutte: il bipolo sostituito ha proprio $v=v^*$. Se la soluzione del modificato è unica, coincide con $(\mathbf v^*,\mathbf i^*)$. $\square$
+
+</details>
+
+<Formula id="sost" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="teorema-di-sostituzione-esempio-1">
+
+### Sostituire un resistore
+
+$V=12$, $R_1=2$, $R_2=4$ in serie; la tensione su $R_2$ è $8\,\mathrm V$. Sostituisci $R_2$.
+
+**Soluzione.**
+
+1. $R_2\to$ generatore di tensione $8\,\mathrm V$: la corrente in $R_1$ è $\dfrac{12-8}{2}=2\,\mathrm A$, come prima ($12/6$).
+
+</div>
+
+<div class="worked" data-note-id="teorema-di-sostituzione-esempio-2">
+
+### Sostituzione con corrente
+
+Stesso circuito: $R_2\to$ generatore di corrente $2\,\mathrm A$.
+
+**Soluzione.**
+
+1. La tensione su $R_1$ è $2\cdot2=4\,\mathrm V$, quella sul generatore $8\,\mathrm V$: identiche ✓.
+
+</div>
+
+<div class="worked" data-note-id="teorema-di-sostituzione-esempio-3">
+
+### Quando non vale
+
+Sostituire $R_2$ con un generatore di tensione $v^*$ in parallelo a un altro generatore di tensione diverso.
+
+**Soluzione.**
+
+1. Violerebbe la KVL: il circuito modificato non ha soluzione, quindi il teorema non è applicabile.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teorema-di-sostituzione-errore-1">
+
+- **Sbagliato:** Applicare la sostituzione senza verificare l'unicità della soluzione.
+- **Corretto:** Il circuito modificato deve avere soluzione unica.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="teorema-di-sostituzione-esame-1">
+
+Teorema di sostituzione: 19-11-2003, 12-7-2007 <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

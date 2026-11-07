@@ -1,0 +1,120 @@
+- id: q-i-001
+  topic: modellamento-costanti-concentrate
+  objectives:
+    - modellamento-costanti-concentrate.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Il modello a costanti concentrate è ragionevole quando le dimensioni $L$ del circuito e la lunghezza d'onda $\\lambda$ verificano:"
+    en: "The lumped-parameter model is reasonable when the size $L$ of the circuit and the wavelength $\\lambda$ satisfy:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: I tempi di propagazione $L/c$ devono essere trascurabili rispetto al periodo, cioè $L\ll\lambda=c/f$.
+        en: The propagation times $L/c$ must be negligible compared with the period, i.e. $L\ll\lambda=c/f$.
+  choices:
+    - text:
+        it: $L\gg\lambda$
+        en: $L\gg\lambda$
+      correct: false
+    - text:
+        it: $L$ è indipendente da $\lambda$
+        en: $L$ is independent of $\lambda$
+      correct: false
+    - text:
+        it: $L=\lambda$
+        en: $L=\lambda$
+      correct: false
+    - text:
+        it: $L\ll\lambda$
+        en: $L\ll\lambda$
+      correct: true
+  origin: originale
+- id: q-i-002
+  topic: modellamento-costanti-concentrate
+  objectives:
+    - modellamento-costanti-concentrate.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: "A $f=50\\,\\mathrm{Hz}$ la lunghezza d'onda nel vuoto è circa:"
+    en: "At $f=50\\,\\mathrm{Hz}$ the wavelength in vacuum is about:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\lambda=c/f=3\cdot10^8/50=6\cdot10^6\,\mathrm m$.
+        en: $\lambda=c/f=3\cdot10^8/50=6\cdot10^6\,\mathrm m$.
+  choices:
+    - text:
+        it: $6\,\mathrm{m}$
+        en: $6\,\mathrm{m}$
+      correct: false
+    - text:
+        it: $60\,\mathrm{m}$
+        en: $60\,\mathrm{m}$
+      correct: false
+    - text:
+        it: $6\,\mathrm{mm}$
+        en: $6\,\mathrm{mm}$
+      correct: false
+    - text:
+        it: $6000\,\mathrm{km}$
+        en: $6000\,\mathrm{km}$
+      correct: true
+  origin: originale
+- id: q-i-003
+  topic: modellamento-costanti-concentrate
+  objectives:
+    - modellamento-costanti-concentrate.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Le leggi di Kirchhoff derivano dal modello a costanti concentrate e non valgono in generale per una linea lunga ad alta frequenza.
+    en: Kirchhoff's laws follow from the lumped-parameter model and do not hold in general for a long line at high frequency.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Nella linea tensione e corrente dipendono dalla posizione: serve il modello a parametri distribuiti.'
+        en: 'In a line, voltage and current depend on position: the distributed-parameter model is needed.'
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-i-004
+  topic: modellamento-costanti-concentrate
+  objectives:
+    - modellamento-costanti-concentrate.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: In un circuito a costanti concentrate l'energia del campo elettrico è immagazzinata solo nei condensatori e quella magnetica solo negli induttori.
+    en: In a lumped circuit the electric-field energy is stored only in capacitors and the magnetic energy only in inductors.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "È l'ipotesi del modello: i campi sono confinati nei componenti."
+        en: 'This is the assumption of the model: the fields are confined inside the components.'
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale

@@ -1,0 +1,116 @@
+---
+course: teoria-circuiti
+topic: applicabilita-fasori
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="applicabilita-fasori-intuizione-1">
+
+Phasors work because the complex exponential is "invariant" under differentiation: differentiating it amounts to multiplying it by a constant. The trick, however, requires linearity, constant coefficients, a single frequency and a transient that dies out: if any of these conditions fails, the method no longer holds.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="applicabilita-fasori-teoria-1">
+
+The phasor method gives the _steady-state_ response of a **linear, time-invariant** (lumped) circuit with **sinusoidal sources at the same frequency**, provided that the circuit is **stable** (the transient dies out).
+
+</div>
+
+<div data-note-id="applicabilita-fasori-teoria-2">
+
+It does not apply to nonlinear elements (diodes, saturation) or time-varying elements, and it does not give the transient. With sources at different frequencies, analyse them separately and add the responses _in time_.
+
+</div>
+
+<details class="proof" data-note-id="applicabilita-fasori-dimostrazione-1">
+<summary>Proof: Validity conditions of the phasor method</summary>
+
+**Statement.** In a linear time-invariant circuit with inputs $x(t)=\mathrm{Re}\{Xe^{j\omega t}\}$ there is a particular solution $y_p(t)=\mathrm{Re}\{Ye^{j\omega t}\}$ with $Y$ obtained by solving algebraic equations in $j\omega$; if the circuit is stable, $y_p$ is the steady-state response.
+
+1. The circuit equations are linear differential equations with constant coefficients: $\sum a_k\,y^{(k)}=\sum b_k\,x^{(k)}$.
+2. Since $\frac{d}{dt}e^{j\omega t}=j\omega e^{j\omega t}$, setting $x=Xe^{j\omega t}$ and $y=Ye^{j\omega t}$ every derivative reduces to a multiplication by $j\omega$: $\left(\sum a_k(j\omega)^k\right)Y=\left(\sum b_k(j\omega)^k\right)X$.
+3. If $D(j\omega)=\sum a_k(j\omega)^k\neq0$, $Y=H(j\omega)X$. The coefficients are real, so $\mathrm{Re}\{\cdot\}$ commutes with the operator: $y_p=\mathrm{Re}\{Ye^{j\omega t}\}$ solves the equation for the real input $\mathrm{Re}\{Xe^{j\omega t}\}$.
+4. The general solution is $y_p$ plus the zero-input response: if the poles have negative real part the latter decays and $y_p$ remains (steady state). If the system is unstable there is no steady state. $\square$
+
+</details>
+
+<Formula id="fasori-validita" />
+<Formula id="hjw-def" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="applicabilita-fasori-esempio-1">
+
+### Different frequencies
+
+$v_g=\cos t+\cos2t$ on a series RC ($R=C=1$). Find the steady-state $v_C$.
+
+**Solution.**
+
+1. $\omega=1$: $\dfrac1{1+j}=\tfrac12-\tfrac12j\Rightarrow\tfrac12\cos t+\tfrac12\sin t$.
+2. $\omega=2$: $\dfrac1{1+2j}=\dfrac{1-2j}5\Rightarrow\tfrac15\cos2t+\tfrac25\sin2t$.
+3. $v_C=\tfrac12\cos t+\tfrac12\sin t+\tfrac15\cos2t+\tfrac25\sin2t$: the sum is taken _in time_.
+
+</div>
+
+<div class="worked" data-note-id="applicabilita-fasori-esempio-2">
+
+### A case where it does not apply
+
+A diode in series with a resistor, driven by $\cos\omega t$: can phasors be used?
+
+**Solution.**
+
+1. No: the diode is nonlinear, the response contains harmonics and a DC component that a single phasor cannot describe.
+
+</div>
+
+<div class="worked" data-note-id="applicabilita-fasori-esempio-3">
+
+### Unstable circuit
+
+$H(s)=\dfrac{1}{s-1}$ with input $\cos t$: does $H(j)$ make sense?
+
+**Solution.**
+
+1. $H(j)$ exists but does not describe a steady state: the mode $e^{t}$ diverges and the solution does not tend to a sinusoid.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="applicabilita-fasori-errore-1">
+
+- **Wrong:** Adding phasors at different frequencies.
+- **Right:** Add the responses in time.
+
+</div>
+
+<div data-note-id="applicabilita-fasori-errore-2">
+
+- **Wrong:** Using phasors for the transient after switching on.
+- **Right:** The transient requires Laplace or the differential equation.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="applicabilita-fasori-esame-1">
+
+Phasors, validity and applicability to a given circuit: 1-6-2000, 13-2-2002, 29-4-2002 (A–I), 23-9-2008 <span class="badge badge--info">PAST EXAMS</span>. Proof required.
+
+</div>
+
+</Callout>

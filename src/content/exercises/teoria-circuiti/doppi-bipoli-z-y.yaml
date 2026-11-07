@@ -1,0 +1,279 @@
+- id: gen-analisi-doppio-bipolo-1
+  topic: doppi-bipoli-z-y
+  objectives: &a1
+    - doppi-bipoli-z-y.1
+    - doppi-bipoli-z-y.2
+  difficulty: 1
+  kind: generated
+  generator: teoria-circuiti/analisi-doppio-bipolo-1
+  origin: tipologia-appello
+- id: gen-analisi-doppio-bipolo-2
+  topic: doppi-bipoli-z-y
+  objectives: *a1
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/analisi-doppio-bipolo-2
+  origin: tipologia-appello
+- id: gen-analisi-doppio-bipolo-3
+  topic: doppi-bipoli-z-y
+  objectives: *a1
+  difficulty: 3
+  kind: generated
+  generator: teoria-circuiti/analisi-doppio-bipolo-3
+  origin: tipologia-appello
+- id: gen-matrici-z-y
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.2
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/matrici-z-y
+  origin: tipologia-appello
+- id: q-vi-017
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'La matrice $Z$ è definita da:'
+    en: 'The $Z$ matrix is defined by:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Impedenze a vuoto.
+        en: Open-circuit impedances.
+  choices:
+    - text:
+        it: $v_1=Zi_2$
+        en: $v_1=Zi_2$
+      correct: false
+    - text:
+        it: $\mathbf i=Z\mathbf v$
+        en: $\mathbf i=Z\mathbf v$
+      correct: false
+    - text:
+        it: $\mathbf v=Z\mathbf i$
+        en: $\mathbf v=Z\mathbf i$
+      correct: true
+    - text:
+        it: $\mathbf v=Z^{-1}\mathbf i$
+        en: $\mathbf v=Z^{-1}\mathbf i$
+      correct: false
+  origin: originale
+- id: q-vi-018
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: '$z_{11}$ si misura:'
+    en: '$z_{11}$ is measured:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $z_{11}=v_1/i_1|_{i_2=0}$.
+        en: $z_{11}=v_1/i_1|_{i_2=0}$.
+  choices:
+    - text:
+        it: con le due porte in corto
+        en: with both ports shorted
+      correct: false
+    - text:
+        it: con tensione alla porta 1 e porta 2 in corto
+        en: with a voltage at port 1 and port 2 shorted
+      correct: false
+    - text:
+        it: con corrente alla porta 1 e porta 2 aperta
+        en: with a current at port 1 and port 2 open
+      correct: true
+    - text:
+        it: con la porta 2 in corto e corrente alla 1
+        en: with port 2 shorted and a current at port 1
+      correct: false
+  origin: originale
+- id: q-vi-019
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: '$y_{11}$ si misura:'
+    en: '$y_{11}$ is measured:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $y_{11}=i_1/v_1|_{v_2=0}$.
+        en: $y_{11}=i_1/v_1|_{v_2=0}$.
+  choices:
+    - text:
+        it: con le due porte aperte
+        en: with both ports open
+      correct: false
+    - text:
+        it: con corrente alla 1
+        en: with a current at port 1
+      correct: false
+    - text:
+        it: con porta 2 aperta
+        en: with port 2 open
+      correct: false
+    - text:
+        it: con tensione alla porta 1 e porta 2 in corto
+        en: with a voltage at port 1 and port 2 shorted
+      correct: true
+  origin: originale
+- id: q-vi-020
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Se $Z$ è invertibile, $Y=$
+    en: If $Z$ is invertible, $Y=$
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\mathbf i=Z^{-1}\mathbf v$.
+        en: $\mathbf i=Z^{-1}\mathbf v$.
+  choices:
+    - text:
+        it: $Z^{-1}$
+        en: $Z^{-1}$
+      correct: true
+    - text:
+        it: $-Z$
+        en: $-Z$
+      correct: false
+    - text:
+        it: $Z^2$
+        en: $Z^2$
+      correct: false
+    - text:
+        it: $Z^{\mathsf T}$
+        en: $Z^{\mathsf T}$
+      correct: false
+  origin: originale
+- id: q-vi-021
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Una rete reciproca ha $z_{12}=z_{21}$.
+    en: A reciprocal network has $z_{12}=z_{21}$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Simmetria della matrice per reti di soli R, L, C.
+        en: The matrix is symmetric for networks of R, L, C only.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-vi-022
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Ogni doppio bipolo lineare ammette sia la matrice $Z$ sia la matrice $Y$.
+    en: Every linear two-port has both a $Z$ and a $Y$ matrix.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Esistono doppi bipoli (es. trasformatore ideale) con una sola delle due.
+        en: Some two-ports (e.g. the ideal transformer) have only one of the two.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-vi-041
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: '$T$ di resistori: $R_a=1,R_b=2$ (serie) e $R_c=3$ (derivazione). $z_{12}=$'
+    en: 'T of resistors: $R_a=1,R_b=2$ (series) and $R_c=3$ (shunt). $z_{12}=$'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $z_{12}=z_{21}=R_c=3$.
+        en: $z_{12}=z_{21}=R_c=3$.
+  choices:
+    - text:
+        it: $3$
+        en: $3$
+      correct: true
+    - text:
+        it: $5$
+        en: $5$
+      correct: false
+    - text:
+        it: $4$
+        en: $4$
+      correct: false
+    - text:
+        it: $6$
+        en: $6$
+      correct: false
+  origin: originale
+- id: q-vi-043
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.2
+  difficulty: 3
+  kind: static
+  statement:
+    it: Per misurare $z_{11}$ si pone la porta 2 in cortocircuito.
+    en: To measure $z_{11}$ port 2 is short-circuited.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Si lascia la porta 2 aperta ($i_2=0$).
+        en: Port 2 is left open ($i_2=0$).
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale

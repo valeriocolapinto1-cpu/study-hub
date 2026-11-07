@@ -1,0 +1,25 @@
+id: connessioni-doppi-bipoli
+course: teoria-circuiti
+order: 47
+title:
+  it: Connessioni di doppi bipoli
+  en: Two-port connections
+summary:
+  it: Connessioni serie-serie, parallelo-parallelo e in cascata di doppi bipoli, e quale matrice si somma o si moltiplica.
+  en: Series-series, parallel-parallel and cascade connections of two-ports, and which matrix is added or multiplied.
+objectives:
+  - id: connessioni-doppi-bipoli.1
+    text:
+      it: Combinare doppi bipoli
+      en: Combine two-ports
+  - id: connessioni-doppi-bipoli.2
+    text:
+      it: Ricordare quale matrice si somma o si moltiplica
+      en: Remember which matrix is added or multiplied
+  - id: connessioni-doppi-bipoli.3
+    text:
+      it: Calcolare l'impedenza d'ingresso di una cascata
+      en: Compute the input impedance of a cascade
+group:
+  it: VI · Caratterizzazione esterna
+  en: VI · External characterisation

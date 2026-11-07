@@ -1,0 +1,105 @@
+---
+course: teoria-circuiti
+topic: relazioni-costitutive
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="relazioni-costitutive-intuizione-1">
+
+A resistor reacts to the present: the current now depends on the voltage now. Capacitors and inductors instead remember: they store charge or flux, and changing their state takes time. This is why the voltage across a capacitor and the current in an inductor cannot jump: they are the "memory" of the circuit.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="relazioni-costitutive-teoria-1">
+
+**Resistor.** $v = R\,i$, i.e. $i = G\,v$ with $G=1/R$. Short circuit: $R=0$ ($v=0$ for every $i$). Open circuit: $G=0$ ($i=0$ for every $v$).
+
+</div>
+
+<div data-note-id="relazioni-costitutive-teoria-2">
+
+**Capacitor.** $i = C\,\dfrac{dv}{dt}$, and $v(t) = v(t_0) + \dfrac{1}{C}\int_{t_0}^{t} i\,d\tau$. In DC ($dv/dt=0$) it behaves as an open circuit.
+
+</div>
+
+<div data-note-id="relazioni-costitutive-teoria-3">
+
+**Inductor.** $v = L\,\dfrac{di}{dt}$, and $i(t) = i(t_0)+\dfrac{1}{L}\int_{t_0}^{t} v\,d\tau$. In DC it is a short circuit.
+
+</div>
+
+<div data-note-id="relazioni-costitutive-teoria-4">
+
+**Ideal sources.** The voltage source imposes $v=e(t)$ for every current; the current source imposes $i=j(t)$ for every voltage. With zero value, the former is a short circuit, the latter an open circuit.
+
+</div>
+
+<div data-note-id="relazioni-costitutive-teoria-5">
+
+These elements are _circuits with memory_ ($C$, $L$: the response depends on the past) or _memoryless_ ($R$, sources).
+
+</div>
+
+<details class="proof" data-note-id="relazioni-costitutive-dimostrazione-1">
+<summary>Proof: Continuity of the inductor current and of the capacitor voltage</summary>
+
+**Statement.** If the voltage $v$ across an inductor is bounded in a neighbourhood of $t_0$, the current $i_L$ is continuous at $t_0$. Likewise $v_C$ is continuous if $i_C$ is bounded.
+
+1. From the constitutive relation: $i_L(t_0+\varepsilon)-i_L(t_0-\varepsilon) = \dfrac{1}{L}\int_{t_0-\varepsilon}^{t_0+\varepsilon} v\,d\tau$.
+2. If $|v|\le M$ in the neighbourhood, the magnitude of the right-hand side is $\le 2M\varepsilon/L$.
+3. As $\varepsilon\to0$ the right-hand side tends to zero, hence $i_L(t_0^+)=i_L(t_0^-)$. The proof for $v_C$ is identical with the roles exchanged ($v_C=\frac1C\int i\,d\tau$). $\square$
+
+_Note._ If $v$ contains impulses (cases with inconsistent ideal elements) continuity may fail: see <span class="badge badge--warning">TO BE VERIFIED</span> the lecturer's treatment.
+
+</details>
+
+<Formula id="resistore" />
+<Formula id="condensatore" />
+<Formula id="induttore" />
+<Formula id="cont-vc-il" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="relazioni-costitutive-esempio-1">
+
+### Charging a capacitor with a constant current
+
+A capacitor $C = 2\,\mathrm{F}$, initially uncharged, carries $i = 3\,\mathrm{A}$ for $4\,\mathrm{s}$. Find the final $v$ and the stored energy.
+
+**Solution.**
+
+1. $v(4)=\dfrac{1}{2}\int_0^4 3\,d\tau = \dfrac{12}{2}=6\,\mathrm{V}$.
+2. $W = \tfrac12 C v^2 = \tfrac12\cdot 2\cdot 36 = 36\,\mathrm{J}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="relazioni-costitutive-errore-1">
+
+- **Wrong:** Imposing $v_C(0^+)=0$ for $t>0$ "because the source is switched off".
+- **Right:** $v_C$ is continuous: $v_C(0^+)=v_C(0^-)$ is the value reached in the previous steady state.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="relazioni-costitutive-esame-1">
+
+Time constant and RC charge/discharge appear in 14-7-2000, 3-7-2001, 18-9-2002, 25-9-2007, 17-4-2008 <span class="badge badge--info">PAST EXAMS</span>; the continuity of $v_C$ and $i_L$ is step 8 of the analysis-exercise procedure.
+
+</div>
+
+</Callout>

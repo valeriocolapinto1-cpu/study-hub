@@ -1,0 +1,53 @@
+- id: formula-kcl-mat
+  topic: matrici-a-b
+  objectives:
+    - matrici-a-b.2
+    - matrici-a-b.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **KCL in forma matriciale**. Uso: Metodo dei nodi.'
+    en: 'Write the formula: **KCL in matrix form**. Use: Node method.'
+  back:
+    it: |-
+      $$A\,\mathbf i=\mathbf 0$$
+
+      A (n−1)×b incidenza ridotta
+    en: |-
+      $$A\,\mathbf i=\mathbf 0$$
+
+      A (n−1)×b reduced incidence matrix
+- id: formula-kvl-mat
+  topic: matrici-a-b
+  objectives:
+    - matrici-a-b.1
+    - matrici-a-b.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **KVL in forma matriciale**. Uso: Metodo delle maglie.'
+    en: 'Write the formula: **KVL in matrix form**. Use: Mesh method.'
+  back:
+    it: |-
+      $$B\,\mathbf v=\mathbf 0,\qquad \mathbf v=A^{\mathsf T}\mathbf e$$
+
+      B (b−n+1)×b; e tensioni di nodo
+    en: |-
+      $$B\,\mathbf v=\mathbf 0,\qquad \mathbf v=A^{\mathsf T}\mathbf e$$
+
+      B (b−n+1)×b; e node voltages
+- id: formula-b-da-a
+  topic: matrici-a-b
+  objectives:
+    - matrici-a-b.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **B in funzione di A (blocchi)**. Uso: Ricostruire B da A.'
+    en: 'Write the formula: **B as a function of A (blocks)**. Use: Rebuilding B from A.'
+  back:
+    it: |-
+      $$B=[-F^{\mathsf T}\ \ \mathbb 1],\quad F=A_t^{-1}A_c$$
+
+      Albero | coalbero
+    en: |-
+      $$B=[-F^{\mathsf T}\ \ \mathbb 1],\quad F=A_t^{-1}A_c$$
+
+      Tree | cotree

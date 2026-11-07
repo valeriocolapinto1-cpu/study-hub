@@ -1,0 +1,94 @@
+- id: orale-t-30
+  topic: funzioni-di-rete
+  objectives:
+    - funzioni-di-rete.2
+    - funzioni-di-rete.1
+  kind: orale
+  front:
+    it: '**Funzioni di rete razionali a coefficienti reali.** Dimostra che le funzioni di rete di circuiti a costanti concentrate lineari tempo-invarianti sono razionali a coefficienti reali.'
+    en: '**Rational network functions with real coefficients.** Prove that the network functions of linear time-invariant lumped circuits are rational with real coefficients.'
+  back:
+    it: |-
+      **Risposta modello.** Con Laplace le equazioni del circuito diventano algebriche e lineari con coefficienti reali, perché R, sL e sC hanno L, C ed R reali. La soluzione, con la regola di Cramer, è un rapporto di determinanti, cioè di polinomi in s a coefficienti reali. Quindi H(s) è una funzione razionale a coefficienti reali.
+
+      **Punti da toccare:**
+
+      - Le equazioni nel dominio di $s$ sono algebriche lineari con coefficienti reali ($R$, $sL$, $sC$ con $L,C,R$ reali)
+      - La soluzione si ottiene con la regola di Cramer: rapporto di determinanti
+      - Quindi $H(s)=N(s)/D(s)$ con polinomi a coefficienti reali
+    en: |-
+      **Model answer.** With Laplace the circuit equations become algebraic and linear with real coefficients, because R, sL and sC have real L, C and R. The solution, by Cramer's rule, is a ratio of determinants, i.e. of polynomials in s with real coefficients. Hence H(s) is a rational function with real coefficients.
+
+      **Points to cover:**
+
+      - The equations in the $s$ domain are linear algebraic with real coefficients ($R$, $sL$, $sC$ with real $L,C,R$)
+      - The solution is obtained with Cramer's rule: a ratio of determinants
+      - Hence $H(s)=N(s)/D(s)$ with real-coefficient polynomials
+- id: formula-h-def
+  topic: funzioni-di-rete
+  objectives:
+    - funzioni-di-rete.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Funzione di rete**. Uso: Rapporto uscita/ingresso.'
+    en: 'Write the formula: **Network function**. Use: Output/input ratio.'
+  back:
+    it: |-
+      $$H(s)=\frac{Y(s)}{X(s)}$$
+
+      condizioni iniziali nulle
+    en: |-
+      $$H(s)=\frac{Y(s)}{X(s)}$$
+
+      zero initial conditions
+- id: formula-h-razionale
+  topic: funzioni-di-rete
+  objectives:
+    - funzioni-di-rete.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Forma razionale**. Uso: Poli e zeri.'
+    en: 'Write the formula: **Rational form**. Use: Poles and zeros.'
+  back:
+    it: |-
+      $$H(s)=\frac{N(s)}{D(s)}=K\frac{\prod(s-z_i)}{\prod(s-p_i)}$$
+
+      z zeri, p poli
+    en: |-
+      $$H(s)=\frac{N(s)}{D(s)}=K\frac{\prod(s-z_i)}{\prod(s-p_i)}$$
+
+      z zeros, p poles
+- id: formula-h-rc-lp
+  topic: funzioni-di-rete
+  objectives:
+    - funzioni-di-rete.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **RC passa-basso**. Uso: Funzione di rete del filtro RC con uscita sul condensatore.'
+    en: 'Write the formula: **RC low-pass**. Use: Network function of the RC filter with the output across the capacitor.'
+  back:
+    it: |-
+      $$H(s)=\frac{1}{1+sRC}$$
+
+      R [Ω]; C [F]; s [1/s]
+    en: |-
+      $$H(s)=\frac{1}{1+sRC}$$
+
+      R [Ω]; C [F]; s [1/s]
+- id: formula-h-rc-hp
+  topic: funzioni-di-rete
+  objectives:
+    - funzioni-di-rete.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **RC passa-alto**.'
+    en: 'Write the formula: **RC high-pass**.'
+  back:
+    it: |-
+      $$H(s)=\frac{sRC}{1+sRC}$$
+
+      uscita su R
+    en: |-
+      $$H(s)=\frac{sRC}{1+sRC}$$
+
+      output across R

@@ -1,0 +1,140 @@
+---
+course: teoria-circuiti
+topic: albero-coalbero
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="albero-coalbero-intuizione-1">
+
+A tree is the most economical way to connect all the nodes: no closed path, no redundant branch. Every extra (cotree) branch closes exactly one loop: this is how independent equations are counted without missing or repeating any.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="albero-coalbero-teoria-1">
+
+A **tree** is a connected subgraph containing all the nodes and no loop. The branches not belonging to the tree form the **cotree** (_link_ branches). A tree has $n-1$ branches, the cotree $b-n+1$.
+
+</div>
+
+<div data-note-id="albero-coalbero-teoria-2">
+
+Adding a cotree branch to the tree closes one and only one loop: the **fundamental loop** of that branch (traversed in the direction of the cotree branch). There are $b-n+1$ linearly independent fundamental loops. Removing a tree branch splits the tree into two parts: the branches joining the two parts (the tree branch plus the cotree branches connecting them) form the **fundamental cut set** of that branch. There are $n-1$ of them, independent.
+
+</div>
+
+<div data-note-id="albero-coalbero-teoria-3">
+
+The choice of the tree is not unique: the fundamental loops and cut sets depend on it.
+
+</div>
+
+<Figure
+  caption="4-node graph with the tree highlighted (branches 0-1, 0-2, 0-3) and the cotree dashed"
+  num="1"
+  id="fig-1"
+>
+  <svg
+    viewBox="0 0 280 200"
+    xmlns="http://www.w3.org/2000/svg"
+    stroke="currentColor"
+    stroke-width="2"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    font-family="system-ui,sans-serif"
+    font-size="14"
+    aria-hidden="true"
+    focusable="false"
+    class="diagram"
+    style="max-width: 280px"
+  >
+    <g stroke-width="4">
+      <polyline points="140 20 140 110" />
+      <polyline points="140 110 40 160" />
+      <polyline points="140 110 240 160" />
+    </g>
+    <g stroke-dasharray="6 5">
+      <polyline points="140 20 40 160" />
+      <polyline points="140 20 240 160" />
+      <polyline points="40 160 240 160" />
+    </g>
+    <circle cx="140" cy="20" r="3" fill="currentColor" />
+    <circle cx="40" cy="160" r="3" fill="currentColor" />
+    <circle cx="240" cy="160" r="3" fill="currentColor" />
+    <circle cx="140" cy="110" r="3" fill="currentColor" />
+    <text x="140" y="12" text-anchor="middle" fill="currentColor" stroke="none">
+      {'1'}
+    </text>
+    <text x="28" y="175" text-anchor="middle" fill="currentColor" stroke="none">
+      {'2'}
+    </text>
+    <text x="254" y="175" text-anchor="middle" fill="currentColor" stroke="none">
+      {'3'}
+    </text>
+    <text x="154" y="104" text-anchor="start" fill="currentColor" stroke="none">
+      {'0'}
+    </text>
+    <text x="90" y="130" text-anchor="end" fill="currentColor" stroke="none">
+      {'albero'}
+    </text>
+  </svg>
+</Figure>
+
+<details class="proof" data-note-id="albero-coalbero-dimostrazione-1">
+<summary>Proof: A tree with $n$ nodes has $n-1$ branches</summary>
+
+1. By induction on $n$. With $n=1$ there are no branches: $0=n-1$.
+2. A tree with $n\ge2$ nodes has at least two nodes of degree 1 (leaves): starting from a node, follow a path without loops; you reach a node from which you cannot continue without closing a loop, i.e. a leaf, and the same holds from the other end.
+3. Remove a leaf together with its only branch: what remains is a tree with $n-1$ nodes which, by hypothesis, has $n-2$ branches.
+4. Hence the original tree has $(n-2)+1=n-1$ branches. $\square$
+
+</details>
+
+<Formula id="albero-coalbero" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="albero-coalbero-esempio-1">
+
+### Fundamental loops and cut sets on 4 nodes
+
+In the graph of the figure (tree: 0-1, 0-2, 0-3) list the fundamental loops and cut sets.
+
+**Solution.**
+
+1. $n=4$, $b=6$: tree with 3 branches, cotree with 3 branches (1-2, 2-3, 1-3).
+2. Fundamental loops: (1-2)+(0-1)+(0-2); (2-3)+(0-2)+(0-3); (1-3)+(0-1)+(0-3): 3 loops of 3 branches.
+3. Fundamental cut sets: 3, one per tree branch. The cut set of 0-1 separates node 1 from the rest: it contains 0-1, 1-2, 1-3.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="albero-coalbero-errore-1">
+
+- **Wrong:** Choosing as a "tree" a set of $n-1$ branches that contains a loop (and leaves a node isolated).
+- **Right:** $n-1$ branches are a tree only if they connect all the nodes without loops.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="albero-coalbero-esame-1">
+
+Topology (fundamental loops and cut sets): 18-9-2002, 24-4-2003, 12-7-2005 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

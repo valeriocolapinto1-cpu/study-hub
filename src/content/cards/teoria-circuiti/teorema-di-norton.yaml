@@ -1,0 +1,108 @@
+- id: orale-t-04
+  topic: teorema-di-norton
+  objectives:
+    - teorema-di-norton.1
+    - teorema-di-norton.2
+  kind: orale
+  front:
+    it: "**Teorema di Norton.** Enuncia il teorema di Norton e dimostra il legame con l'equivalente di Thevenin."
+    en: "**Norton's theorem.** State Norton's theorem and prove its link with the Thévenin equivalent."
+  back:
+    it: |-
+      **Risposta modello.** Un bipolo lineare è equivalente a un generatore di corrente In in parallelo a un'impedenza Zn. In è la corrente di cortocircuito della porta e Zn è l'impedenza con i generatori indipendenti spenti, uguale a Zth. Dalla trasformazione di generatori In = Vth/Zth.
+
+      **Punti da toccare:**
+
+      - Equivalente: generatore di corrente in parallelo a un'impedenza
+      - $I_N$ è la corrente di cortocircuito della porta
+      - $Z_N=Z_{th}$ (generatori indipendenti spenti)
+      - Legame $I_N=V_{th}/Z_{th}$ (trasformazione di generatori)
+    en: |-
+      **Model answer.** A linear one-port is equivalent to a current source In in parallel with an impedance Zn. In is the short-circuit current of the port and Zn is the impedance with the independent sources off, equal to Zth. From source transformation In = Vth/Zth.
+
+      **Points to cover:**
+
+      - Equivalent: current source in parallel with an impedance
+      - $I_N$ is the short-circuit current of the port
+      - $Z_N=Z_{th}$ (independent sources off)
+      - Link $I_N=V_{th}/Z_{th}$ (source transformation)
+- id: orale-t-05
+  topic: teorema-di-norton
+  objectives:
+    - teorema-di-norton.3
+    - teorema-di-norton.1
+  kind: orale
+  front:
+    it: '**Norton: non applicabilità e confronto.** Indica quando Norton esiste ma non Thevenin (e viceversa) e come si ottiene $I_N$ in pratica.'
+    en: '**Norton: when it does not apply, and comparison.** Say when Norton exists but Thévenin does not (and vice versa) and how $I_N$ is obtained in practice.'
+  back:
+    it: |-
+      **Risposta modello.** Per un generatore ideale di corrente non esiste Thevenin perché l'impedenza è infinita; per un generatore ideale di tensione non esiste Norton perché l'impedenza è nulla e la conduttanza infinita. In si calcola con la porta in cortocircuito. Entrambi i teoremi richiedono un bipolo lineare.
+
+      **Punti da toccare:**
+
+      - Thevenin non esiste per un generatore ideale di corrente ($Z_{th}=\infty$)
+      - Norton non esiste per un generatore ideale di tensione (conduttanza infinita)
+      - $I_N$ si misura/calcola con la porta in cortocircuito
+      - Entrambi richiedono linearità
+    en: |-
+      **Model answer.** For an ideal current source Thévenin does not exist because the impedance is infinite; for an ideal voltage source Norton does not exist because the impedance is zero and the conductance infinite. In is computed with the port short-circuited. Both theorems require a linear one-port.
+
+      **Points to cover:**
+
+      - Thévenin does not exist for an ideal current source ($Z_{th}=\infty$)
+      - Norton does not exist for an ideal voltage source (infinite conductance)
+      - $I_N$ is measured/computed with the port short-circuited
+      - Both require linearity
+- id: formula-n-in
+  topic: teorema-di-norton
+  objectives:
+    - teorema-di-norton.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Corrente di Norton**. Uso: Generatore del circuito equivalente di Norton.'
+    en: 'Write the formula: **Norton current**. Use: Source of the Norton equivalent.'
+  back:
+    it: |-
+      $$I_N=I_{sc}$$
+
+      I_sc corrente con la porta in cortocircuito [A]
+    en: |-
+      $$I_N=I_{sc}$$
+
+      I_sc current with the port short-circuited [A]
+- id: formula-n-zn
+  topic: teorema-di-norton
+  objectives:
+    - teorema-di-norton.1
+  kind: formula
+  front:
+    it: "Scrivi la formula: **Impedenza di Norton**. Uso: Impedenza dell'equivalente di Norton."
+    en: 'Write the formula: **Norton impedance**. Use: Impedance of the Norton equivalent.'
+  back:
+    it: |-
+      $$Z_N=Z_{th}$$
+
+      Z_N [Ω]
+    en: |-
+      $$Z_N=Z_{th}$$
+
+      Z_N [Ω]
+- id: formula-th-norton
+  topic: teorema-di-norton
+  objectives:
+    - teorema-di-norton.1
+    - teorema-di-norton.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Trasformazione di generatori**. Uso: Passare da Thevenin a Norton e viceversa.'
+    en: 'Write the formula: **Source transformation**. Use: Switching between Thévenin and Norton.'
+  back:
+    it: |-
+      $$I_N=\frac{V_{th}}{Z_{th}}$$
+
+      V_th [V]; Z_th [Ω]; I_N [A]
+    en: |-
+      $$I_N=\frac{V_{th}}{Z_{th}}$$
+
+      V_th [V]; Z_th [Ω]; I_N [A]

@@ -1,0 +1,25 @@
+id: risposta-transitoria-permanente
+course: teoria-circuiti
+order: 37
+title:
+  it: Risposta transitoria e permanente
+  en: Transient and steady-state response
+summary:
+  it: Separazione tra risposta transitoria e permanente, e calcolo della permanente con $F(j\omega)$.
+  en: Separating the transient and steady-state response, and computing the steady state with $F(j\omega)$.
+objectives:
+  - id: risposta-transitoria-permanente.1
+    text:
+      it: Separare transitoria e permanente
+      en: Separate the transient and steady-state parts
+  - id: risposta-transitoria-permanente.2
+    text:
+      it: Ricavarle da $F(s)$ e $x(t)$
+      en: Derive them from $F(s)$ and $x(t)$
+  - id: risposta-transitoria-permanente.3
+    text:
+      it: Calcolare la permanente con $F(j\omega)$
+      en: Compute the steady state with $F(j\omega)$
+group:
+  it: V · Funzioni di rete e stabilità
+  en: V · Network functions and stability

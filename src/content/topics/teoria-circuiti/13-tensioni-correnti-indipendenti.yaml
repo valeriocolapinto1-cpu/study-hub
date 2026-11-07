@@ -1,0 +1,25 @@
+id: tensioni-correnti-indipendenti
+course: teoria-circuiti
+order: 13
+title:
+  it: Tensioni e correnti indipendenti
+  en: Independent voltages and currents
+summary:
+  it: Quante tensioni e correnti di un circuito sono davvero indipendenti, e come si esprimono tutte le altre.
+  en: How many voltages and currents of a circuit are truly independent, and how all the others are expressed.
+objectives:
+  - id: tensioni-correnti-indipendenti.1
+    text:
+      it: Contare le tensioni e le correnti indipendenti
+      en: Count the independent voltages and currents
+  - id: tensioni-correnti-indipendenti.2
+    text:
+      it: Esprimere tutte le grandezze con tensioni di albero o correnti di coalbero
+      en: Express every quantity through tree voltages or cotree currents
+  - id: tensioni-correnti-indipendenti.3
+    text:
+      it: Collegare i risultati ai metodi dei nodi e delle maglie
+      en: Relate the results to the node and mesh methods
+group:
+  it: II · Circuiti senza memoria
+  en: II · Memoryless circuits

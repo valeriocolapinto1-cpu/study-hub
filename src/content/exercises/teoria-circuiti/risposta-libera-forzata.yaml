@@ -1,0 +1,94 @@
+- id: q-v-010
+  topic: risposta-libera-forzata
+  objectives:
+    - risposta-libera-forzata.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'La risposta libera dipende:'
+    en: 'The zero-input response depends:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Libera: ingresso nullo.'
+        en: 'Zero-input: zero input.'
+  choices:
+    - text:
+        it: solo da $H(j\omega)$
+        en: only on $H(j\omega)$
+      correct: false
+    - text:
+        it: dalle condizioni iniziali, con ingresso nullo
+        en: on the initial conditions, with zero input
+      correct: true
+    - text:
+        it: dalla frequenza
+        en: on the frequency
+      correct: false
+    - text:
+        it: solo dall'ingresso
+        en: only on the input
+      correct: false
+  origin: originale
+- id: q-v-011
+  topic: risposta-libera-forzata
+  objectives:
+    - risposta-libera-forzata.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'La risposta forzata si ottiene con:'
+    en: 'The zero-state response is obtained with:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Forzata: condizioni iniziali nulle.'
+        en: 'Zero-state: zero initial conditions.'
+  choices:
+    - text:
+        it: $t<0$
+        en: $t<0$
+      correct: false
+    - text:
+        it: stato iniziale arbitrario
+        en: an arbitrary initial state
+      correct: false
+    - text:
+        it: ingresso nullo
+        en: zero input
+      correct: false
+    - text:
+        it: ingresso e condizioni iniziali nulle
+        en: the input and zero initial conditions
+      correct: true
+  origin: originale
+- id: q-v-012
+  topic: risposta-libera-forzata
+  objectives:
+    - risposta-libera-forzata.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: In un sistema lineare la risposta completa è somma di risposta libera e forzata.
+    en: In a linear system the complete response is the sum of the zero-input and zero-state responses.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Sovrapposizione.
+        en: Superposition.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale

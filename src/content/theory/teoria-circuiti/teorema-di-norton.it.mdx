@@ -1,0 +1,123 @@
+---
+course: teoria-circuiti
+topic: teorema-di-norton
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="teorema-di-norton-intuizione-1">
+
+Norton racconta la stessa storia di Thevenin dal punto di vista della corrente: invece di una pila con resistenza in serie, un generatore di corrente con una resistenza in parallelo. Si passa dall'uno all'altro con una semplice trasformazione di generatori.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teorema-di-norton-teoria-1">
+
+**Teorema di Norton.** Un bipolo lineare è equivalente a un generatore ideale di corrente $I_N$ in parallelo a un'impedenza $Z_N$: $I_N$ è la corrente di cortocircuito della porta; $Z_N=Z_{th}$ (indipendenti spenti). Legame: $I_N=V_{th}/Z_{th}$ (trasformazione di generatori).
+
+</div>
+
+<div data-note-id="teorema-di-norton-teoria-2">
+
+Esiste anche se non esiste Thevenin (per $Z_{th}=0$ non esiste Norton).
+
+</div>
+
+<Figure
+  caption="Equivalente di Norton: generatore di corrente I_N in parallelo a Z_N ai morsetti A e B"
+  num="1"
+  id="fig-1"
+>
+  <Circuit
+    netlist={{
+      elements: [
+        { type: 'I', id: 'IN', a: '0', b: 'A', dc: 1 },
+        { type: 'R', id: 'ZN', a: 'A', b: '0', value: 1 },
+      ],
+      ports: [{ id: 'AB', plus: 'A', minus: '0', label: 'A–B' }],
+    }}
+    values={false}
+  />
+</Figure>
+
+<details class="proof" data-note-id="teorema-di-norton-dimostrazione-1">
+<summary>Dimostrazione: Teorema di Norton</summary>
+
+1. Sostituisci il carico con un generatore di tensione $v$ (sostituzione).
+2. Per la sovrapposizione: $i=I_{sc}-Y\,v$, dove $I_{sc}$ è la corrente con $v=0$ (porta in corto) e $Y=1/Z_N$ è l'ammettenza vista a indipendenti spenti.
+3. Questa è la caratteristica di un generatore di corrente $I_N=I_{sc}$ in parallelo a $Z_N$. Dal confronto con Thevenin $I_N=V_{th}/Z_{th}$ e $Z_N=Z_{th}$. $\square$
+
+</details>
+
+<Formula id="n-in" />
+<Formula id="n-zn" />
+<Formula id="th-norton" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="teorema-di-norton-esempio-1">
+
+### Trasformazione di generatori
+
+$V_{th}=8\,\mathrm V$, $R_{th}=4\,\Omega$.
+
+**Soluzione.**
+
+1. $I_N=8/4=2\,\mathrm A$, $R_N=4\,\Omega$.
+
+</div>
+
+<div class="worked" data-note-id="teorema-di-norton-esempio-2">
+
+### Partitore: Norton
+
+$12\,\mathrm V$, $2\,\Omega$, $4\,\Omega$ (porta ai capi di $4\,\Omega$).
+
+**Soluzione.**
+
+1. $I_N=\dfrac{V_{th}}{R_{th}}=\dfrac{8}{4/3}=6\,\mathrm A$.
+2. Verifica: con la porta in corto la corrente è $12/2=6$ ✓.
+
+</div>
+
+<div class="worked" data-note-id="teorema-di-norton-esempio-3">
+
+### Carico sul Norton
+
+$I_N=6$, $R_N=\tfrac43$, carico $R_L=4$.
+
+**Soluzione.**
+
+1. Partitore di corrente: $i_L=6\cdot\dfrac{4/3}{4/3+4}=6\cdot\tfrac14=1{,}5\,\mathrm A$, $v_L=6\,\mathrm V$; con Thevenin: $8\cdot\dfrac{4}{4/3+4}=6$ ✓.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teorema-di-norton-errore-1">
+
+- **Sbagliato:** Calcolare $I_N$ a porta aperta.
+- **Corretto:** $I_N$ è la corrente a porta in cortocircuito.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="teorema-di-norton-esame-1">
+
+Norton: 13-2-2001, 29-4-2002 (A–I), 24-4-2009 A <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

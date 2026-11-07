@@ -1,0 +1,78 @@
+- id: orale-t-33
+  topic: connessioni-doppi-bipoli
+  objectives:
+    - connessioni-doppi-bipoli.1
+    - connessioni-doppi-bipoli.2
+  kind: orale
+  front:
+    it: '**Connessioni serie-serie e parallelo-parallelo.** Descrivi la connessione serie-serie e parallelo-parallelo di doppi bipoli e le matrici risultanti.'
+    en: '**Series-series and parallel-parallel connections.** Describe the series-series and parallel-parallel connections of two-ports and the resulting matrices.'
+  back:
+    it: |-
+      **Risposta modello.** Nella connessione serie-serie le porte sono collegate in serie e le matrici delle impedenze si sommano: Z = Za + Zb. Nella parallelo-parallelo le porte sono in parallelo e si sommano le ammettenze: Y = Ya + Yb. Le formule valgono solo se la prova di validità è soddisfatta, cioè le correnti di porta non cambiano dopo la connessione.
+
+      **Punti da toccare:**
+
+      - Serie-serie: porte in serie, $Z=Z_a+Z_b$
+      - Parallelo-parallelo: porte in parallelo, $Y=Y_a+Y_b$
+      - Valide solo se le correnti di porta non cambiano (prova di validità)
+    en: |-
+      **Model answer.** In the series-series connection the ports are connected in series and the impedance matrices add: Z = Za + Zb. In the parallel-parallel connection the ports are in parallel and the admittances add: Y = Ya + Yb. The formulas hold only if the validity test is passed, i.e. the port currents do not change after the connection.
+
+      **Points to cover:**
+
+      - Series-series: ports in series, $Z=Z_a+Z_b$
+      - Parallel-parallel: ports in parallel, $Y=Y_a+Y_b$
+      - Valid only if the port currents do not change (validity test)
+- id: formula-conn-ss
+  topic: connessioni-doppi-bipoli
+  objectives:
+    - connessioni-doppi-bipoli.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Serie-serie**. Uso: Prova di validità.'
+    en: 'Write the formula: **Series-series**. Use: Validity test.'
+  back:
+    it: |-
+      $$Z=Z_a+Z_b$$
+
+      Z_a, Z_b matrici delle impedenze [Ω]
+    en: |-
+      $$Z=Z_a+Z_b$$
+
+      Z_a, Z_b impedance matrices [Ω]
+- id: formula-conn-pp
+  topic: connessioni-doppi-bipoli
+  objectives:
+    - connessioni-doppi-bipoli.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Parallelo-parallelo**. Uso: Prova di validità.'
+    en: 'Write the formula: **Parallel-parallel**. Use: Validity test.'
+  back:
+    it: |-
+      $$Y=Y_a+Y_b$$
+
+      Y_a, Y_b matrici delle ammettenze [S]
+    en: |-
+      $$Y=Y_a+Y_b$$
+
+      Y_a, Y_b admittance matrices [S]
+- id: formula-conn-cascata
+  topic: connessioni-doppi-bipoli
+  objectives:
+    - connessioni-doppi-bipoli.1
+    - connessioni-doppi-bipoli.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Cascata**. Uso: Doppi bipoli in cascata.'
+    en: 'Write the formula: **Cascade**. Use: Two-ports in cascade.'
+  back:
+    it: |-
+      $$T=T_a\,T_b$$
+
+      T_a, T_b matrici di trasmissione
+    en: |-
+      $$T=T_a\,T_b$$
+
+      T_a, T_b transmission matrices

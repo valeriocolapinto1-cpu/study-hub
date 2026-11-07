@@ -1,0 +1,25 @@
+id: condizioni-iniziali-generatori
+course: teoria-circuiti
+order: 32
+title:
+  it: Condizioni iniziali come generatori
+  en: Initial conditions as sources
+summary:
+  it: Modelli serie e parallelo di condensatore e induttore con condizione iniziale e loro uso nel calcolo di $V_{out}(s)$.
+  en: Series and parallel models of capacitor and inductor with an initial condition and their use in computing $V_{out}(s)$.
+objectives:
+  - id: condizioni-iniziali-generatori.1
+    text:
+      it: Modellare $L$ e $C$ con condizioni iniziali
+      en: Model $L$ and $C$ with initial conditions
+  - id: condizioni-iniziali-generatori.2
+    text:
+      it: Passare tra modello serie e parallelo
+      en: Switch between the series and parallel models
+  - id: condizioni-iniziali-generatori.3
+    text:
+      it: Applicare il modello al calcolo di $V_{out}(s)$
+      en: Apply the model to compute $V_{out}(s)$
+group:
+  it: IV · Trasformata di Laplace
+  en: IV · Laplace transform

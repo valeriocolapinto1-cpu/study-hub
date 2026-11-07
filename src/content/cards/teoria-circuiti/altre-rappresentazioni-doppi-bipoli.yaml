@@ -1,0 +1,69 @@
+- id: formula-t-def
+  topic: altre-rappresentazioni-doppi-bipoli
+  objectives:
+    - altre-rappresentazioni-doppi-bipoli.1
+    - altre-rappresentazioni-doppi-bipoli.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Matrice di trasmissione inversa**. Uso: Cascata.'
+    en: 'Write the formula: **Inverse transmission matrix**. Use: Cascade.'
+  back:
+    it: |-
+      $$\begin{pmatrix}v_1\\i_1\end{pmatrix}=\begin{pmatrix}A&B\\C&D\end{pmatrix}\begin{pmatrix}v_2\\-i_2\end{pmatrix}$$
+
+      A, D adimensionali; B in Ω; C in S; −i₂ corrente uscente dalla porta 2
+    en: |-
+      $$\begin{pmatrix}v_1\\i_1\end{pmatrix}=\begin{pmatrix}A&B\\C&D\end{pmatrix}\begin{pmatrix}v_2\\-i_2\end{pmatrix}$$
+
+      A, D dimensionless; B in Ω; C in S; −i₂ current leaving port 2
+- id: formula-t-da-z
+  topic: altre-rappresentazioni-doppi-bipoli
+  objectives:
+    - altre-rappresentazioni-doppi-bipoli.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Da Z a T**.'
+    en: 'Write the formula: **From Z to T**.'
+  back:
+    it: |-
+      $$A=\frac{z_{11}}{z_{21}},\ B=\frac{\Delta_z}{z_{21}},\ C=\frac1{z_{21}},\ D=\frac{z_{22}}{z_{21}}$$
+
+      Δ_z = z₁₁z₂₂ − z₁₂z₂₁
+    en: |-
+      $$A=\frac{z_{11}}{z_{21}},\ B=\frac{\Delta_z}{z_{21}},\ C=\frac1{z_{21}},\ D=\frac{z_{22}}{z_{21}}$$
+
+      Δ_z = z₁₁z₂₂ − z₁₂z₂₁
+- id: formula-t-recip
+  topic: altre-rappresentazioni-doppi-bipoli
+  objectives:
+    - altre-rappresentazioni-doppi-bipoli.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Reciprocità in T**.'
+    en: 'Write the formula: **Reciprocity in T**.'
+  back:
+    it: |-
+      $$AD-BC=1$$
+
+      rete reciproca
+    en: |-
+      $$AD-BC=1$$
+
+      reciprocal network
+- id: formula-h-def2
+  topic: altre-rappresentazioni-doppi-bipoli
+  objectives:
+    - altre-rappresentazioni-doppi-bipoli.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Parametri ibridi**. Uso: Parametri ibridi (transistor).'
+    en: 'Write the formula: **Hybrid parameters**. Use: Hybrid parameters (transistors).'
+  back:
+    it: |-
+      $$v_1=h_{11}i_1+h_{12}v_2,\quad i_2=h_{21}i_1+h_{22}v_2$$
+
+      h₁₁ [Ω]; h₂₂ [S]; h₁₂, h₂₁ adimensionali
+    en: |-
+      $$v_1=h_{11}i_1+h_{12}v_2,\quad i_2=h_{21}i_1+h_{22}v_2$$
+
+      h₁₁ [Ω]; h₂₂ [S]; h₁₂, h₂₁ dimensionless

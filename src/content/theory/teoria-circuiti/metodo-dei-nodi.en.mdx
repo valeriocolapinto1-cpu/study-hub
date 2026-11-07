@@ -1,0 +1,95 @@
+---
+course: teoria-circuiti
+topic: metodo-dei-nodi
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="metodo-dei-nodi-intuizione-1">
+
+Instead of looking for every current and voltage, pick one node as "ground" and look only for the potentials of the other nodes. Every branch voltage is a difference of potentials, so KVL is automatic: one KCL per node is all that is left to write.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="metodo-dei-nodi-teoria-1">
+
+The **node method** takes as unknowns the $n-1$ node voltages $\mathbf e$ with respect to a reference node. For circuits with resistors and current sources only:
+
+$$
+G\,\mathbf e=\mathbf i_s,
+$$
+
+with $G_{jj}=$ sum of the conductances connected to node $j$, $G_{jk}=-$ conductance between $j$ and $k$, $i_{s,j}=$ sum of the source currents _entering_ node $j$.
+
+</div>
+
+<div data-note-id="metodo-dei-nodi-teoria-2">
+
+**Voltage sources.** An ideal one connected to the reference fixes the potential of its node; otherwise a _supernode_ is used (KCL on the cut set containing them plus the constraint $e_j-e_k=E$), or its current is added as an unknown (modified nodal analysis). Controlled sources are handled by expressing the controlling quantity through the $\mathbf e$.
+
+</div>
+
+<div data-note-id="metodo-dei-nodi-teoria-3">
+
+**Criterion.** Nodal analysis is convenient if $n-1<b-n+1$, i.e. few nodes; mesh analysis if there are fewer independent loops than nodes.
+
+</div>
+
+<details class="proof" data-note-id="metodo-dei-nodi-dimostrazione-1">
+<summary>Proof: Node equations for a resistive network</summary>
+
+1. KCL at node $j$ in matrix form: $A\,\mathbf i=\mathbf i_s$ (source currents moved to the right-hand side).
+2. Constitutive relations: $\mathbf i=\mathcal G\,\mathbf v$ with $\mathcal G=\operatorname{diag}(G_k)$. KVL: $\mathbf v=A^{\mathsf T}\mathbf e$.
+3. Substitute: $A\,\mathcal G\,A^{\mathsf T}\mathbf e=\mathbf i_s$, hence $G=A\mathcal GA^{\mathsf T}$, a symmetric matrix (if there are no controlled sources) and positive definite for $G_k>0$ with a connected graph. $\square$
+
+</details>
+
+<Formula id="nodi" />
+<Formula id="nodi-mat" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="metodo-dei-nodi-esempio-1">
+
+### Two independent nodes
+
+A $3\,\mathrm{A}$ current source into node 1; resistances: node 1–reference $2\,\Omega$, node 1–node 2 $1\,\Omega$, node 2–reference $4\,\Omega$. Find $e_1,e_2$.
+
+**Solution.**
+
+1. $G_{11}=\tfrac12+1=\tfrac32$, $G_{12}=-1$, $G_{22}=1+\tfrac14=\tfrac54$.
+2. System: $\tfrac32e_1-e_2=3$; $-e_1+\tfrac54e_2=0$.
+3. From the second, $e_1=\tfrac54e_2$; in the first, $\tfrac{15}{8}e_2-e_2=3\Rightarrow\tfrac78e_2=3$, $e_2=\tfrac{24}7\,\mathrm{V}\approx3.43\,\mathrm{V}$, $e_1=\tfrac{30}7\,\mathrm{V}\approx4.29\,\mathrm{V}$.
+4. KCL check at node 1: $\tfrac{30/7}{2}+\tfrac{30/7-24/7}{1}=\tfrac{15}7+\tfrac67=3$ ✓.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="metodo-dei-nodi-errore-1">
+
+- **Wrong:** Putting the unknown current of a voltage source into a node equation without writing its constraint.
+- **Right:** Use the supernode, or add the source current as an unknown together with the equation $e_j-e_k=E$.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="metodo-dei-nodi-esame-1">
+
+Node method and the node/mesh choice criteria: 3-7-2001, 3-7-2003, 25-9-2007, 17-4-2008, 7-7-2008 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

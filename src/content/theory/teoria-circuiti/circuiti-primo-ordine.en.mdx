@@ -1,0 +1,142 @@
+---
+course: teoria-circuiti
+topic: circuiti-primo-ordine
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="circuiti-primo-ordine-intuizione-1">
+
+A capacitor charging through a resistor does not reach its final value at once: it approaches it "in slow motion", covering each time the same fraction of the remaining distance. The pace is set by a single number, the time constant $\tau$: after about $5\tau$ the transient is practically over.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="circuiti-primo-ordine-teoria-1">
+
+A circuit with a single memory element and independent sources is described by $\dot x+\dfrac{x}{\tau}=\dfrac{f(t)}{\tau}$, with $x=v_C$ or $i_L$, $\tau=R_{eq}C$ or $L/R_{eq}$ ($R_{eq}$ seen from the terminals of the memory element, independent sources off, controlled sources not switched off).
+
+</div>
+
+<div data-note-id="circuiti-primo-ordine-teoria-2">
+
+**Constant excitation.** $x(t)=x_\infty+(x_0-x_\infty)e^{-t/\tau}$ with $x_\infty$ the steady-state value ($C$ open, $L$ short) and $x_0=x(0^-)$ (continuity of $v_C$, $i_L$). This is the "initial value, final value, time constant" rule.
+
+</div>
+
+<div data-note-id="circuiti-primo-ordine-teoria-3">
+
+**Time-varying excitation.** $x(t)=x_0e^{-t/\tau}+\dfrac1\tau\int_0^te^{-(t-s)/\tau}f(s)\,ds$: sum of the zero-input response (depends on $x_0$) and of the zero-state response (depends on $f$). For a sinusoidal input the zero-state response contains a sinusoidal steady-state part and a transient part $\propto e^{-t/\tau}$.
+
+</div>
+
+<Figure
+  caption="Series RC circuit with voltage source v_g, resistor R and capacitor C; v_C is observed"
+  num="1"
+  id="fig-1"
+>
+  <Circuit
+    netlist={{
+      elements: [
+        { type: 'V', id: 'vg', a: 'in', b: '0', dc: 1 },
+        { type: 'R', id: 'R', a: 'in', b: 'o', value: 1 },
+        { type: 'C', id: 'C', a: 'o', b: '0', value: 1, show: { v: 'v_C' } },
+      ],
+    }}
+    values={false}
+  />
+</Figure>
+
+<details class="proof" data-note-id="circuiti-primo-ordine-dimostrazione-1">
+<summary>Proof: Solution of the first-order equation</summary>
+
+**Statement.** The solution of $\dot x+a\,x=g(t)$, $x(0)=x_0$ is $x(t)=e^{-at}x_0+\int_0^te^{-a(t-s)}g(s)\,ds$.
+
+1. Multiply by $e^{at}$: $\dfrac{d}{dt}\left(e^{at}x\right)=e^{at}g(t)$.
+2. Integrate from $0$ to $t$: $e^{at}x(t)-x_0=\int_0^te^{as}g(s)ds$.
+3. Multiply by $e^{-at}$ and rearrange. With $a=1/\tau$ and $g=f/\tau$ we get the formula above. $\square$
+
+</details>
+
+<Formula id="tau-rc" />
+<Formula id="tau-rl" />
+<Formula id="sol-primo-ordine" />
+<Formula id="regola-vfc" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="circuiti-primo-ordine-esempio-1">
+
+### RC with a step
+
+$R=2\,\Omega$, $C=\tfrac12\,\mathrm F$, $v_g=10\,\mathrm V$ for $t>0$, $v_C(0)=2\,\mathrm V$. Find $v_C(t)$.
+
+**Solution.**
+
+1. $\tau=RC=1\,\mathrm s$, $v_\infty=10$, $v_0=2$.
+2. $v_C(t)=10+(2-10)e^{-t}=10-8e^{-t}\,\mathrm V$ for $t>0$.
+
+</div>
+
+<div class="worked" data-note-id="circuiti-primo-ordine-esempio-2">
+
+### RL with a step
+
+$L=3\,\mathrm H$, $R=6\,\Omega$, $v_g=12\,\mathrm V$ for $t>0$, $i_L(0)=0$. Find $i_L(t)$.
+
+**Solution.**
+
+1. $\tau=L/R=\tfrac12\,\mathrm s$, $i_\infty=12/6=2\,\mathrm A$.
+2. $i_L(t)=2\left(1-e^{-2t}\right)\,\mathrm A$.
+
+</div>
+
+<div class="worked" data-note-id="circuiti-primo-ordine-esempio-3">
+
+### Sinusoidal input
+
+$\dot y+y=\cos t$, $y(0)=0$ ($\tau=1$). Find $y(t)$.
+
+**Solution.**
+
+1. Steady state: phasor $\dot Y=\dfrac1{1+j}=\tfrac12-\tfrac12j$, hence $y_p=\tfrac12\cos t+\tfrac12\sin t$.
+2. Transient $Ae^{-t}$ with $y(0)=\tfrac12+A=0\Rightarrow A=-\tfrac12$.
+3. $y(t)=\tfrac12\cos t+\tfrac12\sin t-\tfrac12e^{-t}$ for $t>0$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="circuiti-primo-ordine-errore-1">
+
+- **Wrong:** Using the source resistance, or any resistance, as $R_{eq}$.
+- **Right:** $R_{eq}$ is the resistance seen from the terminals of the memory element with the independent sources switched off.
+
+</div>
+
+<div data-note-id="circuiti-primo-ordine-errore-2">
+
+- **Wrong:** Imposing $x(0^+)=0$ because "the source started from zero".
+- **Right:** $x(0^+)=x(0^-)$, the value reached in the previous steady state.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="circuiti-primo-ordine-esame-1">
+
+Time constant and RC charge/discharge: 14-7-2000, 3-7-2001, 18-9-2002, 25-9-2007, 17-4-2008; it is the core of the analysis exercise <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

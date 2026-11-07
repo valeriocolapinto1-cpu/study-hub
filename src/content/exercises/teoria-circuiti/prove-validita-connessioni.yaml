@@ -1,0 +1,86 @@
+- id: q-vi-028
+  topic: prove-validita-connessioni
+  objectives:
+    - prove-validita-connessioni.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Le formule di somma delle matrici $Z$ valgono solo se, dopo il collegamento, le correnti entranti nelle porte restano uguali a quelle uscenti (prova di validità).
+    en: The formulas adding the $Z$ matrices hold only if, after the connection, the currents entering the ports stay equal to those leaving them (validity test).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Altrimenti la connessione altera il funzionamento dei singoli doppi bipoli.
+        en: Otherwise the connection alters the behaviour of the individual two-ports.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-vi-029
+  topic: prove-validita-connessioni
+  objectives:
+    - prove-validita-connessioni.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: La prova di validità si esegue alimentando una connessione con le porte a vuoto e verificando che tra i morsetti da collegare non ci sia tensione.
+    en: The validity test is carried out by driving a connection with the ports open and checking that there is no voltage between the terminals to be connected.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Se la tensione è nulla si può collegare senza modificare le correnti.
+        en: If the voltage is zero the connection can be made without changing the currents.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-vi-030
+  topic: prove-validita-connessioni
+  objectives:
+    - prove-validita-connessioni.2
+  difficulty: 3
+  kind: static
+  statement:
+    it: 'Se la prova di validità fallisce per la connessione serie-serie, un rimedio è:'
+    en: 'If the validity test fails for a series-series connection, a remedy is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Ripristina l'uguaglianza delle correnti di porta.
+        en: It restores the equality of the port currents.
+  choices:
+    - text:
+        it: eliminare il carico
+        en: removing the load
+      correct: false
+    - text:
+        it: inserire trasformatori di isolamento (1:1) su una delle porte
+        en: inserting (1:1) isolation transformers at one of the ports
+      correct: true
+    - text:
+        it: usare solo condensatori
+        en: using capacitors only
+      correct: false
+    - text:
+        it: aumentare la frequenza
+        en: raising the frequency
+      correct: false
+  origin: originale

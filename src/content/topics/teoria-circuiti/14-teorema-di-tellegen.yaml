@@ -1,0 +1,25 @@
+id: teorema-di-tellegen
+course: teoria-circuiti
+order: 14
+title:
+  it: Teorema di Tellegen
+  en: Tellegen's theorem
+summary:
+  it: 'Il teorema di Tellegen, la sua dimostrazione matriciale e le due conseguenze: conservazione della potenza e ortogonalità tra tensioni e correnti.'
+  en: "Tellegen's theorem, its matrix proof and its two consequences: conservation of power and orthogonality between voltages and currents."
+objectives:
+  - id: teorema-di-tellegen.1
+    text:
+      it: Enunciare e dimostrare il teorema di Tellegen
+      en: State and prove Tellegen's theorem
+  - id: teorema-di-tellegen.2
+    text:
+      it: Dedurre conservazione della potenza e ortogonalità v–i
+      en: Derive power conservation and v–i orthogonality
+  - id: teorema-di-tellegen.3
+    text:
+      it: Applicare il teorema a due circuiti con lo stesso grafo
+      en: Apply the theorem to two circuits with the same graph
+group:
+  it: II · Circuiti senza memoria
+  en: II · Memoryless circuits

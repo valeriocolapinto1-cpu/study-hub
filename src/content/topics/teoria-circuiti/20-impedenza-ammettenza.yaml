@@ -1,0 +1,25 @@
+id: impedenza-ammettenza
+course: teoria-circuiti
+order: 20
+title:
+  it: Impedenza e ammettenza
+  en: Impedance and admittance
+summary:
+  it: Impedenza e ammettenza di un bipolo in regime sinusoidale, impedenze di R, L, C e riduzione di reti nel dominio dei fasori.
+  en: Impedance and admittance of a one-port in sinusoidal steady state, impedances of R, L, C and network reduction in the phasor domain.
+objectives:
+  - id: impedenza-ammettenza.1
+    text:
+      it: Definire impedenza e ammettenza
+      en: Define impedance and admittance
+  - id: impedenza-ammettenza.2
+    text:
+      it: Scrivere le impedenze di $R$, $L$, $C$
+      en: Write the impedances of $R$, $L$, $C$
+  - id: impedenza-ammettenza.3
+    text:
+      it: Ridurre reti con serie, parallelo e partitori complessi
+      en: Reduce networks with complex series, parallel and dividers
+group:
+  it: III · Regime sinusoidale
+  en: III · Sinusoidal steady state

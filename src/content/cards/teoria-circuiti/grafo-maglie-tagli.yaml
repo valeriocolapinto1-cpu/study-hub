@@ -1,0 +1,43 @@
+- id: orale-t-50
+  topic: grafo-maglie-tagli
+  objectives:
+    - grafo-maglie-tagli.1
+    - grafo-maglie-tagli.2
+  kind: orale
+  front:
+    it: '**Contare le equazioni indipendenti.** Un circuito ha $n$ nodi e $b$ rami. Quante equazioni indipendenti di KCL e KVL si possono scrivere e perché?'
+    en: '**Counting the independent equations.** A circuit has $n$ nodes and $b$ branches. How many independent KCL and KVL equations can be written, and why?'
+  back:
+    it: |-
+      **Risposta modello.** Le KCL indipendenti sono n-1, perché la somma delle KCL di tutti i nodi è nulla (ogni corrente compare due volte con segno opposto). Le KVL indipendenti sono b-n+1, le maglie fondamentali. In totale b equazioni topologiche, a cui si aggiungono le b relazioni costitutive per le 2b incognite.
+
+      **Punti da toccare:**
+
+      - KCL indipendenti: $n-1$ (la somma di tutte le KCL dei nodi è nulla)
+      - KVL indipendenti: $b-n+1$ (maglie fondamentali)
+      - In totale $b$ equazioni topologiche, più $b$ costitutive per $2b$ incognite
+    en: |-
+      **Model answer.** The independent KCLs are n-1, because the sum of the KCLs of all the nodes is zero (each current appears twice with opposite signs). The independent KVLs are b-n+1, the fundamental loops. In total b topological equations, to which the b constitutive relations are added for the 2b unknowns.
+
+      **Points to cover:**
+
+      - Independent KCLs: $n-1$ (the sum of all the node KCLs is zero)
+      - Independent KVLs: $b-n+1$ (fundamental loops)
+      - In total $b$ topological equations, plus $b$ constitutive ones for $2b$ unknowns
+- id: formula-n-b
+  topic: grafo-maglie-tagli
+  objectives:
+    - grafo-maglie-tagli.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Rami, nodi, albero, coalbero**. Uso: Contare equazioni indipendenti.'
+    en: 'Write the formula: **Branches, nodes, tree, cotree**. Use: Counting independent equations.'
+  back:
+    it: |-
+      $$\#\text{albero}=n-1,\qquad \#\text{coalbero}=b-n+1$$
+
+      n nodi, b rami
+    en: |-
+      $$\#\text{albero}=n-1,\qquad \#\text{coalbero}=b-n+1$$
+
+      n nodes, b branches

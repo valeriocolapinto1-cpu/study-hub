@@ -1,0 +1,25 @@
+id: risposta-impulsiva-convoluzione
+course: teoria-circuiti
+order: 34
+title:
+  it: Risposta impulsiva e convoluzione
+  en: Impulse response and convolution
+summary:
+  it: Risposta impulsiva, legame con la funzione di rete, convoluzione e risposta al gradino.
+  en: Impulse response, its link with the network function, convolution and step response.
+objectives:
+  - id: risposta-impulsiva-convoluzione.1
+    text:
+      it: Definire la risposta impulsiva
+      en: Define the impulse response
+  - id: risposta-impulsiva-convoluzione.2
+    text:
+      it: Dimostrare $h=\mathcal L^{-1}\{H\}$
+      en: Prove $h=\mathcal L^{-1}\{H\}$
+  - id: risposta-impulsiva-convoluzione.3
+    text:
+      it: Usare la convoluzione e la risposta al gradino
+      en: Use convolution and the step response
+group:
+  it: V · Funzioni di rete e stabilità
+  en: V · Network functions and stability

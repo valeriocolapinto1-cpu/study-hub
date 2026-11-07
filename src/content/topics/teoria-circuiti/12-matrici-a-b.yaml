@@ -1,0 +1,25 @@
+id: matrici-a-b
+course: teoria-circuiti
+order: 12
+title:
+  it: Matrici A e B e relazione B = −Aᵀ
+  en: Matrices A and B and the relation B = −Aᵀ
+summary:
+  it: Matrice di incidenza ridotta e matrice delle maglie fondamentali, leggi di Kirchhoff in forma matriciale e relazione tra i blocchi.
+  en: Reduced incidence matrix and fundamental loop matrix, Kirchhoff's laws in matrix form and the relation between the blocks.
+objectives:
+  - id: matrici-a-b.1
+    text:
+      it: Costruire le matrici di incidenza A e delle maglie B
+      en: Build the incidence matrix A and the loop matrix B
+  - id: matrici-a-b.2
+    text:
+      it: Scrivere KCL e KVL in forma matriciale
+      en: Write KCL and KVL in matrix form
+  - id: matrici-a-b.3
+    text:
+      it: Dimostrare la relazione tra i blocchi di A e B
+      en: Prove the relation between the blocks of A and B
+group:
+  it: II · Circuiti senza memoria
+  en: II · Memoryless circuits

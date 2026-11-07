@@ -1,0 +1,85 @@
+---
+course: teoria-circuiti
+topic: modellamento-costanti-concentrate
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="modellamento-costanti-concentrate-intuizione-1">
+
+Picture looking at a circuit "from far away": if the signal changes slowly compared with the time it takes to travel across the circuit, every point of a wire sees the same current at the same instant. Each component then boils down to two numbers at its terminals, voltage and current, and geometry no longer matters: only the way the pieces are connected does.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="modellamento-costanti-concentrate-teoria-1">
+
+A physical circuit is a set of devices joined by conductors. The **lumped-parameter model** replaces each device with an ideal element (resistor, capacitor, inductor, source…) and each connection with an ideal conductor, so that voltage and current are well-defined quantities at the terminals.
+
+</div>
+
+<div data-note-id="modellamento-costanti-concentrate-teoria-2">
+
+The key assumption is that propagation effects are negligible: if $L$ is the largest dimension of the circuit and $\lambda = c/f$ the wavelength ($c\approx 3\cdot10^{8}\,\mathrm{m/s}$), the model is reasonable when $L \ll \lambda$, i.e. when the propagation time $L/c$ is much shorter than the period $T=1/f$ of the signal.
+
+</div>
+
+<div data-note-id="modellamento-costanti-concentrate-teoria-3">
+
+In this regime electric and magnetic fields are confined inside the components: electric energy is "lumped" in capacitors, magnetic energy in inductors, dissipation in resistors. Two facts follow: the current has the same value at the input and at the output of a conductor (Kirchhoff's laws hold), and the voltage between two points does not depend on the path chosen outside the components.
+
+</div>
+
+<div data-note-id="modellamento-costanti-concentrate-teoria-4">
+
+**Orders of magnitude.** At $50\,\mathrm{Hz}$: $\lambda = 6000\,\mathrm{km}$, so a bench circuit is lumped, while a transmission line hundreds of km long is not. At $1\,\mathrm{GHz}$: $\lambda = 30\,\mathrm{cm}$, and even a $10\,\mathrm{cm}$ cable is no longer a simple wire.
+
+</div>
+
+<Formula id="lambda" />
+<Formula id="concentrate" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="modellamento-costanti-concentrate-esempio-1">
+
+### When is a circuit "lumped"?
+
+A circuit whose largest dimension is $L = 20\,\mathrm{cm}$ operates at $f = 10\,\mathrm{MHz}$. Can the lumped-parameter model be used?
+
+**Solution.**
+
+1. $\lambda = c/f = 3\cdot10^{8}/10^{7} = 30\,\mathrm{m}$.
+2. $L/\lambda = 0.2/30 \approx 0.0067 \ll 1$: the assumption is well satisfied (usually at least $L/\lambda \lesssim 0.1$ is required).
+3. With the same size, at $f=1\,\mathrm{GHz}$ we would have $\lambda=0.3\,\mathrm{m}$ and $L/\lambda \approx 0.67$: the model is no longer valid.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="modellamento-costanti-concentrate-errore-1">
+
+- **Wrong:** Applying Kirchhoff's laws to a long line or at high frequency "because they always hold".
+- **Right:** Kirchhoff's laws follow from the lumped-parameter model: apply them only if $L \ll \lambda$.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="modellamento-costanti-concentrate-esame-1">
+
+The question on circuit properties (linearity, time invariance, passivity, lumped parameters) appears in the exams of 24-4-2003, 25-9-2003, 12-7-2005, 11-2-2008, 7-7-2008, 24-4-2009 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

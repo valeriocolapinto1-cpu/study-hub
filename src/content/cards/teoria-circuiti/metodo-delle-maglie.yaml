@@ -1,0 +1,63 @@
+- id: orale-t-13
+  topic: metodo-delle-maglie
+  objectives:
+    - metodo-delle-maglie.2
+    - metodo-delle-maglie.1
+  kind: orale
+  front:
+    it: '**Metodo delle maglie.** Descrivi il metodo delle maglie e come si tratta un generatore di corrente.'
+    en: '**Mesh method.** Describe the mesh method and how a current source is handled.'
+  back:
+    it: |-
+      **Risposta modello.** Si assumono come incognite le correnti di maglia, in numero b-n+1. Si scrive la KVL a ogni maglia ottenendo R j = v_s: sulla diagonale la somma delle resistenze della maglia, fuori diagonale la resistenza condivisa con segno negativo. Un generatore di corrente fissa la corrente di maglia, oppure si usa la supermaglia. È il duale del metodo dei nodi.
+
+      **Punti da toccare:**
+
+      - Incognite: correnti di maglia ($b-n+1$)
+      - KVL alle maglie: $R\mathbf j=\mathbf v_s$, con $R_{jj}$ somma delle resistenze, $R_{jk}$ negativo
+      - Generatore di corrente: fissa la corrente di maglia o si usa la supermaglia
+      - Duale del metodo dei nodi
+    en: |-
+      **Model answer.** The loop currents, b-n+1 of them, are taken as unknowns. KVL is written for every loop, giving R j = v_s: on the diagonal the sum of the resistances of the loop, off the diagonal the shared resistance with a negative sign. A current source fixes the loop current, or a supermesh is used. It is the dual of the node method.
+
+      **Points to cover:**
+
+      - Unknowns: loop currents ($b-n+1$)
+      - KVL on the loops: $R\mathbf j=\mathbf v_s$, with $R_{jj}$ sum of the resistances, $R_{jk}$ negative
+      - Current source: it fixes the loop current, or a supermesh is used
+      - Dual of the node method
+- id: formula-maglie
+  topic: metodo-delle-maglie
+  objectives:
+    - metodo-delle-maglie.1
+    - metodo-delle-maglie.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Metodo delle maglie**. Uso: Reti con poche maglie.'
+    en: 'Write the formula: **Mesh method**. Use: Networks with few loops.'
+  back:
+    it: |-
+      $$R_{jj}=\sum R\ \text{della maglia},\quad R_{jk}=-R\ \text{condivisa}$$
+
+      v_s tensioni dei generatori nel giro
+    en: |-
+      $$R_{jj}=\sum R\ \text{della maglia},\quad R_{jk}=-R\ \text{condivisa}$$
+
+      v_s source voltages along the loop
+- id: formula-maglie-mat
+  topic: metodo-delle-maglie
+  objectives:
+    - metodo-delle-maglie.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Equazioni alle maglie**. Uso: Forma compatta.'
+    en: 'Write the formula: **Mesh equations**. Use: Compact form.'
+  back:
+    it: |-
+      $$B\,\mathcal R\,B^{\mathsf T}\,\mathbf j=\mathbf v_s$$
+
+      ℛ = diag(R_k)
+    en: |-
+      $$B\,\mathcal R\,B^{\mathsf T}\,\mathbf j=\mathbf v_s$$
+
+      ℛ = diag(R_k)

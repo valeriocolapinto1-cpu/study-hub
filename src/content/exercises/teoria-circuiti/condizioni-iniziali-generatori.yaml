@@ -1,0 +1,146 @@
+- id: q-iv-029
+  topic: condizioni-iniziali-generatori
+  objectives:
+    - condizioni-iniziali-generatori.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: "L'induttore con $i_L(0^-)=I_0$ si modella con $sL$ in serie a un generatore di tensione:"
+    en: 'The inductor with $i_L(0^-)=I_0$ is modelled by $sL$ in series with a voltage source:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: '$V=sLI-LI_0$: generatore $LI_0$ (verso opposto alla caduta).'
+        en: '$V=sLI-LI_0$: source $LI_0$ (opposite to the voltage drop).'
+  choices:
+    - text:
+        it: $I_0/s$
+        en: $I_0/s$
+      correct: false
+    - text:
+        it: $sLI_0$
+        en: $sLI_0$
+      correct: false
+    - text:
+        it: $I_0/L$
+        en: $I_0/L$
+      correct: false
+    - text:
+        it: $LI_0$
+        en: $LI_0$
+      correct: true
+  origin: originale
+- id: q-iv-030
+  topic: condizioni-iniziali-generatori
+  objectives:
+    - condizioni-iniziali-generatori.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Il condensatore con $v_C(0^-)=V_0$ si modella con $1/(sC)$ in serie a un generatore di tensione:'
+    en: 'The capacitor with $v_C(0^-)=V_0$ is modelled by $1/(sC)$ in series with a voltage source:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $V=I/(sC)+V_0/s$.
+        en: $V=I/(sC)+V_0/s$.
+  choices:
+    - text:
+        it: $CV_0$
+        en: $CV_0$
+      correct: false
+    - text:
+        it: $V_0\,s$
+        en: $V_0\,s$
+      correct: false
+    - text:
+        it: $V_0/s$
+        en: $V_0/s$
+      correct: true
+    - text:
+        it: $V_0/C$
+        en: $V_0/C$
+      correct: false
+  origin: originale
+- id: q-iv-031
+  topic: condizioni-iniziali-generatori
+  objectives:
+    - condizioni-iniziali-generatori.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Il condensatore con condizione iniziale ha anche un modello in parallelo con generatore di corrente $CV_0$.
+    en: The capacitor with an initial condition also has a parallel model with a current source $CV_0$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Equivalente Norton del modello in serie.
+        en: Norton equivalent of the series model.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-iv-032
+  topic: condizioni-iniziali-generatori
+  objectives:
+    - condizioni-iniziali-generatori.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: In un circuito RC con condizione iniziale e generatori indipendenti spenti, la risposta ha la forma $K e^{-t/\tau}$.
+    en: In an RC circuit with an initial condition and the independent sources off, the response has the form $K e^{-t/\tau}$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Un solo polo in $-1/\tau$.
+        en: A single pole at $-1/\tau$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-iv-037
+  topic: condizioni-iniziali-generatori
+  objectives:
+    - condizioni-iniziali-generatori.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Il condensatore con condizione iniziale $V_0$ si modella con un generatore in serie di valore $V_0$ (non diviso per $s$).
+    en: The capacitor with initial condition $V_0$ is modelled by a series source of value $V_0$ (not divided by $s$).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Il generatore vale $V_0/s$.
+        en: The source is $V_0/s$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale

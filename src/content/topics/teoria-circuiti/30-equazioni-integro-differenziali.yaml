@@ -1,0 +1,25 @@
+id: equazioni-integro-differenziali
+course: teoria-circuiti
+order: 30
+title:
+  it: Equazioni integro-differenziali
+  en: Integro-differential equations
+summary:
+  it: Risoluzione di equazioni integro-differenziali con la trasformata di Laplace, condizioni iniziali incluse.
+  en: Solving integro-differential equations with the Laplace transform, initial conditions included.
+objectives:
+  - id: equazioni-integro-differenziali.1
+    text:
+      it: Risolvere equazioni integro-differenziali con Laplace
+      en: Solve integro-differential equations with Laplace
+  - id: equazioni-integro-differenziali.2
+    text:
+      it: Inserire le condizioni iniziali
+      en: Insert the initial conditions
+  - id: equazioni-integro-differenziali.3
+    text:
+      it: Antitrasformare la soluzione
+      en: Invert the solution
+group:
+  it: IV · Trasformata di Laplace
+  en: IV · Laplace transform

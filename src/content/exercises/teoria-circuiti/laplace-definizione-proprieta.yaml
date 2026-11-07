@@ -1,0 +1,256 @@
+- id: q-iv-001
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'La trasformata di Laplace unilatera di $x(t)$ è:'
+    en: 'The unilateral Laplace transform of $x(t)$ is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $X(s)=\int_{0^-}^{\infty}x(t)e^{-st}dt$.
+        en: $X(s)=\int_{0^-}^{\infty}x(t)e^{-st}dt$.
+  choices:
+    - text:
+        it: $\sum x(n)s^{-n}$
+        en: $\sum x(n)s^{-n}$
+      correct: false
+    - text:
+        it: $\int_0^{\infty}x(t)dt$
+        en: $\int_0^{\infty}x(t)dt$
+      correct: false
+    - text:
+        it: $\int_{0^-}^{\infty}x(t)e^{-st}dt$
+        en: $\int_{0^-}^{\infty}x(t)e^{-st}dt$
+      correct: true
+    - text:
+        it: $\int_{-\infty}^{\infty}x(t)e^{-st}dt$
+        en: $\int_{-\infty}^{\infty}x(t)e^{-st}dt$
+      correct: false
+  origin: originale
+- id: q-iv-002
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'La trasformata della derivata è:'
+    en: 'The transform of the derivative is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\mathcal L\{\dot x\}=sX-x(0^-)$.
+        en: $\mathcal L\{\dot x\}=sX-x(0^-)$.
+  choices:
+    - text:
+        it: $X(s)/s$
+        en: $X(s)/s$
+      correct: false
+    - text:
+        it: $sX(s)$
+        en: $sX(s)$
+      correct: false
+    - text:
+        it: $sX(s)-x(0^-)$
+        en: $sX(s)-x(0^-)$
+      correct: true
+    - text:
+        it: $X(s)-x(0^-)$
+        en: $X(s)-x(0^-)$
+      correct: false
+  origin: originale
+- id: q-iv-003
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "La trasformata dell'integrale $\\int_{0}^{t}x$ è:"
+    en: "The transform of the integral $\\int_{0}^{t}x$ is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Integrazione ↔ divisione per $s$.
+        en: Integration ↔ division by $s$.
+  choices:
+    - text:
+        it: $X(s)-x(0)$
+        en: $X(s)-x(0)$
+      correct: false
+    - text:
+        it: $X(s)/s$
+        en: $X(s)/s$
+      correct: true
+    - text:
+        it: $X(s)s^2$
+        en: $X(s)s^2$
+      correct: false
+    - text:
+        it: $sX(s)$
+        en: $sX(s)$
+      correct: false
+  origin: originale
+- id: q-iv-004
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Il ritardo $x(t-T)u_{-1}(t-T)$ ha trasformata:'
+    en: 'The delay $x(t-T)u_{-1}(t-T)$ has transform:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Traslazione nel tempo ↔ moltiplicazione per $e^{-sT}$.
+        en: Time shift ↔ multiplication by $e^{-sT}$.
+  choices:
+    - text:
+        it: $e^{-sT}X(s)$
+        en: $e^{-sT}X(s)$
+      correct: true
+    - text:
+        it: $X(s-T)$
+        en: $X(s-T)$
+      correct: false
+    - text:
+        it: $e^{sT}X(s)$
+        en: $e^{sT}X(s)$
+      correct: false
+    - text:
+        it: $X(s)/T$
+        en: $X(s)/T$
+      correct: false
+  origin: originale
+- id: q-iv-005
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: 'La trasformata della convoluzione $x*y$ è:'
+    en: 'The transform of the convolution $x*y$ is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Convoluzione ↔ prodotto.
+        en: Convolution ↔ product.
+  choices:
+    - text:
+        it: $X(s)*Y(s)$
+        en: $X(s)*Y(s)$
+      correct: false
+    - text:
+        it: $X(s)+Y(s)$
+        en: $X(s)+Y(s)$
+      correct: false
+    - text:
+        it: $X(s)Y(s)$
+        en: $X(s)Y(s)$
+      correct: true
+    - text:
+        it: $X(s)/Y(s)$
+        en: $X(s)/Y(s)$
+      correct: false
+  origin: originale
+- id: q-iv-006
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: La trasformata di Laplace è un operatore lineare.
+    en: The Laplace transform is a linear operator.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\mathcal L\{ax+by\}=aX+bY$.
+        en: $\mathcal L\{ax+by\}=aX+bY$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-iv-007
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Il teorema del valore finale richiede che tutti i poli di $sX(s)$ abbiano parte reale negativa.
+    en: The final-value theorem requires all the poles of $sX(s)$ to have negative real part.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Altrimenti il limite non esiste o non coincide.
+        en: Otherwise the limit does not exist or does not match.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-iv-039
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: $\mathcal L\{\dot x\}=sX(s)-\square$.
+    en: $\mathcal L\{\dot x\}=sX(s)-\square$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Condizione iniziale.
+        en: Initial condition.
+  choices:
+    - text:
+        it: $x(0^-)$
+        en: $x(0^-)$
+      correct: true
+    - text:
+        it: $X(0^-)$
+        en: $X(0^-)$
+      correct: false
+    - text:
+        it: $\dot x(0^-)$
+        en: $\dot x(0^-)$
+      correct: false
+    - text:
+        it: $sx(0)$
+        en: $sx(0)$
+      correct: false
+  origin: originale

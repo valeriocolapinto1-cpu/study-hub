@@ -1,0 +1,25 @@
+id: fasori
+course: teoria-circuiti
+order: 19
+title:
+  it: Eccitazioni sinusoidali e fasori
+  en: Sinusoidal excitations and phasors
+summary:
+  it: Il fasore di una sinusoide, le operazioni con i fasori e il passaggio tra forma cartesiana e ampiezza-fase.
+  en: The phasor of a sinusoid, operations with phasors and the conversion between Cartesian and amplitude-phase form.
+objectives:
+  - id: fasori.1
+    text:
+      it: Associare a una sinusoide il suo fasore e viceversa
+      en: Associate a sinusoid with its phasor and vice versa
+  - id: fasori.2
+    text:
+      it: Eseguire somme e derivate con i fasori
+      en: Add and differentiate using phasors
+  - id: fasori.3
+    text:
+      it: Passare tra forma $a\cos+b\sin$ e ampiezza-fase
+      en: Convert between the $a\cos+b\sin$ and amplitude-phase forms
+group:
+  it: III · Regime sinusoidale
+  en: III · Sinusoidal steady state

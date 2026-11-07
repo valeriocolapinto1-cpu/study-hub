@@ -1,0 +1,142 @@
+---
+course: teoria-circuiti
+topic: circuiti-primo-ordine
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="circuiti-primo-ordine-intuizione-1">
+
+Un condensatore che si carica attraverso un resistore non arriva subito al valore finale: ci si avvicina «a rallentatore», percorrendo ogni volta la stessa frazione della distanza che manca. Il ritmo è fissato da un solo numero, la costante di tempo $\tau$: dopo circa $5\tau$ il transitorio è praticamente finito.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="circuiti-primo-ordine-teoria-1">
+
+Un circuito con un solo elemento di memoria e generatori indipendenti è descritto da $\dot x+\dfrac{x}{\tau}=\dfrac{f(t)}{\tau}$, con $x=v_C$ o $i_L$, $\tau=R_{eq}C$ oppure $L/R_{eq}$ ($R_{eq}$ vista dai morsetti dell'elemento con memoria, indipendenti spenti, controllati non spenti).
+
+</div>
+
+<div data-note-id="circuiti-primo-ordine-teoria-2">
+
+**Eccitazione costante.** $x(t)=x_\infty+(x_0-x_\infty)e^{-t/\tau}$ con $x_\infty$ valore di regime ($C$ aperto, $L$ corto) e $x_0=x(0^-)$ (continuità di $v_C$, $i_L$). Questa è la regola del «valore iniziale, valore finale, costante di tempo».
+
+</div>
+
+<div data-note-id="circuiti-primo-ordine-teoria-3">
+
+**Eccitazione variabile.** $x(t)=x_0e^{-t/\tau}+\dfrac1\tau\int_0^te^{-(t-s)/\tau}f(s)\,ds$: somma di risposta libera (dipende da $x_0$) e forzata (dipende da $f$). Per un ingresso sinusoidale la forzata contiene una parte di regime sinusoidale e una transitoria $\propto e^{-t/\tau}$.
+
+</div>
+
+<Figure
+  caption="Circuito RC serie con generatore di tensione v_g, resistore R e condensatore C; si osserva v_C"
+  num="1"
+  id="fig-1"
+>
+  <Circuit
+    netlist={{
+      elements: [
+        { type: 'V', id: 'vg', a: 'in', b: '0', dc: 1 },
+        { type: 'R', id: 'R', a: 'in', b: 'o', value: 1 },
+        { type: 'C', id: 'C', a: 'o', b: '0', value: 1, show: { v: 'v_C' } },
+      ],
+    }}
+    values={false}
+  />
+</Figure>
+
+<details class="proof" data-note-id="circuiti-primo-ordine-dimostrazione-1">
+<summary>Dimostrazione: Soluzione dell'equazione del primo ordine</summary>
+
+**Enunciato.** La soluzione di $\dot x+a\,x=g(t)$, $x(0)=x_0$ è $x(t)=e^{-at}x_0+\int_0^te^{-a(t-s)}g(s)\,ds$.
+
+1. Moltiplica per $e^{at}$: $\dfrac{d}{dt}\left(e^{at}x\right)=e^{at}g(t)$.
+2. Integra da $0$ a $t$: $e^{at}x(t)-x_0=\int_0^te^{as}g(s)ds$.
+3. Moltiplica per $e^{-at}$ e riordina. Con $a=1/\tau$ e $g=f/\tau$ si ha la formula del testo. $\square$
+
+</details>
+
+<Formula id="tau-rc" />
+<Formula id="tau-rl" />
+<Formula id="sol-primo-ordine" />
+<Formula id="regola-vfc" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="circuiti-primo-ordine-esempio-1">
+
+### RC con gradino
+
+$R=2\,\Omega$, $C=\tfrac12\,\mathrm F$, $v_g=10\,\mathrm V$ per $t>0$, $v_C(0)=2\,\mathrm V$. Trova $v_C(t)$.
+
+**Soluzione.**
+
+1. $\tau=RC=1\,\mathrm s$, $v_\infty=10$, $v_0=2$.
+2. $v_C(t)=10+(2-10)e^{-t}=10-8e^{-t}\,\mathrm V$ per $t>0$.
+
+</div>
+
+<div class="worked" data-note-id="circuiti-primo-ordine-esempio-2">
+
+### RL con gradino
+
+$L=3\,\mathrm H$, $R=6\,\Omega$, $v_g=12\,\mathrm V$ per $t>0$, $i_L(0)=0$. Trova $i_L(t)$.
+
+**Soluzione.**
+
+1. $\tau=L/R=\tfrac12\,\mathrm s$, $i_\infty=12/6=2\,\mathrm A$.
+2. $i_L(t)=2\left(1-e^{-2t}\right)\,\mathrm A$.
+
+</div>
+
+<div class="worked" data-note-id="circuiti-primo-ordine-esempio-3">
+
+### Ingresso sinusoidale
+
+$\dot y+y=\cos t$, $y(0)=0$ ($\tau=1$). Trova $y(t)$.
+
+**Soluzione.**
+
+1. Regime: fasore $\dot Y=\dfrac1{1+j}=\tfrac12-\tfrac12j$, quindi $y_p=\tfrac12\cos t+\tfrac12\sin t$.
+2. Transitorio $Ae^{-t}$ con $y(0)=\tfrac12+A=0\Rightarrow A=-\tfrac12$.
+3. $y(t)=\tfrac12\cos t+\tfrac12\sin t-\tfrac12e^{-t}$ per $t>0$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="circuiti-primo-ordine-errore-1">
+
+- **Sbagliato:** Usare $R$ del generatore o di una resistenza qualsiasi come $R_{eq}$.
+- **Corretto:** $R_{eq}$ è la resistenza vista dai morsetti dell'elemento con memoria con gli indipendenti spenti.
+
+</div>
+
+<div data-note-id="circuiti-primo-ordine-errore-2">
+
+- **Sbagliato:** Imporre $x(0^+)=0$ perché «il generatore è partito da zero».
+- **Corretto:** $x(0^+)=x(0^-)$ con il valore raggiunto nel regime precedente.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="circuiti-primo-ordine-esame-1">
+
+Costante di tempo e scarica/carica RC: 14-7-2000, 3-7-2001, 18-9-2002, 25-9-2007, 17-4-2008; è il cuore dell'esercizio d'analisi <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

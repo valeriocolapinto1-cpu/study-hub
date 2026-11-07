@@ -1,0 +1,146 @@
+- id: q-ii-029
+  topic: metodo-dei-nodi
+  objectives:
+    - metodo-dei-nodi.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Nel metodo dei nodi per una rete di soli resistori e generatori di corrente il sistema è:'
+    en: 'In the node method for a network of resistors and current sources only, the system is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $G=A\mathcal GA^{\mathsf T}$.
+        en: $G=A\mathcal GA^{\mathsf T}$.
+  choices:
+    - text:
+        it: $G\mathbf i=\mathbf e$
+        en: $G\mathbf i=\mathbf e$
+      correct: false
+    - text:
+        it: $G\mathbf e=\mathbf i_s$
+        en: $G\mathbf e=\mathbf i_s$
+      correct: true
+    - text:
+        it: $A\mathbf v=0$
+        en: $A\mathbf v=0$
+      correct: false
+    - text:
+        it: $R\mathbf j=\mathbf v_s$
+        en: $R\mathbf j=\mathbf v_s$
+      correct: false
+  origin: originale
+- id: q-ii-030
+  topic: metodo-dei-nodi
+  objectives:
+    - metodo-dei-nodi.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Il metodo dei nodi è conveniente se:'
+    en: 'The node method is convenient if:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Pochi nodi rispetto alle maglie indipendenti.
+        en: Few nodes compared with the independent loops.
+  choices:
+    - text:
+        it: non ci sono generatori
+        en: there are no sources
+      correct: false
+    - text:
+        it: $n-1>b-n+1$
+        en: $n-1>b-n+1$
+      correct: false
+    - text:
+        it: $n-1<b-n+1$
+        en: $n-1<b-n+1$
+      correct: true
+    - text:
+        it: $b$ è pari
+        en: $b$ is even
+      correct: false
+  origin: originale
+- id: q-ii-031
+  topic: metodo-dei-nodi
+  objectives:
+    - metodo-dei-nodi.2
+  difficulty: 3
+  kind: static
+  statement:
+    it: Con soli resistori e generatori di corrente la matrice $G$ è simmetrica.
+    en: With resistors and current sources only, the matrix $G$ is symmetric.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $G=A\mathcal GA^{\mathsf T}$ è simmetrica.
+        en: $G=A\mathcal GA^{\mathsf T}$ is symmetric.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-ii-032
+  topic: metodo-dei-nodi
+  objectives:
+    - metodo-dei-nodi.2
+  difficulty: 3
+  kind: static
+  statement:
+    it: Un generatore di tensione tra due nodi diversi dal riferimento si tratta con un supernodo.
+    en: A voltage source between two nodes other than the reference is handled with a supernode.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: KCL sul taglio più il vincolo $e_j-e_k=E$.
+        en: KCL on the cut set plus the constraint $e_j-e_k=E$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-ii-045
+  topic: metodo-dei-nodi
+  objectives:
+    - metodo-dei-nodi.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: Nel metodo dei nodi le incognite sono le correnti di maglia.
+    en: In the node method the unknowns are the loop currents.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Sono le tensioni di nodo.
+        en: They are the node voltages.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale

@@ -1,0 +1,231 @@
+- id: gen-antitrasformata-fratti-semplici
+  topic: fratti-semplici
+  objectives:
+    - fratti-semplici.1
+    - fratti-semplici.2
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/antitrasformata-fratti-semplici
+  origin: tipologia-appello
+- id: gen-antitrasformata-polo-semplice
+  topic: fratti-semplici
+  objectives:
+    - fratti-semplici.2
+  difficulty: 1
+  kind: generated
+  generator: teoria-circuiti/antitrasformata-polo-semplice
+  origin: tipologia-appello
+- id: q-iv-016
+  topic: fratti-semplici
+  objectives:
+    - fratti-semplici.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: "$F(s)=\\dfrac{1}{(s+1)(s+2)}$ si scompone in:"
+    en: "$F(s)=\\dfrac{1}{(s+1)(s+2)}$ expands as:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $A=1/(2-1)=1$, $B=1/(1-2)=-1$.
+        en: $A=1/(2-1)=1$, $B=1/(1-2)=-1$.
+  choices:
+    - text:
+        it: $\dfrac{2}{s+1}-\dfrac{1}{s+2}$
+        en: $\dfrac{2}{s+1}-\dfrac{1}{s+2}$
+      correct: false
+    - text:
+        it: $\dfrac{1}{s+1}-\dfrac{1}{s+2}$
+        en: $\dfrac{1}{s+1}-\dfrac{1}{s+2}$
+      correct: true
+    - text:
+        it: $\dfrac{1}{s+1}-\dfrac{2}{s+2}$
+        en: $\dfrac{1}{s+1}-\dfrac{2}{s+2}$
+      correct: false
+    - text:
+        it: $\dfrac{1}{s+1}+\dfrac{1}{s+2}$
+        en: $\dfrac{1}{s+1}+\dfrac{1}{s+2}$
+      correct: false
+  origin: originale
+- id: q-iv-017
+  topic: fratti-semplici
+  objectives:
+    - fratti-semplici.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Antitrasformata di $\\dfrac{1}{(s+1)(s+2)}$ per $t>0$:"
+    en: "Inverse transform of $\\dfrac{1}{(s+1)(s+2)}$ for $t>0$:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Dalla scomposizione precedente.
+        en: From the previous expansion.
+  choices:
+    - text:
+        it: $e^{-t}-e^{-2t}$
+        en: $e^{-t}-e^{-2t}$
+      correct: true
+    - text:
+        it: $te^{-t}$
+        en: $te^{-t}$
+      correct: false
+    - text:
+        it: $e^{-2t}-e^{-t}$
+        en: $e^{-2t}-e^{-t}$
+      correct: false
+    - text:
+        it: $e^{-t}+e^{-2t}$
+        en: $e^{-t}+e^{-2t}$
+      correct: false
+  origin: originale
+- id: q-iv-018
+  topic: fratti-semplici
+  objectives:
+    - fratti-semplici.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Il residuo del polo semplice $s=p$ di $F(s)=N(s)/D(s)$ è:'
+    en: 'The residue of the simple pole $s=p$ of $F(s)=N(s)/D(s)$ is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Formula di Heaviside.
+        en: Heaviside's formula.
+  choices:
+    - text:
+        it: $F(p)$
+        en: $F(p)$
+      correct: false
+    - text:
+        it: $D'(p)$
+        en: $D'(p)$
+      correct: false
+    - text:
+        it: $\lim_{s\to p}(s-p)F(s)$
+        en: $\lim_{s\to p}(s-p)F(s)$
+      correct: true
+    - text:
+        it: $N(p)$
+        en: $N(p)$
+      correct: false
+  origin: originale
+- id: q-iv-019
+  topic: fratti-semplici
+  objectives:
+    - fratti-semplici.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Per scomporre in fratti semplici il grado del numeratore deve essere minore di quello del denominatore (altrimenti si divide prima).
+    en: To expand into partial fractions the degree of the numerator must be lower than that of the denominator (otherwise divide first).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Con grado uguale compare un termine costante (impulso).
+        en: With equal degree a constant term (impulse) appears.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-iv-020
+  topic: fratti-semplici
+  objectives:
+    - fratti-semplici.2
+  difficulty: 3
+  kind: static
+  statement:
+    it: Un polo doppio in $s=-a$ dà un termine $t\,e^{-at}$.
+    en: A double pole at $s=-a$ gives a term $t\,e^{-at}$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\mathcal L\{te^{-at}\}=1/(s+a)^2$.
+        en: $\mathcal L\{te^{-at}\}=1/(s+a)^2$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-iv-034
+  topic: fratti-semplici
+  objectives:
+    - fratti-semplici.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: "$F(s)=\\dfrac{3s+5}{(s+1)(s+3)}$: i residui in $s=-1$ e $s=-3$ sono:"
+    en: "$F(s)=\\dfrac{3s+5}{(s+1)(s+3)}$: the residues at $s=-1$ and $s=-3$ are:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $A=(-3+5)/2=1$, $B=(-9+5)/(-2)=2$.
+        en: $A=(-3+5)/2=1$, $B=(-9+5)/(-2)=2$.
+  choices:
+    - text:
+        it: $2$ e $1$
+        en: $2$ and $1$
+      correct: false
+    - text:
+        it: $3$ e $5$
+        en: $3$ and $5$
+      correct: false
+    - text:
+        it: $1$ e $1$
+        en: $1$ and $1$
+      correct: false
+    - text:
+        it: $1$ e $2$
+        en: $1$ and $2$
+      correct: true
+  origin: originale
+- id: q-iv-036
+  topic: fratti-semplici
+  objectives:
+    - fratti-semplici.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Un polo semplice in $s=-2$ dà un termine temporale $e^{2t}$.
+    en: A simple pole at $s=-2$ gives a time-domain term $e^{2t}$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Dà $e^{-2t}$.
+        en: It gives $e^{-2t}$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale

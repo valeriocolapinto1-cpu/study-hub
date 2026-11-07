@@ -1,0 +1,46 @@
+- id: orale-t-26
+  topic: risposta-transitoria-permanente
+  objectives:
+    - risposta-transitoria-permanente.1
+    - risposta-transitoria-permanente.2
+  kind: orale
+  front:
+    it: '**Risposta permanente e transitoria.** Data $F(s)$ stabile e un ingresso sinusoidale, come si distinguono risposta permanente e transitoria? Come si ricavano?'
+    en: '**Steady-state and transient response.** Given a stable $F(s)$ and a sinusoidal input, how are the steady-state and transient responses distinguished? How are they obtained?'
+  back:
+    it: |-
+      **Risposta modello.** Se il sistema è stabile la risposta permanente è una sinusoide alla stessa frequenza dell'ingresso, con modulo |F(j omega0)| e fase arg F. La transitoria è formata dai modi naturali, cioè dai poli di F, che decadono. Scomponendo Y(s) = F(s) X(s) in fratti semplici i poli di X danno la permanente e quelli di F il transitorio. La stabilità garantisce l'estinzione.
+
+      **Punti da toccare:**
+
+      - Permanente: sinusoide alla stessa frequenza con $|F(j\omega_0)|$ e fase
+      - Transitoria: modi naturali (poli di $F$) che decadono
+      - Si scompone $Y(s)=F(s)X(s)$ in fratti semplici: poli di $X$ → permanente, poli di $F$ → transitorio
+      - La condizione di stabilità garantisce che il transitorio si estingua
+    en: |-
+      **Model answer.** If the system is stable the steady-state response is a sinusoid at the same frequency as the input, with magnitude |F(j omega0)| and phase arg F. The transient is made of the natural modes, i.e. of the poles of F, which decay. Expanding Y(s) = F(s) X(s) in partial fractions, the poles of X give the steady state and those of F the transient. Stability guarantees that it dies out.
+
+      **Points to cover:**
+
+      - Steady state: sinusoid at the same frequency with $|F(j\omega_0)|$ and phase
+      - Transient: natural modes (poles of $F$) that decay
+      - $Y(s)=F(s)X(s)$ is expanded in partial fractions: poles of $X$ → steady state, poles of $F$ → transient
+      - Stability guarantees that the transient dies out
+- id: formula-y-permanente
+  topic: risposta-transitoria-permanente
+  objectives:
+    - risposta-transitoria-permanente.1
+    - risposta-transitoria-permanente.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Risposta permanente**. Uso: Ingresso sinusoidale, sistema stabile.'
+    en: 'Write the formula: **Steady-state response**. Use: Sinusoidal input, stable system.'
+  back:
+    it: |-
+      $$y_p=A|F(j\omega_0)|\cos(\omega_0t+\varphi+\arg F(j\omega_0))$$
+
+      A ampiezza; ω₀ pulsazione; φ fase dell'ingresso; F funzione di rete
+    en: |-
+      $$y_p=A|F(j\omega_0)|\cos(\omega_0t+\varphi+\arg F(j\omega_0))$$
+
+      A amplitude; ω₀ angular frequency; φ input phase; F network function

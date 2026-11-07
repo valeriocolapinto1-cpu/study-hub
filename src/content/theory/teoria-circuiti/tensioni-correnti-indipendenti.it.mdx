@@ -1,0 +1,88 @@
+---
+course: teoria-circuiti
+topic: tensioni-correnti-indipendenti
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="tensioni-correnti-indipendenti-intuizione-1">
+
+Su un circuito con $b$ rami ci sono $2b$ incognite, ma le leggi di Kirchhoff ne «legano» molte tra loro. Basta conoscere le tensioni dei rami d'albero per avere tutte le tensioni, e le correnti di coalbero per avere tutte le correnti: è l'idea su cui poggiano i metodi dei nodi e delle maglie.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="tensioni-correnti-indipendenti-teoria-1">
+
+Le $b$ tensioni di ramo non sono indipendenti: devono soddisfare la KVL ($b-n+1$ vincoli). Restano **$n-1$ tensioni indipendenti**: ad esempio le tensioni dei rami d'albero $\mathbf v_t$, oppure le tensioni di nodo $\mathbf e$ rispetto al riferimento ($\mathbf v=A^{\mathsf T}\mathbf e$).
+
+</div>
+
+<div data-note-id="tensioni-correnti-indipendenti-teoria-2">
+
+Analogamente le correnti: la KCL dà $n-1$ vincoli e restano **$b-n+1$ correnti indipendenti**: quelle dei rami di coalbero $\mathbf i_c$ (correnti di maglia $\mathbf j$, con $\mathbf i=B^{\mathsf T}\mathbf j$).
+
+</div>
+
+<div data-note-id="tensioni-correnti-indipendenti-teoria-3">
+
+In blocchi: $\mathbf v_c=F^{\mathsf T}\mathbf v_t$ (dalla KVL $B\mathbf v=0$) e $\mathbf i_t=-F\,\mathbf i_c$ (dalla KCL $Q\mathbf i=0$).
+
+</div>
+
+<details class="proof" data-note-id="tensioni-correnti-indipendenti-dimostrazione-1">
+<summary>Dimostrazione: Tutte le tensioni si ricavano da quelle d'albero</summary>
+
+1. La KVL con $B=[-F^{\mathsf T}\ \ \mathbb1]$ dà $-F^{\mathsf T}\mathbf v_t+\mathbf v_c=0$.
+2. Quindi $\mathbf v_c=F^{\mathsf T}\mathbf v_t$: le tensioni di coalbero sono determinate da quelle d'albero.
+3. Le $n-1$ tensioni d'albero sono libere: non esistono altri vincoli (le equazioni di KVL sono tante quante le maglie fondamentali, e sono già state usate tutte). $\square$
+
+</details>
+
+<Formula id="tens-indip" />
+<Formula id="corr-indip" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="tensioni-correnti-indipendenti-esempio-1">
+
+### Dal triangolo precedente
+
+Nel triangolo dell'esempio II-03 (albero $a,b$) con $v_a=5\,\mathrm{V}$, $v_b=3\,\mathrm{V}$: trova $v_c$ e, sapendo $i_c=2\,\mathrm{A}$, le correnti $i_a,i_b$.
+
+**Soluzione.**
+
+1. $F^{\mathsf T}=(-1\ \ 1)$: $v_c=-5+3=-2\,\mathrm{V}$ (KVL: $v_a-v_b+v_c=0$ ✓).
+2. $\mathbf i_t=-F\,i_c=\begin{pmatrix}1\\-1\end{pmatrix}\cdot2=\begin{pmatrix}2\\-2\end{pmatrix}$: $i_a=2\,\mathrm{A}$, $i_b=-2\,\mathrm{A}$.
+3. KCL nodo 1: esce $c$ ($i_c=2$) ed entra $a$ ($i_a=2$) ✓.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="tensioni-correnti-indipendenti-errore-1">
+
+- **Sbagliato:** Assegnare liberamente $b$ tensioni di ramo.
+- **Corretto:** Solo $n-1$ tensioni (e $b-n+1$ correnti) sono indipendenti: le altre seguono dalla KVL/KCL.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="tensioni-correnti-indipendenti-esame-1">
+
+Tensioni indipendenti: 18-9-2002, 30-10-2002, 24-4-2003, 12-7-2005 <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

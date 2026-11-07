@@ -1,0 +1,96 @@
+---
+course: teoria-circuiti
+topic: risposta-libera-forzata
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="risposta-libera-forzata-intuizione-1">
+
+La risposta di un circuito ha due «cause»: l'energia che aveva già dentro (condizioni iniziali) e ciò che gli arriva dall'esterno (ingressi). Per la linearità i due effetti si possono calcolare separatamente e poi sommare.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="risposta-libera-forzata-teoria-1">
+
+**Libera**: ingresso nullo, condizioni iniziali non nulle (dipende solo dai modi naturali, cioè dai poli). **Forzata**: condizioni iniziali nulle e ingresso non nullo. In un sistema lineare la risposta completa è la somma $y=y_{lib}+y_{forz}$.
+
+</div>
+
+<div data-note-id="risposta-libera-forzata-teoria-2">
+
+Con Laplace: nel circuito trasformato si pongono a zero le condizioni iniziali (forzata) oppure gli ingressi (libera).
+
+</div>
+
+<Formula id="y-libera-forzata" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="risposta-libera-forzata-esempio-1">
+
+### RC con gradino
+
+$R=2$, $C=\tfrac12$, $v_C(0)=2$, ingresso $10u_{-1}$.
+
+**Soluzione.**
+
+1. Libera: $v_C=2e^{-t}$.
+2. Forzata: $10(1-e^{-t})$.
+3. Somma: $10-8e^{-t}$ ✓.
+
+</div>
+
+<div class="worked" data-note-id="risposta-libera-forzata-esempio-2">
+
+### Solo libera
+
+RL $R=4$, $L=2$, $i(0)=3$, generatori spenti.
+
+**Soluzione.**
+
+1. $i=3e^{-2t}$.
+
+</div>
+
+<div class="worked" data-note-id="risposta-libera-forzata-esempio-3">
+
+### Solo forzata
+
+$H=\dfrac1{s+1}$ con $x=u_{-1}$, condizioni nulle.
+
+**Soluzione.**
+
+1. $Y=\dfrac1{s(s+1)}\Rightarrow y=1-e^{-t}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="risposta-libera-forzata-errore-1">
+
+- **Sbagliato:** Attribuire il transitorio alla sola risposta libera.
+- **Corretto:** La forzata contiene anche termini transitori ($-10e^{-t}$ sopra).
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="risposta-libera-forzata-esame-1">
+
+Risposta libera e forzata: 25-9-2007, 17-4-2008 (Laplace) <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

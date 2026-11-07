@@ -1,0 +1,206 @@
+- id: q-ii-020
+  topic: teorema-di-tellegen
+  objectives:
+    - teorema-di-tellegen.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Il teorema di Tellegen afferma che per vettori $\\mathbf v$ (KVL) e $\\mathbf i$ (KCL) dello stesso grafo:"
+    en: "Tellegen's theorem states that, for vectors $\\mathbf v$ (KVL) and $\\mathbf i$ (KCL) of the same graph:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\sum v_ki_k=0$.
+        en: $\sum v_ki_k=0$.
+  choices:
+    - text:
+        it: $\mathbf v^{\mathsf T}\mathbf i>0$
+        en: $\mathbf v^{\mathsf T}\mathbf i>0$
+      correct: false
+    - text:
+        it: $\mathbf v^{\mathsf T}\mathbf i=0$
+        en: $\mathbf v^{\mathsf T}\mathbf i=0$
+      correct: true
+    - text:
+        it: $\mathbf v+\mathbf i=0$
+        en: $\mathbf v+\mathbf i=0$
+      correct: false
+    - text:
+        it: $\mathbf v=R\mathbf i$
+        en: $\mathbf v=R\mathbf i$
+      correct: false
+  origin: originale
+- id: q-ii-021
+  topic: teorema-di-tellegen
+  objectives:
+    - teorema-di-tellegen.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: Il teorema di Tellegen vale anche se $\mathbf v$ e $\mathbf i$ appartengono a due circuiti diversi con lo stesso grafo.
+    en: Tellegen's theorem also holds if $\mathbf v$ and $\mathbf i$ belong to two different circuits with the same graph.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Dipende solo dalla topologia.
+        en: It depends only on the topology.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-ii-022
+  topic: teorema-di-tellegen
+  objectives:
+    - teorema-di-tellegen.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: Tellegen implica che la somma delle potenze assorbite da tutti i rami è nulla.
+    en: Tellegen implies that the sum of the powers absorbed by all the branches is zero.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: È la conservazione della potenza.
+        en: It is the conservation of power.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-ii-023
+  topic: teorema-di-tellegen
+  objectives:
+    - teorema-di-tellegen.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Il teorema di Tellegen richiede che i bipoli siano lineari.
+    en: Tellegen's theorem requires the one-ports to be linear.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Non usa le relazioni costitutive.
+        en: It does not use the constitutive relations.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-ii-024
+  topic: teorema-di-tellegen
+  objectives:
+    - teorema-di-tellegen.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: 'La dimostrazione di Tellegen usa:'
+    en: "The proof of Tellegen's theorem uses:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\mathbf v^{\mathsf T}\mathbf i=\mathbf e^{\mathsf T}A\mathbf i=0$.
+        en: $\mathbf v^{\mathsf T}\mathbf i=\mathbf e^{\mathsf T}A\mathbf i=0$.
+  choices:
+    - text:
+        it: $\mathbf v=A^{\mathsf T}\mathbf e$ e $A\mathbf i=0$
+        en: $\mathbf v=A^{\mathsf T}\mathbf e$ and $A\mathbf i=0$
+      correct: true
+    - text:
+        it: la sovrapposizione degli effetti
+        en: superposition
+      correct: false
+    - text:
+        it: il teorema di Thevenin
+        en: Thévenin's theorem
+      correct: false
+    - text:
+        it: la linearità degli elementi
+        en: the linearity of the elements
+      correct: false
+  origin: originale
+- id: q-ii-038
+  topic: teorema-di-tellegen
+  objectives:
+    - teorema-di-tellegen.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Un generatore di tensione eroga $20\\,\\mathrm W$; i resistori della rete assorbono complessivamente:"
+    en: "A voltage source delivers $20\\,\\mathrm W$; the resistors of the network absorb in total:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Tellegen: la somma algebrica delle potenze è nulla.'
+        en: 'Tellegen: the algebraic sum of the powers is zero.'
+  choices:
+    - text:
+        it: $40\,\mathrm W$
+        en: $40\,\mathrm W$
+      correct: false
+    - text:
+        it: $10\,\mathrm W$
+        en: $10\,\mathrm W$
+      correct: false
+    - text:
+        it: $0$
+        en: $0$
+      correct: false
+    - text:
+        it: $20\,\mathrm W$
+        en: $20\,\mathrm W$
+      correct: true
+  origin: originale
+- id: q-ii-043
+  topic: teorema-di-tellegen
+  objectives:
+    - teorema-di-tellegen.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: Il teorema di Tellegen vale solo per circuiti resistivi.
+    en: Tellegen's theorem holds only for resistive circuits.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Vale per ogni circuito (dipende solo dal grafo).
+        en: It holds for every circuit (it depends only on the graph).
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale

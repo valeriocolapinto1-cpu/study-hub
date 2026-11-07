@@ -1,0 +1,100 @@
+- id: orale-t-47
+  topic: serie-parallelo-partitori
+  objectives:
+    - serie-parallelo-partitori.1
+    - serie-parallelo-partitori.2
+  kind: orale
+  front:
+    it: '**Serie, parallelo e partitori.** Ricava le formule di resistenza equivalente serie e parallelo e del partitore di tensione.'
+    en: '**Series, parallel and dividers.** Derive the formulas for the series and parallel equivalent resistance and for the voltage divider.'
+  back:
+    it: |-
+      **Risposta modello.** In serie i resistori hanno la stessa corrente e per la KVL la resistenza equivalente è la somma. In parallelo hanno la stessa tensione e per la KCL si sommano le conduttanze. Il partitore di tensione dà v_k = v R_k/somma delle R, purché non ci sia un carico a valle che sottrae corrente.
+
+      **Punti da toccare:**
+
+      - Serie: stessa corrente, $R_{eq}=\sum R_k$ (KVL)
+      - Parallelo: stessa tensione, $G_{eq}=\sum G_k$ (KCL)
+      - Partitore: $v_k=v\,R_k/\sum R_j$
+      - Condizione: nessun carico a valle
+    en: |-
+      **Model answer.** In series the resistors carry the same current and by KVL the equivalent resistance is the sum. In parallel they have the same voltage and by KCL the conductances add. The voltage divider gives v_k = v R_k/sum of the R, provided that no downstream load draws current.
+
+      **Points to cover:**
+
+      - Series: same current, $R_{eq}=\sum R_k$ (KVL)
+      - Parallel: same voltage, $G_{eq}=\sum G_k$ (KCL)
+      - Divider: $v_k=v\,R_k/\sum R_j$
+      - Condition: no downstream load
+- id: formula-serie
+  topic: serie-parallelo-partitori
+  objectives:
+    - serie-parallelo-partitori.1
+    - serie-parallelo-partitori.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Resistori in serie**. Uso: Stessa corrente.'
+    en: 'Write the formula: **Resistors in series**. Use: Same current.'
+  back:
+    it: |-
+      $$R_{eq}=\sum_k R_k$$
+
+      R_k resistenze [Ω]
+    en: |-
+      $$R_{eq}=\sum_k R_k$$
+
+      R_k resistances [Ω]
+- id: formula-parallelo
+  topic: serie-parallelo-partitori
+  objectives:
+    - serie-parallelo-partitori.1
+    - serie-parallelo-partitori.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Resistori in parallelo**. Uso: Stessa tensione.'
+    en: 'Write the formula: **Resistors in parallel**. Use: Same voltage.'
+  back:
+    it: |-
+      $$\frac1{R_{eq}}=\sum_k\frac1{R_k},\quad R_{eq}=\frac{R_1R_2}{R_1+R_2}$$
+
+      R_k resistenze [Ω]
+    en: |-
+      $$\frac1{R_{eq}}=\sum_k\frac1{R_k},\quad R_{eq}=\frac{R_1R_2}{R_1+R_2}$$
+
+      R_k resistances [Ω]
+- id: formula-part-v
+  topic: serie-parallelo-partitori
+  objectives:
+    - serie-parallelo-partitori.2
+    - serie-parallelo-partitori.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Partitore di tensione**. Uso: Serie senza carico a valle.'
+    en: 'Write the formula: **Voltage divider**. Use: Series with no downstream load.'
+  back:
+    it: |-
+      $$v_k=v\,\frac{R_k}{\sum_jR_j}$$
+
+      v tensione totale [V]; R_k [Ω]
+    en: |-
+      $$v_k=v\,\frac{R_k}{\sum_jR_j}$$
+
+      v total voltage [V]; R_k [Ω]
+- id: formula-part-i
+  topic: serie-parallelo-partitori
+  objectives:
+    - serie-parallelo-partitori.2
+    - serie-parallelo-partitori.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Partitore di corrente**. Uso: Parallelo.'
+    en: 'Write the formula: **Current divider**. Use: Parallel.'
+  back:
+    it: |-
+      $$i_k=i\,\frac{G_k}{\sum_jG_j}$$
+
+      G conduttanze [S]
+    en: |-
+      $$i_k=i\,\frac{G_k}{\sum_jG_j}$$
+
+      G conductances [S]

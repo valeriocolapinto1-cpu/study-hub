@@ -1,0 +1,34 @@
+- id: formula-residuo
+  topic: fratti-semplici
+  objectives:
+    - fratti-semplici.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Residuo di un polo semplice**. Uso: Fratti semplici.'
+    en: 'Write the formula: **Residue of a simple pole**. Use: Partial fractions.'
+  back:
+    it: |-
+      $$r=\lim_{s\to p}(s-p)F(s)\ \Rightarrow\ f(t)=re^{pt}$$
+
+      p polo; r residuo; F(s) funzione razionale
+    en: |-
+      $$r=\lim_{s\to p}(s-p)F(s)\ \Rightarrow\ f(t)=re^{pt}$$
+
+      p pole; r residue; F(s) rational function
+- id: formula-polo-doppio
+  topic: fratti-semplici
+  objectives:
+    - fratti-semplici.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Polo doppio**.'
+    en: 'Write the formula: **Double pole**.'
+  back:
+    it: |-
+      $$\frac{r_2}{(s-p)^2}+\frac{r_1}{s-p}\to(r_2t+r_1)e^{pt}$$
+
+      r₁ = d/ds[(s−p)²F]
+    en: |-
+      $$\frac{r_2}{(s-p)^2}+\frac{r_1}{s-p}\to(r_2t+r_1)e^{pt}$$
+
+      r₁ = d/ds[(s−p)²F]

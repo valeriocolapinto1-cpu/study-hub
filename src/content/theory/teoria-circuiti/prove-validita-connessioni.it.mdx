@@ -1,0 +1,104 @@
+---
+course: teoria-circuiti
+topic: prove-validita-connessioni
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="prove-validita-connessioni-intuizione-1">
+
+Sommare le matrici funziona solo se, dopo il collegamento, ogni doppio bipolo continua a «vedere» le sue porte come prima. Se il collegamento crea percorsi di corrente nuovi tra le due reti, le porte smettono di essere porte e le formule mentono: la prova di validità serve a scoprirlo prima.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="prove-validita-connessioni-teoria-1">
+
+La somma delle matrici $Z$ (o $Y$) è corretta solo se, dopo il collegamento, ciascun doppio bipolo continua ad avere uguali la corrente entrante e quella uscente da ogni sua porta. Altrimenti la connessione modifica il funzionamento dei singoli doppi bipoli e le formule non valgono.
+
+</div>
+
+<div data-note-id="prove-validita-connessioni-teoria-2">
+
+**Prova di validità** (serie-serie): si alimentano le porte di ingresso a vuoto e si verifica che tra i morsetti da collegare (che andranno uniti) la tensione sia nulla; analogamente per l'uscita. Se la prova non è superata si può inserire un trasformatore di isolamento 1:1 su una delle porte.
+
+</div>
+
+<details class="proof" data-note-id="prove-validita-connessioni-dimostrazione-1">
+<summary>Dimostrazione: Perché la somma di $Z$ richiede la condizione di porta</summary>
+
+1. Nella serie-serie le porte sono in serie: $v_1=v_{1a}+v_{1b}$, $v_2=v_{2a}+v_{2b}$ e le correnti di porta sono comuni: $i_1=i_{1a}=i_{1b}$, $i_2=i_{2a}=i_{2b}$.
+2. Sommando $\mathbf v_a=Z_a\mathbf i_a$ e $\mathbf v_b=Z_b\mathbf i_b$ con $\mathbf i_a=\mathbf i_b=\mathbf i$: $\mathbf v=(Z_a+Z_b)\mathbf i$.
+3. L'ipotesi $\mathbf i_a=\mathbf i_b=\mathbf i$ vale solo se, per ogni doppio bipolo, la corrente entrante in un morsetto di una porta è uguale a quella uscente dall'altro anche dopo il collegamento: è la condizione verificata dalla prova di validità. $\square$
+
+</details>
+
+<Formula id="prova-validita" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="prove-validita-connessioni-esempio-1">
+
+### Prova superata
+
+Due doppi bipoli senza collegamento comune tra le porte, connessi in serie-serie.
+
+**Soluzione.**
+
+1. Alimentando le porte a vuoto, tra i morsetti da collegare la tensione è nulla: connessione lecita, $Z=Z_a+Z_b$.
+
+</div>
+
+<div class="worked" data-note-id="prove-validita-connessioni-esempio-2">
+
+### Prova fallita
+
+Due reti a T con morsetto comune a massa connesse in serie-serie.
+
+**Soluzione.**
+
+1. Il collegamento diretto cortocircuita parti di rete: la corrente può non passare dalle porte come previsto; la tensione di prova non è nulla.
+2. Rimedio: trasformatore ideale 1:1 su una porta di uno dei due doppi bipoli.
+
+</div>
+
+<div class="worked" data-note-id="prove-validita-connessioni-esempio-3">
+
+### Parallelo-parallelo con massa comune
+
+Due reti a π (massa comune) in parallelo.
+
+**Soluzione.**
+
+1. Hanno già un morsetto in comune: la connessione parallelo-parallelo è sempre lecita e $Y=Y_a+Y_b$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="prove-validita-connessioni-errore-1">
+
+- **Sbagliato:** Sommare le matrici senza verificare la prova di validità.
+- **Corretto:** Verifica sempre la condizione di porta prima di usare le formule di connessione.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="prove-validita-connessioni-esame-1">
+
+Connessioni e prove di validità: 12-6-2000, 13-2-2001, 19-11-2003, 12-7-2007 <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

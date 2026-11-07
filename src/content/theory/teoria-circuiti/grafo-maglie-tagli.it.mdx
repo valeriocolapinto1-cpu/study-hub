@@ -1,0 +1,118 @@
+---
+course: teoria-circuiti
+topic: grafo-maglie-tagli
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="grafo-maglie-tagli-intuizione-1">
+
+Per scrivere le leggi di Kirchhoff non importa se un ramo è un resistore o un generatore: conta solo da dove parte e dove arriva. Il grafo è lo «scheletro» del circuito, la mappa dei collegamenti su cui si appoggiano tutte le equazioni topologiche.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="grafo-maglie-tagli-teoria-1">
+
+Un **grafo orientato** è un insieme di $n$ nodi e $b$ rami, ciascuno con un verso. Il grafo di un circuito si ottiene ignorando la natura dei componenti: ogni bipolo è un ramo, i suoi morsetti sono nodi. Si considera _connesso_ (da ogni nodo si raggiunge ogni altro), altrimenti si studiano le parti separate.
+
+</div>
+
+<div data-note-id="grafo-maglie-tagli-teoria-2">
+
+Una **maglia** è un insieme di rami che forma un percorso chiuso passando una sola volta per ciascun nodo. Un **taglio** è un insieme minimale di rami la cui rimozione rende il grafo non connesso. I rami che concorrono a un nodo formano un taglio (il «taglio del nodo»).
+
+</div>
+
+<div data-note-id="grafo-maglie-tagli-teoria-3">
+
+I versi dei rami coincidono con i versi di riferimento di corrente (e tensione, con convenzione degli utilizzatori). Per ogni maglia si fissa un verso di percorrenza; per ogni taglio si fissa un verso (dall'insieme di nodi $\mathcal N_1$ a $\mathcal N_2$).
+
+</div>
+
+<Figure caption="Grafo completo di 4 nodi (0,1,2,3) e 6 rami" num="1" id="fig-1">
+  <svg
+    viewBox="0 0 280 200"
+    xmlns="http://www.w3.org/2000/svg"
+    stroke="currentColor"
+    stroke-width="2"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    font-family="system-ui,sans-serif"
+    font-size="14"
+    aria-hidden="true"
+    focusable="false"
+    class="diagram"
+    style="max-width: 280px"
+  >
+    <polyline points="140 20 40 160" />
+    <polyline points="140 20 240 160" />
+    <polyline points="40 160 240 160" />
+    <polyline points="140 20 140 110" />
+    <polyline points="140 110 40 160" />
+    <polyline points="140 110 240 160" />
+    <circle cx="140" cy="20" r="3" fill="currentColor" />
+    <circle cx="40" cy="160" r="3" fill="currentColor" />
+    <circle cx="240" cy="160" r="3" fill="currentColor" />
+    <circle cx="140" cy="110" r="3" fill="currentColor" />
+    <text x="140" y="12" text-anchor="middle" fill="currentColor" stroke="none">
+      {'1'}
+    </text>
+    <text x="28" y="175" text-anchor="middle" fill="currentColor" stroke="none">
+      {'2'}
+    </text>
+    <text x="254" y="175" text-anchor="middle" fill="currentColor" stroke="none">
+      {'3'}
+    </text>
+    <text x="154" y="104" text-anchor="start" fill="currentColor" stroke="none">
+      {'0'}
+    </text>
+  </svg>
+</Figure>
+
+<Formula id="n-b" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="grafo-maglie-tagli-esempio-1">
+
+### Conteggi sul grafo completo di 4 nodi
+
+Nel grafo della figura (4 nodi, 6 rami): quante maglie di 3 rami ci sono? Quanti tagli «di nodo»?
+
+**Soluzione.**
+
+1. Ogni terna di nodi forma un triangolo: $\binom{4}{3}=4$ maglie da 3 rami.
+2. Un taglio di nodo per ciascun nodo: 4 (ma sono dipendenti: ne bastano $n-1=3$).
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="grafo-maglie-tagli-errore-1">
+
+- **Sbagliato:** Considerare maglia un insieme di rami che «si chiude» passando due volte per un nodo.
+- **Corretto:** Nella definizione di maglia ogni nodo è toccato una sola volta (altrimenti è unione di maglie).
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="grafo-maglie-tagli-esame-1">
+
+Topologia: 18-9-2002, 30-10-2002, 24-4-2003, 12-7-2005 <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

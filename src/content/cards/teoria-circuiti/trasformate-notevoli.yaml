@@ -1,0 +1,176 @@
+- id: formula-l-delta
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.1
+    - trasformate-notevoli.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Impulso**. Uso: Tabella delle trasformate.'
+    en: 'Write the formula: **Impulse**. Use: Table of transforms.'
+  back:
+    it: |-
+      $$\mathcal L\{\delta(t)\}=1$$
+
+      δ(t) impulso unitario
+    en: |-
+      $$\mathcal L\{\delta(t)\}=1$$
+
+      δ(t) unit impulse
+- id: formula-l-gradino
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.3
+    - trasformate-notevoli.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Gradino**. Uso: Tabella delle trasformate.'
+    en: 'Write the formula: **Step**. Use: Table of transforms.'
+  back:
+    it: |-
+      $$\mathcal L\{u_{-1}(t)\}=\frac1s$$
+
+      u₋₁(t) gradino unitario
+    en: |-
+      $$\mathcal L\{u_{-1}(t)\}=\frac1s$$
+
+      u₋₁(t) unit step
+- id: formula-l-rampa
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.1
+    - trasformate-notevoli.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Rampa**. Uso: Tabella delle trasformate.'
+    en: 'Write the formula: **Ramp**. Use: Table of transforms.'
+  back:
+    it: |-
+      $$\mathcal L\{t\}=\frac1{s^2}$$
+
+      t tempo [s]
+    en: |-
+      $$\mathcal L\{t\}=\frac1{s^2}$$
+
+      t time [s]
+- id: formula-l-exp
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.1
+    - trasformate-notevoli.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Esponenziale**. Uso: Tabella delle trasformate.'
+    en: 'Write the formula: **Exponential**. Use: Table of transforms.'
+  back:
+    it: |-
+      $$\mathcal L\{e^{-at}\}=\frac{1}{s+a}$$
+
+      a costante [1/s]
+    en: |-
+      $$\mathcal L\{e^{-at}\}=\frac{1}{s+a}$$
+
+      a constant [1/s]
+- id: formula-l-cos
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.1
+    - trasformate-notevoli.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Coseno**. Uso: Tabella delle trasformate.'
+    en: 'Write the formula: **Cosine**. Use: Table of transforms.'
+  back:
+    it: |-
+      $$\mathcal L\{\cos\omega t\}=\frac{s}{s^2+\omega^2}$$
+
+      ω pulsazione [rad/s]
+    en: |-
+      $$\mathcal L\{\cos\omega t\}=\frac{s}{s^2+\omega^2}$$
+
+      ω angular frequency [rad/s]
+- id: formula-l-sin
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.1
+    - trasformate-notevoli.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Seno**. Uso: Tabella delle trasformate.'
+    en: 'Write the formula: **Sine**. Use: Table of transforms.'
+  back:
+    it: |-
+      $$\mathcal L\{\sin\omega t\}=\frac{\omega}{s^2+\omega^2}$$
+
+      ω pulsazione [rad/s]
+    en: |-
+      $$\mathcal L\{\sin\omega t\}=\frac{\omega}{s^2+\omega^2}$$
+
+      ω angular frequency [rad/s]
+- id: formula-l-texp
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **t per esponenziale**. Uso: Polo doppio.'
+    en: 'Write the formula: **t times exponential**. Use: Double pole.'
+  back:
+    it: |-
+      $$\mathcal L\{te^{-at}\}=\frac{1}{(s+a)^2}$$
+
+      a costante [1/s]
+    en: |-
+      $$\mathcal L\{te^{-at}\}=\frac{1}{(s+a)^2}$$
+
+      a constant [1/s]
+- id: formula-l-expcos
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Coseno smorzato**. Uso: Oscillazioni smorzate.'
+    en: 'Write the formula: **Damped cosine**. Use: Damped oscillations.'
+  back:
+    it: |-
+      $$\mathcal L\{e^{-at}\cos\omega t\}=\frac{s+a}{(s+a)^2+\omega^2}$$
+
+      a, ω costanti [1/s], [rad/s]
+    en: |-
+      $$\mathcal L\{e^{-at}\cos\omega t\}=\frac{s+a}{(s+a)^2+\omega^2}$$
+
+      a, ω constants [1/s], [rad/s]
+- id: formula-l-expsin
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Seno smorzato**. Uso: Oscillazioni smorzate.'
+    en: 'Write the formula: **Damped sine**. Use: Damped oscillations.'
+  back:
+    it: |-
+      $$\mathcal L\{e^{-at}\sin\omega t\}=\frac{\omega}{(s+a)^2+\omega^2}$$
+
+      a, ω costanti [1/s], [rad/s]
+    en: |-
+      $$\mathcal L\{e^{-at}\sin\omega t\}=\frac{\omega}{(s+a)^2+\omega^2}$$
+
+      a, ω constants [1/s], [rad/s]
+- id: formula-l-impulso-rett
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Impulso rettangolare**. Uso: Segnali a tratti.'
+    en: 'Write the formula: **Rectangular pulse**. Use: Piecewise signals.'
+  back:
+    it: |-
+      $$A[u_{-1}(t)-u_{-1}(t-T)]\ \to\ A\,\frac{1-e^{-sT}}{s}$$
+
+      A ampiezza; T durata [s]
+    en: |-
+      $$A[u_{-1}(t)-u_{-1}(t-T)]\ \to\ A\,\frac{1-e^{-sT}}{s}$$
+
+      A amplitude; T duration [s]

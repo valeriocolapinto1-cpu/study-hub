@@ -1,0 +1,176 @@
+- id: orale-t-35
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.1
+    - nullore-e-amplificatore-operazionale.2
+  kind: orale
+  front:
+    it: '**Nullore: proprietà e configurazioni.** Definisci nullatore, noratore e nullore e descrivi le due configurazioni tipiche.'
+    en: '**Nullor: properties and configurations.** Define nullator, norator and nullor and describe the two typical configurations.'
+  back:
+    it: |-
+      **Risposta modello.** Il nullatore è un bipolo con tensione e corrente nulle, il noratore ha tensione e corrente qualsiasi. Il nullore è formato da nullatore e noratore, di solito nella versione sbilanciata. Come generatore di tensione si ha V = R Ig e il generatore pilota non eroga potenza; come generatore di corrente si ha I = Vg/R.
+
+      **Punti da toccare:**
+
+      - Nullatore: $v=0$ e $i=0$; noratore: $v$ e $i$ qualsiasi
+      - Il nullore è nullatore + noratore (versione sbilanciata)
+      - Generatore di tensione: $V=R\,I_g$, il pilota non eroga potenza
+      - Generatore di corrente: $I=V_g/R$
+    en: |-
+      **Model answer.** The nullator is a one-port with zero voltage and current, the norator has arbitrary voltage and current. The nullor is made of a nullator and a norator, usually in the unbalanced version. As a voltage source V = R Ig and the driving source delivers no power; as a current source I = Vg/R.
+
+      **Points to cover:**
+
+      - Nullator: $v=0$ and $i=0$; norator: arbitrary $v$ and $i$
+      - The nullor is nullator + norator (unbalanced version)
+      - Voltage source: $V=R\,I_g$, the driving source delivers no power
+      - Current source: $I=V_g/R$
+- id: orale-t-36
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.2
+    - nullore-e-amplificatore-operazionale.1
+  kind: orale
+  front:
+    it: "**Dall'amplificatore operazionale reale al nullore.** Spiega come dal modello lineare dell'amplificatore operazionale reale si arriva al nullore."
+    en: '**From the real operational amplifier to the nullor.** Explain how the nullor is obtained from the linear model of the real operational amplifier.'
+  back:
+    it: |-
+      **Risposta modello.** Il modello lineare ha una resistenza d'ingresso Ri, una d'uscita Ro e un generatore controllato v_o = A v_d. Gli ordini di grandezza sono A molto grande, Ri molto grande e Ro piccola. Nel limite ideale A e Ri tendono a infinito e Ro a zero, quindi v_d è nulla e le correnti d'ingresso sono nulle: è un nullore.
+
+      **Punti da toccare:**
+
+      - Modello: $R_i$, $R_o$ e generatore controllato $v_o=A\,v_d$
+      - Ordini di grandezza: $A$ molto grande, $R_i$ molto grande, $R_o$ piccola
+      - Limite ideale: $A\to\infty$, $R_i\to\infty$, $R_o\to0$
+      - Quindi $v_d=0$ e correnti d'ingresso nulle: nullore
+    en: |-
+      **Model answer.** The linear model has an input resistance Ri, an output resistance Ro and a controlled source v_o = A v_d. The orders of magnitude are A very large, Ri very large and Ro small. In the ideal limit A and Ri tend to infinity and Ro to zero, so v_d is zero and the input currents are zero: it is a nullor.
+
+      **Points to cover:**
+
+      - Model: $R_i$, $R_o$ and controlled source $v_o=A\,v_d$
+      - Orders of magnitude: $A$ very large, $R_i$ very large, $R_o$ small
+      - Ideal limit: $A\to\infty$, $R_i\to\infty$, $R_o\to0$
+      - Hence $v_d=0$ and zero input currents: a nullor
+- id: formula-nullore-def
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.1
+    - nullore-e-amplificatore-operazionale.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Nullore**. Uso: Op-amp ideale.'
+    en: 'Write the formula: **Nullor**. Use: Ideal op-amp.'
+  back:
+    it: |-
+      $$v_1=0,\quad i_1=0;\quad v_2,\,i_2\ \text{qualsiasi}$$
+
+      Porta 1 nullatore, porta 2 noratore
+    en: |-
+      $$v_1=0,\quad i_1=0;\quad v_2,\,i_2\ \text{qualsiasi}$$
+
+      Port 1 nullator, port 2 norator
+- id: formula-opamp-reale
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.2
+  kind: formula
+  front:
+    it: "Scrivi la formula: **Amplificatore operazionale lineare**. Uso: Dal reale all'ideale."
+    en: 'Write the formula: **Linear operational amplifier**. Use: From the real to the ideal amplifier.'
+  back:
+    it: |-
+      $$v_o=A\,(v_+-v_-),\quad A\in[10^5,10^8]$$
+
+      A guadagno differenziale
+    en: |-
+      $$v_o=A\,(v_+-v_-),\quad A\in[10^5,10^8]$$
+
+      A differential gain
+- id: formula-invertente
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Op-amp invertente**. Uso: Amplificazione con inversione.'
+    en: 'Write the formula: **Inverting op-amp**. Use: Amplification with inversion.'
+  back:
+    it: |-
+      $$v_o=-\frac{R_2}{R_1}\,V_g$$
+
+      R_1 ingresso, R_2 retroazione
+    en: |-
+      $$v_o=-\frac{R_2}{R_1}\,V_g$$
+
+      R_1 input, R_2 feedback
+- id: formula-sommatore
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Sommatore invertente**. Uso: Somma pesata.'
+    en: 'Write the formula: **Inverting summer**. Use: Weighted sum.'
+  back:
+    it: |-
+      $$v_o=-R_0\left(\frac{V_{g1}}{R_1}+\frac{V_{g2}}{R_2}+\frac{V_{g3}}{R_3}\right)$$
+
+      R_0 retroazione
+    en: |-
+      $$v_o=-R_0\left(\frac{V_{g1}}{R_1}+\frac{V_{g2}}{R_2}+\frac{V_{g3}}{R_3}\right)$$
+
+      R_0 feedback
+- id: formula-non-invertente
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Op-amp non invertente**. Uso: Guadagno ≥ 1.'
+    en: 'Write the formula: **Non-inverting op-amp**. Use: Gain ≥ 1.'
+  back:
+    it: |-
+      $$v_o=\left(1+\frac{R_2}{R_1}\right)V_g$$
+
+      R₁ verso massa, R₂ in retroazione [Ω]
+    en: |-
+      $$v_o=\left(1+\frac{R_2}{R_1}\right)V_g$$
+
+      R₁ to ground, R₂ in feedback [Ω]
+- id: formula-inseguitore
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Inseguitore (buffer)**. Uso: Disaccoppiamento.'
+    en: 'Write the formula: **Voltage follower (buffer)**. Use: Decoupling.'
+  back:
+    it: |-
+      $$v_o=V_g$$
+
+      Impedenza d'ingresso ∞, d'uscita 0
+    en: |-
+      $$v_o=V_g$$
+
+      Input impedance ∞, output impedance 0
+- id: formula-differenziale
+  topic: nullore-e-amplificatore-operazionale
+  objectives:
+    - nullore-e-amplificatore-operazionale.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Amplificatore differenziale**. Uso: Differenza di segnali.'
+    en: 'Write the formula: **Difference amplifier**. Use: Difference of signals.'
+  back:
+    it: |-
+      $$v_o=\frac{R_2}{R_1}\,(V_{g2}-V_{g1})$$
+
+      Con rapporti R uguali sui due rami
+    en: |-
+      $$v_o=\frac{R_2}{R_1}\,(V_{g2}-V_{g1})$$
+
+      With equal resistor ratios on the two branches

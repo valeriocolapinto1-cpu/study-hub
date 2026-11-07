@@ -1,0 +1,124 @@
+---
+course: teoria-circuiti
+topic: circuiti-risonanti
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="circuiti-risonanti-intuizione-1">
+
+In an RLC circuit, inductor and capacitor exchange energy like a spring and a mass. At the resonant frequency their reactances cancel each other and the circuit responds at its maximum: the smaller the resistance, the "sharper" and higher the resonance.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="circuiti-risonanti-teoria-1">
+
+**Series RLC.** $Z=R+j(\omega L-1/(\omega C))$. At **resonance** $\omega_0=1/\sqrt{LC}$ the reactance is zero, $|Z|$ is minimum and equal to $R$. Quality factor $Q=\dfrac{\omega_0L}{R}=\dfrac{1}{\omega_0RC}$; $3\,\mathrm{dB}$ bandwidth $B=\omega_0/Q=R/L$. At resonance the voltage across $L$ and $C$ is $Q$ times the source voltage.
+
+</div>
+
+<div data-note-id="circuiti-risonanti-teoria-2">
+
+**Parallel RLC.** $Y=G+j(\omega C-1/(\omega L))$: at resonance the admittance is minimum and the impedance maximum ($=R$). $Q=\dfrac{R}{\omega_0L}=\omega_0RC$, $B=\omega_0/Q=1/(RC)$. It is the dual of the series case.
+
+</div>
+
+<Figure caption="Series RLC circuit with a source: R, L and C in series" num="1" id="fig-1">
+  <Circuit
+    netlist={{
+      elements: [
+        { type: 'V', id: 'V', a: 'in', b: '0', dc: 1 },
+        { type: 'R', id: 'R', a: 'in', b: 'p', value: 1 },
+        { type: 'L', id: 'L', a: 'p', b: 'q', value: 1 },
+        { type: 'C', id: 'C', a: 'q', b: '0', value: 1 },
+      ],
+    }}
+    values={false}
+  />
+</Figure>
+
+<details class="proof" data-note-id="circuiti-risonanti-dimostrazione-1">
+<summary>Proof: 3 dB bandwidth of the series RLC</summary>
+
+**Statement.** The $3\,\mathrm{dB}$ bandwidth of the current is exactly $B=\omega_2-\omega_1=R/L=\omega_0/Q$.
+
+1. $|I|/|I|_{max}=1/\sqrt2$ when $|X|=R$, i.e. $\omega L-\dfrac1{\omega C}=\pm R$.
+2. Solving $\omega^2LC\mp\omega RC-1=0$: $\omega_{1,2}=\mp\dfrac{R}{2L}+\sqrt{\left(\dfrac{R}{2L}\right)^2+\dfrac1{LC}}$ (positive roots).
+3. Subtracting: $\omega_2-\omega_1=\dfrac{R}{L}=\dfrac{\omega_0}{Q}$ (the two positive roots differ by exactly $R/L$). $\square$
+
+</details>
+
+<Formula id="w0" />
+<Formula id="q-serie" />
+<Formula id="q-par" />
+<Formula id="banda" />
+<Formula id="z-ris-serie" />
+<Formula id="z-ris-par" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="circuiti-risonanti-esempio-1">
+
+### Numerical series RLC
+
+$R=1\,\Omega$, $L=1\,\mathrm H$, $C=\tfrac14\,\mathrm F$.
+
+**Solution.**
+
+1. $\omega_0=\dfrac{1}{\sqrt{1/4}}=2\,\mathrm{rad/s}$, $Q=\dfrac{2\cdot1}{1}=2$, $B=\dfrac{R}{L}=1\,\mathrm{rad/s}$ ($=\omega_0/Q$ ✓).
+
+</div>
+
+<div class="worked" data-note-id="circuiti-risonanti-esempio-2">
+
+### Parallel RLC
+
+$R=4\,\Omega$, $L=1\,\mathrm H$, $C=1\,\mathrm F$.
+
+**Solution.**
+
+1. $\omega_0=1$, $Q=\dfrac{R}{\omega_0L}=4$, $B=\dfrac{1}{RC}=\tfrac14$.
+
+</div>
+
+<div class="worked" data-note-id="circuiti-risonanti-esempio-3">
+
+### Overvoltage
+
+Series circuit with $Q=10$ fed by $1\,\mathrm V$.
+
+**Solution.**
+
+1. At resonance $|V_C|=|V_L|=Q\cdot1=10\,\mathrm V$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="circuiti-risonanti-errore-1">
+
+- **Wrong:** Using $Q=\omega_0L/R$ for the parallel circuit as well.
+- **Right:** In the parallel circuit $Q=R/(\omega_0L)=\omega_0RC$.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="circuiti-risonanti-esame-1">
+
+Series and parallel resonant circuits, quality factor and bandwidth: 4-7-2000, 25-10-2001, 25-9-2003, 7-7-2008 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

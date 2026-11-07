@@ -1,0 +1,137 @@
+---
+course: teoria-circuiti
+topic: teorema-di-thevenin
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="teorema-di-thevenin-intuizione-1">
+
+Seen from two terminals, a linear circuit, however complicated, behaves like a real battery: an "open-circuit" voltage and an internal resistance. All the internal complexity boils down to two numbers, which is why Thévenin is the heart of the analysis exercise.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teorema-di-thevenin-teoria-1">
+
+**Thévenin's theorem.** A linear one-port (not coupled with the load) is equivalent, as far as the connected load is concerned, to an ideal voltage source $V_{th}$ in series with an impedance $Z_{th}$: $V_{th}$ is the open-circuit voltage; $Z_{th}$ is the impedance seen at the terminals with the _independent_ sources switched off (voltage → short, current → open), or $V_{th}/I_{sc}$. With controlled sources, $Z_{th}$ is found with a test source ($V/I$), leaving the controlled sources in place.
+
+</div>
+
+<div data-note-id="teorema-di-thevenin-teoria-2">
+
+**When it does not apply.** The theorem does not hold if the one-port contains nonlinear elements, or if there is coupling between the one-port and the load (cross controls). For an ideal current source $Z_{th}=\infty$: only Norton exists.
+
+</div>
+
+<Figure
+  caption="A one-port at terminals A and B and its Thévenin equivalent: source V_th in series with Z_th"
+  num="1"
+  id="fig-1"
+>
+  <Circuit
+    netlist={{
+      elements: [
+        { type: 'V', id: 'Vth', a: 'in', b: '0', dc: 1 },
+        { type: 'R', id: 'Zth', a: 'in', b: 'A', value: 1 },
+      ],
+      ports: [{ id: 'AB', plus: 'A', minus: '0', label: 'A–B' }],
+    }}
+    values={false}
+  />
+</Figure>
+
+<details class="proof" data-note-id="teorema-di-thevenin-dimostrazione-1">
+<summary>Proof: Thévenin's theorem</summary>
+
+**Statement.** For a linear one-port $\mathcal N$ with terminals $A$, $B$: $v=V_{th}-Z_{th}\,i$ (with $i$ entering the load).
+
+1. Connect any load to the one-port; by the substitution theorem it is replaced by a current source $i$ (the current leaving the one-port).
+2. The circuit is linear: by superposition the terminal voltage $v$ is the sum of two contributions.
+3. First contribution: internal sources on and current source $i$ off (open circuit): it is the open-circuit voltage $V_{th}$.
+4. Second contribution: internal independent sources off and only the source $i$ on: by linearity it is proportional to $i$, $-Z_{th}\,i$, with $Z_{th}$ the impedance seen from the terminals with independent sources off.
+5. $v=V_{th}-Z_{th}i$ is the characteristic of a source $V_{th}$ in series with $Z_{th}$. $\square$
+
+</details>
+
+<Formula id="th-vth" />
+<Formula id="th-zth" />
+<Formula id="th-eq" />
+<Formula id="th-prova" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="teorema-di-thevenin-esempio-1">
+
+### Divider
+
+$12\,\mathrm V$ in series with $R_1=2\,\Omega$, then $R_2=4\,\Omega$ to ground; port across $R_2$.
+
+**Solution.**
+
+1. $V_{th}=12\cdot\dfrac46=8\,\mathrm V$, $R_{th}=2\parallel4=\dfrac43\,\Omega$.
+
+</div>
+
+<div class="worked" data-note-id="teorema-di-thevenin-esempio-2">
+
+### With a controlled source
+
+$V_g=4\,\mathrm V$, $R_1=2\,\Omega$ between $a$ and $o$; a VCCS draws the current $i=\tfrac12v_o$ from $o$ to ground. Port at $o$.
+
+**Solution.**
+
+1. The VCCS behaves as a $2\,\Omega$ resistor to ground and _is not switched off_.
+2. $V_{th}=4\cdot\dfrac{2}{2+2}=2\,\mathrm V$.
+3. Test source of $1\,\mathrm A$ into $o$ (with $V_g$ shorted): $v_o=1/(\tfrac12+\tfrac12)=1\,\mathrm V$, $R_{th}=1\,\Omega$.
+
+</div>
+
+<div class="worked" data-note-id="teorema-di-thevenin-esempio-3">
+
+### Check with a short circuit
+
+Same example: short-circuit current.
+
+**Solution.**
+
+1. With $o$ shorted ($v_o=0$) the VCCS draws nothing: $I_{sc}=4/2=2\,\mathrm A$.
+2. $V_{th}/R_{th}=2/1=2$ ✓.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teorema-di-thevenin-errore-1">
+
+- **Wrong:** Switching off the controlled sources as well to find $R_{th}$.
+- **Right:** Only the independent sources are switched off; the controlled ones stay and the test source is used.
+
+</div>
+
+<div data-note-id="teorema-di-thevenin-errore-2">
+
+- **Wrong:** Applying Thévenin to a nonlinear one-port.
+- **Right:** Linearity is required.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="teorema-di-thevenin-esame-1">
+
+Thévenin: statement, proof, conditions, an example where it does not apply: 4-7-2000, 13-2-2002, 29-4-2002 (L–Z), 30-10-2002, 24-4-2009 B; in the 2015–2024 exercises it appears in 9 cases out of 14 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

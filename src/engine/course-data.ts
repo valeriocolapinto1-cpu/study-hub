@@ -22,6 +22,8 @@ export interface TopicInfo {
 
 export interface AnswerItemData {
   label: string;
+  /** Etichetta resa in HTML (matematica KaTeX), se contiene markup. */
+  labelHtml?: string;
   value: number | string;
   unit?: string;
   tol?: number;
@@ -31,6 +33,8 @@ export interface AnswerItemData {
 
 export interface ChoiceData {
   html: string;
+  /** Testo semplice per il nome accessibile (le scelte di sole formule non ne hanno uno). */
+  label?: string;
   correct: boolean;
   explanationHtml?: string;
 }
@@ -58,6 +62,11 @@ export interface ExerciseData {
   choices?: ChoiceData[];
   /** Mostrato in italiano perché manca la traduzione. */
   fallback?: boolean;
+  /**
+   * Generati: seme della variante già resa a build-time nei campi sopra. L'isola la mostra
+   * senza scaricare generatori e KaTeX finché non si chiede una nuova variante.
+   */
+  pregeneratedSeed?: number;
 }
 
 export interface CardData {

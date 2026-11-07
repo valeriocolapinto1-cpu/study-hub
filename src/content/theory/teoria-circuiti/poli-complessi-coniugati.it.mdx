@@ -1,0 +1,100 @@
+---
+course: teoria-circuiti
+topic: poli-complessi-coniugati
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="poli-complessi-coniugati-intuizione-1">
+
+Due poli complessi coniugati sono la firma di un'oscillazione: la parte immaginaria dà la pulsazione, la parte reale dice se l'ampiezza si spegne, resta costante o cresce. Scrivere il denominatore come $(s+\alpha)^2+\omega^2$ rende visibili entrambe.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="poli-complessi-coniugati-teoria-1">
+
+Poli $-\alpha\pm j\omega$ compaiono in coppie coniugate per coefficienti reali. Si scrive il denominatore come $(s+\alpha)^2+\omega^2$ e il numeratore come $a(s+\alpha)+c$:
+
+$$
+\mathcal L^{-1}\left\{\frac{as+b}{(s+\alpha)^2+\omega^2}\right\}=e^{-\alpha t}\left[a\cos\omega t+\frac{b-a\alpha}{\omega}\sin\omega t\right].
+$$
+
+</div>
+
+<div data-note-id="poli-complessi-coniugati-teoria-2">
+
+$\alpha>0$: oscillazione smorzata; $\alpha=0$: oscillazione permanente (marginale); $\alpha<0$: crescente (instabile).
+
+</div>
+
+<Formula id="complessi-antitr" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="poli-complessi-coniugati-esempio-1">
+
+### Poli immaginari puri
+
+$F(s)=\dfrac{2s+6}{s^2+9}$.
+
+**Soluzione.**
+
+1. $\alpha=0$, $\omega=3$, $a=2$, $b=6$: $f=2\cos3t+2\sin3t$.
+
+</div>
+
+<div class="worked" data-note-id="poli-complessi-coniugati-esempio-2">
+
+### Poli con parte reale
+
+$F(s)=\dfrac{s+3}{s^2+2s+5}$.
+
+**Soluzione.**
+
+1. $(s+1)^2+4$: $\alpha=1$, $\omega=2$, $a=1$, $b=3$.
+2. $f=e^{-t}\left[\cos2t+\dfrac{3-1}{2}\sin2t\right]=e^{-t}(\cos2t+\sin2t)$.
+
+</div>
+
+<div class="worked" data-note-id="poli-complessi-coniugati-esempio-3">
+
+### Ampiezza e fase
+
+Scrivi $e^{-t}(\cos2t+\sin2t)$ in ampiezza-fase.
+
+**Soluzione.**
+
+1. $\cos2t+\sin2t=\sqrt2\cos(2t-45^\circ)$.
+2. $f=\sqrt2e^{-t}\cos(2t-45^\circ)$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="poli-complessi-coniugati-errore-1">
+
+- **Sbagliato:** Scomporre $s^2+2s+5$ in fattori reali.
+- **Corretto:** Ha radici complesse: si usa il completamento del quadrato.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="poli-complessi-coniugati-esame-1">
+
+Antitrasformate con poli complessi coniugati: errore tipico elencato per l'esercizio d'analisi <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

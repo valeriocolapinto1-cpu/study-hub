@@ -1,0 +1,103 @@
+---
+course: teoria-circuiti
+topic: sovrapposizione-frequenze-diverse
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="sovrapposizione-frequenze-diverse-intuizione-1">
+
+Un fasore ha senso solo insieme alla sua frequenza: due fasori a frequenze diverse sono come due grandezze espresse in unità diverse, non si sommano. Si risolve il circuito una volta per ogni frequenza, poi si sommano le risposte nel tempo, dove tutto è di nuovo confrontabile.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="sovrapposizione-frequenze-diverse-teoria-1">
+
+In un circuito lineare con più generatori a frequenze diverse (la continua è frequenza zero) la risposta è la somma delle risposte a ciascun generatore, ciascuna calcolata con il proprio metodo: continua con $C$ aperto e $L$ corto, sinusoidale con i fasori a quella $\omega$.
+
+</div>
+
+<div data-note-id="sovrapposizione-frequenze-diverse-teoria-2">
+
+Mai sommare fasori di frequenze diverse: sono numeri associati a $e^{j\omega_kt}$ diversi. La somma si fa sulle espressioni nel tempo.
+
+</div>
+
+<div data-note-id="sovrapposizione-frequenze-diverse-teoria-3">
+
+**Condizione iniziale nel caso misto.** $x(0^-)=x_{dc}+\sum_k\mathrm{Re}\{X_k\}$ (il valore a $t=0$ di ogni termine $\mathrm{Re}\{X_ke^{j\omega_kt}\}$ è $\mathrm{Re}\{X_k\}$).
+
+</div>
+
+<Formula id="sovrapposizione" />
+<Formula id="cond-iniz-mista" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="sovrapposizione-frequenze-diverse-esempio-1">
+
+### Continua più sinusoidale
+
+RC serie ($R=C=1$), $v_g=4+\cos t$ per $t<0$. Trova $v_C(t)$ per $t<0$ e $v_C(0^-)$.
+
+**Soluzione.**
+
+1. Continua: $v_C^{dc}=4$.
+2. Sinusoidale ($\omega=1$): $\tfrac12\cos t+\tfrac12\sin t$.
+3. $v_C(t)=4+\tfrac12\cos t+\tfrac12\sin t$; $v_C(0^-)=4+\tfrac12=\tfrac92$.
+
+</div>
+
+<div class="worked" data-note-id="sovrapposizione-frequenze-diverse-esempio-2">
+
+### Due sinusoidi
+
+Condizione iniziale per $v_C=\tfrac12\cos t+\tfrac12\sin t+\tfrac15\cos2t+\tfrac25\sin2t$.
+
+**Soluzione.**
+
+1. Valore a $t=0$: $\tfrac12+\tfrac15=\tfrac7{10}$ (i seni valgono $0$).
+
+</div>
+
+<div class="worked" data-note-id="sovrapposizione-frequenze-diverse-esempio-3">
+
+### Errore tipico
+
+Un allievo somma i moduli: $|X_1|+|X_2|$ come ampiezza totale. Perché è sbagliato?
+
+**Soluzione.**
+
+1. Le due sinusoidi hanno frequenze diverse: l'ampiezza totale non è la somma dei moduli: l'espressione nel tempo è la somma delle due sinusoidi. Il valore a $t=0$ è la somma dei valori istantanei.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="sovrapposizione-frequenze-diverse-errore-1">
+
+- **Sbagliato:** Usare il modulo del fasore come condizione iniziale.
+- **Corretto:** Serve il valore all'istante $t=0$: la parte reale del fasore.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="sovrapposizione-frequenze-diverse-esame-1">
+
+Ingresso misto continua + sinusoidale: 1 caso su 14 negli esercizi 2015–2024 <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

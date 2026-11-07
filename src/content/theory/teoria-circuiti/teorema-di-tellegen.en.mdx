@@ -1,0 +1,100 @@
+---
+course: teoria-circuiti
+topic: teorema-di-tellegen
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="teorema-di-tellegen-intuizione-1">
+
+Tellegen says that, in any circuit, all the power supplied by someone is absorbed by someone else. But it says more: the result still holds when "mixing" voltages of one circuit with currents of another having the same graph, because it depends only on how the branches are connected.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teorema-di-tellegen-teoria-1">
+
+**Tellegen's theorem.** Given a directed graph, let $\mathbf v$ be a voltage vector satisfying KVL and $\mathbf i$ a current vector satisfying KCL (with consistent directions, e.g. the passive sign convention). Then
+
+$$
+\mathbf v^{\mathsf T}\mathbf i=\sum_{k=1}^{b}v_k\,i_k=0.
+$$
+
+</div>
+
+<div data-note-id="teorema-di-tellegen-teoria-2">
+
+The theorem depends _only on the topology_: $\mathbf v$ and $\mathbf i$ may belong to different circuits with the same graph, to different instants, etc. If they belong to the same circuit, it expresses **power conservation**: the sum of the powers absorbed by all the branches is zero.
+
+</div>
+
+<div data-note-id="teorema-di-tellegen-teoria-3">
+
+Geometrically: the voltage vector belongs to the subspace spanned by the columns of $A^{\mathsf T}$, the current vector to the kernel of $A$: the two subspaces are _orthogonal_.
+
+</div>
+
+<details class="proof" data-note-id="teorema-di-tellegen-dimostrazione-1">
+<summary>Proof: Tellegen's theorem</summary>
+
+1. KVL implies $\mathbf v=A^{\mathsf T}\mathbf e$ for a suitable vector of node voltages $\mathbf e$ (potentials with respect to the reference node).
+2. Then $\mathbf v^{\mathsf T}\mathbf i=(A^{\mathsf T}\mathbf e)^{\mathsf T}\mathbf i=\mathbf e^{\mathsf T}A\,\mathbf i$.
+3. By KCL $A\,\mathbf i=\mathbf0$, hence $\mathbf v^{\mathsf T}\mathbf i=0$. $\square$
+
+</details>
+
+<details class="proof" data-note-id="teorema-di-tellegen-dimostrazione-2">
+<summary>Proof: Orthogonality between the voltage and current spaces</summary>
+
+1. The space of admissible voltages is $\mathcal V=\{A^{\mathsf T}\mathbf e\}=\operatorname{Im}A^{\mathsf T}$; that of the currents is $\mathcal I=\ker A$.
+2. By linear algebra $\ker A=(\operatorname{Im}A^{\mathsf T})^{\perp}$: every admissible current is orthogonal to every admissible voltage, and the dimensions add up to $b$: $(n-1)+(b-n+1)=b$. $\square$
+
+</details>
+
+<Formula id="tellegen" />
+<Formula id="ortogonalita" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="teorema-di-tellegen-esempio-1">
+
+### Power balance
+
+A voltage source $V_g=10\,\mathrm{V}$ feeds $R_1=2\,\Omega$ and $R_2=3\,\Omega$ in series. Check Tellegen.
+
+**Solution.**
+
+1. $i=10/5=2\,\mathrm{A}$. $v_1=4\,\mathrm{V}$, $v_2=6\,\mathrm{V}$.
+2. Absorbed powers (passive convention): $R_1$: $8\,\mathrm{W}$, $R_2$: $12\,\mathrm{W}$; the source, with the passive convention, has $v=10$, $i=-2$: $-20\,\mathrm{W}$.
+3. Sum: $8+12-20=0$. ✓
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teorema-di-tellegen-errore-1">
+
+- **Wrong:** Adding "delivered" and "absorbed" powers with the same sign.
+- **Right:** Use a single convention (passive on every branch): the algebraic sum is zero.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="teorema-di-tellegen-esame-1">
+
+Tellegen and v–i orthogonality: 1-6-2000, 19-6-2002, 12-7-2007, 23-9-2008 <span class="badge badge--info">PAST EXAMS</span>. Proof required.
+
+</div>
+
+</Callout>

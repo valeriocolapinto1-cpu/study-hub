@@ -1,0 +1,25 @@
+id: circuiti-risonanti
+course: teoria-circuiti
+order: 40
+title:
+  it: Circuiti risonanti
+  en: Resonant circuits
+summary:
+  it: Risonanza, fattore di merito e banda dei circuiti RLC serie e parallelo, con sovratensioni e sovracorrenti.
+  en: Resonance, quality factor and bandwidth of series and parallel RLC circuits, with overvoltages and overcurrents.
+objectives:
+  - id: circuiti-risonanti.1
+    text:
+      it: Ricavare risonanza, $Q$ e banda di RLC serie e parallelo
+      en: Derive resonance, $Q$ and bandwidth of series and parallel RLC circuits
+  - id: circuiti-risonanti.2
+    text:
+      it: Dimostrare $B=\omega_0/Q$
+      en: Prove $B=\omega_0/Q$
+  - id: circuiti-risonanti.3
+    text:
+      it: Interpretare sovratensioni e sovracorrenti
+      en: Interpret overvoltages and overcurrents
+group:
+  it: V · Funzioni di rete e stabilità
+  en: V · Network functions and stability

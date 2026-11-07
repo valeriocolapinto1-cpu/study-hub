@@ -1,0 +1,89 @@
+- id: orale-t-08
+  topic: teorema-di-tellegen
+  objectives:
+    - teorema-di-tellegen.1
+    - teorema-di-tellegen.3
+  kind: orale
+  front:
+    it: '**Teorema di Tellegen: enunciato e dimostrazione.** Enuncia e dimostra il teorema di Tellegen.'
+    en: "**Tellegen's theorem: statement and proof.** State and prove Tellegen's theorem."
+  back:
+    it: |-
+      **Risposta modello.** Teorema: dati un vettore di tensioni v che soddisfa la KVL e un vettore di correnti i che soddisfa la KCL, definiti sullo stesso grafo, il prodotto scalare v^T i è nullo. Dimostrazione: la KVL implica v = A^T e con e tensioni di nodo; allora v^T i = e^T A i = 0 perché per la KCL A i = 0. Dipende solo dalla topologia.
+
+      **Punti da toccare:**
+
+      - Enunciato: $\mathbf v^{T}\mathbf i=0$ per $\mathbf v$ che soddisfa KVL e $\mathbf i$ che soddisfa KCL, stesso grafo
+      - Usa $\mathbf v=A^{T}\mathbf e$ (tensioni di nodo)
+      - Usa $A\mathbf i=0$ (KCL)
+      - Conclude $\mathbf e^{T}A\mathbf i=0$; dipende solo dalla topologia
+    en: |-
+      **Model answer.** Theorem: given a voltage vector v satisfying KVL and a current vector i satisfying KCL, defined on the same graph, the scalar product v^T i is zero. Proof: KVL implies v = A^T e with e the node voltages; then v^T i = e^T A i = 0 because by KCL A i = 0. It depends only on the topology.
+
+      **Points to cover:**
+
+      - Statement: $\mathbf v^{T}\mathbf i=0$ for $\mathbf v$ satisfying KVL and $\mathbf i$ satisfying KCL, same graph
+      - Uses $\mathbf v=A^{T}\mathbf e$ (node voltages)
+      - Uses $A\mathbf i=0$ (KCL)
+      - Concludes $\mathbf e^{T}A\mathbf i=0$; it depends only on the topology
+- id: orale-t-09
+  topic: teorema-di-tellegen
+  objectives:
+    - teorema-di-tellegen.2
+  kind: orale
+  front:
+    it: '**Ortogonalità tra tensioni e correnti.** Spiega in che senso il vettore delle tensioni di ramo e quello delle correnti sono ortogonali e quali conseguenze ha sulla potenza.'
+    en: '**Orthogonality between voltages and currents.** Explain in what sense the branch-voltage vector and the current vector are orthogonal and what this implies for power.'
+  back:
+    it: |-
+      **Risposta modello.** I vettori v delle tensioni ammissibili appartengono allo spazio immagine di A^T, quelli i delle correnti al nucleo di A. I due sottospazi sono ortogonali e le dimensioni (n-1) e (b-n+1) sommano a b. Quindi v^T i = 0 e la somma delle potenze assorbite è nulla: conservazione della potenza.
+
+      **Punti da toccare:**
+
+      - Le tensioni stanno in $\mathrm{Im}A^T$, le correnti in $\ker A$
+      - I due sottospazi sono ortogonali, con dimensioni $(n-1)$ e $(b-n+1)$ che sommano a $b$
+      - Conseguenza: somma delle potenze assorbite nulla (conservazione)
+    en: |-
+      **Model answer.** The admissible voltage vectors v belong to the image of A^T, the current vectors i to the kernel of A. The two subspaces are orthogonal and their dimensions (n-1) and (b-n+1) add up to b. Hence v^T i = 0 and the sum of the absorbed powers is zero: power conservation.
+
+      **Points to cover:**
+
+      - Voltages lie in $\mathrm{Im}A^T$, currents in $\ker A$
+      - The two subspaces are orthogonal, with dimensions $(n-1)$ and $(b-n+1)$ adding up to $b$
+      - Consequence: the sum of the absorbed powers is zero (conservation)
+- id: formula-tellegen
+  topic: teorema-di-tellegen
+  objectives:
+    - teorema-di-tellegen.1
+    - teorema-di-tellegen.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Teorema di Tellegen**. Uso: Bilanci di potenza, ortogonalità.'
+    en: "Write the formula: **Tellegen's theorem**. Use: Power balances, orthogonality."
+  back:
+    it: |-
+      $$\mathbf v^{\mathsf T}\mathbf i=\sum_k v_k i_k=0$$
+
+      v soddisfa KVL, i soddisfa KCL, stesso grafo
+    en: |-
+      $$\mathbf v^{\mathsf T}\mathbf i=\sum_k v_k i_k=0$$
+
+      v satisfies KVL, i satisfies KCL, same graph
+- id: formula-ortogonalita
+  topic: teorema-di-tellegen
+  objectives:
+    - teorema-di-tellegen.1
+    - teorema-di-tellegen.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Ortogonalità tensioni–correnti**. Uso: Dimostrazione di Tellegen.'
+    en: 'Write the formula: **Voltage–current orthogonality**. Use: Proof of Tellegen.'
+  back:
+    it: |-
+      $$\operatorname{Im}A^{\mathsf T}\perp\ker A$$
+
+      Im A^T: tensioni ammissibili; ker A: correnti ammissibili
+    en: |-
+      $$\operatorname{Im}A^{\mathsf T}\perp\ker A$$
+
+      Im Aᵀ: admissible voltages; ker A: admissible currents

@@ -1,0 +1,25 @@
+id: circuiti-primo-ordine
+course: teoria-circuiti
+order: 18
+title:
+  it: Circuiti del primo ordine con eccitazioni variabili
+  en: First-order circuits with time-varying excitations
+summary:
+  it: 'Circuiti con un solo elemento di memoria: costante di tempo, regola «valore iniziale, valore finale, costante di tempo», risposta libera e forzata.'
+  en: 'Circuits with a single memory element: time constant, the "initial value, final value, time constant" rule, zero-input and zero-state response.'
+objectives:
+  - id: circuiti-primo-ordine.1
+    text:
+      it: Risolvere un circuito del primo ordine con eccitazione costante o variabile
+      en: Solve a first-order circuit with constant or time-varying excitation
+  - id: circuiti-primo-ordine.2
+    text:
+      it: Scrivere risposta libera e forzata
+      en: Write the zero-input and zero-state responses
+  - id: circuiti-primo-ordine.3
+    text:
+      it: Calcolare la costante di tempo con $R_{eq}$
+      en: Compute the time constant from $R_{eq}$
+group:
+  it: III · Regime sinusoidale
+  en: III · Sinusoidal steady state

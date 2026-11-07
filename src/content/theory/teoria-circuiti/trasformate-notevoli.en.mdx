@@ -1,0 +1,123 @@
+---
+course: teoria-circuiti
+topic: trasformate-notevoli
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="trasformate-notevoli-intuizione-1">
+
+With a dozen transforms by heart and the properties you can rebuild almost everything you need. A "piecewise" signal is split into steps switched on and off at the right time: a delay in time becomes a factor $e^{-sT}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="trasformate-notevoli-teoria-1">
+
+| $x(t)$ ($t>0$)        | $X(s)$                      |
+| --------------------- | --------------------------- |
+| $\delta(t)$           | $1$                         |
+| $u_{-1}(t)$           | $1/s$                       |
+| $t$                   | $1/s^2$                     |
+| $t^n/n!$              | $1/s^{n+1}$                 |
+| $e^{-at}$             | $1/(s+a)$                   |
+| $te^{-at}$            | $1/(s+a)^2$                 |
+| $\cos\omega t$        | $s/(s^2+\omega^2)$          |
+| $\sin\omega t$        | $\omega/(s^2+\omega^2)$     |
+| $e^{-at}\cos\omega t$ | $(s+a)/((s+a)^2+\omega^2)$  |
+| $e^{-at}\sin\omega t$ | $\omega/((s+a)^2+\omega^2)$ |
+
+</div>
+
+<div data-note-id="trasformate-notevoli-teoria-2">
+
+A piecewise signal is written with delayed steps: the rectangular pulse $A[u_{-1}(t)-u_{-1}(t-T)]$ has transform $A\,\dfrac{1-e^{-sT}}{s}$.
+
+</div>
+
+<details class="proof" data-note-id="trasformate-notevoli-dimostrazione-1">
+<summary>Proof: Transform of $e^{-at}$ and of the cosine</summary>
+
+1. $\int_0^\infty e^{-at}e^{-st}dt=\left[-\dfrac{e^{-(s+a)t}}{s+a}\right]_0^\infty=\dfrac{1}{s+a}$ (for $\mathrm{Re}\,s>-a$).
+2. $\cos\omega t=\tfrac12(e^{j\omega t}+e^{-j\omega t})$: $\mathcal L=\tfrac12\left(\dfrac1{s-j\omega}+\dfrac1{s+j\omega}\right)=\dfrac{s}{s^2+\omega^2}$. $\square$
+
+</details>
+
+<Formula id="l-delta" />
+<Formula id="l-gradino" />
+<Formula id="l-rampa" />
+<Formula id="l-exp" />
+<Formula id="l-cos" />
+<Formula id="l-sin" />
+<Formula id="l-texp" />
+<Formula id="l-expcos" />
+<Formula id="l-expsin" />
+<Formula id="l-impulso-rett" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="trasformate-notevoli-esempio-1">
+
+### Linear combination
+
+$x(t)=3e^{-2t}+4\sin3t$.
+
+**Solution.**
+
+1. $X(s)=\dfrac{3}{s+2}+\dfrac{12}{s^2+9}$.
+
+</div>
+
+<div class="worked" data-note-id="trasformate-notevoli-esempio-2">
+
+### Rectangular pulse
+
+$x=3$ for $0<t<2$, zero elsewhere.
+
+**Solution.**
+
+1. $x=3[u_{-1}(t)-u_{-1}(t-2)]$, $X(s)=\dfrac{3(1-e^{-2s})}{s}$.
+
+</div>
+
+<div class="worked" data-note-id="trasformate-notevoli-esempio-3">
+
+### Truncated ramp
+
+$x=t$ for $0<t<1$, zero elsewhere.
+
+**Solution.**
+
+1. $t\,u_{-1}(t)-t\,u_{-1}(t-1)$ and $t\,u_{-1}(t-1)=(t-1)u_{-1}(t-1)+u_{-1}(t-1)$.
+2. $X(s)=\dfrac1{s^2}-e^{-s}\left(\dfrac1{s^2}+\dfrac1s\right)$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="trasformate-notevoli-errore-1">
+
+- **Wrong:** Transforming $\cos\omega t$ as $\omega/(s^2+\omega^2)$.
+- **Right:** The cosine gives $s/(s^2+\omega^2)$, the sine $\omega/(s^2+\omega^2)$.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="trasformate-notevoli-esame-1">
+
+Transform of a piecewise signal: 14-7-2000, 29-4-2002 (L–Z) <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

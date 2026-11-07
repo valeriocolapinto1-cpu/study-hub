@@ -1,0 +1,106 @@
+---
+course: teoria-circuiti
+topic: condizioni-iniziali-generatori
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="condizioni-iniziali-generatori-intuizione-1">
+
+Un condensatore carico è come un condensatore scarico con una piccola batteria in serie: l'energia accumulata prima di $t=0$ diventa un generatore nel circuito trasformato. Così la «memoria» del passato entra nel calcolo come una sorgente qualsiasi.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="condizioni-iniziali-generatori-teoria-1">
+
+**Condensatore.** $V=\dfrac1{sC}I+\dfrac{v_C(0^-)}{s}$: impedenza $1/(sC)$ in serie con un generatore di tensione $v_C(0^-)/s$; oppure $I=sCV-Cv_C(0^-)$: ammettenza $sC$ in parallelo con un generatore di corrente $Cv_C(0^-)$.
+
+</div>
+
+<div data-note-id="condizioni-iniziali-generatori-teoria-2">
+
+**Induttore.** $V=sLI-Li_L(0^-)$: impedenza $sL$ in serie con un generatore $-Li_L(0^-)$ (verso opposto alla caduta); oppure $I=\dfrac{V}{sL}+\dfrac{i_L(0^-)}{s}$: $sL$ in parallelo con un generatore di corrente $i_L(0^-)/s$.
+
+</div>
+
+<details class="proof" data-note-id="condizioni-iniziali-generatori-dimostrazione-1">
+<summary>Dimostrazione: Modelli di $L$ e $C$ con condizioni iniziali</summary>
+
+1. $C$: $i=C\,dv/dt\Rightarrow I=C[sV-v(0^-)]\Rightarrow V=\dfrac{I}{sC}+\dfrac{v(0^-)}{s}$.
+2. $L$: $v=L\,di/dt\Rightarrow V=L[sI-i(0^-)]=sLI-Li(0^-)$. $\square$
+
+</details>
+
+<Formula id="modello-c-serie" />
+<Formula id="modello-c-par" />
+<Formula id="modello-l-serie" />
+<Formula id="modello-l-par" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="condizioni-iniziali-generatori-esempio-1">
+
+### RL libera
+
+$R=4\,\Omega$, $L=2\,\mathrm H$, $i_L(0^-)=3\,\mathrm A$, generatori spenti. Trova $i_L(t)$.
+
+**Soluzione.**
+
+1. $(R+sL)I=Li_0\Rightarrow I=\dfrac{2\cdot3}{4+2s}=\dfrac{3}{s+2}$.
+2. $i_L=3e^{-2t}\,\mathrm A$ ($\tau=L/R=\tfrac12$ ✓).
+
+</div>
+
+<div class="worked" data-note-id="condizioni-iniziali-generatori-esempio-2">
+
+### RC libera
+
+$R=2$, $C=1$, $v_C(0^-)=4$.
+
+**Soluzione.**
+
+1. $V_C=\dfrac{4}{s+1/2}$, $v_C=4e^{-t/2}$.
+
+</div>
+
+<div class="worked" data-note-id="condizioni-iniziali-generatori-esempio-3">
+
+### Uscita su un resistore
+
+Stesso RC: tensione sul resistore dopo $t=0$.
+
+**Soluzione.**
+
+1. $v_R=-v_C$ (KVL, generatori spenti): $v_R=-4e^{-t/2}$ — a $t=0^+$ salta da $v_R(0^-)$ a $-4$ (la tensione sul resistore non è continua).
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="condizioni-iniziali-generatori-errore-1">
+
+- **Sbagliato:** Mettere il generatore $v_C(0^-)/s$ con polarità sbagliata.
+- **Corretto:** Dalla KVL: caduta su $1/(sC)$ più $v_C(0^-)/s$ uguale alla tensione ai morsetti.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="condizioni-iniziali-generatori-esame-1">
+
+Condizioni iniziali come generatori: passo 4 dell'esercizio d'analisi <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

@@ -1,0 +1,128 @@
+- id: q-vi-025
+  topic: connessioni-doppi-bipoli
+  objectives:
+    - connessioni-doppi-bipoli.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Connessione serie-serie di due doppi bipoli: la matrice risultante è:'
+    en: 'Series-series connection of two two-ports: the resulting matrix is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Le impedenze si sommano.
+        en: The impedances add.
+  choices:
+    - text:
+        it: $Z_a+Z_b$
+        en: $Z_a+Z_b$
+      correct: true
+    - text:
+        it: $Y_a+Y_b$
+        en: $Y_a+Y_b$
+      correct: false
+    - text:
+        it: $Z_aZ_b$
+        en: $Z_aZ_b$
+      correct: false
+    - text:
+        it: $T_aT_b$
+        en: $T_aT_b$
+      correct: false
+  origin: originale
+- id: q-vi-026
+  topic: connessioni-doppi-bipoli
+  objectives:
+    - connessioni-doppi-bipoli.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Connessione parallelo-parallelo: la matrice risultante è:'
+    en: 'Parallel-parallel connection: the resulting matrix is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Le ammettenze si sommano.
+        en: The admittances add.
+  choices:
+    - text:
+        it: $Y_a+Y_b$
+        en: $Y_a+Y_b$
+      correct: true
+    - text:
+        it: $Y_aY_b$
+        en: $Y_aY_b$
+      correct: false
+    - text:
+        it: $T_aT_b$
+        en: $T_aT_b$
+      correct: false
+    - text:
+        it: $Z_a+Z_b$
+        en: $Z_a+Z_b$
+      correct: false
+  origin: originale
+- id: q-vi-027
+  topic: connessioni-doppi-bipoli
+  objectives:
+    - connessioni-doppi-bipoli.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Connessione in cascata: la matrice risultante è:'
+    en: 'Cascade connection: the resulting matrix is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Si moltiplicano le matrici di trasmissione.
+        en: The transmission matrices are multiplied.
+  choices:
+    - text:
+        it: $T_a+T_b$
+        en: $T_a+T_b$
+      correct: false
+    - text:
+        it: $Z_a+Z_b$
+        en: $Z_a+Z_b$
+      correct: false
+    - text:
+        it: $Y_aY_b$
+        en: $Y_aY_b$
+      correct: false
+    - text:
+        it: $T_a\,T_b$
+        en: $T_a\,T_b$
+      correct: true
+  origin: originale
+- id: q-vi-044
+  topic: connessioni-doppi-bipoli
+  objectives:
+    - connessioni-doppi-bipoli.2
+  difficulty: 3
+  kind: static
+  statement:
+    it: Nella connessione in cascata si sommano le matrici di trasmissione.
+    en: In a cascade connection the transmission matrices are added.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Si moltiplicano.
+        en: They are multiplied.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale

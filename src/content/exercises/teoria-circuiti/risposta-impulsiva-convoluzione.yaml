@@ -1,0 +1,188 @@
+- id: gen-risposta-impulsiva
+  topic: risposta-impulsiva-convoluzione
+  objectives:
+    - risposta-impulsiva-convoluzione.2
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/risposta-impulsiva
+  origin: tipologia-appello
+- id: q-v-005
+  topic: risposta-impulsiva-convoluzione
+  objectives:
+    - risposta-impulsiva-convoluzione.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'La risposta impulsiva $h(t)$ è:'
+    en: 'The impulse response $h(t)$ is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $h(t)=\mathcal L^{-1}\{H\}$.
+        en: $h(t)=\mathcal L^{-1}\{H\}$.
+  choices:
+    - text:
+        it: $H(j\omega)$
+        en: $H(j\omega)$
+      correct: false
+    - text:
+        it: $\mathcal L\{H(s)\}$
+        en: $\mathcal L\{H(s)\}$
+      correct: false
+    - text:
+        it: $\mathcal L^{-1}\{H(s)\}$
+        en: $\mathcal L^{-1}\{H(s)\}$
+      correct: true
+    - text:
+        it: $dH/ds$
+        en: $dH/ds$
+      correct: false
+  origin: originale
+- id: q-v-006
+  topic: risposta-impulsiva-convoluzione
+  objectives:
+    - risposta-impulsiva-convoluzione.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'La risposta a un ingresso $x(t)$ (condizioni nulle) è:'
+    en: 'The response to an input $x(t)$ (zero initial conditions) is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Convoluzione.
+        en: Convolution.
+  choices:
+    - text:
+        it: $y=h*x$
+        en: $y=h*x$
+      correct: true
+    - text:
+        it: $y=h+x$
+        en: $y=h+x$
+      correct: false
+    - text:
+        it: $y=hx$
+        en: $y=hx$
+      correct: false
+    - text:
+        it: $y=h/x$
+        en: $y=h/x$
+      correct: false
+  origin: originale
+- id: q-v-007
+  topic: risposta-impulsiva-convoluzione
+  objectives:
+    - risposta-impulsiva-convoluzione.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "RC passa-basso con $\\tau=2$: $h(t)=$"
+    en: "RC low-pass with $\\tau=2$: $h(t)=$"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $H(s)=\dfrac{1/\tau}{s+1/\tau}$.
+        en: $H(s)=\dfrac{1/\tau}{s+1/\tau}$.
+  choices:
+    - text:
+        it: $\tfrac12e^{-t/2}u_{-1}(t)$
+        en: $\tfrac12e^{-t/2}u_{-1}(t)$
+      correct: true
+    - text:
+        it: $2e^{-2t}u_{-1}(t)$
+        en: $2e^{-2t}u_{-1}(t)$
+      correct: false
+    - text:
+        it: $\tfrac12e^{-2t}u_{-1}(t)$
+        en: $\tfrac12e^{-2t}u_{-1}(t)$
+      correct: false
+    - text:
+        it: $e^{-t/2}u_{-1}(t)$
+        en: $e^{-t/2}u_{-1}(t)$
+      correct: false
+  origin: originale
+- id: q-v-008
+  topic: risposta-impulsiva-convoluzione
+  objectives:
+    - risposta-impulsiva-convoluzione.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: La risposta al gradino è l'integrale della risposta impulsiva.
+    en: The step response is the integral of the impulse response.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $y_{gr}(t)=\int_0^th(\tau)d\tau$.
+        en: $y_{st}(t)=\int_0^th(\tau)d\tau$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-v-009
+  topic: risposta-impulsiva-convoluzione
+  objectives:
+    - risposta-impulsiva-convoluzione.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: $h(t)=0$ per $t<0$ è conseguenza della causalità.
+    en: $h(t)=0$ for $t<0$ is a consequence of causality.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Un sistema causale non risponde prima di essere sollecitato.
+        en: A causal system does not respond before being excited.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-v-045
+  topic: risposta-impulsiva-convoluzione
+  objectives:
+    - risposta-impulsiva-convoluzione.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: La risposta impulsiva di un sistema causale è diversa da zero per $t<0$.
+    en: The impulse response of a causal system is non-zero for $t<0$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $h(t)=0$ per $t<0$.
+        en: $h(t)=0$ for $t<0$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale

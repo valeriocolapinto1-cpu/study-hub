@@ -1,0 +1,63 @@
+- id: orale-t-43
+  topic: modellamento-costanti-concentrate
+  objectives:
+    - modellamento-costanti-concentrate.2
+    - modellamento-costanti-concentrate.1
+  kind: orale
+  front:
+    it: '**Costanti concentrate.** Quando è lecito il modello a costanti concentrate? Che cosa cambia altrimenti?'
+    en: '**Lumped parameters.** When is the lumped-parameter model legitimate? What changes otherwise?'
+  back:
+    it: |-
+      **Risposta modello.** Il modello a costanti concentrate è lecito quando le dimensioni del circuito sono molto minori della lunghezza d'onda, cioè i tempi di propagazione sono trascurabili rispetto al periodo. In tal caso valgono le leggi di Kirchhoff. Altrimenti servono modelli a parametri distribuiti, come le linee di trasmissione.
+
+      **Punti da toccare:**
+
+      - Dimensioni molto minori della lunghezza d'onda ($L\ll\lambda$)
+      - Tempi di propagazione trascurabili rispetto al periodo
+      - Valgono le leggi di Kirchhoff
+      - Altrimenti servono parametri distribuiti (linee)
+    en: |-
+      **Model answer.** The lumped-parameter model is legitimate when the size of the circuit is much smaller than the wavelength, i.e. the propagation times are negligible compared with the period. In that case Kirchhoff's laws hold. Otherwise distributed-parameter models are needed, such as transmission lines.
+
+      **Points to cover:**
+
+      - Size much smaller than the wavelength ($L\ll\lambda$)
+      - Propagation times negligible compared with the period
+      - Kirchhoff's laws hold
+      - Otherwise distributed parameters are needed (lines)
+- id: formula-lambda
+  topic: modellamento-costanti-concentrate
+  objectives:
+    - modellamento-costanti-concentrate.1
+    - modellamento-costanti-concentrate.2
+  kind: formula
+  front:
+    it: "Scrivi la formula: **Lunghezza d'onda**. Uso: Verifica del modello a costanti concentrate: serve L ≪ λ."
+    en: 'Write the formula: **Wavelength**. Use: Checking the lumped-parameter model: L ≪ λ is required.'
+  back:
+    it: |-
+      $$\lambda=\frac{c}{f}$$
+
+      λ lunghezza d'onda [m]; c ≈ 3·10⁸ m/s; f frequenza [Hz]
+    en: |-
+      $$\lambda=\frac{c}{f}$$
+
+      λ wavelength [m]; c ≈ 3·10⁸ m/s; f frequency [Hz]
+- id: formula-concentrate
+  topic: modellamento-costanti-concentrate
+  objectives:
+    - modellamento-costanti-concentrate.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Condizione di validità delle costanti concentrate**. Uso: Prima di usare KCL/KVL.'
+    en: 'Write the formula: **Validity condition of lumped parameters**. Use: Before using KCL/KVL.'
+  back:
+    it: |-
+      $$L\ll\lambda,\qquad \frac{L}{c}\ll T=\frac1f$$
+
+      L dimensione massima del circuito [m]; T periodo [s]
+    en: |-
+      $$L\ll\lambda,\qquad \frac{L}{c}\ll T=\frac1f$$
+
+      L largest dimension of the circuit [m]; T period [s]

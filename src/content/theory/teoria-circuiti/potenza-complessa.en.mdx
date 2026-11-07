@@ -1,0 +1,114 @@
+---
+course: teoria-circuiti
+topic: potenza-complessa
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="potenza-complessa-intuizione-1">
+
+In sinusoidal steady state energy comes and goes: part of it is really consumed (active power, which heats and does work), another part bounces back and forth between source, inductors and capacitors without being used (reactive power). Complex power puts both in a single number.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="potenza-complessa-teoria-1">
+
+With $v=V_m\cos\omega t$, $i=I_m\cos(\omega t-\varphi)$ the instantaneous power is $p=\tfrac12V_mI_m[\cos\varphi+\cos(2\omega t-\varphi)]$. The **active power** is its average: $P=\tfrac12V_mI_m\cos\varphi=VI\cos\varphi$ (RMS values $V=V_m/\sqrt2$). The **reactive power** is $Q=VI\sin\varphi$, the **complex power** $S=\dot V\dot I^*=P+jQ$, the **apparent power** $|S|=VI$. The **power factor** is $\cos\varphi=P/|S|$.
+
+</div>
+
+<div data-note-id="potenza-complessa-teoria-2">
+
+For a one-port with impedance $Z=R+jX$ and RMS current $I$: $P=RI^2$, $Q=XI^2$. For $R$: $Q=0$; for $L$: $Q=\omega LI^2>0$; for $C$: $Q=-I^2/(\omega C)<0$ (passive sign convention).
+
+</div>
+
+<details class="proof" data-note-id="potenza-complessa-dimostrazione-1">
+<summary>Proof: Relation between reactive power and average energies</summary>
+
+**Statement.** In sinusoidal steady state, for a circuit with inductors and capacitors, $Q=2\omega(W_L-W_C)$, where $W_L$, $W_C$ are the sums of the average stored energies.
+
+1. Inductor: $Q_L=\omega LI^2$ (RMS). The instantaneous energy $\tfrac12Li^2$ has average $W_L=\tfrac12L\,\overline{i^2}=\tfrac12LI^2$, hence $Q_L=2\omega W_L$.
+2. Capacitor: $Q_C=-\dfrac{I^2}{\omega C}=-\omega CV_C^2$ and $W_C=\tfrac12CV_C^2$ (RMS), hence $Q_C=-2\omega W_C$.
+3. Resistor: $Q_R=0$ and no stored energy.
+4. By conservation of complex power (Tellegen) the total reactive power absorbed by the elements is zero if the source is included; the reactive power delivered by the sources is the sum $\sum Q_k=2\omega(W_L-W_C)$ over the passive elements. $\square$
+
+</details>
+
+<Formula id="p-picco" />
+<Formula id="p-eff" />
+<Formula id="q-eff" />
+<Formula id="s-compl" />
+<Formula id="cosphi" />
+<Formula id="p-ri2" />
+<Formula id="q-xi2" />
+<Formula id="q-energia" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="potenza-complessa-esempio-1">
+
+### Powers from $v(t)$ and $i(t)$
+
+$v=20\cos\omega t$, $i=4\cos(\omega t-\varphi)$, $\cos\varphi=3/5$ ($\sin\varphi=4/5$). Find $P$, $Q$, $|S|$.
+
+**Solution.**
+
+1. $\tfrac12V_mI_m=40$.
+2. $P=40\cdot\tfrac35=24\,\mathrm W$, $Q=40\cdot\tfrac45=32\,\mathrm{var}$, $|S|=40\,\mathrm{VA}$ (check: $\sqrt{24^2+32^2}=40$).
+
+</div>
+
+<div class="worked" data-note-id="potenza-complessa-esempio-2">
+
+### From $Z$ to the powers
+
+$Z=3+4j\,\Omega$, RMS current $I=2\,\mathrm A$.
+
+**Solution.**
+
+1. $P=RI^2=12\,\mathrm W$, $Q=XI^2=16\,\mathrm{var}$, $|S|=20\,\mathrm{VA}$, $\cos\varphi=0.6$.
+
+</div>
+
+<div class="worked" data-note-id="potenza-complessa-esempio-3">
+
+### Power factor
+
+$P=300\,\mathrm W$, $Q=400\,\mathrm{var}$.
+
+**Solution.**
+
+1. $|S|=500\,\mathrm{VA}$, $\cos\varphi=0.6$ (inductive load).
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="potenza-complessa-errore-1">
+
+- **Wrong:** Using $P=V_mI_m\cos\varphi$ with peak values.
+- **Right:** With peak values the factor $\tfrac12$ is needed; with RMS values it is not.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="potenza-complessa-esame-1">
+
+Active, reactive, complex power, power factor; $Q\leftrightarrow$ average energy: 1-6-2000, 14-7-2000, 15-9-2000, 13-2-2001, 13-2-2002, 12-7-2005, 12-7-2007, 25-9-2007, 11-2-2008 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

@@ -1,0 +1,97 @@
+---
+course: teoria-circuiti
+topic: circuiti-dominio-laplace
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="circuiti-dominio-laplace-intuizione-1">
+
+In the Laplace domain a circuit with capacitors and inductors looks again like a purely resistive circuit: each element has its "generalised resistance" $Z(s)$. Solve it with dividers, nodes and meshes, and go back to the time domain only at the end.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="circuiti-dominio-laplace-teoria-1">
+
+In the $s$ domain the elements become $R$, $sL$, $\dfrac1{sC}$, with the initial conditions as sources (IV-07). KCL and KVL still hold; the circuit is a "resistive" circuit with impedances $Z(s)$ that can be solved with dividers, nodes and meshes.
+
+</div>
+
+<div data-note-id="circuiti-dominio-laplace-teoria-2">
+
+A constant source $V_0u_{-1}(t)$ becomes $V_0/s$; a sinusoidal source $V_m\cos\omega t$ becomes $V_ms/(s^2+\omega^2)$.
+
+</div>
+
+<Formula id="imped-s" />
+<Formula id="l-cos-gen" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="circuiti-dominio-laplace-esempio-1">
+
+### RC with a step and an initial condition
+
+$R=2$, $C=\tfrac12$, $v_g=10u_{-1}(t)$, $v_C(0^-)=2$.
+
+**Solution.**
+
+1. Series model: $I=\dfrac{10/s-2/s}{2+2/s}=\dfrac{4}{s+1}$.
+2. $V_C=\dfrac{I}{sC}+\dfrac2s=\dfrac{8}{s(s+1)}+\dfrac2s=\dfrac{10}{s}-\dfrac8{s+1}$.
+3. $v_C=10-8e^{-t}$ ✓ (same result as in III-01).
+
+</div>
+
+<div class="worked" data-note-id="circuiti-dominio-laplace-esempio-2">
+
+### Transfer function of an RC
+
+Output across the capacitor, $R=C=1$.
+
+**Solution.**
+
+1. Divider: $H(s)=\dfrac{1/s}{1+1/s}=\dfrac{1}{s+1}$.
+
+</div>
+
+<div class="worked" data-note-id="circuiti-dominio-laplace-esempio-3">
+
+### RL with a sinusoidal source
+
+$R=1$, $L=1$, $v_g=\cos t$, $i(0)=0$: find $I(s)$.
+
+**Solution.**
+
+1. $I=\dfrac{V_g}{R+sL}=\dfrac{s}{(s+1)(s^2+1)}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="circuiti-dominio-laplace-errore-1">
+
+- **Wrong:** Using $j\omega L$ instead of $sL$ in the transient.
+- **Right:** $s$ is the complex variable; $s=j\omega$ only for the steady state.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="circuiti-dominio-laplace-esame-1">
+
+The Laplace method for circuits with memory (initial conditions as sources) <span class="badge badge--success">OFFICIAL</span>.
+
+</div>
+
+</Callout>

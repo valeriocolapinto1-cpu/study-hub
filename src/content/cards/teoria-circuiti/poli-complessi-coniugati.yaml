@@ -1,0 +1,17 @@
+- id: formula-complessi-antitr
+  topic: poli-complessi-coniugati
+  objectives:
+    - poli-complessi-coniugati.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Poli complessi coniugati**. Uso: Antitrasformata con poli complessi coniugati.'
+    en: 'Write the formula: **Complex-conjugate poles**. Use: Inverse transform with complex-conjugate poles.'
+  back:
+    it: |-
+      $$\mathcal L^{-1}\left\{\frac{as+b}{(s+\alpha)^2+\omega^2}\right\}=e^{-\alpha t}\left[a\cos\omega t+\frac{b-a\alpha}{\omega}\sin\omega t\right]$$
+
+      α parte reale (smorzamento) [1/s]; ω pulsazione [rad/s]; a, b coefficienti del numeratore
+    en: |-
+      $$\mathcal L^{-1}\left\{\frac{as+b}{(s+\alpha)^2+\omega^2}\right\}=e^{-\alpha t}\left[a\cos\omega t+\frac{b-a\alpha}{\omega}\sin\omega t\right]$$
+
+      α real part (damping) [1/s]; ω angular frequency [rad/s]; a, b numerator coefficients

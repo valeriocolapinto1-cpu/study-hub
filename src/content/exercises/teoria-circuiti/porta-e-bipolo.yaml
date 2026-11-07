@@ -1,0 +1,128 @@
+- id: q-i-009
+  topic: porta-e-bipolo
+  objectives:
+    - porta-e-bipolo.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Con la convenzione degli utilizzatori la potenza $p=v\\,i$ è:"
+    en: "With the passive sign convention the power $p=v\\,i$ is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Corrente entrante nel morsetto $+$: $p=vi$ è assorbita.'
+        en: 'Current entering the $+$ terminal: $p=vi$ is absorbed.'
+  choices:
+    - text:
+        it: sempre nulla
+        en: always zero
+      correct: false
+    - text:
+        it: assorbita dal bipolo
+        en: absorbed by the one-port
+      correct: true
+    - text:
+        it: sempre positiva
+        en: always positive
+      correct: false
+    - text:
+        it: erogata dal bipolo
+        en: delivered by the one-port
+      correct: false
+  origin: originale
+- id: q-i-010
+  topic: porta-e-bipolo
+  objectives:
+    - porta-e-bipolo.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Un bipolo ha $v=12\\,\\mathrm V$, $i=-2\\,\\mathrm A$ (convenzione degli utilizzatori). Esso:"
+    en: "A one-port has $v=12\\,\\mathrm V$, $i=-2\\,\\mathrm A$ (passive sign convention). It:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $p_{ass}=vi=-24\,\mathrm W$, quindi eroga $24\,\mathrm W$.
+        en: $p_{abs}=vi=-24\,\mathrm W$, so it delivers $24\,\mathrm W$.
+  choices:
+    - text:
+        it: assorbe $24\,\mathrm W$
+        en: absorbs $24\,\mathrm W$
+      correct: false
+    - text:
+        it: non scambia potenza
+        en: exchanges no power
+      correct: false
+    - text:
+        it: eroga $24\,\mathrm W$
+        en: delivers $24\,\mathrm W$
+      correct: true
+    - text:
+        it: assorbe $6\,\mathrm W$
+        en: absorbs $6\,\mathrm W$
+      correct: false
+  origin: originale
+- id: q-i-011
+  topic: porta-e-bipolo
+  objectives:
+    - porta-e-bipolo.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Una porta è una coppia di morsetti per cui la corrente entrante in un morsetto è ___ quella uscente dall'altro.
+    en: A port is a pair of terminals for which the current entering one terminal is ___ the current leaving the other.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: È la definizione di porta.
+        en: This is the definition of a port.
+  choices:
+    - text:
+        it: indipendente da
+        en: independent of
+      correct: false
+    - text:
+        it: opposta a
+        en: opposite to
+      correct: false
+    - text:
+        it: uguale a
+        en: equal to
+      correct: true
+    - text:
+        it: doppia di
+        en: twice
+      correct: false
+  origin: originale
+- id: q-i-012
+  topic: porta-e-bipolo
+  objectives:
+    - porta-e-bipolo.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Un doppio bipolo ha quattro morsetti e due porte.
+    en: A two-port has four terminals and two ports.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Ogni porta è una coppia di morsetti.
+        en: Each port is a pair of terminals.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale

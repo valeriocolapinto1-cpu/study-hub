@@ -1,0 +1,25 @@
+id: serie-parallelo-partitori
+course: teoria-circuiti
+order: 15
+title:
+  it: Serie, parallelo e partitori
+  en: Series, parallel and dividers
+summary:
+  it: Resistenze equivalenti serie e parallelo, partitori di tensione e di corrente e loro condizioni di applicabilità.
+  en: Series and parallel equivalent resistances, voltage and current dividers and when they can be used.
+objectives:
+  - id: serie-parallelo-partitori.1
+    text:
+      it: Calcolare resistenze equivalenti serie e parallelo
+      en: Compute series and parallel equivalent resistances
+  - id: serie-parallelo-partitori.2
+    text:
+      it: Applicare i partitori di tensione e di corrente
+      en: Apply voltage and current dividers
+  - id: serie-parallelo-partitori.3
+    text:
+      it: Conoscere le condizioni di applicabilità
+      en: Know when they can be applied
+group:
+  it: II · Circuiti senza memoria
+  en: II · Memoryless circuits

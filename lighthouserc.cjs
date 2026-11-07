@@ -41,6 +41,8 @@ module.exports = {
         `${BASE}/it/stile/circuiti/`,
         `${BASE}/it/anno-1/fondamenti-informatica/teoria/algebra-di-boole/`,
         `${BASE}/en/anno-1/fondamenti-informatica/`,
+        `${BASE}/it/anno-2/teoria-circuiti/`,
+        `${BASE}/it/anno-2/teoria-circuiti/teoria/teorema-di-thevenin/`,
       ],
       numberOfRuns: 3,
       ...(process.env.CHROME_PATH ? { chromePath: process.env.CHROME_PATH } : {}),

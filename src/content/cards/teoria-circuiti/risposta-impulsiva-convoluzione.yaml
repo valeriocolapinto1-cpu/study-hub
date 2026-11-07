@@ -1,0 +1,108 @@
+- id: orale-t-28
+  topic: risposta-impulsiva-convoluzione
+  objectives:
+    - risposta-impulsiva-convoluzione.1
+    - risposta-impulsiva-convoluzione.3
+  kind: orale
+  front:
+    it: '**Risposta impulsiva e funzione di rete.** Dimostra che la funzione di rete è la trasformata della risposta impulsiva.'
+    en: '**Impulse response and network function.** Prove that the network function is the transform of the impulse response.'
+  back:
+    it: |-
+      **Risposta modello.** La trasformata dell'impulso unitario è 1. Con condizioni iniziali nulle l'uscita è Y(s) = H(s) per 1 = H(s), quindi la risposta impulsiva è l'antitrasformata di H(s). Per un ingresso qualsiasi l'uscita è la convoluzione y = h * x.
+
+      **Punti da toccare:**
+
+      - L'impulso ha trasformata $1$
+      - Uscita all'impulso: $Y(s)=H(s)\cdot1$
+      - Quindi $h(t)=\mathcal L^{-1}\{H(s)\}$
+      - Conseguenza: $y=h*x$ per un ingresso qualsiasi
+    en: |-
+      **Model answer.** The transform of the unit impulse is 1. With zero initial conditions the output is Y(s) = H(s) times 1 = H(s), so the impulse response is the inverse transform of H(s). For any input the output is the convolution y = h * x.
+
+      **Points to cover:**
+
+      - The impulse has transform $1$
+      - Output for the impulse: $Y(s)=H(s)\cdot1$
+      - Hence $h(t)=\mathcal L^{-1}\{H(s)\}$
+      - Consequence: $y=h*x$ for any input
+- id: orale-t-29
+  topic: risposta-impulsiva-convoluzione
+  objectives:
+    - risposta-impulsiva-convoluzione.1
+    - risposta-impulsiva-convoluzione.3
+  kind: orale
+  front:
+    it: '**Risposta impulsiva di un RC.** Ricava la risposta impulsiva di un circuito RC (uscita sul condensatore).'
+    en: '**Impulse response of an RC.** Derive the impulse response of an RC circuit (output across the capacitor).'
+  back:
+    it: |-
+      **Risposta modello.** Con il partitore H(s) = (1/sC)/(R + 1/sC) = (1/RC)/(s + 1/RC), con un polo in -1/(RC). Antitrasformando h(t) = (1/(RC)) e^{-t/(RC)} u(t), un esponenziale decrescente.
+
+      **Punti da toccare:**
+
+      - $H(s)=\dfrac{1/(RC)}{s+1/(RC)}$
+      - Polo in $-1/(RC)$
+      - $h(t)=\dfrac1{RC}e^{-t/(RC)}u_{-1}(t)$
+    en: |-
+      **Model answer.** With the divider H(s) = (1/sC)/(R + 1/sC) = (1/RC)/(s + 1/RC), with a pole at -1/(RC). Inverting, h(t) = (1/(RC)) e^{-t/(RC)} u(t), a decreasing exponential.
+
+      **Points to cover:**
+
+      - $H(s)=\dfrac{1/(RC)}{s+1/(RC)}$
+      - Pole at $-1/(RC)$
+      - $h(t)=\dfrac1{RC}e^{-t/(RC)}u_{-1}(t)$
+- id: formula-h-imp
+  topic: risposta-impulsiva-convoluzione
+  objectives:
+    - risposta-impulsiva-convoluzione.1
+    - risposta-impulsiva-convoluzione.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Risposta impulsiva**. Uso: Risposta a un impulso.'
+    en: 'Write the formula: **Impulse response**. Use: Response to an impulse.'
+  back:
+    it: |-
+      $$h(t)=\mathcal L^{-1}\{H(s)\}$$
+
+      h(t) risposta impulsiva; H(s) funzione di rete
+    en: |-
+      $$h(t)=\mathcal L^{-1}\{H(s)\}$$
+
+      h(t) impulse response; H(s) network function
+- id: formula-y-conv
+  topic: risposta-impulsiva-convoluzione
+  objectives:
+    - risposta-impulsiva-convoluzione.3
+    - risposta-impulsiva-convoluzione.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Convoluzione**. Uso: Risposta con condizioni nulle.'
+    en: 'Write the formula: **Convolution**. Use: Response with zero initial conditions.'
+  back:
+    it: |-
+      $$y(t)=\int_0^th(\tau)x(t-\tau)d\tau$$
+
+      h risposta impulsiva; x ingresso; τ variabile di integrazione [s]
+    en: |-
+      $$y(t)=\int_0^th(\tau)x(t-\tau)d\tau$$
+
+      h impulse response; x input; τ integration variable [s]
+- id: formula-y-gradino
+  topic: risposta-impulsiva-convoluzione
+  objectives:
+    - risposta-impulsiva-convoluzione.3
+    - risposta-impulsiva-convoluzione.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Risposta al gradino**. Uso: Risposta a un ingresso a gradino.'
+    en: 'Write the formula: **Step response**. Use: Response to a step input.'
+  back:
+    it: |-
+      $$y_{gr}(t)=\int_0^th(\tau)d\tau$$
+
+      h risposta impulsiva
+    en: |-
+      $$y_{gr}(t)=\int_0^th(\tau)d\tau$$
+
+      h impulse response

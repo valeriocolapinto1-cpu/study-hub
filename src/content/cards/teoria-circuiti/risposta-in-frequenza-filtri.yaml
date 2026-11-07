@@ -1,0 +1,115 @@
+- id: orale-t-23
+  topic: risposta-in-frequenza-filtri
+  objectives:
+    - risposta-in-frequenza-filtri.1
+    - risposta-in-frequenza-filtri.2
+  kind: orale
+  front:
+    it: '**Risposta in frequenza, tipo di filtro e taglio a 3 dB.** Spiega come si ricava la risposta in frequenza di un circuito dalla funzione di rete, come si riconosce il tipo di filtro e cosa significa frequenza di taglio a 3 dB.'
+    en: '**Frequency response, type of filter and 3 dB cut-off.** Explain how the frequency response of a circuit is obtained from the network function, how the type of filter is recognised and what the 3 dB cut-off frequency means.'
+  back:
+    it: |-
+      **Risposta modello.** Si sostituisce s = j omega in H(s), purché il sistema sia stabile, e si ottiene modulo e fase della risposta sinusoidale a regime. Dall'andamento del modulo si riconosce se il filtro è passa-basso, passa-alto o passa-banda. La frequenza di taglio a 3 dB è quella in cui il modulo scende a |H|max diviso radice di 2.
+
+      **Punti da toccare:**
+
+      - $H(j\omega)$ si ottiene da $H(s)$ con $s=j\omega$ (sistema stabile)
+      - Modulo e fase dell'uscita sinusoidale a regime
+      - Il tipo di filtro dall'andamento di $|H|$ (passa-basso, passa-alto, passa-banda…)
+      - Taglio a 3 dB: $|H|$ scende a $|H|_{max}/\sqrt2$
+    en: |-
+      **Model answer.** Substitute s = j omega in H(s), provided that the system is stable, to get the magnitude and phase of the steady-state sinusoidal response. From the behaviour of the magnitude one recognises whether the filter is low-pass, high-pass or band-pass. The 3 dB cut-off frequency is where the magnitude falls to |H|max divided by the square root of 2.
+
+      **Points to cover:**
+
+      - $H(j\omega)$ is obtained from $H(s)$ with $s=j\omega$ (stable system)
+      - Magnitude and phase of the steady-state sinusoidal output
+      - The type of filter from the behaviour of $|H|$ (low-pass, high-pass, band-pass…)
+      - 3 dB cut-off: $|H|$ falls to $|H|_{max}/\sqrt2$
+- id: formula-wc-rc
+  topic: risposta-in-frequenza-filtri
+  objectives:
+    - risposta-in-frequenza-filtri.2
+    - risposta-in-frequenza-filtri.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Pulsazione di taglio RC**. Uso: Pulsazione di taglio a 3 dB del filtro RC.'
+    en: 'Write the formula: **RC cut-off frequency**. Use: 3 dB cut-off of the RC filter.'
+  back:
+    it: |-
+      $$\omega_c=\frac1{RC}$$
+
+      R [Ω]; C [F]; ω_c in rad/s
+    en: |-
+      $$\omega_c=\frac1{RC}$$
+
+      R [Ω]; C [F]; ω_c in rad/s
+- id: formula-wc-rl
+  topic: risposta-in-frequenza-filtri
+  objectives:
+    - risposta-in-frequenza-filtri.2
+    - risposta-in-frequenza-filtri.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Pulsazione di taglio RL**. Uso: Pulsazione di taglio a 3 dB del filtro RL.'
+    en: 'Write the formula: **RL cut-off frequency**. Use: 3 dB cut-off of the RL filter.'
+  back:
+    it: |-
+      $$\omega_c=\frac RL$$
+
+      R [Ω]; L [H]; ω_c in rad/s
+    en: |-
+      $$\omega_c=\frac RL$$
+
+      R [Ω]; L [H]; ω_c in rad/s
+- id: formula-mod-lp
+  topic: risposta-in-frequenza-filtri
+  objectives:
+    - risposta-in-frequenza-filtri.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Modulo del passa-basso**. Uso: Modulo di un passa-basso del primo ordine.'
+    en: 'Write the formula: **Magnitude of the low-pass**. Use: Magnitude of a first-order low-pass.'
+  back:
+    it: |-
+      $$|H(j\omega)|=\frac{1}{\sqrt{1+(\omega/\omega_c)^2}}$$
+
+      ω_c pulsazione di taglio [rad/s]
+    en: |-
+      $$|H(j\omega)|=\frac{1}{\sqrt{1+(\omega/\omega_c)^2}}$$
+
+      ω_c cut-off angular frequency [rad/s]
+- id: formula-db
+  topic: risposta-in-frequenza-filtri
+  objectives:
+    - risposta-in-frequenza-filtri.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Decibel**. Uso: Diagrammi di Bode.'
+    en: 'Write the formula: **Decibel**. Use: Bode plots.'
+  back:
+    it: |-
+      $$|H|_{dB}=20\log_{10}|H|$$
+
+      |H| modulo adimensionale; risultato in dB
+    en: |-
+      $$|H|_{dB}=20\log_{10}|H|$$
+
+      |H| dimensionless magnitude; result in dB
+- id: formula-bode-pend
+  topic: risposta-in-frequenza-filtri
+  objectives:
+    - risposta-in-frequenza-filtri.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Pendenza di Bode**. Uso: Tracciare i diagrammi asintotici.'
+    en: 'Write the formula: **Bode slope**. Use: Drawing asymptotic plots.'
+  back:
+    it: |-
+      $$-20\ \mathrm{dB/dec}\ \text{per ogni polo oltre}\ \omega_c$$
+
+      dec = decade di frequenza
+    en: |-
+      $$-20\ \mathrm{dB/dec}\ \text{per ogni polo oltre}\ \omega_c$$
+
+      dec = frequency decade

@@ -1,0 +1,62 @@
+- id: orale-t-12
+  topic: metodo-dei-nodi
+  objectives:
+    - metodo-dei-nodi.2
+    - metodo-dei-nodi.1
+  kind: orale
+  front:
+    it: '**Metodo dei nodi e criteri di scelta.** Descrivi il metodo dei nodi e spiega quando conviene rispetto al metodo delle maglie.'
+    en: '**Node method and choice criteria.** Describe the node method and explain when it is preferable to the mesh method.'
+  back:
+    it: |-
+      **Risposta modello.** Le incognite sono le n-1 tensioni di nodo rispetto a un nodo di riferimento. Si scrive la KCL a ciascun nodo con le relazioni costitutive, ottenendo G e = i_s, con G matrice delle conduttanze. I generatori di tensione si trattano con il supernodo. Conviene quando n-1 è minore del numero di maglie indipendenti, cioè con pochi nodi.
+
+      **Punti da toccare:**
+
+      - Incognite: le $n-1$ tensioni di nodo rispetto a un riferimento
+      - Si scrive la KCL a ogni nodo con le costitutive: $G\mathbf e=\mathbf i_s$
+      - Generatori di tensione: supernodo o corrente come incognita
+      - Conviene se $n-1<b-n+1$ (pochi nodi)
+    en: |-
+      **Model answer.** The unknowns are the n-1 node voltages with respect to a reference node. KCL is written at each node with the constitutive relations, giving G e = i_s, with G the conductance matrix. Voltage sources are handled with a supernode. It is convenient when n-1 is smaller than the number of independent loops, i.e. with few nodes.
+
+      **Points to cover:**
+
+      - Unknowns: the $n-1$ node voltages with respect to a reference
+      - KCL at every node with the constitutive relations: $G\mathbf e=\mathbf i_s$
+      - Voltage sources: supernode or current as an unknown
+      - Convenient if $n-1<b-n+1$ (few nodes)
+- id: formula-nodi
+  topic: metodo-dei-nodi
+  objectives:
+    - metodo-dei-nodi.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Metodo dei nodi (rete resistiva)**. Uso: Reti con pochi nodi.'
+    en: 'Write the formula: **Node method (resistive network)**. Use: Networks with few nodes.'
+  back:
+    it: |-
+      $$G_{jj}=\sum G\ \text{al nodo}\ j,\quad G_{jk}=-G_{jk}^{\text{ramo}}$$
+
+      i_s correnti entranti nei nodi
+    en: |-
+      $$G_{jj}=\sum G\ \text{al nodo}\ j,\quad G_{jk}=-G_{jk}^{\text{ramo}}$$
+
+      i_s currents entering the nodes
+- id: formula-nodi-mat
+  topic: metodo-dei-nodi
+  objectives:
+    - metodo-dei-nodi.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Equazioni ai nodi**. Uso: Forma compatta.'
+    en: 'Write the formula: **Node equations**. Use: Compact form.'
+  back:
+    it: |-
+      $$A\,\mathcal G\,A^{\mathsf T}\,\mathbf e=\mathbf i_s$$
+
+      𝒢 = diag(G_k)
+    en: |-
+      $$A\,\mathcal G\,A^{\mathsf T}\,\mathbf e=\mathbf i_s$$
+
+      𝒢 = diag(G_k)

@@ -1,0 +1,120 @@
+- id: q-v-001
+  topic: funzioni-di-rete
+  objectives:
+    - funzioni-di-rete.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'La funzione di rete $H(s)$ è il rapporto tra:'
+    en: 'The network function $H(s)$ is the ratio between:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $H(s)=Y(s)/X(s)$ con condizioni iniziali nulle.
+        en: $H(s)=Y(s)/X(s)$ with zero initial conditions.
+  choices:
+    - text:
+        it: trasformata della risposta e trasformata dell'ingresso, a condizioni iniziali nulle
+        en: the transform of the response and the transform of the input, with zero initial conditions
+      correct: true
+    - text:
+        it: modulo e fase
+        en: magnitude and phase
+      correct: false
+    - text:
+        it: tensione e corrente in continua
+        en: DC voltage and current
+      correct: false
+    - text:
+        it: due poli
+        en: two poles
+      correct: false
+  origin: originale
+- id: q-v-002
+  topic: funzioni-di-rete
+  objectives:
+    - funzioni-di-rete.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: Per circuiti di elementi concentrati lineari tempo-invarianti $H(s)$ è una funzione razionale a coefficienti reali.
+    en: For linear time-invariant lumped circuits $H(s)$ is a rational function with real coefficients.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Segue dalle equazioni algebriche in $s$ con coefficienti reali.
+        en: It follows from the algebraic equations in $s$ with real coefficients.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-v-003
+  topic: funzioni-di-rete
+  objectives:
+    - funzioni-di-rete.2
+  difficulty: 3
+  kind: static
+  statement:
+    it: Poli e zeri non reali di $H(s)$ compaiono in coppie complesse coniugate.
+    en: Non-real poles and zeros of $H(s)$ come in complex-conjugate pairs.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Conseguenza dei coefficienti reali.
+        en: A consequence of the real coefficients.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-v-004
+  topic: funzioni-di-rete
+  objectives:
+    - funzioni-di-rete.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "$H(s)=\\dfrac{s+2}{(s+1)(s+3)}$ ha:"
+    en: "$H(s)=\\dfrac{s+2}{(s+1)(s+3)}$ has:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Zeri: radici del numeratore; poli: del denominatore.'
+        en: 'Zeros: roots of the numerator; poles: of the denominator.'
+  choices:
+    - text:
+        it: nessuno zero
+        en: no zeros
+      correct: false
+    - text:
+        it: poli in $-2$
+        en: poles at $-2$
+      correct: false
+    - text:
+        it: zero in $2$, poli in $1,3$
+        en: a zero at $2$, poles at $1,3$
+      correct: false
+    - text:
+        it: zero in $-2$, poli in $-1,-3$
+        en: a zero at $-2$, poles at $-1,-3$
+      correct: true
+  origin: originale

@@ -1,0 +1,108 @@
+---
+course: teoria-circuiti
+topic: conservazione-potenza-complessa
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="conservazione-potenza-complessa-intuizione-1">
+
+Just as in DC no energy appears from nowhere, in sinusoidal steady state active and reactive power each "balance the books" separately. Apparent powers do not: they are magnitudes, and magnitudes of complex numbers do not add up.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="conservazione-potenza-complessa-teoria-1">
+
+In sinusoidal steady state the sum of the complex powers absorbed by all the branches (sources included, passive convention) is zero: $\sum_k\dot V_k\dot I_k^*=0$. Hence $\sum P_k=0$ and $\sum Q_k=0$ are conserved separately, while the magnitudes $|S_k|$ are not.
+
+</div>
+
+<div data-note-id="conservazione-potenza-complessa-teoria-2">
+
+**Balance.** The active power delivered by the sources equals the power absorbed by the resistors; the reactive power delivered equals the reactive power absorbed by inductors and capacitors (with sign).
+
+</div>
+
+<details class="proof" data-note-id="conservazione-potenza-complessa-dimostrazione-1">
+<summary>Proof: Conservation of complex power</summary>
+
+**Statement.** $\sum_k\dot V_k\dot I_k^*=0$ (RMS values, passive convention).
+
+1. The phasors $\dot{\mathbf V}$ satisfy KVL and $\dot{\mathbf I}$ satisfy KCL (the equations have real coefficients $0,\pm1$).
+2. $\dot{\mathbf I}^*$ also satisfies KCL, because conjugation preserves equations with real coefficients.
+3. By Tellegen's theorem $\dot{\mathbf V}^{\mathsf T}\dot{\mathbf I}^*=0$, i.e. $\sum_k\dot V_k\dot I_k^*=0$. Real part: $\sum P_k=0$; imaginary part: $\sum Q_k=0$. $\square$
+
+</details>
+
+<Formula id="cons-s" />
+<Formula id="bilancio-p" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="conservazione-potenza-complessa-esempio-1">
+
+### Balance on a series RL
+
+$\dot V_g=10\,\mathrm V$ (RMS) on $R=3\,\Omega$ in series with $X_L=4\,\Omega$. Check the balance.
+
+**Solution.**
+
+1. $\dot I=\dfrac{10}{3+4j}=1.2-1.6j$, $|I|^2=4$.
+2. Source (delivered): $S=\dot V\dot I^*=10(1.2+1.6j)=12+16j$.
+3. Absorbed: $R$: $P=3\cdot4=12$; $L$: $Q=4\cdot4=16$. It balances. ✓
+
+</div>
+
+<div class="worked" data-note-id="conservazione-potenza-complessa-esempio-2">
+
+### What is not conserved
+
+In a circuit $|S_g|=20$, $|S_R|=12$, $|S_L|=16$. Are the magnitudes conserved?
+
+**Solution.**
+
+1. $12+16=28\ne20$: the magnitudes are not; $P$ ($12$) and $Q$ ($16$) are.
+
+</div>
+
+<div class="worked" data-note-id="conservazione-potenza-complessa-esempio-3">
+
+### Reactive power with a capacitor
+
+Load $P=12$, $Q_L=16$ with a capacitor absorbing $Q_C=-16$.
+
+**Solution.**
+
+1. $\sum Q=16-16=0$: the source delivers only active power: full power-factor correction.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="conservazione-potenza-complessa-errore-1">
+
+- **Wrong:** Adding the apparent powers of the branches.
+- **Right:** Add the complex powers (or $P$ and $Q$ separately).
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="conservazione-potenza-complessa-esame-1">
+
+Conservation and balance: 12-7-2005, 12-7-2007, 25-9-2007, 11-2-2008 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

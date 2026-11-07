@@ -1,0 +1,60 @@
+- id: q-v-024
+  topic: fasori-e-laplace
+  objectives:
+    - fasori-e-laplace.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Il legame tra fasori e Laplace è:'
+    en: 'The link between phasors and Laplace is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Sostituzione $s=j\omega$.
+        en: Substitution $s=j\omega$.
+  choices:
+    - text:
+        it: $H(j\omega)=H(\omega)$
+        en: $H(j\omega)=H(\omega)$
+      correct: false
+    - text:
+        it: $H(j\omega)=s$
+        en: $H(j\omega)=s$
+      correct: false
+    - text:
+        it: $H(j\omega)=1/H(s)$
+        en: $H(j\omega)=1/H(s)$
+      correct: false
+    - text:
+        it: $H(j\omega)=H(s)|_{s=j\omega}$ se il sistema è stabile
+        en: $H(j\omega)=H(s)|_{s=j\omega}$ if the system is stable
+      correct: true
+  origin: originale
+- id: q-v-025
+  topic: fasori-e-laplace
+  objectives:
+    - fasori-e-laplace.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Se il sistema è instabile, $H(j\omega)$ descrive comunque la risposta a regime.
+    en: If the system is unstable, $H(j\omega)$ still describes the steady-state response.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Non esiste un regime: i modi naturali divergono.'
+        en: 'There is no steady state: the natural modes diverge.'
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale

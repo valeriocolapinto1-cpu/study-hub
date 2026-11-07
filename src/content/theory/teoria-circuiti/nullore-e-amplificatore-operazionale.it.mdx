@@ -1,0 +1,188 @@
+---
+course: teoria-circuiti
+topic: nullore-e-amplificatore-operazionale
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="nullore-e-amplificatore-operazionale-intuizione-1">
+
+Un amplificatore operazionale con guadagno enorme, chiuso in retroazione, si regola da solo finché la differenza tra i suoi ingressi diventa praticamente zero. Il nullore cattura questo comportamento in modo esatto: all'ingresso «niente tensione e niente corrente», all'uscita «tutto ciò che serve» per rispettare quel vincolo.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="nullore-e-amplificatore-operazionale-teoria-1">
+
+Il **nullatore** è un bipolo con $v=0$ e $i=0$ contemporaneamente. Il **noratore** è un bipolo con tensione e corrente _qualsiasi_. Un **nullore** è il doppio bipolo formato dal nullatore (porta 1) e dal noratore (porta 2): impone $v_1=0$, $i_1=0$ e lascia libere $v_2$, $i_2$. Negli esercizi si usa di solito la versione sbilanciata (un morsetto comune).
+
+</div>
+
+<div data-note-id="nullore-e-amplificatore-operazionale-teoria-2">
+
+**Dal componente reale all'ideale.** L'amplificatore operazionale reale è modellabile in regione lineare con resistenza di ingresso $R_i$ ($10^5$–$10^{12}\,\Omega$), resistenza d'uscita $R_o$ ($5$–$50\,\Omega$) e generatore controllato $v_o=A\,v_d$ con $v_d=v_2-v_1$ e $A$ tra $10^5$ e $10^8$. Ha tre regioni: lineare e due di saturazione ($\pm V_{cc}$). Nel limite ideale $A\to\infty$, $R_i\to\infty$, $R_o=0$ si ha $v_d=0$ e correnti d'ingresso nulle: è un nullore.
+
+</div>
+
+<div data-note-id="nullore-e-amplificatore-operazionale-teoria-3">
+
+**Due configurazioni tipiche con il nullore.** (a) _Generatore di tensione:_ la corrente $I_g$ che attraversa $R$ produce $V=R\,I_g$; il generatore pilota ha tensione nulla e non eroga potenza (la potenza arriva dal nullore). (b) _Generatore di corrente:_ la tensione $V_g$ è riportata su $R$ e dà $I=V_g/R$; il generatore pilota ha corrente nulla.
+
+</div>
+
+<div data-note-id="nullore-e-amplificatore-operazionale-teoria-4">
+
+| Circuito             | Uscita                                                                             |
+| -------------------- | ---------------------------------------------------------------------------------- |
+| Invertente           | $v_o=-\dfrac{R_2}{R_1}V_g$                                                         |
+| Sommatore invertente | $v_o=-R_0\left(\dfrac{V_{g1}}{R_1}+\dfrac{V_{g2}}{R_2}+\dfrac{V_{g3}}{R_3}\right)$ |
+| Non invertente       | $v_o=\left(1+\dfrac{R_2}{R_1}\right)V_g$                                           |
+| Inseguitore          | $v_o=V_g$ (impedenza d'ingresso teoricamente infinita)                             |
+| Differenziale        | $v_o=\dfrac{R_2}{R_1}(V_{g2}-V_{g1})$                                              |
+
+</div>
+
+<Figure caption="Nullore: nullatore (v=0, i=0) seguito da noratore (v e i libere)" num="1" id="fig-1">
+  <svg
+    viewBox="0 0 300 150"
+    xmlns="http://www.w3.org/2000/svg"
+    stroke="currentColor"
+    stroke-width="2"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    font-family="system-ui,sans-serif"
+    font-size="14"
+    aria-hidden="true"
+    focusable="false"
+    class="diagram"
+    style="max-width: 300px"
+  >
+    <rect x="95" y="45" width="50" height="60" />
+    <rect x="155" y="45" width="50" height="60" />
+    <polyline points="40 60 95 60" />
+    <polyline points="40 90 95 90" />
+    <polyline points="205 60 260 60" />
+    <polyline points="205 90 260 90" />
+    <text x="120" y="72" text-anchor="middle" fill="currentColor" stroke="none">
+      {'v=0'}
+    </text>
+    <text x="120" y="92" text-anchor="middle" fill="currentColor" stroke="none">
+      {'i=0'}
+    </text>
+    <text x="180" y="72" text-anchor="middle" fill="currentColor" stroke="none">
+      {'v, i'}
+    </text>
+    <text x="180" y="92" text-anchor="middle" fill="currentColor" stroke="none">
+      {'libere'}
+    </text>
+    <text x="120" y="38" text-anchor="middle" fill="currentColor" stroke="none">
+      {'nullatore'}
+    </text>
+    <text x="180" y="38" text-anchor="middle" fill="currentColor" stroke="none">
+      {'noratore'}
+    </text>
+    <circle cx="40" cy="60" r="3" fill="currentColor" />
+    <circle cx="40" cy="90" r="3" fill="currentColor" />
+    <circle cx="260" cy="60" r="3" fill="currentColor" />
+    <circle cx="260" cy="90" r="3" fill="currentColor" />
+  </svg>
+</Figure>
+
+<Figure
+  caption="Amplificatore operazionale in configurazione invertente con R₁ in ingresso e R₂ in retroazione"
+  num="2"
+  id="fig-2"
+>
+  <Circuit
+    netlist={{
+      elements: [
+        { type: 'V', id: 'Vg', a: 'in', b: '0', dc: 1 },
+        { type: 'R', id: 'R1', a: 'in', b: 'x', value: 1 },
+        { type: 'OA', id: 'OA1', plus: '0', minus: 'x', out: 'o' },
+        { type: 'R', id: 'R2', a: 'x', b: 'o', value: 1 },
+      ],
+      nodes: { o: { label: 'v_o' } },
+    }}
+    values={false}
+  />
+</Figure>
+
+<details class="proof" data-note-id="nullore-e-amplificatore-operazionale-dimostrazione-1">
+<summary>Dimostrazione: Guadagno dell'invertente: dal modello con $A$ finito al nullore</summary>
+
+**Enunciato.** Con modello lineare ($R_i\to\infty$, $R_o=0$, guadagno $A$) il guadagno è $v_o/V_g=-\dfrac{R_2}{R_1}\cdot\dfrac{1}{1+(1+R_2/R_1)/A}$, che tende a $-R_2/R_1$ per $A\to\infty$.
+
+1. Ingresso non invertente a massa: $v_d=v_+-v_-=-v_-$, quindi $v_o=A\,v_d=-A\,v_-$ e $v_-=-v_o/A$.
+2. KCL al nodo invertente (corrente d'ingresso nulla): $\dfrac{V_g-v_-}{R_1}=\dfrac{v_--v_o}{R_2}$.
+3. Sostituisci $v_-$: $\dfrac{V_g+v_o/A}{R_1}=\dfrac{-v_o/A-v_o}{R_2}$, cioè $R_2V_g+\dfrac{R_2}{A}v_o=-\dfrac{R_1}{A}v_o-R_1v_o$.
+4. Raccogli $v_o$: $R_2V_g=-v_o\left(R_1+\dfrac{R_1+R_2}{A}\right)$, da cui la formula dell'enunciato.
+5. Per $A\to\infty$: $v_d=-v_-=v_o/A\to0$ (nullatore) e $v_o=-(R_2/R_1)V_g$. $\square$
+
+</details>
+
+<Formula id="invertente" />
+<Formula id="sommatore" />
+<Formula id="non-invertente" />
+<Formula id="inseguitore" />
+<Formula id="differenziale" />
+<Formula id="nullore-def" />
+<Formula id="opamp-reale" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="nullore-e-amplificatore-operazionale-esempio-1">
+
+### Reale contro ideale
+
+Invertente con $R_2/R_1=10$ e $A=10^5$: confronta il guadagno reale con quello ideale.
+
+**Soluzione.**
+
+1. Ideale: $-10$.
+2. Reale: $-10/(1+11/10^5)=-10/1{,}00011\approx-9{,}9989$.
+3. Differenza relativa $\approx0{,}011\%$: l'idealizzazione è eccellente.
+
+</div>
+
+<div class="worked" data-note-id="nullore-e-amplificatore-operazionale-esempio-2">
+
+### Nullore come generatore di tensione
+
+Un nullore ha un generatore di corrente $I_g=2\,\mathrm{A}$ al nullatore in serie a $R=3\,\Omega$ verso il noratore: quanto vale la tensione impressa?
+
+**Soluzione.**
+
+1. $I_g$ attraversa $R$ (il nullatore non assorbe corrente): $V=R\,I_g=3\cdot2=6\,\mathrm{V}$.
+2. La tensione ai capi del nullatore è nulla: il generatore di corrente pilota non eroga potenza.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="nullore-e-amplificatore-operazionale-errore-1">
+
+- **Sbagliato:** Dire che la corrente d'ingresso è nulla «perché la tensione d'ingresso è nulla» come su un corto.
+- **Corretto:** Nel nullatore tensione _e_ corrente sono entrambe nulle: la corrente è nulla perché $R_i\to\infty$, la tensione perché $A\to\infty$ con retroazione.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="nullore-e-amplificatore-operazionale-esame-1">
+
+Nullore: proprietà e configurazioni 25-10-2001 <span class="badge badge--info">STORICO</span>; presente in 4 dei 14 esercizi d'analisi 2015–2024 <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>
