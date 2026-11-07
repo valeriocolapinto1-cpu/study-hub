@@ -1,0 +1,41 @@
+id: laboratorio-misura
+course: fisica-2
+order: 11
+title: { it: 'Laboratorio e teoria della misura', en: 'Laboratory and measurement theory' }
+summary:
+  it: Incertezze di misura, distribuzioni e statistica, propagazione delle incertezze, media pesata, confronto tra misure, minimi quadrati e le esperienze di laboratorio.
+  en: Measurement uncertainties, distributions and statistics, propagation of uncertainties, weighted mean, comparison of measurements, least squares and the laboratory experiments.
+group: { it: 'Laboratorio con relazioni', en: 'Laboratory with reports' }
+objectives:
+  - id: laboratorio-misura.1
+    text:
+      {
+        it: 'Distinguere errori sistematici e casuali e scrivere correttamente una misura con incertezza',
+        en: 'Distinguish systematic and random errors and write a measurement with its uncertainty correctly',
+      }
+  - id: laboratorio-misura.2
+    text:
+      {
+        it: 'Calcolare media, deviazione standard e deviazione standard della media',
+        en: 'Compute mean, standard deviation and standard deviation of the mean',
+      }
+  - id: laboratorio-misura.3
+    text:
+      {
+        it: 'Propagare le incertezze in una grandezza derivata',
+        en: 'Propagate uncertainties to a derived quantity',
+      }
+  - id: laboratorio-misura.4
+    text:
+      {
+        it: 'Combinare misure con la media pesata e valutarne la compatibilità',
+        en: 'Combine measurements with the weighted mean and assess their compatibility',
+      }
+  - id: laboratorio-misura.5
+    text: { it: 'Eseguire un fit lineare con i minimi quadrati', en: 'Perform a linear least-squares fit' }
+  - id: laboratorio-misura.6
+    text:
+      {
+        it: 'Descrivere scopo, metodo e analisi delle esperienze di laboratorio del corso',
+        en: 'Describe aim, method and analysis of the course laboratory experiments',
+      }

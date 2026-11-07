@@ -7,6 +7,7 @@ import { unified } from '@astrojs/markdown-remark';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import platform from './tools/integrations/platform.mjs';
+import rehypeNoteIds from './src/lib/rehype-note-ids.mjs';
 
 // Unica impostazione di dominio e percorso base del sito: tutto il resto
 // (link, hreflang, canonical, sitemap) si ricava da qui tramite import.meta.env.
@@ -23,7 +24,8 @@ export default defineConfig({
   markdown: {
     processor: unified({
       remarkPlugins: [remarkMath],
-      rehypePlugins: [[rehypeKatex, { output: 'htmlAndMathml', strict: 'error' }]],
+      // rehypeNoteIds: id stabili per gli appunti (data-note-id) e ancore nei titoli della teoria MDX.
+      rehypePlugins: [[rehypeKatex, { output: 'htmlAndMathml', strict: 'error' }], rehypeNoteIds],
     }),
   },
   integrations: [

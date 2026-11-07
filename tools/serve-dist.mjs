@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 /**
  * Server statico di dist/ sotto il percorso base, come GitHub Pages:
- * index.html per le cartelle, 404.html per il resto. Usato da Playwright e Lighthouse CI.
+ * index.html per le cartelle, 404.html per il resto, compressione gzip dei file di testo (GitHub Pages
+ * comprime HTML, CSS, JS e JSON: senza, Lighthouse misurerebbe trasferimenti molto più grandi del reale).
+ * Usato da Playwright e Lighthouse CI.
  * Uso: node tools/serve-dist.mjs [porta] [cartella, default dist]
  */
 import { createReadStream, existsSync, statSync } from 'node:fs';
 import { createServer } from 'node:http';
+import { createGzip } from 'node:zlib';
 import { extname, join, normalize, resolve } from 'node:path';
 import { BASE } from './site-base.mjs';
 
@@ -30,12 +33,20 @@ const TYPES = {
   '.pf_meta': 'application/octet-stream',
 };
 
-const send = (res, status, file) => {
+const COMPRESSIBLE = /^(text\/|application\/(json|manifest\+json|xml))|^image\/svg/;
+
+const send = (req, res, status, file) => {
+  const type = TYPES[extname(file)] ?? 'application/octet-stream';
+  const gzip = COMPRESSIBLE.test(type) && /\bgzip\b/.test(String(req.headers['accept-encoding'] ?? ''));
   res.writeHead(status, {
-    'content-type': TYPES[extname(file)] ?? 'application/octet-stream',
+    'content-type': type,
     'cache-control': file.includes('/_astro/') ? 'public, max-age=31536000, immutable' : 'no-cache',
+    vary: 'accept-encoding',
+    ...(gzip ? { 'content-encoding': 'gzip' } : {}),
   });
-  createReadStream(file).pipe(res);
+  const stream = createReadStream(file);
+  if (gzip) stream.pipe(createGzip()).pipe(res);
+  else stream.pipe(res);
 };
 
 createServer((req, res) => {
@@ -45,7 +56,7 @@ createServer((req, res) => {
     res.writeHead(301, { location: BASE });
     return res.end();
   }
-  if (!pathname.startsWith(BASE)) return send(res, 404, join(DIST, '404.html'));
+  if (!pathname.startsWith(BASE)) return send(req, res, 404, join(DIST, '404.html'));
   const rel = normalize(pathname.slice(BASE.length)).replace(/^(\.\.[/\\])+/, '');
   let file = join(DIST, rel);
   if (existsSync(file) && statSync(file).isDirectory()) {
@@ -55,6 +66,6 @@ createServer((req, res) => {
     }
     file = join(file, 'index.html');
   }
-  if (!file.startsWith(DIST) || !existsSync(file)) return send(res, 404, join(DIST, '404.html'));
-  return send(res, 200, file);
+  if (!file.startsWith(DIST) || !existsSync(file)) return send(req, res, 404, join(DIST, '404.html'));
+  return send(req, res, 200, file);
 }).listen(PORT, () => console.log(`dist/ servito su http://localhost:${PORT}${BASE}`));

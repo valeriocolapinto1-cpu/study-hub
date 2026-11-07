@@ -1,0 +1,142 @@
+---
+course: fisica-2
+topic: magnetostatica-nel-vuoto
+lang: en
+---
+
+<Layer kind="intuizione">
+
+The magnetic field acts only on **moving** charges and always sideways with respect to their velocity: it bends trajectories without ever changing the energy. That is why a particle in a uniform $\vec B$ moves in a circle, and why a current-carrying wire in a field feels a force perpendicular to itself.
+
+In turn, currents produce magnetic fields. Their lines have neither beginning nor end (there are no "magnetic charges"), so the flux out of a closed surface is always zero. The role that Gauss plays in electrostatics is played here by **Ampère**: the circulation of $\vec B$ around a closed curve counts the current passing through it. With the right symmetry (wire, cylinder, solenoid, toroid) it gives the field in one line; otherwise you integrate the Biot-Savart formula.
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Lorentz force and magnetic induction vector
+
+A charge moving in a magnetic field feels the Lorentz force (together with the electric field):
+
+$$
+\vec F = q\left(\vec E+\vec v\times\vec B\right)
+$$
+
+which defines $\vec B$ (tesla, T). The magnetic force is always perpendicular to the velocity: it **does no work** and does not change the kinetic energy.
+
+- **Motion in uniform B**: circular with $r=\frac{mv_\perp}{|q|B}$ and cyclotron angular frequency $\omega=\frac{|q|B}{m}$, independent of the speed. If there is a component parallel to $\vec B$ the motion is helical.
+- **Magnetic bottle**: in a field that grows stronger at the ends, particles are reflected (Van Allen belts).
+- **Velocity selector**: with $\vec E\perp\vec B$ only particles with $v=E/B$ pass undeflected.
+- **Mass spectrometer**: ions accelerated through a potential difference $V$ ($\frac12mv^2=qV$) describe a semicircle of radius $r=\frac{mv}{qB}$, from which $m=\frac{qB^2r^2}{2V}$.
+- **Cyclotron**: the revolution frequency does not depend on the radius, so an alternating electric field at fixed frequency accelerates the particle every half turn. The final energy is $K=\frac{q^2B^2R^2}{2m}$. In the **synchrotron** the radius is fixed and $B$ grows with the momentum ($p=qBR$).
+
+## Mechanical actions on current-carrying circuits
+
+A current-carrying wire element feels the force $d\vec F = I\,d\vec l\times\vec B$ (Laplace's second formula); for a straight wire in a uniform field $\vec F=I\vec L\times\vec B$. On a closed circuit in a _uniform_ field the total force is zero, but a torque acts. For a plane loop of area $S$ one defines the **magnetic moment** $\vec m = IS\hat n$ (direction by the right-hand rule):
+
+$$
+\vec M=\vec m\times\vec B,\qquad U=-\vec m\cdot\vec B,\qquad \vec F=\nabla(\vec m\cdot\vec B)
+$$
+
+**Ampère's equivalence theorem** states that a current loop is equivalent, at large distance, to a magnetic dipole of moment $\vec m$: its field has the same form as that of the electric dipole. Motors and galvanometers are based on this principle.
+
+## Field produced by steady currents
+
+A current element produces the field given by **Laplace's first formula** (Biot-Savart), with $\mu_0=4\pi\times10^{-7}$ H/m:
+
+$$
+d\vec B=\frac{\mu_0}{4\pi}\frac{I\,d\vec l\times\hat u_r}{r^2}
+$$
+
+- Infinite straight wire: $B=\frac{\mu_0I}{2\pi r}$, circular lines (right-hand rule). Finite wire: $B=\frac{\mu_0I}{4\pi d}(\sin\theta_2-\sin\theta_1)$.
+- Circular loop, on the axis: $B=\frac{\mu_0IR^2}{2(R^2+z^2)^{3/2}}$; at the centre $B=\frac{\mu_0I}{2R}$. An arc of angle $\alpha$ gives at the centre $B=\frac{\mu_0I\alpha}{4\pi R}$ (semicircle: $\frac{\mu_0I}{4R}$).
+- Infinite solenoid ($n$ turns per unit length): $B=\mu_0nI$ uniform inside, zero outside. Finite solenoid, on the axis: $B=\frac{\mu_0nI}{2}(\cos\alpha_1-\cos\alpha_2)$, with $\alpha_{1,2}$ the angles under which the ends are seen.
+- Strip of width $w$ carrying current $I$, point in the plane of the strip at distance $d$ from its edge: $B=\frac{\mu_0I}{2\pi w}\ln\frac{d+w}{d}$.
+- Slowly moving charge: $\vec B=\frac{\mu_0}{4\pi}\frac{q\vec v\times\hat u_r}{r^2}$.
+
+## Properties of B: Maxwell's second and fourth equations (steady case)
+
+The lines of $\vec B$ are closed (there are no magnetic monopoles). The flux through a closed surface is zero, so the flux _linked_ with a curve does not depend on the chosen surface:
+
+$$
+\oint_S\vec B\cdot\hat n\,dS = 0\quad\Longleftrightarrow\quad\nabla\cdot\vec B=0
+$$
+
+**Ampère's circuital theorem**: the circulation of $\vec B$ around a closed curve equals $\mu_0$ times the linked current. With Stokes one obtains the local form:
+
+$$
+\oint_\gamma\vec B\cdot d\vec l=\mu_0I_{conc}\quad\Longleftrightarrow\quad\nabla\times\vec B=\mu_0\vec J
+$$
+
+It is used like Gauss, that is when the symmetry allows it:
+
+- Solid cylinder (radius $R$, uniform current $I$): inside $B=\frac{\mu_0Ir}{2\pi R^2}$, outside $B=\frac{\mu_0I}{2\pi r}$.
+- Hollow cylinder ($a\lt r\lt b$): $B=\frac{\mu_0I}{2\pi r}\frac{r^2-a^2}{b^2-a^2}$; in the cavity $B=0$.
+- Coaxial cable with opposite currents: $B$ is zero outside the outer conductor.
+- Toroid ($N$ turns): $B=\frac{\mu_0NI}{2\pi r}$ inside, zero outside.
+- Cylinder with an off-centre cylindrical cavity: by superposition, the field in the cavity is uniform, $\vec B=\frac{\mu_0}{2}\vec J\times\vec d$.
+
+## Vector potential
+
+Since $\nabla\cdot\vec B=0$, one can write $\vec B=\nabla\times\vec A$. $\vec A$ is defined up to the gradient of a function (_gauge_ freedom); choosing $\nabla\cdot\vec A=0$, Ampère's equation becomes a Poisson equation for each component:
+
+$$
+\nabla^2\vec A=-\mu_0\vec J\quad\Rightarrow\quad\vec A(\vec r)=\frac{\mu_0}{4\pi}\int\frac{\vec J(\vec r\,')}{|\vec r-\vec r\,'|}dV'
+$$
+
+The solution has the same form as that of the electric potential. Taking its curl gives back Laplace's first formula. The flux of $\vec B$ through a surface equals the circulation of $\vec A$ around its boundary.
+
+## Interactions between circuits and the Hall effect
+
+Two parallel wires at distance $d$ attract if the currents are in the same direction and repel if they are opposite:
+
+$$
+\frac{F}{l}=\frac{\mu_0I_1I_2}{2\pi d}
+$$
+
+This relation defined the ampere (until 2019: $2\times10^{-7}$ N/m between wires 1 m apart carrying 1 A). Between rigid circuits the forces follow from the interaction energy $U=-I_2\Phi_{21}$ (at constant currents $F=+\nabla(I_2\Phi_{21})$).
+
+**Hall effect**: in a current-carrying strip immersed in a perpendicular $\vec B$, the carriers are deflected sideways until the transverse electric field balances the magnetic force: $E_H=v_dB$. The Hall voltage is
+
+$$
+V_H=\frac{IB}{nqt}\qquad(t = \text{thickness along }\vec B)
+$$
+
+The sign of $V_H$ gives the sign of the carriers, its magnitude their density $n$; a Hall probe is also used to measure $B$.
+
+<Callout tone="esame" title="Frequent questions">
+  "derive the field of an infinite wire, of a loop on its axis, of an infinite solenoid", "from the circuital
+  theorem derive Maxwell's fourth equation in local form (steady case)", "actions on a rectangular loop in a
+  uniform field", "force between two wires", "Hall effect", "can a charge moving in B gain energy from the
+  field? No, because the force is perpendicular to the velocity".
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Worked example: field of a coaxial cable
+
+An infinite coaxial cable has a solid inner conductor of radius $a=1\ \mathrm{mm}$ and a cylindrical outer conductor with radii $b=4\ \mathrm{mm}$ and $c=5\ \mathrm{mm}$; the two conductors carry opposite currents $I=10\ \mathrm A$, uniformly distributed over their cross-sections.
+
+1. **Symmetry.** The lines of $\vec B$ are coaxial circles and on the contour of radius $r$ the magnitude is constant: Ampère gives $B\,2\pi r=\mu_0I_{conc}(r)$.
+2. **Inside the inner conductor** ($r<a$): $I_{conc}=I\,r^2/a^2$, so $B=\frac{\mu_0Ir}{2\pi a^2}$; at $r=0.5\ \mathrm{mm}$ it is $1.0\ \mathrm{mT}$.
+3. **Between the conductors** ($a<r<b$): $I_{conc}=I$, $B=\frac{\mu_0I}{2\pi r}$; at $r=2\ \mathrm{mm}$ it is $1.0\ \mathrm{mT}$.
+4. **In the outer conductor** ($b<r<c$): $I_{conc}=I\left(1-\frac{r^2-b^2}{c^2-b^2}\right)=I\,\frac{c^2-r^2}{c^2-b^2}$; at $r=4.5\ \mathrm{mm}$ one finds $B\simeq 0.23\ \mathrm{mT}$.
+5. **Outside** ($r>c$): the total linked current is zero and $B=0$: this is why a coaxial cable does not disturb its surroundings.
+
+**Check.** The field is continuous at $r=a$, $r=b$ and $r=c$, because there are no surface currents.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Common mistakes
+
+- **Attributing work to the magnetic force.** $q\vec v\times\vec B$ is perpendicular to the velocity: it changes the direction, not the magnitude, of the velocity.
+- **Getting the right-hand rule wrong.** Thumb along the current, fingers along $\vec B$ around the wire; for a loop the thumb gives the direction of $\vec m$ and of the field at the centre.
+- **Using Ampère without symmetry.** The theorem holds for every curve, but it gives $B$ only if magnitude and direction are known along the curve (for a finite wire use Biot-Savart).
+- **Forgetting the partially linked current.** Inside a conductor only the current crossing the surface bounded by the curve counts.
+- **Net force on a loop in a uniform field.** It is zero: only the torque $\vec m\times\vec B$ acts. A net force appears only in a non-uniform field.
+
+</Layer>

@@ -42,4 +42,11 @@ export const SAMPLE_PAGES: SamplePage[] = [
   { name: 'tdc-formulario-it', path: `${BASE}it/anno-2/teoria-circuiti/formulario/`, visual: false },
   { name: 'tdc-esercizi-it', path: `${BASE}it/anno-2/teoria-circuiti/esercizi/circuiti-primo-ordine/` },
   { name: 'tdc-extra-it', path: `${BASE}it/anno-2/teoria-circuiti/extra/esame-info/` },
+  { name: 'fisica-2-panoramica-it', path: `${BASE}it/anno-2/fisica-2/` },
+  { name: 'fisica-2-teoria-it', path: `${BASE}it/anno-2/fisica-2/teoria/fisica-moderna/` },
+  { name: 'fisica-2-teoria-en', path: `${BASE}en/anno-2/fisica-2/teoria/magnetismo-nella-materia/` },
+  { name: 'fisica-2-formulario-it', path: `${BASE}it/anno-2/fisica-2/formulario/`, visual: false },
+  { name: 'fisica-2-esercizi-en', path: `${BASE}en/anno-2/fisica-2/esercizi/onde-elettromagnetiche/` },
+  { name: 'fisica-2-laboratorio-en', path: `${BASE}en/anno-2/fisica-2/extra/laboratorio/` },
+  { name: 'fisica-2-appelli-it', path: `${BASE}it/anno-2/fisica-2/extra/appelli/` },
 ];

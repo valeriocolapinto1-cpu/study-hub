@@ -1,0 +1,208 @@
+# Domande d'orale (dal generatore del sito originale) e carte del formulario.
+- id: orale-02
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.5
+  kind: orale
+  front:
+    it: Calcolare l'energia elettrostatica immagazzinata in un insieme di cariche puntiformi e collegarla all'energia per unità di volume del campo.
+    en: Compute the electrostatic energy stored in a set of point charges and relate it to the energy per unit volume of the field.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - lavoro per assemblare il sistema carica per carica
+      - espressione $U=\tfrac12\sum q_iV_i$
+      - densità $u=\tfrac12\varepsilon_0E^2$ per un condensatore piano
+    en: |-
+      Answer outline:
+
+      - work to assemble the system charge by charge
+      - expression $U=\tfrac12\sum q_iV_i$
+      - density $u=\tfrac12\varepsilon_0E^2$ for a parallel-plate capacitor
+- id: orale-03
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.1
+  kind: orale
+  front:
+    it: "Discutere l'equilibrio elettrostatico di un conduttore: dove si dispongono le cariche e perché il campo interno è nullo."
+    en: 'Discuss the electrostatic equilibrium of a conductor: where the charges sit and why the internal field is zero.'
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - campo nullo e potenziale costante nel conduttore
+      - cariche sulla superficie (Gauss)
+      - teorema di Coulomb $E=\sigma/\varepsilon_0$ vicino alla superficie
+    en: |-
+      Answer outline:
+
+      - zero field and constant potential in the conductor
+      - charges on the surface (Gauss)
+      - Coulomb's theorem $E=\sigma/\varepsilon_0$ near the surface
+- id: orale-04
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.3
+  kind: orale
+  front:
+    it: Ricavare la capacità di un condensatore sferico e discutere l'effetto di un dielettrico.
+    en: Derive the capacitance of a spherical capacitor and discuss the effect of a dielectric.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - campo fra le armature e differenza di potenziale
+      - capacità $C=4\pi\varepsilon_0\dfrac{R_1R_2}{R_2-R_1}$
+      - fattore $\varepsilon_r$ e polarizzazione del dielettrico
+    en: |-
+      Answer outline:
+
+      - field between the plates and potential difference
+      - capacitance $C=4\pi\varepsilon_0\dfrac{R_1R_2}{R_2-R_1}$
+      - factor $\varepsilon_r$ and polarisation of the dielectric
+- id: formula-th-coulomb
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.1
+  kind: formula
+  front:
+    it: Teorema di Coulomb
+    en: Coulomb's theorem
+  back:
+    it: |-
+      $$\vec E = \frac{\sigma}{\varepsilon_0}\,\hat n$$
+
+      Campo immediatamente all'esterno della superficie di un conduttore in equilibrio.
+    en: |-
+      $$\vec E = \frac{\sigma}{\varepsilon_0}\,\hat n$$
+
+      Field just outside the surface of a conductor in equilibrium.
+- id: formula-capacita
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.3
+  kind: formula
+  front:
+    it: Capacità
+    en: Capacitance
+  back:
+    it: "$$C = \\frac{Q}{V}\\qquad \\text{(condensatore: } C = Q/\\Delta V)$$"
+    en: "$$C = \\frac{Q}{V}\\qquad \\text{(condensatore: } C = Q/\\Delta V)$$"
+- id: formula-cap-sfera
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.3
+  kind: formula
+  front:
+    it: Conduttore sferico isolato
+    en: Isolated spherical conductor
+  back:
+    it: $$C = 4\pi\varepsilon_0 R$$
+    en: $$C = 4\pi\varepsilon_0 R$$
+- id: formula-cap-piano
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.3
+  kind: formula
+  front:
+    it: Condensatore piano
+    en: Parallel-plate capacitor
+  back:
+    it: $$C = \frac{\varepsilon_0 S}{d}$$
+    en: $$C = \frac{\varepsilon_0 S}{d}$$
+- id: formula-cap-sferico
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.3
+  kind: formula
+  front:
+    it: Condensatore sferico
+    en: Spherical capacitor
+  back:
+    it: $$C = 4\pi\varepsilon_0\,\frac{R_1 R_2}{R_2-R_1}$$
+    en: $$C = 4\pi\varepsilon_0\,\frac{R_1 R_2}{R_2-R_1}$$
+- id: formula-cap-cil
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.3
+  kind: formula
+  front:
+    it: Condensatore cilindrico
+    en: Cylindrical capacitor
+  back:
+    it: $$C = \frac{2\pi\varepsilon_0\, L}{\ln(R_2/R_1)}$$
+    en: $$C = \frac{2\pi\varepsilon_0\, L}{\ln(R_2/R_1)}$$
+- id: formula-cap-serie-par
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.4
+  kind: formula
+  front:
+    it: Condensatori in serie e in parallelo
+    en: Capacitors in series and in parallel
+  back:
+    it: $$\frac{1}{C_s} = \sum_i \frac{1}{C_i}\qquad\qquad C_p = \sum_i C_i$$
+    en: $$\frac{1}{C_s} = \sum_i \frac{1}{C_i}\qquad\qquad C_p = \sum_i C_i$$
+- id: formula-u-cariche
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.5
+  kind: formula
+  front:
+    it: Energia di un sistema di cariche
+    en: Energy of a system of charges
+  back:
+    it: $$U = \frac{1}{2}\sum_{i} q_i V_i = \frac{1}{4\pi\varepsilon_0}\sum_{i<j}\frac{q_i q_j}{r_{ij}}$$
+    en: $$U = \frac{1}{2}\sum_{i} q_i V_i = \frac{1}{4\pi\varepsilon_0}\sum_{i<j}\frac{q_i q_j}{r_{ij}}$$
+- id: formula-u-cond
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.5
+  kind: formula
+  front:
+    it: Energia di un condensatore
+    en: Energy of a capacitor
+  back:
+    it: $$U = \frac{1}{2}QV = \frac{1}{2}CV^2 = \frac{Q^2}{2C}$$
+    en: $$U = \frac{1}{2}QV = \frac{1}{2}CV^2 = \frac{Q^2}{2C}$$
+- id: formula-u-e
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.5
+  kind: formula
+  front:
+    it: Densità di energia (vuoto)
+    en: Energy density (vacuum)
+  back:
+    it: $$u = \frac{1}{2}\varepsilon_0 E^2$$
+    en: $$u = \frac{1}{2}\varepsilon_0 E^2$$
+- id: formula-press-el
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.6
+  kind: formula
+  front:
+    it: Pressione elettrostatica
+    en: Electrostatic pressure
+  back:
+    it: $$p = \frac{\sigma^2}{2\varepsilon_0} = \frac{1}{2}\varepsilon_0 E^2$$
+    en: $$p = \frac{\sigma^2}{2\varepsilon_0} = \frac{1}{2}\varepsilon_0 E^2$$
+- id: formula-forza-lav-virt
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.6
+  kind: formula
+  front:
+    it: Forza con il metodo dei lavori virtuali
+    en: Force by the method of virtual work
+  back:
+    it: |-
+      $$F_x = -\left(\frac{\partial U}{\partial x}\right)_{Q} = +\left(\frac{\partial U}{\partial x}\right)_{V}$$
+
+      A carica costante (sistema isolato) o a potenziale costante (collegato a generatore).
+    en: |-
+      $$F_x = -\left(\frac{\partial U}{\partial x}\right)_{Q} = +\left(\frac{\partial U}{\partial x}\right)_{V}$$
+
+      At constant charge (isolated system) or at constant potential (connected to a generator).

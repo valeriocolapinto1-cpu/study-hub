@@ -1,0 +1,94 @@
+---
+course: fisica-2
+topic: magnetismo-nella-materia
+lang: en
+---
+
+<Layer kind="intuizione">
+
+Every atom is a tiny circuit: orbiting electrons and their spin carry a magnetic moment. In an external field these moments respond in three ways: they weakly oppose it (diamagnets), they weakly align with it (paramagnets) or, in ferromagnets, they align in whole blocks that are already magnetised, the domains, amplifying the field thousands of times.
+
+As with dielectrics, we do not want to chase the microscopic currents: the field $\vec H$ has a circulation that depends only on the **free** currents, the ones we send through the wires. In magnetic circuits iron does to flux what a wire does to current: it guides it, and a thin layer of air (the air gap) becomes the dominant "resistance".
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Magnetisation and Amperian currents
+
+In a material the atomic magnetic moments (orbital and spin) partially align in the presence of a field. The **magnetisation** is the magnetic moment per unit volume, $\vec M=n\langle\vec m\rangle$ (A/m). Its effect is equivalent to that of _magnetisation_ (Amperian) currents:
+
+$$
+\vec J_m=\nabla\times\vec M,\qquad \vec j_{s,m}=\vec M\times\hat n
+$$
+
+A cylinder uniformly magnetised along its axis is equivalent to a solenoid with surface current $j_s=M$.
+
+## Equations of magnetostatics in matter
+
+Ampère holds with all currents, free and Amperian: $\nabla\times\vec B=\mu_0(\vec J+\vec J_m)$. Defining the magnetic field $\vec H$:
+
+$$
+\vec H=\frac{\vec B}{\mu_0}-\vec M,\qquad\nabla\times\vec H=\vec J_{lib},\qquad\oint\vec H\cdot d\vec l=I_{lib}
+$$
+
+Still $\nabla\cdot\vec B=0$. In linear media $\vec M=\chi_m\vec H$ and $\vec B=\mu_0\mu_r\vec H$, with $\mu_r=1+\chi_m$. Example: a solenoid filled with material has $H=nI$ and $B=\mu_0\mu_rnI$.
+
+**Boundary conditions** (without free surface currents): $B_{1n}=B_{2n}$ and $H_{1t}=H_{2t}$, hence $\frac{\tan\theta_1}{\tan\theta_2}=\frac{\mu_1}{\mu_2}$. Entering a ferromagnet the lines of $\vec B$ bend almost parallel to the surface: iron "channels" the flux.
+
+## Dia-, para- and ferromagnetic materials
+
+- **Diamagnets** ($\chi_m\approx-10^{-5}$, independent of $T$): the field induces opposing orbital moments (Lenz's law at the atomic level). Present in all materials; diamagnets are weakly pushed away from regions of strong field. Superconductors are perfect diamagnets ($\chi_m=-1$).
+- **Paramagnets** ($\chi_m\approx10^{-5}$–$10^{-3}$, positive): permanent moments that partially align, opposed by thermal agitation. Curie's law holds, $\chi_m=C/T$.
+- **Ferromagnets** (Fe, Co, Ni): $\mu_r$ up to $10^3$–$10^5$, not constant. They consist of _Weiss domains_ that are already spontaneously magnetised and are reoriented by the external field. The relation $B(H)$ shows a **hysteresis loop** with saturation, remanent magnetisation ($B_r$ at $H=0$) and coercive field ($H_c$ needed to cancel $B$). The area of the loop is the energy dissipated per unit volume in one cycle. Above the Curie temperature the material becomes paramagnetic. "Soft" materials (narrow loop) are used for transformers and electromagnets, "hard" ones for permanent magnets.
+
+## Magnetic circuits, electromagnets, permanent magnets
+
+In a closed ferromagnetic core the flux $\Phi=BS$ stays confined, like the current in a circuit. From the circulation of $\vec H$ one obtains **Hopkinson's law**:
+
+$$
+NI=\mathcal R\,\Phi,\qquad\mathcal R=\sum_i\frac{l_i}{\mu_0\mu_{r,i}S_i}
+$$
+
+The magnetomotive force $NI$ corresponds to the emf and the reluctance $\mathcal R$ to the resistance (reluctances in series add up). With an **air gap** of thickness $h\ll$ transverse dimensions:
+
+$$
+B\simeq\frac{\mu_0NI}{l/\mu_r+h}
+$$
+
+Even a thin gap dominates the reluctance. An **electromagnet** attracts an iron armature with a force $F=\frac{B^2S}{2\mu_0}$ for each gap surface. In a **permanent magnet** without free currents $\oint\vec H\cdot d\vec l=0$: inside the material $\vec H$ is opposite to $\vec B$ (demagnetising field).
+
+<Callout tone="esame" title="At the exam">
+  In problems with materials, first compute $\vec H$ from the circulation (it depends only on free currents),
+  then $\vec B=\mu\vec H$ in each medium, and finally $\vec M$ and the Amperian currents ($j_s=M$ on the
+  lateral surfaces). Typical question: "discuss the three kinds of magnetic behaviour of materials".
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Worked example: iron toroid with an air gap
+
+An iron toroid ($\mu_r=2000$) with mean length $l=50\ \mathrm{cm}$ and cross-section $S=4\ \mathrm{cm^2}$ has an air gap of thickness $h=2\ \mathrm{mm}$; it is wound with $N=500$ turns carrying $I=2\ \mathrm A$.
+
+1. **Circulation of $\vec H$** along the mean line: $H_Fl+H_0h=NI=1000\ \mathrm A$.
+2. **Continuity of the normal $B$** across the faces of the gap: $B$ is the same in iron and in air, so $H_F=B/(\mu_0\mu_r)$ and $H_0=B/\mu_0$.
+3. **Field.** $B=\dfrac{\mu_0NI}{l/\mu_r+h}=\dfrac{1.257\times10^{-3}}{2.5\times10^{-4}+2\times10^{-3}}\simeq 0.56\ \mathrm T$ and the flux is $\Phi=BS\simeq 2.2\times10^{-4}\ \mathrm{Wb}$.
+4. **Who "uses up" the mmf.** $H_Fl\simeq 111\ \mathrm A$ in the iron, $H_0h\simeq 889\ \mathrm A$ in the gap: 2 mm of air weigh eight times more than 50 cm of iron.
+
+**Check.** Without the gap one would get $B=\mu_0\mu_rNI/l\simeq 5\ \mathrm T$, beyond the saturation of iron (about 2 T): the linear model would no longer hold.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Common mistakes
+
+- **Using the Amperian current in the circulation of $\vec H$.** $\oint\vec H\cdot d\vec l$ counts only free currents.
+- **Imposing continuity of the normal $H$.** At the interface what is conserved is $B_n$ and (without free surface currents) $H_t$.
+- **Always treating a ferromagnet as linear.** $\mu_r$ depends on $H$ and on the history (hysteresis); the magnetic-circuit formula holds far from saturation.
+- **Forgetting the air gap.** Even a few millimetres of air dominate the total reluctance.
+- **Confusing the sign of $\chi_m$.** Diamagnets $\chi_m<0$ (pushed out of strong fields), paramagnets and ferromagnets $\chi_m>0$.
+
+</Layer>

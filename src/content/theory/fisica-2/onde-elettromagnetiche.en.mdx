@@ -1,0 +1,128 @@
+---
+course: fisica-2
+topic: onde-elettromagnetiche
+lang: en
+---
+
+<Layer kind="intuizione">
+
+Maxwell's equations contain a virtuous circle: a changing magnetic field produces a changing electric field, which in turn produces a changing magnetic field, and so on. This disturbance detaches from its sources and travels by itself through empty space at speed $c=1/\sqrt{\mu_0\varepsilon_0}$: it is an electromagnetic wave, and light is a special case of it.
+
+In a plane wave $\vec E$ and $\vec B$ are perpendicular to each other and to the direction of propagation, oscillate in phase and have a fixed ratio $E=cB$. The wave carries energy (the Poynting vector says how much and in which direction) and momentum (radiation pressure). Waves are born from accelerated charges: the oscillating dipole is the simplest model of an antenna.
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Wave equation
+
+In vacuum with no charges or currents, taking the curl of the third equation and using the fourth:
+
+$$
+\nabla\times(\nabla\times\vec E)=\nabla(\nabla\cdot\vec E)-\nabla^2\vec E=-\frac{\partial}{\partial t}\nabla\times\vec B=-\mu_0\varepsilon_0\frac{\partial^2\vec E}{\partial t^2}
+$$
+
+Since $\nabla\cdot\vec E=0$ one obtains **d'Alembert's equation**, and the same equation holds for $\vec B$:
+
+$$
+\nabla^2\vec E-\frac1{c^2}\frac{\partial^2\vec E}{\partial t^2}=0,\qquad c=\frac1{\sqrt{\mu_0\varepsilon_0}}\simeq3\times10^8\ \mathrm{m/s}
+$$
+
+Light is an electromagnetic wave. In a linear medium $v=\frac1{\sqrt{\varepsilon\mu}}=\frac cn$, with refractive index $n=\sqrt{\varepsilon_r\mu_r}$.
+
+## Plane and spherical waves
+
+Any function $f(x-vt)$ is a solution in one dimension (a wave travelling towards $+x$). Harmonic plane wave: $\vec E=\vec E_0\cos(kx-\omega t)$, with $k=\frac{2\pi}\lambda=\frac\omega v$, $\omega=2\pi\nu$ and $c=\lambda\nu$. From Maxwell's equations:
+
+- the wave is **transverse**: $\vec E\perp\hat k$ and $\vec B\perp\hat k$;
+- $\vec B=\frac1v\hat k\times\vec E$, so $E=vB$, and $\vec E$, $\vec B$, $\hat k$ form a right-handed triad;
+- $\vec E$ and $\vec B$ oscillate **in phase**.
+
+**Polarisation**: linear if $\vec E$ oscillates along a fixed direction; circular or elliptical if two orthogonal components are out of phase.
+
+**Spherical waves** (point source): $E=\frac{E_0r_0}r\cos(kr-\omega t)$. The amplitude decreases as $1/r$ and the intensity as $1/r^2$, so that the power through every sphere stays constant. Far from the source the wave is locally plane.
+
+**Standing waves**: between two ideal conducting planes at distance $L$, $E$ must vanish at the walls. Superposing waves travelling in opposite directions gives $E=2E_0\sin kx\sin\omega t$, possible only for $L=m\frac\lambda2$. $\vec B$ is shifted by a quarter period and has its antinodes where $\vec E$ has its nodes.
+
+**Waves in a conductor**: the field is damped exponentially within the **skin depth** $\delta=\sqrt{\frac2{\omega\mu\sigma}}$ (skin effect). This is why metals reflect waves and shield high-frequency signals.
+
+## Electromagnetic spectrum
+
+Radio waves (λ from km to cm), microwaves (cm–mm), infrared, **visible** (about 400–700 nm, from violet to red), ultraviolet, X-rays, γ-rays. The physics is the same; what changes is the wavelength, the photon energy ($h\nu$) and the interaction with matter.
+
+## Energy and Poynting vector
+
+Energy is stored in the field with density $u=\frac12\varepsilon_0E^2+\frac1{2\mu_0}B^2$; in a plane wave the two parts are equal. From Maxwell's equations one obtains **Poynting's theorem** (energy conservation):
+
+$$
+-\frac{\partial u}{\partial t}=\nabla\cdot\vec S+\vec J\cdot\vec E,\qquad\vec S=\vec E\times\vec H=\frac1{\mu_0}\vec E\times\vec B
+$$
+
+The Poynting vector $\vec S$ (W/m²) is the energy flux per unit area and time, directed along the propagation. The **intensity** is its time average; for a harmonic wave in vacuum:
+
+$$
+I=\langle S\rangle=\frac12\varepsilon_0cE_0^2=\frac{E_0^2}{2Z_0}=\frac{cB_0^2}{2\mu_0},\qquad Z_0=\sqrt{\frac{\mu_0}{\varepsilon_0}}\simeq377\ \Omega
+$$
+
+An isotropic source of power $P$ produces at distance $r$ the intensity $I=\frac{P}{4\pi r^2}$. The wave also carries momentum: on a surface that absorbs it, it exerts the radiation pressure $I/c$ (twice that if it reflects it).
+
+## Electrodynamic potentials and Lorenz gauge
+
+From $\nabla\cdot\vec B=0$ it follows that $\vec B=\nabla\times\vec A$; then the third equation gives $\nabla\times(\vec E+\partial_t\vec A)=0$, hence
+
+$$
+\vec E=-\nabla V-\frac{\partial\vec A}{\partial t}
+$$
+
+The potentials are not unique (gauge transformations). With the **Lorenz gauge** $\nabla\cdot\vec A+\frac1{c^2}\frac{\partial V}{\partial t}=0$ the equations separate into two wave equations with sources:
+
+$$
+\nabla^2V-\frac1{c^2}\frac{\partial^2V}{\partial t^2}=-\frac\rho{\varepsilon_0},\qquad\nabla^2\vec A-\frac1{c^2}\frac{\partial^2\vec A}{\partial t^2}=-\mu_0\vec J
+$$
+
+The solutions are the **retarded potentials**: they have the static form, but the sources are evaluated at time $t-r/c$, because information travels at the speed of light.
+
+## Radiation of an oscillating dipole
+
+A dipole $p(t)=p_0\cos\omega t$ (for example a short antenna) radiates. In the **radiation zone** ($r\gg\lambda$) the fields are transverse and decrease as $1/r$:
+
+$$
+E_\theta=-\frac{\mu_0p_0\omega^2}{4\pi}\frac{\sin\theta}r\cos\!\left[\omega\left(t-\frac rc\right)\right],\qquad B_\phi=\frac{E_\theta}c
+$$
+
+$$
+\langle S\rangle=\frac{\mu_0p_0^2\omega^4}{32\pi^2c}\frac{\sin^2\theta}{r^2},\qquad\langle P\rangle=\frac{\mu_0p_0^2\omega^4}{12\pi c}
+$$
+
+The dipole does not radiate along its own axis and radiates most on the equatorial plane. The power grows as $\omega^4$: this is why light scattered by the atmosphere is rich in blue. More generally, every accelerated charge radiates.
+
+<Callout tone="esame" title="Frequent questions">
+"derive the wave equation from Maxwell's equations", "properties of plane waves", "derive the Poynting vector and discuss its meaning", "instantaneous and average intensity of a sinusoidal wave". In problems with isotropic sources: $I=P/(4\pi r^2)$, then $E_0=\sqrt{2Z_0I}$ and $B_0=E_0/c$.
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Worked example: isotropic lamp
+
+A point source radiates isotropically an average power $P=100\ \mathrm W$. We want the fields and the radiation pressure at $r=2\ \mathrm m$.
+
+1. **Intensity.** The power crosses concentric spheres: $I=\dfrac{P}{4\pi r^2}=\dfrac{100}{4\pi\cdot4}\simeq 1.99\ \mathrm{W/m^2}$.
+2. **Electric field amplitude.** From $I=\dfrac{E_0^2}{2Z_0}$: $E_0=\sqrt{2Z_0I}\simeq\sqrt{2\cdot377\cdot1.99}\simeq 38.7\ \mathrm{V/m}$.
+3. **Magnetic field.** $B_0=E_0/c\simeq 1.29\times10^{-7}\ \mathrm T$: in SI units the magnetic field of a wave is "small", but it carries the same energy as the electric one.
+4. **Energy density and pressure.** $\langle u\rangle=I/c\simeq 6.6\times10^{-9}\ \mathrm{J/m^3}$; on an absorbing surface $p=I/c\simeq 6.6\times10^{-9}\ \mathrm{Pa}$, twice as much if reflecting.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Common mistakes
+
+- **Confusing instantaneous and average intensity.** $S$ oscillates between $0$ and $\varepsilon_0cE_0^2$; the average has the factor $\frac12$. With rms values $I=E_{rms}^2/Z_0$.
+- **Taking $B=E$.** In SI $B=E/c$; it is the electric and magnetic energy densities that are equal.
+- **Direction of $\vec B$.** $\vec B=\frac1c\hat k\times\vec E$: $\vec E$, $\vec B$ and $\hat k$ form a right-handed triad (for $\hat k=\hat x$ and $\vec E\parallel\hat y$, $\vec B\parallel\hat z$).
+- **Radiation pressure.** $I/c$ for total absorption, $2I/c$ for total reflection at normal incidence.
+- **Spherical waves.** The field decreases as $1/r$, the intensity as $1/r^2$: do not mix up the two behaviours.
+
+</Layer>

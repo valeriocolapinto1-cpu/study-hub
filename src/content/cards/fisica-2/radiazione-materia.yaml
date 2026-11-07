@@ -1,0 +1,238 @@
+# Domande d'orale (dal generatore del sito originale) e carte del formulario.
+- id: orale-26
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.2
+  kind: orale
+  front:
+    it: 'Leggi di Snell: deduzione e discussione del caso di riflessione totale interna.'
+    en: "Snell's laws: derivation and discussion of total internal reflection."
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - principio di Fermat o condizioni di continuità all'interfaccia
+      - legge di Snell
+      - angolo limite $\sin\theta_c=n_2/n_1$
+    en: |-
+      Answer outline:
+
+      - Fermat's principle or continuity conditions at the interface
+      - Snell's law
+      - critical angle $\sin\theta_c=n_2/n_1$
+- id: orale-27
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.6
+  kind: orale
+  front:
+    it: Illustrare l'esperimento di Young e ricavare la posizione dei massimi di interferenza.
+    en: Illustrate Young's experiment and derive the position of the interference maxima.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - schema con due fenditure coerenti
+      - differenza di cammino e condizione di massimo
+      - interfrangia $\lambda D/d$
+    en: |-
+      Answer outline:
+
+      - layout with two coherent slits
+      - path difference and condition for a maximum
+      - fringe spacing $\lambda D/d$
+- id: formula-raccordo-em
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.1
+  kind: formula
+  front:
+    it: Condizioni di raccordo dei campi
+    en: Boundary conditions of the fields
+  back:
+    it: |-
+      $$E_{1t} = E_{2t},\quad H_{1t} = H_{2t},\quad D_{1n} = D_{2n},\quad B_{1n} = B_{2n}$$
+
+      In assenza di cariche e correnti libere superficiali.
+    en: |-
+      $$E_{1t} = E_{2t},\quad H_{1t} = H_{2t},\quad D_{1n} = D_{2n},\quad B_{1n} = B_{2n}$$
+
+      Without free surface charges and currents.
+- id: formula-riflessione
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.2
+  kind: formula
+  front:
+    it: Legge della riflessione
+    en: Law of reflection
+  back:
+    it: $$\theta_r = \theta_i$$
+    en: $$\theta_r = \theta_i$$
+- id: formula-snell
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.1
+  kind: formula
+  front:
+    it: Legge di Snell
+    en: Snell's law
+  back:
+    it: $$n_1\sin\theta_1 = n_2\sin\theta_2$$
+    en: $$n_1\sin\theta_1 = n_2\sin\theta_2$$
+- id: formula-rifl-totale
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.2
+  kind: formula
+  front:
+    it: Angolo limite (riflessione totale, n₁ > n₂)
+    en: Critical angle (total internal reflection, n₁ > n₂)
+  back:
+    it: $$\sin\theta_c = \frac{n_2}{n_1}$$
+    en: $$\sin\theta_c = \frac{n_2}{n_1}$$
+- id: formula-fibra
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.1
+  kind: formula
+  front:
+    it: Apertura numerica di una fibra ottica
+    en: Numerical aperture of an optical fibre
+  back:
+    it: |-
+      $$\mathrm{NA} = \sin\theta_{\max} = \sqrt{n_{core}^2-n_{clad}^2}$$
+
+      Ingresso dall'aria.
+    en: |-
+      $$\mathrm{NA} = \sin\theta_{\max} = \sqrt{n_{core}^2-n_{clad}^2}$$
+
+      Light entering from air.
+- id: formula-fresnel-s
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.5
+  kind: formula
+  front:
+    it: Coefficienti di Fresnel (polarizzazione s, E ⊥ piano di incidenza)
+    en: Fresnel coefficients (s polarisation, E ⊥ plane of incidence)
+  back:
+    it: |-
+      $$r_s = \frac{n_1\cos\theta_i - n_2\cos\theta_t}{n_1\cos\theta_i + n_2\cos\theta_t},\qquad t_s = \frac{2n_1\cos\theta_i}{n_1\cos\theta_i + n_2\cos\theta_t}$$
+
+      Mezzi non magnetici (μr = 1).
+    en: |-
+      $$r_s = \frac{n_1\cos\theta_i - n_2\cos\theta_t}{n_1\cos\theta_i + n_2\cos\theta_t},\qquad t_s = \frac{2n_1\cos\theta_i}{n_1\cos\theta_i + n_2\cos\theta_t}$$
+
+      Non-magnetic media (μr = 1).
+- id: formula-fresnel-p
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.5
+  kind: formula
+  front:
+    it: Coefficienti di Fresnel (polarizzazione p, E ∥ piano di incidenza)
+    en: Fresnel coefficients (p polarisation, E ∥ plane of incidence)
+  back:
+    it: |-
+      $$r_p = \frac{n_2\cos\theta_i - n_1\cos\theta_t}{n_2\cos\theta_i + n_1\cos\theta_t},\qquad t_p = \frac{2n_1\cos\theta_i}{n_2\cos\theta_i + n_1\cos\theta_t}$$
+
+      Il segno di r_p dipende dalla convenzione sui versi dei campi.
+    en: |-
+      $$r_p = \frac{n_2\cos\theta_i - n_1\cos\theta_t}{n_2\cos\theta_i + n_1\cos\theta_t},\qquad t_p = \frac{2n_1\cos\theta_i}{n_2\cos\theta_i + n_1\cos\theta_t}$$
+
+      The sign of r_p depends on the convention for the directions of the fields.
+- id: formula-fresnel-norm
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.1
+  kind: formula
+  front:
+    it: Incidenza normale
+    en: Normal incidence
+  back:
+    it: $$R = \left(\frac{n_1-n_2}{n_1+n_2}\right)^2,\qquad T = \frac{4n_1n_2}{(n_1+n_2)^2}$$
+    en: $$R = \left(\frac{n_1-n_2}{n_1+n_2}\right)^2,\qquad T = \frac{4n_1n_2}{(n_1+n_2)^2}$$
+- id: formula-brewster
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.1
+  kind: formula
+  front:
+    it: Angolo di Brewster
+    en: Brewster's angle
+  back:
+    it: $$\tan\theta_B = \frac{n_2}{n_1}$$
+    en: $$\tan\theta_B = \frac{n_2}{n_1}$$
+- id: formula-fermat
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.5
+  kind: formula
+  front:
+    it: Cammino ottico e principio di Fermat
+    en: Optical path and Fermat's principle
+  back:
+    it: $$L = \int_\gamma n\,ds,\qquad \delta L = 0$$
+    en: $$L = \int_\gamma n\,ds,\qquad \delta L = 0$$
+- id: formula-malus
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.1
+  kind: formula
+  front:
+    it: Legge di Malus
+    en: Malus's law
+  back:
+    it: |-
+      $$I = I_0\cos^2\theta$$
+
+      Luce naturale attraverso un polarizzatore ideale: I = I₀/2.
+    en: |-
+      $$I = I_0\cos^2\theta$$
+
+      Natural light through an ideal polariser: I = I₀/2.
+- id: formula-interferenza
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.6
+  kind: formula
+  front:
+    it: Interferenza di due onde coerenti
+    en: Interference of two coherent waves
+  back:
+    it: $$I = I_1 + I_2 + 2\sqrt{I_1 I_2}\cos\delta,\qquad \delta = \frac{2\pi}{\lambda_0}\,\Delta L$$
+    en: $$I = I_1 + I_2 + 2\sqrt{I_1 I_2}\cos\delta,\qquad \delta = \frac{2\pi}{\lambda_0}\,\Delta L$$
+- id: formula-young
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.6
+  kind: formula
+  front:
+    it: Esperimento di Young (fenditure a distanza d, schermo a distanza D)
+    en: Young's experiment (slits a distance d apart, screen at distance D)
+  back:
+    it: $$d\sin\theta = m\lambda\ \text{(max)},\qquad d\sin\theta = \left(m+\tfrac{1}{2}\right)\lambda\ \text{(min)},\qquad \Delta y = \frac{\lambda D}{d}$$
+    en: $$d\sin\theta = m\lambda\ \text{(max)},\qquad d\sin\theta = \left(m+\tfrac{1}{2}\right)\lambda\ \text{(min)},\qquad \Delta y = \frac{\lambda D}{d}$$
+- id: formula-young-i
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.6
+  kind: formula
+  front:
+    it: Intensità nell'esperimento di Young
+    en: Intensity in Young's experiment
+  back:
+    it: $$I(\theta) = 4I_0\cos^2\!\left(\frac{\pi d\sin\theta}{\lambda}\right)$$
+    en: $$I(\theta) = 4I_0\cos^2\!\left(\frac{\pi d\sin\theta}{\lambda}\right)$$
+- id: formula-fraunhofer
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.6
+  kind: formula
+  front:
+    it: Diffrazione di Fraunhofer da fenditura di larghezza a
+    en: Fraunhofer diffraction by a slit of width a
+  back:
+    it: "$$I(\\theta) = I_0\\left(\\frac{\\sin\\beta}{\\beta}\\right)^2,\\quad \\beta = \\frac{\\pi a\\sin\\theta}{\\lambda};\\qquad \\text{minimi: } a\\sin\\theta = m\\lambda,\\ m\\neq0$$"
+    en: "$$I(\\theta) = I_0\\left(\\frac{\\sin\\beta}{\\beta}\\right)^2,\\quad \\beta = \\frac{\\pi a\\sin\\theta}{\\lambda};\\qquad \\text{minimi: } a\\sin\\theta = m\\lambda,\\ m\\neq0$$"

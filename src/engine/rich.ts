@@ -116,6 +116,14 @@ export function renderRich(
 }
 
 /** Testo semplice (per aria-label, ricerca, anteprime): via la sintassi, la matematica resta in TeX. */
+/**
+ * Solo la prosa di un testo, senza matematica: per l'indice di ricerca, dove le variabili di una
+ * lettera ($q$, $z$…) farebbero corrispondere query qualsiasi e renderebbero illeggibili gli estratti.
+ */
+export function proseText(source: string): string {
+  return plainText(source.replace(/\$\$[\s\S]*?\$\$|\$[^$]*\$|\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]/g, ' '));
+}
+
 export function plainText(source: string): string {
   return source
     .replace(/^```[^\n]*$/gm, '')

@@ -1,0 +1,25 @@
+id: fisica-2
+year: 2
+semester: 1
+title: { it: 'Fisica Generale II', en: 'General Physics II' }
+subtitle: { it: 'Elettromagnetismo e ottica', en: 'Electromagnetism and optics' }
+description:
+  it: "Elettrostatica, corrente, magnetismo, induzione, equazioni di Maxwell, onde elettromagnetiche e ottica ondulatoria, con il laboratorio e la teoria della misura: teoria per capitolo, formulario, esercizi generati sulla tipologia degli appelli e simulazioni d'esame."
+  en: "Electrostatics, current, magnetism, induction, Maxwell's equations, electromagnetic waves and wave optics, with the laboratory and measurement theory: theory by chapter, formula sheet, exercises generated on the pattern of past exams and exam simulations."
+accent: blu-prussia
+exam:
+  format: scritto+orale
+  durationMin: 150
+  structure:
+    - { label: { it: 'Esercizio 1', en: 'Exercise 1' }, points: 6, kind: esercizio }
+    - { label: { it: 'Esercizio 2', en: 'Exercise 2' }, points: 6, kind: esercizio }
+    - { label: { it: 'Esercizio 3', en: 'Exercise 3' }, points: 6, kind: esercizio }
+    - { label: { it: 'Esercizio 4', en: 'Exercise 4' }, points: 6, kind: esercizio }
+    - { label: { it: 'Domanda di teoria 1', en: 'Theory question 1' }, points: 3, kind: teoria }
+    - { label: { it: 'Domanda di teoria 2', en: 'Theory question 2' }, points: 3, kind: teoria }
+extras:
+  - { slug: laboratorio, title: { it: 'Laboratorio', en: 'Laboratory' } }
+  - { slug: appelli, title: { it: 'Appelli passati', en: 'Past exam sessions' } }
+  - { slug: simulazioni, title: { it: 'Simulazioni', en: 'Simulations' } }
+legacyRepo: fisica-2
+order: 3

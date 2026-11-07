@@ -1,0 +1,218 @@
+# Quiz del sito originale (legacy/fisica-2/data/quiz.json, id "quiz-<id>") ed esercizi generati sulla tipologia degli appelli.
+- id: quiz-q102
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: "All'interno di un conduttore in equilibrio elettrostatico:"
+    en: 'Inside a conductor in electrostatic equilibrium:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Se ci fosse campo le cariche libere si muoverebbero: all'equilibrio $\\vec E=0$ nel materiale, quindi $V$ è costante e la carica in eccesso sta sulla superficie."
+        en: "If there were a field the free charges would move: at equilibrium $\\vec E=0$ in the material, so $V$ is constant and the excess charge lies on the surface."
+  origin: originale
+  choices:
+    - text:
+        it: il campo è nullo e il volume è equipotenziale
+        en: the field is zero and the volume is equipotential
+      correct: true
+    - text:
+        it: il campo è uniforme e diverso da zero
+        en: the field is uniform and non-zero
+      correct: false
+    - text:
+        it: la carica si distribuisce uniformemente nel volume
+        en: the charge spreads uniformly through the volume
+      correct: false
+    - text:
+        it: il potenziale è nullo
+        en: the potential is zero
+      correct: false
+- id: quiz-q105
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Campo elettrico immediatamente all'esterno della superficie di un conduttore carico con densità $\\sigma$:"
+    en: "Electric field just outside the surface of a conductor charged with density $\\sigma$:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Teorema di Coulomb: con una scatoletta a cavallo della superficie il flusso esce solo dalla faccia esterna, $E\\,dS=\\sigma dS/\\varepsilon_0$."
+        en: "Coulomb's theorem: with a pillbox straddling the surface the flux leaves only through the outer face, $E\\,dS=\\sigma dS/\\varepsilon_0$."
+  origin: originale
+  choices:
+    - text:
+        it: $\sigma/\varepsilon_0$, perpendicolare alla superficie
+        en: $\sigma/\varepsilon_0$, perpendicular to the surface
+      correct: true
+    - text:
+        it: $\sigma/(2\varepsilon_0)$, perpendicolare
+        en: $\sigma/(2\varepsilon_0)$, perpendicular
+      correct: false
+    - text:
+        it: $\sigma/\varepsilon_0$, tangente
+        en: $\sigma/\varepsilon_0$, tangent
+      correct: false
+    - text:
+        it: nullo
+        en: zero
+      correct: false
+- id: quiz-q108
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.4
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Due condensatori $C_1$ e $C_2$ in serie hanno capacità equivalente:'
+    en: 'Two capacitors $C_1$ and $C_2$ in series have equivalent capacitance:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'In serie hanno la stessa carica e le tensioni si sommano: $1/C=1/C_1+1/C_2$.'
+        en: 'In series they carry the same charge and the voltages add: $1/C=1/C_1+1/C_2$.'
+  origin: originale
+  choices:
+    - text:
+        it: $\dfrac{C_1C_2}{C_1+C_2}$
+        en: $\dfrac{C_1C_2}{C_1+C_2}$
+      correct: true
+    - text:
+        it: $C_1+C_2$
+        en: $C_1+C_2$
+      correct: false
+    - text:
+        it: $\sqrt{C_1C_2}$
+        en: $\sqrt{C_1C_2}$
+      correct: false
+    - text:
+        it: $\dfrac{C_1+C_2}{2}$
+        en: $\dfrac{C_1+C_2}{2}$
+      correct: false
+- id: quiz-q110
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: Condensatore piano nel vuoto con armature di area $S=100\ \mathrm{cm^2}$ a distanza $d=1$ mm. Calcola la capacità in pF.
+    en: Parallel-plate capacitor in vacuum with plates of area $S=100\ \mathrm{cm^2}$ at distance $d=1$ mm. Compute the capacitance in pF.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $C=\varepsilon_0S/d=8{,}854\times10^{-12}\cdot10^{-2}/10^{-3}\simeq88,5$ pF.
+        en: $C=\varepsilon_0S/d=8.854\times10^{-12}\cdot10^{-2}/10^{-3}\simeq88.5$ pF.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 88.54
+      unit: pF
+      tol: 0.03
+- id: quiz-q111
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: Lo stesso condensatore ($C\simeq88{,}5$ pF) è caricato a $V=100$ V. Calcola l'energia immagazzinata in nJ.
+    en: The same capacitor ($C\simeq88.5$ pF) is charged to $V=100$ V. Compute the stored energy in nJ.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $U=\tfrac12CV^2=\tfrac12\cdot88{,}5\times10^{-12}\cdot10^4\simeq443$ nJ.
+        en: $U=\tfrac12CV^2=\tfrac12\cdot88.5\times10^{-12}\cdot10^4\simeq443$ nJ.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 442.7
+      unit: nJ
+      tol: 0.03
+- id: quiz-q112
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: Sfera conduttrice di raggio $R=10$ cm con carica $Q=10$ nC. Calcola il potenziale della sfera (in V, con $V(\infty)=0$).
+    en: Conducting sphere of radius $R=10$ cm with charge $Q=10$ nC. Compute the potential of the sphere (in V, with $V(\infty)=0$).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $V=\frac{Q}{4\pi\varepsilon_0R}\simeq899$ V.
+        en: $V=\frac{Q}{4\pi\varepsilon_0R}\simeq899$ V.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 898.8
+      unit: V
+      tol: 0.03
+- id: quiz-q114
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un condensatore resta collegato a un generatore di tensione $V$ mentre si raddoppia la distanza tra le armature. La carica sulle armature:'
+    en: 'A capacitor stays connected to a voltage generator $V$ while the distance between the plates is doubled. The charge on the plates:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $V$ è fissata dal generatore e $C=\varepsilon_0S/d$ si dimezza, quindi $Q=CV$ si dimezza.
+        en: $V$ is fixed by the generator and $C=\varepsilon_0S/d$ halves, so $Q=CV$ halves.
+  origin: originale
+  choices:
+    - text:
+        it: si dimezza
+        en: halves
+      correct: true
+    - text:
+        it: raddoppia
+        en: doubles
+      correct: false
+    - text:
+        it: resta uguale
+        en: stays the same
+      correct: false
+    - text:
+        it: si riduce a un quarto
+        en: drops to a quarter
+      correct: false
+- id: gen-b1-conduttori-sferici
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.2
+    - conduttori-capacita.5
+  difficulty: 3
+  kind: generated
+  generator: fisica-2/b1-conduttori-sferici
+  origin: tipologia-appello

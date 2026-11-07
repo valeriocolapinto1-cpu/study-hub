@@ -1,0 +1,111 @@
+# Domande d'orale (dal generatore del sito originale) e carte del formulario.
+- id: orale-05
+  topic: dielettrici
+  objectives:
+    - dielettrici.3
+  kind: orale
+  front:
+    it: Definire il vettore polarizzazione e ricavare le cariche di polarizzazione; enunciare la legge di Gauss per $\vec D$.
+    en: Define the polarisation vector and derive the polarisation charges; state Gauss's law for $\vec D$.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - $\sigma_p=\vec P\cdot\hat n$ e $\rho_p=-\nabla\cdot\vec P$
+      - $\vec D=\varepsilon_0\vec E+\vec P$ e $\nabla\cdot\vec D=\rho_{libera}$
+      - caso lineare $\vec D=\varepsilon_0\varepsilon_r\vec E$
+    en: |-
+      Answer outline:
+
+      - $\sigma_p=\vec P\cdot\hat n$ and $\rho_p=-\nabla\cdot\vec P$
+      - $\vec D=\varepsilon_0\vec E+\vec P$ and $\nabla\cdot\vec D=\rho_{free}$
+      - linear case $\vec D=\varepsilon_0\varepsilon_r\vec E$
+- id: formula-eps-r
+  topic: dielettrici
+  objectives:
+    - dielettrici.1
+  kind: formula
+  front:
+    it: Costante dielettrica relativa
+    en: Relative dielectric constant
+  back:
+    it: $$\varepsilon = \varepsilon_0\varepsilon_r,\qquad C = \varepsilon_r C_0$$
+    en: $$\varepsilon = \varepsilon_0\varepsilon_r,\qquad C = \varepsilon_r C_0$$
+- id: formula-p-vett
+  topic: dielettrici
+  objectives:
+    - dielettrici.3
+  kind: formula
+  front:
+    it: Vettore di polarizzazione
+    en: Polarisation vector
+  back:
+    it: |-
+      $$\vec P = n\,\langle\vec p\,\rangle,\qquad \vec P = \varepsilon_0(\varepsilon_r-1)\vec E = \varepsilon_0\chi\,\vec E$$
+
+      La relazione lineare vale per dielettrici lineari e isotropi; χ suscettività elettrica.
+    en: |-
+      $$\vec P = n\,\langle\vec p\,\rangle,\qquad \vec P = \varepsilon_0(\varepsilon_r-1)\vec E = \varepsilon_0\chi\,\vec E$$
+
+      The linear relation holds for linear isotropic dielectrics; χ electric susceptibility.
+- id: formula-cariche-pol
+  topic: dielettrici
+  objectives:
+    - dielettrici.3
+  kind: formula
+  front:
+    it: Cariche di polarizzazione
+    en: Polarisation charges
+  back:
+    it: $$\sigma_p = \vec P\cdot\hat n,\qquad \rho_p = -\nabla\cdot\vec P$$
+    en: $$\sigma_p = \vec P\cdot\hat n,\qquad \rho_p = -\nabla\cdot\vec P$$
+- id: formula-d-vett
+  topic: dielettrici
+  objectives:
+    - dielettrici.1
+  kind: formula
+  front:
+    it: Induzione elettrica D
+    en: Electric displacement D
+  back:
+    it: $$\vec D = \varepsilon_0\vec E + \vec P = \varepsilon\,\vec E\ \ \text{(mezzo lineare)}$$
+    en: $$\vec D = \varepsilon_0\vec E + \vec P = \varepsilon\,\vec E\ \ \text{(mezzo lineare)}$$
+- id: formula-gauss-d
+  topic: dielettrici
+  objectives:
+    - dielettrici.1
+  kind: formula
+  front:
+    it: Gauss per D
+    en: Gauss's law for D
+  back:
+    it: $$\oint_S \vec D\cdot\hat n\,dS = Q_{\text{lib}},\qquad \nabla\cdot\vec D = \rho_{\text{lib}}$$
+    en: $$\oint_S \vec D\cdot\hat n\,dS = Q_{\text{lib}},\qquad \nabla\cdot\vec D = \rho_{\text{lib}}$$
+- id: formula-raccordo-diel
+  topic: dielettrici
+  objectives:
+    - dielettrici.5
+  kind: formula
+  front:
+    it: Condizioni al contorno tra due dielettrici
+    en: Boundary conditions between two dielectrics
+  back:
+    it: |-
+      $$D_{1n} = D_{2n},\qquad E_{1t} = E_{2t},\qquad \frac{\tan\theta_1}{\tan\theta_2} = \frac{\varepsilon_1}{\varepsilon_2}$$
+
+      In assenza di cariche libere sulla superficie; angoli misurati dalla normale.
+    en: |-
+      $$D_{1n} = D_{2n},\qquad E_{1t} = E_{2t},\qquad \frac{\tan\theta_1}{\tan\theta_2} = \frac{\varepsilon_1}{\varepsilon_2}$$
+
+      Without free charges on the surface; angles measured from the normal.
+- id: formula-u-diel
+  topic: dielettrici
+  objectives:
+    - dielettrici.6
+  kind: formula
+  front:
+    it: Densità di energia con dielettrici
+    en: Energy density with dielectrics
+  back:
+    it: $$u = \frac{1}{2}\vec E\cdot\vec D$$
+    en: $$u = \frac{1}{2}\vec E\cdot\vec D$$

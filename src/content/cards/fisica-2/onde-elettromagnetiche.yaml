@@ -1,0 +1,247 @@
+# Domande d'orale (dal generatore del sito originale) e carte del formulario.
+- id: orale-24
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.4
+  kind: orale
+  front:
+    it: Dalle equazioni di Maxwell dedurre il teorema di Poynting e interpretare fisicamente il vettore $\vec S$.
+    en: From Maxwell's equations derive Poynting's theorem and interpret the vector $\vec S$ physically.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - teorema di Poynting (bilancio dell'energia)
+      - $\vec S=\vec E\times\vec H$
+      - flusso di energia per un'onda piana e intensità
+    en: |-
+      Answer outline:
+
+      - Poynting's theorem (energy balance)
+      - $\vec S=\vec E\times\vec H$
+      - energy flux for a plane wave and intensity
+- id: orale-25
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.2
+  kind: orale
+  front:
+    it: Elencare e giustificare le proprietà delle onde elettromagnetiche piane nel vuoto (trasversalità, rapporto $E/B$, velocità, energia).
+    en: List and justify the properties of plane electromagnetic waves in vacuum (transversality, ratio $E/B$, speed, energy).
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - ortogonalità di $\vec E$, $\vec B$ e direzione di propagazione
+      - $E=cB$ e velocità $c=1/\sqrt{\varepsilon_0\mu_0}$
+      - densità di energia, intensità e polarizzazione
+    en: |-
+      Answer outline:
+
+      - orthogonality of $\vec E$, $\vec B$ and the direction of propagation
+      - $E=cB$ and speed $c=1/\sqrt{\varepsilon_0\mu_0}$
+      - energy density, intensity and polarisation
+- id: orale-28
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.1
+  kind: orale
+  front:
+    it: Ricavare l'equazione delle onde elettromagnetiche nel vuoto dalle equazioni di Maxwell.
+    en: Derive the electromagnetic wave equation in vacuum from Maxwell's equations.
+  back:
+    it: |-
+      Traccia di risposta:
+
+      - rotore del rotore e uso di $\nabla\cdot\vec E=0$
+      - equazione di d'Alembert per $\vec E$ e $\vec B$
+      - velocità di propagazione
+    en: |-
+      Answer outline:
+
+      - curl of the curl and use of $\nabla\cdot\vec E=0$
+      - d'Alembert's equation for $\vec E$ and $\vec B$
+      - propagation speed
+- id: formula-eq-onde
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.1
+  kind: formula
+  front:
+    it: Equazione delle onde elettromagnetiche
+    en: Electromagnetic wave equation
+  back:
+    it: $$\nabla^2\vec E - \frac{1}{v^2}\frac{\partial^2\vec E}{\partial t^2} = 0,\qquad \nabla^2\vec B - \frac{1}{v^2}\frac{\partial^2\vec B}{\partial t^2} = 0$$
+    en: $$\nabla^2\vec E - \frac{1}{v^2}\frac{\partial^2\vec E}{\partial t^2} = 0,\qquad \nabla^2\vec B - \frac{1}{v^2}\frac{\partial^2\vec B}{\partial t^2} = 0$$
+- id: formula-vel-luce
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.1
+  kind: formula
+  front:
+    it: Velocità di propagazione e indice di rifrazione
+    en: Propagation speed and refractive index
+  back:
+    it: $$c = \frac{1}{\sqrt{\varepsilon_0\mu_0}},\qquad v = \frac{c}{n},\qquad n = \sqrt{\varepsilon_r\mu_r}$$
+    en: $$c = \frac{1}{\sqrt{\varepsilon_0\mu_0}},\qquad v = \frac{c}{n},\qquad n = \sqrt{\varepsilon_r\mu_r}$$
+- id: formula-onda-piana
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.1
+  kind: formula
+  front:
+    it: Onda piana armonica
+    en: Harmonic plane wave
+  back:
+    it: $$\vec E = \vec E_0\cos(\vec k\cdot\vec r-\omega t),\qquad k = \frac{\omega}{v} = \frac{2\pi}{\lambda},\qquad c = \lambda\nu$$
+    en: $$\vec E = \vec E_0\cos(\vec k\cdot\vec r-\omega t),\qquad k = \frac{\omega}{v} = \frac{2\pi}{\lambda},\qquad c = \lambda\nu$$
+- id: formula-e-b-onda
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.1
+  kind: formula
+  front:
+    it: Relazione tra E e B nell'onda piana
+    en: Relation between E and B in a plane wave
+  back:
+    it: |-
+      $$\vec B = \frac{1}{v}\,\hat k\times\vec E,\qquad |\vec E| = v\,|\vec B|$$
+
+      Onda trasversale: E, B e k formano una terna destrorsa.
+    en: |-
+      $$\vec B = \frac{1}{v}\,\hat k\times\vec E,\qquad |\vec E| = v\,|\vec B|$$
+
+      Transverse wave: E, B and k form a right-handed triad.
+- id: formula-onda-sferica
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.1
+  kind: formula
+  front:
+    it: Onda sferica
+    en: Spherical wave
+  back:
+    it: |-
+      $$E(r,t) = \frac{E_0\,r_0}{r}\cos(kr-\omega t)$$
+
+      Ampiezza ∝ 1/r, intensità ∝ 1/r².
+    en: |-
+      $$E(r,t) = \frac{E_0\,r_0}{r}\cos(kr-\omega t)$$
+
+      Amplitude ∝ 1/r, intensity ∝ 1/r².
+- id: formula-skin
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.1
+  kind: formula
+  front:
+    it: Profondità di penetrazione in un buon conduttore
+    en: Skin depth in a good conductor
+  back:
+    it: $$\delta = \sqrt{\frac{2}{\omega\mu\sigma}}$$
+    en: $$\delta = \sqrt{\frac{2}{\omega\mu\sigma}}$$
+- id: formula-poynting
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.4
+  kind: formula
+  front:
+    it: Vettore di Poynting
+    en: Poynting vector
+  back:
+    it: $$\vec S = \vec E\times\vec H = \frac{1}{\mu_0}\vec E\times\vec B\ \ \text{(vuoto)}$$
+    en: $$\vec S = \vec E\times\vec H = \frac{1}{\mu_0}\vec E\times\vec B\ \ \text{(vuoto)}$$
+- id: formula-u-em
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.4
+  kind: formula
+  front:
+    it: Densità di energia elettromagnetica
+    en: Electromagnetic energy density
+  back:
+    it: $$u = \frac{1}{2}\varepsilon_0 E^2 + \frac{1}{2\mu_0}B^2$$
+    en: $$u = \frac{1}{2}\varepsilon_0 E^2 + \frac{1}{2\mu_0}B^2$$
+- id: formula-th-poynting
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.4
+  kind: formula
+  front:
+    it: Teorema di Poynting (conservazione dell'energia)
+    en: Poynting's theorem (energy conservation)
+  back:
+    it: $$-\frac{\partial u}{\partial t} = \nabla\cdot\vec S + \vec J\cdot\vec E$$
+    en: $$-\frac{\partial u}{\partial t} = \nabla\cdot\vec S + \vec J\cdot\vec E$$
+- id: formula-intensita
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.4
+  kind: formula
+  front:
+    it: Intensità media di un'onda piana armonica
+    en: Average intensity of a harmonic plane wave
+  back:
+    it: $$I = \langle S\rangle = \frac{1}{2}\varepsilon_0 c\,E_0^2 = \frac{E_0^2}{2Z_0},\qquad Z_0 = \sqrt{\frac{\mu_0}{\varepsilon_0}}\simeq 377\ \Omega$$
+    en: $$I = \langle S\rangle = \frac{1}{2}\varepsilon_0 c\,E_0^2 = \frac{E_0^2}{2Z_0},\qquad Z_0 = \sqrt{\frac{\mu_0}{\varepsilon_0}}\simeq 377\ \Omega$$
+- id: formula-potenziali-ed
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.5
+  kind: formula
+  front:
+    it: Potenziali elettrodinamici
+    en: Electrodynamic potentials
+  back:
+    it: $$\vec B = \nabla\times\vec A,\qquad \vec E = -\nabla V - \frac{\partial\vec A}{\partial t}$$
+    en: $$\vec B = \nabla\times\vec A,\qquad \vec E = -\nabla V - \frac{\partial\vec A}{\partial t}$$
+- id: formula-gauge-lorentz
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.5
+  kind: formula
+  front:
+    it: Gauge di Lorentz
+    en: Lorenz gauge
+  back:
+    it: $$\nabla\cdot\vec A + \frac{1}{c^2}\frac{\partial V}{\partial t} = 0$$
+    en: $$\nabla\cdot\vec A + \frac{1}{c^2}\frac{\partial V}{\partial t} = 0$$
+- id: formula-dalembert
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.5
+  kind: formula
+  front:
+    it: Equazioni per i potenziali (gauge di Lorentz)
+    en: Equations for the potentials (Lorenz gauge)
+  back:
+    it: $$\nabla^2 V - \frac{1}{c^2}\frac{\partial^2 V}{\partial t^2} = -\frac{\rho}{\varepsilon_0},\qquad \nabla^2\vec A - \frac{1}{c^2}\frac{\partial^2\vec A}{\partial t^2} = -\mu_0\vec J$$
+    en: $$\nabla^2 V - \frac{1}{c^2}\frac{\partial^2 V}{\partial t^2} = -\frac{\rho}{\varepsilon_0},\qquad \nabla^2\vec A - \frac{1}{c^2}\frac{\partial^2\vec A}{\partial t^2} = -\mu_0\vec J$$
+- id: formula-dipolo-osc
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.6
+  kind: formula
+  front:
+    it: 'Dipolo oscillante: campi a grande distanza'
+    en: 'Oscillating dipole: far fields'
+  back:
+    it: |-
+      $$E_\theta = -\frac{\mu_0\, p_0\,\omega^2}{4\pi}\,\frac{\sin\theta}{r}\cos\!\left[\omega\left(t-\frac{r}{c}\right)\right],\qquad B_\phi = \frac{E_\theta}{c}$$
+
+      $p(t) = p_0\cos\omega t$; zona di radiazione $r\gg\lambda$. Il segno dipende dalla convenzione sui versi dei versori.
+    en: |-
+      $$E_\theta = -\frac{\mu_0\, p_0\,\omega^2}{4\pi}\,\frac{\sin\theta}{r}\cos\!\left[\omega\left(t-\frac{r}{c}\right)\right],\qquad B_\phi = \frac{E_\theta}{c}$$
+
+      $p(t) = p_0\cos\omega t$; radiation zone $r\gg\lambda$. The sign depends on the orientation convention for the unit vectors.
+- id: formula-dipolo-s
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.6
+  kind: formula
+  front:
+    it: 'Dipolo oscillante: Poynting medio e potenza irraggiata'
+    en: 'Oscillating dipole: average Poynting vector and radiated power'
+  back:
+    it: $$\langle S\rangle = \frac{\mu_0\, p_0^2\,\omega^4}{32\pi^2 c}\,\frac{\sin^2\theta}{r^2},\qquad \langle P\rangle = \frac{\mu_0\, p_0^2\,\omega^4}{12\pi c}$$
+    en: $$\langle S\rangle = \frac{\mu_0\, p_0^2\,\omega^4}{32\pi^2 c}\,\frac{\sin^2\theta}{r^2},\qquad \langle P\rangle = \frac{\mu_0\, p_0^2\,\omega^4}{12\pi c}$$

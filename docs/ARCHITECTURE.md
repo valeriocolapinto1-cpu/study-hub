@@ -32,7 +32,7 @@ src/engine/                     TS puro: storage, migrate, random, units, gradin
 src/islands/                    isole Preact del motore (ExercisePlayer, ReviewSession, ExamRunner, …) + islands.css
 src/components/course/          sezioni generiche del corso (esercizi, ripasso, esame, progressi, appunti)
 src/lib/course-data.ts          dati dei corsi per le isole (testi localizzati, HTML con KaTeX a build-time)
-src/sim/                        kit simulatori
+src/sim/                        kit simulatori e circuiti (netlist, MNA, schemi SVG, Plot, Scope…): guida in docs/SIM.md
 src/figures/                    kit delle figure (parametri → SVG, <Diagram>, varianti interattive; docs/FIGURE.md)
 src/courses/<courseId>/         codice specifico: generators/*.ts, sims/*.tsx, extras/*
 src/content/                    content collections (dati)

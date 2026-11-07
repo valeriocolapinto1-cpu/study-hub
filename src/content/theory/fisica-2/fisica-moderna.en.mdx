@@ -1,0 +1,76 @@
+---
+course: fisica-2
+topic: fisica-moderna
+lang: en
+---
+
+<Layer kind="intuizione">
+
+Two topics that show the limits of classical electromagnetism. **Superconductors** are materials that, below a critical temperature, conduct without any resistance and in addition expel the magnetic field: a behaviour that zero resistivity alone does not explain and that requires quantum physics.
+
+**Special relativity** grew precisely out of Maxwell's equations, which predict a speed of light that is the same for everybody. Accepting it forces us to change the transformations between reference frames, with a surprising consequence: the electric and magnetic fields are not separate entities, but two faces of the same field, which mix when the observer changes.
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Superconductors
+
+Some materials, below a **critical temperature** $T_c$, have exactly zero resistivity (Kamerlingh Onnes, 1911, mercury at 4.2 K): a current induced in a superconducting ring flows for years without decaying.
+
+- **Meissner effect**: a superconductor expels the magnetic field from its interior ($\vec B=0$, perfect diamagnet, $\chi_m=-1$). This is not just a consequence of $\rho=0$: a perfect conductor would keep the initial flux, whereas a superconductor expels it even when cooled in the presence of the field. Hence the levitation of a magnet above a superconductor.
+- **Critical field**: superconductivity disappears above a field $H_c(T)\simeq H_c(0)\left[1-(T/T_c)^2\right]$, and therefore also above a critical current density. Type I superconductors expel all the field up to $H_c$. Type II ones let the flux penetrate in quantised tubes between $H_{c1}$ and $H_{c2}$ and withstand much higher fields.
+- The microscopic explanation (BCS theory) involves pairs of electrons (Cooper pairs) bound through the lattice. High-temperature superconductors (cuprates, with $T_c$ above the 77 K of liquid nitrogen) are ceramics.
+- Applications: magnets for MRI and accelerators (LHC), radio-frequency cavities, SQUIDs (measurement of extremely weak fields), lossless power lines.
+
+## Special relativity and electromagnetism
+
+Maxwell's equations predict the speed $c$ without reference to any particular frame and are not invariant under Galilean transformations. Einstein (1905) started from two postulates: the laws of physics are the same in all inertial frames, and the speed of light in vacuum is $c$ for all observers. The **Lorentz transformations** follow (relative motion along $x$ with speed $v$, $\beta=v/c$, $\gamma=1/\sqrt{1-\beta^2}$):
+
+$$
+x'=\gamma(x-vt),\quad y'=y,\quad z'=z,\quad t'=\gamma\left(t-\frac{vx}{c^2}\right)
+$$
+
+Consequences: simultaneity is relative, moving clocks run slow ($\Delta t=\gamma\Delta t_0$, time dilation) and lengths contract along the direction of motion ($L=L_0/\gamma$). The energy is $E=\gamma mc^2$, the momentum $\vec p=\gamma m\vec v$.
+
+**Charge is invariant**, whereas $\vec E$ and $\vec B$ are not separately: they are components of a single electromagnetic field. Going to a frame moving with velocity $\vec v$:
+
+$$
+\vec E'_\parallel=\vec E_\parallel,\quad\vec B'_\parallel=\vec B_\parallel,\quad\vec E'_\perp=\gamma(\vec E+\vec v\times\vec B)_\perp,\quad\vec B'_\perp=\gamma\left(\vec B-\frac{\vec v\times\vec E}{c^2}\right)_\perp
+$$
+
+Invariant quantities: $\vec E\cdot\vec B$ and $E^2-c^2B^2$.
+
+**Key example**: a charge at rest next to a neutral current-carrying wire feels no force in the wire's frame. In the frame of a charge moving parallel to the wire, instead, length contraction makes the densities of positive and negative charges different: the wire appears charged and the charge feels an electric force. This force coincides with the magnetic force computed in the wire's frame. Magnetism is therefore a relativistic effect of electrostatics, and Maxwell's equations are already relativistically correct (covariant).
+
+<Callout tone="esame" title="At the oral exam">
+  On superconductors: $\rho=0$ and the Meissner effect, critical field, types I and II. On relativity:
+  postulates, Lorentz transformations, invariance of charge, transformation of the fields and the example of
+  the current-carrying wire.
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Worked example: a magnetic field seen by a moving observer
+
+In the laboratory there is only a uniform magnetic field $\vec B=B\,\hat z$ with $B=0.1\ \mathrm T$. An observer moves with velocity $\vec v=v\,\hat x$, $v=10^6\ \mathrm{m/s}$.
+
+1. **Lorentz factor.** $\beta=v/c\simeq3.3\times10^{-3}$, so $\gamma\simeq1+\beta^2/2\simeq1.000006$: for the numbers $\gamma\simeq1$ is enough.
+2. **Electric field in the moving frame.** $\vec B$ is entirely perpendicular to $\vec v$: $\vec E'=\gamma\,\vec v\times\vec B=\gamma vB\,(\hat x\times\hat z)=-\gamma vB\,\hat y$, that is $E'\simeq10^5\ \mathrm{V/m}$ along $-\hat y$.
+3. **Consistency with the Lorentz force.** A charge $q$ at rest in the moving frame moves with $\vec v$ in the laboratory and there feels $q\vec v\times\vec B$. In its own frame the same force is purely electric, $q\vec E'$: the two observers describe the same physics with different fields.
+4. **Invariant.** $E^2-c^2B^2$ equals $-c^2B^2$ in the laboratory and $\gamma^2v^2B^2-c^2\gamma^2B^2=-c^2B^2$ in the moving frame.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Common mistakes
+
+- **Reducing a superconductor to a perfect conductor.** The Meissner effect (field expulsion even when the material is cooled inside the field) does not follow from $\rho=0$.
+- **Transforming the parallel components too.** The components of $\vec E$ and $\vec B$ parallel to the relative velocity are unchanged; only the perpendicular ones change.
+- **Thinking that charge changes with speed.** Charge is invariant; what changes are the charge densities, because of length contraction.
+- **Applying time dilation the wrong way round.** The proper interval $\Delta t_0$ is the shortest: for the observer who sees the clock moving, $\Delta t=\gamma\Delta t_0$.
+
+</Layer>

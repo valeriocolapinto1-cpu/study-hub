@@ -1,0 +1,140 @@
+---
+course: fisica-2
+topic: elettrostatica-nel-vuoto
+lang: en
+---
+
+<Layer kind="intuizione">
+
+All of electrostatics grows out of a single experimental law, Coulomb's law, and one principle: the effects of several charges **add up**. The electric field is a way of saying "what force would a test charge feel here", and it separates whoever produces the field from whoever feels it.
+
+Two properties of the static field do all the work in problems. The first is **Gauss's theorem**: the flux out of a closed surface "counts" the enclosed charge; when there is symmetry (sphere, cylinder, plane) it gives $E$ in one line. The second is **conservativeness**: the work does not depend on the path, so a potential $V$ exists, a scalar function that is often easier to compute than the field and from which the field follows by differentiation.
+
+</Layer>
+
+<Layer kind="formalismo">
+
+## Electric charge and Coulomb's law
+
+Electric charge comes in two signs, it is **conserved** (in an isolated system the total charge does not change) and it is **quantised**: every charge is a multiple of the elementary charge $e = 1.602\times10^{-19}\ \mathrm{C}$. In _conductors_ charges move freely, in _insulators_ (dielectrics) they do not.
+
+Two point charges at rest in vacuum exert on each other a central force, directed along the line joining them, proportional to the product of the charges and to the inverse square of the distance:
+
+$$
+\vec F_{12} = \frac{1}{4\pi\varepsilon_0}\,\frac{q_1 q_2}{r^2}\,\hat u_{12},\qquad \frac{1}{4\pi\varepsilon_0}\simeq 8.99\times10^{9}\ \mathrm{N\,m^2/C^2}
+$$
+
+Like charges repel, opposite charges attract. The **superposition principle** holds: the force on a charge due to several charges is the vector sum of the forces due to each of them.
+
+## The electric field
+
+The electric field at a point is the force per unit charge that a small positive test charge $q_0$ would experience: $\vec E = \vec F/q_0$ (units: N/C = V/m). For a point charge $\vec E = \frac{q}{4\pi\varepsilon_0 r^2}\hat u_r$. For a continuous distribution one sums (integrates) the contribution of each element $dq = \lambda\,dl$, $\sigma\,dS$ or $\rho\,dV$:
+
+$$
+\vec E(\vec r) = \frac{1}{4\pi\varepsilon_0}\int \frac{dq\,(\vec r-\vec r\,')}{|\vec r-\vec r\,'|^3}
+$$
+
+_Field lines_ are tangent to $\vec E$, leave positive charges and end on negative ones; their density is proportional to the magnitude of the field.
+
+**Results you must be able to derive by direct integration** (using symmetry to discard the components that cancel):
+
+- Infinite wire with density $\lambda$, at distance $r$: $E = \dfrac{\lambda}{2\pi\varepsilon_0 r}$, radial.
+- Finite wire, point at distance $d$ from the axis: $E_\perp = \dfrac{\lambda}{4\pi\varepsilon_0 d}(\sin\theta_2-\sin\theta_1)$, $|E_\parallel| = \dfrac{\lambda}{4\pi\varepsilon_0 d}|\cos\theta_1-\cos\theta_2|$, where $\theta_{1,2}$ are the angles (measured from the perpendicular) under which the ends are seen.
+- Ring of radius $R$ and charge $q$, on the axis at distance $z$: $E_z = \dfrac{q\,z}{4\pi\varepsilon_0 (z^2+R^2)^{3/2}}$.
+- Disc of radius $R$ and density $\sigma$, on the axis: $E_z = \dfrac{\sigma}{2\varepsilon_0}\left(1-\dfrac{z}{\sqrt{z^2+R^2}}\right)$; for $R\to\infty$ one recovers the infinite plane $E = \sigma/(2\varepsilon_0)$.
+
+## Flux and Gauss's theorem (Maxwell's first equation)
+
+The flux of the field through a surface is $\Phi_S(\vec E) = \int_S \vec E\cdot\hat n\,dS$. Gauss's theorem states that the outward flux through a **closed surface** depends only on the enclosed charge:
+
+$$
+\oint_S \vec E\cdot\hat n\,dS = \frac{Q_{\text{int}}}{\varepsilon_0}
+$$
+
+_Proof (sketch)._ For a point charge the flux through the element $dS$ is $\frac{q}{4\pi\varepsilon_0}\frac{\hat u_r\cdot\hat n\,dS}{r^2} = \frac{q}{4\pi\varepsilon_0}\,d\Omega$, where $d\Omega$ is the solid angle. If the charge is inside, the total solid angle is $4\pi$ and the flux is $q/\varepsilon_0$; if it is outside, every cone cuts the surface twice with opposite contributions and the flux vanishes. By superposition the result holds for any distribution. The theorem follows from the $1/r^2$ dependence of Coulomb's law.
+
+Using the divergence theorem $\oint_S\vec E\cdot\hat n\,dS=\int_V\nabla\cdot\vec E\,dV$ and $Q=\int_V\rho\,dV$, valid for every volume, one obtains the **local form**:
+
+$$
+\nabla\cdot\vec E = \frac{\rho}{\varepsilon_0}
+$$
+
+**How to use it.** Gauss lets you compute $\vec E$ only if the symmetry (spherical, cylindrical, planar) fixes the direction of the field and the constancy of its magnitude on the chosen surface:
+
+- Uniformly charged sphere ($Q$, radius $R$): outside $E = \frac{Q}{4\pi\varepsilon_0 r^2}$, inside $E = \frac{Q r}{4\pi\varepsilon_0 R^3}$ (grows linearly). Spherical shell: inside $E=0$.
+- Infinite wire or cylinder: coaxial cylindrical surface, $E\cdot 2\pi r L = \lambda_{\text{int}}L/\varepsilon_0$. Solid cylinder ($\rho$, radius $R$): inside $E=\frac{\rho r}{2\varepsilon_0}$, outside $E=\frac{\rho R^2}{2\varepsilon_0 r}$.
+- Infinite plane: a "pillbox" crossing the plane, $E = \sigma/(2\varepsilon_0)$ on both sides. Thick slab ("wall") of thickness $2a$ and density $\rho$: inside $E = \rho x/\varepsilon_0$, outside $E=\rho a/\varepsilon_0$.
+
+<Callout tone="esame" title="At the exam">
+Distributions with a "hole" (plane with a hole, cylinder with a cavity, wall with a hole) are solved by **superposition**: full distribution + a distribution of opposite density filling the hole. Example: in an off-centre cylindrical cavity inside a charged cylinder the field is uniform, $\vec E=\frac{\rho}{2\varepsilon_0}\vec d$, with $\vec d$ the vector between the axes.
+</Callout>
+
+## Conservativeness and electric potential
+
+The Coulomb force is central and depends only on distance, so it is **conservative**: the work depends only on the end points and the circulation vanishes, $\oint\vec E\cdot d\vec l = 0$. One then defines the potential difference (work per unit charge, with the sign changed):
+
+$$
+V(B)-V(A) = -\int_A^B\vec E\cdot d\vec l,\qquad \vec E = -\nabla V
+$$
+
+For a point charge, with $V(\infty)=0$: $V=\frac{q}{4\pi\varepsilon_0 r}$. For a bounded distribution $V(\vec r)=\frac{1}{4\pi\varepsilon_0}\int\frac{dq}{|\vec r-\vec r\,'|}$ (a sum of scalars: often easier than computing $\vec E$). The potential energy of a charge is $U = qV$; $1\ \mathrm{eV} = 1.6\times10^{-19}\ \mathrm J$.
+
+- Ring on the axis: $V = \frac{q}{4\pi\varepsilon_0\sqrt{z^2+R^2}}$. Disc on the axis: $V=\frac{\sigma}{2\varepsilon_0}\left(\sqrt{z^2+R^2}-|z|\right)$.
+- For infinite distributions (wire, plane) one cannot set $V(\infty)=0$: wire $V(r) = -\frac{\lambda}{2\pi\varepsilon_0}\ln\frac{r}{r_0}$; plane $V(x)=-\frac{\sigma}{2\varepsilon_0}|x| + \text{const}$.
+
+_Equipotential surfaces_ are everywhere perpendicular to the field lines, and the field points towards decreasing potential.
+
+**Curl and local form.** By Stokes' theorem $\oint_\gamma\vec E\cdot d\vec l=\int_S(\nabla\times\vec E)\cdot\hat n\,dS$; since it vanishes for every curve, $\nabla\times\vec E = 0$. Combined with Gauss this gives **Poisson's** equation $\nabla^2V=-\rho/\varepsilon_0$ and, where there are no charges, **Laplace's** equation $\nabla^2 V=0$.
+
+Gradient in spherical coordinates: $\nabla V = \frac{\partial V}{\partial r}\hat u_r + \frac1r\frac{\partial V}{\partial\theta}\hat u_\theta + \frac{1}{r\sin\theta}\frac{\partial V}{\partial\phi}\hat u_\phi$.
+
+## The electric dipole
+
+Two charges $+q$ and $-q$ at distance $d$ form a dipole with moment $\vec p = q\vec d$ (from $-q$ to $+q$). At large distance ($r\gg d$):
+
+$$
+V = \frac{p\cos\theta}{4\pi\varepsilon_0 r^2},\qquad E_r = -\frac{\partial V}{\partial r}=\frac{2p\cos\theta}{4\pi\varepsilon_0 r^3},\qquad E_\theta=-\frac1r\frac{\partial V}{\partial\theta}=\frac{p\sin\theta}{4\pi\varepsilon_0 r^3}
+$$
+
+The field decreases as $1/r^3$ (faster than that of a single charge, because the total charge is zero). On the axis $E = \frac{2p}{4\pi\varepsilon_0 r^3}$, on the equatorial plane $E=\frac{p}{4\pi\varepsilon_0 r^3}$, directed opposite to $\vec p$.
+
+**Mechanical actions in an external field.**
+
+- Torque: $\vec M = \vec p\times\vec E$, it tends to align $\vec p$ with the field.
+- Potential energy: $U = -\vec p\cdot\vec E$ (minimum when $\vec p\parallel\vec E$: stable equilibrium).
+- Force: $\vec F = \nabla(\vec p\cdot\vec E)$; **zero in a uniform field**. In a non-uniform field an aligned dipole is pulled towards regions of stronger field (for example $F=p\,\frac{dE}{dx}$ along $x$).
+
+<Callout tone="esame" title="Frequent theory questions">
+  "derive the dipole field", "mechanical actions on a dipole in an external field", "state and prove Gauss's
+  theorem", "derive the local form of Maxwell's first equation", "prove that the electrostatic field is
+  conservative".
+</Callout>
+
+</Layer>
+
+<Layer kind="esempio">
+
+## Worked example: sphere with non-uniform charge density
+
+A sphere of radius $R=5\ \mathrm{cm}$ contains a charge with density $\rho(r)=\rho_0\,r/R$, with $\rho_0=2\times10^{-6}\ \mathrm{C/m^3}$. We want the field inside and outside and the potential at the centre (with $V(\infty)=0$).
+
+1. **Symmetry.** The distribution depends only on $r$: $\vec E=E(r)\,\hat u_r$ and on a concentric sphere of radius $r$ the magnitude is constant. Gauss gives $E(r)\,4\pi r^2=Q_{\text{int}}(r)/\varepsilon_0$.
+2. **Enclosed charge.** For $r<R$: $Q_{\text{int}}=\int_0^r \rho_0\frac{r'}{R}\,4\pi r'^2\,dr'=\frac{\pi\rho_0 r^4}{R}$. The total charge is $Q=\pi\rho_0R^3\simeq 7.85\times10^{-10}\ \mathrm C$.
+3. **Field.** Inside $E=\dfrac{\rho_0 r^2}{4\varepsilon_0 R}$ (grows as $r^2$), outside $E=\dfrac{Q}{4\pi\varepsilon_0 r^2}$. At $r=R$ the two expressions agree: $E(R)=\rho_0R/(4\varepsilon_0)\simeq 2.82\times10^{3}\ \mathrm{V/m}$.
+4. **Potential at the centre.** $V(0)=\int_0^\infty E\,dr=\int_0^R\frac{\rho_0 r^2}{4\varepsilon_0R}dr+\int_R^\infty\frac{Q}{4\pi\varepsilon_0r^2}dr=\frac{\rho_0R^2}{12\varepsilon_0}+\frac{\rho_0R^2}{4\varepsilon_0}=\frac{\rho_0R^2}{3\varepsilon_0}\simeq 188\ \mathrm V$.
+
+**Check.** The dimensions are right ($\rho_0R^2/\varepsilon_0$ is a potential) and the field is continuous at $r=R$, as it must be without surface charges.
+
+</Layer>
+
+<Layer kind="errori">
+
+## Common mistakes
+
+- **Using Gauss without symmetry.** The theorem always holds, but it gives $E$ only if direction and magnitude of the field are known on the chosen surface. For a finite wire or an off-axis disc you must integrate.
+- **Forgetting the partially enclosed charge.** Inside a volume distribution $Q_{\text{int}}$ depends on $r$: do not use the total charge.
+- **Setting $V(\infty)=0$ for infinite distributions.** For the infinite wire and plane the potential at infinity diverges: choose a reference $r_0$ at finite distance.
+- **Adding potentials as vectors or fields as scalars.** $V$ is a scalar and is added with its sign; $\vec E$ is added component by component.
+- **Confusing force and torque on the dipole.** In a uniform field the net force is zero but the torque $\vec p\times\vec E$ is not.
+
+</Layer>

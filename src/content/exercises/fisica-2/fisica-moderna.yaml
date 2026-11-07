@@ -1,0 +1,137 @@
+# Quiz del sito originale (legacy/fisica-2/data/quiz.json, id "quiz-<id>") ed esercizi generati sulla tipologia degli appelli.
+- id: quiz-q601
+  topic: fisica-moderna
+  objectives:
+    - fisica-moderna.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: "L'effetto Meissner consiste nel fatto che un superconduttore:"
+    en: 'The Meissner effect consists in the fact that a superconductor:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Sotto $T_c$ il superconduttore si comporta da diamagnete perfetto ($\vec B=0$ all'interno), anche se viene raffreddato in presenza del campo.
+        en: Below $T_c$ the superconductor behaves as a perfect diamagnet ($\vec B=0$ inside), even if it is cooled in the presence of the field.
+  origin: originale
+  choices:
+    - text:
+        it: espelle il campo magnetico dal suo interno
+        en: expels the magnetic field from its interior
+      correct: true
+    - text:
+        it: ha resistenza nulla solo in campo magnetico
+        en: has zero resistance only in a magnetic field
+      correct: false
+    - text:
+        it: conserva il flusso iniziale
+        en: keeps the initial flux
+      correct: false
+    - text:
+        it: diventa ferromagnetico
+        en: becomes ferromagnetic
+      correct: false
+- id: quiz-q602
+  topic: fisica-moderna
+  objectives:
+    - fisica-moderna.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Una grandezza invariante per trasformazioni di Lorentz è:'
+    en: 'A quantity that is invariant under Lorentz transformations is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: La carica totale è la stessa in tutti i riferimenti; $\vec E$, $\vec B$ e $\rho$ cambiano (sono invarianti $\vec E\cdot\vec B$ ed $E^2-c^2B^2$).
+        en: The total charge is the same in all frames; $\vec E$, $\vec B$ and $\rho$ change (the invariants are $\vec E\cdot\vec B$ and $E^2-c^2B^2$).
+  origin: originale
+  choices:
+    - text:
+        it: la carica elettrica
+        en: electric charge
+      correct: true
+    - text:
+        it: il campo elettrico
+        en: the electric field
+      correct: false
+    - text:
+        it: il campo magnetico
+        en: the magnetic field
+      correct: false
+    - text:
+        it: la densità di carica
+        en: the charge density
+      correct: false
+- id: quiz-q603
+  topic: fisica-moderna
+  objectives:
+    - fisica-moderna.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Una carica ferma vicino a un filo neutro percorso da corrente, nel riferimento del filo:'
+    en: "A charge at rest near a neutral current-carrying wire, in the wire's frame:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Il filo è neutro (nessuna forza elettrica) e la carica è ferma ($\vec v\times\vec B=0$). In un riferimento in cui la carica si muove, invece, compaiono forze.
+        en: The wire is neutral (no electric force) and the charge is at rest ($\vec v\times\vec B=0$). In a frame where the charge moves, instead, forces appear.
+  origin: originale
+  choices:
+    - text:
+        it: non subisce alcuna forza
+        en: feels no force
+      correct: true
+    - text:
+        it: è attratta dal filo
+        en: is attracted by the wire
+      correct: false
+    - text:
+        it: è respinta dal filo
+        en: is repelled by the wire
+      correct: false
+    - text:
+        it: ruota attorno al filo
+        en: rotates around the wire
+      correct: false
+- id: quiz-q604
+  topic: fisica-moderna
+  objectives:
+    - fisica-moderna.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Superata la temperatura critica un superconduttore:'
+    en: 'Above the critical temperature a superconductor:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Sopra $T_c$ (o sopra il campo o la corrente critici) lo stato superconduttore scompare e il materiale torna normale.
+        en: Above $T_c$ (or above the critical field or current) the superconducting state disappears and the material returns to normal.
+  origin: originale
+  choices:
+    - text:
+        it: torna a una resistività finita
+        en: returns to a finite resistivity
+      correct: true
+    - text:
+        it: diventa un isolante perfetto
+        en: becomes a perfect insulator
+      correct: false
+    - text:
+        it: mantiene resistenza nulla
+        en: keeps zero resistance
+      correct: false
+    - text:
+        it: espelle il campo più intensamente
+        en: expels the field more strongly
+      correct: false

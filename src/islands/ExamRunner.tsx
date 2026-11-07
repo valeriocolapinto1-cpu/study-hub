@@ -580,6 +580,7 @@ export default function ExamRunner({ lang, course }: ExamRunnerProps) {
                   <input
                     type={multi ? 'checkbox' : 'radio'}
                     name={`sh-q${q.index}`}
+                    aria-label={ch.label}
                     checked={on}
                     onChange={() =>
                       setAnswer(q.index, {

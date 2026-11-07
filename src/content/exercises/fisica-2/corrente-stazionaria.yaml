@@ -1,0 +1,444 @@
+# Quiz del sito originale (legacy/fisica-2/data/quiz.json, id "quiz-<id>") ed esercizi generati sulla tipologia degli appelli.
+- id: quiz-q201
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: "In regime stazionario l'equazione di continuità si riduce a:"
+    en: 'In the steady regime the continuity equation reduces to:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "$\\nabla\\cdot\\vec J+\\partial\\rho/\\partial t=0$ e in regime stazionario $\\partial\\rho/\\partial t=0$: da qui la legge dei nodi."
+        en: "$\\nabla\\cdot\\vec J+\\partial\\rho/\\partial t=0$ and in the steady regime $\\partial\\rho/\\partial t=0$: hence the node law."
+  origin: originale
+  choices:
+    - text:
+        it: $\nabla\cdot\vec J=0$
+        en: $\nabla\cdot\vec J=0$
+      correct: true
+    - text:
+        it: $\nabla\times\vec J=0$
+        en: $\nabla\times\vec J=0$
+      correct: false
+    - text:
+        it: $\vec J=0$
+        en: $\vec J=0$
+      correct: false
+    - text:
+        it: $\partial\rho/\partial t=\nabla\cdot\vec J$
+        en: $\partial\rho/\partial t=\nabla\cdot\vec J$
+      correct: false
+- id: quiz-q202
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'La legge di Ohm in forma locale è:'
+    en: "Ohm's law in local form is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: La densità di corrente è proporzionale al campo, con costante la conducibilità $\sigma=1/\rho$.
+        en: The current density is proportional to the field, with the conductivity $\sigma=1/\rho$ as constant.
+  origin: originale
+  choices:
+    - text:
+        it: $\vec J=\sigma\vec E$
+        en: $\vec J=\sigma\vec E$
+      correct: true
+    - text:
+        it: $V=RI$
+        en: $V=RI$
+      correct: false
+    - text:
+        it: $\vec E=\sigma\vec J$
+        en: $\vec E=\sigma\vec J$
+      correct: false
+    - text:
+        it: $\vec J=nq\vec E$
+        en: $\vec J=nq\vec E$
+      correct: false
+- id: quiz-q203
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: "La velocità di deriva degli elettroni in un filo di rame percorso da qualche ampere è dell'ordine di:"
+    en: 'The drift velocity of electrons in a copper wire carrying a few amperes is of the order of:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Con $n\approx8\times10^{28}\ \mathrm{m^{-3}}$, $v_d=J/(ne)$ risulta dell'ordine di $10^{-4}$ m/s; l'agitazione termica è invece di circa $10^5$–$10^6$ m/s.
+        en: With $n\approx8\times10^{28}\ \mathrm{m^{-3}}$, $v_d=J/(ne)$ is of the order of $10^{-4}$ m/s; thermal agitation is instead about $10^5$–$10^6$ m/s.
+  origin: originale
+  choices:
+    - text:
+        it: frazioni di millimetro al secondo
+        en: fractions of a millimetre per second
+      correct: true
+    - text:
+        it: $10^5$ m/s
+        en: $10^5$ m/s
+      correct: false
+    - text:
+        it: la velocità della luce
+        en: the speed of light
+      correct: false
+    - text:
+        it: qualche metro al secondo
+        en: a few metres per second
+      correct: false
+- id: quiz-q204
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Durante la carica di un condensatore da parte di un generatore ideale attraverso una resistenza $R$, l'energia dissipata per effetto Joule è:"
+    en: 'While an ideal generator charges a capacitor through a resistance $R$, the energy dissipated by Joule heating is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Il generatore fornisce $C\\mathcal E^2$: metà va nel condensatore e metà si dissipa, qualunque sia $R$."
+        en: "The generator supplies $C\\mathcal E^2$: half goes into the capacitor and half is dissipated, whatever $R$ is."
+  origin: originale
+  choices:
+    - text:
+        it: uguale all'energia finale immagazzinata nel condensatore
+        en: equal to the final energy stored in the capacitor
+      correct: true
+    - text:
+        it: nulla se $R$ è piccola
+        en: zero if $R$ is small
+      correct: false
+    - text:
+        it: il doppio dell'energia immagazzinata
+        en: twice the stored energy
+      correct: false
+    - text:
+        it: dipendente da $R$
+        en: dependent on $R$
+      correct: false
+- id: quiz-q205
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Per misurare una resistenza molto grande con il metodo voltamperometrico conviene:'
+    en: 'To measure a very large resistance with the voltmeter-ammeter method it is better to place:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "A monte si misura $R+R_A$: l'errore è trascurabile se $R\\gg R_A$. A valle si misurerebbe il parallelo con $R_V$, molto sbagliato se $R$ è confrontabile con $R_V$."
+        en: "Upstream one measures $R+R_A$: the error is negligible if $R\\gg R_A$. Downstream one would measure the parallel with $R_V$, badly wrong if $R$ is comparable with $R_V$."
+  origin: originale
+  choices:
+    - text:
+        it: il voltmetro a monte (su resistenza e amperometro)
+        en: the voltmeter upstream (across resistor and ammeter)
+      correct: true
+    - text:
+        it: il voltmetro a valle (in parallelo alla sola resistenza)
+        en: the voltmeter downstream (in parallel with the resistor only)
+      correct: false
+    - text:
+        it: indifferente
+        en: it makes no difference
+      correct: false
+    - text:
+        it: non usare l'amperometro
+        en: no ammeter at all
+      correct: false
+- id: quiz-q206
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: "L'equivalente di Thevenin di una rete vista da due morsetti è costituito da:"
+    en: 'The Thevenin equivalent of a network seen from two terminals consists of:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $V_{Th}$ è la tensione a circuito aperto; $R_{Th}$ è la resistenza vista con i generatori ideali spenti.
+        en: $V_{Th}$ is the open-circuit voltage; $R_{Th}$ is the resistance seen with the ideal generators switched off.
+  origin: originale
+  choices:
+    - text:
+        it: la tensione a vuoto in serie alla resistenza vista a generatori spenti
+        en: the open-circuit voltage in series with the resistance seen with the generators switched off
+      correct: true
+    - text:
+        it: la corrente di cortocircuito in serie a una resistenza
+        en: the short-circuit current in series with a resistance
+      correct: false
+    - text:
+        it: la tensione a vuoto in parallelo a una resistenza
+        en: the open-circuit voltage in parallel with a resistance
+      correct: false
+    - text:
+        it: la resistenza equivalente con tutti i generatori in cortocircuito
+        en: the equivalent resistance with all generators short-circuited
+      correct: false
+- id: quiz-q207
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: Tre resistori da $R=6\ \Omega$ sono collegati in parallelo e il gruppo è in serie a un resistore da $4\ \Omega$. Calcola la resistenza equivalente (in Ω).
+    en: Three $R=6\ \Omega$ resistors are connected in parallel and the group is in series with a $4\ \Omega$ resistor. Compute the equivalent resistance (in Ω).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Il parallelo di tre resistenze da 6 Ω vale 2 Ω; in serie a 4 Ω si ottengono 6 Ω.
+        en: The parallel of three 6 Ω resistances is 2 Ω; in series with 4 Ω this gives 6 Ω.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 6
+      unit: Ω
+      tol: 0.03
+- id: quiz-q208
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: Circuito RC con $R=10$ kΩ e $C=100$ μF. Calcola la costante di tempo (in s).
+    en: RC circuit with $R=10$ kΩ and $C=100$ μF. Compute the time constant (in s).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\tau=RC=10^4\cdot10^{-4}=1$ s.
+        en: $\tau=RC=10^4\cdot10^{-4}=1$ s.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 1
+      unit: s
+      tol: 0.03
+- id: quiz-q209
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: Un condensatore si scarica attraverso una resistenza con $\tau=2$ s. Dopo quanti secondi la sua tensione si è dimezzata?
+    en: A capacitor discharges through a resistance with $\tau=2$ s. After how many seconds has its voltage halved?
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $V=V_0e^{-t/\tau}=V_0/2$ per $t=\tau\ln2\simeq1,39$ s.
+        en: $V=V_0e^{-t/\tau}=V_0/2$ for $t=\tau\ln2\simeq1.39$ s.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 1.386
+      unit: s
+      tol: 0.03
+- id: quiz-q210
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: Generatore con f.e.m. $\mathcal E=12$ V e resistenza interna $r=2\ \Omega$. Calcola la massima potenza trasferibile a un carico (in W).
+    en: Generator with emf $\mathcal E=12$ V and internal resistance $r=2\ \Omega$. Compute the maximum power that can be transferred to a load (in W).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Il massimo si ha per $R_L=r$: $P_{max}=\\mathcal E^2/(4r)=144/8=18$ W."
+        en: "The maximum occurs for $R_L=r$: $P_{max}=\\mathcal E^2/(4r)=144/8=18$ W."
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 18
+      unit: W
+      tol: 0.03
+- id: quiz-q211
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: Filo di rame ($\rho=1{,}7\times10^{-8}\ \Omega\,$m) lungo 10 m con sezione 1 mm². Calcola la resistenza (in Ω).
+    en: Copper wire ($\rho=1.7\times10^{-8}\ \Omega\,$m) 10 m long with a 1 mm² cross-section. Compute its resistance (in Ω).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $R=\rho l/S=1{,}7\times10^{-8}\cdot10/10^{-6}=0,17\ \Omega$.
+        en: $R=\rho l/S=1.7\times10^{-8}\cdot10/10^{-6}=0.17\ \Omega$.
+  origin: originale
+  answer:
+    - label:
+        it: Risultato
+        en: Result
+      value: 0.17
+      unit: Ω
+      tol: 0.03
+- id: quiz-q212
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Un condensatore $C$ carico a $V_0$ viene collegato a un secondo condensatore identico scarico. La tensione finale e l'energia finale sono:"
+    en: 'A capacitor $C$ charged to $V_0$ is connected to a second, identical, uncharged capacitor. The final voltage and final energy are:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "La carica si conserva: $V_f=CV_0/(2C)=V_0/2$. L'energia finale è $2\\cdot\\frac12C(V_0/2)^2=\\frac14CV_0^2$, metà di quella iniziale (il resto si dissipa)."
+        en: "Charge is conserved: $V_f=CV_0/(2C)=V_0/2$. The final energy is $2\\cdot\\frac12C(V_0/2)^2=\\frac14CV_0^2$, half the initial one (the rest is dissipated)."
+  origin: originale
+  choices:
+    - text:
+        it: $V_0/2$ ed energia dimezzata
+        en: $V_0/2$ and half the energy
+      correct: true
+    - text:
+        it: $V_0/2$ ed energia conservata
+        en: $V_0/2$ and energy conserved
+      correct: false
+    - text:
+        it: $V_0$ ed energia dimezzata
+        en: $V_0$ and half the energy
+      correct: false
+    - text:
+        it: $V_0/\sqrt2$ ed energia conservata
+        en: $V_0/\sqrt2$ and energy conserved
+      correct: false
+- id: quiz-q213
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Nel ponte di Wheatstone all'equilibrio ($R_1$, $R_2$ su un ramo, $R_3$, $R_4$ sull'altro) vale:"
+    en: 'In a balanced Wheatstone bridge ($R_1$, $R_2$ on one branch, $R_3$, $R_4$ on the other):'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "All'equilibrio i punti intermedi sono allo stesso potenziale: $\\frac{R_2}{R_1+R_2}=\\frac{R_4}{R_3+R_4}$, cioè $R_1/R_2=R_3/R_4$."
+        en: "At balance the middle points are at the same potential: $\\frac{R_2}{R_1+R_2}=\\frac{R_4}{R_3+R_4}$, that is $R_1/R_2=R_3/R_4$."
+  origin: originale
+  choices:
+    - text:
+        it: $R_1/R_2=R_3/R_4$
+        en: $R_1/R_2=R_3/R_4$
+      correct: true
+    - text:
+        it: $R_1R_2=R_3R_4$
+        en: $R_1R_2=R_3R_4$
+      correct: false
+    - text:
+        it: $R_1+R_2=R_3+R_4$
+        en: $R_1+R_2=R_3+R_4$
+      correct: false
+    - text:
+        it: $R_1/R_3=R_4/R_2$
+        en: $R_1/R_3=R_4/R_2$
+      correct: false
+- id: gen-b2-rc-scarica-tempi
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b2-rc-scarica-tempi
+  origin: tipologia-appello
+- id: gen-b2-dielettrico-perdite
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b2-dielettrico-perdite
+  origin: tipologia-appello
+- id: gen-b2-partitore-apertura
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+    - corrente-stazionaria.5
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b2-partitore-apertura
+  origin: tipologia-appello
+- id: gen-b2-carica-chiusura
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+    - corrente-stazionaria.5
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b2-carica-chiusura
+  origin: tipologia-appello
+- id: gen-b2-ripartizione-cariche
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.7
+  difficulty: 2
+  kind: generated
+  generator: fisica-2/b2-ripartizione-cariche
+  origin: tipologia-appello
+- id: gen-b2-ponte
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.6
+    - corrente-stazionaria.5
+  difficulty: 3
+  kind: generated
+  generator: fisica-2/b2-ponte
+  origin: tipologia-appello
