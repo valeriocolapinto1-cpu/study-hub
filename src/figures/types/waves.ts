@@ -9,7 +9,112 @@ import type { DiagramParams } from '../schemas';
 type P<K extends keyof DiagramParams> = DiagramParams[K];
 
 // -------------------------------------------------------------------------- onde
+function emWave(p: P<'wave'>, c: Ctx): Drawn {
+  const W = 470;
+  const H = 280;
+  const s = new Svg(W, H);
+  const x0 = 50;
+  const x1 = 440;
+  const y0 = 140;
+  const wl = p.wavelengths ?? 1.5;
+  const lam = (x1 - x0 - 20) / wl;
+  const A = 72;
+  const zx = -0.62;
+  const zy = 0.5;
+  // assi
+  s.arrow(x0 - 10, y0, x1 + 20, y0, { tone: 'muted', width: 1, head: 8 });
+  s.arrow(x0, y0 + 10, x0, y0 - A - 22, { tone: 'muted', width: 1, head: 8 });
+  s.arrow(x0, y0, x0 + zx * 60, y0 + zy * 60, { tone: 'muted', width: 1, head: 8 });
+  s.text(x1 + 18, y0 + 16, 'x', { italic: true, size: 12 });
+  s.text(x0 - 12, y0 - A - 18, 'y', { italic: true, size: 12 });
+  s.text(x0 + zx * 60 - 8, y0 + zy * 60 + 4, 'z', { italic: true, size: 12 });
+  const k = (2 * Math.PI) / lam;
+  const Ept: Pt[] = [];
+  const Bpt: Pt[] = [];
+  for (let i = 0; i <= 200; i++) {
+    const x = ((x1 - x0) * i) / 200;
+    const v = Math.sin(k * x);
+    Ept.push([x0 + x, y0 - A * v]);
+    Bpt.push([x0 + x + zx * 0.7 * A * v, y0 + zy * 0.7 * A * v]);
+  }
+  for (let x = lam / 16; x < x1 - x0; x += lam / 8) {
+    const v = Math.sin(k * x);
+    if (Math.abs(v) < 0.2) continue;
+    s.line(x0 + x, y0, x0 + x, y0 - A * v, { tone: 'danger', width: 0.9, opacity: 0.7 });
+    s.line(x0 + x, y0, x0 + x + zx * 0.7 * A * v, y0 + zy * 0.7 * A * v, {
+      tone: 'info',
+      width: 0.9,
+      opacity: 0.7,
+    });
+  }
+  s.polyline(Ept, { tone: 'danger', width: 2.2 });
+  s.polyline(Bpt, { tone: 'info', width: 2.2 });
+  const xe = x0 + lam / 4;
+  s.text(xe + 12, y0 - A - 8, 'E', { italic: true, halo: true });
+  s.text(xe + zx * 0.7 * A - 14, y0 + zy * 0.7 * A + 12, 'B', { italic: true, halo: true });
+  if (p.lambda !== false && wl >= 1) s.dimension(xe, y0 - A - 30, xe + lam, y0 - A - 30, 'λ');
+  s.arrow(x1 - 60, 26, x1, 26, { tone: 'accent', width: 2.2 });
+  s.text(x1 - 30, 14, 'c', { italic: true });
+  return {
+    svg: s,
+    title: c.L('Onda elettromagnetica piana', 'Plane electromagnetic wave'),
+    description: c.L(
+      `Istantanea di un'onda elettromagnetica piana che si propaga lungo x con velocità c: il campo E oscilla lungo y, il campo B lungo z. I due campi sono perpendicolari tra loro e alla direzione di propagazione, in fase, con E₀ = c B₀; E × B punta nel verso di propagazione.`,
+      `Snapshot of a plane electromagnetic wave travelling along x at speed c: the field E oscillates along y, the field B along z. The two fields are perpendicular to each other and to the direction of propagation, in phase, with E₀ = c B₀; E × B points along the propagation.`,
+    ),
+  };
+}
+
+function sphericalWave(p: P<'wave'>, c: Ctx): Drawn {
+  const W = 420;
+  const H = 280;
+  const s = new Svg(W, H);
+  const S0: Pt = [70, 140];
+  for (let r = 36; r < 330; r += 36) {
+    const a = Math.min(Math.PI / 2.4, Math.asin(Math.min(1, 125 / r)));
+    const p0: Pt = [S0[0] + r * Math.cos(a), S0[1] - r * Math.sin(a)];
+    const p1: Pt = [S0[0] + r * Math.cos(a), S0[1] + r * Math.sin(a)];
+    s.path(
+      `M${p0[0].toFixed(2)} ${p0[1].toFixed(2)}A${r} ${r} 0 0 1 ${p1[0].toFixed(2)} ${p1[1].toFixed(2)}`,
+      {
+        tone: 'accent',
+        width: 1.3,
+        opacity: 0.85,
+      },
+    );
+  }
+  for (const a of [-50, -25, 0, 25, 50]) {
+    const t = (a * Math.PI) / 180;
+    s.arrow(
+      S0[0] + 18 * Math.cos(t),
+      S0[1] - 18 * Math.sin(t),
+      S0[0] + 70 * Math.cos(t),
+      S0[1] - 70 * Math.sin(t),
+      {
+        tone: 'danger',
+        width: 1.6,
+      },
+    );
+  }
+  s.circle(S0[0], S0[1], 9, { fill: 'surface', width: 1.6 });
+  s.text(S0[0] - 18, S0[1] - 18, p.sourceLabel ?? 'P', { italic: true, halo: true });
+  const Q: Pt = [S0[0] + 288, S0[1]];
+  s.dot(Q[0], Q[1], 3.6);
+  s.dimension(S0[0], H - 26, Q[0], H - 26, p.distanceLabel ?? 'r');
+  s.text(Q[0] - 4, Q[1] + 22, 'I = P/(4πr²)', { size: 12, halo: true, muted: true });
+  return {
+    svg: s,
+    title: c.L('Onda sferica da una sorgente isotropa', 'Spherical wave from an isotropic source'),
+    description: c.L(
+      `Sorgente puntiforme di potenza ${plainLabel(p.sourceLabel ?? 'P')} che emette in modo isotropo: i fronti d'onda sono sfere concentriche. A distanza ${plainLabel(p.distanceLabel ?? 'r')} la potenza si distribuisce sulla superficie 4πr², quindi l'intensità cala come 1/r² e l'ampiezza dei campi come 1/r.`,
+      `Point source of power ${plainLabel(p.sourceLabel ?? 'P')} emitting isotropically: the wavefronts are concentric spheres. At distance ${plainLabel(p.distanceLabel ?? 'r')} the power is spread over the area 4πr², so the intensity falls off as 1/r² and the field amplitude as 1/r.`,
+    ),
+  };
+}
+
 export function wave(p: P<'wave'>, c: Ctx): Drawn {
+  if (p.kind === 'electromagnetic') return emWave(p, c);
+  if (p.kind === 'spherical') return sphericalWave(p, c);
   const W = 460;
   const H = 230;
   const s = new Svg(W, H);

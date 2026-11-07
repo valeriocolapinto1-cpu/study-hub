@@ -129,7 +129,7 @@ describe('validazione dei parametri', () => {
     ['flowchart', { nodes: [{ id: 'a', kind: 'start', text: 'x' }], edges: [{ from: 'a', to: 'b' }] }],
     ['truth-table', { inputs: ['A', 'B'], outputs: [{ label: 'Y', values: [0, 1, 1] }] }],
     ['memory', { kind: 'heap', cells: [{ value: '1' }] }],
-    ['magnetic-field', { source: 'toroid' }],
+    ['magnetic-field', { source: 'helix' }],
   ];
   for (const [type, params] of bad)
     it(`${type} rifiuta ${JSON.stringify(params).slice(0, 60)}`, () => {
