@@ -63,6 +63,18 @@
   statement:
     it: Un flip-flop **JK** ha J = K = 1 in modo permanente e riceve un clock a 100 MHz. Che segnale esce da Q?
     en: A **JK** flip-flop has J = K = 1 permanently and receives a 100 MHz clock. What signal comes out of Q?
+  figure:
+    diagram:
+      type: timing
+      params:
+        steps: 12
+        signals:
+          - label: CK
+            kind: clock
+          - label: J
+            wave: "1"
+          - label: K
+            wave: "1"
   steps:
     - title:
         it: Da dove si comincia
@@ -204,6 +216,23 @@
     en:
       A 4-bit shift register contains `1011` and shifts **right**. The values 1, 0, 1 enter serially, one bit
       per clock cycle. Write the contents after each cycle.
+  figure:
+    diagram:
+      type: memory
+      params:
+        kind: array
+        title:
+          it: Contenuto iniziale (scorre a destra; entrano 1, 0, 1)
+          en: Initial content (shifts right; 1, 0, 1 enter)
+        cells:
+          - value: "1"
+            label: Q3
+          - value: "0"
+            label: Q2
+          - value: "1"
+            label: Q1
+          - value: "1"
+            label: Q0
   steps:
     - title:
         it: Da dove si comincia

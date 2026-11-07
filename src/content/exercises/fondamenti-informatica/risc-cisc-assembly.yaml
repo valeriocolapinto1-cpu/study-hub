@@ -73,6 +73,45 @@
   statement:
     it: 'Traduci in assembly questo ciclo: `somma = 0; for (i = 0; i < 10; i++) somma += i;`'
     en: 'Translate this loop into assembly: `sum = 0; for (i = 0; i < 10; i++) sum += i;`'
+  figure:
+    diagram:
+      type: flowchart
+      params:
+        nodes:
+          - id: s
+            kind: start
+            text:
+              it: inizio
+              en: start
+          - id: i
+            kind: process
+            text: somma ← 0; i ← 0
+          - id: c
+            kind: decision
+            text: i < 10?
+          - id: b
+            kind: process
+            text: somma ← somma + i; i ← i + 1
+          - id: e
+            kind: end
+            text:
+              it: fine
+              en: end
+        edges:
+          - from: s
+            to: i
+          - from: i
+            to: c
+          - from: c
+            to: b
+            label:
+              it: sì
+              en: yes
+          - from: c
+            to: e
+            label: no
+          - from: b
+            to: c
   steps:
     - title:
         it: Da dove si comincia
@@ -144,6 +183,27 @@
       Scrivi un programma che trova il **valore massimo** in un vettore di N interi che comincia all’indirizzo
       `VETT`.
     en: Write a program that finds the **maximum value** in an array of N integers starting at address `VETT`.
+  figure:
+    diagram:
+      type: memory
+      params:
+        kind: memory
+        title:
+          it: Vettore di N interi
+          en: Array of N integers
+        cells:
+          - value: N
+            label: N
+          - value: v₀
+            label: VETT
+          - value: v₁
+            label: VETT+4
+          - value: …
+          - value: v_{N−1}
+            label: VETT+4(N−1)
+        pointers:
+          - label: VETT
+            index: 1
   steps:
     - title:
         it: Da dove si comincia
@@ -416,6 +476,22 @@
     en:
       Write a RISC-style program that computes the multiplication of two numbers in LOC1 and LOC2 by repeated
       addition, saving the result in LOC3.
+  figure:
+    diagram:
+      type: memory
+      params:
+        kind: memory
+        title:
+          it: Operandi e risultato in memoria
+          en: Operands and result in memory
+        cells:
+          - value: a
+            label: LOC1
+          - value: b
+            label: LOC2
+          - value: "?"
+            label: LOC3
+            highlight: true
   steps:
     - title:
         it: Soluzione modello
@@ -451,6 +527,27 @@
   statement:
     it: Scrivi un programma che sommi N valori contigui a partire dall'indirizzo LIST e salvi il totale in SUM.
     en: Write a program that adds N contiguous values starting at address LIST and saves the total in SUM.
+  figure:
+    diagram:
+      type: memory
+      params:
+        kind: memory
+        title:
+          it: Lista di N parole e totale
+          en: List of N words and total
+        cells:
+          - value: N
+            label: N
+          - value: x₁
+            label: LIST
+          - value: x₂
+            label: LIST+4
+          - value: …
+          - value: x_N
+            label: LIST+4(N−1)
+          - value: "?"
+            label: SUM
+            highlight: true
   steps:
     - title:
         it: Soluzione modello

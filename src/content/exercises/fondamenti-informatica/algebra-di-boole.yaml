@@ -10,6 +10,25 @@
       forma POS, poi semplifica la SOP.
     en: A function of three variables is 1 on rows `000`, `010`, `101`, `111`. Write the SOP form and the POS
       form, then simplify the SOP.
+  figure:
+    diagram:
+      type: truth-table
+      params:
+        inputs:
+          - A
+          - B
+          - C
+        outputs:
+          - label: Y
+            values:
+              - 1
+              - 0
+              - 1
+              - 0
+              - 0
+              - 1
+              - 0
+              - 1
   steps:
     - title:
         it: Da dove si comincia

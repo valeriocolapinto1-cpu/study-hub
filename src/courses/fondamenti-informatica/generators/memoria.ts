@@ -4,6 +4,7 @@
  * genPageTranslate, genCacheFields, genPipelineCycles, genRtn).
  */
 import { registerGenerator } from '../../../engine/generators/registry';
+import { figCache, figIeee, figPipeline, figTranslation, figVirtualAddress } from './figure';
 import { createRng, type Rng } from '../../../engine/random';
 import {
   BIAS,
@@ -40,6 +41,7 @@ export const ieee754 = registerGenerator({
     const num = (v: number) => fmtDecimal(v, lang);
     if (r.chance(0.5)) {
       return {
+        figure: figIeee(),
         statement: L(
           lang,
           `Codifica **${num(value)}** in IEEE 754 singola precisione. Qual è il campo **esponente** (8 bit)?`,
@@ -66,6 +68,7 @@ export const ieee754 = registerGenerator({
     // Errore più insidioso: dimenticare il bit implicito (0,M invece di 1,M).
     const withoutImplicit = sign * (f.mantissa / 2 ** 23) * 2 ** real;
     return {
+      figure: figIeee(fieldsToGroupedBits(f)),
       statement:
         L(
           lang,
@@ -116,6 +119,7 @@ export const traduzioneIndirizzi = registerGenerator({
       const virtual = page * pageSize + offset;
       const physical = frame * pageSize + offset;
       return {
+        figure: figVirtualAddress(4, offsetBits, page),
         statement: L(
           lang,
           `Con pagine da **${pageSize} byte**, l'indirizzo virtuale \`0x${toHex(virtual)}\` cade nella pagina **${page}**, mappata sul frame **${frame}**. Qual è l'offset, e qual è l'indirizzo fisico in esadecimale?`,
@@ -148,6 +152,7 @@ export const traduzioneIndirizzi = registerGenerator({
     const bits = log2(kib * 1024);
     const vaBits = r.pick([32, 36, 40] as const);
     return {
+      figure: figTranslation(vaBits, kib),
       statement: L(
         lang,
         `Con pagine da **${kib} KiB** e indirizzi virtuali da **${vaBits} bit**, quanti bit formano l'**offset** e quanti il **numero di pagina**?`,
@@ -199,6 +204,7 @@ export const campiCache = registerGenerator({
             `**${ways}-way set-associative** with ${sets} sets`,
           );
     return {
+      figure: figCache(ways, sets, blockBytes, lang),
       statement: L(
         lang,
         `Una cache ${layout}, blocchi da **${blockBytes} byte** (${size} in totale), indirizzi da **${addressBits} bit**. Quanti bit occupano **tag**, **indice** e **offset**?`,
@@ -243,6 +249,7 @@ export const cicliPipeline = registerGenerator({
     const pipelined = k + n - 1;
     const sequential = k * n;
     return {
+      figure: figPipeline(k),
       statement: L(
         lang,
         `Una pipeline a **${k} stadi** esegue **${n} istruzioni** senza stalli né salti. Quanti cicli servono con la pipeline, quanti senza (una istruzione alla volta), e quanti se ne risparmiano?`,

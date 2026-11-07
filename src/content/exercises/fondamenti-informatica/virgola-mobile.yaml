@@ -105,6 +105,25 @@
   statement:
     it: Che numero decimale rappresenta la configurazione `0x41200000` in singola precisione?
     en: What decimal number does the pattern `0x41200000` represent in single precision?
+  figure:
+    diagram:
+      type: bitfield
+      params:
+        bits: 0100 0001 0010 0000 0000 0000 0000 0000
+        fields:
+          - msb: 31
+            lsb: 31
+            label: S
+          - msb: 30
+            lsb: 23
+            label:
+              it: esponente
+              en: exponent
+          - msb: 22
+            lsb: 0
+            label:
+              it: mantissa
+              en: fraction
   steps:
     - title:
         it: Da dove si comincia
