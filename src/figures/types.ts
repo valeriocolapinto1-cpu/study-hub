@@ -27,6 +27,13 @@ export const DIAGRAM_TYPES = [
   'linked-list',
   'tree',
   'truth-table',
+  'bode',
+  'pole-zero',
+  'timing',
+  'karnaugh',
+  'bitfield',
+  'pipeline',
+  'graph',
 ] as const;
 
 export type DiagramType = (typeof DIAGRAM_TYPES)[number];

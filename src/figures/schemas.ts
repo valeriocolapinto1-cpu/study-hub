@@ -6,6 +6,7 @@
  */
 import { z } from 'astro/zod';
 import { DIAGRAM_TYPES, type DiagramType } from './types';
+import { Bitfield, Bode, Graph, Karnaugh, Pipeline, PoleZero, Timing } from './schemas-signals';
 
 /** Testo di una figura: stringa (uguale nelle due lingue) oppure { it, en }. */
 export const FigText = z.union([
@@ -140,6 +141,18 @@ const series = z.discriminatedUnion('kind', [
     amp: finite,
     omega: finite.optional(),
     /** Fase in radianti: y = offset + amp·sin(ω x + phase). */
+    phase: finite.optional(),
+    offset: finite.optional(),
+    label: label.optional(),
+    tone: tone.optional(),
+    dash: z.boolean().optional(),
+  }),
+  z.strictObject({
+    kind: z.literal('damped'),
+    /** y = offset + amp·e^(−alpha·x)·cos(omega·x + phase): transitori del secondo ordine. */
+    amp: finite,
+    alpha: finite,
+    omega: finite.optional(),
     phase: finite.optional(),
     offset: finite.optional(),
     label: label.optional(),
@@ -712,6 +725,13 @@ export const DIAGRAM_SCHEMAS = {
   'linked-list': LinkedList,
   tree: Tree,
   'truth-table': TruthTable,
+  bode: Bode,
+  'pole-zero': PoleZero,
+  timing: Timing,
+  karnaugh: Karnaugh,
+  bitfield: Bitfield,
+  pipeline: Pipeline,
+  graph: Graph,
 } satisfies Record<DiagramType, z.ZodType>;
 
 export type DiagramParams = { [K in DiagramType]: z.input<(typeof DIAGRAM_SCHEMAS)[K]> };

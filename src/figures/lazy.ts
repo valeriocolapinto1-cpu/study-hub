@@ -37,6 +37,13 @@ const GROUP: Record<DiagramType, [Loader, string]> = {
   'linked-list': [() => import('./types/cs'), 'linkedList'],
   tree: [() => import('./types/cs'), 'tree'],
   'truth-table': [() => import('./types/cs'), 'truthTable'],
+  bode: [() => import('./types/signals'), 'bode'],
+  'pole-zero': [() => import('./types/signals'), 'poleZero'],
+  timing: [() => import('./types/signals'), 'timing'],
+  karnaugh: [() => import('./types/structures'), 'karnaugh'],
+  bitfield: [() => import('./types/structures'), 'bitfield'],
+  pipeline: [() => import('./types/structures'), 'pipeline'],
+  graph: [() => import('./types/structures'), 'graph'],
 };
 
 export async function renderDiagramAsync(

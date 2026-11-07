@@ -23,6 +23,8 @@ import { chargeDistribution, induction, uniformField } from './types/fields';
 import { polarizers, refraction, slits } from './types/optics';
 import { vectors, wave } from './types/waves';
 import { blockDiagram, flowchart, linkedList, memory, tree, truthTable } from './types/cs';
+import { bode, poleZero, timing } from './types/signals';
+import { bitfield, graph, karnaugh, pipeline } from './types/structures';
 
 export type Renderer<K extends DiagramType> = (p: DiagramParams[K], c: Ctx) => Drawn;
 
@@ -54,6 +56,13 @@ export const RENDERERS: { [K in DiagramType]: Renderer<K> } = {
   'linked-list': linkedList,
   tree,
   'truth-table': truthTable,
+  bode,
+  'pole-zero': poleZero,
+  timing,
+  karnaugh,
+  bitfield,
+  pipeline,
+  graph,
 };
 
 export function renderDiagram<K extends DiagramType>(
