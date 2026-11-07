@@ -1,0 +1,28 @@
+---
+/**
+ * Variante interattiva di una figura (isola caricata quando entra nello schermo).
+ * Uso in MDX/Astro: <DiagramLive kind="inclined-plane" />
+ * Tipi disponibili: inclined-plane, spring-mass, pv-cycle (Carnot), point-charges.
+ */
+import InclinedPlaneLive from './live/InclinedPlaneLive';
+import SpringLive from './live/SpringLive';
+import CarnotLive from './live/CarnotLive';
+import FieldLinesLive from './live/FieldLinesLive';
+import { getLangFromUrl } from '../i18n';
+import type { Lang } from './core';
+
+export interface Props {
+  kind: 'inclined-plane' | 'spring-mass' | 'pv-cycle' | 'point-charges';
+  lang?: Lang;
+  /** Id del titolo (unico nella pagina). */
+  id?: string;
+}
+const { kind, id } = Astro.props;
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
+const pid = id ? { id } : {};
+---
+
+{kind === 'inclined-plane' && <InclinedPlaneLive client:visible lang={lang} {...pid} />}
+{kind === 'spring-mass' && <SpringLive client:visible lang={lang} {...pid} />}
+{kind === 'pv-cycle' && <CarnotLive client:visible lang={lang} {...pid} />}
+{kind === 'point-charges' && <FieldLinesLive client:visible lang={lang} {...pid} />}

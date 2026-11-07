@@ -11,6 +11,8 @@ import Figure from '../../../../../components/Figure.astro';
 import Callout from '../../../../../components/Callout.astro';
 import TheoryLink from '../../../../../components/TheoryLink.astro';
 import Circuit from '../../../../../sim/Circuit.astro';
+import Diagram from '../../../../../figures/Diagram.astro';
+import DiagramLive from '../../../../../figures/DiagramLive.astro';
 import Notes from '../../../../../components/course/Notes.astro';
 import Icon from '../../../../../components/Icon.astro';
 import {
@@ -74,7 +76,7 @@ const link = (x: TopicData | undefined) =>
     </ul>
   </section>
   <article class="prose" data-topic={topic.id}>
-    <Content components={{ Layer, Formula, Figure, Callout, Circuit, a: TheoryLink }} />
+    <Content components={{ Layer, Formula, Figure, Callout, Circuit, Diagram, DiagramLive, a: TheoryLink }} />
   </article>
   <Pagination lang={lang} prev={link(topics[i - 1])} next={link(topics[i + 1])} />
   <a

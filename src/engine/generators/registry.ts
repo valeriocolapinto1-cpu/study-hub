@@ -10,6 +10,8 @@
 import type { Lang } from '../../config/site';
 import { GENERATOR_RE, OBJECTIVE_RE, KEBAB_RE } from '../../content/ids';
 import type { NetlistInput } from '../../sim/circuits/netlist';
+import type { DiagramSpec } from '../../figures/schemas';
+import { isDiagramType } from '../../figures/types';
 
 export type { Lang };
 
@@ -21,6 +23,8 @@ export interface ExerciseStep {
 export interface ExerciseFigure {
   /** Netlist del circuito (formato in src/sim/circuits/netlist.ts, guida in docs/SIM.md). */
   netlist?: NetlistInput;
+  /** Figura del kit (`src/figures`, guida in docs/FIGURE.md) con i parametri dell'esercizio. */
+  diagram?: DiagramSpec;
   /** SVG inline. */
   svg?: string;
 }
@@ -106,8 +110,12 @@ export function validateGenerated(ex: GeneratedExercise): string[] {
     if (a.tol !== undefined && !(a.tol > 0 && a.tol <= 1))
       problems.push(`tolleranza di "${a.label}" fuori intervallo`);
   }
-  if (ex.figure && Boolean(ex.figure.netlist) === Boolean(ex.figure.svg))
-    problems.push('figura: netlist oppure svg');
+  if (ex.figure) {
+    const kinds = [ex.figure.netlist, ex.figure.diagram, ex.figure.svg].filter(Boolean).length;
+    if (kinds !== 1) problems.push('figura: una sola tra netlist, diagram e svg');
+    if (ex.figure.diagram && !isDiagramType(ex.figure.diagram.type))
+      problems.push(`figura: tipo sconosciuto "${ex.figure.diagram.type}"`);
+  }
   return problems;
 }
 

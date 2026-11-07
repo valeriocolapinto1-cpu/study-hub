@@ -8,6 +8,8 @@ import Figure from '../../../../../../components/Figure.astro';
 import Callout from '../../../../../../components/Callout.astro';
 import TheoryLink from '../../../../../../components/TheoryLink.astro';
 import Circuit from '../../../../../../sim/Circuit.astro';
+import Diagram from '../../../../../../figures/Diagram.astro';
+import DiagramLive from '../../../../../../figures/DiagramLiveStatic.astro';
 import {
   coursePaths,
   courseTopics,
@@ -61,7 +63,7 @@ const { Content } = await render(entry!);
     </ul>
   </header>
   <article class="prose">
-    <Content components={{ Layer, Formula, Figure, Callout, Circuit, a: TheoryLink }} />
+    <Content components={{ Layer, Formula, Figure, Callout, Circuit, Diagram, DiagramLive, a: TheoryLink }} />
   </article>
 </PrintLayout>
 

@@ -1,0 +1,37 @@
+---
+/**
+ * Figura del kit generata a build-time dai parametri (zero JS nel browser).
+ * Uso in MDX o Astro: <Diagram type="inclined-plane" params={{ angle: 30, friction: true }} caption="…" />
+ * I parametri sono validati con Zod: un errore ferma la build indicando il campo sbagliato.
+ * Tipi e parametri: docs/FIGURE.md; catalogo in /<lang>/stile/figure/.
+ */
+import './figures.css';
+import { parseDiagram } from './schemas';
+import { renderDiagram } from './render';
+import type { DiagramType } from './types';
+import { getLangFromUrl } from '../i18n';
+import type { Lang } from './core';
+
+export interface Props {
+  type: DiagramType;
+  params: unknown;
+  /** Lingua di etichette e descrizione (default: dall'URL della pagina). */
+  lang?: Lang;
+  /** Didascalia visibile sotto la figura. */
+  caption?: string;
+  /** Titolo accessibile (default: generato dal tipo). */
+  title?: string;
+  /** Prefisso degli id interni, se la stessa figura compare due volte nella pagina. */
+  id?: string;
+  class?: string;
+}
+const { type, params, caption, title, id, class: cls } = Astro.props;
+const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
+const valid = parseDiagram(type, params);
+const { svg } = renderDiagram(type, valid as never, { lang, ...(title ? { title } : {}), ...(id ? { idPrefix: id } : {}) });
+---
+
+<figure class:list={['diagram-figure', cls]}>
+  <Fragment set:html={svg} />
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
