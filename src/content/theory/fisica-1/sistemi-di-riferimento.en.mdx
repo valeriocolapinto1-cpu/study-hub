@@ -4,6 +4,8 @@ topic: sistemi-di-riferimento
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/sistemi-di-riferimento/idea">
@@ -23,6 +25,16 @@ Fictitious forces are the 'bookkeeping trick' that lets us keep using Newton in 
 A reference frame is inertial if the principle of inertia holds in it: a body subject to no forces moves in uniform rectilinear motion. Every frame in uniform rectilinear motion with respect to an inertial one is itself inertial (Galilean relativity). A frame that accelerates with respect to an inertial one is non-inertial: to use F = ma in it one must introduce fictitious (or apparent, or inertial) forces, which have no reaction because they do not arise from interactions.
 
 </div>
+
+<Diagram
+  {...Fig.acceleratedFrame({ mode: 'truck' })}
+  caption="In the truck's non-inertial frame the crate feels the fictitious force −mA: if the crate does not slide, static friction balances it."
+/>
+
+<Diagram
+  {...Fig.acceleratedFrame({ mode: 'wagon' })}
+  caption="Pendulum in an accelerating carriage: at relative equilibrium the string tilts backwards, with tan θ = A/g."
+/>
 
 <div data-note-id="teoria/sistemi-di-riferimento/derivazione" class="derivation">
 

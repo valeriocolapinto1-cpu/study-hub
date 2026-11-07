@@ -4,6 +4,8 @@ topic: teoria-cinetica-gas
 lang: it
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="L'idea in sintesi">
 
 <div data-note-id="teoria/teoria-cinetica-gas/idea">
@@ -29,6 +31,11 @@ La pressione di un gas è un tamburellare fittissimo di molecole sulla parete: o
 La teoria cinetica interpreta le grandezze macroscopiche di un gas in termini del moto disordinato delle sue molecole. Modello di gas perfetto: N molecole puntiformi identiche, non interagenti se non tramite urti elastici istantanei, in moto caotico e isotropo. Risultato centrale: la pressione sulle pareti è $p = \frac{1}{3}\frac{N}{V}m\langle v^2\rangle$, cioè due terzi della densità di energia cinetica traslazionale.
 
 </div>
+
+<Diagram
+  {...Fig.gasBox()}
+  caption="Ogni urto elastico con la parete trasferisce la quantità di moto 2mv_x: la somma di questi impulsi per unità di tempo e di area è la pressione."
+/>
 
 <div data-note-id="teoria/teoria-cinetica-gas/derivazione" class="derivation">
 

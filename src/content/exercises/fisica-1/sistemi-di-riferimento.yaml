@@ -15,6 +15,55 @@
       A person of mass m = 70 kg stands on a bathroom scale inside a lift. Find the scale reading (in newtons)
       when the lift: (a) goes up accelerating with A = 1.5 m/s²; (b) goes up at constant speed; (c) goes up
       slowing down with deceleration 2.0 m/s².
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Persona su una bilancia in un ascensore che accelera: la bilancia legge la normale N.',
+                'en': 'Person on a scale in an accelerating lift: the scale reads the normal force N.',
+              },
+            'items':
+              [
+                {
+                  'kind': 'line',
+                  'points': [[-2, 0], [2, 0], [2, 5], [-2, 5]],
+                  'closed': true,
+                  'width': 'thick',
+                },
+                { 'kind': 'line', 'points': [[0, 5], [0, 6]] },
+                { 'kind': 'block', 'at': [0, 0.15], 'w': 1.4, 'h': 0.3 },
+                { 'kind': 'block', 'at': [0, 1.3], 'w': 0.9, 'h': 2, 'label': 'm' },
+                {
+                  'kind': 'vector',
+                  'from': [0, 1.3],
+                  'to': [0, -0.3],
+                  'label': 'mg',
+                  'labelAngle': 0,
+                  'vkind': 'weight',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [-0.6, 0.3],
+                  'to': [-0.6, 2.2],
+                  'label': 'N',
+                  'labelAngle': 180,
+                  'vkind': 'normal',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [2.6, 2.5],
+                  'to': [2.6, 4],
+                  'label': 'A',
+                  'labelAngle': 0,
+                  'vkind': 'acceleration',
+                },
+              ],
+          },
+      }
   steps:
     - title:
         it: Nel riferimento dell'ascensore
@@ -74,6 +123,63 @@
       one μd = 0.25. (a) What is the maximum acceleration of the lorry without the crate slipping? (b) If the
       lorry accelerates with A = 4.5 m/s², what is the acceleration of the crate relative to the lorry? (c)
       And relative to the road?
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': "Cassa sul pianale di un camion che accelera: nel riferimento del camion compare la forza apparente −mA, bilanciata dall'attrito statico.",
+                'en': "Crate on the bed of an accelerating truck: in the truck's frame the fictitious force −mA appears, balanced by static friction.",
+              },
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-1, -0.5], 'to': [7, -0.5] },
+                {
+                  'kind': 'line',
+                  'points': [[0, 0], [4.5, 0], [4.5, 0.25], [0, 0.25]],
+                  'closed': true,
+                  'fill': 'surface2',
+                },
+                {
+                  'kind': 'line',
+                  'points': [[4.5, -0.2], [6, -0.2], [6, 1.8], [4.7, 1.8], [4.5, 1.2], [4.5, -0.2]],
+                  'closed': true,
+                  'fill': 'surface2',
+                },
+                { 'kind': 'disc', 'at': [1, -0.2], 'r': 0.3 },
+                { 'kind': 'disc', 'at': [5.2, -0.2], 'r': 0.3 },
+                { 'kind': 'block', 'at': [2.2, 0.75], 'w': 1, 'h': 1, 'label': 'm' },
+                {
+                  'kind': 'vector',
+                  'from': [2.2, 0.25],
+                  'to': [3.5, 0.25],
+                  'label': 'f_s',
+                  'labelAngle': 270,
+                  'vkind': 'friction',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [2.2, 0.75],
+                  'to': [0.9, 0.75],
+                  'label': '−mA',
+                  'labelAngle': 180,
+                  'vkind': 'other',
+                  'dash': true,
+                },
+                {
+                  'kind': 'vector',
+                  'from': [4.8, 2.4],
+                  'to': [6.4, 2.4],
+                  'label': 'A',
+                  'labelAngle': 0,
+                  'vkind': 'acceleration',
+                },
+              ],
+          },
+      }
   steps:
     - title:
         it: Senza scivolamento

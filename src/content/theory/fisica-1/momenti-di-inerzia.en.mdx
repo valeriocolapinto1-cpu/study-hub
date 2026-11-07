@@ -4,6 +4,8 @@ topic: momenti-di-inerzia
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/momenti-di-inerzia/idea">
@@ -35,6 +37,11 @@ The moment of inertia weighs mass by the square of the distance from the axis: p
 The moment of inertia of a body about an axis is $I = \sum_i m_i r_i^2$ (discrete) or $I = \int r^2\,dm$ (continuous), where r is the distance of each mass element from the axis. It measures rotational inertia: how much the body 'resists' changes in angular velocity about that axis. It depends on the chosen axis and on how the mass is distributed with respect to it. The Huygens–Steiner (parallel-axis) theorem relates the moment about any axis to that about the parallel axis through the CM: $I = I_{cm} + Md^2$.
 
 </div>
+
+<Diagram
+  {...Fig.rodWithMasses()}
+  caption="The same body has different moments of inertia about different axes: for parallel axes Huygens–Steiner holds, I = I_cm + Md²."
+/>
 
 <div data-note-id="teoria/momenti-di-inerzia/derivazione" class="derivation">
 

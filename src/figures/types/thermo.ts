@@ -171,3 +171,96 @@ export function pvCycle(p: PV, c: Ctx): Drawn {
           : '.'),
   };
 }
+
+// ------------------------------------------------------------ macchine termiche
+type HE = DiagramParams['heat-engine'];
+
+/** Macchina termica, frigorifero o pompa di calore tra sorgenti (calde in alto, fredde in basso). */
+export function heatEngine(p: HE, c: Ctx): Drawn {
+  const W = 440;
+  const H = 300;
+  const s = new Svg(W, H);
+  const cx = 200;
+  const cy = 150;
+  const R = 34;
+  const engine = p.kind === 'engine';
+  const rows = {
+    hot: p.reservoirs.filter((r) => r.side === 'hot'),
+    cold: p.reservoirs.filter((r) => r.side === 'cold'),
+  };
+  const parts: string[] = [];
+  for (const side of ['hot', 'cold'] as const) {
+    const list = rows[side];
+    const n = list.length;
+    const span = 340;
+    const bw = Math.min(200, span / n - 14);
+    const y = side === 'hot' ? 14 : H - 54;
+    list.forEach((r, i) => {
+      const x = cx - span / 2 + (span / n) * (i + 0.5);
+      const tone = side === 'hot' ? 'danger' : 'info';
+      s.rect(x - bw / 2, y, bw, 40, { rx: 6, tone, width: 1.8, fill: 'surface2' });
+      s.text(x, y + 20, r.label, { italic: true, size: 13 });
+      const flowIn = r.flow ? r.flow === 'in' : engine ? side === 'hot' : side === 'cold';
+      const edge: Pt = [x, side === 'hot' ? y + 40 : y];
+      const dx = edge[0] - cx;
+      const dy = edge[1] - cy;
+      const d = Math.hypot(dx, dy) || 1;
+      const onCircle: Pt = [cx + (dx / d) * (R + 3), cy + (dy / d) * (R + 3)];
+      const start: Pt = [edge[0] - (dx / d) * 3, edge[1] - (dy / d) * 3];
+      const [a, b] = flowIn ? [start, onCircle] : [onCircle, start];
+      s.arrow(a[0], a[1], b[0], b[1], { tone, width: 2.6 });
+      if (r.heat) {
+        const mx = (a[0] + b[0]) / 2;
+        const my = (a[1] + b[1]) / 2;
+        const off = dx > 1 ? 16 : dx < -1 ? -16 : 18;
+        s.text(mx + off, my, r.heat, {
+          italic: true,
+          size: 14,
+          halo: true,
+          anchor: off > 0 ? 'start' : 'end',
+        });
+      }
+      const heat = r.heat ? ` ${r.heat}` : '';
+      parts.push(
+        flowIn
+          ? c.L(
+              `riceve il calore${heat} dalla sorgente ${r.label}`,
+              `takes the heat${heat} from the reservoir ${r.label}`,
+            )
+          : c.L(
+              `cede il calore${heat} alla sorgente ${r.label}`,
+              `gives the heat${heat} to the reservoir ${r.label}`,
+            ),
+      );
+    });
+  }
+  s.circle(cx, cy, R, { fill: 'surface', width: 2 });
+  s.text(cx, cy, p.engineLabel ?? (engine ? 'M' : p.kind === 'heat-pump' ? 'P' : 'F'), {
+    size: 15,
+    weight: 600,
+  });
+  const work = p.work ?? 'W';
+  if (work) {
+    const x1 = cx + R + 4;
+    const x2 = cx + R + 110;
+    if (engine) s.arrow(x1, cy, x2, cy, { tone: 'accent', width: 2.6 });
+    else s.arrow(x2, cy, x1, cy, { tone: 'accent', width: 2.6 });
+    s.text((x1 + x2) / 2, cy - 14, work, { italic: true, size: 14, halo: true });
+    parts.push(
+      engine
+        ? c.L(`compie il lavoro ${work}`, `does the work ${work}`)
+        : c.L(`assorbe il lavoro ${work}`, `absorbs the work ${work}`),
+    );
+  }
+  const name =
+    p.kind === 'engine'
+      ? c.L('Macchina termica', 'Heat engine')
+      : p.kind === 'heat-pump'
+        ? c.L('Pompa di calore', 'Heat pump')
+        : c.L('Frigorifero', 'Refrigerator');
+  return {
+    svg: s,
+    title: c.L(`${name} tra sorgenti`, `${name} between reservoirs`),
+    description: `${name}: ${listText(parts, c.lang)}.`,
+  };
+}

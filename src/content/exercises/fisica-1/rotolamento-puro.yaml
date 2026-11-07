@@ -15,6 +15,59 @@
       A solid uniform cylinder of mass 2.0 kg rolls without slipping down a 25° incline, starting from rest.
       Find: (a) the acceleration of the centre of mass; (b) the static friction force; (c) the minimum
       friction coefficient; (d) the speed after 1.5 m along the plane.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Corpo che rotola senza strisciare lungo un piano inclinato di θ; l’attrito statico nel punto di contatto fa ruotare il corpo.',
+                'en': 'Body rolling without slipping down a plane inclined at θ; static friction at the contact point makes it spin.',
+              },
+            'items':
+              [
+                { 'kind': 'line', 'points': [[0, 0], [7, 0], [0, 3.264]], 'closed': true, 'fill': 'surface' },
+                { 'kind': 'surface', 'from': [-0.5, 0], 'to': [7.8, 0] },
+                { 'kind': 'angle', 'at': [7, 0], 'from': 155, 'to': 180, 'r': 34, 'label': 'θ' },
+                { 'kind': 'disc', 'at': [2.112, 2.847], 'r': 0.8, 'style': 'disc', 'axle': true },
+                {
+                  'kind': 'vector',
+                  'from': [2.112, 2.847],
+                  'to': [2.112, 1.247],
+                  'label': 'mg',
+                  'labelAngle': 0,
+                  'vkind': 'weight',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [2.45, 2.122],
+                  'to': [1.816, 3.481],
+                  'label': 'N',
+                  'labelAngle': 150,
+                  'vkind': 'normal',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [3.115, 2.521],
+                  'to': [4.383, 1.928],
+                  'label': 'a_{CM}',
+                  'labelAngle': 60,
+                  'vkind': 'acceleration',
+                },
+                { 'kind': 'rotation', 'at': [2.112, 2.847], 'r': 28, 'from': 120, 'to': 30, 'label': 'ω' },
+                {
+                  'kind': 'vector',
+                  'from': [2.45, 2.122],
+                  'to': [1.272, 2.672],
+                  'label': 'f_s',
+                  'labelAngle': 200,
+                  'vkind': 'friction',
+                },
+              ],
+          },
+      }
   steps:
     - title:
         it: Accelerazione
@@ -80,6 +133,60 @@
       A solid sphere and a ring start together from rest at the top of an incline 1.0 m high and roll without
       slipping. Find: (a) the speed of the sphere at the bottom; (b) that of the ring; (c) the ratio of
       descent times ring/sphere.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Corpo che rotola senza strisciare lungo un piano inclinato di θ; l’attrito statico nel punto di contatto fa ruotare il corpo.',
+                'en': 'Body rolling without slipping down a plane inclined at θ; static friction at the contact point makes it spin.',
+              },
+            'items':
+              [
+                { 'kind': 'line', 'points': [[0, 0], [7, 0], [0, 4.041]], 'closed': true, 'fill': 'surface' },
+                { 'kind': 'surface', 'from': [-0.5, 0], 'to': [7.8, 0] },
+                { 'kind': 'angle', 'at': [7, 0], 'from': 150, 'to': 180, 'r': 34, 'label': 'θ' },
+                { 'kind': 'disc', 'at': [2.05, 3.32], 'r': 0.8, 'style': 'sphere', 'axle': false },
+                {
+                  'kind': 'vector',
+                  'from': [2.05, 3.32],
+                  'to': [2.05, 1.72],
+                  'label': 'mg',
+                  'labelAngle': 0,
+                  'vkind': 'weight',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [2.45, 2.627],
+                  'to': [1.7, 3.926],
+                  'label': 'N',
+                  'labelAngle': 150,
+                  'vkind': 'normal',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [2.989, 2.893],
+                  'to': [4.202, 2.193],
+                  'label': 'a_{CM}',
+                  'labelAngle': 60,
+                  'vkind': 'acceleration',
+                },
+                { 'kind': 'rotation', 'at': [2.05, 3.32], 'r': 28, 'from': 120, 'to': 30, 'label': 'ω' },
+                {
+                  'kind': 'vector',
+                  'from': [2.45, 2.627],
+                  'to': [1.324, 3.277],
+                  'label': 'f_s',
+                  'labelAngle': 200,
+                  'vkind': 'friction',
+                },
+                { 'kind': 'dim', 'from': [-0.6, 0], 'to': [-0.6, 4.041], 'label': 'h', 'offset': 0 },
+              ],
+          },
+      }
   steps:
     - title:
         it: Energia

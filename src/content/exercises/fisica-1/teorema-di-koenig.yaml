@@ -15,6 +15,49 @@
       A bicycle wheel (mass 1.5 kg concentrated practically on the rim of radius 0.35 m) rolls without
       slipping at 18 km/h. Find: (a) the translational kinetic energy; (b) the rotational kinetic energy about
       the CM; (c) the rotational fraction of the total energy.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Ruota che rotola senza strisciare: il punto di contatto P è fermo, il centro avanza a v_CM = ωR e il punto più alto a 2v_CM.',
+                'en': 'Wheel rolling without slipping: the contact point P is at rest, the centre moves at v_CM = ωR and the top point at 2v_CM.',
+              },
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-3, 0], 'to': [3, 0] },
+                {
+                  'kind': 'disc',
+                  'at': [0, 1.5],
+                  'r': 1.5,
+                  'style': 'ring',
+                  'radius': { 'angle': 150, 'label': 'R' },
+                },
+                {
+                  'kind': 'vector',
+                  'from': [0, 1.5],
+                  'to': [1.6, 1.5],
+                  'label': 'v_{CM}',
+                  'labelAngle': 90,
+                  'vkind': 'velocity',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [0, 3],
+                  'to': [3.2, 3],
+                  'label': '2v_{CM}',
+                  'labelAngle': 90,
+                  'vkind': 'velocity',
+                  'dash': true,
+                },
+                { 'kind': 'rotation', 'at': [0, 1.5], 'r': 26, 'from': 60, 'to': -30, 'label': 'ω' },
+                { 'kind': 'dot', 'at': [0, 0], 'label': 'P', 'labelAngle': 225 },
+              ],
+          },
+      }
   steps:
     - title:
         it: Traslazione
@@ -71,6 +114,52 @@
       Two carts on a smooth track, m₁ = 2.0 kg at +3.0 m/s and m₂ = 3.0 kg at −1.0 m/s, move towards each
       other. Find: (a) the velocity of the centre of mass; (b) the total kinetic energy and that of the CM;
       (c) the kinetic energy in the CM frame, and check it with the reduced mass.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Due carrelli su una rotaia liscia che si vengono incontro; il centro di massa si muove con velocità costante.',
+                'en': 'Two carts approaching each other on a smooth track; the centre of mass moves with constant velocity.',
+              },
+            'maxHeight': 200,
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-4.5, 0], 'to': [4.5, 0] },
+                { 'kind': 'block', 'at': [-2.5, 0.5], 'w': 1.4, 'h': 0.8, 'label': 'm_1' },
+                { 'kind': 'block', 'at': [2.5, 0.5], 'w': 1.6, 'h': 0.9, 'label': 'm_2' },
+                {
+                  'kind': 'vector',
+                  'from': [-1.7, 0.5],
+                  'to': [-0.3, 0.5],
+                  'label': 'v_1',
+                  'labelAngle': 90,
+                  'vkind': 'velocity',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [1.6, 0.5],
+                  'to': [1, 0.5],
+                  'label': 'v_2',
+                  'labelAngle': 90,
+                  'vkind': 'velocity',
+                },
+                { 'kind': 'dot', 'at': [-0.6, 1.8], 'label': 'CM', 'labelAngle': 90, 'tone': 'accent' },
+                {
+                  'kind': 'vector',
+                  'from': [-0.6, 1.8],
+                  'to': [0.2, 1.8],
+                  'label': 'v_{CM}',
+                  'labelAngle': 0,
+                  'vkind': 'velocity',
+                  'dash': true,
+                },
+              ],
+          },
+      }
   steps:
     - title:
         it: Centro di massa

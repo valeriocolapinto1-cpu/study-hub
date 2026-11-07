@@ -4,6 +4,8 @@ topic: moto-corpo-rigido
 lang: it
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="L'idea in sintesi">
 
 <div data-note-id="teoria/moto-corpo-rigido/idea">
@@ -29,6 +31,17 @@ Il vincolo di rigidità riduce un numero enorme di gradi di libertà a soli 6: d
 Un corpo rigido è un sistema di punti le cui distanze mutue restano costanti. Il suo moto più generale è la composizione di una traslazione (descritta dal moto del CM) e di una rotazione attorno a un asse passante per il CM: servono 6 coordinate (3 + 3). Il campo delle velocità è $\vec{v}_P = \vec{v}_{cm} + \vec{\omega}\times\vec{r}_{P}$, con r_P posizione di P rispetto al CM. Il moto è governato dalle due equazioni cardinali.
 
 </div>
+
+<Diagram
+  {...Fig.pulley({
+    masses: [
+      { label: 'm_1', side: 'left' },
+      { label: 'm_2', side: 'right' },
+    ],
+    heavier: 'left',
+  })}
+  caption="Carrucola con massa: la differenza delle tensioni T₁ − T₂ dà il momento che accelera il disco, τ = Iα."
+/>
 
 <div data-note-id="teoria/moto-corpo-rigido/derivazione" class="derivation">
 

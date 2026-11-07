@@ -17,6 +17,12 @@
       (static friction is less than tan 30°, so it slides back). Find: (a) the distance travelled along the
       incline before stopping; (b) the energy dissipated per unit mass on the way up; (c) the speed with which
       it passes the launch point again.
+  figure:
+    diagram:
+      {
+        'type': 'inclined-plane',
+        'params': { 'angle': 30, 'friction': true, 'motion': 'up', 'components': true },
+      }
   steps:
     - title:
         it: Salita
@@ -80,6 +86,59 @@
       stretch with friction (μd = 0.40). Find: (a) the speed at the end of the descent; (b) the distance
       travelled on the horizontal stretch before stopping; (c) the mechanical energy converted into internal
       energy.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Discesa liscia da quota h, poi tratto orizzontale con attrito dinamico μ_d lungo d.',
+                'en': 'Smooth descent from height h, then a horizontal stretch with kinetic friction μ_k, length d.',
+              },
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-4.4, 0], 'to': [5, 0] },
+                {
+                  'kind': 'line',
+                  'points':
+                    [
+                      [-4, 3],
+                      [-3.75, 2.637],
+                      [-3.5, 2.297],
+                      [-3.25, 1.98],
+                      [-3, 1.688],
+                      [-2.75, 1.418],
+                      [-2.5, 1.172],
+                      [-2.25, 0.949],
+                      [-2, 0.75],
+                      [-1.75, 0.574],
+                      [-1.5, 0.422],
+                      [-1.25, 0.293],
+                      [-1, 0.188],
+                      [-0.75, 0.105],
+                      [-0.5, 0.047],
+                      [-0.25, 0.012],
+                      [0, 0],
+                    ],
+                  'width': 'thick',
+                },
+                { 'kind': 'line', 'points': [[0.3, 0.06], [4.8, 0.06]], 'tone': 'warning', 'width': 'thick' },
+                { 'kind': 'block', 'at': [-3.75, 3.2], 'w': 0.7, 'h': 0.4, 'angle': -45, 'label': '' },
+                { 'kind': 'dim', 'from': [-4.5, 0], 'to': [-4.5, 3], 'label': 'h', 'offset': 0 },
+                {
+                  'kind': 'label',
+                  'at': [-1.6, 2.4],
+                  'text': { 'it': 'liscio', 'en': 'smooth' },
+                  'muted': true,
+                  'size': 12,
+                },
+                { 'kind': 'label', 'at': [2.5, 0.6], 'text': 'μ_d', 'italic': true },
+                { 'kind': 'dim', 'from': [0.3, -0.6], 'to': [4.8, -0.6], 'label': 'd', 'offset': 0 },
+              ],
+          },
+      }
   steps:
     - title:
         it: Discesa liscia

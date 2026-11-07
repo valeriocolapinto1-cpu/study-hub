@@ -30,6 +30,27 @@ The first law of thermodynamics is the conservation of energy extended to therma
 
 </div>
 
+<Diagram
+  type="pv-cycle"
+  params={{
+    values: false,
+    work: true,
+    states: [
+      { id: '1', V: 10, p: 100 },
+      { id: '2', V: 10, p: 300 },
+      { id: '3', V: 25, p: 300 },
+      { id: '4', V: 25, p: 100 },
+    ],
+    processes: [
+      { from: '1', to: '2', kind: 'isochoric' },
+      { from: '2', to: '3', kind: 'isobaric' },
+      { from: '3', to: '4', kind: 'isochoric' },
+      { from: '4', to: '1', kind: 'isobaric' },
+    ],
+  }}
+  caption="Over a cycle ΔU = 0: the net heat absorbed equals the net work, the area enclosed by the cycle."
+/>
+
 <div data-note-id="teoria/primo-principio/derivazione" class="derivation">
 
 ## Step-by-step derivation

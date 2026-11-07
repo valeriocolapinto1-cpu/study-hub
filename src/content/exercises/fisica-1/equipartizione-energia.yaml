@@ -15,6 +15,18 @@
       A rigid container holds 2.0 mol of nitrogen (diatomic) at 20 °C, which is heated to 120 °C. Find: (a)
       the initial internal energy (taking U = 0 at 0 K); (b) the change in internal energy; (c) the heat
       supplied.
+  figure:
+    diagram:
+      {
+        'type': 'pv-cycle',
+        'params':
+          {
+            'values': false,
+            'work': false,
+            'states': [{ 'id': 'A', 'V': 10, 'p': 487 }, { 'id': 'B', 'V': 10, 'p': 653 }],
+            'processes': [{ 'from': 'A', 'to': 'B', 'kind': 'isochoric' }],
+          },
+      }
   steps:
     - title:
         it: Energia interna
@@ -70,6 +82,33 @@
       A rigid insulated container holds 1.0 mol of helium at 400 K and, separated by a partition, 1.0 mol of
       oxygen at 250 K. The partition is removed and the gases mix. Find: (a) the final temperature; (b) the
       change in internal energy of each gas.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Recipiente rigido e isolato con due gas separati da un setto.',
+                'en': 'Rigid insulated container with two gases separated by a partition.',
+              },
+            'maxHeight': 200,
+            'items':
+              [
+                {
+                  'kind': 'line',
+                  'points': [[-3, 2], [3, 2], [3, 0], [-3, 0]],
+                  'closed': true,
+                  'fill': 'surface',
+                  'width': 'thick',
+                },
+                { 'kind': 'line', 'points': [[0, 2], [0, 0]], 'width': 'thick', 'dash': true },
+                { 'kind': 'label', 'at': [-1.5, 1], 'text': 'He, 400 K' },
+                { 'kind': 'label', 'at': [1.5, 1], 'text': 'O₂, 250 K' },
+              ],
+          },
+      }
   steps:
     - title:
         it: Energia interna totale costante

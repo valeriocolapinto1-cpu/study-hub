@@ -14,6 +14,33 @@
     en: >-
       2.0 mol of ideal gas expand freely into vacuum from 10 L to 30 L in an insulated container. Find: (a)
       the change in temperature; (b) the entropy change of the gas; (c) the entropy change of the universe.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Recipiente isolato: il setto si rompe e il gas si espande nel vuoto senza scambiare calore né lavoro.',
+                'en': 'Insulated container: the partition breaks and the gas expands into vacuum exchanging neither heat nor work.',
+              },
+            'maxHeight': 200,
+            'items':
+              [
+                {
+                  'kind': 'line',
+                  'points': [[-3, 2], [3, 2], [3, 0], [-3, 0]],
+                  'closed': true,
+                  'fill': 'surface',
+                  'width': 'thick',
+                },
+                { 'kind': 'line', 'points': [[0, 2], [0, 0]], 'width': 'thick', 'dash': true },
+                { 'kind': 'label', 'at': [-1.5, 1], 'text': 'gas' },
+                { 'kind': 'label', 'at': [1.5, 1], 'text': { 'it': 'vuoto', 'en': 'vacuum' } },
+              ],
+          },
+      }
   steps:
     - title:
         it: Primo principio
@@ -67,6 +94,33 @@
       1.0 kg of water at 80 °C and 1.0 kg of water at 20 °C are mixed in a vacuum flask (c = 4186 J/(kg·K)).
       Find: (a) the final temperature; (b) the entropy change of each mass; (c) the entropy change of the
       universe.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Due masse uguali d’acqua a temperature diverse messe a contatto in un recipiente isolato.',
+                'en': 'Two equal masses of water at different temperatures brought into contact in an insulated vessel.',
+              },
+            'maxHeight': 200,
+            'items':
+              [
+                {
+                  'kind': 'line',
+                  'points': [[-3, 2], [3, 2], [3, 0], [-3, 0]],
+                  'closed': true,
+                  'fill': 'surface',
+                  'width': 'thick',
+                },
+                { 'kind': 'line', 'points': [[0, 2], [0, 0]], 'width': 'thick', 'dash': true },
+                { 'kind': 'label', 'at': [-1.5, 1], 'text': '80 °C' },
+                { 'kind': 'label', 'at': [1.5, 1], 'text': '20 °C' },
+              ],
+          },
+      }
   steps:
     - title:
         it: Equilibrio

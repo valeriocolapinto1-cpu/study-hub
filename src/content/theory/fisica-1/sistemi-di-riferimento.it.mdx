@@ -4,6 +4,8 @@ topic: sistemi-di-riferimento
 lang: it
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="L'idea in sintesi">
 
 <div data-note-id="teoria/sistemi-di-riferimento/idea">
@@ -23,6 +25,16 @@ Le forze apparenti sono il 'trucco contabile' che permette di continuare a usare
 Un sistema di riferimento è inerziale se in esso vale il principio d'inerzia: un corpo non soggetto a forze si muove di moto rettilineo uniforme. Ogni sistema in moto rettilineo uniforme rispetto a un inerziale è a sua volta inerziale (relatività galileiana). Un sistema che accelera rispetto a un inerziale è non inerziale: per usare F = ma al suo interno occorre introdurre forze apparenti (o fittizie, o d'inerzia), che non hanno reazione perché non nascono da interazioni.
 
 </div>
+
+<Diagram
+  {...Fig.acceleratedFrame({ mode: 'truck' })}
+  caption="Nel riferimento del camion, non inerziale, sulla cassa compare la forza apparente −mA: se la cassa non scivola è l'attrito statico a bilanciarla."
+/>
+
+<Diagram
+  {...Fig.acceleratedFrame({ mode: 'wagon' })}
+  caption="Pendolo in un vagone che accelera: all'equilibrio relativo il filo si inclina all'indietro, con tan θ = A/g."
+/>
 
 <div data-note-id="teoria/sistemi-di-riferimento/derivazione" class="derivation">
 

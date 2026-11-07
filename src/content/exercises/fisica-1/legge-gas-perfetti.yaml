@@ -16,6 +16,18 @@
       A tyre is inflated to a gauge pressure of 2.2·10⁵ Pa at 15 °C (atmospheric pressure 1.0·10⁵ Pa). After a
       long trip the temperature of the air inside is 45 °C. Assuming constant volume, find: (a) the new
       absolute pressure; (b) the new gauge pressure; (c) the moles of air if the volume is 25 L.
+  figure:
+    diagram:
+      {
+        'type': 'pv-cycle',
+        'params':
+          {
+            'values': false,
+            'work': false,
+            'states': [{ 'id': 'A', 'V': 25, 'p': 320 }, { 'id': 'B', 'V': 25, 'p': 353 }],
+            'processes': [{ 'from': 'A', 'to': 'B', 'kind': 'isochoric' }],
+          },
+      }
   steps:
     - title:
         it: Isocora con temperature in kelvin
@@ -71,6 +83,64 @@
       An air bubble of volume 1.0 cm³ forms at the bottom of a lake 20 m deep, where the temperature is 6 °C,
       and rises to the surface where the water is at 18 °C (ρ = 1000 kg/m³, p₀ = 1.013·10⁵ Pa). Find the
       volume of the bubble at the surface.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Liquido in quiete con la superficie libera alla pressione atmosferica p₀: la pressione cresce linearmente con la profondità h.',
+                'en': 'Liquid at rest with its free surface at atmospheric pressure p₀: pressure grows linearly with depth h.',
+              },
+            'items':
+              [
+                {
+                  'kind': 'line',
+                  'points': [[-3, 4], [3, 4], [3, 0], [-3, 0]],
+                  'closed': true,
+                  'fill': 'soft',
+                  'tone': 'info',
+                  'width': 'thin',
+                },
+                { 'kind': 'surface', 'from': [-3.2, 0], 'to': [3.2, 0] },
+                { 'kind': 'label', 'at': [-2, 4.45], 'text': 'p₀', 'italic': true },
+                { 'kind': 'dim', 'from': [-2.6, 4], 'to': [-2.6, 1.2], 'label': 'h', 'offset': 0 },
+                {
+                  'kind': 'line',
+                  'points': [[-2.4, 1.2], [1.2, 1.2]],
+                  'dash': true,
+                  'tone': 'muted',
+                  'width': 'thin',
+                },
+                {
+                  'kind': 'disc',
+                  'at': [1.2, 1.2],
+                  'r': 0.18,
+                  'axle': false,
+                  'label': 'V_1',
+                  'labelAngle': 0,
+                },
+                {
+                  'kind': 'disc',
+                  'at': [1.2, 3.65],
+                  'r': 0.3,
+                  'axle': false,
+                  'label': 'V_2',
+                  'labelAngle': 0,
+                },
+                { 'kind': 'vector', 'from': [1.2, 1.6], 'to': [1.2, 3.1], 'dash': true, 'tone': 'muted' },
+                {
+                  'kind': 'label',
+                  'at': [1.8, 0.45],
+                  'text': { 'it': 'lago', 'en': 'lake' },
+                  'muted': true,
+                  'size': 12,
+                },
+              ],
+          },
+      }
   steps:
     - title:
         it: Pressione sul fondo

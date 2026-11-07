@@ -4,6 +4,8 @@ topic: ciclo-di-carnot
 lang: it
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="L'idea in sintesi">
 
 <div data-note-id="teoria/ciclo-di-carnot/idea">
@@ -35,6 +37,13 @@ Carnot progetta la macchina 'perfetta' eliminando ogni spreco: mai un contatto t
 Il ciclo di Carnot è il ciclo reversibile compiuto tra DUE sole sorgenti termiche (T*C calda e T_F fredda), composto da quattro trasformazioni quasi-statiche: espansione isoterma a T_C, espansione adiabatica da T_C a T_F, compressione isoterma a T_F, compressione adiabatica di ritorno a T_C. Per un gas perfetto il suo rendimento vale $\eta*{Carnot} = 1 - T_F/T_C$: dipende solo dalle temperature delle sorgenti.
 
 </div>
+
+<Diagram
+  {...Fig.carnotPv({ n: 1, Tc: 600, Tf: 300, k: 2 })}
+  caption="Ciclo di Carnot: due isoterme (scambi di calore) e due adiabatiche reversibili; l'area racchiusa è il lavoro per ciclo."
+/>
+
+<DiagramLive kind="pv-cycle" />
 
 <div data-note-id="teoria/ciclo-di-carnot/derivazione" class="derivation">
 

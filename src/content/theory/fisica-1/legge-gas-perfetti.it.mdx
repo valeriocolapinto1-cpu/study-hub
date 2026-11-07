@@ -30,6 +30,27 @@ L'equazione di stato dei gas perfetti, $pV = nRT$, sintetizza in un'unica relazi
 
 </div>
 
+<Diagram
+  type="pv-cycle"
+  params={{
+    values: false,
+    work: false,
+    isotherms: true,
+    states: [
+      { id: 'A', V: 10, p: 200 },
+      { id: 'B', V: 20, p: 100 },
+      { id: 'C', V: 20, p: 200 },
+      { id: 'D', V: 10, p: 100 },
+    ],
+    processes: [
+      { from: 'A', to: 'B', kind: 'isothermal' },
+      { from: 'A', to: 'C', kind: 'isobaric' },
+      { from: 'A', to: 'D', kind: 'isochoric' },
+    ],
+  }}
+  caption="Le tre leggi empiriche nel piano pV a partire dallo stesso stato A: isoterma (Boyle), isobara e isocora (Gay-Lussac)."
+/>
+
 <div data-note-id="teoria/legge-gas-perfetti/derivazione" class="derivation">
 
 ## Derivazione passo per passo

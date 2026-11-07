@@ -4,6 +4,8 @@ topic: teorema-momento-angolare
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/teorema-momento-angolare/idea">
@@ -29,6 +31,11 @@ It is the rotational twin of the first cardinal equation: just as internal force
 For a system of point particles, the total angular momentum about a pole O is $\vec{L} = \sum_i \vec{r}_i\times m_i\vec{v}_i$ and the resultant torque of the external forces is $\vec{\tau}^{ext} = \sum_i \vec{r}_i\times\vec{F}_i^{ext}$. The second cardinal equation states: $d\vec{L}/dt = \vec{\tau}^{ext}$, valid if the pole is fixed in an inertial frame or coincides with the centre of mass. Torques of internal forces do not contribute.
 
 </div>
+
+<Diagram
+  {...Fig.skater()}
+  caption="With no external torques angular momentum is conserved: lowering I increases the angular velocity."
+/>
 
 <div data-note-id="teoria/teorema-momento-angolare/derivazione" class="derivation">
 

@@ -1,6 +1,7 @@
 /** Generatori di fluidi e termodinamica (area D dell'originale). */
 import { registerGenerator } from '../../../engine/generators/registry';
 import { createRng } from '../../../engine/random';
+import * as Fig from '../lib/figures';
 import { G, L, R, ans, exercise, num, q, step } from '../lib/gen';
 
 const P0 = 1.013e5;
@@ -56,6 +57,7 @@ export const stevino = registerGenerator({
         ans(L(lang, 'p relativa', 'gauge p'), prel, 'Pa'),
         ans('F', F, 'N'),
       ],
+      Fig.depth({ label: { it: fluid.it, en: fluid.en } }),
     );
   },
 });
@@ -103,6 +105,7 @@ export const vqm = registerGenerator({
         ),
       ],
       [ans('v_qm', v, 'm/s'), ans('⟨K⟩', E, 'J')],
+      Fig.gasBox({ wall: false }),
     );
   },
 });
@@ -153,6 +156,7 @@ export const leggeCombinata = registerGenerator({
         ),
       ],
       [ans('n', n, 'mol'), ans('V₂', V2, 'L')],
+      Fig.twoStatesPv({ V1, p1, V2, p2 }),
     );
   },
 });
@@ -195,6 +199,7 @@ export const caloriMolari = registerGenerator({
         ),
       ],
       [ans('Q_V', QV, 'J'), ans('Q_p', Qp, 'J'), ans('W', W, 'J')],
+      Fig.heatingPv({ n, dT }),
     );
   },
 });
@@ -243,6 +248,7 @@ export const isotermaAdiabatica = registerGenerator({
         ans(L(lang, 'T₂ adiabatica', 'adiabatic T₂'), T2, 'K'),
         ans(L(lang, 'W adiabatica', 'adiabatic W'), Wad, 'J'),
       ],
+      Fig.expansionPv({ n, T1, k, gamma }),
     );
   },
 });
@@ -283,6 +289,7 @@ export const macchinaTermica = registerGenerator({
         ),
       ],
       [ans('W', W, 'J'), ans('|Q_F|', Qf, 'J'), ans('COP', cop)],
+      Fig.heatEngine('engine'),
     );
   },
 });
@@ -326,6 +333,7 @@ export const carnot = registerGenerator({
         ),
       ],
       [ans('Q_C', Qc, 'J'), ans('η', eta), ans('W', W, 'J'), ans('|Q_F|', Qf, 'J')],
+      Fig.carnotPv({ n, Tc, Tf, k }),
     );
   },
 });
@@ -375,6 +383,14 @@ export const entropiaMescolamento = registerGenerator({
         ans(L(lang, 'ΔS acqua calda', 'ΔS hot water'), S1, 'J/K'),
         ans(L(lang, 'ΔS universo', 'ΔS universe'), S1 + S2, 'J/K', 0.02),
       ],
+      Fig.partition({
+        left: `m_1, ${t1} °C`,
+        right: `m_2, ${t2} °C`,
+        caption: {
+          it: 'Due masse d’acqua a temperature diverse messe a contatto in un recipiente isolato.',
+          en: 'Two masses of water at different temperatures brought into contact in an insulated vessel.',
+        },
+      }),
     );
   },
 });

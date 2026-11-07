@@ -15,6 +15,44 @@
       A uniform rod 0.90 m long swings about a horizontal axis through one of its ends. Find: (a) the reduced
       length; (b) the small-oscillation period; (c) the period if the axis instead passes 0.15 m from the
       centre.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Corpo rigido sospeso nel punto O, spostato di un angolo θ dalla verticale.',
+                'en': 'Rigid body suspended at point O, displaced by an angle θ from the vertical.',
+              },
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-1.5, 0.4], 'to': [1.5, 0.4] },
+                { 'kind': 'line', 'points': [[0, 0.4], [0, 0]] },
+                {
+                  'kind': 'line',
+                  'points': [[0, 0], [0, -4.2]],
+                  'dash': true,
+                  'tone': 'muted',
+                  'width': 'thin',
+                },
+                { 'kind': 'rod', 'from': [0, 0], 'to': [1.236, -3.804] },
+                { 'kind': 'pivot', 'at': [0, 0], 'style': 'pin', 'label': 'O', 'labelAngle': 160 },
+                { 'kind': 'dot', 'at': [0.618, -1.902], 'label': 'CM', 'labelAngle': 0 },
+                { 'kind': 'dim', 'from': [0, 0], 'to': [0.618, -1.902], 'label': 'd', 'offset': -16 },
+                { 'kind': 'angle', 'at': [0, 0], 'from': -90, 'to': -72, 'r': 40, 'label': 'θ' },
+                {
+                  'kind': 'vector',
+                  'from': [0.618, -1.902],
+                  'to': [0.618, -3.202],
+                  'label': 'Mg',
+                  'labelAngle': 0,
+                  'vkind': 'weight',
+                },
+              ],
+          },
+      }
   steps:
     - title:
         it: Estremo
@@ -69,6 +107,44 @@
     en: >-
       A thin ring of radius R = 0.25 m hangs on a nail and swings in its own plane. Find: (a) the moment of
       inertia about the nail in terms of M; (b) the reduced length; (c) the small-oscillation period.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Corpo rigido sospeso nel punto O, spostato di un angolo θ dalla verticale.',
+                'en': 'Rigid body suspended at point O, displaced by an angle θ from the vertical.',
+              },
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-1.5, 0.4], 'to': [1.5, 0.4] },
+                { 'kind': 'line', 'points': [[0, 0.4], [0, 0]] },
+                {
+                  'kind': 'line',
+                  'points': [[0, 0], [0, -4.2]],
+                  'dash': true,
+                  'tone': 'muted',
+                  'width': 'thin',
+                },
+                { 'kind': 'disc', 'at': [0.494, -1.522], 'r': 1.6, 'style': 'ring', 'axle': false },
+                { 'kind': 'pivot', 'at': [0, 0], 'style': 'pin', 'label': 'O', 'labelAngle': 160 },
+                { 'kind': 'dot', 'at': [0.494, -1.522], 'label': 'CM', 'labelAngle': 0 },
+                { 'kind': 'dim', 'from': [0, 0], 'to': [0.494, -1.522], 'label': 'R', 'offset': -14 },
+                { 'kind': 'angle', 'at': [0, 0], 'from': -90, 'to': -72, 'r': 40, 'label': 'θ' },
+                {
+                  'kind': 'vector',
+                  'from': [0.494, -1.522],
+                  'to': [0.494, -2.822],
+                  'label': 'Mg',
+                  'labelAngle': 0,
+                  'vkind': 'weight',
+                },
+              ],
+          },
+      }
   steps:
     - title:
         it: Huygens-Steiner

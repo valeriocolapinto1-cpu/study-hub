@@ -15,6 +15,66 @@
       A flywheel of radius R = 0.40 m starts from rest with constant angular acceleration α = 3.0 rad/s². For
       a point on the rim, at time t = 2.0 s, find: (a) the angular velocity; (b) the tangential acceleration;
       (c) the centripetal acceleration; (d) the magnitude of the total acceleration.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Disco che ruota attorno al proprio asse fisso.',
+                'en': 'Disc spinning about its fixed axis.',
+              },
+            'items':
+              [
+                {
+                  'kind': 'disc',
+                  'at': [0, 0],
+                  'r': 2,
+                  'label': 'I',
+                  'labelAngle': 225,
+                  'radius': { 'angle': 200, 'label': 'R' },
+                },
+                {
+                  'kind': 'rotation',
+                  'at': [0, 0],
+                  'r': 72,
+                  'from': 20,
+                  'to': 110,
+                  'label': 'ω',
+                  'tone': 'accent2',
+                },
+                {
+                  'kind': 'rotation',
+                  'at': [0, 0],
+                  'r': 30,
+                  'from': 60,
+                  'to': 150,
+                  'label': 'α',
+                  'tone': 'accent',
+                },
+                { 'kind': 'dot', 'at': [1.732, -1] },
+                {
+                  'kind': 'vector',
+                  'from': [1.732, -1],
+                  'to': [2.332, 0.039],
+                  'label': 'a_t',
+                  'labelAngle': 0,
+                  'vkind': 'acceleration',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [1.732, -1],
+                  'to': [0.779, -0.45],
+                  'label': 'a_c',
+                  'labelAngle': 250,
+                  'vkind': 'acceleration',
+                  'dash': true,
+                },
+              ],
+          },
+      }
   steps:
     - title:
         it: Velocità angolare
@@ -81,6 +141,12 @@
       A car enters a bend of radius R = 80 m at 25 m/s and brakes uniformly down to 15 m/s after travelling 60
       m along the bend. Find: (a) the tangential acceleration; (b) the magnitude of the total acceleration at
       the start of braking; (c) the same quantity at the end.
+  figure:
+    diagram:
+      {
+        'type': 'circular-motion',
+        'params': { 'angle': 60, 'tangential': 'slowing', 'radiusLabel': 'R', 'showAngle': false },
+      }
   steps:
     - title:
         it: Accelerazione tangenziale

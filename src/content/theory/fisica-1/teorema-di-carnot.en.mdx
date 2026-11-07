@@ -4,6 +4,8 @@ topic: teorema-di-carnot
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/teorema-di-carnot/idea">
@@ -29,6 +31,11 @@ The theorem puts a universal ceiling on efficiency: however ingenious the design
 Carnot's theorem states: (1) no heat engine working between two reservoirs can have an efficiency greater than the reversible Carnot engine working between the same reservoirs; (2) all reversible engines between the same two reservoirs have the same efficiency, $\eta_{rev} = 1 - T_F/T_C$, independent of the fluid and the mechanism. The theorem founds the absolute thermodynamic temperature scale.
 
 </div>
+
+<Diagram
+  {...Fig.heatEngine('engine')}
+  caption="Between the same two reservoirs no engine beats the efficiency of the reversible one, η = 1 − T_F/T_C."
+/>
 
 <div data-note-id="teoria/teorema-di-carnot/derivazione" class="derivation">
 

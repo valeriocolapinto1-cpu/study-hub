@@ -4,6 +4,8 @@ topic: momento-angolare
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/momento-angolare/idea">
@@ -23,6 +25,11 @@ Torque measures how effective a force is at making things rotate: the same force
 With respect to a pole O, the torque (moment) of a force $\vec{F}$ applied at point P is $\vec{\tau} = \vec{r}\times\vec{F}$, with $\vec{r} = \vec{OP}$; its magnitude is $\tau = rF\sin\theta = Fb$, where b is the lever arm (distance from the pole to the line of action). The angular momentum of a point particle is $\vec{L} = \vec{r}\times m\vec{v} = \vec{r}\times\vec{p}$. Both depend on the choice of pole.
 
 </div>
+
+<Diagram
+  {...Fig.wrench({ angle: 60 })}
+  caption="The torque depends on the lever arm: τ = rF sin φ, that is F times the distance of the pole from the line of action."
+/>
 
 <div data-note-id="teoria/momento-angolare/derivazione" class="derivation">
 

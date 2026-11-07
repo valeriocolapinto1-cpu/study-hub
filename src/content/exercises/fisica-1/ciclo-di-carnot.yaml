@@ -15,6 +15,31 @@
       0.20 mol of monatomic ideal gas performs a Carnot cycle between 600 K and 300 K. In the isothermal
       expansion the volume doubles. Find: (a) the absorbed heat Q_C; (b) the efficiency; (c) the net work per
       cycle; (d) the ratio between the maximum and minimum volume of the cycle.
+  figure:
+    diagram:
+      {
+        'type': 'pv-cycle',
+        'params':
+          {
+            'gamma': 1.6667,
+            'values': false,
+            'work': true,
+            'states':
+              [
+                { 'id': 'A', 'V': 2, 'p': 498.84 },
+                { 'id': 'B', 'V': 4, 'p': 249.42 },
+                { 'id': 'C', 'V': 11.314, 'p': 44.092 },
+                { 'id': 'D', 'V': 5.657, 'p': 88.183 },
+              ],
+            'processes':
+              [
+                { 'from': 'A', 'to': 'B', 'kind': 'isothermal' },
+                { 'from': 'B', 'to': 'C', 'kind': 'adiabatic' },
+                { 'from': 'C', 'to': 'D', 'kind': 'isothermal' },
+                { 'from': 'D', 'to': 'A', 'kind': 'adiabatic' },
+              ],
+          },
+      }
   steps:
     - title:
         it: Isoterma calda
@@ -75,6 +100,20 @@
       An ideal freezer (reversed Carnot cycle) keeps its interior at −18 °C in a kitchen at 25 °C. Find: (a)
       the maximum COP; (b) the minimum work needed to extract 100 kJ from the interior; (c) the heat released
       to the kitchen.
+  figure:
+    diagram:
+      {
+        'type': 'heat-engine',
+        'params':
+          {
+            'kind': 'refrigerator',
+            'reservoirs':
+              [
+                { 'label': 'T_C = 298 K', 'heat': 'Q_C', 'side': 'hot' },
+                { 'label': 'T_F = 255 K', 'heat': 'Q_F', 'side': 'cold' },
+              ],
+          },
+      }
   steps:
     - title:
         it: COP di Carnot

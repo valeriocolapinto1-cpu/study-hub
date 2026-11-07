@@ -24,6 +24,17 @@ Il lavoro elementare di una forza $\vec{F}$ su uno spostamento infinitesimo $d\v
 
 </div>
 
+<Diagram
+  type="function-plot"
+  params={{
+    x: { min: 0, max: 8, label: 'x', unit: 'm' },
+    y: { min: 0, label: 'F_x', unit: 'N' },
+    series: [{ kind: 'poly', coeffs: [2, 1.5, -0.15], label: 'F_x(x)' }],
+    area: { series: 0, from: 1, to: 6, label: 'W' },
+  }}
+  caption="In una dimensione il lavoro di una forza variabile tra due posizioni è l'area sotto il grafico di F_x(x)."
+/>
+
 <div data-note-id="teoria/lavoro-energia-cinetica/derivazione" class="derivation">
 
 ## Derivazione passo per passo

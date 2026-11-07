@@ -4,6 +4,7 @@
  */
 import { registerGenerator } from '../../../engine/generators/registry';
 import { createRng } from '../../../engine/random';
+import * as Fig from '../lib/figures';
 import { G, L, ans, exercise, num, q, rad, step } from '../lib/gen';
 
 export const motoCircolare = registerGenerator({
@@ -55,6 +56,7 @@ export const motoCircolare = registerGenerator({
         ),
       ],
       [ans('ω', omega, 'rad/s'), ans('a_t', at, 'm/s²'), ans('a_n', an, 'm/s²'), ans('|a|', a, 'm/s²')],
+      Fig.flywheel({ torque: 'drive', rimPoint: true }),
     );
   },
 });
@@ -108,6 +110,7 @@ export const motoArmonico = registerGenerator({
         ),
       ],
       [ans('ω', w, 'rad/s'), ans('A', A, 'm'), ans('v_max', vmax, 'm/s'), ans('a_max', amax, 'm/s²')],
+      Fig.harmonicPlot({ T, x0, v0 }),
     );
   },
 });
@@ -149,6 +152,16 @@ export const massaMolla = registerGenerator({
         ),
       ],
       [ans('T', T, 's'), ans('E', E, 'J'), ans('v', v, 'm/s')],
+      {
+        type: 'spring-mass',
+        params: {
+          orientation: 'horizontal',
+          displacement: Math.round((x / A) * 100) / 100,
+          kLabel: 'k',
+          massLabel: 'm',
+          xLabel: 'x',
+        },
+      },
     );
   },
 });
@@ -202,6 +215,10 @@ export const pendolo = registerGenerator({
         ),
       ],
       [ans('T₀', T0, 's'), ans('v', v, 'm/s'), ans(L(lang, 'T_filo', 'T_string'), Tmax, 'N')],
+      {
+        type: 'pendulum',
+        params: { angle: th, forces: true, lengthLabel: 'L', massLabel: 'm', angleLabel: 'θ_0' },
+      },
     );
   },
 });
@@ -241,6 +258,7 @@ export const ascensore = registerGenerator({
         ),
       ],
       [ans('N', N, 'N'), ans('N/mg', N / (m * G))],
+      Fig.acceleratedFrame({ mode: 'elevator', down: !up }),
     );
   },
 });
@@ -303,6 +321,7 @@ export const smorzato = registerGenerator({
         ans('x_n/x_(n+1)', ratio, undefined, 0.005),
         ans('Q', Q),
       ],
+      Fig.dampedPlot({ gamma: g, omega: ws }),
     );
   },
 });
@@ -366,6 +385,7 @@ export const risonanza = registerGenerator({
         ),
       ],
       [ans('A', A, 'm'), ans('δ', delta, 'rad'), ans('A_max', Amax, 'm')],
+      Fig.resonancePlot({ m, k, b, F0, Om }),
     );
   },
 });

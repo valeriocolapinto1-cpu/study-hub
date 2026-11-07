@@ -15,6 +15,17 @@
       A cart of mass m₁ = 0.40 kg moving at 2.0 m/s collides elastically with a cart at rest of mass m₂ = 1.2
       kg. Find: (a) the velocities after the collision; (b) the fraction of kinetic energy transferred to the
       second cart.
+  figure:
+    diagram:
+      {
+        'type': 'collision',
+        'params':
+          {
+            'unit': 'm/s',
+            'before': [{ 'label': '1', 'mass': 'm_1', 'v': 2 }, { 'label': '2', 'mass': 'm_2', 'v': 0 }],
+            'after': [{ 'label': '1', 'mass': 'm_1', 'v': -1 }, { 'label': '2', 'mass': 'm_2', 'v': 1 }],
+          },
+      }
   steps:
     - title:
         it: Formule dell'urto elastico
@@ -69,6 +80,17 @@
       A 1000 kg car at 20 m/s rear-ends a 2000 kg van moving in the same direction at 11 m/s; the two vehicles
       stay locked together. Find: (a) the velocity right after the collision; (b) the kinetic energy
       dissipated; (c) check the result with the reduced mass.
+  figure:
+    diagram:
+      {
+        'type': 'collision',
+        'params':
+          {
+            'unit': 'm/s',
+            'before': [{ 'label': '1', 'mass': 'm_1', 'v': 20 }, { 'label': '2', 'mass': 'm_2', 'v': 11 }],
+            'after': [{ 'label': '1+2', 'mass': 'm_1+m_2', 'v': 14 }],
+          },
+      }
   steps:
     - title:
         it: Conservazione di P

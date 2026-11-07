@@ -15,6 +15,48 @@
       A diver goes down to 25 m below the sea surface (ρ = 1025 kg/m³, atmospheric pressure 1.013·10⁵ Pa).
       Find: (a) the absolute pressure; (b) the gauge pressure; (c) the force the water exerts on the glass of
       the mask (area 120 cm²), neglecting the change of depth across the glass.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Liquido in quiete con la superficie libera alla pressione atmosferica p₀: la pressione cresce linearmente con la profondità h.',
+                'en': 'Liquid at rest with its free surface at atmospheric pressure p₀: pressure grows linearly with depth h.',
+              },
+            'items':
+              [
+                {
+                  'kind': 'line',
+                  'points': [[-3, 4], [3, 4], [3, 0], [-3, 0]],
+                  'closed': true,
+                  'fill': 'soft',
+                  'tone': 'info',
+                  'width': 'thin',
+                },
+                { 'kind': 'surface', 'from': [-3.2, 0], 'to': [3.2, 0] },
+                { 'kind': 'label', 'at': [-2, 4.45], 'text': 'p₀', 'italic': true },
+                { 'kind': 'dim', 'from': [-2.6, 4], 'to': [-2.6, 1.2], 'label': 'h', 'offset': 0 },
+                {
+                  'kind': 'line',
+                  'points': [[-2.4, 1.2], [1.2, 1.2]],
+                  'dash': true,
+                  'tone': 'muted',
+                  'width': 'thin',
+                },
+                { 'kind': 'dot', 'at': [1.2, 1.2], 'label': 'p', 'labelAngle': 0 },
+                {
+                  'kind': 'label',
+                  'at': [1.8, 0.45],
+                  'text': { 'it': 'mare', 'en': 'sea' },
+                  'muted': true,
+                  'size': 12,
+                },
+              ],
+          },
+      }
   steps:
     - title:
         it: Stevino
@@ -72,6 +114,80 @@
       Water is poured into one arm of a U-tube containing mercury (ρ = 13600 kg/m³), forming a column 27.2 cm
       high. Find: (a) the height difference between the mercury surfaces in the two arms; (b) the height
       difference between the free surface of the water and that of the mercury in the other arm.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Tubo a U con mercurio e una colonna d’acqua in un ramo: alla stessa quota nello stesso liquido la pressione è la stessa.',
+                'en': 'U-tube with mercury and a water column in one arm: at the same height in the same liquid the pressure is the same.',
+              },
+            'items':
+              [
+                {
+                  'kind': 'line',
+                  'points':
+                    [
+                      [-2, 2.4],
+                      [-2, 1],
+                      [-1.2, 0],
+                      [1.2, 0],
+                      [2, 1],
+                      [2, 3.2],
+                      [1.2, 3.2],
+                      [1.2, 1.2],
+                      [0.9, 0.8],
+                      [-0.9, 0.8],
+                      [-1.2, 1.2],
+                      [-1.2, 2.4],
+                    ],
+                  'closed': true,
+                  'fill': 'surface2',
+                  'tone': 'muted',
+                  'width': 'thin',
+                },
+                {
+                  'kind': 'line',
+                  'points': [[-2, 5.1], [-2, 2.4], [-1.2, 2.4], [-1.2, 5.1]],
+                  'closed': true,
+                  'fill': 'soft',
+                  'tone': 'info',
+                  'width': 'thin',
+                },
+                { 'kind': 'line', 'points': [[-2, 6], [-2, 1], [-1.2, 0], [1.2, 0], [2, 1], [2, 6]] },
+                {
+                  'kind': 'line',
+                  'points': [[-1.2, 6], [-1.2, 1.2], [-0.9, 0.8], [0.9, 0.8], [1.2, 1.2], [1.2, 6]],
+                },
+                {
+                  'kind': 'label',
+                  'at': [0, 0.4],
+                  'text': { 'it': 'mercurio', 'en': 'mercury' },
+                  'muted': true,
+                  'size': 12,
+                },
+                {
+                  'kind': 'label',
+                  'at': [-1.6, 6.5],
+                  'text': { 'it': 'acqua', 'en': 'water' },
+                  'muted': true,
+                  'size': 12,
+                },
+                { 'kind': 'dim', 'from': [-2.5, 2.4], 'to': [-2.5, 5.1], 'label': 'h_a', 'offset': 0 },
+                {
+                  'kind': 'line',
+                  'points': [[-1.2, 2.4], [3, 2.4]],
+                  'dash': true,
+                  'tone': 'muted',
+                  'width': 'thin',
+                },
+                { 'kind': 'dim', 'from': [2.6, 2.4], 'to': [2.6, 3.2], 'label': 'Δh', 'offset': 0 },
+              ],
+          },
+      }
   steps:
     - title:
         it: Isobara alla superficie di separazione

@@ -36,6 +36,22 @@ A collision is an impulsive interaction between two bodies, so short that extern
 
 </div>
 
+<Diagram
+  type="collision"
+  params={{
+    values: false,
+    before: [
+      { label: 'A', mass: 'm_A', v: 3 },
+      { label: 'B', mass: 'm_B', v: -1 },
+    ],
+    after: [
+      { label: 'A', mass: 'm_A', v: -1 },
+      { label: 'B', mass: 'm_B', v: 3 },
+    ],
+  }}
+  caption="Head-on collision: the velocities stay on the line of centres; momentum is conserved and, if the collision is elastic, so is kinetic energy."
+/>
+
 <div data-note-id="teoria/urti-centrali/derivazione" class="derivation">
 
 ## Step-by-step derivation

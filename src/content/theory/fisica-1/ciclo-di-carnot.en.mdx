@@ -4,6 +4,8 @@ topic: ciclo-di-carnot
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/ciclo-di-carnot/idea">
@@ -35,6 +37,13 @@ Carnot designs the 'perfect' engine by eliminating every waste: never a thermal 
 The Carnot cycle is the reversible cycle performed between only TWO thermal reservoirs (hot T*C, from Italian caldo, and cold T_F, from freddo), made of four quasi-static transformations: isothermal expansion at T_C, adiabatic expansion from T_C to T_F, isothermal compression at T_F, adiabatic compression back to T_C. For an ideal gas its efficiency is $\eta*{Carnot} = 1 - T_F/T_C$: it depends only on the temperatures of the reservoirs.
 
 </div>
+
+<Diagram
+  {...Fig.carnotPv({ n: 1, Tc: 600, Tf: 300, k: 2 })}
+  caption="Carnot cycle: two isotherms (heat exchange) and two reversible adiabats; the enclosed area is the work per cycle."
+/>
+
+<DiagramLive kind="pv-cycle" />
 
 <div data-note-id="teoria/ciclo-di-carnot/derivazione" class="derivation">
 
