@@ -228,7 +228,8 @@ h4 {
 }
 
 /* ---------- Pagine fuori dai corsi: vecchio study-hub ---------- */
-/* Sfondo: sfere sfumate in CSS puro (nessuna immagine), griglia mascherata. */
+/* Sfondo: sfere sfumate in CSS puro (nessuna immagine), griglia mascherata.
+   Si muovono dopo 3 s: durante il caricamento non producono fotogrammi (prestazioni). */
 .bg-orbs {
   position: fixed;
   inset: 0;
@@ -253,7 +254,7 @@ h4 {
   left: -14vw;
   top: -18vw;
   background: radial-gradient(circle, rgb(60 230 255 / 0.33), transparent 65%);
-  animation: orb-drift-1 26s ease-in-out infinite alternate;
+  animation: orb-drift-1 26s ease-in-out 3s infinite alternate;
 }
 .orb--2 {
   width: 46vw;
@@ -261,7 +262,7 @@ h4 {
   right: -12vw;
   top: 14vh;
   background: radial-gradient(circle, rgb(139 147 255 / 0.4), transparent 65%);
-  animation: orb-drift-2 32s ease-in-out infinite alternate;
+  animation: orb-drift-2 32s ease-in-out 3s infinite alternate;
 }
 .orb--3 {
   width: 40vw;
@@ -269,7 +270,7 @@ h4 {
   left: 22vw;
   bottom: -20vw;
   background: radial-gradient(circle, rgb(196 131 255 / 0.27), transparent 65%);
-  animation: orb-drift-1 38s ease-in-out infinite alternate-reverse;
+  animation: orb-drift-1 38s ease-in-out 3s infinite alternate-reverse;
 }
 .bg-orbs__grid {
   position: absolute;
