@@ -1,0 +1,33 @@
+id: prestazioni-e-parallelismo
+course: fondamenti-informatica
+order: 16
+title:
+  it: Prestazioni & parallelismo
+  en: Performance & parallelism
+summary:
+  it: Equazione del tempo di CPU, legge di Amdahl, multicore e coerenza.
+  en: CPU time equation, Amdahl's law, multicore and coherence.
+group:
+  it: Prestazioni e virgola mobile
+  en: Performance and floating point
+objectives:
+  - id: prestazioni-e-parallelismo.1
+    text:
+      it: Applicare T = (N × S) / R e confrontare macchine a parità di programma.
+      en: Apply T = (N × S) / R and compare machines on the same program.
+  - id: prestazioni-e-parallelismo.2
+    text:
+      it: Scomporre il CPI in parte ideale e stalli di memoria e pipeline.
+      en: Break CPI into its ideal part and memory and pipeline stalls.
+  - id: prestazioni-e-parallelismo.3
+    text:
+      it: Applicare la legge di Amdahl, anche allo speedup su n core.
+      en: Apply Amdahl's law, including speedup on n cores.
+  - id: prestazioni-e-parallelismo.4
+    text:
+      it: Misurare con i benchmark e la media geometrica; spiegare i limiti dei MIPS.
+      en: Measure with benchmarks and the geometric mean; explain the limits of MIPS.
+  - id: prestazioni-e-parallelismo.5
+    text:
+      it: Descrivere i livelli di parallelismo, i due muri e la coerenza delle cache.
+      en: Describe the levels of parallelism, the two walls and cache coherence.

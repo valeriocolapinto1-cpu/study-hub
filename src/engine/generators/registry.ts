@@ -31,6 +31,10 @@ export interface AnswerItem {
   unit?: string;
   /** Tolleranza relativa (default 0.01). */
   tol?: number;
+  /** Tipo di confronto; dedotto dal valore se assente (`text` per codici binari, esadecimali, nomi). */
+  kind?: 'number' | 'complex' | 'text';
+  /** Per `text`: forme alternative accettate. */
+  accept?: string[];
 }
 
 export interface Choice {

@@ -1,0 +1,202 @@
+---
+course: fondamenti-informatica
+topic: risc-cisc-assembly
+lang: it
+---
+
+<Callout tone="ok" title="In due minuti">
+
+<div data-note-id="teoria/risc-cisc-assembly/in-due-minuti">
+
+- **RISC**: istruzioni di lunghezza fissa, solo load/store accedono alla memoria, molti registri. **CISC**: istruzioni di lunghezza variabile, operandi in memoria, microcodice.
+- Modi di indirizzamento da riconoscere: immediato, a registro, diretto, indiretto, **base + spiazzamento**, indicizzato, relativo al PC.
+- I salti condizionati leggono i **flag** (Z, N, V, C) oppure confrontano direttamente due registri.
+- Sottoprogrammi: l'indirizzo di ritorno va in un registro o sulla **pila**; la pila serve anche a parametri, variabili locali e salvataggio dei registri.
+- **Big-endian / little-endian**: ordine dei byte dentro la parola. Conta quando si leggono dati scritti da un'altra macchina.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/risc-cisc-assembly/da-dove-si-parte">
+
+## Da dove si parte
+
+**Cosa serve sapere prima:** com’è fatto un processore e che cosa sono PC, IR e registri generali, dal modulo sul [processore](../processore/).
+
+**Che problema risolve.** Il processore esegue istruzioni: ma _quali_? Quante ne servono, come si scrivono, come si dice a un’istruzione dove prendere i dati? L’**architettura del repertorio di istruzioni** è il contratto fra hardware e software: tutto ciò che un programmatore deve sapere della macchina, e tutto ciò che il costruttore si impegna a mantenere. È il livello a cui si decide se avere poche istruzioni semplici o molte complesse — la contrapposizione RISC/CISC.
+
+**Le parole nuove.** Un **mnemonico** è il nome leggibile di un’istruzione (`Add`) al posto del suo codice binario. Il **codice operativo** (opcode) è il campo che dice quale operazione è. Un **modo di indirizzamento** è la regola con cui l’istruzione indica dove sta un operando: il valore stesso, un registro, una cella, o un calcolo. La **pila** (stack) è un’area di memoria gestita con la regola «ultimo entrato, primo uscito», usata per le chiamate di procedura.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/risc-cisc-assembly/risc">
+
+## RISC
+
+- Istruzioni semplici, di **lunghezza fissa** (una parola): la decodifica è immediata e il prelievo prevedibile.
+- Modello **load/store**: solo `Load` e `Store` toccano la memoria; tutte le altre operano fra registri. Niente operazioni memoria-memoria.
+- Pochi modi di indirizzamento, molti registri generali.
+- Il compilatore fa più lavoro, l'hardware meno: circuito veloce e adatto alla pipeline. Esempi: ARM, Nios II.
+
+</div>
+
+<div data-note-id="teoria/risc-cisc-assembly/cisc">
+
+## CISC
+
+- Istruzioni complesse, di **lunghezza variabile**; una sola istruzione può leggere dalla memoria, calcolare e riscrivere.
+- Molti modi di indirizzamento; programmi più corti in numero di istruzioni.
+- Decodifica onerosa e durata variabile: la pipeline è più difficile da riempire. Esempi: Intel IA-32, ColdFire.
+
+Il confronto giusto non è «quale è più veloce» ma **dove si sposta la complessità**: nel compilatore (RISC) o nell'hardware (CISC).
+
+</div>
+
+<div data-note-id="teoria/risc-cisc-assembly/modi-di-indirizzamento">
+
+## Modi di indirizzamento
+
+Rispondono alla domanda: dove sta l'operando?
+
+- **Immediato** — il valore è nell'istruzione. `Move R1, #5` → `R1 ← 5`
+- **Registro** — l'operando è in un registro. `Move R1, R2` → `R1 ← [R2]`
+- **Assoluto/diretto** — l'istruzione contiene l'indirizzo. `Load R1, LOC` → `R1 ← [LOC]`
+- **Indiretto da registro** — il registro contiene l'indirizzo. `Load R1, (R2)` → `R1 ← [[R2]]`
+- **Indicizzato / base+spiazzamento** — indirizzo = registro + costante. `Load R1, 8(R2)` → `R1 ← [[R2]+8]`. È il modo con cui si accede ai campi di una struttura e agli elementi di un vettore.
+- **Autoincremento / autodecremento** — come l'indiretto, ma il registro avanza da solo dopo (o prima) dell'accesso: scorre un vettore senza istruzioni aggiuntive.
+- **Relativo al PC** — indirizzo = PC + spiazzamento. Usato dai salti, rende il codice rilocabile.
+
+</div>
+
+<div data-note-id="teoria/risc-cisc-assembly/salti-e-condizioni">
+
+## Salti e condizioni
+
+Un salto **incondizionato** sovrascrive il PC. Un salto **condizionato** lo fa solo se una condizione sui flag è verificata: tipicamente si esegue prima un `CMP` (una sottrazione che aggiorna i flag senza salvare il risultato) e poi un `BEQ`, `BGT`, `BLT`… Il confronto e il salto sono due istruzioni distinte.
+
+</div>
+
+<div data-note-id="teoria/risc-cisc-assembly/sottoprogrammi">
+
+## Sottoprogrammi
+
+Una chiamata deve ricordare **dove tornare**. Due meccanismi:
+
+- **Link register**: l'istruzione di chiamata salva il PC di ritorno in un registro dedicato. Rapido, ma un solo livello: se la subroutine ne chiama un'altra, il valore viene sovrascritto.
+- **Pila**: l'indirizzo di ritorno viene impilato. Supporta **annidamento e ricorsione**, che il solo link register non regge.
+
+</div>
+
+<div data-note-id="teoria/risc-cisc-assembly/la-pila">
+
+## La pila
+
+Struttura LIFO in memoria, gestita dallo **stack pointer** (SP) che punta alla cima. Cresce tipicamente verso gli indirizzi **bassi**:
+
+```
+; push di R1
+      Sub  SP, SP, #4
+      Store R1, (SP)
+; pop in R1
+      Load R1, (SP)
+      Add  SP, SP, #4
+```
+
+Sulla pila viaggiano indirizzo di ritorno, parametri, variabili locali e i registri che la subroutine deve preservare: l'insieme si chiama **record di attivazione**.
+
+</div>
+
+<div data-note-id="teoria/risc-cisc-assembly/un-programma-completo">
+
+## Un programma completo
+
+```
+; moltiplicazione tramite somme successive (stile RISC)
+      Load  LOC1, NUM1
+      Load  LOC2, NUM2
+      Clear LOC3
+CICLO: Sub   LOC2, LOC2, 1
+      Add   LOC3, LOC3, LOC1
+      Branch_if_[LOC2]>0  CICLO
+      Store LOC3, RES
+```
+
+Da leggere così: si azzera l'accumulatore, si somma il moltiplicando tante volte quanto vale il moltiplicatore, decrementando il contatore a ogni giro. Il salto è **in coda**, quindi il corpo viene eseguito almeno una volta.
+
+</div>
+
+<div data-note-id="teoria/risc-cisc-assembly/ordinamento-dei-byte">
+
+## Ordinamento dei byte
+
+**Big endian**: il byte più significativo all'indirizzo più basso — il bit di segno si trova quindi all'inizio. **Little endian**: il meno significativo per primo. Conta quando si scambiano dati fra macchine diverse o si accede a una parola byte per byte.
+
+</div>
+
+<div data-note-id="teoria/risc-cisc-assembly/dalla-sorgente-all-esecuzione">
+
+## Dalla sorgente all'esecuzione
+
+Il **compilatore** traduce in linguaggio macchina producendo file oggetto; il **linker** li combina risolvendo i riferimenti esterni; il **loader** porta il programma in memoria applicando lo spiazzamento necessario. Sono tre passaggi distinti, e all'esame vengono chiesti separatamente.
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/risc-cisc-assembly/esempio-svolto">
+
+## Esempio svolto
+
+**Somma dei primi n elementi di un vettore**, con i modi di indirizzamento evidenziati:
+
+```
+      Move  R2, #NUM      ; immediato: R2 ← indirizzo del vettore
+      Move  R3, N         ; diretto: R3 ← contenuto della cella N
+      Clear R1
+CICLO: Add   R1, (R2)      ; indiretto: R1 ← [R1] + contenuto puntato da R2
+      Add   R2, #4        ; avanza di una parola
+      Sub   R3, #1
+      Branch>0 CICLO      ; relativo al PC
+      Move  SOMMA, R1
+```
+
+Quattro modi diversi in sette righe, ed è questo che l'esame vuole vedere riconosciuto. Attenzione alla differenza fra `#NUM` (l'**indirizzo**) e `NUM` (il **contenuto**): è l'errore che costa più punti in assoluto.
+
+Con l'indirizzamento base+spiazzamento le due righe centrali diventano una sola, usando un indice che cresce: `Add R1, VETT(R2)` con `R2` che avanza di 4.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/risc-cisc-assembly/errori-tipici">
+
+## Errori tipici
+
+- Confondere indirizzo e contenuto: `Move R2, #NUM` mette in R2 **l'indirizzo**; senza cancelletto ci mette il valore contenuto lì.
+- Avanzare il puntatore di 1 invece che della dimensione della parola (4 byte se le parole sono a 32 bit e la memoria è indirizzata al byte).
+- Dimenticare di inizializzare l'accumulatore, o mettere il salto **prima** dell'aggiornamento del contatore.
+
+</div>
+
+<Callout tone="attenzione" title="La forma della notazione RTN">
+
+<div data-note-id="teoria/risc-cisc-assembly/trap-rtn">
+
+Nel trasferimento fra registri le parentesi quadre indicano il **contenuto**, e stanno solo sulle sorgenti: `Add R1,R2,R3` diventa `R1 ← [R2]+[R3]`. Scrivere `[R1] ←` a sinistra significherebbe assegnare a un valore invece che a un registro.
+
+</div>
+
+</Callout>
+
+</Layer>

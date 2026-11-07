@@ -1,0 +1,25 @@
+---
+/**
+ * Uno schema del corso come figura numerata della teoria, con le etichette al
+ * loro posto. SVG statico generato a build-time (nessun JavaScript).
+ */
+import Figure from '../../../components/Figure.astro';
+import { DIAGRAMS } from '../diagrams/data';
+import { dt, renderDiagram, type Lang } from '../lib/diagram-svg';
+
+interface Props {
+  id: string;
+  lang: Lang;
+  num?: string | number;
+}
+const { id, lang, num } = Astro.props;
+const d = DIAGRAMS.find((x) => x.id === id);
+if (!d) throw new Error(`<Schema id="${id}">: schema inesistente`);
+const svg = renderDiagram(d, lang, { mode: 'labels', idPrefix: 'fig' });
+---
+
+<div data-note-id={`schema/${d.id}`} data-note-label={dt(d.title, lang)}>
+  <Figure caption={dt(d.title, lang)} num={num} id={`schema-${d.id}`} wide={d.width > 560} lang={lang}>
+    <Fragment set:html={svg} />
+  </Figure>
+</div>

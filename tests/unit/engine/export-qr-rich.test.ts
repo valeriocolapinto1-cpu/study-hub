@@ -183,6 +183,14 @@ describe('rich', () => {
     );
     expect(R.renderRich('riga  \naccapo')).toBe('<p>riga<br>accapo</p>');
   });
+  it('blocchi preformattati', () => {
+    const src = 'Tabella:\n\n```\nA B │ Y\n0 0 │ $1$ **x**\n\n1 1 │ <0>\n```\n\nPoi **fine**.';
+    expect(R.renderRich(src, fakeMath)).toBe(
+      '<p>Tabella:</p><pre class="rich-pre"><code>A B │ Y\n0 0 │ $1$ **x**\n\n1 1 │ &lt;0&gt;</code></pre><p>Poi <strong>fine</strong>.</p>',
+    );
+    expect(R.renderRich('```\nx\n```', fakeMath)).toBe('<pre class="rich-pre"><code>x</code></pre>');
+    expect(R.plainText('a\n```\nb\n```')).toBe('a b');
+  });
   it('matematica', () => {
     expect(R.renderRich('Vale $V = RI$ sempre', fakeMath)).toBe('<p>Vale [I:V = RI] sempre</p>');
     expect(R.renderRich('$$\\int f$$', fakeMath)).toBe('<span class="math-display">[D:\\int f]</span>');

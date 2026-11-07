@@ -1,0 +1,33 @@
+id: risc-cisc-assembly
+course: fondamenti-informatica
+order: 9
+title:
+  it: RISC vs CISC, indirizzamento & assembly
+  en: RISC vs CISC, addressing & assembly
+summary:
+  it: ISA, modi di indirizzamento, RTN, sottoprogrammi e pile.
+  en: ISA, addressing modes, RTN, subroutines and stacks.
+group:
+  it: Il processore
+  en: The processor
+objectives:
+  - id: risc-cisc-assembly.1
+    text:
+      it: Confrontare RISC e CISC spiegando dove si sposta la complessità.
+      en: Compare RISC and CISC, explaining where the complexity moves.
+  - id: risc-cisc-assembly.2
+    text:
+      it: Riconoscere i modi di indirizzamento e dire che cosa finisce nel registro.
+      en: Recognise addressing modes and state what ends up in the register.
+  - id: risc-cisc-assembly.3
+    text:
+      it: Eseguire a mente un listato con salti, cicli e shift.
+      en: Run a listing with branches, loops and shifts in your head.
+  - id: risc-cisc-assembly.4
+    text:
+      it: Gestire sottoprogrammi e pila (indirizzo di ritorno, record di attivazione).
+      en: Handle subroutines and the stack (return address, activation record).
+  - id: risc-cisc-assembly.5
+    text:
+      it: Scrivere semplici programmi assembly e distinguere big- e little-endian.
+      en: Write simple assembly programs and tell big-endian from little-endian.

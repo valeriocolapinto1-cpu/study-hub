@@ -1,0 +1,231 @@
+---
+course: fondamenti-informatica
+topic: prestazioni-e-parallelismo
+lang: it
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In due minuti">
+
+<div data-note-id="teoria/prestazioni-e-parallelismo/in-due-minuti">
+
+- L’equazione da sapere a memoria: **T = (N × S) / R** — istruzioni eseguite × cicli per istruzione, diviso la frequenza di clock.
+- I tre fattori **non sono indipendenti**: ridurre N con istruzioni più complesse (CISC) di solito alza S; alzare R accorcia il periodo e obbliga a pipeline più profonde.
+- La **frequenza di clock non misura le prestazioni**: due processori a pari frequenza possono differire di un fattore due a causa di S.
+- Legge di **Amdahl**: se una frazione _f_ del tempo è migliorata di un fattore _k_, il guadagno globale è **1 / ((1 − f) + f/k)**. La parte non migliorata mette un tetto invalicabile.
+- Si confrontano macchine con i **benchmark** (SPEC) e la **media geometrica**, non con i MIPS: i MIPS dipendono dal repertorio e dal programma.
+- Il parallelismo ha tre livelli: fra **istruzioni** (pipeline, superscalare), fra **dati** (SIMD), fra **processi** (multicore) — e i core condividono la memoria, da cui il problema della **coerenza delle cache**.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/prestazioni-e-parallelismo/da-dove-si-parte">
+
+## Da dove si parte
+
+**Cosa serve sapere prima:** il CPI e l’effetto degli stalli ([pipeline](../pipeline/)) e il costo dei miss di cache ([memoria](../gerarchia-di-memoria/)).
+
+**Che problema risolve.** Tutto il corso è pieno di scelte progettuali — più stadi o meno, cache più grande, istruzioni più semplici — e ognuna viene giustificata dicendo «così è più veloce». Ma più veloce di quanto, e misurato come? Serve una definizione precisa di prestazione, altrimenti si finisce a confrontare processori con la frequenza di clock, che è l’errore più comune e quasi sempre sbagliato. Questo modulo dà lo strumento per rispondere con i numeri, e la legge che dice fin dove può arrivare qualunque ottimizzazione.
+
+**Le parole nuove.** Il **tempo di CPU** è il tempo di esecuzione di un programma, e si scompone in tre fattori. I **MIPS** sono milioni di istruzioni al secondo — una misura ingannevole, e il modulo spiega perché. Un **benchmark** è un programma reale usato come metro di paragone. Lo **speedup** è il rapporto fra il tempo prima e dopo un miglioramento. **SIMD** significa una sola istruzione applicata a molti dati insieme.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/prestazioni-e-parallelismo/che-cosa-vuol-dire-veloce">
+
+## Che cosa vuol dire «veloce»
+
+Il tempo di esecuzione di un programma è il solo indicatore che conti davvero, e si scompone in tre fattori:
+
+```
+T = (N × S) / R
+
+N = numero di istruzioni eseguite      (repertorio, compilatore)
+S = cicli di clock per istruzione      (organizzazione: pipeline, cache)
+R = frequenza di clock                 (tecnologia)
+```
+
+Ogni miglioramento agisce su uno dei tre. Il punto è che **non sono indipendenti**: un repertorio che riduce N con istruzioni più complesse tende ad aumentare S; alzare R accorcia il periodo e costringe a spezzare il lavoro in più stadi, il che aumenta gli stalli. Per questo la sola frequenza non dice nulla: due processori a 3 GHz possono differire del doppio.
+
+</div>
+
+<div data-note-id="teoria/prestazioni-e-parallelismo/quale-tempo-si-misura">
+
+## Quale tempo si misura
+
+Prima di calcolare bisogna decidere che cosa si sta contando, perché i numeri sono diversi:
+
+- **Tempo di risposta** (wall clock): quanto passa dall’avvio alla fine, orologio alla mano. Comprende l’attesa del disco, il tempo dato ad altri processi, tutto.
+- **Tempo di CPU dell’utente**: i soli cicli spesi a eseguire il programma. È quello che compare nell’equazione delle prestazioni.
+- **Tempo di CPU di sistema**: i cicli spesi dal sistema operativo per conto del programma (chiamate di sistema, gestione dell’I/O).
+
+Su una macchina scarica i tre valori sono vicini; su una macchina carica il tempo di risposta può essere molto maggiore senza che il programma sia peggiorato. Confrontare due processori con il tempo di risposta misurato in condizioni diverse è uno degli errori metodologici più comuni.
+
+</div>
+
+<div data-note-id="teoria/prestazioni-e-parallelismo/dove-finiscono-i-cicli">
+
+## Dove finiscono i cicli
+
+Il numero medio di cicli per istruzione non è una proprietà del processore ma del **processore più il programma**, e si scompone:
+
+```
+S = S_ideale + stalli_memoria + stalli_pipeline + …
+
+esempio:  S = 1,0 + (0,3 accessi/istr × 5 % miss × 100 cicli)
+            + (0,2 salti/istr × 60 % presi × 2 cicli)
+          = 1,0 + 1,5 + 0,24 = 2,74
+```
+
+Il conto mostra dove sta il problema: qui gli stalli di memoria pesano sei volte più di quelli sui salti, quindi lavorare sulla cache rende molto di più che raffinare la predizione. È lo stesso ragionamento di Amdahl applicato ai cicli invece che al tempo.
+
+</div>
+
+<div data-note-id="teoria/prestazioni-e-parallelismo/i-due-muri">
+
+## I due muri
+
+Due limiti fisici spiegano l’evoluzione dei processori degli ultimi vent’anni.
+
+Il **muro della memoria**: la velocità dei processori è cresciuta molto più in fretta di quella delle memorie, quindi il costo relativo di un miss è aumentato di continuo. Un accesso in memoria centrale, che una volta costava pochi cicli, oggi ne costa centinaia — ed è il motivo per cui le gerarchie di cache si sono fatte così profonde.
+
+Il **muro della potenza**: il consumo dinamico cresce con f·C·V², e salire di frequenza richiede anche più tensione. Verso i 4 GHz il calore da smaltire è diventato ingestibile per un chip raffreddato ad aria. Da lì la svolta: invece di un core più veloce, **più core** alla stessa frequenza — che però sposta il problema sul software, perché il parallelismo va scritto, e Amdahl mette il tetto.
+
+</div>
+
+<div data-note-id="teoria/prestazioni-e-parallelismo/speedup-su-n-core">
+
+## Speedup su n core
+
+La formula di Amdahl applicata al parallelismo, con f la frazione parallelizzabile e n il numero di core:
+
+```
+speedup(n) = 1 / ( (1 − f) + f/n )
+```
+
+Qualche valore, per farsi un’idea di quanto sia severa:
+
+```
+f = 0,50    n = 4 → 1,60×     n = 16 → 1,88×     n → ∞ →  2×
+f = 0,90    n = 4 → 3,08×     n = 16 → 6,40×     n → ∞ → 10×
+f = 0,99    n = 4 → 3,88×     n = 16 → 13,9×     n → ∞ → 100×
+```
+
+Con metà del programma sequenziale, sedici core danno meno del doppio. Il calcolo parallelo diventa interessante solo quando f è vicinissimo a 1 — ed è per questo che le applicazioni che ne beneficiano davvero (grafica, simulazioni, reti neurali) sono quelle in cui lo stesso calcolo si ripete su molti dati indipendenti.
+
+</div>
+
+<div data-note-id="teoria/prestazioni-e-parallelismo/la-legge-di-amdahl">
+
+## La legge di Amdahl
+
+Se si migliora di un fattore _k_ una parte che occupa la frazione _f_ del tempo totale, il guadagno complessivo è
+
+```
+speedup = 1 / ( (1 − f) + f/k )
+```
+
+Il termine `(1 − f)` non si tocca: è il **tetto**. Se il 40 % del tempo se ne va in una parte che non si può parallelizzare, anche rendendo il resto infinitamente veloce non si va oltre 1/0,4 = **2,5×**. Da qui la morale operativa: ha senso ottimizzare solo ciò che pesa, e prima di ottimizzare bisogna **misurare**.
+
+La stessa legge spiega perché raddoppiare i core raramente dimezza il tempo: la parte sequenziale del programma, più la sincronizzazione, restano.
+
+</div>
+
+<div data-note-id="teoria/prestazioni-e-parallelismo/misurare-benchmark-non-mips">
+
+## Misurare: benchmark, non MIPS
+
+I **MIPS** (milioni di istruzioni al secondo) sono una misura ingannevole: dipendono dal repertorio — un'istruzione CISC fa il lavoro di tre RISC — e dal programma. Anche i **FLOPS** dicono poco fuori dal calcolo numerico.
+
+Si usano allora i **benchmark**: programmi reali, eseguiti su una macchina di riferimento, con il risultato espresso come rapporto fra i tempi. Le suite SPEC ne raccolgono decine e riassumono i punteggi con la **media geometrica**, non con quella aritmetica: la media geometrica di rapporti non dipende da quale macchina si sceglie come riferimento, mentre quella aritmetica sì.
+
+</div>
+
+<div data-note-id="teoria/prestazioni-e-parallelismo/tre-livelli-di-parallelismo">
+
+## Tre livelli di parallelismo
+
+- **Fra istruzioni** — pipeline, esecuzione superscalare, riordino: si sovrappongono istruzioni dello stesso flusso. È il livello del capitolo sulla pipeline.
+- **Fra dati** — una sola istruzione opera su un vettore di valori (**SIMD**): tipico di grafica e segnali.
+- **Fra processi** — più **core** eseguono flussi diversi. È la strada presa quando alzare la frequenza è diventato insostenibile per il consumo.
+
+Il consumo dinamico cresce con f·C·V²: raddoppiare la frequenza costa più che raddoppiare i core, ed è questa la ragione fisica del passaggio al multicore, non una moda commerciale.
+
+</div>
+
+<div data-note-id="teoria/prestazioni-e-parallelismo/coerenza-delle-cache">
+
+## Coerenza delle cache
+
+Se ogni core ha la sua cache e tutti condividono la memoria, la stessa variabile può esistere in più copie. Se un core la modifica, gli altri devono accorgersene: è il problema della **coerenza**. I protocolli di _snooping_ risolvono facendo sorvegliare il bus a ogni cache: quando qualcuno scrive un blocco, le altre copie vengono invalidate.
+
+Lo stesso problema si presenta con il **DMA**, che scrive in memoria alle spalle del processore: il blocco corrispondente in cache diventa obsoleto e va invalidato.
+
+</div>
+
+<Callout tone="esame" title="Che cosa chiedono all’esame">
+
+<div data-note-id="teoria/prestazioni-e-parallelismo/che-cosa-chiedono-all-esame">
+
+Quasi sempre l'equazione `T = (N × S) / R` applicata a numeri, oppure Amdahl su un caso concreto, oppure la domanda-trappola «un processore a frequenza più alta è più veloce?». La risposta giusta cita tutti e tre i fattori e nota che il confronto ha senso solo **a parità di programma**.
+
+</div>
+
+</Callout>
+
+## Schemi
+
+<Schema id="multiprocessore-uma" lang="it" num="1" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/prestazioni-e-parallelismo/un-esempio-numerico">
+
+## Un esempio numerico
+
+Un programma esegue 10⁹ istruzioni su una macchina a 2 GHz con S = 1,5:
+
+```
+T = (10⁹ × 1,5) / (2 × 10⁹) = 0,75 s
+```
+
+Se una cache migliore porta S a 1,2, il tempo scende a 0,6 s: il **20 %** in meno. Se invece si alza il clock a 2,5 GHz lasciando S = 1,5 si arriva a 0,6 s lo stesso — ma la seconda strada costa in consumo e dissipazione, e la prima no. È il tipo di confronto che l'esame chiede di saper impostare.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/prestazioni-e-parallelismo/errori-tipici">
+
+## Errori tipici
+
+- Confrontare due macchine con la frequenza di clock, o con i MIPS: contano tutti e tre i fattori, e solo **a parità di programma**.
+- Applicare Amdahl al fattore di miglioramento invece che alla **frazione di tempo**: _f_ è la quota di tempo occupata dalla parte migliorata, non la sua dimensione nel codice.
+- Riassumere punteggi di benchmark con la media aritmetica: sono rapporti, e la media giusta è quella **geometrica**.
+- Dimenticare che nel multicore la parte sequenziale e la sincronizzazione non spariscono: il numero di core non è lo speedup.
+
+</div>
+
+<Callout tone="attenzione" title="RAM non vuol dire «accesso casuale»">
+
+<div data-note-id="teoria/prestazioni-e-parallelismo/trap-ram">
+
+La sigla è un falso amico: **random access** non significa che l’accesso avvenga a caso, ma che il **tempo di accesso non dipende dalla posizione** del dato in memoria. Il contrario è l’accesso sequenziale di un nastro, dove per leggere la fine bisogna scorrere tutto.
+
+</div>
+
+</Callout>
+
+</Layer>

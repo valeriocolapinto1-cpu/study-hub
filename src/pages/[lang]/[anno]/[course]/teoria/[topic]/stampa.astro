@@ -6,6 +6,7 @@ import Layer from '../../../../../../components/Layer.astro';
 import Formula from '../../../../../../components/Formula.astro';
 import Figure from '../../../../../../components/Figure.astro';
 import Callout from '../../../../../../components/Callout.astro';
+import TheoryLink from '../../../../../../components/TheoryLink.astro';
 import {
   coursePaths,
   courseTopics,
@@ -59,7 +60,7 @@ const { Content } = await render(entry!);
     </ul>
   </header>
   <article class="prose">
-    <Content components={{ Layer, Formula, Figure, Callout }} />
+    <Content components={{ Layer, Formula, Figure, Callout, a: TheoryLink }} />
   </article>
 </PrintLayout>
 

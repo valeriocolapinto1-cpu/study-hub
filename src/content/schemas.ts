@@ -113,10 +113,10 @@ export type Formula = z.infer<typeof formulaSchema>;
 // ---------------------------------------------------------------- exercises
 /**
  * Figura di un esercizio: netlist di un circuito (schema in src/sim/circuits/netlist.ts,
- * disegnata con <Circuit>) oppure SVG già pronto.
+ * disegnata con <Circuit>) oppure SVG già pronto (anche in due lingue, se contiene testo).
  */
 export const figureSchema = z
-  .strictObject({ netlist: Netlist.optional(), svg: z.string().min(1).optional() })
+  .strictObject({ netlist: Netlist.optional(), svg: z.union([z.string().min(1), localized]).optional() })
   .refine((f) => Boolean(f.netlist) !== Boolean(f.svg), 'figure: indicare netlist oppure svg');
 
 export const stepSchema = z.strictObject({ title: localized, body: localized });
@@ -127,6 +127,10 @@ export const answerItemSchema = z.strictObject({
   unit: z.string().optional(),
   /** Tolleranza relativa; se assente vale 0.01. */
   tol: z.number().positive().max(1).optional(),
+  /** Confronto: dedotto dal valore se assente; `text` per codici (binario, esadecimale, nomi). */
+  kind: z.enum(['number', 'complex', 'text']).optional(),
+  /** Solo per `text`: altre forme accettate (es. `0xAD`, `1010 1101`). */
+  accept: z.array(z.string().min(1)).optional(),
 });
 
 export const choiceSchema = z.strictObject({

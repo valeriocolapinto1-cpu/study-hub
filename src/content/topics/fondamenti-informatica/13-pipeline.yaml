@@ -1,0 +1,29 @@
+id: pipeline
+course: fondamenti-informatica
+order: 13
+title:
+  it: Pipeline & prestazioni
+  en: Pipelining & performance
+summary:
+  it: Stadi, hazard sui dati e sul controllo, forwarding, equazione delle prestazioni.
+  en: Stages, data and control hazards, forwarding, the performance equation.
+group:
+  it: Pipeline e memoria
+  en: Pipelines and memory
+objectives:
+  - id: pipeline.1
+    text:
+      it: Calcolare i cicli e lo speedup di una pipeline ideale a k stadi.
+      en: Compute the cycles and speedup of an ideal k-stage pipeline.
+  - id: pipeline.2
+    text:
+      it: Riconoscere hazard strutturali, sui dati e di controllo.
+      en: Recognise structural, data and control hazards.
+  - id: pipeline.3
+    text:
+      it: Disegnare il diagramma a stadi con e senza forwarding, incluso il load-use hazard.
+      en: Draw the stage diagram with and without forwarding, including the load-use hazard.
+  - id: pipeline.4
+    text:
+      it: Stimare la penalità dei salti e il CPI; descrivere predizione, delay slot e superscalare.
+      en: Estimate branch penalty and CPI; describe prediction, delay slots and superscalar execution.

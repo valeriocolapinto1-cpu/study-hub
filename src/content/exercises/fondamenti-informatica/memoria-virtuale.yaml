@@ -1,0 +1,837 @@
+- id: memoria-virtuale-es-1
+  topic: memoria-virtuale
+  objectives:
+    - memoria-virtuale.1
+  difficulty: 1
+  kind: static
+  statement:
+    it:
+      Pagine da **4 KiB**. Traduci l’indirizzo virtuale `0x0002A7F4` sapendo che la pagina cercata sta nel frame
+      `0x0C3`.
+    en: '**4 KiB** pages. Translate the virtual address `0x0002A7F4` knowing that the page sought is in frame
+      `0x0C3`.'
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          Prima separa offset e numero di pagina contando i bit. Con pagine da 4 KiB il taglio cade su un confine
+          comodo in esadecimale.
+        en:
+          First separate offset and page number by counting bits. With 4 KiB pages the cut falls on a convenient
+          boundary in hexadecimal.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          4 KiB = 2¹² byte  →  offset = 12 bit = 3 cifre esadecimali
+
+
+          0x0002A7F4  =  0x0002A | 7F4
+                         ↑ pagina  ↑ offset
+
+          pagina 0x0002A  →  (tabella delle pagine)  →  frame 0x0C3
+
+
+          fisico = 0x0C3 << 12  |  0x7F4  =  0x000C37F4
+
+          ```
+
+
+          Verifica immediata: le ultime **tre cifre esadecimali sono rimaste 7F4**. Se in un esercizio
+          cambiano, la traduzione è sbagliata: pagina e frame hanno la stessa dimensione, quindi la posizione
+          interna non può cambiare.
+        en: >-
+          ```
+
+          4 KiB = 2¹² bytes  →  offset = 12 bits = 3 hex digits
+
+
+          0x0002A7F4  =  0x0002A | 7F4
+                         ↑ page    ↑ offset
+
+          page 0x0002A  →  (page table)  →  frame 0x0C3
+
+
+          physical = 0x0C3 << 12  |  0x7F4  =  0x000C37F4
+
+          ```
+
+
+          Immediate check: the last **three hex digits are still 7F4**. If in an exercise they change, the
+          translation is wrong: page and frame have the same size, so the internal position cannot change.
+  answer:
+    - label:
+        it: Indirizzo fisico
+        en: Physical address
+      value: 000C37F4
+      kind: text
+      accept:
+        - '0x000C37F4'
+        - 000C37F4h
+        - 000C37F416
+  origin: originale
+- id: memoria-virtuale-es-2
+  topic: memoria-virtuale
+  objectives:
+    - memoria-virtuale.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Indirizzi virtuali a **32 bit**, pagine da **4 KiB**, ogni voce della tabella delle pagine occupa **4
+      byte**. Quanto occupa la tabella di un processo? E se i processi attivi sono 100?
+    en:
+      '**32-bit** virtual addresses, **4 KiB** pages, each page-table entry takes **4 bytes**. How much space
+      does one process’s table take? And if there are 100 active processes?'
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: Il numero di voci è il numero di pagine dello spazio virtuale, non di quelle effettivamente usate.
+        en: The number of entries is the number of pages of the virtual space, not of those actually used.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          numero di pagine = 2³² / 2¹² = 2²⁰ = 1 048 576 voci
+
+          dimensione = 2²⁰ × 4 byte = 4 MiB per processo
+
+
+          100 processi → 100 × 4 MiB = 400 MiB di sole tabelle
+
+          ```
+
+
+          Un risultato assurdo: le tabelle occuperebbero più della memoria che devono gestire, e per giunta la
+          maggior parte delle voci si riferisce a pagine **mai usate**, perché nessun processo occupa davvero
+          4 GiB.
+
+
+          Da qui le due soluzioni reali: la tabella a **più livelli**, in cui si allocano solo i rami
+          effettivamente usati, e la tabella **invertita**, che ha una voce per frame fisico invece che per
+          pagina virtuale — quindi cresce con la memoria installata e non con lo spazio di indirizzamento.
+        en: >-
+          ```
+
+          number of pages = 2³² / 2¹² = 2²⁰ = 1,048,576 entries
+
+          size = 2²⁰ × 4 bytes = 4 MiB per process
+
+
+          100 processes → 100 × 4 MiB = 400 MiB of tables alone
+
+          ```
+
+
+          An absurd result: the tables would take more than the memory they must manage, and on top of that
+          most entries refer to pages **never used**, because no process really occupies 4 GiB.
+
+
+          Hence the two real solutions: the **multi-level** table, in which only the branches actually used
+          are allocated, and the **inverted** table, which has one entry per physical frame instead of per
+          virtual page — so it grows with installed memory and not with the address space.
+  answer:
+    - label:
+        it: Tabella di un processo
+        en: Table of one process
+      value: 4
+      unit: MiB
+      tol: 1e-9
+    - label:
+        it: Tabelle di 100 processi
+        en: Tables of 100 processes
+      value: 400
+      unit: MiB
+      tol: 1e-9
+  origin: originale
+- id: memoria-virtuale-es-3
+  topic: memoria-virtuale
+  objectives:
+    - memoria-virtuale.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un accesso in memoria può risolversi in tre modi: **TLB hit**, **TLB miss** senza page fault, **page
+      fault**. Descrivi che cosa succede in ciascun caso e quanto costa, in ordine di grandezza.'
+    en: 'A memory access can be resolved in three ways: **TLB hit**, **TLB miss** without a page fault, **page
+      fault**. Describe what happens in each case and how much it costs, in order of magnitude.'
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: 'Chiediti ogni volta dove si trova la traduzione e dove si trova il dato: sono due domande diverse.'
+        en: 'Ask yourself each time where the translation is and where the data is: they are two different questions.'
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          TLB HIT
+            la traduzione è nel TLB → indirizzo fisico immediato → si legge il dato
+            costo: ~1 accesso in memoria (il dato), il TLB è quasi istantaneo
+
+          TLB MISS, pagina presente
+            la traduzione non è nel TLB → si legge la tabella delle pagine in
+            memoria → si aggiorna il TLB → si legge il dato
+            costo: ~2 accessi in memoria
+
+          PAGE FAULT
+            la voce dice «non valida»: la pagina non è in memoria fisica.
+            Eccezione → il sistema operativo sceglie un frame, eventualmente
+            riscrive su disco quello sfrattato se dirty, carica la pagina,
+            aggiorna la tabella, e l'istruzione viene RIESEGUITA
+            costo: ~10 ms, cioè MILIONI di cicli
+          ```
+
+
+          I tre casi non sono alternative dello stesso ordine: fra il secondo e il terzo ci sono cinque ordini
+          di grandezza. È il motivo per cui il tasso di page fault deve restare bassissimo, mentre un TLB miss
+          ogni tanto è del tutto tollerabile.
+        en: >-
+          ```
+
+          TLB HIT
+            the translation is in the TLB → physical address at once → the data is read
+            cost: ~1 memory access (the data), the TLB is almost instantaneous
+
+          TLB MISS, page present
+            the translation is not in the TLB → the page table is read from
+            memory → the TLB is updated → the data is read
+            cost: ~2 memory accesses
+
+          PAGE FAULT
+            the entry says “not valid”: the page is not in physical memory.
+            Exception → the operating system chooses a frame, writes back to
+            disk the evicted one if dirty, loads the page,
+            updates the table, and the instruction is RE-EXECUTED
+            cost: ~10 ms, i.e. MILLIONS of cycles
+          ```
+
+
+          The three cases are not alternatives of the same order: between the second and the third there are
+          five orders of magnitude. That is why the page-fault rate must stay extremely low, while an
+          occasional TLB miss is entirely tolerable.
+  origin: originale
+- id: memoria-virtuale-es-4
+  topic: memoria-virtuale
+  objectives:
+    - memoria-virtuale.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: TLB con tasso di successo **99 %**, accesso alla memoria 100 cicli, TLB trascurabile. Il tasso di page
+      fault è **0,001 %** e un fault costa 10 ms su un processore a **1 GHz**. Calcola il numero medio di
+      cicli per accesso.
+    en:
+      TLB hit rate **99 %**, memory access 100 cycles, TLB negligible. The page-fault rate is **0.001 %** and a
+      fault costs 10 ms on a **1 GHz** processor. Compute the average number of cycles per access.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          Calcola prima il contributo delle traduzioni, poi quello dei page fault convertendo i millisecondi in
+          cicli. Guarda quale dei due domina.
+        en:
+          First compute the contribution of translations, then that of page faults converting milliseconds into
+          cycles. See which of the two dominates.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          TLB hit  (99 %):   100 cicli          (solo il dato)
+
+          TLB miss (1 %):    200 cicli          (tabella + dato)
+
+
+          media senza fault = 0,99×100 + 0,01×200 = 99 + 2 = 101 cicli
+
+
+          un page fault = 10 ms × 1 GHz = 10⁷ cicli
+
+          contributo    = 0,00001 × 10⁷ = 100 cicli
+
+
+          totale ≈ 101 + 100 = 201 cicli per accesso
+
+          ```
+
+
+          Il risultato sorprendente: un page fault ogni **centomila** accessi **raddoppia** il tempo medio. Un
+          evento rarissimo domina la media, perché il suo costo è cinque ordini di grandezza sopra tutto il
+          resto.
+
+
+          È la lezione generale della gerarchia di memoria: quando le penalità sono enormi, ciò che conta non
+          è il caso tipico ma la **frequenza dei casi catastrofici**. E spiega perché il sistema operativo
+          lavora tanto sulle politiche di sostituzione delle pagine.
+        en: >-
+          ```
+
+          TLB hit  (99 %):   100 cycles         (data only)
+
+          TLB miss (1 %):    200 cycles         (table + data)
+
+
+          average without faults = 0.99×100 + 0.01×200 = 99 + 2 = 101 cycles
+
+
+          one page fault = 10 ms × 1 GHz = 10⁷ cycles
+
+          contribution   = 0.00001 × 10⁷ = 100 cycles
+
+
+          total ≈ 101 + 100 = 201 cycles per access
+
+          ```
+
+
+          The surprising result: one page fault every **hundred thousand** accesses **doubles** the average
+          time. An extremely rare event dominates the average, because its cost is five orders of magnitude
+          above everything else.
+
+
+          It is the general lesson of the memory hierarchy: when penalties are huge, what matters is not the
+          typical case but the **frequency of catastrophic cases**. And it explains why the operating system
+          works so hard on page-replacement policies.
+  answer:
+    - label:
+        it: Cicli medi per accesso
+        en: Average cycles per access
+      value: 201
+      tol: 1e-9
+  origin: originale
+- id: memoria-virtuale-es-5
+  topic: memoria-virtuale
+  objectives:
+    - memoria-virtuale.4
+  difficulty: 2
+  kind: static
+  statement:
+    it:
+      Un programma tenta di scrivere in una pagina marcata di **sola lettura**. Descrivi che cosa accade, passo
+      per passo, e a che cosa serve questo meccanismo.
+    en: A program tries to write to a page marked **read-only**. Describe what happens, step by step, and what
+      this mechanism is for.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          'La verifica non la fa il programma né il compilatore: la fanno i bit di protezione nella voce della
+          tabella delle pagine, controllati dall’hardware a ogni accesso.'
+        en:
+          'The check is done neither by the program nor by the compiler: it is done by the protection bits in the
+          page-table entry, checked by the hardware at every access.'
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          1. il programma esegue una Store verso un indirizzo virtuale
+
+          2. l'unità di gestione della memoria traduce l'indirizzo e legge
+             i bit di protezione della voce corrispondente
+          3. il bit «scrivibile» è a 0, ma l'accesso è in scrittura:
+             → violazione
+          4. viene sollevata un'ECCEZIONE (violazione di protezione),
+             sincrona rispetto all'istruzione
+          5. il controllo passa al sistema operativo, che tipicamente
+             termina il processo — il classico «segmentation fault»
+          ```
+
+
+          A che serve: a **isolare** i processi e a proteggere ciò che non deve cambiare. Il codice di un
+          programma è mappato in sola lettura, così un difetto non può riscrivere le proprie istruzioni; le
+          pagine di un processo non sono raggiungibili da un altro, perché semplicemente non compaiono nella
+          sua tabella.
+
+
+          Lo stesso meccanismo, usato in positivo, abilita la **copia su scrittura**: due processi condividono
+          le stesse pagine fisiche marcate in sola lettura, e solo quando uno prova a scrivere l’eccezione fa
+          creare al sistema operativo una copia privata. È così che le chiamate di creazione di un processo
+          diventano economiche.
+        en: >-
+          ```
+
+          1. the program executes a Store to a virtual address
+
+          2. the memory management unit translates the address and reads
+             the protection bits of the corresponding entry
+          3. the “writable” bit is 0, but the access is a write:
+             → violation
+          4. an EXCEPTION is raised (protection violation),
+             synchronous with respect to the instruction
+          5. control passes to the operating system, which typically
+             terminates the process — the classic “segmentation fault”
+          ```
+
+
+          What it is for: to **isolate** processes and protect what must not change. A program's code is
+          mapped read-only, so a bug cannot overwrite its own instructions; a process's pages cannot be
+          reached by another, because they simply do not appear in its table.
+
+
+          The same mechanism, used positively, enables **copy-on-write**: two processes share the same
+          physical pages marked read-only, and only when one tries to write does the exception make the
+          operating system create a private copy. That is how process-creation calls become cheap.
+  origin: originale
+- id: gen-traduzione-indirizzi
+  topic: memoria-virtuale
+  objectives:
+    - memoria-virtuale.1
+  difficulty: 2
+  kind: generated
+  generator: fondamenti-informatica/traduzione-indirizzi
+  origin: originale
+- id: mcq-vm-01
+  topic: memoria-virtuale
+  objectives:
+    - memoria-virtuale.1
+    - memoria-virtuale.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Nella traduzione di un indirizzo virtuale paginato, quale campo resta invariato?
+    en: In translating a paged virtual address, which field stays unchanged?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: L'offset nella pagina
+        en: The offset within the page
+  choices:
+    - text:
+        it: L'offset nella pagina
+        en: The offset within the page
+      correct: true
+    - text:
+        it: Il numero di pagina
+        en: The page number
+      correct: false
+    - text:
+        it: Il tag
+        en: The tag
+      correct: false
+    - text:
+        it: Tutti i campi vengono tradotti
+        en: All fields are translated
+      correct: false
+  origin: originale
+- id: mcq-vm-02
+  topic: memoria-virtuale
+  objectives:
+    - memoria-virtuale.1
+    - memoria-virtuale.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Che cosa contiene il **TLB**?
+    en: What does the **TLB** contain?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Le traduzioni pagina→frame usate di recente
+        en: Recently used page→frame translations
+  choices:
+    - text:
+        it: I dati usati di recente
+        en: Recently used data
+      correct: false
+    - text:
+        it: Le traduzioni pagina→frame usate di recente
+        en: Recently used page→frame translations
+      correct: true
+    - text:
+        it: L'elenco dei processi attivi
+        en: The list of active processes
+      correct: false
+    - text:
+        it: I blocchi sfrattati dalla cache
+        en: The blocks evicted from the cache
+      correct: false
+  origin: originale
+- id: mcq-vm-03
+  topic: memoria-virtuale
+  objectives:
+    - memoria-virtuale.1
+    - memoria-virtuale.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Che cosa accade in caso di **page fault**?
+    en: What happens on a **page fault**?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: "Si solleva un'eccezione: il SO carica la pagina da disco e riesegue l'istruzione"
+        en: 'An exception is raised: the OS loads the page from disk and re-executes the instruction'
+  choices:
+    - text:
+        it: Il programma termina con errore
+        en: The program terminates with an error
+      correct: false
+    - text:
+        it: "Si solleva un'eccezione: il SO carica la pagina da disco e riesegue l'istruzione"
+        en: 'An exception is raised: the OS loads the page from disk and re-executes the instruction'
+      correct: true
+    - text:
+        it: La pagina viene creata vuota e si prosegue
+        en: The page is created empty and execution continues
+      correct: false
+    - text:
+        it: Il TLB viene svuotato e basta
+        en: The TLB is flushed and that is all
+      correct: false
+  origin: originale
+- id: mcq-vm-04
+  topic: memoria-virtuale
+  objectives:
+    - memoria-virtuale.1
+    - memoria-virtuale.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Senza TLB, quanti accessi in memoria costerebbe leggere un dato con memoria virtuale paginata?
+    en: Without a TLB, how many memory accesses would it cost to read a datum with paged virtual memory?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: 'Due: uno per la tabella delle pagine e uno per il dato'
+        en: 'Two: one for the page table and one for the data'
+  choices:
+    - text:
+        it: Uno solo
+        en: Only one
+      correct: false
+    - text:
+        it: 'Due: uno per la tabella delle pagine e uno per il dato'
+        en: 'Two: one for the page table and one for the data'
+      correct: true
+    - text:
+        it: Nessuno
+        en: None
+      correct: false
+    - text:
+        it: Dipende dalla dimensione della cache
+        en: It depends on the cache size
+      correct: false
+  origin: originale
+- id: mcq-vm-05
+  topic: memoria-virtuale
+  objectives:
+    - memoria-virtuale.1
+    - memoria-virtuale.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Come si ottiene l’isolamento fra processi nella memoria virtuale?
+    en: How is isolation between processes achieved with virtual memory?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Dando a ogni processo la propria tabella delle pagine
+        en: By giving each process its own page table
+  choices:
+    - text:
+        it: Cifrando la memoria
+        en: By encrypting memory
+      correct: false
+    - text:
+        it: Dando a ogni processo la propria tabella delle pagine
+        en: By giving each process its own page table
+      correct: true
+    - text:
+        it: Assegnando a ogni processo una cache dedicata
+        en: By assigning each process a dedicated cache
+      correct: false
+    - text:
+        it: Disabilitando le interruzioni
+        en: By disabling interrupts
+      correct: false
+  origin: originale
+- id: schema-memoria-virtuale-tlb
+  topic: memoria-virtuale
+  objectives:
+    - memoria-virtuale.1
+    - memoria-virtuale.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Traduzione dell’indirizzo virtuale»: scrivi per ogni posizione numerata l'etichetta
+      giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Blocco · Etichetta · Indice di cache · Numero di frame · Numero di pagina · Offset · Registro
+      di stato · Tabella delle pagine · TLB
+    en: >-
+      Complete the diagram “Virtual address translation”: for each numbered position write the right label.
+      The list contains more labels than positions.
+
+
+      Labels: Block · Cache index · Frame number · Offset · Page number · Page table · Status register · Tag ·
+      TLB
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 320" role="img"
+        aria-labelledby="ex-memoria-virtuale-tlb-t ex-memoria-virtuale-tlb-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-memoria-virtuale-tlb-t">Traduzione
+        dell’indirizzo virtuale</title><desc id="ex-memoria-virtuale-tlb-d">Schema con 6 posizioni numerate da
+        completare.</desc><defs><marker id="ex-memoria-virtuale-tlb-arrow" viewBox="0 0 10 10" refX="9"
+        refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><text
+        style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="24" y="20"
+        font-size="12">Indirizzo virtuale</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="34" width="140" height="36" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="190" y="34" width="150" height="36" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="70" y="128" width="160" height="60" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="320" y="128" width="160" height="60" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-memoria-virtuale-tlb-arrow)" x1="110" y1="70" x2="110" y2="128"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-memoria-virtuale-tlb-arrow)" x1="230" y1="158" x2="320" y2="158"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="275" y="150" font-size="10">miss</text>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-memoria-virtuale-tlb-arrow)" x1="110" y1="188" x2="110" y2="250"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="400" y1="188" x2="400" y2="215"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="400" y1="215" x2="150" y2="215"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-memoria-virtuale-tlb-arrow)" x1="150" y1="215" x2="150" y2="250"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-memoria-virtuale-tlb-arrow)" x1="265" y1="70" x2="265" y2="250"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="24" y="304" font-size="12">Indirizzo fisico</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="250" width="140" height="36" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="190" y="250" width="150" height="36" rx="4"/><circle cx="110" cy="52" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="110" y="52" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="265" cy="52" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="265" y="52" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="150" cy="160" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="150" y="160" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="400" cy="160" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="400" y="160" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="110" cy="268" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="110" y="268" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="265" cy="268" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="265" y="268" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 320" role="img"
+        aria-labelledby="ex-memoria-virtuale-tlb-t ex-memoria-virtuale-tlb-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-memoria-virtuale-tlb-t">Virtual address
+        translation</title><desc id="ex-memoria-virtuale-tlb-d">Diagram with 6 numbered positions to fill
+        in.</desc><defs><marker id="ex-memoria-virtuale-tlb-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><text
+        style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="24" y="20"
+        font-size="12">Virtual address</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="34" width="140" height="36" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="190" y="34" width="150" height="36" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="70" y="128" width="160" height="60" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="320" y="128" width="160" height="60" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-memoria-virtuale-tlb-arrow)" x1="110" y1="70" x2="110" y2="128"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-memoria-virtuale-tlb-arrow)" x1="230" y1="158" x2="320" y2="158"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="275" y="150" font-size="10">miss</text>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-memoria-virtuale-tlb-arrow)" x1="110" y1="188" x2="110" y2="250"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="400" y1="188" x2="400" y2="215"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="400" y1="215" x2="150" y2="215"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-memoria-virtuale-tlb-arrow)" x1="150" y1="215" x2="150" y2="250"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-memoria-virtuale-tlb-arrow)" x1="265" y1="70" x2="265" y2="250"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="24" y="304" font-size="12">Physical address</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="250" width="140" height="36" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="190" y="250" width="150" height="36" rx="4"/><circle cx="110" cy="52" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="110" y="52" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="265" cy="52" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="265" y="52" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="150" cy="160" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="150" y="160" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="400" cy="160" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="400" y="160" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="110" cy="268" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="110" y="268" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="265" cy="268" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="265" y="268" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Numero di pagina
+          2. Offset
+          3. TLB
+          4. Tabella delle pagine
+          5. Numero di frame
+          6. Offset
+        en: |-
+          1. Page number
+          2. Offset
+          3. TLB
+          4. Page table
+          5. Frame number
+          6. Offset
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Numero di pagina
+      kind: text
+      accept:
+        - Page number
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Offset
+      kind: text
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: TLB
+      kind: text
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Tabella delle pagine
+      kind: text
+      accept:
+        - Page table
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Numero di frame
+      kind: text
+      accept:
+        - Frame number
+    - label:
+        it: Posizione 6
+        en: Position 6
+      value: Offset
+      kind: text
+  origin: originale
+- id: schema-memoria-virtuale-org
+  topic: memoria-virtuale
+  objectives:
+    - memoria-virtuale.1
+    - memoria-virtuale.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Organizzazione della memoria virtuale»: scrivi per ogni posizione numerata
+      l'etichetta giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: ALU · Banco dei registri · Cache · Controllore di interruzione · Disco · Memoria principale ·
+      MMU · Processore · Registro di stato
+    en: >-
+      Complete the diagram “Virtual memory organisation”: for each numbered position write the right label.
+      The list contains more labels than positions.
+
+
+      Labels: ALU · Cache · Disk · Interrupt controller · Main memory · MMU · Processor · Register file ·
+      Status register
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 420" role="img"
+        aria-labelledby="ex-memoria-virtuale-org-t ex-memoria-virtuale-org-d"
+        style="width:100%;height:auto;max-width:520px"><title id="ex-memoria-virtuale-org-t">Organizzazione
+        della memoria virtuale</title><desc id="ex-memoria-virtuale-org-d">Schema con 5 posizioni numerate da
+        completare.</desc><defs><marker id="ex-memoria-virtuale-org-arrow" viewBox="0 0 10 10" refX="9"
+        refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="170" y="16" width="180"
+        height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-memoria-virtuale-org-arrow)" x1="260" y1="56" x2="260" y2="110"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="275" y="88" font-size="10">indirizzo virtuale</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="110" width="120" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-memoria-virtuale-org-arrow)" x1="260" y1="150" x2="260" y2="205"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="275" y="182" font-size="10">indirizzo fisico</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="170" y="205" width="180" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-memoria-virtuale-org-arrow)" x1="260" y1="245" x2="260" y2="295"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="150" y="295" width="220" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-memoria-virtuale-org-arrow)" x1="260" y1="335" x2="260" y2="375"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="275" y="360" font-size="10">trasferimento DMA</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="180" y="375" width="160" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="120" y1="36" x2="120" y2="315"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="120" y1="36" x2="170" y2="36"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="120" y1="225" x2="170" y2="225"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="120" y1="315" x2="150" y2="315"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="20" y="180" font-size="10">dati</text><circle cx="260" cy="35" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="260" y="35" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="260" cy="130" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="260" y="130" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="260" cy="225" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="260" y="225" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="260" cy="315" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="260" y="315" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="260" cy="395" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="260" y="395" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 420" role="img"
+        aria-labelledby="ex-memoria-virtuale-org-t ex-memoria-virtuale-org-d"
+        style="width:100%;height:auto;max-width:520px"><title id="ex-memoria-virtuale-org-t">Virtual memory
+        organisation</title><desc id="ex-memoria-virtuale-org-d">Diagram with 5 numbered positions to fill
+        in.</desc><defs><marker id="ex-memoria-virtuale-org-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="170" y="16" width="180"
+        height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-memoria-virtuale-org-arrow)" x1="260" y1="56" x2="260" y2="110"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="275" y="88" font-size="10">virtual address</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="110" width="120" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-memoria-virtuale-org-arrow)" x1="260" y1="150" x2="260" y2="205"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="275" y="182" font-size="10">physical address</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="170" y="205" width="180" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-memoria-virtuale-org-arrow)" x1="260" y1="245" x2="260" y2="295"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="150" y="295" width="220" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-memoria-virtuale-org-arrow)" x1="260" y1="335" x2="260" y2="375"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="275" y="360" font-size="10">DMA transfer</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="180" y="375" width="160" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="120" y1="36" x2="120" y2="315"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="120" y1="36" x2="170" y2="36"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="120" y1="225" x2="170" y2="225"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="120" y1="315" x2="150" y2="315"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="20" y="180" font-size="10">data</text><circle cx="260" cy="35" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="260" y="35" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="260" cy="130" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="260" y="130" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="260" cy="225" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="260" y="225" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="260" cy="315" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="260" y="315" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="260" cy="395" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="260" y="395" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Processore
+          2. MMU
+          3. Cache
+          4. Memoria principale
+          5. Disco
+        en: |-
+          1. Processor
+          2. MMU
+          3. Cache
+          4. Main memory
+          5. Disk
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Processore
+      kind: text
+      accept:
+        - Processor
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: MMU
+      kind: text
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Cache
+      kind: text
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Memoria principale
+      kind: text
+      accept:
+        - Main memory
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Disco
+      kind: text
+      accept:
+        - Disk
+  origin: originale

@@ -25,6 +25,8 @@ export interface AnswerItemData {
   value: number | string;
   unit?: string;
   tol?: number;
+  kind?: 'number' | 'complex' | 'text';
+  accept?: string[];
 }
 
 export interface ChoiceData {
@@ -109,3 +111,11 @@ export function objectivesIndex(
 ): Record<string, string[]> {
   return Object.fromEntries(items.map((i) => [i.id, i.objectives]));
 }
+
+/** Chiave dell'aiuto sotto i campi di risposta: testuale se tutti i campi sono testuali (codici, nomi, sì/no). */
+export const answerHelpKey = (
+  answers: readonly AnswerItemData[],
+): 'exercise.answerHelp' | 'exercise.answerHelpText' =>
+  answers.length > 0 && answers.every((a) => a.kind === 'text')
+    ? 'exercise.answerHelpText'
+    : 'exercise.answerHelp';

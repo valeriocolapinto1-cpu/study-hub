@@ -39,6 +39,8 @@ module.exports = {
         `${BASE}/en/privacy/`,
         `${BASE}/it/contribuisci/`,
         `${BASE}/it/stile/circuiti/`,
+        `${BASE}/it/anno-1/fondamenti-informatica/teoria/algebra-di-boole/`,
+        `${BASE}/en/anno-1/fondamenti-informatica/`,
       ],
       numberOfRuns: 3,
       ...(process.env.CHROME_PATH ? { chromePath: process.env.CHROME_PATH } : {}),

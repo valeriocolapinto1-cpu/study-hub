@@ -1,0 +1,33 @@
+id: mappe-di-karnaugh
+course: fondamenti-informatica
+order: 4
+title:
+  it: Sintesi & mappe di Karnaugh
+  en: Synthesis & Karnaugh maps
+summary:
+  it: Dalla tabella di verità al circuito minimo. Esce quasi sempre.
+  en: From the truth table to the minimal circuit. It comes up almost every time.
+group:
+  it: Reti logiche
+  en: Logic networks
+objectives:
+  - id: mappe-di-karnaugh.1
+    text:
+      it: Disporre una mappa di Karnaugh a 3 e 4 variabili in ordine Gray.
+      en: Lay out a 3- and 4-variable Karnaugh map in Gray order.
+  - id: mappe-di-karnaugh.2
+    text:
+      it: Raggruppare gli 1 (anche ai bordi) e ricavare la SOP minima.
+      en: Group the 1s (including across the edges) and derive the minimal SOP.
+  - id: mappe-di-karnaugh.3
+    text:
+      it: Usare le indifferenze solo dove allargano un gruppo.
+      en: Use don’t cares only where they enlarge a group.
+  - id: mappe-di-karnaugh.4
+    text:
+      it: Riconoscere implicanti primi ed essenziali, anche nelle mappe cicliche.
+      en: Recognise prime and essential implicants, including in cyclic maps.
+  - id: mappe-di-karnaugh.5
+    text:
+      it: Ricavare la POS raggruppando gli zeri e tradurre il risultato in circuito.
+      en: Derive the POS by grouping the zeros and turn the result into a circuit.

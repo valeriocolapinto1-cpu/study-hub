@@ -1,0 +1,167 @@
+- id: dal-sorgente-all-esecuzione-verifica-1
+  topic: dal-sorgente-all-esecuzione
+  objectives:
+    - dal-sorgente-all-esecuzione.2
+  kind: concetto
+  front:
+    it: Perché l’assemblatore ha bisogno di due passate?
+    en: Why does the assembler need two passes?
+  back:
+    it: Perché un salto in avanti nomina un’etichetta che, al momento in cui la si incontra, non ha ancora un
+      indirizzo. La **prima passata** percorre il sorgente solo per costruire la tabella dei simboli; la
+      **seconda** genera il codice, quando ogni etichetta è già risolta.
+    en:
+      Because a forward branch names a label that, when it is met, has no address yet. The **first pass** goes
+      through the source only to build the symbol table; the **second** generates the code, when every label
+      is already resolved.
+- id: dal-sorgente-all-esecuzione-verifica-2
+  topic: dal-sorgente-all-esecuzione
+  objectives:
+    - dal-sorgente-all-esecuzione.1
+    - dal-sorgente-all-esecuzione.4
+  kind: concetto
+  front:
+    it: Che differenza c’è fra il lavoro del collegatore e quello del caricatore?
+    en: What is the difference between the work of the linker and that of the loader?
+  back:
+    it:
+      'Il **collegatore** unisce più moduli oggetto e le librerie risolvendo i riferimenti esterni: produce un
+      eseguibile. Il **caricatore** prende quell’eseguibile, lo mette in memoria, sistema gli indirizzi se
+      serve e lo avvia.'
+    en:
+      'The **linker** joins several object modules and the libraries, resolving external references: it produces
+      an executable. The **loader** takes that executable, puts it in memory, fixes the addresses if needed
+      and starts it.'
+- id: dal-sorgente-all-esecuzione-verifica-3
+  topic: dal-sorgente-all-esecuzione
+  objectives:
+    - dal-sorgente-all-esecuzione.5
+  kind: concetto
+  front:
+    it: Il sistema operativo è in esecuzione mentre gira il tuo programma?
+    en: Is the operating system running while your program runs?
+  back:
+    it:
+      'No: è un programma anche lui e la CPU è una sola. Riprende il controllo solo in tre casi — **chiamata di
+      sistema**, **interruzione**, **eccezione** — e in ognuno il passaggio avviene attraverso un punto
+      d’ingresso controllato, con cambio in modalità supervisore.'
+    en: 'No: it is a program too and there is only one CPU. It regains control only in three cases — **system
+      call**, **interrupt**, **exception** — and in each the transfer happens through a controlled entry
+      point, switching to supervisor mode.'
+- id: open-sw-01
+  topic: dal-sorgente-all-esecuzione
+  objectives:
+    - dal-sorgente-all-esecuzione.1
+  kind: orale
+  front:
+    it: Descrivi il percorso che porta da un sorgente assembly a un programma in esecuzione, nominando gli
+      strumenti coinvolti.
+    en: Describe the path that leads from an assembly source to a running program, naming the tools involved.
+  back:
+    it:
+      "Quattro passaggi. L'**assemblatore** traduce il sorgente in codice oggetto: sostituisce i mnemonici con i
+      codici operativi e le etichette con gli indirizzi. Per farlo lavora in **due passate**, perché un salto
+      in avanti cita un'etichetta non ancora incontrata: nella prima costruisce la **tabella dei simboli**
+      tenendo un contatore di posizione, nella seconda genera il codice. Le **direttive** (`ORIGIN`,
+      `DATAWORD`, `RESERVE`, `EQU`, `END`) non producono istruzioni: dicono all'assemblatore dove collocare le
+      cose. Il **collegatore** unisce i moduli oggetto e le librerie, risolvendo i **riferimenti esterni** — i
+      nomi che un modulo usa ma non definisce — e calcolando la posizione definitiva di ciascun modulo; il
+      collegamento può essere statico (libreria dentro l'eseguibile) o dinamico (caricata a runtime e
+      condivisa). Il **caricatore** copia l'eseguibile in memoria, effettua se necessario la **rilocazione**
+      degli indirizzi assoluti, prepara la pila e salta al punto d'ingresso. Da quel momento il programma è in
+      esecuzione e il **sistema operativo** resta fermo: riprende il controllo solo su chiamata di sistema,
+      interruzione o eccezione."
+    en:
+      'Four steps. The **assembler** translates the source into object code: it replaces mnemonics with opcodes
+      and labels with addresses. To do so it works in **two passes**, because a forward branch names a label
+      not yet encountered: in the first it builds the **symbol table** keeping a location counter, in the
+      second it generates the code. **Directives** (`ORIGIN`, `DATAWORD`, `RESERVE`, `EQU`, `END`) produce no
+      instructions: they tell the assembler where to place things. The **linker** joins the object modules and
+      the libraries, resolving **external references** — the names a module uses but does not define — and
+      computing the final position of each module; linking can be static (library inside the executable) or
+      dynamic (loaded at run time and shared). The **loader** copies the executable into memory, performs
+      **relocation** of absolute addresses if needed, prepares the stack and jumps to the entry point. From
+      then on the program is running and the **operating system** stays idle: it regains control only on a
+      system call, an interrupt or an exception.'
+- id: def-tabella-simboli
+  topic: dal-sorgente-all-esecuzione
+  objectives:
+    - dal-sorgente-all-esecuzione.1
+  kind: definizione
+  front:
+    it: Tabella dei simboli
+    en: Symbol table
+  back:
+    it: >-
+      Struttura costruita dall’assemblatore nella prima passata, che associa a ogni etichetta l’indirizzo a
+      cui corrisponde.
+
+
+      È la ragione per cui servono **due passate**: senza, un salto in avanti non potrebbe essere tradotto,
+      perché cita un’etichetta non ancora incontrata.
+    en: >-
+      Structure built by the assembler in the first pass, associating each label with the address it
+      corresponds to.
+
+
+      It is why **two passes** are needed: without it, a forward branch could not be translated, because it
+      names a label not yet encountered.
+- id: def-riferimento-esterno
+  topic: dal-sorgente-all-esecuzione
+  objectives:
+    - dal-sorgente-all-esecuzione.1
+  kind: definizione
+  front:
+    it: Riferimento esterno
+    en: External reference
+  back:
+    it:
+      'Nome che un modulo usa ma non definisce: resta un «buco» nel codice oggetto finché il collegatore non lo
+      risolve.'
+    en: 'Name that a module uses but does not define: it remains a “hole” in the object code until the linker
+      resolves it.'
+- id: def-rilocazione
+  topic: dal-sorgente-all-esecuzione
+  objectives:
+    - dal-sorgente-all-esecuzione.1
+  kind: definizione
+  front:
+    it: Rilocazione
+    en: Relocation
+  back:
+    it: >-
+      Correzione degli indirizzi assoluti di un programma quando viene caricato a un indirizzo diverso da
+      quello previsto.
+
+
+      Con la **memoria virtuale** il problema quasi sparisce: ogni processo vede sempre lo stesso spazio
+      virtuale, indipendentemente da dove si trovi in memoria fisica.
+    en: >-
+      Correction of a program’s absolute addresses when it is loaded at an address other than the one planned.
+
+
+      With **virtual memory** the problem almost disappears: every process always sees the same virtual space,
+      wherever it is in physical memory.
+- id: def-chiamata-sistema
+  topic: dal-sorgente-all-esecuzione
+  objectives:
+    - dal-sorgente-all-esecuzione.1
+  kind: definizione
+  front:
+    it: Chiamata di sistema
+    en: System call
+  back:
+    it: >-
+      Richiesta di un servizio al sistema operativo, che fa passare il processore in modalità supervisore
+      attraverso un punto d’ingresso controllato.
+
+
+      È uno dei **tre** soli modi in cui il sistema operativo riprende il controllo, insieme a interruzione ed
+      eccezione.
+    en: >-
+      Request for a service from the operating system, which switches the processor to supervisor mode through
+      a controlled entry point.
+
+
+      It is one of the only **three** ways in which the operating system regains control, together with
+      interrupts and exceptions.

@@ -1,0 +1,205 @@
+---
+course: fondamenti-informatica
+topic: virgola-mobile
+lang: it
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In due minuti">
+
+<div data-note-id="teoria/virgola-mobile/in-due-minuti">
+
+- Singola precisione (32 bit): **1 segno + 8 esponente + 23 mantissa**. Doppia (64 bit): 1 + 11 + 52.
+- Il valore è **(−1)<sup>s</sup> × 1,M × 2<sup>E−bias</sup>**: l'1 davanti alla virgola è **implicito** e non si memorizza, così si guadagna un bit di precisione.
+- Il **bias** (127 e 1023) serve a rendere l'esponente un numero senza segno: due float positivi si confrontano leggendo i bit come interi.
+- Esponente tutto a 0 → zero e denormalizzati. Tutto a 1 → infinito (mantissa nulla) o **NaN** (mantissa diversa da zero).
+- La precisione è **relativa**: pochi decimali sono rappresentabili esattamente, e confrontare due float con «=» è quasi sempre un errore.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/virgola-mobile/da-dove-si-parte">
+
+## Da dove si parte
+
+**Cosa serve sapere prima:** la numerazione binaria e il concetto di notazione posizionale, dal modulo sui [numeri binari](../numeri-binari/).
+
+**Che problema risolve.** Con il complemento a 2 sappiamo scrivere gli interi, ma un calcolatore deve maneggiare anche 3,14 e 6,02 × 10²³. Con un numero fisso di bit non si può avere tutto: o si riserva un numero fisso di cifre dopo la virgola — e allora i numeri molto grandi e molto piccoli non entrano — oppure si adotta la stessa idea della **notazione scientifica**, memorizzando separatamente le cifre significative e l’ordine di grandezza. La seconda strada è quella dello standard IEEE 754, ed è il motivo per cui la virgola si dice «mobile»: la sua posizione è decisa dall’esponente.
+
+**Le parole nuove.** La **mantissa** (o significando) contiene le cifre significative; l’**esponente** dice di quante posizioni spostare la virgola. **Normalizzare** significa scrivere il numero nella forma 1,xxx × 2ᵉ, con una sola cifra diversa da zero davanti alla virgola. Il **bias** è la costante che si somma all’esponente per renderlo un numero senza segno. **NaN** sta per «not a number» ed è il risultato di operazioni indefinite. Un numero **denormalizzato** è più piccolo del minimo normalizzato e rinuncia all’1 implicito per rappresentare valori vicinissimi a zero.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/virgola-mobile/perche-serve">
+
+## Perché serve
+
+Con la virgola fissa il numero di cifre decimali è deciso una volta per tutte e l'intervallo è angusto. La virgola mobile spende i bit su una **notazione scientifica binaria**, `± mantissa × 2^esponente`, ottenendo un intervallo enormemente più ampio a parità di bit — al prezzo di una precisione **relativa** anziché assoluta.
+
+</div>
+
+<div data-note-id="teoria/virgola-mobile/singola-precisione-32-bit">
+
+## Singola precisione (32 bit)
+
+```
+| S |   E (8 bit)  |        M (23 bit)        |
+  1        8                    23
+```
+
+- **S**: segno, 0 positivo e 1 negativo.
+- **E**: esponente **polarizzato** con bias **127**: si memorizza `E = esponente reale + 127`. Serve a rappresentare esponenti negativi senza un secondo bit di segno, e permette di confrontare i float come se fossero interi.
+- **M**: mantissa, la parte dopo la virgola. Il **bit implicito** «1.» non si memorizza: normalizzando, la cifra prima della virgola è sempre 1, quindi si guadagna un bit gratis.
+
+Valore = `(−1)ˢ · 1.M · 2^(E−127)`
+
+</div>
+
+<div data-note-id="teoria/virgola-mobile/come-ci-si-arriva-la-notazione-scientifica">
+
+## Come ci si arriva: la notazione scientifica
+
+L'idea non è nuova: è quella con cui si scrive 6,02 × 10²³ invece di un numero con ventiquattro cifre. Si separano le **cifre significative** dall'**ordine di grandezza**, e si memorizzano due numeri piccoli invece di uno enorme. In binario diventa:
+
+```
+valore = ± mantissa × 2^esponente
+```
+
+Resta un’ambiguità: 1,5 × 2³ e 0,75 × 2⁴ e 3,0 × 2² sono lo stesso numero scritto in tre modi. Senza una regola, la stessa quantità avrebbe più codifiche — e il confronto fra due numeri diventerebbe complicato. Si impone allora la forma **normalizzata**: esattamente una cifra diversa da zero prima della virgola.
+
+In binario c’è una sola cifra diversa da zero: l’1. Quindi **ogni** numero normalizzato comincia con «1,». E se comincia sempre con 1, memorizzarlo è uno spreco: lo si sottintende. È l’**1 implicito**, e regala un bit di precisione gratis — 24 bit di mantissa effettiva su 23 memorizzati.
+
+</div>
+
+<div data-note-id="teoria/virgola-mobile/perche-il-bias-e-non-il-complemento-a-2">
+
+## Perché il bias, e non il complemento a 2
+
+L’esponente deve poter essere negativo (per i numeri minori di 1). La scelta ovvia sarebbe il complemento a 2, che già conosciamo. Lo standard fa invece un’altra cosa: somma una costante, il **bias**, in modo che l’esponente memorizzato sia sempre positivo.
+
+```
+singola precisione:  E_memorizzato = e + 127     (e va da −126 a +127)
+doppia precisione:   E_memorizzato = e + 1023
+```
+
+Il motivo è il **confronto**. Mettendo in fila segno, esponente e mantissa, e usando per l’esponente una codifica senza segno crescente, due numeri positivi si confrontano **leggendo i loro bit come se fossero interi**: chi ha il pattern più grande è il numero più grande. Il circuito di confronto in virgola mobile diventa lo stesso degli interi.
+
+Con il complemento a 2 la proprietà si perderebbe: un esponente negativo avrebbe il bit alto a 1 e risulterebbe «maggiore» di uno positivo, invertendo l’ordine. Il bias è una decisione di progetto presa per rendere veloce l’operazione più frequente.
+
+</div>
+
+<div data-note-id="teoria/virgola-mobile/arrotondamento">
+
+## Arrotondamento
+
+La mantissa ha 23 bit: quasi ogni risultato va **arrotondato**. Lo standard definisce quattro modi, e quello predefinito è il più sottile:
+
+- **Al più vicino, con parità** (round to nearest, ties to even): si sceglie il valore rappresentabile più vicino; a parità esatta di distanza si prende quello con ultimo bit 0. Il vincolo sulla parità serve a evitare che una lunga catena di arrotondamenti sposti il risultato sempre nella stessa direzione, accumulando errore.
+- **Verso zero** (troncamento), **verso +∞**, **verso −∞**: usati soprattutto nel calcolo con intervalli, dove serve un limite garantito.
+
+Per arrotondare correttamente non basta guardare il primo bit scartato: l’hardware mantiene tre bit di lavoro in più — **guard**, **round** e **sticky** — dove il terzo ricorda «c’era ancora qualcosa oltre», che è ciò che distingue un pareggio esatto da un valore appena sopra.
+
+</div>
+
+<div data-note-id="teoria/virgola-mobile/intervallo-e-precisione">
+
+## Intervallo e precisione
+
+In singola precisione l’esponente memorizzato va da 1 a 254 (0 e 255 sono riservati ai casi speciali), quindi e va da −126 a +127:
+
+```
+numero normalizzato più piccolo ≈ 1,18 × 10⁻³⁸
+numero più grande               ≈ 3,40 × 10³⁸
+cifre decimali significative     ≈ 7
+
+doppia precisione:  ≈ 10⁻³⁰⁸ … 10³⁰⁸,  ≈ 16 cifre
+```
+
+Il punto da capire è che la precisione è **relativa**, non assoluta: fra 1 e 2 i numeri rappresentabili distano circa 1,2 × 10⁻⁷; fra un milione e due milioni distano più di 0,06. Più il numero è grande, più i valori rappresentabili sono radi.
+
+Due conseguenze che l’esame chiede spesso. Sommare un numero piccolissimo a uno grandissimo può non cambiare nulla (**assorbimento**): il risultato arrotondato torna al valore di partenza. E l’addizione in virgola mobile **non è associativa**: (a + b) + c può differire da a + (b + c), quindi cambiare l’ordine delle somme cambia il risultato — un fatto con cui devono convivere tutti i programmi di calcolo numerico.
+
+</div>
+
+<div data-note-id="teoria/virgola-mobile/doppia-precisione-64-bit">
+
+## Doppia precisione (64 bit)
+
+1 bit di segno, **11** di esponente con bias **1023**, **52** di mantissa. Stessa logica, più intervallo e più precisione.
+
+</div>
+
+<div data-note-id="teoria/virgola-mobile/valori-speciali">
+
+## Valori speciali
+
+Due configurazioni dell'esponente sono riservate:
+
+- `E = 0` con mantissa nulla → **zero** (con segno: esistono +0 e −0).
+- `E = 0` con mantissa non nulla → numeri **denormalizzati**, senza bit implicito: riempiono il vuoto attorno allo zero.
+- `E = 255` (tutti 1) con mantissa nulla → **infinito**, con segno.
+- `E = 255` con mantissa non nulla → **NaN**, risultato di operazioni indefinite come 0/0.
+
+</div>
+
+<div data-note-id="teoria/virgola-mobile/da-ricordare">
+
+## Da ricordare
+
+Lo standard si chiama **IEEE 754**. Due conseguenze pratiche: l'addizione in virgola mobile **non è associativa**, perché ogni passaggio arrotonda; e molti decimali «semplici» come 0,1 non hanno rappresentazione binaria finita, quindi il confronto per uguaglianza fra float è inaffidabile.
+
+</div>
+
+## Schemi
+
+<Schema id="ieee-formati" lang="it" num="1" />
+
+<Schema id="fp-somma" lang="it" num="2" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/virgola-mobile/codificare-un-numero-esempio">
+
+## Codificare un numero — esempio
+
+Si voglia rappresentare `−6,5`:
+
+1. In binario: `6,5 = 110,1₂`
+2. Normalizzo: `110,1 = 1,101 × 2²` → mantissa `101`, esponente reale `2`
+3. Polarizzo: `E = 2 + 127 = 129 = 10000001₂`
+4. Segno: negativo → `S = 1`
+
+```
+1 10000001 10100000000000000000000
+```
+
+Per **decodificare** si procede a ritroso: si sottrae il bias dall'esponente, si rimette l'1 implicito davanti alla mantissa e si sposta la virgola.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/virgola-mobile/errori-tipici">
+
+## Errori tipici
+
+- Memorizzare anche l'1 davanti alla virgola: è **implicito**, nella mantissa vanno solo le cifre dopo.
+- Sottrarre il bias invece di sommarlo in fase di **codifica**: si somma quando si scrive, si sottrae quando si legge.
+- Normalizzare male: la forma è sempre `1,xxx × 2ᵉ`, con una sola cifra diversa da zero davanti alla virgola.
+- Trattare esponente tutto a 0 o tutto a 1 come numeri normali: sono i casi speciali (zero, denormalizzati, infinito, NaN).
+
+</div>
+
+</Layer>

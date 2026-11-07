@@ -1,0 +1,77 @@
+- id: virgola-mobile-verifica-1
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.1
+  kind: concetto
+  front:
+    it: Scrivi −6,5 in singola precisione.
+    en: Write −6.5 in single precision.
+  back:
+    it:
+      '6,5 = 110,1₂ = 1,101 × 2². Segno s = 1; esponente E = 2 + 127 = 129 = 1000 0001; mantissa 101 seguita da
+      zeri. Bit: `1 10000001 10100000000000000000000` = `C0D00000`₁₆.'
+    en:
+      '6.5 = 110.1₂ = 1.101 × 2². Sign s = 1; exponent E = 2 + 127 = 129 = 1000 0001; mantissa 101 followed by
+      zeros. Bits: `1 10000001 10100000000000000000000` = `C0D00000`₁₆.'
+- id: virgola-mobile-verifica-2
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.4
+  kind: concetto
+  front:
+    it: Perché l'esponente è in eccesso e non in complemento a 2?
+    en: Why is the exponent biased and not in two's complement?
+  back:
+    it: "Perché così l'ordine dei pattern di bit coincide con l'ordine dei valori: due float positivi si
+      confrontano come se fossero interi senza segno, senza circuiti dedicati al segno dell'esponente."
+    en:
+      'Because that way the order of the bit patterns matches the order of the values: two positive floats are
+      compared as if they were unsigned integers, with no circuitry dedicated to the sign of the exponent.'
+- id: virgola-mobile-verifica-3
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.3
+  kind: concetto
+  front:
+    it: Che cosa distingue infinito da NaN?
+    en: What distinguishes infinity from NaN?
+  back:
+    it:
+      Entrambi hanno l'esponente tutto a 1. L'**infinito** ha mantissa nulla ed è il risultato di un overflow o
+      di una divisione per zero; il **NaN** ha mantissa diversa da zero e nasce da operazioni indefinite come
+      0/0 o ∞ − ∞.
+    en: Both have the exponent all 1s. **Infinity** has a zero mantissa and is the result of an overflow or a
+      division by zero; **NaN** has a non-zero mantissa and arises from undefined operations such as 0/0 or ∞
+      − ∞.
+- id: def-ieee754
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.1
+    - virgola-mobile.2
+  kind: definizione
+  front:
+    it: IEEE 754
+    en: IEEE 754
+  back:
+    it: |-
+      Standard della virgola mobile: segno, esponente polarizzato e mantissa con bit implicito.
+
+      Singola precisione: 1 + 8 + 23 bit, bias 127. Doppia: 1 + 11 + 52, bias 1023.
+    en: |-
+      Floating-point standard: sign, biased exponent and mantissa with a hidden bit.
+
+      Single precision: 1 + 8 + 23 bits, bias 127. Double: 1 + 11 + 52, bias 1023.
+- id: def-bias
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.1
+    - virgola-mobile.2
+  kind: definizione
+  front:
+    it: Esponente polarizzato (bias)
+    en: Biased exponent
+  back:
+    it:
+      Esponente memorizzato come valore reale + bias, così da rappresentare esponenti negativi senza un secondo
+      segno.
+    en: Exponent stored as real value + bias, so as to represent negative exponents without a second sign.

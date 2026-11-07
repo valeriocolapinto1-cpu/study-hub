@@ -1,0 +1,29 @@
+id: input-output
+course: fondamenti-informatica
+order: 12
+title:
+  it: Input/Output, DMA & bus
+  en: Input/Output, DMA & buses
+summary:
+  it: I/O programmato, memory-mapped, handshake, DMA, bus e standard seriali.
+  en: Programmed I/O, memory-mapped I/O, handshaking, DMA, buses and serial standards.
+group:
+  it: Interruzioni e I/O
+  en: Interrupts and I/O
+objectives:
+  - id: input-output.1
+    text:
+      it: Descrivere i registri dati, stato e controllo e confrontare I/O memory-mapped e isolato.
+      en: Describe the data, status and control registers and compare memory-mapped and isolated I/O.
+  - id: input-output.2
+    text:
+      it: Confrontare I/O programmato, a interruzione e DMA, anche con stime quantitative.
+      en: Compare programmed, interrupt-driven and DMA I/O, including quantitative estimates.
+  - id: input-output.3
+    text:
+      it: Spiegare l’handshake e la differenza fra bus sincrono e asincrono.
+      en: Explain handshaking and the difference between synchronous and asynchronous buses.
+  - id: input-output.4
+    text:
+      it: Descrivere bus, arbitraggio, trasmissione seriale e parallela e la coerenza con la cache.
+      en: Describe buses, arbitration, serial and parallel transmission and coherence with the cache.

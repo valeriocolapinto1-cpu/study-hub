@@ -1,0 +1,142 @@
+- id: numeri-binari-verifica-1
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.2
+    - numeri-binari.3
+  kind: concetto
+  front:
+    it: Perché in complemento a 2 lo zero ha una sola codifica, mentre in modulo e segno ne ha due?
+    en: Why does zero have a single encoding in two's complement, while sign-magnitude has two?
+  back:
+    it:
+      "Perché il bit più significativo non è un'etichetta di segno ma una **cifra di peso negativo**: lo zero si
+      scrive in un modo solo. In modulo e segno il segno è un bit a parte, quindi esistono +0 e −0."
+    en:
+      'Because the most significant bit is not a sign label but a **digit with negative weight**: zero can be
+      written in only one way. In sign-magnitude the sign is a separate bit, so both +0 and −0 exist.'
+- id: numeri-binari-verifica-2
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.5
+  kind: concetto
+  front:
+    it: Sommando due numeri di segno opposto può esserci overflow?
+    en: Can adding two numbers of opposite sign overflow?
+  back:
+    it:
+      No. Il risultato sta sempre fra i due addendi, quindi resta nell'intervallo rappresentabile. L'overflow
+      può nascere **solo** sommando due numeri dello stesso segno.
+    en:
+      No. The result always lies between the two addends, so it stays within the representable range. Overflow
+      can arise **only** when adding two numbers of the same sign.
+- id: numeri-binari-verifica-3
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  kind: concetto
+  front:
+    it: Converti 1011 0110₂ in esadecimale e spiega perché il metodo funziona.
+    en: Convert 1011 0110₂ to hexadecimal and explain why the method works.
+  back:
+    it:
+      '`B6`. Si raggruppano i bit a quattro a quattro da destra: 1011 = B, 0110 = 6. Funziona perché 16 = 2⁴,
+      quindi ogni gruppo di quattro bit è esattamente una cifra esadecimale.'
+    en:
+      '`B6`. Group the bits four by four from the right: 1011 = B, 0110 = 6. It works because 16 = 2⁴, so every
+      group of four bits is exactly one hexadecimal digit.'
+- id: open-bin-01
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  kind: orale
+  front:
+    it: Spiega la rappresentazione in complemento a 2 e come si rileva l'overflow.
+    en: Explain two's complement representation and how overflow is detected.
+  back:
+    it:
+      "Per un positivo: binario con zeri a sinistra fino a N bit. Per `-x`: si scrive `x`, si invertono tutti i
+      bit e si somma 1. Il bit più significativo indica il segno e lo zero ha **una sola** codifica;
+      l'intervallo è asimmetrico, da −2ᴺ⁻¹ a +2ᴺ⁻¹−1. L'**overflow** nella somma si ha quando due operandi
+      **concordi** danno un risultato di segno opposto (nella sottrazione, quando gli operandi sono discordi);
+      in hardware si rileva con lo **XOR** tra il riporto entrante e quello uscente dal bit di segno.
+      Attenzione a non confonderlo con il riporto uscente, che da solo non segnala overflow in CP2."
+    en:
+      "For a positive number: binary padded with zeros on the left up to N bits. For `-x`: write `x`, invert all
+      the bits and add 1. The most significant bit indicates the sign and zero has **a single** encoding; the
+      range is asymmetric, from −2ᴺ⁻¹ to +2ᴺ⁻¹−1. **Overflow** in addition occurs when two operands of the
+      **same sign** give a result of the opposite sign (in subtraction, when the operands have opposite
+      signs); in hardware it is detected with the **XOR** between the carry into and the carry out of the sign
+      bit. Do not confuse it with the carry-out, which on its own does not signal overflow in two's
+      complement."
+- id: def-cp2
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  kind: definizione
+  front:
+    it: Complemento a 2
+    en: Two's complement
+  back:
+    it: >-
+      Rappresentazione con segno in cui il negativo di x si ottiene invertendo tutti i bit di x e sommando 1.
+
+
+      Il bit più significativo ha peso **negativo** (−2ᴺ⁻¹). Ha una sola codifica dello zero e intervallo
+      asimmetrico: da −2ᴺ⁻¹ a +2ᴺ⁻¹−1.
+    en: >-
+      Signed representation in which the negative of x is obtained by inverting all the bits of x and adding
+      1.
+
+
+      The most significant bit has **negative** weight (−2ᴺ⁻¹). It has a single encoding of zero and an
+      asymmetric range: from −2ᴺ⁻¹ to +2ᴺ⁻¹−1.
+- id: def-overflow
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  kind: definizione
+  front:
+    it: Overflow
+    en: Overflow
+  back:
+    it: >-
+      Il risultato di un’operazione esce dall’intervallo rappresentabile con i bit disponibili.
+
+
+      In CP2 si verifica sommando due operandi **concordi** e ottenendo segno opposto; in hardware è lo **XOR
+      fra riporto entrante e uscente** dal bit di segno. Il solo riporto uscente non è overflow.
+    en: >-
+      The result of an operation falls outside the range representable with the available bits.
+
+
+      In two's complement it occurs when adding two operands of the **same sign** gives the opposite sign; in
+      hardware it is the **XOR of the carry into and out of** the sign bit. The carry-out alone is not
+      overflow.
+- id: def-estensione-segno
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  kind: definizione
+  front:
+    it: Estensione del segno
+    en: Sign extension
+  back:
+    it: Portare un numero in CP2 su più bit replicando a sinistra il bit di segno.
+    en: Widening a two's complement number to more bits by replicating the sign bit on the left.
+- id: def-posizionale
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  kind: definizione
+  front:
+    it: Notazione posizionale
+    en: Positional notation
+  back:
+    it: |-
+      Notazione in cui il valore di una cifra dipende dalla posizione, che pesa una potenza della base.
+
+      Richiede b simboli e, indispensabile, uno **zero** per indicare la posizione vuota.
+    en: |-
+      Notation in which the value of a digit depends on its position, which weighs a power of the base.
+
+      It requires b symbols and, indispensably, a **zero** to indicate an empty position.

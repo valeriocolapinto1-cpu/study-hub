@@ -1,0 +1,29 @@
+id: memoria-virtuale
+course: fondamenti-informatica
+order: 15
+title:
+  it: Memoria virtuale & TLB
+  en: Virtual memory & TLB
+summary:
+  it: Spazio logico e fisico, paginazione, page fault, traduzione degli indirizzi.
+  en: Logical and physical space, paging, page faults, address translation.
+group:
+  it: Pipeline e memoria
+  en: Pipelines and memory
+objectives:
+  - id: memoria-virtuale.1
+    text:
+      it: Tradurre un indirizzo virtuale in fisico (offset invariato).
+      en: Translate a virtual address into a physical one (offset unchanged).
+  - id: memoria-virtuale.2
+    text:
+      it: Calcolare bit di offset, numero di pagine e dimensione della tabella; motivare le tabelle a più livelli.
+      en: Compute offset bits, number of pages and page-table size; justify multi-level tables.
+  - id: memoria-virtuale.3
+    text:
+      it: Distinguere TLB hit, TLB miss e page fault e stimare il tempo medio di accesso.
+      en: Distinguish TLB hit, TLB miss and page fault and estimate the average access time.
+  - id: memoria-virtuale.4
+    text:
+      it: Descrivere sostituzione delle pagine, thrashing, protezione e segmentazione.
+      en: Describe page replacement, thrashing, protection and segmentation.

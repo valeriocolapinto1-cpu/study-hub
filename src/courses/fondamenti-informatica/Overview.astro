@@ -1,0 +1,101 @@
+---
+/**
+ * Introduzione della Panoramica di Fondamenti di Informatica: che cos'è il
+ * corso, com'è nata la prova simulata, come usare il sito e la bibliografia
+ * del sito originale (AE·FIN).
+ */
+interface Props {
+  lang: 'it' | 'en';
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+const BOOKS = [
+  {
+    label: "C. Hamacher, Z. Vranesic, S. Zaky — Introduzione all'architettura dei calcolatori",
+    it: 'McGraw-Hill. Copre l’intero programma; la parte su memoria e pipeline è la più distesa.',
+    en: 'McGraw-Hill. Covers the whole syllabus; the part on memory and pipelining is the most extensive.',
+  },
+  {
+    label: 'A. S. Tanenbaum — Architettura dei calcolatori: un approccio strutturale',
+    it: 'Pearson. Un secondo modo di raccontare le stesse cose, utile quando il primo non entra.',
+    en: 'Pearson. A second way of telling the same things, useful when the first does not sink in.',
+  },
+  {
+    label: 'D. Patterson, J. Hennessy — Struttura e progetto dei calcolatori',
+    it: 'Zanichelli. Il testo di riferimento su percorso dati, pipeline e prestazioni.',
+    en: 'Zanichelli. The reference text on datapath, pipelining and performance.',
+  },
+  {
+    label: 'M. Morris Mano, M. Ciletti — Reti logiche',
+    it: 'Pearson. Solo la parte di logica, ma con molti più esercizi svolti su Karnaugh.',
+    en: 'Pearson. Only the logic part, but with many more worked Karnaugh exercises.',
+  },
+  {
+    label: 'L. Null, J. Lobur — Struttura e organizzazione dei calcolatori',
+    it: 'Un’introduzione più discorsiva, adatta a chi parte davvero da zero.',
+    en: 'A more conversational introduction, suited to those who really start from scratch.',
+  },
+  {
+    label: 'D. Harris, S. Harris — Sistemi digitali e architettura dei calcolatori',
+    it: 'Dalla porta logica al processore in un unico percorso, con molti schemi.',
+    en: 'From the logic gate to the processor in a single path, with many diagrams.',
+  },
+];
+---
+
+<div data-note-id="panoramica/introduzione">
+  {it ? (
+    <>
+      <p>
+        Diciassette moduli di architettura degli elaboratori, scritti per <strong>partire da zero</strong>:
+        dai numeri binari e dall’algebra di Boole alle reti logiche, dal processore all’assembly, dalle
+        interruzioni alla pipeline, alla gerarchia di memoria e alla virgola mobile. È la versione rinnovata
+        del sito di studio «AE·FIN», con gli stessi argomenti nello stesso ordine.
+      </p>
+      <p>
+        Ogni modulo parte da <em>«Da dove si parte»</em> (che cosa serve sapere, che problema si risolve, le
+        parole nuove), poi la teoria con gli schemi, un esempio svolto con i numeri e gli errori tipici. Ci
+        sono 85 esercizi svolti passo per passo, 45 schemi da completare, 125 crocette, esercizi generati che
+        cambiano a ogni variante (complemento a 2, Karnaugh, assembly, cache, memoria virtuale, IEEE 754…) e
+        due strumenti: i <a href="extra/convertitori/">convertitori</a> e il{' '}
+        <a href="extra/simulatore-assembly/">simulatore assembly</a>.
+      </p>
+      <p class="muted">
+        La prova simulata — dodici quesiti in un’ora, 2,5 punti ciascuno — è una struttura scelta da questo
+        sito perché è una misura utile, non il formato dell’esame di un corso: numero di quesiti, durata,
+        punteggi e date valgono solo quelli del tuo corso, sulle sue pagine ufficiali.
+      </p>
+    </>
+  ) : (
+    <>
+      <p>
+        Seventeen modules on computer architecture, written to <strong>start from scratch</strong>: from
+        binary numbers and Boolean algebra to logic networks, from the processor to assembly, from interrupts
+        to pipelining, the memory hierarchy and floating point. It is the renewed version of the “AE·FIN”
+        study site, with the same topics in the same order.
+      </p>
+      <p>
+        Each module opens with <em>“Where we start”</em> (what you need to know, what problem is solved, the
+        new words), then the theory with diagrams, a worked numerical example and common mistakes. There are
+        85 step-by-step worked exercises, 45 diagrams to complete, 125 multiple-choice questions, generated
+        exercises that change at every variant (two's complement, Karnaugh, assembly, caches, virtual memory,
+        IEEE 754…) and two tools: the <a href="extra/convertitori/">converters</a> and the
+        <a href="extra/simulatore-assembly/">assembly simulator</a>.
+      </p>
+      <p class="muted">
+        The mock exam — twelve questions in an hour, 2.5 points each — is a structure chosen by this site
+        because it is a useful measure, not the exam format of any course: number of questions, duration,
+        marks and dates are only those of your own course, on its official pages.
+      </p>
+    </>
+  )}
+</div>
+
+<h2 id="bibliografia">{it ? 'Per approfondire' : 'Further reading'}</h2>
+<ul data-note-id="panoramica/bibliografia">
+  {BOOKS.map((b) => (
+    <li>
+      <cite>{b.label}</cite>. {it ? b.it : b.en}
+    </li>
+  ))}
+</ul>
