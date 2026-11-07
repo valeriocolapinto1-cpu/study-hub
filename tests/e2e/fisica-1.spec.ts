@@ -11,6 +11,8 @@ for (const theme of ['light', 'dark'] as const) {
     const errors: string[] = [];
     page.on('pageerror', (e) => errors.push(String(e)));
     await page.emulateMedia({ colorScheme: theme, reducedMotion: 'reduce' });
+    // Scuro di default: il tema chiaro si attiva con la scelta salvata dall'interruttore.
+    await page.addInitScript((t) => localStorage.setItem('sh:v1:global:theme', JSON.stringify(t)), theme);
     await page.goto(SIMS);
     for (const s of await page.locator('.sim-section').all()) {
       await s.scrollIntoViewIfNeeded();
