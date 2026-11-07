@@ -26,7 +26,11 @@ for (const theme of ['light', 'dark'] as const) {
         await page.waitForFunction(() => document.querySelectorAll('astro-island[ssr]').length === 0);
         await page.waitForLoadState('networkidle');
         await page.setViewportSize({ width: vp.width, height: vp.height });
-        await expect(page).toHaveScreenshot(`${p.name}-${theme}-${vp.name}.png`, { fullPage: true });
+        // Due screenshot a pagina intera uguali di una pagina di teoria lunga superano i 5 s predefiniti in CI.
+        await expect(page).toHaveScreenshot(`${p.name}-${theme}-${vp.name}.png`, {
+          fullPage: true,
+          timeout: 20_000,
+        });
       });
     }
   }
