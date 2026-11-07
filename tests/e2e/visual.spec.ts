@@ -19,6 +19,8 @@ for (const theme of ['light', 'dark'] as const) {
         // Il tema non segue il sistema (scuro di default): il chiaro si sceglie con l'interruttore.
         await page.addInitScript((t) => localStorage.setItem('sh:v1:global:theme', JSON.stringify(t)), theme);
         await page.goto(p.path);
+        // Le isole (es. i pulsanti delle note) cambiano l'altezza della pagina dopo l'idratazione.
+        await page.waitForLoadState('networkidle');
         await page.evaluate(() => document.fonts.ready);
         // Le isole client:visible (esercizi, appunti) si idratano quando entrano nella finestra e
         // aggiungono markup: si porta tutta la pagina in vista, si aspetta che siano idratate e si
