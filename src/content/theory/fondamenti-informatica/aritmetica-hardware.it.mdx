@@ -69,6 +69,18 @@ Si realizza con due semisommatori più una OR. Nel disegno ricordati di scomporr
 
 </div>
 
+<Diagram
+  type="truth-table"
+  params={{
+    inputs: ['A', 'B', 'Cin'],
+    outputs: [
+      { label: 'S', values: [0, 1, 1, 0, 1, 0, 0, 1] },
+      { label: 'Cout', values: [0, 0, 0, 1, 0, 1, 1, 1] },
+    ],
+  }}
+  caption="Tabella di verità del sommatore completo: S = A ⊕ B ⊕ Cin, Cout = 1 quando almeno due ingressi valgono 1"
+/>
+
 <div data-note-id="teoria/aritmetica-hardware/ripple-carry-semplice-ma-lento">
 
 ## Ripple-carry: semplice ma lento

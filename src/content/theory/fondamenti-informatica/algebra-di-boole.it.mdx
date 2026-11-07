@@ -52,6 +52,20 @@ Il NOT ha un solo ingresso e inverte. Si legge una tabella di verità «per righ
 
 </div>
 
+<Diagram
+  type="truth-table"
+  params={{
+    inputs: ['A', 'B'],
+    outputs: [
+      { label: 'AND', values: [0, 0, 0, 1] },
+      { label: 'OR', values: [0, 1, 1, 1] },
+      { label: 'XOR', values: [0, 1, 1, 0] },
+      { label: 'NAND', values: [1, 1, 1, 0] },
+    ],
+  }}
+  caption="Tabelle di verità delle porte a due ingressi: AND, OR, XOR, NAND (NOR è la negazione di OR)"
+/>
+
 <div data-note-id="teoria/algebra-di-boole/assiomi-e-teoremi-che-servono-davvero">
 
 ## Assiomi e teoremi che servono davvero

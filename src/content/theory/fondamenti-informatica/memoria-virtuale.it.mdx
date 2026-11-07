@@ -64,6 +64,18 @@ L'offset non viene toccato: pagina e frame hanno la stessa dimensione, quindi ca
 
 </div>
 
+<Diagram
+  type="bitfield"
+  params={{
+    bits: '????????????????????????????????',
+    fields: [
+      { msb: 31, lsb: 12, label: { it: 'numero di pagina virtuale', en: 'virtual page number' } },
+      { msb: 11, lsb: 0, label: 'offset' },
+    ],
+  }}
+  caption="Indirizzo virtuale a 32 bit con pagine da 4 KiB: i 12 bit bassi sono l’offset e passano invariati, i 20 alti sono il numero di pagina da tradurre"
+/>
+
 <div data-note-id="teoria/memoria-virtuale/la-tabella-delle-pagine">
 
 ## La tabella delle pagine

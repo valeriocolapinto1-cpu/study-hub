@@ -139,6 +139,54 @@ La stessa legge spiega perché raddoppiare i core raramente dimezza il tempo: la
 
 </div>
 
+<Diagram
+  type="function-plot"
+  params={{
+    x: { min: 1, max: 64, label: 'n' },
+    y: { min: 0, max: 21, label: 'S(n)' },
+    series: [
+      {
+        kind: 'points',
+        points: [
+          [1, 1.0],
+          [2, 1.6667],
+          [3, 2.1429],
+          [4, 2.5],
+          [6, 3.0],
+          [8, 3.3333],
+          [12, 3.75],
+          [16, 4.0],
+          [24, 4.2857],
+          [32, 4.4444],
+          [48, 4.6154],
+          [64, 4.7059],
+        ],
+        label: '80 %',
+      },
+      {
+        kind: 'points',
+        points: [
+          [1, 1.0],
+          [2, 1.9048],
+          [3, 2.7273],
+          [4, 3.4783],
+          [6, 4.8],
+          [8, 5.9259],
+          [12, 7.7419],
+          [16, 9.1429],
+          [24, 11.1628],
+          [32, 12.549],
+          [48, 14.3284],
+          [64, 15.4217],
+        ],
+        label: '95 %',
+      },
+    ],
+    hlines: [{ y: 5 }, { y: 20 }],
+  }}
+  caption="Legge di Amdahl: speedup su n core con frazione parallela 80 % e 95 %; gli asintoti sono 1/(1 − p) = 5 e 20"
+/>
+
 <div data-note-id="teoria/prestazioni-e-parallelismo/misurare-benchmark-non-mips">
 
 ## Misurare: benchmark, non MIPS

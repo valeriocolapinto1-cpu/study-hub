@@ -74,6 +74,19 @@ A **flip-flop** is a bistable element that stores **1 bit** and switches only on
 
 </div>
 
+<Diagram
+  type="timing"
+  params={{
+    steps: 14,
+    signals: [
+      { label: 'CK', kind: 'clock' },
+      { label: 'D', wave: '00111011001110' },
+      { label: 'Q', wave: '00111111001111', tone: 'info' },
+    ],
+  }}
+  caption="Rising-edge D flip-flop: Q copies D only on clock edges and holds between one edge and the next"
+/>
+
 <div data-note-id="teoria/circuiti-sequenziali/master-slave">
 
 ## Master-slave

@@ -113,6 +113,19 @@ Sulla pila viaggiano indirizzo di ritorno, parametri, variabili locali e i regis
 
 </div>
 
+<Diagram
+  type="memory"
+  params={{
+    kind: 'stack',
+    title: { it: 'Pila durante C', en: 'Stack while C runs' },
+    cells: [
+      { value: 'rit. in A', label: 'SP+4' },
+      { value: 'rit. in B', label: 'SP', highlight: true },
+    ],
+  }}
+  caption="La pila quando A ha chiamato B e B ha chiamato C: ogni chiamata deposita il proprio indirizzo di ritorno sopra il precedente"
+/>
+
 <div data-note-id="teoria/risc-cisc-assembly/un-programma-completo">
 
 ## Un programma completo

@@ -75,7 +75,12 @@ generate(seed, lang) {
 ```
 
 La prima variante è resa a build-time (`withPregenerated`); «Nuova variante» carica `lazy.ts` e solo il
-gruppo della figura. `validateGenerated` controlla che il tipo esista; i test del corso dovrebbero passare
+gruppo della figura.
+
+Copertura per corso: `tests/unit/fisica-2/figure.test.ts` e `tests/unit/figure-corsi/<corso>.test.ts` controllano
+che ogni esercizio statico abbia una figura valida in IT ed EN (eccezioni elencate con il motivo), che ogni
+generatore ne produca una per più semi e che la teoria IT ed EN abbia le stesse figure del kit
+(`theoryDiagrams()` in `tests/unit/figure-corsi/helpers.ts`). `validateGenerated` controlla che il tipo esista; i test del corso dovrebbero passare
 i parametri a `parseDiagram` per qualche seme (vedi `tests/unit/figures.test.ts`).
 
 ### In codice Astro o TypeScript

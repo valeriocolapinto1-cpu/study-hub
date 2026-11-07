@@ -107,6 +107,19 @@ The address is split into three fields: **tag**, **index** (which line or set) a
 
 </div>
 
+<Diagram
+  type="bitfield"
+  params={{
+    bits: '????????????????????????????????',
+    fields: [
+      { msb: 31, lsb: 15, label: 'tag' },
+      { msb: 14, lsb: 4, label: { it: 'indice', en: 'index' } },
+      { msb: 3, lsb: 0, label: 'offset' },
+    ],
+  }}
+  caption="32-bit address for a 32 KiB direct-mapped cache with 16-byte blocks: 4 offset bits, 11 index bits, 17 tag bits"
+/>
+
 <div data-note-id="teoria/gerarchia-di-memoria/sostituzione">
 
 ## Replacement

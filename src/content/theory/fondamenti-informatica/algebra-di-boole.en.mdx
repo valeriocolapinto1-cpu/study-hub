@@ -52,6 +52,20 @@ NOT has a single input and inverts it. You read a truth table “by rows”: the
 
 </div>
 
+<Diagram
+  type="truth-table"
+  params={{
+    inputs: ['A', 'B'],
+    outputs: [
+      { label: 'AND', values: [0, 0, 0, 1] },
+      { label: 'OR', values: [0, 1, 1, 1] },
+      { label: 'XOR', values: [0, 1, 1, 0] },
+      { label: 'NAND', values: [1, 1, 1, 0] },
+    ],
+  }}
+  caption="Truth tables of the two-input gates: AND, OR, XOR, NAND (NOR is the negation of OR)"
+/>
+
 <div data-note-id="teoria/algebra-di-boole/assiomi-e-teoremi-che-servono-davvero">
 
 ## The axioms and theorems you really need

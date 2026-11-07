@@ -195,7 +195,7 @@ const GENERATORI_SENZA_FIGURA: Record<string, string> = {
 };
 
 const eccezioni = flatten(SENZA_FIGURA);
-const MIN_TEORIA = 0;
+const MIN_TEORIA = 22;
 
 describe('fondamenti-informatica: figure degli esercizi statici', () => {
   const statics = all.filter((e) => e.kind === 'static');
