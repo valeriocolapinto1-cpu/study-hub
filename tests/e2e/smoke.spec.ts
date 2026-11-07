@@ -37,18 +37,21 @@ test('hreflang e canonical presenti', async ({ page }) => {
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/study-hub\/it\/$/);
 });
 
-test('l’interruttore del tema cambia e ricorda il tema', async ({ page }) => {
+test('l’interruttore del tema cambia e ricorda il tema (scuro di default)', async ({ page }) => {
+  // Scuro di default anche con il sistema in chiaro, come i siti originali.
   await page.emulateMedia({ colorScheme: 'light' });
   await page.goto(`${BASE}it/`);
   const toggle = page.locator('[data-theme-toggle]');
-  await expect(toggle).toHaveAttribute('aria-pressed', 'false');
-  await toggle.click();
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+  const darkBg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
+  expect(darkBg).toBe('rgb(5, 6, 12)');
+  await toggle.click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  await expect(toggle).toHaveAttribute('aria-pressed', 'false');
   await page.reload();
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
   const bg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
-  expect(bg).not.toBe('rgb(247, 245, 240)');
+  expect(bg).not.toBe(darkBg);
 });
 
 test('pagina 404 per indirizzi inesistenti', async ({ page }) => {

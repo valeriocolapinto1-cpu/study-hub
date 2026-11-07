@@ -20,7 +20,7 @@ The site does not reproduce third-party texts, figures, slides, lecture notes, s
 
 - **Original content** © 2026 Valerio Colapinto: reading, printing and copying are allowed for personal study; for any other use, get in touch.
 - **Code** (HTML, CSS, TypeScript, configuration, tests): MIT licence.
-- **Third-party components** included in the site: Geist, Geist Mono and Source Serif 4 fonts (SIL Open Font License 1.1), KaTeX (MIT). The full list is in the repository's `THIRD-PARTY-NOTICES.md` file.
+- **Third-party components** included in the site: Geist and Geist Mono fonts (SIL Open Font License 1.1), KaTeX (MIT). The full list is in the repository's `THIRD-PARTY-NOTICES.md` file.
 
 ## Reports and removal
 

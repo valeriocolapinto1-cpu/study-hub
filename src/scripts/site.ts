@@ -2,7 +2,7 @@
  * Script globale minimo: interruttore del tema, memoria della lingua scelta,
  * menu mobile, apertura della ricerca e cassetto dell'indice del corso.
  */
-import { GLOBAL_SCOPE, read, write } from '../engine/storage';
+import { GLOBAL_SCOPE, write } from '../engine/storage';
 import { runMigrations } from '../engine/migrate';
 import './search';
 import './pwa';
@@ -14,7 +14,8 @@ const root = document.documentElement;
 function currentTheme(): Theme {
   const attr = root.dataset.theme;
   if (attr === 'light' || attr === 'dark') return attr;
-  return globalThis.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  // Scuro di default, come i siti originali: il chiaro si sceglie con l'interruttore.
+  return 'dark';
 }
 
 function syncToggles() {
@@ -41,11 +42,6 @@ document.addEventListener('click', (event) => {
   const langLink = target?.closest<HTMLAnchorElement>('a[data-lang-switch]');
   if (langLink?.dataset.langSwitch) write(GLOBAL_SCOPE, 'lang', langLink.dataset.langSwitch);
 });
-
-// Se non c'è una scelta esplicita, segue il sistema anche quando cambia.
-if (read<string | null>(GLOBAL_SCOPE, 'theme', null) === null) {
-  globalThis.matchMedia?.('(prefers-color-scheme: dark)').addEventListener('change', syncToggles);
-}
 
 // ---- Menu mobile: si chiude con Esc, al cambio di larghezza e al clic su un link.
 const menuButton = document.querySelector<HTMLButtonElement>('.menu-toggle');

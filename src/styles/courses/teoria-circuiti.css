@@ -1,21 +1,34 @@
-/* Teoria dei Circuiti — prugna. Solo variabili --accent*: chiaro, scuro esplicito, scuro di sistema. */
-html[data-course='teoria-circuiti'] {
-  --accent: #7b3a6c;
-  --accent-strong: #69305c;
-  --accent-soft: #f2e6ef;
+/* Teoria dei Circuiti — palette originale blu notte + ambra (stesso sistema di Fisica II).
+   Ridefinisce superfici e accento; scuro di default, chiaro con data-theme="light". */
+html[data-course='teoria-circuiti']:not([data-theme='light']) {
+  --bg: #0b1530;
+  --surface: #14244f;
+  --surface-2: #1a2d61;
+  --surface-3: #22386f;
+  --text: #e8ecf8;
+  --text-muted: #b4bfdf;
+  --border: #2a3d73;
+  --border-strong: #6577b3;
+  --header-bg: rgb(11 21 48 / 0.78);
+  --accent: #ffb84d;
+  --accent-strong: #ffc978;
+  --accent-soft: #2b2c3c;
+  --accent-2: #ffc978;
+  --on-accent: #1a1200;
+}
+html[data-course='teoria-circuiti'][data-theme='light'] {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --surface-2: #eef1f8;
+  --surface-3: #e3e8f3;
+  --text: #0e1a3a;
+  --text-muted: #46537a;
+  --border: #ccd3e6;
+  --border-strong: #7f8bb0;
+  --header-bg: rgb(246 247 251 / 0.78);
+  --accent: #9a5b00;
+  --accent-strong: #8a5100;
+  --accent-soft: #fbf0dc;
+  --accent-2: #b86e00;
   --on-accent: #ffffff;
-}
-html[data-course='teoria-circuiti'][data-theme='dark'] {
-  --accent: #dca4cf;
-  --accent-strong: #e5b8da;
-  --accent-soft: #33232f;
-  --on-accent: #1d1019;
-}
-@media (prefers-color-scheme: dark) {
-  html[data-course='teoria-circuiti']:not([data-theme='light']) {
-    --accent: #dca4cf;
-    --accent-strong: #e5b8da;
-    --accent-soft: #33232f;
-    --on-accent: #1d1019;
-  }
 }

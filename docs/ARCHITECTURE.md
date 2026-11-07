@@ -9,7 +9,7 @@ Pubblicato su GitHub Pages: `https://valeriocolapinto1-cpu.github.io/study-hub/`
 - **MDX** per la teoria; **content collections** con schemi **Zod** (`src/content.config.ts`, schemi in `src/content/schemas.ts`).
 - Matematica: **KaTeX a build-time** (`remark-math` + `rehype-katex`, uscita HTML+MathML) tramite il processore `unified()`
   di `@astrojs/markdown-remark` (Sätteri, il processore predefinito di Astro 7, non gestisce la matematica). Nessun MathJax.
-- TypeScript strict, Node 22 (`.nvmrc`), npm. Font Geist, Geist Mono e Source Serif 4 da `@fontsource-variable/*` (OFL).
+- TypeScript strict, Node 22 (`.nvmrc`), npm. Font Geist e Geist Mono da `@fontsource-variable/*` (OFL).
 - Nessun Tailwind, nessuna analytics, nessuna chiave API nel browser.
 
 `site` e `base` stanno **solo** in `astro.config.mjs`. Nel codice si usano `localizePath()`, `withBase()`
@@ -187,5 +187,7 @@ In locale con un Chromium già installato: `PW_CHROMIUM_PATH=/opt/pw-browsers/ch
 - **Baseline visive**: si generano solo in CI con il workflow *Aggiorna baseline visive* (avvio manuale, oppure push su un branch con `[baseline]` nel messaggio dell'ultimo commit)
   (`visual-baselines.yml`), che le committa sul branch. Dopo il suo commit serve un nuovo push perché la CI riparta
   (i commit fatti con `GITHUB_TOKEN` non avviano workflow).
+- **Tema nei test**: il sito è scuro di default e non segue `prefers-color-scheme`; axe, visual e simulazioni scelgono il tema
+  scrivendo `sh:v1:global:theme` con `addInitScript`. Gli screenshot attendono `networkidle` (le isole cambiano l'altezza della pagina).
 - `.github/workflows/deploy.yml` (push su main): build e pubblicazione con `actions/deploy-pages`.
   Richiede Settings → Pages → Source: **GitHub Actions**.
