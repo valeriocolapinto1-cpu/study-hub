@@ -4,6 +4,8 @@ topic: legge-di-stevino
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/legge-di-stevino/idea">
@@ -23,6 +25,13 @@ Every layer of fluid must hold up all the fluid above it: going down, the load g
 The pressure at a point of a fluid is the ratio between the normal force exerted on an elementary surface and the area of the surface: $p = dF_\perp/dA$; it is a scalar (Pascal's principle: at a point it acts equally in all directions). Stevin's law gives the pressure in an incompressible fluid at rest: $p(h) = p_0 + \rho g h$, with h the depth below the free surface where the pressure is p₀.
 
 </div>
+
+<Diagram {...Fig.depth()} caption="In a liquid at rest pressure grows linearly with depth: p = p₀ + ρgh." />
+
+<Diagram
+  {...Fig.uTube()}
+  caption="U-tube with two liquids: at the same height in the same liquid the pressure is equal, hence ρ_w h_w = ρ_Hg Δh."
+/>
 
 <div data-note-id="teoria/legge-di-stevino/derivazione" class="derivation">
 

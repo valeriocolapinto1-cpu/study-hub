@@ -4,6 +4,8 @@ topic: pendolo-fisico
 lang: it
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="L'idea in sintesi">
 
 <div data-note-id="teoria/pendolo-fisico/idea">
@@ -29,6 +31,11 @@ Nel pendolo fisico il peso 'tira giù' il baricentro con braccio d, ma deve far 
 Il pendolo fisico è un corpo rigido qualsiasi libero di oscillare in un piano verticale attorno a un asse orizzontale fisso O che non passa per il centro di massa. Detta d la distanza tra l'asse e il CM e I il momento d'inerzia rispetto all'asse, per piccole oscillazioni il moto è armonico con $T = 2\pi\sqrt{I/(Mgd)}$. La lunghezza ridotta $\ell = I/(Md)$ è la lunghezza del pendolo semplice equivalente.
 
 </div>
+
+<Diagram
+  {...Fig.physicalPendulum({ shape: 'rod', dFrac: 0.3 })}
+  caption="Pendolo fisico: il peso agisce nel centro di massa, a distanza d dall'asse; il periodo dipende dal momento d'inerzia rispetto all'asse."
+/>
 
 <div data-note-id="teoria/pendolo-fisico/derivazione" class="derivation">
 

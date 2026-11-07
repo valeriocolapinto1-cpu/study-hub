@@ -4,6 +4,8 @@ topic: moto-armonico
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/moto-armonico/idea">
@@ -29,6 +31,11 @@ Harmonic motion arises whenever a system displaced from equilibrium feels a rest
 A rectilinear motion is called simple harmonic when the position varies sinusoidally in time: $x(t) = A\cos(\omega t + \varphi)$. A is the amplitude (maximum displacement from the equilibrium position), ω the angular frequency (rad/s), $\varphi$ the initial phase (it fixes position and velocity at t = 0), $T = 2\pi/\omega$ the period and $\nu = 1/T$ the frequency. Harmonic motion is the solution of the differential equation $\ddot{x} = -\omega^2 x$.
 
 </div>
+
+<Diagram
+  {...Fig.harmonicPlot({ T: 1, x0: 0.02, v0: 0.1 })}
+  caption="Equation of motion of simple harmonic motion: amplitude and phase depend on the initial conditions x₀ and v₀, the period does not."
+/>
 
 <div data-note-id="teoria/moto-armonico/derivazione" class="derivation">
 

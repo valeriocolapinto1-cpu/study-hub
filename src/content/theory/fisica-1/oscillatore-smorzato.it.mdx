@@ -4,6 +4,8 @@ topic: oscillatore-smorzato
 lang: it
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="L'idea in sintesi">
 
 <div data-note-id="teoria/oscillatore-smorzato/idea">
@@ -35,6 +37,17 @@ L'attrito viscoso sottrae energia a ogni oscillazione, quindi l'ampiezza si speg
 Un oscillatore smorzato è un oscillatore armonico soggetto anche a una forza di attrito viscoso proporzionale alla velocità, $F_v = -b\dot{x}$. Si definiscono il coefficiente di smorzamento $\gamma = b/2m$ e la pulsazione propria $\omega_0 = \sqrt{k/m}$. A seconda del rapporto tra γ e ω₀ il moto è sottosmorzato (oscillazioni con ampiezza che decade esponenzialmente), criticamente smorzato o sovrasmorzato (ritorno all'equilibrio senza oscillare).
 
 </div>
+
+<Diagram
+  type="spring-mass"
+  params={{ damper: true, displacement: 0.4, kLabel: 'k', massLabel: 'm' }}
+  caption="Oscillatore con attrito viscoso: lo smorzatore esercita una forza −bv."
+/>
+
+<Diagram
+  {...Fig.dampedPlot({ gamma: 0.3, omega: 5 })}
+  caption="Regime sottosmorzato: l'ampiezza decade come e^(−γt) e il periodo è un po' più lungo di quello libero."
+/>
 
 <div data-note-id="teoria/oscillatore-smorzato/derivazione" class="derivation">
 

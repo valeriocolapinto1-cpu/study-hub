@@ -69,6 +69,8 @@ const GROUP_OF: Record<DiagramType, keyof typeof T.groups> = {
   'linked-list': 'cs',
   tree: 'cs',
   'truth-table': 'cs',
+  scene: 'mech',
+  'heat-engine': 'thermo',
 };
 const groups = (Object.keys(T.groups) as Array<keyof typeof T.groups>).map((g) => ({
   id: g,

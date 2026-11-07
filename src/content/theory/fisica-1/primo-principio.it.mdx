@@ -30,6 +30,27 @@ Il primo principio della termodinamica è la conservazione dell'energia estesa a
 
 </div>
 
+<Diagram
+  type="pv-cycle"
+  params={{
+    values: false,
+    work: true,
+    states: [
+      { id: '1', V: 10, p: 100 },
+      { id: '2', V: 10, p: 300 },
+      { id: '3', V: 25, p: 300 },
+      { id: '4', V: 25, p: 100 },
+    ],
+    processes: [
+      { from: '1', to: '2', kind: 'isochoric' },
+      { from: '2', to: '3', kind: 'isobaric' },
+      { from: '3', to: '4', kind: 'isochoric' },
+      { from: '4', to: '1', kind: 'isobaric' },
+    ],
+  }}
+  caption="In un ciclo ΔU = 0: il calore netto assorbito è uguale al lavoro netto, l'area racchiusa dal ciclo."
+/>
+
 <div data-note-id="teoria/primo-principio/derivazione" class="derivation">
 
 ## Derivazione passo per passo

@@ -30,6 +30,27 @@ The equation of state of ideal gases, $pV = nRT$, summarises in a single relatio
 
 </div>
 
+<Diagram
+  type="pv-cycle"
+  params={{
+    values: false,
+    work: false,
+    isotherms: true,
+    states: [
+      { id: 'A', V: 10, p: 200 },
+      { id: 'B', V: 20, p: 100 },
+      { id: 'C', V: 20, p: 200 },
+      { id: 'D', V: 10, p: 100 },
+    ],
+    processes: [
+      { from: 'A', to: 'B', kind: 'isothermal' },
+      { from: 'A', to: 'C', kind: 'isobaric' },
+      { from: 'A', to: 'D', kind: 'isochoric' },
+    ],
+  }}
+  caption="The three empirical laws in the pV plane from the same state A: isothermal (Boyle), isobaric and isochoric (Gay-Lussac)."
+/>
+
 <div data-note-id="teoria/legge-gas-perfetti/derivazione" class="derivation">
 
 ## Step-by-step derivation

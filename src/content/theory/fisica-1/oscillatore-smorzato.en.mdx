@@ -4,6 +4,8 @@ topic: oscillatore-smorzato
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/oscillatore-smorzato/idea">
@@ -35,6 +37,17 @@ Viscous friction removes energy at every oscillation, so the amplitude dies out 
 A damped oscillator is a harmonic oscillator also subject to a viscous friction force proportional to the velocity, $F_v = -b\dot{x}$. We define the damping coefficient $\gamma = b/2m$ and the natural angular frequency $\omega_0 = \sqrt{k/m}$. Depending on the ratio between γ and ω₀ the motion is underdamped (oscillations with exponentially decaying amplitude), critically damped or overdamped (return to equilibrium without oscillating).
 
 </div>
+
+<Diagram
+  type="spring-mass"
+  params={{ damper: true, displacement: 0.4, kLabel: 'k', massLabel: 'm' }}
+  caption="Oscillator with viscous friction: the damper exerts a force −bv."
+/>
+
+<Diagram
+  {...Fig.dampedPlot({ gamma: 0.3, omega: 5 })}
+  caption="Underdamped regime: the amplitude decays as e^(−γt) and the period is slightly longer than the free one."
+/>
 
 <div data-note-id="teoria/oscillatore-smorzato/derivazione" class="derivation">
 

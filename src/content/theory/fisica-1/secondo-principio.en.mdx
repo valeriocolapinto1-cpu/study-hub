@@ -4,6 +4,8 @@ topic: secondo-principio
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/secondo-principio/idea">
@@ -29,6 +31,16 @@ The first law says energy is conserved; the second says it has a preferred direc
 The second law establishes the irreversibility of natural processes through two equivalent statements. Kelvin–Planck: no cyclic transformation is possible whose ONLY result is the complete conversion into work of heat taken from a single reservoir. Clausius: no cyclic transformation is possible whose ONLY result is the transfer of heat from a colder body to a hotter one. A heat engine must therefore always release heat to a cold reservoir: the efficiency $\eta = W/Q_{ass} = 1 - Q_{ced}/Q_{ass}$ (absorbed and released heat) is always less than 1.
 
 </div>
+
+<Diagram
+  {...Fig.heatEngine('engine')}
+  caption="Heat engine: by Kelvin–Planck part of the absorbed heat Q_C must always be given to the cold reservoir."
+/>
+
+<Diagram
+  {...Fig.heatEngine('refrigerator')}
+  caption="Refrigerator: by Clausius heat flows from the cold to the hot reservoir only if work is spent."
+/>
 
 <div data-note-id="teoria/secondo-principio/derivazione" class="derivation">
 

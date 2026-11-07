@@ -4,6 +4,8 @@ topic: risonanza
 lang: it
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="L'idea in sintesi">
 
 <div data-note-id="teoria/risonanza/idea">
@@ -35,6 +37,11 @@ La risonanza è spingere l'altalena al momento giusto: se ogni spinta arriva in 
 Un oscillatore forzato è un oscillatore smorzato su cui agisce anche una forza esterna periodica $F(t) = F_0\cos(\Omega t)$. Dopo un transitorio, il sistema oscilla alla pulsazione Ω della forzante (soluzione a regime) con un'ampiezza che dipende da Ω: quando Ω si avvicina alla pulsazione propria ω₀ l'ampiezza cresce fortemente — fenomeno della risonanza. Più lo smorzamento è debole, più il picco di risonanza è alto e stretto.
 
 </div>
+
+<Diagram
+  {...Fig.resonancePlot({ m: 1, k: 100, b: 2, F0: 1, Om: 8 })}
+  caption="Ampiezza a regime in funzione della pulsazione della forzante: il picco è vicino a ω₀ e tanto più alto e stretto quanto minore è lo smorzamento."
+/>
 
 <div data-note-id="teoria/risonanza/derivazione" class="derivation">
 

@@ -4,6 +4,8 @@ topic: pendolo-balistico
 lang: it
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="L'idea in sintesi">
 
 <div data-note-id="teoria/pendolo-balistico/idea">
@@ -29,6 +31,11 @@ Il pendolo balistico è l'esempio perfetto di 'ogni fase la sua legge': l'urto �
 Il pendolo balistico è un dispositivo per misurare la velocità di un proiettile: un blocco di massa M appeso a fili; il proiettile di massa m vi si conficca (urto perfettamente anelastico) e il sistema risale di un'altezza h. Il problema si risolve in DUE fasi con leggi di conservazione diverse: nell'urto si conserva la quantità di moto (non l'energia), nella risalita si conserva l'energia meccanica (non la quantità di moto, perché agiscono gravità e tensioni).
 
 </div>
+
+<Diagram
+  {...Fig.ballisticPendulum()}
+  caption="Due fasi: nell'urto si conserva la quantità di moto (non l'energia), nella risalita si conserva l'energia meccanica."
+/>
 
 <div data-note-id="teoria/pendolo-balistico/derivazione" class="derivation">
 

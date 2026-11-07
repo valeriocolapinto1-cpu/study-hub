@@ -4,6 +4,8 @@ topic: centro-di-massa
 lang: it
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="L'idea in sintesi">
 
 <div data-note-id="teoria/centro-di-massa/idea">
@@ -29,6 +31,11 @@ Il centro di massa è il 'portavoce' del sistema: comunque i pezzi interagiscano
 Per un sistema di N punti materiali, il centro di massa (CM) è il punto di posizione $\vec{r}_{cm} = \frac{1}{M}\sum_i m_i\vec{r}_i$, con $M = \sum_i m_i$ (per un corpo continuo l'integrale $\vec{r}_{cm} = \frac{1}{M}\int \vec{r}\,dm$). La prima equazione cardinale afferma che la risultante delle sole forze esterne governa il moto del centro di massa: $\vec{F}^{ext} = M\vec{a}_{cm}$. Equivalentemente, $\vec{F}^{ext} = d\vec{P}/dt$ con $\vec{P} = M\vec{v}_{cm}$ quantità di moto totale.
 
 </div>
+
+<Diagram
+  {...Fig.explosion()}
+  caption="Le forze interne dell'esplosione non cambiano il moto del centro di massa, che prosegue come il proiettile intero."
+/>
 
 <div data-note-id="teoria/centro-di-massa/derivazione" class="derivation">
 

@@ -4,6 +4,8 @@ topic: energia-corpo-rigido
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/energia-corpo-rigido/idea">
@@ -29,6 +31,11 @@ A rigid body stores kinetic energy in two 'tanks': the overall motion of the cen
 The kinetic energy of a rigid body splits (König) into translation of the CM plus rotation about the CM: $K = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2$. For rotation about a fixed axis: $K = \frac{1}{2}I_{axis}\omega^2$. The mechanical energy is E = K + U with $U = Mgh_{cm}$ (the gravitational potential energy of a rigid body depends only on the height of the CM). If only conservative forces do work and the constraints do not dissipate, E is conserved.
 
 </div>
+
+<Diagram
+  {...Fig.rodFalling()}
+  caption="The rod falling about its pivot: the potential energy lost by the centre of mass becomes rotational kinetic energy ½Iω²."
+/>
 
 <div data-note-id="teoria/energia-corpo-rigido/derivazione" class="derivation">
 

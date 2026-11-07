@@ -4,6 +4,8 @@ topic: pendolo-fisico
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/pendolo-fisico/idea">
@@ -29,6 +31,11 @@ In the physical pendulum the weight 'pulls down' the centre of mass with lever a
 The physical pendulum is any rigid body free to swing in a vertical plane about a fixed horizontal axis O that does not pass through the centre of mass. With d the distance between the axis and the CM and I the moment of inertia about the axis, for small oscillations the motion is harmonic with $T = 2\pi\sqrt{I/(Mgd)}$. The reduced length $\ell = I/(Md)$ is the length of the equivalent simple pendulum.
 
 </div>
+
+<Diagram
+  {...Fig.physicalPendulum({ shape: 'rod', dFrac: 0.3 })}
+  caption="Physical pendulum: weight acts at the centre of mass, at distance d from the axis; the period depends on the moment of inertia about the axis."
+/>
 
 <div data-note-id="teoria/pendolo-fisico/derivazione" class="derivation">
 

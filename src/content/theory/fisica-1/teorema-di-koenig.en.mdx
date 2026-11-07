@@ -4,6 +4,8 @@ topic: teorema-di-koenig
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/teorema-di-koenig/idea">
@@ -29,6 +31,11 @@ König separates the motion 'of the system as a whole' from the 'internal' motio
 König's theorems split the angular momentum and kinetic energy of a system into the sum of a 'centre-of-mass' term (as if all the mass were concentrated at the CM) and a term 'relative to the centre of mass' (internal motion seen from the CM frame): $\vec{L} = \vec{r}_{cm}\times M\vec{v}_{cm} + \vec{L}'$ and $K = \frac{1}{2}Mv_{cm}^2 + K'$. The CM frame is the frame with origin at the CM and axes parallel to the inertial ones.
 
 </div>
+
+<Diagram
+  {...Fig.rollingWheel()}
+  caption="Rolling wheel: the kinetic energy is that of the centre of mass plus that of the rotation about the centre of mass."
+/>
 
 <div data-note-id="teoria/teorema-di-koenig/derivazione" class="derivation">
 

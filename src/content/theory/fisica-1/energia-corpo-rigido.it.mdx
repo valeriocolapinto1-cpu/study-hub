@@ -4,6 +4,8 @@ topic: energia-corpo-rigido
 lang: it
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="L'idea in sintesi">
 
 <div data-note-id="teoria/energia-corpo-rigido/idea">
@@ -29,6 +31,11 @@ Un corpo rigido immagazzina energia cinetica in due 'serbatoi': il moto d'insiem
 L'energia cinetica di un corpo rigido si scompone (König) in traslazione del CM più rotazione attorno al CM: $K = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2$. Per rotazione attorno a un asse fisso: $K = \frac{1}{2}I_{asse}\omega^2$. L'energia meccanica è E = K + U con $U = Mgh_{cm}$ (il potenziale gravitazionale di un rigido dipende solo dalla quota del CM). Se lavorano solo forze conservative e i vincoli non dissipano, E si conserva.
 
 </div>
+
+<Diagram
+  {...Fig.rodFalling()}
+  caption="L'asta che cade attorno al perno: l'energia potenziale persa dal centro di massa diventa energia cinetica di rotazione ½Iω²."
+/>
 
 <div data-note-id="teoria/energia-corpo-rigido/derivazione" class="derivation">
 

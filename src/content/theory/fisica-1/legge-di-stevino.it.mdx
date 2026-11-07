@@ -4,6 +4,8 @@ topic: legge-di-stevino
 lang: it
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="L'idea in sintesi">
 
 <div data-note-id="teoria/legge-di-stevino/idea">
@@ -23,6 +25,16 @@ Ogni strato di fluido deve sorreggere tutto il fluido che gli sta sopra: scenden
 La pressione in un punto di un fluido è il rapporto tra la forza normale esercitata su una superficie elementare e l'area della superficie: $p = dF_\perp/dA$; è uno scalare (principio di Pascal: in un punto agisce ugualmente in tutte le direzioni). La legge di Stevino dà la pressione in un fluido incomprimibile in quiete: $p(h) = p_0 + \rho g h$, con h profondità sotto la superficie libera dove la pressione è p₀.
 
 </div>
+
+<Diagram
+  {...Fig.depth()}
+  caption="In un liquido in quiete la pressione cresce linearmente con la profondità: p = p₀ + ρgh."
+/>
+
+<Diagram
+  {...Fig.uTube()}
+  caption="Tubo a U con due liquidi: alla stessa quota nello stesso liquido la pressione è uguale, da cui ρ_a h_a = ρ_Hg Δh."
+/>
 
 <div data-note-id="teoria/legge-di-stevino/derivazione" class="derivation">
 

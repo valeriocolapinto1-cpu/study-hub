@@ -30,6 +30,19 @@ Clausius' inequality generalises Carnot's theorem to arbitrary cycles with heat 
 
 </div>
 
+<Diagram
+  type="heat-engine"
+  params={{
+    kind: 'engine',
+    reservoirs: [
+      { label: 'T_1', heat: 'Q_1', side: 'hot' },
+      { label: 'T_2', heat: 'Q_2', side: 'hot' },
+      { label: 'T_3', heat: 'Q_3', side: 'cold' },
+    ],
+  }}
+  caption="Cycle exchanging heat with several reservoirs: the sum of the reduced heats Σ Q_i/T_i cannot be positive."
+/>
+
 <div data-note-id="teoria/disuguaglianza-di-clausius/derivazione" class="derivation">
 
 ## Step-by-step derivation

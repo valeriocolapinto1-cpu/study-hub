@@ -4,6 +4,8 @@ topic: statica-corpo-rigido
 lang: it
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="L'idea in sintesi">
 
 <div data-note-id="teoria/statica-corpo-rigido/idea">
@@ -29,6 +31,16 @@ Equilibrio significa che le forze non spingono il corpo da nessuna parte E non l
 Un corpo rigido è in equilibrio statico quando è fermo e resta fermo: tutte le accelerazioni (lineari e angolari) sono nulle. Le condizioni di equilibrio sono due: risultante delle forze esterne nulla $\big(\sum\vec{F} = \vec{0}\big)$ e momento risultante nullo rispetto a un polo qualsiasi $\big(\sum\vec{\tau} = \vec{0}\big)$. Nel piano si traducono in 3 equazioni scalari: due per le forze e una per i momenti.
 
 </div>
+
+<Diagram
+  {...Fig.ladder({ angle: 60 })}
+  caption="Scala in equilibrio: risultante nulla e momento nullo rispetto a un polo comodo (il piede della scala elimina due incognite)."
+/>
+
+<Diagram
+  {...Fig.beam({ loadAt: 1 / 3 })}
+  caption="Trave su due appoggi: il momento rispetto ad A dà subito R_B, poi la risultante dà R_A."
+/>
 
 <div data-note-id="teoria/statica-corpo-rigido/derivazione" class="derivation">
 

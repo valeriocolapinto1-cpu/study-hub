@@ -4,6 +4,8 @@ topic: forze-conservative
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/forze-conservative/idea">
@@ -29,6 +31,11 @@ A conservative force is a 'perfect bank' for energy: any work you spend against 
 A force is conservative if its work between two points does not depend on the path followed but only on the end points; equivalently, its work around any closed path is zero: $\oint \vec{F}\cdot d\vec{r} = 0$. With every conservative force we associate a potential energy U defined by $W_{A\to B} = U(A) - U(B) = -\Delta U$ (defined up to an additive constant). The mechanical energy is $E = K + U$: if only conservative forces act, E is conserved.
 
 </div>
+
+<Diagram
+  {...Fig.loop({ hOverR: 3 })}
+  caption="On the smooth track only gravity, a conservative force, does work: mechanical energy is conserved and the speed at each point depends only on the height."
+/>
 
 <div data-note-id="teoria/forze-conservative/derivazione" class="derivation">
 

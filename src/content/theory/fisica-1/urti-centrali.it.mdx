@@ -36,6 +36,22 @@ Un urto è un'interazione impulsiva tra due corpi, di durata così breve che le 
 
 </div>
 
+<Diagram
+  type="collision"
+  params={{
+    values: false,
+    before: [
+      { label: 'A', mass: 'm_A', v: 3 },
+      { label: 'B', mass: 'm_B', v: -1 },
+    ],
+    after: [
+      { label: 'A', mass: 'm_A', v: -1 },
+      { label: 'B', mass: 'm_B', v: 3 },
+    ],
+  }}
+  caption="Urto centrale: le velocità restano sulla retta dei centri; si conserva la quantità di moto e, se l'urto è elastico, anche l'energia cinetica."
+/>
+
 <div data-note-id="teoria/urti-centrali/derivazione" class="derivation">
 
 ## Derivazione passo per passo

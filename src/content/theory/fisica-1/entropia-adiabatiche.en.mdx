@@ -4,6 +4,8 @@ topic: entropia-adiabatiche
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/entropia-adiabatiche/idea">
@@ -29,6 +31,11 @@ Entropy is the odometer of irreversibility: it records how much 'quality' energy
 Entropy is the state function defined by $dS = \delta Q_{rev}/T$: the change between two states is computed along ANY reversible transformation connecting them, $\Delta S = \int_A^B \delta Q_{rev}/T$. For an arbitrary transformation $\Delta S \ge \int_A^B \delta Q/T$ holds (equality if reversible). In an isolated system (in particular an adiabatic one: δQ = 0) entropy cannot decrease: $\Delta S \ge 0$ — the law of entropy increase.
 
 </div>
+
+<Diagram
+  {...Fig.expansionPv({ n: 1, T1: 400, k: 3, gamma: 1.4 })}
+  caption="From the same state A the reversible adiabat (constant entropy) is steeper than the isotherm: pV^γ = const."
+/>
 
 <div data-note-id="teoria/entropia-adiabatiche/derivazione" class="derivation">
 

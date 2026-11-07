@@ -4,6 +4,8 @@ topic: rotolamento-puro
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/rotolamento-puro/idea">
@@ -35,6 +37,11 @@ In rolling, static friction is a 'director' that spends no energy: it forces tra
 A round body (radius R) rolls without slipping on a surface when the contact point has zero instantaneous velocity: this imposes the pure-rolling constraint $v_{cm} = \omega R$ (and, differentiating, $a_{cm} = \alpha R$). The motion is the superposition of translation and rotation; the friction involved is STATIC (the contact does not slide) and does not dissipate energy.
 
 </div>
+
+<Diagram
+  {...Fig.rollingIncline({ angle: 25 })}
+  caption="In pure rolling the contact point is at rest: v_cm = ωR, and static friction does no work."
+/>
 
 <div data-note-id="teoria/rotolamento-puro/derivazione" class="derivation">
 
