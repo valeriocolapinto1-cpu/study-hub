@@ -77,6 +77,6 @@ export function drawAxes(s: Svg, f: Frame, o: AxesOpts): void {
   }
   const xl = unitText(o.xLabel, o.xUnit);
   const yl = unitText(o.yLabel, o.yUnit);
-  if (xl) s.text(box.x + box.w + 14, f.axisY - 12, xl, { anchor: 'end', size: 13, halo: true });
+  if (xl) s.text(box.x + box.w + 16, f.axisY, xl, { anchor: 'start', size: 13, halo: true });
   if (yl) s.text(f.axisX + 8, box.y - 10, yl, { anchor: 'start', size: 13, halo: true });
 }

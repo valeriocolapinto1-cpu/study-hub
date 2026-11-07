@@ -100,8 +100,22 @@ export function pvCycle(p: PV, c: Ctx): Drawn {
     s.text(x + (dx / m) * 14, y + (dy / m) * 14, sv.id, { weight: 600, size: 13, halo: true });
   }
   if (closed && p.work !== false) {
-    const ax = loop.reduce((a, q) => a + f.sx(q[0]), 0) / loop.length;
-    const ay = loop.reduce((a, q) => a + f.sy(q[1]), 0) / loop.length;
+    // baricentro del poligono (in pixel)
+    let A2 = 0;
+    let ax = 0;
+    let ay = 0;
+    for (let i = 0; i < loop.length - 1; i++) {
+      const x0 = f.sx(loop[i]![0]);
+      const y0 = f.sy(loop[i]![1]);
+      const x1 = f.sx(loop[i + 1]![0]);
+      const y1 = f.sy(loop[i + 1]![1]);
+      const cr = x0 * y1 - x1 * y0;
+      A2 += cr;
+      ax += (x0 + x1) * cr;
+      ay += (y0 + y1) * cr;
+    }
+    ax /= 3 * A2 || 1;
+    ay /= 3 * A2 || 1;
     s.text(ax, ay, area >= 0 ? 'W > 0' : 'W < 0', { italic: true, size: 13, halo: true });
   }
   const procText = p.processes.map((pr) => `${pr.from} → ${pr.to} ${c.L(KIND_IT[pr.kind], KIND_EN[pr.kind])}`);

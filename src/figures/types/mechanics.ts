@@ -26,6 +26,23 @@ function dirText(angle: number, c: Ctx): string {
   return c.L(`a ${c.num(a)}° dall'orizzontale`, `at ${c.num(a)}° from the horizontal`);
 }
 
+/** Quadrante diagonale (45°, 135°, …) più lontano da tutte le direzioni date, per le etichette. */
+function freeDiagonal(angles: number[]): number {
+  let best = 135;
+  let bestD = -1;
+  for (const a of [135, 45, 225, 315]) {
+    const d = Math.min(360, ...angles.map((x) => {
+      const t = Math.abs((((a - x) % 360) + 360) % 360);
+      return Math.min(t, 360 - t);
+    }));
+    if (d > bestD) {
+      bestD = d;
+      best = a;
+    }
+  }
+  return best;
+}
+
 /** Vettore con etichetta oltre la punta. */
 function vec(s: Svg, from: Pt, to: Pt, label: string, tone: Tone, o: { dash?: boolean; width?: number } = {}): void {
   s.arrow(from[0], from[1], to[0], to[1], { tone, width: o.width ?? 2.2, ...(o.dash ? { dash: '5 4' } : {}) });
@@ -102,7 +119,11 @@ export function freeBody(p: P<'free-body'>, c: Ctx): Drawn {
   if (p.ground) s.ground(cx - half - 40, cy + half, cx + half + 40);
   if (body === 'block') s.rect(cx - half, cy - half, 2 * half, 2 * half, { fill: 'surface2', width: 1.6, rx: 2 });
   else if (body === 'sphere') s.circle(cx, cy, half, { fill: 'surface2', width: 1.6 });
-  if (p.bodyLabel) s.text(cx + (body === 'point' ? 14 : 0), cy + (body === 'point' ? 14 : half * 0.5), p.bodyLabel, { italic: true, size: 14 });
+  if (p.bodyLabel) {
+    const a = rad(freeDiagonal(p.forces.map((f) => f.angle)));
+    const r = body === 'point' ? 16 : half * 0.62;
+    s.text(cx + r * Math.cos(a), cy - r * Math.sin(a), p.bodyLabel, { italic: true, size: 14, halo: body === 'point' });
+  }
   for (const v of vecs) vec(s, [cx, cy], [cx + v.dx, cy + v.dy], v.f.label, FORCE_TONE[v.f.kind ?? 'other']!);
   s.dot(cx, cy, 3.2);
   if (p.acceleration) {
@@ -150,7 +171,7 @@ export function inclinedPlane(p: P<'inclined-plane'>, c: Ctx): Drawn {
   s.raw(`<g transform="rotate(${-p.angle} ${Cb[0].toFixed(2)} ${Cb[1].toFixed(2)})">`);
   s.rect(Cb[0] - bw / 2, Cb[1] - bh / 2, bw, bh, { fill: 'surface', width: 1.6, rx: 2 });
   s.raw('</g>');
-  s.text(Cb[0], Cb[1], p.massLabel ?? 'm', { italic: true, size: 14 });
+  s.text(Cb[0] - u[0] * 13 - n[0] * 3, Cb[1] - u[1] * 13 - n[1] * 3, p.massLabel ?? 'm', { italic: true, size: 13 });
   const forces: string[] = [];
   const at = (k: number, d: Pt): Pt => [Cb[0] + d[0] * k, Cb[1] + d[1] * k];
   if (p.forces !== false) {

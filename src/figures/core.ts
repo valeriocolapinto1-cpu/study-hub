@@ -338,7 +338,7 @@ export function finish(type: string, params: unknown, d: Drawn, opts: RenderOpti
   const { width, height } = d.svg;
   const cls = `figure-svg figure-svg--${type}${opts.className ? ` ${escapeXml(opts.className)}` : ''}`;
   const svg =
-    `<svg xmlns="http://www.w3.org/2000/svg" class="${cls}" viewBox="0 0 ${r2(width)} ${r2(height)}" width="${r2(width)}" height="${r2(height)}" role="img" aria-labelledby="${pre}-t ${pre}-d" style="max-width:100%;height:auto;overflow:visible">` +
+    `<svg xmlns="http://www.w3.org/2000/svg" class="${cls}" viewBox="0 0 ${r2(width)} ${r2(height)}" width="${r2(width)}" height="${r2(height)}" role="img" aria-labelledby="${pre}-t ${pre}-d" style="max-width:100%;height:auto">` +
     `<title id="${pre}-t">${escapeXml(title)}</title><desc id="${pre}-d">${escapeXml(d.description)}</desc>` +
     d.svg.body +
     `</svg>`;

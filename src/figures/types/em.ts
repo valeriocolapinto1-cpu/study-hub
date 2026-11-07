@@ -143,7 +143,7 @@ export function pointCharges(p: P<'point-charges'>, c: Ctx): Drawn {
   const nl = p.lines ?? 8;
   if (nl > 0) {
     const sinkR = span * 0.012;
-    const opts = { bounds: { xMin: b.xMin - span * 0.3, xMax: b.xMax + span * 0.3, yMin: b.yMin - span * 0.3, yMax: b.yMax + span * 0.3 }, step: span / 260, maxSteps: 1400, sinks: qs.map((q) => ({ x: q.x, y: q.y, r: sinkR })) };
+    const opts = { bounds: b, step: span / 260, maxSteps: 1400, sinks: qs.map((q) => ({ x: q.x, y: q.y, r: sinkR })) };
     const hasPos = qs.some((q) => q.q > 0);
     const s0 = seedsAround(qs, nl, span * 0.02);
     for (const sd of s0) {
@@ -406,13 +406,24 @@ export function magneticField(p: P<'magnetic-field'>, c: Ctx): Drawn {
       const x = (i - (n - 1) / 2) * pitch;
       src.push({ x, y: R, q: pos ? 1 : -1 }, { x, y: -R, q: pos ? -1 : 1 });
     }
+    // per il solenoide il campo si calcola con una distribuzione fitta di correnti (foglio di
+    // corrente): le spire disegnate sono poche, ma le linee devono essere quelle di un solenoide reale
+    const field: PointSource[] = [];
+    if (sol) {
+      const len = (n - 1) * pitch;
+      const m = n * 6;
+      for (let i = 0; i < m; i++) {
+        const x = -len / 2 + (len * i) / (m - 1);
+        field.push({ x, y: R, q: pos ? 1 : -1 }, { x, y: -R, q: pos ? -1 : 1 });
+      }
+    } else field.push(...src);
     const half = Math.max(2.6, ((n - 1) / 2) * pitch + 1.6);
     const b: Bounds = { xMin: -half, xMax: half, yMin: (-half * H) / W, yMax: (half * H) / W };
     const v = viewport(b, W, H, 6);
-    const F = wiresMagneticField(src, 1, 1e-4);
+    const F = wiresMagneticField(field, 1, 1e-4);
     if (lines) {
-      const opts = { bounds: { xMin: b.xMin * 1.4, xMax: b.xMax * 1.4, yMin: b.yMin * 1.6, yMax: b.yMax * 1.6 }, step: 0.02, maxSteps: 2400, sinks: src.map((q) => ({ x: q.x, y: q.y, r: 0.05 })) };
-      for (const y0 of [0, 0.3, -0.3, 0.6, -0.6, 0.85, -0.85]) {
+      const opts = { bounds: b, step: 0.02, maxSteps: 2400, sinks: field.map((q) => ({ x: q.x, y: q.y, r: 0.05 })) };
+      for (const y0 of sol ? [0, 0.3, -0.3, 0.6, -0.6] : [0, 0.25, -0.25, 0.5, -0.5, 0.75, -0.75]) {
         const line = closedLine(F, [0, y0 * R], opts);
         const pts: Pt[] = line.map(([x, y]) => [v.X(x), v.Y(y)]);
         s.polyline(pts, { tone: 'accent', width: 1.3 });

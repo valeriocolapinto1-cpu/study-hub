@@ -437,7 +437,7 @@ export interface TreeNodeInput {
   highlight?: boolean | undefined;
   children?: Array<TreeNodeInput | null> | undefined;
 }
-const TreeNode: z.ZodType<TreeNodeInput> = z.lazy(() =>
+const TreeNode: z.ZodType<TreeNodeInput, TreeNodeInput> = z.lazy(() =>
   z.strictObject({
     value: z.string().max(8),
     highlight: z.boolean().optional(),
