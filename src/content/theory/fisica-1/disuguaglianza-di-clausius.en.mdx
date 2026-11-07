@@ -1,0 +1,169 @@
+---
+course: fisica-1
+topic: disuguaglianza-di-clausius
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/disuguaglianza-di-clausius/idea">
+
+The ratio Q/T weighs heat by the 'quality' of the temperature at which it is exchanged: heat taken at high temperature is valuable, heat discharged at low temperature is degraded. The inequality says that over a full cycle the balance of weighted heats can never be positive: a cycle cannot 'gain quality'. Only reversible cycles break exactly even — and it is that break-even that makes entropy well defined.
+
+</div>
+
+<p class="muted" data-note-id="teoria/disuguaglianza-di-clausius/prerequisiti"><strong>Before this topic:</strong> <a href="../teorema-di-carnot/">Carnot's theorem</a></p>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/disuguaglianza-di-clausius/definizioni">
+
+## Definitions
+
+Clausius' inequality generalises Carnot's theorem to arbitrary cycles with heat exchanges at several temperatures: for every thermodynamic cycle $\oint \frac{\delta Q}{T} \le 0$, where δQ is the heat absorbed by the system and T the temperature of the RESERVOIR with which the exchange takes place. Equality holds if and only if the cycle is reversible. It is the bridge leading from the theory of engines to the definition of entropy.
+
+</div>
+
+<div data-note-id="teoria/disuguaglianza-di-clausius/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Starting point: reversible engine with two reservoirs</summary>
+
+$$
+\frac{Q_C}{T_C} + \frac{Q_F}{T_F} = 0 \quad (\text{with signs: } Q_F < 0)
+$$
+
+A rewriting of Carnot's theorem: for a reversible cycle the 'reduced heats' Q/T balance exactly.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Irreversible engine with two reservoirs</summary>
+
+$$
+\eta_{irr} < \eta_{rev} \Rightarrow 1 - \frac{|Q_F|}{Q_C} < 1 - \frac{T_F}{T_C} \Rightarrow \frac{|Q_F|}{T_F} > \frac{Q_C}{T_C} \Rightarrow \frac{Q_C}{T_C} + \frac{Q_F}{T_F} < 0
+$$
+
+Lower efficiency means that 'too much' heat is discharged to the cold reservoir: the sum of the reduced heats becomes negative.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Generic cycle: discretisation with N reservoirs</summary>
+
+$$
+\text{any cycle} \approx \text{exchanges } Q_i \text{ with reservoirs } T_i
+$$
+
+A cycle exchanging heat continuously is approximated by N discrete exchanges. With each reservoir Tᵢ I associate an auxiliary Carnot engine working between a single common reservoir T₀ and Tᵢ, supplying the system with exactly Qᵢ.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Balance of the auxiliary engines</summary>
+
+$$
+Q_{0,i} = Q_i\,\frac{T_0}{T_i} \;\Rightarrow\; Q_{0,tot} = T_0\sum_i \frac{Q_i}{T_i}
+$$
+
+Each auxiliary Carnot engine takes from the common reservoir the heat Q₀ᵢ related to Qᵢ by the ratio of temperatures (property of the reversible engine).
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Apply Kelvin–Planck to the composite system</summary>
+
+$$
+\text{total cycle with a SINGLE reservoir } T_0: \; W_{tot} = Q_{0,tot} \le 0 \;\Rightarrow\; \sum_i \frac{Q_i}{T_i} \le 0
+$$
+
+The composite system (cycle + auxiliary engines) is cyclic and exchanges heat only with T₀: if it produced positive work it would violate Kelvin–Planck. So the net heat taken from T₀ is ≤ 0.
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Continuous limit and reversible case</summary>
+
+$$
+\oint \frac{\delta Q}{T} \le 0; \qquad \text{reversible cycle: running it backwards} \Rightarrow \oint \frac{\delta Q}{T} = 0
+$$
+
+For N → ∞ the sum becomes an integral. If the cycle is reversible, reversing it changes the sign of every δQ: both ≤ 0 and ≥ 0 hold, hence = 0. The vanishing of the integral over every reversible cycle implies that δQ_rev/T is an exact differential: entropy is born.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/disuguaglianza-di-clausius/ipotesi">
+
+## Validity assumptions
+
+Second law (Kelvin–Planck); T in the formula is the temperature of the external reservoir (it coincides with that of the system only in reversible exchanges); ideal auxiliary Carnot engines; closed cycles.
+
+</div>
+
+<div data-note-id="teoria/disuguaglianza-di-clausius/casi-limite">
+
+## Limiting cases
+
+Reversible cycle: equality. Only two reservoirs: Carnot's theorem is recovered. Cycle with a single thermal contact (one reservoir): ∮δQ/T = Q/T₀ ≤ 0, i.e. Q ≤ 0 — a single-reservoir cycle can only release heat (Kelvin–Planck again: perfect consistency).
+
+</div>
+
+<div data-note-id="teoria/disuguaglianza-di-clausius/formule">
+
+## Key formulas
+
+<Formula id="disuguaglianza-di-clausius-f1" />
+
+<Formula id="disuguaglianza-di-clausius-f2" />
+
+<Formula id="disuguaglianza-di-clausius-f3" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/disuguaglianza-di-clausius/esempio">
+
+In each cycle an engine absorbs 1200 J from a reservoir at 600 K and releases 800 J to a reservoir at 300 K. Find: (a) the sum of the reduced heats $\sum Q_i/T_i$; (b) the efficiency; (c) the increase in the entropy of the universe per cycle. Is the engine reversible?
+
+1. **Reduced heats.** $\dfrac{1200}{600} + \dfrac{-800}{300} = 2.000 - 2.667 = -0.667\ \text{J/K} < 0$: irreversible cycle (Clausius satisfied with strict sign).
+2. **Efficiency and entropy.** $\eta = 400/1200 \approx 0.333 < 0.5$. The system returns to its initial state (ΔS = 0); the reservoirs change by $-1200/600 + 800/300$: $\Delta S_{univ} = +0.667\ \text{J/K}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/disuguaglianza-di-clausius/errori">
+
+- Using the temperature of the system instead of that of the reservoir in irreversible processes.
+- Concluding that ∮δQ/T = 0 for every cycle: only for reversible ones.
+- Forgetting the signs of the Qᵢ (absorbed positive, released negative).
+- Not being able to justify the step with the auxiliary engines (the heart of the proof).
+
+</div>
+
+<div data-note-id="teoria/disuguaglianza-di-clausius/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- Why does the inequality contain the temperature of the reservoir and not that of the system?
+- How do you go from Clausius' inequality to ΔS ≥ ∫δQ/T for an open transformation?
+- What does the inequality say for a single-reservoir cycle, and which statement do you recover?
+
+</div>
+
+</Layer>

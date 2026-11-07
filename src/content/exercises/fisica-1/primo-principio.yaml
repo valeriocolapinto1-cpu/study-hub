@@ -1,0 +1,113 @@
+- id: espansione-isoterma-adiabatica
+  topic: primo-principio
+  objectives:
+    - primo-principio.1
+    - primo-principio.2
+    - primo-principio.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      1,0 mol di gas perfetto monoatomico a 300 K e 2,0·10⁵ Pa si espande fino a raddoppiare il volume.
+      Calcolare il lavoro compiuto dal gas e la temperatura finale: (a) se l'espansione è isoterma
+      reversibile; (b) se è adiabatica reversibile.
+    en: >-
+      1.0 mol of monatomic ideal gas at 300 K and 2.0·10⁵ Pa expands until its volume doubles. Find the work
+      done by the gas and the final temperature: (a) if the expansion is reversible isothermal; (b) if it is
+      reversible adiabatic.
+  steps:
+    - title:
+        it: Isoterma
+        en: Isothermal
+      body:
+        it: \(W = nRT\ln 2 = 8{,}314 \cdot 300 \cdot 0{,}693 \approx 1729\ \text{J}\), T resta 300 K, Q = W.
+        en: \(W = nRT\ln 2 = 8.314 \cdot 300 \cdot 0.693 \approx 1729\ \text{J}\), T stays at 300 K, Q = W.
+    - title:
+        it: Adiabatica
+        en: Adiabatic
+      body:
+        it: >-
+          \(TV^{\gamma-1} = \text{cost}\) con γ = 5/3: \(T_2 = 300 \cdot 2^{-2/3} \approx 189\ \text{K}\); \(W
+          = nc_V(T_1 - T_2) = 1{,}5 \cdot 8{,}314 \cdot 111{,}0 \approx 1384\ \text{J}\), meno che
+          nell'isoterma.
+        en: >-
+          \(TV^{\gamma-1} = \text{const}\) with γ = 5/3: \(T_2 = 300 \cdot 2^{-2/3} \approx 189\ \text{K}\);
+          \(W = nc_V(T_1 - T_2) = 1.5 \cdot 8.314 \cdot 111.0 \approx 1384\ \text{J}\), less than for the
+          isotherm.
+  answer:
+    - label:
+        it: W isoterma
+        en: isothermal W
+      value: 1729
+      unit: J
+    - label:
+        it: T₂ adiabatica
+        en: adiabatic T₂
+      value: 189
+      unit: K
+    - label:
+        it: W adiabatica
+        en: adiabatic W
+      value: 1384
+      unit: J
+  origin: originale
+- id: ciclo-rettangolare
+  topic: primo-principio
+  objectives:
+    - primo-principio.1
+    - primo-principio.2
+    - primo-principio.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Un gas perfetto biatomico (n = 0,50 mol) percorre in senso orario un ciclo rettangolare nel piano p-V
+      tra p₁ = 1,0·10⁵ Pa, p₂ = 3,0·10⁵ Pa, V₁ = 10 L, V₂ = 25 L. Calcolare: (a) il lavoro netto; (b) il
+      calore assorbito nei tratti in cui entra calore; (c) il rendimento del ciclo.
+    en: >-
+      A diatomic ideal gas (n = 0.50 mol) goes clockwise around a rectangular cycle in the p-V plane between
+      p₁ = 1.0·10⁵ Pa, p₂ = 3.0·10⁵ Pa, V₁ = 10 L, V₂ = 25 L. Find: (a) the net work; (b) the heat absorbed in
+      the branches where heat flows in; (c) the efficiency of the cycle.
+  steps:
+    - title:
+        it: Lavoro netto
+        en: Net work
+      body:
+        it: >-
+          Area del rettangolo: \(W = (p_2 - p_1)(V_2 - V_1) = 2{,}0\cdot 10^5 \cdot 0{,}015 = 3000\
+          \text{J}\).
+        en: 'Area of the rectangle: \(W = (p_2 - p_1)(V_2 - V_1) = 2.0\cdot 10^5 \cdot 0.015 = 3000\ \text{J}\).'
+    - title:
+        it: Calore assorbito
+        en: Absorbed heat
+      body:
+        it: >-
+          Entra calore nell'isocora a V₁ (p sale) e nell'isobara a p₂ (V sale). Con \(nT = pV/R\): isocora \(Q
+          = \tfrac52 V_1(p_2 - p_1) = 5000\ \text{J}\); isobara \(Q = \tfrac72 p_2(V_2 - V_1) = 15750\
+          \text{J}\). Totale 20750 J.
+        en: >-
+          Heat flows in along the isochoric at V₁ (p rises) and the isobaric at p₂ (V rises). With \(nT =
+          pV/R\): isochoric \(Q = \tfrac52 V_1(p_2 - p_1) = 5000\ \text{J}\); isobaric \(Q = \tfrac72 p_2(V_2
+          - V_1) = 15750\ \text{J}\). Total 20750 J.
+    - title:
+        it: Rendimento
+        en: Efficiency
+      body:
+        it: \(\eta = W/Q_{ass} = 3000/20750 \approx 0{,}145\).
+        en: \(\eta = W/Q_{abs} = 3000/20750 \approx 0.145\).
+  answer:
+    - label:
+        it: W netto
+        en: net W
+      value: 3000
+      unit: J
+    - label:
+        it: Q assorbito
+        en: absorbed Q
+      value: 20750
+      unit: J
+    - label:
+        it: η
+        en: η
+      value: 0.145
+  origin: originale

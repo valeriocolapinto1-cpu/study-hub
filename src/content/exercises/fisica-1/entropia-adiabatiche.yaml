@@ -1,0 +1,109 @@
+- id: entropia-espansione-libera
+  topic: entropia-adiabatiche
+  objectives:
+    - entropia-adiabatiche.1
+    - entropia-adiabatiche.2
+    - entropia-adiabatiche.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      2,0 mol di gas perfetto si espandono liberamente nel vuoto da 10 L a 30 L in un recipiente isolato.
+      Calcolare: (a) la variazione di temperatura; (b) la variazione di entropia del gas; (c) la variazione di
+      entropia dell'universo.
+    en: >-
+      2.0 mol of ideal gas expand freely into vacuum from 10 L to 30 L in an insulated container. Find: (a)
+      the change in temperature; (b) the entropy change of the gas; (c) the entropy change of the universe.
+  steps:
+    - title:
+        it: Primo principio
+        en: First law
+      body:
+        it: Q = 0, W = 0 ⇒ ΔU = 0 ⇒ ΔT = 0 per il gas perfetto.
+        en: Q = 0, W = 0 ⇒ ΔU = 0 ⇒ ΔT = 0 for the ideal gas.
+    - title:
+        it: Entropia con un cammino reversibile
+        en: Entropy along a reversible path
+      body:
+        it: >-
+          Uso un'isoterma reversibile tra gli stessi stati: \(\Delta S = nR\ln(V_B/V_A) = 2 \cdot 8{,}314
+          \cdot \ln 3 \approx 18{,}3\ \text{J/K}\). L'ambiente non scambia nulla: \(\Delta S_{univ} = 18{,}3\
+          \text{J/K}\).
+        en: >-
+          Use a reversible isotherm between the same states: \(\Delta S = nR\ln(V_B/V_A) = 2 \cdot 8.314 \cdot
+          \ln 3 \approx 18.3\ \text{J/K}\). The surroundings exchange nothing: \(\Delta S_{univ} = 18.3\
+          \text{J/K}\).
+  answer:
+    - label:
+        it: ΔT
+        en: ΔT
+      value: 0
+      unit: K
+    - label:
+        it: ΔS gas
+        en: ΔS gas
+      value: 18.3
+      unit: J/K
+    - label:
+        it: ΔS universo
+        en: ΔS universe
+      value: 18.3
+      unit: J/K
+  origin: originale
+- id: entropia-mescolamento-acqua
+  topic: entropia-adiabatiche
+  objectives:
+    - entropia-adiabatiche.1
+    - entropia-adiabatiche.2
+    - entropia-adiabatiche.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Si mescolano in un thermos 1,0 kg d'acqua a 80 °C e 1,0 kg d'acqua a 20 °C (c = 4186 J/(kg·K)).
+      Calcolare: (a) la temperatura finale; (b) la variazione di entropia di ciascuna massa; (c) la variazione
+      di entropia dell'universo.
+    en: >-
+      1.0 kg of water at 80 °C and 1.0 kg of water at 20 °C are mixed in a vacuum flask (c = 4186 J/(kg·K)).
+      Find: (a) the final temperature; (b) the entropy change of each mass; (c) the entropy change of the
+      universe.
+  steps:
+    - title:
+        it: Equilibrio
+        en: Equilibrium
+      body:
+        it: 'Masse uguali: \(T_f = 50\ °\text{C} = 323{,}15\ \text{K}\).'
+        en: 'Equal masses: \(T_f = 50\ °\text{C} = 323.15\ \text{K}\).'
+    - title:
+        it: Entropie
+        en: Entropies
+      body:
+        it: >-
+          Calda: \(4186\ln(323{,}15/353{,}15) \approx -371{,}6\ \text{J/K}\); fredda:
+          \(4186\ln(323{,}15/293{,}15) \approx +407{,}8\ \text{J/K}\). Totale \(\approx +36{,}2\ \text{J/K} >
+          0\).
+        en: >-
+          Hot: \(4186\ln(323.15/353.15) \approx -371.6\ \text{J/K}\); cold: \(4186\ln(323.15/293.15) \approx
+          +407.8\ \text{J/K}\). Total \(\approx +36.2\ \text{J/K} > 0\).
+  answer:
+    - label:
+        it: T_f
+        en: T_f
+      value: 50
+      unit: °C
+    - label:
+        it: ΔS calda
+        en: ΔS hot
+      value: -371.6
+      unit: J/K
+    - label:
+        it: ΔS fredda
+        en: ΔS cold
+      value: 407.8
+      unit: J/K
+    - label:
+        it: ΔS universo
+        en: ΔS universe
+      value: 36.2
+      unit: J/K
+  origin: originale

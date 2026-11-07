@@ -12,6 +12,7 @@
   kind: orale
   front:
     it: 'Esponi all''orale: «Entropia e trasformazioni adiabatiche».'
+    en: 'Present at the oral exam: “Entropy and adiabatic transformations”.'
   back:
     it: >-
       L'entropia è il contachilometri dell'irreversibilità: registra quanta 'qualità' l'energia ha perso. Ogni
@@ -39,6 +40,91 @@
       - Calcolare ΔS_univ per lo scambio termico tra due corpi
 
       - Accennare a S = k_B ln Ω
+    en: >-
+      Entropy is the odometer of irreversibility: it records how much 'quality' energy has lost. Every real
+      process leaves the universe with more entropy than before — not because a force imposes it, but because
+      disordered states are astronomically more numerous than ordered ones. The reversible adiabatic is the
+      perfect motion that leaves no trace; free expansion is the same absence of exchanges, but with an
+      indelible trace.
+
+
+      **Outline:**
+
+
+      - Prove that δQ_rev/T is an exact differential (from Clausius)
+
+      - Define ΔS and explain the use of the auxiliary reversible path
+
+      - Derive ΔS ≥ ∫δQ/T for open transformations
+
+      - State the law of entropy increase (isolated system / universe)
+
+      - Derive the ΔS formula of the ideal gas
+
+      - Distinguish adiabatic from isentropic with free expansion
+
+      - Compute ΔS_univ for the heat exchange between two bodies
+
+      - Mention S = k_B ln Ω
+- id: entropia-adiabatiche-orale-1
+  topic: entropia-adiabatiche
+  objectives:
+    - entropia-adiabatiche.7
+    - entropia-adiabatiche.8
+  kind: orale
+  front:
+    it: 'Due corpi identici a T₁ e T₂ messi a contatto: calcola ΔS totale e mostra che è positiva.'
+    en: 'Two identical bodies at T₁ and T₂ are put in contact: compute the total ΔS and show that it is positive.'
+  back:
+    it: >-
+      Con capacità termica C ciascuno, la temperatura finale è \(T_f = (T_1 + T_2)/2\). Ogni corpo si porta
+      reversibilmente (idealmente) a T_f: \(\Delta S = C\ln(T_f/T_1) + C\ln(T_f/T_2) =
+      C\ln\dfrac{T_f^2}{T_1T_2}\). Poiché la media aritmetica supera la geometrica, \(T_f^2 > T_1T_2\) e ΔS >
+      0 (nulla solo se T₁ = T₂).
+    en: >-
+      With heat capacity C each, the final temperature is \(T_f = (T_1 + T_2)/2\). Each body is brought
+      (ideally reversibly) to T_f: \(\Delta S = C\ln(T_f/T_1) + C\ln(T_f/T_2) = C\ln\dfrac{T_f^2}{T_1T_2}\).
+      Since the arithmetic mean exceeds the geometric mean, \(T_f^2 > T_1T_2\) and ΔS > 0 (zero only if T₁ =
+      T₂).
+- id: entropia-adiabatiche-orale-2
+  topic: entropia-adiabatiche
+  objectives:
+    - entropia-adiabatiche.7
+    - entropia-adiabatiche.8
+  kind: orale
+  front:
+    it: Perché nel piano T-S l'area sotto la curva è il calore scambiato reversibilmente?
+    en: Why is the area under the curve in the T-S plane the heat exchanged reversibly?
+  back:
+    it: >-
+      Lungo un cammino reversibile \(\delta Q_{rev} = T\,dS\), quindi \(Q_{rev} = \int T\,dS\): è l'area sotto
+      la curva nel piano T-S, come il lavoro è l'area sotto la curva nel piano p-V. Per un ciclo l'area
+      racchiusa è il calore netto, cioè (ΔU = 0) il lavoro netto; il ciclo di Carnot è un rettangolo.
+    en: >-
+      Along a reversible path \(\delta Q_{rev} = T\,dS\), so \(Q_{rev} = \int T\,dS\): it is the area under
+      the curve in the T-S plane, just as work is the area under the curve in the p-V plane. For a cycle the
+      enclosed area is the net heat, i.e. (ΔU = 0) the net work; the Carnot cycle is a rectangle.
+- id: entropia-adiabatiche-orale-3
+  topic: entropia-adiabatiche
+  objectives:
+    - entropia-adiabatiche.7
+    - entropia-adiabatiche.8
+  kind: orale
+  front:
+    it: In che senso l'entropia definisce la freccia del tempo mentre le leggi di Newton sono reversibili?
+    en: In what sense does entropy define the arrow of time while Newton's laws are reversible?
+  back:
+    it: >-
+      Le equazioni di Newton sono invarianti per t → −t: un film di un singolo urto proiettato al contrario è
+      fisicamente possibile. Ma per un sistema macroscopico gli stati ordinati sono una frazione infinitesima
+      del totale, quindi l'evoluzione spontanea va verso stati con Ω (e S) maggiore; l'inverso non è
+      impossibile ma è così improbabile da non osservarsi mai. La crescita dell'entropia distingue il "prima"
+      dal "dopo".
+    en: >-
+      Newton's equations are invariant under t → −t: a film of a single collision played backwards is
+      physically possible. But for a macroscopic system ordered states are a vanishing fraction of the total,
+      so spontaneous evolution goes towards states with larger Ω (and S); the reverse is not impossible but so
+      improbable that it is never observed. The growth of entropy distinguishes "before" from "after".
 - id: entropia-adiabatiche-definizione
   topic: entropia-adiabatiche
   objectives:
@@ -46,6 +132,7 @@
   kind: definizione
   front:
     it: 'Definizione: Entropia e trasformazioni adiabatiche'
+    en: 'Definition: Entropy and adiabatic transformations'
   back:
     it: >-
       L'entropia è la funzione di stato definita da \(dS = \delta Q_{rev}/T\): la variazione tra due stati si
@@ -53,6 +140,12 @@
       Q_{rev}/T\). Per una trasformazione qualunque vale \(\Delta S \ge \int_A^B \delta Q/T\) (uguaglianza se
       reversibile). In un sistema isolato (in particolare adiabatico: δQ = 0) l'entropia non può diminuire:
       \(\Delta S \ge 0\) — legge dell'aumento dell'entropia.
+    en: >-
+      Entropy is the state function defined by \(dS = \delta Q_{rev}/T\): the change between two states is
+      computed along ANY reversible transformation connecting them, \(\Delta S = \int_A^B \delta Q_{rev}/T\).
+      For an arbitrary transformation \(\Delta S \ge \int_A^B \delta Q/T\) holds (equality if reversible). In
+      an isolated system (in particular an adiabatic one: δQ = 0) entropy cannot decrease: \(\Delta S \ge 0\)
+      — the law of entropy increase.
 - id: entropia-adiabatiche-formule
   topic: entropia-adiabatiche
   objectives:
@@ -67,8 +160,15 @@
   kind: formula
   front:
     it: Le formule chiave di «Entropia e trasformazioni adiabatiche»
+    en: The key formulas of “Entropy and adiabatic transformations”
   back:
     it: |-
+      - \(dS = \frac{\delta Q_{rev}}{T}\)
+      - \(\Delta S \ge \int \frac{\delta Q}{T}\)
+      - \(\Delta S_{isolato} \ge 0\)
+      - \(\Delta S = nc_V\ln\frac{T_B}{T_A} + nR\ln\frac{V_B}{V_A}\)
+      - \(S = k_B\ln\Omega\)
+    en: |-
       - \(dS = \frac{\delta Q_{rev}}{T}\)
       - \(\Delta S \ge \int \frac{\delta Q}{T}\)
       - \(\Delta S_{isolato} \ge 0\)
@@ -88,10 +188,14 @@
   kind: concetto
   front:
     it: 'Ipotesi di validità: Entropia e trasformazioni adiabatiche'
+    en: 'Validity assumptions: Entropy and adiabatic transformations'
   back:
     it: >-
       Esistenza di cammini reversibili tra gli stati (stati di equilibrio); T ben definita lungo il cammino
       reversibile usato per il calcolo; per la legge di aumento: sistema isolato o adiabatico.
+    en: >-
+      Existence of reversible paths between the states (equilibrium states); T well defined along the
+      reversible path used for the calculation; for the law of increase: isolated or adiabatic system.
 - id: entropia-adiabatiche-casi-limite
   topic: entropia-adiabatiche
   objectives:
@@ -106,11 +210,16 @@
   kind: concetto
   front:
     it: 'Casi limite: Entropia e trasformazioni adiabatiche'
+    en: 'Limiting cases: Entropy and adiabatic transformations'
   back:
     it: >-
       Trasformazione reversibile adiabatica: ΔS = 0. Isoterma reversibile: ΔS = Q/T. Scambio di calore tra due
       corpi a temperature diverse: ΔS_univ = Q(1/T_F − 1/T_C) > 0, la quintessenza dell'irreversibilità. Ciclo
       qualsiasi: ΔS_sistema = 0 (funzione di stato) ma ΔS_univ ≥ 0.
+    en: >-
+      Reversible adiabatic transformation: ΔS = 0. Reversible isotherm: ΔS = Q/T. Heat exchange between two
+      bodies at different temperatures: ΔS_univ = Q(1/T_F − 1/T_C) > 0, the quintessence of irreversibility.
+      Any cycle: ΔS_system = 0 (state function) but ΔS_univ ≥ 0.
 - id: entropia-adiabatiche-errori
   topic: entropia-adiabatiche
   objectives:
@@ -125,6 +234,7 @@
   kind: concetto
   front:
     it: 'Errori da evitare: Entropia e trasformazioni adiabatiche'
+    en: 'Mistakes to avoid: Entropy and adiabatic transformations'
   back:
     it: >-
       - Calcolare ΔS integrando δQ/T lungo la trasformazione irreversibile reale: va usato un cammino
@@ -137,3 +247,13 @@
       non diminuire.
 
       - Dimenticare che in un ciclo ΔS del sistema è nullo per definizione di funzione di stato.
+    en: >-
+      - Computing ΔS by integrating δQ/T along the real irreversible transformation: an auxiliary reversible
+      path must be used.
+
+      - Believing that adiabatic implies ΔS = 0: only if also reversible (counterexample: free expansion).
+
+      - Saying that the entropy of a system can never decrease: it can, if it releases heat; it is the entropy
+      of the universe that does not decrease.
+
+      - Forgetting that over a cycle the ΔS of the system is zero by definition of state function.

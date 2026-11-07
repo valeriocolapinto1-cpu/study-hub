@@ -639,123 +639,148 @@
   latex: c_V = \frac{f}{2}R
   label:
     it: Calori molari dei gas ideali e dei solidi ideali (1)
+    en: Molar heat capacities of ideal gases and ideal solids (1)
 - id: calori-molari-f2
   topic: calori-molari
   latex: c_p = c_V + R
   label:
     it: Calori molari dei gas ideali e dei solidi ideali (2)
+    en: Molar heat capacities of ideal gases and ideal solids (2)
 - id: calori-molari-f3
   topic: calori-molari
   latex: \gamma = \frac{c_p}{c_V} = 1 + \frac{2}{f}
   label:
     it: Calori molari dei gas ideali e dei solidi ideali (3)
+    en: Molar heat capacities of ideal gases and ideal solids (3)
 - id: calori-molari-f4
   topic: calori-molari
   latex: c_{solido} \approx 3R
   label:
     it: Calori molari dei gas ideali e dei solidi ideali (4)
+    en: Molar heat capacities of ideal gases and ideal solids (4)
 - id: primo-principio-f1
   topic: primo-principio
   latex: \Delta U = Q - W
   label:
     it: Primo principio della termodinamica (1)
+    en: First law of thermodynamics (1)
 - id: primo-principio-f2
   topic: primo-principio
   latex: W = \int p\,dV
   label:
     it: Primo principio della termodinamica (2)
+    en: First law of thermodynamics (2)
 - id: primo-principio-f3
   topic: primo-principio
   latex: Q_{isot} = nRT\ln\frac{V_2}{V_1}
   label:
     it: Primo principio della termodinamica (3)
+    en: First law of thermodynamics (3)
 - id: primo-principio-f4
   topic: primo-principio
   latex: pV^\gamma = \text{cost},\; TV^{\gamma-1} = \text{cost}
   label:
     it: Primo principio della termodinamica (4)
+    en: First law of thermodynamics (4)
 - id: secondo-principio-f1
   topic: secondo-principio
   latex: \eta = \frac{W}{Q_C} = 1 - \frac{|Q_F|}{Q_C} < 1
   label:
     it: Secondo principio della termodinamica (1)
+    en: Second law of thermodynamics (1)
 - id: secondo-principio-f2
   topic: secondo-principio
   latex: \text{COP}_f = \frac{Q_F}{W}
   label:
     it: Secondo principio della termodinamica (2)
+    en: Second law of thermodynamics (2)
 - id: secondo-principio-f3
   topic: secondo-principio
   latex: \text{COP}_p = \frac{Q_C}{W}
   label:
     it: Secondo principio della termodinamica (3)
+    en: Second law of thermodynamics (3)
 - id: ciclo-di-carnot-f1
   topic: ciclo-di-carnot
   latex: Q_C = nRT_C\ln\frac{V_2}{V_1}
   label:
     it: Ciclo di Carnot (1)
+    en: Carnot cycle (1)
 - id: ciclo-di-carnot-f2
   topic: ciclo-di-carnot
   latex: \frac{V_2}{V_1} = \frac{V_3}{V_4}
   label:
     it: Ciclo di Carnot (2)
+    en: Carnot cycle (2)
 - id: ciclo-di-carnot-f3
   topic: ciclo-di-carnot
   latex: \eta_{Carnot} = 1 - \frac{T_F}{T_C}
   label:
     it: Ciclo di Carnot (3)
+    en: Carnot cycle (3)
 - id: ciclo-di-carnot-f4
   topic: ciclo-di-carnot
   latex: \frac{Q_C}{T_C} = \frac{|Q_F|}{T_F}
   label:
     it: Ciclo di Carnot (4)
+    en: Carnot cycle (4)
 - id: teorema-di-carnot-f1
   topic: teorema-di-carnot
   latex: \eta_{qualsiasi} \le \eta_{rev} = 1 - \frac{T_F}{T_C}
   label:
     it: Teorema di Carnot (1)
+    en: Carnot's theorem (1)
 - id: teorema-di-carnot-f2
   topic: teorema-di-carnot
   latex: \frac{|Q_F|}{Q_C} = \frac{T_F}{T_C}\;(\text{rev})
   label:
     it: Teorema di Carnot (2)
+    en: Carnot's theorem (2)
 - id: disuguaglianza-di-clausius-f1
   topic: disuguaglianza-di-clausius
   latex: \oint \frac{\delta Q}{T} \le 0
   label:
     it: Disuguaglianza di Clausius (1)
+    en: Clausius' inequality (1)
 - id: disuguaglianza-di-clausius-f2
   topic: disuguaglianza-di-clausius
   latex: \oint \frac{\delta Q_{rev}}{T} = 0
   label:
     it: Disuguaglianza di Clausius (2)
+    en: Clausius' inequality (2)
 - id: disuguaglianza-di-clausius-f3
   topic: disuguaglianza-di-clausius
   latex: \frac{Q_C}{T_C} + \frac{Q_F}{T_F} \le 0
   label:
     it: Disuguaglianza di Clausius (3)
+    en: Clausius' inequality (3)
 - id: entropia-adiabatiche-f1
   topic: entropia-adiabatiche
   latex: dS = \frac{\delta Q_{rev}}{T}
   label:
     it: Entropia e trasformazioni adiabatiche (1)
+    en: Entropy and adiabatic transformations (1)
 - id: entropia-adiabatiche-f2
   topic: entropia-adiabatiche
   latex: \Delta S \ge \int \frac{\delta Q}{T}
   label:
     it: Entropia e trasformazioni adiabatiche (2)
+    en: Entropy and adiabatic transformations (2)
 - id: entropia-adiabatiche-f3
   topic: entropia-adiabatiche
   latex: \Delta S_{isolato} \ge 0
   label:
     it: Entropia e trasformazioni adiabatiche (3)
+    en: Entropy and adiabatic transformations (3)
 - id: entropia-adiabatiche-f4
   topic: entropia-adiabatiche
   latex: \Delta S = nc_V\ln\frac{T_B}{T_A} + nR\ln\frac{V_B}{V_A}
   label:
     it: Entropia e trasformazioni adiabatiche (4)
+    en: Entropy and adiabatic transformations (4)
 - id: entropia-adiabatiche-f5
   topic: entropia-adiabatiche
   latex: S = k_B\ln\Omega
   label:
     it: Entropia e trasformazioni adiabatiche (5)
+    en: Entropy and adiabatic transformations (5)

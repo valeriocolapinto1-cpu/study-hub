@@ -3,10 +3,14 @@ course: fisica-1
 order: 31
 title:
   it: Teorema di Carnot
+  en: Carnot's theorem
 summary:
   it: >-
     Il teorema mette un tetto universale all'efficienza: non importa quanto ingegnoso sia il progetto, il
     rendimento è limitato dal solo dislivello di temperatura.
+  en: >-
+    The theorem puts a universal ceiling on efficiency: however ingenious the design, efficiency is limited by
+    the temperature difference alone.
 group:
   it: Fluidi e termodinamica
   en: Fluids and thermodynamics
@@ -14,21 +18,28 @@ objectives:
   - id: teorema-di-carnot.1
     text:
       it: Enunciare le due parti del teorema
+      en: State the two parts of the theorem
   - id: teorema-di-carnot.2
     text:
       it: Impostare la dimostrazione per assurdo con la macchina composta
+      en: Set up the proof by contradiction with the composite machine
   - id: teorema-di-carnot.3
     text:
       it: Spiegare il ruolo essenziale della reversibilità di R
+      en: Explain the essential role of the reversibility of R
   - id: teorema-di-carnot.4
     text:
       it: Mostrare la violazione di Clausius nel bilancio
+      en: Show the violation of Clausius in the balance
   - id: teorema-di-carnot.5
     text:
       it: Dimostrare l'uguaglianza dei rendimenti reversibili nei due versi
+      en: Prove the equality of reversible efficiencies both ways
   - id: teorema-di-carnot.6
     text:
       it: Dedurre |Q_F|/Q_C = T_F/T_C e la scala assoluta
+      en: Deduce |Q_F|/Q_C = T_F/T_C and the absolute scale
   - id: teorema-di-carnot.7
     text:
       it: Distinguere il caso irreversibile (disuguaglianza stretta)
+      en: Distinguish the irreversible case (strict inequality)

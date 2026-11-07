@@ -3,11 +3,15 @@ course: fisica-1
 order: 27
 title:
   it: Calori molari dei gas ideali e dei solidi ideali
+  en: Molar heat capacities of ideal gases and ideal solids
 summary:
   it: >-
     Scaldare a volume costante è 'versare' energia solo nel serbatoio interno; scaldare a pressione costante
     costringe anche a pagare il pedaggio del lavoro di espansione, sempre pari a R per mole e per grado: ecco
     Mayer.
+  en: >-
+    Heating at constant volume 'pours' energy only into the internal tank; heating at constant pressure also
+    forces you to pay the toll of expansion work, always equal to R per mole per degree: that is Mayer.
 group:
   it: Fluidi e termodinamica
   en: Fluids and thermodynamics
@@ -15,21 +19,28 @@ objectives:
   - id: calori-molari.1
     text:
       it: Definire il calore molare e spiegare perché dipende dalla trasformazione
+      en: Define the molar heat capacity and explain why it depends on the transformation
   - id: calori-molari.2
     text:
       it: Ricavare c_V = (f/2)R dal primo principio a V costante
+      en: Derive c_V = (f/2)R from the first law at constant V
   - id: calori-molari.3
     text:
       it: Dimostrare la relazione di Mayer c_p = c_V + R
+      en: Prove Mayer's relation c_p = c_V + R
   - id: calori-molari.4
     text:
       it: Interpretare fisicamente la differenza c_p − c_V
+      en: Interpret physically the difference c_p − c_V
   - id: calori-molari.5
     text:
       it: Dare i valori per mono/biatomici e definire γ = 1 + 2/f
+      en: Give the values for monatomic/diatomic gases and define γ = 1 + 2/f
   - id: calori-molari.6
     text:
       it: Ricavare Dulong-Petit contando i termini quadratici
+      en: Derive Dulong–Petit by counting quadratic terms
   - id: calori-molari.7
     text:
       it: Accennare ai limiti quantistici (basse temperature)
+      en: Mention the quantum limits (low temperatures)

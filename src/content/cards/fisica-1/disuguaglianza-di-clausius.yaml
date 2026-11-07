@@ -11,6 +11,7 @@
   kind: orale
   front:
     it: 'Esponi all''orale: «Disuguaglianza di Clausius».'
+    en: 'Present at the oral exam: “Clausius'' inequality”.'
   back:
     it: >-
       Il rapporto Q/T pesa il calore per la 'qualità' della temperatura a cui viene scambiato: calore preso ad
@@ -36,6 +37,88 @@
       - Dedurre che δQ_rev/T è un differenziale esatto
 
       - Collegare al concetto di entropia
+    en: >-
+      The ratio Q/T weighs heat by the 'quality' of the temperature at which it is exchanged: heat taken at
+      high temperature is valuable, heat discharged at low temperature is degraded. The inequality says that
+      over a full cycle the balance of weighted heats can never be positive: a cycle cannot 'gain quality'.
+      Only reversible cycles break exactly even — and it is that break-even that makes entropy well defined.
+
+
+      **Outline:**
+
+
+      - State the inequality, specifying what T is
+
+      - Check it in the two-reservoir case (reversible and irreversible)
+
+      - Describe the construction with auxiliary Carnot engines
+
+      - Apply Kelvin–Planck to the composite system
+
+      - Prove the equality for reversible cycles (by reversal)
+
+      - Deduce that δQ_rev/T is an exact differential
+
+      - Link it to the concept of entropy
+- id: disuguaglianza-di-clausius-orale-1
+  topic: disuguaglianza-di-clausius
+  objectives:
+    - disuguaglianza-di-clausius.6
+    - disuguaglianza-di-clausius.7
+  kind: orale
+  front:
+    it: Perché nella disuguaglianza compare la temperatura della sorgente e non quella del sistema?
+    en: Why does the inequality contain the temperature of the reservoir and not that of the system?
+  back:
+    it: >-
+      Nei processi irreversibili il sistema può non avere una temperatura ben definita (non è in equilibrio)
+      oppure scambiare calore attraverso un salto finito di temperatura; la dimostrazione usa le macchine di
+      Carnot ausiliarie collegate alle sorgenti, quindi ciò che conta è la temperatura della sorgente. Solo
+      negli scambi reversibili sistema e sorgente hanno la stessa temperatura e le due scelte coincidono.
+    en: >-
+      In irreversible processes the system may not have a well-defined temperature (it is not in equilibrium)
+      or may exchange heat across a finite temperature jump; the proof uses auxiliary Carnot engines connected
+      to the reservoirs, so what matters is the reservoir temperature. Only in reversible exchanges do system
+      and reservoir have the same temperature and the two choices coincide.
+- id: disuguaglianza-di-clausius-orale-2
+  topic: disuguaglianza-di-clausius
+  objectives:
+    - disuguaglianza-di-clausius.6
+    - disuguaglianza-di-clausius.7
+  kind: orale
+  front:
+    it: Come si passa dalla disuguaglianza di Clausius a ΔS ≥ ∫δQ/T per una trasformazione aperta?
+    en: How do you go from Clausius' inequality to ΔS ≥ ∫δQ/T for an open transformation?
+  back:
+    it: >-
+      Si chiude la trasformazione irreversibile A → B con un ritorno reversibile B → A e si applica Clausius
+      al ciclo: \(\int_A^B \delta Q/T + \int_B^A \delta Q_{rev}/T \le 0\). Il secondo integrale è \(S(A) -
+      S(B) = -\Delta S\), quindi \(\Delta S \ge \int_A^B \delta Q/T\), con l'uguaglianza solo se anche A → B è
+      reversibile.
+    en: >-
+      Close the irreversible transformation A → B with a reversible return B → A and apply Clausius to the
+      cycle: \(\int_A^B \delta Q/T + \int_B^A \delta Q_{rev}/T \le 0\). The second integral is \(S(A) - S(B) =
+      -\Delta S\), so \(\Delta S \ge \int_A^B \delta Q/T\), with equality only if A → B is reversible too.
+- id: disuguaglianza-di-clausius-orale-3
+  topic: disuguaglianza-di-clausius
+  objectives:
+    - disuguaglianza-di-clausius.6
+    - disuguaglianza-di-clausius.7
+  kind: orale
+  front:
+    it: Cosa dice la disuguaglianza per un ciclo monotermo e quale enunciato ritrovi?
+    en: What does the inequality say for a single-reservoir cycle, and which statement do you recover?
+  back:
+    it: >-
+      Con una sola sorgente a T₀ si ha \(\oint\delta Q/T = Q/T_0 \le 0\), cioè Q ≤ 0: in un ciclo monotermo il
+      sistema può solo cedere calore netto (e quindi, per il primo principio, ricevere lavoro: W = Q ≤ 0). È
+      esattamente l'enunciato di Kelvin-Planck: nessun ciclo trasforma in lavoro il calore di un'unica
+      sorgente.
+    en: >-
+      With a single reservoir at T₀ one gets \(\oint\delta Q/T = Q/T_0 \le 0\), i.e. Q ≤ 0: in a
+      single-reservoir cycle the system can only release net heat (and hence, by the first law, receive work:
+      W = Q ≤ 0). This is exactly the Kelvin–Planck statement: no cycle turns the heat of a single reservoir
+      into work.
 - id: disuguaglianza-di-clausius-definizione
   topic: disuguaglianza-di-clausius
   objectives:
@@ -43,6 +126,7 @@
   kind: definizione
   front:
     it: 'Definizione: Disuguaglianza di Clausius'
+    en: 'Definition: Clausius'' inequality'
   back:
     it: >-
       La disuguaglianza di Clausius generalizza il teorema di Carnot a cicli qualsiasi con scambi di calore a
@@ -50,6 +134,12 @@
       assorbito dal sistema e T la temperatura della SORGENTE con cui avviene lo scambio. L'uguaglianza vale
       se e solo se il ciclo è reversibile. È il ponte che porta dalla teoria delle macchine alla definizione
       di entropia.
+    en: >-
+      Clausius' inequality generalises Carnot's theorem to arbitrary cycles with heat exchanges at several
+      temperatures: for every thermodynamic cycle \(\oint \frac{\delta Q}{T} \le 0\), where δQ is the heat
+      absorbed by the system and T the temperature of the RESERVOIR with which the exchange takes place.
+      Equality holds if and only if the cycle is reversible. It is the bridge leading from the theory of
+      engines to the definition of entropy.
 - id: disuguaglianza-di-clausius-formule
   topic: disuguaglianza-di-clausius
   objectives:
@@ -63,8 +153,13 @@
   kind: formula
   front:
     it: Le formule chiave di «Disuguaglianza di Clausius»
+    en: The key formulas of “Clausius' inequality”
   back:
     it: |-
+      - \(\oint \frac{\delta Q}{T} \le 0\)
+      - \(\oint \frac{\delta Q_{rev}}{T} = 0\)
+      - \(\frac{Q_C}{T_C} + \frac{Q_F}{T_F} \le 0\)
+    en: |-
       - \(\oint \frac{\delta Q}{T} \le 0\)
       - \(\oint \frac{\delta Q_{rev}}{T} = 0\)
       - \(\frac{Q_C}{T_C} + \frac{Q_F}{T_F} \le 0\)
@@ -81,10 +176,14 @@
   kind: concetto
   front:
     it: 'Ipotesi di validità: Disuguaglianza di Clausius'
+    en: 'Validity assumptions: Clausius'' inequality'
   back:
     it: >-
       Secondo principio (Kelvin-Planck); T nella formula è la temperatura della sorgente esterna (coincide con
       quella del sistema solo negli scambi reversibili); macchine ausiliarie di Carnot ideali; cicli chiusi.
+    en: >-
+      Second law (Kelvin–Planck); T in the formula is the temperature of the external reservoir (it coincides
+      with that of the system only in reversible exchanges); ideal auxiliary Carnot engines; closed cycles.
 - id: disuguaglianza-di-clausius-casi-limite
   topic: disuguaglianza-di-clausius
   objectives:
@@ -98,11 +197,16 @@
   kind: concetto
   front:
     it: 'Casi limite: Disuguaglianza di Clausius'
+    en: 'Limiting cases: Clausius'' inequality'
   back:
     it: >-
       Ciclo reversibile: uguaglianza. Due sole sorgenti: si riottiene il teorema di Carnot. Ciclo con un solo
       contatto termico (una sorgente): ∮δQ/T = Q/T₀ ≤ 0, cioè Q ≤ 0 — un ciclo monotermo può solo cedere
       calore (ri-ottengo Kelvin-Planck: coerenza perfetta).
+    en: >-
+      Reversible cycle: equality. Only two reservoirs: Carnot's theorem is recovered. Cycle with a single
+      thermal contact (one reservoir): ∮δQ/T = Q/T₀ ≤ 0, i.e. Q ≤ 0 — a single-reservoir cycle can only
+      release heat (Kelvin–Planck again: perfect consistency).
 - id: disuguaglianza-di-clausius-errori
   topic: disuguaglianza-di-clausius
   objectives:
@@ -116,9 +220,15 @@
   kind: concetto
   front:
     it: 'Errori da evitare: Disuguaglianza di Clausius'
+    en: 'Mistakes to avoid: Clausius'' inequality'
   back:
     it: |-
       - Usare la temperatura del sistema invece di quella della sorgente nei processi irreversibili.
       - Concludere che ∮δQ/T = 0 per ogni ciclo: solo per i reversibili.
       - Dimenticare i segni dei Qᵢ (assorbito positivo, ceduto negativo).
       - Non saper motivare il passaggio con le macchine ausiliarie (il cuore della dimostrazione).
+    en: |-
+      - Using the temperature of the system instead of that of the reservoir in irreversible processes.
+      - Concluding that ∮δQ/T = 0 for every cycle: only for reversible ones.
+      - Forgetting the signs of the Qᵢ (absorbed positive, released negative).
+      - Not being able to justify the step with the auxiliary engines (the heart of the proof).

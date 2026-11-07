@@ -1,0 +1,107 @@
+- id: clausius-verifica-ciclo
+  topic: disuguaglianza-di-clausius
+  objectives:
+    - disuguaglianza-di-clausius.1
+    - disuguaglianza-di-clausius.2
+    - disuguaglianza-di-clausius.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un motore in ogni ciclo assorbe 1200 J da una sorgente a 600 K e cede 800 J a una sorgente a 300 K.
+      Calcolare: (a) la somma dei calori ridotti \(\sum Q_i/T_i\); (b) il rendimento; (c) l'aumento di
+      entropia dell'universo per ciclo. La macchina è reversibile?
+    en: >-
+      In each cycle an engine absorbs 1200 J from a reservoir at 600 K and releases 800 J to a reservoir at
+      300 K. Find: (a) the sum of the reduced heats \(\sum Q_i/T_i\); (b) the efficiency; (c) the increase in
+      the entropy of the universe per cycle. Is the engine reversible?
+  steps:
+    - title:
+        it: Calori ridotti
+        en: Reduced heats
+      body:
+        it: >-
+          \(\dfrac{1200}{600} + \dfrac{-800}{300} = 2{,}000 - 2{,}667 = -0{,}667\ \text{J/K} < 0\): ciclo
+          irreversibile (Clausius rispettata con il segno stretto).
+        en: >-
+          \(\dfrac{1200}{600} + \dfrac{-800}{300} = 2.000 - 2.667 = -0.667\ \text{J/K} < 0\): irreversible
+          cycle (Clausius satisfied with strict sign).
+    - title:
+        it: Rendimento ed entropia
+        en: Efficiency and entropy
+      body:
+        it: >-
+          \(\eta = 400/1200 \approx 0{,}333 < 0{,}5\). Il sistema torna allo stato iniziale (ΔS = 0); le
+          sorgenti variano di \(-1200/600 + 800/300\): \(\Delta S_{univ} = +0{,}667\ \text{J/K}\).
+        en: >-
+          \(\eta = 400/1200 \approx 0.333 < 0.5\). The system returns to its initial state (ΔS = 0); the
+          reservoirs change by \(-1200/600 + 800/300\): \(\Delta S_{univ} = +0.667\ \text{J/K}\).
+  answer:
+    - label:
+        it: Σ Q/T
+        en: Σ Q/T
+      value: -0.667
+      unit: J/K
+    - label:
+        it: η
+        en: η
+      value: 0.333
+    - label:
+        it: ΔS universo
+        en: ΔS universe
+      value: 0.667
+      unit: J/K
+  origin: originale
+- id: clausius-tre-sorgenti
+  topic: disuguaglianza-di-clausius
+  objectives:
+    - disuguaglianza-di-clausius.1
+    - disuguaglianza-di-clausius.2
+    - disuguaglianza-di-clausius.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Un ciclo scambia calore con tre sorgenti: assorbe 500 J a 500 K e 300 J a 400 K, e cede calore a 250 K.
+      Calcolare: (a) il massimo lavoro per ciclo compatibile con la disuguaglianza di Clausius; (b) il
+      rendimento corrispondente; (c) il rendimento di Carnot tra le temperature estreme.
+    en: >-
+      A cycle exchanges heat with three reservoirs: it absorbs 500 J at 500 K and 300 J at 400 K, and releases
+      heat at 250 K. Find: (a) the maximum work per cycle compatible with Clausius' inequality; (b) the
+      corresponding efficiency; (c) the Carnot efficiency between the extreme temperatures.
+  steps:
+    - title:
+        it: Calore minimo ceduto
+        en: Minimum heat released
+      body:
+        it: >-
+          \(\dfrac{500}{500} + \dfrac{300}{400} - \dfrac{|Q_3|}{250} \le 0 \Rightarrow |Q_3| \ge 250 \cdot
+          1{,}75 = 437{,}5\ \text{J}\).
+        en: >-
+          \(\dfrac{500}{500} + \dfrac{300}{400} - \dfrac{|Q_3|}{250} \le 0 \Rightarrow |Q_3| \ge 250 \cdot
+          1.75 = 437.5\ \text{J}\).
+    - title:
+        it: Lavoro e rendimento
+        en: Work and efficiency
+      body:
+        it: >-
+          \(W_{max} = 800 - 437{,}5 = 362{,}5\ \text{J}\), \(\eta = 362{,}5/800 \approx 0{,}453\), minore di
+          \(\eta_C = 1 - 250/500 = 0{,}50\): parte del calore entra a temperatura intermedia.
+        en: >-
+          \(W_{max} = 800 - 437.5 = 362.5\ \text{J}\), \(\eta = 362.5/800 \approx 0.453\), less than \(\eta_C
+          = 1 - 250/500 = 0.50\): part of the heat comes in at an intermediate temperature.
+  answer:
+    - label:
+        it: W max
+        en: max W
+      value: 362.5
+      unit: J
+    - label:
+        it: η
+        en: η
+      value: 0.453
+    - label:
+        it: η Carnot
+        en: Carnot η
+      value: 0.5
+  origin: originale
