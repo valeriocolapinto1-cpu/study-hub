@@ -58,7 +58,14 @@ const pickText = (l: Localized | undefined, lang: 'it' | 'en') =>
 export interface RecordSources {
   lang: 'it' | 'en';
   courses: { id: string; paths: { overview: string; exercises: string; review: string } }[];
-  formulas: { id: string; course: string; latex: string; label: Localized; note?: Localized | undefined }[];
+  formulas: {
+    id: string;
+    course: string;
+    latex: string;
+    latexEn?: string | undefined;
+    label: Localized;
+    note?: Localized | undefined;
+  }[];
   exercises: {
     id: string;
     course: string;

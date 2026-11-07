@@ -1,0 +1,171 @@
+---
+course: fisica-1
+topic: teorema-di-carnot
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/teorema-di-carnot/idea">
+
+Il teorema mette un tetto universale all'efficienza: non importa quanto ingegnoso sia il progetto, il rendimento è limitato dal solo dislivello di temperatura. Il trucco della dimostrazione è elegante: se qualcuno costruisse una macchina migliore di Carnot, accoppiandola a una Carnot rovesciata otterremmo una pompa di calore gratuita — e la natura, per il secondo principio, non concede pasti gratis.
+
+</div>
+
+<div class="muted" data-note-id="teoria/teorema-di-carnot/prerequisiti">
+
+**Prima di questo argomento:** [Secondo principio della termodinamica](../secondo-principio/) · [Ciclo di Carnot](../ciclo-di-carnot/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/teorema-di-carnot/definizioni">
+
+## Definizioni
+
+Il teorema di Carnot afferma: (1) nessuna macchina termica operante tra due sorgenti può avere rendimento maggiore della macchina reversibile di Carnot operante tra le stesse sorgenti; (2) tutte le macchine reversibili tra le stesse due sorgenti hanno lo stesso rendimento, $\eta_{rev} = 1 - T_F/T_C$, indipendente dal fluido e dal meccanismo. Il teorema fonda la scala termodinamica assoluta di temperatura.
+
+</div>
+
+<div data-note-id="teoria/teorema-di-carnot/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Impostazione per assurdo</summary>
+
+$$
+\text{Ipotesi: } \eta_X > \eta_{rev}
+$$
+
+Suppongo esista una macchina X (qualsiasi) più efficiente della reversibile R tra le stesse sorgenti T_C e T_F.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Inverto la macchina reversibile</summary>
+
+$$
+R \to R^{-1}: \;\text{assorbe } W,\; \text{preleva } Q_F,\; \text{cede } Q_C
+$$
+
+R è reversibile: posso farla funzionare da frigorifero con gli stessi scambi cambiati di segno. La alimento con il lavoro prodotto da X.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Bilancio del sistema composto X + R⁻¹</summary>
+
+$$
+\eta_X > \eta_R \Rightarrow \frac{W}{Q_C^X} > \frac{W}{Q_C^R} \Rightarrow Q_C^X < Q_C^R
+$$
+
+Dimensiono R⁻¹ perché riversi nella sorgente calda esattamente il lavoro W che X produce. A parità di W, la macchina 'migliore' preleva meno calore dalla sorgente calda di quanto R⁻¹ ve ne restituisce.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Contraddizione con Clausius</summary>
+
+$$
+Q_{netto,\,C} = Q_C^R - Q_C^X > 0 \;\text{entra nella sorgente calda}, \qquad W_{netto} = 0
+$$
+
+Il sistema composto, ciclico e senza lavoro netto esterno, trasferisce calore dalla sorgente fredda alla calda come unico risultato: viola l'enunciato di Clausius. Quindi η_X ≤ η_rev.
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Seconda parte: tutte le reversibili sono equivalenti</summary>
+
+$$
+\eta_{R_1} \le \eta_{R_2} \;\text{e}\; \eta_{R_2} \le \eta_{R_1} \;\Rightarrow\; \eta_{R_1} = \eta_{R_2}
+$$
+
+Se R₁ e R₂ sono entrambe reversibili, applico l'argomento nei due versi (ciascuna può fare da frigorifero per l'altra): i rendimenti devono coincidere. Poiché per il gas perfetto η = 1 − T_F/T_C, questo è il rendimento di OGNI macchina reversibile.
+
+</details>
+
+<details id="passo-6">
+<summary>Passo 6 · Conseguenza: temperatura termodinamica assoluta</summary>
+
+$$
+\frac{|Q_F|}{Q_C} = \frac{T_F}{T_C}
+$$
+
+Il rapporto dei calori scambiati da una macchina reversibile dipende solo dalle temperature: si può DEFINIRE la scala di temperatura tramite i calori, senza riferimento ad alcuna sostanza. La scala coincide con quella del gas perfetto.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/teorema-di-carnot/ipotesi">
+
+## Ipotesi di validità
+
+Validità del secondo principio (enunciato di Clausius o Kelvin-Planck); due sorgenti termiche ideali a temperature fisse; macchine cicliche. La macchina X è del tutto arbitraria (reale, irreversibile, qualunque fluido).
+
+</div>
+
+<div data-note-id="teoria/teorema-di-carnot/casi-limite">
+
+## Casi limite
+
+Macchina irreversibile: η &lt; η_rev strettamente (attriti, salti termici finiti). Macchina reversibile: η = 1 − T_F/T_C esattamente. Il teorema non dice nulla sulla potenza: la macchina di Carnot ideale è infinitamente lenta.
+
+</div>
+
+<div data-note-id="teoria/teorema-di-carnot/formule">
+
+## Formule chiave
+
+<Formula id="teorema-di-carnot-f1" />
+
+<Formula id="teorema-di-carnot-f2" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/teorema-di-carnot/esempio">
+
+Un inventore dichiara un motore che, operando tra 500 K e 300 K, assorbe 10 kJ per ciclo e produce 4,5 kJ di lavoro. Calcolare: (a) il rendimento dichiarato; (b) il rendimento massimo teorico; (c) il lavoro massimo per ciclo con lo stesso calore assorbito. La dichiarazione è credibile?
+
+1. **Confronto con Carnot.** $\eta_{dich} = 4{,}5/10 = 0{,}45$; $\eta_{rev} = 1 - 300/500 = 0{,}40$. Il lavoro massimo è $0{,}40 \cdot 10 = 4{,}0\ \text{kJ}$.
+2. **Verdetto.** Il rendimento dichiarato supera quello di Carnot: per il teorema di Carnot la macchina è impossibile (violerebbe il secondo principio).
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/teorema-di-carnot/errori">
+
+- Dimostrare il teorema usando solo il ciclo di Carnot a gas perfetto: la forza del teorema è l'universalità, che richiede l'argomento per assurdo.
+- Dimenticare che l'inversione richiede la reversibilità di R: una macchina reale non si può 'far girare al contrario' con gli stessi scambi.
+- Concludere che tutte le macchine hanno η = 1 − T_F/T_C: solo le reversibili; le altre stanno sotto.
+- Trascurare la clausola 'stesse due sorgenti'.
+
+</div>
+
+<div data-note-id="teoria/teorema-di-carnot/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- In che senso il teorema di Carnot permette di definire la temperatura senza termometri a gas?
+- Una centrale termoelettrica opera tra 800 K e 300 K: qual è il tetto teorico del rendimento e perché quello reale è più basso?
+- Il teorema vale anche per macchine che scambiano calore con più di due sorgenti?
+
+</div>
+
+</Layer>

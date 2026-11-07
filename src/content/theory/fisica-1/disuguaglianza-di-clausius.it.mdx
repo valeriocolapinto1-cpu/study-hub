@@ -1,0 +1,173 @@
+---
+course: fisica-1
+topic: disuguaglianza-di-clausius
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/disuguaglianza-di-clausius/idea">
+
+Il rapporto Q/T pesa il calore per la 'qualità' della temperatura a cui viene scambiato: calore preso ad alta temperatura è pregiato, calore scaricato a bassa temperatura è degradato. La disuguaglianza dice che in ogni giro completo il bilancio dei calori pesati non può mai essere positivo: un ciclo non può 'guadagnare qualità'. Al pareggio esatto operano solo i cicli reversibili — ed è quel pareggio a rendere ben definita l'entropia.
+
+</div>
+
+<div class="muted" data-note-id="teoria/disuguaglianza-di-clausius/prerequisiti">
+
+**Prima di questo argomento:** [Teorema di Carnot](../teorema-di-carnot/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/disuguaglianza-di-clausius/definizioni">
+
+## Definizioni
+
+La disuguaglianza di Clausius generalizza il teorema di Carnot a cicli qualsiasi con scambi di calore a più temperature: per ogni ciclo termodinamico $\oint \frac{\delta Q}{T} \le 0$, dove δQ è il calore assorbito dal sistema e T la temperatura della SORGENTE con cui avviene lo scambio. L'uguaglianza vale se e solo se il ciclo è reversibile. È il ponte che porta dalla teoria delle macchine alla definizione di entropia.
+
+</div>
+
+<div data-note-id="teoria/disuguaglianza-di-clausius/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Punto di partenza: macchina reversibile a due sorgenti</summary>
+
+$$
+\frac{Q_C}{T_C} + \frac{Q_F}{T_F} = 0 \quad (\text{con segni: } Q_F < 0)
+$$
+
+Riscrittura del teorema di Carnot: per un ciclo reversibile i 'calori ridotti' Q/T si bilanciano esattamente.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Macchina irreversibile a due sorgenti</summary>
+
+$$
+\eta_{irr} < \eta_{rev} \Rightarrow 1 - \frac{|Q_F|}{Q_C} < 1 - \frac{T_F}{T_C} \Rightarrow \frac{|Q_F|}{T_F} > \frac{Q_C}{T_C} \Rightarrow \frac{Q_C}{T_C} + \frac{Q_F}{T_F} < 0
+$$
+
+Il rendimento minore significa che si scarica 'troppo' calore alla sorgente fredda: la somma dei calori ridotti diventa negativa.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Ciclo generico: discretizzazione con N sorgenti</summary>
+
+$$
+\text{ciclo qualunque} \approx \text{scambi } Q_i \text{ con sorgenti } T_i
+$$
+
+Un ciclo che scambia calore con continuità si approssima con N scambi discreti. A ogni sorgente Tᵢ associo una macchina di Carnot ausiliaria che opera tra un unico serbatoio comune T₀ e Tᵢ, fornendo al sistema esattamente Qᵢ.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Bilancio delle macchine ausiliarie</summary>
+
+$$
+Q_{0,i} = Q_i\,\frac{T_0}{T_i} \;\Rightarrow\; Q_{0,tot} = T_0\sum_i \frac{Q_i}{T_i}
+$$
+
+Ogni Carnot ausiliaria preleva dal serbatoio comune il calore Q₀ᵢ legato a Qᵢ dal rapporto delle temperature (proprietà della macchina reversibile).
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Applico Kelvin-Planck al sistema composto</summary>
+
+$$
+\text{ciclo totale con UNICA sorgente } T_0: \; W_{tot} = Q_{0,tot} \le 0 \;\Rightarrow\; \sum_i \frac{Q_i}{T_i} \le 0
+$$
+
+Il sistema composto (ciclo + ausiliarie) è ciclico e scambia calore solo con T₀: se producesse lavoro positivo violerebbe Kelvin-Planck. Quindi il calore netto prelevato da T₀ è ≤ 0.
+
+</details>
+
+<details id="passo-6">
+<summary>Passo 6 · Limite continuo e caso reversibile</summary>
+
+$$
+\oint \frac{\delta Q}{T} \le 0; \qquad \text{ciclo reversibile: percorrendolo al contrario} \Rightarrow \oint \frac{\delta Q}{T} = 0
+$$
+
+Per N → ∞ la somma diventa integrale. Se il ciclo è reversibile, invertendolo tutti i δQ cambiano segno: valgono sia ≤ 0 sia ≥ 0, dunque = 0. L'annullarsi dell'integrale su ogni ciclo reversibile implica che δQ_rev/T è un differenziale esatto: nasce l'entropia.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/disuguaglianza-di-clausius/ipotesi">
+
+## Ipotesi di validità
+
+Secondo principio (Kelvin-Planck); T nella formula è la temperatura della sorgente esterna (coincide con quella del sistema solo negli scambi reversibili); macchine ausiliarie di Carnot ideali; cicli chiusi.
+
+</div>
+
+<div data-note-id="teoria/disuguaglianza-di-clausius/casi-limite">
+
+## Casi limite
+
+Ciclo reversibile: uguaglianza. Due sole sorgenti: si riottiene il teorema di Carnot. Ciclo con un solo contatto termico (una sorgente): ∮δQ/T = Q/T₀ ≤ 0, cioè Q ≤ 0 — un ciclo monotermo può solo cedere calore (ri-ottengo Kelvin-Planck: coerenza perfetta).
+
+</div>
+
+<div data-note-id="teoria/disuguaglianza-di-clausius/formule">
+
+## Formule chiave
+
+<Formula id="disuguaglianza-di-clausius-f1" />
+
+<Formula id="disuguaglianza-di-clausius-f2" />
+
+<Formula id="disuguaglianza-di-clausius-f3" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/disuguaglianza-di-clausius/esempio">
+
+Un motore in ogni ciclo assorbe 1200 J da una sorgente a 600 K e cede 800 J a una sorgente a 300 K. Calcolare: (a) la somma dei calori ridotti $\sum Q_i/T_i$; (b) il rendimento; (c) l'aumento di entropia dell'universo per ciclo. La macchina è reversibile?
+
+1. **Calori ridotti.** $\dfrac{1200}{600} + \dfrac{-800}{300} = 2{,}000 - 2{,}667 = -0{,}667\ \text{J/K} < 0$: ciclo irreversibile (Clausius rispettata con il segno stretto).
+2. **Rendimento ed entropia.** $\eta = 400/1200 \approx 0{,}333 < 0{,}5$. Il sistema torna allo stato iniziale (ΔS = 0); le sorgenti variano di $-1200/600 + 800/300$: $\Delta S_{univ} = +0{,}667\ \text{J/K}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/disuguaglianza-di-clausius/errori">
+
+- Usare la temperatura del sistema invece di quella della sorgente nei processi irreversibili.
+- Concludere che ∮δQ/T = 0 per ogni ciclo: solo per i reversibili.
+- Dimenticare i segni dei Qᵢ (assorbito positivo, ceduto negativo).
+- Non saper motivare il passaggio con le macchine ausiliarie (il cuore della dimostrazione).
+
+</div>
+
+<div data-note-id="teoria/disuguaglianza-di-clausius/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Perché nella disuguaglianza compare la temperatura della sorgente e non quella del sistema?
+- Come si passa dalla disuguaglianza di Clausius a ΔS ≥ ∫δQ/T per una trasformazione aperta?
+- Cosa dice la disuguaglianza per un ciclo monotermo e quale enunciato ritrovi?
+
+</div>
+
+</Layer>

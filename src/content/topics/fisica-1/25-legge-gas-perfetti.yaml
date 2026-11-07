@@ -1,0 +1,45 @@
+id: legge-gas-perfetti
+course: fisica-1
+order: 25
+title:
+  it: Legge empirica dei gas perfetti
+  en: Empirical ideal-gas law
+summary:
+  it: >-
+    Tre leggi sperimentali indipendenti, scoperte in due secoli, si incastrano in un'unica equazione a patto
+    di misurare la temperatura dalla giusta origine: lo zero assoluto.
+  en: >-
+    Three independent experimental laws, discovered over two centuries, fit into a single equation provided
+    temperature is measured from the right origin: absolute zero.
+group:
+  it: Fluidi e termodinamica
+  en: Fluids and thermodynamics
+objectives:
+  - id: legge-gas-perfetti.1
+    text:
+      it: Enunciare Boyle e le due leggi di Gay-Lussac coi rispettivi vincoli
+      en: State Boyle's law and the two Gay-Lussac laws with their constraints
+  - id: legge-gas-perfetti.2
+    text:
+      it: Spiegare il significato del coefficiente α uguale per tutti i gas
+      en: Explain the meaning of the coefficient α being the same for all gases
+  - id: legge-gas-perfetti.3
+    text:
+      it: Mostrare come nasce la temperatura assoluta dall'estrapolazione
+      en: Show how absolute temperature arises from the extrapolation
+  - id: legge-gas-perfetti.4
+    text:
+      it: Combinare le leggi in pV/T = cost
+      en: Combine the laws into pV/T = const
+  - id: legge-gas-perfetti.5
+    text:
+      it: Introdurre Avogadro e scrivere pV = nRT
+      en: Introduce Avogadro and write pV = nRT
+  - id: legge-gas-perfetti.6
+    text:
+      it: Passare alla forma microscopica pV = Nk_BT
+      en: Move to the microscopic form pV = Nk_BT
+  - id: legge-gas-perfetti.7
+    text:
+      it: Dire quando la legge cessa di valere
+      en: Say when the law stops holding

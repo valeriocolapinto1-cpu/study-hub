@@ -1,0 +1,193 @@
+---
+course: fisica-1
+topic: pendolo-semplice
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/pendolo-semplice/idea">
+
+Il pendolo oscilla perché la gravità 'preme' il punto verso il fondo dell'arco, ma l'inerzia glielo fa superare. La massa sparisce dal periodo per lo stesso motivo per cui tutti i gravi cadono con la stessa accelerazione: raddoppiare m raddoppia sia la forza sia l'inerzia. L come 'braccio' del richiamo: pendolo lungo, richiamo angolare debole, oscillazione lenta.
+
+</div>
+
+<div class="muted" data-note-id="teoria/pendolo-semplice/prerequisiti">
+
+**Prima di questo argomento:** [Moto armonico: ampiezza, pulsazione, periodo, fase iniziale](../moto-armonico/)
+
+</div>
+
+<Callout tone="nota" title="Vedi in azione">
+
+[Apri la simulazione interattiva](../../extra/simulazioni/#sim-pendolo)
+
+</Callout>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/pendolo-semplice/definizioni">
+
+## Definizioni
+
+Il pendolo semplice è un punto materiale di massa m sospeso a un filo inestensibile e privo di massa di lunghezza L, libero di oscillare in un piano verticale sotto l'azione della gravità. La posizione è individuata dall'angolo θ rispetto alla verticale. Per piccole oscillazioni il moto è armonico con periodo $T = 2\pi\sqrt{L/g}$, indipendente dalla massa e dall'ampiezza.
+
+</div>
+
+<div data-note-id="teoria/pendolo-semplice/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Forze sul punto materiale</summary>
+
+$$
+\vec{F} = m\vec{g} + \vec{T}_{filo}
+$$
+
+La tensione è diretta lungo il filo (componente centripeta), il peso ha una componente lungo il filo e una tangente all'arco.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Proiezione sulla direzione tangente</summary>
+
+$$
+m a_t = -mg\sin\theta
+$$
+
+La tensione non ha componente tangenziale. Il segno meno: la componente tangenziale del peso è sempre di richiamo verso θ = 0.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Accelerazione tangenziale in termini di θ</summary>
+
+$$
+s = L\theta \;\Rightarrow\; a_t = \ddot{s} = L\ddot{\theta} \;\Rightarrow\; mL\ddot{\theta} = -mg\sin\theta
+$$
+
+La coordinata curvilinea lungo l'arco è s = Lθ; la massa si semplifica.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Equazione esatta del pendolo</summary>
+
+$$
+\ddot{\theta} + \frac{g}{L}\sin\theta = 0
+$$
+
+Equazione non lineare: in generale non ha soluzione elementare e il periodo dipende dall'ampiezza.
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Approssimazione di piccole oscillazioni</summary>
+
+$$
+\sin\theta \approx \theta \;(\theta \ll 1\text{ rad}) \;\Rightarrow\; \ddot{\theta} + \frac{g}{L}\theta = 0
+$$
+
+Sviluppo di Taylor al primo ordine: l'errore relativo è ~θ²/6 (meno dell'1% fino a ~14°).
+
+</details>
+
+<details id="passo-6">
+<summary>Passo 6 · Identificazione con il moto armonico</summary>
+
+$$
+\omega = \sqrt{\frac{g}{L}}, \qquad T = 2\pi\sqrt{\frac{L}{g}}, \qquad \theta(t) = \theta_0\cos(\omega t + \varphi)
+$$
+
+Il periodo dipende solo da L e g: non dalla massa (perché la gravità accelera tutte le masse allo stesso modo) né dall'ampiezza (isocronismo di Galileo, valido solo per piccoli angoli).
+
+</details>
+
+<details id="passo-7">
+<summary>Passo 7 · Tensione del filo (direzione radiale)</summary>
+
+$$
+T_{filo} - mg\cos\theta = m\frac{v^2}{L} \;\Rightarrow\; T_{filo} = mg\cos\theta + \frac{mv^2}{L}
+$$
+
+Sulla direzione radiale l'accelerazione è centripeta: la tensione è massima nel punto più basso, dove v è massima e cos θ = 1.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/pendolo-semplice/ipotesi">
+
+## Ipotesi di validità
+
+Filo inestensibile e di massa trascurabile; massa puntiforme; assenza di attriti e resistenza dell'aria; campo di gravità uniforme; per l'isocronismo, piccole oscillazioni (sin θ ≈ θ).
+
+</div>
+
+<div data-note-id="teoria/pendolo-semplice/casi-limite">
+
+## Casi limite
+
+Grandi ampiezze: il periodo cresce con θ₀, $T \approx T_0(1 + \theta_0^2/16)$. L → 0: T → 0. g → 0 (caduta libera, orbita): il pendolo non oscilla affatto. θ₀ = π: equilibrio instabile in cima.
+
+</div>
+
+<div data-note-id="teoria/pendolo-semplice/formule">
+
+## Formule chiave
+
+<Formula id="pendolo-semplice-f1" />
+
+<Formula id="pendolo-semplice-f2" />
+
+<Formula id="pendolo-semplice-f3" />
+
+<Formula id="pendolo-semplice-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto: Tensione nel punto più basso">
+
+<div data-note-id="teoria/pendolo-semplice/esempio">
+
+Un pendolo di lunghezza L = 1,2 m e massa m = 0,30 kg viene lasciato da fermo con θ₀ = 40°. Calcolare la velocità e la tensione del filo al passaggio per la verticale.
+
+1. θ₀ = 40° non è piccolo, ma l'energia vale sempre: la massa scende di $h = L(1-\cos\theta_0) \approx 0{,}281\ \text{m}$, quindi $v = \sqrt{2gh} \approx 2{,}35\ \text{m/s}$.
+2. Equazione radiale in θ = 0: $T_{filo} = mg + mv^2/L = mg(3 - 2\cos\theta_0) \approx 0{,}30 \cdot 9{,}81 \cdot 1{,}468 \approx 4{,}32\ \text{N}$.
+3. La tensione supera il peso (2,94 N) di circa il 47%: è la forza centripeta richiesta dalla traiettoria curva.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/pendolo-semplice/errori">
+
+- Dire che il periodo non dipende dall'ampiezza in generale: vale solo per piccole oscillazioni.
+- Includere la massa nel periodo: si semplifica perché massa inerziale e gravitazionale coincidono.
+- Proiettare male il peso: la componente di richiamo è mg sin θ, quella lungo il filo mg cos θ.
+- Dimenticare che la tensione deve anche fornire la forza centripeta: T ≠ mg cos θ durante il moto.
+
+</div>
+
+<div data-note-id="teoria/pendolo-semplice/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Come misureresti g con un pendolo e quali sono le principali fonti di errore?
+- Cosa cambia se il pendolo è dentro un ascensore che accelera verso l'alto con accelerazione a?
+- Che relazione c'è tra il pendolo semplice e il pendolo fisico?
+
+</div>
+
+</Layer>

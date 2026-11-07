@@ -1,0 +1,45 @@
+id: momento-angolare
+course: fisica-1
+order: 11
+title:
+  it: Momento di una forza e momento angolare
+  en: Torque and angular momentum
+summary:
+  it: >-
+    Il momento di una forza misura la sua efficacia nel far ruotare: la stessa forza 'rende' di più se
+    applicata lontano dal perno e perpendicolarmente (per questo le maniglie stanno sul bordo delle porte).
+  en: >-
+    Torque measures how effective a force is at making things rotate: the same force 'pays off' more if
+    applied far from the pivot and perpendicularly (that is why door handles are on the edge of doors).
+group:
+  it: Sistemi di punti e corpo rigido
+  en: Systems of particles and rigid bodies
+objectives:
+  - id: momento-angolare.1
+    text:
+      it: Definire τ = r × F e il concetto di braccio
+      en: Define τ = r × F and the concept of lever arm
+  - id: momento-angolare.2
+    text:
+      it: Definire L = r × p e sottolineare la dipendenza dal polo
+      en: Define L = r × p and stress the dependence on the pole
+  - id: momento-angolare.3
+    text:
+      it: Dimostrare dL/dt = τ per polo fisso
+      en: Prove dL/dt = τ for a fixed pole
+  - id: momento-angolare.4
+    text:
+      it: Spiegare il caso delle forze centrali e la conservazione di L
+      en: Explain the case of central forces and the conservation of L
+  - id: momento-angolare.5
+    text:
+      it: Mostrare che un moto rettilineo ha L costante rispetto a qualunque polo
+      en: Show that a rectilinear motion has constant L about any pole
+  - id: momento-angolare.6
+    text:
+      it: Enunciare il termine correttivo per polo mobile
+      en: State the correction term for a moving pole
+  - id: momento-angolare.7
+    text:
+      it: Collegare alla II legge di Keplero (velocità areolare costante)
+      en: Link to Kepler's second law (constant areal velocity)

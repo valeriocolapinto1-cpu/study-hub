@@ -1,0 +1,45 @@
+id: moto-corpo-rigido
+course: fisica-1
+order: 16
+title:
+  it: Moto di un corpo rigido
+  en: Motion of a rigid body
+summary:
+  it: >-
+    Il vincolo di rigidità riduce un numero enorme di gradi di libertà a soli 6: dire dove sta il CM e come il
+    corpo è orientato basta a conoscere la posizione di ogni suo punto.
+  en: >-
+    The rigidity constraint reduces an enormous number of degrees of freedom to just 6: knowing where the CM
+    is and how the body is oriented is enough to know the position of every point.
+group:
+  it: Sistemi di punti e corpo rigido
+  en: Systems of particles and rigid bodies
+objectives:
+  - id: moto-corpo-rigido.1
+    text:
+      it: Definire il corpo rigido e contarne i gradi di libertà
+      en: Define a rigid body and count its degrees of freedom
+  - id: moto-corpo-rigido.2
+    text:
+      it: Scrivere la formula fondamentale v_P = v_Q + ω×(r_P−r_Q)
+      en: Write the fundamental formula v_P = v_Q + ω×(r_P−r_Q)
+  - id: moto-corpo-rigido.3
+    text:
+      it: Impostare le due equazioni cardinali per il moto rototraslatorio
+      en: Set up the two cardinal equations for roto-translational motion
+  - id: moto-corpo-rigido.4
+    text:
+      it: Ricavare Iα = τ per l'asse fisso e l'analogia con F = ma
+      en: Derive Iα = τ for the fixed axis and the analogy with F = ma
+  - id: moto-corpo-rigido.5
+    text:
+      it: Scrivere le leggi orarie rotazionali per α costante
+      en: Write the rotational equations of motion for constant α
+  - id: moto-corpo-rigido.6
+    text:
+      it: Spiegare il centro di istantanea rotazione
+      en: Explain the instantaneous centre of rotation
+  - id: moto-corpo-rigido.7
+    text:
+      it: Scrivere lavoro e potenza rotazionali
+      en: Write rotational work and power

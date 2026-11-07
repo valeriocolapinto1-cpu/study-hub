@@ -1,0 +1,139 @@
+---
+/**
+ * Extra «Simulazioni interattive»: le otto simulazioni del sito originale rifatte con il kit
+ * (src/sim). Ogni simulazione ha un'ancora #sim-<slug> richiamata dalle pagine di teoria e
+ * si carica solo quando entra nella finestra (client:visible).
+ */
+import MotoArmonico from '../sims/MotoArmonico';
+import Pendolo from '../sims/Pendolo';
+import Smorzato from '../sims/Smorzato';
+import Risonanza from '../sims/Risonanza';
+import GaraPianoInclinato from '../sims/GaraPianoInclinato';
+import Rotolamento from '../sims/Rotolamento';
+import Urti from '../sims/Urti';
+import Carnot from '../sims/Carnot';
+import { localizePath } from '../../../i18n';
+import { sectionPath, type CourseData } from '../../../lib/course-pages';
+
+interface Props {
+  lang: 'it' | 'en';
+  course: CourseData;
+}
+const { lang, course } = Astro.props;
+const it = lang === 'it';
+const theory = (topic: string) => localizePath(sectionPath(course, 'teoria', topic), lang);
+const SIMS = [
+  {
+    slug: 'moto-armonico',
+    topic: 'moto-armonico',
+    it: 'Moto armonico',
+    en: 'Simple harmonic motion',
+    dIt: 'La massa oscilla e il grafico x(t) si disegna mentre la guardi: ampiezza, pulsazione e fase separate a colpo d’occhio.',
+    dEn: 'The mass oscillates and the x(t) plot is drawn as you watch: amplitude, angular frequency and phase at a glance.',
+  },
+  {
+    slug: 'pendolo',
+    topic: 'pendolo-semplice',
+    it: 'Pendolo: esatto o armonico?',
+    en: 'Pendulum: exact or harmonic?',
+    dIt: 'Il pendolo reale integrato numericamente accanto a quello linearizzato: si vede dove l’approssimazione dei piccoli angoli smette di valere.',
+    dEn: 'The real pendulum, integrated numerically, next to the linearised one: you can see where the small-angle approximation stops holding.',
+  },
+  {
+    slug: 'oscillatore-smorzato',
+    topic: 'oscillatore-smorzato',
+    it: 'Oscillatore smorzato: i tre regimi',
+    en: 'Damped oscillator: the three regimes',
+    dIt: 'Muovi γ e attraversa sottosmorzato, critico e sovrasmorzato con lo stesso ω₀.',
+    dEn: 'Move γ and go through underdamped, critical and overdamped with the same ω₀.',
+  },
+  {
+    slug: 'risonanza',
+    topic: 'risonanza',
+    it: 'Risonanza',
+    en: 'Resonance',
+    dIt: 'La curva di risonanza A(Ω) e come lo smorzamento ne decide altezza e larghezza.',
+    dEn: 'The resonance curve A(Ω) and how damping sets its height and width.',
+  },
+  {
+    slug: 'gara-piano-inclinato',
+    topic: 'momenti-di-inerzia',
+    it: 'La gara sul piano inclinato',
+    en: 'The race down the incline',
+    dIt: 'Sfera, disco e anello partono insieme: conta solo come è distribuita la massa.',
+    dEn: 'Sphere, disc and ring start together: only how the mass is distributed matters.',
+  },
+  {
+    slug: 'rotolamento',
+    topic: 'rotolamento-puro',
+    it: 'Rotolamento: il campo delle velocità',
+    en: 'Rolling: the velocity field',
+    dIt: 'I vettori velocità sulla ruota che rotola: il punto di contatto è fermo, la cima va al doppio.',
+    dEn: 'Velocity vectors on the rolling wheel: the contact point is at rest, the top moves twice as fast.',
+  },
+  {
+    slug: 'urti',
+    topic: 'urti-centrali',
+    it: 'Urti centrali',
+    en: 'Central collisions',
+    dIt: 'Rapporto delle masse e coefficiente di restituzione: dall’urto elastico al perfettamente anelastico.',
+    dEn: 'Mass ratio and coefficient of restitution: from the elastic to the perfectly inelastic collision.',
+  },
+  {
+    slug: 'ciclo-di-carnot',
+    topic: 'ciclo-di-carnot',
+    it: 'Ciclo di Carnot',
+    en: 'Carnot cycle',
+    dIt: 'Le quattro trasformazioni nel piano p-V e il rendimento che dipende solo dalle temperature.',
+    dEn: 'The four transformations in the p-V plane and the efficiency that depends only on the temperatures.',
+  },
+];
+---
+
+<div class="prose" data-note-id="extra/simulazioni">
+  <p class="lead">
+    {it
+      ? 'Otto esperimenti al computer per costruire l’intuizione prima delle formule. Ognuno rimanda alla sua pagina di teoria; con «movimento ridotto» attivo le animazioni partono ferme.'
+      : 'Eight computer experiments to build intuition before the formulas. Each one links to its theory page; with “reduced motion” on, animations start paused.'}
+  </p>
+  <nav aria-label={it ? 'Indice delle simulazioni' : 'Simulation index'}>
+    <ol>
+      {SIMS.map((s) => (
+        <li>
+          <a href={`#sim-${s.slug}`}>{it ? s.it : s.en}</a>
+        </li>
+      ))}
+    </ol>
+  </nav>
+</div>
+{SIMS.map((s) => (
+  <section
+    class="sim-section"
+    id={`sim-${s.slug}`}
+    aria-labelledby={`sim-${s.slug}-t`}
+    data-note-id={`extra/simulazioni/${s.slug}`}
+  >
+    <h2 id={`sim-${s.slug}-t`}>{it ? s.it : s.en}</h2>
+    <p>
+      {it ? s.dIt : s.dEn} <a href={theory(s.topic)}>{it ? 'Teoria' : 'Theory'} →</a>
+    </p>
+    {s.slug === 'moto-armonico' && <MotoArmonico lang={lang} client:visible />}
+    {s.slug === 'pendolo' && <Pendolo lang={lang} client:visible />}
+    {s.slug === 'oscillatore-smorzato' && <Smorzato lang={lang} client:visible />}
+    {s.slug === 'risonanza' && <Risonanza lang={lang} client:visible />}
+    {s.slug === 'gara-piano-inclinato' && <GaraPianoInclinato lang={lang} client:visible />}
+    {s.slug === 'rotolamento' && <Rotolamento lang={lang} client:visible />}
+    {s.slug === 'urti' && <Urti lang={lang} client:visible />}
+    {s.slug === 'ciclo-di-carnot' && <Carnot lang={lang} client:visible />}
+  </section>
+))}
+
+<style>
+  .sim-section {
+    margin-block: var(--space-2xl);
+    scroll-margin-top: var(--space-2xl);
+  }
+  .sim-section h2 {
+    margin-bottom: var(--space-2xs);
+  }
+</style>

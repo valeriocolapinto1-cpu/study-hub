@@ -1,0 +1,165 @@
+---
+course: fisica-1
+topic: statica-corpo-rigido
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/statica-corpo-rigido/idea">
+
+Equilibrio significa che le forze non spingono il corpo da nessuna parte E non lo fanno girare attorno a nessun perno. La libertà di scegliere il polo è un'arma tattica: mettendolo dove passano le forze incognite, i loro momenti spariscono e l'equazione si semplifica. La stabilità è geometria del baricentro: un corpo cade quando la verticale dal suo baricentro esce dalla base d'appoggio.
+
+</div>
+
+<div class="muted" data-note-id="teoria/statica-corpo-rigido/prerequisiti">
+
+**Prima di questo argomento:** [Moto di un corpo rigido](../moto-corpo-rigido/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/statica-corpo-rigido/definizioni">
+
+## Definizioni
+
+Un corpo rigido è in equilibrio statico quando è fermo e resta fermo: tutte le accelerazioni (lineari e angolari) sono nulle. Le condizioni di equilibrio sono due: risultante delle forze esterne nulla $\big(\sum\vec{F} = \vec{0}\big)$ e momento risultante nullo rispetto a un polo qualsiasi $\big(\sum\vec{\tau} = \vec{0}\big)$. Nel piano si traducono in 3 equazioni scalari: due per le forze e una per i momenti.
+
+</div>
+
+<div data-note-id="teoria/statica-corpo-rigido/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Dalle equazioni cardinali con accelerazioni nulle</summary>
+
+$$
+\vec{a}_{cm} = \vec{0} \Rightarrow \sum\vec{F}^{ext} = \vec{0}; \qquad \frac{d\vec{L}}{dt} = \vec{0} \Rightarrow \sum\vec{\tau}^{ext} = \vec{0}
+$$
+
+L'equilibrio è il caso particolare della dinamica con P e L costanti (e nulli per un corpo inizialmente fermo).
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Indipendenza dal polo (se la risultante è nulla)</summary>
+
+$$
+\vec{\tau}_{O'} = \vec{\tau}_{O} + (\vec{O'O})\times\sum\vec{F} = \vec{\tau}_{O}
+$$
+
+Quando ΣF = 0, il momento totale è lo stesso rispetto a qualunque polo: si può scegliere il polo più comodo (tipicamente dove passano più forze incognite, per eliminarle).
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Il peso agisce nel baricentro</summary>
+
+$$
+\vec{\tau}_{peso} = \sum_i \vec{r}_i\times m_i\vec{g} = \Big(\sum_i m_i\vec{r}_i\Big)\times\vec{g} = \vec{r}_{cm}\times M\vec{g}
+$$
+
+In campo uniforme il momento totale del peso è quello di un'unica forza Mg applicata nel centro di massa: per questo baricentro e CM coincidono.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Esempio guida: scala appoggiata al muro</summary>
+
+$$
+N_m = f_s,\quad N_p = Mg,\quad (\text{polo a terra}):\; N_m L\sin\theta = Mg\frac{L}{2}\cos\theta \;\Rightarrow\; f_s = \frac{Mg}{2\tan\theta} \le \mu_s Mg
+$$
+
+Muro liscio, pavimento scabro: le tre equazioni (x, y, momenti) determinano le reazioni; la condizione di non slittamento dà l'angolo minimo tan θ ≥ 1/(2μ_s).
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Stabilità dell'equilibrio</summary>
+
+$$
+\frac{dU}{dq} = 0; \qquad \frac{d^2U}{dq^2} > 0 \text{ stabile}, \quad < 0 \text{ instabile}
+$$
+
+Un equilibrio è stabile se piccoli spostamenti alzano il baricentro (U cresce): il corpo torna indietro. Criterio pratico: la verticale dal baricentro deve cadere dentro la base d'appoggio.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/statica-corpo-rigido/ipotesi">
+
+## Ipotesi di validità
+
+Corpo perfettamente rigido; campo di gravità uniforme (per baricentro ≡ CM); vincoli lisci o scabri modellati con reazioni normali e attrito statico ≤ μ_sN.
+
+</div>
+
+<div data-note-id="teoria/statica-corpo-rigido/casi-limite">
+
+## Casi limite
+
+Corpo appoggiato al limite del ribaltamento: la reazione normale si concentra sullo spigolo. Attrito insufficiente: l'equilibrio è impossibile e il corpo slitta. Coppia di forze: risultante nulla ma momento non nullo — non c'è equilibrio, il corpo ruota.
+
+</div>
+
+<div data-note-id="teoria/statica-corpo-rigido/formule">
+
+## Formule chiave
+
+<Formula id="statica-corpo-rigido-f1" />
+
+<Formula id="statica-corpo-rigido-f2" />
+
+<Formula id="statica-corpo-rigido-f3" />
+
+<Formula id="statica-corpo-rigido-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/statica-corpo-rigido/esempio">
+
+Una scala omogenea di massa 12 kg e lunghezza 4,0 m è appoggiata a un muro liscio e forma un angolo di 60° con il pavimento scabro. Calcolare: (a) la reazione del muro; (b) la forza di attrito statico necessaria; (c) il coefficiente di attrito minimo perché non scivoli.
+
+1. **Momenti rispetto al piede.** $N_m L\sin 60° = Mg\,\tfrac{L}{2}\cos 60° \Rightarrow N_m = \dfrac{Mg}{2\tan 60°} \approx 33{,}98\ \text{N}$.
+2. **Forze.** Orizzontale: $f_s = N_m \approx 33{,}98\ \text{N}$; verticale: $N_p = Mg \approx 117{,}7\ \text{N}$.
+3. **Attrito minimo.** $f_s \le \mu_s N_p \Rightarrow \mu_s \ge \dfrac{1}{2\tan 60°} \approx 0{,}289$, indipendente da massa e lunghezza.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/statica-corpo-rigido/errori">
+
+- Imporre solo ΣF = 0 dimenticando i momenti (una coppia ha risultante nulla ma fa ruotare).
+- Cambiare polo a metà del calcolo dei momenti.
+- Sbagliare il braccio delle forze (usare la distanza dal punto di applicazione invece che dalla retta d'azione).
+- Dimenticare che l'attrito statico è un'incognita ≤ μ_sN, non uguale a μ_sN salvo al limite dello slittamento.
+
+</div>
+
+<div data-note-id="teoria/statica-corpo-rigido/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Perché per un corpo appoggiato la stabilità dipende dalla base d'appoggio e dall'altezza del baricentro?
+- Una trave incastrata nel muro: quante reazioni vincolari fornisce l'incastro?
+- Se le forze su un corpo sono tre e in equilibrio, perché le loro rette d'azione devono incontrarsi in un punto (o essere parallele)?
+
+</div>
+
+</Layer>

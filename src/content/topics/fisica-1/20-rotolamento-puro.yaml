@@ -1,0 +1,45 @@
+id: rotolamento-puro
+course: fisica-1
+order: 20
+title:
+  it: Rotolamento puro
+  en: Pure rolling
+summary:
+  it: >-
+    Nel rotolamento l'attrito statico è un 'regista' che non spende energia: costringe traslazione e rotazione
+    a marciare insieme (v = ωR) redistribuendo la spinta della gravità tra i due moti.
+  en: >-
+    In rolling, static friction is a 'director' that spends no energy: it forces translation and rotation to
+    march together (v = ωR), redistributing gravity's push between the two motions.
+group:
+  it: Sistemi di punti e corpo rigido
+  en: Systems of particles and rigid bodies
+objectives:
+  - id: rotolamento-puro.1
+    text:
+      it: Enunciare e giustificare il vincolo v_cm = ωR
+      en: State and justify the constraint v_cm = ωR
+  - id: rotolamento-puro.2
+    text:
+      it: Scrivere K con König e il vincolo (forma con β)
+      en: Write K with König and the constraint (β form)
+  - id: rotolamento-puro.3
+    text:
+      it: Impostare le due cardinali per la discesa dal piano inclinato
+      en: Set up the two cardinal equations for rolling down an incline
+  - id: rotolamento-puro.4
+    text:
+      it: Ricavare a_cm = g sinθ/(1+β) e f_s
+      en: Derive a_cm = g sinθ/(1+β) and f_s
+  - id: rotolamento-puro.5
+    text:
+      it: Ricavare la condizione sul μ_s per il rotolamento puro
+      en: Derive the condition on μ_s for pure rolling
+  - id: rotolamento-puro.6
+    text:
+      it: Rifare il calcolo con la conservazione dell'energia
+      en: Redo the calculation with energy conservation
+  - id: rotolamento-puro.7
+    text:
+      it: Spiegare perché l'attrito statico non dissipa
+      en: Explain why static friction does not dissipate

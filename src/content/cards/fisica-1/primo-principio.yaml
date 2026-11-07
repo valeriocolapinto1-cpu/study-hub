@@ -1,0 +1,244 @@
+- id: primo-principio-esposizione
+  topic: primo-principio
+  objectives:
+    - primo-principio.1
+    - primo-principio.2
+    - primo-principio.3
+    - primo-principio.4
+    - primo-principio.5
+    - primo-principio.6
+    - primo-principio.7
+  kind: orale
+  front:
+    it: "Esponi all'orale: «Primo principio della termodinamica»."
+    en: 'Present at the oral exam: “First law of thermodynamics”.'
+  back:
+    it: >-
+      L'energia interna è il conto in banca del sistema; calore e lavoro sono solo i due sportelli da cui
+      l'energia entra ed esce. Lo stato del conto non ricorda da quale sportello i soldi sono passati: per
+      questo U è funzione di stato mentre Q e W no. Il primo principio è la contabilità esatta: nessuna
+      energia si crea o si perde, si sposta.
+
+
+      **Scaletta:**
+
+
+      - Enunciare il principio con convenzione dei segni esplicita
+
+      - Spiegare perché U è funzione di stato e Q, W no (esperienze di Joule)
+
+      - Ricavare W = ∫p dV e la sua lettura grafica nel piano p-V
+
+      - Analizzare le quattro trasformazioni notevoli del gas perfetto
+
+      - Ricavare il lavoro isotermo con il logaritmo
+
+      - Derivare pV^γ = cost per le adiabatiche
+
+      - Discutere il ciclo (ΔU = 0) e l'espansione libera
+    en: >-
+      Internal energy is the system's bank account; heat and work are just the two counters through which
+      energy comes in and goes out. The balance does not remember which counter the money went through: that
+      is why U is a state function while Q and W are not. The first law is exact bookkeeping: no energy is
+      created or lost, it moves.
+
+
+      **Outline:**
+
+
+      - State the law with an explicit sign convention
+
+      - Explain why U is a state function and Q, W are not (Joule's experiments)
+
+      - Derive W = ∫p dV and its graphical reading in the p-V plane
+
+      - Analyse the four notable transformations of the ideal gas
+
+      - Derive the isothermal work with the logarithm
+
+      - Derive pV^γ = const for adiabatics
+
+      - Discuss the cycle (ΔU = 0) and free expansion
+- id: primo-principio-orale-1
+  topic: primo-principio
+  objectives:
+    - primo-principio.6
+    - primo-principio.7
+  kind: orale
+  front:
+    it: Perché un'adiabatica è più ripida di un'isoterma nello stesso punto del piano p-V?
+    en: Why is an adiabatic steeper than an isotherm at the same point of the p-V plane?
+  back:
+    it: >-
+      Sull'isoterma \(p = nRT/V\) e \(dp/dV = -p/V\); sull'adiabatica \(pV^\gamma = \text{cost}\) dà \(dp/dV =
+      -\gamma p/V\). Nello stesso punto la pendenza dell'adiabatica è γ > 1 volte quella dell'isoterma:
+      espandendosi adiabaticamente il gas si raffredda (paga il lavoro con l'energia interna), quindi la
+      pressione cala sia per il volume che cresce sia per la temperatura che scende.
+    en: >-
+      On the isotherm \(p = nRT/V\) and \(dp/dV = -p/V\); on the adiabatic \(pV^\gamma = \text{const}\) gives
+      \(dp/dV = -\gamma p/V\). At the same point the slope of the adiabatic is γ > 1 times that of the
+      isotherm: expanding adiabatically the gas cools (it pays for the work with internal energy), so pressure
+      drops both because volume grows and because temperature falls.
+- id: primo-principio-orale-2
+  topic: primo-principio
+  objectives:
+    - primo-principio.6
+    - primo-principio.7
+  kind: orale
+  front:
+    it: In un ciclo percorso in senso orario nel piano p-V il lavoro netto è positivo o negativo? Perché?
+    en: In a cycle traversed clockwise in the p-V plane, is the net work positive or negative? Why?
+  back:
+    it: >-
+      Positivo. Il lavoro netto è \(\oint p\,dV\), cioè l'area racchiusa: in senso orario l'espansione avviene
+      a pressione più alta (tratto superiore) e la compressione a pressione più bassa (tratto inferiore),
+      quindi il lavoro fatto dal gas supera quello subito. È il verso di una macchina termica; in senso
+      antiorario il ciclo assorbe lavoro (frigorifero).
+    en: >-
+      Positive. The net work is \(\oint p\,dV\), i.e. the enclosed area: clockwise, expansion happens at
+      higher pressure (upper branch) and compression at lower pressure (lower branch), so the work done by the
+      gas exceeds the work done on it. This is the direction of a heat engine; counterclockwise the cycle
+      absorbs work (refrigerator).
+- id: primo-principio-orale-3
+  topic: primo-principio
+  objectives:
+    - primo-principio.6
+    - primo-principio.7
+  kind: orale
+  front:
+    it: >-
+      Che differenza c'è tra l'espansione adiabatica quasi-statica e l'espansione libera di Joule, se entrambe
+      hanno Q = 0?
+    en: >-
+      What is the difference between quasi-static adiabatic expansion and Joule's free expansion, if both have
+      Q = 0?
+  back:
+    it: >-
+      Nell'adiabatica quasi-statica il gas spinge un pistone e compie lavoro \(W = -\Delta U > 0\): si
+      raffredda e la trasformazione è reversibile (\(pV^\gamma = \text{cost}\)). Nell'espansione libera il gas
+      si espande nel vuoto senza spingere nulla: W = 0, ΔU = 0, T invariata per il gas perfetto; la
+      trasformazione è irreversibile, gli stati intermedi non sono di equilibrio e l'entropia aumenta di
+      \(nR\ln(V_2/V_1)\).
+    en: >-
+      In the quasi-static adiabatic the gas pushes a piston and does work \(W = -\Delta U > 0\): it cools and
+      the transformation is reversible (\(pV^\gamma = \text{const}\)). In free expansion the gas expands into
+      vacuum pushing nothing: W = 0, ΔU = 0, T unchanged for the ideal gas; the transformation is
+      irreversible, the intermediate states are not equilibrium states and entropy increases by
+      \(nR\ln(V_2/V_1)\).
+- id: primo-principio-definizione
+  topic: primo-principio
+  objectives:
+    - primo-principio.1
+  kind: definizione
+  front:
+    it: 'Definizione: Primo principio della termodinamica'
+    en: 'Definition: First law of thermodynamics'
+  back:
+    it: >-
+      Il primo principio della termodinamica è la conservazione dell'energia estesa ai fenomeni termici: la
+      variazione di energia interna di un sistema è \(\Delta U = Q - W\), dove Q è il calore assorbito DAL
+      sistema e W il lavoro compiuto DAL sistema (convenzione usuale in Fisica 1). U è una funzione di stato
+      (dipende solo dallo stato del sistema), mentre Q e W dipendono dalla trasformazione: in forma
+      infinitesima \(dU = \delta Q - \delta W\), con δ a ricordare che calore e lavoro non sono differenziali
+      esatti.
+    en: >-
+      The first law of thermodynamics is the conservation of energy extended to thermal phenomena: the change
+      in internal energy of a system is \(\Delta U = Q - W\), where Q is the heat absorbed BY the system and W
+      the work done BY the system (the usual convention in Physics 1). U is a state function (it depends only
+      on the state of the system), while Q and W depend on the transformation: in infinitesimal form \(dU =
+      \delta Q - \delta W\), with δ reminding us that heat and work are not exact differentials.
+- id: primo-principio-formule
+  topic: primo-principio
+  objectives:
+    - primo-principio.1
+    - primo-principio.2
+    - primo-principio.3
+    - primo-principio.4
+    - primo-principio.5
+    - primo-principio.6
+    - primo-principio.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Primo principio della termodinamica»
+    en: The key formulas of “First law of thermodynamics”
+  back:
+    it: |-
+      - \(\Delta U = Q - W\)
+      - \(W = \int p\,dV\)
+      - \(Q_{isot} = nRT\ln\frac{V_2}{V_1}\)
+      - \(pV^\gamma = \text{cost},\; TV^{\gamma-1} = \text{cost}\)
+    en: |-
+      - \(\Delta U = Q - W\)
+      - \(W = \int p\,dV\)
+      - \(Q_{isoth} = nRT\ln\frac{V_2}{V_1}\)
+      - \(pV^\gamma = \text{const},\; TV^{\gamma-1} = \text{const}\)
+- id: primo-principio-ipotesi
+  topic: primo-principio
+  objectives:
+    - primo-principio.1
+    - primo-principio.2
+    - primo-principio.3
+    - primo-principio.4
+    - primo-principio.5
+    - primo-principio.6
+    - primo-principio.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Primo principio della termodinamica'
+    en: 'Validity assumptions: First law of thermodynamics'
+  back:
+    it: >-
+      Sistema chiuso (non scambia materia); per W = ∫p dV trasformazioni quasi-statiche (p definita a ogni
+      istante); convenzione dei segni dichiarata esplicitamente (Q > 0 assorbito, W > 0 compiuto dal sistema).
+    en: >-
+      Closed system (no exchange of matter); for W = ∫p dV quasi-static transformations (p defined at every
+      instant); sign convention stated explicitly (Q > 0 absorbed, W > 0 done by the system).
+- id: primo-principio-casi-limite
+  topic: primo-principio
+  objectives:
+    - primo-principio.1
+    - primo-principio.2
+    - primo-principio.3
+    - primo-principio.4
+    - primo-principio.5
+    - primo-principio.6
+    - primo-principio.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Primo principio della termodinamica'
+    en: 'Limiting cases: First law of thermodynamics'
+  back:
+    it: >-
+      Trasformazione ciclica: ΔU = 0 ⇒ Q = W (tutto il calore netto diventa lavoro netto e viceversa).
+      Adiabatica: Q = 0. Espansione libera (nel vuoto): W = 0 e Q = 0 ⇒ ΔU = 0, ma NON è quasi-statica: niente
+      W = ∫p dV.
+    en: >-
+      Cyclic transformation: ΔU = 0 ⇒ Q = W (all the net heat becomes net work and vice versa). Adiabatic: Q =
+      0. Free expansion (into vacuum): W = 0 and Q = 0 ⇒ ΔU = 0, but it is NOT quasi-static: no W = ∫p dV.
+- id: primo-principio-errori
+  topic: primo-principio
+  objectives:
+    - primo-principio.1
+    - primo-principio.2
+    - primo-principio.3
+    - primo-principio.4
+    - primo-principio.5
+    - primo-principio.6
+    - primo-principio.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Primo principio della termodinamica'
+    en: 'Mistakes to avoid: First law of thermodynamics'
+  back:
+    it: |-
+      - Confondere le convenzioni dei segni (ΔU = Q − W vs Q + W a seconda della definizione di W).
+      - Trattare Q e W come funzioni di stato: 'il calore contenuto in un corpo' non esiste.
+      - Usare W = pΔV in trasformazioni non isobare.
+      - Applicare W = ∫p dV all'espansione libera, che non è quasi-statica.
+      - Usare c_p per calcolare ΔU.
+    en: |-
+      - Confusing sign conventions (ΔU = Q − W vs Q + W depending on how W is defined).
+      - Treating Q and W as state functions: 'the heat contained in a body' does not exist.
+      - Using W = pΔV in non-isobaric transformations.
+      - Applying W = ∫p dV to free expansion, which is not quasi-static.
+      - Using c_p to compute ΔU.

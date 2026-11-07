@@ -1,0 +1,245 @@
+- id: momento-angolare-esposizione
+  topic: momento-angolare
+  objectives:
+    - momento-angolare.1
+    - momento-angolare.2
+    - momento-angolare.3
+    - momento-angolare.4
+    - momento-angolare.5
+    - momento-angolare.6
+    - momento-angolare.7
+  kind: orale
+  front:
+    it: "Esponi all'orale: «Momento di una forza e momento angolare»."
+    en: 'Present at the oral exam: “Torque and angular momentum”.'
+  back:
+    it: >-
+      Il momento di una forza misura la sua efficacia nel far ruotare: la stessa forza 'rende' di più se
+      applicata lontano dal perno e perpendicolarmente (per questo le maniglie stanno sul bordo delle porte).
+      Il momento angolare è la 'quantità di rotazione' immagazzinata; τ = dL/dt dice che per cambiarla serve
+      un momento, esattamente come serve una forza per cambiare la quantità di moto.
+
+
+      **Scaletta:**
+
+
+      - Definire τ = r × F e il concetto di braccio
+
+      - Definire L = r × p e sottolineare la dipendenza dal polo
+
+      - Dimostrare dL/dt = τ per polo fisso
+
+      - Spiegare il caso delle forze centrali e la conservazione di L
+
+      - Mostrare che un moto rettilineo ha L costante rispetto a qualunque polo
+
+      - Enunciare il termine correttivo per polo mobile
+
+      - Collegare alla II legge di Keplero (velocità areolare costante)
+    en: >-
+      Torque measures how effective a force is at making things rotate: the same force 'pays off' more if
+      applied far from the pivot and perpendicularly (that is why door handles are on the edge of doors).
+      Angular momentum is the stored 'amount of rotation'; τ = dL/dt says that changing it requires a torque,
+      exactly as changing momentum requires a force.
+
+
+      **Outline:**
+
+
+      - Define τ = r × F and the concept of lever arm
+
+      - Define L = r × p and stress the dependence on the pole
+
+      - Prove dL/dt = τ for a fixed pole
+
+      - Explain the case of central forces and the conservation of L
+
+      - Show that a rectilinear motion has constant L about any pole
+
+      - State the correction term for a moving pole
+
+      - Link to Kepler's second law (constant areal velocity)
+- id: momento-angolare-orale-1
+  topic: momento-angolare
+  objectives:
+    - momento-angolare.6
+    - momento-angolare.7
+  kind: orale
+  front:
+    it: Perché nel moto dei pianeti la velocità areolare è costante?
+    en: Why is the areal velocity constant in planetary motion?
+  back:
+    it: >-
+      L'area spazzata dal raggio vettore in dt è \(dA = \tfrac12|\vec r\times d\vec r| = \tfrac12|\vec
+      r\times\vec v|dt\), quindi \(dA/dt = L/2m\). La gravità del Sole è centrale, il suo momento rispetto al
+      Sole è nullo e L è costante: la velocità areolare è costante (II legge di Keplero) e l'orbita giace in
+      un piano fisso perpendicolare a \(\vec L\). Il pianeta è più veloce al perielio e più lento all'afelio.
+    en: >-
+      The area swept by the position vector in dt is \(dA = \tfrac12|\vec r\times d\vec r| = \tfrac12|\vec
+      r\times\vec v|dt\), so \(dA/dt = L/2m\). The Sun's gravity is central, its torque about the Sun is zero
+      and L is constant: the areal velocity is constant (Kepler's second law) and the orbit lies in a fixed
+      plane perpendicular to \(\vec L\). The planet is faster at perihelion and slower at aphelion.
+- id: momento-angolare-orale-2
+  topic: momento-angolare
+  objectives:
+    - momento-angolare.6
+    - momento-angolare.7
+  kind: orale
+  front:
+    it: Come cambia L se cambio polo?
+    en: How does L change if you change pole?
+  back:
+    it: >-
+      Con \(\vec r' = \vec r + \overrightarrow{O'O}\) si ottiene \(\vec L' = \vec r'\times\vec p = \vec L + (O
+      - O')\times\vec p\). Il momento angolare non cambia cambiando polo solo se \(\vec p = 0\) o se lo
+      spostamento del polo è parallelo a \(\vec p\). Per un sistema con \(\vec P_{tot} = 0\) (es. nel
+      riferimento del centro di massa) L è indipendente dal polo.
+    en: >-
+      With \(\vec r' = \vec r + \overrightarrow{O'O}\) one gets \(\vec L' = \vec r'\times\vec p = \vec L + (O
+      - O')\times\vec p\). Angular momentum does not change with the pole only if \(\vec p = 0\) or if the
+      shift of the pole is parallel to \(\vec p\). For a system with \(\vec P_{tot} = 0\) (e.g. in the
+      centre-of-mass frame) L is independent of the pole.
+- id: momento-angolare-orale-3
+  topic: momento-angolare
+  objectives:
+    - momento-angolare.6
+    - momento-angolare.7
+  kind: orale
+  front:
+    it: 'Una pattinatrice che chiude le braccia gira più veloce: quale grandezza si conserva e perché?'
+    en: 'A skater pulling in her arms spins faster: which quantity is conserved and why?'
+  back:
+    it: >-
+      Si conserva il momento angolare rispetto all'asse di rotazione: il ghiaccio esercita forze con momento
+      trascurabile rispetto all'asse verticale (attrito minimo, peso e normale paralleli all'asse). Chiudendo
+      le braccia la pattinatrice riduce il momento d'inerzia I, quindi \(L = I\omega\) costante impone un
+      aumento di ω. L'energia cinetica \(L^2/2I\) invece aumenta: la fornisce il lavoro dei muscoli che tirano
+      le braccia verso l'asse.
+    en: >-
+      Angular momentum about the rotation axis is conserved: the ice exerts forces with negligible torque
+      about the vertical axis (minimal friction, weight and normal force parallel to the axis). Pulling in her
+      arms the skater reduces her moment of inertia I, so constant \(L = I\omega\) requires ω to increase.
+      Kinetic energy \(L^2/2I\), instead, increases: it is supplied by the work of the muscles pulling the
+      arms towards the axis.
+- id: momento-angolare-definizione
+  topic: momento-angolare
+  objectives:
+    - momento-angolare.1
+  kind: definizione
+  front:
+    it: 'Definizione: Momento di una forza e momento angolare'
+    en: 'Definition: Torque and angular momentum'
+  back:
+    it: >-
+      Rispetto a un polo O, il momento di una forza \(\vec{F}\) applicata nel punto P è \(\vec{\tau} =
+      \vec{r}\times\vec{F}\), con \(\vec{r} = \vec{OP}\); il suo modulo è \(\tau = rF\sin\theta = Fb\), dove b
+      è il braccio (distanza del polo dalla retta d'azione). Il momento angolare di un punto materiale è
+      \(\vec{L} = \vec{r}\times m\vec{v} = \vec{r}\times\vec{p}\). Entrambi dipendono dalla scelta del polo.
+    en: >-
+      With respect to a pole O, the torque (moment) of a force \(\vec{F}\) applied at point P is \(\vec{\tau}
+      = \vec{r}\times\vec{F}\), with \(\vec{r} = \vec{OP}\); its magnitude is \(\tau = rF\sin\theta = Fb\),
+      where b is the lever arm (distance from the pole to the line of action). The angular momentum of a point
+      particle is \(\vec{L} = \vec{r}\times m\vec{v} = \vec{r}\times\vec{p}\). Both depend on the choice of
+      pole.
+- id: momento-angolare-formule
+  topic: momento-angolare
+  objectives:
+    - momento-angolare.1
+    - momento-angolare.2
+    - momento-angolare.3
+    - momento-angolare.4
+    - momento-angolare.5
+    - momento-angolare.6
+    - momento-angolare.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Momento di una forza e momento angolare»
+    en: The key formulas of “Torque and angular momentum”
+  back:
+    it: |-
+      - \(\vec{\tau} = \vec{r}\times\vec{F},\; |\vec{\tau}| = Fb\)
+      - \(\vec{L} = \vec{r}\times m\vec{v}\)
+      - \(\frac{d\vec{L}}{dt} = \vec{\tau}\)
+      - \(\vec{F}\text{ centrale} \Rightarrow \vec{L} = \text{cost}\)
+    en: |-
+      - \(\vec{\tau} = \vec{r}\times\vec{F},\; |\vec{\tau}| = Fb\)
+      - \(\vec{L} = \vec{r}\times m\vec{v}\)
+      - \(\frac{d\vec{L}}{dt} = \vec{\tau}\)
+      - \(\vec{F}\text{ central} \Rightarrow \vec{L} = \text{const}\)
+- id: momento-angolare-ipotesi
+  topic: momento-angolare
+  objectives:
+    - momento-angolare.1
+    - momento-angolare.2
+    - momento-angolare.3
+    - momento-angolare.4
+    - momento-angolare.5
+    - momento-angolare.6
+    - momento-angolare.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Momento di una forza e momento angolare'
+    en: 'Validity assumptions: Torque and angular momentum'
+  back:
+    it: >-
+      Punto materiale in meccanica classica; polo O fisso in un sistema inerziale (altrimenti termine
+      correttivo); r misurato dal polo scelto.
+    en: >-
+      Point particle in classical mechanics; pole O fixed in an inertial frame (otherwise a correction term
+      appears); r measured from the chosen pole.
+- id: momento-angolare-casi-limite
+  topic: momento-angolare
+  objectives:
+    - momento-angolare.1
+    - momento-angolare.2
+    - momento-angolare.3
+    - momento-angolare.4
+    - momento-angolare.5
+    - momento-angolare.6
+    - momento-angolare.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Momento di una forza e momento angolare'
+    en: 'Limiting cases: Torque and angular momentum'
+  back:
+    it: >-
+      Forza con retta d'azione passante per il polo: momento nullo anche se F ≠ 0. Moto rettilineo uniforme: L
+      = mvb costante (b = distanza polo-retta), il momento angolare non richiede rotazione. Moto circolare col
+      polo nel centro: L = mvr = mr²ω, tutto perpendicolare al piano.
+    en: >-
+      A force whose line of action passes through the pole: zero torque even if F ≠ 0. Uniform rectilinear
+      motion: L = mvb constant (b = distance from pole to line), angular momentum does not require rotation.
+      Circular motion with the pole at the centre: L = mvr = mr²ω, entirely perpendicular to the plane.
+- id: momento-angolare-errori
+  topic: momento-angolare
+  objectives:
+    - momento-angolare.1
+    - momento-angolare.2
+    - momento-angolare.3
+    - momento-angolare.4
+    - momento-angolare.5
+    - momento-angolare.6
+    - momento-angolare.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Momento di una forza e momento angolare'
+    en: 'Mistakes to avoid: Torque and angular momentum'
+  back:
+    it: >-
+      - Dimenticare che τ e L dipendono dal polo e confrontare momenti calcolati rispetto a poli diversi.
+
+      - Calcolare τ = rF invece che rF sin θ (dimenticare il braccio).
+
+      - Credere che L ≠ 0 implichi moto curvo: anche un moto rettilineo ha momento angolare rispetto a un polo
+      esterno.
+
+      - Sbagliare il verso col prodotto vettoriale: usare la regola della mano destra.
+    en: >-
+      - Forgetting that τ and L depend on the pole and comparing moments computed about different poles.
+
+      - Computing τ = rF instead of rF sin θ (forgetting the lever arm).
+
+      - Believing that L ≠ 0 implies curved motion: even rectilinear motion has angular momentum about an
+      external pole.
+
+      - Getting the direction of the cross product wrong: use the right-hand rule.

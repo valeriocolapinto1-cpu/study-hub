@@ -1,0 +1,181 @@
+---
+course: fisica-1
+topic: urti-centrali
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/urti-centrali/idea">
+
+In ogni urto la quantità di moto è sacra (le forze interne si scambiano impulsi uguali e opposti), mentre l'energia cinetica è negoziabile: può finire in deformazioni, suono, calore. La scomposizione di König chiarisce il bilancio: l'energia 'del CM' è protetta dalla conservazione di P; solo l'energia del moto relativo può essere spesa — e l'urto perfettamente anelastico la spende tutta.
+
+</div>
+
+<div class="muted" data-note-id="teoria/urti-centrali/prerequisiti">
+
+**Prima di questo argomento:** [Centro di massa e prima equazione cardinale](../centro-di-massa/)
+
+</div>
+
+<Callout tone="nota" title="Vedi in azione">
+
+[Apri la simulazione interattiva](../../extra/simulazioni/#sim-urti)
+
+</Callout>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/urti-centrali/definizioni">
+
+## Definizioni
+
+Un urto è un'interazione impulsiva tra due corpi, di durata così breve che le forze esterne sono trascurabili rispetto a quelle interne: la quantità di moto totale si conserva SEMPRE. L'urto è elastico se si conserva anche l'energia cinetica, anelastico se parte di K si converte in altre forme, perfettamente anelastico se i corpi restano attaccati (massima perdita di K compatibile con la conservazione di P). Un urto è centrale (frontale) se le velocità giacciono sulla congiungente dei centri: il problema è unidimensionale.
+
+</div>
+
+<div data-note-id="teoria/urti-centrali/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Conservazione della quantità di moto (sempre)</summary>
+
+$$
+m_1v_1 + m_2v_2 = m_1v_1' + m_2v_2'
+$$
+
+Durante l'urto le forze interne (impulsive) dominano su quelle esterne: P totale invariata. Vale per qualunque tipo di urto.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Urto elastico: aggiungo la conservazione di K</summary>
+
+$$
+\frac{1}{2}m_1v_1^2 + \frac{1}{2}m_2v_2^2 = \frac{1}{2}m_1v_1'^2 + \frac{1}{2}m_2v_2'^2
+$$
+
+Due equazioni, due incognite: il problema è determinato.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Trucco algebrico: riorganizzo le due equazioni</summary>
+
+$$
+m_1(v_1 - v_1') = m_2(v_2' - v_2), \qquad m_1(v_1^2 - v_1'^2) = m_2(v_2'^2 - v_2^2)
+$$
+
+Dividendo membro a membro (differenza di quadrati): v₁ + v₁' = v₂ + v₂'.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · La velocità relativa si inverte</summary>
+
+$$
+v_1' - v_2' = -(v_1 - v_2)
+$$
+
+Firma dell'urto elastico 1D: la velocità relativa cambia segno mantenendo il modulo (coefficiente di restituzione e = 1).
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Soluzione generale dell'urto elastico 1D</summary>
+
+$$
+v_1' = \frac{m_1 - m_2}{m_1 + m_2}v_1 + \frac{2m_2}{m_1 + m_2}v_2, \qquad v_2' = \frac{2m_1}{m_1 + m_2}v_1 + \frac{m_2 - m_1}{m_1 + m_2}v_2
+$$
+
+Casi notevoli (v₂ = 0): masse uguali → si scambiano le velocità; m₁ ≪ m₂ → rimbalzo (v₁' ≈ −v₁); m₁ ≫ m₂ → il bersaglio schizza a v₂' ≈ 2v₁.
+
+</details>
+
+<details id="passo-6">
+<summary>Passo 6 · Urto perfettamente anelastico</summary>
+
+$$
+v' = \frac{m_1v_1 + m_2v_2}{m_1 + m_2} = v_{cm}, \qquad \Delta K = -\frac{1}{2}\mu(v_1 - v_2)^2,\;\; \mu = \frac{m_1m_2}{m_1+m_2}
+$$
+
+I corpi proseguono attaccati alla velocità del CM. L'energia dissipata è tutta quella del moto relativo (½μv_rel²): il termine di König del CM non può essere intaccato perché P si conserva.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/urti-centrali/ipotesi">
+
+## Ipotesi di validità
+
+Forze esterne trascurabili durante l'urto (approssimazione impulsiva); urto centrale → problema 1D; corpi puntiformi o comunque senza rotazioni indotte.
+
+</div>
+
+<div data-note-id="teoria/urti-centrali/casi-limite">
+
+## Casi limite
+
+Urto elastico con bersaglio infinitamente massivo: inversione pura della velocità (palla contro muro). Masse uguali elastico: scambio delle velocità (biliardo, pendolo di Newton). Anelastico con corpi che partono l'uno contro l'altro con P totale nulla: si fermano entrambi, K interamente dissipata.
+
+</div>
+
+<div data-note-id="teoria/urti-centrali/formule">
+
+## Formule chiave
+
+<Formula id="urti-centrali-f1" />
+
+<Formula id="urti-centrali-f2" />
+
+<Formula id="urti-centrali-f3" />
+
+<Formula id="urti-centrali-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/urti-centrali/esempio">
+
+Un carrello di massa m₁ = 0,40 kg viaggia a 2,0 m/s e urta elasticamente un carrello fermo di massa m₂ = 1,2 kg. Calcolare: (a) le velocità dopo l'urto; (b) la frazione di energia cinetica trasferita al secondo carrello.
+
+1. **Formule dell'urto elastico.** $v_1' = \dfrac{m_1 - m_2}{m_1 + m_2}v_1 = -1{,}0\ \text{m/s}$ (rimbalza), $v_2' = \dfrac{2m_1}{m_1 + m_2}v_1 = 1{,}0\ \text{m/s}$.
+2. **Energia trasferita.** $K_2'/K_1 = \dfrac{1{,}2 \cdot 1{,}0^2}{0{,}40 \cdot 2{,}0^2} = 0{,}75$. Verifica: la velocità relativa passa da −2 a +2 m/s. ✓
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/urti-centrali/errori">
+
+- Conservare l'energia cinetica in un urto anelastico.
+- Non conservare la quantità di moto 'perché c'è attrito col piano': durante l'urto le forze impulsive dominano.
+- Usare le formule dell'urto elastico con v₂ = 0 anche quando il bersaglio si muove.
+- Dimenticare che nell'urto perfettamente anelastico la perdita di K è determinata, non arbitraria.
+
+</div>
+
+<div data-note-id="teoria/urti-centrali/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Perché nel sistema del centro di massa l'urto elastico si descrive come semplice inversione delle velocità?
+- Nel pendolo di Newton perché cade una sola sfera dall'altra parte e non due a velocità metà?
+- Come si generalizza l'urto elastico in 2D e perché servono più informazioni (parametro d'urto)?
+
+</div>
+
+</Layer>

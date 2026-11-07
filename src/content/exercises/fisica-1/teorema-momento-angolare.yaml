@@ -1,0 +1,130 @@
+- id: carrucola-massiva
+  topic: teorema-momento-angolare
+  objectives:
+    - teorema-momento-angolare.1
+    - teorema-momento-angolare.2
+    - teorema-momento-angolare.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Un secchio di massa m = 4,0 kg è appeso a una corda avvolta su un argano a forma di disco di massa M =
+      6,0 kg e raggio R = 0,15 m, libero di ruotare senza attrito attorno al proprio asse. Il secchio viene
+      lasciato scendere da fermo. Calcolare: (a) l'accelerazione del secchio; (b) la tensione della corda; (c)
+      la velocità angolare dell'argano dopo che il secchio è sceso di 2,0 m.
+    en: >-
+      A bucket of mass m = 4.0 kg hangs from a rope wound on a winch shaped like a disc of mass M = 6.0 kg and
+      radius R = 0.15 m, free to rotate without friction about its axis. The bucket is released from rest.
+      Find: (a) the acceleration of the bucket; (b) the tension in the rope; (c) the angular velocity of the
+      winch after the bucket has descended 2.0 m.
+  steps:
+    - title:
+        it: Equazioni del moto
+        en: Equations of motion
+      body:
+        it: >-
+          Secchio: \(mg - T = ma\). Argano: \(TR = I\alpha = \tfrac12 MR^2\,(a/R)\), cioè \(T = \tfrac12 Ma\).
+          Sommando: \(a = \dfrac{mg}{m + M/2} = \dfrac{39{,}24}{7{,}0} \approx 5{,}61\ \text{m/s}^2\).
+        en: >-
+          Bucket: \(mg - T = ma\). Winch: \(TR = I\alpha = \tfrac12 MR^2\,(a/R)\), i.e. \(T = \tfrac12 Ma\).
+          Adding: \(a = \dfrac{mg}{m + M/2} = \dfrac{39.24}{7.0} \approx 5.61\ \text{m/s}^2\).
+    - title:
+        it: Tensione
+        en: Tension
+      body:
+        it: \(T = \tfrac12 Ma \approx 16{,}8\ \text{N}\), minore del peso del secchio (39,2 N).
+        en: \(T = \tfrac12 Ma \approx 16.8\ \text{N}\), less than the weight of the bucket (39.2 N).
+    - title:
+        it: Velocità angolare
+        en: Angular velocity
+      body:
+        it: \(v = \sqrt{2ah} \approx 4{,}74\ \text{m/s}\), \(\omega = v/R \approx 31{,}6\ \text{rad/s}\).
+        en: \(v = \sqrt{2ah} \approx 4.74\ \text{m/s}\), \(\omega = v/R \approx 31.6\ \text{rad/s}\).
+  answer:
+    - label:
+        it: a
+        en: a
+      value: 5.61
+      unit: m/s²
+    - label:
+        it: T
+        en: T
+      value: 16.8
+      unit: 'N'
+    - label:
+        it: ω
+        en: ω
+      value: 31.6
+      unit: rad/s
+  origin: originale
+- id: pattinatrice-braccia
+  topic: teorema-momento-angolare
+  objectives:
+    - teorema-momento-angolare.1
+    - teorema-momento-angolare.2
+    - teorema-momento-angolare.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Una pattinatrice ruota a 2,0 giri/s con le braccia aperte (I₁ = 3,6 kg·m²). Chiudendo le braccia porta
+      il momento d'inerzia a I₂ = 1,2 kg·m². Calcolare: (a) la nuova frequenza di rotazione; (b) l'energia
+      cinetica iniziale e finale; (c) il lavoro fatto dai muscoli.
+    en: >-
+      A skater spins at 2.0 rev/s with open arms (I₁ = 3.6 kg·m²). Pulling her arms in she reduces her moment
+      of inertia to I₂ = 1.2 kg·m². Find: (a) the new rotation frequency; (b) the initial and final kinetic
+      energy; (c) the work done by the muscles.
+  steps:
+    - title:
+        it: Conservazione di L
+        en: Conservation of L
+      body:
+        it: \(I_1\omega_1 = I_2\omega_2 \Rightarrow \nu_2 = \nu_1 I_1/I_2 = 6{,}0\ \text{giri/s}\).
+        en: \(I_1\omega_1 = I_2\omega_2 \Rightarrow \nu_2 = \nu_1 I_1/I_2 = 6.0\ \text{rev/s}\).
+    - title:
+        it: Energie
+        en: Energies
+      body:
+        it: >-
+          \(\omega_1 = 4\pi\ \text{rad/s}\): \(K_1 = \tfrac12 I_1\omega_1^2 \approx 284\ \text{J}\);
+          \(\omega_2 = 12\pi\): \(K_2 \approx 853\ \text{J}\) (tre volte tanto).
+        en: >-
+          \(\omega_1 = 4\pi\ \text{rad/s}\): \(K_1 = \tfrac12 I_1\omega_1^2 \approx 284\ \text{J}\);
+          \(\omega_2 = 12\pi\): \(K_2 \approx 853\ \text{J}\) (three times as much).
+    - title:
+        it: Lavoro
+        en: Work
+      body:
+        it: \(W = K_2 - K_1 \approx 569\ \text{J}\), fornito dai muscoli.
+        en: \(W = K_2 - K_1 \approx 569\ \text{J}\), supplied by the muscles.
+  answer:
+    - label:
+        it: ν₂
+        en: ν₂
+      value: 6
+      unit: Hz
+    - label:
+        it: K₁
+        en: K₁
+      value: 284
+      unit: J
+    - label:
+        it: K₂
+        en: K₂
+      value: 853
+      unit: J
+    - label:
+        it: W
+        en: W
+      value: 569
+      unit: J
+  origin: originale
+- id: carrucola-massiva-variante
+  topic: teorema-momento-angolare
+  objectives:
+    - teorema-momento-angolare.1
+    - teorema-momento-angolare.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/carrucola-massiva
+  origin: tipologia-appello

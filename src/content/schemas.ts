@@ -100,6 +100,8 @@ export const formulaSchema = z.strictObject({
   topic: kebabId,
   objectives: z.array(objectiveId).optional(),
   latex: z.string().min(1),
+  /** Variante inglese, solo se `latex` contiene parole italiane (`\\text{…}`). */
+  latexEn: z.string().min(1).optional(),
   label: localized,
   note: localized.optional(),
   /** Significato dei simboli e unità di misura. */

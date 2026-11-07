@@ -1,0 +1,171 @@
+---
+course: fisica-1
+topic: teorema-di-carnot
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/teorema-di-carnot/idea">
+
+The theorem puts a universal ceiling on efficiency: however ingenious the design, efficiency is limited by the temperature difference alone. The trick of the proof is elegant: if someone built an engine better than Carnot's, coupling it to a reversed Carnot engine would give a free heat pump — and nature, by the second law, gives no free lunches.
+
+</div>
+
+<div class="muted" data-note-id="teoria/teorema-di-carnot/prerequisiti">
+
+**Before this topic:** [Second law of thermodynamics](../secondo-principio/) · [Carnot cycle](../ciclo-di-carnot/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/teorema-di-carnot/definizioni">
+
+## Definitions
+
+Carnot's theorem states: (1) no heat engine working between two reservoirs can have an efficiency greater than the reversible Carnot engine working between the same reservoirs; (2) all reversible engines between the same two reservoirs have the same efficiency, $\eta_{rev} = 1 - T_F/T_C$, independent of the fluid and the mechanism. The theorem founds the absolute thermodynamic temperature scale.
+
+</div>
+
+<div data-note-id="teoria/teorema-di-carnot/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Setting up a proof by contradiction</summary>
+
+$$
+\text{Assumption: } \eta_X > \eta_{rev}
+$$
+
+Suppose there exists an engine X (of any kind) more efficient than the reversible engine R between the same reservoirs T_C and T_F.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Reverse the reversible engine</summary>
+
+$$
+R \to R^{-1}: \;\text{absorbs } W,\; \text{takes } Q_F,\; \text{releases } Q_C
+$$
+
+R is reversible: I can run it as a refrigerator with the same exchanges with opposite signs. I drive it with the work produced by X.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Balance of the composite system X + R⁻¹</summary>
+
+$$
+\eta_X > \eta_R \Rightarrow \frac{W}{Q_C^X} > \frac{W}{Q_C^R} \Rightarrow Q_C^X < Q_C^R
+$$
+
+Size R⁻¹ so that it uses exactly the work W produced by X. For the same W, the 'better' engine takes less heat from the hot reservoir than R⁻¹ returns to it.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Contradiction with Clausius</summary>
+
+$$
+Q_{net,\,C} = Q_C^R - Q_C^X > 0 \;\text{flows into the hot reservoir}, \qquad W_{net} = 0
+$$
+
+The composite system, cyclic and with no net external work, transfers heat from the cold reservoir to the hot one as its only result: it violates the Clausius statement. Hence η_X ≤ η_rev.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Second part: all reversible engines are equivalent</summary>
+
+$$
+\eta_{R_1} \le \eta_{R_2} \;\text{and}\; \eta_{R_2} \le \eta_{R_1} \;\Rightarrow\; \eta_{R_1} = \eta_{R_2}
+$$
+
+If R₁ and R₂ are both reversible, apply the argument both ways (each can act as the refrigerator for the other): the efficiencies must coincide. Since for the ideal gas η = 1 − T_F/T_C, this is the efficiency of EVERY reversible engine.
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Consequence: absolute thermodynamic temperature</summary>
+
+$$
+\frac{|Q_F|}{Q_C} = \frac{T_F}{T_C}
+$$
+
+The ratio of the heats exchanged by a reversible engine depends only on the temperatures: the temperature scale can be DEFINED through heats, without reference to any substance. The scale coincides with the ideal-gas one.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/teorema-di-carnot/ipotesi">
+
+## Validity assumptions
+
+Validity of the second law (Clausius or Kelvin–Planck statement); two ideal thermal reservoirs at fixed temperatures; cyclic machines. Engine X is completely arbitrary (real, irreversible, any fluid).
+
+</div>
+
+<div data-note-id="teoria/teorema-di-carnot/casi-limite">
+
+## Limiting cases
+
+Irreversible engine: η &lt; η_rev strictly (friction, finite temperature jumps). Reversible engine: η = 1 − T_F/T_C exactly. The theorem says nothing about power: the ideal Carnot engine is infinitely slow.
+
+</div>
+
+<div data-note-id="teoria/teorema-di-carnot/formule">
+
+## Key formulas
+
+<Formula id="teorema-di-carnot-f1" />
+
+<Formula id="teorema-di-carnot-f2" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/teorema-di-carnot/esempio">
+
+An inventor claims an engine that, working between 500 K and 300 K, absorbs 10 kJ per cycle and produces 4.5 kJ of work. Find: (a) the claimed efficiency; (b) the maximum theoretical efficiency; (c) the maximum work per cycle for the same absorbed heat. Is the claim credible?
+
+1. **Comparison with Carnot.** $\eta_{claim} = 4.5/10 = 0.45$; $\eta_{rev} = 1 - 300/500 = 0.40$. The maximum work is $0.40 \cdot 10 = 4.0\ \text{kJ}$.
+2. **Verdict.** The claimed efficiency exceeds Carnot's: by Carnot's theorem the engine is impossible (it would violate the second law).
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/teorema-di-carnot/errori">
+
+- Proving the theorem using only the ideal-gas Carnot cycle: the strength of the theorem is its universality, which requires the argument by contradiction.
+- Forgetting that reversing requires R to be reversible: a real engine cannot be 'run backwards' with the same exchanges.
+- Concluding that all engines have η = 1 − T_F/T_C: only reversible ones; the others fall below.
+- Neglecting the clause 'same two reservoirs'.
+
+</div>
+
+<div data-note-id="teoria/teorema-di-carnot/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- In what sense does Carnot's theorem allow temperature to be defined without gas thermometers?
+- A thermal power plant works between 800 K and 300 K: what is the theoretical ceiling on its efficiency, and why is the real one lower?
+- Does the theorem also hold for engines exchanging heat with more than two reservoirs?
+
+</div>
+
+</Layer>

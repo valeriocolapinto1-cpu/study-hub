@@ -1,0 +1,178 @@
+---
+course: fisica-1
+topic: moto-armonico
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/moto-armonico/idea">
+
+Harmonic motion arises whenever a system displaced from equilibrium feels a restoring action proportional to the displacement. It is the 'universal building block' of oscillations: any smooth potential is approximately parabolic near a minimum, so almost every system oscillates harmonically for small perturbations.
+
+</div>
+
+<Callout tone="nota" title="See it in action">
+
+[Open the interactive simulation](../../extra/simulazioni/#sim-moto-armonico)
+
+</Callout>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/moto-armonico/definizioni">
+
+## Definitions
+
+A rectilinear motion is called simple harmonic when the position varies sinusoidally in time: $x(t) = A\cos(\omega t + \varphi)$. A is the amplitude (maximum displacement from the equilibrium position), ω the angular frequency (rad/s), $\varphi$ the initial phase (it fixes position and velocity at t = 0), $T = 2\pi/\omega$ the period and $\nu = 1/T$ the frequency. Harmonic motion is the solution of the differential equation $\ddot{x} = -\omega^2 x$.
+
+</div>
+
+<div data-note-id="teoria/moto-armonico/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Characteristic equation of harmonic motion</summary>
+
+$$
+\ddot{x}(t) = -\omega^2\, x(t)
+$$
+
+Dynamical definition: the acceleration is proportional to minus the position. Every system obeying this equation performs harmonic motion.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Checking that the sinusoid is a solution</summary>
+
+$$
+x = A\cos(\omega t + \varphi) \;\Rightarrow\; \dot{x} = -A\omega\sin(\omega t + \varphi) \;\Rightarrow\; \ddot{x} = -A\omega^2\cos(\omega t + \varphi) = -\omega^2 x
+$$
+
+Differentiating twice gives back the function multiplied by −ω²: the general solution has two free constants, A and φ, fixed by the initial conditions.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Determining A and φ from the initial conditions</summary>
+
+$$
+x_0 = A\cos\varphi, \quad v_0 = -A\omega\sin\varphi \;\Rightarrow\; A = \sqrt{x_0^2 + \frac{v_0^2}{\omega^2}}, \quad \tan\varphi = -\frac{v_0}{\omega x_0}
+$$
+
+Square and add to eliminate φ; divide to eliminate A. The initial conditions determine the motion completely.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Periodicity</summary>
+
+$$
+x(t + T) = x(t) \iff \omega T = 2\pi \;\Rightarrow\; T = \frac{2\pi}{\omega}, \qquad \nu = \frac{1}{T} = \frac{\omega}{2\pi}
+$$
+
+The cosine is 2π-periodic: the period does not depend on the amplitude (isochronism).
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Maximum velocity and acceleration</summary>
+
+$$
+v_{max} = A\omega \;(\text{at } x = 0), \qquad a_{max} = A\omega^2 \;(\text{at } x = \pm A)
+$$
+
+The speed is maximum when passing through equilibrium, the acceleration at the turning points, where the motion reverses.
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Link with uniform circular motion</summary>
+
+$$
+x(t) = R\cos(\omega t + \varphi)
+$$
+
+Harmonic motion is the projection onto a diameter of a uniform circular motion of radius R = A and angular velocity ω: useful to visualise phase and angular frequency.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/moto-armonico/ipotesi">
+
+## Validity assumptions
+
+One-dimensional motion; restoring force (or acceleration) exactly linear in x. No dissipation.
+
+</div>
+
+<div data-note-id="teoria/moto-armonico/casi-limite">
+
+## Limiting cases
+
+If $v_0 = 0$: φ = 0 and A = x₀ (it starts at rest from the turning point). If $x_0 = 0$: φ = ±π/2 and A = v₀/ω (it starts from equilibrium with maximum speed). For ω → 0 the period diverges: the system no longer restores.
+
+</div>
+
+<div data-note-id="teoria/moto-armonico/formule">
+
+## Key formulas
+
+<Formula id="moto-armonico-f1" />
+
+<Formula id="moto-armonico-f2" />
+
+<Formula id="moto-armonico-f3" />
+
+<Formula id="moto-armonico-f4" />
+
+<Formula id="moto-armonico-f5" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example: From initial conditions to the equation of motion">
+
+<div data-note-id="teoria/moto-armonico/esempio">
+
+A body in harmonic motion with ω = 4 rad/s passes through x₀ = 0.03 m at t = 0 with velocity v₀ = −0.16 m/s. Find amplitude, initial phase and maximum speed.
+
+1. Amplitude: $A = \sqrt{x_0^2 + v_0^2/\omega^2} = \sqrt{0.0009 + 0.0016} = 0.05\ \text{m}$.
+2. Phase: $\cos\varphi = x_0/A = 0.6$ and $\sin\varphi = -v_0/(A\omega) = 0.8$, so $\varphi \approx 0.93\ \text{rad}$ (first quadrant: beware of using the arctangent alone).
+3. Maximum speed: $v_{max} = A\omega = 0.20\ \text{m/s}$, reached when passing through x = 0.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/moto-armonico/errori">
+
+- Confusing angular frequency ω (rad/s) and frequency ν (Hz): ω = 2πν.
+- Believing that the period depends on the amplitude: ideal harmonic motion is isochronous.
+- Getting signs wrong when differentiating: the velocity is −Aω sin(…), not +.
+- Forgetting that A and φ come from the initial conditions, not from the equation of motion.
+
+</div>
+
+<div data-note-id="teoria/moto-armonico/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- Why does almost every physical system oscillate harmonically around a stable equilibrium?
+- How do you write the same solution in the form x = a cos ωt + b sin ωt and how are a, b related to A and φ?
+- What does the trajectory in phase space (x, v) look like?
+
+</div>
+
+</Layer>

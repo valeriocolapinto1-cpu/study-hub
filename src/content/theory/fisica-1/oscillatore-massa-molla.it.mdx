@@ -1,0 +1,178 @@
+---
+course: fisica-1
+topic: oscillatore-massa-molla
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/oscillatore-massa-molla/idea">
+
+La molla 'insiste' a riportare la massa all'equilibrio ma la massa, per inerzia, lo supera ogni volta: l'oscillazione è il compromesso perpetuo tra richiamo elastico e inerzia. ω = √(k/m) dice esattamente questo: più richiamo (k) → oscillazione veloce, più inerzia (m) → oscillazione lenta.
+
+</div>
+
+<div class="muted" data-note-id="teoria/oscillatore-massa-molla/prerequisiti">
+
+**Prima di questo argomento:** [Moto armonico: ampiezza, pulsazione, periodo, fase iniziale](../moto-armonico/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/oscillatore-massa-molla/definizioni">
+
+## Definizioni
+
+Un corpo di massa m è collegato a una molla ideale di costante elastica k che esercita la forza di richiamo $F = -kx$ (legge di Hooke), dove x è lo spostamento dalla posizione di riposo della molla. Il sistema massa-molla è il prototipo dell'oscillatore armonico: la pulsazione propria è $\omega = \sqrt{k/m}$ e non dipende dall'ampiezza.
+
+</div>
+
+<div data-note-id="teoria/oscillatore-massa-molla/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Seconda legge di Newton con la forza elastica</summary>
+
+$$
+m\ddot{x} = -kx
+$$
+
+L'unica forza (orizzontale, senza attrito) è quella della molla, proporzionale e opposta allo spostamento.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Forma canonica dell'equazione</summary>
+
+$$
+\ddot{x} + \frac{k}{m}x = 0 \;\Rightarrow\; \ddot{x} + \omega^2 x = 0, \qquad \omega = \sqrt{\frac{k}{m}}
+$$
+
+Dividendo per m si riconosce l'equazione del moto armonico: la pulsazione è fissata solo da k e m.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Soluzione generale</summary>
+
+$$
+x(t) = A\cos(\omega t + \varphi), \qquad T = 2\pi\sqrt{\frac{m}{k}}
+$$
+
+A e φ dalle condizioni iniziali. Massa maggiore → periodo maggiore; molla più rigida → periodo minore.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Energia potenziale elastica</summary>
+
+$$
+U(x) = -\int_0^x (-kx')\,dx' = \frac{1}{2}kx^2
+$$
+
+La forza elastica è conservativa: U è il lavoro cambiato di segno fatto dalla molla dallo 0 a x.
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Conservazione dell'energia meccanica</summary>
+
+$$
+E = \frac{1}{2}m\dot{x}^2 + \frac{1}{2}kx^2 = \frac{1}{2}kA^2 = \frac{1}{2}m\omega^2 A^2
+$$
+
+Sostituendo la soluzione: sin² + cos² = 1. L'energia totale è costante e proporzionale ad A²; si trasforma ciclicamente da cinetica (in x=0) a potenziale (in x=±A).
+
+</details>
+
+<details id="passo-6">
+<summary>Passo 6 · Caso verticale: la gravità sposta solo l'equilibrio</summary>
+
+$$
+m\ddot{y} = -ky + mg \;\Rightarrow\; \text{con } y' = y - \frac{mg}{k}: \;\; m\ddot{y}' = -ky'
+$$
+
+Definendo la nuova coordinata attorno al punto di equilibrio statico y_eq = mg/k, l'equazione torna identica: stessa ω, la gravità non cambia il periodo.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/oscillatore-massa-molla/ipotesi">
+
+## Ipotesi di validità
+
+Molla ideale: massa trascurabile, perfettamente elastica, risposta lineare F = −kx (valida per piccole deformazioni). Nessun attrito né resistenza dell'aria. Corpo puntiforme.
+
+</div>
+
+<div data-note-id="teoria/oscillatore-massa-molla/casi-limite">
+
+## Casi limite
+
+k → ∞ (molla rigidissima): T → 0, il corpo resta praticamente fermo. m → 0: T → 0. Grandi deformazioni: la legge di Hooke cede (termini non lineari) e l'isocronismo si perde. Con attrito si passa all'oscillatore smorzato.
+
+</div>
+
+<div data-note-id="teoria/oscillatore-massa-molla/formule">
+
+## Formule chiave
+
+<Formula id="oscillatore-massa-molla-f1" />
+
+<Formula id="oscillatore-massa-molla-f2" />
+
+<Formula id="oscillatore-massa-molla-f3" />
+
+<Formula id="oscillatore-massa-molla-f4" />
+
+<Formula id="oscillatore-massa-molla-f5" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto: Molla verticale con massa appesa">
+
+<div data-note-id="teoria/oscillatore-massa-molla/esempio">
+
+Una massa m = 0,50 kg appesa a una molla verticale la allunga di 4,9 cm in equilibrio. Viene poi tirata 3 cm più in basso e lasciata. Trovare k, il periodo e la velocità massima.
+
+1. Equilibrio statico: $k\,\Delta y = mg \Rightarrow k = 0{,}50 \cdot 9{,}81/0{,}049 \approx 100\ \text{N/m}$.
+2. Attorno all'equilibrio la gravità sparisce: $\omega = \sqrt{k/m} \approx 14{,}1\ \text{rad/s}$, $T = 2\pi/\omega \approx 0{,}44\ \text{s}$ (equivalente a $T = 2\pi\sqrt{\Delta y/g}$).
+3. L'ampiezza è lo spostamento dall'equilibrio, A = 3 cm (non 7,9 cm!): $v_{max} = A\omega \approx 0{,}42\ \text{m/s}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/oscillatore-massa-molla/errori">
+
+- Scrivere ω = k/m invece di ω = √(k/m).
+- Nel sistema verticale, misurare x dalla lunghezza a riposo della molla e dimenticare il termine mg (o viceversa contarlo due volte).
+- Credere che la gravità cambi il periodo dell'oscillatore verticale: cambia solo la posizione di equilibrio.
+- Confondere l'energia totale ½kA² con la potenziale istantanea ½kx².
+
+</div>
+
+<div data-note-id="teoria/oscillatore-massa-molla/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Due molle uguali in serie e in parallelo: come cambia la costante elastica equivalente e quindi ω?
+- Se la molla ha massa non trascurabile, il periodo aumenta o diminuisce?
+- In quali punti dell'oscillazione la potenza trasferita dalla molla alla massa è massima?
+
+</div>
+
+</Layer>

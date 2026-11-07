@@ -1,0 +1,42 @@
+id: forze-non-conservative
+course: fisica-1
+order: 10
+title:
+  it: Energia meccanica in presenza di forze non conservative
+  en: Mechanical energy in the presence of non-conservative forces
+summary:
+  it: >-
+    ΔE = W_nc è il 'conto corrente' dell'energia meccanica: le forze conservative spostano fondi tra i
+    depositi K e U senza toccare il saldo, le non conservative fanno versamenti (motori) o prelievi (attriti).
+  en: >-
+    ΔE = W_nc is the 'current account' of mechanical energy: conservative forces move funds between the
+    deposits K and U without touching the balance, non-conservative forces make deposits (engines) or
+    withdrawals (friction).
+group:
+  it: Lavoro ed energia
+  en: Work and energy
+objectives:
+  - id: forze-non-conservative.1
+    text:
+      it: Enunciare il bilancio ΔE = W_nc e dimostrarlo in tre righe
+      en: State the balance ΔE = W_nc and prove it in three lines
+  - id: forze-non-conservative.2
+    text:
+      it: Distinguere forze conservative, dissipative e motrici
+      en: Distinguish conservative, dissipative and driving forces
+  - id: forze-non-conservative.3
+    text:
+      it: Calcolare il lavoro dell'attrito radente su un cammino dato
+      en: Compute the work of sliding friction along a given path
+  - id: forze-non-conservative.4
+    text:
+      it: Spiegare perché conta la lunghezza del percorso e non lo spostamento
+      en: Explain why the length of the path matters and not the displacement
+  - id: forze-non-conservative.5
+    text:
+      it: Interpretare la dissipazione come conversione in energia interna
+      en: Interpret dissipation as conversion into internal energy
+  - id: forze-non-conservative.6
+    text:
+      it: Risolvere un esempio completo (blocco che sale un piano scabro e ridiscende)
+      en: Solve a complete example (block going up a rough incline and back down)

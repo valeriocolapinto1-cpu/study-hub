@@ -1,0 +1,137 @@
+- id: giro-della-morte
+  topic: forze-conservative
+  objectives:
+    - forze-conservative.1
+    - forze-conservative.2
+    - forze-conservative.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Un carrellino di massa m = 0,50 kg parte da fermo da un'altezza h e scende lungo una guida liscia che
+      termina con un giro della morte di raggio R = 0,40 m. Calcolare: (a) l'altezza minima h perché compia il
+      giro senza staccarsi; (b) la velocità nel punto più basso in quel caso; (c) la reazione della guida nel
+      punto più basso.
+    en: >-
+      A small cart of mass m = 0.50 kg starts from rest at height h and goes down a smooth track ending in a
+      vertical loop of radius R = 0.40 m. Find: (a) the minimum height h for it to complete the loop without
+      leaving the track; (b) the speed at the lowest point in that case; (c) the reaction of the track at the
+      lowest point.
+  steps:
+    - title:
+        it: Condizione in cima
+        en: Condition at the top
+      body:
+        it: 'In cima la reazione deve essere ≥ 0: \(mg + N = mv^2/R\) con \(N \ge 0\) dà \(v_{top}^2 \ge gR\).'
+        en: >-
+          At the top the reaction must be ≥ 0: \(mg + N = mv^2/R\) with \(N \ge 0\) gives \(v_{top}^2 \ge
+          gR\).
+    - title:
+        it: Conservazione dell'energia
+        en: Energy conservation
+      body:
+        it: >-
+          La guida è liscia e la normale non lavora: \(mgh = mg\,2R + \tfrac12 m v_{top}^2 \ge \tfrac52 mgR
+          \Rightarrow h_{min} = 2{,}5R = 1{,}00\ \text{m}\).
+        en: >-
+          The track is smooth and the normal force does no work: \(mgh = mg\,2R + \tfrac12 m v_{top}^2 \ge
+          \tfrac52 mgR \Rightarrow h_{min} = 2.5R = 1.00\ \text{m}\).
+    - title:
+        it: Punto più basso
+        en: Lowest point
+      body:
+        it: >-
+          \(v = \sqrt{2gh} = \sqrt{5gR} \approx 4{,}43\ \text{m/s}\); \(N - mg = mv^2/R \Rightarrow N = 6mg
+          \approx 29{,}4\ \text{N}\).
+        en: >-
+          \(v = \sqrt{2gh} = \sqrt{5gR} \approx 4.43\ \text{m/s}\); \(N - mg = mv^2/R \Rightarrow N = 6mg
+          \approx 29.4\ \text{N}\).
+  answer:
+    - label:
+        it: h_min
+        en: h_min
+      value: 1
+      unit: m
+    - label:
+        it: v in basso
+        en: v at the bottom
+      value: 4.43
+      unit: m/s
+    - label:
+        it: N in basso
+        en: N at the bottom
+      value: 29.4
+      unit: 'N'
+  origin: originale
+- id: molla-lancio-verticale
+  topic: forze-conservative
+  objectives:
+    - forze-conservative.1
+    - forze-conservative.2
+    - forze-conservative.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Una molla verticale di costante k = 800 N/m è compressa di 10 cm; sopra è appoggiata una pallina di
+      massa m = 0,10 kg. Rilasciata la molla, calcolare: (a) l'energia potenziale elastica immagazzinata; (b)
+      l'altezza massima raggiunta dalla pallina rispetto alla posizione iniziale; (c) la velocità della
+      pallina quando la molla torna alla lunghezza di riposo.
+    en: >-
+      A vertical spring of constant k = 800 N/m is compressed by 10 cm; a ball of mass m = 0.10 kg rests on
+      top of it. When the spring is released, find: (a) the stored elastic potential energy; (b) the maximum
+      height reached by the ball relative to the initial position; (c) the speed of the ball when the spring
+      returns to its rest length.
+  steps:
+    - title:
+        it: Energia elastica
+        en: Elastic energy
+      body:
+        it: \(U_{el} = \tfrac12 k x^2 = \tfrac12 \cdot 800 \cdot 0{,}01 = 4{,}0\ \text{J}\).
+        en: \(U_{el} = \tfrac12 k x^2 = \tfrac12 \cdot 800 \cdot 0.01 = 4.0\ \text{J}\).
+    - title:
+        it: Altezza massima
+        en: Maximum height
+      body:
+        it: >-
+          Tutta l'energia elastica diventa potenziale gravitazionale: \(mgh = 4{,}0 \Rightarrow h =
+          4{,}0/(0{,}981) \approx 4{,}08\ \text{m}\).
+        en: >-
+          All the elastic energy becomes gravitational potential energy: \(mgh = 4.0 \Rightarrow h =
+          4.0/(0.981) \approx 4.08\ \text{m}\).
+    - title:
+        it: Al distacco
+        en: At release
+      body:
+        it: >-
+          Alla lunghezza di riposo la pallina è salita di 0,10 m: \(\tfrac12 mv^2 = 4{,}0 - mg \cdot 0{,}10 =
+          3{,}902\ \text{J} \Rightarrow v \approx 8{,}83\ \text{m/s}\).
+        en: >-
+          At the rest length the ball has risen by 0.10 m: \(\tfrac12 mv^2 = 4.0 - mg \cdot 0.10 = 3.902\
+          \text{J} \Rightarrow v \approx 8.83\ \text{m/s}\).
+  answer:
+    - label:
+        it: U_el
+        en: U_el
+      value: 4
+      unit: J
+    - label:
+        it: h
+        en: h
+      value: 4.08
+      unit: m
+    - label:
+        it: v
+        en: v
+      value: 8.83
+      unit: m/s
+  origin: originale
+- id: giro-della-morte-variante
+  topic: forze-conservative
+  objectives:
+    - forze-conservative.1
+    - forze-conservative.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/giro-della-morte
+  origin: tipologia-appello

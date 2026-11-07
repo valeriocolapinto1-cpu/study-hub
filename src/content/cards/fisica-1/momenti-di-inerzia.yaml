@@ -1,0 +1,248 @@
+- id: momenti-di-inerzia-esposizione
+  topic: momenti-di-inerzia
+  objectives:
+    - momenti-di-inerzia.1
+    - momenti-di-inerzia.2
+    - momenti-di-inerzia.3
+    - momenti-di-inerzia.4
+    - momenti-di-inerzia.5
+    - momenti-di-inerzia.6
+    - momenti-di-inerzia.7
+  kind: orale
+  front:
+    it: "Esponi all'orale: «Momenti di inerzia e teorema di Huygens-Steiner»."
+    en: 'Present at the oral exam: “Moments of inertia and the Huygens–Steiner theorem”.'
+  back:
+    it: >-
+      Il momento di inerzia pesa la massa col quadrato della distanza dall'asse: la massa periferica conta
+      molto di più. Ecco perché un volano ha la massa sul bordo (accumula rotazione) e una pattinatrice
+      accelera chiudendo le braccia (riduce I a parità di L). Huygens-Steiner dice che ruotare attorno a un
+      asse decentrato costa l'inerzia 'propria' più quella del CM trattato come un punto a distanza d.
+
+
+      **Scaletta:**
+
+
+      - Definire I per sistemi discreti e continui
+
+      - Mostrare come I emerge dall'energia cinetica di rotazione
+
+      - Dimostrare il teorema di Huygens-Steiner
+
+      - Spiegare perché il termine misto si annulla
+
+      - Ricordare i momenti notevoli (anello, disco, sfera, asta)
+
+      - Saper svolgere il calcolo integrale per l'asta
+
+      - Discutere perché I_cm è il minimo tra assi paralleli
+    en: >-
+      The moment of inertia weighs mass by the square of the distance from the axis: peripheral mass counts
+      much more. That is why a flywheel has its mass on the rim (it stores rotation) and a skater speeds up by
+      pulling in her arms (she reduces I at constant L). Huygens–Steiner says that rotating about an
+      off-centre axis costs the body's 'own' inertia plus that of the CM treated as a point at distance d.
+
+
+      **Outline:**
+
+
+      - Define I for discrete and continuous systems
+
+      - Show how I emerges from rotational kinetic energy
+
+      - Prove the Huygens–Steiner theorem
+
+      - Explain why the mixed term vanishes
+
+      - Remember the notable moments (ring, disc, sphere, rod)
+
+      - Be able to do the integral calculation for the rod
+
+      - Discuss why I_cm is the minimum among parallel axes
+- id: momenti-di-inerzia-orale-1
+  topic: momenti-di-inerzia
+  objectives:
+    - momenti-di-inerzia.6
+    - momenti-di-inerzia.7
+  kind: orale
+  front:
+    it: Perché una sfera piena scende un piano inclinato più veloce di un anello di pari massa e raggio?
+    en: Why does a solid sphere roll down an incline faster than a ring of equal mass and radius?
+  back:
+    it: >-
+      Nel rotolamento puro \(a = g\sin\theta/(1 + \beta)\) con \(\beta = I_{cm}/(MR^2)\): la sfera ha β = 2/5,
+      l'anello β = 1. A parità di energia potenziale persa, l'anello deve investire una frazione maggiore
+      dell'energia in rotazione (tutta la sua massa è lontana dall'asse), quindi gliene resta meno per la
+      traslazione. Il risultato non dipende né da M né da R.
+    en: >-
+      In pure rolling \(a = g\sin\theta/(1 + \beta)\) with \(\beta = I_{cm}/(MR^2)\): the sphere has β = 2/5,
+      the ring β = 1. For the same potential energy lost, the ring must put a larger fraction of the energy
+      into rotation (all its mass is far from the axis), so less is left for translation. The result depends
+      neither on M nor on R.
+- id: momenti-di-inerzia-orale-2
+  topic: momenti-di-inerzia
+  objectives:
+    - momenti-di-inerzia.6
+    - momenti-di-inerzia.7
+  kind: orale
+  front:
+    it: Cosa afferma il teorema degli assi perpendicolari per le figure piane?
+    en: What does the perpendicular-axis theorem state for plane figures?
+  back:
+    it: >-
+      Per una figura piana (lamina sottile nel piano xy) il momento rispetto all'asse z perpendicolare è la
+      somma dei momenti rispetto a due assi ortogonali del piano che si incontrano sull'asse z: \(I_z =
+      \int(x^2+y^2)dm = I_x + I_y\). Esempio: disco, \(I_z = \tfrac12 MR^2\), quindi per simmetria il momento
+      rispetto a un diametro è \(\tfrac14 MR^2\).
+    en: >-
+      For a plane figure (thin lamina in the xy plane) the moment about the perpendicular z axis is the sum of
+      the moments about two orthogonal axes in the plane meeting on the z axis: \(I_z = \int(x^2+y^2)dm = I_x
+      + I_y\). Example: disc, \(I_z = \tfrac12 MR^2\), so by symmetry the moment about a diameter is
+      \(\tfrac14 MR^2\).
+- id: momenti-di-inerzia-orale-3
+  topic: momenti-di-inerzia
+  objectives:
+    - momenti-di-inerzia.6
+    - momenti-di-inerzia.7
+  kind: orale
+  front:
+    it: "In generale I è un tensore: cosa significa che gli assi principali diagonalizzano l'inerzia?"
+    en: 'In general I is a tensor: what does it mean that the principal axes diagonalise the inertia?'
+  back:
+    it: >-
+      In generale \(\vec L = \mathbf{I}\,\vec\omega\) con \(\mathbf{I}\) matrice simmetrica 3×3 (tensore
+      d'inerzia), quindi L non è sempre parallelo a ω. Esistono sempre tre assi ortogonali (assi principali)
+      in cui la matrice è diagonale: se il corpo ruota attorno a uno di essi \(\vec L = I_k\vec\omega\) e non
+      servono momenti sui supporti per mantenere la rotazione. Gli assi di simmetria sono principali;
+      l'equilibratura delle ruote serve a far coincidere l'asse di rotazione con uno principale.
+    en: >-
+      In general \(\vec L = \mathbf{I}\,\vec\omega\) with \(\mathbf{I}\) a symmetric 3×3 matrix (inertia
+      tensor), so L is not always parallel to ω. There are always three orthogonal axes (principal axes) in
+      which the matrix is diagonal: if the body rotates about one of them \(\vec L = I_k\vec\omega\) and no
+      torques on the bearings are needed to keep the rotation. Symmetry axes are principal; wheel balancing
+      makes the rotation axis coincide with a principal one.
+- id: momenti-di-inerzia-definizione
+  topic: momenti-di-inerzia
+  objectives:
+    - momenti-di-inerzia.1
+  kind: definizione
+  front:
+    it: 'Definizione: Momenti di inerzia e teorema di Huygens-Steiner'
+    en: 'Definition: Moments of inertia and the Huygens–Steiner theorem'
+  back:
+    it: >-
+      Il momento di inerzia di un corpo rispetto a un asse è \(I = \sum_i m_i r_i^2\) (discreto) o \(I = \int
+      r^2\,dm\) (continuo), dove r è la distanza di ciascun elemento di massa dall'asse. È la misura
+      dell'inerzia rotazionale: quanto il corpo 'resiste' alle variazioni di velocità angolare attorno a
+      quell'asse. Dipende dall'asse scelto e da come la massa è distribuita rispetto a esso. Il teorema di
+      Huygens-Steiner collega il momento rispetto a un asse qualsiasi a quello rispetto all'asse parallelo
+      passante per il CM: \(I = I_{cm} + Md^2\).
+    en: >-
+      The moment of inertia of a body about an axis is \(I = \sum_i m_i r_i^2\) (discrete) or \(I = \int
+      r^2\,dm\) (continuous), where r is the distance of each mass element from the axis. It measures
+      rotational inertia: how much the body 'resists' changes in angular velocity about that axis. It depends
+      on the chosen axis and on how the mass is distributed with respect to it. The Huygens–Steiner
+      (parallel-axis) theorem relates the moment about any axis to that about the parallel axis through the
+      CM: \(I = I_{cm} + Md^2\).
+- id: momenti-di-inerzia-formule
+  topic: momenti-di-inerzia
+  objectives:
+    - momenti-di-inerzia.1
+    - momenti-di-inerzia.2
+    - momenti-di-inerzia.3
+    - momenti-di-inerzia.4
+    - momenti-di-inerzia.5
+    - momenti-di-inerzia.6
+    - momenti-di-inerzia.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Momenti di inerzia e teorema di Huygens-Steiner»
+    en: The key formulas of “Moments of inertia and the Huygens–Steiner theorem”
+  back:
+    it: |-
+      - \(I = \int r^2\,dm\)
+      - \(K_{rot} = \frac{1}{2}I\omega^2\)
+      - \(I = I_{cm} + Md^2\)
+      - \(I_{disco} = \tfrac{1}{2}MR^2,\; I_{sfera} = \tfrac{2}{5}MR^2,\; I_{asta,cm} = \tfrac{1}{12}ML^2\)
+    en: |-
+      - \(I = \int r^2\,dm\)
+      - \(K_{rot} = \frac{1}{2}I\omega^2\)
+      - \(I = I_{cm} + Md^2\)
+      - \(I_{disc} = \tfrac{1}{2}MR^2,\; I_{sphere} = \tfrac{2}{5}MR^2,\; I_{rod,cm} = \tfrac{1}{12}ML^2\)
+- id: momenti-di-inerzia-ipotesi
+  topic: momenti-di-inerzia
+  objectives:
+    - momenti-di-inerzia.1
+    - momenti-di-inerzia.2
+    - momenti-di-inerzia.3
+    - momenti-di-inerzia.4
+    - momenti-di-inerzia.5
+    - momenti-di-inerzia.6
+    - momenti-di-inerzia.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Momenti di inerzia e teorema di Huygens-Steiner'
+    en: 'Validity assumptions: Moments of inertia and the Huygens–Steiner theorem'
+  back:
+    it: >-
+      Corpo rigido (distanze mutue fisse); per Huygens-Steiner i due assi devono essere PARALLELI e uno dei
+      due deve passare per il CM; densità nota per i calcoli integrali.
+    en: >-
+      Rigid body (fixed mutual distances); for Huygens–Steiner the two axes must be PARALLEL and one of them
+      must pass through the CM; known density for integral calculations.
+- id: momenti-di-inerzia-casi-limite
+  topic: momenti-di-inerzia
+  objectives:
+    - momenti-di-inerzia.1
+    - momenti-di-inerzia.2
+    - momenti-di-inerzia.3
+    - momenti-di-inerzia.4
+    - momenti-di-inerzia.5
+    - momenti-di-inerzia.6
+    - momenti-di-inerzia.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Momenti di inerzia e teorema di Huygens-Steiner'
+    en: 'Limiting cases: Moments of inertia and the Huygens–Steiner theorem'
+  back:
+    it: >-
+      Tutta la massa sull'asse: I = 0. Massa concentrata a distanza R: I = MR² (punto materiale). A parità di
+      massa e raggio: anello > disco > sfera, perché conta quanta massa sta lontana dall'asse. d = 0: I =
+      I_cm, il minimo tra tutti gli assi paralleli.
+    en: >-
+      All the mass on the axis: I = 0. Mass concentrated at distance R: I = MR² (point particle). For equal
+      mass and radius: ring > disc > sphere, because what matters is how much mass lies far from the axis. d =
+      0: I = I_cm, the minimum among all parallel axes.
+- id: momenti-di-inerzia-errori
+  topic: momenti-di-inerzia
+  objectives:
+    - momenti-di-inerzia.1
+    - momenti-di-inerzia.2
+    - momenti-di-inerzia.3
+    - momenti-di-inerzia.4
+    - momenti-di-inerzia.5
+    - momenti-di-inerzia.6
+    - momenti-di-inerzia.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Momenti di inerzia e teorema di Huygens-Steiner'
+    en: 'Mistakes to avoid: Moments of inertia and the Huygens–Steiner theorem'
+  back:
+    it: >-
+      - Applicare Huygens-Steiner tra due assi di cui nessuno passa per il CM (va fatto in due passi via
+      I_cm).
+
+      - Dire che I dipende solo dalla massa: dipende soprattutto dalla sua distribuzione (r²).
+
+      - Usare il raggio del corpo al posto della distanza dall'asse nell'integrale.
+
+      - Dimenticare che I_cm è il minimo: I rispetto a qualsiasi altro asse parallelo è maggiore.
+    en: >-
+      - Applying Huygens–Steiner between two axes neither of which passes through the CM (it must be done in
+      two steps via I_cm).
+
+      - Saying that I depends only on the mass: it depends above all on its distribution (r²).
+
+      - Using the radius of the body instead of the distance from the axis in the integral.
+
+      - Forgetting that I_cm is the minimum: I about any other parallel axis is larger.

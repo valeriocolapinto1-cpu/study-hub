@@ -1,0 +1,45 @@
+id: teorema-momento-angolare
+course: fisica-1
+order: 14
+title:
+  it: Teorema del momento angolare (seconda equazione cardinale)
+  en: Angular momentum theorem (second cardinal equation)
+summary:
+  it: >-
+    È il gemello rotazionale della prima cardinale: come le forze interne non possono spostare il CM, i
+    momenti interni non possono far ruotare il sistema nel suo complesso.
+  en: >-
+    It is the rotational twin of the first cardinal equation: just as internal forces cannot move the CM,
+    internal torques cannot make the system as a whole rotate.
+group:
+  it: Sistemi di punti e corpo rigido
+  en: Systems of particles and rigid bodies
+objectives:
+  - id: teorema-momento-angolare.1
+    text:
+      it: Definire L e τ totali per un sistema rispetto a un polo
+      en: Define total L and τ for a system about a pole
+  - id: teorema-momento-angolare.2
+    text:
+      it: Dimostrare dL/dt = τ_ext mostrando l'elisione dei momenti interni
+      en: Prove dL/dt = τ_ext showing the cancellation of internal torques
+  - id: teorema-momento-angolare.3
+    text:
+      it: Precisare quando serve la forma forte della terza legge
+      en: Specify when the strong form of the third law is needed
+  - id: teorema-momento-angolare.4
+    text:
+      it: 'Discutere la scelta del polo: fisso oppure CM'
+      en: 'Discuss the choice of pole: fixed or CM'
+  - id: teorema-momento-angolare.5
+    text:
+      it: Ricavare Iα = τ per il corpo rigido con asse fisso
+      en: Derive Iα = τ for a rigid body with a fixed axis
+  - id: teorema-momento-angolare.6
+    text:
+      it: Enunciare la conservazione di L con esempi
+      en: State the conservation of L with examples
+  - id: teorema-momento-angolare.7
+    text:
+      it: Applicarla a un esercizio (pattinatrice o carrucola massiva)
+      en: Apply it to an exercise (skater or massive pulley)

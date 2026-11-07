@@ -232,9 +232,10 @@ test.describe('Ricerca', () => {
     const input = page.getByRole('searchbox', { name: 'Search the site' });
     await input.fill('ringraziamenti');
     await expect(page.locator('#pf-search-status')).toHaveText(/No results|result/);
-    const before = await page.locator('.pf-search__item').count();
+    // Prima della scelta nessun risultato italiano (il conteggio totale non basta: con più
+    // contenuti la prima pagina di risultati inglesi può essere già piena).
+    await expect(page.locator('.pf-search__item[lang="it"]')).toHaveCount(0);
     await page.getByRole('button', { name: 'Also in Italian' }).click();
     await expect(page.locator('.pf-search__item[lang="it"]').first()).toBeVisible();
-    expect(await page.locator('.pf-search__item').count()).toBeGreaterThan(before);
   });
 });

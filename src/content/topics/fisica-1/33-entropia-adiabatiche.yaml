@@ -1,0 +1,45 @@
+id: entropia-adiabatiche
+course: fisica-1
+order: 33
+title:
+  it: Entropia e trasformazioni adiabatiche
+  en: Entropy and adiabatic transformations
+summary:
+  it: "L'entropia è il contachilometri dell'irreversibilità: registra quanta 'qualità' l'energia ha perso."
+  en: "Entropy is the odometer of irreversibility: it records how much 'quality' energy has lost."
+group:
+  it: Fluidi e termodinamica
+  en: Fluids and thermodynamics
+objectives:
+  - id: entropia-adiabatiche.1
+    text:
+      it: Dimostrare che δQ_rev/T è un differenziale esatto (da Clausius)
+      en: Prove that δQ_rev/T is an exact differential (from Clausius)
+  - id: entropia-adiabatiche.2
+    text:
+      it: Definire ΔS e spiegare l'uso del cammino reversibile ausiliario
+      en: Define ΔS and explain the use of the auxiliary reversible path
+  - id: entropia-adiabatiche.3
+    text:
+      it: Ricavare ΔS ≥ ∫δQ/T per trasformazioni aperte
+      en: Derive ΔS ≥ ∫δQ/T for open transformations
+  - id: entropia-adiabatiche.4
+    text:
+      it: Enunciare la legge dell'aumento dell'entropia (sistema isolato / universo)
+      en: State the law of entropy increase (isolated system / universe)
+  - id: entropia-adiabatiche.5
+    text:
+      it: Ricavare la formula ΔS del gas perfetto
+      en: Derive the ΔS formula of the ideal gas
+  - id: entropia-adiabatiche.6
+    text:
+      it: Distinguere adiabatico da isoentropico con l'espansione libera
+      en: Distinguish adiabatic from isentropic with free expansion
+  - id: entropia-adiabatiche.7
+    text:
+      it: Calcolare ΔS_univ per lo scambio termico tra due corpi
+      en: Compute ΔS_univ for the heat exchange between two bodies
+  - id: entropia-adiabatiche.8
+    text:
+      it: Accennare a S = k_B ln Ω
+      en: Mention S = k_B ln Ω

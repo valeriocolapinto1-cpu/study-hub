@@ -1,0 +1,45 @@
+id: risonanza
+course: fisica-1
+order: 7
+title:
+  it: Risonanza in un oscillatore forzato
+  en: Resonance in a driven oscillator
+summary:
+  it: >-
+    La risonanza è spingere l'altalena al momento giusto: se ogni spinta arriva in fase con la velocità, tutta
+    la potenza entra nel sistema e l'ampiezza cresce finché le perdite per attrito non pareggiano l'apporto.
+  en: >-
+    Resonance is pushing a swing at the right moment: if every push arrives in phase with the velocity, all
+    the power goes into the system and the amplitude grows until friction losses balance the input.
+group:
+  it: Cinematica e oscillazioni
+  en: Kinematics and oscillations
+objectives:
+  - id: risonanza.1
+    text:
+      it: Scrivere l'equazione forzata e separare transitorio e regime
+      en: Write the driven equation and separate transient and steady state
+  - id: risonanza.2
+    text:
+      it: Ricavare (o impostare) A(Ω) e tan δ
+      en: Derive (or set up) A(Ω) and tan δ
+  - id: risonanza.3
+    text:
+      it: Tracciare qualitativamente la curva di risonanza per diversi γ
+      en: Sketch qualitatively the resonance curve for different γ
+  - id: risonanza.4
+    text:
+      it: Discutere il massimo dell'ampiezza e l'effetto dello smorzamento
+      en: Discuss the amplitude maximum and the effect of damping
+  - id: risonanza.5
+    text:
+      it: Descrivere l'andamento della fase nei tre regimi di frequenza
+      en: Describe the behaviour of the phase in the three frequency ranges
+  - id: risonanza.6
+    text:
+      it: Spiegare perché il massimo assorbimento di potenza è a ω₀
+      en: Explain why maximum power absorption is at ω₀
+  - id: risonanza.7
+    text:
+      it: Fare un esempio reale (ponte, altalena, circuito RLC)
+      en: Give a real example (bridge, swing, RLC circuit)

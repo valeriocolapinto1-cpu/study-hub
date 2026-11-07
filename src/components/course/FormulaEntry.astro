@@ -1,7 +1,7 @@
 ---
 /** Voce del formulario: formula, simboli, uso, errore tipico, rimando alla teoria e segnalibro. */
 import Formula from '../Formula.astro';
-import { localizePath, t, tr, type Lang } from '../../i18n';
+import { t, tr, type Lang } from '../../i18n';
 import type { Formula as FormulaData } from '../../content/schemas';
 
 interface Props {
@@ -50,7 +50,7 @@ const search = [label, f.symbols && tr(f.symbols, lang), f.usage && tr(f.usage, 
       </button>
     )}
   </div>
-  <Formula id={f.id} tex={f.latex} />
+  <Formula id={f.id} tex={lang === 'en' && f.latexEn ? f.latexEn : f.latex} />
   {!compact && (
     <dl class="formula-entry__meta">
       {f.symbols && (

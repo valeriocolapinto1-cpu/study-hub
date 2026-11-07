@@ -1,0 +1,175 @@
+---
+course: fisica-1
+topic: energia-corpo-rigido
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/energia-corpo-rigido/idea">
+
+Un corpo rigido immagazzina energia cinetica in due 'serbatoi': il moto d'insieme del baricentro e la rotazione attorno a esso. La scelta tra le due scritture equivalenti (asse fisso vs König) è solo questione di comodità: l'energia è la stessa. Il potenziale, invece, ha un solo serbatoio: la quota del baricentro.
+
+</div>
+
+<div class="muted" data-note-id="teoria/energia-corpo-rigido/prerequisiti">
+
+**Prima di questo argomento:** [Momenti di inerzia e teorema di Huygens-Steiner](../momenti-di-inerzia/) · [Teorema di König (momento angolare ed energia cinetica)](../teorema-di-koenig/) · [Moto di un corpo rigido](../moto-corpo-rigido/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/energia-corpo-rigido/definizioni">
+
+## Definizioni
+
+L'energia cinetica di un corpo rigido si scompone (König) in traslazione del CM più rotazione attorno al CM: $K = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2$. Per rotazione attorno a un asse fisso: $K = \frac{1}{2}I_{asse}\omega^2$. L'energia meccanica è E = K + U con $U = Mgh_{cm}$ (il potenziale gravitazionale di un rigido dipende solo dalla quota del CM). Se lavorano solo forze conservative e i vincoli non dissipano, E si conserva.
+
+</div>
+
+<div data-note-id="teoria/energia-corpo-rigido/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Energia cinetica per rotazione attorno ad asse fisso</summary>
+
+$$
+K = \sum_i \frac{1}{2}m_i v_i^2 = \sum_i \frac{1}{2}m_i(\omega r_i)^2 = \frac{1}{2}I_{asse}\,\omega^2
+$$
+
+Ogni punto ha v = ωrᵢ con la stessa ω: il momento d'inerzia raccoglie tutta la geometria.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Caso generale via König</summary>
+
+$$
+K = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2
+$$
+
+Traslazione + rotazione attorno al CM. Le due forme sono coerenti: per rotazione attorno a un asse fisso a distanza d dal CM, ½I_asse ω² = ½(I_cm + Md²)ω² = ½Mv_cm² + ½I_cm ω², con v_cm = ωd.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Energia potenziale gravitazionale del rigido</summary>
+
+$$
+U = \sum_i m_i g z_i = g\sum_i m_i z_i = Mg\,z_{cm}
+$$
+
+In campo uniforme il potenziale del corpo intero è quello della massa totale posta nel CM.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Teorema dell'energia cinetica per il rigido</summary>
+
+$$
+\Delta K = W^{ext}
+$$
+
+Il lavoro delle forze interne è nullo per il vincolo di rigidità (le distanze non cambiano): conta solo il lavoro esterno. Per la rotazione: W = ∫τ dθ.
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Conservazione dell'energia meccanica</summary>
+
+$$
+\frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2 + Mg\,z_{cm} = \text{cost}
+$$
+
+Valida se le forze attive sono conservative e le reazioni vincolari non lavorano (perni lisci, rotolamento puro).
+
+</details>
+
+<details id="passo-6">
+<summary>Passo 6 · Esempio: asta incernierata che cade da orizzontale</summary>
+
+$$
+Mg\frac{L}{2} = \frac{1}{2}\Big(\frac{1}{3}ML^2\Big)\omega^2 \;\Rightarrow\; \omega = \sqrt{\frac{3g}{L}}
+$$
+
+Il CM scende di L/2; l'energia va tutta in rotazione attorno al perno (I = ML²/3). Esempio classico da orale.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/energia-corpo-rigido/ipotesi">
+
+## Ipotesi di validità
+
+Corpo rigido; campo gravitazionale uniforme; vincoli ideali (non dissipativi); per K = ½Iω² asse fisso.
+
+</div>
+
+<div data-note-id="teoria/energia-corpo-rigido/casi-limite">
+
+## Casi limite
+
+Pura traslazione: K = ½Mv². Pura rotazione baricentrica: K = ½I_cmω². Rotolamento puro: entrambi i termini con il vincolo v = ωR. Perno scabro o strisciamento: E non si conserva, ΔE = W_attrito.
+
+</div>
+
+<div data-note-id="teoria/energia-corpo-rigido/formule">
+
+## Formule chiave
+
+<Formula id="energia-corpo-rigido-f1" />
+
+<Formula id="energia-corpo-rigido-f2" />
+
+<Formula id="energia-corpo-rigido-f3" />
+
+<Formula id="energia-corpo-rigido-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/energia-corpo-rigido/esempio">
+
+Un'asta omogenea lunga L = 1,2 m, incernierata senza attrito a un estremo, viene lasciata cadere da ferma dalla posizione orizzontale. Calcolare, quando passa per la verticale: (a) la velocità angolare; (b) la velocità dell'estremo libero; (c) la velocità del centro di massa.
+
+1. **Conservazione dell'energia.** $Mg\,\tfrac L2 = \tfrac12 \cdot \tfrac13 ML^2\omega^2 \Rightarrow \omega = \sqrt{3g/L} \approx 4{,}95\ \text{rad/s}$.
+2. **Velocità.** Estremo: $v = \omega L \approx 5{,}94\ \text{m/s}$; CM: $v_{cm} = \omega L/2 \approx 2{,}97\ \text{m/s}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/energia-corpo-rigido/errori">
+
+- Sommare ½I_asse ω² (con I rispetto al perno) E ½Mv_cm²: si conta due volte la traslazione.
+- Usare I_cm quando la rotazione è attorno a un perno decentrato (o viceversa) senza Huygens-Steiner.
+- Calcolare U con la quota di un punto qualsiasi invece che del CM.
+- Dimenticare di verificare che i vincoli non lavorino prima di conservare E.
+
+</div>
+
+<div data-note-id="teoria/energia-corpo-rigido/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Nell'asta che cade, quale punto tocca terra con velocità maggiore di quella di caduta libera?
+- Perché la reazione del perno non compie lavoro pur essendo diversa da zero?
+- Come cambia il risultato se l'asta è incernierata a 1/4 della lunghezza?
+
+</div>
+
+</Layer>

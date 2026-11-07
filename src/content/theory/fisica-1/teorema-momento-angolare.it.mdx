@@ -1,0 +1,187 @@
+---
+course: fisica-1
+topic: teorema-momento-angolare
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/teorema-momento-angolare/idea">
+
+È il gemello rotazionale della prima cardinale: come le forze interne non possono spostare il CM, i momenti interni non possono far ruotare il sistema nel suo complesso. Un gatto che cade ruota su sé stesso senza violare la legge: cambia la sua forma (e quindi i suoi momenti d'inerzia parziali) mantenendo L totale nullo.
+
+</div>
+
+<div class="muted" data-note-id="teoria/teorema-momento-angolare/prerequisiti">
+
+**Prima di questo argomento:** [Momento di una forza e momento angolare](../momento-angolare/) · [Centro di massa e prima equazione cardinale](../centro-di-massa/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/teorema-momento-angolare/definizioni">
+
+## Definizioni
+
+Per un sistema di punti materiali, il momento angolare totale rispetto a un polo O è $\vec{L} = \sum_i \vec{r}_i\times m_i\vec{v}_i$ e il momento risultante delle forze esterne è $\vec{\tau}^{ext} = \sum_i \vec{r}_i\times\vec{F}_i^{ext}$. La seconda equazione cardinale afferma: $d\vec{L}/dt = \vec{\tau}^{ext}$, valida se il polo è fisso in un sistema inerziale oppure coincide con il centro di massa. I momenti delle forze interne non contribuiscono.
+
+</div>
+
+<div data-note-id="teoria/teorema-momento-angolare/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Derivo il momento angolare totale (polo O fisso)</summary>
+
+$$
+\frac{d\vec{L}}{dt} = \sum_i \vec{v}_i\times m_i\vec{v}_i + \sum_i \vec{r}_i\times m_i\vec{a}_i = \sum_i \vec{r}_i\times m_i\vec{a}_i
+$$
+
+Il primo termine è nullo (v × v = 0).
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Sostituisco Newton per ogni punto</summary>
+
+$$
+\frac{d\vec{L}}{dt} = \sum_i \vec{r}_i\times\Big(\vec{F}_i^{ext} + \sum_{j\neq i}\vec{f}_{ij}\Big) = \vec{\tau}^{ext} + \sum_{coppie}(\vec{r}_i - \vec{r}_j)\times\vec{f}_{ij}
+$$
+
+Raggruppo i momenti delle forze interne per coppie azione-reazione usando f_ji = −f_ij.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · I momenti interni si annullano</summary>
+
+$$
+(\vec{r}_i - \vec{r}_j) \parallel \vec{f}_{ij} \;\Rightarrow\; (\vec{r}_i - \vec{r}_j)\times\vec{f}_{ij} = \vec{0}
+$$
+
+Serve la terza legge in forma forte: le forze interne agiscono lungo la congiungente dei due punti (vero per gravità, forze di contatto, elastiche).
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Seconda equazione cardinale</summary>
+
+$$
+\frac{d\vec{L}}{dt} = \vec{\tau}^{ext}
+$$
+
+Solo i momenti esterni cambiano il momento angolare totale del sistema.
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Validità con polo mobile</summary>
+
+$$
+\frac{d\vec{L}_Q}{dt} = \vec{\tau}_Q^{ext} - \vec{v}_Q\times M\vec{v}_{cm}
+$$
+
+Il termine spurio si annulla se: (a) Q è fisso; (b) v_Q ∥ v_cm; (c) Q ≡ CM. Per questo il centro di massa è un polo sempre lecito, anche se accelerato.
+
+</details>
+
+<details id="passo-6">
+<summary>Passo 6 · Caso corpo rigido con asse fisso di simmetria</summary>
+
+$$
+L_z = I\omega \;\Rightarrow\; I\frac{d\omega}{dt} = I\alpha = \tau_z^{ext}
+$$
+
+Proiettando sull'asse di rotazione si ottiene l'analogo rotazionale di F = ma: è l'equazione con cui si risolvono carrucole, volani, pendoli fisici.
+
+</details>
+
+<details id="passo-7">
+<summary>Passo 7 · Conservazione del momento angolare</summary>
+
+$$
+\vec{\tau}^{ext} = \vec{0} \;\Rightarrow\; \vec{L} = \text{cost}
+$$
+
+Terza grande legge di conservazione. Esempi: pattinatrice (I₁ω₁ = I₂ω₂), stella che collassa, pianeti.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/teorema-momento-angolare/ipotesi">
+
+## Ipotesi di validità
+
+Terza legge di Newton in forma forte (forze interne centrali); polo fisso in sistema inerziale oppure polo nel CM; per L = Iω serve un corpo rigido che ruota attorno a un asse fisso o di simmetria.
+
+</div>
+
+<div data-note-id="teoria/teorema-momento-angolare/casi-limite">
+
+## Casi limite
+
+Sistema isolato o forze a momento nullo: L conservato. Forze centrali col polo nel centro: si ritrova la conservazione per il punto materiale. Se l'asse non è di simmetria, L non è parallelo a ω e compaiono momenti sui supporti (squilibrio delle ruote).
+
+</div>
+
+<div data-note-id="teoria/teorema-momento-angolare/formule">
+
+## Formule chiave
+
+<Formula id="teorema-momento-angolare-f1" />
+
+<Formula id="teorema-momento-angolare-f2" />
+
+<Formula id="teorema-momento-angolare-f3" />
+
+<Formula id="teorema-momento-angolare-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/teorema-momento-angolare/esempio">
+
+Un secchio di massa m = 4,0 kg è appeso a una corda avvolta su un argano a forma di disco di massa M = 6,0 kg e raggio R = 0,15 m, libero di ruotare senza attrito attorno al proprio asse. Il secchio viene lasciato scendere da fermo. Calcolare: (a) l'accelerazione del secchio; (b) la tensione della corda; (c) la velocità angolare dell'argano dopo che il secchio è sceso di 2,0 m.
+
+1. **Equazioni del moto.** Secchio: $mg - T = ma$. Argano: $TR = I\alpha = \tfrac12 MR^2\,(a/R)$, cioè $T = \tfrac12 Ma$. Sommando: $a = \dfrac{mg}{m + M/2} = \dfrac{39{,}24}{7{,}0} \approx 5{,}61\ \text{m/s}^2$.
+2. **Tensione.** $T = \tfrac12 Ma \approx 16{,}8\ \text{N}$, minore del peso del secchio (39,2 N).
+3. **Velocità angolare.** $v = \sqrt{2ah} \approx 4{,}74\ \text{m/s}$, $\omega = v/R \approx 31{,}6\ \text{rad/s}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/teorema-momento-angolare/errori">
+
+- Usare come polo un punto mobile qualsiasi senza il termine correttivo: solo il CM è sempre lecito.
+- Includere momenti delle forze interne.
+- Scrivere L = Iω come relazione vettoriale generale: vale sull'asse di rotazione (o per assi principali).
+- Dimenticare di verificare che il polo usato per τ e quello usato per L siano lo stesso.
+
+</div>
+
+<div data-note-id="teoria/teorema-momento-angolare/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Perché il centro di massa è un polo lecito anche quando accelera?
+- Nella pattinatrice che chiude le braccia l'energia cinetica aumenta: chi compie il lavoro?
+- Le due equazioni cardinali bastano a determinare il moto di un corpo rigido?
+
+</div>
+
+</Layer>

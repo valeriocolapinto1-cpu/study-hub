@@ -1,0 +1,114 @@
+- id: motore-rendimento
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.1
+    - secondo-principio.2
+    - secondo-principio.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un motore termico assorbe 2,4 kJ di calore a ogni ciclo e compie 600 J di lavoro; esegue 25 cicli al
+      secondo. Calcolare: (a) il rendimento; (b) il calore ceduto per ciclo; (c) la potenza meccanica e quella
+      termica scaricata.
+    en: >-
+      A heat engine absorbs 2.4 kJ of heat per cycle and does 600 J of work; it performs 25 cycles per second.
+      Find: (a) the efficiency; (b) the heat released per cycle; (c) the mechanical power and the thermal
+      power discharged.
+  steps:
+    - title:
+        it: Rendimento
+        en: Efficiency
+      body:
+        it: \(\eta = W/Q_C = 600/2400 = 0{,}25\).
+        en: \(\eta = W/Q_C = 600/2400 = 0.25\).
+    - title:
+        it: Bilancio del ciclo
+        en: Cycle balance
+      body:
+        it: 'ΔU = 0 sul ciclo: \(|Q_F| = Q_C - W = 1800\ \text{J}\).'
+        en: 'ΔU = 0 over the cycle: \(|Q_F| = Q_C - W = 1800\ \text{J}\).'
+    - title:
+        it: Potenze
+        en: Powers
+      body:
+        it: >-
+          \(P = 25 \cdot 600 = 15\ \text{kW}\) meccanici, \(25 \cdot 1800 = 45\ \text{kW}\) scaricati: tre
+          volte la potenza utile.
+        en: >-
+          \(P = 25 \cdot 600 = 15\ \text{kW}\) mechanical, \(25 \cdot 1800 = 45\ \text{kW}\) discharged: three
+          times the useful power.
+  answer:
+    - label:
+        it: η
+        en: η
+      value: 0.25
+    - label:
+        it: '|Q_F|'
+        en: '|Q_F|'
+      value: 1800
+      unit: J
+    - label:
+        it: P meccanica
+        en: mechanical P
+      value: 15000
+      unit: W
+  origin: originale
+- id: pompa-di-calore-cop
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.1
+    - secondo-principio.2
+    - secondo-principio.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Una pompa di calore deve fornire 9,0 kW a una casa e assorbe dalla rete una potenza elettrica di 2,5 kW.
+      Calcolare: (a) il COP come pompa di calore; (b) la potenza estratta dall'aria esterna; (c) il COP che la
+      stessa macchina avrebbe come frigorifero.
+    en: >-
+      A heat pump must deliver 9.0 kW to a house and draws 2.5 kW of electrical power from the grid. Find: (a)
+      its COP as a heat pump; (b) the power extracted from the outside air; (c) the COP the same machine would
+      have as a refrigerator.
+  steps:
+    - title:
+        it: COP pompa
+        en: Heat-pump COP
+      body:
+        it: >-
+          \(\text{COP}_p = Q_C/W = 9{,}0/2{,}5 = 3{,}6\): non è un rendimento, può superare 1 perché la
+          macchina sposta calore, non lo crea.
+        en: >-
+          \(\text{COP}_p = Q_C/W = 9.0/2.5 = 3.6\): it is not an efficiency, it can exceed 1 because the
+          machine moves heat, it does not create it.
+    - title:
+        it: Calore dall'esterno
+        en: Heat from outside
+      body:
+        it: \(Q_F = Q_C - W = 6{,}5\ \text{kW}\); \(\text{COP}_f = Q_F/W = 2{,}6 = \text{COP}_p - 1\).
+        en: \(Q_F = Q_C - W = 6.5\ \text{kW}\); \(\text{COP}_f = Q_F/W = 2.6 = \text{COP}_p - 1\).
+  answer:
+    - label:
+        it: COP pompa
+        en: heat-pump COP
+      value: 3.6
+    - label:
+        it: P estratta
+        en: extracted P
+      value: 6.5
+      unit: kW
+    - label:
+        it: COP frigo
+        en: fridge COP
+      value: 2.6
+  origin: originale
+- id: macchina-termica-variante
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.1
+    - secondo-principio.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/macchina-termica
+  origin: tipologia-appello

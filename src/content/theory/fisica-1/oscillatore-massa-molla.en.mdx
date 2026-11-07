@@ -1,0 +1,178 @@
+---
+course: fisica-1
+topic: oscillatore-massa-molla
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/oscillatore-massa-molla/idea">
+
+The spring 'insists' on bringing the mass back to equilibrium, but the mass, by inertia, overshoots it every time: the oscillation is the endless compromise between elastic restoring and inertia. ω = √(k/m) says exactly this: more restoring (k) → fast oscillation, more inertia (m) → slow oscillation.
+
+</div>
+
+<div class="muted" data-note-id="teoria/oscillatore-massa-molla/prerequisiti">
+
+**Before this topic:** [Simple harmonic motion: amplitude, angular frequency, period, initial phase](../moto-armonico/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/oscillatore-massa-molla/definizioni">
+
+## Definitions
+
+A body of mass m is attached to an ideal spring of spring constant k, which exerts the restoring force $F = -kx$ (Hooke's law), where x is the displacement from the rest length of the spring. The mass–spring system is the prototype of the harmonic oscillator: the natural angular frequency is $\omega = \sqrt{k/m}$ and does not depend on the amplitude.
+
+</div>
+
+<div data-note-id="teoria/oscillatore-massa-molla/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Newton's second law with the elastic force</summary>
+
+$$
+m\ddot{x} = -kx
+$$
+
+The only (horizontal, frictionless) force is the spring force, proportional and opposite to the displacement.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Canonical form of the equation</summary>
+
+$$
+\ddot{x} + \frac{k}{m}x = 0 \;\Rightarrow\; \ddot{x} + \omega^2 x = 0, \qquad \omega = \sqrt{\frac{k}{m}}
+$$
+
+Dividing by m we recognise the harmonic-motion equation: the angular frequency is fixed only by k and m.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · General solution</summary>
+
+$$
+x(t) = A\cos(\omega t + \varphi), \qquad T = 2\pi\sqrt{\frac{m}{k}}
+$$
+
+A and φ come from the initial conditions. Larger mass → longer period; stiffer spring → shorter period.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Elastic potential energy</summary>
+
+$$
+U(x) = -\int_0^x (-kx')\,dx' = \frac{1}{2}kx^2
+$$
+
+The elastic force is conservative: U is minus the work done by the spring from 0 to x.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Conservation of mechanical energy</summary>
+
+$$
+E = \frac{1}{2}m\dot{x}^2 + \frac{1}{2}kx^2 = \frac{1}{2}kA^2 = \frac{1}{2}m\omega^2 A^2
+$$
+
+Substituting the solution: sin² + cos² = 1. The total energy is constant and proportional to A²; it is cyclically converted from kinetic (at x = 0) to potential (at x = ±A).
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Vertical case: gravity only shifts the equilibrium</summary>
+
+$$
+m\ddot{y} = -ky + mg \;\Rightarrow\; \text{with } y' = y - \frac{mg}{k}: \;\; m\ddot{y}' = -ky'
+$$
+
+Defining the new coordinate around the static equilibrium point y_eq = mg/k, the equation is unchanged: same ω, gravity does not change the period.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/oscillatore-massa-molla/ipotesi">
+
+## Validity assumptions
+
+Ideal spring: negligible mass, perfectly elastic, linear response F = −kx (valid for small deformations). No friction or air drag. Point-like body.
+
+</div>
+
+<div data-note-id="teoria/oscillatore-massa-molla/casi-limite">
+
+## Limiting cases
+
+k → ∞ (very stiff spring): T → 0, the body practically stays still. m → 0: T → 0. Large deformations: Hooke's law breaks down (non-linear terms) and isochronism is lost. With friction we move on to the damped oscillator.
+
+</div>
+
+<div data-note-id="teoria/oscillatore-massa-molla/formule">
+
+## Key formulas
+
+<Formula id="oscillatore-massa-molla-f1" />
+
+<Formula id="oscillatore-massa-molla-f2" />
+
+<Formula id="oscillatore-massa-molla-f3" />
+
+<Formula id="oscillatore-massa-molla-f4" />
+
+<Formula id="oscillatore-massa-molla-f5" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example: Vertical spring with a hanging mass">
+
+<div data-note-id="teoria/oscillatore-massa-molla/esempio">
+
+A mass m = 0.50 kg hanging from a vertical spring stretches it by 4.9 cm at equilibrium. It is then pulled 3 cm further down and released. Find k, the period and the maximum speed.
+
+1. Static equilibrium: $k\,\Delta y = mg \Rightarrow k = 0.50 \cdot 9.81/0.049 \approx 100\ \text{N/m}$.
+2. Around equilibrium gravity drops out: $\omega = \sqrt{k/m} \approx 14.1\ \text{rad/s}$, $T = 2\pi/\omega \approx 0.44\ \text{s}$ (equivalent to $T = 2\pi\sqrt{\Delta y/g}$).
+3. The amplitude is the displacement from equilibrium, A = 3 cm (not 7.9 cm!): $v_{max} = A\omega \approx 0.42\ \text{m/s}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/oscillatore-massa-molla/errori">
+
+- Writing ω = k/m instead of ω = √(k/m).
+- In the vertical system, measuring x from the rest length of the spring and forgetting the mg term (or counting it twice).
+- Believing that gravity changes the period of the vertical oscillator: it only changes the equilibrium position.
+- Confusing the total energy ½kA² with the instantaneous potential energy ½kx².
+
+</div>
+
+<div data-note-id="teoria/oscillatore-massa-molla/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- Two identical springs in series and in parallel: how does the equivalent spring constant change, and hence ω?
+- If the spring has non-negligible mass, does the period increase or decrease?
+- At which points of the oscillation is the power transferred from the spring to the mass maximum?
+
+</div>
+
+</Layer>

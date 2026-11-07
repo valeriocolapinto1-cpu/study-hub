@@ -1,0 +1,127 @@
+- id: legge-oraria-condizioni-iniziali
+  topic: moto-armonico
+  objectives:
+    - moto-armonico.1
+    - moto-armonico.2
+    - moto-armonico.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un punto si muove di moto armonico con periodo T = 0,50 s. All'istante t = 0 si trova in x₀ = 2,0 cm con
+      velocità v₀ = 0,30 m/s. Calcolare: (a) la pulsazione; (b) l'ampiezza; (c) l'accelerazione massima.
+    en: >-
+      A point moves in harmonic motion with period T = 0.50 s. At t = 0 it is at x₀ = 2.0 cm with velocity v₀
+      = 0.30 m/s. Find: (a) the angular frequency; (b) the amplitude; (c) the maximum acceleration.
+  steps:
+    - title:
+        it: Pulsazione
+        en: Angular frequency
+      body:
+        it: \(\omega = 2\pi/T = 4\pi \approx 12{,}57\ \text{rad/s}\).
+        en: \(\omega = 2\pi/T = 4\pi \approx 12.57\ \text{rad/s}\).
+    - title:
+        it: Ampiezza
+        en: Amplitude
+      body:
+        it: >-
+          \(A = \sqrt{x_0^2 + (v_0/\omega)^2} = \sqrt{0{,}020^2 + 0{,}0239^2} \approx 0{,}0311\ \text{m} =
+          3{,}11\ \text{cm}\).
+        en: >-
+          \(A = \sqrt{x_0^2 + (v_0/\omega)^2} = \sqrt{0.020^2 + 0.0239^2} \approx 0.0311\ \text{m} = 3.11\
+          \text{cm}\).
+    - title:
+        it: Accelerazione massima
+        en: Maximum acceleration
+      body:
+        it: >-
+          \(a_{max} = A\omega^2 \approx 0{,}0311 \cdot 157{,}9 \approx 4{,}92\ \text{m/s}^2\), agli estremi
+          \(x = \pm A\).
+        en: >-
+          \(a_{max} = A\omega^2 \approx 0.0311 \cdot 157.9 \approx 4.92\ \text{m/s}^2\), at the turning points
+          \(x = \pm A\).
+  answer:
+    - label:
+        it: ω
+        en: ω
+      value: 12.57
+      unit: rad/s
+    - label:
+        it: A
+        en: A
+      value: 3.11
+      unit: cm
+    - label:
+        it: a_max
+        en: a_max
+      value: 4.92
+      unit: m/s²
+  origin: originale
+- id: istante-passaggio
+  topic: moto-armonico
+  objectives:
+    - moto-armonico.1
+    - moto-armonico.2
+    - moto-armonico.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      La legge oraria di un oscillatore è x(t) = 0,10 cos(5t + π/3) (SI). Calcolare: (a) la velocità
+      all'istante t = 0; (b) il primo istante t > 0 in cui il punto passa per la posizione di equilibrio; (c)
+      la velocità in quell'istante.
+    en: >-
+      The equation of motion of an oscillator is x(t) = 0.10 cos(5t + π/3) (SI units). Find: (a) the velocity
+      at t = 0; (b) the first instant t > 0 at which the point passes through equilibrium; (c) the velocity at
+      that instant.
+  steps:
+    - title:
+        it: Velocità iniziale
+        en: Initial velocity
+      body:
+        it: >-
+          \(v(t) = -0{,}10 \cdot 5 \sin(5t + \pi/3)\), quindi \(v(0) = -0{,}5\sin(\pi/3) \approx -0{,}433\
+          \text{m/s}\).
+        en: \(v(t) = -0.10 \cdot 5 \sin(5t + \pi/3)\), so \(v(0) = -0.5\sin(\pi/3) \approx -0.433\ \text{m/s}\).
+    - title:
+        it: Passaggio per l'equilibrio
+        en: Passage through equilibrium
+      body:
+        it: x = 0 quando \(5t + \pi/3 = \pi/2\), cioè \(t = \pi/30 \approx 0{,}105\ \text{s}\).
+        en: x = 0 when \(5t + \pi/3 = \pi/2\), i.e. \(t = \pi/30 \approx 0.105\ \text{s}\).
+    - title:
+        it: Velocità all'equilibrio
+        en: Velocity at equilibrium
+      body:
+        it: >-
+          In quel punto \(\sin = 1\): \(v = -A\omega = -0{,}50\ \text{m/s}\), velocità massima in modulo e
+          diretta verso x negative.
+        en: >-
+          There \(\sin = 1\): \(v = -A\omega = -0.50\ \text{m/s}\), maximum speed, directed towards negative
+          x.
+  answer:
+    - label:
+        it: v(0)
+        en: v(0)
+      value: -0.433
+      unit: m/s
+    - label:
+        it: t
+        en: t
+      value: 0.105
+      unit: s
+    - label:
+        it: v
+        en: v
+      value: -0.5
+      unit: m/s
+  origin: originale
+- id: moto-armonico-variante
+  topic: moto-armonico
+  objectives:
+    - moto-armonico.1
+    - moto-armonico.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/moto-armonico
+  origin: tipologia-appello

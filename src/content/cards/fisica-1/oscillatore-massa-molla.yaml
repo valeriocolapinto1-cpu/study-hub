@@ -1,0 +1,242 @@
+- id: oscillatore-massa-molla-esposizione
+  topic: oscillatore-massa-molla
+  objectives:
+    - oscillatore-massa-molla.1
+    - oscillatore-massa-molla.2
+    - oscillatore-massa-molla.3
+    - oscillatore-massa-molla.4
+    - oscillatore-massa-molla.5
+    - oscillatore-massa-molla.6
+    - oscillatore-massa-molla.7
+  kind: orale
+  front:
+    it: "Esponi all'orale: «Oscillatore armonico massa-molla»."
+    en: 'Present at the oral exam: “Mass–spring harmonic oscillator”.'
+  back:
+    it: >-
+      La molla 'insiste' a riportare la massa all'equilibrio ma la massa, per inerzia, lo supera ogni volta:
+      l'oscillazione è il compromesso perpetuo tra richiamo elastico e inerzia. ω = √(k/m) dice esattamente
+      questo: più richiamo (k) → oscillazione veloce, più inerzia (m) → oscillazione lenta.
+
+
+      **Scaletta:**
+
+
+      - Scrivere F = −kx e giustificarla come approssimazione lineare
+
+      - Ricavare l'equazione del moto e portarla in forma canonica
+
+      - Identificare ω = √(k/m) e T = 2π√(m/k)
+
+      - Ricavare U = ½kx² per integrazione della forza
+
+      - Dimostrare la conservazione di E = ½mv² + ½kx² = ½kA²
+
+      - Trattare il caso verticale con il cambio di coordinata
+
+      - Discutere da cosa dipende (e da cosa non dipende) il periodo
+    en: >-
+      The spring 'insists' on bringing the mass back to equilibrium, but the mass, by inertia, overshoots it
+      every time: the oscillation is the endless compromise between elastic restoring and inertia. ω = √(k/m)
+      says exactly this: more restoring (k) → fast oscillation, more inertia (m) → slow oscillation.
+
+
+      **Outline:**
+
+
+      - Write F = −kx and justify it as a linear approximation
+
+      - Derive the equation of motion and bring it to canonical form
+
+      - Identify ω = √(k/m) and T = 2π√(m/k)
+
+      - Derive U = ½kx² by integrating the force
+
+      - Prove the conservation of E = ½mv² + ½kx² = ½kA²
+
+      - Treat the vertical case with the change of coordinate
+
+      - Discuss what the period depends on (and what it does not)
+- id: oscillatore-massa-molla-orale-1
+  topic: oscillatore-massa-molla
+  objectives:
+    - oscillatore-massa-molla.6
+    - oscillatore-massa-molla.7
+  kind: orale
+  front:
+    it: 'Due molle uguali in serie e in parallelo: come cambia la costante elastica equivalente e quindi ω?'
+    en: >-
+      Two identical springs in series and in parallel: how does the equivalent spring constant change, and
+      hence ω?
+  back:
+    it: >-
+      In parallelo le molle hanno lo stesso allungamento e le forze si sommano: \(k_{par} = k_1 + k_2 = 2k\),
+      quindi ω aumenta di \(\sqrt2\). In serie è la stessa forza a tendere entrambe e gli allungamenti si
+      sommano: \(1/k_{ser} = 1/k_1 + 1/k_2\), cioè \(k_{ser} = k/2\) e ω diminuisce di \(\sqrt2\).
+    en: >-
+      In parallel the springs have the same extension and the forces add: \(k_{par} = k_1 + k_2 = 2k\), so ω
+      increases by \(\sqrt2\). In series the same force stretches both and the extensions add: \(1/k_{ser} =
+      1/k_1 + 1/k_2\), i.e. \(k_{ser} = k/2\) and ω decreases by \(\sqrt2\).
+- id: oscillatore-massa-molla-orale-2
+  topic: oscillatore-massa-molla
+  objectives:
+    - oscillatore-massa-molla.6
+    - oscillatore-massa-molla.7
+  kind: orale
+  front:
+    it: Se la molla ha massa non trascurabile, il periodo aumenta o diminuisce?
+    en: If the spring has non-negligible mass, does the period increase or decrease?
+  back:
+    it: >-
+      Aumenta. Le spire della molla si muovono con velocità che cresce linearmente dal punto fisso alla massa;
+      integrando la loro energia cinetica si trova un contributo pari a quello di una massa \(m_{molla}/3\)
+      concentrata nel corpo, quindi \(T \approx 2\pi\sqrt{(m + m_{molla}/3)/k}\).
+    en: >-
+      It increases. The coils move with a speed that grows linearly from the fixed end to the mass;
+      integrating their kinetic energy gives a contribution equal to a mass \(m_{spring}/3\) attached to the
+      body, so \(T \approx 2\pi\sqrt{(m + m_{spring}/3)/k}\).
+- id: oscillatore-massa-molla-orale-3
+  topic: oscillatore-massa-molla
+  objectives:
+    - oscillatore-massa-molla.6
+    - oscillatore-massa-molla.7
+  kind: orale
+  front:
+    it: In quali punti dell'oscillazione la potenza trasferita dalla molla alla massa è massima?
+    en: At which points of the oscillation is the power transferred from the spring to the mass maximum?
+  back:
+    it: >-
+      La potenza è \(P = F v = -kx\,v\). Con \(x = A\cos\omega t\) e \(v = -A\omega\sin\omega t\) si ha \(P =
+      \tfrac12 kA^2\omega\sin 2\omega t\): è massima in modulo quando \(|\sin 2\omega t| = 1\), cioè in \(x =
+      \pm A/\sqrt2\), a metà strada tra equilibrio ed estremi; è nulla in x = 0 (forza nulla) e in x = ±A
+      (velocità nulla).
+    en: >-
+      The power is \(P = F v = -kx\,v\). With \(x = A\cos\omega t\) and \(v = -A\omega\sin\omega t\) we get
+      \(P = \tfrac12 kA^2\omega\sin 2\omega t\): its magnitude is maximum when \(|\sin 2\omega t| = 1\), i.e.
+      at \(x = \pm A/\sqrt2\), halfway between equilibrium and turning points; it vanishes at x = 0 (zero
+      force) and at x = ±A (zero velocity).
+- id: oscillatore-massa-molla-definizione
+  topic: oscillatore-massa-molla
+  objectives:
+    - oscillatore-massa-molla.1
+  kind: definizione
+  front:
+    it: 'Definizione: Oscillatore armonico massa-molla'
+    en: 'Definition: Mass–spring harmonic oscillator'
+  back:
+    it: >-
+      Un corpo di massa m è collegato a una molla ideale di costante elastica k che esercita la forza di
+      richiamo \(F = -kx\) (legge di Hooke), dove x è lo spostamento dalla posizione di riposo della molla. Il
+      sistema massa-molla è il prototipo dell'oscillatore armonico: la pulsazione propria è \(\omega =
+      \sqrt{k/m}\) e non dipende dall'ampiezza.
+    en: >-
+      A body of mass m is attached to an ideal spring of spring constant k, which exerts the restoring force
+      \(F = -kx\) (Hooke's law), where x is the displacement from the rest length of the spring. The
+      mass–spring system is the prototype of the harmonic oscillator: the natural angular frequency is
+      \(\omega = \sqrt{k/m}\) and does not depend on the amplitude.
+- id: oscillatore-massa-molla-formule
+  topic: oscillatore-massa-molla
+  objectives:
+    - oscillatore-massa-molla.1
+    - oscillatore-massa-molla.2
+    - oscillatore-massa-molla.3
+    - oscillatore-massa-molla.4
+    - oscillatore-massa-molla.5
+    - oscillatore-massa-molla.6
+    - oscillatore-massa-molla.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Oscillatore armonico massa-molla»
+    en: The key formulas of “Mass–spring harmonic oscillator”
+  back:
+    it: |-
+      - \(F = -kx\)
+      - \(\omega = \sqrt{k/m}\)
+      - \(T = 2\pi\sqrt{m/k}\)
+      - \(U = \frac{1}{2}kx^2\)
+      - \(E = \frac{1}{2}kA^2\)
+    en: |-
+      - \(F = -kx\)
+      - \(\omega = \sqrt{k/m}\)
+      - \(T = 2\pi\sqrt{m/k}\)
+      - \(U = \frac{1}{2}kx^2\)
+      - \(E = \frac{1}{2}kA^2\)
+- id: oscillatore-massa-molla-ipotesi
+  topic: oscillatore-massa-molla
+  objectives:
+    - oscillatore-massa-molla.1
+    - oscillatore-massa-molla.2
+    - oscillatore-massa-molla.3
+    - oscillatore-massa-molla.4
+    - oscillatore-massa-molla.5
+    - oscillatore-massa-molla.6
+    - oscillatore-massa-molla.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Oscillatore armonico massa-molla'
+    en: 'Validity assumptions: Mass–spring harmonic oscillator'
+  back:
+    it: >-
+      Molla ideale: massa trascurabile, perfettamente elastica, risposta lineare F = −kx (valida per piccole
+      deformazioni). Nessun attrito né resistenza dell'aria. Corpo puntiforme.
+    en: >-
+      Ideal spring: negligible mass, perfectly elastic, linear response F = −kx (valid for small
+      deformations). No friction or air drag. Point-like body.
+- id: oscillatore-massa-molla-casi-limite
+  topic: oscillatore-massa-molla
+  objectives:
+    - oscillatore-massa-molla.1
+    - oscillatore-massa-molla.2
+    - oscillatore-massa-molla.3
+    - oscillatore-massa-molla.4
+    - oscillatore-massa-molla.5
+    - oscillatore-massa-molla.6
+    - oscillatore-massa-molla.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Oscillatore armonico massa-molla'
+    en: 'Limiting cases: Mass–spring harmonic oscillator'
+  back:
+    it: >-
+      k → ∞ (molla rigidissima): T → 0, il corpo resta praticamente fermo. m → 0: T → 0. Grandi deformazioni:
+      la legge di Hooke cede (termini non lineari) e l'isocronismo si perde. Con attrito si passa
+      all'oscillatore smorzato.
+    en: >-
+      k → ∞ (very stiff spring): T → 0, the body practically stays still. m → 0: T → 0. Large deformations:
+      Hooke's law breaks down (non-linear terms) and isochronism is lost. With friction we move on to the
+      damped oscillator.
+- id: oscillatore-massa-molla-errori
+  topic: oscillatore-massa-molla
+  objectives:
+    - oscillatore-massa-molla.1
+    - oscillatore-massa-molla.2
+    - oscillatore-massa-molla.3
+    - oscillatore-massa-molla.4
+    - oscillatore-massa-molla.5
+    - oscillatore-massa-molla.6
+    - oscillatore-massa-molla.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Oscillatore armonico massa-molla'
+    en: 'Mistakes to avoid: Mass–spring harmonic oscillator'
+  back:
+    it: >-
+      - Scrivere ω = k/m invece di ω = √(k/m).
+
+      - Nel sistema verticale, misurare x dalla lunghezza a riposo della molla e dimenticare il termine mg (o
+      viceversa contarlo due volte).
+
+      - Credere che la gravità cambi il periodo dell'oscillatore verticale: cambia solo la posizione di
+      equilibrio.
+
+      - Confondere l'energia totale ½kA² con la potenziale istantanea ½kx².
+    en: >-
+      - Writing ω = k/m instead of ω = √(k/m).
+
+      - In the vertical system, measuring x from the rest length of the spring and forgetting the mg term (or
+      counting it twice).
+
+      - Believing that gravity changes the period of the vertical oscillator: it only changes the equilibrium
+      position.
+
+      - Confusing the total energy ½kA² with the instantaneous potential energy ½kx².

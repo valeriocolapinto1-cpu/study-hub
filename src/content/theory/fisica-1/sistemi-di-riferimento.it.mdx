@@ -1,0 +1,158 @@
+---
+course: fisica-1
+topic: sistemi-di-riferimento
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/sistemi-di-riferimento/idea">
+
+Le forze apparenti sono il 'trucco contabile' che permette di continuare a usare Newton in un sistema che accelera: siccome tutto il sistema accelera con A, ogni massa sembra ricevere una spinta −mA. La loro firma caratteristica è la proporzionalità alla massa — esattamente come la gravità, ed è questa somiglianza che ispirerà il principio di equivalenza.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/sistemi-di-riferimento/definizioni">
+
+## Definizioni
+
+Un sistema di riferimento è inerziale se in esso vale il principio d'inerzia: un corpo non soggetto a forze si muove di moto rettilineo uniforme. Ogni sistema in moto rettilineo uniforme rispetto a un inerziale è a sua volta inerziale (relatività galileiana). Un sistema che accelera rispetto a un inerziale è non inerziale: per usare F = ma al suo interno occorre introdurre forze apparenti (o fittizie, o d'inerzia), che non hanno reazione perché non nascono da interazioni.
+
+</div>
+
+<div data-note-id="teoria/sistemi-di-riferimento/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Trasformazione delle posizioni (sistemi traslatori)</summary>
+
+$$
+\vec{r} = \vec{r}' + \vec{R}(t)
+$$
+
+r è la posizione nel sistema inerziale S, r' quella nel sistema mobile S', R la posizione dell'origine di S' vista da S. Niente rotazioni: gli assi restano paralleli.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Derivo due volte rispetto al tempo</summary>
+
+$$
+\vec{v} = \vec{v}' + \vec{V}(t), \qquad \vec{a} = \vec{a}' + \vec{A}(t)
+$$
+
+V e A sono velocità e accelerazione di trascinamento dell'origine di S'. Le derivate dei versori sono nulle perché S' trasla senza ruotare.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Seconda legge nel sistema inerziale</summary>
+
+$$
+\vec{F} = m\vec{a} = m(\vec{a}' + \vec{A})
+$$
+
+F è la risultante delle sole forze vere (interazioni: gravità, contatto, elastiche…).
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Riscrittura dal punto di vista di S'</summary>
+
+$$
+m\vec{a}' = \vec{F} - m\vec{A} \equiv \vec{F} + \vec{F}_{app}
+$$
+
+In S' la legge di Newton 'funziona' solo aggiungendo la forza apparente F_app = −mA, opposta all'accelerazione di trascinamento e proporzionale alla massa.
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Caso dell'ascensore accelerato</summary>
+
+$$
+N - mg = ma' \;\text{con}\; \vec{F}_{app} = -m\vec{A} \;\Rightarrow\; N = m(g + A) \;\text{(accelera in su)}
+$$
+
+Il peso apparente (letto dalla bilancia, cioè la normale N) aumenta se l'ascensore accelera verso l'alto, diminuisce verso il basso; N = 0 in caduta libera: assenza di peso apparente.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/sistemi-di-riferimento/ipotesi">
+
+## Ipotesi di validità
+
+Meccanica classica (tempo assoluto, trasformazioni di Galileo). Sistema mobile in pura traslazione: assi sempre paralleli, altrimenti compaiono anche forza centrifuga e di Coriolis. Massa costante.
+
+</div>
+
+<div data-note-id="teoria/sistemi-di-riferimento/casi-limite">
+
+## Casi limite
+
+A = 0: S' è inerziale, le forze apparenti spariscono e si ritrova l'invarianza galileiana. A = g (caduta libera): la forza apparente cancella esattamente il peso — dentro il sistema tutto 'galleggia' (principio di equivalenza in embrione).
+
+</div>
+
+<div data-note-id="teoria/sistemi-di-riferimento/formule">
+
+## Formule chiave
+
+<Formula id="sistemi-di-riferimento-f1" />
+
+<Formula id="sistemi-di-riferimento-f2" />
+
+<Formula id="sistemi-di-riferimento-f3" />
+
+<Formula id="sistemi-di-riferimento-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/sistemi-di-riferimento/esempio">
+
+Una persona di massa m = 70 kg sta su una bilancia pesapersone dentro un ascensore. Calcolare l'indicazione della bilancia (in newton) quando l'ascensore: (a) sale accelerando con A = 1,5 m/s²; (b) sale a velocità costante; (c) sale frenando con decelerazione 2,0 m/s².
+
+1. **Nel riferimento dell'ascensore.** La persona è ferma rispetto all'ascensore: $N - mg - mA = 0$, con A positiva se l'accelerazione è verso l'alto. Quindi $N = m(g + A)$.
+2. **I tre casi.** (a) $N = 70 \cdot 11{,}31 \approx 792\ \text{N}$; (b) A = 0, $N = mg \approx 687\ \text{N}$; (c) salire frenando vuol dire accelerazione verso il basso, A = −2,0 m/s²: $N = 70 \cdot 7{,}81 \approx 547\ \text{N}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/sistemi-di-riferimento/errori">
+
+- Trattare la forza apparente come un'interazione reale e cercarle una reazione (terza legge): non ce l'ha.
+- Usare F = ma in un sistema accelerato senza aggiungere −mA.
+- Confondere il peso (forza gravitazionale mg) con il peso apparente (la normale N misurata dalla bilancia).
+- Credere che 'sentire la spinta' in frenata sia una forza vera: è l'inerzia vista da un sistema non inerziale.
+
+</div>
+
+<div data-note-id="teoria/sistemi-di-riferimento/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Come distingueresti sperimentalmente, stando chiuso in una scatola, un sistema inerziale da uno accelerato?
+- Un pendolo dentro un vagone che accelera con a: qual è la nuova posizione di equilibrio?
+- Perché la Terra è solo approssimativamente un sistema inerziale?
+
+</div>
+
+</Layer>

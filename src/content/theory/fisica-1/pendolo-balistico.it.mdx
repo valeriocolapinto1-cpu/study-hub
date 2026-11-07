@@ -1,0 +1,165 @@
+---
+course: fisica-1
+topic: pendolo-balistico
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/pendolo-balistico/idea">
+
+Il pendolo balistico è l'esempio perfetto di 'ogni fase la sua legge': l'urto è violento e rapidissimo → comanda la quantità di moto; la risalita è dolce e senza dissipazione → comanda l'energia. Confondere i due regimi porta a errori grossolani, ed è esattamente ciò che l'esaminatore vuole verificare che tu sappia distinguere.
+
+</div>
+
+<div class="muted" data-note-id="teoria/pendolo-balistico/prerequisiti">
+
+**Prima di questo argomento:** [Forze conservative, energia potenziale e conservazione dell'energia meccanica](../forze-conservative/) · [Urti centrali elastici e anelastici](../urti-centrali/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/pendolo-balistico/definizioni">
+
+## Definizioni
+
+Il pendolo balistico è un dispositivo per misurare la velocità di un proiettile: un blocco di massa M appeso a fili; il proiettile di massa m vi si conficca (urto perfettamente anelastico) e il sistema risale di un'altezza h. Il problema si risolve in DUE fasi con leggi di conservazione diverse: nell'urto si conserva la quantità di moto (non l'energia), nella risalita si conserva l'energia meccanica (non la quantità di moto, perché agiscono gravità e tensioni).
+
+</div>
+
+<div data-note-id="teoria/pendolo-balistico/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Fase 1 — urto perfettamente anelastico: conservo P</summary>
+
+$$
+mv_0 = (m + M)V \;\Rightarrow\; V = \frac{m}{m+M}v_0
+$$
+
+Durante il brevissimo urto le forze esterne (peso, tensione) danno impulso trascurabile: P si conserva. L'energia NO: il proiettile si conficca deformando il blocco.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Energia dissipata nell'urto</summary>
+
+$$
+\Delta K = \frac{1}{2}(m+M)V^2 - \frac{1}{2}mv_0^2 = -\frac{M}{m+M}\cdot\frac{1}{2}mv_0^2
+$$
+
+La frazione di energia persa è M/(m+M): con proiettile leggero e blocco pesante quasi tutta l'energia iniziale finisce in deformazione e calore.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Fase 2 — risalita: conservo l'energia meccanica</summary>
+
+$$
+\frac{1}{2}(m+M)V^2 = (m+M)gh \;\Rightarrow\; V = \sqrt{2gh}
+$$
+
+Dopo l'urto le uniche forze sono il peso (conservativo) e le tensioni (perpendicolari al moto, non lavorano): E si conserva fino al punto più alto, dove il sistema è momentaneamente fermo.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Combino le due fasi</summary>
+
+$$
+v_0 = \frac{m+M}{m}\sqrt{2gh}
+$$
+
+Misurando m, M e h (o l'angolo di risalita: h = L(1−cos θ)) si ricava la velocità del proiettile: una misura difficile ridotta a tre misure facili.
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Altezza in funzione dell'angolo massimo</summary>
+
+$$
+h = L(1 - \cos\theta_{max}) \;\Rightarrow\; v_0 = \frac{m+M}{m}\sqrt{2gL(1-\cos\theta_{max})}
+$$
+
+Forma pratica: negli esperimenti si legge l'angolo di massima elongazione.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/pendolo-balistico/ipotesi">
+
+## Ipotesi di validità
+
+Urto molto più breve del periodo del pendolo (così P si conserva e il pendolo non si sposta durante l'urto); proiettile che resta conficcato; fili inestensibili e privi di massa; attriti trascurabili nella risalita.
+
+</div>
+
+<div data-note-id="teoria/pendolo-balistico/casi-limite">
+
+## Casi limite
+
+m ≪ M: V ≈ (m/M)v₀ molto piccola, quasi tutta l'energia dissipata (il caso reale). m ≫ M: V ≈ v₀, quasi niente si dissipa. h → 0: v₀ → 0, coerente.
+
+</div>
+
+<div data-note-id="teoria/pendolo-balistico/formule">
+
+## Formule chiave
+
+<Formula id="pendolo-balistico-f1" />
+
+<Formula id="pendolo-balistico-f2" />
+
+<Formula id="pendolo-balistico-f3" />
+
+<Formula id="pendolo-balistico-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/pendolo-balistico/esempio">
+
+Un proiettile di 10 g si conficca in un blocco di legno di 2,0 kg appeso a fili lunghi 1,5 m; il pendolo si solleva fino a un angolo massimo di 18°. Calcolare: (a) l'altezza di risalita; (b) la velocità del blocco subito dopo l'urto; (c) la velocità del proiettile; (d) la frazione di energia dissipata.
+
+1. **Risalita.** $h = L(1 - \cos 18°) \approx 1{,}5 \cdot 0{,}04894 \approx 0{,}0734\ \text{m}$; $V = \sqrt{2gh} \approx 1{,}20\ \text{m/s}$.
+2. **Urto.** $v_0 = \dfrac{m+M}{m}V = 201 \cdot 1{,}20 \approx 241\ \text{m/s}$.
+3. **Energia.** Frazione dissipata $M/(m+M) = 2{,}0/2{,}01 \approx 0{,}995$: il 99,5% dell'energia del proiettile diventa deformazione e calore.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/pendolo-balistico/errori">
+
+- Conservare l'energia attraverso l'urto: ½mv₀² = (m+M)gh è SBAGLIATO e sovrastima h.
+- Conservare la quantità di moto nella risalita (agiscono forze esterne non trascurabili sui tempi lunghi).
+- Dimenticare il fattore (m+M)/m risalendo da V a v₀.
+- Usare h = L sin θ invece di h = L(1 − cos θ).
+
+</div>
+
+<div data-note-id="teoria/pendolo-balistico/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Se il proiettile attraversasse il blocco uscendo con velocità v₁, come cambierebbe l'analisi?
+- Perché l'urto deve durare molto meno del periodo del pendolo?
+- Con quali misure e propagazione degli errori stimeresti l'incertezza su v₀?
+
+</div>
+
+</Layer>
