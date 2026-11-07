@@ -462,3 +462,11 @@ h4 {
 .site-footer {
   background: var(--surface);
 }
+
+/* Schede di dati nei corsi (es. «Il corso»): densità di Fisica II (.kv). */
+[data-area='course'] .facts {
+  border-top: 1px solid var(--border);
+}
+[data-area='course'] .facts dd {
+  font: 500 1rem / 1.5 var(--font-sans);
+}
