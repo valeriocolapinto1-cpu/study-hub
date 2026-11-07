@@ -1,0 +1,111 @@
+- id: tempi-e-tecnologia-verifica-1
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.2
+  kind: concetto
+  front:
+    it: Perché il cammino critico determina la frequenza di clock?
+    en: Why does the critical path determine the clock frequency?
+  back:
+    it:
+      Perché il periodo deve bastare al segnale per attraversare il percorso combinatorio più lungo e arrivare
+      stabile al flip-flop prima del setup. Se il clock è più veloce, il dato campionato è quello sbagliato.
+    en:
+      Because the period must be long enough for the signal to cross the longest combinational path and arrive
+      stable at the flip-flop before the setup. If the clock is faster, the sampled data is the wrong one.
+- id: tempi-e-tecnologia-verifica-2
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.3
+  kind: concetto
+  front:
+    it: 'Un buffer aggiunge ritardo: perché a volte si mette lo stesso?'
+    en: 'A buffer adds delay: why is it sometimes inserted anyway?'
+  back:
+    it: 'Per pilotare un fan-out elevato: il buffer isola la capacità di carico e la ripartisce, riducendo il
+      ritardo complessivo del ramo rispetto a una porta debole che carica tutto da sola.'
+    en:
+      'To drive a high fan-out: the buffer isolates the load capacitance and spreads it, reducing the overall
+      delay of the branch compared with a weak gate charging everything by itself.'
+- id: tempi-e-tecnologia-verifica-3
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.4
+  kind: concetto
+  front:
+    it: Perché il CMOS consuma quasi solo quando commuta?
+    en: Why does CMOS consume power almost only when it switches?
+  back:
+    it:
+      'Perché a regime una delle due reti è aperta: non esiste un percorso continuo fra alimentazione e massa.
+      La corrente scorre solo mentre le capacità si caricano e si scaricano, quindi il consumo dinamico cresce
+      con la frequenza.'
+    en:
+      'Because at steady state one of the two networks is open: there is no continuous path between supply and
+      ground. Current flows only while the capacitances charge and discharge, so dynamic power grows with
+      frequency.'
+- id: open-tech-01
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.1
+    - tempi-e-tecnologia.2
+  kind: orale
+  front:
+    it: Cosa si intende per ritardo di propagazione in una rete combinatoria formata da più porte in cascata?
+    en: What is meant by propagation delay in a combinational network made of several gates in cascade?
+  back:
+    it: "Il **ritardo di propagazione** di una singola porta è l'intervallo fra l'istante in cui l'ingresso
+      attraversa il 50% dell'escursione e quello in cui l'uscita fa altrettanto: il segnale non commuta
+      istantaneamente perché i transistor devono caricare e scaricare le capacità. Da non confondere con il
+      **tempo di transizione**, che misura la ripidità del fronte (dal 10% al 90%). Quando più porte sono **in
+      cascata** i ritardi si **sommano**: l'uscita finale è valida solo dopo che il segnale ha attraversato
+      l'intera catena, e il ritardo della rete è quello del suo **cammino critico**, cioè il percorso
+      ingresso→uscita più lento. Due conseguenze: il periodo minimo di clock è dettato dal cammino critico fra
+      due registri più il tempo di setup, e una forma minima a due livelli (AND poi OR) è preferibile anche
+      per velocità, non solo per numero di porte. È lo stesso motivo per cui un ripple-carry a n bit è lento:
+      il riporto attraversa n stadi in fila."
+    en:
+      'The **propagation delay** of a single gate is the interval between the instant the input crosses 50% of
+      its swing and the instant the output does the same: the signal does not switch instantly because the
+      transistors must charge and discharge capacitances. Not to be confused with the **transition time**,
+      which measures the steepness of the edge (from 10% to 90%). When several gates are **in cascade** the
+      delays **add up**: the final output is valid only after the signal has crossed the whole chain, and the
+      delay of the network is that of its **critical path**, i.e. the slowest input→output path. Two
+      consequences: the minimum clock period is set by the critical path between two registers plus the setup
+      time, and a minimal two-level form (AND then OR) is preferable for speed too, not just for the number of
+      gates. It is the same reason why an n-bit ripple-carry is slow: the carry crosses n stages in a row.'
+- id: def-ritardo
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.1
+    - tempi-e-tecnologia.2
+  kind: definizione
+  front:
+    it: Ritardo di propagazione
+    en: Propagation delay
+  back:
+    it: >-
+      Tempo che intercorre fra l’istante in cui l’ingresso attraversa il 50% dell’escursione e quello in cui
+      lo fa l’uscita.
+
+
+      In una cascata di porte i ritardi si **sommano**: il ritardo della rete è quello del **cammino
+      critico**, il percorso più lento, ed è lui a fissare il periodo minimo di clock.
+    en: >-
+      Time between the instant the input crosses 50% of its swing and the instant the output does.
+
+
+      In a cascade of gates the delays **add up**: the delay of the network is that of the **critical path**,
+      the slowest path, and it sets the minimum clock period.
+- id: def-fanout
+  topic: tempi-e-tecnologia
+  objectives:
+    - tempi-e-tecnologia.1
+    - tempi-e-tecnologia.2
+  kind: definizione
+  front:
+    it: Fan-out
+    en: Fan-out
+  back:
+    it: Numero di ingressi di altre porte che una singola uscita può pilotare.
+    en: Number of inputs of other gates that a single output can drive.

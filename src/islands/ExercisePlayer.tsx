@@ -7,6 +7,7 @@
  */
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import type { AnswerItemData, ChoiceData, ExerciseData, StepData } from '../engine/course-data';
+import { answerHelpKey } from '../engine/course-data';
 import { feedbackText, gradeAnswers, gradeChoice, type MultiResult } from '../engine/grading';
 import { toAnswerSpec } from '../engine/exam';
 import { exerciseStatus, loadProgress, saveAttempt, type ProgressState } from '../engine/progress';
@@ -329,7 +330,7 @@ export default function ExercisePlayer({
                 );
               })}
               <p id={`${uid}-help`} class="sh-help">
-                {t(lang, 'exercise.answerHelp')}
+                {t(lang, answerHelpKey(content.answer))}
               </p>
             </div>
           )}

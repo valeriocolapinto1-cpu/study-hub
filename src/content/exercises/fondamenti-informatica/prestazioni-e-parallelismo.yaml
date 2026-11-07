@@ -1,0 +1,666 @@
+- id: prestazioni-e-parallelismo-es-1
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.1
+  difficulty: 1
+  kind: static
+  statement:
+    it:
+      Un programma esegue **2 × 10⁹** istruzioni con un numero medio di cicli per istruzione pari a **1,8**, su
+      un processore a **3 GHz**. Quanto dura?
+    en:
+      A program executes **2 × 10⁹** instructions with an average of **1.8** cycles per instruction, on a **3
+      GHz** processor. How long does it take?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: Applica direttamente l’equazione delle prestazioni, badando alle unità di misura.
+        en: Apply the performance equation directly, paying attention to the units.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          T = (N × S) / R
+            = (2×10⁹ × 1,8) / (3×10⁹ Hz)
+            = 3,6×10⁹ cicli / 3×10⁹ cicli al secondo
+            = 1,2 s
+          ```
+
+
+          Da qui si legge subito quanto vale ogni miglioramento. Portare S da 1,8 a 1,5 (cache migliore)
+          darebbe 1,0 s; portare la frequenza da 3 a 3,6 GHz darebbe la stessa cosa. Le due strade sono
+          equivalenti sul risultato ma non sul costo: la prima è organizzazione, la seconda è consumo e
+          calore.
+        en: >-
+          ```
+
+          T = (N × S) / R
+            = (2×10⁹ × 1.8) / (3×10⁹ Hz)
+            = 3.6×10⁹ cycles / 3×10⁹ cycles per second
+            = 1.2 s
+          ```
+
+
+          From here you can immediately read how much each improvement is worth. Bringing S from 1.8 to 1.5
+          (better cache) would give 1.0 s; bringing the frequency from 3 to 3.6 GHz would give the same. The
+          two routes are equivalent in result but not in cost: the first is organisation, the second is power
+          and heat.
+  answer:
+    - label:
+        it: Tempo di esecuzione
+        en: Execution time
+      value: 1.2
+      unit: s
+      tol: 0.000001
+  origin: originale
+- id: prestazioni-e-parallelismo-es-2
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.1
+  difficulty: 1
+  kind: static
+  statement:
+    it:
+      La macchina A ha clock 2,5 GHz e S = 1,2. La macchina B ha clock 3 GHz e S = 1,8. Sullo stesso programma,
+      quale è più veloce e di quanto?
+    en:
+      Machine A has a 2.5 GHz clock and S = 1.2. Machine B has a 3 GHz clock and S = 1.8. On the same program,
+      which is faster and by how much?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: A parità di programma N è lo stesso, quindi si può confrontare direttamente S/R.
+        en: On the same program N is the same, so S/R can be compared directly.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          T_A = N × 1,2 / 2,5×10⁹ = N × 0,48 ns
+
+          T_B = N × 1,8 / 3,0×10⁹ = N × 0,60 ns
+
+
+          T_B / T_A = 0,60 / 0,48 = 1,25
+
+          ```
+
+
+          La macchina **A è il 25 % più veloce**, pur avendo la frequenza più bassa: il suo vantaggio su S
+          (1,2 contro 1,8) più che compensa i 500 MHz in meno.
+
+
+          È la risposta alla domanda-trappola «un processore a frequenza più alta è più veloce?». No: la
+          frequenza è un fattore su tre, e da sola non dice niente. Il confronto ha senso solo **a parità di
+          programma**, perché anche N cambia da macchina a macchina.
+        en: >-
+          ```
+
+          T_A = N × 1.2 / 2.5×10⁹ = N × 0.48 ns
+
+          T_B = N × 1.8 / 3.0×10⁹ = N × 0.60 ns
+
+
+          T_B / T_A = 0.60 / 0.48 = 1.25
+
+          ```
+
+
+          Machine **A is 25 % faster**, despite having the lower frequency: its advantage in S (1.2 against
+          1.8) more than compensates for the 500 MHz less.
+
+
+          It is the answer to the trick question “is a processor with a higher frequency faster?”. No:
+          frequency is one factor out of three, and on its own it says nothing. The comparison makes sense
+          only **on the same program**, because N too changes from machine to machine.
+  answer:
+    - label:
+        it: T_B / T_A
+        en: T_B / T_A
+      value: 1.25
+      tol: 0.000001
+    - label:
+        it: Macchina più veloce
+        en: Faster machine
+      value: A
+      kind: text
+  origin: originale
+- id: prestazioni-e-parallelismo-es-3
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.3
+  difficulty: 2
+  kind: static
+  statement:
+    it:
+      Un programma spende il **25 %** del tempo in una funzione che riscrivi rendendola **8 volte** più veloce.
+      Qual è il guadagno complessivo? E se la rendessi infinitamente veloce?
+    en:
+      A program spends **25 %** of its time in a function that you rewrite making it **8 times** faster. What is
+      the overall gain? And if you made it infinitely fast?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          'Legge di Amdahl. Attenzione: *f* è la frazione di **tempo** occupata dalla parte migliorata, non la sua
+          dimensione nel codice.'
+        en:
+          "Amdahl's law. Careful: *f* is the fraction of **time** taken by the improved part, not its size in the
+          code."
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          speedup = 1 / ( (1 − f) + f/k )
+                  = 1 / ( 0,75 + 0,25/8 )
+                  = 1 / ( 0,75 + 0,03125 )
+                  = 1 / 0,78125 = 1,28×
+
+          limite con k → ∞:
+                  = 1 / 0,75 = 1,33×
+          ```
+
+
+          Otto volte più veloce su un quarto del tempo produce appena il 28 % di guadagno; e anche azzerando
+          del tutto quella parte non si supera il 33 %. Il collo di bottiglia è il 75 % non toccato.
+
+
+          Conseguenza operativa: **misurare prima di ottimizzare**. Investire settimane su una funzione che
+          pesa il 25 % ha un tetto del 33 %; la stessa fatica su una che pesa il 70 % ne vale molto di più. È
+          il motivo per cui i profiler esistono.
+        en: >-
+          ```
+
+          speedup = 1 / ( (1 − f) + f/k )
+                  = 1 / ( 0.75 + 0.25/8 )
+                  = 1 / ( 0.75 + 0.03125 )
+                  = 1 / 0.78125 = 1.28×
+
+          limit with k → ∞:
+                  = 1 / 0.75 = 1.33×
+          ```
+
+
+          Eight times faster on a quarter of the time produces barely a 28 % gain; and even reducing that part
+          to zero you do not exceed 33 %. The bottleneck is the untouched 75 %.
+
+
+          Operational consequence: **measure before optimising**. Investing weeks in a function weighing 25 %
+          has a 33 % ceiling; the same effort on one weighing 70 % is worth much more. That is why profilers
+          exist.
+  answer:
+    - label:
+        it: Speedup con k = 8
+        en: Speedup with k = 8
+      value: 1.28
+      tol: 0.01
+    - label:
+        it: Speedup con k → ∞
+        en: Speedup with k → ∞
+      value: 1.33333
+      tol: 0.01
+  origin: originale
+- id: prestazioni-e-parallelismo-es-4
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.3
+  difficulty: 2
+  kind: static
+  statement:
+    it:
+      Un programma è parallelizzabile all’**80 %**. Quanti core servono per dimezzare il tempo di esecuzione? E
+      qual è il massimo guadagno raggiungibile con infiniti core?
+    en:
+      A program is **80 %** parallelisable. How many cores are needed to halve the execution time? And what is
+      the maximum gain achievable with infinitely many cores?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: Amdahl con k = numero di core sulla parte parallela. Imposta lo speedup a 2 e risolvi.
+        en: Amdahl with k = number of cores on the parallel part. Set the speedup to 2 and solve.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          speedup = 1 / ( 0,20 + 0,80/k ) = 2
+
+
+          0,20 + 0,80/k = 0,5
+
+          0,80/k = 0,3
+
+          k = 0,80 / 0,3 ≈ 2,7 → 3 core
+
+
+          limite con k → ∞:  1 / 0,20 = 5×
+
+          ```
+
+
+          Tre core bastano per raddoppiare la velocità, ma per triplicarla ne servirebbero 8, e oltre 5× non
+          si va **mai**, nemmeno con mille core. Il 20 % sequenziale è un muro.
+
+
+          E il conto è ancora ottimistico: non tiene conto del costo di **sincronizzazione**, che cresce con
+          il numero di core e a un certo punto può far *peggiorare* le prestazioni aggiungendo processori. È
+          la ragione per cui il parallelismo non è una soluzione universale.
+        en: >-
+          ```
+
+          speedup = 1 / ( 0.20 + 0.80/k ) = 2
+
+
+          0.20 + 0.80/k = 0.5
+
+          0.80/k = 0.3
+
+          k = 0.80 / 0.3 ≈ 2.7 → 3 cores
+
+
+          limit with k → ∞:  1 / 0.20 = 5×
+
+          ```
+
+
+          Three cores are enough to double the speed, but to triple it 8 would be needed, and beyond 5× you
+          **never** go, not even with a thousand cores. The sequential 20 % is a wall.
+
+
+          And the calculation is still optimistic: it does not account for the cost of **synchronisation**,
+          which grows with the number of cores and at some point can make performance *worse* as processors
+          are added. That is why parallelism is not a universal solution.
+  answer:
+    - label:
+        it: Core necessari
+        en: Cores needed
+      value: 3
+      tol: 1e-9
+    - label:
+        it: Speedup massimo
+        en: Maximum speedup
+      value: 5
+      tol: 1e-9
+  origin: originale
+- id: prestazioni-e-parallelismo-es-5
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Due benchmark: sul primo la macchina X è **10 volte** più veloce del riferimento, sul secondo è **0,1
+      volte** (cioè dieci volte più lenta). Calcola il punteggio con la media **aritmetica** e con la
+      **geometrica**, e di’ quale è corretta.'
+    en: 'Two benchmarks: on the first machine X is **10 times** faster than the reference, on the second it is
+      **0.1 times** as fast (i.e. ten times slower). Compute the score with the **arithmetic** and with the
+      **geometric** mean, and say which is correct.'
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: La media giusta è quella che non cambia se si sceglie una macchina di riferimento diversa. Prova a
+          immaginare di invertire i ruoli.
+        en:
+          The right mean is the one that does not change if a different reference machine is chosen. Try to imagine
+          swapping the roles.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          media aritmetica = (10 + 0,1) / 2 = 5,05
+
+          media geometrica = √(10 × 0,1) = √1 = 1,0
+
+          ```
+
+
+          L’aritmetica dice che X è cinque volte più veloce del riferimento: assurdo, visto che su un
+          benchmark vince di dieci e sull’altro perde di dieci. La geometrica dice **1,0**, cioè pari — che è
+          la lettura sensata.
+
+
+          Il motivo formale: i punteggi sono **rapporti**. La media geometrica di rapporti gode della
+          proprietà che, invertendo il riferimento, il risultato si inverte coerentemente e l’**ordinamento
+          fra le macchine non cambia**. La media aritmetica no: cambiando macchina di riferimento può cambiare
+          persino chi vince, il che la rende inutilizzabile per un confronto.
+
+
+          È per questo che le suite SPEC pubblicano medie geometriche, e la ragione per cui un punteggio
+          sintetico va sempre letto sapendo **come** è stato aggregato.
+        en: >-
+          ```
+
+          arithmetic mean = (10 + 0.1) / 2 = 5.05
+
+          geometric mean  = √(10 × 0.1) = √1 = 1.0
+
+          ```
+
+
+          The arithmetic mean says X is five times faster than the reference: absurd, given that it wins by
+          ten on one benchmark and loses by ten on the other. The geometric mean says **1.0**, i.e. even —
+          which is the sensible reading.
+
+
+          The formal reason: the scores are **ratios**. The geometric mean of ratios has the property that,
+          inverting the reference, the result inverts consistently and the **ranking between machines does not
+          change**. The arithmetic mean does not: changing the reference machine can even change who wins,
+          which makes it useless for a comparison.
+
+
+          That is why the SPEC suites publish geometric means, and why a summary score must always be read
+          knowing **how** it was aggregated.
+  answer:
+    - label:
+        it: Media aritmetica
+        en: Arithmetic mean
+      value: 5.05
+      tol: 0.000001
+    - label:
+        it: Media geometrica
+        en: Geometric mean
+      value: 1
+      tol: 0.000001
+  origin: originale
+- id: mcq-perf-01
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.1
+    - prestazioni-e-parallelismo.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Nell’equazione `T = (N × S) / R`, che cosa rappresenta `S`?
+    en: In the equation `T = (N × S) / R`, what does `S` represent?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Il numero medio di cicli di clock per istruzione
+        en: The average number of clock cycles per instruction
+  choices:
+    - text:
+        it: La dimensione della cache
+        en: The cache size
+      correct: false
+    - text:
+        it: Il numero medio di cicli di clock per istruzione
+        en: The average number of clock cycles per instruction
+      correct: true
+    - text:
+        it: Il numero di stadi della pipeline
+        en: The number of pipeline stages
+      correct: false
+    - text:
+        it: La frequenza di clock in GHz
+        en: The clock frequency in GHz
+      correct: false
+  origin: originale
+- id: mcq-perf-02
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.1
+    - prestazioni-e-parallelismo.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Il 50 % del tempo di esecuzione viene reso **4 volte** più veloce. Qual è il guadagno complessivo?
+    en: 50 % of the execution time is made **4 times** faster. What is the overall gain?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: 1,6×
+        en: 1.6×
+  choices:
+    - text:
+        it: 4×
+        en: 4×
+      correct: false
+    - text:
+        it: 1,6×
+        en: 1.6×
+      correct: true
+    - text:
+        it: 2×
+        en: 2×
+      correct: false
+    - text:
+        it: 2,5×
+        en: 2.5×
+      correct: false
+  origin: originale
+- id: mcq-perf-03
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.1
+    - prestazioni-e-parallelismo.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Perché i **MIPS** sono una misura poco affidabile per confrontare due processori?
+    en: Why are **MIPS** an unreliable measure for comparing two processors?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it:
+          'Perché dipendono dal repertorio di istruzioni e dal programma: la stessa quantità di lavoro richiede più
+          istruzioni su una macchina che sull’altra'
+        en: 'Because they depend on the instruction set and the program: the same amount of work takes more
+          instructions on one machine than on the other'
+  choices:
+    - text:
+        it: Perché non tengono conto della frequenza di clock
+        en: Because they do not take the clock frequency into account
+      correct: false
+    - text:
+        it:
+          'Perché dipendono dal repertorio di istruzioni e dal programma: la stessa quantità di lavoro richiede più
+          istruzioni su una macchina che sull’altra'
+        en: 'Because they depend on the instruction set and the program: the same amount of work takes more
+          instructions on one machine than on the other'
+      correct: true
+    - text:
+        it: Perché misurano solo le operazioni in virgola mobile
+        en: Because they measure only floating-point operations
+      correct: false
+    - text:
+        it: Perché sono definiti solo per le macchine RISC
+        en: Because they are defined only for RISC machines
+      correct: false
+  origin: originale
+- id: mcq-perf-04
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.1
+    - prestazioni-e-parallelismo.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Qual è la ragione **fisica** per cui si è passati dall’alzare la frequenza al mettere più core?
+    en: What is the **physical** reason for moving from raising the frequency to adding more cores?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it:
+          'Il consumo dinamico cresce con f·C·V²: alzare la frequenza costa in potenza e calore molto più che
+          aggiungere core'
+        en:
+          'Dynamic power grows with f·C·V²: raising the frequency costs far more in power and heat than adding
+          cores'
+  choices:
+    - text:
+        it: I transistor non si possono più rimpicciolire
+        en: Transistors can no longer be made smaller
+      correct: false
+    - text:
+        it:
+          'Il consumo dinamico cresce con f·C·V²: alzare la frequenza costa in potenza e calore molto più che
+          aggiungere core'
+        en:
+          'Dynamic power grows with f·C·V²: raising the frequency costs far more in power and heat than adding
+          cores'
+      correct: true
+    - text:
+        it: I programmi sono tutti già paralleli
+        en: Programs are all already parallel
+      correct: false
+    - text:
+        it: La memoria non riesce a seguire una sola pipeline
+        en: Memory cannot keep up with a single pipeline
+      correct: false
+  origin: originale
+- id: schema-multiprocessore-uma
+  topic: prestazioni-e-parallelismo
+  objectives:
+    - prestazioni-e-parallelismo.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Multiprocessore a memoria condivisa (UMA)»: scrivi per ogni posizione numerata
+      l'etichetta giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Bus PCI · Cache privata · Controllore DMA · Memoria · Processore · Rete di interconnessione ·
+      Unità di controllo
+    en: >-
+      Complete the diagram “Shared-memory multiprocessor (UMA)”: for each numbered position write the right
+      label. The list contains more labels than positions.
+
+
+      Labels: Control unit · DMA controller · Interconnection network · Memory · PCI bus · Private cache ·
+      Processor
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 300" role="img"
+        aria-labelledby="ex-multiprocessore-uma-t ex-multiprocessore-uma-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-multiprocessore-uma-t">Multiprocessore a
+        memoria condivisa (UMA)</title><desc id="ex-multiprocessore-uma-d">Schema con 5 posizioni numerate da
+        completare.</desc><defs><marker id="ex-multiprocessore-uma-arrow" viewBox="0 0 10 10" refX="9"
+        refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="60" y="20" width="100"
+        height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="240" y="20" width="100" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="450" y="20" width="100" height="40" rx="6"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="395" y="45" font-size="14">· · ·</text>
+              <ellipse style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" cx="310" cy="150" rx="270" ry="42"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-multiprocessore-uma-arrow)" x1="110" y1="60" x2="110" y2="120"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-multiprocessore-uma-arrow)" x1="290" y1="60" x2="290" y2="112"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-multiprocessore-uma-arrow)" x1="500" y1="60" x2="500" y2="120"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="60" y="240" width="100" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="240" y="240" width="100" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="450" y="240" width="100" height="40" rx="6"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="395" y="265" font-size="14">· · ·</text>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-multiprocessore-uma-arrow)" x1="110" y1="182" x2="110" y2="240"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-multiprocessore-uma-arrow)" x1="290" y1="188" x2="290" y2="240"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-multiprocessore-uma-arrow)" x1="500" y1="182" x2="500" y2="240"/><circle cx="110" cy="40" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="110" y="40" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="500" cy="40" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="500" y="40" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="310" cy="150" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="310" y="150" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="110" cy="260" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="110" y="260" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="500" cy="260" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="500" y="260" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 300" role="img"
+        aria-labelledby="ex-multiprocessore-uma-t ex-multiprocessore-uma-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-multiprocessore-uma-t">Shared-memory
+        multiprocessor (UMA)</title><desc id="ex-multiprocessore-uma-d">Diagram with 5 numbered positions to
+        fill in.</desc><defs><marker id="ex-multiprocessore-uma-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="60" y="20" width="100"
+        height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="240" y="20" width="100" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="450" y="20" width="100" height="40" rx="6"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="395" y="45" font-size="14">· · ·</text>
+              <ellipse style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" cx="310" cy="150" rx="270" ry="42"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-multiprocessore-uma-arrow)" x1="110" y1="60" x2="110" y2="120"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-multiprocessore-uma-arrow)" x1="290" y1="60" x2="290" y2="112"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-multiprocessore-uma-arrow)" x1="500" y1="60" x2="500" y2="120"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="60" y="240" width="100" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="240" y="240" width="100" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="450" y="240" width="100" height="40" rx="6"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="395" y="265" font-size="14">· · ·</text>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-multiprocessore-uma-arrow)" x1="110" y1="182" x2="110" y2="240"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-multiprocessore-uma-arrow)" x1="290" y1="188" x2="290" y2="240"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-multiprocessore-uma-arrow)" x1="500" y1="182" x2="500" y2="240"/><circle cx="110" cy="40" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="110" y="40" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="500" cy="40" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="500" y="40" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="310" cy="150" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="310" y="150" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="110" cy="260" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="110" y="260" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="500" cy="260" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="500" y="260" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Processore
+          2. Processore
+          3. Rete di interconnessione
+          4. Memoria
+          5. Memoria
+        en: |-
+          1. Processor
+          2. Processor
+          3. Interconnection network
+          4. Memory
+          5. Memory
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Processore
+      kind: text
+      accept:
+        - Processor
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Processore
+      kind: text
+      accept:
+        - Processor
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Rete di interconnessione
+      kind: text
+      accept:
+        - Interconnection network
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Memoria
+      kind: text
+      accept:
+        - Memory
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Memoria
+      kind: text
+      accept:
+        - Memory
+  origin: originale

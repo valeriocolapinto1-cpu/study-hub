@@ -1,0 +1,205 @@
+---
+course: fondamenti-informatica
+topic: numeri-binari
+lang: it
+---
+
+<Callout tone="ok" title="In due minuti">
+
+<div data-note-id="teoria/numeri-binari/in-due-minuti">
+
+- Una notazione è **posizionale** quando il valore di una cifra dipende dalla posizione: il numero vale Σ cifra × base^posizione. Cambiare base è cambiare quel _peso_, non le regole.
+- Una cifra esadecimale vale esattamente **4 bit** perché 16 = 2⁴: si converte a gruppi di quattro, sempre **partendo da destra**.
+- In complemento a 2 il bit più significativo pesa **−2ᴺ⁻¹**. Negare = invertire tutti i bit e sommare 1.
+- Su N bit l'intervallo è −2ᴺ⁻¹ … +2ᴺ⁻¹−1: **asimmetrico**, con un solo zero.
+- **Overflow ≠ riporto uscente.** L'overflow è lo XOR fra riporto entrante e uscente dal bit di segno.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/numeri-binari/da-dove-si-parte">
+
+## Da dove si parte
+
+**Cosa serve sapere prima:** nulla. Questo è il primo modulo, e tutto il resto del corso vi poggia sopra. Basta saper contare e fare divisioni con il resto.
+
+**Che problema risolve.** Un calcolatore è fatto di interruttori: ogni filo può essere solo alto o basso, acceso o spento, 1 o 0. Non esiste un filo «che vale 7». Se vogliamo che una macchina fatta così maneggi numeri, dobbiamo decidere **come scrivere un numero usando solo due simboli** — e come scrivere anche i numeri **negativi**, visto che non abbiamo un filo per il segno «−». Questo modulo risponde a entrambe le domande.
+
+**Le parole nuove.** Un **bit** è una cifra binaria, cioè una casella che vale 0 o 1. Un **byte** sono otto bit. Il bit **più significativo** (MSB) è quello più a sinistra, quello che pesa di più; il **meno significativo** (LSB) è quello più a destra. Una **rappresentazione** è un accordo su come interpretare una sequenza di bit: gli stessi otto bit possono voler dire 200 oppure −56, a seconda dell’accordo che abbiamo scelto. Non c’è nulla nei bit che lo dica: lo sa il programma.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/numeri-binari/basi-e-conversioni">
+
+## Basi e conversioni
+
+Un numero in base `b` è una somma di cifre pesate: `1011₂ = 1·2³ + 0·2² + 1·2¹ + 1·2⁰ = 11`. Per convertire da decimale a binario si divide ripetutamente per 2 e si leggono i resti **dal basso verso l'alto**.
+
+Esadecimale e ottale servono solo ad accorciare la scrittura: una cifra hex vale **4 bit**, una ottale **3 bit**. Si converte raggruppando, senza passare dal decimale:
+
+```
+1011 0110₂  →  B    6    →  0xB6
+   ↑    ↑        11   6
+```
+
+Da decimale a esadecimale conviene dividere per 16: `182 = 11·16 + 6 → B6`.
+
+</div>
+
+<div data-note-id="teoria/numeri-binari/che-cosa-rende-posizionale-una-notazione">
+
+## Che cosa rende «posizionale» una notazione
+
+In una notazione posizionale il valore di una cifra dipende da **dove** sta: ogni posizione pesa una potenza della base. Servono due ingredienti, e solo due:
+
+- **b simboli** distinti per le cifre, da 0 a b−1;
+- uno **zero**, per dire «questa posizione è vuota» — senza, non si distingue 12 da 102.
+
+Cambiare base significa cambiare quanti oggetti servono in una posizione prima di «riportare» a quella successiva. In base 10 si riporta a dieci, in base 2 a due, in base 20 a venti. La regola di conversione è sempre la stessa: **divisioni successive per la base**, leggendo i resti dal basso.
+
+Un sistema che usa gruppi di oggetti — sassolini su un abaco, punti e barre come nella numerazione Maya, che è **vigesimale** (base 20) — si adatta a un'altra base semplicemente ridefinendo _quando_ un gruppo si converte in un simbolo di ordine superiore. Per passare a base 8 servono otto simboli e il riporto scatta a otto; per base 16 ne servono sedici e il riporto scatta a sedici. Il meccanismo posizionale non cambia: cambia solo la soglia di raggruppamento, e quanti simboli distinti bisogna inventare.
+
+</div>
+
+<div data-note-id="teoria/numeri-binari/rappresentazioni-con-segno">
+
+## Rappresentazioni con segno
+
+Con N bit si possono codificare 2ᴺ configurazioni: la domanda è come spenderle fra positivi e negativi.
+
+- **Modulo e segno**: il bit più significativo è il segno, il resto è il valore assoluto. Intervallo simmetrico, ma **due** codifiche dello zero (+0 e −0) e l'aritmetica richiede di confrontare i segni.
+- **Complemento a 1**: il negativo si ottiene invertendo tutti i bit. Ancora **due** zeri, e la somma richiede il riporto circolare.
+- **Complemento a 2**: il negativo si ottiene invertendo i bit e sommando 1. **Una sola** codifica dello zero e intervallo asimmetrico.
+
+</div>
+
+<Callout tone="esame" title="Perché all'esame si usa il complemento a 2">
+
+<div data-note-id="teoria/numeri-binari/perche-all-esame-si-usa-il-complemento-a-2">
+
+Non è una convenzione arbitraria: in CP2 la **sottrazione diventa una somma**, perché `A − B = A + (−B)` e il negativo è ottenibile con un invertitore e un riporto entrante. Serve quindi **un solo sommatore** per entrambe le operazioni, e non c'è nessun caso speciale da trattare sui segni.
+
+Il bit più significativo ha peso **negativo**: su 4 bit, `1011₂ = −8 + 0 + 2 + 1 = −5`. È il modo più rapido per leggere un CP2 senza fare l'inversione.
+
+</div>
+
+</Callout>
+
+<div data-note-id="teoria/numeri-binari/range">
+
+## Range
+
+- Senza segno: da `0` a `2ᴺ−1` (con 8 bit → 0…255).
+- CP2: da `−2ᴺ⁻¹` a `+2ᴺ⁻¹−1` (con 8 bit → −128…+127).
+- CP1 e modulo-e-segno: da `−(2ᴺ⁻¹−1)` a `+2ᴺ⁻¹−1`, simmetrico.
+
+L'asimmetria del CP2 è la ragione per cui `−128` esiste su 8 bit ma `+128` no: il suo opposto non è rappresentabile, e invertire-e-sommare-1 su `10000000` restituisce sé stesso.
+
+</div>
+
+<div data-note-id="teoria/numeri-binari/estensione-del-segno">
+
+## Estensione del segno
+
+Per portare un CP2 da N a M bit (M &gt; N) si **replica il bit di segno** a sinistra, non si riempie di zeri: `1011` (−5 su 4 bit) diventa `11111011` su 8 bit. Riempire di zeri darebbe 251.
+
+</div>
+
+<div data-note-id="teoria/numeri-binari/overflow-e-perche-non-e-il-riporto-uscente">
+
+## Overflow — e perché non è il riporto uscente
+
+Si ha overflow quando il risultato esce dall'intervallo rappresentabile. Due regole equivalenti:
+
+- **Per segni**: sommando due operandi **concordi** si ottiene un risultato di segno opposto. Sommando due discordi l'overflow è impossibile. Nella sottrazione il caso a rischio è quello fra operandi **discordi**.
+- **In hardware**: `overflow = Cin ⊕ Cout` sul bit di segno, cioè lo XOR fra il riporto che entra nel bit più significativo e quello che ne esce.
+
+Il **riporto uscente da solo non significa nulla** in CP2. Due controesempi da tenere a mente:
+
+```
+4 bit:  −1 + 1  →  1111 + 0001 = 0000   carry=1  overflow=0
+4 bit:   4 + 4  →  0100 + 0100 = 1000   carry=0  overflow=1
+```
+
+Il carry out segnala overflow solo nell'aritmetica **senza segno**. Confonderli è una perdita di punti classica: nello Strumento «Sommatore binario» i due flag sono mostrati separati apposta.
+
+</div>
+
+<div data-note-id="teoria/numeri-binari/shift">
+
+## Shift
+
+Shift a sinistra di k posizioni ≈ moltiplicazione per 2ᵏ; shift a destra ≈ divisione intera per 2ᵏ. Attenzione al tipo di shift a destra:
+
+- **Logico**: entra 0 da sinistra. Corretto per i numeri senza segno.
+- **Aritmetico**: replica il bit di segno. Necessario in CP2, altrimenti un negativo diventa positivo.
+
+Eliminare il bit meno significativo di un intero senza segno equivale a dividerlo per 2.
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/numeri-binari/esempio-svolto">
+
+## Esempio svolto
+
+**Rappresenta −45 su 8 bit e verifica il risultato.**
+
+```
+45 = 32 + 8 + 4 + 1        →  0010 1101
+inverti tutti i bit        →  1101 0010
+somma 1                    →  1101 0011   =  D3₁₆
+```
+
+Verifica: 45 + (−45) deve fare 0. `0010 1101 + 1101 0011 = 1 0000 0000`: gli otto bit bassi sono tutti zero, il nono è il **riporto uscente** che si scarta. Riporto uscente = 1, overflow = 0 — ed è la prova che i due flag sono cose diverse.
+
+**Ora 45 − 60 su 8 bit.** Si somma il complemento a 2 di 60:
+
+```
+60 = 0011 1100  →  −60 = 1100 0100
+
+  0010 1101   (45)
++ 1100 0100   (−60)
+= 1111 0001   →  è negativo: inverti e +1 → 0000 1111 = 15, quindi −15 ✓
+```
+
+Riporto uscente 0, overflow 0: gli addendi hanno segno opposto, quindi l'overflow è **impossibile** per costruzione.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/numeri-binari/errori-tipici">
+
+## Errori tipici
+
+- Invertire i bit e **dimenticare il +1**: si ottiene il complemento a 1, che è un'altra rappresentazione.
+- Estendere un numero negativo riempiendo di zeri: l'estensione del segno replica il **bit più significativo**, non lo zero.
+- Chiamare overflow il riporto uscente. In complemento a 2 il riporto uscente da solo **non** segnala nulla.
+- Raggruppare i bit per l'esadecimale partendo da sinistra: si parte sempre **da destra**, aggiungendo zeri in testa se serve.
+
+</div>
+
+<Callout tone="attenzione" title="RAM non vuol dire «accesso casuale»">
+
+<div data-note-id="teoria/numeri-binari/trap-ram">
+
+La sigla è un falso amico: **random access** non significa che l’accesso avvenga a caso, ma che il **tempo di accesso non dipende dalla posizione** del dato in memoria. Il contrario è l’accesso sequenziale di un nastro, dove per leggere la fine bisogna scorrere tutto.
+
+</div>
+
+</Callout>
+
+</Layer>

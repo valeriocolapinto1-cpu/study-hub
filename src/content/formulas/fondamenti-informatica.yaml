@@ -1,0 +1,250 @@
+- id: valore-posizionale
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  latex: N = \sum_{i=0}^{n-1} c_i \, b^{i}
+  label:
+    it: Valore di un numero in base b
+    en: Value of a number in base b
+  symbols:
+    it: $c_i$ cifra di posizione $i$ (da destra, da 0), $b$ base, $n$ numero di cifre.
+    en: $c_i$ digit in position $i$ (from the right, from 0), $b$ base, $n$ number of digits.
+  usage:
+    it: Da una base qualsiasi al decimale; al contrario si divide ripetutamente per $b$ leggendo i resti dal
+      basso.
+    en:
+      From any base to decimal; the other way round you divide repeatedly by $b$ and read the remainders from
+      the bottom.
+- id: valore-cp2
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.2
+  latex: x = -a_{N-1}\,2^{N-1} + \sum_{i=0}^{N-2} a_i\,2^{i}
+  label:
+    it: Valore di un numero in complemento a 2
+    en: Value of a two's complement number
+  symbols:
+    it: $a_i$ bit di posizione $i$, $N$ numero di bit.
+    en: $a_i$ bit in position $i$, $N$ number of bits.
+  usage:
+    it: 'Il bit più significativo pesa $-2^{N-1}$: è il modo più rapido per leggere un CP2.'
+    en: "The most significant bit weighs $-2^{N-1}$: the quickest way to read a two's complement number."
+  pitfall:
+    it: 'Il negativo si ottiene invertendo i bit **e sommando 1**: senza il +1 è il complemento a 1.'
+    en: "The negative is obtained by inverting the bits **and adding 1**: without the +1 it is the ones'
+      complement."
+- id: intervalli
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.3
+  latex: -2^{N-1} \le x \le 2^{N-1}-1
+  label:
+    it: Intervallo del complemento a 2 su N bit
+    en: Two's complement range on N bits
+  usage:
+    it:
+      "Senza segno: $[0,\\ 2^{N}-1]$. Modulo e segno e CP1 sono simmetrici: $[-(2^{N-1}-1),\\ 2^{N-1}-1]$, con
+      due zeri."
+    en: "Unsigned: $[0,\\ 2^{N}-1]$. Sign-magnitude and ones' complement are symmetric: $[-(2^{N-1}-1),\\
+      2^{N-1}-1]$, with two zeros."
+  pitfall:
+    it: 'In CP2 $-2^{N-1}$ esiste ma $+2^{N-1}$ no: l’intervallo è asimmetrico.'
+    en: "In two's complement $-2^{N-1}$ exists but $+2^{N-1}$ does not: the range is asymmetric."
+- id: overflow-cp2
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.5
+  latex: V = C_{N-1} \oplus C_{N}
+  label:
+    it: Overflow in complemento a 2
+    en: Overflow in two's complement
+  symbols:
+    it: $C_{N-1}$ riporto entrante nel bit di segno, $C_N$ riporto uscente.
+    en: $C_{N-1}$ carry into the sign bit, $C_N$ carry out.
+  usage:
+    it: 'Equivale a: due addendi dello stesso segno danno un risultato di segno opposto.'
+    en: 'Equivalent to: two addends of the same sign give a result of the opposite sign.'
+  pitfall:
+    it: 'Il riporto uscente da solo non è overflow: lo è solo per i numeri senza segno.'
+    en: 'The carry-out alone is not overflow: it is so only for unsigned numbers.'
+- id: de-morgan
+  topic: algebra-di-boole
+  objectives:
+    - algebra-di-boole.2
+  latex: \overline{A\cdot B} = \overline{A} + \overline{B} \qquad \overline{A + B} = \overline{A}\cdot\overline{B}
+  label:
+    it: Leggi di De Morgan
+    en: De Morgan's laws
+  usage:
+    it: «Spezza la barra e cambia l’operatore»; valgono per qualunque numero di fattori.
+    en: “Break the bar and change the operator”; they hold for any number of factors.
+  pitfall:
+    it: Cambia anche l’operatore, non solo le variabili.
+    en: The operator changes too, not just the variables.
+- id: assorbimento
+  topic: algebra-di-boole
+  objectives:
+    - algebra-di-boole.2
+  latex: A + A\cdot B = A \qquad A + \overline{A}\cdot B = A + B
+  label:
+    it: Assorbimento
+    en: Absorption
+  usage:
+    it: Elimina i termini ridondanti di una SOP prima ancora di disegnare la mappa.
+    en: Removes redundant terms of an SOP before you even draw the map.
+- id: mux-2-1
+  topic: reti-combinatorie
+  latex: f = \overline{s}\,w_0 + s\,w_1
+  label:
+    it: Multiplexer 2→1
+    en: 2-to-1 multiplexer
+  symbols:
+    it: $s$ selezione, $w_0, w_1$ ingressi dati.
+    en: $s$ select, $w_0, w_1$ data inputs.
+  usage:
+    it:
+      'Con $n$ selezioni un MUX realizza qualunque funzione di $n$ variabili: gli ingressi dati sono la colonna
+      d’uscita.'
+    en: 'With $n$ selects a MUX implements any function of $n$ variables: the data inputs are the output column.'
+- id: full-adder
+  topic: aritmetica-hardware
+  latex: s_i = x_i \oplus y_i \oplus c_i \qquad c_{i+1} = x_i y_i + x_i c_i + y_i c_i
+  label:
+    it: Sommatore completo
+    en: Full adder
+  symbols:
+    it: $x_i, y_i$ bit degli addendi, $c_i$ riporto entrante, $s_i$ somma, $c_{i+1}$ riporto uscente.
+    en: $x_i, y_i$ operand bits, $c_i$ carry in, $s_i$ sum, $c_{i+1}$ carry out.
+- id: carry-lookahead
+  topic: aritmetica-hardware
+  latex: G_i = x_i y_i \qquad P_i = x_i + y_i \qquad c_{i+1} = G_i + P_i\,c_i
+  label:
+    it: Generazione e propagazione del riporto
+    en: Carry generate and propagate
+  usage:
+    it: Sviluppando la ricorrenza ogni riporto si calcola in due livelli di porte dai soli ingressi.
+    en: Expanding the recurrence every carry is computed in two gate levels from the inputs alone.
+- id: cammino-critico
+  topic: tempi-e-tecnologia
+  latex: t = \max_{\pi} \sum_{g \in \pi} t_{p,g}
+  label:
+    it: Ritardo di una rete
+    en: Delay of a network
+  symbols:
+    it: $\pi$ cammino dall’ingresso all’uscita, $t_{p,g}$ ritardo di propagazione della porta $g$.
+    en: $\pi$ path from input to output, $t_{p,g}$ propagation delay of gate $g$.
+  usage:
+    it: Il ritardo è quello del cammino più lento dall’ingresso all’uscita (cammino critico).
+    en: The delay is that of the slowest path from input to output (critical path).
+- id: frequenza-clock
+  topic: tempi-e-tecnologia
+  latex: T_{\text{clk}} \ge t_{\text{clk}\to Q} + t_{\text{comb}} + t_{\text{setup}} \qquad f = 1/T_{\text{clk}}
+  label:
+    it: Periodo minimo del clock
+    en: Minimum clock period
+  usage:
+    it: Il segnale deve attraversare il flip-flop, la logica e arrivare stabile prima del fronte successivo.
+    en: The signal must cross the flip-flop and the logic and arrive stable before the next edge.
+- id: tempo-cpu
+  topic: pipeline
+  latex: T = \frac{N \times S}{R}
+  label:
+    it: Equazione delle prestazioni
+    en: Performance equation
+  symbols:
+    it: $N$ istruzioni eseguite, $S$ cicli medi per istruzione (CPI), $R$ frequenza del clock.
+    en: $N$ instructions executed, $S$ average cycles per instruction (CPI), $R$ clock rate.
+  usage:
+    it: Si migliora riducendo $N$ (compilatore, ISA), $S$ (pipeline, cache) o aumentando $R$ (tecnologia).
+    en: You improve it by reducing $N$ (compiler, ISA), $S$ (pipelining, caches) or raising $R$ (technology).
+- id: cicli-pipeline
+  topic: pipeline
+  objectives:
+    - pipeline.1
+  latex: C = k + (n-1) \qquad S = \frac{k\,n}{k + n - 1} \xrightarrow{n\to\infty} k
+  label:
+    it: Pipeline ideale a k stadi
+    en: Ideal k-stage pipeline
+  symbols:
+    it:
+      $C$ cicli totali, $S$ speedup rispetto all’esecuzione senza pipeline, $k$ stadi, $n$ istruzioni, nessuno
+      stallo.
+    en: $C$ total cycles, $S$ speedup over non-pipelined execution, $k$ stages, $n$ instructions, no stalls.
+  pitfall:
+    it: 'La pipeline non accorcia la singola istruzione: aumenta quante ne finiscono per ciclo.'
+    en: 'The pipeline does not shorten a single instruction: it increases how many finish per cycle.'
+- id: tempo-medio-accesso
+  topic: gerarchia-di-memoria
+  latex: \bar t = h\,C + (1-h)\,M
+  label:
+    it: Tempo medio di accesso
+    en: Average access time
+  symbols:
+    it:
+      $\bar t$ tempo medio, $h$ tasso di successo (hit rate), $C$ tempo di accesso alla cache, $M$ penalità di
+      fallimento (miss).
+    en: $\bar t$ average time, $h$ hit rate, $C$ cache access time, $M$ miss penalty.
+  pitfall:
+    it: Pochi punti percentuali di miss pesano molto, perché $M$ è decine di volte $C$.
+    en: A few percent of misses weigh a lot, because $M$ is tens of times $C$.
+- id: campi-cache
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.3
+  latex: o = \log_2 B \qquad i = \log_2 S \qquad t = A - i - o
+  label:
+    it: Campi dell’indirizzo di cache
+    en: Cache address fields
+  symbols:
+    it: $o$ bit di offset, $i$ bit di indice, $t$ bit di tag; $B$ byte per blocco, $S$ insiemi (linee se a
+      mappatura diretta), $A$ bit dell’indirizzo.
+    en:
+      $o$ offset bits, $i$ index bits, $t$ tag bits; $B$ bytes per block, $S$ sets (lines if direct-mapped), $A$
+      address bits.
+  pitfall:
+    it: "L’indice conta gli insiemi, non i blocchi: in una cache a $k$ vie $S = \\text{blocchi}/k$."
+    en: "The index counts sets, not blocks: in a $k$-way cache $S = \\text{blocks}/k$."
+- id: indirizzo-fisico
+  topic: memoria-virtuale
+  objectives:
+    - memoria-virtuale.1
+  latex: PA = \text{frame} \times P + (VA \bmod P)
+  label:
+    it: Traduzione dell’indirizzo virtuale
+    en: Virtual address translation
+  symbols:
+    it: $P$ dimensione della pagina, $VA$ indirizzo virtuale, frame dalla tabella delle pagine.
+    en: $P$ page size, $VA$ virtual address, frame from the page table.
+  pitfall:
+    it: 'L’offset non si traduce: si sostituisce solo il numero di pagina.'
+    en: 'The offset is not translated: only the page number is replaced.'
+- id: amdahl
+  topic: prestazioni-e-parallelismo
+  latex: S = \frac{1}{(1-f) + f/k}
+  label:
+    it: Legge di Amdahl
+    en: Amdahl's law
+  symbols:
+    it: $f$ frazione del tempo che si accelera, $k$ fattore di accelerazione di quella frazione.
+    en: $f$ fraction of time that is sped up, $k$ speed-up factor of that fraction.
+  pitfall:
+    it: "Per $k\\to\\infty$ lo speedup resta limitato a $1/(1-f)$: la parte non accelerata domina."
+    en: "For $k\\to\\infty$ the speedup is bounded by $1/(1-f)$: the part not sped up dominates."
+- id: ieee-singola
+  topic: virgola-mobile
+  objectives:
+    - virgola-mobile.1
+    - virgola-mobile.2
+  latex: x = (-1)^{S} \times 1.M \times 2^{E-127}
+  label:
+    it: IEEE 754 singola precisione
+    en: IEEE 754 single precision
+  symbols:
+    it: $S$ segno (1 bit), $E$ esponente polarizzato (8 bit), $M$ mantissa (23 bit) senza il bit implicito.
+    en: $S$ sign (1 bit), $E$ biased exponent (8 bits), $M$ mantissa (23 bits) without the hidden bit.
+  usage:
+    it: 'In doppia precisione: 11 bit di esponente, polarizzazione 1023, 52 bit di mantissa.'
+    en: 'In double precision: 11 exponent bits, bias 1023, 52 mantissa bits.'
+  pitfall:
+    it: Si dimentica facilmente il bit implicito «1,» o la polarizzazione dell’esponente.
+    en: It is easy to forget the hidden “1.” or the exponent bias.

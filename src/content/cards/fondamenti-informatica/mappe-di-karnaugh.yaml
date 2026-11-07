@@ -1,0 +1,107 @@
+- id: mappe-di-karnaugh-verifica-1
+  topic: mappe-di-karnaugh
+  objectives:
+    - mappe-di-karnaugh.2
+  kind: concetto
+  front:
+    it: Perché un gruppo di 3 celle non è valido?
+    en: Why is a group of 3 cells not valid?
+  back:
+    it: 'Perché la semplificazione funziona solo se il gruppo è un sottocubo di 2ᵏ celle: allora esattamente k
+      variabili cambiano e spariscono. Con 3 celle non esiste nessuna variabile che cambi in tutte le
+      combinazioni, quindi il termine non si semplifica.'
+    en:
+      'Because simplification works only if the group is a subcube of 2ᵏ cells: then exactly k variables change
+      and disappear. With 3 cells there is no variable that changes across all the combinations, so the term
+      does not simplify.'
+- id: mappe-di-karnaugh-verifica-2
+  topic: mappe-di-karnaugh
+  objectives:
+    - mappe-di-karnaugh.2
+  kind: concetto
+  front:
+    it: Che differenza c'è fra una SOP corretta e una SOP minima?
+    en: What is the difference between a correct SOP and a minimal SOP?
+  back:
+    it:
+      Corretta = copre esattamente gli stessi mintermini della funzione. Minima = lo fa con il minor numero di
+      termini e, a parità, di letterali. All'esame una risposta corretta ma non minima perde punti.
+    en:
+      Correct = it covers exactly the same minterms as the function. Minimal = it does so with the fewest terms
+      and, for equal terms, the fewest literals. In the exam a correct but non-minimal answer loses points.
+- id: mappe-di-karnaugh-verifica-3
+  topic: mappe-di-karnaugh
+  objectives:
+    - mappe-di-karnaugh.5
+  kind: concetto
+  front:
+    it: Quando conviene raggruppare gli zeri invece degli uni?
+    en: When is it better to group the zeros instead of the ones?
+  back:
+    it: 'Quando gli zeri sono pochi: raggruppandoli si ottiene la SOP di Ȳ e, negando con De Morgan, una POS
+      spesso più corta della SOP.'
+    en:
+      'When there are few zeros: grouping them gives the SOP of Ȳ and, negating with De Morgan, a POS that is
+      often shorter than the SOP.'
+- id: open-karnaugh-01
+  topic: mappe-di-karnaugh
+  objectives:
+    - mappe-di-karnaugh.2
+  kind: orale
+  front:
+    it: Descrivi la minimizzazione con la mappa di Karnaugh e il ruolo delle indifferenze.
+    en: Describe minimisation with the Karnaugh map and the role of don’t cares.
+  back:
+    it:
+      "La mappa dispone i mintermini in celle adiacenti secondo il **codice Gray**: fra celle vicine cambia una
+      sola variabile. Si raggruppano gli `1` in blocchi di dimensione potenza di 2, il più grandi possibile:
+      dentro un gruppo le variabili che cambiano si eliminano, e restano quelle costanti, che formano un
+      implicante. L'unione degli implicanti scelti dà la SOP minima. Le celle sono adiacenti anche a bordo
+      tavola (wrap-around). Le **indifferenze** (x) possono essere prese come 1 quando servono ad allargare un
+      gruppo, o lasciate a 0 se non aiutano: si valutano una per una, non tutte insieme. Nel disegno finale
+      scomponi in porte a 2 ingressi."
+    en: 'The map arranges the minterms in adjacent cells according to the **Gray code**: between neighbouring
+      cells only one variable changes. The `1`s are grouped in blocks whose size is a power of 2, as large as
+      possible: within a group the variables that change are eliminated, and the constant ones remain, forming
+      an implicant. The union of the chosen implicants gives the minimal SOP. Cells are adjacent across the
+      edges too (wrap-around). **Don’t cares** (x) can be taken as 1 when they help enlarge a group, or left
+      at 0 if they do not help: they are judged one by one, not all together. In the final drawing break into
+      2-input gates.'
+- id: def-implicante
+  topic: mappe-di-karnaugh
+  objectives:
+    - mappe-di-karnaugh.2
+  kind: definizione
+  front:
+    it: Implicante primo
+    en: Prime implicant
+  back:
+    it: >-
+      Gruppo valido di 1 nella mappa che non può essere ingrandito ulteriormente.
+
+
+      È **essenziale** se copre almeno un 1 che nessun altro implicante primo copre: quelli vanno presi per
+      forza.
+    en: >-
+      Valid group of 1s in the map that cannot be enlarged any further.
+
+
+      It is **essential** if it covers at least one 1 that no other prime implicant covers: those must be
+      taken.
+- id: def-indifferenza
+  topic: mappe-di-karnaugh
+  objectives:
+    - mappe-di-karnaugh.2
+  kind: definizione
+  front:
+    it: Condizione di indifferenza
+    en: Don’t-care condition
+  back:
+    it: |-
+      Combinazione d’ingresso che non si presenta mai, o la cui uscita è irrilevante.
+
+      Si prende a 1 solo quando allarga un gruppo, e si valuta **una per una**: mai coprirne una da sola.
+    en: |-
+      Input combination that never occurs, or whose output is irrelevant.
+
+      It is taken as 1 only when it enlarges a group, and judged **one by one**: never cover one on its own.

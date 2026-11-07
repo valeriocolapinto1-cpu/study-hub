@@ -1,0 +1,988 @@
+- id: interruzioni-ed-eccezioni-es-1
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'All’ingresso di una routine di servizio, che cosa va salvato e **chi** lo salva: l’hardware o il
+      programmatore?'
+    en: 'On entering a service routine, what must be saved and **who** saves it: the hardware or the programmer?'
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          Alcune cose devono essere già al sicuro prima che parta la prima istruzione della routine; altre dipendono
+          da quali registri la routine userà, e quello l’hardware non può saperlo.
+        en:
+          Some things must already be safe before the first instruction of the routine starts; others depend on
+          which registers the routine will use, and the hardware cannot know that.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          SALVA L'HARDWARE, automaticamente:
+            · il PC (l'indirizzo di ritorno)
+            · il registro di stato (i flag e il livello di priorità)
+
+          SALVA LA ROUTINE, con istruzioni esplicite:
+            · tutti i registri generali che intende usare
+            · e li ripristina prima dell'istruzione di ritorno
+          ```
+
+
+          La divisione è obbligata: PC e stato vanno protetti **prima** che qualunque istruzione della routine
+          possa alterarli, quindi ci pensa l’hardware. Quali registri generali servano dipende invece dal
+          codice della routine, e solo chi lo scrive lo sa.
+
+
+          La regola che ne consegue: il programma interrotto **non deve accorgersi di nulla**. Se una routine
+          dimentica di ripristinare un registro, il programma principale riprende con un valore alterato — e
+          il difetto è quasi impossibile da riprodurre, perché dipende dall’istante in cui è arrivata
+          l’interruzione.
+        en: >-
+          ```
+
+          THE HARDWARE SAVES, automatically:
+            · the PC (the return address)
+            · the status register (the flags and the priority level)
+
+          THE ROUTINE SAVES, with explicit instructions:
+            · all the general-purpose registers it intends to use
+            · and restores them before the return instruction
+          ```
+
+
+          The split is forced: PC and status must be protected **before** any instruction of the routine can
+          alter them, so the hardware takes care of it. Which general-purpose registers are needed depends
+          instead on the routine's code, and only whoever writes it knows.
+
+
+          The resulting rule: the interrupted program **must not notice anything**. If a routine forgets to
+          restore a register, the main program resumes with an altered value — and the bug is almost
+          impossible to reproduce, because it depends on the instant the interrupt arrived.
+  origin: originale
+- id: interruzioni-ed-eccezioni-es-2
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Classifica ciascun evento come **interruzione** o **eccezione**: tasto premuto · divisione per zero ·
+      pacchetto di rete arrivato · istruzione non riconosciuta · timer scaduto · accesso a una pagina non
+      presente · overflow aritmetico · disco pronto.'
+    en: 'Classify each event as an **interrupt** or an **exception**: key pressed · division by zero · network
+      packet arrived · unrecognised instruction · timer expired · access to a page not present · arithmetic
+      overflow · disk ready.'
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          'La domanda decisiva è: l’evento è provocato dall’istruzione che si sta eseguendo, oppure sarebbe accaduto
+          comunque?'
+        en: 'The decisive question is: is the event caused by the instruction being executed, or would it have
+          happened anyway?'
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          INTERRUZIONI (esterne, asincrone)     ECCEZIONI (interne, sincrone)
+            · tasto premuto                       · divisione per zero
+            · pacchetto di rete arrivato          · istruzione non riconosciuta
+            · timer scaduto                       · pagina non presente (page fault)
+            · disco pronto                        · overflow aritmetico
+          ```
+
+
+          Il criterio: le interruzioni della colonna di sinistra sarebbero arrivate lo stesso qualunque
+          istruzione fosse in corso, e capitano **fra** due istruzioni. Le eccezioni di destra le provoca
+          l’istruzione stessa, e rieseguendo lo stesso programma con gli stessi dati si ripresentano **nello
+          stesso punto**.
+
+
+          Il page fault è il caso interessante: sembra un evento «di sistema», ma è un’eccezione a tutti gli
+          effetti — è l’accesso in memoria appena tentato a provocarlo, e dopo che il sistema operativo ha
+          caricato la pagina l’istruzione viene **rieseguita**.
+        en: >-
+          ```
+
+          INTERRUPTS (external, asynchronous)   EXCEPTIONS (internal, synchronous)
+            · key pressed                         · division by zero
+            · network packet arrived              · unrecognised instruction
+            · timer expired                       · page not present (page fault)
+            · disk ready                          · arithmetic overflow
+          ```
+
+
+          The criterion: the interrupts in the left column would have arrived anyway whatever instruction was
+          running, and they happen **between** two instructions. The exceptions on the right are caused by the
+          instruction itself, and re-running the same program with the same data they show up **at the same
+          point**.
+
+
+          The page fault is the interesting case: it looks like a “system” event, but it is an exception in
+          every respect — it is the memory access just attempted that causes it, and after the operating
+          system has loaded the page the instruction is **re-executed**.
+  origin: originale
+- id: interruzioni-ed-eccezioni-es-3
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: Il programma principale è in esecuzione. Arriva una richiesta dal disco (priorità 2); mentre la sua
+      routine è in corso arrivano, nell’ordine, il timer (priorità 5) e la stampante (priorità 1). Scrivi
+      l’ordine in cui vengono servite e disegna l’annidamento.
+    en: The main program is running. A request arrives from the disk (priority 2); while its routine is in
+      progress there arrive, in order, the timer (priority 5) and the printer (priority 1). Write the order in
+      which they are served and draw the nesting.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          Una richiesta interrompe la routine in corso solo se ha priorità **maggiore**. Le altre restano in attesa,
+          non vengono perse.
+        en:
+          A request interrupts the running routine only if it has **higher** priority. The others wait, they are not
+          lost.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          t₀  programma principale
+
+          t₁  disco (p2)      → accolta: maschera portata a 2
+
+          t₂    ISR disco
+
+          t₃    timer (p5)    → 5 > 2, accolta: interrompe l'ISR disco
+
+          t₄      ISR timer
+
+          t₅      stampante (p1) → 1 < 5, NON accolta: resta in attesa
+
+          t₆      ISR timer finisce → si torna dentro ISR disco
+
+          t₇    ISR disco finisce → maschera torna a 0, e ora la
+                                    stampante può essere servita
+          t₈  ISR stampante
+
+          t₉  programma principale
+
+          ```
+
+
+          Ordine di servizio: **disco → timer → (ripresa disco) → stampante → programma**.
+
+
+          Due punti che l’esame verifica: la richiesta della stampante **non si perde**, resta pendente finché
+          la maschera scende sotto la sua priorità; e l’annidamento è ammesso solo verso l’alto, altrimenti
+          una catena di richieste di pari livello riempirebbe la pila senza fine.
+        en: >-
+          ```
+
+          t₀  main program
+
+          t₁  disk (p2)       → accepted: mask raised to 2
+
+          t₂    disk ISR
+
+          t₃    timer (p5)    → 5 > 2, accepted: interrupts the disk ISR
+
+          t₄      timer ISR
+
+          t₅      printer (p1) → 1 < 5, NOT accepted: it waits
+
+          t₆      timer ISR ends → back inside the disk ISR
+
+          t₇    disk ISR ends → mask back to 0, and now the
+                                printer can be served
+          t₈  printer ISR
+
+          t₉  main program
+
+          ```
+
+
+          Order of service: **disk → timer → (disk resumed) → printer → program**.
+
+
+          Two points the exam checks: the printer's request **is not lost**, it stays pending until the mask
+          drops below its priority; and nesting is allowed only upwards, otherwise a chain of same-level
+          requests would fill the stack endlessly.
+  origin: originale
+- id: interruzioni-ed-eccezioni-es-4
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: Un sistema ha 20 dispositivi. Con il **polling** ogni interrogazione costa 2 μs; con le interruzioni
+      **vettorizzate** l’individuazione costa 0,5 μs indipendentemente dal numero. Calcola il tempo di
+      individuazione medio e nel caso peggiore, e commenta.
+    en: A system has 20 devices. With **polling** each query costs 2 μs; with **vectored** interrupts
+      identification costs 0.5 μs regardless of the number. Compute the average and worst-case identification
+      time, and comment.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          'Col polling si interrogano i dispositivi in sequenza finché non si trova quello che ha chiamato: la
+          posizione nella lista determina il costo.'
+        en:
+          'With polling the devices are queried in sequence until the one that called is found: the position in the
+          list determines the cost.'
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          POLLING
+            caso migliore  (1º della lista):  1 × 2 μs =  2 μs
+            caso medio     (10,5º):        10,5 × 2 μs = 21 μs
+            caso peggiore  (20º):            20 × 2 μs = 40 μs
+
+          VETTORIZZATE
+            sempre:                                     0,5 μs
+          ```
+
+
+          Con le vettorizzate il costo è **costante** perché è il dispositivo a fornire l’indirizzo della
+          propria routine: non c’è nessuna ricerca da fare. Col polling il costo cresce linearmente con il
+          numero di dispositivi, e nel caso peggiore qui è ottanta volte tanto.
+
+
+          Il polling conserva però un vantaggio: l’ordine di interrogazione **è** una priorità, decisa dal
+          software e modificabile senza toccare l’hardware. Nei sistemi con pochi dispositivi resta una scelta
+          legittima proprio per la sua semplicità.
+        en: >-
+          ```
+
+          POLLING
+            best case    (1st in the list):    1 × 2 μs =  2 μs
+            average      (10.5th):          10.5 × 2 μs = 21 μs
+            worst case   (20th):              20 × 2 μs = 40 μs
+
+          VECTORED
+            always:                                     0.5 μs
+          ```
+
+
+          With vectored interrupts the cost is **constant** because the device supplies the address of its own
+          routine: there is no search to do. With polling the cost grows linearly with the number of devices,
+          and in the worst case here it is eighty times as much.
+
+
+          Polling keeps one advantage, though: the query order **is** a priority, decided by software and
+          changeable without touching the hardware. In systems with few devices it remains a legitimate choice
+          precisely because of its simplicity.
+  answer:
+    - label:
+        it: Polling, caso medio
+        en: Polling, average case
+      value: 0.000021
+      unit: s
+      tol: 0.000001
+    - label:
+        it: Polling, caso peggiore
+        en: Polling, worst case
+      value: 0.00004
+      unit: s
+      tol: 0.000001
+  origin: originale
+- id: interruzioni-ed-eccezioni-es-5
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.4
+  difficulty: 2
+  kind: static
+  statement:
+    it:
+      Clock a 500 MHz. L’istruzione più lunga dura 12 cicli, il salvataggio automatico dello stato 8 cicli, il
+      corpo della routine 40 cicli, il ripristino 8 cicli. Qual è la **latenza massima** fra la richiesta e
+      l’inizio effettivo del servizio? E il tempo totale di gestione?
+    en:
+      500 MHz clock. The longest instruction takes 12 cycles, automatic state saving 8 cycles, the body of the
+      routine 40 cycles, restoring 8 cycles. What is the **maximum latency** between the request and the
+      actual start of service? And the total handling time?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          'La latenza è l’attesa **prima** di iniziare a servire: nel caso peggiore la richiesta arriva subito dopo
+          l’inizio dell’istruzione più lunga.'
+        en:
+          'Latency is the wait **before** service starts: in the worst case the request arrives right after the
+          longest instruction has started.'
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          periodo di clock = 1 / 500 MHz = 2 ns
+
+
+          LATENZA MASSIMA = fine istruzione in corso + salvataggio
+                          = (12 + 8) cicli × 2 ns = 40 ns
+
+          TEMPO TOTALE    = 12 + 8 + 40 + 8 = 68 cicli × 2 ns = 136 ns
+
+          ```
+
+
+          Perché la latenza conta: in un sistema di controllo in tempo reale è il ritardo massimo con cui si
+          può reagire a un evento fisico, e va confrontato con la scadenza imposta dal processo controllato.
+
+
+          Come si riduce: accorciando l’istruzione più lunga (i RISC nascono anche per questo, con istruzioni
+          di durata uniforme), oppure rendendo **interrompibili** le istruzioni lunghe — cosa che complica il
+          ripristino, perché bisogna poter riprendere l’istruzione a metà.
+        en: >-
+          ```
+
+          clock period = 1 / 500 MHz = 2 ns
+
+
+          MAXIMUM LATENCY = end of current instruction + saving
+                          = (12 + 8) cycles × 2 ns = 40 ns
+
+          TOTAL TIME      = 12 + 8 + 40 + 8 = 68 cycles × 2 ns = 136 ns
+
+          ```
+
+
+          Why latency matters: in a real-time control system it is the maximum delay with which you can react
+          to a physical event, and it must be compared with the deadline imposed by the controlled process.
+
+
+          How it is reduced: by shortening the longest instruction (RISC processors were born for this too,
+          with instructions of uniform duration), or by making long instructions **interruptible** — which
+          complicates restoring, because you must be able to resume the instruction halfway.
+  answer:
+    - label:
+        it: Latenza massima
+        en: Maximum latency
+      value: 4e-8
+      unit: s
+      tol: 0.000001
+    - label:
+        it: Tempo totale
+        en: Total time
+      value: 1.36e-7
+      unit: s
+      tol: 0.000001
+  origin: originale
+- id: mcq-irq-01
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Le interruzioni hardware sono eventi:'
+    en: 'Hardware interrupts are events that are:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Asincroni
+        en: Asynchronous
+  choices:
+    - text:
+        it: Sincroni
+        en: Synchronous
+      correct: false
+    - text:
+        it: Asincroni
+        en: Asynchronous
+      correct: true
+    - text:
+        it: Deterministici sul clock
+        en: Deterministic with respect to the clock
+      correct: false
+    - text:
+        it: Generati dalla ALU
+        en: Generated by the ALU
+      correct: false
+  origin: originale
+- id: mcq-irq-02
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Le eccezioni sono generate:'
+    en: 'Exceptions are generated:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Dal processore durante l'esecuzione
+        en: By the processor during execution
+  choices:
+    - text:
+        it: Da dispositivi esterni
+        en: By external devices
+      correct: false
+    - text:
+        it: Dal processore durante l'esecuzione
+        en: By the processor during execution
+      correct: true
+    - text:
+        it: Solo dalla tastiera
+        en: Only by the keyboard
+      correct: false
+    - text:
+        it: Dal bus dati
+        en: By the data bus
+      correct: false
+  origin: originale
+- id: mcq-irq-03
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Le richieste di interruzione viaggiano su quali linee del bus?
+    en: On which bus lines do interrupt requests travel?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Linee di controllo
+        en: Control lines
+  choices:
+    - text:
+        it: Linee dati
+        en: Data lines
+      correct: false
+    - text:
+        it: Linee indirizzi
+        en: Address lines
+      correct: false
+    - text:
+        it: Linee di controllo
+        en: Control lines
+      correct: true
+    - text:
+        it: Linee di alimentazione
+        en: Power lines
+      correct: false
+  origin: originale
+- id: mcq-irq-04
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: "La **trace mode** del debugger genera un'interruzione:"
+    en: 'The debugger’s **trace mode** generates an interrupt:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Dopo ogni istruzione
+        en: After every instruction
+  choices:
+    - text:
+        it: A ogni breakpoint
+        en: At every breakpoint
+      correct: false
+    - text:
+        it: Dopo ogni istruzione
+        en: After every instruction
+      correct: true
+    - text:
+        it: A fine programma
+        en: At the end of the program
+      correct: false
+    - text:
+        it: Mai
+        en: Never
+      correct: false
+  origin: originale
+- id: mcq-irq-05
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Chi gestisce la scrittura sulla memoria di massa?
+    en: Who handles writing to mass storage?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Il sistema operativo
+        en: The operating system
+  choices:
+    - text:
+        it: La cache
+        en: The cache
+      correct: false
+    - text:
+        it: Il sistema operativo
+        en: The operating system
+      correct: true
+    - text:
+        it: Il compilatore
+        en: The compiler
+      correct: false
+    - text:
+        it: Il registro PC
+        en: The PC register
+      correct: false
+  origin: originale
+- id: mcq-irq-06
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Quale meccanismo compensa la differenza di velocità tra due dispositivi?
+    en: Which mechanism compensates for the speed difference between two devices?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Il buffer
+        en: The buffer
+  choices:
+    - text:
+        it: Il buffer
+        en: The buffer
+      correct: true
+    - text:
+        it: La ALU
+        en: The ALU
+      correct: false
+    - text:
+        it: Il PC
+        en: The PC
+      correct: false
+    - text:
+        it: Il flip-flop
+        en: The flip-flop
+      correct: false
+  origin: originale
+- id: mcq-irq-07
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Un'eccezione è sollevata se un processo tenta di…
+    en: An exception is raised if a process tries to…
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Tutte le precedenti
+        en: All of the above
+  choices:
+    - text:
+        it: Modificare la priorità di altri processi
+        en: Change the priority of other processes
+      correct: false
+    - text:
+        it: Accedere alla memoria di altri utenti
+        en: Access the memory of other users
+      correct: false
+    - text:
+        it: Modificare la modalità del sistema
+        en: Change the system mode
+      correct: false
+    - text:
+        it: Tutte le precedenti
+        en: All of the above
+      correct: true
+  origin: originale
+- id: mcq-irq-08
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Gli interrupt sono particolarmente importanti nei sistemi:'
+    en: 'Interrupts are particularly important in systems that are:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Real-time
+        en: Real-time
+  choices:
+    - text:
+        it: Batch
+        en: Batch
+      correct: false
+    - text:
+        it: Real-time
+        en: Real-time
+      correct: true
+    - text:
+        it: A singolo task
+        en: Single-task
+      correct: false
+    - text:
+        it: Analogici
+        en: Analogue
+      correct: false
+  origin: originale
+- id: mcq-irq-09
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Le interruzioni sono fondamentali per i sistemi:'
+    en: 'Interrupts are fundamental for systems that are:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Multitasking
+        en: Multitasking
+  choices:
+    - text:
+        it: Monotasking
+        en: Single-tasking
+      correct: false
+    - text:
+        it: Multitasking
+        en: Multitasking
+      correct: true
+    - text:
+        it: Combinatori
+        en: Combinational
+      correct: false
+    - text:
+        it: Puramente sincroni
+        en: Purely synchronous
+      correct: false
+  origin: originale
+- id: mcq-irq-10
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Cosa viene trasportato da un bus?
+    en: What is carried by a bus?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Dati, indirizzi e segnali di controllo
+        en: Data, addresses and control signals
+  choices:
+    - text:
+        it: Solo dati
+        en: Only data
+      correct: false
+    - text:
+        it: Solo indirizzi
+        en: Only addresses
+      correct: false
+    - text:
+        it: Dati, indirizzi e segnali di controllo
+        en: Data, addresses and control signals
+      correct: true
+    - text:
+        it: Solo controlli
+        en: Only controls
+      correct: false
+  origin: originale
+- id: mcq-irq-11
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Come vengono trasmessi i dati su USB?
+    en: How is data transmitted over USB?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: In modo seriale
+        en: Serially
+  choices:
+    - text:
+        it: In parallelo
+        en: In parallel
+      correct: false
+    - text:
+        it: In modo seriale
+        en: Serially
+      correct: true
+    - text:
+        it: Solo in analogico
+        en: Only in analogue form
+      correct: false
+    - text:
+        it: Sul bus indirizzi
+        en: On the address bus
+      correct: false
+  origin: originale
+- id: mcq-irq-12
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Nelle interruzioni **vettorializzate**, come si individua la routine da eseguire?
+    en: With **vectored** interrupts, how is the routine to run identified?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Il dispositivo fornisce un identificatore che indicizza la tabella dei vettori
+        en: The device supplies an identifier that indexes the vector table
+  choices:
+    - text:
+        it: Interrogando i dispositivi uno per uno
+        en: By querying the devices one by one
+      correct: false
+    - text:
+        it: Il dispositivo fornisce un identificatore che indicizza la tabella dei vettori
+        en: The device supplies an identifier that indexes the vector table
+      correct: true
+    - text:
+        it: Si esegue sempre la stessa routine
+        en: The same routine is always run
+      correct: false
+    - text:
+        it: Lo decide l'utente a runtime
+        en: The user decides at run time
+      correct: false
+  origin: originale
+- id: mcq-irq-13
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Vantaggio principale del DMA:'
+    en: 'Main advantage of DMA:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Trasferisce blocchi fra periferica e memoria senza impegnare il processore
+        en: It transfers blocks between peripheral and memory without engaging the processor
+  choices:
+    - text:
+        it: Riduce la dimensione della memoria necessaria
+        en: It reduces the amount of memory needed
+      correct: false
+    - text:
+        it: Trasferisce blocchi fra periferica e memoria senza impegnare il processore
+        en: It transfers blocks between peripheral and memory without engaging the processor
+      correct: true
+    - text:
+        it: Elimina la necessità di interruzioni
+        en: It removes the need for interrupts
+      correct: false
+    - text:
+        it: Aumenta la frequenza di clock
+        en: It increases the clock frequency
+      correct: false
+  origin: originale
+- id: mcq-irq-14
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.1
+    - interruzioni-ed-eccezioni.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Quando arriva una richiesta di interruzione, il processore:'
+    en: 'When an interrupt request arrives, the processor:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Termina l'istruzione in corso, poi salva lo stato
+        en: Completes the current instruction, then saves the state
+  choices:
+    - text:
+        it: Interrompe immediatamente l'istruzione in corso, a metà
+        en: Immediately stops the current instruction, halfway
+      correct: false
+    - text:
+        it: Termina l'istruzione in corso, poi salva lo stato
+        en: Completes the current instruction, then saves the state
+      correct: true
+    - text:
+        it: Attende la fine del programma
+        en: Waits for the end of the program
+      correct: false
+    - text:
+        it: Ignora la richiesta se sta eseguendo un salto
+        en: Ignores the request if it is executing a branch
+      correct: false
+  origin: originale
+- id: schema-registri-controllo
+  topic: interruzioni-ed-eccezioni
+  objectives:
+    - interruzioni-ed-eccezioni.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Registri di controllo del processore»: scrivi per ogni posizione numerata
+      l'etichetta giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: IENABLE · IPENDING · IPS · IR · MAR · MDR · PS · TLB
+    en: >-
+      Complete the diagram “Processor control registers”: for each numbered position write the right label.
+      The list contains more labels than positions.
+
+
+      Labels: IENABLE · IPENDING · IPS · IR · MAR · MDR · PS · TLB
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 290" role="img"
+        aria-labelledby="ex-registri-controllo-t ex-registri-controllo-d"
+        style="width:100%;height:auto;max-width:640px"><title id="ex-registri-controllo-t">Registri di
+        controllo del processore</title><desc id="ex-registri-controllo-d">Schema con 4 posizioni numerate da
+        completare.</desc><defs><marker id="ex-registri-controllo-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="40" width="420"
+        height="32" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="400" y="40" width="60" height="32" rx="4"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="430" y="61" font-size="11">IE</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="100" width="420" height="32" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="400" y="100" width="60" height="32" rx="4"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="430" y="121" font-size="11">IE</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="160" width="420" height="32" rx="4"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="300" y="181" font-size="11">TIM · DISP · KBD</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="220" width="420" height="32" rx="4"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="300" y="241" font-size="11">TIM · DISP · KBD</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="24" y="24" font-size="11">bit 31 … 0</text><circle cx="555" cy="56" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="555" y="56" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="555" cy="116" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="555" y="116" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="555" cy="176" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="555" y="176" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="555" cy="236" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="555" y="236" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 290" role="img"
+        aria-labelledby="ex-registri-controllo-t ex-registri-controllo-d"
+        style="width:100%;height:auto;max-width:640px"><title id="ex-registri-controllo-t">Processor control
+        registers</title><desc id="ex-registri-controllo-d">Diagram with 4 numbered positions to fill
+        in.</desc><defs><marker id="ex-registri-controllo-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="40" width="420"
+        height="32" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="400" y="40" width="60" height="32" rx="4"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="430" y="61" font-size="11">IE</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="100" width="420" height="32" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="400" y="100" width="60" height="32" rx="4"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="430" y="121" font-size="11">IE</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="160" width="420" height="32" rx="4"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="300" y="181" font-size="11">TIM · DISP · KBD</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="220" width="420" height="32" rx="4"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="300" y="241" font-size="11">TIM · DISP · KBD</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="24" y="24" font-size="11">bit 31 … 0</text><circle cx="555" cy="56" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="555" y="56" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="555" cy="116" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="555" y="116" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="555" cy="176" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="555" y="176" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="555" cy="236" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="555" y="236" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. PS
+          2. IPS
+          3. IENABLE
+          4. IPENDING
+        en: |-
+          1. PS
+          2. IPS
+          3. IENABLE
+          4. IPENDING
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: PS
+      kind: text
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: IPS
+      kind: text
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: IENABLE
+      kind: text
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: IPENDING
+      kind: text
+  origin: originale

@@ -30,7 +30,7 @@ import {
 } from '../engine/exam';
 import { computeMastery } from '../engine/mastery';
 import { loadProgress, loadSrs } from '../engine/progress';
-import { objectivesIndex } from '../engine/course-data';
+import { answerHelpKey, objectivesIndex } from '../engine/course-data';
 import { randomSeed } from '../engine/random';
 import { formatNumber } from '../engine/units';
 import { resolveExam, toResolved, type QuestionContent } from './lib/exam-content';
@@ -618,7 +618,7 @@ export default function ExamRunner({ lang, course }: ExamRunnerProps) {
               </div>
             ))}
             <p id="sh-exam-help" class="sh-help">
-              {t(lang, 'exercise.answerHelp')}
+              {t(lang, answerHelpKey(c.answer))}
             </p>
           </div>
         ) : (

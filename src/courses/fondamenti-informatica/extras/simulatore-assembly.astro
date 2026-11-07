@@ -1,0 +1,17 @@
+---
+/** Extra «Simulatore assembly»: i tre programmi tipo eseguiti un'istruzione alla volta. */
+import AsmSimulator from '../sims/AsmSimulator';
+interface Props {
+  lang: 'it' | 'en';
+}
+const { lang } = Astro.props;
+---
+
+<div class="prose" data-note-id="extra/simulatore-assembly">
+  <p class="lead">
+    {lang === 'it'
+      ? 'Tre programmi tipo — ciclo con contatore, prodotto con confronto e salto condizionato, shift logici — eseguiti un’istruzione alla volta, con i registri e i flag dopo ogni passo. Prova a prevedere il valore prima di premere «Passo»: è lo stesso esercizio della prova, con la verifica immediata.'
+      : 'Three typical programs — counter loop, product with compare and conditional branch, logical shifts — executed one instruction at a time, with the registers and flags after each step. Try to predict the value before pressing “Step”: it is the same exercise as in the exam, with immediate checking.'}
+  </p>
+</div>
+<AsmSimulator lang={lang} client:visible />

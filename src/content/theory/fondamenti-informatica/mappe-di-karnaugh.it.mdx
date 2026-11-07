@@ -1,0 +1,205 @@
+---
+course: fondamenti-informatica
+topic: mappe-di-karnaugh
+lang: it
+---
+
+<Callout tone="ok" title="In due minuti">
+
+<div data-note-id="teoria/mappe-di-karnaugh/in-due-minuti">
+
+- Le colonne vanno in ordine **Gray** — 00, 01, 11, 10 — perché fra celle vicine deve cambiare un solo bit. Sbagliare l'ordine invalida tutti i raggruppamenti.
+- Gruppi di 1, 2, 4, 8 celle: **mai 3**. Ogni raddoppio elimina una variabile, quindi accorcia il termine di un letterale.
+- Gruppi il più grandi possibile, **sovrapponibili**, con adiacenza **circolare**: bordi opposti e i quattro angoli sono vicini.
+- Implicante **primo** = gruppo non allargabile. **Essenziale** = copre un 1 che nessun altro primo copre: quelli vanno presi per forza.
+- Le **indifferenze** si prendono a 1 solo se allargano un gruppo, valutandole una per una.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/mappe-di-karnaugh/da-dove-si-parte">
+
+## Da dove si parte
+
+**Cosa serve sapere prima:** tabelle di verità, mintermini e forma SOP, dal modulo su [algebra di Boole](../algebra-di-boole/).
+
+**Che problema risolve.** Da una tabella di verità si ricava sempre una SOP, scrivendo un termine per ogni riga a 1. Ma quella forma è quasi sempre **più lunga del necessario**: più termini significano più porte, più costo, più consumo e più ritardo. Semplificare con l’algebra funziona, però richiede di indovinare quali raccoglimenti tentare. La mappa di Karnaugh trasforma quell’intuizione in una procedura **visiva**: i termini semplificabili diventano celle vicine, e semplificare diventa «cerchia i gruppi più grandi».
+
+**Le parole nuove.** Il **codice Gray** è un ordinamento in cui fra due valori consecutivi cambia un solo bit: è il motivo per cui le colonne vanno 00, 01, 11, 10. Un **implicante** è un gruppo valido di celle a 1; è **primo** se non si può allargare, **essenziale** se è l’unico a coprire una certa cella. Un’**indifferenza** (don’t care, scritta `x`) è una combinazione che non si presenta mai o il cui valore d’uscita non interessa: si può usare come 1 o come 0, a piacere.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/mappe-di-karnaugh/idea">
+
+## Idea
+
+La mappa dispone i mintermini in celle adiacenti secondo il **codice Gray**: fra due celle vicine cambia **una sola variabile**. Raggruppando gli `1` in blocchi di dimensione potenza di 2 si eliminano le variabili che cambiano dentro il gruppo, e restano solo quelle costanti.
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/come-si-dispone-la-mappa">
+
+## Come si dispone la mappa
+
+L'ordine delle colonne **non** è 00, 01, 10, 11 ma **00, 01, 11, 10**: è questa la sequenza in cui cambia un bit alla volta. A 4 variabili si applica lo stesso ordine anche alle righe:
+
+```
+        CD
+       00  01  11  10
+AB 00 | m0  m1  m3  m2
+   01 | m4  m5  m7  m6
+   11 | m12 m13 m15 m14
+   10 | m8  m9  m11 m10
+```
+
+Sbagliare l'ordine è l'errore più comune: la mappa smette di essere adiacente e i raggruppamenti risultano invalidi.
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/regole-di-raggruppamento">
+
+## Regole di raggruppamento
+
+- I gruppi hanno dimensione 1, 2, 4, 8… mai 3 o 6.
+- Si fanno **più grandi possibile**: un gruppo di 2ᵏ celle elimina k variabili, quindi ogni raddoppio accorcia il termine di un letterale.
+- I gruppi possono **sovrapporsi**: una cella già coperta può entrare in un altro gruppo se questo permette di allargarlo.
+- L'adiacenza è **circolare**: prima e ultima colonna sono vicine, così come prima e ultima riga (wrap-around). I quattro angoli di una mappa a 4 variabili formano un gruppo valido.
+- Ogni `1` deve finire in almeno un gruppo, e non si devono coprire zeri.
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/implicanti-primi-ed-essenziali">
+
+## Implicanti primi ed essenziali
+
+Un **implicante** è un gruppo valido; è **primo** se non può essere ingrandito ulteriormente. È **essenziale** se copre almeno un `1` che nessun altro implicante primo copre: gli essenziali vanno presi per forza. Si completa poi la copertura con il minor numero di implicanti primi rimanenti.
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/perche-funziona-l-adiacenza-e-algebra">
+
+## Perché funziona: l’adiacenza è algebra
+
+La mappa sembra un trucco visivo, ma sotto c’è un solo teorema. Prendiamo due celle vicine, che per costruzione differiscono in **una sola** variabile — diciamo A. I due mintermini corrispondenti si scrivono X·A e X·Ā, dove X è il prodotto delle variabili che _non_ cambiano:
+
+```
+X·A + X·Ā = X·(A + Ā) = X·1 = X
+```
+
+La variabile che cambia **sparisce**. Ecco perché un gruppo di 2 celle elimina una variabile, uno di 4 ne elimina due (si applica il teorema due volte), uno di 8 ne elimina tre. E si capisce anche perché i gruppi devono avere dimensione potenza di 2: solo così le celle formano un insieme in cui, per ogni variabile «interna», compaiono **entrambe** le polarità in tutte le combinazioni delle altre. Con 3 celle non accade, e il raccoglimento non si può fare.
+
+Lo stesso argomento spiega l’ordinamento Gray delle colonne: la vicinanza sulla mappa deve corrispondere alla differenza di un solo bit, altrimenti la formula di sopra non si applica e cerchiare celle contigue produce termini sbagliati.
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/la-procedura-in-cinque-passi">
+
+## La procedura, in cinque passi
+
+All’esame conviene seguirla sempre nello stesso ordine, invece di cercare gruppi a caso:
+
+1. **Riempi la mappa** dalla tabella di verità, controllando l’ordine Gray delle intestazioni. Un errore qui invalida tutto il resto.
+2. **Cerca i gruppi più grandi possibile**, partendo da quelli di 8, poi 4, poi 2, poi le celle isolate. Ricorda i bordi e gli angoli.
+3. **Individua gli implicanti essenziali**: per ogni 1, conta da quanti gruppi è coperto. Se da uno solo, quel gruppo è obbligatorio — segnalo.
+4. **Completa la copertura** scegliendo, fra i gruppi rimasti, il minor numero possibile che copra gli 1 ancora scoperti.
+5. **Scrivi i termini**: per ogni gruppo, il prodotto delle variabili che restano costanti, negate dove valgono 0.
+
+Alla fine, due controlli veloci: ogni 1 è coperto? nessun gruppo copre uno 0? Se entrambe le risposte sono sì, la forma è **corretta**; la minimalità dipende dall’aver fatto bene i passi 2-4.
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/quando-la-regola-degli-essenziali-non-basta">
+
+## Quando la regola degli essenziali non basta
+
+Esistono mappe in cui **nessun** implicante è essenziale, perché ogni 1 è coperto da almeno due gruppi. Si chiamano **cicliche**. Lì il passo 3 non produce nulla e bisogna scegliere per tentativi, verificando quale combinazione dia il costo minore. Sono i casi in cui esistono **più soluzioni minime diverse**, tutte ugualmente accettabili: se la tua non coincide con quella del docente, controlla il numero di termini e di letterali prima di darti torto.
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/oltre-le-quattro-variabili">
+
+## Oltre le quattro variabili
+
+A cinque variabili la mappa diventa due mappe a quattro affiancate, una per E = 0 e una per E = 1: sono adiacenti «in profondità», cioè celle nella stessa posizione delle due mappe formano un gruppo valido. Si riesce a gestire, ma è scomodo; da sei in su la rappresentazione visiva perde senso.
+
+Per quei casi esiste il metodo di **Quine-McCluskey**: la stessa idea — combinare termini che differiscono di un bit — eseguita in modo tabellare e sistematico, quindi programmabile. È l’algoritmo che sta dentro gli strumenti di sintesi automatica, ed è anche quello che questo sito usa per verificare che la soluzione mostrata sia davvero minima.
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/le-indifferenze-x">
+
+## Le indifferenze (x)
+
+Sono combinazioni che non si presentano mai, o il cui valore d'uscita è irrilevante. Si possono prendere **come 1 quando aiutano ad allargare un gruppo**, oppure lasciare a 0 quando non servono: si valutano **una per una**, non tutte insieme, e non vanno mai coperte da sole (un gruppo di sole indifferenze è inutile).
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/pos-dalla-mappa">
+
+## POS dalla mappa
+
+Raggruppando gli **zeri** invece degli uni si ottiene $\overline{Y}$; negando con De Morgan si ricava la forma POS. Talvolta è più corta della SOP: se la mappa ha pochi zeri, conviene provarla.
+
+</div>
+
+<div data-note-id="teoria/mappe-di-karnaugh/dal-risultato-al-circuito">
+
+## Dal risultato al circuito
+
+Ogni termine prodotto diventa una porta AND, la somma finale una porta OR, le variabili negate degli invertitori. Nel disegno **scomponi in porte a 2 ingressi**: un prodotto di tre letterali si realizza con due AND in cascata.
+
+Allenati con gli esercizi generati di Karnaugh di questo modulo: la soluzione mostrata è calcolata da un minimizzatore esatto, quindi è sempre davvero minima.
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/mappe-di-karnaugh/esempio-svolto">
+
+## Esempio svolto
+
+Sia `Y(A,B,C) = 1` per i mintermini 1, 3, 5, 7 — cioè ogni volta che `C = 1`, indipendentemente da A e B. Il gruppo di 4 celle elimina due variabili e la SOP minima è semplicemente:
+
+```
+Y = C          (1 termine, 1 letterale)
+```
+
+Scrivere `Y = A̅·C + A·C` è **corretto ma non minimo**: l'assorbimento lo riduce a `C`, e all'esame la non-minimalità viene penalizzata.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/mappe-di-karnaugh/errori-tipici">
+
+## Errori tipici
+
+- Scrivere le colonne in ordine 00, 01, 10, 11: la mappa perde l'adiacenza e **tutti** i raggruppamenti diventano sbagliati.
+- Fermarsi a una copertura corretta ma non minima, per non aver visto un gruppo più grande o l'adiacenza ai bordi.
+- Coprire un gruppo di sole indifferenze: non serve a nulla, perché nessun 1 viene coperto.
+- Dimenticare gli implicanti **essenziali**: vanno presi per primi, e spesso da soli chiudono quasi tutta la copertura.
+
+</div>
+
+<Callout tone="attenzione" title="Porte AND a più di due ingressi">
+
+<div data-note-id="teoria/mappe-di-karnaugh/trap-and-assoc">
+
+Una porta a tre o più ingressi è una comodità del disegno: in hardware si costruisce con porte a due ingressi. Scomporla nello schema mostra che conosci la struttura reale, ed è l'unico modo di far vedere quanti livelli di ritardo attraversa il segnale.
+
+</div>
+
+</Callout>
+
+</Layer>

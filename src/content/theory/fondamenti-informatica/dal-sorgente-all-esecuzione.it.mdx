@@ -1,0 +1,175 @@
+---
+course: fondamenti-informatica
+topic: dal-sorgente-all-esecuzione
+lang: it
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In due minuti">
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/in-due-minuti">
+
+- Quattro passaggi, sempre gli stessi: **compilazione → assemblaggio → collegamento → caricamento**. Ognuno produce un file e ne consuma un altro.
+- L’**assemblatore** traduce mnemonici in codici operativi e risolve le etichette. Serve **due passate** perché un salto in avanti cita un’etichetta non ancora incontrata.
+- Le **direttive** (`ORIGIN`, `DATAWORD`, `RESERVE`, `EQU`, `END`) non producono istruzioni: dicono all’assemblatore dove mettere le cose.
+- Il **collegatore** unisce i moduli e le librerie, risolvendo i riferimenti esterni; il **caricatore** porta il programma in memoria e ne sistema gli indirizzi.
+- Il **sistema operativo** non esegue il programma: gli dà memoria, tempo di processore e accesso ai dispositivi, e interviene su chiamata di sistema, interruzione o eccezione.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/da-dove-si-parte">
+
+## Da dove si parte
+
+**Cosa serve sapere prima:** che cos’è un’istruzione assembly e come si usano le etichette per i salti, dal modulo sul [repertorio di istruzioni](../risc-cisc-assembly/).
+
+**Che problema risolve.** Il processore esegue numeri binari, non parole. Fra il testo che scrivi e i bit che il processore preleva dalla memoria c’è una catena di programmi che traducono, mettono insieme e caricano — e ognuno di loro risolve un problema preciso. Sapere **chi fa che cosa** serve a capire i messaggi d’errore, a sapere perché un programma non parte, e a rispondere alla domanda d’esame «descrivi il percorso dal sorgente all’esecuzione».
+
+**Le parole nuove.** Un **modulo oggetto** è il risultato della traduzione di un singolo file: codice macchina con dei buchi al posto dei nomi che non conosce. Un **riferimento esterno** è uno di quei buchi. La **rilocazione** è la correzione degli indirizzi quando il programma viene messo in memoria in un posto diverso da quello previsto. La **modalità supervisore** è lo stato privilegiato del processore in cui gira il sistema operativo, e in cui sono permesse istruzioni vietate ai programmi normali.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/la-catena-in-ordine">
+
+## La catena, in ordine
+
+Fra quello che scrivi e quello che il processore esegue ci sono quattro traduzioni. Il **compilatore** porta un linguaggio ad alto livello in assembly; l'**assemblatore** porta l'assembly in codice oggetto; il **collegatore** (linker) mette insieme più moduli oggetto e le librerie; il **caricatore** (loader) copia il risultato in memoria e lo avvia. Ogni passo ha un input e un output ben definiti, e all'esame conviene saperli nominare nell'ordine giusto.
+
+Un'alternativa è l'**interprete**, che non produce un eseguibile ma esegue il sorgente istruzione per istruzione: più lento, ma indipendente dalla macchina e comodo per il debug. Compilare significa spendere tempo una volta sola; interpretare significa spenderlo a ogni esecuzione.
+
+</div>
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/l-assemblatore-e-il-problema-delle-etichette">
+
+## L’assemblatore e il problema delle etichette
+
+L'assemblatore fa due cose: sostituisce ogni mnemonico con il suo **codice operativo** e sostituisce ogni **etichetta** con un indirizzo. La seconda è meno banale della prima, perché un salto in avanti nomina un'etichetta che l'assemblatore non ha ancora visto.
+
+Per questo si lavora in **due passate**. Nella prima si scorre il sorgente tenendo un contatore di posizione e si costruisce la **tabella dei simboli**: per ogni etichetta, l'indirizzo a cui corrisponde. Nella seconda si genera il codice, e a quel punto ogni etichetta ha già il suo valore. Un'etichetta usata ma mai definita è l'errore classico: «simbolo non definito».
+
+</div>
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/le-direttive">
+
+## Le direttive
+
+Non tutte le righe di un sorgente assembly diventano istruzioni. Le **direttive** parlano all'assemblatore, non al processore:
+
+- `ORIGIN 1000` — le righe seguenti vanno collocate a partire dall'indirizzo 1000.
+- `DATAWORD 42` — riserva una parola e la inizializza a 42.
+- `RESERVE 100` — riserva 100 byte senza inizializzarli.
+- `N EQU 32` — dà un nome a una costante; non occupa memoria.
+- `END INIZIO` — fine del sorgente e punto di partenza dell'esecuzione.
+
+Domanda ricorrente: «`DATAWORD` genera un'istruzione?» No. Genera **un dato** in memoria. È la differenza fra ciò che il processore esegue e ciò che legge.
+
+</div>
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/collegamento-perche-serve">
+
+## Collegamento: perché serve
+
+Un programma reale è fatto di più file, e usa funzioni che stanno altrove. Ogni modulo viene assemblato per conto suo, quindi al suo interno restano dei buchi: i **riferimenti esterni**, cioè i nomi che quel modulo usa ma non definisce. Il collegatore mette in fila i moduli, calcola la posizione definitiva di ciascuno e **riempie i buchi** con gli indirizzi giusti (rilocazione).
+
+Il collegamento può essere **statico** — la libreria finisce dentro l'eseguibile, che diventa grande ma autosufficiente — o **dinamico**, con la libreria caricata a runtime e condivisa fra i processi: eseguibili più piccoli, aggiornabili senza ricompilare, ma dipendenti dalla presenza della libreria giusta.
+
+</div>
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/caricamento-e-rilocazione">
+
+## Caricamento e rilocazione
+
+Il caricatore copia l'eseguibile in memoria, prepara la pila e salta al punto d'ingresso. Se il programma non finisce all'indirizzo per cui era stato pensato, gli indirizzi assoluti al suo interno vanno corretti: è la **rilocazione**. Con la memoria virtuale il problema quasi sparisce, perché ogni processo vede sempre lo stesso spazio di indirizzi virtuali indipendentemente da dove sta davvero in memoria fisica.
+
+</div>
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/che-cosa-fa-il-sistema-operativo">
+
+## Che cosa fa il sistema operativo
+
+Il sistema operativo non «esegue» il programma: è un programma anche lui, e mentre il tuo gira lui è fermo. Interviene in tre casi soltanto — **chiamata di sistema** (il programma chiede un servizio), **interruzione** (un dispositivo chiama), **eccezione** (l'istruzione in corso fallisce) — ed è per questo che il capitolo sulle interruzioni e quello sul software si tengono insieme.
+
+I suoi compiti sono quattro: assegnare la **memoria**, ripartire il **tempo di processore** fra i processi, mediare l'accesso ai **dispositivi**, e proteggere i processi l'uno dall'altro. La protezione poggia sull'hardware: la **modalità supervisore** permette istruzioni che in modalità utente sono vietate, e il passaggio avviene solo attraverso i punti di ingresso controllati appena elencati.
+
+</div>
+
+<Callout tone="esame" title="Come esce all’esame">
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/come-esce-all-esame">
+
+Tipicamente come domanda aperta («descrivi il percorso dal sorgente all'esecuzione») o come crocetta sul compito di uno dei quattro strumenti. Le risposte che valgono pieno nominano **tabella dei simboli**, **due passate**, **riferimenti esterni** e **rilocazione**: sono le quattro parole che dimostrano di aver capito il meccanismo e non solo l'elenco.
+
+</div>
+
+</Callout>
+
+## Schemi
+
+<Schema id="catena-software" lang="it" num="1" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/esempio-svolto">
+
+## Esempio svolto
+
+**Che cosa contiene la tabella dei simboli dopo la prima passata?** Sorgente, con parole da 4 byte:
+
+```
+          ORIGIN 100
+INIZIO:   Move   R1, #0        ; indirizzo 100
+          Move   R2, N         ; indirizzo 104
+CICLO:    Add    R1, R1, #1    ; indirizzo 108
+          Sub    R2, R2, #1    ; indirizzo 112
+          Branch>0 CICLO       ; indirizzo 116  ← salto ALL'INDIETRO
+          Branch  FINE         ; indirizzo 120  ← salto IN AVANTI
+N:        DATAWORD 10          ; indirizzo 124
+FINE:     ...                  ; indirizzo 128
+```
+
+Alla fine della prima passata:
+
+```
+INIZIO → 100     CICLO → 108     N → 124     FINE → 128
+```
+
+Nella riga a 116 l'etichetta `CICLO` era già nota, ma in quella a 120 `FINE` no: alla prima passata l'assemblatore non poteva ancora tradurla. Con la tabella completa, la seconda passata genera il codice senza incertezze. Nota anche che `N: DATAWORD 10` occupa memoria come tutto il resto, ma è un **dato**: se l'esecuzione ci finisse sopra, il processore proverebbe a interpretarlo come istruzione.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/errori-tipici">
+
+## Errori tipici
+
+- Pensare che `DATAWORD` o `RESERVE` generino istruzioni: producono dati, e nel conteggio degli indirizzi occupano spazio come tutto il resto.
+- Scambiare i ruoli: il **collegatore** risolve i riferimenti fra moduli, il **caricatore** mette in memoria e avvia.
+- Dire che il sistema operativo «controlla ogni istruzione»: la CPU è una sola, e mentre gira il programma utente il SO è fermo.
+
+</div>
+
+<Callout tone="attenzione" title="Simboli dell’algebra di Boole">
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/trap-simboli">
+
+In algebra di Boole la notazione corrente è `∧` e `∨` (oppure `·` e `+`); «AND» e «OR» per esteso appartengono alla descrizione dei circuiti. Le due si equivalgono: quello che conta è **non mescolarle nella stessa espressione**, perché una riga scritta metà in un modo e metà nell’altro si legge male.
+
+</div>
+
+</Callout>
+
+</Layer>

@@ -1,0 +1,1915 @@
+- id: gerarchia-di-memoria-es-1
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Cache da **32 KiB** a mappatura **diretta**, blocchi da **16 byte**, indirizzi a **32 bit**. Come si
+      spezza l’indirizzo?
+    en: '**32 KiB** **direct-mapped** cache, **16-byte** blocks, **32-bit** addresses. How is the address split?'
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          'Tre campi, sempre nello stesso ordine: etichetta, indice, spiazzamento. Si parte dal fondo, cioè dallo
+          spiazzamento.'
+        en: 'Three fields, always in the same order: tag, index, offset. Start from the end, i.e. from the offset.'
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          spiazzamento = log₂(16 byte)              = 4 bit
+
+          numero di blocchi = 32768 / 16            = 2048
+
+          indice = log₂(2048)                       = 11 bit
+
+          etichetta = 32 − 11 − 4                   = 17 bit
+
+          ```
+
+
+          Controllo obbligatorio: 17 + 11 + 4 = 32 ✓, i tre campi sommano all’ampiezza dell’indirizzo.
+
+
+          Nella mappatura diretta l’indice individua **una sola** linea possibile, quindi si confronta una
+          sola etichetta: hardware minimo e risposta rapidissima. Il prezzo sono i **conflitti**: due blocchi
+          con lo stesso indice si sfrattano a vicenda anche se il resto della cache è vuoto.
+        en: >-
+          ```
+
+          offset = log₂(16 bytes)                   = 4 bits
+
+          number of blocks = 32768 / 16             = 2048
+
+          index = log₂(2048)                        = 11 bits
+
+          tag = 32 − 11 − 4                         = 17 bits
+
+          ```
+
+
+          Mandatory check: 17 + 11 + 4 = 32 ✓, the three fields add up to the address width.
+
+
+          In direct mapping the index identifies **only one** possible line, so a single tag is compared:
+          minimal hardware and a very fast answer. The price is **conflicts**: two blocks with the same index
+          evict each other even if the rest of the cache is empty.
+  answer:
+    - label:
+        it: Bit di etichetta
+        en: Tag bits
+      value: 17
+      tol: 1e-9
+    - label:
+        it: Bit di indice
+        en: Index bits
+      value: 11
+      tol: 1e-9
+    - label:
+        it: Bit di spiazzamento
+        en: Offset bits
+      value: 4
+      tol: 1e-9
+  origin: originale
+- id: gerarchia-di-memoria-es-2
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Una cache ha tempo di accesso 2 ns, miss rate 5 % e penalità di miss 80 ns. Qual è il **tempo medio di
+      accesso**? E se il miss rate scendesse al 2 %?
+    en:
+      A cache has a 2 ns access time, a 5 % miss rate and an 80 ns miss penalty. What is the **average access
+      time**? And if the miss rate fell to 2 %?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: Il tempo medio è quello dell’hit più, in proporzione ai miss, la penalità aggiuntiva.
+        en: The average time is that of the hit plus, in proportion to the misses, the additional penalty.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          t_medio = t_hit + miss_rate × miss_penalty
+
+
+          con 5 %:  2 + 0,05 × 80 = 2 + 4 = 6 ns
+
+          con 2 %:  2 + 0,02 × 80 = 2 + 1,6 = 3,6 ns
+
+          ```
+
+
+          Un miss su venti **triplica** il tempo medio rispetto all’hit. Dimezzare e più il miss rate lo
+          riporta quasi al valore ideale.
+
+
+          La morale progettuale: conviene molto di più lavorare sul **miss rate** (cache più grande, più
+          associativa, blocchi di dimensione adeguata) o sulla **penalità** (cache di secondo livello) che non
+          sull’hit time. E si vede anche perché la memoria virtuale con page fault da milioni di cicli
+          richiede un tasso di fault bassissimo per essere praticabile.
+        en: >-
+          ```
+
+          t_avg = t_hit + miss_rate × miss_penalty
+
+
+          with 5 %:  2 + 0.05 × 80 = 2 + 4 = 6 ns
+
+          with 2 %:  2 + 0.02 × 80 = 2 + 1.6 = 3.6 ns
+
+          ```
+
+
+          One miss in twenty **triples** the average time compared with a hit. Cutting the miss rate by more
+          than half brings it almost back to the ideal value.
+
+
+          The design moral: it pays much more to work on the **miss rate** (larger, more associative cache,
+          suitably sized blocks) or on the **penalty** (second-level cache) than on the hit time. It also
+          shows why virtual memory, with page faults costing millions of cycles, needs an extremely low fault
+          rate to be practical.
+  answer:
+    - label:
+        it: Con miss rate 5 %
+        en: With 5 % miss rate
+      value: 6e-9
+      unit: s
+      tol: 0.000001
+    - label:
+        it: Con miss rate 2 %
+        en: With 2 % miss rate
+      value: 3.6e-9
+      unit: s
+      tol: 0.000001
+  origin: originale
+- id: gerarchia-di-memoria-es-3
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.3
+    - gerarchia-di-memoria.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: Stessa cache dell’esercizio 1 — 32 KiB, blocchi da 16 byte, indirizzi a 32 bit — ma **associativa a 4
+      vie**. Come cambiano i campi? E che problema risolve l’associatività?
+    en:
+      Same cache as exercise 1 — 32 KiB, 16-byte blocks, 32-bit addresses — but **4-way set-associative**. How
+      do the fields change? And what problem does associativity solve?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: Con n vie l’indice non individua più un blocco ma un **gruppo** di n blocchi. Conta quanti gruppi ci sono.
+        en:
+          With n ways the index no longer identifies a block but a **set** of n blocks. Count how many sets there
+          are.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          spiazzamento = log₂(16)                   = 4 bit   (invariato)
+
+          numero di blocchi = 32768 / 16            = 2048
+
+          numero di gruppi  = 2048 / 4 vie          = 512
+
+          indice = log₂(512)                        = 9 bit
+
+          etichetta = 32 − 9 − 4                    = 19 bit
+
+          ```
+
+
+          Rispetto alla mappatura diretta l’indice **perde 2 bit** e l’etichetta li guadagna: 19 + 9 + 4 = 32
+          ✓.
+
+
+          Il problema risolto sono i **conflitti**. Con la mappatura diretta due blocchi che condividono
+          l’indice non possono coesistere: un ciclo che accede alternativamente a due indirizzi «sfortunati»
+          produce un miss a ogni accesso, con la cache quasi vuota. Con quattro vie ce ne stanno quattro nello
+          stesso gruppo.
+
+
+          Il costo: quattro confronti di etichetta in parallelo invece di uno (più hardware, hit time
+          leggermente più alto) e la necessità di una politica di **sostituzione**, che nella mappatura
+          diretta non serve perché non c’è scelta.
+        en: >-
+          ```
+
+          offset = log₂(16)                         = 4 bits   (unchanged)
+
+          number of blocks = 32768 / 16             = 2048
+
+          number of sets   = 2048 / 4 ways          = 512
+
+          index = log₂(512)                         = 9 bits
+
+          tag = 32 − 9 − 4                          = 19 bits
+
+          ```
+
+
+          Compared with direct mapping the index **loses 2 bits** and the tag gains them: 19 + 9 + 4 = 32 ✓.
+
+
+          The problem solved is **conflicts**. With direct mapping two blocks sharing the index cannot
+          coexist: a loop that alternately accesses two “unlucky” addresses produces a miss at every access,
+          with the cache almost empty. With four ways, four of them fit in the same set.
+
+
+          The cost: four tag comparisons in parallel instead of one (more hardware, slightly higher hit time)
+          and the need for a **replacement** policy, which direct mapping does not need because there is no
+          choice.
+  answer:
+    - label:
+        it: Bit di etichetta
+        en: Tag bits
+      value: 19
+      tol: 1e-9
+    - label:
+        it: Bit di indice
+        en: Index bits
+      value: 9
+      tol: 1e-9
+    - label:
+        it: Bit di spiazzamento
+        en: Offset bits
+      value: 4
+      tol: 1e-9
+  origin: originale
+- id: gerarchia-di-memoria-es-4
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.5
+  difficulty: 2
+  kind: static
+  statement:
+    it:
+      Su 1000 istruzioni, il 20 % sono `store`. Il miss rate è 5 % e il 30 % dei blocchi sfrattati è *dirty*. I
+      blocchi sono da 16 byte, le parole da 4. Confronta il **traffico verso la memoria** con write-through e
+      con write-back.
+    en:
+      Out of 1000 instructions, 20 % are `store`s. The miss rate is 5 % and 30 % of evicted blocks are *dirty*.
+      Blocks are 16 bytes, words 4. Compare the **traffic to memory** with write-through and with write-back.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          Conta separatamente il traffico in lettura (il caricamento dei blocchi dopo un miss, uguale nei due casi)
+          e quello in scrittura, che è ciò che distingue le due politiche.
+        en:
+          Count separately the read traffic (loading blocks after a miss, the same in both cases) and the write
+          traffic, which is what distinguishes the two policies.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          LETTURE (uguali nei due casi)
+            miss = 1000 × 5 % = 50  →  50 blocchi × 16 B = 800 byte
+
+          WRITE-THROUGH: ogni store scrive anche in memoria
+            200 store × 4 byte = 800 byte
+            traffico totale = 800 + 800 = 1600 byte
+
+          WRITE-BACK: si riscrive solo il blocco sfrattato se dirty
+            50 sfratti × 30 % = 15 blocchi × 16 B = 240 byte
+            traffico totale = 800 + 240 = 1040 byte
+          ```
+
+
+          Il write-back genera qui il **35 % di traffico in meno**, e il divario cresce quando un blocco viene
+          scritto più volte prima di essere sfrattato: il write-through paga **ogni** scrittura, il write-back
+          una sola volta per blocco.
+
+
+          Che cosa si perde: con il write-back la memoria è temporaneamente **non aggiornata**, il che
+          complica la vita a DMA e multiprocessori (è il problema della coerenza) e rende necessario un bit
+          *dirty* per ogni blocco.
+        en: >-
+          ```
+
+          READS (the same in both cases)
+            misses = 1000 × 5 % = 50  →  50 blocks × 16 B = 800 bytes
+
+          WRITE-THROUGH: every store also writes to memory
+            200 stores × 4 bytes = 800 bytes
+            total traffic = 800 + 800 = 1600 bytes
+
+          WRITE-BACK: only an evicted dirty block is written back
+            50 evictions × 30 % = 15 blocks × 16 B = 240 bytes
+            total traffic = 800 + 240 = 1040 bytes
+          ```
+
+
+          Write-back here generates **35 % less traffic**, and the gap grows when a block is written several
+          times before being evicted: write-through pays for **every** write, write-back only once per block.
+
+
+          What you lose: with write-back memory is temporarily **out of date**, which complicates life for DMA
+          and multiprocessors (it is the coherence problem) and requires a *dirty* bit for every block.
+  answer:
+    - label:
+        it: Traffico con write-through
+        en: Traffic with write-through
+      value: 1600
+      unit: B
+      tol: 1e-9
+    - label:
+        it: Traffico con write-back
+        en: Traffic with write-back
+      value: 1040
+      unit: B
+      tol: 1e-9
+  origin: originale
+- id: gerarchia-di-memoria-es-5
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.4
+  difficulty: 2
+  kind: static
+  statement:
+    it:
+      Cache associativa a **2 vie** con **2 gruppi** (quattro blocchi in tutto), politica **LRU**. Il gruppo si
+      sceglie con «numero di blocco modulo 2». Traccia gli accessi ai blocchi `0, 1, 2, 0, 3, 1, 2, 4, 0`
+      indicando hit e miss.
+    en:
+      '**2-way** set-associative cache with **2 sets** (four blocks in all), **LRU** policy. The set is chosen
+      by “block number modulo 2”. Trace the accesses to blocks `0, 1, 2, 0, 3, 1, 2, 4, 0` marking hits and
+      misses.'
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          'Per ogni accesso: calcola il gruppo, guarda se il blocco c’è, e aggiorna l’ordine di uso. Si sfratta solo
+          quando il gruppo è pieno.'
+        en:
+          'For each access: compute the set, check whether the block is there, and update the order of use. Eviction
+          happens only when the set is full.'
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          accesso  gruppo  contenuto dopo        esito
+             0       0     g0: [0]               MISS
+             1       1     g1: [1]               MISS
+             2       0     g0: [0, 2]            MISS
+             0       0     g0: [2, 0]            HIT   (0 diventa il più recente)
+             3       1     g1: [1, 3]            MISS
+             1       1     g1: [3, 1]            HIT
+             2       0     g0: [0, 2]            HIT
+             4       0     g0: [2, 4]            MISS  → sfratta 0 (meno recente)
+             0       0     g0: [4, 0]            MISS  → sfratta 2
+          ```
+
+
+          Bilancio: **6 miss e 3 hit**. I primi quattro miss sono *obbligatori* (il blocco non era mai stato
+          caricato); gli ultimi due sono di **capacità/conflitto**, causati dallo sfratto.
+
+
+          Nota l’ultimo passaggio: al momento di caricare il blocco 4, nel gruppo 0 c’erano 0 e 2, usati
+          rispettivamente al quarto e al settimo accesso. LRU sfratta il **meno recentemente usato**, cioè lo
+          0 — che però viene richiesto subito dopo. È il caso in cui LRU sbaglia previsione: nessuna politica
+          reale può indovinare sempre, perché il futuro non lo conosce.
+        en: >-
+          ```
+
+          access   set     contents after        outcome
+             0       0     s0: [0]               MISS
+             1       1     s1: [1]               MISS
+             2       0     s0: [0, 2]            MISS
+             0       0     s0: [2, 0]            HIT   (0 becomes the most recent)
+             3       1     s1: [1, 3]            MISS
+             1       1     s1: [3, 1]            HIT
+             2       0     s0: [0, 2]            HIT
+             4       0     s0: [2, 4]            MISS  → evicts 0 (least recent)
+             0       0     s0: [4, 0]            MISS  → evicts 2
+          ```
+
+
+          Tally: **6 misses and 3 hits**. The first four misses are *compulsory* (the block had never been
+          loaded); the last two are **capacity/conflict** misses, caused by eviction.
+
+
+          Note the last step: when block 4 was loaded, set 0 held 0 and 2, used at the fourth and seventh
+          access respectively. LRU evicts the **least recently used**, i.e. 0 — which, however, is requested
+          right after. It is the case where LRU predicts wrong: no real policy can always guess right, because
+          it does not know the future.
+  answer:
+    - label:
+        it: Miss
+        en: Misses
+      value: 6
+      tol: 1e-9
+    - label:
+        it: Hit
+        en: Hits
+      value: 3
+      tol: 1e-9
+  origin: originale
+- id: gen-campi-cache
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.3
+  difficulty: 2
+  kind: generated
+  generator: fondamenti-informatica/campi-cache
+  origin: originale
+- id: mcq-mem-01
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Che cos'è un cache **miss**?
+    en: What is a cache **miss**?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Il dato non è in cache e si scende nella gerarchia
+        en: The data is not in the cache and you go down the hierarchy
+  choices:
+    - text:
+        it: Il dato è in cache
+        en: The data is in the cache
+      correct: false
+    - text:
+        it: Il dato non è in cache e si scende nella gerarchia
+        en: The data is not in the cache and you go down the hierarchy
+      correct: true
+    - text:
+        it: La cache è piena
+        en: The cache is full
+      correct: false
+    - text:
+        it: Un errore di parità
+        en: A parity error
+      correct: false
+  origin: originale
+- id: mcq-mem-02
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Il ritardo introdotto dopo un cache miss si chiama:'
+    en: 'The delay introduced after a cache miss is called:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: miss penalty
+        en: miss penalty
+  choices:
+    - text:
+        it: hit ratio
+        en: hit ratio
+      correct: false
+    - text:
+        it: miss penalty
+        en: miss penalty
+      correct: true
+    - text:
+        it: write-back
+        en: write-back
+      correct: false
+    - text:
+        it: latch delay
+        en: latch delay
+      correct: false
+  origin: originale
+- id: mcq-mem-03
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Quali proprietà sfrutta la cache?
+    en: Which properties does the cache exploit?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Località spaziale e temporale
+        en: Spatial and temporal locality
+  choices:
+    - text:
+        it: Solo temporale
+        en: Only temporal
+      correct: false
+    - text:
+        it: Solo spaziale
+        en: Only spatial
+      correct: false
+    - text:
+        it: Località spaziale e temporale
+        en: Spatial and temporal locality
+      correct: true
+    - text:
+        it: Nessuna delle due
+        en: Neither
+      correct: false
+  origin: originale
+- id: mcq-mem-04
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Algoritmo di sostituzione più comune in cache:'
+    en: 'The most common cache replacement algorithm:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: LRU
+        en: LRU
+  choices:
+    - text:
+        it: FIFO
+        en: FIFO
+      correct: false
+    - text:
+        it: LRU
+        en: LRU
+      correct: true
+    - text:
+        it: Random
+        en: Random
+      correct: false
+    - text:
+        it: MRU
+        en: MRU
+      correct: false
+  origin: originale
+- id: mcq-mem-05
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'La EPROM si cancella:'
+    en: 'An EPROM is erased:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Con raggi ultravioletti
+        en: With ultraviolet light
+  choices:
+    - text:
+        it: Elettricamente
+        en: Electrically
+      correct: false
+    - text:
+        it: Con raggi ultravioletti
+        en: With ultraviolet light
+      correct: true
+    - text:
+        it: Meccanicamente
+        en: Mechanically
+      correct: false
+    - text:
+        it: Non si cancella
+        en: It cannot be erased
+      correct: false
+  origin: originale
+- id: mcq-mem-06
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'La EEPROM si cancella:'
+    en: 'An EEPROM is erased:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Elettricamente
+        en: Electrically
+  choices:
+    - text:
+        it: Con raggi UV
+        en: With UV light
+      correct: false
+    - text:
+        it: Elettricamente
+        en: Electrically
+      correct: true
+    - text:
+        it: Termicamente
+        en: Thermally
+      correct: false
+    - text:
+        it: Con luce visibile
+        en: With visible light
+      correct: false
+  origin: originale
+- id: mcq-mem-07
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'La memoria cache è tipicamente realizzata con:'
+    en: 'Cache memory is typically built with:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: SRAM
+        en: SRAM
+  choices:
+    - text:
+        it: DRAM
+        en: DRAM
+      correct: false
+    - text:
+        it: SRAM
+        en: SRAM
+      correct: true
+    - text:
+        it: EEPROM
+        en: EEPROM
+      correct: false
+    - text:
+        it: Disco
+        en: Disk
+      correct: false
+  origin: originale
+- id: mcq-mem-08
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Quale memoria è la più lenta della gerarchia?
+    en: Which memory is the slowest in the hierarchy?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Memoria secondaria
+        en: Secondary memory
+  choices:
+    - text:
+        it: Cache L1
+        en: L1 cache
+      correct: false
+    - text:
+        it: Registri
+        en: Registers
+      correct: false
+    - text:
+        it: Memoria secondaria
+        en: Secondary memory
+      correct: true
+    - text:
+        it: SRAM
+        en: SRAM
+      correct: false
+  origin: originale
+- id: mcq-mem-09
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Principale svantaggio di una DRAM molto grande:'
+    en: 'Main drawback of a very large DRAM:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Ne viene compromessa la velocità
+        en: Its speed is compromised
+  choices:
+    - text:
+        it: Consuma poco
+        en: It consumes little
+      correct: false
+    - text:
+        it: Ne viene compromessa la velocità
+        en: Its speed is compromised
+      correct: true
+    - text:
+        it: È troppo veloce
+        en: It is too fast
+      correct: false
+    - text:
+        it: Non serve refresh
+        en: It needs no refresh
+      correct: false
+  origin: originale
+- id: mcq-mem-10
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Perché una cella DRAM va rinfrescata periodicamente?
+    en: Why must a DRAM cell be refreshed periodically?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Il condensatore si scarica per correnti di dispersione
+        en: The capacitor discharges through leakage currents
+  choices:
+    - text:
+        it: Il transistor si rompe
+        en: The transistor breaks
+      correct: false
+    - text:
+        it: Il condensatore si scarica per correnti di dispersione
+        en: The capacitor discharges through leakage currents
+      correct: true
+    - text:
+        it: Il clock si ferma
+        en: The clock stops
+      correct: false
+    - text:
+        it: La cache la sovrascrive
+        en: The cache overwrites it
+      correct: false
+  origin: originale
+- id: mcq-mem-11
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'La SRAM (celle della cache) rispetto alla DRAM:'
+    en: 'SRAM (cache cells) compared with DRAM:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Non necessita di refresh
+        en: Does not need refresh
+  choices:
+    - text:
+        it: Necessita di refresh
+        en: Needs refresh
+      correct: false
+    - text:
+        it: Non necessita di refresh
+        en: Does not need refresh
+      correct: true
+    - text:
+        it: È più lenta
+        en: Is slower
+      correct: false
+    - text:
+        it: È più densa
+        en: Is denser
+      correct: false
+  origin: originale
+- id: mcq-mem-12
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Con la politica **write-back**, quando la memoria principale viene aggiornata?
+    en: With the **write-back** policy, when is main memory updated?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Solo quando la linea modificata viene sfrattata
+        en: Only when the modified line is evicted
+  choices:
+    - text:
+        it: A ogni scrittura, insieme alla cache
+        en: At every write, together with the cache
+      correct: false
+    - text:
+        it: Solo quando la linea modificata viene sfrattata
+        en: Only when the modified line is evicted
+      correct: true
+    - text:
+        it: Mai
+        en: Never
+      correct: false
+    - text:
+        it: A ogni cache miss
+        en: At every cache miss
+      correct: false
+  origin: originale
+- id: mcq-mem-13
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: A che cosa serve il **dirty bit** di una linea di cache?
+    en: What is the **dirty bit** of a cache line for?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: A segnalare che la linea è stata modificata e va riscritta in memoria
+        en: To signal that the line has been modified and must be written back to memory
+  choices:
+    - text:
+        it: A indicare che la linea contiene dati non validi
+        en: To indicate that the line holds invalid data
+      correct: false
+    - text:
+        it: A segnalare che la linea è stata modificata e va riscritta in memoria
+        en: To signal that the line has been modified and must be written back to memory
+      correct: true
+    - text:
+        it: A contare gli accessi alla linea
+        en: To count the accesses to the line
+      correct: false
+    - text:
+        it: A marcare la linea come non sostituibile
+        en: To mark the line as non-replaceable
+      correct: false
+  origin: originale
+- id: mcq-mem-14
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: In quali campi si scompone un indirizzo per accedere alla cache?
+    en: Into which fields is an address split to access the cache?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Tag, indice, offset
+        en: Tag, index, offset
+  choices:
+    - text:
+        it: Segno, esponente, mantissa
+        en: Sign, exponent, mantissa
+      correct: false
+    - text:
+        it: Tag, indice, offset
+        en: Tag, index, offset
+      correct: true
+    - text:
+        it: Pagina, frame, offset
+        en: Page, frame, offset
+      correct: false
+    - text:
+        it: Opcode, operando, modo
+        en: Opcode, operand, mode
+      correct: false
+  origin: originale
+- id: mcq-mem-15
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Il tempo medio di accesso vale `t_hit + miss_rate × miss_penalty`. Con t_hit = 1 ns, miss rate 5% e
+      penalità 100 ns, quanto vale?
+    en:
+      The average access time is `t_hit + miss_rate × miss_penalty`. With t_hit = 1 ns, a 5% miss rate and a 100
+      ns penalty, what is it?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: 6 ns
+        en: 6 ns
+  choices:
+    - text:
+        it: 1 ns
+        en: 1 ns
+      correct: false
+    - text:
+        it: 6 ns
+        en: 6 ns
+      correct: true
+    - text:
+        it: 100 ns
+        en: 100 ns
+      correct: false
+    - text:
+        it: 105 ns
+        en: 105 ns
+      correct: false
+  origin: originale
+- id: mcq-mem-16
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.2
+    - gerarchia-di-memoria.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: Perché la cache trasferisce blocchi e non singole parole?
+    en: Why does the cache transfer blocks and not single words?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Per sfruttare la località spaziale
+        en: To exploit spatial locality
+  choices:
+    - text:
+        it: Per sfruttare la località spaziale
+        en: To exploit spatial locality
+      correct: true
+    - text:
+        it: Per ridurre il numero di tag
+        en: To reduce the number of tags
+      correct: false
+    - text:
+        it: Perché la DRAM non sa leggere una sola parola
+        en: Because DRAM cannot read a single word
+      correct: false
+    - text:
+        it: Per semplificare il calcolo del dirty bit
+        en: To simplify computing the dirty bit
+      correct: false
+  origin: originale
+- id: schema-cache-set-associativa
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.1
+    - gerarchia-di-memoria.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Cache a corrispondenza associativa a gruppi»: scrivi per ogni posizione numerata
+      l'etichetta giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Blocco · Cache · Dato · Etichetta · Frame · Gruppo · Indirizzo di memoria centrale · Memoria
+      centrale · Offset di pagina · Pagina · Posizione · Spiazzamento · Tag
+    en: >-
+      Complete the diagram “Set-associative cache”: for each numbered position write the right label. The list
+      contains more labels than positions.
+
+
+      Labels: Block · Cache · Data · Displacement · Frame · Main memory · Main memory address · Page · Page
+      offset · Position · Set · Tag
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img"
+        aria-labelledby="ex-cache-set-associativa-t ex-cache-set-associativa-d"
+        style="width:100%;height:auto;max-width:640px"><title id="ex-cache-set-associativa-t">Cache a
+        corrispondenza associativa a gruppi</title><desc id="ex-cache-set-associativa-d">Schema con 8
+        posizioni numerate da completare.</desc><defs><marker id="ex-cache-set-associativa-arrow" viewBox="0 0
+        10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0
+        L10 5 L0 10 z" style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5
+        4" x="20" y="105" width="200" height="200" rx="8"/>
+              <rect style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5 4" x="400" y="40" width="200" height="265" rx="8"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="70" y="115" width="140" height="30" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="70" y="150" width="140" height="30" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="70" y="200" width="140" height="30" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="70" y="235" width="140" height="30" rx="4"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="140" y="192" font-size="11">⋮</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="40" y="136" font-size="11">0</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="40" y="256" font-size="11">k</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="415" y="55" width="170" height="26" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="415" y="86" width="170" height="26" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="415" y="150" width="170" height="26" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="415" y="240" width="170" height="26" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="415" y="271" width="170" height="26" rx="4"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="500" y="132" font-size="11">⋮</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="500" y="222" font-size="11">⋮</text>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cache-set-associativa-arrow)" x1="400" y1="163" x2="225" y2="163"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cache-set-associativa-arrow)" x1="400" y1="255" x2="225" y2="222"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="60" y="318" width="120" height="28" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="185" y="318" width="110" height="28" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="318" width="100" height="28" rx="4"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="60" y1="358" x2="400" y2="358"/><circle cx="120" cy="22" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="120" y="22" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="500" cy="22" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="500" y="22" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="52" cy="90" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="52" y="90" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="120" cy="90" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="120" y="90" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="120" cy="332" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="120" y="332" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="240" cy="332" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="240" y="332" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="350" cy="332" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="350" y="332" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text><circle cx="235" cy="390" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="235" y="390" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">8</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img"
+        aria-labelledby="ex-cache-set-associativa-t ex-cache-set-associativa-d"
+        style="width:100%;height:auto;max-width:640px"><title id="ex-cache-set-associativa-t">Set-associative
+        cache</title><desc id="ex-cache-set-associativa-d">Diagram with 8 numbered positions to fill
+        in.</desc><defs><marker id="ex-cache-set-associativa-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5
+        4" x="20" y="105" width="200" height="200" rx="8"/>
+              <rect style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5 4" x="400" y="40" width="200" height="265" rx="8"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="70" y="115" width="140" height="30" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="70" y="150" width="140" height="30" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="70" y="200" width="140" height="30" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="70" y="235" width="140" height="30" rx="4"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="140" y="192" font-size="11">⋮</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="40" y="136" font-size="11">0</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="40" y="256" font-size="11">k</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="415" y="55" width="170" height="26" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="415" y="86" width="170" height="26" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="415" y="150" width="170" height="26" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="415" y="240" width="170" height="26" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="415" y="271" width="170" height="26" rx="4"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="500" y="132" font-size="11">⋮</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="500" y="222" font-size="11">⋮</text>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cache-set-associativa-arrow)" x1="400" y1="163" x2="225" y2="163"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cache-set-associativa-arrow)" x1="400" y1="255" x2="225" y2="222"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="60" y="318" width="120" height="28" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="185" y="318" width="110" height="28" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="318" width="100" height="28" rx="4"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="60" y1="358" x2="400" y2="358"/><circle cx="120" cy="22" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="120" y="22" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="500" cy="22" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="500" y="22" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="52" cy="90" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="52" y="90" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="120" cy="90" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="120" y="90" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="120" cy="332" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="120" y="332" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="240" cy="332" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="240" y="332" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="350" cy="332" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="350" y="332" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text><circle cx="235" cy="390" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="235" y="390" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">8</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Cache
+          2. Memoria centrale
+          3. Gruppo
+          4. Blocco
+          5. Etichetta
+          6. Posizione
+          7. Spiazzamento
+          8. Indirizzo di memoria centrale
+        en: |-
+          1. Cache
+          2. Main memory
+          3. Set
+          4. Block
+          5. Tag
+          6. Position
+          7. Displacement
+          8. Main memory address
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Cache
+      kind: text
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Memoria centrale
+      kind: text
+      accept:
+        - Main memory
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Gruppo
+      kind: text
+      accept:
+        - Set
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Blocco
+      kind: text
+      accept:
+        - Block
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Etichetta
+      kind: text
+      accept:
+        - Tag
+    - label:
+        it: Posizione 6
+        en: Position 6
+      value: Posizione
+      kind: text
+      accept:
+        - Position
+    - label:
+        it: Posizione 7
+        en: Position 7
+      value: Spiazzamento
+      kind: text
+      accept:
+        - Displacement
+    - label:
+        it: Posizione 8
+        en: Position 8
+      value: Indirizzo di memoria centrale
+      kind: text
+      accept:
+        - Main memory address
+  origin: originale
+- id: schema-gerarchia-memoria
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.1
+    - gerarchia-di-memoria.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Gerarchia di memoria»: scrivi per ogni posizione numerata l'etichetta giusta.
+      L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Buffer di scrittura · Cache primaria (L1) · Cache secondaria (L2) · Memoria principale ·
+      Memoria secondaria · Registri · ROM · Tabella delle pagine · TLB
+    en: >-
+      Complete the diagram “Memory hierarchy”: for each numbered position write the right label. The list
+      contains more labels than positions.
+
+
+      Labels: Main memory · Page table · Primary cache (L1) · Registers · ROM · Secondary cache (L2) ·
+      Secondary memory · TLB · Write buffer
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 350" role="img"
+        aria-labelledby="ex-gerarchia-memoria-t ex-gerarchia-memoria-d"
+        style="width:100%;height:auto;max-width:560px"><title id="ex-gerarchia-memoria-t">Gerarchia di
+        memoria</title><desc id="ex-gerarchia-memoria-d">Schema con 5 posizioni numerate da
+        completare.</desc><defs><marker id="ex-gerarchia-memoria-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="22" width="160"
+        height="36" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="180" y="82" width="200" height="36" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="160" y="142" width="240" height="36" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="140" y="202" width="280" height="36" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="120" y="262" width="320" height="46" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-gerarchia-memoria-arrow)" x1="70" y1="300" x2="70" y2="30"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="70" y="322" font-size="11">più veloce</text>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-gerarchia-memoria-arrow)" x1="500" y1="30" x2="500" y2="300"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="500" y="322" font-size="11">più capiente</text><circle cx="280" cy="40" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="40" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="280" cy="100" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="100" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="280" cy="160" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="160" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="280" cy="220" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="220" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="280" cy="285" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="285" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 350" role="img"
+        aria-labelledby="ex-gerarchia-memoria-t ex-gerarchia-memoria-d"
+        style="width:100%;height:auto;max-width:560px"><title id="ex-gerarchia-memoria-t">Memory
+        hierarchy</title><desc id="ex-gerarchia-memoria-d">Diagram with 5 numbered positions to fill
+        in.</desc><defs><marker id="ex-gerarchia-memoria-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="22" width="160"
+        height="36" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="180" y="82" width="200" height="36" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="160" y="142" width="240" height="36" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="140" y="202" width="280" height="36" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="120" y="262" width="320" height="46" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-gerarchia-memoria-arrow)" x1="70" y1="300" x2="70" y2="30"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="70" y="322" font-size="11">faster</text>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-gerarchia-memoria-arrow)" x1="500" y1="30" x2="500" y2="300"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="500" y="322" font-size="11">larger</text><circle cx="280" cy="40" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="40" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="280" cy="100" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="100" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="280" cy="160" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="160" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="280" cy="220" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="220" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="280" cy="285" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="285" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Registri
+          2. Cache primaria (L1)
+          3. Cache secondaria (L2)
+          4. Memoria principale
+          5. Memoria secondaria
+        en: |-
+          1. Registers
+          2. Primary cache (L1)
+          3. Secondary cache (L2)
+          4. Main memory
+          5. Secondary memory
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Registri
+      kind: text
+      accept:
+        - Registers
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Cache primaria (L1)
+      kind: text
+      accept:
+        - Primary cache (L1)
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Cache secondaria (L2)
+      kind: text
+      accept:
+        - Secondary cache (L2)
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Memoria principale
+      kind: text
+      accept:
+        - Main memory
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Memoria secondaria
+      kind: text
+      accept:
+        - Secondary memory
+  origin: originale
+- id: schema-chip-memoria
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.1
+    - gerarchia-di-memoria.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Organizzazione delle celle in un chip di memoria»: scrivi per ogni posizione
+      numerata l'etichetta giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Celle di memoria · Circuiti di lettura/scrittura · Contatore di refresh · Decodificatore di
+      indirizzo · Etichetta · Linee dati di ingresso/uscita · Linee di parola · Multiplexer di colonna ·
+      Registro dati
+    en: >-
+      Complete the diagram “Cell organisation in a memory chip”: for each numbered position write the right
+      label. The list contains more labels than positions.
+
+
+      Labels: Address decoder · Column multiplexer · Data input/output lines · Data register · Memory cells ·
+      Read/write circuits · Refresh counter · Tag · Word lines
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 360" role="img"
+        aria-labelledby="ex-chip-memoria-t ex-chip-memoria-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-chip-memoria-t">Organizzazione delle
+        celle in un chip di memoria</title><desc id="ex-chip-memoria-d">Schema con 5 posizioni numerate da
+        completare.</desc><defs><marker id="ex-chip-memoria-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="30" y="80" width="100"
+        height="170" rx="6"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="16" y="110" font-size="10">A₀…A₃</text>
+              <rect style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5 4" x="180" y="70" width="380" height="160" rx="8"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="210" y="90" width="34" height="30" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="90" width="34" height="30" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="390" y="90" width="34" height="30" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="480" y="90" width="34" height="30" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="210" y="170" width="34" height="30" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="170" width="34" height="30" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="390" y="170" width="34" height="30" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="480" y="170" width="34" height="30" rx="3"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="130" y1="105" x2="560" y2="105"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="130" y1="185" x2="560" y2="185"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="350" y="152" font-size="12">⋮</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="210" y="255" width="80" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="320" y="255" width="80" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="430" y="255" width="80" height="40" rx="4"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="227" y1="200" x2="227" y2="255"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="360" y1="200" x2="360" y2="255"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="497" y1="200" x2="497" y2="255"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-chip-memoria-arrow)" x1="250" y1="295" x2="250" y2="325"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-chip-memoria-arrow)" x1="360" y1="295" x2="360" y2="325"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-chip-memoria-arrow)" x1="470" y1="295" x2="470" y2="325"/><circle cx="80" cy="165" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="80" y="165" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="350" cy="130" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="350" y="130" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="350" cy="275" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="350" y="275" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="350" cy="45" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="350" y="45" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="350" cy="335" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="350" y="335" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 360" role="img"
+        aria-labelledby="ex-chip-memoria-t ex-chip-memoria-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-chip-memoria-t">Cell organisation in a
+        memory chip</title><desc id="ex-chip-memoria-d">Diagram with 5 numbered positions to fill
+        in.</desc><defs><marker id="ex-chip-memoria-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="30" y="80" width="100"
+        height="170" rx="6"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="16" y="110" font-size="10">A₀…A₃</text>
+              <rect style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5 4" x="180" y="70" width="380" height="160" rx="8"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="210" y="90" width="34" height="30" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="90" width="34" height="30" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="390" y="90" width="34" height="30" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="480" y="90" width="34" height="30" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="210" y="170" width="34" height="30" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="170" width="34" height="30" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="390" y="170" width="34" height="30" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="480" y="170" width="34" height="30" rx="3"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="130" y1="105" x2="560" y2="105"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="130" y1="185" x2="560" y2="185"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="350" y="152" font-size="12">⋮</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="210" y="255" width="80" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="320" y="255" width="80" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="430" y="255" width="80" height="40" rx="4"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="227" y1="200" x2="227" y2="255"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="360" y1="200" x2="360" y2="255"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="497" y1="200" x2="497" y2="255"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-chip-memoria-arrow)" x1="250" y1="295" x2="250" y2="325"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-chip-memoria-arrow)" x1="360" y1="295" x2="360" y2="325"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-chip-memoria-arrow)" x1="470" y1="295" x2="470" y2="325"/><circle cx="80" cy="165" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="80" y="165" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="350" cy="130" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="350" y="130" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="350" cy="275" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="350" y="275" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="350" cy="45" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="350" y="45" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="350" cy="335" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="350" y="335" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Decodificatore di indirizzo
+          2. Celle di memoria
+          3. Circuiti di lettura/scrittura
+          4. Linee di parola
+          5. Linee dati di ingresso/uscita
+        en: |-
+          1. Address decoder
+          2. Memory cells
+          3. Read/write circuits
+          4. Word lines
+          5. Data input/output lines
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Decodificatore di indirizzo
+      kind: text
+      accept:
+        - Address decoder
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Celle di memoria
+      kind: text
+      accept:
+        - Memory cells
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Circuiti di lettura/scrittura
+      kind: text
+      accept:
+        - Read/write circuits
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Linee di parola
+      kind: text
+      accept:
+        - Word lines
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Linee dati di ingresso/uscita
+      kind: text
+      accept:
+        - Data input/output lines
+  origin: originale
+- id: schema-dram-sincrona
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.1
+    - gerarchia-di-memoria.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «DRAM sincrona»: scrivi per ogni posizione numerata l'etichetta giusta. L'elenco
+      contiene più etichette delle posizioni.
+
+
+      Etichette: Circuiti di lettura/scrittura · Contatore di refresh · Contatore indirizzo di colonna ·
+      Decodificatore di colonna · Decodificatore di riga · Etichetta · Latch indirizzo di riga · Matrice di
+      celle · Registri dati · Registro di modo e temporizzazione · Sommatore · TLB · Unità di controllo
+    en: >-
+      Complete the diagram “Synchronous DRAM”: for each numbered position write the right label. The list
+      contains more labels than positions.
+
+
+      Labels: Adder · Cell array · Column address counter · Column decoder · Control unit · Data registers ·
+      Mode register and timing control · Read/write circuits · Refresh counter · Row address latch · Row
+      decoder · Tag · TLB
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" role="img"
+        aria-labelledby="ex-dram-sincrona-t ex-dram-sincrona-d"
+        style="width:100%;height:auto;max-width:640px"><title id="ex-dram-sincrona-t">DRAM
+        sincrona</title><desc id="ex-dram-sincrona-d">Schema con 9 posizioni numerate da
+        completare.</desc><defs><marker id="ex-dram-sincrona-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="22" width="120"
+        height="36" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="100" width="120" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="210" y="100" width="140" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="400" y="90" width="200" height="60" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="195" width="120" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="210" y="195" width="140" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="400" y="195" width="200" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="300" width="180" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="390" y="300" width="160" height="40" rx="4"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-dram-sincrona-arrow)" x1="100" y1="58" x2="100" y2="100"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-dram-sincrona-arrow)" x1="160" y1="120" x2="210" y2="120"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-dram-sincrona-arrow)" x1="350" y1="120" x2="400" y2="120"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-dram-sincrona-arrow)" x1="160" y1="215" x2="210" y2="215"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-dram-sincrona-arrow)" x1="350" y1="215" x2="400" y2="215"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="500" y1="150" x2="500" y2="195"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-dram-sincrona-arrow)" x1="500" y1="235" x2="500" y2="300"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-dram-sincrona-arrow)" x1="220" y1="320" x2="390" y2="320"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="16" y="270" font-size="10">RAS · CAS · R/W · CS</text><circle cx="100" cy="40" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="100" y="40" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="100" cy="120" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="100" y="120" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="280" cy="120" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="120" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="500" cy="120" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="500" y="120" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="100" cy="215" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="100" y="215" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="280" cy="215" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="215" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="500" cy="215" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="500" y="215" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text><circle cx="130" cy="320" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="130" y="320" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">8</text><circle cx="470" cy="320" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="470" y="320" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">9</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" role="img"
+        aria-labelledby="ex-dram-sincrona-t ex-dram-sincrona-d"
+        style="width:100%;height:auto;max-width:640px"><title id="ex-dram-sincrona-t">Synchronous
+        DRAM</title><desc id="ex-dram-sincrona-d">Diagram with 9 numbered positions to fill
+        in.</desc><defs><marker id="ex-dram-sincrona-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="22" width="120"
+        height="36" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="100" width="120" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="210" y="100" width="140" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="400" y="90" width="200" height="60" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="195" width="120" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="210" y="195" width="140" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="400" y="195" width="200" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="300" width="180" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="390" y="300" width="160" height="40" rx="4"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-dram-sincrona-arrow)" x1="100" y1="58" x2="100" y2="100"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-dram-sincrona-arrow)" x1="160" y1="120" x2="210" y2="120"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-dram-sincrona-arrow)" x1="350" y1="120" x2="400" y2="120"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-dram-sincrona-arrow)" x1="160" y1="215" x2="210" y2="215"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-dram-sincrona-arrow)" x1="350" y1="215" x2="400" y2="215"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="500" y1="150" x2="500" y2="195"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-dram-sincrona-arrow)" x1="500" y1="235" x2="500" y2="300"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-dram-sincrona-arrow)" x1="220" y1="320" x2="390" y2="320"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="16" y="270" font-size="10">RAS · CAS · R/W · CS</text><circle cx="100" cy="40" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="100" y="40" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="100" cy="120" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="100" y="120" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="280" cy="120" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="120" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="500" cy="120" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="500" y="120" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="100" cy="215" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="100" y="215" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="280" cy="215" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="215" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="500" cy="215" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="500" y="215" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text><circle cx="130" cy="320" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="130" y="320" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">8</text><circle cx="470" cy="320" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="470" y="320" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">9</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Contatore di refresh
+          2. Latch indirizzo di riga
+          3. Decodificatore di riga
+          4. Matrice di celle
+          5. Contatore indirizzo di colonna
+          6. Decodificatore di colonna
+          7. Circuiti di lettura/scrittura
+          8. Registro di modo e temporizzazione
+          9. Registri dati
+        en: |-
+          1. Refresh counter
+          2. Row address latch
+          3. Row decoder
+          4. Cell array
+          5. Column address counter
+          6. Column decoder
+          7. Read/write circuits
+          8. Mode register and timing control
+          9. Data registers
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Contatore di refresh
+      kind: text
+      accept:
+        - Refresh counter
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Latch indirizzo di riga
+      kind: text
+      accept:
+        - Row address latch
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Decodificatore di riga
+      kind: text
+      accept:
+        - Row decoder
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Matrice di celle
+      kind: text
+      accept:
+        - Cell array
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Contatore indirizzo di colonna
+      kind: text
+      accept:
+        - Column address counter
+    - label:
+        it: Posizione 6
+        en: Position 6
+      value: Decodificatore di colonna
+      kind: text
+      accept:
+        - Column decoder
+    - label:
+        it: Posizione 7
+        en: Position 7
+      value: Circuiti di lettura/scrittura
+      kind: text
+      accept:
+        - Read/write circuits
+    - label:
+        it: Posizione 8
+        en: Position 8
+      value: Registro di modo e temporizzazione
+      kind: text
+      accept:
+        - Mode register and timing control
+    - label:
+        it: Posizione 9
+        en: Position 9
+      value: Registri dati
+      kind: text
+      accept:
+        - Data registers
+  origin: originale
+- id: schema-cache-diretta
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.1
+    - gerarchia-di-memoria.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Cache a mappatura diretta»: scrivi per ogni posizione numerata l'etichetta giusta.
+      L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Blocco · Cache · Etichetta · Frame · Gruppo · Indirizzo di memoria centrale · Memoria
+      centrale · Pagina · Parola · Spiazzamento di pagina
+    en: >-
+      Complete the diagram “Direct-mapped cache”: for each numbered position write the right label. The list
+      contains more labels than positions.
+
+
+      Labels: Block · Cache · Frame · Main memory · Main memory address · Page · Page offset · Set · Tag ·
+      Word
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 400" role="img"
+        aria-labelledby="ex-cache-diretta-t ex-cache-diretta-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-cache-diretta-t">Cache a mappatura
+        diretta</title><desc id="ex-cache-diretta-d">Schema con 8 posizioni numerate da
+        completare.</desc><defs><marker id="ex-cache-diretta-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5
+        4" x="20" y="115" width="230" height="180" rx="8"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="20" y="125" width="60" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="125" width="150" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="20" y="160" width="60" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="160" width="150" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="20" y="250" width="60" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="250" width="150" height="28" rx="3"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="160" y="215" font-size="11">⋮</text>
+              <rect style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5 4" x="380" y="55" width="200" height="245" rx="8"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="395" y="70" width="170" height="26" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="395" y="101" width="170" height="26" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="395" y="165" width="170" height="26" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="395" y="255" width="170" height="26" rx="3"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="480" y="147" font-size="11">⋮</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="480" y="215" font-size="11">⋮</text>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cache-diretta-arrow)" x1="380" y1="178" x2="255" y2="174"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cache-diretta-arrow)" x1="380" y1="268" x2="255" y2="264"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="70" y="332" width="120" height="28" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="332" width="130" height="28" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="340" y="332" width="90" height="28" rx="4"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="70" y1="372" x2="430" y2="372"/><circle cx="140" cy="30" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="140" y="30" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="470" cy="30" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="470" y="30" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="57" cy="100" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="57" y="100" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="160" cy="100" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="160" y="100" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="130" cy="350" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="130" y="350" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="265" cy="350" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="265" y="350" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="375" cy="350" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="375" y="350" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text><circle cx="250" cy="388" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="250" y="388" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">8</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 400" role="img"
+        aria-labelledby="ex-cache-diretta-t ex-cache-diretta-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-cache-diretta-t">Direct-mapped
+        cache</title><desc id="ex-cache-diretta-d">Diagram with 8 numbered positions to fill
+        in.</desc><defs><marker id="ex-cache-diretta-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5
+        4" x="20" y="115" width="230" height="180" rx="8"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="20" y="125" width="60" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="125" width="150" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="20" y="160" width="60" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="160" width="150" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="20" y="250" width="60" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="250" width="150" height="28" rx="3"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="160" y="215" font-size="11">⋮</text>
+              <rect style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5 4" x="380" y="55" width="200" height="245" rx="8"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="395" y="70" width="170" height="26" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="395" y="101" width="170" height="26" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="395" y="165" width="170" height="26" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="395" y="255" width="170" height="26" rx="3"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="480" y="147" font-size="11">⋮</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="480" y="215" font-size="11">⋮</text>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cache-diretta-arrow)" x1="380" y1="178" x2="255" y2="174"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cache-diretta-arrow)" x1="380" y1="268" x2="255" y2="264"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="70" y="332" width="120" height="28" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="332" width="130" height="28" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="340" y="332" width="90" height="28" rx="4"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="70" y1="372" x2="430" y2="372"/><circle cx="140" cy="30" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="140" y="30" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="470" cy="30" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="470" y="30" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="57" cy="100" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="57" y="100" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="160" cy="100" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="160" y="100" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="130" cy="350" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="130" y="350" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="265" cy="350" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="265" y="350" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="375" cy="350" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="375" y="350" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text><circle cx="250" cy="388" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="250" y="388" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">8</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Cache
+          2. Memoria centrale
+          3. Etichetta
+          4. Blocco
+          5. Etichetta
+          6. Blocco
+          7. Parola
+          8. Indirizzo di memoria centrale
+        en: |-
+          1. Cache
+          2. Main memory
+          3. Tag
+          4. Block
+          5. Tag
+          6. Block
+          7. Word
+          8. Main memory address
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Cache
+      kind: text
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Memoria centrale
+      kind: text
+      accept:
+        - Main memory
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Etichetta
+      kind: text
+      accept:
+        - Tag
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Blocco
+      kind: text
+      accept:
+        - Block
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Etichetta
+      kind: text
+      accept:
+        - Tag
+    - label:
+        it: Posizione 6
+        en: Position 6
+      value: Blocco
+      kind: text
+      accept:
+        - Block
+    - label:
+        it: Posizione 7
+        en: Position 7
+      value: Parola
+      kind: text
+      accept:
+        - Word
+    - label:
+        it: Posizione 8
+        en: Position 8
+      value: Indirizzo di memoria centrale
+      kind: text
+      accept:
+        - Main memory address
+  origin: originale
+- id: schema-cache-associativa
+  topic: gerarchia-di-memoria
+  objectives:
+    - gerarchia-di-memoria.1
+    - gerarchia-di-memoria.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Cache completamente associativa»: scrivi per ogni posizione numerata l'etichetta
+      giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Blocco · Cache · Etichetta · Frame · Gruppo · Indice · Indirizzo di memoria centrale ·
+      Memoria centrale · Numero di pagina · Parola
+    en: >-
+      Complete the diagram “Fully associative cache”: for each numbered position write the right label. The
+      list contains more labels than positions.
+
+
+      Labels: Block · Cache · Frame · Index · Main memory · Main memory address · Page number · Set · Tag ·
+      Word
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 380" role="img"
+        aria-labelledby="ex-cache-associativa-t ex-cache-associativa-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-cache-associativa-t">Cache completamente
+        associativa</title><desc id="ex-cache-associativa-d">Schema con 7 posizioni numerate da
+        completare.</desc><defs><marker id="ex-cache-associativa-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5
+        4" x="20" y="115" width="230" height="170" rx="8"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="20" y="125" width="60" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="125" width="150" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="20" y="160" width="60" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="160" width="150" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="20" y="245" width="60" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="245" width="150" height="28" rx="3"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="160" y="212" font-size="11">⋮</text>
+              <rect style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5 4" x="380" y="55" width="200" height="235" rx="8"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="395" y="70" width="170" height="26" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="395" y="101" width="170" height="26" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="395" y="170" width="170" height="26" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="395" y="250" width="170" height="26" rx="3"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="480" y="150" font-size="11">⋮</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="480" y="220" font-size="11">⋮</text>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cache-associativa-arrow)" x1="380" y1="183" x2="255" y2="174"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="270" y="300" font-size="10">il blocco può stare in QUALSIASI posizione</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="312" width="150" height="28" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="290" y="312" width="100" height="28" rx="4"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="90" y1="352" x2="390" y2="352"/><circle cx="140" cy="30" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="140" y="30" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="470" cy="30" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="470" y="30" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="57" cy="100" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="57" y="100" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="160" cy="100" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="160" y="100" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="165" cy="330" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="165" y="330" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="340" cy="330" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="340" y="330" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="250" cy="366" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="250" y="366" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 380" role="img"
+        aria-labelledby="ex-cache-associativa-t ex-cache-associativa-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-cache-associativa-t">Fully associative
+        cache</title><desc id="ex-cache-associativa-d">Diagram with 7 numbered positions to fill
+        in.</desc><defs><marker id="ex-cache-associativa-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5
+        4" x="20" y="115" width="230" height="170" rx="8"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="20" y="125" width="60" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="125" width="150" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="20" y="160" width="60" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="160" width="150" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="20" y="245" width="60" height="28" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="245" width="150" height="28" rx="3"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="160" y="212" font-size="11">⋮</text>
+              <rect style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5 4" x="380" y="55" width="200" height="235" rx="8"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="395" y="70" width="170" height="26" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="395" y="101" width="170" height="26" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="395" y="170" width="170" height="26" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="395" y="250" width="170" height="26" rx="3"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="480" y="150" font-size="11">⋮</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="480" y="220" font-size="11">⋮</text>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cache-associativa-arrow)" x1="380" y1="183" x2="255" y2="174"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="270" y="300" font-size="10">the block can go in ANY position</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="312" width="150" height="28" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="290" y="312" width="100" height="28" rx="4"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="90" y1="352" x2="390" y2="352"/><circle cx="140" cy="30" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="140" y="30" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="470" cy="30" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="470" y="30" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="57" cy="100" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="57" y="100" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="160" cy="100" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="160" y="100" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="165" cy="330" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="165" y="330" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="340" cy="330" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="340" y="330" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="250" cy="366" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="250" y="366" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Cache
+          2. Memoria centrale
+          3. Etichetta
+          4. Blocco
+          5. Etichetta
+          6. Parola
+          7. Indirizzo di memoria centrale
+        en: |-
+          1. Cache
+          2. Main memory
+          3. Tag
+          4. Block
+          5. Tag
+          6. Word
+          7. Main memory address
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Cache
+      kind: text
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Memoria centrale
+      kind: text
+      accept:
+        - Main memory
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Etichetta
+      kind: text
+      accept:
+        - Tag
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Blocco
+      kind: text
+      accept:
+        - Block
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Etichetta
+      kind: text
+      accept:
+        - Tag
+    - label:
+        it: Posizione 6
+        en: Position 6
+      value: Parola
+      kind: text
+      accept:
+        - Word
+    - label:
+        it: Posizione 7
+        en: Position 7
+      value: Indirizzo di memoria centrale
+      kind: text
+      accept:
+        - Main memory address
+  origin: originale

@@ -1,0 +1,203 @@
+---
+course: fondamenti-informatica
+topic: gerarchia-di-memoria
+lang: en
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In two minutes">
+
+<div data-note-id="teoria/gerarchia-di-memoria/in-due-minuti">
+
+- The hierarchy exists because you cannot have fast, large and cheap together: registers, L1/L2/L3 caches, main memory, mass storage.
+- **SRAM**: bistable, fast and expensive → caches. **DRAM**: capacitor, dense and cheap, must be **refreshed** → main memory.
+- The cache works thanks to **temporal locality** (what is needed now will be needed again) and **spatial** locality (nearby addresses will be needed): that is why **blocks** are transferred.
+- **Direct**, **fully associative**, **set-associative** mapping: what changes is how many positions a block can occupy. The address splits into **tag · index · offset**.
+- Average access time = hit time + (miss rate × miss penalty). The miss penalty is huge: that is where performance is lost.
+- Writing: **write-through** (simple, a lot of traffic) or **write-back** (_dirty_ bit, written only on eviction).
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/gerarchia-di-memoria/da-dove-si-parte">
+
+## Where we start
+
+**What you need to know first:** that the processor reads instructions and data from memory through MAR and MDR, from the module on the [processor](../processore/).
+
+**What problem it solves.** The processor would like a huge, very fast and cheap memory. It does not exist: fast memories are small and expensive, large ones are slow. The gap is dramatic — an access to main memory costs tens or hundreds of cycles, during which the processor does nothing. The solution is not a component but an **organisation**: several levels of memory, from the tiny and instantaneous to the huge and slow, managed so that the data needed is almost always close by. It works for a statistical reason, not a magical one: programs do not access memory at random.
+
+**New words.** The **cache** is the small, fast memory placed between the processor and main memory. A **hit** is when the data sought is there, a **miss** when it is not; the **miss penalty** is the time lost in that case. A **block** (or line) is the unit of transfer between levels, typically a few tens of bytes. **Locality** is the tendency of programs to reuse the same data (temporal) and nearby data (spatial).
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/gerarchia-di-memoria/la-gerarchia">
+
+## The hierarchy
+
+Going down from the registers to secondary memory capacity grows and cost per bit falls, but access time gets worse by orders of magnitude:
+
+```
+registers  →  L1 cache  →  L2 cache  →  main memory  →  disk
+ faster, more expensive, smaller  ⟶  slower, cheaper, larger
+```
+
+A single large and fast memory would be prohibitively expensive and in any case **slower**: addressing many cells lengthens decoding. Several levels are better.
+
+</div>
+
+<div data-note-id="teoria/gerarchia-di-memoria/sram-e-dram">
+
+## SRAM and DRAM
+
+- **SRAM**: the cell is a transistor latch. Fast, **no refresh needed**, but it takes a lot of space and is expensive: it is used for caches.
+- **DRAM**: the cell is a capacitor with a transistor. Dense and cheap, but the capacitor **discharges through leakage currents** and must be **refreshed** periodically. It is main memory.
+
+**Synchronous** DRAMs align accesses with the clock and transfer bursts of consecutive words, amortising the cost of addressing over the whole block.
+
+About RAM, be careful how you define it: the acronym should not be read as “accessed at random”. The point is that the **access time does not depend on the position** of the data, unlike a tape or a disk.
+
+</div>
+
+<div data-note-id="teoria/gerarchia-di-memoria/perche-la-cache-funziona-la-localita">
+
+## Why the cache works: locality
+
+- **Temporal**: a recently used item will probably be reused soon (the variables of a loop).
+- **Spatial**: if an address is accessed, nearby ones will probably be requested soon (the elements of an array, instructions in sequence).
+
+Spatial locality is the reason why the cache does not transfer single words but **blocks** (lines) of contiguous words.
+
+</div>
+
+<div data-note-id="teoria/gerarchia-di-memoria/hit-miss-e-il-costo-del-miss">
+
+## Hits, misses and the cost of a miss
+
+- **Hit**: the data is in the cache, fast access.
+- **Miss**: it is not, you go down the hierarchy; the additional delay is the **miss penalty**.
+
+The average access time is what really counts:
+
+```
+t_avg = t_hit + miss_rate × miss_penalty
+```
+
+With a 95% hit rate, a 1 ns hit and a 100 ns penalty you get `1 + 0.05·100 = 6 ns`: one miss in twenty already costs five times the time of a hit. That is why even small improvements in the hit rate matter a lot.
+
+</div>
+
+<div data-note-id="teoria/gerarchia-di-memoria/come-si-mappa-un-blocco">
+
+## How a block is mapped
+
+The address is split into three fields: **tag**, **index** (which line or set) and **offset** (which word within the block).
+
+- **Direct**: each block has only one possible line, chosen by the index. A single tag comparison, minimal hardware — but two blocks mapping to the same line evict each other even with the cache half empty (**conflicts**).
+- **Fully associative**: a block can go anywhere. It makes the best use of space, but requires comparing the tag with **all** lines: expensive and slower.
+- **n-way set-associative**: a compromise. The cache is divided into sets; the index chooses the set, the block goes into any of the n lines within it. n tags are compared.
+
+</div>
+
+<div data-note-id="teoria/gerarchia-di-memoria/sostituzione">
+
+## Replacement
+
+When the set is full someone must be evicted. **LRU** (least recently used) discards the block unused for the longest time and is the most common, because it follows temporal locality. Alternatives: **LFU** (least used overall), FIFO, random — cheaper to build, less effective.
+
+</div>
+
+<div data-note-id="teoria/gerarchia-di-memoria/politiche-di-scrittura">
+
+## Write policies
+
+- **Write-through**: writes go to cache and memory at the same time. Simple and always coherent, but it generates a lot of traffic.
+- **Write-back**: writes go only to the cache and the line is marked with a **dirty bit**; memory is updated only when the line is evicted. Much less traffic, but memory is temporarily out of date.
+
+</div>
+
+<div data-note-id="teoria/gerarchia-di-memoria/memorie-a-sola-lettura">
+
+## Read-only memories
+
+**ROM** written at the factory; **PROM** programmable once; **EPROM** erasable with **ultraviolet light**; **EEPROM** erasable **electrically**, byte by byte; **Flash**, an evolution of EEPROM that erases in blocks. The EPROM/EEPROM pair is asked often: the distinction is UV versus electrical.
+
+</div>
+
+## Diagrams
+
+<Schema id="cache-set-associativa" lang="en" num="1" />
+
+<Schema id="gerarchia-memoria" lang="en" num="2" />
+
+<Schema id="chip-memoria" lang="en" num="3" />
+
+<Schema id="dram-sincrona" lang="en" num="4" />
+
+<Schema id="cache-diretta" lang="en" num="5" />
+
+<Schema id="cache-associativa" lang="en" num="6" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/gerarchia-di-memoria/esempio-svolto">
+
+## Worked example
+
+**16 KiB cache, 64-byte blocks, 2-way set-associative, 32-bit addresses: how is the address split?**
+
+```
+offset        = log₂(64)                    = 6 bits
+number of blocks = 16384 / 64               = 256
+number of sets   = 256 / 2 ways             = 128
+index         = log₂(128)                   = 7 bits
+tag           = 32 − 6 − 7                  = 19 bits
+```
+
+A check that always holds: 19 + 7 + 6 = 32, i.e. the three fields **add up to the address width**. If it does not, there is a mistake earlier.
+
+**And what is the average access time?** With a hit time of 1 cycle, a 4 % miss rate and a 100-cycle miss penalty:
+
+```
+t_avg = 1 + 0.04 × 100 = 5 cycles
+```
+
+A 4 % miss rate quintuples the average time: it is the miss penalty that dominates, not the hit time. Halving the miss rate to 2 % brings it to 3 cycles — a far larger gain than any tweak to the hit time.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/gerarchia-di-memoria/errori-tipici">
+
+## Common mistakes
+
+- Confusing the number of **blocks** with that of **sets**: with n ways, the sets are the blocks divided by n, and the index is computed on the sets.
+- Computing the offset on the number of words instead of bytes, when memory is byte-addressed.
+- Forgetting to check the sum of the fields: it is the check that catches almost every error in this exercise.
+
+</div>
+
+<Callout tone="attenzione" title="RAM does not mean “random access”">
+
+<div data-note-id="teoria/gerarchia-di-memoria/trap-ram">
+
+The acronym is a false friend: **random access** does not mean that access happens at random, but that the **access time does not depend on the position** of the data in memory. The opposite is the sequential access of a tape, where to read the end you have to scroll through everything.
+
+</div>
+
+</Callout>
+
+</Layer>

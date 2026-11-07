@@ -1,0 +1,129 @@
+- id: circuiti-sequenziali-verifica-1
+  topic: circuiti-sequenziali
+  objectives:
+    - circuiti-sequenziali.2
+  kind: concetto
+  front:
+    it: Perché un latch D trasparente non basta a costruire un registro di pipeline?
+    en: Why is a transparent D latch not enough to build a pipeline register?
+  back:
+    it:
+      "Perché finché l'abilitazione è alta l'uscita insegue l'ingresso: il dato può attraversare più stadi nello
+      stesso colpo di clock. Il flip-flop campiona **solo sul fronte**, quindi ogni stadio avanza di un passo
+      per periodo."
+    en:
+      'Because while the enable is high the output follows the input: data can cross several stages in the same
+      clock cycle. The flip-flop samples **only on the edge**, so each stage advances one step per period.'
+- id: circuiti-sequenziali-verifica-2
+  topic: circuiti-sequenziali
+  objectives:
+    - circuiti-sequenziali.5
+  kind: concetto
+  front:
+    it: Che differenza c'è fra setup time e hold time?
+    en: What is the difference between setup time and hold time?
+  back:
+    it: Il **setup** è quanto tempo prima del fronte il dato deve essere già stabile; l'**hold** è quanto deve
+      restarlo dopo il fronte. Sono due vincoli diversi e vanno rispettati entrambi.
+    en:
+      '**Setup** is how long before the edge the data must already be stable; **hold** is how long it must stay
+      so after the edge. They are two different constraints and both must be respected.'
+- id: circuiti-sequenziali-verifica-3
+  topic: circuiti-sequenziali
+  objectives:
+    - circuiti-sequenziali.4
+  kind: concetto
+  front:
+    it: Come si ottiene un contatore modulo 10 da un contatore binario a 4 bit?
+    en: How do you get a modulo-10 counter from a 4-bit binary counter?
+  back:
+    it:
+      'Si rileva con una porta la configurazione 1010 e la si usa per azzerare il contatore: si contano così i
+      valori da 0 a 9 e si riparte.'
+    en:
+      'Detect the pattern 1010 with a gate and use it to reset the counter: the values 0 to 9 are counted and
+      then it starts over.'
+- id: open-ff-01
+  topic: circuiti-sequenziali
+  objectives:
+    - circuiti-sequenziali.3
+  kind: orale
+  front:
+    it: Che cos'è un flip-flop? Distingui dispositivi sincroni e asincroni.
+    en: What is a flip-flop? Distinguish synchronous and asynchronous devices.
+  back:
+    it:
+      "Un flip-flop è un elemento **bistabile** che memorizza 1 bit: realizzato con porte logiche retroazionate,
+      mantiene uno dei due stati stabili finché un ingresso non lo commuta. È il mattone di registri e
+      contatori. I dispositivi **sincroni** (edge-triggered) cambiano stato solo sul fronte del clock, quindi
+      l'istante di commutazione è prevedibile; gli **asincroni** reagiscono immediatamente agli ingressi,
+      senza clock."
+    en:
+      'A flip-flop is a **bistable** element that stores 1 bit: built from logic gates with feedback, it holds
+      one of its two stable states until an input switches it. It is the building block of registers and
+      counters. **Synchronous** (edge-triggered) devices change state only on the clock edge, so the switching
+      instant is predictable; **asynchronous** ones react immediately to the inputs, without a clock.'
+- id: open-ff-02
+  topic: circuiti-sequenziali
+  objectives:
+    - circuiti-sequenziali.3
+  kind: orale
+  front:
+    it: Descrivi il flip-flop master-slave e spiega perché serve la struttura a due stadi.
+    en: Describe the master-slave flip-flop and explain why the two-stage structure is needed.
+  back:
+    it: "Due latch D in serie: il **master** campiona l'ingresso mentre il clock è alto, lo **slave** ne
+      trasferisce il valore in uscita quando il clock commuta. Poiché i due stadi non sono mai trasparenti
+      contemporaneamente, l'ingresso non può «attraversare» il dispositivo nello stesso ciclo: si evita
+      l'instabilità (corse) e l'uscita cambia in un solo istante ben definito, il fronte del clock."
+    en: 'Two D latches in series: the **master** samples the input while the clock is high, the **slave**
+      transfers its value to the output when the clock switches. Since the two stages are never transparent at
+      the same time, the input cannot “cross” the device in the same cycle: instability (races) is avoided and
+      the output changes at a single well-defined instant, the clock edge.'
+- id: def-flipflop
+  topic: circuiti-sequenziali
+  objectives:
+    - circuiti-sequenziali.3
+  kind: definizione
+  front:
+    it: Flip-flop
+    en: Flip-flop
+  back:
+    it: |-
+      Elemento bistabile che memorizza un bit e commuta solo sul fronte del clock.
+
+      Il **latch** è invece sensibile al livello: mentre l’abilitazione è alta resta trasparente.
+    en: |-
+      Bistable element that stores one bit and switches only on the clock edge.
+
+      A **latch**, by contrast, is level-sensitive: while the enable is high it stays transparent.
+- id: def-masterslave
+  topic: circuiti-sequenziali
+  objectives:
+    - circuiti-sequenziali.3
+  kind: definizione
+  front:
+    it: Master-slave
+    en: Master-slave
+  back:
+    it: |-
+      Due latch in serie con clock opposti, mai trasparenti insieme, così l’uscita cambia in un solo istante.
+
+      Evita le corse e le inconsistenze di lettura-scrittura sui registri.
+    en: >-
+      Two latches in series with opposite clocks, never transparent together, so the output changes at a
+      single instant.
+
+
+      It avoids races and read-write inconsistencies on registers.
+- id: def-setup
+  topic: circuiti-sequenziali
+  objectives:
+    - circuiti-sequenziali.3
+  kind: definizione
+  front:
+    it: Tempo di setup
+    en: Setup time
+  back:
+    it: Intervallo in cui il dato deve essere già stabile prima del fronte di clock.
+    en: Interval during which the data must already be stable before the clock edge.

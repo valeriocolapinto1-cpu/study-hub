@@ -1,0 +1,22 @@
+---
+/**
+ * Link dentro il testo di teoria (MDX). I link relativi sono scritti rispetto
+ * alla pagina dell'argomento (`teoria/<topic>/`): nella versione di stampa
+ * (`teoria/<topic>/stampa/`) vanno risolti contro la pagina madre, altrimenti
+ * `../altro-argomento/` punterebbe un livello troppo in basso.
+ */
+interface Props {
+  href?: string;
+  [key: string]: unknown;
+}
+const { href, ...rest } = Astro.props;
+let resolved = href;
+if (href && !/^([a-z]+:|\/|#)/i.test(href)) {
+  const page = Astro.url.pathname.replace(/stampa\/$/, '');
+  resolved = new URL(href, `https://x${page}`).pathname + new URL(href, `https://x${page}`).hash;
+}
+---
+
+<a href={resolved} {...rest}>
+  <slot />
+</a>

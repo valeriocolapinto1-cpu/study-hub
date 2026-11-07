@@ -1,22 +1,32 @@
 # Glossario IT → EN per le traduzioni dei contenuti.
 # Ogni voce: it (termine italiano), en (traduzione da usare), note (facoltativa).
 # Ordine alfabetico per `it`. Un test verifica che non ci siano duplicati.
+- { it: algebra di Boole, en: Boolean algebra }
+- { it: alta impedenza, en: high impedance }
 - { it: ammettenza, en: admittance }
 - { it: amplificatore operazionale, en: operational amplifier, note: 'abbreviato op-amp' }
 - { it: anello, en: loop, note: 'maglia: mesh' }
 - { it: angolo limite, en: critical angle }
 - { it: appello, en: exam session }
+- { it: assemblatore, en: assembler }
 - { it: autoinduzione, en: self-induction, note: 'coefficiente: self-inductance' }
 - { it: bipolo, en: two-terminal element }
+- { it: bit di segno, en: sign bit }
+- { it: cammino critico, en: critical path }
 - { it: cammino ottico, en: optical path }
 - { it: campo elettrico, en: electric field }
 - { it: campo elettromotore, en: electromotive field }
 - { it: campo magnetico, en: magnetic field }
 - { it: capacità, en: capacitance, note: 'componente: capacitor (condensatore)' }
 - { it: carica, en: charge }
+- { it: caricatore, en: loader }
 - { it: cariche di polarizzazione, en: polarisation charges, note: 'anche bound charges' }
 - { it: circuitazione, en: circulation }
 - { it: circuito, en: circuit }
+- { it: codificatore di priorità, en: priority encoder }
+- { it: collegatore, en: linker }
+- { it: complemento a 1, en: "ones' complement" }
+- { it: complemento a 2, en: "two's complement", note: 'abbreviato CP2 in italiano' }
 - { it: componente, en: component }
 - { it: condensatore, en: capacitor }
 - { it: condizioni di raccordo, en: boundary conditions }
@@ -28,6 +38,7 @@
 - { it: correnti di Foucault, en: eddy currents }
 - { it: cortocircuito, en: short circuit }
 - { it: costante dielettrica relativa, en: relative dielectric constant, note: 'anche relative permittivity' }
+- { it: decodificatore, en: decoder }
 - { it: densità di corrente, en: current density }
 - { it: dielettrico, en: dielectric }
 - { it: dipolo elettrico, en: electric dipole }
@@ -38,6 +49,8 @@
 - { it: errore di inserzione, en: insertion error }
 - { it: esercitazione, en: exercise class }
 - { it: esercizio svolto, en: worked example }
+- { it: esponente polarizzato, en: biased exponent }
+- { it: estensione del segno, en: sign extension }
 - { it: f.e.m., en: emf, note: 'forza elettromotrice: electromotive force' }
 - { it: fasore, en: phasor }
 - { it: flusso, en: flux }
@@ -50,12 +63,16 @@
 - { it: generatore di tensione, en: voltage source }
 - { it: generatore pilotato, en: dependent source }
 - { it: impedenza, en: impedance }
+- { it: implicante primo, en: prime implicant }
+- { it: indifferenza, en: "don't care" }
 - { it: induttanza, en: inductance }
 - { it: induttore, en: inductor }
 - { it: induzione completa, en: complete induction }
 - { it: induzione elettrica, en: electric displacement, note: 'vettore D' }
 - { it: induzione magnetica, en: magnetic induction, note: 'vettore B; campo magnetico H: magnetic field H' }
+- { it: insieme funzionalmente completo, en: functionally complete set }
 - { it: "intensità (di un'onda)", en: intensity }
+- { it: interruzione, en: interrupt }
 - { it: lavori virtuali, en: virtual work }
 - { it: lavoro, en: work }
 - { it: legge di Felici, en: "Felici's law" }
@@ -63,12 +80,21 @@
 - { it: legge di Kirchhoff delle tensioni, en: "Kirchhoff's voltage law", note: 'KVL' }
 - { it: maglia, en: mesh }
 - { it: magnetizzazione, en: magnetisation }
+- { it: mappa di Karnaugh, en: Karnaugh map }
+- { it: mappatura diretta, en: direct mapping }
+- { it: memoria virtuale, en: virtual memory }
 - { it: metodo dei nodi, en: nodal analysis }
 - { it: metodo delle maglie, en: mesh analysis }
+- { it: mintermine, en: minterm }
+- { it: modi di indirizzamento, en: addressing modes }
+- { it: modulo e segno, en: sign-magnitude }
 - { it: mutua induzione, en: mutual induction, note: 'coefficiente: mutual inductance' }
 - { it: nodo, en: node }
 - { it: obiettivo, en: learning objective }
 - { it: orale, en: oral exam }
+- { it: percorso dati, en: datapath }
+- { it: pila, en: stack }
+- { it: polarizzazione, en: bias, note: 'esponente IEEE 754' }
 - { it: potenza attiva, en: active power }
 - { it: potenza reattiva, en: reactive power }
 - { it: potenziale elettrico, en: electric potential }
@@ -84,21 +110,33 @@
 - { it: resistore, en: resistor }
 - { it: riflessione totale, en: total internal reflection }
 - { it: rigidità dielettrica, en: dielectric strength }
+- { it: rilocazione, en: relocation }
 - { it: riluttanza, en: reluctance }
 - { it: ripasso spaziato, en: spaced repetition }
+- { it: riporto, en: carry }
+- { it: riporto uscente, en: carry-out }
 - { it: risposta in frequenza, en: frequency response }
 - { it: rotore, en: curl }
 - { it: scatoletta (di Gauss), en: pillbox }
 - { it: schermo elettrostatico, en: electrostatic shielding }
 - { it: scritto, en: written exam }
+- { it: semisommatore, en: half adder }
+- { it: set-associativa, en: set-associative }
+- { it: sommatore completo, en: full adder }
 - { it: sovrapposizione degli effetti, en: superposition }
+- { it: spiazzamento, en: offset, note: 'campo dell’indirizzo; per l’indirizzamento: displacement' }
 - { it: spira, en: loop, note: 'bobina: coil; avvolgimento: winding' }
 - { it: suscettività, en: susceptibility }
+- { it: tabella dei simboli, en: symbol table }
+- { it: tabella delle pagine, en: page table }
+- { it: tabella di verità, en: truth table }
 - { it: tensione, en: voltage }
 - { it: tensione a vuoto, en: open-circuit voltage }
 - { it: teorema della circuitazione di Ampère, en: "Ampère's circuital theorem" }
 - { it: traferro, en: air gap }
 - { it: transitorio, en: transient }
+- { it: unità di controllo, en: control unit }
 - { it: velocità di deriva, en: drift velocity }
 - { it: vettore di Poynting, en: Poynting vector }
 - { it: vettore polarizzazione, en: polarisation vector }
+- { it: virgola mobile, en: floating point }

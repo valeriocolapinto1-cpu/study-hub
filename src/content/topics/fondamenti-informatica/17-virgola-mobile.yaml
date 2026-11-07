@@ -1,0 +1,29 @@
+id: virgola-mobile
+course: fondamenti-informatica
+order: 17
+title:
+  it: Virgola mobile IEEE 754
+  en: IEEE 754 floating point
+summary:
+  it: Segno, esponente polarizzato, mantissa, codifica e valori speciali.
+  en: Sign, biased exponent, mantissa, encoding and special values.
+group:
+  it: Prestazioni e virgola mobile
+  en: Performance and floating point
+objectives:
+  - id: virgola-mobile.1
+    text:
+      it: Codificare un numero in IEEE 754 singola precisione.
+      en: Encode a number in IEEE 754 single precision.
+  - id: virgola-mobile.2
+    text:
+      it: Decodificare una configurazione di bit in valore decimale.
+      en: Decode a bit pattern into a decimal value.
+  - id: virgola-mobile.3
+    text:
+      it: Riconoscere zero, denormalizzati, infinito e NaN.
+      en: Recognise zero, denormals, infinity and NaN.
+  - id: virgola-mobile.4
+    text:
+      it: Spiegare intervallo, precisione relativa, arrotondamento, bias e i limiti della rappresentazione.
+      en: Explain range, relative precision, rounding, the bias and the limits of the representation.

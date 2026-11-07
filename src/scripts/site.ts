@@ -4,8 +4,6 @@
  */
 import { GLOBAL_SCOPE, read, write } from '../engine/storage';
 import { runMigrations } from '../engine/migrate';
-// Voci di migrazione dei corsi (src/courses/<id>/migrations.ts): si registrano all'import.
-import.meta.glob('../courses/*/migrations.ts', { eager: true });
 import './search';
 import './pwa';
 
@@ -98,6 +96,9 @@ for (const btn of document.querySelectorAll<HTMLButtonElement>('[data-drawer-ope
 }
 
 syncToggles();
+// Voci di migrazione dei singoli corsi (src/courses/<id>/migrations.ts, registerMigration):
+// importate qui perché la tabella sia completa prima di eseguirla.
+import.meta.glob('../courses/*/migrations.ts', { eager: true });
 runMigrations();
 
 /*

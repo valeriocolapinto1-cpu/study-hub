@@ -1,0 +1,175 @@
+---
+course: fondamenti-informatica
+topic: dal-sorgente-all-esecuzione
+lang: en
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In two minutes">
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/in-due-minuti">
+
+- Four steps, always the same: **compilation → assembly → linking → loading**. Each produces one file and consumes another.
+- The **assembler** translates mnemonics into opcodes and resolves labels. It needs **two passes** because a forward branch names a label not yet encountered.
+- **Directives** (`ORIGIN`, `DATAWORD`, `RESERVE`, `EQU`, `END`) produce no instructions: they tell the assembler where to put things.
+- The **linker** joins modules and libraries, resolving external references; the **loader** brings the program into memory and fixes its addresses.
+- The **operating system** does not run the program: it gives it memory, processor time and access to devices, and steps in on a system call, interrupt or exception.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/da-dove-si-parte">
+
+## Where we start
+
+**What you need to know first:** what an assembly instruction is and how labels are used for branches, from the module on the [instruction set](../risc-cisc-assembly/).
+
+**What problem it solves.** The processor executes binary numbers, not words. Between the text you write and the bits the processor fetches from memory there is a chain of programs that translate, put together and load — and each of them solves a precise problem. Knowing **who does what** helps you understand error messages, know why a program does not start, and answer the exam question “describe the path from source to execution”.
+
+**New words.** An **object module** is the result of translating a single file: machine code with holes in place of the names it does not know. An **external reference** is one of those holes. **Relocation** is the correction of addresses when the program is placed in memory somewhere other than where it was planned. **Supervisor mode** is the privileged state of the processor in which the operating system runs, and in which instructions forbidden to normal programs are allowed.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/la-catena-in-ordine">
+
+## The chain, in order
+
+Between what you write and what the processor executes there are four translations. The **compiler** turns a high-level language into assembly; the **assembler** turns assembly into object code; the **linker** puts together several object modules and the libraries; the **loader** copies the result into memory and starts it. Each step has a well-defined input and output, and in the exam you should be able to name them in the right order.
+
+An alternative is the **interpreter**, which produces no executable but runs the source statement by statement: slower, but machine-independent and handy for debugging. Compiling means spending time once; interpreting means spending it at every run.
+
+</div>
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/l-assemblatore-e-il-problema-delle-etichette">
+
+## The assembler and the label problem
+
+The assembler does two things: it replaces each mnemonic with its **opcode** and each **label** with an address. The second is less trivial than the first, because a forward branch names a label the assembler has not seen yet.
+
+That is why it works in **two passes**. In the first it scans the source keeping a location counter and builds the **symbol table**: for each label, the address it corresponds to. In the second it generates the code, and by then every label already has its value. A label used but never defined is the classic error: “undefined symbol”.
+
+</div>
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/le-direttive">
+
+## Directives
+
+Not every line of an assembly source becomes an instruction. **Directives** speak to the assembler, not to the processor:
+
+- `ORIGIN 1000` — the following lines are placed starting at address 1000.
+- `DATAWORD 42` — reserves a word and initialises it to 42.
+- `RESERVE 100` — reserves 100 bytes without initialising them.
+- `N EQU 32` — gives a name to a constant; it takes no memory.
+- `END INIZIO` — end of the source and starting point of execution.
+
+A recurring question: “does `DATAWORD` generate an instruction?” No. It generates **data** in memory. It is the difference between what the processor executes and what it reads.
+
+</div>
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/collegamento-perche-serve">
+
+## Linking: why it is needed
+
+A real program is made of several files, and uses functions that live elsewhere. Each module is assembled on its own, so holes remain inside it: the **external references**, i.e. the names that module uses but does not define. The linker lines the modules up, computes the final position of each and **fills the holes** with the right addresses (relocation).
+
+Linking can be **static** — the library ends up inside the executable, which becomes large but self-sufficient — or **dynamic**, with the library loaded at run time and shared between processes: smaller executables, updatable without recompiling, but dependent on the right library being present.
+
+</div>
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/caricamento-e-rilocazione">
+
+## Loading and relocation
+
+The loader copies the executable into memory, prepares the stack and jumps to the entry point. If the program does not end up at the address it was designed for, the absolute addresses inside it must be corrected: that is **relocation**. With virtual memory the problem almost disappears, because every process always sees the same virtual address space regardless of where it really is in physical memory.
+
+</div>
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/che-cosa-fa-il-sistema-operativo">
+
+## What the operating system does
+
+The operating system does not “run” the program: it is a program too, and while yours runs it is idle. It steps in in only three cases — **system call** (the program requests a service), **interrupt** (a device calls), **exception** (the current instruction fails) — which is why the chapter on interrupts and the one on software go together.
+
+Its tasks are four: allocating **memory**, sharing **processor time** among processes, mediating access to **devices**, and protecting processes from one another. Protection rests on hardware: **supervisor mode** allows instructions that are forbidden in user mode, and the switch happens only through the controlled entry points just listed.
+
+</div>
+
+<Callout tone="esame" title="How it comes up in the exam">
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/come-esce-all-esame">
+
+Typically as an open question (“describe the path from source to execution”) or as a multiple-choice question on the task of one of the four tools. Full-marks answers mention the **symbol table**, the **two passes**, **external references** and **relocation**: they are the four words that show you have understood the mechanism and not just the list.
+
+</div>
+
+</Callout>
+
+## Diagrams
+
+<Schema id="catena-software" lang="en" num="1" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/esempio-svolto">
+
+## Worked example
+
+**What does the symbol table contain after the first pass?** Source, with 4-byte words:
+
+```
+          ORIGIN 100
+INIZIO:   Move   R1, #0        ; address 100
+          Move   R2, N         ; address 104
+CICLO:    Add    R1, R1, #1    ; address 108
+          Sub    R2, R2, #1    ; address 112
+          Branch>0 CICLO       ; address 116  ← BACKWARD branch
+          Branch  FINE         ; address 120  ← FORWARD branch
+N:        DATAWORD 10          ; address 124
+FINE:     ...                  ; address 128
+```
+
+At the end of the first pass:
+
+```
+INIZIO → 100     CICLO → 108     N → 124     FINE → 128
+```
+
+On the line at 116 the label `CICLO` was already known, but on the one at 120 `FINE` was not: in the first pass the assembler could not translate it yet. With the complete table, the second pass generates the code without uncertainty. Note also that `N: DATAWORD 10` takes memory like everything else, but it is **data**: if execution ran into it, the processor would try to interpret it as an instruction.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/errori-tipici">
+
+## Common mistakes
+
+- Thinking that `DATAWORD` or `RESERVE` generate instructions: they produce data, and in the address count they take space like everything else.
+- Swapping the roles: the **linker** resolves references between modules, the **loader** puts in memory and starts.
+- Saying that the operating system “checks every instruction”: there is only one CPU, and while the user program runs the OS is idle.
+
+</div>
+
+<Callout tone="attenzione" title="Symbols of Boolean algebra">
+
+<div data-note-id="teoria/dal-sorgente-all-esecuzione/trap-simboli">
+
+In Boolean algebra the usual notation is `∧` and `∨` (or `·` and `+`); “AND” and “OR” spelled out belong to the description of circuits. The two are equivalent: what matters is **not to mix them in the same expression**, because a line written half one way and half the other is hard to read.
+
+</div>
+
+</Callout>
+
+</Layer>

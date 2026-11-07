@@ -219,9 +219,10 @@ test.describe('Ricerca', () => {
 
     await page.keyboard.press('Control+k');
     await expect(input).toBeFocused();
-    // Pagefind fa corrispondere anche parole di una lettera che prefissano la query ("raggio R", "asse z"):
-    // serve una stringa senza senso che non cominci con una variabile.
-    await input.fill('jjjkkk');
+    // Pagefind, se una parola non c'è nell'indice, la accorcia finché trova un prefisso indicizzato:
+    // con i corsi l'indice contiene parole di una lettera (z, x, Q…), quindi serve un testo che
+    // non abbia nessun prefisso indicizzato.
+    await input.fill('ŋŋŋŋŋŋ');
     await expect(page.locator('#pf-search-status')).toHaveText(/Nessun risultato/);
   });
 

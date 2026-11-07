@@ -1,0 +1,160 @@
+---
+course: fondamenti-informatica
+topic: tempi-e-tecnologia
+lang: it
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In due minuti">
+
+<div data-note-id="teoria/tempi-e-tecnologia/in-due-minuti">
+
+- **Ritardo di propagazione** t<sub>PD</sub>: tempo fra la variazione dell'ingresso e quella dell'uscita, misurato al 50% dell'escursione.
+- In cascata i ritardi **si sommano** lungo il cammino: il più lungo è il **cammino critico** e fissa la frequenza massima di clock.
+- **Fan-in** = quanti ingressi ha una porta. **Fan-out** = quante porte può pilotare: più carico, più capacità, più ritardo.
+- Una porta **CMOS** ha una rete di pull-up a pMOS e una di pull-down a nMOS, complementari: a riposo non c'è percorso fra alimentazione e massa, quindi il consumo statico è quasi nullo.
+- Logica programmabile: **PLA/PAL** (piani AND-OR), **CPLD** e **FPGA** (celle e interconnessioni riconfigurabili).
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/tempi-e-tecnologia/da-dove-si-parte">
+
+## Da dove si parte
+
+**Cosa serve sapere prima:** che cos’è una porta logica ([algebra di Boole](../algebra-di-boole/)) e che i circuiti sequenziali sono scanditi da un clock ([flip-flop](../circuiti-sequenziali/)).
+
+**Che problema risolve.** Finora le porte sono state trattate come oggetti ideali: metti gli ingressi, l’uscita appare. Nella realtà l’uscita appare **dopo**, perché i transistor devono caricare e scaricare delle capacità, e quel ritardo si accumula lungo la catena. È da qui che nasce il limite alla frequenza di clock: non da quanto è «potente» il processore, ma da quanto impiega il segnale più lento ad attraversare la logica fra due registri. Questo modulo spiega da dove viene quel numero, e come si costruiscono fisicamente le porte.
+
+**Le parole nuove.** Il **ritardo di propagazione** è il tempo fra la variazione dell’ingresso e quella dell’uscita. Il **cammino critico** è il percorso più lento fra due registri, e fissa il periodo minimo. Il **fan-in** è il numero di ingressi di una porta, il **fan-out** quante porte una singola uscita può pilotare. **CMOS** è la tecnologia con cui si costruiscono oggi quasi tutte le porte, fatta di transistor complementari.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/tempi-e-tecnologia/ritardo-di-propagazione">
+
+## Ritardo di propagazione
+
+Una porta logica non commuta all'istante: il segnale impiega un tempo a farsi strada nei transistor. Il **ritardo di propagazione** è l'intervallo fra il momento in cui l'ingresso attraversa il 50% dell'escursione e il momento in cui l'uscita fa altrettanto.
+
+```
+ingresso   ──────╲__________
+                  ╲ 50%
+                   │← t_p →│
+uscita     ────────────╲______
+                        ╲ 50%
+```
+
+Da non confondere con il **tempo di transizione**, che è quanto ci mette il segnale a passare dal 10% al 90% del suo valore: quello descrive la _pendenza_ del fronte, il ritardo descrive lo _spostamento nel tempo_.
+
+</div>
+
+<div data-note-id="teoria/tempi-e-tecnologia/porte-in-cascata-il-cammino-critico">
+
+## Porte in cascata: il cammino critico
+
+È la domanda che esce all'esame. Quando più porte sono in cascata, **i ritardi si sommano**: l'uscita finale è valida solo dopo che il segnale ha attraversato tutta la catena. Il ritardo complessivo di una rete combinatoria è quello del suo **cammino critico**, cioè il percorso ingresso→uscita più lento fra tutti.
+
+Due conseguenze pratiche:
+
+- Il **periodo minimo di clock** è dettato dal cammino critico fra due registri, più il tempo di setup del secondo. Non si può alzare la frequenza oltre quel limite.
+- Minimizzare una funzione non serve solo a spendere meno porte: una SOP a due livelli (AND poi OR) ha un cammino corto, mentre un'espressione annidata in cinque livelli è corrispondentemente più lenta. È un altro motivo per cui la forma minima conta.
+
+Un ripple-carry a n bit è lento proprio per questo: il riporto attraversa n stadi in fila.
+
+</div>
+
+<div data-note-id="teoria/tempi-e-tecnologia/fan-in-e-fan-out">
+
+## Fan-in e fan-out
+
+- **Fan-in**: quanti ingressi ha una porta. Non può crescere a piacere — più ingressi significano transistor in serie, quindi porta più lenta. È la ragione tecnica per cui le porte a molti ingressi si realizzano come alberi di porte a 2 ingressi.
+- **Fan-out**: quante altre porte può pilotare un'uscita. Superato il limite la commutazione rallenta e i livelli logici si degradano; si rimedia inserendo dei buffer.
+
+</div>
+
+<div data-note-id="teoria/tempi-e-tecnologia/come-e-fatta-una-porta-cmos">
+
+## Come è fatta una porta: CMOS
+
+La tecnologia dominante usa coppie complementari di transistor: i **PMOS** conducono quando l'ingresso è basso, gli **NMOS** quando è alto. In un inverter CMOS il PMOS collega l'uscita all'alimentazione e l'NMOS a massa: qualunque sia l'ingresso, **uno solo dei due conduce**.
+
+Il vantaggio è il consumo: a riposo non c'è cammino diretto fra alimentazione e massa, quindi la corrente scorre quasi solo **durante** le commutazioni. È il motivo per cui il consumo di un circuito digitale cresce con la frequenza di clock.
+
+La caratteristica di trasferimento è ripida attorno alla soglia: piccole variazioni d'ingresso a metà scala producono grandi variazioni d'uscita. È questa non-linearità a rigenerare i livelli logici e a impedire che il rumore si accumuli lungo la catena.
+
+</div>
+
+<div data-note-id="teoria/tempi-e-tecnologia/dispositivi-logici-programmabili">
+
+## Dispositivi logici programmabili
+
+Invece di fabbricare un chip su misura si può usare un dispositivo generico e configurarlo:
+
+- **PLA** (Programmable Logic Array): una matrice di AND seguita da una matrice di OR, entrambe programmabili. È la struttura della somma di prodotti resa hardware: ogni riga della matrice AND è un termine prodotto, la matrice OR li somma.
+- **PAL**: come la PLA ma con la matrice OR fissa — meno flessibile, più economica e veloce.
+- **CPLD**: più blocchi tipo PAL su un unico chip, uniti da una rete di interconnessione programmabile.
+- **FPGA**: una scacchiera di piccoli **blocchi logici** (tipicamente tabelle di verità memorizzate, dette look-up table, più un flip-flop) immersi in una rete di collegamenti programmabili, con blocchi di I/O sul bordo. Permette di realizzare reti complesse, sequenziali comprese, e di riconfigurarle.
+
+Il compromesso di fondo è sempre lo stesso: un circuito dedicato è più veloce e più efficiente, uno programmabile è disponibile subito e si corregge senza rifare il chip.
+
+</div>
+
+## Schemi
+
+<Schema id="cmos-struttura" lang="it" num="1" />
+
+<Schema id="pld-blocchi" lang="it" num="2" />
+
+<Schema id="fpga" lang="it" num="3" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/tempi-e-tecnologia/esempio-svolto">
+
+## Esempio svolto
+
+**Qual è la frequenza massima di questo stadio?** Fra due registri c'è una rete combinatoria il cui cammino più lungo attraversa quattro porte da 2 ns ciascuna; il flip-flop ha tempo di propagazione 1 ns e tempo di setup 1 ns.
+
+```
+periodo minimo = t_propagazione + t_cammino_critico + t_setup
+               = 1 ns + (4 × 2 ns) + 1 ns
+               = 10 ns
+
+f_max = 1 / 10 ns = 100 MHz
+```
+
+Ora si spezza la rete in due stadi da due porte, mettendo in mezzo un registro:
+
+```
+periodo = 1 + (2 × 2) + 1 = 6 ns   →   f_max ≈ 167 MHz
+```
+
+La frequenza sale del 67 %, non del 100 %: i tempi del flip-flop restano e ora si pagano due volte. È il limite che spiega perché non conviene spingere una pipeline oltre un certo numero di stadi.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/tempi-e-tecnologia/errori-tipici">
+
+## Errori tipici
+
+- Sommare i ritardi di rami **paralleli**: il ritardo della rete è quello del cammino più lungo, non la somma di tutti.
+- Confondere il ritardo di propagazione (fra i 50 % di ingresso e uscita) con il tempo di **transizione** (dal 10 % al 90 % dell'uscita).
+- Dimenticare setup e propagazione del flip-flop nel calcolo del periodo: il combinatorio non è tutto il tempo disponibile.
+
+</div>
+
+</Layer>

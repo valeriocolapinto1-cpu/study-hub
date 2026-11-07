@@ -1,0 +1,1693 @@
+- id: processore-es-1
+  topic: processore
+  objectives:
+    - processore.1
+  difficulty: 1
+  kind: static
+  statement:
+    it:
+      Un’istruzione deve leggere un dato dalla memoria. Quali registri entrano in gioco, in che ordine, e a che
+      serve ciascuno?
+    en:
+      An instruction must read data from memory. Which registers come into play, in what order, and what is each
+      one for?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          'La memoria non parla direttamente con i registri generali: c’è sempre una coppia di registri che fa da
+          interfaccia.'
+        en:
+          'Memory does not talk directly to the general-purpose registers: there is always a pair of registers
+          acting as the interface.'
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          1. l'indirizzo del dato va in MAR   (Memory Address Register)
+
+          2. si attiva il segnale Read
+
+          3. la memoria deposita il dato in MDR (Memory Data Register)
+
+          4. da MDR il dato passa al registro destinazione
+
+          ```
+
+
+          MAR e MDR esistono perché la memoria è lenta e sta «fuori»: servono due punti di appoggio stabili,
+          uno per l’indirizzo e uno per il dato, mentre il processore aspetta. L’attesa ha anche un nome nei
+          diagrammi di controllo: **WMFC**, cioè «attendi che la memoria abbia finito».
+
+
+          Gli altri due registri da saper nominare sono **PC**, che contiene l’indirizzo della prossima
+          istruzione, e **IR**, che contiene l’istruzione in corso di esecuzione.
+        en: >-
+          ```
+
+          1. the address of the data goes into MAR   (Memory Address Register)
+
+          2. the Read signal is activated
+
+          3. memory places the data in MDR (Memory Data Register)
+
+          4. from MDR the data goes to the destination register
+
+          ```
+
+
+          MAR and MDR exist because memory is slow and sits “outside”: two stable holding points are needed,
+          one for the address and one for the data, while the processor waits. The wait even has a name in the
+          control diagrams: **WMFC**, i.e. “wait until memory has finished”.
+
+
+          The other two registers you must be able to name are **PC**, which holds the address of the next
+          instruction, and **IR**, which holds the instruction being executed.
+  origin: originale
+- id: processore-es-2
+  topic: processore
+  objectives:
+    - processore.2
+  difficulty: 1
+  kind: static
+  statement:
+    it:
+      Scrivi in RTN la sequenza di **prelievo dell’istruzione** e spiega perché l’incremento del PC si colloca
+      proprio lì.
+    en: Write in RTN the **instruction fetch** sequence and explain why the PC increment is placed exactly there.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: Il prelievo è uguale per tutte le istruzioni. Chiediti che cosa fa il processore mentre aspetta la
+          risposta della memoria.
+        en:
+          The fetch is the same for all instructions. Ask yourself what the processor does while it waits for memory
+          to answer.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          1.  PC_out, MAR_in, Read, Select4, Add, Z_in
+
+          2.  Z_out, PC_in, WMFC
+
+          3.  MDR_out, IR_in
+
+          ```
+
+
+          Passo per passo: l’indirizzo della prossima istruzione esce dal PC e finisce in MAR, si avvia la
+          lettura, e **contemporaneamente** la ALU calcola PC + 4 mettendolo nel registro temporaneo Z. Al
+          passo 2 quel valore torna nel PC mentre si attende la memoria. Al passo 3 l’istruzione arrivata in
+          MDR viene copiata in IR.
+
+
+          L’incremento sta lì perché la memoria impiega comunque diversi cicli: farlo durante l’attesa **non
+          costa nulla**. Metterlo in un passo separato allungherebbe ogni istruzione di un ciclo — su miliardi
+          di istruzioni, una differenza enorme.
+        en: >-
+          ```
+
+          1.  PC_out, MAR_in, Read, Select4, Add, Z_in
+
+          2.  Z_out, PC_in, WMFC
+
+          3.  MDR_out, IR_in
+
+          ```
+
+
+          Step by step: the address of the next instruction leaves the PC and ends up in MAR, the read starts,
+          and **at the same time** the ALU computes PC + 4, placing it in the temporary register Z. In step 2
+          that value goes back into the PC while waiting for memory. In step 3 the instruction that arrived in
+          MDR is copied into IR.
+
+
+          The increment is there because memory takes several cycles anyway: doing it during the wait **costs
+          nothing**. Putting it in a separate step would lengthen every instruction by one cycle — over
+          billions of instructions, a huge difference.
+  origin: originale
+- id: processore-es-3
+  topic: processore
+  objectives:
+    - processore.2
+    - processore.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Scrivi la sequenza di controllo completa dell’istruzione `Load R1, (R2)` su un datapath a **bus
+      singolo**: carica in R1 il contenuto della cella il cui indirizzo sta in R2.'
+    en:
+      'Write the complete control sequence of the instruction `Load R1, (R2)` on a **single-bus** datapath: it
+      loads into R1 the contents of the cell whose address is in R2.'
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          'Prelievo (tre passi, sempre gli stessi) più la parte specifica. La memoria va letta due volte: una per
+          l’istruzione, una per il dato.'
+        en:
+          'Fetch (three steps, always the same) plus the specific part. Memory must be read twice: once for the
+          instruction, once for the data.'
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          1.  PC_out, MAR_in, Read, Select4, Add, Z_in
+
+          2.  Z_out, PC_in, WMFC
+
+          3.  MDR_out, IR_in
+
+          ────────────────────────── fine prelievo
+
+          4.  R2_out, MAR_in, Read
+
+          5.  WMFC
+
+          6.  MDR_out, R1_in, End
+
+          ```
+
+
+          Al passo 4 il contenuto di R2 — che è un **indirizzo** — viene mandato a MAR e parte la seconda
+          lettura. Il passo 5 è pura attesa: qui, a differenza del prelievo, non c’è nulla di utile da fare in
+          parallelo. Al passo 6 il dato passa da MDR a R1.
+
+
+          Se l’istruzione fosse stata `Load R1, 20(R2)` servirebbe un passo in più per sommare lo
+          spiazzamento: R2 in Y, poi lo spiazzamento dall’IR sommato a Y e il risultato in MAR.
+        en: >-
+          ```
+
+          1.  PC_out, MAR_in, Read, Select4, Add, Z_in
+
+          2.  Z_out, PC_in, WMFC
+
+          3.  MDR_out, IR_in
+
+          ────────────────────────── end of fetch
+
+          4.  R2_out, MAR_in, Read
+
+          5.  WMFC
+
+          6.  MDR_out, R1_in, End
+
+          ```
+
+
+          In step 4 the contents of R2 — which is an **address** — is sent to MAR and the second read starts.
+          Step 5 is pure waiting: here, unlike in the fetch, there is nothing useful to do in parallel. In
+          step 6 the data goes from MDR to R1.
+
+
+          Had the instruction been `Load R1, 20(R2)` one more step would be needed to add the displacement: R2
+          into Y, then the displacement from IR added to Y and the result into MAR.
+  origin: originale
+- id: processore-es-4
+  topic: processore
+  objectives:
+    - processore.3
+  difficulty: 2
+  kind: static
+  statement:
+    it:
+      L’istruzione `Add R1, R2, R3` richiede 6 cicli su un datapath a bus singolo e 4 su uno a tre bus. Con un
+      ciclo di clock da 2 ns, quanto dura l’istruzione nei due casi? E su un programma di 10⁶ istruzioni
+      analoghe?
+    en:
+      The instruction `Add R1, R2, R3` takes 6 cycles on a single-bus datapath and 4 on a three-bus one. With a
+      2 ns clock cycle, how long does the instruction take in the two cases? And for a program of 10⁶ similar
+      instructions?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          Moltiplica cicli per durata del ciclo, poi scala. Chiediti anche **perché** il bus singolo richiede due
+          cicli in più.
+        en: Multiply cycles by cycle time, then scale. Also ask yourself **why** the single bus needs two more cycles.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          bus singolo:  6 × 2 ns = 12 ns       →  10⁶ × 12 ns = 12 ms
+
+          tre bus:      4 × 2 ns = 8 ns        →  10⁶ ×  8 ns =  8 ms
+
+          ```
+
+
+          Un terzo di tempo in meno. La ragione dei due cicli risparmiati: sul bus singolo i due operandi
+          devono viaggiare in momenti diversi (uno viene parcheggiato nel registro temporaneo Y) e il
+          risultato in un terzo momento, mentre con tre bus i due operandi escono insieme su bus A e B e il
+          risultato rientra su bus C nello **stesso ciclo**.
+
+
+          Il prezzo è l’hardware: tre bus significa triplicare le linee e i multiplexer di accesso al banco
+          dei registri. È il tipico compromesso costo/prestazioni che l’esame chiede di saper argomentare, non
+          solo di calcolare.
+        en: >-
+          ```
+
+          single bus:   6 × 2 ns = 12 ns       →  10⁶ × 12 ns = 12 ms
+
+          three buses:  4 × 2 ns = 8 ns        →  10⁶ ×  8 ns =  8 ms
+
+          ```
+
+
+          A third less time. The reason for the two cycles saved: on the single bus the two operands must
+          travel at different moments (one is parked in the temporary register Y) and the result at a third
+          moment, while with three buses the two operands go out together on buses A and B and the result
+          comes back on bus C in the **same cycle**.
+
+
+          The price is hardware: three buses means tripling the lines and the access multiplexers of the
+          register file. It is the typical cost/performance trade-off the exam asks you to be able to argue,
+          not just compute.
+  answer:
+    - label:
+        it: Bus singolo, per istruzione
+        en: Single bus, per instruction
+      value: 1.2e-8
+      unit: s
+      tol: 0.000001
+    - label:
+        it: Tre bus, per istruzione
+        en: Three buses, per instruction
+      value: 8e-9
+      unit: s
+      tol: 0.000001
+    - label:
+        it: Bus singolo, 10⁶ istruzioni
+        en: Single bus, 10⁶ instructions
+      value: 0.012
+      unit: s
+      tol: 0.000001
+    - label:
+        it: Tre bus, 10⁶ istruzioni
+        en: Three buses, 10⁶ instructions
+      value: 0.008
+      unit: s
+      tol: 0.000001
+  origin: originale
+- id: processore-es-5
+  topic: processore
+  objectives:
+    - processore.4
+  difficulty: 2
+  kind: static
+  statement:
+    it:
+      'A metà progetto il committente chiede di aggiungere dodici istruzioni complesse. L’unità di controllo era
+      prevista **cablata**: conviene cambiare idea? Che cosa si guadagna e che cosa si perde?'
+    en: 'Halfway through the project the client asks to add twelve complex instructions. The control unit was
+      planned as **hardwired**: is it worth changing your mind? What do you gain and what do you lose?'
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: Chiediti dove sta scritta la sequenza dei segnali di controllo nei due casi, e che cosa significa
+          «modificarla».
+        en:
+          Ask yourself where the sequence of control signals is written in the two cases, and what “modifying it”
+          means.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          Con l’unità **cablata** la sequenza dei segnali è una rete logica: aggiungere dodici istruzioni
+          significa **ridisegnare la rete**, rifare la sintesi e riverificare i tempi di tutto il blocco. Con
+          l’unità **microprogrammata** le sequenze stanno in una memoria di controllo: aggiungere istruzioni
+          significa **scrivere altre microistruzioni**, senza toccare l’hardware.
+
+
+          Quindi sì, conviene passare al microprogrammato — ed è storicamente la scelta dei processori CISC,
+          il cui repertorio ricco è fatto proprio di istruzioni complesse.
+
+
+          Che cosa si perde: **velocità**. Ogni passo richiede di leggere una microistruzione dalla memoria di
+          controllo, e quella lettura si aggiunge al ciclo. Un’unità cablata può generare i segnali in modo
+          combinatorio, senza letture intermedie. È il motivo per cui i RISC, che puntano su un ciclo
+          brevissimo e su istruzioni semplici, tornano al controllo cablato.
+        en: >-
+          With a **hardwired** unit the sequence of signals is a logic network: adding twelve instructions
+          means **redesigning the network**, redoing synthesis and re-verifying the timing of the whole block.
+          With a **microprogrammed** unit the sequences live in a control store: adding instructions means
+          **writing more microinstructions**, without touching the hardware.
+
+
+          So yes, it pays to switch to microprogrammed — and it is historically the choice of CISC processors,
+          whose rich repertoire is made precisely of complex instructions.
+
+
+          What you lose: **speed**. Every step requires reading a microinstruction from the control store, and
+          that read adds to the cycle. A hardwired unit can generate the signals combinationally, with no
+          intermediate reads. That is why RISC processors, aiming at a very short cycle and simple
+          instructions, go back to hardwired control.
+  origin: originale
+- id: gen-notazione-rtn
+  topic: processore
+  objectives:
+    - processore.2
+  difficulty: 1
+  kind: generated
+  generator: fondamenti-informatica/notazione-rtn
+  origin: originale
+- id: mcq-cpu-01
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Quale registro presenta alla memoria l’indirizzo a cui accedere?
+    en: Which register presents to memory the address to be accessed?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: MAR
+        en: MAR
+  choices:
+    - text:
+        it: MDR
+        en: MDR
+      correct: false
+    - text:
+        it: MAR
+        en: MAR
+      correct: true
+    - text:
+        it: IR
+        en: IR
+      correct: false
+    - text:
+        it: PC
+        en: PC
+      correct: false
+  origin: originale
+- id: mcq-cpu-02
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Quale registro trattiene l’istruzione durante la decodifica?
+    en: Which register holds the instruction during decoding?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: IR
+        en: IR
+  choices:
+    - text:
+        it: PC
+        en: PC
+      correct: false
+    - text:
+        it: MAR
+        en: MAR
+      correct: false
+    - text:
+        it: IR
+        en: IR
+      correct: true
+    - text:
+        it: MDR
+        en: MDR
+      correct: false
+  origin: originale
+- id: mcq-cpu-03
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Perché il PC viene incrementato subito dopo il prelievo?
+    en: Why is the PC incremented right after the fetch?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Perché l'esecuzione è sequenziale e l'indirizzo successivo è così già pronto
+        en: Because execution is sequential and the next address is thus already ready
+  choices:
+    - text:
+        it: Perché l'esecuzione è sequenziale e l'indirizzo successivo è così già pronto
+        en: Because execution is sequential and the next address is thus already ready
+      correct: true
+    - text:
+        it: Perché altrimenti si perderebbe il contenuto di IR
+        en: Because otherwise the contents of IR would be lost
+      correct: false
+    - text:
+        it: Per azzerare i flag della ALU
+        en: To clear the ALU flags
+      correct: false
+    - text:
+        it: Per liberare il bus dati
+        en: To free the data bus
+      correct: false
+  origin: originale
+- id: mcq-cpu-04
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Vantaggio di un'unità di controllo microprogrammata rispetto a una cablata:"
+    en: 'Advantage of a microprogrammed control unit over a hardwired one:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: "È più flessibile: cambiare l'insieme di istruzioni non richiede di riprogettare il circuito"
+        en: 'It is more flexible: changing the instruction set does not require redesigning the circuit'
+  choices:
+    - text:
+        it: È sempre più veloce
+        en: It is always faster
+      correct: false
+    - text:
+        it: Consuma meno energia
+        en: It consumes less energy
+      correct: false
+    - text:
+        it: "È più flessibile: cambiare l'insieme di istruzioni non richiede di riprogettare il circuito"
+        en: 'It is more flexible: changing the instruction set does not require redesigning the circuit'
+      correct: true
+    - text:
+        it: Non richiede segnali di clock
+        en: It does not require clock signals
+      correct: false
+  origin: originale
+- id: mcq-cpu-05
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Cosa permette un datapath a tre bus rispetto a uno a bus singolo?
+    en: What does a three-bus datapath allow compared with a single-bus one?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Portare entrambi gli operandi alla ALU e scrivere il risultato nello stesso ciclo
+        en: Bringing both operands to the ALU and writing the result in the same cycle
+  choices:
+    - text:
+        it: Indirizzare più memoria
+        en: Addressing more memory
+      correct: false
+    - text:
+        it: Portare entrambi gli operandi alla ALU e scrivere il risultato nello stesso ciclo
+        en: Bringing both operands to the ALU and writing the result in the same cycle
+      correct: true
+    - text:
+        it: Eliminare del tutto la necessità di registri
+        en: Removing the need for registers altogether
+      correct: false
+    - text:
+        it: Eseguire istruzioni di lunghezza variabile
+        en: Executing variable-length instructions
+      correct: false
+  origin: originale
+- id: mcq-pipe-03
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Le prestazioni del processore dipendono dalla velocità di:'
+    en: 'Processor performance depends on the speed of:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Prelievo (fetch) ed esecuzione
+        en: Fetch and execution
+  choices:
+    - text:
+        it: Solo esecuzione
+        en: Execution only
+      correct: false
+    - text:
+        it: Prelievo (fetch) ed esecuzione
+        en: Fetch and execution
+      correct: true
+    - text:
+        it: Solo decodifica
+        en: Decoding only
+      correct: false
+    - text:
+        it: Solo scrittura
+        en: Writing only
+      correct: false
+  origin: originale
+- id: mcq-pipe-04
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Dove salva la ALU i risultati intermedi di un calcolo?
+    en: Where does the ALU store the intermediate results of a computation?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Nei registri
+        en: In the registers
+  choices:
+    - text:
+        it: In cache
+        en: In the cache
+      correct: false
+    - text:
+        it: Nei registri
+        en: In the registers
+      correct: true
+    - text:
+        it: In memoria secondaria
+        en: In secondary memory
+      correct: false
+    - text:
+        it: Nel PC
+        en: In the PC
+      correct: false
+  origin: originale
+- id: schema-unita-funzionali
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Unità funzionali di un calcolatore»: scrivi per ogni posizione numerata l'etichetta
+      giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Aritmetica e logica · Bus dati · Cache · Controllo · Disco · Ingresso · Interruzioni ·
+      Memoria · Registri · Rete di interconnessione · Uscita
+    en: >-
+      Complete the diagram “Functional units of a computer”: for each numbered position write the right label.
+      The list contains more labels than positions.
+
+
+      Labels: Arithmetic and logic · Cache · Control · Data bus · Disk · Input · Interconnection network ·
+      Interrupts · Memory · Output · Registers
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 330" role="img"
+        aria-labelledby="ex-unita-funzionali-t ex-unita-funzionali-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-unita-funzionali-t">Unità funzionali di
+        un calcolatore</title><desc id="ex-unita-funzionali-d">Schema con 6 posizioni numerate da
+        completare.</desc><defs><marker id="ex-unita-funzionali-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5
+        4" x="20" y="95" width="140" height="180" rx="8"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="90" y="292" font-size="12">I/O</text>
+              <rect style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5 4" x="460" y="95" width="140" height="180" rx="8"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="530" y="292" font-size="12">Processore</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="240" y="20" width="140" height="52" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="240" y="150" width="140" height="80" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="35" y="105" width="110" height="52" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="35" y="210" width="110" height="52" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="475" y="105" width="110" height="52" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="475" y="210" width="110" height="52" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="310" y1="72" x2="310" y2="150"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="145" y1="190" x2="240" y2="190"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="380" y1="190" x2="475" y2="190"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="90" y1="157" x2="90" y2="210"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="145" y1="131" x2="180" y2="131"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="180" y1="131" x2="180" y2="236"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="180" y1="236" x2="145" y2="236"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="530" y1="157" x2="530" y2="210"/><circle cx="310" cy="45" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="310" y="45" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="310" cy="190" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="310" y="190" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="90" cy="130" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="90" y="130" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="90" cy="235" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="90" y="235" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="530" cy="130" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="530" y="130" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="530" cy="235" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="530" y="235" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 330" role="img"
+        aria-labelledby="ex-unita-funzionali-t ex-unita-funzionali-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-unita-funzionali-t">Functional units of a
+        computer</title><desc id="ex-unita-funzionali-d">Diagram with 6 numbered positions to fill
+        in.</desc><defs><marker id="ex-unita-funzionali-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5
+        4" x="20" y="95" width="140" height="180" rx="8"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="90" y="292" font-size="12">I/O</text>
+              <rect style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5 4" x="460" y="95" width="140" height="180" rx="8"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="530" y="292" font-size="12">Processor</text>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="240" y="20" width="140" height="52" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="240" y="150" width="140" height="80" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="35" y="105" width="110" height="52" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="35" y="210" width="110" height="52" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="475" y="105" width="110" height="52" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="475" y="210" width="110" height="52" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="310" y1="72" x2="310" y2="150"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="145" y1="190" x2="240" y2="190"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="380" y1="190" x2="475" y2="190"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="90" y1="157" x2="90" y2="210"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="145" y1="131" x2="180" y2="131"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="180" y1="131" x2="180" y2="236"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="180" y1="236" x2="145" y2="236"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="530" y1="157" x2="530" y2="210"/><circle cx="310" cy="45" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="310" y="45" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="310" cy="190" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="310" y="190" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="90" cy="130" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="90" y="130" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="90" cy="235" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="90" y="235" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="530" cy="130" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="530" y="130" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="530" cy="235" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="530" y="235" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Memoria
+          2. Rete di interconnessione
+          3. Ingresso
+          4. Uscita
+          5. Aritmetica e logica
+          6. Controllo
+        en: |-
+          1. Memory
+          2. Interconnection network
+          3. Input
+          4. Output
+          5. Arithmetic and logic
+          6. Control
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Memoria
+      kind: text
+      accept:
+        - Memory
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Rete di interconnessione
+      kind: text
+      accept:
+        - Interconnection network
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Ingresso
+      kind: text
+      accept:
+        - Input
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Uscita
+      kind: text
+      accept:
+        - Output
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Aritmetica e logica
+      kind: text
+      accept:
+        - Arithmetic and logic
+    - label:
+        it: Posizione 6
+        en: Position 6
+      value: Controllo
+      kind: text
+      accept:
+        - Control
+  origin: originale
+- id: schema-processore-3bus
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Percorso dati a tre bus»: scrivi per ogni posizione numerata l'etichetta giusta.
+      L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: ALU · Banco registri · Bus A · Bus B · Bus C · Cache · Controllo · Generatore indirizzi ·
+      Interfaccia processore-memoria · IR · MAR · PC · Registri temporanei · TLB
+    en: >-
+      Complete the diagram “Three-bus datapath”: for each numbered position write the right label. The list
+      contains more labels than positions.
+
+
+      Labels: Address generator · ALU · Bus A · Bus B · Bus C · Cache · Control · IR · MAR · PC ·
+      Processor–memory interface · Register file · Temporary registers · TLB
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 400" role="img"
+        aria-labelledby="ex-processore-3bus-t ex-processore-3bus-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-processore-3bus-t">Percorso dati a tre
+        bus</title><desc id="ex-processore-3bus-d">Schema con 9 posizioni numerate da
+        completare.</desc><defs><marker id="ex-processore-3bus-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><line
+        style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="60" y1="40" x2="60" y2="395"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="150" y1="40" x2="150" y2="395"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="240" y1="40" x2="240" y2="395"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="42" width="240" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="112" width="240" height="40" rx="6"/>
+              <path style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M320 182 h200 l-30 40 h-140 z"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="242" width="240" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="302" width="240" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="352" width="240" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="60" y1="62" x2="300" y2="62"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="150" y1="132" x2="300" y2="132"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="240" y1="132" x2="300" y2="132"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="60" y1="202" x2="320" y2="202"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="150" y1="212" x2="330" y2="212"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="240" y1="262" x2="300" y2="262"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="60" y1="322" x2="300" y2="322"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="150" y1="372" x2="300" y2="372"/><circle cx="72" cy="22" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="72" y="22" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="150" cy="22" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="150" y="22" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="240" cy="22" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="240" y="22" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="420" cy="62" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="420" y="62" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="420" cy="132" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="420" y="132" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="420" cy="202" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="420" y="202" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="420" cy="262" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="420" y="262" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text><circle cx="420" cy="322" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="420" y="322" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">8</text><circle cx="420" cy="372" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="420" y="372" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">9</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 400" role="img"
+        aria-labelledby="ex-processore-3bus-t ex-processore-3bus-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-processore-3bus-t">Three-bus
+        datapath</title><desc id="ex-processore-3bus-d">Diagram with 9 numbered positions to fill
+        in.</desc><defs><marker id="ex-processore-3bus-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><line
+        style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="60" y1="40" x2="60" y2="395"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="150" y1="40" x2="150" y2="395"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="240" y1="40" x2="240" y2="395"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="42" width="240" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="112" width="240" height="40" rx="6"/>
+              <path style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M320 182 h200 l-30 40 h-140 z"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="242" width="240" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="302" width="240" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="352" width="240" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="60" y1="62" x2="300" y2="62"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="150" y1="132" x2="300" y2="132"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="240" y1="132" x2="300" y2="132"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="60" y1="202" x2="320" y2="202"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="150" y1="212" x2="330" y2="212"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="240" y1="262" x2="300" y2="262"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="60" y1="322" x2="300" y2="322"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="150" y1="372" x2="300" y2="372"/><circle cx="72" cy="22" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="72" y="22" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="150" cy="22" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="150" y="22" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="240" cy="22" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="240" y="22" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="420" cy="62" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="420" y="62" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="420" cy="132" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="420" y="132" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="420" cy="202" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="420" y="202" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="420" cy="262" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="420" y="262" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text><circle cx="420" cy="322" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="420" y="322" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">8</text><circle cx="420" cy="372" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="420" y="372" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">9</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Bus A
+          2. Bus B
+          3. Bus C
+          4. PC
+          5. Banco registri
+          6. ALU
+          7. Registri temporanei
+          8. IR
+          9. Interfaccia processore-memoria
+        en: |-
+          1. Bus A
+          2. Bus B
+          3. Bus C
+          4. PC
+          5. Register file
+          6. ALU
+          7. Temporary registers
+          8. IR
+          9. Processor–memory interface
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Bus A
+      kind: text
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Bus B
+      kind: text
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Bus C
+      kind: text
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: PC
+      kind: text
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Banco registri
+      kind: text
+      accept:
+        - Register file
+    - label:
+        it: Posizione 6
+        en: Position 6
+      value: ALU
+      kind: text
+    - label:
+        it: Posizione 7
+        en: Position 7
+      value: Registri temporanei
+      kind: text
+      accept:
+        - Temporary registers
+    - label:
+        it: Posizione 8
+        en: Position 8
+      value: IR
+      kind: text
+    - label:
+        it: Posizione 9
+        en: Position 9
+      value: Interfaccia processore-memoria
+      kind: text
+      accept:
+        - Processor–memory interface
+  origin: originale
+- id: schema-processore-memoria
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Processore e memoria principale»: scrivi per ogni posizione numerata l'etichetta
+      giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: ALU · Bus di sistema · Cache · Controllo · Disco · Interfaccia processore-memoria · IR ·
+      Memoria principale · PC · Registri generali · TLB
+    en: >-
+      Complete the diagram “Processor and main memory”: for each numbered position write the right label. The
+      list contains more labels than positions.
+
+
+      Labels: ALU · Cache · Control · Disk · General-purpose registers · IR · Main memory · PC ·
+      Processor–memory interface · System bus · TLB
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 360" role="img"
+        aria-labelledby="ex-processore-memoria-t ex-processore-memoria-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-processore-memoria-t">Processore e
+        memoria principale</title><desc id="ex-processore-memoria-d">Schema con 7 posizioni numerate da
+        completare.</desc><defs><marker id="ex-processore-memoria-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="230" y="20" width="160"
+        height="44" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="310" y1="64" x2="310" y2="120"/>
+              <rect style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5 4" x="60" y="110" width="500" height="230" rx="10"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="230" y="120" width="160" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="185" width="90" height="34" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="235" width="90" height="34" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="250" y="185" width="120" height="110" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="430" y="185" width="110" height="34" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="430" y="250" width="110" height="40" rx="4"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="310" y="330" font-size="12">Processore</text><circle cx="310" cy="42" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="310" y="42" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="310" cy="140" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="310" y="140" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="135" cy="202" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="135" y="202" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="135" cy="252" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="135" y="252" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="310" cy="240" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="310" y="240" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="485" cy="202" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="485" y="202" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="485" cy="270" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="485" y="270" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 360" role="img"
+        aria-labelledby="ex-processore-memoria-t ex-processore-memoria-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-processore-memoria-t">Processor and main
+        memory</title><desc id="ex-processore-memoria-d">Diagram with 7 numbered positions to fill
+        in.</desc><defs><marker id="ex-processore-memoria-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="230" y="20" width="160"
+        height="44" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="310" y1="64" x2="310" y2="120"/>
+              <rect style="fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-width:1;stroke-dasharray:5 4" x="60" y="110" width="500" height="230" rx="10"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="230" y="120" width="160" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="185" width="90" height="34" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="90" y="235" width="90" height="34" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="250" y="185" width="120" height="110" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="430" y="185" width="110" height="34" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="430" y="250" width="110" height="40" rx="4"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="310" y="330" font-size="12">Processor</text><circle cx="310" cy="42" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="310" y="42" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="310" cy="140" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="310" y="140" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="135" cy="202" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="135" y="202" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="135" cy="252" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="135" y="252" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="310" cy="240" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="310" y="240" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="485" cy="202" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="485" y="202" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="485" cy="270" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="485" y="270" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Memoria principale
+          2. Interfaccia processore-memoria
+          3. PC
+          4. IR
+          5. Registri generali
+          6. Controllo
+          7. ALU
+        en: |-
+          1. Main memory
+          2. Processor–memory interface
+          3. PC
+          4. IR
+          5. General-purpose registers
+          6. Control
+          7. ALU
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Memoria principale
+      kind: text
+      accept:
+        - Main memory
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Interfaccia processore-memoria
+      kind: text
+      accept:
+        - Processor–memory interface
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: PC
+      kind: text
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: IR
+      kind: text
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Registri generali
+      kind: text
+      accept:
+        - General-purpose registers
+    - label:
+        it: Posizione 6
+        en: Position 6
+      value: Controllo
+      kind: text
+      accept:
+        - Control
+    - label:
+        it: Posizione 7
+        en: Position 7
+      value: ALU
+      kind: text
+  origin: originale
+- id: schema-componenti-processore
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Componenti principali di un processore»: scrivi per ogni posizione numerata
+      l'etichetta giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: ALU · Banco dei registri · Cache · Circuiteria di controllo · Generatore indirizzi ·
+      Interfaccia processore-memoria · IR · MAR · PC · TLB · Unità in virgola mobile
+    en: >-
+      Complete the diagram “Main components of a processor”: for each numbered position write the right label.
+      The list contains more labels than positions.
+
+
+      Labels: Address generator · ALU · Cache · Control circuitry · Floating-point unit · IR · MAR · PC ·
+      Processor–memory interface · Register file · TLB
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 360" role="img"
+        aria-labelledby="ex-componenti-processore-t ex-componenti-processore-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-componenti-processore-t">Componenti
+        principali di un processore</title><desc id="ex-componenti-processore-d">Schema con 7 posizioni
+        numerate da completare.</desc><defs><marker id="ex-componenti-processore-arrow" viewBox="0 0 10 10"
+        refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0
+        10 z" style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="60" y="30" width="170"
+        height="90" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="380" y="30" width="170" height="70" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="380" y="130" width="170" height="36" rx="4"/>
+              <path style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M60 170 h170 l-30 50 h-110 z"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="380" y="190" width="170" height="72" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="415" y="230" width="100" height="28" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="140" y="290" width="340" height="44" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="145" y1="120" x2="145" y2="170"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="145" y1="220" x2="145" y2="290"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="465" y1="166" x2="465" y2="190"/><circle cx="145" cy="75" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="145" y="75" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="465" cy="65" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="465" y="65" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="465" cy="148" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="465" y="148" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="145" cy="192" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="145" y="192" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="465" cy="212" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="465" y="212" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="465" cy="245" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="465" y="245" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="310" cy="312" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="310" y="312" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 360" role="img"
+        aria-labelledby="ex-componenti-processore-t ex-componenti-processore-d"
+        style="width:100%;height:auto;max-width:620px"><title id="ex-componenti-processore-t">Main components
+        of a processor</title><desc id="ex-componenti-processore-d">Diagram with 7 numbered positions to fill
+        in.</desc><defs><marker id="ex-componenti-processore-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="60" y="30" width="170"
+        height="90" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="380" y="30" width="170" height="70" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="380" y="130" width="170" height="36" rx="4"/>
+              <path style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M60 170 h170 l-30 50 h-110 z"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="380" y="190" width="170" height="72" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="415" y="230" width="100" height="28" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="140" y="290" width="340" height="44" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="145" y1="120" x2="145" y2="170"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="145" y1="220" x2="145" y2="290"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="465" y1="166" x2="465" y2="190"/><circle cx="145" cy="75" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="145" y="75" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="465" cy="65" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="465" y="65" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="465" cy="148" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="465" y="148" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="145" cy="192" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="145" y="192" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="465" cy="212" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="465" y="212" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="465" cy="245" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="465" y="245" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="310" cy="312" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="310" y="312" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Banco dei registri
+          2. Circuiteria di controllo
+          3. IR
+          4. ALU
+          5. Generatore indirizzi
+          6. PC
+          7. Interfaccia processore-memoria
+        en: |-
+          1. Register file
+          2. Control circuitry
+          3. IR
+          4. ALU
+          5. Address generator
+          6. PC
+          7. Processor–memory interface
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Banco dei registri
+      kind: text
+      accept:
+        - Register file
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Circuiteria di controllo
+      kind: text
+      accept:
+        - Control circuitry
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: IR
+      kind: text
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: ALU
+      kind: text
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Generatore indirizzi
+      kind: text
+      accept:
+        - Address generator
+    - label:
+        it: Posizione 6
+        en: Position 6
+      value: PC
+      kind: text
+    - label:
+        it: Posizione 7
+        en: Position 7
+      value: Interfaccia processore-memoria
+      kind: text
+      accept:
+        - Processor–memory interface
+  origin: originale
+- id: schema-cinque-stadi
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Organizzazione a cinque stadi»: scrivi per ogni posizione numerata l'etichetta
+      giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Accesso in memoria · ALU · Arbitraggio del bus · Lettura registri sorgente · Normalizzazione
+      · Prelievo istruzione · Refresh della DRAM · Scrittura nel registro · Traduzione dell’indirizzo
+    en: >-
+      Complete the diagram “Five-stage organisation”: for each numbered position write the right label. The
+      list contains more labels than positions.
+
+
+      Labels: Address translation · ALU · Bus arbitration · DRAM refresh · Instruction fetch · Memory access ·
+      Normalisation · Register write-back · Source register read
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 420" role="img"
+        aria-labelledby="ex-cinque-stadi-t ex-cinque-stadi-d"
+        style="width:100%;height:auto;max-width:480px"><title id="ex-cinque-stadi-t">Organizzazione a cinque
+        stadi</title><desc id="ex-cinque-stadi-d">Schema con 5 posizioni numerate da
+        completare.</desc><defs><marker id="ex-cinque-stadi-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="20" width="160"
+        height="48" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="100" width="160" height="48" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="180" width="160" height="48" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="260" width="160" height="48" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="340" width="160" height="48" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cinque-stadi-arrow)" x1="280" y1="68" x2="280" y2="100"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cinque-stadi-arrow)" x1="280" y1="148" x2="280" y2="180"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cinque-stadi-arrow)" x1="280" y1="228" x2="280" y2="260"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cinque-stadi-arrow)" x1="280" y1="308" x2="280" y2="340"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="20" y="48" font-size="11">Stadio 1</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="20" y="128" font-size="11">Stadio 2</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="20" y="208" font-size="11">Stadio 3</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="20" y="288" font-size="11">Stadio 4</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="20" y="368" font-size="11">Stadio 5</text><circle cx="280" cy="44" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="44" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="280" cy="124" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="124" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="280" cy="204" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="204" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="280" cy="284" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="284" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="280" cy="364" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="364" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 420" role="img"
+        aria-labelledby="ex-cinque-stadi-t ex-cinque-stadi-d"
+        style="width:100%;height:auto;max-width:480px"><title id="ex-cinque-stadi-t">Five-stage
+        organisation</title><desc id="ex-cinque-stadi-d">Diagram with 5 numbered positions to fill
+        in.</desc><defs><marker id="ex-cinque-stadi-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="20" width="160"
+        height="48" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="100" width="160" height="48" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="180" width="160" height="48" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="260" width="160" height="48" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="200" y="340" width="160" height="48" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cinque-stadi-arrow)" x1="280" y1="68" x2="280" y2="100"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cinque-stadi-arrow)" x1="280" y1="148" x2="280" y2="180"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cinque-stadi-arrow)" x1="280" y1="228" x2="280" y2="260"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-cinque-stadi-arrow)" x1="280" y1="308" x2="280" y2="340"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="20" y="48" font-size="11">Stage 1</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="20" y="128" font-size="11">Stage 2</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="20" y="208" font-size="11">Stage 3</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="20" y="288" font-size="11">Stage 4</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="20" y="368" font-size="11">Stage 5</text><circle cx="280" cy="44" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="44" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="280" cy="124" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="124" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="280" cy="204" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="204" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="280" cy="284" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="284" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="280" cy="364" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="364" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Prelievo istruzione
+          2. Lettura registri sorgente
+          3. ALU
+          4. Accesso in memoria
+          5. Scrittura nel registro
+        en: |-
+          1. Instruction fetch
+          2. Source register read
+          3. ALU
+          4. Memory access
+          5. Register write-back
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Prelievo istruzione
+      kind: text
+      accept:
+        - Instruction fetch
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Lettura registri sorgente
+      kind: text
+      accept:
+        - Source register read
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: ALU
+      kind: text
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Accesso in memoria
+      kind: text
+      accept:
+        - Memory access
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Scrittura nel registro
+      kind: text
+      accept:
+        - Register write-back
+  origin: originale
+- id: schema-datapath
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Percorso dei dati di un processore»: scrivi per ogni posizione numerata l'etichetta
+      giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: ALU · Banco dei registri · IR · MAR · MDR · MuxB · MuxY · PC · RA · RB · RM · RY · RZ
+    en: >-
+      Complete the diagram “Datapath of a processor”: for each numbered position write the right label. The
+      list contains more labels than positions.
+
+
+      Labels: ALU · IR · MAR · MDR · MuxB · MuxY · PC · RA · RB · Register file · RM · RY · RZ
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 470" role="img"
+        aria-labelledby="ex-datapath-t ex-datapath-d" style="width:100%;height:auto;max-width:560px"><title
+        id="ex-datapath-t">Percorso dei dati di un processore</title><desc id="ex-datapath-d">Schema con 9
+        posizioni numerate da completare.</desc><defs><marker id="ex-datapath-arrow" viewBox="0 0 10 10"
+        refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0
+        10 z" style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="180" y="20" width="200"
+        height="80" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="170" y="125" width="90" height="34" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="125" width="90" height="34" rx="4"/>
+              <path style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M300 180 h100 l-20 25 h-60 z"/>
+              <path style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M170 225 h230 l-40 55 h-150 z"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="170" y="305" width="90" height="34" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="305" width="90" height="34" rx="4"/>
+              <path style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M170 365 h130 l-25 25 h-80 z"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="190" y="415" width="90" height="34" rx="4"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="215" y1="100" x2="215" y2="125"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="345" y1="100" x2="345" y2="125"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="215" y1="159" x2="215" y2="225"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="345" y1="159" x2="345" y2="180"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="350" y1="205" x2="350" y2="225"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="215" y1="280" x2="215" y2="305"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="345" y1="280" x2="345" y2="305"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="215" y1="339" x2="215" y2="365"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="235" y1="390" x2="235" y2="415"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="450" y1="322" x2="450" y2="60"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="390" y1="322" x2="450" y2="322"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="380" y1="60" x2="450" y2="60"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="410" y="352" font-size="10">verso la memoria</text><circle cx="280" cy="60" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="60" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="215" cy="142" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="215" y="142" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="345" cy="142" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="345" y="142" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="350" cy="192" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="350" y="192" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="285" cy="248" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="285" y="248" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="215" cy="322" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="215" y="322" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="345" cy="322" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="345" y="322" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text><circle cx="235" cy="377" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="235" y="377" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">8</text><circle cx="235" cy="432" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="235" y="432" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">9</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 470" role="img"
+        aria-labelledby="ex-datapath-t ex-datapath-d" style="width:100%;height:auto;max-width:560px"><title
+        id="ex-datapath-t">Datapath of a processor</title><desc id="ex-datapath-d">Diagram with 9 numbered
+        positions to fill in.</desc><defs><marker id="ex-datapath-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="180" y="20" width="200"
+        height="80" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="170" y="125" width="90" height="34" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="125" width="90" height="34" rx="4"/>
+              <path style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M300 180 h100 l-20 25 h-60 z"/>
+              <path style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M170 225 h230 l-40 55 h-150 z"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="170" y="305" width="90" height="34" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="300" y="305" width="90" height="34" rx="4"/>
+              <path style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M170 365 h130 l-25 25 h-80 z"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="190" y="415" width="90" height="34" rx="4"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="215" y1="100" x2="215" y2="125"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="345" y1="100" x2="345" y2="125"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="215" y1="159" x2="215" y2="225"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="345" y1="159" x2="345" y2="180"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="350" y1="205" x2="350" y2="225"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="215" y1="280" x2="215" y2="305"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="345" y1="280" x2="345" y2="305"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="215" y1="339" x2="215" y2="365"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="235" y1="390" x2="235" y2="415"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="450" y1="322" x2="450" y2="60"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="390" y1="322" x2="450" y2="322"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="380" y1="60" x2="450" y2="60"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="410" y="352" font-size="10">to memory</text><circle cx="280" cy="60" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="280" y="60" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="215" cy="142" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="215" y="142" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="345" cy="142" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="345" y="142" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="350" cy="192" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="350" y="192" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="285" cy="248" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="285" y="248" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="215" cy="322" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="215" y="322" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="345" cy="322" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="345" y="322" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text><circle cx="235" cy="377" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="235" y="377" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">8</text><circle cx="235" cy="432" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="235" y="432" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">9</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Banco dei registri
+          2. RA
+          3. RB
+          4. MuxB
+          5. ALU
+          6. RZ
+          7. RM
+          8. MuxY
+          9. RY
+        en: |-
+          1. Register file
+          2. RA
+          3. RB
+          4. MuxB
+          5. ALU
+          6. RZ
+          7. RM
+          8. MuxY
+          9. RY
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Banco dei registri
+      kind: text
+      accept:
+        - Register file
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: RA
+      kind: text
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: RB
+      kind: text
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: MuxB
+      kind: text
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: ALU
+      kind: text
+    - label:
+        it: Posizione 6
+        en: Position 6
+      value: RZ
+      kind: text
+    - label:
+        it: Posizione 7
+        en: Position 7
+      value: RM
+      kind: text
+    - label:
+        it: Posizione 8
+        en: Position 8
+      value: MuxY
+      kind: text
+    - label:
+        it: Posizione 9
+        en: Position 9
+      value: RY
+      kind: text
+  origin: originale
+- id: schema-controllo-cablato
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Generazione dei segnali di controllo»: scrivi per ogni posizione numerata
+      l'etichetta giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: ALU · Clock · Contatore di passo · Decodificatore di istruzione · Generatore dei segnali ·
+      Ingressi esterni · IR · MDR · Memoria di controllo · Microprogramma · Segnali di condizione
+    en: >-
+      Complete the diagram “Control signal generation”: for each numbered position write the right label. The
+      list contains more labels than positions.
+
+
+      Labels: ALU · Clock · Condition signals · Control store · External inputs · Instruction decoder · IR ·
+      MDR · Microprogram · Signal generator · Step counter
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" role="img"
+        aria-labelledby="ex-controllo-cablato-t ex-controllo-cablato-d"
+        style="width:100%;height:auto;max-width:640px"><title id="ex-controllo-cablato-t">Generazione dei
+        segnali di controllo</title><desc id="ex-controllo-cablato-d">Schema con 7 posizioni numerate da
+        completare.</desc><defs><marker id="ex-controllo-cablato-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="40" width="120"
+        height="36" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="120" width="140" height="60" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="230" y="30" width="130" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="420" y="30" width="100" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="230" y="110" width="170" height="90" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="450" y="110" width="140" height="36" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="450" y="165" width="140" height="36" rx="4"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-cablato-arrow)" x1="100" y1="76" x2="100" y2="120"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-cablato-arrow)" x1="180" y1="150" x2="230" y2="150"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-cablato-arrow)" x1="420" y1="50" x2="360" y2="50"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-cablato-arrow)" x1="295" y1="70" x2="295" y2="110"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-cablato-arrow)" x1="450" y1="128" x2="400" y2="128"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-cablato-arrow)" x1="450" y1="183" x2="400" y2="183"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-cablato-arrow)" x1="315" y1="200" x2="315" y2="250"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="315" y="272" font-size="12">Segnali di controllo</text><circle cx="100" cy="58" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="100" y="58" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="110" cy="150" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="110" y="150" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="295" cy="50" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="295" y="50" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="470" cy="50" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="470" y="50" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="315" cy="155" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="315" y="155" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="520" cy="128" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="520" y="128" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="520" cy="183" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="520" y="183" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" role="img"
+        aria-labelledby="ex-controllo-cablato-t ex-controllo-cablato-d"
+        style="width:100%;height:auto;max-width:640px"><title id="ex-controllo-cablato-t">Control signal
+        generation</title><desc id="ex-controllo-cablato-d">Diagram with 7 numbered positions to fill
+        in.</desc><defs><marker id="ex-controllo-cablato-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="40" width="120"
+        height="36" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="120" width="140" height="60" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="230" y="30" width="130" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="420" y="30" width="100" height="40" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="230" y="110" width="170" height="90" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="450" y="110" width="140" height="36" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="450" y="165" width="140" height="36" rx="4"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-cablato-arrow)" x1="100" y1="76" x2="100" y2="120"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-cablato-arrow)" x1="180" y1="150" x2="230" y2="150"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-cablato-arrow)" x1="420" y1="50" x2="360" y2="50"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-cablato-arrow)" x1="295" y1="70" x2="295" y2="110"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-cablato-arrow)" x1="450" y1="128" x2="400" y2="128"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-cablato-arrow)" x1="450" y1="183" x2="400" y2="183"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-cablato-arrow)" x1="315" y1="200" x2="315" y2="250"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="315" y="272" font-size="12">Control signals</text><circle cx="100" cy="58" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="100" y="58" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="110" cy="150" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="110" y="150" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="295" cy="50" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="295" y="50" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="470" cy="50" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="470" y="50" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="315" cy="155" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="315" y="155" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="520" cy="128" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="520" y="128" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text><circle cx="520" cy="183" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="520" y="183" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">7</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. IR
+          2. Decodificatore di istruzione
+          3. Contatore di passo
+          4. Clock
+          5. Generatore dei segnali
+          6. Ingressi esterni
+          7. Segnali di condizione
+        en: |-
+          1. IR
+          2. Instruction decoder
+          3. Step counter
+          4. Clock
+          5. Signal generator
+          6. External inputs
+          7. Condition signals
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: IR
+      kind: text
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Decodificatore di istruzione
+      kind: text
+      accept:
+        - Instruction decoder
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Contatore di passo
+      kind: text
+      accept:
+        - Step counter
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Clock
+      kind: text
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Generatore dei segnali
+      kind: text
+      accept:
+        - Signal generator
+    - label:
+        it: Posizione 6
+        en: Position 6
+      value: Ingressi esterni
+      kind: text
+      accept:
+        - External inputs
+    - label:
+        it: Posizione 7
+        en: Position 7
+      value: Segnali di condizione
+      kind: text
+      accept:
+        - Condition signals
+  origin: originale
+- id: schema-controllo-microprogrammato
+  topic: processore
+  objectives:
+    - processore.1
+    - processore.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Unità di controllo microprogrammata»: scrivi per ogni posizione numerata l'etichetta
+      giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: ALU · Banco dei registri · Contatore di passo · Decodificatore cablato · Generatore indirizzi
+      microistruzione · IR · Memoria di controllo · μPC
+    en: >-
+      Complete the diagram “Microprogrammed control unit”: for each numbered position write the right label.
+      The list contains more labels than positions.
+
+
+      Labels: ALU · Control store · Hardwired decoder · IR · Microinstruction address generator · Register
+      file · Step counter · μPC
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 340" role="img"
+        aria-labelledby="ex-controllo-microprogrammato-t ex-controllo-microprogrammato-d"
+        style="width:100%;height:auto;max-width:520px"><title id="ex-controllo-microprogrammato-t">Unità di
+        controllo microprogrammata</title><desc id="ex-controllo-microprogrammato-d">Schema con 4 posizioni
+        numerate da completare.</desc><defs><marker id="ex-controllo-microprogrammato-arrow" viewBox="0 0 10
+        10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5
+        L0 10 z" style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="100" width="70"
+        height="90" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="180" y="60" width="220" height="110" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="240" y="125" width="100" height="32" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="180" y="220" width="220" height="70" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-microprogrammato-arrow)" x1="110" y1="145" x2="180" y2="145"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-microprogrammato-arrow)" x1="290" y1="170" x2="290" y2="220"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-microprogrammato-arrow)" x1="240" y1="290" x2="240" y2="320"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-microprogrammato-arrow)" x1="340" y1="290" x2="340" y2="320"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="290" y="335" font-size="11">Segnali di controllo</text><circle cx="75" cy="145" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="75" y="145" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="290" cy="95" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="290" y="95" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="290" cy="141" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="290" y="141" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="290" cy="255" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="290" y="255" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 340" role="img"
+        aria-labelledby="ex-controllo-microprogrammato-t ex-controllo-microprogrammato-d"
+        style="width:100%;height:auto;max-width:520px"><title
+        id="ex-controllo-microprogrammato-t">Microprogrammed control unit</title><desc
+        id="ex-controllo-microprogrammato-d">Diagram with 4 numbered positions to fill in.</desc><defs><marker
+        id="ex-controllo-microprogrammato-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6"
+        markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="40" y="100" width="70"
+        height="90" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="180" y="60" width="220" height="110" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="240" y="125" width="100" height="32" rx="4"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="180" y="220" width="220" height="70" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-microprogrammato-arrow)" x1="110" y1="145" x2="180" y2="145"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-microprogrammato-arrow)" x1="290" y1="170" x2="290" y2="220"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-microprogrammato-arrow)" x1="240" y1="290" x2="240" y2="320"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-controllo-microprogrammato-arrow)" x1="340" y1="290" x2="340" y2="320"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="290" y="335" font-size="11">Control signals</text><circle cx="75" cy="145" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="75" y="145" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="290" cy="95" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="290" y="95" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="290" cy="141" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="290" y="141" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="290" cy="255" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="290" y="255" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. IR
+          2. Generatore indirizzi microistruzione
+          3. μPC
+          4. Memoria di controllo
+        en: |-
+          1. IR
+          2. Microinstruction address generator
+          3. μPC
+          4. Control store
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: IR
+      kind: text
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Generatore indirizzi microistruzione
+      kind: text
+      accept:
+        - Microinstruction address generator
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: μPC
+      kind: text
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Memoria di controllo
+      kind: text
+      accept:
+        - Control store
+  origin: originale

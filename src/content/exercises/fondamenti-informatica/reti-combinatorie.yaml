@@ -1,0 +1,809 @@
+- id: reti-combinatorie-es-1
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Costruisci un decodificatore **3→8** usando due decodificatori **2→4** con ingresso di abilitazione.
+    en: Build a **3→8** decoder using two **2→4** decoders with an enable input.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          Con tre bit di indirizzo, uno deve decidere *quale dei due* decoder lavora e gli altri due scelgono la
+          riga dentro il blocco.
+        en:
+          With three address bits, one must decide *which of the two* decoders works and the other two choose the
+          row inside the block.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          A₂ ──┬── EN del decoder ALTO   (uscite 4…7)
+               └──▷o── EN del decoder BASSO (uscite 0…3)
+
+          A₁, A₀ ──── ingressi di ENTRAMBI i decoder
+
+          ```
+
+
+          Quando A₂ = 0 il primo decoder è abilitato e attiva una delle uscite 0-3 secondo A₁A₀; quando A₂ = 1
+          tocca al secondo, che copre le uscite 4-7. Serve un solo invertitore.
+
+
+          È esattamente lo schema con cui si compongono i banchi di memoria: i bit alti dell’indirizzo
+          scelgono il chip, i bassi la cella al suo interno.
+        en: >-
+          ```
+
+          A₂ ──┬── EN of the HIGH decoder   (outputs 4…7)
+               └──▷o── EN of the LOW decoder (outputs 0…3)
+
+          A₁, A₀ ──── inputs of BOTH decoders
+
+          ```
+
+
+          When A₂ = 0 the first decoder is enabled and activates one of outputs 0-3 according to A₁A₀; when A₂
+          = 1 it is the second one's turn, covering outputs 4-7. A single inverter is needed.
+
+
+          It is exactly the scheme with which memory banks are composed: the high address bits choose the
+          chip, the low ones the cell inside it.
+  origin: originale
+- id: reti-combinatorie-es-2
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Realizza con un multiplexer **8→1** la funzione di **parità dispari** di tre bit: `Y = A ⊕ B ⊕ C`.'
+    en: 'Implement with an **8→1** multiplexer the **odd parity** function of three bits: `Y = A ⊕ B ⊕ C`.'
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: I selettori prendono le variabili; sugli ingressi dati vanno le costanti della colonna d’uscita,
+          nell’ordine dei mintermini da I₀ a I₇.
+        en:
+          The selects take the variables; the data inputs get the constants of the output column, in minterm order
+          from I₀ to I₇.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          A B C │ Y      ingresso
+
+          0 0 0 │ 0      I₀ = 0
+
+          0 0 1 │ 1      I₁ = 1
+
+          0 1 0 │ 1      I₂ = 1
+
+          0 1 1 │ 0      I₃ = 0
+
+          1 0 0 │ 1      I₄ = 1
+
+          1 0 1 │ 0      I₅ = 0
+
+          1 1 0 │ 0      I₆ = 0
+
+          1 1 1 │ 1      I₇ = 1
+
+          ```
+
+
+          Collegamenti: S₂S₁S₀ = A B C, e gli otto ingressi dati alle costanti `0,1,1,0,1,0,0,1`. Nessuna
+          porta logica: la tabella di verità **è** il cablaggio.
+        en: >-
+          ```
+
+          A B C │ Y      input
+
+          0 0 0 │ 0      I₀ = 0
+
+          0 0 1 │ 1      I₁ = 1
+
+          0 1 0 │ 1      I₂ = 1
+
+          0 1 1 │ 0      I₃ = 0
+
+          1 0 0 │ 1      I₄ = 1
+
+          1 0 1 │ 0      I₅ = 0
+
+          1 1 0 │ 0      I₆ = 0
+
+          1 1 1 │ 1      I₇ = 1
+
+          ```
+
+
+          Connections: S₂S₁S₀ = A B C, and the eight data inputs to the constants `0,1,1,0,1,0,0,1`. No logic
+          gates: the truth table **is** the wiring.
+  answer:
+    - label:
+        it: Ingressi I₀…I₇
+        en: Inputs I₀…I₇
+      value: '01101001'
+      kind: text
+      accept:
+        - 0110 1001
+  origin: originale
+- id: reti-combinatorie-es-3
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: Realizza `Y(A,B,C) = Σm(1,2,5,7)` con un multiplexer **4→1**, usando A e B come selettori.
+    en: Implement `Y(A,B,C) = Σm(1,2,5,7)` with a **4→1** multiplexer, using A and B as selects.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          'Con solo due selettori restano quattro ingressi per otto mintermini: ogni ingresso copre **due** righe,
+          che differiscono per C. Su ciascuno va 0, 1, C oppure C̄.'
+        en:
+          'With only two selects there are four inputs for eight minterms: each input covers **two** rows, which
+          differ in C. Each gets 0, 1, C or C̄.'
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          A B │ C=0        C=1        ingresso
+
+          0 0 │ m0 = 0     m1 = 1     I₀ = C
+
+          0 1 │ m2 = 1     m3 = 0     I₁ = C̄
+
+          1 0 │ m4 = 0     m5 = 1     I₂ = C
+
+          1 1 │ m6 = 0     m7 = 1     I₃ = C
+
+          ```
+
+
+          Quindi: I₀ = C, I₁ = C̄ (serve un invertitore), I₂ = C, I₃ = C. Il circuito completo è un MUX 4→1,
+          un invertitore e nulla più.
+
+
+          La regola generale: con n selettori e n+1 variabili, ogni ingresso vale una delle quattro funzioni
+          della variabile residua — 0, 1, la variabile, la variabile negata.
+        en: >-
+          ```
+
+          A B │ C=0        C=1        input
+
+          0 0 │ m0 = 0     m1 = 1     I₀ = C
+
+          0 1 │ m2 = 1     m3 = 0     I₁ = C̄
+
+          1 0 │ m4 = 0     m5 = 1     I₂ = C
+
+          1 1 │ m6 = 0     m7 = 1     I₃ = C
+
+          ```
+
+
+          So: I₀ = C, I₁ = C̄ (an inverter is needed), I₂ = C, I₃ = C. The complete circuit is a 4→1 MUX, an
+          inverter and nothing else.
+
+
+          The general rule: with n selects and n+1 variables, each input is one of the four functions of the
+          remaining variable — 0, 1, the variable, the negated variable.
+  origin: originale
+- id: reti-combinatorie-es-4
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.3
+  difficulty: 2
+  kind: static
+  statement:
+    it:
+      Progetta un comparatore di **uguaglianza** fra due numeri a 2 bit, A₁A₀ e B₁B₀. Poi aggiungi l’uscita «A
+      maggiore di B».
+    en:
+      Design an **equality** comparator between two 2-bit numbers, A₁A₀ and B₁B₀. Then add the output “A greater
+      than B”.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          Due bit sono uguali quando il loro XOR è 0, cioè quando il loro **XNOR** è 1. Per il maggiore, ragiona a
+          partire dal bit più significativo.
+        en:
+          Two bits are equal when their XOR is 0, i.e. when their **XNOR** is 1. For greater-than, reason starting
+          from the most significant bit.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          **Uguaglianza** — tutti i bit devono coincidere:
+
+
+          ```
+
+          EQ = (A₁ ⊙ B₁) · (A₀ ⊙ B₀)        dove ⊙ è lo XNOR
+
+          ```
+
+
+          **Maggiore** — A > B se il bit alto di A è 1 e quello di B è 0; oppure se i bit alti sono uguali e
+          il confronto si sposta su quelli bassi:
+
+
+          ```
+
+          GT = A₁·B̄₁ + (A₁ ⊙ B₁)·A₀·B̄₀
+
+          ```
+
+
+          La struttura si estende a n bit ripetendo lo stesso schema: è la ragione per cui i comparatori si
+          costruiscono a cascata, dal bit più significativo verso il basso.
+        en: >-
+          **Equality** — all bits must match:
+
+
+          ```
+
+          EQ = (A₁ ⊙ B₁) · (A₀ ⊙ B₀)        where ⊙ is XNOR
+
+          ```
+
+
+          **Greater than** — A > B if the high bit of A is 1 and that of B is 0; or if the high bits are equal
+          and the comparison moves to the low ones:
+
+
+          ```
+
+          GT = A₁·B̄₁ + (A₁ ⊙ B₁)·A₀·B̄₀
+
+          ```
+
+
+          The structure extends to n bits by repeating the same scheme: that is why comparators are built in
+          cascade, from the most significant bit downwards.
+  origin: originale
+- id: reti-combinatorie-es-5
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.4
+  difficulty: 2
+  kind: static
+  statement:
+    it:
+      Quattro registri a 8 bit devono poter scrivere sullo stesso bus a 8 bit. Quanti buffer tri-state servono,
+      quante abilitazioni possono essere attive contemporaneamente, e che cosa succede se per errore ne sono
+      attive due?
+    en:
+      Four 8-bit registers must be able to write onto the same 8-bit bus. How many tri-state buffers are needed,
+      how many enables can be active at the same time, and what happens if by mistake two are active?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: 'Il tri-state serve una linea per volta: conta quante linee ci sono in totale, non quanti registri.'
+        en: 'A tri-state serves one line at a time: count how many lines there are in total, not how many registers.'
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          Ogni bit di ogni registro ha bisogno del proprio buffer: **4 × 8 = 32 buffer**, organizzati in
+          quattro banchi da otto, ciascuno con una sola linea di abilitazione comune.
+
+
+          Le abilitazioni attive devono essere **al più una**: è proprio questa la condizione che rende
+          possibile la condivisione del bus. Chi non è abilitato va in alta impedenza, cioè si «stacca»
+          elettricamente dalla linea.
+
+
+          Se due banchi sono abilitati insieme e su un bit impongono valori opposti, si crea un percorso
+          diretto fra alimentazione e massa: il valore sulla linea è indefinito e la corrente elevata può
+          danneggiare i buffer. Per questo la selezione passa sempre da un **decodificatore**, che per
+          costruzione attiva una sola uscita.
+        en: >-
+          Every bit of every register needs its own buffer: **4 × 8 = 32 buffers**, organised in four banks of
+          eight, each with a single common enable line.
+
+
+          The active enables must be **at most one**: this is precisely the condition that makes bus sharing
+          possible. Whoever is not enabled goes into high impedance, i.e. electrically “disconnects” from the
+          line.
+
+
+          If two banks are enabled together and drive opposite values on a bit, a direct path between supply
+          and ground is created: the value on the line is undefined and the high current can damage the
+          buffers. That is why the selection always goes through a **decoder**, which by construction
+          activates a single output.
+  answer:
+    - label:
+        it: Buffer tri-state
+        en: Tri-state buffers
+      value: 32
+      tol: 1e-9
+    - label:
+        it: Abilitazioni attive al massimo
+        en: Enables active at most
+      value: 1
+      tol: 1e-9
+  origin: originale
+- id: mcq-comb-01
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.1
+    - reti-combinatorie.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Un **decodificatore** con n ingressi ha:'
+    en: 'A **decoder** with n inputs has:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: 2ⁿ uscite, una sola attiva per volta
+        en: 2ⁿ outputs, only one active at a time
+  choices:
+    - text:
+        it: 2ⁿ uscite, una sola attiva per volta
+        en: 2ⁿ outputs, only one active at a time
+      correct: true
+    - text:
+        it: n uscite, tutte attive
+        en: n outputs, all active
+      correct: false
+    - text:
+        it: 2ⁿ uscite, tutte attive per volta
+        en: 2ⁿ outputs, all active at once
+      correct: false
+    - text:
+        it: una sola uscita
+        en: a single output
+      correct: false
+  origin: originale
+- id: mcq-comb-02
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.1
+    - reti-combinatorie.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: A che cosa serve un **multiplexer**?
+    en: What is a **multiplexer** for?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: A scegliere uno fra più ingressi dati in base alle linee di selezione
+        en: Choosing one of several data inputs according to the select lines
+  choices:
+    - text:
+        it: A convertire un numero da binario a decimale
+        en: Converting a number from binary to decimal
+      correct: false
+    - text:
+        it: A scegliere uno fra più ingressi dati in base alle linee di selezione
+        en: Choosing one of several data inputs according to the select lines
+      correct: true
+    - text:
+        it: A memorizzare un bit
+        en: Storing a bit
+      correct: false
+    - text:
+        it: A generare il riporto di una somma
+        en: Generating the carry of an addition
+      correct: false
+  origin: originale
+- id: mcq-comb-03
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.1
+    - reti-combinatorie.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Che cos’è il **terzo stato** di un buffer tri-state?
+    en: What is the **third state** of a tri-state buffer?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: "L'alta impedenza: l'uscita si scollega elettricamente"
+        en: 'High impedance: the output disconnects electrically'
+  choices:
+    - text:
+        it: Un livello logico intermedio fra 0 e 1
+        en: An intermediate logic level between 0 and 1
+      correct: false
+    - text:
+        it: "L'alta impedenza: l'uscita si scollega elettricamente"
+        en: 'High impedance: the output disconnects electrically'
+      correct: true
+    - text:
+        it: Uno stato di errore
+        en: An error state
+      correct: false
+    - text:
+        it: Un ritardo programmabile
+        en: A programmable delay
+      correct: false
+  origin: originale
+- id: mcq-comb-04
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.1
+    - reti-combinatorie.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Perché su un bus condiviso servono uscite tri-state?
+    en: Why are tri-state outputs needed on a shared bus?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Perché due dispositivi che pilotano lo stesso filo con valori opposti lo cortocircuiterebbero
+        en: Because two devices driving the same wire with opposite values would short-circuit it
+  choices:
+    - text:
+        it: Per aumentare la velocità di trasmissione
+        en: To increase the transmission speed
+      correct: false
+    - text:
+        it: Perché due dispositivi che pilotano lo stesso filo con valori opposti lo cortocircuiterebbero
+        en: Because two devices driving the same wire with opposite values would short-circuit it
+      correct: true
+    - text:
+        it: Per ridurre il numero di fili
+        en: To reduce the number of wires
+      correct: false
+    - text:
+        it: Per generare il segnale di clock
+        en: To generate the clock signal
+      correct: false
+  origin: originale
+- id: mcq-comb-05
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.1
+    - reti-combinatorie.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Quale porta confronta due bit segnalando con 1 che sono **uguali**?
+    en: Which gate compares two bits, signalling with 1 that they are **equal**?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: XNOR
+        en: XNOR
+  choices:
+    - text:
+        it: XOR
+        en: XOR
+      correct: false
+    - text:
+        it: XNOR
+        en: XNOR
+      correct: true
+    - text:
+        it: NAND
+        en: NAND
+      correct: false
+    - text:
+        it: OR
+        en: OR
+      correct: false
+  origin: originale
+- id: mcq-comb-06
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.1
+    - reti-combinatorie.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Che cosa distingue un **priority encoder** da un encoder semplice?
+    en: What distinguishes a **priority encoder** from a simple encoder?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Gestisce il caso di più ingressi attivi dando la precedenza a uno
+        en: It handles the case of several active inputs by giving precedence to one
+  choices:
+    - text:
+        it: Ha più uscite
+        en: It has more outputs
+      correct: false
+    - text:
+        it: Gestisce il caso di più ingressi attivi dando la precedenza a uno
+        en: It handles the case of several active inputs by giving precedence to one
+      correct: true
+    - text:
+        it: Funziona senza alimentazione
+        en: It works without power
+      correct: false
+    - text:
+        it: È sequenziale invece che combinatorio
+        en: It is sequential rather than combinational
+      correct: false
+  origin: originale
+- id: schema-decoder-2-4
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.1
+    - reti-combinatorie.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Decodificatore a due ingressi e quattro uscite»: scrivi per ogni posizione numerata
+      l'etichetta giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Buffer tri-state · Flip-flop · Ingresso x₁ · Ingresso x₂ · Invertitori · Multiplexer · Porte
+      AND · Sommatore · Uscite (una sola attiva)
+    en: >-
+      Complete the diagram “Two-input, four-output decoder”: for each numbered position write the right label.
+      The list contains more labels than positions.
+
+
+      Labels: Adder · AND gates · Buffer tri-state · Flip-flop · Input x₁ · Input x₂ · Inverters · Multiplexer
+      · Outputs (only one active)
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 330" role="img"
+        aria-labelledby="ex-decoder-2-4-t ex-decoder-2-4-d"
+        style="width:100%;height:auto;max-width:560px"><title id="ex-decoder-2-4-t">Decodificatore a due
+        ingressi e quattro uscite</title><desc id="ex-decoder-2-4-d">Schema con 5 posizioni numerate da
+        completare.</desc><defs><marker id="ex-decoder-2-4-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><line
+        style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="70" y1="40" x2="200" y2="40"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="70" y1="290" x2="200" y2="290"/>
+              <path style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M150 145 h40 l16 20 l-16 20 h-40 z"/>
+              <path style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M150 205 h40 l16 20 l-16 20 h-40 z"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="290" y="40" width="80" height="42" rx="20"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="290" y="112" width="80" height="42" rx="20"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="290" y="184" width="80" height="42" rx="20"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="290" y="256" width="80" height="42" rx="20"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-decoder-2-4-arrow)" x1="370" y1="61" x2="450" y2="61"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-decoder-2-4-arrow)" x1="370" y1="133" x2="450" y2="133"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-decoder-2-4-arrow)" x1="370" y1="205" x2="450" y2="205"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-decoder-2-4-arrow)" x1="370" y1="277" x2="450" y2="277"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="230" y1="61" x2="290" y2="61"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="230" y1="133" x2="290" y2="133"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="230" y1="205" x2="290" y2="205"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="230" y1="277" x2="290" y2="277"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="460" y="65" font-size="10">0</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="460" y="137" font-size="10">1</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="460" y="209" font-size="10">2</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="460" y="281" font-size="10">3</text><circle cx="52" cy="40" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="52" y="40" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="52" cy="290" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="52" y="290" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="175" cy="165" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="175" y="165" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="330" cy="165" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="330" y="165" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="493" cy="165" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="493" y="165" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 330" role="img"
+        aria-labelledby="ex-decoder-2-4-t ex-decoder-2-4-d"
+        style="width:100%;height:auto;max-width:560px"><title id="ex-decoder-2-4-t">Two-input, four-output
+        decoder</title><desc id="ex-decoder-2-4-d">Diagram with 5 numbered positions to fill
+        in.</desc><defs><marker id="ex-decoder-2-4-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><line
+        style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="70" y1="40" x2="200" y2="40"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="70" y1="290" x2="200" y2="290"/>
+              <path style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M150 145 h40 l16 20 l-16 20 h-40 z"/>
+              <path style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M150 205 h40 l16 20 l-16 20 h-40 z"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="290" y="40" width="80" height="42" rx="20"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="290" y="112" width="80" height="42" rx="20"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="290" y="184" width="80" height="42" rx="20"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="290" y="256" width="80" height="42" rx="20"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-decoder-2-4-arrow)" x1="370" y1="61" x2="450" y2="61"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-decoder-2-4-arrow)" x1="370" y1="133" x2="450" y2="133"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-decoder-2-4-arrow)" x1="370" y1="205" x2="450" y2="205"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-decoder-2-4-arrow)" x1="370" y1="277" x2="450" y2="277"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="230" y1="61" x2="290" y2="61"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="230" y1="133" x2="290" y2="133"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="230" y1="205" x2="290" y2="205"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="230" y1="277" x2="290" y2="277"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="460" y="65" font-size="10">0</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="460" y="137" font-size="10">1</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="460" y="209" font-size="10">2</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="460" y="281" font-size="10">3</text><circle cx="52" cy="40" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="52" y="40" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="52" cy="290" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="52" y="290" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="175" cy="165" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="175" y="165" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="330" cy="165" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="330" y="165" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="493" cy="165" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="493" y="165" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Ingresso x₁
+          2. Ingresso x₂
+          3. Invertitori
+          4. Porte AND
+          5. Uscite (una sola attiva)
+        en: |-
+          1. Input x₁
+          2. Input x₂
+          3. Inverters
+          4. AND gates
+          5. Outputs (only one active)
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Ingresso x₁
+      kind: text
+      accept:
+        - Input x₁
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Ingresso x₂
+      kind: text
+      accept:
+        - Input x₂
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Invertitori
+      kind: text
+      accept:
+        - Inverters
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Porte AND
+      kind: text
+      accept:
+        - AND gates
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Uscite (una sola attiva)
+      kind: text
+      accept:
+        - Outputs (only one active)
+  origin: originale
+- id: schema-mux-4-1
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.1
+    - reti-combinatorie.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Multiplexer a quattro ingressi»: scrivi per ogni posizione numerata l'etichetta
+      giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Buffer tri-state · Decodificatore · Ingressi dati · Ingressi di selezione · Multiplexer ·
+      Registro · Sommatore completo · Uscita z
+    en: >-
+      Complete the diagram “Four-input multiplexer”: for each numbered position write the right label. The
+      list contains more labels than positions.
+
+
+      Labels: Buffer tri-state · Data inputs · Decoder · Full adder · Multiplexer · Output z · Register ·
+      Select inputs
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 320" role="img" aria-labelledby="ex-mux-4-1-t
+        ex-mux-4-1-d" style="width:100%;height:auto;max-width:560px"><title id="ex-mux-4-1-t">Multiplexer a
+        quattro ingressi</title><desc id="ex-mux-4-1-d">Schema con 4 posizioni numerate da
+        completare.</desc><defs><marker id="ex-mux-4-1-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><path
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M230 45 h140 l-25 170
+        h-90 z"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-mux-4-1-arrow)" x1="120" y1="70" x2="230" y2="70"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-mux-4-1-arrow)" x1="120" y1="110" x2="230" y2="110"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-mux-4-1-arrow)" x1="120" y1="150" x2="230" y2="150"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-mux-4-1-arrow)" x1="120" y1="190" x2="230" y2="190"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="90" y="74" font-size="10">x₁</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="90" y="114" font-size="10">x₂</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="90" y="154" font-size="10">x₃</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="90" y="194" font-size="10">x₄</text>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-mux-4-1-arrow)" x1="370" y1="130" x2="460" y2="130"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="275" y1="215" x2="275" y2="255"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="325" y1="215" x2="325" y2="255"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="262" y="248" font-size="10">w₁</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="330" y="248" font-size="10">w₂</text><circle cx="77" cy="130" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="77" y="130" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="300" cy="130" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="300" y="130" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="488" cy="130" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="488" y="130" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="300" cy="280" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="300" y="280" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 320" role="img" aria-labelledby="ex-mux-4-1-t
+        ex-mux-4-1-d" style="width:100%;height:auto;max-width:560px"><title id="ex-mux-4-1-t">Four-input
+        multiplexer</title><desc id="ex-mux-4-1-d">Diagram with 4 numbered positions to fill
+        in.</desc><defs><marker id="ex-mux-4-1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6"
+        markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><path
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" d="M230 45 h140 l-25 170
+        h-90 z"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-mux-4-1-arrow)" x1="120" y1="70" x2="230" y2="70"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-mux-4-1-arrow)" x1="120" y1="110" x2="230" y2="110"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-mux-4-1-arrow)" x1="120" y1="150" x2="230" y2="150"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-mux-4-1-arrow)" x1="120" y1="190" x2="230" y2="190"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="90" y="74" font-size="10">x₁</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="90" y="114" font-size="10">x₂</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="90" y="154" font-size="10">x₃</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="90" y="194" font-size="10">x₄</text>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-mux-4-1-arrow)" x1="370" y1="130" x2="460" y2="130"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="275" y1="215" x2="275" y2="255"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="325" y1="215" x2="325" y2="255"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="262" y="248" font-size="10">w₁</text>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:start" x="330" y="248" font-size="10">w₂</text><circle cx="77" cy="130" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="77" y="130" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="300" cy="130" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="300" y="130" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="488" cy="130" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="488" y="130" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="300" cy="280" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="300" y="280" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Ingressi dati
+          2. Multiplexer
+          3. Uscita z
+          4. Ingressi di selezione
+        en: |-
+          1. Data inputs
+          2. Multiplexer
+          3. Output z
+          4. Select inputs
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Ingressi dati
+      kind: text
+      accept:
+        - Data inputs
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Multiplexer
+      kind: text
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Uscita z
+      kind: text
+      accept:
+        - Output z
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Ingressi di selezione
+      kind: text
+      accept:
+        - Select inputs
+  origin: originale

@@ -1,0 +1,33 @@
+id: numeri-binari
+course: fondamenti-informatica
+order: 1
+title:
+  it: Numeri binari & complemento a 2
+  en: Binary numbers & two's complement
+summary:
+  it: Basi, rappresentazioni con segno, range, overflow. La parte più «spremuta» all'esame.
+  en: Bases, signed representations, range, overflow. The part the exam squeezes the most.
+group:
+  it: Numeri e logica
+  en: Numbers and logic
+objectives:
+  - id: numeri-binari.1
+    text:
+      it: Convertire un numero fra basi 2, 8, 10 e 16 (e in una base qualsiasi).
+      en: Convert a number between bases 2, 8, 10 and 16 (and any other base).
+  - id: numeri-binari.2
+    text:
+      it: Rappresentare e leggere un intero in complemento a 2 su N bit.
+      en: Represent and read an integer in two's complement on N bits.
+  - id: numeri-binari.3
+    text:
+      it: Indicare l’intervallo rappresentabile senza segno, in CP2, CP1 e modulo e segno.
+      en: State the representable range for unsigned, two's complement, ones' complement and sign-magnitude.
+  - id: numeri-binari.4
+    text:
+      it: Estendere il segno di un numero in CP2.
+      en: Sign-extend a two's complement number.
+  - id: numeri-binari.5
+    text:
+      it: Distinguere overflow e riporto uscente in una somma CP2.
+      en: Tell overflow apart from carry-out in a two's complement addition.

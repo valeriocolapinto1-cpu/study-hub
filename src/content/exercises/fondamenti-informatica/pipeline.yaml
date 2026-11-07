@@ -1,0 +1,951 @@
+- id: pipeline-es-1
+  topic: pipeline
+  objectives:
+    - pipeline.1
+  difficulty: 1
+  kind: static
+  statement:
+    it:
+      Disegna il diagramma a stadi di **quattro istruzioni indipendenti** in una pipeline a 5 stadi (F, D, E, M,
+      W) e conta i cicli necessari.
+    en: Draw the stage diagram of **four independent instructions** in a 5-stage pipeline (F, D, E, M, W) and
+      count the cycles needed.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: 'Ogni istruzione entra un ciclo dopo la precedente. Il conto non è 4 × 5: chiediti quando esce
+          l’**ultima**.'
+        en:
+          'Each instruction enters one cycle after the previous one. The count is not 4 × 5: ask yourself when the
+          **last** one comes out.'
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          ciclo:  1  2  3  4  5  6  7  8
+
+          I1      F  D  E  M  W
+
+          I2         F  D  E  M  W
+
+          I3            F  D  E  M  W
+
+          I4               F  D  E  M  W
+
+          ```
+
+
+          L’ultima istruzione completa al ciclo **8**. La formula generale:
+
+
+          ```
+
+          cicli = k + (n − 1) = 5 + 3 = 8
+
+          ```
+
+
+          I primi 4 cicli sono il **riempimento**: la pipeline non ha ancora prodotto nulla. Dal ciclo 5 in
+          poi esce un risultato per ciclo. Senza pipeline le stesse quattro istruzioni avrebbero richiesto 4 ×
+          5 = 20 cicli.
+        en: >-
+          ```
+
+          cycle:  1  2  3  4  5  6  7  8
+
+          I1      F  D  E  M  W
+
+          I2         F  D  E  M  W
+
+          I3            F  D  E  M  W
+
+          I4               F  D  E  M  W
+
+          ```
+
+
+          The last instruction completes in cycle **8**. The general formula:
+
+
+          ```
+
+          cycles = k + (n − 1) = 5 + 3 = 8
+
+          ```
+
+
+          The first 4 cycles are the **fill**: the pipeline has not produced anything yet. From cycle 5
+          onwards one result comes out per cycle. Without a pipeline the same four instructions would have
+          taken 4 × 5 = 20 cycles.
+  answer:
+    - label:
+        it: Cicli
+        en: Cycles
+      value: 8
+      tol: 1e-9
+  origin: originale
+- id: pipeline-es-2
+  topic: pipeline
+  objectives:
+    - pipeline.1
+  difficulty: 1
+  kind: static
+  statement:
+    it:
+      Un programma esegue 1000 istruzioni su una pipeline a 5 stadi, senza stalli. Quanti cicli servono? Qual è
+      lo **speedup** rispetto a un processore non pipeline che impiega 5 cicli per istruzione?
+    en:
+      A program executes 1000 instructions on a 5-stage pipeline, with no stalls. How many cycles are needed?
+      What is the **speedup** compared with a non-pipelined processor taking 5 cycles per instruction?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it: Applica k + (n − 1) e confronta con n × k. Poi guarda a che numero tende il rapporto.
+        en: Apply k + (n − 1) and compare with n × k. Then look at what number the ratio tends to.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          con pipeline:    5 + 999 = 1004 cicli
+
+          senza pipeline: 1000 × 5   = 5000 cicli
+
+
+          speedup = 5000 / 1004 = 4,98×
+
+          ```
+
+
+          Quasi 5, cioè quasi il numero di stadi — ma non 5. La differenza sono i 4 cicli di riempimento, che
+          si diluiscono al crescere di n: con 10 istruzioni lo speedup sarebbe 50/14 = 3,6; con un milione,
+          4,99998.
+
+
+          Il limite teorico è k, e nella realtà non lo si raggiunge mai: qui abbiamo **ipotizzato zero
+          stalli**, cosa che nessun programma reale garantisce, e abbiamo ignorato che gli stadi non sono
+          perfettamente bilanciati.
+        en: >-
+          ```
+
+          with pipeline:    5 + 999 = 1004 cycles
+
+          without pipeline: 1000 × 5 = 5000 cycles
+
+
+          speedup = 5000 / 1004 = 4.98×
+
+          ```
+
+
+          Almost 5, i.e. almost the number of stages — but not 5. The difference is the 4 fill cycles, which
+          are diluted as n grows: with 10 instructions the speedup would be 50/14 = 3.6; with a million,
+          4.99998.
+
+
+          The theoretical limit is k, and in reality it is never reached: here we **assumed zero stalls**,
+          which no real program guarantees, and ignored that the stages are not perfectly balanced.
+  answer:
+    - label:
+        it: Cicli con pipeline
+        en: Cycles with pipeline
+      value: 1004
+      tol: 1e-9
+    - label:
+        it: Speedup
+        en: Speedup
+      value: 4.98008
+      tol: 0.01
+  origin: originale
+- id: pipeline-es-3
+  topic: pipeline
+  objectives:
+    - pipeline.3
+  difficulty: 2
+  kind: static
+  statement:
+    it:
+      Data la sequenza `Add R3,R1,R2` · `Sub R5,R3,R4` · `And R6,R3,R7`, individua le dipendenze e disegna il
+      diagramma **senza** e **con** forwarding, contando i cicli in entrambi i casi.
+    en:
+      Given the sequence `Add R3,R1,R2` · `Sub R5,R3,R4` · `And R6,R3,R7`, identify the dependences and draw the
+      diagram **without** and **with** forwarding, counting the cycles in both cases.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          Cerca i registri scritti da un’istruzione e letti dalle successive. Poi chiediti in quale stadio il valore
+          è **disponibile** e in quale **serve**.
+        en:
+          Look for registers written by one instruction and read by the following ones. Then ask yourself in which
+          stage the value is **available** and in which it is **needed**.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          Dipendenze: R3 è scritto da I1 e letto sia da I2 sia da I3. Sono due dipendenze **RAW** (read after
+          write).
+
+
+          ```
+
+          SENZA FORWARDING (R3 leggibile solo dopo lo stadio W di I1)
+
+          ciclo:  1  2  3  4  5  6  7  8  9
+
+          I1      F  D  E  M  W
+
+          I2         F  D  ·  ·  E  M  W
+
+          I3            F  ·  ·  D  E  M  W
+                                          → 9 cicli
+
+          CON FORWARDING (il risultato passa dall'uscita della ALU)
+
+          ciclo:  1  2  3  4  5  6  7
+
+          I1      F  D  E  M  W
+
+          I2         F  D  E  M  W
+
+          I3            F  D  E  M  W
+                                    → 7 cicli
+          ```
+
+
+          Con il forwarding il risultato di I1 viene prelevato all’uscita dello stadio E e portato
+          direttamente all’ingresso della ALU al ciclo successivo: I2 non deve aspettare la scrittura nel
+          banco dei registri. Due cicli risparmiati su tre istruzioni — su un programma vero, un guadagno
+          enorme.
+        en: >-
+          Dependences: R3 is written by I1 and read by both I2 and I3. They are two **RAW** (read after write)
+          dependences.
+
+
+          ```
+
+          WITHOUT FORWARDING (R3 readable only after stage W of I1)
+
+          cycle:  1  2  3  4  5  6  7  8  9
+
+          I1      F  D  E  M  W
+
+          I2         F  D  ·  ·  E  M  W
+
+          I3            F  ·  ·  D  E  M  W
+                                          → 9 cycles
+
+          WITH FORWARDING (the result is taken from the ALU output)
+
+          cycle:  1  2  3  4  5  6  7
+
+          I1      F  D  E  M  W
+
+          I2         F  D  E  M  W
+
+          I3            F  D  E  M  W
+                                    → 7 cycles
+          ```
+
+
+          With forwarding the result of I1 is taken at the output of stage E and brought directly to the ALU
+          input in the next cycle: I2 does not have to wait for the register file write. Two cycles saved over
+          three instructions — on a real program, a huge gain.
+  answer:
+    - label:
+        it: Cicli senza forwarding
+        en: Cycles without forwarding
+      value: 9
+      tol: 1e-9
+    - label:
+        it: Cicli con forwarding
+        en: Cycles with forwarding
+      value: 7
+      tol: 1e-9
+  origin: originale
+- id: pipeline-es-4
+  topic: pipeline
+  objectives:
+    - pipeline.3
+  difficulty: 2
+  kind: static
+  statement:
+    it:
+      Perché la sequenza `Load R1,(R2)` · `Add R3,R1,R4` costa uno stallo **anche con il forwarding**? Come lo
+      elimina il compilatore?
+    en:
+      Why does the sequence `Load R1,(R2)` · `Add R3,R1,R4` cost a stall **even with forwarding**? How does the
+      compiler remove it?
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          Confronta lo stadio in cui il dato diventa disponibile con quello in cui serve. Per la Load non è lo
+          stesso caso di un’operazione aritmetica.
+        en:
+          Compare the stage in which the data becomes available with the one in which it is needed. For a Load it is
+          not the same case as for an arithmetic operation.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          ciclo:  1  2  3  4  5  6
+
+          Load    F  D  E  M  W
+                           ↓ il dato esce dalla MEMORIA alla fine di M
+          Add        F  D  ·  E  M  W
+                              ↑ serve all'inizio di E
+          ```
+
+
+          Per un’operazione aritmetica il risultato è pronto alla fine dello stadio E, cioè **un ciclo prima**
+          di quando serve all’istruzione seguente: il forwarding arriva in tempo. Per una `Load` il dato esce
+          dalla memoria alla fine dello stadio M, cioè **esattamente** quando servirebbe: nessun percorso di
+          forwarding può anticiparlo, perché significherebbe mandarlo indietro nel tempo.
+
+
+          Resta quindi **uno** stallo, e si chiama **load-use hazard**. Il compilatore lo elimina spostando in
+          quel buco un’istruzione indipendente:
+
+
+          ```
+
+          PRIMA                     DOPO
+
+          Load R1,(R2)              Load R1,(R2)
+
+          Add  R3,R1,R4    ←stallo  Sub  R7,R8,R9   ← istruzione indipendente
+
+          Sub  R7,R8,R9             Add  R3,R1,R4   ← ora il dato c'è
+
+          ```
+
+
+          Stesso risultato, un ciclo in meno: è il tipo di riordino che rende il compilatore parte integrante
+          delle prestazioni.
+        en: >-
+          ```
+
+          cycle:  1  2  3  4  5  6
+
+          Load    F  D  E  M  W
+                           ↓ the data leaves MEMORY at the end of M
+          Add        F  D  ·  E  M  W
+                              ↑ needed at the start of E
+          ```
+
+
+          For an arithmetic operation the result is ready at the end of stage E, i.e. **one cycle before** the
+          next instruction needs it: forwarding arrives in time. For a `Load` the data leaves memory at the
+          end of stage M, i.e. **exactly** when it would be needed: no forwarding path can bring it earlier,
+          because that would mean sending it back in time.
+
+
+          So **one** stall remains, and it is called the **load-use hazard**. The compiler removes it by
+          moving an independent instruction into that gap:
+
+
+          ```
+
+          BEFORE                    AFTER
+
+          Load R1,(R2)              Load R1,(R2)
+
+          Add  R3,R1,R4    ←stall   Sub  R7,R8,R9   ← independent instruction
+
+          Sub  R7,R8,R9             Add  R3,R1,R4   ← now the data is there
+
+          ```
+
+
+          Same result, one cycle less: it is the kind of reordering that makes the compiler an integral part
+          of performance.
+  origin: originale
+- id: pipeline-es-5
+  topic: pipeline
+  objectives:
+    - pipeline.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: In una pipeline a 5 stadi l’esito di un salto si conosce alla fine del **terzo** stadio. Il 20 % delle
+      istruzioni sono salti e di questi il 60 % viene preso. Calcola il **CPI medio** supponendo che, quando
+      il salto è preso, si perdano le istruzioni già prelevate.
+    en: In a 5-stage pipeline the outcome of a branch is known at the end of the **third** stage. 20 % of
+      instructions are branches and 60 % of these are taken. Compute the **average CPI**, assuming that when
+      the branch is taken the instructions already fetched are lost.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          'Conta quante istruzioni sbagliate sono entrate in pipeline prima che l’esito fosse noto: quelle vanno
+          annullate, e ogni annullamento è un ciclo perso.'
+        en:
+          'Count how many wrong instructions entered the pipeline before the outcome was known: those must be
+          cancelled, and every cancellation is a lost cycle.'
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          Se l’esito si conosce alla fine dello stadio 3, nel frattempo sono entrate le istruzioni ai cicli 2
+          e 3: **due** istruzioni da annullare quando il salto è preso. Quando non è preso, la sequenza
+          proseguiva già correttamente e non si perde nulla.
+
+
+          ```
+
+          penalità = 2 cicli, ma solo sui salti PRESI
+
+
+          CPI = 1 + (frazione di salti) × (frazione presi) × penalità
+              = 1 + 0,20 × 0,60 × 2
+              = 1 + 0,24 = 1,24
+          ```
+
+
+          Un 24 % di cicli in più rispetto all’ideale, solo per i salti. Le contromisure: **anticipare** il
+          calcolo della condizione a uno stadio precedente (riduce la penalità), **predire** l’esito e
+          proseguire sul ramo previsto (annulla solo quando la previsione sbaglia), o riempire i cicli con il
+          **delay slot**, lasciando al compilatore il compito di trovare istruzioni utili da metterci.
+        en: >-
+          If the outcome is known at the end of stage 3, in the meantime the instructions of cycles 2 and 3
+          have entered: **two** instructions to cancel when the branch is taken. When it is not taken, the
+          sequence was already proceeding correctly and nothing is lost.
+
+
+          ```
+
+          penalty = 2 cycles, but only on TAKEN branches
+
+
+          CPI = 1 + (fraction of branches) × (fraction taken) × penalty
+              = 1 + 0.20 × 0.60 × 2
+              = 1 + 0.24 = 1.24
+          ```
+
+
+          24 % more cycles than ideal, for branches alone. The countermeasures: **computing** the condition
+          earlier, in a previous stage (reduces the penalty), **predicting** the outcome and proceeding on the
+          predicted path (cancelling only when the prediction is wrong), or filling the cycles with the
+          **delay slot**, leaving the compiler the task of finding useful instructions to put there.
+  answer:
+    - label:
+        it: CPI medio
+        en: Average CPI
+      value: 1.24
+      tol: 0.000001
+  origin: originale
+- id: gen-cicli-pipeline
+  topic: pipeline
+  objectives:
+    - pipeline.1
+  difficulty: 1
+  kind: generated
+  generator: fondamenti-informatica/cicli-pipeline
+  origin: originale
+- id: mcq-pipe-01
+  topic: pipeline
+  objectives:
+    - pipeline.1
+    - pipeline.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Il miglioramento del pipelining deriva da:'
+    en: 'The improvement brought by pipelining comes from:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Sovrapposizione (parallelismo) delle fasi delle istruzioni
+        en: Overlapping (parallelism) of the instruction phases
+  choices:
+    - text:
+        it: Clock più veloce
+        en: A faster clock
+      correct: false
+    - text:
+        it: Sovrapposizione (parallelismo) delle fasi delle istruzioni
+        en: Overlapping (parallelism) of the instruction phases
+      correct: true
+    - text:
+        it: Meno registri
+        en: Fewer registers
+      correct: false
+    - text:
+        it: Cache più grande
+        en: A larger cache
+      correct: false
+  origin: originale
+- id: mcq-pipe-02
+  topic: pipeline
+  objectives:
+    - pipeline.1
+    - pipeline.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'La dipendenza dai dati in pipeline si mitiga con:'
+    en: 'Data dependence in a pipeline is mitigated with:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Operand forwarding
+        en: Operand forwarding
+  choices:
+    - text:
+        it: Operand forwarding
+        en: Operand forwarding
+      correct: true
+    - text:
+        it: Aumento del clock
+        en: Raising the clock
+      correct: false
+    - text:
+        it: Riduzione dei registri
+        en: Reducing the registers
+      correct: false
+    - text:
+        it: Disattivare la cache
+        en: Disabling the cache
+      correct: false
+  origin: originale
+- id: mcq-pipe-05
+  topic: pipeline
+  objectives:
+    - pipeline.1
+    - pipeline.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Quale hazard nasce dal fatto che dopo un salto non si sa quale istruzione prelevare?
+    en: Which hazard arises because after a branch it is not known which instruction to fetch?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Di controllo
+        en: Control
+  choices:
+    - text:
+        it: Strutturale
+        en: Structural
+      correct: false
+    - text:
+        it: Sui dati
+        en: Data
+      correct: false
+    - text:
+        it: Di controllo
+        en: Control
+      correct: true
+    - text:
+        it: Di parità
+        en: Parity
+      correct: false
+  origin: originale
+- id: mcq-pipe-06
+  topic: pipeline
+  objectives:
+    - pipeline.1
+    - pipeline.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Nella formula `T = (N × S) / R`, che cosa rappresenta `S`?
+    en: In the formula `T = (N × S) / R`, what does `S` represent?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: I cicli di clock medi per istruzione (CPI)
+        en: The average clock cycles per instruction (CPI)
+  choices:
+    - text:
+        it: La frequenza di clock
+        en: The clock frequency
+      correct: false
+    - text:
+        it: I cicli di clock medi per istruzione (CPI)
+        en: The average clock cycles per instruction (CPI)
+      correct: true
+    - text:
+        it: Il numero di stadi della pipeline
+        en: The number of pipeline stages
+      correct: false
+    - text:
+        it: La dimensione della cache
+        en: The cache size
+      correct: false
+  origin: originale
+- id: mcq-pipe-07
+  topic: pipeline
+  objectives:
+    - pipeline.1
+    - pipeline.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Con una pipeline a k stadi, lo speedup ideale rispetto al caso non pipelined è:'
+    en: 'With a k-stage pipeline, the ideal speedup over the non-pipelined case is:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: k
+        en: k
+  choices:
+    - text:
+        it: '2'
+        en: '2'
+      correct: false
+    - text:
+        it: k
+        en: k
+      correct: true
+    - text:
+        it: k²
+        en: k²
+      correct: false
+    - text:
+        it: Indipendente da k
+        en: Independent of k
+      correct: false
+  origin: originale
+- id: mcq-pipe-08
+  topic: pipeline
+  objectives:
+    - pipeline.1
+    - pipeline.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Il pipelining migliora soprattutto:'
+    en: 'Pipelining mainly improves:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Il throughput, cioè le istruzioni completate per unità di tempo
+        en: Throughput, i.e. the instructions completed per unit of time
+  choices:
+    - text:
+        it: La latenza della singola istruzione
+        en: The latency of a single instruction
+      correct: false
+    - text:
+        it: Il throughput, cioè le istruzioni completate per unità di tempo
+        en: Throughput, i.e. the instructions completed per unit of time
+      correct: true
+    - text:
+        it: La dimensione del codice
+        en: Code size
+      correct: false
+    - text:
+        it: Il consumo energetico
+        en: Energy consumption
+      correct: false
+  origin: originale
+- id: schema-pipeline-5-stadi
+  topic: pipeline
+  objectives:
+    - pipeline.1
+    - pipeline.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Percorso dati a pipeline di cinque stadi»: scrivi per ogni posizione numerata
+      l'etichetta giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Arbitraggio · Decodifica (D) · Esecuzione (E) · Interruzione · Memoria (M) · Predizione ·
+      Prelievo (F) · Rinvio · Scrittura (W)
+    en: >-
+      Complete the diagram “Five-stage pipelined datapath”: for each numbered position write the right label.
+      The list contains more labels than positions.
+
+
+      Labels: Arbitration · Decode (D) · Execute (E) · Fetch (F) · Forwarding · Interrupt · Memory (M) ·
+      Prediction · Write-back (W)
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 220" role="img"
+        aria-labelledby="ex-pipeline-5-stadi-t ex-pipeline-5-stadi-d"
+        style="width:100%;height:auto;max-width:660px"><title id="ex-pipeline-5-stadi-t">Percorso dati a
+        pipeline di cinque stadi</title><desc id="ex-pipeline-5-stadi-d">Schema con 5 posizioni numerate da
+        completare.</desc><defs><marker id="ex-pipeline-5-stadi-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="25" y="60" width="100"
+        height="70" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="145" y="60" width="100" height="70" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="265" y="60" width="100" height="70" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="385" y="60" width="100" height="70" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="505" y="60" width="100" height="70" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="128" y="50" width="14" height="90" rx="2"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="248" y="50" width="14" height="90" rx="2"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="368" y="50" width="14" height="90" rx="2"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="488" y="50" width="14" height="90" rx="2"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-pipeline-5-stadi-arrow)" x1="0" y1="95" x2="25" y2="95"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-pipeline-5-stadi-arrow)" x1="605" y1="95" x2="640" y2="95"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="25" y1="170" x2="605" y2="170"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="315" y="190" font-size="11">registri di stadio · un colpo di clock per stadio</text><circle cx="87" cy="95" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="87" y="95" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="195" cy="95" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="195" y="95" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="315" cy="95" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="315" y="95" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="435" cy="95" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="435" y="95" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="555" cy="95" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="555" y="95" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 220" role="img"
+        aria-labelledby="ex-pipeline-5-stadi-t ex-pipeline-5-stadi-d"
+        style="width:100%;height:auto;max-width:660px"><title id="ex-pipeline-5-stadi-t">Five-stage pipelined
+        datapath</title><desc id="ex-pipeline-5-stadi-d">Diagram with 5 numbered positions to fill
+        in.</desc><defs><marker id="ex-pipeline-5-stadi-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="25" y="60" width="100"
+        height="70" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="145" y="60" width="100" height="70" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="265" y="60" width="100" height="70" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="385" y="60" width="100" height="70" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="505" y="60" width="100" height="70" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="128" y="50" width="14" height="90" rx="2"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="248" y="50" width="14" height="90" rx="2"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="368" y="50" width="14" height="90" rx="2"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="488" y="50" width="14" height="90" rx="2"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-pipeline-5-stadi-arrow)" x1="0" y1="95" x2="25" y2="95"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-pipeline-5-stadi-arrow)" x1="605" y1="95" x2="640" y2="95"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="25" y1="170" x2="605" y2="170"/>
+              <text style="fill:var(--text-muted);font-family:var(--font-mono);text-anchor:middle" x="315" y="190" font-size="11">stage registers · one clock cycle per stage</text><circle cx="87" cy="95" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="87" y="95" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="195" cy="95" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="195" y="95" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="315" cy="95" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="315" y="95" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="435" cy="95" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="435" y="95" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="555" cy="95" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="555" y="95" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Prelievo (F)
+          2. Decodifica (D)
+          3. Esecuzione (E)
+          4. Memoria (M)
+          5. Scrittura (W)
+        en: |-
+          1. Fetch (F)
+          2. Decode (D)
+          3. Execute (E)
+          4. Memory (M)
+          5. Write-back (W)
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Prelievo (F)
+      kind: text
+      accept:
+        - Fetch (F)
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Decodifica (D)
+      kind: text
+      accept:
+        - Decode (D)
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Esecuzione (E)
+      kind: text
+      accept:
+        - Execute (E)
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Memoria (M)
+      kind: text
+      accept:
+        - Memory (M)
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Scrittura (W)
+      kind: text
+      accept:
+        - Write-back (W)
+  origin: originale
+- id: schema-superscalare
+  topic: pipeline
+  objectives:
+    - pipeline.1
+    - pipeline.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Completa lo schema «Processore superscalare con due unità di esecuzione»: scrivi per ogni posizione
+      numerata l'etichetta giusta. L'elenco contiene più etichette delle posizioni.
+
+
+      Etichette: Cache di primo livello · Coda delle istruzioni · Contatore di passo · Predittore di salto ·
+      Scrittura dei risultati · TLB · Unità aritmetica · Unità di distribuzione · Unità di prelievo · Unità
+      load/store
+    en: >-
+      Complete the diagram “Superscalar processor with two execution units”: for each numbered position write
+      the right label. The list contains more labels than positions.
+
+
+      Labels: Arithmetic unit · Branch predictor · Dispatch unit · Fetch unit · First-level cache ·
+      Instruction queue · Load/store unit · Result write-back · Step counter · TLB
+  figure:
+    svg:
+      it: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img"
+        aria-labelledby="ex-superscalare-t ex-superscalare-d"
+        style="width:100%;height:auto;max-width:640px"><title id="ex-superscalare-t">Processore superscalare
+        con due unità di esecuzione</title><desc id="ex-superscalare-d">Schema con 6 posizioni numerate da
+        completare.</desc><defs><marker id="ex-superscalare-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="30" y="25" width="120"
+        height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="250" y="25" width="200" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="290" y1="25" x2="290" y2="65"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="330" y1="25" x2="330" y2="65"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="370" y1="25" x2="370" y2="65"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="410" y1="25" x2="410" y2="65"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-superscalare-arrow)" x1="150" y1="45" x2="250" y2="45"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-superscalare-arrow)" x1="90" y1="65" x2="90" y2="155"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="30" y="155" width="120" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="270" y="100" width="180" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="270" y="210" width="180" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="220" y="100" width="20" height="40" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="220" y="210" width="20" height="40" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="480" y="100" width="20" height="40" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="480" y="210" width="20" height="40" rx="3"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-superscalare-arrow)" x1="150" y1="165" x2="220" y2="120"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-superscalare-arrow)" x1="150" y1="185" x2="220" y2="230"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-superscalare-arrow)" x1="450" y1="120" x2="480" y2="120"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-superscalare-arrow)" x1="450" y1="230" x2="480" y2="230"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="500" y="155" width="120" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="500" y1="120" x2="560" y2="120"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="500" y1="230" x2="560" y2="230"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="560" y1="120" x2="560" y2="155"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="560" y1="195" x2="560" y2="230"/><circle cx="90" cy="45" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="90" y="45" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="350" cy="45" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="350" y="45" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="90" cy="175" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="90" y="175" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="360" cy="120" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="360" y="120" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="360" cy="230" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="360" y="230" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="560" cy="175" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="560" y="175" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text></svg>
+      en: >-
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img"
+        aria-labelledby="ex-superscalare-t ex-superscalare-d"
+        style="width:100%;height:auto;max-width:640px"><title id="ex-superscalare-t">Superscalar processor
+        with two execution units</title><desc id="ex-superscalare-d">Diagram with 6 numbered positions to fill
+        in.</desc><defs><marker id="ex-superscalare-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"
+        style="fill:var(--text-muted)"/></marker></defs><rect
+        style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="30" y="25" width="120"
+        height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="250" y="25" width="200" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="290" y1="25" x2="290" y2="65"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="330" y1="25" x2="330" y2="65"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="370" y1="25" x2="370" y2="65"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="410" y1="25" x2="410" y2="65"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-superscalare-arrow)" x1="150" y1="45" x2="250" y2="45"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-superscalare-arrow)" x1="90" y1="65" x2="90" y2="155"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="30" y="155" width="120" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="270" y="100" width="180" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="270" y="210" width="180" height="40" rx="6"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="220" y="100" width="20" height="40" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="220" y="210" width="20" height="40" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="480" y="100" width="20" height="40" rx="3"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="480" y="210" width="20" height="40" rx="3"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-superscalare-arrow)" x1="150" y1="165" x2="220" y2="120"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-superscalare-arrow)" x1="150" y1="185" x2="220" y2="230"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-superscalare-arrow)" x1="450" y1="120" x2="480" y2="120"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" marker-end="url(#ex-superscalare-arrow)" x1="450" y1="230" x2="480" y2="230"/>
+              <rect style="fill:var(--surface-2);stroke:var(--border-strong);stroke-width:1.5" x="500" y="155" width="120" height="40" rx="6"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="500" y1="120" x2="560" y2="120"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="500" y1="230" x2="560" y2="230"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="560" y1="120" x2="560" y2="155"/>
+              <line style="stroke:var(--text-muted);stroke-width:1.5;fill:none" x1="560" y1="195" x2="560" y2="230"/><circle cx="90" cy="45" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="90" y="45" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">1</text><circle cx="350" cy="45" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="350" y="45" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">2</text><circle cx="90" cy="175" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="90" y="175" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">3</text><circle cx="360" cy="120" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="360" y="120" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">4</text><circle cx="360" cy="230" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="360" y="230" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">5</text><circle cx="560" cy="175" r="11" style="fill:var(--surface);stroke:var(--accent);stroke-width:1.5"/><text x="560" y="175" font-size="12" font-weight="700" dominant-baseline="central" style="fill:var(--accent-strong);font-family:var(--font-sans);text-anchor:middle">6</text></svg>
+  steps:
+    - title:
+        it: Lo schema completo
+        en: The complete diagram
+      body:
+        it: |-
+          1. Unità di prelievo
+          2. Coda delle istruzioni
+          3. Unità di distribuzione
+          4. Unità aritmetica
+          5. Unità load/store
+          6. Scrittura dei risultati
+        en: |-
+          1. Fetch unit
+          2. Instruction queue
+          3. Dispatch unit
+          4. Arithmetic unit
+          5. Load/store unit
+          6. Result write-back
+  answer:
+    - label:
+        it: Posizione 1
+        en: Position 1
+      value: Unità di prelievo
+      kind: text
+      accept:
+        - Fetch unit
+    - label:
+        it: Posizione 2
+        en: Position 2
+      value: Coda delle istruzioni
+      kind: text
+      accept:
+        - Instruction queue
+    - label:
+        it: Posizione 3
+        en: Position 3
+      value: Unità di distribuzione
+      kind: text
+      accept:
+        - Dispatch unit
+    - label:
+        it: Posizione 4
+        en: Position 4
+      value: Unità aritmetica
+      kind: text
+      accept:
+        - Arithmetic unit
+    - label:
+        it: Posizione 5
+        en: Position 5
+      value: Unità load/store
+      kind: text
+      accept:
+        - Load/store unit
+    - label:
+        it: Posizione 6
+        en: Position 6
+      value: Scrittura dei risultati
+      kind: text
+      accept:
+        - Result write-back
+  origin: originale

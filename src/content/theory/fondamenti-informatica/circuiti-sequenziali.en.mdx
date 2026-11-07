@@ -1,0 +1,174 @@
+---
+course: fondamenti-informatica
+topic: circuiti-sequenziali
+lang: en
+---
+
+import Schema from '../../../courses/fondamenti-informatica/components/Schema.astro';
+
+<Callout tone="ok" title="In two minutes">
+
+<div data-note-id="teoria/circuiti-sequenziali/in-due-minuti">
+
+- **Combinational**: the output depends only on the inputs now. **Sequential**: it also depends on the **state**, i.e. on the past.
+- **Latch** = **level**-sensitive (transparent while the enable is active). **Flip-flop** = **edge**-sensitive.
+- SR has the forbidden combination S = R = 1; D removes it; JK uses it to toggle; T toggles on command.
+- **Master-slave**: two latches in cascade with opposite clocks — data enters on one edge and comes out on the other, so it is sampled once per period.
+- Shift registers and counters are built with D or T flip-flops; access can be serial or parallel.
+- **Setup** and **hold** must be respected around the edge: violating them leads to metastability, i.e. an output that cannot make up its mind.
+
+</div>
+
+</Callout>
+
+<Layer kind="intuizione">
+
+<div data-note-id="teoria/circuiti-sequenziali/da-dove-si-parte">
+
+## Where we start
+
+**What you need to know first:** logic gates from the module on [Boolean algebra](../algebra-di-boole/). Having seen [combinational networks](../reti-combinatorie/) helps, but is not essential.
+
+**What problem it solves.** So far every circuit we have seen forgets everything: the input changes, the output changes, and no trace of the past remains. But a computer must **remember**: the value of a register, the contents of a cell, the point of the program it has reached. We need a circuit that, once the input is removed, **keeps** the value. It is obtained with a single idea: take the output and bring it back to the input, creating a loop that sustains itself. From there come latches, flip-flops, registers and counters — and with them the notion of **state**.
+
+**New words.** The **state** is what the circuit remembers. **Feedback** is the output brought back to the input. The **clock** is the periodic signal that sets when to update the state; the **level** is its value (high or low), the **edge** is the instant at which it changes. A **transparent** circuit lets the input through to the output while it is enabled; an edge-sensitive one samples only at the instant of the change.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="teoria/circuiti-sequenziali/combinatorio-vs-sequenziale">
+
+## Combinational vs sequential
+
+In a **combinational** network the output depends only on the current inputs. In a **sequential** network it also depends on the **state**, i.e. on past history: a memory element is needed, obtained with **feedback** (the output re-enters as an input).
+
+</div>
+
+<div data-note-id="teoria/circuiti-sequenziali/il-latch-sr">
+
+## The SR latch
+
+Two cross-coupled NOR gates with feedback. With `S=1, R=0` the output goes to 1 (set); with `S=0, R=1` it goes to 0 (reset); with `S=R=0` it **holds** the previous state — that is the memory. The combination `S=R=1` is **forbidden**: it forces both outputs to the same value and, on release, the final state is unpredictable (it depends on which gate switches first).
+
+</div>
+
+<div data-note-id="teoria/circuiti-sequenziali/il-latch-d-e-il-problema-della-trasparenza">
+
+## The D latch and the transparency problem
+
+The D latch removes the forbidden state by generating `R` as the negation of `S`: there is a single data input. With an enable signal (**gated latch**) the data passes only while the clock is high — but as long as it stays high the latch is **transparent**: every change of the input crosses the device. In a network with feedback this causes races and unstable states.
+
+</div>
+
+<div data-note-id="teoria/circuiti-sequenziali/flip-flop-il-fronte-non-il-livello">
+
+## Flip-flop: the edge, not the level
+
+A **flip-flop** is a bistable element that stores **1 bit** and switches only on the clock **edge** (edge-triggered), not on the level. The sampling instant is therefore precise and predictable.
+
+- **Synchronous**: they change state only on the clock edge.
+- **Asynchronous**: they react immediately to the inputs, without a clock. Typical are the preset/clear inputs, which act regardless.
+
+</div>
+
+<div data-note-id="teoria/circuiti-sequenziali/master-slave">
+
+## Master-slave
+
+Two D latches in series with opposite clocks: the **master** samples the input while the clock is high, the **slave** transfers its value to the output when the clock switches. Since the two stages are **never transparent at the same time**, the input cannot cross the device in the same cycle: races are avoided and the output changes at a single well-defined instant.
+
+</div>
+
+<Callout tone="esame" title="The types that come up in the exam">
+
+<div data-note-id="teoria/circuiti-sequenziali/i-tipi-che-escono-all-esame">
+
+- **D**: `Q⁺ = D`. It is the elementary register.
+- **JK**: `J=K=0` holds, `J=1,K=0` set, `J=0,K=1` reset, `J=K=1` **toggles**. It has no forbidden combinations.
+- **T**: `T=0` holds, `T=1` toggles. It is a JK with the inputs tied together; it is the building block of counters.
+
+</div>
+
+</Callout>
+
+<div data-note-id="teoria/circuiti-sequenziali/registri-e-contatori">
+
+## Registers and counters
+
+N D flip-flops in parallel on the same clock form an N-bit **register**. Connecting them in cascade, with the output of one into the input of the next, gives a **shift register**, used to multiply/divide by 2 and for serial-to-parallel conversion.
+
+A **counter** is built with T flip-flops. In the **asynchronous** (ripple) version the clock of each stage is the output of the previous one: simple, but delays accumulate and the outputs do not change all together. In the **synchronous** version they all share the same clock and combinational logic decides who toggles: faster and without spurious states.
+
+</div>
+
+<Callout tone="esame" title="Variants that come up in the exam">
+
+<div data-note-id="teoria/circuiti-sequenziali/varianti-che-escono-all-esame">
+
+- **SR latch with NAND**: same structure as the NOR one but with inverted logic — the inputs are active **low** and the forbidden combination is `S=R=0`.
+- **Parallel-load shift register**: besides shifting, it can be loaded in one go on all bits. A multiplexer in front of each flip-flop chooses between “take from the neighbour” (shift) and “take from the parallel input” (load). It is the bridge between serial and parallel formats.
+- **Up/down counter**: the combinational logic between stages is switched by a direction line, so the same circuit counts forwards or backwards.
+
+</div>
+
+</Callout>
+
+<div data-note-id="teoria/circuiti-sequenziali/tempi">
+
+## Timing
+
+The data must be stable a little **before** the edge (_setup time_) and stay stable a little **after** (_hold time_). The minimum clock period is bounded by the longest propagation delay between two registers, plus the setup.
+
+</div>
+
+## Diagrams
+
+<Schema id="master-slave" lang="en" num="1" />
+
+<Schema id="registro-scorrimento" lang="en" num="2" />
+
+<Schema id="contatore-3bit" lang="en" num="3" />
+
+<Schema id="macchina-stati" lang="en" num="4" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div data-note-id="teoria/circuiti-sequenziali/esempio-svolto">
+
+## Worked example
+
+**Same input, two different components.** The clock is high in the first half of the period; D changes twice _during_ that half:
+
+```
+clock   ‾‾‾|___|‾‾‾|___
+D       0  1 0 1   1
+D latch 0  1 0 1   1     ← transparent: follows D for the whole high level
+D-FF ↑  0  1 1 1   1     ← samples ONLY on the rising edge
+```
+
+The latch followed every change; the flip-flop recorded only the value present **on the edge**. That is exactly why the registers of a pipeline are flip-flops: they guarantee one advance per period, whatever the combinational logic does in the meantime.
+
+**Modulo-6 counter** (0…5) with D flip-flops: count in binary on 3 bits and detect with an AND the pattern `110` (i.e. 6), using its output to reset the counter. The count becomes 0,1,2,3,4,5,0,… — and the same scheme with `1010` gives modulo 10.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="teoria/circuiti-sequenziali/errori-tipici">
+
+## Common mistakes
+
+- Saying “the latch is slower”: it is not a matter of speed but of **when** it samples — level versus edge.
+- Forgetting that in the JK the combination J = K = 1 **toggles** the state instead of being forbidden: that is the reason it exists.
+- Building an asynchronous counter (each flip-flop driven by the output of the previous one) and being surprised by **glitches**: the delays add up and the outputs do not change all together.
+
+</div>
+
+</Layer>

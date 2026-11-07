@@ -1,0 +1,870 @@
+- id: numeri-binari-es-1
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Converti **173₁₀** in binario, ottale ed esadecimale.
+    en: Convert **173₁₀** to binary, octal and hexadecimal.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          Per il binario, divisioni successive per 2 leggendo i resti dal basso — oppure la somma di potenze. Poi
+          dal binario si passa a ottale e esadecimale **raggruppando i bit**, rispettivamente a tre a tre e a
+          quattro a quattro, sempre partendo da destra.
+        en:
+          For binary, successive divisions by 2 reading the remainders from the bottom — or the sum of powers. Then
+          from binary you get octal and hexadecimal by **grouping the bits**, three by three and four by four
+          respectively, always starting from the right.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          173 = 128 + 32 + 8 + 4 + 1
+              = 1010 1101₂
+
+          ottale      → 10 101 101 → 0 2 5 5   =  255₈
+
+          esadecimale → 1010 1101  → A D       =  AD₁₆
+
+          ```
+
+
+          Il raggruppamento funziona perché 8 = 2³ e 16 = 2⁴: tre bit sono esattamente una cifra ottale,
+          quattro una esadecimale. Nel gruppo più a sinistra si aggiungono zeri in testa se non è completo.
+        en: >-
+          ```
+
+          173 = 128 + 32 + 8 + 4 + 1
+              = 1010 1101₂
+
+          octal       → 10 101 101 → 0 2 5 5   =  255₈
+
+          hexadecimal → 1010 1101  → A D       =  AD₁₆
+
+          ```
+
+
+          Grouping works because 8 = 2³ and 16 = 2⁴: three bits are exactly one octal digit, four are one
+          hexadecimal digit. In the leftmost group, pad with leading zeros if it is not complete.
+  answer:
+    - label:
+        it: Binario
+        en: Binary
+      value: '10101101'
+      kind: text
+      accept:
+        - 1010 1101
+    - label:
+        it: Ottale
+        en: Octal
+      value: 255
+      tol: 1e-9
+    - label:
+        it: Esadecimale
+        en: Hexadecimal
+      value: AD
+      kind: text
+      accept:
+        - '0xAD'
+        - ADh
+        - AD16
+  origin: originale
+- id: numeri-binari-es-2
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: Rappresenta **−87** in complemento a 2 su 8 bit e scrivi il risultato in esadecimale.
+    en: Represent **−87** in two's complement on 8 bits and write the result in hexadecimal.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          'Tre passaggi: il modulo in binario, l’inversione di tutti i bit, la somma di 1. Il segno non è un bit a
+          parte da mettere «a mano».'
+        en:
+          'Three steps: the magnitude in binary, inverting every bit, adding 1. The sign is not a separate bit to
+          set “by hand”.'
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+
+          87 = 64 + 16 + 4 + 2 + 1   →  0101 0111
+
+          inverti                    →  1010 1000
+
+          somma 1                    →  1010 1001  =  A9₁₆
+
+          ```
+
+
+          Verifica veloce: il bit più significativo è 1, quindi il numero è negativo. Rileggendolo — inverti e
+          somma 1 — si torna a 0101 0111 = 87, quindi il valore è −87. ✓
+        en: >-
+          ```
+
+          87 = 64 + 16 + 4 + 2 + 1   →  0101 0111
+
+          invert                     →  1010 1000
+
+          add 1                      →  1010 1001  =  A9₁₆
+
+          ```
+
+
+          Quick check: the most significant bit is 1, so the number is negative. Reading it back — invert and
+          add 1 — gives 0101 0111 = 87 again, so the value is −87. ✓
+  answer:
+    - label:
+        it: CP2 su 8 bit
+        en: 8-bit two's complement
+      value: '10101001'
+      kind: text
+      accept:
+        - 1010 1001
+    - label:
+        it: Esadecimale
+        en: Hexadecimal
+      value: A9
+      kind: text
+      accept:
+        - '0xA9'
+        - A9h
+        - A916
+  origin: originale
+- id: numeri-binari-es-3
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.5
+  difficulty: 2
+  kind: static
+  statement:
+    it:
+      Su 8 bit, in complemento a 2, calcola **100 + 45**. Indica il valore che la macchina legge, il **riporto
+      uscente** e il flag di **overflow**.
+    en:
+      On 8 bits, in two's complement, compute **100 + 45**. State the value the machine reads, the **carry-out**
+      and the **overflow** flag.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          Somma i due numeri come se fossero senza segno, poi guarda separatamente il riporto che *entra* nel bit di
+          segno e quello che *esce*.
+        en:
+          Add the two numbers as if they were unsigned, then look separately at the carry *entering* the sign bit
+          and the one *leaving* it.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          ```
+            0110 0100   (100)
+          + 0010 1101   (45)
+
+          ─────────────
+            1001 0001
+          ```
+
+
+          Il risultato ha il bit più significativo a 1, quindi letto in complemento a 2 vale −111 (inverti e
+          somma 1: 0110 1111 = 111). Ma 100 + 45 fa 145, che su 8 bit in CP2 **non è rappresentabile**: il
+          massimo è +127.
+
+
+          ```
+
+          riporto uscente        = 0
+
+          riporto entrante segno = 1
+
+          overflow = 1 ⊕ 0       = 1
+
+          ```
+
+
+          Ecco perché i due flag vanno tenuti distinti: qui il riporto uscente è **zero** e ciononostante c’è
+          overflow. La regola dei segni conferma: due addendi positivi con risultato negativo.
+        en: >-
+          ```
+            0110 0100   (100)
+          + 0010 1101   (45)
+
+          ─────────────
+            1001 0001
+          ```
+
+
+          The result has the most significant bit set, so read in two's complement it is −111 (invert and add
+          1: 0110 1111 = 111). But 100 + 45 is 145, which on 8 bits in two's complement is **not
+          representable**: the maximum is +127.
+
+
+          ```
+
+          carry-out              = 0
+
+          carry into sign bit    = 1
+
+          overflow = 1 ⊕ 0       = 1
+
+          ```
+
+
+          This is why the two flags must be kept apart: here the carry-out is **zero** and yet there is
+          overflow. The sign rule confirms it: two positive addends with a negative result.
+  answer:
+    - label:
+        it: Valore letto in CP2
+        en: Value read in two's complement
+      value: -111
+      tol: 1e-9
+    - label:
+        it: Riporto uscente? (sì/no)
+        en: Carry-out? (yes/no)
+      value: no
+      kind: text
+      accept:
+        - n
+    - label:
+        it: Overflow? (sì/no)
+        en: Overflow? (yes/no)
+      value: sì
+      kind: text
+      accept:
+        - si
+        - s
+        - yes
+        - y
+  origin: originale
+- id: numeri-binari-es-4
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.2
+    - numeri-binari.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: Il numero `1011₂` è scritto in complemento a 2 su 4 bit. Quanto vale? Estendilo a 8 e a 16 bit.
+    en: The number `1011₂` is written in two's complement on 4 bits. What is its value? Extend it to 8 and 16
+      bits.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          'Prima leggi il valore: bit più significativo a 1 significa negativo. Poi ricorda che estendere non vuol
+          dire riempire di zeri.'
+        en:
+          'First read the value: most significant bit set means negative. Then remember that extending does not mean
+          padding with zeros.'
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          Lettura: 1011 ha il MSB a 1 → negativo. Inverti (0100) e somma 1 (0101 = 5), quindi vale **−5**.
+
+
+          ```
+
+          4 bit    1011
+
+          8 bit    1111 1011
+
+          16 bit   1111 1111 1111 1011
+
+          ```
+
+
+          Si replica il **bit di segno**, non lo zero. Verifica su 8 bit: inverti (0000 0100) e somma 1 → 0000
+          0101 = 5, quindi −5 ✓. Con gli zeri avresti ottenuto 0000 1011 = +11, cioè un altro numero.
+        en: >-
+          Reading: 1011 has the MSB set → negative. Invert (0100) and add 1 (0101 = 5), so it is **−5**.
+
+
+          ```
+
+          4 bits    1011
+
+          8 bits    1111 1011
+
+          16 bits   1111 1111 1111 1011
+
+          ```
+
+
+          You replicate the **sign bit**, not zero. Check on 8 bits: invert (0000 0100) and add 1 → 0000 0101
+          = 5, so −5 ✓. With zeros you would have obtained 0000 1011 = +11, a different number.
+  answer:
+    - label:
+        it: Valore
+        en: Value
+      value: -5
+      tol: 1e-9
+    - label:
+        it: Su 8 bit
+        en: On 8 bits
+      value: '11111011'
+      kind: text
+      accept:
+        - 1111 1011
+    - label:
+        it: Su 16 bit
+        en: On 16 bits
+      value: '1111111111111011'
+      kind: text
+      accept:
+        - 1111 1111 1111 1011
+  origin: originale
+- id: numeri-binari-es-5
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  difficulty: 2
+  kind: static
+  statement:
+    it:
+      Un abaco ha quattro aste, e su ogni asta si possono alzare da 0 a 4 palline. In che **base** conta? Scrivi
+      **89₁₀** su quell’abaco e di’ qual è il numero più grande rappresentabile.
+    en:
+      An abacus has four rods, and on each rod you can raise from 0 to 4 beads. In what **base** does it count?
+      Write **89₁₀** on that abacus and state the largest representable number.
+  steps:
+    - title:
+        it: Da dove si comincia
+        en: Where to start
+      body:
+        it:
+          Il numero di simboli disponibili per ogni posizione **è** la base. Poi si procede come per il binario,
+          dividendo per la base invece che per 2.
+        en:
+          The number of symbols available for each position **is** the base. Then proceed as for binary, dividing by
+          the base instead of by 2.
+    - title:
+        it: Svolgimento
+        en: Solution
+      body:
+        it: >-
+          Ogni asta ha cinque configurazioni (0, 1, 2, 3, 4): le cifre disponibili sono cinque, quindi la base
+          è **5**. Ogni asta pesa una potenza di 5: 1, 5, 25, 125.
+
+
+          ```
+
+          89 : 5 = 17  resto 4      ← cifra delle unità
+
+          17 : 5 =  3  resto 2
+           3 : 5 =  0  resto 3      ← cifra più significativa
+
+          89₁₀ = 324₅ = 3·25 + 2·5 + 4 = 75 + 10 + 4 ✓
+
+          ```
+
+
+          Il più grande è 4444₅ = 5⁴ − 1 = **624**. Vale la regola generale: con n posizioni in base b si
+          rappresentano bⁿ valori, da 0 a bⁿ − 1 — la stessa che dà 2⁸ = 256 valori su un byte.
+        en: >-
+          Each rod has five configurations (0, 1, 2, 3, 4): five digits are available, so the base is **5**.
+          Each rod weighs a power of 5: 1, 5, 25, 125.
+
+
+          ```
+
+          89 : 5 = 17  remainder 4      ← units digit
+
+          17 : 5 =  3  remainder 2
+           3 : 5 =  0  remainder 3      ← most significant digit
+
+          89₁₀ = 324₅ = 3·25 + 2·5 + 4 = 75 + 10 + 4 ✓
+
+          ```
+
+
+          The largest is 4444₅ = 5⁴ − 1 = **624**. The general rule holds: with n positions in base b you
+          represent bⁿ values, from 0 to bⁿ − 1 — the same rule that gives 2⁸ = 256 values in a byte.
+  answer:
+    - label:
+        it: Base
+        en: Base
+      value: 5
+      tol: 1e-9
+    - label:
+        it: 89 su quell’abaco
+        en: 89 on that abacus
+      value: 324
+      tol: 1e-9
+    - label:
+        it: Massimo rappresentabile (decimale)
+        en: Largest representable (decimal)
+      value: 624
+      tol: 1e-9
+  origin: originale
+- id: gen-complemento-a-2
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.2
+  difficulty: 1
+  kind: generated
+  generator: fondamenti-informatica/complemento-a-2
+  origin: originale
+- id: gen-decimale-esadecimale
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  difficulty: 1
+  kind: generated
+  generator: fondamenti-informatica/decimale-esadecimale
+  origin: originale
+- id: gen-intervallo-rappresentabile
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.3
+  difficulty: 1
+  kind: generated
+  generator: fondamenti-informatica/intervallo-rappresentabile
+  origin: originale
+- id: gen-somma-cp2-overflow
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.5
+  difficulty: 2
+  kind: generated
+  generator: fondamenti-informatica/somma-cp2-overflow
+  origin: originale
+- id: gen-cp2-a-mano
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.2
+    - numeri-binari.1
+  difficulty: 2
+  kind: generated
+  generator: fondamenti-informatica/cp2-a-mano
+  origin: originale
+- id: mcq-bin-01
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'La base del sistema numerico Maya è:'
+    en: 'The base of the Maya number system is:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: 20 (vigesimale)
+        en: 20 (vigesimal)
+  choices:
+    - text:
+        it: 10 (decimale)
+        en: 10 (decimal)
+      correct: false
+    - text:
+        it: 20 (vigesimale)
+        en: 20 (vigesimal)
+      correct: true
+    - text:
+        it: 16 (esadecimale)
+        en: 16 (hexadecimal)
+      correct: false
+    - text:
+        it: 8 (ottale)
+        en: 8 (octal)
+      correct: false
+  origin: originale
+- id: mcq-bin-02
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Uno shift a sinistra di un intero equivale a:'
+    en: 'A left shift of an integer is equivalent to:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Moltiplicazione per 2
+        en: Multiplication by 2
+  choices:
+    - text:
+        it: Divisione per 2
+        en: Division by 2
+      correct: false
+    - text:
+        it: Moltiplicazione per 2
+        en: Multiplication by 2
+      correct: true
+    - text:
+        it: Negazione
+        en: Negation
+      correct: false
+    - text:
+        it: Complemento a 1
+        en: Ones' complement
+      correct: false
+  origin: originale
+- id: mcq-bin-03
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Quali rappresentazioni hanno due codifiche dello zero?
+    en: Which representations have two encodings of zero?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Complemento a 1 e modulo-e-segno
+        en: Ones' complement and sign-magnitude
+  choices:
+    - text:
+        it: CP2
+        en: Two's complement
+      correct: false
+    - text:
+        it: Senza segno
+        en: Unsigned
+      correct: false
+    - text:
+        it: Complemento a 1 e modulo-e-segno
+        en: Ones' complement and sign-magnitude
+      correct: true
+    - text:
+        it: Esadecimale
+        en: Hexadecimal
+      correct: false
+  origin: originale
+- id: mcq-bin-04
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Eliminare il bit meno significativo di un intero senza segno equivale a:'
+    en: 'Dropping the least significant bit of an unsigned integer is equivalent to:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Dividere (intero) per 2
+        en: Dividing (integer) by 2
+  choices:
+    - text:
+        it: Moltiplicare per 2
+        en: Multiplying by 2
+      correct: false
+    - text:
+        it: Dividere (intero) per 2
+        en: Dividing (integer) by 2
+      correct: true
+    - text:
+        it: Negare
+        en: Negating
+      correct: false
+    - text:
+        it: Nulla
+        en: Nothing
+      correct: false
+  origin: originale
+- id: mcq-bin-05
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'In una rappresentazione Big Endian, il bit di segno si trova:'
+    en: 'In a Big Endian representation, the sign bit is found:'
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: All'inizio (byte più significativo)
+        en: At the start (most significant byte)
+  choices:
+    - text:
+        it: Alla fine
+        en: At the end
+      correct: false
+    - text:
+        it: All'inizio (byte più significativo)
+        en: At the start (most significant byte)
+      correct: true
+    - text:
+        it: Al centro
+        en: In the middle
+      correct: false
+    - text:
+        it: In un registro a parte
+        en: In a separate register
+      correct: false
+  origin: originale
+- id: mcq-bin-06
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Quante cifre esadecimali servono per rappresentare 33?
+    en: How many hexadecimal digits are needed to represent 33?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: '2'
+        en: '2'
+  choices:
+    - text:
+        it: '1'
+        en: '1'
+      correct: false
+    - text:
+        it: '2'
+        en: '2'
+      correct: true
+    - text:
+        it: '3'
+        en: '3'
+      correct: false
+    - text:
+        it: '4'
+        en: '4'
+      correct: false
+  origin: originale
+- id: mcq-bin-07
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Quale porta rileva l'overflow sommando due numeri con n bit?
+    en: Which gate detects overflow when adding two n-bit numbers?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: XOR
+        en: XOR
+  choices:
+    - text:
+        it: AND
+        en: AND
+      correct: false
+    - text:
+        it: OR
+        en: OR
+      correct: false
+    - text:
+        it: XOR
+        en: XOR
+      correct: true
+    - text:
+        it: NAND
+        en: NAND
+      correct: false
+  origin: originale
+- id: mcq-bin-08
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Come ti accorgi di un overflow sommando due positivi in CP2?
+    en: How do you notice an overflow when adding two positives in two's complement?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Ottieni un numero negativo
+        en: You get a negative number
+  choices:
+    - text:
+        it: Ottieni un numero negativo
+        en: You get a negative number
+      correct: true
+    - text:
+        it: Ottieni zero
+        en: You get zero
+      correct: false
+    - text:
+        it: Il risultato raddoppia
+        en: The result doubles
+      correct: false
+    - text:
+        it: Nessun segnale
+        en: No signal
+      correct: false
+  origin: originale
+- id: mcq-bin-09
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: "In CP2 l'overflow può verificarsi nella:"
+    en: "In two's complement overflow can occur in the:"
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Sottrazione di due discordi
+        en: Subtraction of two numbers of opposite sign
+  choices:
+    - text:
+        it: Somma di due discordi
+        en: Addition of two numbers of opposite sign
+      correct: false
+    - text:
+        it: Sottrazione di due discordi
+        en: Subtraction of two numbers of opposite sign
+      correct: true
+    - text:
+        it: Somma con lo zero
+        en: Addition with zero
+      correct: false
+    - text:
+        it: Divisione
+        en: Division
+      correct: false
+  origin: originale
+- id: mcq-bin-10
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Per estendere `1011` (CP2 su 4 bit) a 8 bit si deve:'
+    en: "To extend `1011` (4-bit two's complement) to 8 bits you must:"
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Replicare il bit di segno → 11111011
+        en: Replicate the sign bit → 11111011
+  choices:
+    - text:
+        it: Aggiungere zeri a sinistra → 00001011
+        en: Add zeros on the left → 00001011
+      correct: false
+    - text:
+        it: Replicare il bit di segno → 11111011
+        en: Replicate the sign bit → 11111011
+      correct: true
+    - text:
+        it: Aggiungere zeri a destra → 10110000
+        en: Add zeros on the right → 10110000
+      correct: false
+    - text:
+        it: Invertire i bit e sommare 1
+        en: Invert the bits and add 1
+      correct: false
+  origin: originale
+- id: mcq-bin-11
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Per dividere per 2 un numero negativo in CP2 serve uno shift a destra:'
+    en: "To divide a negative two's complement number by 2 you need a right shift that is:"
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: Aritmetico (replica il bit di segno)
+        en: Arithmetic (replicates the sign bit)
+  choices:
+    - text:
+        it: Logico (entra 0 da sinistra)
+        en: Logical (a 0 enters from the left)
+      correct: false
+    - text:
+        it: Aritmetico (replica il bit di segno)
+        en: Arithmetic (replicates the sign bit)
+      correct: true
+    - text:
+        it: Circolare
+        en: Circular
+      correct: false
+    - text:
+        it: A sinistra
+        en: To the left
+      correct: false
+  origin: originale
+- id: mcq-bin-12
+  topic: numeri-binari
+  objectives:
+    - numeri-binari.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: In CP2 su N bit, quale peso ha il bit più significativo?
+    en: In N-bit two's complement, what weight does the most significant bit have?
+  steps:
+    - title:
+        it: Risposta
+        en: Answer
+      body:
+        it: −2ᴺ⁻¹
+        en: −2ᴺ⁻¹
+  choices:
+    - text:
+        it: +2ᴺ⁻¹
+        en: +2ᴺ⁻¹
+      correct: false
+    - text:
+        it: −2ᴺ⁻¹
+        en: −2ᴺ⁻¹
+      correct: true
+    - text:
+        it: '+1'
+        en: '+1'
+      correct: false
+    - text:
+        it: 'Nessuno: indica solo il segno'
+        en: 'None: it only indicates the sign'
+      correct: false
+  origin: originale

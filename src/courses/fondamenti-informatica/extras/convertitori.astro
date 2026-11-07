@@ -1,0 +1,17 @@
+---
+/** Extra «Convertitori e sommatore binario»: banco di verifica per gli esercizi sul binario. */
+import Converters from '../sims/Converters';
+interface Props {
+  lang: 'it' | 'en';
+}
+const { lang } = Astro.props;
+---
+
+<div class="prose" data-note-id="extra/convertitori">
+  <p class="lead">
+    {lang === 'it'
+      ? 'Tre strumenti per controllare i conti fatti a mano: conversione in complemento a 2 ed esadecimale, somma con riporto uscente e overflow tenuti separati, intervalli rappresentabili su N bit. Servono a verificare, non a sostituire il procedimento: all’esame la macchina non c’è.'
+      : "Three tools for checking calculations done by hand: conversion to two's complement and hexadecimal, addition with carry-out and overflow kept separate, ranges representable on N bits. They are for checking, not for replacing the procedure: in the exam there is no machine."}
+  </p>
+</div>
+<Converters lang={lang} client:visible />
