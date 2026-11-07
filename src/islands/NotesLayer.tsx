@@ -46,6 +46,9 @@ function labelOf(el: HTMLElement): string {
     .slice(0, 80);
 }
 
+/** Contenitori di blocchi: stesso selettore di `.sh-note-btn--corner` in islands.css. */
+const CORNER = ':is(section, article, div)[data-note-id]';
+
 export default function NotesLayer({ scope, page, labels, root = 'main' }: NotesLayerProps) {
   const [notes, setNotes] = useState<NotesState | null>(null);
   const [editing, setEditing] = useState<{ id: string; label: string; anchor: string } | null>(null);
@@ -87,8 +90,12 @@ export default function NotesLayer({ scope, page, labels, root = 'main' }: Notes
             setDraft(notes.notes[id]?.text ?? '');
           });
           el.classList.add('sh-note-anchor');
-          // Negli elementi resi da altre isole il pulsante va nello slot vuoto dedicato.
-          (el.querySelector('[data-note-slot]') ?? el).append(btn);
+          // Negli elementi resi da altre isole il pulsante va nello slot vuoto dedicato;
+          // nei contenitori di blocchi va nell'angolo, nello spazio riservato dal CSS
+          // (nessuno spostamento del layout quando l'isola si idrata).
+          const slot = el.querySelector('[data-note-slot]');
+          if (!slot && el.matches(CORNER)) btn.classList.add('sh-note-btn--corner');
+          (slot ?? el).append(btn);
         }
         const next = el.nextElementSibling as HTMLElement | null;
         const hasPreview = next?.classList.contains('sh-note-preview') && next.dataset.noteFor === id;

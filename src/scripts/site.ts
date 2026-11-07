@@ -94,22 +94,30 @@ for (const btn of document.querySelectorAll<HTMLButtonElement>('[data-drawer-ope
 // ---- Formule in display più larghe della colonna: scorrono in orizzontale, quindi
 // devono essere raggiungibili da tastiera (WCAG 2.1.1). Il tabindex si mette solo
 // quando la formula trabocca davvero, per non aggiungere fermate inutili al Tab.
-function focusableOverflow(): void {
-  for (const el of document.querySelectorAll<HTMLElement>('.katex-display')) {
-    if (el.scrollWidth > el.clientWidth + 1) {
-      el.tabIndex = 0;
-    } else if (el.getAttribute('tabindex') === '0') {
-      el.removeAttribute('tabindex');
+// Un ResizeObserver su contenitore e formula ricalcola quando arrivano i font o
+// cambia la colonna: prima un solo controllo al caricamento poteva arrivare prima
+// dei font (axe intermittente: scrollable-region-focusable).
+function markScrollableMath(el: HTMLElement): void {
+  if (el.scrollWidth > el.clientWidth + 1) el.tabIndex = 0;
+  else if (el.getAttribute('tabindex') === '0') el.removeAttribute('tabindex');
+}
+{
+  const displays = document.querySelectorAll<HTMLElement>('.katex-display');
+  displays.forEach(markScrollableMath);
+  if (displays.length > 0 && 'ResizeObserver' in window) {
+    const ro = new ResizeObserver((entries) => {
+      for (const e of entries) {
+        const el = (e.target as HTMLElement).closest<HTMLElement>('.katex-display');
+        if (el) markScrollableMath(el);
+      }
+    });
+    for (const el of displays) {
+      ro.observe(el);
+      if (el.firstElementChild) ro.observe(el.firstElementChild);
     }
   }
+  void document.fonts?.ready.then(() => displays.forEach(markScrollableMath));
 }
-focusableOverflow();
-let overflowTimer: number | undefined;
-window.addEventListener('resize', () => {
-  window.clearTimeout(overflowTimer);
-  overflowTimer = window.setTimeout(focusableOverflow, 150);
-});
-document.fonts?.ready.then(focusableOverflow).catch(() => undefined);
 
 syncToggles();
 runMigrations();
@@ -127,16 +135,3 @@ const hasLegacyKeys = (): boolean => {
 if (hasLegacyKeys()) {
   void Promise.all(Object.values(courseMigrations).map((load) => load())).then(() => runMigrations());
 }
-
-// Formule display più larghe della colonna: scorrono in orizzontale, quindi devono
-// essere raggiungibili da tastiera (WCAG 2.1.1). Solo quelle che scorrono davvero.
-const markScrollableMath = () => {
-  for (const el of document.querySelectorAll<HTMLElement>('.katex-display')) {
-    if (el.scrollWidth > el.clientWidth + 1) el.tabIndex = 0;
-    else el.removeAttribute('tabindex');
-  }
-};
-markScrollableMath();
-globalThis.addEventListener?.('resize', markScrollableMath, { passive: true });
-// I font di KaTeX e del testo arrivano dopo: le formule possono diventare più larghe della colonna.
-void document.fonts?.ready.then(markScrollableMath);

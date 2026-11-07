@@ -670,6 +670,23 @@ label.btn:focus-within {
   color: var(--accent-strong);
   border-color: var(--accent);
 }
+/* Contenitori di blocchi (es. section.worked): il pulsante andrebbe a capo dopo
+   l'ultimo blocco; sta nell'angolo, in uno spazio riservato già nell'HTML statico. */
+:is(section, article, div)[data-note-id]:not(:has([data-note-slot])) {
+  position: relative;
+  padding-inline-end: 3rem;
+}
+.sh-note-btn--corner {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  margin: 0;
+}
+.sh-note-slot {
+  display: inline-flex;
+  min-inline-size: 2.75rem;
+  min-block-size: 2.75rem;
+}
 .sh-note-preview {
   white-space: pre-wrap;
   font-size: var(--step--1);
