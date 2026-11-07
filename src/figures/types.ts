@@ -25,4 +25,5 @@ export const DIAGRAM_TYPES = [
 
 export type DiagramType = (typeof DIAGRAM_TYPES)[number];
 
-export const isDiagramType = (t: string): t is DiagramType => (DIAGRAM_TYPES as readonly string[]).includes(t);
+export const isDiagramType = (t: string): t is DiagramType =>
+  (DIAGRAM_TYPES as readonly string[]).includes(t);

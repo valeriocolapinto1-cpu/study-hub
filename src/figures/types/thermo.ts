@@ -25,7 +25,13 @@ const KIND_EN: Record<Proc['kind'], string> = {
 };
 
 /** Punti (V, p) di una trasformazione. */
-export function processPath(a: { p: number; V: number }, b: { p: number; V: number }, kind: Proc['kind'], gamma: number, n = 48): Array<[number, number]> {
+export function processPath(
+  a: { p: number; V: number },
+  b: { p: number; V: number },
+  kind: Proc['kind'],
+  gamma: number,
+  n = 48,
+): Array<[number, number]> {
   if (kind === 'isothermal' || kind === 'adiabatic') {
     const e = kind === 'isothermal' ? 1 : gamma;
     const K = a.p * a.V ** e;
@@ -60,17 +66,35 @@ export function pvCycle(p: PV, c: Ctx): Drawn {
   // area con segno nel piano (V, p): positiva se percorsa in senso orario
   let area = 0;
   const loop = paths.flatMap((q, i) => (i ? q.slice(1) : q));
-  if (closed) for (let i = 0; i < loop.length - 1; i++) area += (loop[i + 1]![0] - loop[i]![0]) * (loop[i]![1] + loop[i + 1]![1]) * 0.5;
+  if (closed)
+    for (let i = 0; i < loop.length - 1; i++)
+      area += (loop[i + 1]![0] - loop[i]![0]) * (loop[i]![1] + loop[i + 1]![1]) * 0.5;
   if (p.work !== false) {
-    if (closed) s.polygon(loop.map(([V, pp]) => [f.sx(V), f.sy(pp)]), { fill: 'soft', tone: 'accent', width: 0.5 });
+    if (closed)
+      s.polygon(
+        loop.map(([V, pp]) => [f.sx(V), f.sy(pp)]),
+        { fill: 'soft', tone: 'accent', width: 0.5 },
+      );
     else
       for (const q of paths) {
         if (Math.abs(q[0]![0] - q[q.length - 1]![0]) < 1e-12) continue;
-        const poly: Pt[] = [[f.sx(q[0]![0]), f.sy(0)], ...q.map(([V, pp]) => [f.sx(V), f.sy(pp)] as Pt), [f.sx(q[q.length - 1]![0]), f.sy(0)]];
+        const poly: Pt[] = [
+          [f.sx(q[0]![0]), f.sy(0)],
+          ...q.map(([V, pp]) => [f.sx(V), f.sy(pp)] as Pt),
+          [f.sx(q[q.length - 1]![0]), f.sy(0)],
+        ];
         s.polygon(poly, { fill: 'soft', tone: 'accent', width: 0.5 });
       }
   }
-  drawAxes(s, f, { xLabel: 'V', xUnit: units.V, yLabel: 'p', yUnit: units.p, fmt: (v) => c.num(v, 3), edge: true, noTicks: p.values === false });
+  drawAxes(s, f, {
+    xLabel: 'V',
+    xUnit: units.V,
+    yLabel: 'p',
+    yUnit: units.p,
+    fmt: (v) => c.num(v, 3),
+    edge: true,
+    noTicks: p.values === false,
+  });
   if (p.isotherms) {
     for (const sv of p.states) {
       const K = sv.p * sv.V;
@@ -118,13 +142,20 @@ export function pvCycle(p: PV, c: Ctx): Drawn {
     ay /= 3 * A2 || 1;
     s.text(ax, ay, area >= 0 ? 'W > 0' : 'W < 0', { italic: true, size: 13, halo: true });
   }
-  const procText = p.processes.map((pr) => `${pr.from} → ${pr.to} ${c.L(KIND_IT[pr.kind], KIND_EN[pr.kind])}`);
+  const procText = p.processes.map(
+    (pr) => `${pr.from} → ${pr.to} ${c.L(KIND_IT[pr.kind], KIND_EN[pr.kind])}`,
+  );
   return {
     svg: s,
-    title: closed ? c.L('Ciclo nel piano pV', 'Cycle on a pV diagram') : c.L('Trasformazioni nel piano pV', 'Processes on a pV diagram'),
+    title: closed
+      ? c.L('Ciclo nel piano pV', 'Cycle on a pV diagram')
+      : c.L('Trasformazioni nel piano pV', 'Processes on a pV diagram'),
     description:
       c.L('Piano pV con gli stati ', 'pV diagram with states ') +
-      listText(p.states.map((q) => `${q.id} (V = ${c.num(q.V)} ${units.V}, p = ${c.num(q.p)} ${units.p})`), c.lang) +
+      listText(
+        p.states.map((q) => `${q.id} (V = ${c.num(q.V)} ${units.V}, p = ${c.num(q.p)} ${units.p})`),
+        c.lang,
+      ) +
       c.L('. Trasformazioni: ', '. Processes: ') +
       listText(procText, c.lang) +
       (closed
@@ -133,7 +164,10 @@ export function pvCycle(p: PV, c: Ctx): Drawn {
             `. The cycle runs ${area >= 0 ? 'clockwise: positive net work done by the gas' : 'counter-clockwise: negative net work done by the gas'}, equal to the enclosed area (about ${c.num(Math.abs(area))} ${units.p}·${units.V}).`,
           )
         : p.work !== false
-          ? c.L('. È evidenziata l’area sotto le trasformazioni (lavoro).', '. The area under the processes (work) is shaded.')
+          ? c.L(
+              '. È evidenziata l’area sotto le trasformazioni (lavoro).',
+              '. The area under the processes (work) is shaded.',
+            )
           : '.'),
   };
 }

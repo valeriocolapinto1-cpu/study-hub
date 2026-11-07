@@ -14,7 +14,12 @@ export default function InclinedPlaneLive({ lang, id = 'live-incline' }: { lang:
   const a = slides ? g * (Math.sin(th) - mu * Math.cos(th)) : 0;
   const L = makeCtx(lang).L;
   const svg = useMemo(() => {
-    const params = { angle, friction: mu > 0, components: true, motion: slides ? ('down' as const) : ('none' as const) };
+    const params = {
+      angle,
+      friction: mu > 0,
+      components: true,
+      motion: slides ? ('down' as const) : ('none' as const),
+    };
     return finish('inclined-plane', params, inclinedPlane(params, makeCtx(lang)), { lang, idPrefix: id }).svg;
   }, [angle, mu, slides, lang, id]);
   return (
@@ -24,12 +29,36 @@ export default function InclinedPlaneLive({ lang, id = 'live-incline' }: { lang:
       svg={svg}
       readout={
         slides
-          ? L(`Il blocco scivola: a = g (sin θ − μ cos θ) = ${fix(lang, a)} m/s²`, `The block slides: a = g (sin θ − μ cos θ) = ${fix(lang, a)} m/s²`)
-          : L(`Il blocco resta fermo: tan θ = ${fix(lang, Math.tan(th))} ≤ μ`, `The block stays at rest: tan θ = ${fix(lang, Math.tan(th))} ≤ μ`)
+          ? L(
+              `Il blocco scivola: a = g (sin θ − μ cos θ) = ${fix(lang, a)} m/s²`,
+              `The block slides: a = g (sin θ − μ cos θ) = ${fix(lang, a)} m/s²`,
+            )
+          : L(
+              `Il blocco resta fermo: tan θ = ${fix(lang, Math.tan(th))} ≤ μ`,
+              `The block stays at rest: tan θ = ${fix(lang, Math.tan(th))} ≤ μ`,
+            )
       }
     >
-      <Slider lang={lang} label={L('Inclinazione θ', 'Angle θ')} value={angle} min={5} max={75} step={1} format={(v) => deg(lang, v)} onInput={setAngle} />
-      <Slider lang={lang} label={L("Coefficiente d'attrito μ", 'Friction coefficient μ')} value={mu} min={0} max={1} step={0.05} format={(v) => fix(lang, v)} onInput={setMu} />
+      <Slider
+        lang={lang}
+        label={L('Inclinazione θ', 'Angle θ')}
+        value={angle}
+        min={5}
+        max={75}
+        step={1}
+        format={(v) => deg(lang, v)}
+        onInput={setAngle}
+      />
+      <Slider
+        lang={lang}
+        label={L("Coefficiente d'attrito μ", 'Friction coefficient μ')}
+        value={mu}
+        min={0}
+        max={1}
+        step={0.05}
+        format={(v) => fix(lang, v)}
+        onInput={setMu}
+      />
     </LiveFrame>
   );
 }

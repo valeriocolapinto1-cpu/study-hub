@@ -8,6 +8,8 @@
       it: 'Calcola l''energia in $C = 10\,\mu\text{F}$ carico a $V = 10$ V.',
       en: 'Find the energy in $C = 10\,\mu\text{F}$ charged to $V = 10$ V.',
     }
+  figure:
+    diagram: { type: capacitor, params: { geometry: parallel, voltageLabel: V } }
   steps:
     - title: { it: Energia, en: Energy }
       body: { it: '$E = \tfrac12 C V^2 = 0{,}5$ mJ', en: '$E = \tfrac12 C V^2 = 0.5$ mJ' }

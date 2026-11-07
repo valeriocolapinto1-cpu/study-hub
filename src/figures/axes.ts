@@ -55,8 +55,10 @@ export function drawAxes(s: Svg, f: Frame, o: AxesOpts): void {
   const xt = o.noTicks ? [] : niceTicks(f.xd[0], f.xd[1], o.xTicks ?? 6);
   const yt = o.noTicks ? [] : niceTicks(f.yd[0], f.yd[1], o.yTicks ?? 5);
   if (o.grid) {
-    for (const v of xt) s.line(f.sx(v), box.y, f.sx(v), box.y + box.h, { tone: 'faint', width: 0.6, opacity: 0.6 });
-    for (const v of yt) s.line(box.x, f.sy(v), box.x + box.w, f.sy(v), { tone: 'faint', width: 0.6, opacity: 0.6 });
+    for (const v of xt)
+      s.line(f.sx(v), box.y, f.sx(v), box.y + box.h, { tone: 'faint', width: 0.6, opacity: 0.6 });
+    for (const v of yt)
+      s.line(box.x, f.sy(v), box.x + box.w, f.sy(v), { tone: 'faint', width: 0.6, opacity: 0.6 });
   }
   // assi con freccia
   s.arrow(box.x - 4, f.axisY, box.x + box.w + 12, f.axisY, { width: 1.2, head: 8 });

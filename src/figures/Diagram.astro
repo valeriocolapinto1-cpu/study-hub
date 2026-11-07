@@ -28,7 +28,11 @@ export interface Props {
 const { type, params, caption, title, id, class: cls } = Astro.props;
 const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
 const valid = parseDiagram(type, params);
-const { svg } = renderDiagram(type, valid as never, { lang, ...(title ? { title } : {}), ...(id ? { idPrefix: id } : {}) });
+const { svg } = renderDiagram(type, valid as never, {
+  lang,
+  ...(title ? { title } : {}),
+  ...(id ? { idPrefix: id } : {}),
+});
 ---
 
 <figure class:list={['diagram-figure', cls]}>

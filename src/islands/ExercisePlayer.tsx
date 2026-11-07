@@ -92,7 +92,8 @@ export async function generatedContent(
     figureSvg = renderSchematic(g.figure.netlist, { lang, idPrefix }).svg;
   } else if (!figureSvg && g.figure?.diagram) {
     const { renderDiagramAsync } = await import('../figures/lazy');
-    figureSvg = (await renderDiagramAsync(g.figure.diagram.type, g.figure.diagram.params, { lang, idPrefix })).svg;
+    figureSvg = (await renderDiagramAsync(g.figure.diagram.type, g.figure.diagram.params, { lang, idPrefix }))
+      .svg;
   }
   return { statementHtml, figureSvg, steps, answer, choices };
 }

@@ -23,9 +23,32 @@ export default function FieldLinesLive({ lang, id = 'live-field' }: { lang: Lang
     return finish('point-charges', params, pointCharges(params, makeCtx(lang)), { lang, idPrefix: id }).svg;
   }, [q, d, lang, id]);
   return (
-    <LiveFrame id={id} title={L('Linee di campo di due cariche', 'Field lines of two charges')} svg={svg} readout={`q₁ = +1 · q₂ = ${q > 0 ? '+' : ''}${fix(lang, q)}`}>
-      <Slider lang={lang} label={L('Seconda carica q₂ (in unità di q₁)', 'Second charge q₂ (in units of q₁)')} value={q2} min={-3} max={3} step={0.25} format={(v) => fix(lang, v)} onInput={setQ2} />
-      <Slider lang={lang} label={L('Distanza', 'Distance')} value={d} min={1} max={4} step={0.25} format={(v) => fix(lang, v)} onInput={setD} />
+    <LiveFrame
+      id={id}
+      title={L('Linee di campo di due cariche', 'Field lines of two charges')}
+      svg={svg}
+      readout={`q₁ = +1 · q₂ = ${q > 0 ? '+' : ''}${fix(lang, q)}`}
+    >
+      <Slider
+        lang={lang}
+        label={L('Seconda carica q₂ (in unità di q₁)', 'Second charge q₂ (in units of q₁)')}
+        value={q2}
+        min={-3}
+        max={3}
+        step={0.25}
+        format={(v) => fix(lang, v)}
+        onInput={setQ2}
+      />
+      <Slider
+        lang={lang}
+        label={L('Distanza', 'Distance')}
+        value={d}
+        min={1}
+        max={4}
+        step={0.25}
+        format={(v) => fix(lang, v)}
+        onInput={setD}
+      />
     </LiveFrame>
   );
 }

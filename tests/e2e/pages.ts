@@ -26,6 +26,9 @@ export const SAMPLE_PAGES: SamplePage[] = [
   { name: 'ringraziamenti-it', path: `${BASE}it/ringraziamenti/` },
   { name: 'contribuisci-it', path: `${BASE}it/contribuisci/` },
   { name: 'stile-circuiti', path: `${BASE}it/stile/circuiti/` },
+  { name: 'stile-figure', path: `${BASE}it/stile/figure/` },
+  // stessa pagina in inglese: solo axe e smoke (le figure sono le stesse, cambiano i testi)
+  { name: 'stile-figure-en', path: `${BASE}en/stile/figure/`, visual: false },
   { name: 'contribuisci-en', path: `${BASE}en/contribuisci/` },
   { name: 'ringraziamenti-en', path: `${BASE}en/ringraziamenti/` },
   { name: 'offline-it', path: `${BASE}it/offline/` },

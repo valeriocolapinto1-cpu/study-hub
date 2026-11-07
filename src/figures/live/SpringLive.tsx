@@ -18,10 +18,31 @@ export default function SpringLive({ lang, id = 'live-spring' }: { lang: Lang; i
       id={id}
       title={L('Molla e massa', 'Mass and spring')}
       svg={svg}
-      readout={L(`F = −k x = ${fix(lang, -k * x)} N · U = ½ k x² = ${fix(lang, 0.5 * k * x * x, 3)} J`, `F = −k x = ${fix(lang, -k * x)} N · U = ½ k x² = ${fix(lang, 0.5 * k * x * x, 3)} J`)}
+      readout={L(
+        `F = −k x = ${fix(lang, -k * x)} N · U = ½ k x² = ${fix(lang, 0.5 * k * x * x, 3)} J`,
+        `F = −k x = ${fix(lang, -k * x)} N · U = ½ k x² = ${fix(lang, 0.5 * k * x * x, 3)} J`,
+      )}
     >
-      <Slider lang={lang} label={L('Spostamento x', 'Displacement x')} value={x} min={-0.1} max={0.1} step={0.005} unit="m" onInput={setX} />
-      <Slider lang={lang} label={L('Costante elastica k', 'Spring constant k')} value={k} min={10} max={200} step={5} unit="N/m" onInput={setK} />
+      <Slider
+        lang={lang}
+        label={L('Spostamento x', 'Displacement x')}
+        value={x}
+        min={-0.1}
+        max={0.1}
+        step={0.005}
+        unit="m"
+        onInput={setX}
+      />
+      <Slider
+        lang={lang}
+        label={L('Costante elastica k', 'Spring constant k')}
+        value={k}
+        min={10}
+        max={200}
+        step={5}
+        unit="N/m"
+        onInput={setK}
+      />
     </LiveFrame>
   );
 }

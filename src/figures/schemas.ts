@@ -76,18 +76,20 @@ export const Pendulum = z.strictObject({
   angleLabel: label.optional(),
 });
 
-export const Projectile = z.strictObject({
-  v0: pos,
-  angle: finite.refine((v) => v >= 0 && v <= 90, 'angolo tra 0° e 90°'),
-  h0: finite.refine((v) => v >= 0, 'quota iniziale ≥ 0').optional(),
-  g: pos.optional(),
-  /** Numero di vettori velocità lungo la traiettoria (0–7). */
-  vectors: z.number().int().min(0).max(7).optional(),
-  components: z.boolean().optional(),
-  apex: z.boolean().optional(),
-  range: z.boolean().optional(),
-  values: z.boolean().optional(),
-}).refine((p) => p.angle > 0 || (p.h0 ?? 0) > 0, 'serve un angolo positivo o una quota iniziale');
+export const Projectile = z
+  .strictObject({
+    v0: pos,
+    angle: finite.refine((v) => v >= 0 && v <= 90, 'angolo tra 0° e 90°'),
+    h0: finite.refine((v) => v >= 0, 'quota iniziale ≥ 0').optional(),
+    g: pos.optional(),
+    /** Numero di vettori velocità lungo la traiettoria (0–7). */
+    vectors: z.number().int().min(0).max(7).optional(),
+    components: z.boolean().optional(),
+    apex: z.boolean().optional(),
+    range: z.boolean().optional(),
+    values: z.boolean().optional(),
+  })
+  .refine((p) => p.angle > 0 || (p.h0 ?? 0) > 0, 'serve un angolo positivo o una quota iniziale');
 
 export const CircularMotion = z.strictObject({
   angle: deg,
@@ -117,7 +119,10 @@ export const MotionGraphs = z.strictObject({
 const series = z.discriminatedUnion('kind', [
   z.strictObject({
     kind: z.literal('points'),
-    points: z.array(z.tuple([finite, finite])).min(2).max(500),
+    points: z
+      .array(z.tuple([finite, finite]))
+      .min(2)
+      .max(500),
     label: label.optional(),
     tone: tone.optional(),
     dash: z.boolean().optional(),
@@ -165,11 +170,22 @@ export const FunctionPlot = z
     x: axisSpec.extend({ min: finite, max: finite }),
     y: axisSpec.optional(),
     series: z.array(series).min(1).max(6),
-    markers: z.array(z.strictObject({ x: finite, y: finite, label: label.optional() })).max(12).optional(),
-    vlines: z.array(z.strictObject({ x: finite, label: label.optional() })).max(6).optional(),
-    hlines: z.array(z.strictObject({ y: finite, label: label.optional() })).max(6).optional(),
+    markers: z
+      .array(z.strictObject({ x: finite, y: finite, label: label.optional() }))
+      .max(12)
+      .optional(),
+    vlines: z
+      .array(z.strictObject({ x: finite, label: label.optional() }))
+      .max(6)
+      .optional(),
+    hlines: z
+      .array(z.strictObject({ y: finite, label: label.optional() }))
+      .max(6)
+      .optional(),
     /** Area sotto la curva `series` tra `from` e `to` (lavoro, impulso, spazio percorso…). */
-    area: z.strictObject({ series: z.number().int().min(0), from: finite, to: finite, label: label.optional() }).optional(),
+    area: z
+      .strictObject({ series: z.number().int().min(0), from: finite, to: finite, label: label.optional() })
+      .optional(),
     grid: z.boolean().optional(),
   })
   .refine((p) => p.x.max > p.x.min, 'x.max deve superare x.min')
@@ -214,16 +230,22 @@ export const PvCycle = z
   })
   .superRefine((p, ctx) => {
     const ids = new Map(p.states.map((s) => [s.id, s]));
-    if (ids.size !== p.states.length) ctx.addIssue({ code: 'custom', path: ['states'], message: 'id degli stati ripetuti' });
+    if (ids.size !== p.states.length)
+      ctx.addIssue({ code: 'custom', path: ['states'], message: 'id degli stati ripetuti' });
     const g = p.gamma ?? 1.4;
     p.processes.forEach((pr, i) => {
       const a = ids.get(pr.from);
       const b = ids.get(pr.to);
       if (!a || !b) {
-        ctx.addIssue({ code: 'custom', path: ['processes', i], message: `stato sconosciuto (${pr.from} → ${pr.to})` });
+        ctx.addIssue({
+          code: 'custom',
+          path: ['processes', i],
+          message: `stato sconosciuto (${pr.from} → ${pr.to})`,
+        });
         return;
       }
-      const close = (x: number, y: number): boolean => Math.abs(x - y) <= 0.02 * Math.max(Math.abs(x), Math.abs(y));
+      const close = (x: number, y: number): boolean =>
+        Math.abs(x - y) <= 0.02 * Math.max(Math.abs(x), Math.abs(y));
       const ok =
         pr.kind === 'isochoric'
           ? close(a.V, b.V)
@@ -329,7 +351,11 @@ export const Vectors = z
       )
       .max(8),
     sum: z
-      .strictObject({ of: z.array(z.string()).min(2).max(6), label: label.optional(), parallelogram: z.boolean().optional() })
+      .strictObject({
+        of: z.array(z.string()).min(2).max(6),
+        label: label.optional(),
+        parallelogram: z.boolean().optional(),
+      })
       .optional(),
     frames: z
       .array(
@@ -348,12 +374,23 @@ export const Vectors = z
   .superRefine((p, ctx) => {
     const ids = new Set(p.vectors.map((v) => v.id).filter(Boolean));
     p.vectors.forEach((v, i) => {
-      if (v.from && !ids.has(v.from)) ctx.addIssue({ code: 'custom', path: ['vectors', i, 'from'], message: `vettore "${v.from}" inesistente` });
+      if (v.from && !ids.has(v.from))
+        ctx.addIssue({
+          code: 'custom',
+          path: ['vectors', i, 'from'],
+          message: `vettore "${v.from}" inesistente`,
+        });
     });
     p.sum?.of.forEach((id, i) => {
-      if (!ids.has(id)) ctx.addIssue({ code: 'custom', path: ['sum', 'of', i], message: `vettore "${id}" inesistente` });
+      if (!ids.has(id))
+        ctx.addIssue({ code: 'custom', path: ['sum', 'of', i], message: `vettore "${id}" inesistente` });
     });
-    if (p.vectors.length === 0 && !p.frames?.length) ctx.addIssue({ code: 'custom', path: ['vectors'], message: 'almeno un vettore o un sistema di riferimento' });
+    if (p.vectors.length === 0 && !p.frames?.length)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['vectors'],
+        message: 'almeno un vettore o un sistema di riferimento',
+      });
   });
 
 // -------------------------------------------------------------- informatica
@@ -362,7 +399,13 @@ const nodeId = z.string().regex(/^[A-Za-z0-9_-]{1,24}$/, 'id: lettere, cifre, - 
 export const Flowchart = z
   .strictObject({
     nodes: z
-      .array(z.strictObject({ id: nodeId, kind: z.enum(['start', 'end', 'process', 'decision', 'io', 'call']), text: FigText }))
+      .array(
+        z.strictObject({
+          id: nodeId,
+          kind: z.enum(['start', 'end', 'process', 'decision', 'io', 'call']),
+          text: FigText,
+        }),
+      )
       .min(1)
       .max(24),
     edges: z.array(z.strictObject({ from: nodeId, to: nodeId, label: FigText.optional() })).max(40),
@@ -385,7 +428,9 @@ export const BlockDiagram = z
       .min(1)
       .max(24),
     links: z
-      .array(z.strictObject({ from: nodeId, to: nodeId, label: FigText.optional(), both: z.boolean().optional() }))
+      .array(
+        z.strictObject({ from: nodeId, to: nodeId, label: FigText.optional(), both: z.boolean().optional() }),
+      )
       .max(40),
   })
   .superRefine((p, ctx) => checkGraph(p.blocks, p.links, ctx));
@@ -399,7 +444,8 @@ function checkGraph(
   if (ids.size !== nodes.length) ctx.addIssue({ code: 'custom', path: ['nodes'], message: 'id ripetuti' });
   edges.forEach((e, i) => {
     for (const k of ['from', 'to'] as const)
-      if (!ids.has(e[k])) ctx.addIssue({ code: 'custom', path: ['edges', i, k], message: `nodo "${e[k]}" inesistente` });
+      if (!ids.has(e[k]))
+        ctx.addIssue({ code: 'custom', path: ['edges', i, k], message: `nodo "${e[k]}" inesistente` });
   });
 }
 
@@ -418,13 +464,14 @@ export const Memory = z.strictObject({
     .max(24),
   orientation: z.enum(['horizontal', 'vertical']).optional(),
   indices: z.boolean().optional(),
-  pointers: z.array(z.strictObject({ label: z.string().max(12), index: z.number().int().min(0) })).max(6).optional(),
+  pointers: z
+    .array(z.strictObject({ label: z.string().max(12), index: z.number().int().min(0) }))
+    .max(6)
+    .optional(),
 });
 
 export const LinkedList = z.strictObject({
-  nodes: z
-    .array(z.strictObject({ value: z.string().max(10), highlight: z.boolean().optional() }))
-    .max(10),
+  nodes: z.array(z.strictObject({ value: z.string().max(10), highlight: z.boolean().optional() })).max(10),
   doubly: z.boolean().optional(),
   circular: z.boolean().optional(),
   head: z.string().max(12).optional(),
@@ -508,7 +555,11 @@ export const DiagramSpecSchema = z
     const r = DIAGRAM_SCHEMAS[d.type].safeParse(d.params);
     if (!r.success)
       for (const issue of r.error.issues)
-        ctx.addIssue({ code: 'custom', path: ['params', ...issue.path.map((k) => (typeof k === 'symbol' ? String(k) : k))], message: issue.message });
+        ctx.addIssue({
+          code: 'custom',
+          path: ['params', ...issue.path.map((k) => (typeof k === 'symbol' ? String(k) : k))],
+          message: issue.message,
+        });
   });
 
 /** Valida i parametri di una figura; l'errore indica tipo e campo sbagliato. */

@@ -76,23 +76,43 @@ export function motionGraphs(p: P<'motion-graphs'>, c: Ctx): Drawn {
   };
   show.forEach((k, i) => {
     const m = meta[k];
-    const f: Frame = frame({ x: 58, y: 30 + i * (panelH + gap), w: W - 110, h: panelH }, [0, t], padExtent(m.ys));
-    for (const b of breaks.slice(1, -1)) s.line(f.sx(b), f.box.y, f.sx(b), f.box.y + f.box.h, { tone: 'faint', width: 1, dash: '3 4' });
+    const f: Frame = frame(
+      { x: 58, y: 30 + i * (panelH + gap), w: W - 110, h: panelH },
+      [0, t],
+      padExtent(m.ys),
+    );
+    for (const b of breaks.slice(1, -1))
+      s.line(f.sx(b), f.box.y, f.sx(b), f.box.y + f.box.h, { tone: 'faint', width: 1, dash: '3 4' });
     drawAxes(s, f, { xLabel: 't', xUnit: 's', yLabel: m.label, yUnit: m.unit, fmt });
     const pts: Pt[] = ts.map((tt, j) => [f.sx(tt), f.sy(m.ys[j]!)]);
     // a(t) a gradini: segmenti verticali alle discontinuità
     s.polyline(pts, { tone: m.tone, width: 2.2 });
   });
   const segText = p.segments.map((g, i) =>
-    c.L(`tratto ${i + 1}: ${c.num(g.duration)} s con a = ${c.num(g.a)} m/s²`, `segment ${i + 1}: ${c.num(g.duration)} s with a = ${c.num(g.a)} m/s²`),
+    c.L(
+      `tratto ${i + 1}: ${c.num(g.duration)} s con a = ${c.num(g.a)} m/s²`,
+      `segment ${i + 1}: ${c.num(g.duration)} s with a = ${c.num(g.a)} m/s²`,
+    ),
   );
   return {
     svg: s,
     title: c.L('Grafici del moto', 'Motion graphs'),
     description:
-      c.L(`Grafici ${listText(show.map((k) => `${k}(t)`), 'it')} di un moto rettilineo a tratti con accelerazione costante, partendo da x₀ = ${c.num(p.x0 ?? 0)} m e v₀ = ${c.num(p.v0 ?? 0)} m/s; `, `Graphs of ${listText(show.map((k) => `${k}(t)`), 'en')} for piecewise uniformly accelerated straight-line motion, starting from x₀ = ${c.num(p.x0 ?? 0)} m and v₀ = ${c.num(p.v0 ?? 0)} m/s; `) +
+      c.L(
+        `Grafici ${listText(
+          show.map((k) => `${k}(t)`),
+          'it',
+        )} di un moto rettilineo a tratti con accelerazione costante, partendo da x₀ = ${c.num(p.x0 ?? 0)} m e v₀ = ${c.num(p.v0 ?? 0)} m/s; `,
+        `Graphs of ${listText(
+          show.map((k) => `${k}(t)`),
+          'en',
+        )} for piecewise uniformly accelerated straight-line motion, starting from x₀ = ${c.num(p.x0 ?? 0)} m and v₀ = ${c.num(p.v0 ?? 0)} m/s; `,
+      ) +
       segText.join('; ') +
-      c.L(`. Alla fine x = ${c.num(x)} m e v = ${c.num(v)} m/s.`, `. At the end x = ${c.num(x)} m and v = ${c.num(v)} m/s.`),
+      c.L(
+        `. Alla fine x = ${c.num(x)} m e v = ${c.num(v)} m/s.`,
+        `. At the end x = ${c.num(x)} m and v = ${c.num(v)} m/s.`,
+      ),
   };
 }
 
@@ -126,13 +146,24 @@ function seriesText(sr: Series, c: Ctx): string {
   const lab = sr.label ? `${plainLabel(sr.label)}: ` : '';
   switch (sr.kind) {
     case 'poly':
-      return lab + c.L(`polinomio di grado ${sr.coeffs.length - 1}`, `polynomial of degree ${sr.coeffs.length - 1}`);
+      return (
+        lab +
+        c.L(`polinomio di grado ${sr.coeffs.length - 1}`, `polynomial of degree ${sr.coeffs.length - 1}`)
+      );
     case 'sin':
       return lab + c.L(`sinusoide di ampiezza ${c.num(sr.amp)}`, `sinusoid of amplitude ${c.num(sr.amp)}`);
     case 'exp':
-      return lab + c.L(sr.b < 0 ? 'esponenziale decrescente' : 'esponenziale crescente', sr.b < 0 ? 'decaying exponential' : 'growing exponential');
+      return (
+        lab +
+        c.L(
+          sr.b < 0 ? 'esponenziale decrescente' : 'esponenziale crescente',
+          sr.b < 0 ? 'decaying exponential' : 'growing exponential',
+        )
+      );
     default:
-      return lab + c.L(`spezzata per ${sr.points.length} punti`, `polyline through ${sr.points.length} points`);
+      return (
+        lab + c.L(`spezzata per ${sr.points.length} punti`, `polyline through ${sr.points.length} points`)
+      );
   }
 }
 
@@ -156,20 +187,39 @@ export function functionPlot(p: P<'function-plot'>, c: Ctx): Drawn {
     const b = Math.min(p.x.max, Math.max(p.area.from, p.area.to));
     const base = Math.min(Math.max(0, yd[0]), yd[1]);
     const pts: Pt[] = [[f.sx(a), f.sy(base)]];
-    const src = sr.kind === 'points' ? sr.points.filter(([x]) => x >= a && x <= b) : sampleSeries(sr, a, b, 120);
+    const src =
+      sr.kind === 'points' ? sr.points.filter(([x]) => x >= a && x <= b) : sampleSeries(sr, a, b, 120);
     for (const [x, y] of src) pts.push([f.sx(x), f.sy(Math.min(yd[1], Math.max(yd[0], y)))]);
     pts.push([f.sx(b), f.sy(base)]);
     s.polygon(pts, { fill: 'soft', tone: 'accent', width: 0.6 });
-    if (p.area.label) s.text(f.sx((a + b) / 2), (f.sy(base) + f.box.y + f.box.h) / 2 - 18, p.area.label, { italic: true, halo: true });
+    if (p.area.label)
+      s.text(f.sx((a + b) / 2), (f.sy(base) + f.box.y + f.box.h) / 2 - 18, p.area.label, {
+        italic: true,
+        halo: true,
+      });
   }
-  drawAxes(s, f, { xLabel: p.x.label ?? 'x', xUnit: p.x.unit, yLabel: p.y?.label ?? 'y', yUnit: p.y?.unit, grid: p.grid !== false, fmt });
+  drawAxes(s, f, {
+    xLabel: p.x.label ?? 'x',
+    xUnit: p.x.unit,
+    yLabel: p.y?.label ?? 'y',
+    yUnit: p.y?.unit,
+    grid: p.grid !== false,
+    fmt,
+  });
   for (const l of p.vlines ?? []) {
     s.line(f.sx(l.x), f.box.y, f.sx(l.x), f.box.y + f.box.h, { tone: 'muted', width: 1, dash: '5 4' });
-    if (l.label) s.text(f.sx(l.x) + 4, f.box.y + 4, l.label, { anchor: 'start', italic: true, size: 12, halo: true });
+    if (l.label)
+      s.text(f.sx(l.x) + 4, f.box.y + 4, l.label, { anchor: 'start', italic: true, size: 12, halo: true });
   }
   for (const l of p.hlines ?? []) {
     s.line(f.box.x, f.sy(l.y), f.box.x + f.box.w, f.sy(l.y), { tone: 'muted', width: 1, dash: '5 4' });
-    if (l.label) s.text(f.box.x + f.box.w - 2, f.sy(l.y) - 10, l.label, { anchor: 'end', italic: true, size: 12, halo: true });
+    if (l.label)
+      s.text(f.box.x + f.box.w - 2, f.sy(l.y) - 10, l.label, {
+        anchor: 'end',
+        italic: true,
+        size: 12,
+        halo: true,
+      });
   }
   p.series.forEach((sr, i) => {
     const tone = sr.tone ?? SERIES_TONES[i % SERIES_TONES.length]!;
@@ -194,9 +244,19 @@ export function functionPlot(p: P<'function-plot'>, c: Ctx): Drawn {
         `Grafico di ${plainLabel(p.y?.label ?? 'y')} in funzione di ${plainLabel(p.x.label ?? 'x')} per ${plainLabel(p.x.label ?? 'x')} da ${c.num(p.x.min)} a ${c.num(p.x.max)}${p.x.unit ? ` ${p.x.unit}` : ''}: `,
         `Graph of ${plainLabel(p.y?.label ?? 'y')} against ${plainLabel(p.x.label ?? 'x')} for ${plainLabel(p.x.label ?? 'x')} from ${c.num(p.x.min)} to ${c.num(p.x.max)}${p.x.unit ? ` ${p.x.unit}` : ''}: `,
       ) +
-      listText(p.series.map((sr) => seriesText(sr, c)), c.lang) +
-      (p.area ? c.L(`; area evidenziata tra ${c.num(p.area.from)} e ${c.num(p.area.to)}`, `; shaded area between ${c.num(p.area.from)} and ${c.num(p.area.to)}`) : '') +
-      (p.markers?.length ? c.L(`; ${p.markers.length} punti evidenziati`, `; ${p.markers.length} marked points`) : '') +
+      listText(
+        p.series.map((sr) => seriesText(sr, c)),
+        c.lang,
+      ) +
+      (p.area
+        ? c.L(
+            `; area evidenziata tra ${c.num(p.area.from)} e ${c.num(p.area.to)}`,
+            `; shaded area between ${c.num(p.area.from)} and ${c.num(p.area.to)}`,
+          )
+        : '') +
+      (p.markers?.length
+        ? c.L(`; ${p.markers.length} punti evidenziati`, `; ${p.markers.length} marked points`)
+        : '') +
       '.',
   };
 }

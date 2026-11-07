@@ -11,7 +11,11 @@ export interface DiagramExample {
   spec: DiagramSpec;
 }
 
-const ex = (id: string, it: string, en: string, spec: DiagramSpec): DiagramExample => ({ id, caption: { it, en }, spec });
+const ex = (id: string, it: string, en: string, spec: DiagramSpec): DiagramExample => ({
+  id,
+  caption: { it, en },
+  spec,
+});
 
 export const EXAMPLES: DiagramExample[] = [
   // ---------------------------------------------------------------- meccanica
@@ -42,14 +46,31 @@ export const EXAMPLES: DiagramExample[] = [
       ],
     },
   }),
-  ex('piano-inclinato', 'Piano inclinato con attrito e componenti del peso', 'Rough incline with weight components', {
-    type: 'inclined-plane',
-    params: { angle: 30, friction: true, components: true, motion: 'down' },
-  }),
-  ex('piano-carrucola', 'Piano inclinato con carrucola e massa sospesa', 'Incline with pulley and hanging mass', {
-    type: 'inclined-plane',
-    params: { angle: 35, pulley: true, friction: true, motion: 'up', massLabel: 'm_1', hangingLabel: 'm_2' },
-  }),
+  ex(
+    'piano-inclinato',
+    'Piano inclinato con attrito e componenti del peso',
+    'Rough incline with weight components',
+    {
+      type: 'inclined-plane',
+      params: { angle: 30, friction: true, components: true, motion: 'down' },
+    },
+  ),
+  ex(
+    'piano-carrucola',
+    'Piano inclinato con carrucola e massa sospesa',
+    'Incline with pulley and hanging mass',
+    {
+      type: 'inclined-plane',
+      params: {
+        angle: 35,
+        pulley: true,
+        friction: true,
+        motion: 'up',
+        massLabel: 'm_1',
+        hangingLabel: 'm_2',
+      },
+    },
+  ),
   ex('molla', 'Molla orizzontale allungata', 'Stretched horizontal spring', {
     type: 'spring-mass',
     params: { displacement: 0.5 },
@@ -84,20 +105,25 @@ export const EXAMPLES: DiagramExample[] = [
       ],
     },
   }),
-  ex('grafico-funzione', 'Carica e scarica: esponenziali e asintoto', 'Charge and discharge: exponentials and asymptote', {
-    type: 'function-plot',
-    params: {
-      x: { min: 0, max: 5, label: 't', unit: 's' },
-      y: { min: 0, max: 1.2, label: 'v', unit: 'V' },
-      series: [
-        { kind: 'exp', a: -1, b: -1, c: 1, label: 'v_C' },
-        { kind: 'exp', a: 1, b: -1, label: 'v_R', dash: true },
-      ],
-      hlines: [{ y: 1, label: 'V_0' }],
-      vlines: [{ x: 1, label: 'τ' }],
-      markers: [{ x: 1, y: 0.632, label: '63%' }],
+  ex(
+    'grafico-funzione',
+    'Carica e scarica: esponenziali e asintoto',
+    'Charge and discharge: exponentials and asymptote',
+    {
+      type: 'function-plot',
+      params: {
+        x: { min: 0, max: 5, label: 't', unit: 's' },
+        y: { min: 0, max: 1.2, label: 'v', unit: 'V' },
+        series: [
+          { kind: 'exp', a: -1, b: -1, c: 1, label: 'v_C' },
+          { kind: 'exp', a: 1, b: -1, label: 'v_R', dash: true },
+        ],
+        hlines: [{ y: 1, label: 'V_0' }],
+        vlines: [{ x: 1, label: 'τ' }],
+        markers: [{ x: 1, y: 0.632, label: '63%' }],
+      },
     },
-  }),
+  ),
   ex('grafico-area', 'Area sotto la curva (lavoro di una forza)', 'Area under the curve (work of a force)', {
     type: 'function-plot',
     params: {
@@ -152,24 +178,29 @@ export const EXAMPLES: DiagramExample[] = [
       isotherms: false,
     },
   }),
-  ex('ciclo-rettangolare', 'Ciclo di isocore e isobare con isoterme', 'Isochoric–isobaric cycle with isotherms', {
-    type: 'pv-cycle',
-    params: {
-      states: [
-        { id: '1', V: 2, p: 300 },
-        { id: '2', V: 6, p: 300 },
-        { id: '3', V: 6, p: 100 },
-        { id: '4', V: 2, p: 100 },
-      ],
-      processes: [
-        { from: '1', to: '2', kind: 'isobaric' },
-        { from: '2', to: '3', kind: 'isochoric' },
-        { from: '3', to: '4', kind: 'isobaric' },
-        { from: '4', to: '1', kind: 'isochoric' },
-      ],
-      isotherms: true,
+  ex(
+    'ciclo-rettangolare',
+    'Ciclo di isocore e isobare con isoterme',
+    'Isochoric–isobaric cycle with isotherms',
+    {
+      type: 'pv-cycle',
+      params: {
+        states: [
+          { id: '1', V: 2, p: 300 },
+          { id: '2', V: 6, p: 300 },
+          { id: '3', V: 6, p: 100 },
+          { id: '4', V: 2, p: 100 },
+        ],
+        processes: [
+          { from: '1', to: '2', kind: 'isobaric' },
+          { from: '2', to: '3', kind: 'isochoric' },
+          { from: '3', to: '4', kind: 'isobaric' },
+          { from: '4', to: '1', kind: 'isochoric' },
+        ],
+        isotherms: true,
+      },
     },
-  }),
+  ),
   // ---------------------------------------------------------- elettromagnetismo
   ex('dipolo', 'Dipolo elettrico con equipotenziali', 'Electric dipole with equipotentials', {
     type: 'point-charges',
@@ -192,10 +223,15 @@ export const EXAMPLES: DiagramExample[] = [
       equipotentials: 3,
     },
   }),
-  ex('condensatore-piano', 'Condensatore piano con dielettrico ed effetti di bordo', 'Parallel-plate capacitor with dielectric and fringing', {
-    type: 'capacitor',
-    params: { geometry: 'parallel', dielectric: 'half', fringe: true },
-  }),
+  ex(
+    'condensatore-piano',
+    'Condensatore piano con dielettrico ed effetti di bordo',
+    'Parallel-plate capacitor with dielectric and fringing',
+    {
+      type: 'capacitor',
+      params: { geometry: 'parallel', dielectric: 'half', fringe: true },
+    },
+  ),
   ex('condensatore-sferico', 'Condensatore sferico', 'Spherical capacitor', {
     type: 'capacitor',
     params: { geometry: 'spherical', innerLabel: 'R_1', outerLabel: 'R_2' },
@@ -260,7 +296,10 @@ export const EXAMPLES: DiagramExample[] = [
       axes: false,
       grid: false,
       range: { xMin: -1, xMax: 7, yMin: -1, yMax: 5 },
-      vectors: [{ label: 'r', x: 0, y: 0, dx: 5, dy: 3, tone: 'accent' }, { label: "r'", x: 3, y: 1, dx: 2, dy: 2, tone: 'info', dashed: true }],
+      vectors: [
+        { label: 'r', x: 0, y: 0, dx: 5, dy: 3, tone: 'accent' },
+        { label: "r'", x: 3, y: 1, dx: 2, dy: 2, tone: 'info', dashed: true },
+      ],
       frames: [
         { x: 0, y: 0, labels: ['x', 'y'], origin: 'O', length: 2.5 },
         { x: 3, y: 1, angle: 25, origin: "O'", length: 2 },
@@ -316,7 +355,14 @@ export const EXAMPLES: DiagramExample[] = [
     type: 'memory',
     params: {
       kind: 'array',
-      cells: [{ value: '7' }, { value: '3' }, { value: '9', highlight: true }, { value: '1' }, { value: '4' }, { value: '8' }],
+      cells: [
+        { value: '7' },
+        { value: '3' },
+        { value: '9', highlight: true },
+        { value: '1' },
+        { value: '4' },
+        { value: '8' },
+      ],
       pointers: [
         { label: 'i', index: 2 },
         { label: 'j', index: 5 },
@@ -339,7 +385,10 @@ export const EXAMPLES: DiagramExample[] = [
   }),
   ex('pila', 'Pila dopo tre push', 'Stack after three pushes', {
     type: 'memory',
-    params: { kind: 'stack', cells: [{ value: 'ret addr' }, { value: 'x = 5' }, { value: 'y = 2', highlight: true }] },
+    params: {
+      kind: 'stack',
+      cells: [{ value: 'ret addr' }, { value: 'x = 5' }, { value: 'y = 2', highlight: true }],
+    },
   }),
   ex('lista', 'Lista concatenata', 'Linked list', {
     type: 'linked-list',
@@ -356,8 +405,14 @@ export const EXAMPLES: DiagramExample[] = [
       root: {
         value: '8',
         children: [
-          { value: '3', children: [{ value: '1' }, { value: '6', children: [{ value: '4' }, { value: '7' }] }] },
-          { value: '10', children: [null, { value: '14', highlight: true, children: [{ value: '13' }, null] }] },
+          {
+            value: '3',
+            children: [{ value: '1' }, { value: '6', children: [{ value: '4' }, { value: '7' }] }],
+          },
+          {
+            value: '10',
+            children: [null, { value: '14', highlight: true, children: [{ value: '13' }, null] }],
+          },
         ],
       },
     },

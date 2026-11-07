@@ -39,10 +39,31 @@ export default function CarnotLive({ lang, id = 'live-carnot' }: { lang: Lang; i
       id={id}
       title={L('Ciclo di Carnot', 'Carnot cycle')}
       svg={svg}
-      readout={L(`Rendimento η = 1 − T_c/T_h = ${fix(lang, (1 - tau) * 100, 0)} %`, `Efficiency η = 1 − T_c/T_h = ${fix(lang, (1 - tau) * 100, 0)} %`)}
+      readout={L(
+        `Rendimento η = 1 − Tc/Th = ${fix(lang, (1 - tau) * 100, 0)} %`,
+        `Efficiency η = 1 − Tc/Th = ${fix(lang, (1 - tau) * 100, 0)} %`,
+      )}
     >
-      <Slider lang={lang} label={L('Espansione isoterma V_B/V_A', 'Isothermal expansion V_B/V_A')} value={r} min={1.5} max={4} step={0.1} format={(v) => fix(lang, v, 1)} onInput={setR} />
-      <Slider lang={lang} label={L('Rapporto delle temperature T_c/T_h', 'Temperature ratio T_c/T_h')} value={tau} min={0.5} max={0.9} step={0.05} format={(v) => fix(lang, v)} onInput={setTau} />
+      <Slider
+        lang={lang}
+        label={L('Espansione isoterma (rapporto dei volumi B/A)', 'Isothermal expansion (volume ratio B/A)')}
+        value={r}
+        min={1.5}
+        max={4}
+        step={0.1}
+        format={(v) => fix(lang, v, 1)}
+        onInput={setR}
+      />
+      <Slider
+        lang={lang}
+        label={L('Temperatura fredda / temperatura calda', 'Cold / hot temperature ratio')}
+        value={tau}
+        min={0.5}
+        max={0.9}
+        step={0.05}
+        format={(v) => fix(lang, v)}
+        onInput={setTau}
+      />
     </LiveFrame>
   );
 }

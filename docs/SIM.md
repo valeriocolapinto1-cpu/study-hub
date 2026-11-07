@@ -4,6 +4,9 @@ Guida per le PR di corso: come descrivere un circuito (netlist), come ottenerne 
 come costruire una simulazione interattiva con i componenti comuni. In fondo, l'inventario delle
 simulazioni dei siti originali con i pezzi del kit che servono a rifarle.
 
+Figure fisiche e schemi non circuitali (forze, piani inclinati, campi, cicli pV, onde, strutture dati…): kit delle
+figure, [FIGURE.md](FIGURE.md).
+
 Pagine di prova (non indicizzate): `/<lang>/stile/circuiti/` (schemi e grafici statici, zero JS) e
 `/<lang>/stile/simulatori/` (isole interattive).
 

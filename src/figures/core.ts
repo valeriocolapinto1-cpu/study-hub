@@ -40,7 +40,8 @@ const FILL_CSS: Record<Exclude<Fill, Tone | 'faint'>, string> = {
 };
 
 export const toneCss = (t: Tone | 'faint'): string => TONE_CSS[t];
-export const fillCss = (f: Fill): string => (f in FILL_CSS ? FILL_CSS[f as keyof typeof FILL_CSS] : TONE_CSS[f as Tone]);
+export const fillCss = (f: Fill): string =>
+  f in FILL_CSS ? FILL_CSS[f as keyof typeof FILL_CSS] : TONE_CSS[f as Tone];
 
 export const r2 = (v: number): string => {
   const x = Math.round(v * 100) / 100;
@@ -48,7 +49,10 @@ export const r2 = (v: number): string => {
 };
 
 export function escapeXml(s: string): string {
-  return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+  return s.replace(
+    /[&<>"']/g,
+    (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!,
+  );
 }
 
 /** Testo localizzato breve. */
@@ -175,7 +179,9 @@ export class Svg {
   }
 
   polygon(pts: Pt[], o: StrokeOpts = {}): this {
-    return this.raw(`<polygon points="${pts.map((p) => `${r2(p[0])},${r2(p[1])}`).join(' ')}"${this.stroke(o)}/>`);
+    return this.raw(
+      `<polygon points="${pts.map((p) => `${r2(p[0])},${r2(p[1])}`).join(' ')}"${this.stroke(o)}/>`,
+    );
   }
 
   circle(cx: number, cy: number, r: number, o: StrokeOpts = {}): this {
@@ -190,7 +196,9 @@ export class Svg {
 
   /** Punto pieno. */
   dot(x: number, y: number, r = 3, tone: Tone = 'ink'): this {
-    return this.raw(`<circle cx="${r2(x)}" cy="${r2(y)}" r="${r}" style="fill:${TONE_CSS[tone]};stroke:none"/>`);
+    return this.raw(
+      `<circle cx="${r2(x)}" cy="${r2(y)}" r="${r}" style="fill:${TONE_CSS[tone]};stroke:none"/>`,
+    );
   }
 
   text(x: number, y: number, label: string, o: TextOpts = {}): this {
@@ -200,7 +208,8 @@ export class Svg {
       `font-family:${o.mono ? 'var(--font-mono)' : 'var(--font-sans)'}`,
     ];
     if (o.italic) st.push('font-style:italic');
-    if (o.halo) st.push('paint-order:stroke', 'stroke:var(--bg)', 'stroke-width:4px', 'stroke-linejoin:round');
+    if (o.halo)
+      st.push('paint-order:stroke', 'stroke:var(--bg)', 'stroke-width:4px', 'stroke-linejoin:round');
     const base = o.baseline ?? 'middle';
     // dominant-baseline non è affidabile in stampa e in alcuni lettori: si sposta a mano.
     const yy = base === 'middle' ? y + size * 0.35 : y;
@@ -237,7 +246,14 @@ export class Svg {
   }
 
   /** Quota: freccia doppia con etichetta al centro. */
-  dimension(x1: number, y1: number, x2: number, y2: number, label: string, o: { offset?: number; italic?: boolean } = {}): this {
+  dimension(
+    x1: number,
+    y1: number,
+    x2: number,
+    y2: number,
+    label: string,
+    o: { offset?: number; italic?: boolean } = {},
+  ): this {
     const len = Math.hypot(x2 - x1, y2 - y1) || 1;
     const nx = -(y2 - y1) / len;
     const ny = (x2 - x1) / len;
@@ -245,25 +261,49 @@ export class Svg {
     const a: Pt = [x1 + nx * off, y1 + ny * off];
     const b: Pt = [x2 + nx * off, y2 + ny * off];
     if (off) {
-      this.line(x1, y1, a[0] + nx * 4 * Math.sign(off), a[1] + ny * 4 * Math.sign(off), { tone: 'muted', width: 0.8 });
-      this.line(x2, y2, b[0] + nx * 4 * Math.sign(off), b[1] + ny * 4 * Math.sign(off), { tone: 'muted', width: 0.8 });
+      this.line(x1, y1, a[0] + nx * 4 * Math.sign(off), a[1] + ny * 4 * Math.sign(off), {
+        tone: 'muted',
+        width: 0.8,
+      });
+      this.line(x2, y2, b[0] + nx * 4 * Math.sign(off), b[1] + ny * 4 * Math.sign(off), {
+        tone: 'muted',
+        width: 0.8,
+      });
     }
     this.arrow(a[0], a[1], b[0], b[1], { tone: 'muted', width: 1, head: 7, double: true });
     const lo = off >= 0 ? 11 : -11;
-    return this.text((a[0] + b[0]) / 2 + nx * lo, (a[1] + b[1]) / 2 + ny * lo, label, { italic: o.italic ?? true, halo: true });
+    return this.text((a[0] + b[0]) / 2 + nx * lo, (a[1] + b[1]) / 2 + ny * lo, label, {
+      italic: o.italic ?? true,
+      halo: true,
+    });
   }
 
   /** Arco di angolo con etichetta (angoli in radianti, verso antiorario sullo schermo = y verso l'alto). */
-  angleArc(cx: number, cy: number, r: number, a0: number, a1: number, label?: string, tone: Tone = 'muted'): this {
+  angleArc(
+    cx: number,
+    cy: number,
+    r: number,
+    a0: number,
+    a1: number,
+    label?: string,
+    tone: Tone = 'muted',
+  ): this {
     const p0: Pt = [cx + r * Math.cos(a0), cy - r * Math.sin(a0)];
     const p1: Pt = [cx + r * Math.cos(a1), cy - r * Math.sin(a1)];
     const large = Math.abs(a1 - a0) > Math.PI ? 1 : 0;
     const sweep = a1 > a0 ? 0 : 1;
-    this.path(`M${r2(p0[0])} ${r2(p0[1])}A${r2(r)} ${r2(r)} 0 ${large} ${sweep} ${r2(p1[0])} ${r2(p1[1])}`, { tone, width: 1.2 });
+    this.path(`M${r2(p0[0])} ${r2(p0[1])}A${r2(r)} ${r2(r)} 0 ${large} ${sweep} ${r2(p1[0])} ${r2(p1[1])}`, {
+      tone,
+      width: 1.2,
+    });
     if (label) {
       const am = (a0 + a1) / 2;
       const rl = r + 12;
-      this.text(cx + rl * Math.cos(am), cy - rl * Math.sin(am), label, { italic: true, size: 13, halo: true });
+      this.text(cx + rl * Math.cos(am), cy - rl * Math.sin(am), label, {
+        italic: true,
+        size: 13,
+        halo: true,
+      });
     }
     return this;
   }

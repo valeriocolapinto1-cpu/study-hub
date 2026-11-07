@@ -17,26 +17,34 @@ const l = lang ? { lang } : {};
 const cycle = ['isothermal', 'adiabatic', 'isothermal', 'adiabatic'] as const;
 ---
 
-{kind === 'inclined-plane' && <Diagram type="inclined-plane" params={{ angle: 30, friction: true, components: true, motion: 'down' }} {...l} />}
+{kind === 'inclined-plane' && (
+  <Diagram
+    type="inclined-plane"
+    params={{ angle: 30, friction: true, components: true, motion: 'down' }}
+    {...l}
+  />
+)}
 {kind === 'spring-mass' && <Diagram type="spring-mass" params={{ displacement: 0.6 }} {...l} />}
-{
-  kind === 'pv-cycle' && (
-    <Diagram
-      type="pv-cycle"
-      params={{
-        states: carnotStates(2, 0.7),
-        processes: ['A', 'B', 'C', 'D'].map((f, i) => ({ from: f, to: 'ABCD'[(i + 1) % 4]!, kind: cycle[i]! })),
-      }}
-      {...l}
-    />
-  )
-}
-{
-  kind === 'point-charges' && (
-    <Diagram
-      type="point-charges"
-      params={{ charges: [{ x: -1, y: 0, q: 1, label: 'q_1' }, { x: 1, y: 0, q: -1, label: 'q_2' }], equipotentials: 3 }}
-      {...l}
-    />
-  )
-}
+{kind === 'pv-cycle' && (
+  <Diagram
+    type="pv-cycle"
+    params={{
+      states: carnotStates(2, 0.7),
+      processes: ['A', 'B', 'C', 'D'].map((f, i) => ({ from: f, to: 'ABCD'[(i + 1) % 4]!, kind: cycle[i]! })),
+    }}
+    {...l}
+  />
+)}
+{kind === 'point-charges' && (
+  <Diagram
+    type="point-charges"
+    params={{
+      charges: [
+        { x: -1, y: 0, q: 1, label: 'q_1' },
+        { x: 1, y: 0, q: -1, label: 'q_2' },
+      ],
+      equipotentials: 3,
+    }}
+    {...l}
+  />
+)}

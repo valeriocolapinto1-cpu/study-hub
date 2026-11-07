@@ -33,6 +33,7 @@ src/islands/                    isole Preact del motore (ExercisePlayer, ReviewS
 src/components/course/          sezioni generiche del corso (esercizi, ripasso, esame, progressi, appunti)
 src/lib/course-data.ts          dati dei corsi per le isole (testi localizzati, HTML con KaTeX a build-time)
 src/sim/                        kit simulatori
+src/figures/                    kit delle figure (parametri → SVG, <Diagram>, varianti interattive; docs/FIGURE.md)
 src/courses/<courseId>/         codice specifico: generators/*.ts, sims/*.tsx, extras/*
 src/content/                    content collections (dati)
 src/scripts/site.ts             script globale (tema, lingua, migrazioni)
@@ -72,7 +73,7 @@ Schemi in `src/content/schemas.ts`; tutti gli id kebab-case, stabili e unici nel
 | `topics` | `src/content/topics/<courseId>/<NN>-<topicId>.yaml` | id, course, order, title, summary, objectives[{id,text}], group? |
 | `theory` | `src/content/theory/<courseId>/<topicId>.<lang>.mdx` | frontmatter {course, topic, lang}; blocchi `<Layer kind="intuizione\|formalismo\|esempio\|errori">` |
 | `formulas` | `src/content/formulas/<courseId>.yaml` (elenco) | id, topic, objectives?, latex, label, note? |
-| `exercises` | `src/content/exercises/<courseId>/<topicId>.yaml` (elenco) | id, topic, objectives, difficulty 1-3, kind static\|generated, generator?, statement, figure?{netlist\|svg}, steps[], answer[]\|choices[], origin |
+| `exercises` | `src/content/exercises/<courseId>/<topicId>.yaml` (elenco) | id, topic, objectives, difficulty 1-3, kind static\|generated, generator?, statement, figure?{netlist\|diagram\|svg}, steps[], answer[]\|choices[], origin |
 | `cards` | `src/content/cards/<courseId>/<topicId>.yaml` (elenco) | id, topic, objectives, kind, front, back |
 
 I file "elenco" sono caricati da `yamlListLoader` (`src/content/loaders.ts`), che aggiunge `course` dal percorso

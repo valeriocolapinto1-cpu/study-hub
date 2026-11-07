@@ -36,6 +36,8 @@ export function contours(
   }
   const segs: Array<[Vec, Vec]> = [];
   const interp = (x0: number, y0: number, v0: number, x1: number, y1: number, v1: number): Vec => {
+    // stesso ordine degli estremi da entrambe le celle: punti identici, segmenti unibili
+    if (x1 < x0 || (x1 === x0 && y1 < y0)) return interp(x1, y1, v1, x0, y0, v0);
     const t = v0 / (v0 - v1);
     return [x0 + (x1 - x0) * t, y0 + (y1 - y0) * t];
   };
@@ -43,19 +45,24 @@ export function contours(
     for (let j = 0; j < ny; j++) {
       const x0 = b.xMin + i * dx;
       const y0 = b.yMin + j * dy;
+      const x1 = b.xMin + (i + 1) * dx;
+      const y1 = b.yMin + (j + 1) * dy;
       const v = [val[i]![j]!, val[i + 1]![j]!, val[i + 1]![j + 1]!, val[i]![j + 1]!];
       if (v.some((q) => !Number.isFinite(q))) continue;
       const corners: Vec[] = [
         [x0, y0],
-        [x0 + dx, y0],
-        [x0 + dx, y0 + dy],
-        [x0, y0 + dy],
+        [x1, y0],
+        [x1, y1],
+        [x0, y1],
       ];
       const cross: Vec[] = [];
       for (let k = 0; k < 4; k++) {
         const a = v[k]!;
         const c2 = v[(k + 1) % 4]!;
-        if (a < 0 !== c2 < 0) cross.push(interp(corners[k]![0], corners[k]![1], a, corners[(k + 1) % 4]![0], corners[(k + 1) % 4]![1], c2));
+        if (a < 0 !== c2 < 0)
+          cross.push(
+            interp(corners[k]![0], corners[k]![1], a, corners[(k + 1) % 4]![0], corners[(k + 1) % 4]![1], c2),
+          );
       }
       if (cross.length === 2) segs.push([cross[0]!, cross[1]!]);
       else if (cross.length === 4) {
@@ -63,7 +70,9 @@ export function contours(
       }
     }
   // unione dei segmenti per estremi coincidenti
-  const key = (p: Vec): string => `${Math.round(p[0] / dx * 1e4)},${Math.round(p[1] / dy * 1e4)}`;
+  const key = (p: Vec): string => `${Math.round((p[0] / dx) * 1e4)},${Math.round((p[1] / dy) * 1e4)}`;
+  // via i segmenti degeneri (contorno che passa esattamente per un vertice della griglia)
+  for (let i = segs.length - 1; i >= 0; i--) if (key(segs[i]![0]) === key(segs[i]![1])) segs.splice(i, 1);
   const byEnd = new Map<string, number[]>();
   segs.forEach((s, i) => {
     for (const p of s) {
@@ -95,7 +104,12 @@ export function contours(
 }
 
 /** Trasformazione mondo → schermo con scala uniforme. */
-function viewport(b: Bounds, w: number, h: number, pad = 10): { X: (x: number) => number; Y: (y: number) => number; k: number } {
+function viewport(
+  b: Bounds,
+  w: number,
+  h: number,
+  pad = 10,
+): { X: (x: number) => number; Y: (y: number) => number; k: number } {
   const k = Math.min((w - 2 * pad) / (b.xMax - b.xMin), (h - 2 * pad) / (b.yMax - b.yMin));
   const ox = (w - k * (b.xMax - b.xMin)) / 2;
   const oy = (h - k * (b.yMax - b.yMin)) / 2;
@@ -135,15 +149,26 @@ export function pointCharges(p: P<'point-charges'>, c: Ctx): Drawn {
       if (qs.some((q) => q.q > 0)) levels.push(qmax / r);
       if (qs.some((q) => q.q < 0)) levels.push(-qmax / r);
     }
-    if (qs.some((q) => q.q > 0) && qs.some((q) => q.q < 0) && Math.abs(qs.reduce((a, q) => a + q.q, 0)) < 1e-9) levels.push(0);
+    if (
+      qs.some((q) => q.q > 0) &&
+      qs.some((q) => q.q < 0) &&
+      Math.abs(qs.reduce((a, q) => a + q.q, 0)) < 1e-9
+    )
+      levels.push(0);
     for (const lv of levels)
-      for (const line of contours(V, b, 84, 64, lv)) if (line.length > 3) s.polyline(toScreen(line), { tone: 'muted', width: 1, dash: '1 4' });
+      for (const line of contours(V, b, 84, 64, lv))
+        if (line.length > 3) s.polyline(toScreen(line), { tone: 'muted', width: 1, dash: '1 4' });
   }
   // linee di campo
   const nl = p.lines ?? 8;
   if (nl > 0) {
     const sinkR = span * 0.012;
-    const opts = { bounds: b, step: span / 260, maxSteps: 1400, sinks: qs.map((q) => ({ x: q.x, y: q.y, r: sinkR })) };
+    const opts = {
+      bounds: b,
+      step: span / 260,
+      maxSteps: 1400,
+      sinks: qs.map((q) => ({ x: q.x, y: q.y, r: sinkR })),
+    };
     const hasPos = qs.some((q) => q.q > 0);
     const s0 = seedsAround(qs, nl, span * 0.02);
     for (const sd of s0) {
@@ -177,15 +202,36 @@ export function pointCharges(p: P<'point-charges'>, c: Ctx): Drawn {
     s.text(x, y - 0.5, q.q > 0 ? '+' : '−', { size: 16, weight: 700 });
     if (q.label) s.text(x + 15, y - 16, q.label, { anchor: 'start', italic: true, size: 13, halo: true });
   }
-  const desc = p.charges.map((q) => `${q.label ? `${plainLabel(q.label)} ` : ''}${q.q > 0 ? '+' : '−'}${c.num(Math.abs(q.q))} ${c.L('in', 'at')} (${c.num(q.x)}; ${c.num(q.y)})`);
+  const desc = p.charges.map(
+    (q) =>
+      `${q.label ? `${plainLabel(q.label)} ` : ''}${q.q > 0 ? '+' : '−'}${c.num(Math.abs(q.q))} ${c.L('in', 'at')} (${c.num(q.x)}; ${c.num(q.y)})`,
+  );
   return {
     svg: s,
-    title: p.charges.length === 1 ? c.L('Campo di una carica puntiforme', 'Field of a point charge') : c.L('Campo di cariche puntiformi', 'Field of point charges'),
+    title:
+      p.charges.length === 1
+        ? c.L('Campo di una carica puntiforme', 'Field of a point charge')
+        : c.L('Campo di cariche puntiformi', 'Field of point charges'),
     description:
       c.L(`Cariche: ${listText(desc, 'it')}.`, `Charges: ${listText(desc, 'en')}.`) +
-      (nl > 0 ? c.L(' Le linee di campo escono dalle cariche positive ed entrano in quelle negative.', ' Field lines leave positive charges and end on negative ones.') : '') +
-      (ne > 0 ? c.L(' Le linee punteggiate sono equipotenziali, perpendicolari alle linee di campo.', ' Dotted curves are equipotentials, perpendicular to the field lines.') : '') +
-      (p.testPoint ? c.L(' Nel punto evidenziato è disegnato il verso del campo E.', ' The direction of E is drawn at the marked point.') : ''),
+      (nl > 0
+        ? c.L(
+            ' Le linee di campo escono dalle cariche positive ed entrano in quelle negative.',
+            ' Field lines leave positive charges and end on negative ones.',
+          )
+        : '') +
+      (ne > 0
+        ? c.L(
+            ' Le linee punteggiate sono equipotenziali, perpendicolari alle linee di campo.',
+            ' Dotted curves are equipotentials, perpendicular to the field lines.',
+          )
+        : '') +
+      (p.testPoint
+        ? c.L(
+            ' Nel punto evidenziato è disegnato il verso del campo E.',
+            ' The direction of E is drawn at the marked point.',
+          )
+        : ''),
   };
 }
 
@@ -218,7 +264,10 @@ export function capacitor(p: P<'capacitor'>, c: Ctx): Drawn {
           [y1, -1],
           [y2, 1],
         ] as const) {
-          s.path(`M${xl + 4} ${yy + sg * 2}C${xl + 30} ${yy + sg * 34} ${xr - 30} ${yy + sg * 34} ${xr - 4} ${yy + sg * 2}`, { tone: 'accent', width: 1.1, dash: '4 3' });
+          s.path(
+            `M${xl + 4} ${yy + sg * 2}C${xl + 30} ${yy + sg * 34} ${xr - 30} ${yy + sg * 34} ${xr - 4} ${yy + sg * 2}`,
+            { tone: 'accent', width: 1.1, dash: '4 3' },
+          );
         }
       }
       s.text((xl + xr) / 2, y1 - 12, 'E', { italic: true, size: 14, halo: true });
@@ -234,8 +283,22 @@ export function capacitor(p: P<'capacitor'>, c: Ctx): Drawn {
     }
     // generatore
     const top = 26;
-    s.polyline([[xl - 3, y1], [xl - 3, top], [176, top]], { width: 1.4 });
-    s.polyline([[xr + 3, y1], [xr + 3, top], [204, top]], { width: 1.4 });
+    s.polyline(
+      [
+        [xl - 3, y1],
+        [xl - 3, top],
+        [176, top],
+      ],
+      { width: 1.4 },
+    );
+    s.polyline(
+      [
+        [xr + 3, y1],
+        [xr + 3, top],
+        [204, top],
+      ],
+      { width: 1.4 },
+    );
     s.line(176, top - 13, 176, top + 13, { width: 1.8 });
     s.line(186, top - 7, 186, top + 7, { width: 3 });
     s.line(194, top - 13, 194, top + 13, { width: 1.8 });
@@ -255,23 +318,39 @@ export function capacitor(p: P<'capacitor'>, c: Ctx): Drawn {
     if (field) {
       for (let i = 0; i < 12; i++) {
         const t = (i * Math.PI) / 6 + Math.PI / 12;
-        s.arrow(O[0] + (a + 6) * Math.cos(t), O[1] - (a + 6) * Math.sin(t), O[0] + (b - 8) * Math.cos(t), O[1] - (b - 8) * Math.sin(t), { tone: 'accent', width: 1.3 });
+        s.arrow(
+          O[0] + (a + 6) * Math.cos(t),
+          O[1] - (a + 6) * Math.sin(t),
+          O[0] + (b - 8) * Math.cos(t),
+          O[1] - (b - 8) * Math.sin(t),
+          { tone: 'accent', width: 1.3 },
+        );
       }
     }
     if (charges) {
       for (let i = 0; i < 12; i++) {
         const t = (i * Math.PI) / 6;
         s.text(O[0] + (a - 12) * Math.cos(t), O[1] - (a - 12) * Math.sin(t), '+', { size: 13, weight: 700 });
-        s.text(O[0] + (b - 12) * Math.cos(t), O[1] - (b - 12) * Math.sin(t), '−', { size: 13, weight: 700, halo: true });
+        s.text(O[0] + (b - 12) * Math.cos(t), O[1] - (b - 12) * Math.sin(t), '−', {
+          size: 13,
+          weight: 700,
+          halo: true,
+        });
       }
     }
     const t1 = -Math.PI / 2 - 0.5;
     s.dot(O[0], O[1], 2.6);
     s.line(O[0], O[1], O[0] + a * Math.cos(t1), O[1] - a * Math.sin(t1), { width: 1, tone: 'muted' });
-    s.text(O[0] + a * 0.5 * Math.cos(t1) - 12, O[1] - a * 0.5 * Math.sin(t1), p.innerLabel ?? 'a', { italic: true, halo: true });
+    s.text(O[0] + a * 0.5 * Math.cos(t1) - 12, O[1] - a * 0.5 * Math.sin(t1), p.innerLabel ?? 'a', {
+      italic: true,
+      halo: true,
+    });
     const t2 = Math.PI * 1.08;
     s.line(O[0], O[1], O[0] + b * Math.cos(t2), O[1] - b * Math.sin(t2), { width: 1, tone: 'muted' });
-    s.text(O[0] + b * 0.78 * Math.cos(t2), O[1] - b * 0.78 * Math.sin(t2) - 12, p.outerLabel ?? 'b', { italic: true, halo: true });
+    s.text(O[0] + b * 0.78 * Math.cos(t2), O[1] - b * 0.78 * Math.sin(t2) - 12, p.outerLabel ?? 'b', {
+      italic: true,
+      halo: true,
+    });
     if (cyl) {
       // vista laterale: conduttore interno e guscio esterno coassiali
       const x0 = 300;
@@ -322,7 +401,8 @@ function closedLine(F: Field, seed: Vec, opts: Parameters<typeof streamline>[2])
   // si chiude se torna vicino al seme
   const step = opts.step ?? 0.02;
   for (let i = 30; i < fwd.length; i++) {
-    if (Math.hypot(fwd[i]![0] - seed[0], fwd[i]![1] - seed[1]) < step * 1.2) return [...fwd.slice(0, i), seed];
+    if (Math.hypot(fwd[i]![0] - seed[0], fwd[i]![1] - seed[1]) < step * 1.2)
+      return [...fwd.slice(0, i), seed];
   }
   const back = streamline(F, seed, { ...opts, direction: -1 });
   return [...back.slice(1).reverse(), ...fwd];
@@ -364,7 +444,10 @@ export function magneticField(p: P<'magnetic-field'>, c: Ctx): Drawn {
     s.text(O[0] + 20, O[1] - 18, I, { italic: true, size: 14, halo: true });
     s.text(O[0] + 76 * 0.72 + 10, O[1] - 76 * 0.72 - 6, Bl, { italic: true, size: 14, halo: true });
     if (p.rightHand) rightHand(s, 4, 4, I, Bl, c);
-    title = c.L('Campo magnetico di un filo rettilineo (sezione)', 'Magnetic field of a straight wire (cross-section)');
+    title = c.L(
+      'Campo magnetico di un filo rettilineo (sezione)',
+      'Magnetic field of a straight wire (cross-section)',
+    );
     desc = c.L(
       `Filo rettilineo perpendicolare al foglio con corrente ${plainLabel(I)} ${pos ? 'uscente' : 'entrante'}: le linee di ${plainLabel(Bl)} sono circonferenze concentriche percorse in senso ${pos ? 'antiorario' : 'orario'}, con intensità che diminuisce come 1/r.`,
       `Straight wire perpendicular to the page carrying current ${plainLabel(I)} ${pos ? 'out of' : 'into'} the page: the ${plainLabel(Bl)} lines are concentric circles running ${pos ? 'counter-clockwise' : 'clockwise'}, with magnitude decreasing as 1/r.`,
@@ -422,7 +505,12 @@ export function magneticField(p: P<'magnetic-field'>, c: Ctx): Drawn {
     const v = viewport(b, W, H, 6);
     const F = wiresMagneticField(field, 1, 1e-4);
     if (lines) {
-      const opts = { bounds: b, step: 0.02, maxSteps: 2400, sinks: field.map((q) => ({ x: q.x, y: q.y, r: 0.05 })) };
+      const opts = {
+        bounds: b,
+        step: 0.02,
+        maxSteps: 2400,
+        sinks: field.map((q) => ({ x: q.x, y: q.y, r: 0.05 })),
+      };
       for (const y0 of sol ? [0, 0.3, -0.3, 0.6, -0.6] : [0, 0.25, -0.25, 0.5, -0.5, 0.75, -0.75]) {
         const line = closedLine(F, [0, y0 * R], opts);
         const pts: Pt[] = line.map(([x, y]) => [v.X(x), v.Y(y)]);
@@ -438,14 +526,23 @@ export function magneticField(p: P<'magnetic-field'>, c: Ctx): Drawn {
       s.text(x1 + 22, v.Y(0) - 16, right ? 'N' : 'S', { weight: 700, size: 15, halo: true });
       s.text(x0 - 22, v.Y(0) - 16, right ? 'S' : 'N', { weight: 700, size: 15, halo: true });
     } else {
-      s.path(`M${v.X(0)} ${v.Y(R)}A16 ${(v.Y(-R) - v.Y(R)) / 2} 0 0 1 ${v.X(0)} ${v.Y(-R)}`, { tone: 'muted', width: 1.4 });
-      s.path(`M${v.X(0)} ${v.Y(R)}A16 ${(v.Y(-R) - v.Y(R)) / 2} 0 0 0 ${v.X(0)} ${v.Y(-R)}`, { tone: 'muted', width: 1, dash: '3 3' });
+      s.path(`M${v.X(0)} ${v.Y(R)}A16 ${(v.Y(-R) - v.Y(R)) / 2} 0 0 1 ${v.X(0)} ${v.Y(-R)}`, {
+        tone: 'muted',
+        width: 1.4,
+      });
+      s.path(`M${v.X(0)} ${v.Y(R)}A16 ${(v.Y(-R) - v.Y(R)) / 2} 0 0 0 ${v.X(0)} ${v.Y(-R)}`, {
+        tone: 'muted',
+        width: 1,
+        dash: '3 3',
+      });
     }
     for (const q of src) perp(s, v.X(q.x), v.Y(q.y), q.q > 0, sol ? 7 : 9, 'danger');
     s.text(v.X(src[0]!.x) - 16, v.Y(R) - 18, I, { italic: true, size: 14, halo: true });
     s.text(v.X(0) + (sol ? 0 : 40), v.Y(0) - 14, Bl, { italic: true, size: 14, halo: true });
     if (p.rightHand) rightHand(s, 4, 4, Bl, I, c);
-    title = sol ? c.L('Campo magnetico di un solenoide', 'Magnetic field of a solenoid') : c.L('Campo magnetico di una spira', 'Magnetic field of a current loop');
+    title = sol
+      ? c.L('Campo magnetico di un solenoide', 'Magnetic field of a solenoid')
+      : c.L('Campo magnetico di una spira', 'Magnetic field of a current loop');
     desc = sol
       ? c.L(
           `Sezione longitudinale di un solenoide di ${n} spire: corrente ${plainLabel(I)} uscente (⊙) dai conduttori in alto ed entrante (⊗) in basso${pos ? '' : ' (verso opposto)'}. Dentro il solenoide il campo ${plainLabel(Bl)} è quasi uniforme e parallelo all'asse, verso ${pos ? 'destra' : 'sinistra'}; fuori le linee si richiudono. Il polo nord è a ${pos ? 'destra' : 'sinistra'}.`,

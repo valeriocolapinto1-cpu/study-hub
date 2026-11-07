@@ -31,10 +31,13 @@ function freeDiagonal(angles: number[]): number {
   let best = 135;
   let bestD = -1;
   for (const a of [135, 45, 225, 315]) {
-    const d = Math.min(360, ...angles.map((x) => {
-      const t = Math.abs((((a - x) % 360) + 360) % 360);
-      return Math.min(t, 360 - t);
-    }));
+    const d = Math.min(
+      360,
+      ...angles.map((x) => {
+        const t = Math.abs((((a - x) % 360) + 360) % 360);
+        return Math.min(t, 360 - t);
+      }),
+    );
     if (d > bestD) {
       bestD = d;
       best = a;
@@ -44,8 +47,19 @@ function freeDiagonal(angles: number[]): number {
 }
 
 /** Vettore con etichetta oltre la punta. */
-function vec(s: Svg, from: Pt, to: Pt, label: string, tone: Tone, o: { dash?: boolean; width?: number } = {}): void {
-  s.arrow(from[0], from[1], to[0], to[1], { tone, width: o.width ?? 2.2, ...(o.dash ? { dash: '5 4' } : {}) });
+function vec(
+  s: Svg,
+  from: Pt,
+  to: Pt,
+  label: string,
+  tone: Tone,
+  o: { dash?: boolean; width?: number } = {},
+): void {
+  s.arrow(from[0], from[1], to[0], to[1], {
+    tone,
+    width: o.width ?? 2.2,
+    ...(o.dash ? { dash: '5 4' } : {}),
+  });
   const len = Math.hypot(to[0] - from[0], to[1] - from[1]) || 1;
   const ux = (to[0] - from[0]) / len;
   const uy = (to[1] - from[1]) / len;
@@ -111,18 +125,39 @@ export function freeBody(p: P<'free-body'>, c: Ctx): Drawn {
     const R = Math.min(cx, s.width - cx, cy, s.height - cy) - 6;
     const ex: Pt = [Math.cos(a), -Math.sin(a)];
     const ey: Pt = [-Math.sin(a), -Math.cos(a)];
-    s.arrow(cx - ex[0] * R, cy - ex[1] * R, cx + ex[0] * R, cy + ex[1] * R, { tone: 'muted', width: 1, dash: '4 4', head: 8 });
-    s.arrow(cx - ey[0] * R, cy - ey[1] * R, cx + ey[0] * R, cy + ey[1] * R, { tone: 'muted', width: 1, dash: '4 4', head: 8 });
-    s.text(cx + ex[0] * (R - 6) + ey[0] * 12, cy + ex[1] * (R - 6) + ey[1] * 12, 'x', { italic: true, muted: true });
-    s.text(cx + ey[0] * (R - 6) - ex[0] * 12, cy + ey[1] * (R - 6) - ex[1] * 12, 'y', { italic: true, muted: true });
+    s.arrow(cx - ex[0] * R, cy - ex[1] * R, cx + ex[0] * R, cy + ex[1] * R, {
+      tone: 'muted',
+      width: 1,
+      dash: '4 4',
+      head: 8,
+    });
+    s.arrow(cx - ey[0] * R, cy - ey[1] * R, cx + ey[0] * R, cy + ey[1] * R, {
+      tone: 'muted',
+      width: 1,
+      dash: '4 4',
+      head: 8,
+    });
+    s.text(cx + ex[0] * (R - 6) + ey[0] * 12, cy + ex[1] * (R - 6) + ey[1] * 12, 'x', {
+      italic: true,
+      muted: true,
+    });
+    s.text(cx + ey[0] * (R - 6) - ex[0] * 12, cy + ey[1] * (R - 6) - ex[1] * 12, 'y', {
+      italic: true,
+      muted: true,
+    });
   }
   if (p.ground) s.ground(cx - half - 40, cy + half, cx + half + 40);
-  if (body === 'block') s.rect(cx - half, cy - half, 2 * half, 2 * half, { fill: 'surface2', width: 1.6, rx: 2 });
+  if (body === 'block')
+    s.rect(cx - half, cy - half, 2 * half, 2 * half, { fill: 'surface2', width: 1.6, rx: 2 });
   else if (body === 'sphere') s.circle(cx, cy, half, { fill: 'surface2', width: 1.6 });
   if (p.bodyLabel) {
     const a = rad(freeDiagonal(p.forces.map((f) => f.angle)));
     const r = body === 'point' ? 16 : half * 0.62;
-    s.text(cx + r * Math.cos(a), cy - r * Math.sin(a), p.bodyLabel, { italic: true, size: 14, halo: body === 'point' });
+    s.text(cx + r * Math.cos(a), cy - r * Math.sin(a), p.bodyLabel, {
+      italic: true,
+      size: 14,
+      halo: body === 'point',
+    });
   }
   for (const v of vecs) vec(s, [cx, cy], [cx + v.dx, cy + v.dy], v.f.label, FORCE_TONE[v.f.kind ?? 'other']!);
   s.dot(cx, cy, 3.2);
@@ -130,9 +165,16 @@ export function freeBody(p: P<'free-body'>, c: Ctx): Drawn {
     const a = rad(p.acceleration.angle);
     const ax = cx - Math.cos(a) * 24;
     const ay = cy - half - 44 + Math.sin(a) * 12;
-    vec(s, [ax, ay], [ax + Math.cos(a) * 48, ay - Math.sin(a) * 48], p.acceleration.label ?? 'a', 'accent2', { width: 1.6 });
+    vec(s, [ax, ay], [ax + Math.cos(a) * 48, ay - Math.sin(a) * 48], p.acceleration.label ?? 'a', 'accent2', {
+      width: 1.6,
+    });
   }
-  const what = body === 'block' ? c.L('un blocco', 'a block') : body === 'sphere' ? c.L('una sfera', 'a sphere') : c.L('un punto materiale', 'a point mass');
+  const what =
+    body === 'block'
+      ? c.L('un blocco', 'a block')
+      : body === 'sphere'
+        ? c.L('una sfera', 'a sphere')
+        : c.L('un punto materiale', 'a point mass');
   return {
     svg: s,
     title: c.L('Diagramma di corpo libero', 'Free-body diagram'),
@@ -140,8 +182,16 @@ export function freeBody(p: P<'free-body'>, c: Ctx): Drawn {
       c.L(`Diagramma di corpo libero di ${what}`, `Free-body diagram of ${what}`) +
       (p.bodyLabel ? ` (${plainLabel(p.bodyLabel)})` : '') +
       c.L(` con ${p.forces.length} forze: `, ` with ${p.forces.length} forces: `) +
-      listText(p.forces.map((f) => `${plainLabel(f.label)} ${dirText(f.angle, c)}`), c.lang) +
-      (p.acceleration ? c.L(`; accelerazione ${dirText(p.acceleration.angle, c)}`, `; acceleration ${dirText(p.acceleration.angle, c)}`) : '') +
+      listText(
+        p.forces.map((f) => `${plainLabel(f.label)} ${dirText(f.angle, c)}`),
+        c.lang,
+      ) +
+      (p.acceleration
+        ? c.L(
+            `; accelerazione ${dirText(p.acceleration.angle, c)}`,
+            `; acceleration ${dirText(p.acceleration.angle, c)}`,
+          )
+        : '') +
       '.',
   };
 }
@@ -171,25 +221,40 @@ export function inclinedPlane(p: P<'inclined-plane'>, c: Ctx): Drawn {
   s.raw(`<g transform="rotate(${-p.angle} ${Cb[0].toFixed(2)} ${Cb[1].toFixed(2)})">`);
   s.rect(Cb[0] - bw / 2, Cb[1] - bh / 2, bw, bh, { fill: 'surface', width: 1.6, rx: 2 });
   s.raw('</g>');
-  s.text(Cb[0] - u[0] * 13 - n[0] * 3, Cb[1] - u[1] * 13 - n[1] * 3, p.massLabel ?? 'm', { italic: true, size: 13 });
+  s.text(Cb[0] - u[0] * 13 - n[0] * 3, Cb[1] - u[1] * 13 - n[1] * 3, p.massLabel ?? 'm', {
+    italic: true,
+    size: 13,
+  });
   const forces: string[] = [];
   const at = (k: number, d: Pt): Pt => [Cb[0] + d[0] * k, Cb[1] + d[1] * k];
   if (p.forces !== false) {
     const g = 84;
     vec(s, Cb, at(g, [0, 1]), 'mg', 'danger');
     vec(s, Cb, at(g * Math.cos(th) + 4, n), 'N', 'info');
-    forces.push(c.L('peso mg verticale', 'weight mg, vertical'), c.L('reazione normale N perpendicolare al piano', 'normal force N, perpendicular to the plane'));
+    forces.push(
+      c.L('peso mg verticale', 'weight mg, vertical'),
+      c.L('reazione normale N perpendicolare al piano', 'normal force N, perpendicular to the plane'),
+    );
     if (p.components) {
       vec(s, Cb, at(g * Math.sin(th), [-u[0], -u[1]]), 'mg sin θ', 'danger', { dash: true, width: 1.4 });
       vec(s, Cb, at(g * Math.cos(th), [-n[0], -n[1]]), 'mg cos θ', 'danger', { dash: true, width: 1.4 });
-      forces.push(c.L('componenti del peso mg sin θ lungo il piano e mg cos θ perpendicolare', 'weight components mg sin θ along and mg cos θ perpendicular to the plane'));
+      forces.push(
+        c.L(
+          'componenti del peso mg sin θ lungo il piano e mg cos θ perpendicolare',
+          'weight components mg sin θ along and mg cos θ perpendicular to the plane',
+        ),
+      );
     }
     if (p.friction) {
       const up = p.motion !== 'up';
       const d: Pt = up ? u : [-u[0], -u[1]];
       const start: Pt = [P0[0] + d[0] * (bw / 2 - 4), P0[1] + d[1] * (bw / 2 - 4)];
       vec(s, start, [start[0] + d[0] * 46, start[1] + d[1] * 46], 'f', 'warning');
-      forces.push(up ? c.L('attrito f lungo il piano verso l’alto', 'friction f up the slope') : c.L('attrito f lungo il piano verso il basso', 'friction f down the slope'));
+      forces.push(
+        up
+          ? c.L('attrito f lungo il piano verso l’alto', 'friction f up the slope')
+          : c.L('attrito f lungo il piano verso il basso', 'friction f down the slope'),
+      );
     }
   }
   if (p.pulley) {
@@ -215,11 +280,19 @@ export function inclinedPlane(p: P<'inclined-plane'>, c: Ctx): Drawn {
   }
   if (p.motion && p.motion !== 'none') {
     const d: Pt = p.motion === 'up' ? u : [-u[0], -u[1]];
-    const base: Pt = [P0[0] + n[0] * 66 - d[0] * 22, P0[1] + n[1] * 66 - d[1] * 22];
+    const base: Pt = [P0[0] + n[0] * 70 + u[0] * 40 - d[0] * 22, P0[1] + n[1] * 70 + u[1] * 40 - d[1] * 22];
     s.arrow(base[0], base[1], base[0] + d[0] * 44, base[1] + d[1] * 44, { tone: 'muted', width: 1.4 });
-    s.text(base[0] + d[0] * 22 + n[0] * 12, base[1] + d[1] * 22 + n[1] * 12, 'v', { italic: true, muted: true });
+    s.text(base[0] + d[0] * 22 + n[0] * 12, base[1] + d[1] * 22 + n[1] * 12, 'v', {
+      italic: true,
+      muted: true,
+    });
   }
-  const motion = p.motion === 'up' ? c.L(' che sale', ' moving up') : p.motion === 'down' ? c.L(' che scende', ' moving down') : '';
+  const motion =
+    p.motion === 'up'
+      ? c.L(' che sale', ' moving up')
+      : p.motion === 'down'
+        ? c.L(' che scende', ' moving down')
+        : '';
   return {
     svg: s,
     title: c.L('Piano inclinato', 'Inclined plane'),
@@ -229,7 +302,10 @@ export function inclinedPlane(p: P<'inclined-plane'>, c: Ctx): Drawn {
         `Block of mass ${plainLabel(p.massLabel ?? 'm')}${motion} on a ${p.friction ? 'rough' : 'frictionless'} plane inclined at ${c.num(p.angle)}°`,
       ) +
       (p.pulley
-        ? c.L(`, collegato da un filo su una carrucola in cima a una massa sospesa ${plainLabel(p.hangingLabel ?? 'M')}`, `, tied by a string over a pulley at the top to a hanging mass ${plainLabel(p.hangingLabel ?? 'M')}`)
+        ? c.L(
+            `, collegato da un filo su una carrucola in cima a una massa sospesa ${plainLabel(p.hangingLabel ?? 'M')}`,
+            `, tied by a string over a pulley at the top to a hanging mass ${plainLabel(p.hangingLabel ?? 'M')}`,
+          )
         : '') +
       (forces.length ? c.L('. Forze: ', '. Forces: ') + listText(forces, c.lang) : '') +
       '.',
@@ -258,7 +334,10 @@ export function springMass(p: P<'spring-mass'>, c: Ctx): Drawn {
       const dy = 132;
       const mid = 30 + (bx - 30) * 0.55;
       s.line(30, dy, mid, dy, { width: 1.6 });
-      s.path(`M${mid - 22} ${dy - 9}H${mid + 10}M${mid - 22} ${dy + 9}H${mid + 10}M${mid - 22} ${dy - 9}V${dy + 9}`, { width: 1.6 });
+      s.path(
+        `M${mid - 22} ${dy - 9}H${mid + 10}M${mid - 22} ${dy + 9}H${mid + 10}M${mid - 22} ${dy - 9}V${dy + 9}`,
+        { width: 1.6 },
+      );
       s.line(mid - 6, dy - 6, mid - 6, dy + 6, { width: 2.4 });
       s.line(mid - 6, dy, bx, dy, { width: 1.6 });
     }
@@ -273,8 +352,8 @@ export function springMass(p: P<'spring-mass'>, c: Ctx): Drawn {
     if (p.force !== false && Math.abs(shift) > 2) {
       const dir = -Math.sign(d);
       const L = 24 + Math.abs(d) * 56;
-      const x0 = bx + 32 + dir * 32;
-      vec(s, [x0, 121], [x0 + dir * L, 121], 'F_{el}', 'accent');
+      // sopra il blocco, per non coprire la molla
+      vec(s, [bx + 32, 80], [bx + 32 + dir * L, 80], 'F_{el}', 'accent');
     }
   } else {
     s = new Svg(300, 400);
@@ -287,7 +366,10 @@ export function springMass(p: P<'spring-mass'>, c: Ctx): Drawn {
       const dx = 176;
       const mid = 30 + (by - 30) * 0.5;
       s.line(dx, 30, dx, mid, { width: 1.6 });
-      s.path(`M${dx - 9} ${mid - 10}V${mid + 22}M${dx + 9} ${mid - 10}V${mid + 22}M${dx - 9} ${mid + 22}H${dx + 9}`, { width: 1.6 });
+      s.path(
+        `M${dx - 9} ${mid - 10}V${mid + 22}M${dx + 9} ${mid - 10}V${mid + 22}M${dx - 9} ${mid + 22}H${dx + 9}`,
+        { width: 1.6 },
+      );
       s.line(dx - 6, mid + 6, dx + 6, mid + 6, { width: 2.4 });
       s.line(dx, mid + 6, dx, by, { width: 1.6 });
     }
@@ -310,8 +392,22 @@ export function springMass(p: P<'spring-mass'>, c: Ctx): Drawn {
     Math.abs(d) < 0.02
       ? c.L('nella posizione di equilibrio', 'at equilibrium')
       : d > 0
-        ? c.L(vertical ? 'spostata verso il basso rispetto all’equilibrio' : 'spostata a destra rispetto all’equilibrio (molla allungata)', vertical ? 'displaced downwards from equilibrium' : 'displaced to the right of equilibrium (spring stretched)')
-        : c.L(vertical ? 'spostata verso l’alto rispetto all’equilibrio' : 'spostata a sinistra rispetto all’equilibrio (molla compressa)', vertical ? 'displaced upwards from equilibrium' : 'displaced to the left of equilibrium (spring compressed)');
+        ? c.L(
+            vertical
+              ? 'spostata verso il basso rispetto all’equilibrio'
+              : 'spostata a destra rispetto all’equilibrio (molla allungata)',
+            vertical
+              ? 'displaced downwards from equilibrium'
+              : 'displaced to the right of equilibrium (spring stretched)',
+          )
+        : c.L(
+            vertical
+              ? 'spostata verso l’alto rispetto all’equilibrio'
+              : 'spostata a sinistra rispetto all’equilibrio (molla compressa)',
+            vertical
+              ? 'displaced upwards from equilibrium'
+              : 'displaced to the left of equilibrium (spring compressed)',
+          );
   return {
     svg: s,
     title: c.L('Sistema molla-massa', 'Mass–spring system'),
@@ -320,7 +416,12 @@ export function springMass(p: P<'spring-mass'>, c: Ctx): Drawn {
         `Massa ${plainLabel(m)} attaccata a una molla di costante ${plainLabel(k)}${vertical ? ' appesa al soffitto' : ' fissata a una parete, su un piano orizzontale'}${p.damper ? ', con smorzatore' : ''}, ${pos}.`,
         `Mass ${plainLabel(m)} attached to a spring of constant ${plainLabel(k)}${vertical ? ' hanging from the ceiling' : ' fixed to a wall, on a horizontal surface'}${p.damper ? ', with a damper' : ''}, ${pos}.`,
       ) +
-      (p.force !== false && Math.abs(d) >= 0.02 ? c.L(' La forza elastica è diretta verso l’equilibrio.', ' The elastic force points towards equilibrium.') : ''),
+      (p.force !== false && Math.abs(d) >= 0.02
+        ? c.L(
+            ' La forza elastica è diretta verso l’equilibrio.',
+            ' The elastic force points towards equilibrium.',
+          )
+        : ''),
   };
 }
 
@@ -352,7 +453,11 @@ export function pendulum(p: P<'pendulum'>, c: Ctx): Drawn {
   }
   const mid: Pt = [(O[0] + B[0]) / 2, (O[1] + B[1]) / 2];
   const side = th >= 0 ? -1 : 1;
-  s.text(mid[0] + side * 14 * Math.cos(th), mid[1] + Math.sin(Math.abs(th)) * 14, p.lengthLabel ?? 'L', { italic: true, size: 14, halo: true });
+  s.text(mid[0] + side * 14 * Math.cos(th), mid[1] + Math.sin(Math.abs(th)) * 14, p.lengthLabel ?? 'L', {
+    italic: true,
+    size: 14,
+    halo: true,
+  });
   s.circle(B[0], B[1], 14, { fill: 'surface2', width: 1.6 });
   s.text(B[0] + (th >= 0 ? 22 : -22), B[1] - 18, p.massLabel ?? 'm', { italic: true, size: 14, halo: true });
   if (p.forces !== false) {
@@ -361,8 +466,22 @@ export function pendulum(p: P<'pendulum'>, c: Ctx): Drawn {
     vec(s, B, [B[0], B[1] + 84], 'mg', 'danger');
     if (p.components && amp > 0.02) {
       const tan: Pt = [-Math.cos(th) * Math.sign(th), Math.sin(th) * Math.sign(th)];
-      vec(s, B, [B[0] + tan[0] * 84 * Math.sin(amp), B[1] + tan[1] * 84 * Math.sin(amp)], 'mg sin θ', 'danger', { dash: true, width: 1.4 });
-      vec(s, B, [B[0] - toO[0] * 84 * Math.cos(th), B[1] - toO[1] * 84 * Math.cos(th)], 'mg cos θ', 'danger', { dash: true, width: 1.4 });
+      vec(
+        s,
+        B,
+        [B[0] + tan[0] * 84 * Math.sin(amp), B[1] + tan[1] * 84 * Math.sin(amp)],
+        'mg sin θ',
+        'danger',
+        { dash: true, width: 1.4 },
+      );
+      vec(
+        s,
+        B,
+        [B[0] - toO[0] * 84 * Math.cos(th), B[1] - toO[1] * 84 * Math.cos(th)],
+        'mg cos θ',
+        'danger',
+        { dash: true, width: 1.4 },
+      );
     }
   }
   return {
@@ -374,8 +493,16 @@ export function pendulum(p: P<'pendulum'>, c: Ctx): Drawn {
         `Simple pendulum of length ${plainLabel(p.lengthLabel ?? 'L')} and mass ${plainLabel(p.massLabel ?? 'm')}, displaced ${c.num(Math.abs(p.angle))}° to the ${p.angle >= 0 ? 'right' : 'left'} of the vertical`,
       ) +
       (p.forces !== false
-        ? c.L('; forze sulla massa: tensione T lungo il filo e peso mg', '; forces on the bob: tension T along the string and weight mg') +
-          (p.components ? c.L(', con le componenti mg sin θ (tangente) e mg cos θ (lungo il filo)', ', with components mg sin θ (tangential) and mg cos θ (along the string)') : '')
+        ? c.L(
+            '; forze sulla massa: tensione T lungo il filo e peso mg',
+            '; forces on the bob: tension T along the string and weight mg',
+          ) +
+          (p.components
+            ? c.L(
+                ', con le componenti mg sin θ (tangente) e mg cos θ (lungo il filo)',
+                ', with components mg sin θ (tangential) and mg cos θ (along the string)',
+              )
+            : '')
         : '') +
       '.',
   };
@@ -435,9 +562,14 @@ export function projectile(p: P<'projectile'>, c: Ctx): Drawn {
     const xa = X(vx * ta);
     s.line(xa, Y(H), xa, oy, { tone: 'muted', width: 1, dash: '4 4' });
     s.dot(xa, Y(H), 3);
-    s.text(xa + 8, Y(H) - 14, values ? `h_{max} = ${c.num(H)} m` : 'h_{max}', { anchor: 'start', halo: true, size: 12 });
+    s.text(xa + 8, Y(H) - 14, values ? `h_{max} = ${c.num(H)} m` : 'h_{max}', {
+      anchor: 'start',
+      halo: true,
+      size: 12,
+    });
   }
-  if (p.range !== false) s.dimension(X(0), oy + 24, X(R), oy + 24, values ? `R = ${c.num(R)} m` : 'R', { italic: false });
+  if (p.range !== false)
+    s.dimension(X(0), oy + 24, X(R), oy + 24, values ? `R = ${c.num(R)} m` : 'R', { italic: false });
   return {
     svg: s,
     title: c.L('Moto del proiettile', 'Projectile motion'),
@@ -468,11 +600,16 @@ export function circularMotion(p: P<'circular-motion'>, c: Ctx): Drawn {
   s.dot(O[0], O[1], 3);
   s.text(O[0] - 10, O[1] + 14, 'O', { muted: true, size: 12 });
   const mid: Pt = [(O[0] + P0[0]) / 2, (O[1] + P0[1]) / 2];
-  s.text(mid[0] - Math.sin(th) * 12, mid[1] - Math.cos(th) * 12, p.radiusLabel ?? 'r', { italic: true, halo: true });
-  if (p.showAngle !== false) s.angleArc(O[0], O[1], 34, 0, ((th % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI), p.angleLabel ?? 'θ');
+  s.text(mid[0] - Math.sin(th) * 12, mid[1] - Math.cos(th) * 12, p.radiusLabel ?? 'r', {
+    italic: true,
+    halo: true,
+  });
+  if (p.showAngle !== false)
+    s.angleArc(O[0], O[1], 34, 0, ((th % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI), p.angleLabel ?? 'θ');
   const t: Pt = ccw ? [-Math.sin(th), -Math.cos(th)] : [Math.sin(th), Math.cos(th)];
   if (p.velocity !== false) vec(s, P0, [P0[0] + t[0] * 72, P0[1] + t[1] * 72], 'v', 'accent');
-  if (p.centripetal !== false) vec(s, P0, [P0[0] + (O[0] - P0[0]) * 0.5, P0[1] + (O[1] - P0[1]) * 0.5], 'a_c', 'danger');
+  if (p.centripetal !== false)
+    vec(s, P0, [P0[0] + (O[0] - P0[0]) * 0.5, P0[1] + (O[1] - P0[1]) * 0.5], 'a_c', 'danger');
   const tg = p.tangential ?? 'none';
   if (tg !== 'none') {
     const sg = tg === 'speeding' ? 1 : -1;
@@ -488,11 +625,19 @@ export function circularMotion(p: P<'circular-motion'>, c: Ctx): Drawn {
         `Point in ${ccw ? 'counter-clockwise' : 'clockwise'} circular motion on a circle of radius ${plainLabel(p.radiusLabel ?? 'r')}, at ${c.num(p.angle)}°`,
       ) +
       (p.velocity !== false ? c.L('; velocità tangente', '; tangential velocity') : '') +
-      (p.centripetal !== false ? c.L(', accelerazione centripeta verso il centro', ', centripetal acceleration towards the centre') : '') +
+      (p.centripetal !== false
+        ? c.L(', accelerazione centripeta verso il centro', ', centripetal acceleration towards the centre')
+        : '') +
       (tg !== 'none'
         ? tg === 'speeding'
-          ? c.L(', accelerazione tangenziale concorde con la velocità (accelera)', ', tangential acceleration along the velocity (speeding up)')
-          : c.L(', accelerazione tangenziale opposta alla velocità (rallenta)', ', tangential acceleration against the velocity (slowing down)')
+          ? c.L(
+              ', accelerazione tangenziale concorde con la velocità (accelera)',
+              ', tangential acceleration along the velocity (speeding up)',
+            )
+          : c.L(
+              ', accelerazione tangenziale opposta alla velocità (rallenta)',
+              ', tangential acceleration against the velocity (slowing down)',
+            )
         : '') +
       '.',
   };
@@ -511,7 +656,12 @@ export function collision(p: P<'collision'>, c: Ctx): Drawn {
     `v${prime ? "'" : ''}_{${b.label}}` + (values ? ` = ${c.num(Math.abs(b.v))} ${unit}` : '');
   const panel = (bodies: typeof p.before, y0: number, after: boolean): void => {
     s.rect(4, y0 + 4, W - 8, panelH - 12, { tone: 'faint', width: 1, rx: 8 });
-    s.text(18, y0 + 22, after ? c.L('Dopo', 'After') : c.L('Prima', 'Before'), { anchor: 'start', size: 12, weight: 600, muted: true });
+    s.text(18, y0 + 22, after ? c.L('Dopo', 'After') : c.L('Prima', 'Before'), {
+      anchor: 'start',
+      size: 12,
+      weight: 600,
+      muted: true,
+    });
     if (!plane) {
       const y = y0 + panelH / 2 + 8;
       s.line(20, y + 22, W - 20, y + 22, { tone: 'faint', width: 1 });
@@ -522,7 +672,11 @@ export function collision(p: P<'collision'>, c: Ctx): Drawn {
           const dir = Math.sign(b.v);
           vec(s, [x + dir * 20, y], [x + dir * (20 + L), y], '', 'accent', { width: 2 });
           s.text(x + dir * (22 + L / 2), y - 16, vl(b, after), { italic: true, size: 12, halo: true });
-        } else s.text(x, y - 30, values ? `v${after ? "'" : ''}_{${b.label}} = 0` : '', { italic: true, size: 12 });
+        } else
+          s.text(x, y - 30, values ? `v${after ? "'" : ''}_{${b.label}} = 0` : '', {
+            italic: true,
+            size: 12,
+          });
         s.circle(x, y, 18, { fill: 'surface2', width: 1.6 });
         s.text(x, y, b.label, { size: 13, weight: 600 });
         if (b.mass) s.text(x, y + 34, b.mass, { italic: true, size: 12, muted: true });
@@ -534,11 +688,17 @@ export function collision(p: P<'collision'>, c: Ctx): Drawn {
         const ang = rad(b.angle ?? (b.v >= 0 ? 0 : 180));
         const d: Pt = [Math.cos(ang), -Math.sin(ang)];
         const L = (Math.abs(b.v) / vmax) * 70;
-        const center: Pt = after ? [C[0] + d[0] * 36, C[1] + d[1] * 36] : [C[0] - d[0] * (L + 48), C[1] - d[1] * (L + 48)];
+        const center: Pt = after
+          ? [C[0] + d[0] * 36, C[1] + d[1] * 36]
+          : [C[0] - d[0] * (L + 48), C[1] - d[1] * (L + 48)];
         if (L > 1) {
           const from: Pt = [center[0] + d[0] * 17, center[1] + d[1] * 17];
           vec(s, from, [from[0] + d[0] * L, from[1] + d[1] * L], '', 'accent', { width: 2 });
-          s.text(from[0] + d[0] * (L / 2) - d[1] * 16, from[1] + d[1] * (L / 2) + d[0] * 16, vl(b, after), { italic: true, size: 12, halo: true });
+          s.text(from[0] + d[0] * (L / 2) - d[1] * 16, from[1] + d[1] * (L / 2) + d[0] * 16, vl(b, after), {
+            italic: true,
+            size: 12,
+            halo: true,
+          });
         }
         s.circle(center[0], center[1], 16, { fill: 'surface2', width: 1.6 });
         s.text(center[0], center[1], b.label, { size: 13, weight: 600 });
@@ -554,11 +714,13 @@ export function collision(p: P<'collision'>, c: Ctx): Drawn {
     svg: s,
     title: c.L('Urto: prima e dopo', 'Collision: before and after'),
     description:
-      c.L(`Urto ${plane ? 'nel piano' : 'lungo una retta'}${merged ? ' completamente anelastico' : ''}. Prima: `, `${plane ? 'Two-dimensional' : 'One-dimensional'}${merged ? ' perfectly inelastic' : ''} collision. Before: `) +
+      c.L(
+        `Urto ${plane ? 'nel piano' : 'lungo una retta'}${merged ? ' completamente anelastico' : ''}. Prima: `,
+        `${plane ? 'Two-dimensional' : 'One-dimensional'}${merged ? ' perfectly inelastic' : ''} collision. Before: `,
+      ) +
       listText(p.before.map(d), c.lang) +
       c.L('. Dopo: ', '. After: ') +
       listText(p.after.map(d), c.lang) +
       '.',
   };
 }
-

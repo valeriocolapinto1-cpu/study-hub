@@ -33,7 +33,11 @@ const GROUP: Record<DiagramType, [Loader, string]> = {
   'truth-table': [() => import('./types/cs'), 'truthTable'],
 };
 
-export async function renderDiagramAsync(type: string, params: unknown, opts: RenderOptions = {}): Promise<FigureResult> {
+export async function renderDiagramAsync(
+  type: string,
+  params: unknown,
+  opts: RenderOptions = {},
+): Promise<FigureResult> {
   const g = GROUP[type as DiagramType];
   if (!g) throw new Error(`figura sconosciuta: "${type}"`);
   const mod = await g[0]();
