@@ -1,0 +1,177 @@
+---
+course: fisica-1
+topic: urti-centrali
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/urti-centrali/idea">
+
+In every collision momentum is sacred (internal forces exchange equal and opposite impulses), while kinetic energy is negotiable: it can end up in deformation, sound, heat. König's decomposition clarifies the balance: the 'CM' energy is protected by the conservation of P; only the energy of relative motion can be spent — and the perfectly inelastic collision spends all of it.
+
+</div>
+
+<p class="muted" data-note-id="teoria/urti-centrali/prerequisiti"><strong>Before this topic:</strong> <a href="../centro-di-massa/">Centre of mass and the first cardinal equation</a></p>
+
+<Callout tone="nota" title="See it in action">
+
+[Open the interactive simulation](../../extra/simulazioni/#sim-urti)
+
+</Callout>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/urti-centrali/definizioni">
+
+## Definitions
+
+A collision is an impulsive interaction between two bodies, so short that external forces are negligible compared with internal ones: total momentum is ALWAYS conserved. The collision is elastic if kinetic energy is also conserved, inelastic if part of K is converted into other forms, perfectly inelastic if the bodies stick together (maximum loss of K compatible with conservation of P). A collision is central (head-on) if the velocities lie along the line joining the centres: the problem is one-dimensional.
+
+</div>
+
+<div data-note-id="teoria/urti-centrali/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Conservation of momentum (always)</summary>
+
+$$
+m_1v_1 + m_2v_2 = m_1v_1' + m_2v_2'
+$$
+
+During the collision the (impulsive) internal forces dominate the external ones: total P unchanged. It holds for any kind of collision.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Elastic collision: add conservation of K</summary>
+
+$$
+\frac{1}{2}m_1v_1^2 + \frac{1}{2}m_2v_2^2 = \frac{1}{2}m_1v_1'^2 + \frac{1}{2}m_2v_2'^2
+$$
+
+Two equations, two unknowns: the problem is determined.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Algebraic trick: rearrange the two equations</summary>
+
+$$
+m_1(v_1 - v_1') = m_2(v_2' - v_2), \qquad m_1(v_1^2 - v_1'^2) = m_2(v_2'^2 - v_2^2)
+$$
+
+Dividing side by side (difference of squares): v₁ + v₁' = v₂ + v₂'.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · The relative velocity reverses</summary>
+
+$$
+v_1' - v_2' = -(v_1 - v_2)
+$$
+
+Hallmark of the 1D elastic collision: the relative velocity changes sign keeping its magnitude (coefficient of restitution e = 1).
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · General solution of the 1D elastic collision</summary>
+
+$$
+v_1' = \frac{m_1 - m_2}{m_1 + m_2}v_1 + \frac{2m_2}{m_1 + m_2}v_2, \qquad v_2' = \frac{2m_1}{m_1 + m_2}v_1 + \frac{m_2 - m_1}{m_1 + m_2}v_2
+$$
+
+Notable cases (v₂ = 0): equal masses → they exchange velocities; m₁ ≪ m₂ → bounce back (v₁' ≈ −v₁); m₁ ≫ m₂ → the target shoots off at v₂' ≈ 2v₁.
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Perfectly inelastic collision</summary>
+
+$$
+v' = \frac{m_1v_1 + m_2v_2}{m_1 + m_2} = v_{cm}, \qquad \Delta K = -\frac{1}{2}\mu(v_1 - v_2)^2,\;\; \mu = \frac{m_1m_2}{m_1+m_2}
+$$
+
+The bodies continue stuck together at the CM velocity. The dissipated energy is all that of the relative motion (½μv_rel²): König's CM term cannot be touched because P is conserved.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/urti-centrali/ipotesi">
+
+## Validity assumptions
+
+External forces negligible during the collision (impulse approximation); central collision → 1D problem; point-like bodies or at least no induced rotations.
+
+</div>
+
+<div data-note-id="teoria/urti-centrali/casi-limite">
+
+## Limiting cases
+
+Elastic collision with an infinitely massive target: pure reversal of velocity (ball against a wall). Equal masses, elastic: exchange of velocities (billiards, Newton's cradle). Inelastic with bodies approaching each other with zero total P: both stop, K entirely dissipated.
+
+</div>
+
+<div data-note-id="teoria/urti-centrali/formule">
+
+## Key formulas
+
+<Formula id="urti-centrali-f1" />
+
+<Formula id="urti-centrali-f2" />
+
+<Formula id="urti-centrali-f3" />
+
+<Formula id="urti-centrali-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/urti-centrali/esempio">
+
+A cart of mass m₁ = 0.40 kg moving at 2.0 m/s collides elastically with a cart at rest of mass m₂ = 1.2 kg. Find: (a) the velocities after the collision; (b) the fraction of kinetic energy transferred to the second cart.
+
+1. **Elastic collision formulas.** $v_1' = \dfrac{m_1 - m_2}{m_1 + m_2}v_1 = -1.0\ \text{m/s}$ (it bounces back), $v_2' = \dfrac{2m_1}{m_1 + m_2}v_1 = 1.0\ \text{m/s}$.
+2. **Transferred energy.** $K_2'/K_1 = \dfrac{1.2 \cdot 1.0^2}{0.40 \cdot 2.0^2} = 0.75$. Check: the relative velocity goes from −2 to +2 m/s. ✓
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/urti-centrali/errori">
+
+- Conserving kinetic energy in an inelastic collision.
+- Not conserving momentum 'because there is friction with the floor': during the collision impulsive forces dominate.
+- Using the elastic formulas with v₂ = 0 even when the target is moving.
+- Forgetting that in a perfectly inelastic collision the loss of K is determined, not arbitrary.
+
+</div>
+
+<div data-note-id="teoria/urti-centrali/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- Why, in the centre-of-mass frame, is an elastic collision described as a simple reversal of the velocities?
+- In Newton's cradle, why does a single ball leave on the other side and not two at half the speed?
+- How does the elastic collision generalise to 2D, and why is more information needed (impact parameter)?
+
+</div>
+
+</Layer>

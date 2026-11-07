@@ -11,6 +11,7 @@
   kind: orale
   front:
     it: 'Esponi all''orale: «Moto di un corpo rigido».'
+    en: 'Present at the oral exam: “Motion of a rigid body”.'
   back:
     it: >-
       Il vincolo di rigidità riduce un numero enorme di gradi di libertà a soli 6: dire dove sta il CM e come
@@ -35,6 +36,29 @@
       - Spiegare il centro di istantanea rotazione
 
       - Scrivere lavoro e potenza rotazionali
+    en: >-
+      The rigidity constraint reduces an enormous number of degrees of freedom to just 6: knowing where the CM
+      is and how the body is oriented is enough to know the position of every point. The motion can always be
+      read as 'the CM translates + the body spins about the CM', and each of the two parts obeys its own
+      cardinal equation.
+
+
+      **Outline:**
+
+
+      - Define a rigid body and count its degrees of freedom
+
+      - Write the fundamental formula v_P = v_Q + ω×(r_P−r_Q)
+
+      - Set up the two cardinal equations for roto-translational motion
+
+      - Derive Iα = τ for the fixed axis and the analogy with F = ma
+
+      - Write the rotational equations of motion for constant α
+
+      - Explain the instantaneous centre of rotation
+
+      - Write rotational work and power
 - id: moto-corpo-rigido-orale-1
   topic: moto-corpo-rigido
   objectives:
@@ -43,8 +67,39 @@
   kind: orale
   front:
     it: Perché per un corpo rigido il lavoro delle forze interne è nullo?
+    en: Why is the work of internal forces zero for a rigid body?
   back:
-    it: Le distanze mutue non cambiano.
+    it: >-
+      Le forze interne vengono a coppie opposte \(\vec f_{ij} = -\vec f_{ji}\) lungo la congiungente. Il
+      lavoro di una coppia è \(\vec f_{ij}\cdot(d\vec r_i - d\vec r_j)\) e per un rigido lo spostamento
+      relativo è una rotazione, perpendicolare alla congiungente (perché \(|\vec r_i - \vec r_j|\) è
+      costante): il prodotto scalare è nullo. Quindi in un rigido conta solo il lavoro delle forze esterne.
+    en: >-
+      Internal forces come in opposite pairs \(\vec f_{ij} = -\vec f_{ji}\) along the line joining the points.
+      The work of a pair is \(\vec f_{ij}\cdot(d\vec r_i - d\vec r_j)\) and for a rigid body the relative
+      displacement is a rotation, perpendicular to that line (because \(|\vec r_i - \vec r_j|\) is constant):
+      the dot product vanishes. So in a rigid body only the work of external forces counts.
+- id: moto-corpo-rigido-orale-2
+  topic: moto-corpo-rigido
+  objectives:
+    - moto-corpo-rigido.6
+    - moto-corpo-rigido.7
+  kind: orale
+  front:
+    it: Come trovi graficamente il centro di istantanea rotazione conoscendo le velocità di due punti?
+    en: How do you find the instantaneous centre of rotation graphically, knowing the velocities of two points?
+  back:
+    it: >-
+      Ogni velocità è perpendicolare al segmento che congiunge il punto con il centro di istantanea rotazione
+      C. Si tracciano quindi, dai due punti, le rette perpendicolari alle rispettive velocità: C è la loro
+      intersezione. Se le velocità sono parallele e perpendicolari alla congiungente, C sta sulla
+      congiungente, dove si incontrano le rette che uniscono le punte dei vettori; se sono uguali, C è
+      all'infinito (traslazione pura).
+    en: >-
+      Every velocity is perpendicular to the segment joining the point to the instantaneous centre of rotation
+      C. So, from the two points, draw the lines perpendicular to their velocities: C is their intersection.
+      If the velocities are parallel and perpendicular to the joining line, C lies on that line, where the
+      line through the tips of the vectors meets it; if they are equal, C is at infinity (pure translation).
 - id: moto-corpo-rigido-orale-3
   topic: moto-corpo-rigido
   objectives:
@@ -53,8 +108,17 @@
   kind: orale
   front:
     it: Cosa succede se si applica una forza il cui momento rispetto al CM è nullo?
+    en: What happens if you apply a force whose torque about the CM is zero?
   back:
-    it: Pura traslazione accelerata.
+    it: >-
+      La prima cardinale dà \(\vec a_{cm} = \vec F/M\); la seconda, con polo nel CM, dà \(d\vec L_{cm}/dt =
+      0\): se il corpo era fermo non inizia a ruotare. Il risultato è una traslazione accelerata pura, come
+      per una forza applicata esattamente in linea con il baricentro (es. il peso in caduta libera).
+    en: >-
+      The first cardinal equation gives \(\vec a_{cm} = \vec F/M\); the second, with the pole at the CM, gives
+      \(d\vec L_{cm}/dt = 0\): if the body was at rest it does not start rotating. The result is a pure
+      accelerated translation, as for a force applied exactly in line with the centre of mass (e.g. weight in
+      free fall).
 - id: moto-corpo-rigido-definizione
   topic: moto-corpo-rigido
   objectives:
@@ -62,6 +126,7 @@
   kind: definizione
   front:
     it: 'Definizione: Moto di un corpo rigido'
+    en: 'Definition: Motion of a rigid body'
   back:
     it: >-
       Un corpo rigido è un sistema di punti le cui distanze mutue restano costanti. Il suo moto più generale è
@@ -69,6 +134,12 @@
       passante per il CM: servono 6 coordinate (3 + 3). Il campo delle velocità è \(\vec{v}_P = \vec{v}_{cm} +
       \vec{\omega}\times\vec{r}_{P}\), con r_P posizione di P rispetto al CM. Il moto è governato dalle due
       equazioni cardinali.
+    en: >-
+      A rigid body is a system of points whose mutual distances stay constant. Its most general motion is the
+      composition of a translation (described by the motion of the CM) and a rotation about an axis through
+      the CM: 6 coordinates are needed (3 + 3). The velocity field is \(\vec{v}_P = \vec{v}_{cm} +
+      \vec{\omega}\times\vec{r}_{P}\), with r_P the position of P relative to the CM. The motion is governed
+      by the two cardinal equations.
 - id: moto-corpo-rigido-formule
   topic: moto-corpo-rigido
   objectives:
@@ -82,8 +153,14 @@
   kind: formula
   front:
     it: Le formule chiave di «Moto di un corpo rigido»
+    en: The key formulas of “Motion of a rigid body”
   back:
     it: |-
+      - \(\vec{v}_P = \vec{v}_{cm} + \vec{\omega}\times\vec{r}_P\)
+      - \(\vec{F}^{ext} = M\vec{a}_{cm},\;\; \vec{\tau}_{cm} = \frac{d\vec{L}_{cm}}{dt}\)
+      - \(I\alpha = \tau_z\)
+      - \(P = \tau\omega\)
+    en: |-
       - \(\vec{v}_P = \vec{v}_{cm} + \vec{\omega}\times\vec{r}_P\)
       - \(\vec{F}^{ext} = M\vec{a}_{cm},\;\; \vec{\tau}_{cm} = \frac{d\vec{L}_{cm}}{dt}\)
       - \(I\alpha = \tau_z\)
@@ -101,10 +178,14 @@
   kind: concetto
   front:
     it: 'Ipotesi di validità: Moto di un corpo rigido'
+    en: 'Validity assumptions: Motion of a rigid body'
   back:
     it: >-
       Rigidità perfetta (nessuna deformazione); per L = Iω asse fisso o principale d'inerzia; sistemi di
       riferimento inerziali (o polo nel CM).
+    en: >-
+      Perfect rigidity (no deformation); for L = Iω a fixed axis or a principal axis of inertia; inertial
+      reference frames (or pole at the CM).
 - id: moto-corpo-rigido-casi-limite
   topic: moto-corpo-rigido
   objectives:
@@ -118,11 +199,16 @@
   kind: concetto
   front:
     it: 'Casi limite: Moto di un corpo rigido'
+    en: 'Limiting cases: Motion of a rigid body'
   back:
     it: >-
       Pura traslazione: ω = 0, tutti i punti hanno la stessa velocità. Pura rotazione attorno ad asse fisso:
       v_cm dell'asse nulla. Rotolamento: combinazione con vincolo v_cm = ωR. Corpo libero nello spazio: il CM
       va di moto rettilineo uniforme e il corpo ruota attorno a esso.
+    en: >-
+      Pure translation: ω = 0, all points have the same velocity. Pure rotation about a fixed axis: zero
+      velocity of the axis. Rolling: combination with the constraint v_cm = ωR. Free body in space: the CM
+      moves in uniform rectilinear motion and the body rotates about it.
 - id: moto-corpo-rigido-errori
   topic: moto-corpo-rigido
   objectives:
@@ -136,9 +222,15 @@
   kind: concetto
   front:
     it: 'Errori da evitare: Moto di un corpo rigido'
+    en: 'Mistakes to avoid: Motion of a rigid body'
   back:
     it: |-
       - Assegnare ω 'a un punto': la velocità angolare è unica per tutto il corpo rigido.
       - Usare la seconda cardinale con polo mobile diverso dal CM senza correzioni.
       - Applicare L = Iω vettorialmente quando l'asse non è principale.
       - Dimenticare che servono ENTRAMBE le cardinali: la sola prima non descrive la rotazione.
+    en: |-
+      - Assigning ω 'to a point': the angular velocity is unique for the whole rigid body.
+      - Using the second cardinal equation with a moving pole other than the CM without corrections.
+      - Applying L = Iω as a vector relation when the axis is not principal.
+      - Forgetting that BOTH cardinal equations are needed: the first alone does not describe rotation.

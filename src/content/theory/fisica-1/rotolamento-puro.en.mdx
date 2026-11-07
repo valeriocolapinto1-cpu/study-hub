@@ -1,0 +1,178 @@
+---
+course: fisica-1
+topic: rotolamento-puro
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/rotolamento-puro/idea">
+
+In rolling, static friction is a 'director' that spends no energy: it forces translation and rotation to march together (v = ωR), redistributing gravity's push between the two motions. The race down the incline is won by the body with the least relative rotational inertia: the sphere beats the disc, which beats the ring — always, regardless of mass and radius.
+
+</div>
+
+<p class="muted" data-note-id="teoria/rotolamento-puro/prerequisiti"><strong>Before this topic:</strong> <a href="../moto-corpo-rigido/">Motion of a rigid body</a> · <a href="../energia-corpo-rigido/">Kinetic and mechanical energy of a rigid body</a></p>
+
+<Callout tone="nota" title="See it in action">
+
+[Open the interactive simulation](../../extra/simulazioni/#sim-rotolamento)
+
+</Callout>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/rotolamento-puro/definizioni">
+
+## Definitions
+
+A round body (radius R) rolls without slipping on a surface when the contact point has zero instantaneous velocity: this imposes the pure-rolling constraint $v_{cm} = \omega R$ (and, differentiating, $a_{cm} = \alpha R$). The motion is the superposition of translation and rotation; the friction involved is STATIC (the contact does not slide) and does not dissipate energy.
+
+</div>
+
+<div data-note-id="teoria/rotolamento-puro/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · The rolling constraint</summary>
+
+$$
+\vec{v}_{contact} = \vec{v}_{cm} - \omega R\,\hat{x} = \vec{0} \;\Rightarrow\; v_{cm} = \omega R
+$$
+
+The velocity of the contact point is the sum of translation (v_cm) and rotation (−ωR): pure rolling requires it to vanish.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Kinetic energy in rolling</summary>
+
+$$
+K = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2 = \frac{1}{2}Mv_{cm}^2\Big(1 + \frac{I_{cm}}{MR^2}\Big)
+$$
+
+König + constraint: it is handy to write I_cm = βMR² (β = 1 ring, ½ disc, 2/5 sphere) → K = ½(1+β)Mv_cm².
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Rolling down an incline: dynamics</summary>
+
+$$
+\begin{aligned} & Mg\sin\theta - f_s = Ma_{cm} \\ & f_s R = I_{cm}\alpha = I_{cm}\frac{a_{cm}}{R} \end{aligned}
+$$
+
+First cardinal equation along the plane; second cardinal equation about the CM: the only torque is that of static friction (weight and normal force pass through the CM or have zero lever arm).
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Solve the system</summary>
+
+$$
+a_{cm} = \frac{g\sin\theta}{1 + I_{cm}/MR^2} = \frac{g\sin\theta}{1+\beta}, \qquad f_s = \frac{\beta}{1+\beta}Mg\sin\theta
+$$
+
+The acceleration is less than g sin θ: part of the 'push' goes into making the body spin. Bodies with small β (sphere) roll down faster than those with large β (ring), regardless of mass and radius.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Condition for rolling without slipping</summary>
+
+$$
+f_s \le \mu_s N = \mu_s Mg\cos\theta \;\Rightarrow\; \tan\theta \le \frac{1+\beta}{\beta}\,\mu_s
+$$
+
+If the plane is too steep static friction is not enough: the body rolls AND slides (kinetic friction, dissipated energy).
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Check with energy</summary>
+
+$$
+Mgh = \frac{1}{2}(1+\beta)Mv_{cm}^2 \;\Rightarrow\; v_{cm} = \sqrt{\frac{2gh}{1+\beta}}
+$$
+
+Static friction does no work (contact point at rest): energy is conserved and the result coincides with the dynamic one — an excellent cross-check.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/rotolamento-puro/ipotesi">
+
+## Validity assumptions
+
+Rigid body with circular cross-section; point contact; pure rolling (v_contact = 0) with sufficient static friction; rolling resistance is neglected.
+
+</div>
+
+<div data-note-id="teoria/rotolamento-puro/casi-limite">
+
+## Limiting cases
+
+μ_s = 0 (smooth plane): the body cannot roll, it slides translating with a = g sin θ without rotating. β → 0 (all mass at the centre): a → g sin θ, like a sliding point. Slipping: v_cm ≠ ωR, friction becomes kinetic and dissipates until the constraint is restored.
+
+</div>
+
+<div data-note-id="teoria/rotolamento-puro/formule">
+
+## Key formulas
+
+<Formula id="rotolamento-puro-f1" />
+
+<Formula id="rotolamento-puro-f2" />
+
+<Formula id="rotolamento-puro-f3" />
+
+<Formula id="rotolamento-puro-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/rotolamento-puro/esempio">
+
+A solid uniform cylinder of mass 2.0 kg rolls without slipping down a 25° incline, starting from rest. Find: (a) the acceleration of the centre of mass; (b) the static friction force; (c) the minimum friction coefficient; (d) the speed after 1.5 m along the plane.
+
+1. **Acceleration.** β = ½: $a = \dfrac{g\sin 25°}{1.5} \approx 2.76\ \text{m/s}^2$.
+2. **Friction.** $f_s = \dfrac{\beta}{1+\beta}Mg\sin\theta = \tfrac13 \cdot 2.0 \cdot 9.81 \cdot 0.4226 \approx 2.76\ \text{N}$; $\mu_s \ge \tfrac13\tan 25° \approx 0.155$.
+3. **Speed.** $v = \sqrt{2as} \approx \sqrt{2 \cdot 2.764 \cdot 1.5} \approx 2.88\ \text{m/s}$ (check: $\sqrt{2gh/(1+\beta)}$ with h = 1.5 sin 25° gives the same value).
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/rotolamento-puro/errori">
+
+- Saying that static friction dissipates energy in pure rolling: the point of application is at rest, W = 0.
+- Imposing f_s = μ_sN: in rolling f_s is an unknown, μ_sN is only its limit.
+- Forgetting the rotational term in the energy.
+- Applying v_cm = ωR even when the body slips.
+
+</div>
+
+<div data-note-id="teoria/rotolamento-puro/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- A sphere launched sliding on a rough floor: how does it evolve until pure rolling, and which quantity is best conserved?
+- Why, when rolling uphill, does static friction point up or down the slope depending on the case?
+- What is rolling resistance and why does a real wheel eventually stop?
+
+</div>
+
+</Layer>

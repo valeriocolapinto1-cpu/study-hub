@@ -1,0 +1,120 @@
+- id: pendolo-balistico-proiettile
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.1
+    - pendolo-balistico.2
+    - pendolo-balistico.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Un proiettile di 10 g si conficca in un blocco di legno di 2,0 kg appeso a fili lunghi 1,5 m; il pendolo
+      si solleva fino a un angolo massimo di 18°. Calcolare: (a) l'altezza di risalita; (b) la velocità del
+      blocco subito dopo l'urto; (c) la velocità del proiettile; (d) la frazione di energia dissipata.
+    en: >-
+      A 10 g bullet embeds itself in a 2.0 kg wooden block hanging from 1.5 m strings; the pendulum rises to a
+      maximum angle of 18°. Find: (a) the rise height; (b) the speed of the block right after the collision;
+      (c) the speed of the bullet; (d) the fraction of energy dissipated.
+  steps:
+    - title:
+        it: Risalita
+        en: Rise
+      body:
+        it: >-
+          \(h = L(1 - \cos 18°) \approx 1{,}5 \cdot 0{,}04894 \approx 0{,}0734\ \text{m}\); \(V = \sqrt{2gh}
+          \approx 1{,}20\ \text{m/s}\).
+        en: >-
+          \(h = L(1 - \cos 18°) \approx 1.5 \cdot 0.04894 \approx 0.0734\ \text{m}\); \(V = \sqrt{2gh} \approx
+          1.20\ \text{m/s}\).
+    - title:
+        it: Urto
+        en: Collision
+      body:
+        it: \(v_0 = \dfrac{m+M}{m}V = 201 \cdot 1{,}20 \approx 241\ \text{m/s}\).
+        en: \(v_0 = \dfrac{m+M}{m}V = 201 \cdot 1.20 \approx 241\ \text{m/s}\).
+    - title:
+        it: Energia
+        en: Energy
+      body:
+        it: >-
+          Frazione dissipata \(M/(m+M) = 2{,}0/2{,}01 \approx 0{,}995\): il 99,5% dell'energia del proiettile
+          diventa deformazione e calore.
+        en: >-
+          Dissipated fraction \(M/(m+M) = 2.0/2.01 \approx 0.995\): 99.5% of the bullet's energy becomes
+          deformation and heat.
+  answer:
+    - label:
+        it: h
+        en: h
+      value: 0.0734
+      unit: m
+    - label:
+        it: V
+        en: V
+      value: 1.2
+      unit: m/s
+    - label:
+        it: v₀
+        en: v₀
+      value: 241
+      unit: m/s
+    - label:
+        it: frazione dissipata
+        en: dissipated fraction
+      value: 0.995
+      tol: 0.005
+  origin: originale
+- id: errore-energia-urto
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.1
+    - pendolo-balistico.2
+    - pendolo-balistico.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un proiettile di 5,0 g a 300 m/s si conficca in un blocco di 1,0 kg appeso. Calcolare: (a) l'altezza di
+      risalita corretta; (b) l'altezza che si otterrebbe (sbagliando) conservando l'energia attraverso l'urto;
+      (c) il rapporto tra le due.
+    en: >-
+      A 5.0 g bullet at 300 m/s embeds itself in a hanging 1.0 kg block. Find: (a) the correct rise height;
+      (b) the height one would get (wrongly) by conserving energy across the collision; (c) the ratio between
+      the two.
+  steps:
+    - title:
+        it: Procedura corretta
+        en: Correct procedure
+      body:
+        it: >-
+          \(V = \dfrac{m}{m+M}v_0 = \dfrac{1{,}5}{1{,}005} \approx 1{,}493\ \text{m/s}\), \(h = V^2/(2g)
+          \approx 0{,}1136\ \text{m}\).
+        en: >-
+          \(V = \dfrac{m}{m+M}v_0 = \dfrac{1.5}{1.005} \approx 1.493\ \text{m/s}\), \(h = V^2/(2g) \approx
+          0.1136\ \text{m}\).
+    - title:
+        it: L'errore
+        en: The mistake
+      body:
+        it: >-
+          \(\tfrac12 mv_0^2 = (m+M)gh' \Rightarrow h' = \dfrac{225}{1{,}005 \cdot 9{,}81} \approx 22{,}8\
+          \text{m}\): assurdo, il rapporto è \((m+M)/m = 201\).
+        en: >-
+          \(\tfrac12 mv_0^2 = (m+M)gh' \Rightarrow h' = \dfrac{225}{1.005 \cdot 9.81} \approx 22.8\
+          \text{m}\): absurd, the ratio is \((m+M)/m = 201\).
+  answer:
+    - label:
+        it: h
+        en: h
+      value: 0.1136
+      unit: m
+    - label:
+        it: h' (sbagliata)
+        en: h' (wrong)
+      value: 22.8
+      unit: m
+    - label:
+        it: rapporto
+        en: ratio
+      value: 201
+  origin: originale

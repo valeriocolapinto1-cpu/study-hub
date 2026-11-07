@@ -11,6 +11,7 @@
   kind: orale
   front:
     it: 'Esponi all''orale: «Teoria cinetica dei gas: la pressione dei gas perfetti».'
+    en: 'Present at the oral exam: “Kinetic theory of gases: the pressure of ideal gases”.'
   back:
     it: >-
       La pressione di un gas è un tamburellare fittissimo di molecole sulla parete: ogni urto è una piccola
@@ -35,6 +36,53 @@
       - Confrontare con pV = Nk_BT e interpretare la temperatura
 
       - Definire la velocità quadratica media
+    en: >-
+      The pressure of a gas is a dense drumming of molecules on the wall: each collision is a tiny push, and
+      the average of billions of pushes per second is a steady force. Temperature, seen from here, stops being
+      primitive: it is simply the macroscopic name for the average kinetic agitation of the molecules.
+
+
+      **Outline:**
+
+
+      - List the assumptions of the ideal-gas model
+
+      - Compute the impulse transferred in an elastic collision with the wall
+
+      - Count the collisions per unit time on the wall
+
+      - Use isotropy to go from ⟨v_x²⟩ to ⟨v²⟩/3
+
+      - Obtain pV = (2/3)N⟨½mv²⟩
+
+      - Compare with pV = Nk_BT and interpret temperature
+
+      - Define the root-mean-square speed
+- id: teoria-cinetica-gas-orale-1
+  topic: teoria-cinetica-gas
+  objectives:
+    - teoria-cinetica-gas.6
+    - teoria-cinetica-gas.7
+  kind: orale
+  front:
+    it: >-
+      Perché l'ipotesi di urti elastici con la parete non è essenziale se gas e parete sono alla stessa
+      temperatura?
+    en: >-
+      Why is the assumption of elastic collisions with the wall not essential if gas and wall are at the same
+      temperature?
+  back:
+    it: >-
+      All'equilibrio termico parete e gas non si scambiano energia in media: le molecole possono essere
+      assorbite e riemesse o rimbalzare in modo anelastico, ma la distribuzione delle velocità uscenti è
+      statisticamente uguale a quella entranti. Quindi l'impulso medio trasferito per molecola è ancora
+      \(2m\langle v_x\rangle\) in media e la pressione non cambia; servono solo urti "in media" elastici.
+    en: >-
+      At thermal equilibrium wall and gas exchange no energy on average: molecules may be absorbed and
+      re-emitted or bounce inelastically, but the distribution of outgoing velocities is statistically the
+      same as the incoming one. So the average impulse transferred per molecule is still \(2m\langle
+      v_x\rangle\) on average and the pressure does not change; collisions only need to be elastic "on
+      average".
 - id: teoria-cinetica-gas-orale-2
   topic: teoria-cinetica-gas
   objectives:
@@ -43,8 +91,38 @@
   kind: orale
   front:
     it: Come stimeresti v_qm per l'azoto a temperatura ambiente?
+    en: How would you estimate v_rms for nitrogen at room temperature?
   back:
-    it: ≈ 500 m/s.
+    it: >-
+      \(v_{qm} = \sqrt{3RT/M_{mol}}\) con T ≈ 300 K e \(M_{mol} = 0{,}028\ \text{kg/mol}\) per N₂:
+      \(\sqrt{3\cdot 8{,}314\cdot 300/0{,}028} \approx 517\ \text{m/s}\), dell'ordine della velocità del suono
+      nell'aria (non a caso: il suono si propaga tramite gli urti molecolari).
+    en: >-
+      \(v_{rms} = \sqrt{3RT/M_{mol}}\) with T ≈ 300 K and \(M_{mol} = 0.028\ \text{kg/mol}\) for N₂:
+      \(\sqrt{3\cdot 8.314\cdot 300/0.028} \approx 517\ \text{m/s}\), of the order of the speed of sound in
+      air (not by chance: sound propagates through molecular collisions).
+- id: teoria-cinetica-gas-orale-3
+  topic: teoria-cinetica-gas
+  objectives:
+    - teoria-cinetica-gas.6
+    - teoria-cinetica-gas.7
+  kind: orale
+  front:
+    it: Cosa afferma la legge di Dalton sulle pressioni parziali e come discende dalla derivazione cinetica?
+    en: What does Dalton's law of partial pressures state, and how does it follow from the kinetic derivation?
+  back:
+    it: >-
+      In una miscela di gas perfetti la pressione totale è la somma delle pressioni parziali, \(p = \sum_i
+      p_i\), dove \(p_i\) è la pressione che avrebbe la specie i occupando da sola tutto il volume. Nella
+      derivazione cinetica ogni molecola colpisce la parete indipendentemente dalle altre (non interagiscono),
+      quindi gli impulsi si sommano specie per specie: \(p = \sum_i \tfrac13 n_i m_i\langle v_i^2\rangle =
+      \sum_i n_i k_BT\).
+    en: >-
+      In a mixture of ideal gases the total pressure is the sum of the partial pressures, \(p = \sum_i p_i\),
+      where \(p_i\) is the pressure species i would have occupying the whole volume alone. In the kinetic
+      derivation each molecule hits the wall independently of the others (they do not interact), so the
+      impulses add up species by species: \(p = \sum_i \tfrac13 n_i m_i\langle v_i^2\rangle = \sum_i n_i
+      k_BT\).
 - id: teoria-cinetica-gas-definizione
   topic: teoria-cinetica-gas
   objectives:
@@ -52,6 +130,7 @@
   kind: definizione
   front:
     it: 'Definizione: Teoria cinetica dei gas: la pressione dei gas perfetti'
+    en: 'Definition: Kinetic theory of gases: the pressure of ideal gases'
   back:
     it: >-
       La teoria cinetica interpreta le grandezze macroscopiche di un gas in termini del moto disordinato delle
@@ -59,6 +138,12 @@
       urti elastici istantanei, in moto caotico e isotropo. Risultato centrale: la pressione sulle pareti è
       \(p = \frac{1}{3}\frac{N}{V}m\langle v^2\rangle\), cioè due terzi della densità di energia cinetica
       traslazionale.
+    en: >-
+      Kinetic theory interprets the macroscopic quantities of a gas in terms of the disordered motion of its
+      molecules. Ideal-gas model: N identical point-like molecules, not interacting except through
+      instantaneous elastic collisions, in chaotic and isotropic motion. Central result: the pressure on the
+      walls is \(p = \frac{1}{3}\frac{N}{V}m\langle v^2\rangle\), i.e. two thirds of the translational kinetic
+      energy density.
 - id: teoria-cinetica-gas-formule
   topic: teoria-cinetica-gas
   objectives:
@@ -72,8 +157,14 @@
   kind: formula
   front:
     it: 'Le formule chiave di «Teoria cinetica dei gas: la pressione dei gas perfetti»'
+    en: 'The key formulas of “Kinetic theory of gases: the pressure of ideal gases”'
   back:
     it: |-
+      - \(p = \frac{1}{3}\frac{N}{V}m\langle v^2\rangle\)
+      - \(pV = \frac{2}{3}N\langle\tfrac{1}{2}mv^2\rangle\)
+      - \(\langle\tfrac{1}{2}mv^2\rangle = \frac{3}{2}k_BT\)
+      - \(v_{qm} = \sqrt{3RT/M_{mol}}\)
+    en: |-
       - \(p = \frac{1}{3}\frac{N}{V}m\langle v^2\rangle\)
       - \(pV = \frac{2}{3}N\langle\tfrac{1}{2}mv^2\rangle\)
       - \(\langle\tfrac{1}{2}mv^2\rangle = \frac{3}{2}k_BT\)
@@ -91,11 +182,16 @@
   kind: concetto
   front:
     it: 'Ipotesi di validità: Teoria cinetica dei gas: la pressione dei gas perfetti'
+    en: 'Validity assumptions: Kinetic theory of gases: the pressure of ideal gases'
   back:
     it: >-
       Gas perfetto: molecole puntiformi (volume proprio trascurabile), nessuna interazione a distanza, urti
       elastici; numero enorme di molecole; moto caotico e isotropo; distribuzione delle velocità stazionaria;
       pareti lisce.
+    en: >-
+      Ideal gas: point-like molecules (negligible own volume), no action at a distance, elastic collisions; an
+      enormous number of molecules; chaotic and isotropic motion; stationary velocity distribution; smooth
+      walls.
 - id: teoria-cinetica-gas-casi-limite
   topic: teoria-cinetica-gas
   objectives:
@@ -109,11 +205,16 @@
   kind: concetto
   front:
     it: 'Casi limite: Teoria cinetica dei gas: la pressione dei gas perfetti'
+    en: 'Limiting cases: Kinetic theory of gases: the pressure of ideal gases'
   back:
     it: >-
       Alta pressione o bassa temperatura: il volume proprio e le interazioni non sono più trascurabili → gas
       reali (Van der Waals). T → 0: v_qm → 0 (classicamente). Miscela di gas: ogni specie contribuisce con la
       propria pressione parziale (legge di Dalton, immediata dalla derivazione).
+    en: >-
+      High pressure or low temperature: the molecules' own volume and interactions are no longer negligible →
+      real gases (Van der Waals). T → 0: v_rms → 0 (classically). Gas mixture: each species contributes its
+      own partial pressure (Dalton's law, immediate from the derivation).
 - id: teoria-cinetica-gas-errori
   topic: teoria-cinetica-gas
   objectives:
@@ -127,6 +228,7 @@
   kind: concetto
   front:
     it: 'Errori da evitare: Teoria cinetica dei gas: la pressione dei gas perfetti'
+    en: 'Mistakes to avoid: Kinetic theory of gases: the pressure of ideal gases'
   back:
     it: >-
       - Dimenticare il fattore 1/3 (isotropia) o il fattore 2 dell'impulso.
@@ -137,3 +239,12 @@
       traslazionale media.
 
       - Pensare che tutte le molecole abbiano la stessa velocità: c'è una distribuzione (Maxwell-Boltzmann).
+    en: >-
+      - Forgetting the factor 1/3 (isotropy) or the factor 2 of the impulse.
+
+      - Confusing average speed, root-mean-square speed and most probable speed.
+
+      - Saying that temperature measures the TOTAL energy of the molecules: it measures only the average
+      translational kinetic energy.
+
+      - Thinking that all molecules have the same speed: there is a distribution (Maxwell–Boltzmann).

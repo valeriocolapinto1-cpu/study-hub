@@ -3,10 +3,14 @@ course: fisica-1
 order: 18
 title:
   it: Energia cinetica e meccanica di un corpo rigido
+  en: Kinetic and mechanical energy of a rigid body
 summary:
   it: >-
     Un corpo rigido immagazzina energia cinetica in due 'serbatoi': il moto d'insieme del baricentro e la
     rotazione attorno a esso.
+  en: >-
+    A rigid body stores kinetic energy in two 'tanks': the overall motion of the centre of mass and the
+    rotation about it.
 group:
   it: Sistemi di punti e corpo rigido
   en: Systems of particles and rigid bodies
@@ -14,18 +18,24 @@ objectives:
   - id: energia-corpo-rigido.1
     text:
       it: Ricavare K = ½Iω² per l'asse fisso
+      en: Derive K = ½Iω² for the fixed axis
   - id: energia-corpo-rigido.2
     text:
       it: Scrivere la forma di König e mostrare la coerenza delle due scritture
+      en: Write the König form and show that the two forms agree
   - id: energia-corpo-rigido.3
     text:
       it: Dimostrare U = Mgz_cm
+      en: Prove U = Mgz_cm
   - id: energia-corpo-rigido.4
     text:
       it: Spiegare perché il lavoro delle forze interne di un rigido è nullo
+      en: Explain why the work of internal forces of a rigid body is zero
   - id: energia-corpo-rigido.5
     text:
       it: Precisare le condizioni per conservare E (vincoli ideali)
+      en: State the conditions for conserving E (ideal constraints)
   - id: energia-corpo-rigido.6
     text:
       it: Risolvere l'esempio dell'asta incernierata che cade
+      en: Solve the example of the falling hinged rod

@@ -11,6 +11,7 @@
   kind: orale
   front:
     it: 'Esponi all''orale: «Pendolo fisico (o composto)».'
+    en: 'Present at the oral exam: “Physical (compound) pendulum”.'
   back:
     it: >-
       Nel pendolo fisico il peso 'tira giù' il baricentro con braccio d, ma deve far ruotare tutta l'inerzia I
@@ -35,6 +36,88 @@
       - Svolgere l'esempio dell'asta sospesa a un estremo
 
       - Discutere il caso d → 0
+    en: >-
+      In the physical pendulum the weight 'pulls down' the centre of mass with lever arm d, but it must rotate
+      the whole inertia I distributed in the body. The ratio I/(Md) condenses the competition: more inertia
+      far from the axis slows the oscillation, a longer lever arm of the weight speeds it up. The reduced
+      length translates everything into the familiar language of the simple pendulum.
+
+
+      **Outline:**
+
+
+      - Set up the second cardinal equation about the suspension axis
+
+      - Explain why the pivot reaction has no torque
+
+      - Linearise and derive ω = √(Mgd/I)
+
+      - Define the reduced length and the equivalent simple pendulum
+
+      - Check the point-particle limit
+
+      - Work out the example of the rod hung from one end
+
+      - Discuss the case d → 0
+- id: pendolo-fisico-orale-1
+  topic: pendolo-fisico
+  objectives:
+    - pendolo-fisico.6
+    - pendolo-fisico.7
+  kind: orale
+  front:
+    it: Come useresti un pendolo fisico per misurare g (pendolo reversibile di Kater)?
+    en: How would you use a physical pendulum to measure g (Kater's reversible pendulum)?
+  back:
+    it: >-
+      Il pendolo di Kater ha due assi di sospensione da parti opposte del CM; si regolano masse mobili finché
+      i periodi attorno ai due assi coincidono. In quella condizione la distanza tra i due assi è proprio la
+      lunghezza ridotta ℓ (i due assi sono "coniugati"), misurabile con precisione, e \(g = 4\pi^2\ell/T^2\)
+      senza dover conoscere I né la posizione del CM.
+    en: >-
+      Kater's pendulum has two suspension axes on opposite sides of the CM; movable masses are adjusted until
+      the periods about the two axes coincide. Under that condition the distance between the two axes is
+      exactly the reduced length ℓ (the two axes are "conjugate"), which can be measured precisely, and \(g =
+      4\pi^2\ell/T^2\) without knowing I or the position of the CM.
+- id: pendolo-fisico-orale-2
+  topic: pendolo-fisico
+  objectives:
+    - pendolo-fisico.6
+    - pendolo-fisico.7
+  kind: orale
+  front:
+    it: Perché esiste una distanza di sospensione che rende minimo il periodo, e quanto vale?
+    en: Why is there a suspension distance that minimises the period, and what is its value?
+  back:
+    it: >-
+      \(T \propto \sqrt{\ell}\) con \(\ell(d) = I_{cm}/(Md) + d\): per d piccolo prevale il primo termine
+      (poco braccio del peso), per d grande il secondo (molta inerzia di trasporto). Derivando, \(d\ell/dd =
+      -I_{cm}/(Md^2) + 1 = 0\) dà \(d^* = \sqrt{I_{cm}/M} = \rho\), il raggio giratore baricentrico, con
+      \(\ell_{min} = 2\rho\) e \(T_{min} = 2\pi\sqrt{2\rho/g}\).
+    en: >-
+      \(T \propto \sqrt{\ell}\) with \(\ell(d) = I_{cm}/(Md) + d\): for small d the first term dominates
+      (short lever arm of the weight), for large d the second (large transport inertia). Differentiating,
+      \(d\ell/dd = -I_{cm}/(Md^2) + 1 = 0\) gives \(d^* = \sqrt{I_{cm}/M} = \rho\), the centroidal radius of
+      gyration, with \(\ell_{min} = 2\rho\) and \(T_{min} = 2\pi\sqrt{2\rho/g}\).
+- id: pendolo-fisico-orale-3
+  topic: pendolo-fisico
+  objectives:
+    - pendolo-fisico.6
+    - pendolo-fisico.7
+  kind: orale
+  front:
+    it: Cosa cambia nel periodo se l'ampiezza non è piccola?
+    en: What changes in the period if the amplitude is not small?
+  back:
+    it: >-
+      Come nel pendolo semplice l'equazione esatta contiene \(\sin\theta\) e non è lineare: il periodo cresce
+      con l'ampiezza, \(T \approx T_0(1 + \theta_0^2/16 + \dots)\), e l'isocronismo si perde. La correzione è
+      la stessa del pendolo semplice perché l'equazione ha la stessa forma con g/L sostituito da Mgd/I.
+    en: >-
+      As in the simple pendulum, the exact equation contains \(\sin\theta\) and is non-linear: the period
+      grows with the amplitude, \(T \approx T_0(1 + \theta_0^2/16 + \dots)\), and isochronism is lost. The
+      correction is the same as for the simple pendulum because the equation has the same form with g/L
+      replaced by Mgd/I.
 - id: pendolo-fisico-definizione
   topic: pendolo-fisico
   objectives:
@@ -42,6 +125,7 @@
   kind: definizione
   front:
     it: 'Definizione: Pendolo fisico (o composto)'
+    en: 'Definition: Physical (compound) pendulum'
   back:
     it: >-
       Il pendolo fisico è un corpo rigido qualsiasi libero di oscillare in un piano verticale attorno a un
@@ -49,6 +133,12 @@
       I il momento d'inerzia rispetto all'asse, per piccole oscillazioni il moto è armonico con \(T =
       2\pi\sqrt{I/(Mgd)}\). La lunghezza ridotta \(\ell = I/(Md)\) è la lunghezza del pendolo semplice
       equivalente.
+    en: >-
+      The physical pendulum is any rigid body free to swing in a vertical plane about a fixed horizontal axis
+      O that does not pass through the centre of mass. With d the distance between the axis and the CM and I
+      the moment of inertia about the axis, for small oscillations the motion is harmonic with \(T =
+      2\pi\sqrt{I/(Mgd)}\). The reduced length \(\ell = I/(Md)\) is the length of the equivalent simple
+      pendulum.
 - id: pendolo-fisico-formule
   topic: pendolo-fisico
   objectives:
@@ -62,8 +152,14 @@
   kind: formula
   front:
     it: Le formule chiave di «Pendolo fisico (o composto)»
+    en: The key formulas of “Physical (compound) pendulum”
   back:
     it: |-
+      - \(I\ddot{\theta} = -Mgd\sin\theta\)
+      - \(\omega = \sqrt{\frac{Mgd}{I}}\)
+      - \(T = 2\pi\sqrt{\frac{I}{Mgd}}\)
+      - \(\ell = \frac{I}{Md}\)
+    en: |-
       - \(I\ddot{\theta} = -Mgd\sin\theta\)
       - \(\omega = \sqrt{\frac{Mgd}{I}}\)
       - \(T = 2\pi\sqrt{\frac{I}{Mgd}}\)
@@ -81,10 +177,14 @@
   kind: concetto
   front:
     it: 'Ipotesi di validità: Pendolo fisico (o composto)'
+    en: 'Validity assumptions: Physical (compound) pendulum'
   back:
     it: >-
       Corpo rigido; asse fisso orizzontale privo di attrito; campo di gravità uniforme; per l'isocronismo,
       piccole oscillazioni.
+    en: >-
+      Rigid body; fixed frictionless horizontal axis; uniform gravitational field; for isochronism, small
+      oscillations.
 - id: pendolo-fisico-casi-limite
   topic: pendolo-fisico
   objectives:
@@ -98,11 +198,16 @@
   kind: concetto
   front:
     it: 'Casi limite: Pendolo fisico (o composto)'
+    en: 'Limiting cases: Physical (compound) pendulum'
   back:
     it: >-
       d → 0 (sospensione nel CM): il momento di richiamo sparisce, T → ∞, equilibrio indifferente. Tutta la
       massa a distanza d: pendolo semplice. Esiste un d che minimizza T: d = √(I_cm/M) (raggio giratore
       baricentrico).
+    en: >-
+      d → 0 (suspension at the CM): the restoring torque vanishes, T → ∞, neutral equilibrium. All the mass at
+      distance d: simple pendulum. There is a d that minimises T: d = √(I_cm/M) (centroidal radius of
+      gyration).
 - id: pendolo-fisico-errori
   topic: pendolo-fisico
   objectives:
@@ -116,9 +221,15 @@
   kind: concetto
   front:
     it: 'Errori da evitare: Pendolo fisico (o composto)'
+    en: 'Mistakes to avoid: Physical (compound) pendulum'
   back:
     it: |-
       - Usare I_cm al posto di I rispetto all'asse di sospensione (manca Md²).
       - Confondere d (distanza asse-CM) con la lunghezza del corpo.
       - Applicare la formula del pendolo semplice T = 2π√(L/g) con L lunghezza geometrica del corpo.
       - Dimenticare che la formula del periodo vale solo per piccole oscillazioni.
+    en: |-
+      - Using I_cm instead of I about the suspension axis (Md² is missing).
+      - Confusing d (axis–CM distance) with the length of the body.
+      - Applying the simple-pendulum formula T = 2π√(L/g) with L the geometric length of the body.
+      - Forgetting that the period formula holds only for small oscillations.

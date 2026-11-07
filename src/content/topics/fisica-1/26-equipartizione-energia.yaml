@@ -3,11 +3,16 @@ course: fisica-1
 order: 26
 title:
   it: Energia interna dei gas e principio di equipartizione
+  en: Internal energy of gases and the equipartition principle
 summary:
   it: >-
     All'equilibrio l'energia termica è perfettamente democratica: gli urti continui la redistribuiscono finché
     ogni 'modo quadratico' di immagazzinarla — muoversi lungo x, ruotare, vibrare — ne possiede in media la
     stessa quota ½k_BT.
+  en: >-
+    At equilibrium thermal energy is perfectly democratic: continual collisions redistribute it until every
+    'quadratic mode' of storing it — moving along x, rotating, vibrating — owns on average the same share
+    ½k_BT.
 group:
   it: Fluidi e termodinamica
   en: Fluids and thermodynamics
@@ -15,21 +20,28 @@ objectives:
   - id: equipartizione-energia.1
     text:
       it: Enunciare il principio di equipartizione con precisione (termini quadratici)
+      en: State the equipartition principle precisely (quadratic terms)
   - id: equipartizione-energia.2
     text:
       it: Contare i gradi di libertà di mono e biatomici
+      en: Count the degrees of freedom of monatomic and diatomic gases
   - id: equipartizione-energia.3
     text:
       it: Spiegare perché la rotazione assiale del biatomico non conta
+      en: Explain why axial rotation of the diatomic molecule does not count
   - id: equipartizione-energia.4
     text:
       it: Ricavare U = (f/2)nRT
+      en: Derive U = (f/2)nRT
   - id: equipartizione-energia.5
     text:
       it: Enunciare la legge di Joule e l'esperimento dell'espansione libera
+      en: State Joule's law and the free-expansion experiment
   - id: equipartizione-energia.6
     text:
       it: Dedurre c_V = (f/2)R
+      en: Deduce c_V = (f/2)R
   - id: equipartizione-energia.7
     text:
       it: Accennare al congelamento quantistico dei gradi di libertà
+      en: Mention the quantum freezing of degrees of freedom

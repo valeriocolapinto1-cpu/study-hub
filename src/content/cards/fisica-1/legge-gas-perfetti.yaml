@@ -11,6 +11,7 @@
   kind: orale
   front:
     it: 'Esponi all''orale: «Legge empirica dei gas perfetti».'
+    en: 'Present at the oral exam: “Empirical ideal-gas law”.'
   back:
     it: >-
       Tre leggi sperimentali indipendenti, scoperte in due secoli, si incastrano in un'unica equazione a patto
@@ -35,6 +36,87 @@
       - Passare alla forma microscopica pV = Nk_BT
 
       - Dire quando la legge cessa di valere
+    en: >-
+      Three independent experimental laws, discovered over two centuries, fit into a single equation provided
+      temperature is measured from the right origin: absolute zero. Universality (the same R for all gases)
+      shouts that at low densities molecules do not 'see' each other: only how many they are matters, not who
+      they are — exactly what the kinetic model assumes.
+
+
+      **Outline:**
+
+
+      - State Boyle's law and the two Gay-Lussac laws with their constraints
+
+      - Explain the meaning of the coefficient α being the same for all gases
+
+      - Show how absolute temperature arises from the extrapolation
+
+      - Combine the laws into pV/T = const
+
+      - Introduce Avogadro and write pV = nRT
+
+      - Move to the microscopic form pV = Nk_BT
+
+      - Say when the law stops holding
+- id: legge-gas-perfetti-orale-1
+  topic: legge-gas-perfetti
+  objectives:
+    - legge-gas-perfetti.6
+    - legge-gas-perfetti.7
+  kind: orale
+  front:
+    it: Perché il termometro a gas perfetto è lo strumento di riferimento per definire la temperatura?
+    en: Why is the ideal-gas thermometer the reference instrument for defining temperature?
+  back:
+    it: >-
+      Perché nel limite di bassa densità tutti i gas obbediscono alla stessa legge \(pV = nRT\), qualunque sia
+      la sostanza: la temperatura definita da \(T = pV/(nR)\) non dipende dalle proprietà di un materiale
+      particolare (come la dilatazione del mercurio). Il termometro a gas a volume costante, estrapolato a p →
+      0, realizza questa scala, che coincide con la temperatura termodinamica definita dal ciclo di Carnot.
+    en: >-
+      Because in the low-density limit all gases obey the same law \(pV = nRT\), whatever the substance: the
+      temperature defined by \(T = pV/(nR)\) does not depend on the properties of a particular material (such
+      as the expansion of mercury). The constant-volume gas thermometer, extrapolated to p → 0, realises this
+      scale, which coincides with the thermodynamic temperature defined through the Carnot cycle.
+- id: legge-gas-perfetti-orale-2
+  topic: legge-gas-perfetti
+  objectives:
+    - legge-gas-perfetti.6
+    - legge-gas-perfetti.7
+  kind: orale
+  front:
+    it: Che significato fisico hanno i termini correttivi a e b di Van der Waals?
+    en: What is the physical meaning of the Van der Waals correction terms a and b?
+  back:
+    it: >-
+      Il termine \(an^2/V^2\) tiene conto delle forze attrattive tra le molecole: una molecola vicino alla
+      parete è richiamata verso l'interno e colpisce meno forte, quindi la pressione misurata è minore di
+      quella "cinetica"; la correzione è proporzionale al quadrato della densità (numero di coppie). Il
+      termine nb è il covolume: le molecole hanno un volume proprio e lo spazio libero per muoversi è V − nb.
+    en: >-
+      The term \(an^2/V^2\) accounts for attractive forces between molecules: a molecule near the wall is
+      pulled inwards and hits less hard, so the measured pressure is lower than the "kinetic" one; the
+      correction is proportional to the square of the density (number of pairs). The term nb is the excluded
+      volume: molecules have their own volume and the free space to move in is V − nb.
+- id: legge-gas-perfetti-orale-3
+  topic: legge-gas-perfetti
+  objectives:
+    - legge-gas-perfetti.6
+    - legge-gas-perfetti.7
+  kind: orale
+  front:
+    it: Disegna nel piano p-V le isoterme di un gas perfetto e indica come cambiano al crescere di T.
+    en: Draw the isotherms of an ideal gas in the p-V plane and show how they change as T increases.
+  back:
+    it: >-
+      Le isoterme sono iperboli equilatere \(p = nRT/V\) con gli assi come asintoti; al crescere di T si
+      spostano verso l'alto e verso destra (più lontane dall'origine), senza mai intersecarsi. Una
+      trasformazione che attraversa le isoterme verso l'esterno è un riscaldamento.
+    en: >-
+      The isotherms are rectangular hyperbolas \(p = nRT/V\) with the axes as asymptotes; as T increases they
+      move up and to the right (further from the origin), never crossing each other. A transformation crossing
+      the isotherms outwards is a heating.
 - id: legge-gas-perfetti-definizione
   topic: legge-gas-perfetti
   objectives:
@@ -42,6 +124,7 @@
   kind: definizione
   front:
     it: 'Definizione: Legge empirica dei gas perfetti'
+    en: 'Definition: Empirical ideal-gas law'
   back:
     it: >-
       L'equazione di stato dei gas perfetti, \(pV = nRT\), sintetizza in un'unica relazione le leggi empiriche
@@ -49,6 +132,12 @@
       Gay-Lussac/Charles (isobara: V ∝ T), seconda legge di Gay-Lussac (isocora: p ∝ T) e principio di
       Avogadro (volumi uguali, stessa T e p → stesso numero di moli). R = 8.314 J/(mol·K) è la costante
       universale dei gas; T è la temperatura assoluta in kelvin.
+    en: >-
+      The equation of state of ideal gases, \(pV = nRT\), summarises in a single relation the empirical laws
+      found between the seventeenth and nineteenth centuries: Boyle's law (isothermal: pV = const),
+      Gay-Lussac's/Charles's first law (isobaric: V ∝ T), Gay-Lussac's second law (isochoric: p ∝ T) and
+      Avogadro's principle (equal volumes at the same T and p → the same number of moles). R = 8.314 J/(mol·K)
+      is the universal gas constant; T is the absolute temperature in kelvin.
 - id: legge-gas-perfetti-formule
   topic: legge-gas-perfetti
   objectives:
@@ -62,8 +151,14 @@
   kind: formula
   front:
     it: Le formule chiave di «Legge empirica dei gas perfetti»
+    en: The key formulas of “Empirical ideal-gas law”
   back:
     it: |-
+      - \(pV = nRT\)
+      - \(pV = Nk_BT\)
+      - \(\frac{p_1V_1}{T_1} = \frac{p_2V_2}{T_2}\)
+      - \(R = 8.314\;\text{J/(mol·K)}\)
+    en: |-
       - \(pV = nRT\)
       - \(pV = Nk_BT\)
       - \(\frac{p_1V_1}{T_1} = \frac{p_2V_2}{T_2}\)
@@ -81,11 +176,15 @@
   kind: concetto
   front:
     it: 'Ipotesi di validità: Legge empirica dei gas perfetti'
+    en: 'Validity assumptions: Empirical ideal-gas law'
   back:
     it: >-
       Gas sufficientemente rarefatto (limite di bassa densità): tutte le leggi empiriche valgono tanto meglio
       quanto più il gas è lontano dalla condensazione; equilibrio termodinamico (p, T uniformi e ben
       definite).
+    en: >-
+      Sufficiently rarefied gas (low-density limit): all the empirical laws hold better the further the gas is
+      from condensation; thermodynamic equilibrium (uniform, well-defined p and T).
 - id: legge-gas-perfetti-casi-limite
   topic: legge-gas-perfetti
   objectives:
@@ -99,11 +198,16 @@
   kind: concetto
   front:
     it: 'Casi limite: Legge empirica dei gas perfetti'
+    en: 'Limiting cases: Empirical ideal-gas law'
   back:
     it: >-
       Alta densità/bassa T: deviazioni descritte da Van der Waals \((p + an^2/V^2)(V - nb) = nRT\). Vicino
       alla liquefazione la legge fallisce del tutto. Nel limite p → 0 tutti i gas reali tendono al
       comportamento perfetto: per questo il gas perfetto definisce la scala di temperatura.
+    en: >-
+      High density/low T: deviations described by Van der Waals \((p + an^2/V^2)(V - nb) = nRT\). Close to
+      liquefaction the law fails completely. In the limit p → 0 all real gases tend to ideal behaviour: this
+      is why the ideal gas defines the temperature scale.
 - id: legge-gas-perfetti-errori
   topic: legge-gas-perfetti
   objectives:
@@ -117,9 +221,15 @@
   kind: concetto
   front:
     it: 'Errori da evitare: Legge empirica dei gas perfetti'
+    en: 'Mistakes to avoid: Empirical ideal-gas law'
   back:
     it: |-
       - Usare la temperatura in gradi Celsius dentro pV = nRT: serve il kelvin.
       - Sbagliare unità di R (8.314 J/mol·K vs 0.0821 L·atm/mol·K).
       - Applicare la legge a vapori vicini alla condensazione.
       - Confondere n (moli) con N (molecole) e R con k_B.
+    en: |-
+      - Using the temperature in degrees Celsius in pV = nRT: kelvin is required.
+      - Getting the units of R wrong (8.314 J/mol·K vs 0.0821 L·atm/mol·K).
+      - Applying the law to vapours close to condensation.
+      - Confusing n (moles) with N (molecules) and R with k_B.
