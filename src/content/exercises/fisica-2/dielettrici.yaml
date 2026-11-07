@@ -5,6 +5,10 @@
     - dielettrici.6
   difficulty: 1
   kind: static
+  figure:
+    diagram:
+      type: capacitor
+      params: { geometry: parallel, dielectric: full, battery: false, field: false }
   statement:
     it: "Un condensatore piano isolato (carica costante) viene riempito con un dielettrico di costante $\\varepsilon_r$. L'energia immagazzinata:"
     en: "An isolated parallel-plate capacitor (constant charge) is filled with a dielectric of constant $\\varepsilon_r$. The stored energy:"

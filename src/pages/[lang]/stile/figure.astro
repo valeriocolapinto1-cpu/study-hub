@@ -27,6 +27,7 @@ const T = {
       thermo: 'Termodinamica',
       em: 'Elettromagnetismo',
       waves: 'Onde e vettori',
+      optics: 'Ottica',
       cs: 'Informatica',
     },
   },
@@ -42,6 +43,7 @@ const T = {
       thermo: 'Thermodynamics',
       em: 'Electromagnetism',
       waves: 'Waves and vectors',
+      optics: 'Optics',
       cs: 'Computer science',
     },
   },
@@ -61,7 +63,13 @@ const GROUP_OF: Record<DiagramType, keyof typeof T.groups> = {
   'point-charges': 'em',
   capacitor: 'em',
   'magnetic-field': 'em',
+  'charge-distribution': 'em',
+  'uniform-field': 'em',
+  induction: 'em',
   wave: 'waves',
+  refraction: 'optics',
+  slits: 'optics',
+  polarizers: 'optics',
   vectors: 'waves',
   flowchart: 'cs',
   'block-diagram': 'cs',
@@ -110,6 +118,7 @@ const groups = (Object.keys(T.groups) as Array<keyof typeof T.groups>).map((g) =
         <DiagramLive kind="spring-mass" lang={lang} />
         <DiagramLive kind="pv-cycle" lang={lang} />
         <DiagramLive kind="point-charges" lang={lang} />
+        <DiagramLive kind="refraction" lang={lang} />
       </div>
     </section>
     <p>

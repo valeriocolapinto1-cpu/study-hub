@@ -48,6 +48,32 @@ Sums and differences: the absolute uncertainties add in quadrature. Products and
 - **Comparing measurements**: $t=\frac{|x_1-x_2|}{\sqrt{\sigma_1^2+\sigma_2^2}}$. They are considered compatible if $t\lesssim2$ (in general; with few measurements Student's t distribution is used). The relative discrepancy with respect to an expected value is $|x-x_{rif}|/x_{rif}$.
 - **Least squares** (line $y=a+bx$ with equal uncertainty on $y$): minimise $\sum(y_i-a-bx_i)^2$, obtaining $b=\frac{N\sum x_iy_i-\sum x_i\sum y_i}{\Delta}$ and $a=\frac{\sum x_i^2\sum y_i-\sum x_i\sum x_iy_i}{\Delta}$, with $\Delta=N\sum x_i^2-(\sum x_i)^2$. Exponential laws are **linearised** with the logarithm (for example $\ln V=\ln V_0-t/\tau$).
 
+<Diagram
+  type="function-plot"
+  params={{
+    x: { min: 0, max: 5, label: 't', unit: 's' },
+    y: { min: -2.6, max: 0.4, label: 'ln(V/V_0)' },
+    series: [
+      {
+        kind: 'points',
+        points: [
+          [0.5, -0.21],
+          [1, -0.52],
+          [1.5, -0.71],
+          [2, -1.03],
+          [2.5, -1.22],
+          [3, -1.53],
+          [3.5, -1.72],
+          [4, -2.04],
+        ],
+        label: 'data',
+      },
+      { kind: 'poly', coeffs: [0.0, -0.505], label: 'fit', dash: true },
+    ],
+  }}
+  caption="Linearised capacitor discharge: the slope of the least-squares line is −1/τ."
+/>
+
 ## The laboratory experiments
 
 - **DC measurements**: using the multimeter as a voltmeter (in parallel), ammeter (in series) and ohmmeter (circuit not powered). Verification of Ohm's law and of equivalent resistances; watch out for insertion errors and ranges.

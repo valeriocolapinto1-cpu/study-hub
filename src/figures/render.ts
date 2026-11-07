@@ -20,6 +20,8 @@ import { functionPlot, motionGraphs } from './types/plots';
 import { heatEngine, pvCycle } from './types/thermo';
 import { scene } from './types/scene';
 import { capacitor, magneticField, pointCharges } from './types/em';
+import { chargeDistribution, induction, uniformField } from './types/fields';
+import { polarizers, refraction, slits } from './types/optics';
 import { vectors, wave } from './types/waves';
 import { blockDiagram, flowchart, linkedList, memory, tree, truthTable } from './types/cs';
 
@@ -39,7 +41,13 @@ export const RENDERERS: { [K in DiagramType]: Renderer<K> } = {
   'point-charges': pointCharges,
   capacitor,
   'magnetic-field': magneticField,
+  'charge-distribution': chargeDistribution,
+  'uniform-field': uniformField,
+  induction,
   wave,
+  refraction,
+  slits,
+  polarizers,
   vectors,
   flowchart,
   'block-diagram': blockDiagram,

@@ -86,6 +86,24 @@ Un conduttore percorso da corrente non è equipotenziale: sulla sua superficie s
 
 Se le variazioni sono lente rispetto al tempo di propagazione dei segnali, in ogni istante valgono le leggi di Kirchhoff. **Carica** di $C$ attraverso $R$ con f.e.m. $\mathcal E$: $\mathcal E = RI+\frac qC$, con $I=\frac{dq}{dt}$, da cui
 
+<Diagram
+  type="function-plot"
+  params={{
+    x: { min: 0, max: 5, label: 't/τ' },
+    y: { min: 0, max: 1.1, label: 'v_C/ℰ' },
+    series: [
+      { kind: 'exp', a: -1, b: -1, c: 1, label: 'carica' },
+      { kind: 'exp', a: 1, b: -1, label: 'scarica', dash: true },
+    ],
+    markers: [
+      { x: 1, y: 0.632, label: '63%' },
+      { x: 1, y: 0.368, label: '37%' },
+    ],
+    hlines: [{ y: 1 }],
+  }}
+  caption="Carica e scarica di un condensatore: dopo una costante di tempo τ la tensione ha percorso il 63% della variazione."
+/>
+
 $$
 q(t)=C\mathcal E\left(1-e^{-t/\tau}\right),\qquad I(t)=\frac{\mathcal E}{R}e^{-t/\tau},\qquad\tau=RC
 $$

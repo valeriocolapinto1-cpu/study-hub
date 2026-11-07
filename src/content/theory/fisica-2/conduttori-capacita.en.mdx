@@ -22,6 +22,12 @@ In a conductor in electrostatic equilibrium the free charges are at rest, theref
 - the excess charge lies only on the **surface** (by Gauss $\rho=0$ inside);
 - the conductor is an **equipotential** volume and the external field is perpendicular to the surface.
 
+<Diagram
+  type="charge-distribution"
+  params={{ shape: 'sphere', conductor: true, gaussian: 0.6 }}
+  caption="Charged conductor in equilibrium: the charge sits on the surface and an inner Gaussian surface encloses no charge, so E = 0."
+/>
+
 **Coulomb's theorem.** With a pillbox straddling the surface (flux only through the outer face): $E\,dS = \sigma\,dS/\varepsilon_0$, that is
 
 $$
@@ -35,6 +41,12 @@ $$
 ## Capacitance and capacitors
 
 For an isolated conductor $Q$ and $V$ are proportional: $C = Q/V$ (farad). Sphere: $C=4\pi\varepsilon_0R$; the Earth ($R\simeq6.4\times10^6$ m) has $C\simeq0.7$ mF. For a system of conductors one defines the _coefficients of potential_ $V_i=\sum_j p_{ij}Q_j$ and of _induction_ $Q_i=\sum_j c_{ij}V_j$ (symmetric matrices).
+
+<Diagram
+  type="capacitor"
+  params={{ geometry: 'parallel', fringe: true }}
+  caption="Parallel-plate capacitor: uniform field between the plates; the lines bend at the edges."
+/>
 
 A **capacitor** consists of two conductors in complete induction with charges $\pm Q$: $C = Q/\Delta V$. Procedure: compute $E$ between the plates with Gauss, integrate to get $\Delta V$, divide.
 

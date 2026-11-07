@@ -22,6 +22,12 @@ $$
 \vec F = q\left(\vec E+\vec v\times\vec B\right)
 $$
 
+<Diagram
+  type="uniform-field"
+  params={{ field: 'B-in', object: 'particle' }}
+  caption="Positive charge in a field B into the page: the Lorentz force is always perpendicular to the velocity and bends it onto a circle."
+/>
+
 which defines $\vec B$ (tesla, T). The magnetic force is always perpendicular to the velocity: it **does no work** and does not change the kinetic energy.
 
 - **Motion in uniform B**: circular with $r=\frac{mv_\perp}{|q|B}$ and cyclotron angular frequency $\omega=\frac{|q|B}{m}$, independent of the speed. If there is a component parallel to $\vec B$ the motion is helical.
@@ -38,6 +44,12 @@ $$
 \vec M=\vec m\times\vec B,\qquad U=-\vec m\cdot\vec B,\qquad \vec F=\nabla(\vec m\cdot\vec B)
 $$
 
+<Diagram
+  type="uniform-field"
+  params={{ field: 'B-right', object: 'loop', angle: 50 }}
+  caption="Loop in a uniform field: zero net force, torque M = μ × B."
+/>
+
 **Ampère's equivalence theorem** states that a current loop is equivalent, at large distance, to a magnetic dipole of moment $\vec m$: its field has the same form as that of the electric dipole. Motors and galvanometers are based on this principle.
 
 ## Field produced by steady currents
@@ -47,6 +59,12 @@ A current element produces the field given by **Laplace's first formula** (Biot-
 $$
 d\vec B=\frac{\mu_0}{4\pi}\frac{I\,d\vec l\times\hat u_r}{r^2}
 $$
+
+<Diagram
+  type="magnetic-field"
+  params={{ source: 'wire', rightHand: true }}
+  caption="Straight wire: circular B lines, direction given by the right-hand rule."
+/>
 
 - Infinite straight wire: $B=\frac{\mu_0I}{2\pi r}$, circular lines (right-hand rule). Finite wire: $B=\frac{\mu_0I}{4\pi d}(\sin\theta_2-\sin\theta_1)$.
 - Circular loop, on the axis: $B=\frac{\mu_0IR^2}{2(R^2+z^2)^{3/2}}$; at the centre $B=\frac{\mu_0I}{2R}$. An arc of angle $\alpha$ gives at the centre $B=\frac{\mu_0I\alpha}{4\pi R}$ (semicircle: $\frac{\mu_0I}{4R}$).
@@ -61,6 +79,12 @@ The lines of $\vec B$ are closed (there are no magnetic monopoles). The flux thr
 $$
 \oint_S\vec B\cdot\hat n\,dS = 0\quad\Longleftrightarrow\quad\nabla\cdot\vec B=0
 $$
+
+<Diagram
+  type="magnetic-field"
+  params={{ source: 'solenoid', turns: 10 }}
+  caption="Solenoid: Ampère’s law on a rectangle straddling the turns gives B = μ0 n I inside."
+/>
 
 **Ampère's circuital theorem**: the circulation of $\vec B$ around a closed curve equals $\mu_0$ times the linked current. With Stokes one obtains the local form:
 
@@ -94,6 +118,12 @@ $$
 \frac{F}{l}=\frac{\mu_0I_1I_2}{2\pi d}
 $$
 
+<Diagram
+  type="magnetic-field"
+  params={{ source: 'wire-pair' }}
+  caption="Two wires with parallel currents: each sits in the other’s field and they attract."
+/>
+
 This relation defined the ampere (until 2019: $2\times10^{-7}$ N/m between wires 1 m apart carrying 1 A). Between rigid circuits the forces follow from the interaction energy $U=-I_2\Phi_{21}$ (at constant currents $F=+\nabla(I_2\Phi_{21})$).
 
 **Hall effect**: in a current-carrying strip immersed in a perpendicular $\vec B$, the carriers are deflected sideways until the transverse electric field balances the magnetic force: $E_H=v_dB$. The Hall voltage is
@@ -118,6 +148,12 @@ The sign of $V_H$ gives the sign of the carriers, its magnitude their density $n
 ## Worked example: field of a coaxial cable
 
 An infinite coaxial cable has a solid inner conductor of radius $a=1\ \mathrm{mm}$ and a cylindrical outer conductor with radii $b=4\ \mathrm{mm}$ and $c=5\ \mathrm{mm}$; the two conductors carry opposite currents $I=10\ \mathrm A$, uniformly distributed over their cross-sections.
+
+<Diagram
+  type="magnetic-field"
+  params={{ source: 'coax' }}
+  caption="Coaxial cable in cross-section: the Amperian circles in the four regions."
+/>
 
 1. **Symmetry.** The lines of $\vec B$ are coaxial circles and on the contour of radius $r$ the magnitude is constant: Ampère gives $B\,2\pi r=\mu_0I_{conc}(r)$.
 2. **Inside the inner conductor** ($r<a$): $I_{conc}=I\,r^2/a^2$, so $B=\frac{\mu_0Ir}{2\pi a^2}$; at $r=0.5\ \mathrm{mm}$ it is $1.0\ \mathrm{mT}$.

@@ -107,6 +107,10 @@
     - onde-elettromagnetiche.4
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: wave
+      params: { kind: electromagnetic }
   statement:
     it: Un'onda piana nel vuoto ha ampiezza del campo elettrico $E_0=100$ V/m. Calcola l'intensità media (in W/m²).
     en: A plane wave in vacuum has electric field amplitude $E_0=100$ V/m. Compute the average intensity (in W/m²).
@@ -131,6 +135,10 @@
     - onde-elettromagnetiche.2
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: wave
+      params: { kind: electromagnetic }
   statement:
     it: Stessa onda ($E_0=100$ V/m). Calcola l'ampiezza del campo magnetico (in μT).
     en: Same wave ($E_0=100$ V/m). Compute the amplitude of the magnetic field (in μT).
@@ -155,6 +163,10 @@
     - onde-elettromagnetiche.4
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: wave
+      params: { kind: spherical, sourceLabel: P = 100 W, distanceLabel: r = 2 m }
   statement:
     it: Una lampadina irraggia isotropicamente 100 W. Calcola l'intensità a 2 m (in W/m²).
     en: A light bulb radiates 100 W isotropically. Compute the intensity at 2 m (in W/m²).
@@ -179,6 +191,10 @@
     - onde-elettromagnetiche.3
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: wave
+      params: { kind: electromagnetic }
   statement:
     it: Calcola la lunghezza d'onda nel vuoto di un'onda a 1 GHz (in cm).
     en: Compute the vacuum wavelength of a 1 GHz wave (in cm).

@@ -1,8 +1,17 @@
 /** Blocco 2 — Corrente elettrica stazionaria e circuiti (template del sito originale). */
-import { defineTemplate, EPS0, S, pick, step } from './lib';
+import { defineTemplate, EPS0, S, pick, step, lv } from './lib';
 
 defineTemplate({
   id: 'b2-rc-scarica-tempi',
+  figure: (p) => ({
+    netlist: {
+      elements: [
+        { type: 'C', id: 'C', a: 'a', b: '0', value: p.C!, v0: p.V0!, show: { v: 'V_0' } },
+        { type: 'SW', id: 'T', a: 'a', b: 'b', closed: false, toggleAt: 0 },
+        { type: 'R', id: 'R', a: 'b', b: '0', value: p.R! },
+      ],
+    },
+  }),
   blocco: 'b2',
   topic: 'corrente-stazionaria',
   objectives: ['corrente-stazionaria.7'],
@@ -52,6 +61,19 @@ defineTemplate({
 
 defineTemplate({
   id: 'b2-dielettrico-perdite',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'capacitor',
+      params: {
+        geometry: 'parallel',
+        dielectric: 'full',
+        battery: false,
+        dielectricLabels: [`ε_r = ${lv(p.er!, '', lang)}, ρ`],
+        dLabel: `d = ${lv(p.d!, 'mm', lang, 1000)}`,
+        areaLabel: 'S',
+      },
+    },
+  }),
   blocco: 'b2',
   topic: 'corrente-stazionaria',
   objectives: ['corrente-stazionaria.7'],
@@ -103,6 +125,17 @@ defineTemplate({
 
 defineTemplate({
   id: 'b2-partitore-apertura',
+  figure: (p) => ({
+    netlist: {
+      elements: [
+        { type: 'V', id: 'E', a: 'a', b: '0', dc: p.E! },
+        { type: 'SW', id: 'T', a: 'a', b: 'b', closed: true, toggleAt: 0 },
+        { type: 'R', id: 'R1', a: 'b', b: 'c', value: p.R1! },
+        { type: 'R', id: 'R2', a: 'c', b: '0', value: p.R2! },
+        { type: 'C', id: 'C', a: 'c', b: '0', value: p.C!, show: { v: 'V_C' } },
+      ],
+    },
+  }),
   blocco: 'b2',
   topic: 'corrente-stazionaria',
   objectives: ['corrente-stazionaria.7', 'corrente-stazionaria.5'],
@@ -152,6 +185,17 @@ defineTemplate({
 
 defineTemplate({
   id: 'b2-carica-chiusura',
+  figure: (p) => ({
+    netlist: {
+      elements: [
+        { type: 'V', id: 'E', a: 'a', b: '0', dc: p.E! },
+        { type: 'SW', id: 'T', a: 'a', b: 'b', closed: false, toggleAt: 0 },
+        { type: 'R', id: 'R1', a: 'b', b: 'c', value: p.R1! },
+        { type: 'R', id: 'R2', a: 'c', b: '0', value: p.R2! },
+        { type: 'C', id: 'C', a: 'c', b: '0', value: p.C!, show: { v: 'V_C' } },
+      ],
+    },
+  }),
   blocco: 'b2',
   topic: 'corrente-stazionaria',
   objectives: ['corrente-stazionaria.7', 'corrente-stazionaria.5'],
@@ -204,6 +248,16 @@ defineTemplate({
 
 defineTemplate({
   id: 'b2-ripartizione-cariche',
+  figure: (p) => ({
+    netlist: {
+      elements: [
+        { type: 'C', id: 'C1', a: 'a', b: '0', value: p.C1!, v0: p.V0! },
+        { type: 'SW', id: 'T', a: 'a', b: 'b', closed: false, toggleAt: 0 },
+        { type: 'R', id: 'R', a: 'b', b: 'c', value: p.R! },
+        { type: 'C', id: 'C2', a: 'c', b: '0', value: p.C2! },
+      ],
+    },
+  }),
   blocco: 'b2',
   topic: 'corrente-stazionaria',
   objectives: ['corrente-stazionaria.7'],
@@ -254,6 +308,18 @@ defineTemplate({
 
 defineTemplate({
   id: 'b2-ponte',
+  figure: (p) => ({
+    netlist: {
+      elements: [
+        { type: 'V', id: 'E', a: 'A', b: '0', dc: p.E! },
+        { type: 'R', id: 'R1', a: 'A', b: 'C', value: p.R1! },
+        { type: 'R', id: 'R2', a: 'C', b: '0', value: p.R2! },
+        { type: 'R', id: 'R3', a: 'A', b: 'D', value: p.R3! },
+        { type: 'R', id: 'Rx', a: 'D', b: '0', value: (p.R2! * p.R3!) / p.R1! },
+        { type: 'R', id: 'R0', a: 'C', b: 'D', value: p.R0! },
+      ],
+    },
+  }),
   blocco: 'b2',
   topic: 'corrente-stazionaria',
   objectives: ['corrente-stazionaria.6', 'corrente-stazionaria.5'],

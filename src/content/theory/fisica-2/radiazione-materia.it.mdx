@@ -26,6 +26,8 @@ Perché le condizioni valgano in ogni punto della superficie e in ogni istante, 
 - legge della riflessione: $\theta_r=\theta_i$;
 - **legge di Snell**: $n_1\sin\theta_1=n_2\sin\theta_2$.
 
+<DiagramLive kind="refraction" />
+
 Le stesse leggi si ottengono dal **principio di Fermat**: la luce percorre il cammino ottico $L=\int n\,ds$ stazionario (di solito minimo).
 
 **Riflessione totale**: passando da un mezzo più rifrangente a uno meno rifrangente ($n_1\gt n_2$), per $\theta\gt\theta_c$ con $\sin\theta_c=\frac{n_2}{n_1}$ non c'è onda trasmessa. Su questo si basano le **fibre ottiche**: un nucleo con $n_1$ è circondato da un mantello con $n_2\lt n_1$. L'angolo massimo di accettazione dall'aria vale $\sin\theta_{max}=\sqrt{n_1^2-n_2^2}$ (apertura numerica).
@@ -46,6 +48,18 @@ L'indice di rifrazione dipende dalla lunghezza d'onda, perché la risposta degli
 
 La luce naturale è una sovrapposizione incoerente di onde con polarizzazioni casuali. Un polarizzatore ideale ne trasmette metà ($I_0/2$). Luce polarizzata linearmente che attraversa un polarizzatore ruotato di $\theta$ rispetto alla sua direzione segue la **legge di Malus**: $I=I_0\cos^2\theta$. Si può polarizzare la luce anche per riflessione (all'angolo di Brewster), per diffusione o con materiali birifrangenti.
 
+<Diagram
+  type="polarizers"
+  params={{ axes: [0, 45, 90] }}
+  caption="Tre polarizzatori a 0°, 45° e 90°: il polarizzatore centrale lascia passare un ottavo dell’intensità, senza di esso non passerebbe nulla."
+/>
+
+<Diagram
+  type="refraction"
+  params={{ n1: 1, n2: 1.5, incidence: 56.31, polarization: true }}
+  caption="All’angolo di Brewster il raggio riflesso è polarizzato perpendicolarmente al piano di incidenza."
+/>
+
 ## Principio di Huygens-Fresnel e teorema di Kirchhoff
 
 Ogni punto di un fronte d'onda si comporta come sorgente di onde sferiche secondarie; il fronte successivo è l'inviluppo di queste onde (Huygens). Fresnel aggiunse che le onde secondarie **interferiscono**, e questo spiega la diffrazione. Il teorema integrale di Kirchhoff ne dà la giustificazione matematica a partire dall'equazione delle onde: il campo in un punto si esprime con il campo su una superficie che lo racchiude (fattore di obliquità, nessuna onda "all'indietro").
@@ -57,6 +71,12 @@ Due onde **coerenti** (differenza di fase costante) di intensità $I_1$ e $I_2$ 
 $$
 I=I_1+I_2+2\sqrt{I_1I_2}\cos\delta,\qquad\delta=\frac{2\pi}{\lambda_0}\Delta L
 $$
+
+<Diagram
+  type="slits"
+  params={{ slits: 2 }}
+  caption="Doppia fenditura: frange equidistanti modulate dalla diffrazione di ciascuna fenditura."
+/>
 
 dove $\Delta L$ è la differenza di cammino ottico. Si ha interferenza costruttiva per $\Delta L=m\lambda$, distruttiva per $\Delta L=(m+\frac12)\lambda$.
 
@@ -75,6 +95,12 @@ La diffrazione è la deviazione dalla propagazione rettilinea quando l'onda inco
 $$
 I(\theta)=I_0\left(\frac{\sin\beta}\beta\right)^2,\qquad\beta=\frac{\pi a\sin\theta}\lambda
 $$
+
+<Diagram
+  type="slits"
+  params={{ slits: 1 }}
+  caption="Fenditura singola: massimo centrale largo il doppio degli altri, minimi dove a sin θ = mλ."
+/>
 
 I minimi cadono a $a\sin\theta=m\lambda$ ($m\neq0$). Il massimo centrale è largo il doppio degli altri (semiapertura $\sin\theta=\lambda/a$) e contiene la maggior parte dell'energia: più la fenditura è stretta, più la luce si allarga.
 

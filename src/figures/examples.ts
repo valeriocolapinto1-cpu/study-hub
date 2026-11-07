@@ -256,6 +256,127 @@ export const EXAMPLES: DiagramExample[] = [
     type: 'magnetic-field',
     params: { source: 'solenoid', turns: 8 },
   }),
+  ex('condensatore-strati', 'Due dielettrici in serie', 'Two dielectrics in series', {
+    type: 'capacitor',
+    params: { geometry: 'parallel', dielectric: 'layers' },
+  }),
+  ex('condensatore-affiancati', 'Due dielettrici in parallelo', 'Two dielectrics in parallel', {
+    type: 'capacitor',
+    params: { geometry: 'parallel', dielectric: 'side-by-side', field: false },
+  }),
+  ex(
+    'coppia-fili',
+    'Due fili con correnti concordi: si attraggono',
+    'Two wires with parallel currents attract',
+    {
+      type: 'magnetic-field',
+      params: { source: 'wire-pair' },
+    },
+  ),
+  ex('coppia-fili-opposti', 'Correnti opposte: i fili si respingono', 'Opposite currents: the wires repel', {
+    type: 'magnetic-field',
+    params: { source: 'wire-pair', current2: 'negative' },
+  }),
+  ex('coassiale', 'Cavo coassiale in sezione', 'Coaxial cable in cross-section', {
+    type: 'magnetic-field',
+    params: { source: 'coax' },
+  }),
+  ex('toroide-traferro', 'Toroide con traferro', 'Toroid with an air gap', {
+    type: 'magnetic-field',
+    params: { source: 'toroid', gap: true, turns: 12 },
+  }),
+  ex('filo-u', 'Filo a U: campo nel centro del semicerchio', 'U-shaped wire: field at the centre', {
+    type: 'magnetic-field',
+    params: { source: 'hairpin' },
+  }),
+  ex('filo-spesso', 'Conduttore cilindrico spesso', 'Thick cylindrical conductor', {
+    type: 'magnetic-field',
+    params: { source: 'wire-section', radiusLabel: 'R' },
+  }),
+  // ------------------------------------------------------ distribuzioni e Gauss
+  ex(
+    'gauss-sfera',
+    'Sfera carica e superficie di Gauss interna',
+    'Charged sphere and inner Gaussian surface',
+    {
+      type: 'charge-distribution',
+      params: { shape: 'sphere', gaussian: 0.6, densityLabel: 'ρ' },
+    },
+  ),
+  ex('gauss-guscio', 'Guscio carico, superficie esterna', 'Charged shell, outer surface', {
+    type: 'charge-distribution',
+    params: { shape: 'shell', gaussian: 1.4 },
+  }),
+  ex('gauss-conduttore', 'Sfera conduttrice: campo nullo dentro', 'Conducting sphere: zero field inside', {
+    type: 'charge-distribution',
+    params: { shape: 'sphere', conductor: true, gaussian: 0.6 },
+  }),
+  ex('gauss-cilindro', 'Cilindro carico in sezione', 'Charged cylinder in cross-section', {
+    type: 'charge-distribution',
+    params: { shape: 'cylinder', gaussian: 2, gaussLabel: '2R' },
+  }),
+  ex('gauss-piano', 'Piano carico e cilindretto di Gauss', 'Charged plane and Gaussian pillbox', {
+    type: 'charge-distribution',
+    params: { shape: 'plane' },
+  }),
+  ex('gauss-filo', 'Filo carico e cilindro di Gauss', 'Charged wire and Gaussian cylinder', {
+    type: 'charge-distribution',
+    params: { shape: 'wire' },
+  }),
+  ex('anello', 'Anello carico: campo sull’asse', 'Charged ring: field on the axis', {
+    type: 'charge-distribution',
+    params: { shape: 'ring', point: { distance: 1 } },
+  }),
+  ex('segmento', 'Segmento carico: campo in P', 'Charged segment: field at P', {
+    type: 'charge-distribution',
+    params: { shape: 'rod', point: { distance: 0.8 } },
+  }),
+  ex('sfera-guscio', 'Sfera e guscio conduttori', 'Conducting sphere and shell', {
+    type: 'charge-distribution',
+    params: { shape: 'sphere-in-shell' },
+  }),
+  // ------------------------------------------------------------ campi uniformi
+  ex('lorentz', 'Protone in un campo B entrante', 'Proton in a field B into the page', {
+    type: 'uniform-field',
+    params: { field: 'B-in', object: 'particle' },
+  }),
+  ex('lorentz-elettrone', 'Elettrone in un campo B uscente', 'Electron in a field B out of the page', {
+    type: 'uniform-field',
+    params: { field: 'B-out', object: 'particle', charge: 'negative' },
+  }),
+  ex('deflessione-e', 'Carica deviata da un campo elettrico', 'Charge deflected by an electric field', {
+    type: 'uniform-field',
+    params: { field: 'E-down', object: 'particle', charge: 'negative' },
+  }),
+  ex('dipolo-campo', 'Dipolo in un campo uniforme', 'Dipole in a uniform field', {
+    type: 'uniform-field',
+    params: { field: 'E-right', object: 'dipole', angle: 40 },
+  }),
+  ex('spira-campo', 'Spira in un campo B uniforme', 'Loop in a uniform field B', {
+    type: 'uniform-field',
+    params: { field: 'B-right', object: 'loop', angle: 50 },
+  }),
+  // ------------------------------------------------------------------ induzione
+  ex('rotaie', 'Barretta su rotaie', 'Bar on rails', {
+    type: 'induction',
+    params: { setup: 'sliding-bar' },
+  }),
+  ex('sbarra-rotante', 'Sbarra che ruota in un campo', 'Rod rotating in a field', {
+    type: 'induction',
+    params: { setup: 'rotating-rod' },
+  }),
+  ex('alternatore', 'Spira rotante (alternatore)', 'Rotating loop (alternator)', {
+    type: 'induction',
+    params: { setup: 'rotating-loop', angle: 50 },
+  }),
+  ex('spira-filo', 'Spira che si allontana dal filo', 'Loop moving away from the wire', {
+    type: 'induction',
+    params: { setup: 'loop-near-wire', motion: 'away' },
+  }),
+  ex('spira-b-variabile', 'Spira in un campo che cresce', 'Loop in an increasing field', {
+    type: 'induction',
+    params: { setup: 'loop-in-field', fieldLabel: 'B(t)' },
+  }),
   // ------------------------------------------------------------------------ onde
   ex('onda-progressiva', 'Onda progressiva', 'Travelling wave', {
     type: 'wave',
@@ -268,6 +389,39 @@ export const EXAMPLES: DiagramExample[] = [
   ex('onda-tubo', 'Tubo chiuso a un estremo, seconda armonica', 'Pipe closed at one end, second harmonic', {
     type: 'wave',
     params: { kind: 'standing', harmonic: 2, boundary: 'fixed-free' },
+  }),
+  ex('onda-em', 'Onda elettromagnetica piana', 'Plane electromagnetic wave', {
+    type: 'wave',
+    params: { kind: 'electromagnetic' },
+  }),
+  ex('onda-sferica', 'Onda sferica da una sorgente puntiforme', 'Spherical wave from a point source', {
+    type: 'wave',
+    params: { kind: 'spherical' },
+  }),
+  // ---------------------------------------------------------------------- ottica
+  ex('snell', 'Dall’aria al vetro', 'From air into glass', {
+    type: 'refraction',
+    params: { n1: 1, n2: 1.5, incidence: 40 },
+  }),
+  ex('riflessione-totale', 'Riflessione totale dal vetro all’aria', 'Total reflection from glass to air', {
+    type: 'refraction',
+    params: { n1: 1.5, n2: 1, incidence: 50 },
+  }),
+  ex('brewster', 'Angolo di Brewster', 'Brewster’s angle', {
+    type: 'refraction',
+    params: { n1: 1, n2: 1.5, incidence: 56.31, polarization: true },
+  }),
+  ex('young', 'Doppia fenditura', 'Double slit', {
+    type: 'slits',
+    params: { slits: 2 },
+  }),
+  ex('fenditura', 'Fenditura singola', 'Single slit', {
+    type: 'slits',
+    params: { slits: 1 },
+  }),
+  ex('polarizzatori', 'Due polarizzatori a 60°', 'Two polarizers at 60°', {
+    type: 'polarizers',
+    params: { axes: [0, 60] },
   }),
   // ---------------------------------------------------------------------- vettori
   ex('somma-vettori', 'Somma con il parallelogramma', 'Sum by the parallelogram rule', {

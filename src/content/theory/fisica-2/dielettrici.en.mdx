@@ -18,6 +18,12 @@ To avoid chasing the polarisation charges, which we do not control, we introduce
 
 Filling an isolated capacitor with an insulator makes the voltage drop to $V_0/\varepsilon_r$, so the capacitance becomes $C=\varepsilon_rC_0$. The **relative dielectric constant** $\varepsilon_r\ge1$ characterises the material ($\varepsilon=\varepsilon_0\varepsilon_r$). The field in the dielectric is reduced: $E=E_0/\varepsilon_r$.
 
+<Diagram
+  type="capacitor"
+  params={{ geometry: 'parallel', dielectric: 'full', battery: false }}
+  caption="Isolated capacitor filled with a dielectric: for the same charge, field and voltage drop by a factor εr."
+/>
+
 ## Microscopic interpretation and polarisation vector
 
 - **Deformation (electronic) polarisation**: the field displaces the electron cloud with respect to the nucleus and induces a moment $\vec p=\alpha\vec E$. In the model of an atom as a uniform spherical cloud $\vec p = 4\pi\varepsilon_0R^3\vec E$. It does not depend on temperature.
@@ -69,6 +75,12 @@ The **Van de Graaff generator** exploits the fact that charge brought inside a h
 ## Worked example: dielectric slab partly filling a capacitor
 
 An isolated parallel-plate capacitor has plates of area $S=200\ \mathrm{cm^2}$ at distance $d=4\ \mathrm{mm}$ and charge $Q=10\ \mathrm{nC}$. A dielectric slab of thickness $t=2\ \mathrm{mm}$ and $\varepsilon_r=4$ rests on one plate.
+
+<Diagram
+  type="capacitor"
+  params={{ geometry: 'parallel', dielectric: 'half', field: false }}
+  caption="Dielectric slab filling half of the gap: two capacitors in series."
+/>
 
 1. **Electric displacement.** With a Gauss pillbox enclosing the plate: $D=\sigma=Q/S=5\times10^{-7}\ \mathrm{C/m^2}$, the same in air and in the dielectric (continuous normal component).
 2. **Fields.** In air $E_a=D/\varepsilon_0\simeq 5.65\times10^4\ \mathrm{V/m}$; in the dielectric $E_d=D/(\varepsilon_0\varepsilon_r)\simeq 1.41\times10^4\ \mathrm{V/m}$.

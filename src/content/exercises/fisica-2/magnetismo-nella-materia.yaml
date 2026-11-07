@@ -73,6 +73,10 @@
     - magnetismo-nella-materia.5
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: magnetic-field
+      params: { source: toroid, gap: true, radiusLabel: l = 2πR, gapLabel: h = l/1000 }
   statement:
     it: "In un nucleo di ferro ($\\mu_r=1000$, lunghezza media $l$) si pratica un traferro di spessore $h=l/1000$. A parità di corrente, il campo nel traferro diventa circa:"
     en: "An air gap of thickness $h=l/1000$ is cut in an iron core ($\\mu_r=1000$, mean length $l$). For the same current, the field in the gap becomes about:"

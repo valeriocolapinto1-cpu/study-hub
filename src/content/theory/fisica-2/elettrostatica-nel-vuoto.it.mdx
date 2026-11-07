@@ -34,6 +34,14 @@ $$
 \vec E(\vec r) = \frac{1}{4\pi\varepsilon_0}\int \frac{dq\,(\vec r-\vec r\,')}{|\vec r-\vec r\,'|^3}
 $$
 
+<DiagramLive kind="point-charges" />
+
+<Diagram
+  type="charge-distribution"
+  params={{ shape: 'ring', point: { distance: 1 } }}
+  caption="Anello carico: sull’asse si sommano solo le componenti lungo z, quelle trasversali si annullano a coppie."
+/>
+
 Le _linee di campo_ sono tangenti a $\vec E$, escono dalle cariche positive ed entrano in quelle negative; la loro densità è proporzionale al modulo del campo.
 
 **Risultati da saper ricavare per integrazione diretta** (sfruttando le simmetrie per eliminare le componenti che si annullano):
@@ -50,6 +58,18 @@ Il flusso del campo attraverso una superficie è $\Phi_S(\vec E) = \int_S \vec E
 $$
 \oint_S \vec E\cdot\hat n\,dS = \frac{Q_{\text{int}}}{\varepsilon_0}
 $$
+
+<Diagram
+  type="charge-distribution"
+  params={{ shape: 'sphere', gaussian: 0.6, densityLabel: 'ρ' }}
+  caption="Sfera carica: la superficie di Gauss S interna racchiude solo la carica entro r, e per simmetria E ha lo stesso modulo in tutti i suoi punti."
+/>
+
+<Diagram
+  type="charge-distribution"
+  params={{ shape: 'wire' }}
+  caption="Filo carico: il flusso attraversa solo la superficie laterale del cilindro di Gauss, non le basi."
+/>
 
 _Dimostrazione (idea)._ Per una carica puntiforme il flusso attraverso l'elemento $dS$ vale $\frac{q}{4\pi\varepsilon_0}\frac{\hat u_r\cdot\hat n\,dS}{r^2} = \frac{q}{4\pi\varepsilon_0}\,d\Omega$, dove $d\Omega$ è l'angolo solido. Se la carica è interna l'angolo solido totale è $4\pi$ e il flusso vale $q/\varepsilon_0$; se è esterna ogni cono taglia la superficie due volte con contributi opposti e il flusso è nullo. Per sovrapposizione il risultato vale per qualsiasi distribuzione. Il teorema discende dalla dipendenza $1/r^2$ della legge di Coulomb.
 
@@ -95,6 +115,12 @@ Due cariche $+q$ e $-q$ a distanza $d$ formano un dipolo di momento $\vec p = q\
 $$
 V = \frac{p\cos\theta}{4\pi\varepsilon_0 r^2},\qquad E_r = -\frac{\partial V}{\partial r}=\frac{2p\cos\theta}{4\pi\varepsilon_0 r^3},\qquad E_\theta=-\frac1r\frac{\partial V}{\partial\theta}=\frac{p\sin\theta}{4\pi\varepsilon_0 r^3}
 $$
+
+<Diagram
+  type="uniform-field"
+  params={{ field: 'E-right', object: 'dipole', angle: 40 }}
+  caption="Dipolo in un campo uniforme: forze opposte, risultante nulla, momento M = p × E che lo allinea al campo."
+/>
 
 Il campo decresce come $1/r^3$ (più rapidamente di quello di una carica, perché la carica totale è nulla). Sull'asse $E = \frac{2p}{4\pi\varepsilon_0 r^3}$, sul piano equatoriale $E=\frac{p}{4\pi\varepsilon_0 r^3}$ diretto opposto a $\vec p$.
 

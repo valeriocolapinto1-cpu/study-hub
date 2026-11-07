@@ -26,6 +26,8 @@ For the conditions to hold at every point of the surface and at every instant, t
 - law of reflection: $\theta_r=\theta_i$;
 - **Snell's law**: $n_1\sin\theta_1=n_2\sin\theta_2$.
 
+<DiagramLive kind="refraction" />
+
 The same laws follow from **Fermat's principle**: light travels along a stationary (usually minimum) optical path $L=\int n\,ds$.
 
 **Total internal reflection**: going from a more refractive to a less refractive medium ($n_1\gt n_2$), for $\theta\gt\theta_c$ with $\sin\theta_c=\frac{n_2}{n_1}$ there is no transmitted wave. **Optical fibres** rely on this: a core with $n_1$ is surrounded by a cladding with $n_2\lt n_1$. The maximum acceptance angle from air is $\sin\theta_{max}=\sqrt{n_1^2-n_2^2}$ (numerical aperture).
@@ -46,6 +48,18 @@ The refractive index depends on the wavelength, because the response of bound el
 
 Natural light is an incoherent superposition of waves with random polarisations. An ideal polariser transmits half of it ($I_0/2$). Linearly polarised light crossing a polariser rotated by $\theta$ with respect to its direction obeys **Malus's law**: $I=I_0\cos^2\theta$. Light can also be polarised by reflection (at Brewster's angle), by scattering or with birefringent materials.
 
+<Diagram
+  type="polarizers"
+  params={{ axes: [0, 45, 90] }}
+  caption="Three polarizers at 0°, 45° and 90°: the middle one lets one eighth of the intensity through; without it nothing would pass."
+/>
+
+<Diagram
+  type="refraction"
+  params={{ n1: 1, n2: 1.5, incidence: 56.31, polarization: true }}
+  caption="At Brewster’s angle the reflected ray is polarized perpendicular to the plane of incidence."
+/>
+
 ## Huygens-Fresnel principle and Kirchhoff's theorem
 
 Every point of a wavefront behaves as a source of secondary spherical waves; the next wavefront is the envelope of these waves (Huygens). Fresnel added that the secondary waves **interfere**, which explains diffraction. Kirchhoff's integral theorem gives the mathematical justification starting from the wave equation: the field at a point is expressed through the field on a surface enclosing it (obliquity factor, no "backward" wave).
@@ -57,6 +71,12 @@ Two **coherent** waves (constant phase difference) with intensities $I_1$ and $I
 $$
 I=I_1+I_2+2\sqrt{I_1I_2}\cos\delta,\qquad\delta=\frac{2\pi}{\lambda_0}\Delta L
 $$
+
+<Diagram
+  type="slits"
+  params={{ slits: 2 }}
+  caption="Double slit: equally spaced fringes modulated by the diffraction of each slit."
+/>
 
 where $\Delta L$ is the optical path difference. Interference is constructive for $\Delta L=m\lambda$, destructive for $\Delta L=(m+\frac12)\lambda$.
 
@@ -75,6 +95,12 @@ Diffraction is the departure from straight-line propagation when the wave meets 
 $$
 I(\theta)=I_0\left(\frac{\sin\beta}\beta\right)^2,\qquad\beta=\frac{\pi a\sin\theta}\lambda
 $$
+
+<Diagram
+  type="slits"
+  params={{ slits: 1 }}
+  caption="Single slit: central maximum twice as wide as the others, minima where a sin θ = mλ."
+/>
 
 The minima fall at $a\sin\theta=m\lambda$ ($m\neq0$). The central maximum is twice as wide as the others (half-width $\sin\theta=\lambda/a$) and contains most of the energy: the narrower the slit, the more the light spreads.
 

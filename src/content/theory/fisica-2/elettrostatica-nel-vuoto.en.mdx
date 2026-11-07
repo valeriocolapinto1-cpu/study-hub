@@ -34,6 +34,14 @@ $$
 \vec E(\vec r) = \frac{1}{4\pi\varepsilon_0}\int \frac{dq\,(\vec r-\vec r\,')}{|\vec r-\vec r\,'|^3}
 $$
 
+<DiagramLive kind="point-charges" />
+
+<Diagram
+  type="charge-distribution"
+  params={{ shape: 'ring', point: { distance: 1 } }}
+  caption="Charged ring: on the axis only the z components add up, the transverse ones cancel in pairs."
+/>
+
 _Field lines_ are tangent to $\vec E$, leave positive charges and end on negative ones; their density is proportional to the magnitude of the field.
 
 **Results you must be able to derive by direct integration** (using symmetry to discard the components that cancel):
@@ -50,6 +58,18 @@ The flux of the field through a surface is $\Phi_S(\vec E) = \int_S \vec E\cdot\
 $$
 \oint_S \vec E\cdot\hat n\,dS = \frac{Q_{\text{int}}}{\varepsilon_0}
 $$
+
+<Diagram
+  type="charge-distribution"
+  params={{ shape: 'sphere', gaussian: 0.6, densityLabel: 'ρ' }}
+  caption="Charged sphere: the inner Gaussian surface S encloses only the charge within r, and by symmetry E has the same magnitude at all its points."
+/>
+
+<Diagram
+  type="charge-distribution"
+  params={{ shape: 'wire' }}
+  caption="Charged wire: the flux crosses only the lateral surface of the Gaussian cylinder, not its bases."
+/>
 
 _Proof (sketch)._ For a point charge the flux through the element $dS$ is $\frac{q}{4\pi\varepsilon_0}\frac{\hat u_r\cdot\hat n\,dS}{r^2} = \frac{q}{4\pi\varepsilon_0}\,d\Omega$, where $d\Omega$ is the solid angle. If the charge is inside, the total solid angle is $4\pi$ and the flux is $q/\varepsilon_0$; if it is outside, every cone cuts the surface twice with opposite contributions and the flux vanishes. By superposition the result holds for any distribution. The theorem follows from the $1/r^2$ dependence of Coulomb's law.
 
@@ -95,6 +115,12 @@ Two charges $+q$ and $-q$ at distance $d$ form a dipole with moment $\vec p = q\
 $$
 V = \frac{p\cos\theta}{4\pi\varepsilon_0 r^2},\qquad E_r = -\frac{\partial V}{\partial r}=\frac{2p\cos\theta}{4\pi\varepsilon_0 r^3},\qquad E_\theta=-\frac1r\frac{\partial V}{\partial\theta}=\frac{p\sin\theta}{4\pi\varepsilon_0 r^3}
 $$
+
+<Diagram
+  type="uniform-field"
+  params={{ field: 'E-right', object: 'dipole', angle: 40 }}
+  caption="Dipole in a uniform field: opposite forces, zero net force, torque M = p × E aligning it with the field."
+/>
 
 The field decreases as $1/r^3$ (faster than that of a single charge, because the total charge is zero). On the axis $E = \frac{2p}{4\pi\varepsilon_0 r^3}$, on the equatorial plane $E=\frac{p}{4\pi\varepsilon_0 r^3}$, directed opposite to $\vec p$.
 

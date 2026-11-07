@@ -1,8 +1,21 @@
 /** Blocco 1 — Elettrostatica nel vuoto, conduttori, dielettrici (template del sito originale). */
-import { defineTemplate, EPS0, K, PI, S, pick, step } from './lib';
+import { defineTemplate, EPS0, K, PI, S, pick, step, lv } from './lib';
 
 defineTemplate({
   id: 'b1-sfera-rho-kr',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'charge-distribution',
+      params: {
+        shape: 'shell',
+        innerLabel: `a = ${lv(p.a!, 'cm', lang, 100)}`,
+        outerLabel: `b = ${lv(p.b!, 'cm', lang, 100)}`,
+        gaussian: (p.a! + p.b!) / 2 / p.b!,
+        gaussLabel: 'r_2',
+        densityLabel: 'ρ = k r',
+      },
+    },
+  }),
   blocco: 'b1',
   topic: 'elettrostatica-nel-vuoto',
   objectives: ['elettrostatica-nel-vuoto.4'],
@@ -53,6 +66,18 @@ defineTemplate({
 
 defineTemplate({
   id: 'b1-cilindro-rho-ar',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'charge-distribution',
+      params: {
+        shape: 'cylinder',
+        radiusLabel: `R = ${lv(p.R!, 'cm', lang, 100)}`,
+        gaussian: 2,
+        gaussLabel: '2R',
+        densityLabel: 'ρ = A r',
+      },
+    },
+  }),
   blocco: 'b1',
   topic: 'elettrostatica-nel-vuoto',
   objectives: ['elettrostatica-nel-vuoto.4', 'elettrostatica-nel-vuoto.6'],
@@ -96,6 +121,17 @@ defineTemplate({
 
 defineTemplate({
   id: 'b1-anello-velocita',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'charge-distribution',
+      params: {
+        shape: 'ring',
+        charge: p.lam! < 0 ? 'negative' : 'positive',
+        radiusLabel: `R = ${lv(p.R!, 'cm', lang, 100)}`,
+        point: { distance: 1.4, label: 'q, m', distanceLabel: 'z' },
+      },
+    },
+  }),
   blocco: 'b1',
   topic: 'elettrostatica-nel-vuoto',
   objectives: ['elettrostatica-nel-vuoto.6'],
@@ -141,6 +177,17 @@ defineTemplate({
 
 defineTemplate({
   id: 'b1-filo-finito',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'charge-distribution',
+      params: {
+        shape: 'rod',
+        charge: p.Q! < 0 ? 'negative' : 'positive',
+        radiusLabel: `L = ${lv(p.L!, 'cm', lang, 100)}`,
+        point: { distance: Math.min(3, p.D! / p.L!), distanceLabel: `D = ${lv(p.D!, 'cm', lang, 100)}` },
+      },
+    },
+  }),
   blocco: 'b1',
   topic: 'elettrostatica-nel-vuoto',
   objectives: ['elettrostatica-nel-vuoto.2'],
@@ -184,6 +231,18 @@ defineTemplate({
 
 defineTemplate({
   id: 'b1-condensatore-cilindrico',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'capacitor',
+      params: {
+        geometry: 'cylindrical',
+        dielectric: 'full',
+        innerLabel: `R_1 = ${lv(p.R1!, 'cm', lang, 100)}`,
+        outerLabel: `R_2 = ${lv(p.R2!, 'cm', lang, 100)}`,
+        dielectricLabels: [`ε_r = ${lv(p.er!, '', lang)}`],
+      },
+    },
+  }),
   blocco: 'b1',
   topic: 'dielettrici',
   objectives: ['dielettrici.6', 'dielettrici.7'],
@@ -234,6 +293,19 @@ defineTemplate({
 
 defineTemplate({
   id: 'b1-piano-serie',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'capacitor',
+      params: {
+        geometry: 'parallel',
+        dielectric: 'layers',
+        battery: false,
+        dielectricLabels: [`ε_{r1} = ${lv(p.e1!, '', lang)}`, `ε_{r2} = ${lv(p.e2!, '', lang)}`],
+        dLabel: `${lv(p.d1!, '', lang, 1000)} + ${lv(p.d2!, 'mm', lang, 1000)}`,
+        areaLabel: 'S',
+      },
+    },
+  }),
   blocco: 'b1',
   topic: 'dielettrici',
   objectives: ['dielettrici.4', 'dielettrici.6'],
@@ -288,6 +360,19 @@ defineTemplate({
 
 defineTemplate({
   id: 'b1-piano-parallelo',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'capacitor',
+      params: {
+        geometry: 'parallel',
+        dielectric: 'side-by-side',
+        dielectricLabels: [`ε_{r1} = ${lv(p.e1!, '', lang)}`, `ε_{r2} = ${lv(p.e2!, '', lang)}`],
+        dLabel: `d = ${lv(p.d!, 'mm', lang, 1000)}`,
+        voltageLabel: `V = ${lv(p.V!, 'V', lang)}`,
+        areaLabel: 'S',
+      },
+    },
+  }),
   blocco: 'b1',
   topic: 'dielettrici',
   objectives: ['dielettrici.5', 'dielettrici.6'],
@@ -341,6 +426,17 @@ defineTemplate({
 
 defineTemplate({
   id: 'b1-conduttori-sferici',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'charge-distribution',
+      params: {
+        shape: 'sphere-in-shell',
+        radiusLabel: `R_1 = ${lv(p.R1!, 'cm', lang, 100)}`,
+        innerLabel: `R_2 = ${lv(p.R2!, 'cm', lang, 100)}`,
+        outerLabel: `R_3 = ${lv(p.R3!, 'cm', lang, 100)}`,
+      },
+    },
+  }),
   blocco: 'b1',
   topic: 'conduttori-capacita',
   objectives: ['conduttori-capacita.2', 'conduttori-capacita.5'],
@@ -392,6 +488,21 @@ defineTemplate({
 
 defineTemplate({
   id: 'b1-lavoro-anello-asse',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'charge-distribution',
+      params: {
+        shape: 'ring',
+        charge: p.Q! < 0 ? 'negative' : 'positive',
+        radiusLabel: `R = ${lv(p.R!, 'cm', lang, 100)}`,
+        point: {
+          distance: Math.min(3, p.d! / p.R!),
+          label: 'P',
+          distanceLabel: `d = ${lv(p.d!, 'cm', lang, 100)}`,
+        },
+      },
+    },
+  }),
   blocco: 'b1',
   topic: 'elettrostatica-nel-vuoto',
   objectives: ['elettrostatica-nel-vuoto.6'],
