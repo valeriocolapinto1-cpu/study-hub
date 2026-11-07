@@ -118,3 +118,12 @@
       value: 12.5
       unit: 'N'
   origin: originale
+- id: momento-angolare-filo-variante
+  topic: momento-angolare
+  objectives:
+    - momento-angolare.1
+    - momento-angolare.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/momento-angolare-filo
+  origin: tipologia-appello

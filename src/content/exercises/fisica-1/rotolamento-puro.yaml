@@ -117,3 +117,12 @@
         en: time ratio
       value: 1.195
   origin: originale
+- id: rotolamento-variante
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.1
+    - rotolamento-puro.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/rotolamento
+  origin: tipologia-appello

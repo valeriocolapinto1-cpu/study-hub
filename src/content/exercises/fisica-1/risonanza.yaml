@@ -141,3 +141,12 @@
       value: 0.3125
       unit: W
   origin: originale
+- id: risonanza-variante
+  topic: risonanza
+  objectives:
+    - risonanza.1
+    - risonanza.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/risonanza
+  origin: tipologia-appello

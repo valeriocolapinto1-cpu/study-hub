@@ -122,3 +122,12 @@
       value: 2.45
       unit: m/s²
   origin: originale
+- id: riferimento-accelerato-variante
+  topic: sistemi-di-riferimento
+  objectives:
+    - sistemi-di-riferimento.1
+    - sistemi-di-riferimento.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/riferimento-accelerato
+  origin: tipologia-appello

@@ -116,3 +116,12 @@
       value: -0.5
       unit: m/s
   origin: originale
+- id: moto-armonico-variante
+  topic: moto-armonico
+  objectives:
+    - moto-armonico.1
+    - moto-armonico.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/moto-armonico
+  origin: tipologia-appello

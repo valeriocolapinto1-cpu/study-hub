@@ -108,3 +108,12 @@
       value: 116.9
       unit: kJ
   origin: originale
+- id: ciclo-di-carnot-variante
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.1
+    - ciclo-di-carnot.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/ciclo-di-carnot
+  origin: tipologia-appello

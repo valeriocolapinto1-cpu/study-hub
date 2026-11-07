@@ -123,3 +123,12 @@
       value: 182
       unit: m
   origin: originale
+- id: centro-di-massa-barca-variante
+  topic: centro-di-massa
+  objectives:
+    - centro-di-massa.1
+    - centro-di-massa.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/centro-di-massa-barca
+  origin: tipologia-appello

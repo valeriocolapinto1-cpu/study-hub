@@ -120,3 +120,12 @@
       value: 981
       unit: J
   origin: originale
+- id: piano-scabro-variante
+  topic: forze-non-conservative
+  objectives:
+    - forze-non-conservative.1
+    - forze-non-conservative.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/piano-scabro
+  origin: tipologia-appello

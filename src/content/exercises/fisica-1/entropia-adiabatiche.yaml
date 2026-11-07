@@ -107,3 +107,12 @@
       value: 36.2
       unit: J/K
   origin: originale
+- id: entropia-mescolamento-variante
+  topic: entropia-adiabatiche
+  objectives:
+    - entropia-adiabatiche.1
+    - entropia-adiabatiche.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/entropia-mescolamento
+  origin: tipologia-appello

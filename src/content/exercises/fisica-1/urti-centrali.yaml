@@ -108,3 +108,12 @@
       value: 27000
       unit: J
   origin: originale
+- id: urto-elastico-variante
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.1
+    - urti-centrali.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/urto-elastico
+  origin: tipologia-appello

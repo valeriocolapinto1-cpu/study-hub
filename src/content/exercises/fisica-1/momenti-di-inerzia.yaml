@@ -117,3 +117,12 @@
       value: 0.065
       unit: kg·m²
   origin: originale
+- id: momenti-di-inerzia-variante
+  topic: momenti-di-inerzia
+  objectives:
+    - momenti-di-inerzia.1
+    - momenti-di-inerzia.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/momenti-di-inerzia
+  origin: tipologia-appello
