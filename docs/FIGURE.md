@@ -4,7 +4,8 @@ Figure fisiche e schemi generati **dai dati**: una funzione pura `parametri → 
 (teoria, esercizi, prima variante dei generati) e nel browser (solo per «Nuova variante»). Stesso approccio
 di `<Circuit>` (docs/SIM.md), che resta il modo di disegnare i circuiti.
 
-Catalogo con tutti i tipi ed esempi: `/<lang>/stile/figure/` (noindex, fuori dal menu e dalla sitemap).
+Catalogo con tutti i tipi ed esempi: `/<lang>/stile/figure/` (noindex, fuori dal menu e dalla sitemap), coperto da
+test visivi (390 e 1280 px, chiaro e scuro), axe in IT/EN e `tests/e2e/figure.spec.ts`.
 
 ## Mappa dei moduli
 
