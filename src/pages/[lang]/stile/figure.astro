@@ -1,0 +1,146 @@
+---
+/**
+ * Catalogo delle figure del kit (non indicizzato, fuori dal menu): ogni tipo con
+ * esempi generati a build-time e, in fondo, le quattro varianti interattive.
+ * Usato dai test visivi e axe. Guida: docs/FIGURE.md.
+ */
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { langPaths, localizePath, type Lang } from '../../../i18n';
+import Diagram from '../../../figures/Diagram.astro';
+import DiagramLive from '../../../figures/DiagramLive.astro';
+import { EXAMPLES } from '../../../figures/examples';
+import type { DiagramType } from '../../../figures/types';
+
+export const getStaticPaths = langPaths;
+const lang = Astro.params.lang as Lang;
+
+const T = {
+  it: {
+    title: 'Catalogo delle figure',
+    lead: 'Figure generate a build-time dai parametri: stesso codice per teoria, esercizi e generatori, colori dai token del tema, testo alternativo nella lingua della pagina, zero JavaScript.',
+    live: 'Varianti interattive',
+    liveLead:
+      'Le stesse figure ridisegnate al variare dei parametri, in isole caricate quando entrano nello schermo.',
+    toSim: 'Kit dei simulatori',
+    groups: {
+      mech: 'Meccanica',
+      thermo: 'Termodinamica',
+      em: 'Elettromagnetismo',
+      waves: 'Onde e vettori',
+      cs: 'Informatica',
+    },
+  },
+  en: {
+    title: 'Figure catalogue',
+    lead: 'Figures generated at build time from parameters: the same code for theory, exercises and generators, colours from the theme tokens, alternative text in the page language, zero JavaScript.',
+    live: 'Interactive variants',
+    liveLead:
+      'The same figures redrawn as the parameters change, in islands loaded when they scroll into view.',
+    toSim: 'Simulator kit',
+    groups: {
+      mech: 'Mechanics',
+      thermo: 'Thermodynamics',
+      em: 'Electromagnetism',
+      waves: 'Waves and vectors',
+      cs: 'Computer science',
+    },
+  },
+}[lang];
+
+const GROUP_OF: Record<DiagramType, keyof typeof T.groups> = {
+  'free-body': 'mech',
+  'inclined-plane': 'mech',
+  'spring-mass': 'mech',
+  pendulum: 'mech',
+  projectile: 'mech',
+  'circular-motion': 'mech',
+  'motion-graphs': 'mech',
+  'function-plot': 'mech',
+  collision: 'mech',
+  'pv-cycle': 'thermo',
+  'point-charges': 'em',
+  capacitor: 'em',
+  'magnetic-field': 'em',
+  wave: 'waves',
+  vectors: 'waves',
+  flowchart: 'cs',
+  'block-diagram': 'cs',
+  memory: 'cs',
+  'linked-list': 'cs',
+  tree: 'cs',
+  'truth-table': 'cs',
+};
+const groups = (Object.keys(T.groups) as Array<keyof typeof T.groups>).map((g) => ({
+  id: g,
+  title: T.groups[g],
+  items: EXAMPLES.filter((e) => GROUP_OF[e.spec.type] === g),
+}));
+---
+
+<BaseLayout lang={lang} title={T.title} description={T.lead} noindex alternates>
+  <div class="container page">
+    <h1>{T.title}</h1>
+    <p class="lead">{T.lead}</p>
+    {groups.map((g) => (
+      <section aria-labelledby={`g-${g.id}`}>
+        <h2 id={`g-${g.id}`}>{g.title}</h2>
+        <div class="figure-catalog">
+          {g.items.map((e) => (
+            <div class="figure-catalog__item" id={e.id}>
+              <Diagram
+                type={e.spec.type}
+                params={e.spec.params}
+                lang={lang}
+                caption={e.caption[lang]}
+                id={`cat-${e.id}`}
+              />
+              <code>{e.spec.type}</code>
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+    <section aria-labelledby="g-live">
+      <h2 id="g-live">{T.live}</h2>
+      <p>{T.liveLead}</p>
+      <div class="figure-catalog figure-catalog--live">
+        <DiagramLive kind="inclined-plane" lang={lang} />
+        <DiagramLive kind="spring-mass" lang={lang} />
+        <DiagramLive kind="pv-cycle" lang={lang} />
+        <DiagramLive kind="point-charges" lang={lang} />
+      </div>
+    </section>
+    <p>
+      <a href={localizePath('stile/simulatori', lang)}>{T.toSim}</a>
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .figure-catalog {
+    display: grid;
+    gap: var(--space-m);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
+    align-items: start;
+  }
+  .figure-catalog__item {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-l);
+    padding: var(--space-s);
+    background: var(--surface);
+    min-width: 0;
+  }
+  .figure-catalog__item :global(.diagram-figure) {
+    margin: 0;
+  }
+  .figure-catalog__item code {
+    display: block;
+    margin-top: var(--space-2xs);
+    font-size: var(--step--2);
+    color: var(--text-muted);
+    text-align: center;
+  }
+  .figure-catalog--live :global(.sim) {
+    margin: 0;
+  }
+</style>

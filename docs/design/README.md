@@ -2,7 +2,8 @@
 
 Direzione **"Originale"**: la grafica dei siti di studio originali (in `legacy/`), riportata sui componenti comuni.
 La precedente direzione "Quaderno" ([DIRECTION.md](DIRECTION.md)) è superata: restano i componenti, cambia la pelle.
-Tutti i componenti sono visibili in `/it/stile/` (pagina noindex, usata dai test visivi e axe).
+Tutti i componenti sono visibili in `/it/stile/` (pagina noindex, usata dai test visivi e axe); le figure del kit
+(`src/figures`, [FIGURE.md](../FIGURE.md)) in `/<lang>/stile/figure/`.
 
 ## Due aree
 

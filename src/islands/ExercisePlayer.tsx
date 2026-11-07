@@ -84,14 +84,16 @@ export async function generatedContent(
       })),
     ),
   ]);
-  // figura da netlist: lo schema si carica solo quando un generatore lo usa
+  // figure da netlist o dal kit delle figure: il codice si carica solo quando un generatore lo usa
   let figureSvg = g.figure?.svg;
+  const idPrefix = `fig-${generator.replace(/\W/g, '-')}-${seed}`;
   if (!figureSvg && g.figure?.netlist) {
     const { renderSchematic } = await import('../sim/circuits/schematic');
-    figureSvg = renderSchematic(g.figure.netlist, {
-      lang,
-      idPrefix: `fig-${generator.replace(/\W/g, '-')}-${seed}`,
-    }).svg;
+    figureSvg = renderSchematic(g.figure.netlist, { lang, idPrefix }).svg;
+  } else if (!figureSvg && g.figure?.diagram) {
+    const { renderDiagramAsync } = await import('../figures/lazy');
+    figureSvg = (await renderDiagramAsync(g.figure.diagram.type, g.figure.diagram.params, { lang, idPrefix }))
+      .svg;
   }
   return { statementHtml, figureSvg, steps, answer, choices };
 }

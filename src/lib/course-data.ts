@@ -18,6 +18,7 @@ import { coursePath } from './courses';
 import { plainText } from '../engine/rich';
 import { richHtml, richInline } from './rich-server';
 import { renderSchematic } from '../sim/circuits/schematic';
+import { renderDiagram } from '../figures/render';
 import { loadCourseGenerators, runGenerator } from '../engine/generators/index';
 
 type CourseEntry = CollectionEntry<'courses'>['data'];
@@ -92,7 +93,14 @@ export function exerciseData(e: CollectionEntry<'exercises'>['data'], lang: Lang
       ? { figureSvg: typeof e.figure.svg === 'string' ? e.figure.svg : tr(e.figure.svg, lang) }
       : e.figure?.netlist
         ? { figureSvg: renderSchematic(e.figure.netlist, { lang, idPrefix: `fig-${e.id}` }).svg }
-        : {}),
+        : e.figure?.diagram
+          ? {
+              figureSvg: renderDiagram(e.figure.diagram.type, e.figure.diagram.params as never, {
+                lang,
+                idPrefix: `fig-${e.id}`,
+              }).svg,
+            }
+          : {}),
     steps: e.steps.map((s) => ({
       titleHtml: richInline(tr(s.title, lang)),
       bodyHtml: richHtml(tr(s.body, lang)),
@@ -201,14 +209,14 @@ export async function withPregenerated(ex: ExerciseData, seed: number, lang: Lan
   if (ex.kind !== 'generated' || !ex.generator) return ex;
   await loadCourseGenerators(ex.generator.split('/')[0]!);
   const g = runGenerator(ex.generator, seed, lang);
+  const idPrefix = `fig-${ex.generator.replace(/\W/g, '-')}-${seed}`;
   const figureSvg =
     g.figure?.svg ??
     (g.figure?.netlist
-      ? renderSchematic(g.figure.netlist, {
-          lang,
-          idPrefix: `fig-${ex.generator.replace(/\W/g, '-')}-${seed}`,
-        }).svg
-      : undefined);
+      ? renderSchematic(g.figure.netlist, { lang, idPrefix }).svg
+      : g.figure?.diagram
+        ? renderDiagram(g.figure.diagram.type, g.figure.diagram.params as never, { lang, idPrefix }).svg
+        : undefined);
   return {
     ...ex,
     statementHtml: richHtml(g.statement),

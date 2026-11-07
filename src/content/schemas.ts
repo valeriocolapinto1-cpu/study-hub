@@ -5,6 +5,7 @@
  */
 import { z } from 'astro/zod';
 import { Netlist } from '../sim/circuits/netlist';
+import { DiagramSpecSchema } from '../figures/schemas';
 
 export const LANG_VALUES = ['it', 'en'] as const;
 
@@ -113,11 +114,19 @@ export type Formula = z.infer<typeof formulaSchema>;
 // ---------------------------------------------------------------- exercises
 /**
  * Figura di un esercizio: netlist di un circuito (schema in src/sim/circuits/netlist.ts,
- * disegnata con <Circuit>) oppure SVG già pronto (anche in due lingue, se contiene testo).
+ * disegnata con <Circuit>), figura del kit `{ type, params }` (src/figures, docs/FIGURE.md)
+ * oppure SVG già pronto (anche in due lingue, se contiene testo).
  */
 export const figureSchema = z
-  .strictObject({ netlist: Netlist.optional(), svg: z.union([z.string().min(1), localized]).optional() })
-  .refine((f) => Boolean(f.netlist) !== Boolean(f.svg), 'figure: indicare netlist oppure svg');
+  .strictObject({
+    netlist: Netlist.optional(),
+    diagram: DiagramSpecSchema.optional(),
+    svg: z.union([z.string().min(1), localized]).optional(),
+  })
+  .refine(
+    (f) => [f.netlist, f.diagram, f.svg].filter(Boolean).length === 1,
+    'figure: indicare una sola tra netlist, diagram e svg',
+  );
 
 export const stepSchema = z.strictObject({ title: localized, body: localized });
 

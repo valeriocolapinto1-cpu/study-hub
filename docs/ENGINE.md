@@ -70,7 +70,7 @@ Negli elementi resi da un'altra isola, un `<span data-note-slot />` vuoto indica
 - Testi (`statement`, `steps`, `front`/`back`): Markdown minimo (paragrafi, elenchi, `**`, `*`, `` ` ``) e
   matematica `$…$`, `$$…$$`, `\(…\)`, `\[…\]`, resi a build-time con KaTeX (`strict: error`: un TeX
   sbagliato rompe la build, come per la teoria). L'HTML nei testi viene sempre sottoposto a escape.
-- **Figure**: `figure.svg` è inserito così com'è (contenuto del repository, fidato).
+- **Figure**: `figure.svg` è inserito così com'è (contenuto del repository, fidato); `figure.netlist` diventa uno schema e `figure.diagram { type, params }` una figura del kit (docs/FIGURE.md), entrambi a build-time; per i generati il codice si carica solo per «Nuova variante».
 - **Prove**: `courses.exam.structure` = una domanda per voce. La `kind` decide il tipo:
   `quiz|crocett…|scelta…|test|vero-falso|multipl…` → scelta multipla; `oral…|domand…|teoria|definizion…|
   concett…|apert…|dimostrazion…` → domanda aperta (flashcard o esercizio in autovalutazione); tutto il resto
