@@ -1,0 +1,34 @@
+id: pendolo-balistico
+course: fisica-1
+order: 22
+title:
+  it: Pendolo balistico
+summary:
+  it: >-
+    Il pendolo balistico è l'esempio perfetto di 'ogni fase la sua legge': l'urto è violento e rapidissimo →
+    comanda la quantità di moto; la risalita è dolce e senza dissipazione → comanda l'energia.
+group:
+  it: Sistemi di punti e corpo rigido
+  en: Systems of particles and rigid bodies
+objectives:
+  - id: pendolo-balistico.1
+    text:
+      it: Descrivere il dispositivo e il suo scopo
+  - id: pendolo-balistico.2
+    text:
+      it: Giustificare perché nell'urto si conserva P e non K
+  - id: pendolo-balistico.3
+    text:
+      it: Calcolare V dopo l'urto e l'energia dissipata
+  - id: pendolo-balistico.4
+    text:
+      it: Giustificare perché nella risalita si conserva E e non P
+  - id: pendolo-balistico.5
+    text:
+      it: Ricavare la formula finale v₀ = ((m+M)/m)√(2gh)
+  - id: pendolo-balistico.6
+    text:
+      it: Esprimere h tramite l'angolo massimo
+  - id: pendolo-balistico.7
+    text:
+      it: Discutere la frazione di energia persa M/(m+M)

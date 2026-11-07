@@ -1,0 +1,172 @@
+---
+course: fisica-1
+topic: centro-di-massa
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/centro-di-massa/idea">
+
+The centre of mass is the system's 'spokesperson': however the pieces interact, pulling and pushing each other, no internal force can move the group's centre — that takes a push from outside. This is why you cannot lift yourself by pulling your own hair, and why fireworks burst 'around' the trajectory the rocket would have followed.
+
+</div>
+
+<p class="muted" data-note-id="teoria/centro-di-massa/prerequisiti"><strong>Before this topic:</strong> <a href="../momento-angolare/">Torque and angular momentum</a></p>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/centro-di-massa/definizioni">
+
+## Definitions
+
+For a system of N point particles, the centre of mass (CM) is the point with position $\vec{r}_{cm} = \frac{1}{M}\sum_i m_i\vec{r}_i$, with $M = \sum_i m_i$ (for a continuous body the integral $\vec{r}_{cm} = \frac{1}{M}\int \vec{r}\,dm$). The first cardinal equation states that the resultant of the external forces alone governs the motion of the centre of mass: $\vec{F}^{ext} = M\vec{a}_{cm}$. Equivalently, $\vec{F}^{ext} = d\vec{P}/dt$ with $\vec{P} = M\vec{v}_{cm}$ the total momentum.
+
+</div>
+
+<div data-note-id="teoria/centro-di-massa/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Newton for each point of the system</summary>
+
+$$
+m_i\vec{a}_i = \vec{F}_i^{ext} + \sum_{j\neq i}\vec{f}_{ij}
+$$
+
+Each point is acted upon by external forces and by internal forces f_ij exerted by the other points of the system.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Sum over all points</summary>
+
+$$
+\sum_i m_i\vec{a}_i = \sum_i\vec{F}_i^{ext} + \sum_i\sum_{j\neq i}\vec{f}_{ij}
+$$
+
+The double sum contains each pair twice: f_ij and f_ji.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Internal forces cancel (third law)</summary>
+
+$$
+\vec{f}_{ij} + \vec{f}_{ji} = \vec{0} \;\Rightarrow\; \sum_i\sum_{j\neq i}\vec{f}_{ij} = \vec{0}
+$$
+
+Action and reaction are opposite: the sum of all internal forces is identically zero, whatever their nature.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Recognise the acceleration of the centre of mass</summary>
+
+$$
+\sum_i m_i\vec{a}_i = \frac{d^2}{dt^2}\sum_i m_i\vec{r}_i = M\ddot{\vec{r}}_{cm} = M\vec{a}_{cm}
+$$
+
+By definition of r_cm: Σmᵢrᵢ = M r_cm, and differentiate twice.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · First cardinal equation</summary>
+
+$$
+\vec{F}^{ext} = M\vec{a}_{cm} = \frac{d\vec{P}}{dt}, \qquad \vec{P} = \sum_i m_i \vec{v}_i = M\vec{v}_{cm}
+$$
+
+The CM moves like a point particle of mass M subject only to the external resultant: internal forces cannot move the centre of mass.
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Conservation of momentum</summary>
+
+$$
+\vec{F}^{ext} = \vec{0} \;\Rightarrow\; \vec{P} = \text{const} \;\Rightarrow\; \vec{v}_{cm} = \text{const}
+$$
+
+Isolated system: the CM goes on in uniform rectilinear motion whatever happens inside (explosions, collisions, springs).
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/centro-di-massa/ipotesi">
+
+## Validity assumptions
+
+Validity of Newton's third law for internal forces; constant masses; inertial reference frame. No rigidity assumption is needed: it holds for any system.
+
+</div>
+
+<div data-note-id="teoria/centro-di-massa/casi-limite">
+
+## Limiting cases
+
+Isolated system: P constant (the basis for studying collisions). A projectile exploding in flight: the fragments scatter but their CM continues along the original parabola. Rigid body: r_cm coincides with the geometric centre if density is uniform and there is symmetry.
+
+</div>
+
+<div data-note-id="teoria/centro-di-massa/formule">
+
+## Key formulas
+
+<Formula id="centro-di-massa-f1" />
+
+<Formula id="centro-di-massa-f2" />
+
+<Formula id="centro-di-massa-f3" />
+
+<Formula id="centro-di-massa-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/centro-di-massa/esempio">
+
+A man of mass m = 75 kg stands at the stern of a boat of mass M = 150 kg and length 4.5 m, at rest in calm water (negligible friction). The man walks to the bow. Find: (a) the displacement of the boat; (b) the displacement of the man relative to the shore; (c) the velocity of the boat when the man walks at 1.2 m/s relative to the shore.
+
+1. **The CM stays still.** No external horizontal force: $m\Delta x_m + M\Delta x_b = 0$. The relative displacement is L: $\Delta x_m - \Delta x_b = 4.5\ \text{m}$.
+2. **Displacements.** $\Delta x_b = -mL/(m+M) = -1.5\ \text{m}$ (the boat moves back), $\Delta x_m = ML/(m+M) = 3.0\ \text{m}$.
+3. **Velocity.** Zero total P: $v_b = -m v_m/M = -0.60\ \text{m/s}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/centro-di-massa/errori">
+
+- Including internal forces in the first cardinal equation: only external ones count.
+- Believing that the CM must lie inside the body (counterexamples: ring, boomerang).
+- Confusing v_cm with the velocity of a specific point of the body.
+- Using conservation of P when the external resultant is not zero (e.g. during a collision with impulsive external constraints).
+
+</div>
+
+<div data-note-id="teoria/centro-di-massa/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- How do you compute the CM of a composite body or of one with a hole?
+- A man walks on a boat at rest in calm water without friction: what does the boat do and what stays still?
+- Does the first cardinal equation completely determine the motion of a rigid body?
+
+</div>
+
+</Layer>

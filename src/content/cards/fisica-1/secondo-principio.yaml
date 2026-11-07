@@ -1,0 +1,130 @@
+- id: secondo-principio-esposizione
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.1
+    - secondo-principio.2
+    - secondo-principio.3
+    - secondo-principio.4
+    - secondo-principio.5
+    - secondo-principio.6
+    - secondo-principio.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Secondo principio della termodinamica».'
+  back:
+    it: >-
+      Il primo principio dice che l'energia si conserva; il secondo dice che ha una direzione preferita di
+      degrado: il lavoro si converte in calore integralmente e spontaneamente, il contrario mai del tutto. Il
+      calore è energia 'disordinata': raccoglierla tutta e riordinarla in lavoro richiederebbe di riordinare
+      il caos molecolare, e la natura non lo fa gratis.
+
+
+      **Scaletta:**
+
+
+      - Enunciare Kelvin-Planck con tutte le clausole (ciclico, unico risultato)
+
+      - Enunciare Clausius correttamente
+
+      - Dimostrare l'equivalenza nei due versi (per assurdo, con le macchine composte)
+
+      - Definire rendimento e mostrare η < 1
+
+      - Definire i COP di frigorifero e pompa di calore
+
+      - Spiegare cos'è una trasformazione reversibile e dare esempi di irreversibilità
+
+      - Chiarire perché l'isoterma non viola Kelvin-Planck
+- id: secondo-principio-definizione
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.1
+  kind: definizione
+  front:
+    it: 'Definizione: Secondo principio della termodinamica'
+  back:
+    it: >-
+      Il secondo principio stabilisce l'irreversibilità dei processi naturali attraverso due enunciati
+      equivalenti. Kelvin-Planck: è impossibile una trasformazione ciclica il cui UNICO risultato sia
+      convertire integralmente in lavoro il calore prelevato da una sola sorgente. Clausius: è impossibile una
+      trasformazione ciclica il cui UNICO risultato sia trasferire calore da un corpo freddo a uno caldo. Una
+      macchina termica deve quindi sempre cedere calore a una sorgente fredda: il rendimento \(\eta =
+      W/Q_{ass} = 1 - Q_{ced}/Q_{ass}\) è sempre minore di 1.
+- id: secondo-principio-formule
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.1
+    - secondo-principio.2
+    - secondo-principio.3
+    - secondo-principio.4
+    - secondo-principio.5
+    - secondo-principio.6
+    - secondo-principio.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Secondo principio della termodinamica»
+  back:
+    it: |-
+      - \(\eta = \frac{W}{Q_C} = 1 - \frac{|Q_F|}{Q_C} < 1\)
+      - \(\text{COP}_f = \frac{Q_F}{W}\)
+      - \(\text{COP}_p = \frac{Q_C}{W}\)
+- id: secondo-principio-ipotesi
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.1
+    - secondo-principio.2
+    - secondo-principio.3
+    - secondo-principio.4
+    - secondo-principio.5
+    - secondo-principio.6
+    - secondo-principio.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Secondo principio della termodinamica'
+  back:
+    it: >-
+      Sistemi che operano in CICLI (lo stato finale della macchina uguale all'iniziale: essenziale per la
+      parola 'unico risultato'); sorgenti termiche ideali (capacità infinita, temperatura costante).
+- id: secondo-principio-casi-limite
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.1
+    - secondo-principio.2
+    - secondo-principio.3
+    - secondo-principio.4
+    - secondo-principio.5
+    - secondo-principio.6
+    - secondo-principio.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Secondo principio della termodinamica'
+  back:
+    it: >-
+      Trasformazione non ciclica: convertire tutto il calore in lavoro È possibile (isoterma del gas perfetto:
+      Q = W), ma lo stato del gas cambia — non viola Kelvin-Planck. Limite reversibile: le disuguaglianze del
+      secondo principio diventano uguaglianze (ciclo di Carnot).
+- id: secondo-principio-errori
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.1
+    - secondo-principio.2
+    - secondo-principio.3
+    - secondo-principio.4
+    - secondo-principio.5
+    - secondo-principio.6
+    - secondo-principio.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Secondo principio della termodinamica'
+  back:
+    it: >-
+      - Dimenticare 'unico risultato'/'ciclico' negli enunciati: senza, gli enunciati sono falsi
+      (controesempio: isoterma).
+
+      - Credere che il frigorifero violi Clausius: assorbe lavoro, quindi il trasferimento non è l'unico
+      risultato.
+
+      - Confondere rendimento (≤1) e COP (anche >1).
+
+      - Pensare che il secondo principio derivi dal primo: sono indipendenti (il primo non vieta il motore
+      perfetto).

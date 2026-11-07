@@ -1,0 +1,138 @@
+- id: legge-di-stevino-esposizione
+  topic: legge-di-stevino
+  objectives:
+    - legge-di-stevino.1
+    - legge-di-stevino.2
+    - legge-di-stevino.3
+    - legge-di-stevino.4
+    - legge-di-stevino.5
+    - legge-di-stevino.6
+    - legge-di-stevino.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Pressione e legge di Stevino».'
+  back:
+    it: >-
+      Ogni strato di fluido deve sorreggere tutto il fluido che gli sta sopra: scendendo, il carico cresce e
+      con esso la pressione. Che sia uno scalare deriva dall'incapacità del fluido fermo di sostenere sforzi
+      tangenziali: qualunque orientazione dia alla superficie di prova, sento la stessa spinta normale.
+
+
+      **Scaletta:**
+
+
+      - Definire la pressione e le sue unità (Pa, atm, mmHg)
+
+      - Enunciare il principio di Pascal (isotropia della pressione)
+
+      - Ricavare dp/dz = −ρg dall'equilibrio del cilindretto
+
+      - Integrare e ottenere p = p₀ + ρgh
+
+      - Spiegare vasi comunicanti e paradosso idrostatico
+
+      - Descrivere il barometro di Torricelli
+
+      - Collegare Stevino alla spinta di Archimede
+- id: legge-di-stevino-orale-1
+  topic: legge-di-stevino
+  objectives:
+    - legge-di-stevino.6
+    - legge-di-stevino.7
+  kind: orale
+  front:
+    it: Come cambia la pressione atmosferica con la quota se assumo l'aria un gas perfetto isotermo?
+  back:
+    it: Decadimento esponenziale.
+- id: legge-di-stevino-definizione
+  topic: legge-di-stevino
+  objectives:
+    - legge-di-stevino.1
+  kind: definizione
+  front:
+    it: 'Definizione: Pressione e legge di Stevino'
+  back:
+    it: >-
+      La pressione in un punto di un fluido è il rapporto tra la forza normale esercitata su una superficie
+      elementare e l'area della superficie: \(p = dF_\perp/dA\); è uno scalare (principio di Pascal: in un
+      punto agisce ugualmente in tutte le direzioni). La legge di Stevino dà la pressione in un fluido
+      incomprimibile in quiete: \(p(h) = p_0 + \rho g h\), con h profondità sotto la superficie libera dove la
+      pressione è p₀.
+- id: legge-di-stevino-formule
+  topic: legge-di-stevino
+  objectives:
+    - legge-di-stevino.1
+    - legge-di-stevino.2
+    - legge-di-stevino.3
+    - legge-di-stevino.4
+    - legge-di-stevino.5
+    - legge-di-stevino.6
+    - legge-di-stevino.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Pressione e legge di Stevino»
+  back:
+    it: |-
+      - \(p = \frac{dF_\perp}{dA}\)
+      - \(\frac{dp}{dz} = -\rho g\)
+      - \(p = p_0 + \rho g h\)
+      - \(F_{Arch} = \rho_{fl}\,g\,V_{imm}\)
+- id: legge-di-stevino-ipotesi
+  topic: legge-di-stevino
+  objectives:
+    - legge-di-stevino.1
+    - legge-di-stevino.2
+    - legge-di-stevino.3
+    - legge-di-stevino.4
+    - legge-di-stevino.5
+    - legge-di-stevino.6
+    - legge-di-stevino.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Pressione e legge di Stevino'
+  back:
+    it: >-
+      Fluido in quiete (statica); per la forma integrata: incomprimibile (ρ costante) e g uniforme. Il fluido
+      non sostiene sforzi di taglio (definizione stessa di fluido).
+- id: legge-di-stevino-casi-limite
+  topic: legge-di-stevino
+  objectives:
+    - legge-di-stevino.1
+    - legge-di-stevino.2
+    - legge-di-stevino.3
+    - legge-di-stevino.4
+    - legge-di-stevino.5
+    - legge-di-stevino.6
+    - legge-di-stevino.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Pressione e legge di Stevino'
+  back:
+    it: >-
+      Gas su piccoli dislivelli: ρ minuscola, p quasi uniforme (si trascura Stevino nell'aria di una stanza).
+      Atmosfera su grande scala: ρ non costante, integrando con il gas perfetto isotermo si ottiene
+      l'esponenziale barometrica. g → 0 (orbita): niente gradiente di pressione, il fluido fluttua.
+- id: legge-di-stevino-errori
+  topic: legge-di-stevino
+  objectives:
+    - legge-di-stevino.1
+    - legge-di-stevino.2
+    - legge-di-stevino.3
+    - legge-di-stevino.4
+    - legge-di-stevino.5
+    - legge-di-stevino.6
+    - legge-di-stevino.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Pressione e legge di Stevino'
+  back:
+    it: >-
+      - Pensare la pressione come vettore 'diretto verso il basso': è uno scalare, agisce in tutte le
+      direzioni.
+
+      - Credere che la pressione sul fondo dipenda dalla forma o dalla quantità totale di liquido: conta solo
+      la profondità (paradosso idrostatico).
+
+      - Confondere pressione assoluta e relativa (manometrica).
+
+      - Applicare la forma ρgh a un gas su grandi dislivelli dove ρ varia.

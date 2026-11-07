@@ -1,0 +1,117 @@
+- id: ruota-energia-koenig
+  topic: teorema-di-koenig
+  objectives:
+    - teorema-di-koenig.1
+    - teorema-di-koenig.2
+    - teorema-di-koenig.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Una ruota di bicicletta (massa 1,5 kg concentrata praticamente sul cerchione di raggio 0,35 m) rotola
+      senza strisciare a 18 km/h. Calcolare: (a) l'energia cinetica di traslazione; (b) quella di rotazione
+      attorno al CM; (c) la frazione rotazionale dell'energia totale.
+    en: >-
+      A bicycle wheel (mass 1.5 kg concentrated practically on the rim of radius 0.35 m) rolls without
+      slipping at 18 km/h. Find: (a) the translational kinetic energy; (b) the rotational kinetic energy about
+      the CM; (c) the rotational fraction of the total energy.
+  steps:
+    - title:
+        it: Traslazione
+        en: Translation
+      body:
+        it: '18 km/h = 5,0 m/s: \(K_{cm} = \tfrac12 Mv^2 = 18{,}75\ \text{J}\).'
+        en: '18 km/h = 5.0 m/s: \(K_{cm} = \tfrac12 Mv^2 = 18.75\ \text{J}\).'
+    - title:
+        it: Rotazione
+        en: Rotation
+      body:
+        it: >-
+          Anello: \(I_{cm} = MR^2\), rotolamento \(\omega = v/R\): \(K' = \tfrac12 MR^2 (v/R)^2 = 18{,}75\
+          \text{J}\).
+        en: 'Ring: \(I_{cm} = MR^2\), rolling \(\omega = v/R\): \(K'' = \tfrac12 MR^2 (v/R)^2 = 18.75\ \text{J}\).'
+    - title:
+        it: Frazione
+        en: Fraction
+      body:
+        it: >-
+          Per un anello la ripartizione è esattamente a metà: frazione rotazionale 0,50, indipendente da v e
+          R.
+        en: 'For a ring the split is exactly half and half: rotational fraction 0.50, independent of v and R.'
+  answer:
+    - label:
+        it: K_cm
+        en: K_cm
+      value: 18.75
+      unit: J
+    - label:
+        it: K'
+        en: K'
+      value: 18.75
+      unit: J
+    - label:
+        it: frazione
+        en: fraction
+      value: 0.5
+  origin: originale
+- id: due-carrelli-massa-ridotta
+  topic: teorema-di-koenig
+  objectives:
+    - teorema-di-koenig.1
+    - teorema-di-koenig.2
+    - teorema-di-koenig.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Due carrelli su una rotaia liscia, m₁ = 2,0 kg a +3,0 m/s e m₂ = 3,0 kg a −1,0 m/s, si vanno incontro.
+      Calcolare: (a) la velocità del centro di massa; (b) l'energia cinetica totale e quella del CM; (c)
+      l'energia cinetica nel riferimento del CM e verificarla con la massa ridotta.
+    en: >-
+      Two carts on a smooth track, m₁ = 2.0 kg at +3.0 m/s and m₂ = 3.0 kg at −1.0 m/s, move towards each
+      other. Find: (a) the velocity of the centre of mass; (b) the total kinetic energy and that of the CM;
+      (c) the kinetic energy in the CM frame, and check it with the reduced mass.
+  steps:
+    - title:
+        it: Centro di massa
+        en: Centre of mass
+      body:
+        it: \(v_{cm} = (2\cdot 3 - 3\cdot 1)/5 = 0{,}60\ \text{m/s}\).
+        en: \(v_{cm} = (2\cdot 3 - 3\cdot 1)/5 = 0.60\ \text{m/s}\).
+    - title:
+        it: Energie
+        en: Energies
+      body:
+        it: >-
+          \(K = \tfrac12 \cdot 2 \cdot 9 + \tfrac12 \cdot 3 \cdot 1 = 10{,}5\ \text{J}\); \(K_{cm} = \tfrac12
+          \cdot 5 \cdot 0{,}36 = 0{,}90\ \text{J}\).
+        en: >-
+          \(K = \tfrac12 \cdot 2 \cdot 9 + \tfrac12 \cdot 3 \cdot 1 = 10.5\ \text{J}\); \(K_{cm} = \tfrac12
+          \cdot 5 \cdot 0.36 = 0.90\ \text{J}\).
+    - title:
+        it: König
+        en: König
+      body:
+        it: >-
+          \(K' = K - K_{cm} = 9{,}6\ \text{J}\). Verifica: \(\mu = 6/5 = 1{,}2\ \text{kg}\), \(v_{rel} =
+          4{,}0\ \text{m/s}\), \(\tfrac12\mu v_{rel}^2 = 9{,}6\ \text{J}\). ✓
+        en: >-
+          \(K' = K - K_{cm} = 9.6\ \text{J}\). Check: \(\mu = 6/5 = 1.2\ \text{kg}\), \(v_{rel} = 4.0\
+          \text{m/s}\), \(\tfrac12\mu v_{rel}^2 = 9.6\ \text{J}\). ✓
+  answer:
+    - label:
+        it: v_cm
+        en: v_cm
+      value: 0.6
+      unit: m/s
+    - label:
+        it: K
+        en: K
+      value: 10.5
+      unit: J
+    - label:
+        it: K'
+        en: K'
+      value: 9.6
+      unit: J
+  origin: originale

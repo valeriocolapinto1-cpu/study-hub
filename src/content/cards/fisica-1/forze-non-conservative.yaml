@@ -1,0 +1,238 @@
+- id: forze-non-conservative-esposizione
+  topic: forze-non-conservative
+  objectives:
+    - forze-non-conservative.1
+    - forze-non-conservative.2
+    - forze-non-conservative.3
+    - forze-non-conservative.4
+    - forze-non-conservative.5
+    - forze-non-conservative.6
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Energia meccanica in presenza di forze non conservative».'
+    en: 'Present at the oral exam: “Mechanical energy in the presence of non-conservative forces”.'
+  back:
+    it: >-
+      ΔE = W_nc è il 'conto corrente' dell'energia meccanica: le forze conservative spostano fondi tra i
+      depositi K e U senza toccare il saldo, le non conservative fanno versamenti (motori) o prelievi
+      (attriti). Il denaro prelevato dall'attrito non è distrutto: è convertito nella valuta 'disordinata'
+      dell'energia termica, non più interamente riconvertibile in moto.
+
+
+      **Scaletta:**
+
+
+      - Enunciare il bilancio ΔE = W_nc e dimostrarlo in tre righe
+
+      - Distinguere forze conservative, dissipative e motrici
+
+      - Calcolare il lavoro dell'attrito radente su un cammino dato
+
+      - Spiegare perché conta la lunghezza del percorso e non lo spostamento
+
+      - Interpretare la dissipazione come conversione in energia interna
+
+      - Risolvere un esempio completo (blocco che sale un piano scabro e ridiscende)
+    en: >-
+      ΔE = W_nc is the 'current account' of mechanical energy: conservative forces move funds between the
+      deposits K and U without touching the balance, non-conservative forces make deposits (engines) or
+      withdrawals (friction). The money withdrawn by friction is not destroyed: it is converted into the
+      'disordered' currency of thermal energy, which can no longer be fully converted back into motion.
+
+
+      **Outline:**
+
+
+      - State the balance ΔE = W_nc and prove it in three lines
+
+      - Distinguish conservative, dissipative and driving forces
+
+      - Compute the work of sliding friction along a given path
+
+      - Explain why the length of the path matters and not the displacement
+
+      - Interpret dissipation as conversion into internal energy
+
+      - Solve a complete example (block going up a rough incline and back down)
+- id: forze-non-conservative-orale-1
+  topic: forze-non-conservative
+  objectives:
+    - forze-non-conservative.5
+    - forze-non-conservative.6
+  kind: orale
+  front:
+    it: >-
+      Un blocco sale e ridiscende un piano inclinato scabro: perché la velocità di ritorno è minore di quella
+      di lancio, e come la calcoli?
+    en: >-
+      A block slides up and back down a rough incline: why is the return speed lower than the launch speed,
+      and how do you compute it?
+  back:
+    it: >-
+      Sia in salita sia in discesa l'attrito si oppone al moto e lavora negativamente, \(-\mu_d mg\cos\theta\,
+      d\) per ciascun tratto. In salita: \(\tfrac12 mv_0^2 = mg d\sin\theta + \mu_d mg d\cos\theta\) dà la
+      distanza d percorsa; in discesa: \(\tfrac12 mv_f^2 = mg d\sin\theta - \mu_d mg d\cos\theta\). Quindi
+      \(v_f^2/v_0^2 = (\sin\theta - \mu_d\cos\theta)/(\sin\theta + \mu_d\cos\theta) < 1\). Il blocco
+      ridiscende solo se \(\tan\theta > \mu_s\).
+    en: >-
+      Both going up and coming down, friction opposes the motion and does negative work, \(-\mu_k
+      mg\cos\theta\, d\) on each leg. Going up: \(\tfrac12 mv_0^2 = mg d\sin\theta + \mu_k mg d\cos\theta\)
+      gives the distance d travelled; coming down: \(\tfrac12 mv_f^2 = mg d\sin\theta - \mu_k mg
+      d\cos\theta\). Hence \(v_f^2/v_0^2 = (\sin\theta - \mu_k\cos\theta)/(\sin\theta + \mu_k\cos\theta) <
+      1\). The block slides back only if \(\tan\theta > \mu_s\).
+- id: forze-non-conservative-orale-2
+  topic: forze-non-conservative
+  objectives:
+    - forze-non-conservative.5
+    - forze-non-conservative.6
+  kind: orale
+  front:
+    it: Nel rotolamento puro l'attrito statico dissipa energia?
+    en: In pure rolling, does static friction dissipate energy?
+  back:
+    it: >-
+      No. Il lavoro di una forza è \(\vec F\cdot\vec v_P\,dt\) con \(\vec v_P\) la velocità del punto di
+      applicazione: nel rotolamento puro il punto di contatto ha velocità nulla, quindi l'attrito statico non
+      compie lavoro e l'energia meccanica si conserva. L'attrito redistribuisce l'energia tra traslazione e
+      rotazione (frena la traslazione e accelera la rotazione, o viceversa) senza dissiparla.
+    en: >-
+      No. The work of a force is \(\vec F\cdot\vec v_P\,dt\) with \(\vec v_P\) the velocity of the point of
+      application: in pure rolling the contact point has zero velocity, so static friction does no work and
+      mechanical energy is conserved. Friction redistributes energy between translation and rotation (slowing
+      one and speeding the other) without dissipating it.
+- id: forze-non-conservative-orale-3
+  topic: forze-non-conservative
+  objectives:
+    - forze-non-conservative.5
+    - forze-non-conservative.6
+  kind: orale
+  front:
+    it: Come si collega ΔE = W_nc al primo principio della termodinamica?
+    en: How is ΔE = W_nc related to the first law of thermodynamics?
+  back:
+    it: >-
+      Il primo principio generalizza il bilancio: \(\Delta U_{int} = Q - W\). L'energia meccanica "persa" per
+      attrito, \(-W_{nc}\), ricompare come aumento di energia interna dei corpi a contatto (o come calore
+      ceduto all'ambiente). Considerando anche l'energia interna, l'energia totale si conserva sempre: ΔE =
+      W_nc è il caso meccanico di questa legge più generale.
+    en: >-
+      The first law generalises the balance: \(\Delta U_{int} = Q - W\). The mechanical energy "lost" to
+      friction, \(-W_{nc}\), reappears as an increase in the internal energy of the bodies in contact (or as
+      heat released to the surroundings). Including internal energy, total energy is always conserved: ΔE =
+      W_nc is the mechanical case of this more general law.
+- id: forze-non-conservative-definizione
+  topic: forze-non-conservative
+  objectives:
+    - forze-non-conservative.1
+  kind: definizione
+  front:
+    it: 'Definizione: Energia meccanica in presenza di forze non conservative'
+    en: 'Definition: Mechanical energy in the presence of non-conservative forces'
+  back:
+    it: >-
+      Quando sul sistema agiscono anche forze non conservative (attrito radente, resistenza del mezzo, forze
+      motrici), l'energia meccanica E = K + U non si conserva: la sua variazione è pari al lavoro delle sole
+      forze non conservative, \(\Delta E = W_{nc}\). Le forze dissipative (attrito) hanno sempre \(W_{nc} <
+      0\) e convertono energia meccanica in energia interna (calore); una forza motrice può avere \(W_{nc} >
+      0\) e aumentare E.
+    en: >-
+      When non-conservative forces also act on the system (sliding friction, drag, driving forces), the
+      mechanical energy E = K + U is not conserved: its change equals the work of the non-conservative forces
+      alone, \(\Delta E = W_{nc}\). Dissipative forces (friction) always have \(W_{nc} < 0\) and convert
+      mechanical energy into internal energy (heat); a driving force can have \(W_{nc} > 0\) and increase E.
+- id: forze-non-conservative-formule
+  topic: forze-non-conservative
+  objectives:
+    - forze-non-conservative.1
+    - forze-non-conservative.2
+    - forze-non-conservative.3
+    - forze-non-conservative.4
+    - forze-non-conservative.5
+    - forze-non-conservative.6
+  kind: formula
+  front:
+    it: Le formule chiave di «Energia meccanica in presenza di forze non conservative»
+    en: The key formulas of “Mechanical energy in the presence of non-conservative forces”
+  back:
+    it: |-
+      - \(\Delta E = \Delta(K+U) = W_{nc}\)
+      - \(W_{attr} = -\mu_d N d\)
+      - \(|W_{attr}| = \Delta E_{interna}\)
+    en: |-
+      - \(\Delta E = \Delta(K+U) = W_{nc}\)
+      - \(W_{fr} = -\mu_d N d\)
+      - \(|W_{fr}| = \Delta E_{internal}\)
+- id: forze-non-conservative-ipotesi
+  topic: forze-non-conservative
+  objectives:
+    - forze-non-conservative.1
+    - forze-non-conservative.2
+    - forze-non-conservative.3
+    - forze-non-conservative.4
+    - forze-non-conservative.5
+    - forze-non-conservative.6
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Energia meccanica in presenza di forze non conservative'
+    en: 'Validity assumptions: Mechanical energy in the presence of non-conservative forces'
+  back:
+    it: >-
+      Sistema in cui le forze sono classificabili in conservative e non; per l'attrito radente, modello di
+      Coulomb F = μ_d N con μ_d costante; N nota lungo il cammino.
+    en: >-
+      A system in which forces can be classified as conservative or not; for sliding friction, Coulomb's model
+      F = μ_d N with constant μ_d; N known along the path.
+- id: forze-non-conservative-casi-limite
+  topic: forze-non-conservative
+  objectives:
+    - forze-non-conservative.1
+    - forze-non-conservative.2
+    - forze-non-conservative.3
+    - forze-non-conservative.4
+    - forze-non-conservative.5
+    - forze-non-conservative.6
+  kind: concetto
+  front:
+    it: 'Casi limite: Energia meccanica in presenza di forze non conservative'
+    en: 'Limiting cases: Mechanical energy in the presence of non-conservative forces'
+  back:
+    it: >-
+      W_nc = 0: conservazione esatta di E. Moto a regime (velocità costante) con attrito: la forza motrice
+      compensa esattamente la dissipazione, ΔK = 0 e W_motrice = −W_attrito. Tempo lungo con sola
+      dissipazione: E decresce monotonicamente fino al minimo di U accessibile.
+    en: >-
+      W_nc = 0: exact conservation of E. Steady motion (constant speed) with friction: the driving force
+      exactly compensates the dissipation, ΔK = 0 and W_driving = −W_friction. Long times with dissipation
+      only: E decreases monotonically down to the lowest accessible minimum of U.
+- id: forze-non-conservative-errori
+  topic: forze-non-conservative
+  objectives:
+    - forze-non-conservative.1
+    - forze-non-conservative.2
+    - forze-non-conservative.3
+    - forze-non-conservative.4
+    - forze-non-conservative.5
+    - forze-non-conservative.6
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Energia meccanica in presenza di forze non conservative'
+    en: 'Mistakes to avoid: Mechanical energy in the presence of non-conservative forces'
+  back:
+    it: >-
+      - Usare E = cost in presenza di attrito che lavora.
+
+      - Nel lavoro dell'attrito usare lo spostamento netto invece della lunghezza del cammino percorso.
+
+      - Dimenticare il segno: il lavoro dell'attrito radente sul corpo che striscia è sempre negativo (opposto
+      al moto relativo).
+
+      - Dire che l'energia 'si perde': si trasforma in energia interna, il bilancio complessivo torna.
+    en: >-
+      - Using E = const in the presence of friction doing work.
+
+      - In the work of friction, using the net displacement instead of the length of the path travelled.
+
+      - Forgetting the sign: the work of sliding friction on the sliding body is always negative (opposite to
+      the relative motion).
+
+      - Saying that energy 'is lost': it is transformed into internal energy, the overall balance adds up.

@@ -1,0 +1,239 @@
+- id: lavoro-energia-cinetica-esposizione
+  topic: lavoro-energia-cinetica
+  objectives:
+    - lavoro-energia-cinetica.1
+    - lavoro-energia-cinetica.2
+    - lavoro-energia-cinetica.3
+    - lavoro-energia-cinetica.4
+    - lavoro-energia-cinetica.5
+    - lavoro-energia-cinetica.6
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Lavoro di una forza e teorema lavoro-energia cinetica».'
+    en: 'Present at the oral exam: “Work of a force and the work–kinetic energy theorem”.'
+  back:
+    it: >-
+      Il lavoro misura quanta 'spinta utile' una forza dà lungo il moto: solo la componente della forza lungo
+      la velocità cambia il modulo della velocità. Il teorema dell'energia cinetica è la seconda legge di
+      Newton 'integrata lungo il cammino': trasforma un'informazione istantanea (F = ma) in un bilancio tra
+      due stati, spesso molto più comodo dei calcoli con le accelerazioni.
+
+
+      **Scaletta:**
+
+
+      - Definire il lavoro come integrale di linea e discuterne il segno
+
+      - Definire l'energia cinetica e la potenza
+
+      - Dimostrare il teorema partendo da F = ma e moltiplicando per v
+
+      - Sottolineare che vale per il lavoro totale e per qualunque forza
+
+      - Spiegare perché le forze perpendicolari alla velocità non lavorano
+
+      - Applicarlo a un esempio (frenata, caduta, piano inclinato)
+    en: >-
+      Work measures how much 'useful push' a force gives along the motion: only the component of the force
+      along the velocity changes the speed. The kinetic energy theorem is Newton's second law 'integrated
+      along the path': it turns instantaneous information (F = ma) into a balance between two states, often
+      much handier than calculations with accelerations.
+
+
+      **Outline:**
+
+
+      - Define work as a line integral and discuss its sign
+
+      - Define kinetic energy and power
+
+      - Prove the theorem starting from F = ma and multiplying by v
+
+      - Stress that it holds for the total work and for any force
+
+      - Explain why forces perpendicular to the velocity do no work
+
+      - Apply it to an example (braking, fall, inclined plane)
+- id: lavoro-energia-cinetica-orale-1
+  topic: lavoro-energia-cinetica
+  objectives:
+    - lavoro-energia-cinetica.5
+    - lavoro-energia-cinetica.6
+  kind: orale
+  front:
+    it: Il lavoro dipende dal sistema di riferimento?
+    en: Does work depend on the reference frame?
+  back:
+    it: >-
+      Sì. In un sistema che si muove con velocità costante \(\vec V\) lo spostamento diventa \(d\vec r' =
+      d\vec r - \vec V dt\), quindi cambia il lavoro di una stessa forza; cambiano anche le velocità e quindi
+      ΔK. Il teorema però vale in ogni sistema inerziale: lavoro e variazione di energia cinetica cambiano
+      insieme. Esempio: la forza che tiene ferma una valigia sul treno non lavora per il passeggero ma lavora
+      per chi guarda dal binario.
+    en: >-
+      Yes. In a frame moving with constant velocity \(\vec V\) the displacement becomes \(d\vec r' = d\vec r -
+      \vec V dt\), so the work of the same force changes; velocities change too, and so does ΔK. The theorem,
+      however, holds in every inertial frame: work and change in kinetic energy change together. Example: the
+      force holding a suitcase still on a train does no work for the passenger but does work for someone
+      watching from the platform.
+- id: lavoro-energia-cinetica-orale-2
+  topic: lavoro-energia-cinetica
+  objectives:
+    - lavoro-energia-cinetica.5
+    - lavoro-energia-cinetica.6
+  kind: orale
+  front:
+    it: Nel moto circolare uniforme chi fornisce la forza centripeta compie lavoro? Perché no?
+    en: In uniform circular motion, does whatever provides the centripetal force do work? Why not?
+  back:
+    it: >-
+      No. La forza centripeta (tensione, attrito statico, gravità…) è in ogni istante perpendicolare alla
+      velocità, quindi \(dW = \vec F\cdot\vec v\,dt = 0\) e il lavoro totale è nullo. Coerentemente il modulo
+      della velocità e K restano costanti: la forza cambia solo la direzione del moto.
+    en: >-
+      No. The centripetal force (tension, static friction, gravity…) is at every instant perpendicular to the
+      velocity, so \(dW = \vec F\cdot\vec v\,dt = 0\) and the total work is zero. Consistently the speed and K
+      stay constant: the force only changes the direction of motion.
+- id: lavoro-energia-cinetica-orale-3
+  topic: lavoro-energia-cinetica
+  objectives:
+    - lavoro-energia-cinetica.5
+    - lavoro-energia-cinetica.6
+  kind: orale
+  front:
+    it: Come si estende il teorema a un sistema di punti materiali?
+    en: How does the theorem extend to a system of point particles?
+  back:
+    it: >-
+      Si scrive il teorema per ciascun punto e si somma: \(\Delta K_{tot} = W_{est} + W_{int}\). Il lavoro
+      delle forze interne in generale non è nullo, anche se la loro risultante e il loro momento lo sono,
+      perché i punti si spostano in modo diverso (es. una molla compressa tra due carrelli, un'esplosione). È
+      nullo solo per un corpo rigido, dove le distanze tra i punti non cambiano.
+    en: >-
+      Write the theorem for each point and add up: \(\Delta K_{tot} = W_{ext} + W_{int}\). The work of
+      internal forces is in general not zero, even though their resultant and torque are, because the points
+      move differently (e.g. a compressed spring between two carts, an explosion). It vanishes only for a
+      rigid body, where distances between points do not change.
+- id: lavoro-energia-cinetica-definizione
+  topic: lavoro-energia-cinetica
+  objectives:
+    - lavoro-energia-cinetica.1
+  kind: definizione
+  front:
+    it: 'Definizione: Lavoro di una forza e teorema lavoro-energia cinetica'
+    en: 'Definition: Work of a force and the work–kinetic energy theorem'
+  back:
+    it: >-
+      Il lavoro elementare di una forza \(\vec{F}\) su uno spostamento infinitesimo \(d\vec{r}\) è \(dW =
+      \vec{F}\cdot d\vec{r} = F\,ds\cos\theta\); il lavoro lungo un cammino è l'integrale di linea \(W =
+      \int_A^B \vec{F}\cdot d\vec{r}\). L'energia cinetica di un punto materiale è \(K = \frac{1}{2}mv^2\). Il
+      teorema dell'energia cinetica (o delle forze vive) afferma che il lavoro totale di tutte le forze agenti
+      uguaglia la variazione di energia cinetica: \(W_{tot} = \Delta K\). La potenza è \(P = dW/dt =
+      \vec{F}\cdot\vec{v}\).
+    en: >-
+      The elementary work of a force \(\vec{F}\) over an infinitesimal displacement \(d\vec{r}\) is \(dW =
+      \vec{F}\cdot d\vec{r} = F\,ds\cos\theta\); the work along a path is the line integral \(W = \int_A^B
+      \vec{F}\cdot d\vec{r}\). The kinetic energy of a point particle is \(K = \frac{1}{2}mv^2\). The kinetic
+      energy theorem (or work–energy theorem) states that the total work of all the acting forces equals the
+      change in kinetic energy: \(W_{tot} = \Delta K\). Power is \(P = dW/dt = \vec{F}\cdot\vec{v}\).
+- id: lavoro-energia-cinetica-formule
+  topic: lavoro-energia-cinetica
+  objectives:
+    - lavoro-energia-cinetica.1
+    - lavoro-energia-cinetica.2
+    - lavoro-energia-cinetica.3
+    - lavoro-energia-cinetica.4
+    - lavoro-energia-cinetica.5
+    - lavoro-energia-cinetica.6
+  kind: formula
+  front:
+    it: Le formule chiave di «Lavoro di una forza e teorema lavoro-energia cinetica»
+    en: The key formulas of “Work of a force and the work–kinetic energy theorem”
+  back:
+    it: |-
+      - \(W = \int_A^B \vec{F}\cdot d\vec{r}\)
+      - \(K = \frac{1}{2}mv^2\)
+      - \(W_{tot} = \Delta K\)
+      - \(P = \vec{F}\cdot\vec{v}\)
+    en: |-
+      - \(W = \int_A^B \vec{F}\cdot d\vec{r}\)
+      - \(K = \frac{1}{2}mv^2\)
+      - \(W_{tot} = \Delta K\)
+      - \(P = \vec{F}\cdot\vec{v}\)
+- id: lavoro-energia-cinetica-ipotesi
+  topic: lavoro-energia-cinetica
+  objectives:
+    - lavoro-energia-cinetica.1
+    - lavoro-energia-cinetica.2
+    - lavoro-energia-cinetica.3
+    - lavoro-energia-cinetica.4
+    - lavoro-energia-cinetica.5
+    - lavoro-energia-cinetica.6
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Lavoro di una forza e teorema lavoro-energia cinetica'
+    en: 'Validity assumptions: Work of a force and the work–kinetic energy theorem'
+  back:
+    it: >-
+      Punto materiale (per i corpi estesi il teorema va applicato con cautela: conta lo spostamento del punto
+      di applicazione); meccanica classica; il teorema vale per QUALSIASI tipo di forza, conservativa o no.
+    en: >-
+      Point particle (for extended bodies the theorem must be applied with care: what matters is the
+      displacement of the point of application); classical mechanics; the theorem holds for ANY kind of force,
+      conservative or not.
+- id: lavoro-energia-cinetica-casi-limite
+  topic: lavoro-energia-cinetica
+  objectives:
+    - lavoro-energia-cinetica.1
+    - lavoro-energia-cinetica.2
+    - lavoro-energia-cinetica.3
+    - lavoro-energia-cinetica.4
+    - lavoro-energia-cinetica.5
+    - lavoro-energia-cinetica.6
+  kind: concetto
+  front:
+    it: 'Casi limite: Lavoro di una forza e teorema lavoro-energia cinetica'
+    en: 'Limiting cases: Work of a force and the work–kinetic energy theorem'
+  back:
+    it: >-
+      Forza costante e parallela allo spostamento rettilineo: W = Fs (formula elementare). Forza
+      perpendicolare: W = 0, moto circolare uniforme. Se W_tot < 0 il corpo rallenta (es. frenata: W_attrito =
+      −ΔK).
+    en: >-
+      Constant force parallel to a straight displacement: W = Fs (elementary formula). Perpendicular force: W
+      = 0, uniform circular motion. If W_tot < 0 the body slows down (e.g. braking: W_friction = −ΔK).
+- id: lavoro-energia-cinetica-errori
+  topic: lavoro-energia-cinetica
+  objectives:
+    - lavoro-energia-cinetica.1
+    - lavoro-energia-cinetica.2
+    - lavoro-energia-cinetica.3
+    - lavoro-energia-cinetica.4
+    - lavoro-energia-cinetica.5
+    - lavoro-energia-cinetica.6
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Lavoro di una forza e teorema lavoro-energia cinetica'
+    en: 'Mistakes to avoid: Work of a force and the work–kinetic energy theorem'
+  back:
+    it: >-
+      - Applicare ΔK = W della sola forza che interessa dimenticando le altre: il teorema riguarda il lavoro
+      TOTALE.
+
+      - Dire che una forza 'grande' fa sempre lavoro: se è perpendicolare allo spostamento il lavoro è nullo.
+
+      - Trattare il lavoro come una quantità che dipende solo da posizione iniziale e finale: in generale
+      dipende dal cammino (salvo forze conservative).
+
+      - Dimenticare che il lavoro è uno scalare con segno, non un vettore.
+    en: >-
+      - Applying ΔK = W of only the force of interest and forgetting the others: the theorem is about the
+      TOTAL work.
+
+      - Saying that a 'large' force always does work: if it is perpendicular to the displacement the work is
+      zero.
+
+      - Treating work as a quantity that depends only on the initial and final positions: in general it
+      depends on the path (except for conservative forces).
+
+      - Forgetting that work is a signed scalar, not a vector.

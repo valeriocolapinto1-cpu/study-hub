@@ -1,0 +1,170 @@
+---
+course: fisica-1
+topic: teorema-di-koenig
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/teorema-di-koenig/idea">
+
+König separa il moto 'del sistema come un tutto' dal moto 'interno'. È la ragione per cui possiamo dire che la Terra ha un momento angolare orbitale attorno al Sole più uno di spin attorno al proprio asse, o che l'energia di una palla che rotola è traslazione più rotazione: la matematica garantisce che i due contributi si sommano semplicemente, senza termini incrociati.
+
+</div>
+
+<p class="muted" data-note-id="teoria/teorema-di-koenig/prerequisiti"><strong>Prima di questo argomento:</strong> <a href="../centro-di-massa/">Centro di massa e prima equazione cardinale</a> · <a href="../momenti-di-inerzia/">Momenti di inerzia e teorema di Huygens-Steiner</a></p>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/teorema-di-koenig/definizioni">
+
+## Definizioni
+
+I teoremi di König scompongono momento angolare ed energia cinetica di un sistema nella somma di un termine 'del centro di massa' (come se tutta la massa fosse concentrata nel CM) e un termine 'relativo al centro di massa' (moto interno visto dal sistema del CM): $\vec{L} = \vec{r}_{cm}\times M\vec{v}_{cm} + \vec{L}'$ e $K = \frac{1}{2}Mv_{cm}^2 + K'$. Il sistema del CM è il riferimento con origine nel CM e assi paralleli a quelli inerziali.
+
+</div>
+
+<div data-note-id="teoria/teorema-di-koenig/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Scomposizione delle coordinate rispetto al CM</summary>
+
+$$
+\vec{r}_i = \vec{r}_{cm} + \vec{r}_i{'}, \qquad \vec{v}_i = \vec{v}_{cm} + \vec{v}_i{'}
+$$
+
+Le grandezze primate sono misurate nel sistema del centro di massa. Proprietà chiave: $\sum_i m_i\vec{r}_i{'} = \vec{0}$ e derivando $\sum_i m_i\vec{v}_i{'} = \vec{0}$.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · König per il momento angolare: sviluppo</summary>
+
+$$
+\vec{L} = \sum_i (\vec{r}_{cm} + \vec{r}_i{'})\times m_i(\vec{v}_{cm} + \vec{v}_i{'})
+$$
+
+Quattro termini: due 'diagonali' e due misti.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · I termini misti si annullano</summary>
+
+$$
+\vec{r}_{cm}\times\Big(\sum_i m_i\vec{v}_i{'}\Big) = \vec{0}, \qquad \Big(\sum_i m_i\vec{r}_i{'}\Big)\times\vec{v}_{cm} = \vec{0}
+$$
+
+Entrambe le somme sono nulle per definizione di centro di massa.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Primo teorema di König</summary>
+
+$$
+\vec{L} = \vec{r}_{cm}\times M\vec{v}_{cm} + \sum_i \vec{r}_i{'}\times m_i\vec{v}_i{'} = \vec{L}_{cm} + \vec{L}'
+$$
+
+Momento angolare 'orbitale' del CM + momento angolare 'di spin' attorno al CM. L' è intrinseco: non dipende dal polo.
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · König per l'energia cinetica: sviluppo</summary>
+
+$$
+K = \sum_i \frac{1}{2}m_i(\vec{v}_{cm} + \vec{v}_i{'})\cdot(\vec{v}_{cm} + \vec{v}_i{'}) = \frac{1}{2}Mv_{cm}^2 + \vec{v}_{cm}\cdot\sum_i m_i\vec{v}_i{'} + \sum_i\frac{1}{2}m_iv_i'^2
+$$
+
+Anche qui il termine misto contiene Σmᵢv'ᵢ = 0.
+
+</details>
+
+<details id="passo-6">
+<summary>Passo 6 · Secondo teorema di König</summary>
+
+$$
+K = \frac{1}{2}Mv_{cm}^2 + K'
+$$
+
+Energia di traslazione del CM + energia del moto attorno al CM. Per un corpo rigido K' = ½I_cm ω²: da qui K = ½Mv_cm² + ½I_cm ω² per il rotolamento.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/teorema-di-koenig/ipotesi">
+
+## Ipotesi di validità
+
+Sistema di riferimento del CM in pura traslazione (assi paralleli a quelli inerziali, anche se il CM accelera); masse costanti. Nessuna ipotesi di rigidità per i teoremi generali.
+
+</div>
+
+<div data-note-id="teoria/teorema-di-koenig/casi-limite">
+
+## Casi limite
+
+Corpo che solo trasla: K' = 0, K = ½Mv_cm². Corpo che ruota attorno al CM fermo: K = ½I_cmω². Sistema di due corpi: K' = ½μv_rel² con μ massa ridotta — la scomposizione usata negli urti.
+
+</div>
+
+<div data-note-id="teoria/teorema-di-koenig/formule">
+
+## Formule chiave
+
+<Formula id="teorema-di-koenig-f1" />
+
+<Formula id="teorema-di-koenig-f2" />
+
+<Formula id="teorema-di-koenig-f3" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/teorema-di-koenig/esempio">
+
+Una ruota di bicicletta (massa 1,5 kg concentrata praticamente sul cerchione di raggio 0,35 m) rotola senza strisciare a 18 km/h. Calcolare: (a) l'energia cinetica di traslazione; (b) quella di rotazione attorno al CM; (c) la frazione rotazionale dell'energia totale.
+
+1. **Traslazione.** 18 km/h = 5,0 m/s: $K_{cm} = \tfrac12 Mv^2 = 18{,}75\ \text{J}$.
+2. **Rotazione.** Anello: $I_{cm} = MR^2$, rotolamento $\omega = v/R$: $K' = \tfrac12 MR^2 (v/R)^2 = 18{,}75\ \text{J}$.
+3. **Frazione.** Per un anello la ripartizione è esattamente a metà: frazione rotazionale 0,50, indipendente da v e R.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/teorema-di-koenig/errori">
+
+- Dimenticare uno dei due termini (tipico: contare solo la traslazione nel rotolamento).
+- Contare due volte l'energia di rotazione usando I rispetto al punto di contatto E aggiungendo la traslazione.
+- Credere che L' dipenda dal polo: è intrinseco al sistema.
+- Applicare König con un riferimento relativo che ruota: deve solo traslare col CM.
+
+</div>
+
+<div data-note-id="teoria/teorema-di-koenig/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Perché nel sistema del CM la quantità di moto totale è nulla e perché è il riferimento ideale per gli urti?
+- Come si scrive K' per due punti materiali in termini di massa ridotta?
+- L'energia cinetica dipende dal sistema di riferimento: quale parte di K è invariante?
+
+</div>
+
+</Layer>

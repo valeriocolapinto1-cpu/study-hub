@@ -1,0 +1,231 @@
+- id: teorema-di-koenig-esposizione
+  topic: teorema-di-koenig
+  objectives:
+    - teorema-di-koenig.1
+    - teorema-di-koenig.2
+    - teorema-di-koenig.3
+    - teorema-di-koenig.4
+    - teorema-di-koenig.5
+    - teorema-di-koenig.6
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Teorema di König (momento angolare ed energia cinetica)».'
+    en: 'Present at the oral exam: “König''s theorem (angular momentum and kinetic energy)”.'
+  back:
+    it: >-
+      König separa il moto 'del sistema come un tutto' dal moto 'interno'. È la ragione per cui possiamo dire
+      che la Terra ha un momento angolare orbitale attorno al Sole più uno di spin attorno al proprio asse, o
+      che l'energia di una palla che rotola è traslazione più rotazione: la matematica garantisce che i due
+      contributi si sommano semplicemente, senza termini incrociati.
+
+
+      **Scaletta:**
+
+
+      - Definire il sistema di riferimento del centro di massa
+
+      - Dimostrare le proprietà Σmᵢr'ᵢ = 0 e Σmᵢv'ᵢ = 0
+
+      - Dimostrare il primo teorema (L) mostrando l'annullarsi dei termini misti
+
+      - Dimostrare il secondo teorema (K)
+
+      - Specializzare al corpo rigido: K = ½Mv_cm² + ½I_cmω²
+
+      - Applicare al rotolamento o a un urto
+    en: >-
+      König separates the motion 'of the system as a whole' from the 'internal' motion. It is why we can say
+      that the Earth has an orbital angular momentum around the Sun plus a spin angular momentum about its own
+      axis, or that the energy of a rolling ball is translation plus rotation: the mathematics guarantees that
+      the two contributions simply add up, with no cross terms.
+
+
+      **Outline:**
+
+
+      - Define the centre-of-mass reference frame
+
+      - Prove the properties Σmᵢr'ᵢ = 0 and Σmᵢv'ᵢ = 0
+
+      - Prove the first theorem (L) showing that the mixed terms vanish
+
+      - Prove the second theorem (K)
+
+      - Specialise to the rigid body: K = ½Mv_cm² + ½I_cmω²
+
+      - Apply it to rolling or to a collision
+- id: teorema-di-koenig-orale-1
+  topic: teorema-di-koenig
+  objectives:
+    - teorema-di-koenig.5
+    - teorema-di-koenig.6
+  kind: orale
+  front:
+    it: >-
+      Perché nel sistema del CM la quantità di moto totale è nulla e perché è il riferimento ideale per gli
+      urti?
+    en: Why is the total momentum zero in the CM frame, and why is it the ideal frame for collisions?
+  back:
+    it: >-
+      Nel riferimento del CM \(\vec P' = \sum m_i\vec v_i' = M\vec v_{cm}' = 0\) perché il CM vi è fermo per
+      costruzione. In un urto (sistema isolato) P si conserva, quindi resta nulla anche dopo: le velocità
+      finali sono vincolate in modo semplice (per due corpi, opposte e in rapporto inverso alle masse).
+      Inoltre tutta l'energia "disponibile" per deformazioni è K', mentre il termine \(\tfrac12 Mv_{cm}^2\)
+      non può cambiare.
+    en: >-
+      In the CM frame \(\vec P' = \sum m_i\vec v_i' = M\vec v_{cm}' = 0\) because the CM is at rest there by
+      construction. In a collision (isolated system) P is conserved, so it stays zero afterwards too: the
+      final velocities are constrained in a simple way (for two bodies, opposite and inversely proportional to
+      the masses). Moreover, all the energy "available" for deformations is K', while the term \(\tfrac12
+      Mv_{cm}^2\) cannot change.
+- id: teorema-di-koenig-orale-2
+  topic: teorema-di-koenig
+  objectives:
+    - teorema-di-koenig.5
+    - teorema-di-koenig.6
+  kind: orale
+  front:
+    it: Come si scrive K' per due punti materiali in termini di massa ridotta?
+    en: How do you write K' for two point particles in terms of the reduced mass?
+  back:
+    it: >-
+      Con \(\vec v_1' = \tfrac{m_2}{m_1+m_2}\vec v_{rel}\) e \(\vec v_2' = -\tfrac{m_1}{m_1+m_2}\vec
+      v_{rel}\), dove \(\vec v_{rel} = \vec v_1 - \vec v_2\), si ottiene \(K' = \tfrac12 m_1 v_1'^2 + \tfrac12
+      m_2 v_2'^2 = \tfrac12\mu v_{rel}^2\), con massa ridotta \(\mu = m_1m_2/(m_1+m_2)\). In un urto
+      perfettamente anelastico si perde esattamente K'.
+    en: >-
+      With \(\vec v_1' = \tfrac{m_2}{m_1+m_2}\vec v_{rel}\) and \(\vec v_2' = -\tfrac{m_1}{m_1+m_2}\vec
+      v_{rel}\), where \(\vec v_{rel} = \vec v_1 - \vec v_2\), one gets \(K' = \tfrac12 m_1 v_1'^2 + \tfrac12
+      m_2 v_2'^2 = \tfrac12\mu v_{rel}^2\), with reduced mass \(\mu = m_1m_2/(m_1+m_2)\). In a perfectly
+      inelastic collision exactly K' is lost.
+- id: teorema-di-koenig-orale-3
+  topic: teorema-di-koenig
+  objectives:
+    - teorema-di-koenig.5
+    - teorema-di-koenig.6
+  kind: orale
+  front:
+    it: 'L''energia cinetica dipende dal sistema di riferimento: quale parte di K è invariante?'
+    en: 'Kinetic energy depends on the reference frame: which part of K is invariant?'
+  back:
+    it: >-
+      Cambiando riferimento inerziale cambia \(\vec v_{cm}\), quindi cambia il termine \(\tfrac12 Mv_{cm}^2\);
+      le velocità relative al CM invece sono le stesse in tutti i riferimenti inerziali (una traslazione
+      uniforme le lascia invariate), quindi K' è invariante. Per questo l'energia "interna" utilizzabile in un
+      urto o in una reazione è K', non K.
+    en: >-
+      Changing inertial frame changes \(\vec v_{cm}\), hence the term \(\tfrac12 Mv_{cm}^2\); velocities
+      relative to the CM, instead, are the same in all inertial frames (a uniform translation leaves them
+      unchanged), so K' is invariant. That is why the "internal" energy available in a collision or reaction
+      is K', not K.
+- id: teorema-di-koenig-definizione
+  topic: teorema-di-koenig
+  objectives:
+    - teorema-di-koenig.1
+  kind: definizione
+  front:
+    it: 'Definizione: Teorema di König (momento angolare ed energia cinetica)'
+    en: 'Definition: König''s theorem (angular momentum and kinetic energy)'
+  back:
+    it: >-
+      I teoremi di König scompongono momento angolare ed energia cinetica di un sistema nella somma di un
+      termine 'del centro di massa' (come se tutta la massa fosse concentrata nel CM) e un termine 'relativo
+      al centro di massa' (moto interno visto dal sistema del CM): \(\vec{L} = \vec{r}_{cm}\times
+      M\vec{v}_{cm} + \vec{L}'\) e \(K = \frac{1}{2}Mv_{cm}^2 + K'\). Il sistema del CM è il riferimento con
+      origine nel CM e assi paralleli a quelli inerziali.
+    en: >-
+      König's theorems split the angular momentum and kinetic energy of a system into the sum of a
+      'centre-of-mass' term (as if all the mass were concentrated at the CM) and a term 'relative to the
+      centre of mass' (internal motion seen from the CM frame): \(\vec{L} = \vec{r}_{cm}\times M\vec{v}_{cm} +
+      \vec{L}'\) and \(K = \frac{1}{2}Mv_{cm}^2 + K'\). The CM frame is the frame with origin at the CM and
+      axes parallel to the inertial ones.
+- id: teorema-di-koenig-formule
+  topic: teorema-di-koenig
+  objectives:
+    - teorema-di-koenig.1
+    - teorema-di-koenig.2
+    - teorema-di-koenig.3
+    - teorema-di-koenig.4
+    - teorema-di-koenig.5
+    - teorema-di-koenig.6
+  kind: formula
+  front:
+    it: Le formule chiave di «Teorema di König (momento angolare ed energia cinetica)»
+    en: The key formulas of “König's theorem (angular momentum and kinetic energy)”
+  back:
+    it: |-
+      - \(\vec{L} = \vec{r}_{cm}\times M\vec{v}_{cm} + \vec{L}'\)
+      - \(K = \frac{1}{2}Mv_{cm}^2 + K'\)
+      - \(K_{rigido} = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2\)
+    en: |-
+      - \(\vec{L} = \vec{r}_{cm}\times M\vec{v}_{cm} + \vec{L}'\)
+      - \(K = \frac{1}{2}Mv_{cm}^2 + K'\)
+      - \(K_{rigido} = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2\)
+- id: teorema-di-koenig-ipotesi
+  topic: teorema-di-koenig
+  objectives:
+    - teorema-di-koenig.1
+    - teorema-di-koenig.2
+    - teorema-di-koenig.3
+    - teorema-di-koenig.4
+    - teorema-di-koenig.5
+    - teorema-di-koenig.6
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Teorema di König (momento angolare ed energia cinetica)'
+    en: 'Validity assumptions: König''s theorem (angular momentum and kinetic energy)'
+  back:
+    it: >-
+      Sistema di riferimento del CM in pura traslazione (assi paralleli a quelli inerziali, anche se il CM
+      accelera); masse costanti. Nessuna ipotesi di rigidità per i teoremi generali.
+    en: >-
+      CM reference frame in pure translation (axes parallel to the inertial ones, even if the CM accelerates);
+      constant masses. No rigidity assumption for the general theorems.
+- id: teorema-di-koenig-casi-limite
+  topic: teorema-di-koenig
+  objectives:
+    - teorema-di-koenig.1
+    - teorema-di-koenig.2
+    - teorema-di-koenig.3
+    - teorema-di-koenig.4
+    - teorema-di-koenig.5
+    - teorema-di-koenig.6
+  kind: concetto
+  front:
+    it: 'Casi limite: Teorema di König (momento angolare ed energia cinetica)'
+    en: 'Limiting cases: König''s theorem (angular momentum and kinetic energy)'
+  back:
+    it: >-
+      Corpo che solo trasla: K' = 0, K = ½Mv_cm². Corpo che ruota attorno al CM fermo: K = ½I_cmω². Sistema di
+      due corpi: K' = ½μv_rel² con μ massa ridotta — la scomposizione usata negli urti.
+    en: >-
+      A body that only translates: K' = 0, K = ½Mv_cm². A body rotating about a CM at rest: K = ½I_cmω².
+      Two-body system: K' = ½μv_rel² with μ the reduced mass — the decomposition used in collisions.
+- id: teorema-di-koenig-errori
+  topic: teorema-di-koenig
+  objectives:
+    - teorema-di-koenig.1
+    - teorema-di-koenig.2
+    - teorema-di-koenig.3
+    - teorema-di-koenig.4
+    - teorema-di-koenig.5
+    - teorema-di-koenig.6
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Teorema di König (momento angolare ed energia cinetica)'
+    en: 'Mistakes to avoid: König''s theorem (angular momentum and kinetic energy)'
+  back:
+    it: >-
+      - Dimenticare uno dei due termini (tipico: contare solo la traslazione nel rotolamento).
+
+      - Contare due volte l'energia di rotazione usando I rispetto al punto di contatto E aggiungendo la
+      traslazione.
+
+      - Credere che L' dipenda dal polo: è intrinseco al sistema.
+
+      - Applicare König con un riferimento relativo che ruota: deve solo traslare col CM.
+    en: |-
+      - Forgetting one of the two terms (typically: counting only translation in rolling).
+      - Counting the rotational energy twice by using I about the contact point AND adding translation.
+      - Believing that L' depends on the pole: it is intrinsic to the system.
+      - Applying König with a relative frame that rotates: it must only translate with the CM.

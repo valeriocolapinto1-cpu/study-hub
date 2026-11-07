@@ -1,0 +1,181 @@
+---
+course: fisica-1
+topic: oscillatore-smorzato
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/oscillatore-smorzato/idea">
+
+Viscous friction removes energy at every oscillation, so the amplitude dies out exponentially; if damping is strong, the energy is drained before the system can even complete an oscillation. Critical damping is the perfect balance between 'returning quickly' and 'not overshooting equilibrium'.
+
+</div>
+
+<p class="muted" data-note-id="teoria/oscillatore-smorzato/prerequisiti"><strong>Before this topic:</strong> <a href="../oscillatore-massa-molla/">Mass–spring harmonic oscillator</a></p>
+
+<Callout tone="nota" title="See it in action">
+
+[Open the interactive simulation](../../extra/simulazioni/#sim-oscillatore-smorzato)
+
+</Callout>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/oscillatore-smorzato/definizioni">
+
+## Definitions
+
+A damped oscillator is a harmonic oscillator also subject to a viscous friction force proportional to the velocity, $F_v = -b\dot{x}$. We define the damping coefficient $\gamma = b/2m$ and the natural angular frequency $\omega_0 = \sqrt{k/m}$. Depending on the ratio between γ and ω₀ the motion is underdamped (oscillations with exponentially decaying amplitude), critically damped or overdamped (return to equilibrium without oscillating).
+
+</div>
+
+<div data-note-id="teoria/oscillatore-smorzato/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Equation of motion with viscous friction</summary>
+
+$$
+m\ddot{x} = -kx - b\dot{x} \;\Rightarrow\; \ddot{x} + 2\gamma\dot{x} + \omega_0^2 x = 0, \quad \gamma = \frac{b}{2m},\; \omega_0^2 = \frac{k}{m}
+$$
+
+Linear homogeneous differential equation with constant coefficients: we look for an exponential solution.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Exponential ansatz and characteristic equation</summary>
+
+$$
+x = e^{\lambda t} \;\Rightarrow\; \lambda^2 + 2\gamma\lambda + \omega_0^2 = 0 \;\Rightarrow\; \lambda_{1,2} = -\gamma \pm \sqrt{\gamma^2 - \omega_0^2}
+$$
+
+The sign of the discriminant γ² − ω₀² separates the three regimes.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Underdamped case (γ &lt; ω₀)</summary>
+
+$$
+x(t) = A\,e^{-\gamma t}\cos(\omega_s t + \varphi), \qquad \omega_s = \sqrt{\omega_0^2 - \gamma^2}
+$$
+
+The roots are complex conjugates: oscillation at angular frequency ω_s &lt; ω₀ inside an exponential envelope Ae^\{−γt\}. The characteristic decay time of the amplitude is τ = 1/γ.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Critical (γ = ω₀) and overdamped (γ &gt; ω₀) cases</summary>
+
+$$
+x = (C_1 + C_2 t)e^{-\gamma t} \quad\text{or}\quad x = C_1 e^{\lambda_1 t} + C_2 e^{\lambda_2 t},\; \lambda_{1,2}<0
+$$
+
+No oscillation. Critical damping is the fastest possible return to equilibrium: this is why it is used in shock absorbers and measuring instruments.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Energy balance</summary>
+
+$$
+\frac{dE}{dt} = \frac{d}{dt}\Big(\frac{1}{2}m\dot{x}^2 + \frac{1}{2}kx^2\Big) = \dot{x}(m\ddot{x} + kx) = -b\dot{x}^2 \le 0
+$$
+
+Mechanical energy always decreases: the power dissipated by viscous friction is bv². In the underdamped regime E(t) ≈ E₀e^\{−2γt\} (it decays as the square of the amplitude).
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Quality factor</summary>
+
+$$
+Q = \frac{\omega_0}{2\gamma}
+$$
+
+Q counts (up to 2π) how many oscillations the system performs before dissipating most of its energy: high Q = weak damping.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/oscillatore-smorzato/ipotesi">
+
+## Validity assumptions
+
+Purely viscous friction, linear in the velocity (valid for slow motion in fluids, Stokes regime); ideal linear spring; constant parameters m, b, k.
+
+</div>
+
+<div data-note-id="teoria/oscillatore-smorzato/casi-limite">
+
+## Limiting cases
+
+b → 0: the ideal harmonic oscillator is recovered (γ = 0, ω_s = ω₀). γ ≪ ω₀: many almost harmonic oscillations with slowly decreasing amplitude. γ ≫ ω₀: 'creeping' motion, very slow return dominated by the small root.
+
+</div>
+
+<div data-note-id="teoria/oscillatore-smorzato/formule">
+
+## Key formulas
+
+<Formula id="oscillatore-smorzato-f1" />
+
+<Formula id="oscillatore-smorzato-f2" />
+
+<Formula id="oscillatore-smorzato-f3" />
+
+<Formula id="oscillatore-smorzato-f4" />
+
+<Formula id="oscillatore-smorzato-f5" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/oscillatore-smorzato/esempio">
+
+A body of mass m = 0.50 kg, attached to a spring of constant k = 50 N/m, is immersed in a viscous fluid with b = 0.40 kg/s. Find: (a) ω₀ and γ, and state the regime; (b) the angular frequency of the damped oscillations; (c) the ratio of two successive displacement maxima; (d) the quality factor.
+
+1. **Parameters.** $\omega_0 = \sqrt{k/m} = 10\ \text{rad/s}$, $\gamma = b/2m = 0.40\ \text{s}^{-1}$: $\gamma \ll \omega_0$, underdamped regime.
+2. **Damped angular frequency.** $\omega_s = \sqrt{\omega_0^2 - \gamma^2} = \sqrt{100 - 0.16} \approx 9.992\ \text{rad/s}$: practically ω₀.
+3. **Successive maxima.** They are $T_s = 2\pi/\omega_s \approx 0.629\ \text{s}$ apart, so $x_n/x_{n+1} = e^{\gamma T_s} \approx e^{0.2515} \approx 1.286$.
+4. **Quality factor.** $Q = \omega_0/(2\gamma) = 12.5$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/oscillatore-smorzato/errori">
+
+- Writing that the oscillation angular frequency stays ω₀: it is ω_s = √(ω₀² − γ²) &lt; ω₀.
+- Confusing the decay of the amplitude (e^\{−γt\}) with that of the energy (e^\{−2γt\}).
+- Believing that the overdamped oscillator returns to equilibrium faster than the critical one: it is the opposite.
+- Forgetting the factor 2 in the definition γ = b/2m.
+
+</div>
+
+<div data-note-id="teoria/oscillatore-smorzato/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- How would you measure γ experimentally from a graph x(t)?
+- What does the trajectory in phase space look like in the three regimes?
+- Why, for constant sliding friction (not viscous), is the decay of the amplitude linear and not exponential?
+
+</div>
+
+</Layer>

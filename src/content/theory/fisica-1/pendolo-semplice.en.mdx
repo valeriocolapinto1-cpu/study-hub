@@ -1,0 +1,189 @@
+---
+course: fisica-1
+topic: pendolo-semplice
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/pendolo-semplice/idea">
+
+The pendulum oscillates because gravity 'pushes' the point towards the bottom of the arc, but inertia makes it overshoot. The mass disappears from the period for the same reason all bodies fall with the same acceleration: doubling m doubles both the force and the inertia. L acts as the 'lever arm' of the restoring action: long pendulum, weak angular restoring, slow oscillation.
+
+</div>
+
+<p class="muted" data-note-id="teoria/pendolo-semplice/prerequisiti"><strong>Before this topic:</strong> <a href="../moto-armonico/">Simple harmonic motion: amplitude, angular frequency, period, initial phase</a></p>
+
+<Callout tone="nota" title="See it in action">
+
+[Open the interactive simulation](../../extra/simulazioni/#sim-pendolo)
+
+</Callout>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/pendolo-semplice/definizioni">
+
+## Definitions
+
+The simple pendulum is a point mass m hanging from an inextensible, massless string of length L, free to swing in a vertical plane under gravity. The position is given by the angle θ from the vertical. For small oscillations the motion is harmonic with period $T = 2\pi\sqrt{L/g}$, independent of mass and amplitude.
+
+</div>
+
+<div data-note-id="teoria/pendolo-semplice/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Forces on the point mass</summary>
+
+$$
+\vec{F} = m\vec{g} + \vec{T}_{string}
+$$
+
+The tension is directed along the string (centripetal component); the weight has a component along the string and one tangent to the arc.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Projection on the tangent direction</summary>
+
+$$
+m a_t = -mg\sin\theta
+$$
+
+The tension has no tangential component. The minus sign: the tangential component of the weight always pulls back towards θ = 0.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Tangential acceleration in terms of θ</summary>
+
+$$
+s = L\theta \;\Rightarrow\; a_t = \ddot{s} = L\ddot{\theta} \;\Rightarrow\; mL\ddot{\theta} = -mg\sin\theta
+$$
+
+The arc-length coordinate is s = Lθ; the mass cancels out.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Exact pendulum equation</summary>
+
+$$
+\ddot{\theta} + \frac{g}{L}\sin\theta = 0
+$$
+
+Non-linear equation: in general it has no elementary solution and the period depends on the amplitude.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Small-oscillation approximation</summary>
+
+$$
+\sin\theta \approx \theta \;(\theta \ll 1\text{ rad}) \;\Rightarrow\; \ddot{\theta} + \frac{g}{L}\theta = 0
+$$
+
+First-order Taylor expansion: the relative error is ~θ²/6 (less than 1% up to about 14°).
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Identification with harmonic motion</summary>
+
+$$
+\omega = \sqrt{\frac{g}{L}}, \qquad T = 2\pi\sqrt{\frac{L}{g}}, \qquad \theta(t) = \theta_0\cos(\omega t + \varphi)
+$$
+
+The period depends only on L and g: not on the mass (because gravity accelerates all masses equally) nor on the amplitude (Galileo's isochronism, valid only for small angles).
+
+</details>
+
+<details id="passo-7">
+<summary>Step 7 · String tension (radial direction)</summary>
+
+$$
+T_{string} - mg\cos\theta = m\frac{v^2}{L} \;\Rightarrow\; T_{string} = mg\cos\theta + \frac{mv^2}{L}
+$$
+
+Along the radial direction the acceleration is centripetal: the tension is maximum at the lowest point, where v is maximum and cos θ = 1.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/pendolo-semplice/ipotesi">
+
+## Validity assumptions
+
+Inextensible string of negligible mass; point mass; no friction or air drag; uniform gravitational field; for isochronism, small oscillations (sin θ ≈ θ).
+
+</div>
+
+<div data-note-id="teoria/pendolo-semplice/casi-limite">
+
+## Limiting cases
+
+Large amplitudes: the period grows with θ₀, $T \approx T_0(1 + \theta_0^2/16)$. L → 0: T → 0. g → 0 (free fall, orbit): the pendulum does not oscillate at all. θ₀ = π: unstable equilibrium at the top.
+
+</div>
+
+<div data-note-id="teoria/pendolo-semplice/formule">
+
+## Key formulas
+
+<Formula id="pendolo-semplice-f1" />
+
+<Formula id="pendolo-semplice-f2" />
+
+<Formula id="pendolo-semplice-f3" />
+
+<Formula id="pendolo-semplice-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example: Tension at the lowest point">
+
+<div data-note-id="teoria/pendolo-semplice/esempio">
+
+A pendulum of length L = 1.2 m and mass m = 0.30 kg is released from rest at θ₀ = 40°. Find the speed and the string tension when it passes through the vertical.
+
+1. θ₀ = 40° is not small, but energy conservation always holds: the bob drops by $h = L(1-\cos\theta_0) \approx 0.281\ \text{m}$, so $v = \sqrt{2gh} \approx 2.35\ \text{m/s}$.
+2. Radial equation at θ = 0: $T_{string} = mg + mv^2/L = mg(3 - 2\cos\theta_0) \approx 0.30 \cdot 9.81 \cdot 1.468 \approx 4.32\ \text{N}$.
+3. The tension exceeds the weight (2.94 N) by about 47%: it is the centripetal force required by the curved path.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/pendolo-semplice/errori">
+
+- Saying that the period never depends on the amplitude: this holds only for small oscillations.
+- Including the mass in the period: it cancels because inertial and gravitational mass coincide.
+- Projecting the weight wrongly: the restoring component is mg sin θ, the one along the string mg cos θ.
+- Forgetting that the tension must also provide the centripetal force: T ≠ mg cos θ during the motion.
+
+</div>
+
+<div data-note-id="teoria/pendolo-semplice/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- How would you measure g with a pendulum, and what are the main sources of error?
+- What changes if the pendulum is inside a lift accelerating upwards with acceleration a?
+- How is the simple pendulum related to the physical pendulum?
+
+</div>
+
+</Layer>

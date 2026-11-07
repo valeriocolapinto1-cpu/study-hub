@@ -1,0 +1,138 @@
+- id: teorema-di-carnot-esposizione
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.1
+    - teorema-di-carnot.2
+    - teorema-di-carnot.3
+    - teorema-di-carnot.4
+    - teorema-di-carnot.5
+    - teorema-di-carnot.6
+    - teorema-di-carnot.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Teorema di Carnot».'
+  back:
+    it: >-
+      Il teorema mette un tetto universale all'efficienza: non importa quanto ingegnoso sia il progetto, il
+      rendimento è limitato dal solo dislivello di temperatura. Il trucco della dimostrazione è elegante: se
+      qualcuno costruisse una macchina migliore di Carnot, accoppiandola a una Carnot rovesciata otterremmo
+      una pompa di calore gratuita — e la natura, per il secondo principio, non concede pasti gratis.
+
+
+      **Scaletta:**
+
+
+      - Enunciare le due parti del teorema
+
+      - Impostare la dimostrazione per assurdo con la macchina composta
+
+      - Spiegare il ruolo essenziale della reversibilità di R
+
+      - Mostrare la violazione di Clausius nel bilancio
+
+      - Dimostrare l'uguaglianza dei rendimenti reversibili nei due versi
+
+      - Dedurre |Q_F|/Q_C = T_F/T_C e la scala assoluta
+
+      - Distinguere il caso irreversibile (disuguaglianza stretta)
+- id: teorema-di-carnot-orale-3
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.6
+    - teorema-di-carnot.7
+  kind: orale
+  front:
+    it: Il teorema vale anche per macchine che scambiano calore con più di due sorgenti?
+  back:
+    it: 'Serve la generalizzazione: disuguaglianza di Clausius.'
+- id: teorema-di-carnot-definizione
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.1
+  kind: definizione
+  front:
+    it: 'Definizione: Teorema di Carnot'
+  back:
+    it: >-
+      Il teorema di Carnot afferma: (1) nessuna macchina termica operante tra due sorgenti può avere
+      rendimento maggiore della macchina reversibile di Carnot operante tra le stesse sorgenti; (2) tutte le
+      macchine reversibili tra le stesse due sorgenti hanno lo stesso rendimento, \(\eta_{rev} = 1 -
+      T_F/T_C\), indipendente dal fluido e dal meccanismo. Il teorema fonda la scala termodinamica assoluta di
+      temperatura.
+- id: teorema-di-carnot-formule
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.1
+    - teorema-di-carnot.2
+    - teorema-di-carnot.3
+    - teorema-di-carnot.4
+    - teorema-di-carnot.5
+    - teorema-di-carnot.6
+    - teorema-di-carnot.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Teorema di Carnot»
+  back:
+    it: |-
+      - \(\eta_{qualsiasi} \le \eta_{rev} = 1 - \frac{T_F}{T_C}\)
+      - \(\frac{|Q_F|}{Q_C} = \frac{T_F}{T_C}\;(\text{rev})\)
+- id: teorema-di-carnot-ipotesi
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.1
+    - teorema-di-carnot.2
+    - teorema-di-carnot.3
+    - teorema-di-carnot.4
+    - teorema-di-carnot.5
+    - teorema-di-carnot.6
+    - teorema-di-carnot.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Teorema di Carnot'
+  back:
+    it: >-
+      Validità del secondo principio (enunciato di Clausius o Kelvin-Planck); due sorgenti termiche ideali a
+      temperature fisse; macchine cicliche. La macchina X è del tutto arbitraria (reale, irreversibile,
+      qualunque fluido).
+- id: teorema-di-carnot-casi-limite
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.1
+    - teorema-di-carnot.2
+    - teorema-di-carnot.3
+    - teorema-di-carnot.4
+    - teorema-di-carnot.5
+    - teorema-di-carnot.6
+    - teorema-di-carnot.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Teorema di Carnot'
+  back:
+    it: >-
+      Macchina irreversibile: η < η_rev strettamente (attriti, salti termici finiti). Macchina reversibile: η
+      = 1 − T_F/T_C esattamente. Il teorema non dice nulla sulla potenza: la macchina di Carnot ideale è
+      infinitamente lenta.
+- id: teorema-di-carnot-errori
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.1
+    - teorema-di-carnot.2
+    - teorema-di-carnot.3
+    - teorema-di-carnot.4
+    - teorema-di-carnot.5
+    - teorema-di-carnot.6
+    - teorema-di-carnot.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Teorema di Carnot'
+  back:
+    it: >-
+      - Dimostrare il teorema usando solo il ciclo di Carnot a gas perfetto: la forza del teorema è
+      l'universalità, che richiede l'argomento per assurdo.
+
+      - Dimenticare che l'inversione richiede la reversibilità di R: una macchina reale non si può 'far girare
+      al contrario' con gli stessi scambi.
+
+      - Concludere che tutte le macchine hanno η = 1 − T_F/T_C: solo le reversibili; le altre stanno sotto.
+
+      - Trascurare la clausola 'stesse due sorgenti'.

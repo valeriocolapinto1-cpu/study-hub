@@ -1,0 +1,34 @@
+id: moto-corpo-rigido
+course: fisica-1
+order: 16
+title:
+  it: Moto di un corpo rigido
+summary:
+  it: >-
+    Il vincolo di rigidità riduce un numero enorme di gradi di libertà a soli 6: dire dove sta il CM e come il
+    corpo è orientato basta a conoscere la posizione di ogni suo punto.
+group:
+  it: Sistemi di punti e corpo rigido
+  en: Systems of particles and rigid bodies
+objectives:
+  - id: moto-corpo-rigido.1
+    text:
+      it: Definire il corpo rigido e contarne i gradi di libertà
+  - id: moto-corpo-rigido.2
+    text:
+      it: Scrivere la formula fondamentale v_P = v_Q + ω×(r_P−r_Q)
+  - id: moto-corpo-rigido.3
+    text:
+      it: Impostare le due equazioni cardinali per il moto rototraslatorio
+  - id: moto-corpo-rigido.4
+    text:
+      it: Ricavare Iα = τ per l'asse fisso e l'analogia con F = ma
+  - id: moto-corpo-rigido.5
+    text:
+      it: Scrivere le leggi orarie rotazionali per α costante
+  - id: moto-corpo-rigido.6
+    text:
+      it: Spiegare il centro di istantanea rotazione
+  - id: moto-corpo-rigido.7
+    text:
+      it: Scrivere lavoro e potenza rotazionali

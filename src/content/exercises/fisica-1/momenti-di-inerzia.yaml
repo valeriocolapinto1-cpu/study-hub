@@ -1,0 +1,119 @@
+- id: asta-con-masse
+  topic: momenti-di-inerzia
+  objectives:
+    - momenti-di-inerzia.1
+    - momenti-di-inerzia.2
+    - momenti-di-inerzia.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un'asta omogenea di massa M = 1,2 kg e lunghezza L = 0,80 m porta due masse puntiformi m = 0,30 kg alle
+      estremità. Calcolare il momento d'inerzia del sistema: (a) rispetto all'asse perpendicolare per il
+      centro; (b) rispetto all'asse parallelo per un'estremità; (c) verificare (b) con Huygens-Steiner.
+    en: >-
+      A uniform rod of mass M = 1.2 kg and length L = 0.80 m carries two point masses m = 0.30 kg at its ends.
+      Find the moment of inertia of the system: (a) about the perpendicular axis through the centre; (b) about
+      the parallel axis through one end; (c) check (b) with Huygens–Steiner.
+  steps:
+    - title:
+        it: Asse centrale
+        en: Central axis
+      body:
+        it: \(I_{cm} = \tfrac{1}{12}ML^2 + 2m(L/2)^2 = 0{,}064 + 0{,}096 = 0{,}160\ \text{kg·m}^2\).
+        en: \(I_{cm} = \tfrac{1}{12}ML^2 + 2m(L/2)^2 = 0.064 + 0.096 = 0.160\ \text{kg·m}^2\).
+    - title:
+        it: Asse per un estremo
+        en: Axis through one end
+      body:
+        it: \(I = \tfrac13 ML^2 + m L^2 + m\cdot 0 = 0{,}256 + 0{,}192 = 0{,}448\ \text{kg·m}^2\).
+        en: \(I = \tfrac13 ML^2 + m L^2 + m\cdot 0 = 0.256 + 0.192 = 0.448\ \text{kg·m}^2\).
+    - title:
+        it: Verifica
+        en: Check
+      body:
+        it: >-
+          Massa totale 1,8 kg, CM al centro, d = 0,40 m: \(I_{cm} + M_{tot}d^2 = 0{,}160 + 0{,}288 = 0{,}448\
+          \text{kg·m}^2\). ✓
+        en: >-
+          Total mass 1.8 kg, CM at the centre, d = 0.40 m: \(I_{cm} + M_{tot}d^2 = 0.160 + 0.288 = 0.448\
+          \text{kg·m}^2\). ✓
+  answer:
+    - label:
+        it: I_cm
+        en: I_cm
+      value: 0.16
+      unit: kg·m²
+    - label:
+        it: I_estremo
+        en: I_end
+      value: 0.448
+      unit: kg·m²
+  origin: originale
+- id: disco-con-foro
+  topic: momenti-di-inerzia
+  objectives:
+    - momenti-di-inerzia.1
+    - momenti-di-inerzia.2
+    - momenti-di-inerzia.3
+  difficulty: 3
+  kind: static
+  statement:
+    it: >-
+      Da un disco omogeneo di raggio R = 0,20 m e massa (prima del taglio) M = 4,0 kg si asporta un disco di
+      raggio R/2 tangente internamente al bordo. Calcolare: (a) la massa rimasta; (b) la posizione del centro
+      di massa rispetto al centro O del disco; (c) il momento d'inerzia rispetto all'asse perpendicolare per
+      O.
+    en: >-
+      From a uniform disc of radius R = 0.20 m and mass (before cutting) M = 4.0 kg, a disc of radius R/2
+      internally tangent to the rim is removed. Find: (a) the remaining mass; (b) the position of the centre
+      of mass relative to the centre O of the disc; (c) the moment of inertia about the perpendicular axis
+      through O.
+  steps:
+    - title:
+        it: Massa del foro
+        en: Mass of the hole
+      body:
+        it: >-
+          L'area è un quarto: \(m = M/4 = 1{,}0\ \text{kg}\), rimangono 3,0 kg. Il centro del foro è a R/2 =
+          0,10 m da O.
+        en: >-
+          The area is a quarter: \(m = M/4 = 1.0\ \text{kg}\), 3.0 kg remain. The centre of the hole is R/2 =
+          0.10 m from O.
+    - title:
+        it: Centro di massa
+        en: Centre of mass
+      body:
+        it: >-
+          Foro come massa negativa: \(x_{cm} = (M\cdot 0 - m\cdot 0{,}10)/(M-m) = -0{,}0333\ \text{m}\), dal
+          lato opposto al foro.
+        en: >-
+          Hole as negative mass: \(x_{cm} = (M\cdot 0 - m\cdot 0.10)/(M-m) = -0.0333\ \text{m}\), on the side
+          opposite the hole.
+    - title:
+        it: Momento d'inerzia
+        en: Moment of inertia
+      body:
+        it: >-
+          Il foro, rispetto a O, ha \(I = \tfrac12 m(R/2)^2 + m(R/2)^2 = 0{,}015\ \text{kg·m}^2\); il disco
+          pieno \(\tfrac12 MR^2 = 0{,}080\). Restano \(I_O = 0{,}065\ \text{kg·m}^2\).
+        en: >-
+          The hole, about O, has \(I = \tfrac12 m(R/2)^2 + m(R/2)^2 = 0.015\ \text{kg·m}^2\); the full disc
+          \(\tfrac12 MR^2 = 0.080\). What remains is \(I_O = 0.065\ \text{kg·m}^2\).
+  answer:
+    - label:
+        it: massa
+        en: mass
+      value: 3
+      unit: kg
+    - label:
+        it: x_cm
+        en: x_cm
+      value: -0.0333
+      unit: m
+    - label:
+        it: I_O
+        en: I_O
+      value: 0.065
+      unit: kg·m²
+  origin: originale

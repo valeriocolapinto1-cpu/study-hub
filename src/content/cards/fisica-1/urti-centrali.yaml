@@ -1,0 +1,139 @@
+- id: urti-centrali-esposizione
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.1
+    - urti-centrali.2
+    - urti-centrali.3
+    - urti-centrali.4
+    - urti-centrali.5
+    - urti-centrali.6
+    - urti-centrali.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Urti centrali elastici e anelastici».'
+  back:
+    it: >-
+      In ogni urto la quantità di moto è sacra (le forze interne si scambiano impulsi uguali e opposti),
+      mentre l'energia cinetica è negoziabile: può finire in deformazioni, suono, calore. La scomposizione di
+      König chiarisce il bilancio: l'energia 'del CM' è protetta dalla conservazione di P; solo l'energia del
+      moto relativo può essere spesa — e l'urto perfettamente anelastico la spende tutta.
+
+
+      **Scaletta:**
+
+
+      - Giustificare la conservazione di P con l'approssimazione impulsiva
+
+      - Classificare gli urti (elastico, anelastico, perfettamente anelastico)
+
+      - Ricavare l'inversione della velocità relativa nell'urto elastico
+
+      - Scrivere le soluzioni generali e discutere i casi notevoli
+
+      - Ricavare v' = v_cm e ΔK nell'urto perfettamente anelastico
+
+      - Spiegare con König perché si dissipa solo l'energia del moto relativo
+
+      - Menzionare il coefficiente di restituzione per i casi intermedi
+- id: urti-centrali-orale-2
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.6
+    - urti-centrali.7
+  kind: orale
+  front:
+    it: Nel pendolo di Newton perché cade una sola sfera dall'altra parte e non due a velocità metà?
+  back:
+    it: Servono entrambe le conservazioni.
+- id: urti-centrali-definizione
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.1
+  kind: definizione
+  front:
+    it: 'Definizione: Urti centrali elastici e anelastici'
+  back:
+    it: >-
+      Un urto è un'interazione impulsiva tra due corpi, di durata così breve che le forze esterne sono
+      trascurabili rispetto a quelle interne: la quantità di moto totale si conserva SEMPRE. L'urto è elastico
+      se si conserva anche l'energia cinetica, anelastico se parte di K si converte in altre forme,
+      perfettamente anelastico se i corpi restano attaccati (massima perdita di K compatibile con la
+      conservazione di P). Un urto è centrale (frontale) se le velocità giacciono sulla congiungente dei
+      centri: il problema è unidimensionale.
+- id: urti-centrali-formule
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.1
+    - urti-centrali.2
+    - urti-centrali.3
+    - urti-centrali.4
+    - urti-centrali.5
+    - urti-centrali.6
+    - urti-centrali.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Urti centrali elastici e anelastici»
+  back:
+    it: |-
+      - \(m_1v_1 + m_2v_2 = m_1v_1' + m_2v_2'\)
+      - \(v_1' - v_2' = -(v_1 - v_2)\;(\text{elastico})\)
+      - \(v' = v_{cm}\;(\text{perf. anelastico})\)
+      - \(\Delta K = -\tfrac{1}{2}\mu v_{rel}^2\)
+- id: urti-centrali-ipotesi
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.1
+    - urti-centrali.2
+    - urti-centrali.3
+    - urti-centrali.4
+    - urti-centrali.5
+    - urti-centrali.6
+    - urti-centrali.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Urti centrali elastici e anelastici'
+  back:
+    it: >-
+      Forze esterne trascurabili durante l'urto (approssimazione impulsiva); urto centrale → problema 1D;
+      corpi puntiformi o comunque senza rotazioni indotte.
+- id: urti-centrali-casi-limite
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.1
+    - urti-centrali.2
+    - urti-centrali.3
+    - urti-centrali.4
+    - urti-centrali.5
+    - urti-centrali.6
+    - urti-centrali.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Urti centrali elastici e anelastici'
+  back:
+    it: >-
+      Urto elastico con bersaglio infinitamente massivo: inversione pura della velocità (palla contro muro).
+      Masse uguali elastico: scambio delle velocità (biliardo, pendolo di Newton). Anelastico con corpi che
+      partono l'uno contro l'altro con P totale nulla: si fermano entrambi, K interamente dissipata.
+- id: urti-centrali-errori
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.1
+    - urti-centrali.2
+    - urti-centrali.3
+    - urti-centrali.4
+    - urti-centrali.5
+    - urti-centrali.6
+    - urti-centrali.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Urti centrali elastici e anelastici'
+  back:
+    it: >-
+      - Conservare l'energia cinetica in un urto anelastico.
+
+      - Non conservare la quantità di moto 'perché c'è attrito col piano': durante l'urto le forze impulsive
+      dominano.
+
+      - Usare le formule dell'urto elastico con v₂ = 0 anche quando il bersaglio si muove.
+
+      - Dimenticare che nell'urto perfettamente anelastico la perdita di K è determinata, non arbitraria.

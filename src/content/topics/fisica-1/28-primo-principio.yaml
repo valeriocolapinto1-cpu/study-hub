@@ -1,0 +1,34 @@
+id: primo-principio
+course: fisica-1
+order: 28
+title:
+  it: Primo principio della termodinamica
+summary:
+  it: >-
+    L'energia interna è il conto in banca del sistema; calore e lavoro sono solo i due sportelli da cui
+    l'energia entra ed esce.
+group:
+  it: Fluidi e termodinamica
+  en: Fluids and thermodynamics
+objectives:
+  - id: primo-principio.1
+    text:
+      it: Enunciare il principio con convenzione dei segni esplicita
+  - id: primo-principio.2
+    text:
+      it: Spiegare perché U è funzione di stato e Q, W no (esperienze di Joule)
+  - id: primo-principio.3
+    text:
+      it: Ricavare W = ∫p dV e la sua lettura grafica nel piano p-V
+  - id: primo-principio.4
+    text:
+      it: Analizzare le quattro trasformazioni notevoli del gas perfetto
+  - id: primo-principio.5
+    text:
+      it: Ricavare il lavoro isotermo con il logaritmo
+  - id: primo-principio.6
+    text:
+      it: Derivare pV^γ = cost per le adiabatiche
+  - id: primo-principio.7
+    text:
+      it: Discutere il ciclo (ΔU = 0) e l'espansione libera

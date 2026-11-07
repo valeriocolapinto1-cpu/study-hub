@@ -1,0 +1,35 @@
+id: entropia-adiabatiche
+course: fisica-1
+order: 33
+title:
+  it: Entropia e trasformazioni adiabatiche
+summary:
+  it: 'L''entropia è il contachilometri dell''irreversibilità: registra quanta ''qualità'' l''energia ha perso.'
+group:
+  it: Fluidi e termodinamica
+  en: Fluids and thermodynamics
+objectives:
+  - id: entropia-adiabatiche.1
+    text:
+      it: Dimostrare che δQ_rev/T è un differenziale esatto (da Clausius)
+  - id: entropia-adiabatiche.2
+    text:
+      it: Definire ΔS e spiegare l'uso del cammino reversibile ausiliario
+  - id: entropia-adiabatiche.3
+    text:
+      it: Ricavare ΔS ≥ ∫δQ/T per trasformazioni aperte
+  - id: entropia-adiabatiche.4
+    text:
+      it: Enunciare la legge dell'aumento dell'entropia (sistema isolato / universo)
+  - id: entropia-adiabatiche.5
+    text:
+      it: Ricavare la formula ΔS del gas perfetto
+  - id: entropia-adiabatiche.6
+    text:
+      it: Distinguere adiabatico da isoentropico con l'espansione libera
+  - id: entropia-adiabatiche.7
+    text:
+      it: Calcolare ΔS_univ per lo scambio termico tra due corpi
+  - id: entropia-adiabatiche.8
+    text:
+      it: Accennare a S = k_B ln Ω

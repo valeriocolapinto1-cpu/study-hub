@@ -1,0 +1,136 @@
+- id: primo-principio-esposizione
+  topic: primo-principio
+  objectives:
+    - primo-principio.1
+    - primo-principio.2
+    - primo-principio.3
+    - primo-principio.4
+    - primo-principio.5
+    - primo-principio.6
+    - primo-principio.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Primo principio della termodinamica».'
+  back:
+    it: >-
+      L'energia interna è il conto in banca del sistema; calore e lavoro sono solo i due sportelli da cui
+      l'energia entra ed esce. Lo stato del conto non ricorda da quale sportello i soldi sono passati: per
+      questo U è funzione di stato mentre Q e W no. Il primo principio è la contabilità esatta: nessuna
+      energia si crea o si perde, si sposta.
+
+
+      **Scaletta:**
+
+
+      - Enunciare il principio con convenzione dei segni esplicita
+
+      - Spiegare perché U è funzione di stato e Q, W no (esperienze di Joule)
+
+      - Ricavare W = ∫p dV e la sua lettura grafica nel piano p-V
+
+      - Analizzare le quattro trasformazioni notevoli del gas perfetto
+
+      - Ricavare il lavoro isotermo con il logaritmo
+
+      - Derivare pV^γ = cost per le adiabatiche
+
+      - Discutere il ciclo (ΔU = 0) e l'espansione libera
+- id: primo-principio-orale-1
+  topic: primo-principio
+  objectives:
+    - primo-principio.6
+    - primo-principio.7
+  kind: orale
+  front:
+    it: Perché un'adiabatica è più ripida di un'isoterma nello stesso punto del piano p-V?
+  back:
+    it: Pendenza γ volte maggiore.
+- id: primo-principio-definizione
+  topic: primo-principio
+  objectives:
+    - primo-principio.1
+  kind: definizione
+  front:
+    it: 'Definizione: Primo principio della termodinamica'
+  back:
+    it: >-
+      Il primo principio della termodinamica è la conservazione dell'energia estesa ai fenomeni termici: la
+      variazione di energia interna di un sistema è \(\Delta U = Q - W\), dove Q è il calore assorbito DAL
+      sistema e W il lavoro compiuto DAL sistema (convenzione usuale in Fisica 1). U è una funzione di stato
+      (dipende solo dallo stato del sistema), mentre Q e W dipendono dalla trasformazione: in forma
+      infinitesima \(dU = \delta Q - \delta W\), con δ a ricordare che calore e lavoro non sono differenziali
+      esatti.
+- id: primo-principio-formule
+  topic: primo-principio
+  objectives:
+    - primo-principio.1
+    - primo-principio.2
+    - primo-principio.3
+    - primo-principio.4
+    - primo-principio.5
+    - primo-principio.6
+    - primo-principio.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Primo principio della termodinamica»
+  back:
+    it: |-
+      - \(\Delta U = Q - W\)
+      - \(W = \int p\,dV\)
+      - \(Q_{isot} = nRT\ln\frac{V_2}{V_1}\)
+      - \(pV^\gamma = \text{cost},\; TV^{\gamma-1} = \text{cost}\)
+- id: primo-principio-ipotesi
+  topic: primo-principio
+  objectives:
+    - primo-principio.1
+    - primo-principio.2
+    - primo-principio.3
+    - primo-principio.4
+    - primo-principio.5
+    - primo-principio.6
+    - primo-principio.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Primo principio della termodinamica'
+  back:
+    it: >-
+      Sistema chiuso (non scambia materia); per W = ∫p dV trasformazioni quasi-statiche (p definita a ogni
+      istante); convenzione dei segni dichiarata esplicitamente (Q > 0 assorbito, W > 0 compiuto dal sistema).
+- id: primo-principio-casi-limite
+  topic: primo-principio
+  objectives:
+    - primo-principio.1
+    - primo-principio.2
+    - primo-principio.3
+    - primo-principio.4
+    - primo-principio.5
+    - primo-principio.6
+    - primo-principio.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Primo principio della termodinamica'
+  back:
+    it: >-
+      Trasformazione ciclica: ΔU = 0 ⇒ Q = W (tutto il calore netto diventa lavoro netto e viceversa).
+      Adiabatica: Q = 0. Espansione libera (nel vuoto): W = 0 e Q = 0 ⇒ ΔU = 0, ma NON è quasi-statica: niente
+      W = ∫p dV.
+- id: primo-principio-errori
+  topic: primo-principio
+  objectives:
+    - primo-principio.1
+    - primo-principio.2
+    - primo-principio.3
+    - primo-principio.4
+    - primo-principio.5
+    - primo-principio.6
+    - primo-principio.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Primo principio della termodinamica'
+  back:
+    it: |-
+      - Confondere le convenzioni dei segni (ΔU = Q − W vs Q + W a seconda della definizione di W).
+      - Trattare Q e W come funzioni di stato: 'il calore contenuto in un corpo' non esiste.
+      - Usare W = pΔV in trasformazioni non isobare.
+      - Applicare W = ∫p dV all'espansione libera, che non è quasi-statica.
+      - Usare c_p per calcolare ΔU.

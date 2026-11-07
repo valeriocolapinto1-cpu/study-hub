@@ -1,0 +1,58 @@
+id: fisica-1
+year: 1
+title:
+  it: Fisica 1
+  en: Physics 1
+subtitle:
+  it: Meccanica e termodinamica
+  en: Mechanics and thermodynamics
+description:
+  it: 'Trentatré argomenti di meccanica e termodinamica, dal moto circolare all’entropia: per ognuno l’idea
+    fisica, le definizioni, la derivazione da ricostruire un passaggio alla volta, ipotesi, casi limite ed
+    errori tipici. Esercizi da scritto svolti e generati, flashcard e domande d’orale con risposta modello,
+    otto simulazioni interattive, la simulazione dello scritto e quella dell’orale con timer e checklist.'
+  en: 'Thirty-three topics in mechanics and thermodynamics, from circular motion to entropy: for each one the
+    physical idea, the definitions, the derivation to rebuild one step at a time, assumptions, limiting cases
+    and common mistakes. Worked and generated written-exam problems, flashcards and oral-exam questions with
+    model answers, eight interactive simulations, a mock written exam and a mock oral with timer and checklist.'
+accent: terracotta
+exam:
+  format: scritto+orale
+  durationMin: 120
+  structure:
+    - label:
+        it: Problema 1
+        en: Problem 1
+      points: 8
+      kind: esercizio
+    - label:
+        it: Problema 2
+        en: Problem 2
+      points: 8
+      kind: esercizio
+    - label:
+        it: Problema 3
+        en: Problem 3
+      points: 8
+      kind: esercizio
+    - label:
+        it: Domanda d’orale
+        en: Oral question
+      points: 3
+      kind: orale
+    - label:
+        it: Domanda d’orale
+        en: Oral question
+      points: 3
+      kind: orale
+extras:
+  - slug: simulazioni
+    title:
+      it: Simulazioni interattive
+      en: Interactive simulations
+  - slug: simulazione-orale
+    title:
+      it: Simulazione dell’orale
+      en: Mock oral exam
+legacyRepo: fisica-1
+order: 1

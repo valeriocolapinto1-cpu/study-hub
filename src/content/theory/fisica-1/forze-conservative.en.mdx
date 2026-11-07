@@ -1,0 +1,174 @@
+---
+course: fisica-1
+topic: forze-conservative
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/forze-conservative/idea">
+
+A conservative force is a 'perfect bank' for energy: any work you spend against it you get back in full on the way back. Potential energy is the savings book: it records the accumulated credit as a function of position alone. The landscape of U (hills and valleys) lets you read the motion at a glance: the body accelerates towards valleys and can only reach places where E ≥ U.
+
+</div>
+
+<p class="muted" data-note-id="teoria/forze-conservative/prerequisiti"><strong>Before this topic:</strong> <a href="../lavoro-energia-cinetica/">Work of a force and the work–kinetic energy theorem</a></p>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/forze-conservative/definizioni">
+
+## Definitions
+
+A force is conservative if its work between two points does not depend on the path followed but only on the end points; equivalently, its work around any closed path is zero: $\oint \vec{F}\cdot d\vec{r} = 0$. With every conservative force we associate a potential energy U defined by $W_{A\to B} = U(A) - U(B) = -\Delta U$ (defined up to an additive constant). The mechanical energy is $E = K + U$: if only conservative forces act, E is conserved.
+
+</div>
+
+<div data-note-id="teoria/forze-conservative/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Definition of potential energy</summary>
+
+$$
+U(P) = -\int_{P_0}^{P} \vec{F}\cdot d\vec{r}
+$$
+
+Well defined only because the integral does not depend on the path; P₀ is the arbitrary reference point where U = 0.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Work in terms of U</summary>
+
+$$
+W_{A\to B} = \int_A^B \vec{F}\cdot d\vec{r} = U(A) - U(B) = -\Delta U
+$$
+
+Split the path through P₀ and use the definition: work is the potential energy 'spent'.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Combine with the kinetic energy theorem</summary>
+
+$$
+\Delta K = W_{tot} = -\Delta U \;\Rightarrow\; \Delta(K + U) = 0
+$$
+
+If ALL the forces that do work are conservative, the sum K + U does not change.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Conservation of mechanical energy</summary>
+
+$$
+E = K + U = \frac{1}{2}mv^2 + U(\vec{r}) = \text{constant}
+$$
+
+A powerful first integral of motion: it links speed and position directly without solving the equations of motion.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Local force–potential relation</summary>
+
+$$
+\vec{F} = -\vec{\nabla}U, \qquad F_x = -\frac{dU}{dx} \;(\text{1D case})
+$$
+
+The force points 'downhill' in the landscape of U. Equilibria where dU/dx = 0: stable at minima (d²U/dx² &gt; 0), unstable at maxima.
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Canonical examples</summary>
+
+$$
+U_{grav} = mgh, \qquad U_{el} = \frac{1}{2}kx^2, \qquad U_{univ.\,grav.} = -\frac{GMm}{r}
+$$
+
+Weight (near the surface), spring, universal gravitation: all conservative. Friction is not: its work depends on the length of the path.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/forze-conservative/ipotesi">
+
+## Validity assumptions
+
+Forces depending only on position (not on velocity or time); a region of space where the line integral is well defined. For the conservation of E: no non-conservative force doing work.
+
+</div>
+
+<div data-note-id="teoria/forze-conservative/casi-limite">
+
+## Limiting cases
+
+If a force is perpendicular to the motion (normal force, tension) it does no work: E is conserved even in its presence. Uniform field: U linear in h. The additive constant in U has no physical effect: only differences matter.
+
+</div>
+
+<div data-note-id="teoria/forze-conservative/formule">
+
+## Key formulas
+
+<Formula id="forze-conservative-f1" />
+
+<Formula id="forze-conservative-f2" />
+
+<Formula id="forze-conservative-f3" />
+
+<Formula id="forze-conservative-f4" />
+
+<Formula id="forze-conservative-f5" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/forze-conservative/esempio">
+
+A small cart of mass m = 0.50 kg starts from rest at height h and goes down a smooth track ending in a vertical loop of radius R = 0.40 m. Find: (a) the minimum height h for it to complete the loop without leaving the track; (b) the speed at the lowest point in that case; (c) the reaction of the track at the lowest point.
+
+1. **Condition at the top.** At the top the reaction must be ≥ 0: $mg + N = mv^2/R$ with $N \ge 0$ gives $v_{top}^2 \ge gR$.
+2. **Energy conservation.** The track is smooth and the normal force does no work: $mgh = mg\,2R + \tfrac12 m v_{top}^2 \ge \tfrac52 mgR \Rightarrow h_{min} = 2.5R = 1.00\ \text{m}$.
+3. **Lowest point.** $v = \sqrt{2gh} = \sqrt{5gR} \approx 4.43\ \text{m/s}$; $N - mg = mv^2/R \Rightarrow N = 6mg \approx 29.4\ \text{N}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/forze-conservative/errori">
+
+- Saying that U 'belongs to the body': it belongs to the body + field system (or to the configuration).
+- Getting the sign wrong: W_cons = −ΔU, not +ΔU.
+- Considering friction conservative because it is 'constant': its work depends on the path and is always negative.
+- Forgetting to check that ALL the forces doing work are conservative before using E = const.
+
+</div>
+
+<div data-note-id="teoria/forze-conservative/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- How do you check in practice that a force field is conservative?
+- What are the turning points of the motion on the graph of U(x)?
+- Why does the magnetic force on a charge never do work, even though it is not conservative in the strict sense?
+
+</div>
+
+</Layer>

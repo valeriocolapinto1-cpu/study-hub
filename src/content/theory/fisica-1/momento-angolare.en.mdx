@@ -1,0 +1,159 @@
+---
+course: fisica-1
+topic: momento-angolare
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/momento-angolare/idea">
+
+Torque measures how effective a force is at making things rotate: the same force 'pays off' more if applied far from the pivot and perpendicularly (that is why door handles are on the edge of doors). Angular momentum is the stored 'amount of rotation'; τ = dL/dt says that changing it requires a torque, exactly as changing momentum requires a force.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/momento-angolare/definizioni">
+
+## Definitions
+
+With respect to a pole O, the torque (moment) of a force $\vec{F}$ applied at point P is $\vec{\tau} = \vec{r}\times\vec{F}$, with $\vec{r} = \vec{OP}$; its magnitude is $\tau = rF\sin\theta = Fb$, where b is the lever arm (distance from the pole to the line of action). The angular momentum of a point particle is $\vec{L} = \vec{r}\times m\vec{v} = \vec{r}\times\vec{p}$. Both depend on the choice of pole.
+
+</div>
+
+<div data-note-id="teoria/momento-angolare/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Differentiate the angular momentum with respect to time (fixed pole O)</summary>
+
+$$
+\frac{d\vec{L}}{dt} = \frac{d\vec{r}}{dt}\times m\vec{v} + \vec{r}\times m\frac{d\vec{v}}{dt}
+$$
+
+Leibniz rule for the cross product.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · The first term vanishes</summary>
+
+$$
+\vec{v}\times m\vec{v} = \vec{0}
+$$
+
+The cross product of parallel vectors is zero.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Use Newton's second law in the second term</summary>
+
+$$
+\frac{d\vec{L}}{dt} = \vec{r}\times\vec{F} = \vec{\tau}
+$$
+
+Angular momentum theorem for a point particle: torque is the 'rate of change' of angular momentum — the rotational analogue of F = dp/dt.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Conservation with central forces</summary>
+
+$$
+\vec{F} \parallel \vec{r} \;\Rightarrow\; \vec{\tau} = \vec{r}\times\vec{F} = \vec{0} \;\Rightarrow\; \vec{L} = \text{const}
+$$
+
+If the force always points towards the pole (central force, e.g. gravitation), the angular momentum about that pole is conserved: the motion is planar and Kepler's law of areas holds.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · If the pole Q moves, an extra term appears</summary>
+
+$$
+\frac{d\vec{L}_Q}{dt} = \vec{\tau}_Q - \vec{v}_Q\times m\vec{v}
+$$
+
+The extra term vanishes if the pole is fixed, or if v_Q is parallel to v (in particular, for a system, if Q is the centre of mass).
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/momento-angolare/ipotesi">
+
+## Validity assumptions
+
+Point particle in classical mechanics; pole O fixed in an inertial frame (otherwise a correction term appears); r measured from the chosen pole.
+
+</div>
+
+<div data-note-id="teoria/momento-angolare/casi-limite">
+
+## Limiting cases
+
+A force whose line of action passes through the pole: zero torque even if F ≠ 0. Uniform rectilinear motion: L = mvb constant (b = distance from pole to line), angular momentum does not require rotation. Circular motion with the pole at the centre: L = mvr = mr²ω, entirely perpendicular to the plane.
+
+</div>
+
+<div data-note-id="teoria/momento-angolare/formule">
+
+## Key formulas
+
+<Formula id="momento-angolare-f1" />
+
+<Formula id="momento-angolare-f2" />
+
+<Formula id="momento-angolare-f3" />
+
+<Formula id="momento-angolare-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/momento-angolare/esempio">
+
+A bolt is tightened with a 25 cm long wrench by applying at its end a force of 80 N at an angle of 60° to the wrench. Find: (a) the lever arm of the force; (b) the magnitude of the torque about the bolt axis; (c) the minimum force that would give the same torque.
+
+1. **Lever arm.** $b = r\sin\theta = 0.25 \cdot \sin 60° \approx 0.2165\ \text{m}$.
+2. **Torque.** $\tau = Fb \approx 80 \cdot 0.2165 \approx 17.3\ \text{N·m}$.
+3. **Minimum force.** The largest lever arm is r (force perpendicular to the wrench): $F_{min} = \tau/r \approx 69.3\ \text{N}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/momento-angolare/errori">
+
+- Forgetting that τ and L depend on the pole and comparing moments computed about different poles.
+- Computing τ = rF instead of rF sin θ (forgetting the lever arm).
+- Believing that L ≠ 0 implies curved motion: even rectilinear motion has angular momentum about an external pole.
+- Getting the direction of the cross product wrong: use the right-hand rule.
+
+</div>
+
+<div data-note-id="teoria/momento-angolare/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- Why is the areal velocity constant in planetary motion?
+- How does L change if you change pole?
+- A skater pulling in her arms spins faster: which quantity is conserved and why?
+
+</div>
+
+</Layer>

@@ -1,0 +1,143 @@
+- id: forzato-ampiezza-regime
+  topic: risonanza
+  objectives:
+    - risonanza.1
+    - risonanza.2
+    - risonanza.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Un oscillatore con m = 0,20 kg, k = 80 N/m e b = 0,40 kg/s è forzato da F(t) = F₀ cos(Ωt) con F₀ = 0,50
+      N. Calcolare: (a) ω₀ e γ; (b) l'ampiezza a regime per Ω = 15 rad/s; (c) l'ampiezza massima e la
+      pulsazione a cui si ha; (d) il ritardo di fase a Ω = 15 rad/s.
+    en: >-
+      An oscillator with m = 0.20 kg, k = 80 N/m and b = 0.40 kg/s is driven by F(t) = F₀ cos(Ωt) with F₀ =
+      0.50 N. Find: (a) ω₀ and γ; (b) the steady-state amplitude for Ω = 15 rad/s; (c) the maximum amplitude
+      and the angular frequency at which it occurs; (d) the phase lag at Ω = 15 rad/s.
+  steps:
+    - title:
+        it: Parametri
+        en: Parameters
+      body:
+        it: >-
+          \(\omega_0 = \sqrt{80/0{,}2} = 20\ \text{rad/s}\), \(\gamma = b/2m = 1{,}0\ \text{s}^{-1}\), \(F_0/m
+          = 2{,}5\ \text{m/s}^2\).
+        en: >-
+          \(\omega_0 = \sqrt{80/0.2} = 20\ \text{rad/s}\), \(\gamma = b/2m = 1.0\ \text{s}^{-1}\), \(F_0/m =
+          2.5\ \text{m/s}^2\).
+    - title:
+        it: Ampiezza a Ω = 15 rad/s
+        en: Amplitude at Ω = 15 rad/s
+      body:
+        it: >-
+          \(A = \dfrac{2{,}5}{\sqrt{(400-225)^2 + 4\cdot 225}} = \dfrac{2{,}5}{\sqrt{30625 + 900}} \approx
+          0{,}01408\ \text{m}\).
+        en: >-
+          \(A = \dfrac{2.5}{\sqrt{(400-225)^2 + 4\cdot 225}} = \dfrac{2.5}{\sqrt{30625 + 900}} \approx
+          0.01408\ \text{m}\).
+    - title:
+        it: Picco
+        en: Peak
+      body:
+        it: >-
+          \(\Omega_{ris} = \sqrt{\omega_0^2 - 2\gamma^2} = \sqrt{398} \approx 19{,}95\ \text{rad/s}\);
+          \(A_{max} = \dfrac{F_0/m}{2\gamma\sqrt{\omega_0^2-\gamma^2}} = \dfrac{2{,}5}{2\sqrt{399}} \approx
+          0{,}0626\ \text{m}\), circa 10 volte la risposta statica \(F_0/k = 6{,}25\ \text{mm}\) (≈ Q = 10).
+        en: >-
+          \(\Omega_{res} = \sqrt{\omega_0^2 - 2\gamma^2} = \sqrt{398} \approx 19.95\ \text{rad/s}\); \(A_{max}
+          = \dfrac{F_0/m}{2\gamma\sqrt{\omega_0^2-\gamma^2}} = \dfrac{2.5}{2\sqrt{399}} \approx 0.0626\
+          \text{m}\), about 10 times the static response \(F_0/k = 6.25\ \text{mm}\) (≈ Q = 10).
+    - title:
+        it: Fase
+        en: Phase
+      body:
+        it: >-
+          \(\tan\delta = \dfrac{2\gamma\Omega}{\omega_0^2-\Omega^2} = 30/175 \Rightarrow \delta \approx
+          0{,}170\ \text{rad}\): sotto risonanza la risposta è quasi in fase.
+        en: >-
+          \(\tan\delta = \dfrac{2\gamma\Omega}{\omega_0^2-\Omega^2} = 30/175 \Rightarrow \delta \approx 0.170\
+          \text{rad}\): below resonance the response is almost in phase.
+  answer:
+    - label:
+        it: A(15 rad/s)
+        en: A(15 rad/s)
+      value: 0.01408
+      unit: m
+    - label:
+        it: Ω_ris
+        en: Ω_res
+      value: 19.95
+      unit: rad/s
+      tol: 0.005
+    - label:
+        it: A_max
+        en: A_max
+      value: 0.0626
+      unit: m
+    - label:
+        it: δ
+        en: δ
+      value: 0.17
+      unit: rad
+  origin: originale
+- id: potenza-risonanza
+  topic: risonanza
+  objectives:
+    - risonanza.1
+    - risonanza.2
+    - risonanza.3
+  difficulty: 3
+  kind: static
+  statement:
+    it: >-
+      Per lo stesso oscillatore (m = 0,20 kg, k = 80 N/m, b = 0,40 kg/s, F₀ = 0,50 N) forzato esattamente a Ω
+      = ω₀, calcolare: (a) l'ampiezza della velocità; (b) la potenza media assorbita; (c) verificare che
+      coincide con la potenza media dissipata dall'attrito.
+    en: >-
+      For the same oscillator (m = 0.20 kg, k = 80 N/m, b = 0.40 kg/s, F₀ = 0.50 N) driven exactly at Ω = ω₀,
+      find: (a) the velocity amplitude; (b) the average absorbed power; (c) check that it equals the average
+      power dissipated by friction.
+  steps:
+    - title:
+        it: Ampiezza a ω₀
+        en: Amplitude at ω₀
+      body:
+        it: >-
+          A Ω = ω₀: \(A = \dfrac{F_0/m}{2\gamma\omega_0} = \dfrac{2{,}5}{40} = 0{,}0625\ \text{m}\) e δ = π/2;
+          la velocità ha ampiezza \(v_0 = \Omega A = 1{,}25\ \text{m/s}\).
+        en: >-
+          At Ω = ω₀: \(A = \dfrac{F_0/m}{2\gamma\omega_0} = \dfrac{2.5}{40} = 0.0625\ \text{m}\) and δ = π/2;
+          the velocity amplitude is \(v_0 = \Omega A = 1.25\ \text{m/s}\).
+    - title:
+        it: Potenza assorbita
+        en: Absorbed power
+      body:
+        it: >-
+          \(\langle P \rangle = \tfrac12 F_0 \Omega A \sin\delta = \tfrac12 \cdot 0{,}5 \cdot 1{,}25 =
+          0{,}3125\ \text{W}\).
+        en: >-
+          \(\langle P \rangle = \tfrac12 F_0 \Omega A \sin\delta = \tfrac12 \cdot 0.5 \cdot 1.25 = 0.3125\
+          \text{W}\).
+    - title:
+        it: Potenza dissipata
+        en: Dissipated power
+      body:
+        it: >-
+          \(\langle b v^2\rangle = \tfrac12 b v_0^2 = \tfrac12 \cdot 0{,}4 \cdot 1{,}5625 = 0{,}3125\
+          \text{W}\): a regime il bilancio è in pari, come deve essere.
+        en: >-
+          \(\langle b v^2\rangle = \tfrac12 b v_0^2 = \tfrac12 \cdot 0.4 \cdot 1.5625 = 0.3125\ \text{W}\): in
+          steady state the balance is even, as it must be.
+  answer:
+    - label:
+        it: v₀
+        en: v₀
+      value: 1.25
+      unit: m/s
+    - label:
+        it: ⟨P⟩
+        en: ⟨P⟩
+      value: 0.3125
+      unit: W
+  origin: originale

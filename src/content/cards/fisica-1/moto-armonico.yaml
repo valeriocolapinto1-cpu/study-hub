@@ -1,0 +1,224 @@
+- id: moto-armonico-esposizione
+  topic: moto-armonico
+  objectives:
+    - moto-armonico.1
+    - moto-armonico.2
+    - moto-armonico.3
+    - moto-armonico.4
+    - moto-armonico.5
+    - moto-armonico.6
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Moto armonico: ampiezza, pulsazione, periodo, fase iniziale».'
+    en: 'Present at the oral exam: “Simple harmonic motion: amplitude, angular frequency, period, initial phase”.'
+  back:
+    it: >-
+      Il moto armonico nasce ogni volta che un sistema, spostato dall'equilibrio, subisce un richiamo
+      proporzionale allo spostamento. È il 'mattone universale' delle oscillazioni: qualsiasi potenziale
+      liscio, vicino a un minimo, è approssimativamente parabolico, quindi quasi tutti i sistemi oscillano
+      armonicamente per piccole perturbazioni.
+
+
+      **Scaletta:**
+
+
+      - Scrivere l'equazione differenziale \(\ddot{x} = -\omega^2 x\) e dire che definisce il moto armonico
+
+      - Verificare per sostituzione che x = A cos(ωt+φ) è soluzione
+
+      - Definire con precisione A, ω, T, ν, φ e le loro unità
+
+      - Ricavare A e φ dalle condizioni iniziali
+
+      - Indicare dove sono massime velocità e accelerazione
+
+      - Spiegare l'isocronismo e il legame col moto circolare uniforme
+    en: >-
+      Harmonic motion arises whenever a system displaced from equilibrium feels a restoring action
+      proportional to the displacement. It is the 'universal building block' of oscillations: any smooth
+      potential is approximately parabolic near a minimum, so almost every system oscillates harmonically for
+      small perturbations.
+
+
+      **Outline:**
+
+
+      - Write the differential equation \(\ddot{x} = -\omega^2 x\) and state that it defines harmonic motion
+
+      - Verify by substitution that x = A cos(ωt+φ) is a solution
+
+      - Define precisely A, ω, T, ν, φ and their units
+
+      - Derive A and φ from the initial conditions
+
+      - State where velocity and acceleration are maximum
+
+      - Explain isochronism and the link with uniform circular motion
+- id: moto-armonico-orale-1
+  topic: moto-armonico
+  objectives:
+    - moto-armonico.5
+    - moto-armonico.6
+  kind: orale
+  front:
+    it: Perché quasi ogni sistema fisico oscilla armonicamente attorno a un equilibrio stabile?
+    en: Why does almost every physical system oscillate harmonically around a stable equilibrium?
+  back:
+    it: >-
+      Vicino a un minimo \(x_0\) del potenziale si sviluppa \(U(x) \approx U(x_0) + \tfrac12
+      U''(x_0)(x-x_0)^2\): il termine lineare è nullo perché all'equilibrio \(U'(x_0)=0\). La forza è quindi
+      \(F \approx -U''(x_0)(x-x_0)\), una forza elastica con \(k_{eff} = U''(x_0) > 0\) (equilibrio stabile) e
+      \(\omega = \sqrt{U''(x_0)/m}\).
+    en: >-
+      Near a minimum \(x_0\) of the potential we expand \(U(x) \approx U(x_0) + \tfrac12 U''(x_0)(x-x_0)^2\):
+      the linear term vanishes because \(U'(x_0)=0\) at equilibrium. The force is then \(F \approx
+      -U''(x_0)(x-x_0)\), an elastic force with \(k_{eff} = U''(x_0) > 0\) (stable equilibrium) and \(\omega =
+      \sqrt{U''(x_0)/m}\).
+- id: moto-armonico-orale-2
+  topic: moto-armonico
+  objectives:
+    - moto-armonico.5
+    - moto-armonico.6
+  kind: orale
+  front:
+    it: Come si scrive la stessa soluzione nella forma x = a cos ωt + b sin ωt e che relazione c'è con A e φ?
+    en: >-
+      How do you write the same solution in the form x = a cos ωt + b sin ωt and how are a, b related to A and
+      φ?
+  back:
+    it: >-
+      Sviluppando il coseno della somma: \(A\cos(\omega t+\varphi) = A\cos\varphi\cos\omega t -
+      A\sin\varphi\sin\omega t\), quindi \(a = A\cos\varphi = x_0\) e \(b = -A\sin\varphi = v_0/\omega\).
+      Viceversa \(A = \sqrt{a^2+b^2}\) e \(\tan\varphi = -b/a\).
+    en: >-
+      Expanding the cosine of a sum: \(A\cos(\omega t+\varphi) = A\cos\varphi\cos\omega t -
+      A\sin\varphi\sin\omega t\), so \(a = A\cos\varphi = x_0\) and \(b = -A\sin\varphi = v_0/\omega\).
+      Conversely \(A = \sqrt{a^2+b^2}\) and \(\tan\varphi = -b/a\).
+- id: moto-armonico-orale-3
+  topic: moto-armonico
+  objectives:
+    - moto-armonico.5
+    - moto-armonico.6
+  kind: orale
+  front:
+    it: Cosa succede alla traiettoria nello spazio delle fasi (x, v)?
+    en: What does the trajectory in phase space (x, v) look like?
+  back:
+    it: >-
+      Da \(x = A\cos(\cdot)\) e \(v = -A\omega\sin(\cdot)\) segue \(x^2/A^2 + v^2/(A\omega)^2 = 1\):
+      un'ellisse di semiassi A e Aω, percorsa in senso orario con periodo T. È la conservazione dell'energia
+      \(\tfrac12 mv^2 + \tfrac12 kx^2 = E\) letta nel piano delle fasi.
+    en: >-
+      From \(x = A\cos(\cdot)\) and \(v = -A\omega\sin(\cdot)\) it follows \(x^2/A^2 + v^2/(A\omega)^2 = 1\):
+      an ellipse with semi-axes A and Aω, traversed clockwise with period T. It is energy conservation
+      \(\tfrac12 mv^2 + \tfrac12 kx^2 = E\) read in the phase plane.
+- id: moto-armonico-definizione
+  topic: moto-armonico
+  objectives:
+    - moto-armonico.1
+  kind: definizione
+  front:
+    it: 'Definizione: Moto armonico: ampiezza, pulsazione, periodo, fase iniziale'
+    en: 'Definition: Simple harmonic motion: amplitude, angular frequency, period, initial phase'
+  back:
+    it: >-
+      Un moto rettilineo si dice armonico semplice quando la posizione varia sinusoidalmente nel tempo: \(x(t)
+      = A\cos(\omega t + \varphi)\). A è l'ampiezza (massimo scostamento dalla posizione di equilibrio), ω la
+      pulsazione (rad/s), \(\varphi\) la fase iniziale (fissa posizione e velocità a t = 0), \(T =
+      2\pi/\omega\) il periodo e \(\nu = 1/T\) la frequenza. Il moto armonico è la soluzione dell'equazione
+      differenziale \(\ddot{x} = -\omega^2 x\).
+    en: >-
+      A rectilinear motion is called simple harmonic when the position varies sinusoidally in time: \(x(t) =
+      A\cos(\omega t + \varphi)\). A is the amplitude (maximum displacement from the equilibrium position), ω
+      the angular frequency (rad/s), \(\varphi\) the initial phase (it fixes position and velocity at t = 0),
+      \(T = 2\pi/\omega\) the period and \(\nu = 1/T\) the frequency. Harmonic motion is the solution of the
+      differential equation \(\ddot{x} = -\omega^2 x\).
+- id: moto-armonico-formule
+  topic: moto-armonico
+  objectives:
+    - moto-armonico.1
+    - moto-armonico.2
+    - moto-armonico.3
+    - moto-armonico.4
+    - moto-armonico.5
+    - moto-armonico.6
+  kind: formula
+  front:
+    it: 'Le formule chiave di «Moto armonico: ampiezza, pulsazione, periodo, fase iniziale»'
+    en: 'The key formulas of “Simple harmonic motion: amplitude, angular frequency, period, initial phase”'
+  back:
+    it: |-
+      - \(x(t) = A\cos(\omega t + \varphi)\)
+      - \(\ddot{x} = -\omega^2 x\)
+      - \(T = \frac{2\pi}{\omega}\)
+      - \(A = \sqrt{x_0^2 + v_0^2/\omega^2}\)
+      - \(v_{max} = A\omega,\; a_{max} = A\omega^2\)
+    en: |-
+      - \(x(t) = A\cos(\omega t + \varphi)\)
+      - \(\ddot{x} = -\omega^2 x\)
+      - \(T = \frac{2\pi}{\omega}\)
+      - \(A = \sqrt{x_0^2 + v_0^2/\omega^2}\)
+      - \(v_{max} = A\omega,\; a_{max} = A\omega^2\)
+- id: moto-armonico-ipotesi
+  topic: moto-armonico
+  objectives:
+    - moto-armonico.1
+    - moto-armonico.2
+    - moto-armonico.3
+    - moto-armonico.4
+    - moto-armonico.5
+    - moto-armonico.6
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Moto armonico: ampiezza, pulsazione, periodo, fase iniziale'
+    en: 'Validity assumptions: Simple harmonic motion: amplitude, angular frequency, period, initial phase'
+  back:
+    it: >-
+      Moto unidimensionale; forza (o accelerazione) di richiamo esattamente lineare in x. Nessuna
+      dissipazione.
+    en: One-dimensional motion; restoring force (or acceleration) exactly linear in x. No dissipation.
+- id: moto-armonico-casi-limite
+  topic: moto-armonico
+  objectives:
+    - moto-armonico.1
+    - moto-armonico.2
+    - moto-armonico.3
+    - moto-armonico.4
+    - moto-armonico.5
+    - moto-armonico.6
+  kind: concetto
+  front:
+    it: 'Casi limite: Moto armonico: ampiezza, pulsazione, periodo, fase iniziale'
+    en: 'Limiting cases: Simple harmonic motion: amplitude, angular frequency, period, initial phase'
+  back:
+    it: >-
+      Se \(v_0 = 0\): φ = 0 e A = x₀ (parte da fermo dall'estremo). Se \(x_0 = 0\): φ = ±π/2 e A = v₀/ω (parte
+      dall'equilibrio con velocità massima). Per ω → 0 il periodo diverge: il sistema non richiama più.
+    en: >-
+      If \(v_0 = 0\): φ = 0 and A = x₀ (it starts at rest from the turning point). If \(x_0 = 0\): φ = ±π/2
+      and A = v₀/ω (it starts from equilibrium with maximum speed). For ω → 0 the period diverges: the system
+      no longer restores.
+- id: moto-armonico-errori
+  topic: moto-armonico
+  objectives:
+    - moto-armonico.1
+    - moto-armonico.2
+    - moto-armonico.3
+    - moto-armonico.4
+    - moto-armonico.5
+    - moto-armonico.6
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Moto armonico: ampiezza, pulsazione, periodo, fase iniziale'
+    en: 'Mistakes to avoid: Simple harmonic motion: amplitude, angular frequency, period, initial phase'
+  back:
+    it: |-
+      - Confondere pulsazione ω (rad/s) e frequenza ν (Hz): ω = 2πν.
+      - Credere che il periodo dipenda dall'ampiezza: nel moto armonico ideale è isocrono.
+      - Sbagliare i segni derivando: la velocità è −Aω sin(…), non +.
+      - Dimenticare che A e φ vengono dalle condizioni iniziali, non dall'equazione del moto.
+    en: |-
+      - Confusing angular frequency ω (rad/s) and frequency ν (Hz): ω = 2πν.
+      - Believing that the period depends on the amplitude: ideal harmonic motion is isochronous.
+      - Getting signs wrong when differentiating: the velocity is −Aω sin(…), not +.
+      - Forgetting that A and φ come from the initial conditions, not from the equation of motion.

@@ -1,0 +1,34 @@
+id: rotolamento-puro
+course: fisica-1
+order: 20
+title:
+  it: Rotolamento puro
+summary:
+  it: >-
+    Nel rotolamento l'attrito statico è un 'regista' che non spende energia: costringe traslazione e rotazione
+    a marciare insieme (v = ωR) redistribuendo la spinta della gravità tra i due moti.
+group:
+  it: Sistemi di punti e corpo rigido
+  en: Systems of particles and rigid bodies
+objectives:
+  - id: rotolamento-puro.1
+    text:
+      it: Enunciare e giustificare il vincolo v_cm = ωR
+  - id: rotolamento-puro.2
+    text:
+      it: Scrivere K con König e il vincolo (forma con β)
+  - id: rotolamento-puro.3
+    text:
+      it: Impostare le due cardinali per la discesa dal piano inclinato
+  - id: rotolamento-puro.4
+    text:
+      it: Ricavare a_cm = g sinθ/(1+β) e f_s
+  - id: rotolamento-puro.5
+    text:
+      it: Ricavare la condizione sul μ_s per il rotolamento puro
+  - id: rotolamento-puro.6
+    text:
+      it: Rifare il calcolo con la conservazione dell'energia
+  - id: rotolamento-puro.7
+    text:
+      it: Spiegare perché l'attrito statico non dissipa
