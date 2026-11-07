@@ -30,25 +30,29 @@ const search = [label, f.symbols && tr(f.symbols, lang), f.usage && tr(f.usage, 
 >
   <div class="formula-entry__head">
     <h3 class="formula-entry__title">{label}</h3>
-    {bookmark && (
-      <button
-        type="button"
-        class="icon-btn icon-btn--bare formula-entry__star no-print"
-        data-bookmark={f.id}
-        aria-pressed="false"
-        aria-label={t(lang, 'formulary.bookmark', { name: label })}
-      >
-        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
-          <path
-            d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linejoin="round"
-          ></path>
-        </svg>
-      </button>
-    )}
+    <span class="formula-entry__actions">
+      {bookmark && (
+        <button
+          type="button"
+          class="icon-btn icon-btn--bare formula-entry__star no-print"
+          data-bookmark={f.id}
+          aria-pressed="false"
+          aria-label={t(lang, 'formulary.bookmark', { name: label })}
+        >
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+            <path
+              d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linejoin="round"
+            ></path>
+          </svg>
+        </button>
+      )}
+      {/* Slot del pulsante appunti: spazio riservato, nessuno spostamento all'idratazione. */}
+      <span class="sh-note-slot no-print" data-note-slot></span>
+    </span>
   </div>
   <Formula id={f.id} tex={lang === 'en' && f.latexEn ? f.latexEn : f.latex} />
   {!compact && (

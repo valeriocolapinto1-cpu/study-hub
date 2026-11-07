@@ -11,6 +11,12 @@ for (const theme of ['light', 'dark'] as const) {
       // Scuro di default: il tema chiaro si attiva con la scelta salvata dall'interruttore.
       await page.addInitScript((t) => localStorage.setItem('sh:v1:global:theme', JSON.stringify(t)), theme);
       await page.goto(p.path);
+      // Le formule che scorrono diventano focusabili quando la loro larghezza è definitiva
+      // (font caricati, ResizeObserver eseguito): si analizza la pagina in quello stato.
+      await page.evaluate(async () => {
+        await document.fonts.ready;
+        await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+      });
       const results = await new AxeBuilder({ page }).withTags(TAGS).analyze();
       const serious = results.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
       expect(

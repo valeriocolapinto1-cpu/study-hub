@@ -45,6 +45,8 @@ module.exports = {
         `${BASE}/en/anno-1/fondamenti-informatica/`,
         `${BASE}/it/anno-2/teoria-circuiti/`,
         `${BASE}/it/anno-2/teoria-circuiti/teoria/teorema-di-thevenin/`,
+        // Pagina esercizi (motore + ExercisePlayer): rientra nel budget col dizionario ridotto delle isole.
+        `${BASE}/it/anno-2/teoria-circuiti/esercizi/circuiti-primo-ordine/`,
         `${BASE}/it/anno-1/fisica-1/teoria/rotolamento-puro/`,
         `${BASE}/en/anno-1/fisica-1/extra/simulazioni/`,
       ],

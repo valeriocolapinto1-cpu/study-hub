@@ -8,6 +8,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import platform from './tools/integrations/platform.mjs';
 import rehypeNoteIds from './src/lib/rehype-note-ids.mjs';
+import islandI18n from './tools/vite/island-i18n.mjs';
 
 // Unica impostazione di dominio e percorso base del sito: tutto il resto
 // (link, hreflang, canonical, sitemap) si ricava da qui tramite import.meta.env.
@@ -41,6 +42,8 @@ export default defineConfig({
     platform(),
   ],
   vite: {
+    // Dizionario ridotto per le isole (solo i namespace che usano).
+    plugins: [islandI18n()],
     server: { watch: { ignored: ['**/legacy/**'] } },
     optimizeDeps: { entries: ['src/**/*.{astro,ts,tsx}'] },
   },
