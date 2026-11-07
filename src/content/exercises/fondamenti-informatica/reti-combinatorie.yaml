@@ -150,6 +150,25 @@
   statement:
     it: Realizza `Y(A,B,C) = Σm(1,2,5,7)` con un multiplexer **4→1**, usando A e B come selettori.
     en: Implement `Y(A,B,C) = Σm(1,2,5,7)` with a **4→1** multiplexer, using A and B as selects.
+  figure:
+    diagram:
+      type: truth-table
+      params:
+        inputs:
+          - A
+          - B
+          - C
+        outputs:
+          - label: Y
+            values:
+              - 0
+              - 1
+              - 1
+              - 0
+              - 0
+              - 1
+              - 0
+              - 1
   steps:
     - title:
         it: Da dove si comincia

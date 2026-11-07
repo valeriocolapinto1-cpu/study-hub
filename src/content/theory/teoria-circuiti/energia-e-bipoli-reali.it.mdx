@@ -34,6 +34,25 @@ Gli elementi ideali sono comodi ma «troppo perfetti»: due batterie ideali dive
 
 </div>
 
+<Figure
+  caption="Caratteristica di un generatore reale v = V₀ − R_i·i: tensione a vuoto V₀ e corrente di cortocircuito I_cc = V₀/R_i"
+  num="1"
+  id="fig-1"
+>
+  <Diagram
+    type="function-plot"
+    params={{
+      x: { min: 0, max: 6, label: 'i', unit: 'A' },
+      y: { label: 'v', unit: 'V', min: 0, max: 12 },
+      series: [{ kind: 'poly', coeffs: [10, -2] }],
+      markers: [
+        { x: 0, y: 10, label: 'V_0' },
+        { x: 5, y: 0, label: 'I_{cc}' },
+      ],
+    }}
+  />
+</Figure>
+
 <Formula id="energia-c" />
 <Formula id="energia-l" />
 <Formula id="pila-reale" />

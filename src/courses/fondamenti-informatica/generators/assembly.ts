@@ -5,6 +5,8 @@
  * costruito il listato mostrato.
  */
 import { registerGenerator } from '../../../engine/generators/registry';
+import type { ExerciseFigure } from '../../../engine/generators/registry';
+import { figLoop, figMulCmp, figShift } from './figure';
 import { createRng, type Rng } from '../../../engine/random';
 import {
   loopListing,
@@ -35,6 +37,7 @@ interface Snippet {
   answer: number;
   distractors: number[];
   explain: string;
+  figure: ExerciseFigure;
 }
 
 function loopSnippet(r: Rng, lang: Lang): Snippet {
@@ -42,6 +45,7 @@ function loopSnippet(r: Rng, lang: Lang): Snippet {
   const step = r.int(1, 3);
   const { iterations, finalR1 } = simLoop({ start, step });
   return {
+    figure: figLoop(start, step),
     question: L(
       lang,
       'Quale valore contiene `R2` al termine di questo programma?',
@@ -65,6 +69,7 @@ function mulCmpSnippet(r: Rng, lang: Lang): Snippet {
   const cmp = r.chance(0.5) ? a * b : a * b + r.int(1, 5);
   const { r3, branchTaken } = simMulCmp({ a, b, cmp, add });
   return {
+    figure: figMulCmp(a, b, cmp, add),
     question: L(
       lang,
       'Quale valore contiene `R3` al termine di questo programma?',
@@ -93,6 +98,7 @@ function shiftSnippet(r: Rng, lang: Lang): Snippet {
   const right = r.int(1, 3);
   const { afterLeft, result } = simShift({ value, left, right });
   return {
+    figure: figShift(value, left, right),
     question: L(
       lang,
       'Quale valore contiene `R1` al termine di questo programma?',
@@ -117,6 +123,7 @@ export const snippet = registerGenerator({
     const r = createRng(seed);
     const s = r.pick([loopSnippet, mulCmpSnippet, shiftSnippet])(r, lang);
     return {
+      figure: s.figure,
       statement: `${s.question}\n\n${pre(formatListing(s.listing))}`,
       steps: [{ title: L(lang, 'Esecuzione', 'Execution'), body: s.explain }],
       answer: [],
@@ -136,6 +143,7 @@ export const ciclo = registerGenerator({
     const program = { start, step };
     const { iterations, finalR1 } = simLoop(program);
     return {
+      figure: figLoop(start, step),
       statement:
         L(lang, 'Esegui a mente il ciclo con contatore.', 'Run the counter loop in your head.') +
         `\n\n${pre(formatListing(loopListing(program)))}`,
@@ -186,6 +194,7 @@ export const mulCmp = registerGenerator({
     const add = r.int(1, 9);
     const { r3, branchTaken } = simMulCmp({ a, b, cmp, add });
     return {
+      figure: figMulCmp(a, b, cmp, add),
       statement:
         L(
           lang,
@@ -246,6 +255,7 @@ export const shift = registerGenerator({
     const { afterLeft, result } = simShift(program);
     const bin = toBin(afterLeft % 2 ** 16, 16);
     return {
+      figure: figShift(value, left, right),
       statement:
         L(lang, 'Shift logici: esegui il programma.', 'Logical shifts: run the program.') +
         `\n\n${pre(formatListing(shiftListing(program, lang)))}`,

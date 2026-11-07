@@ -11,6 +11,44 @@
     en:
       Three gates have delays of 3 ns, 2 ns and 4 ns. What is the total delay if they are **in cascade**? And if
       the first two work **in parallel** and the third receives both outputs?
+  figure:
+    diagram:
+      type: block-diagram
+      params:
+        blocks:
+          - id: a1
+            text: G1 · 3 ns
+            col: 0
+            row: 0
+          - id: a2
+            text: G2 · 2 ns
+            col: 1
+            row: 0
+          - id: a3
+            text: G3 · 4 ns
+            col: 2
+            row: 0
+          - id: b1
+            text: G1 · 3 ns
+            col: 0
+            row: 1
+          - id: b2
+            text: G2 · 2 ns
+            col: 0
+            row: 2
+          - id: b3
+            text: G3 · 4 ns
+            col: 1
+            row: 2
+        links:
+          - from: a1
+            to: a2
+          - from: a2
+            to: a3
+          - from: b1
+            to: b3
+          - from: b2
+            to: b3
   steps:
     - title:
         it: Da dove si comincia

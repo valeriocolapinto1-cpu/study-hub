@@ -75,6 +75,20 @@ Getting the order wrong is the most common mistake: the map stops being adjacent
 
 </div>
 
+<Diagram
+  type="karnaugh"
+  params={{
+    vars: ['A', 'B', 'C', 'D'],
+    values: [1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 'x', 1, 1, 'x'],
+    groups: [
+      { cells: [0, 2, 8, 10], label: "B'D'" },
+      { cells: [5, 7, 13, 15], label: 'BD' },
+      { cells: [6, 14], label: "BCD'" },
+    ],
+  }}
+  caption="Four-variable map: B′D′ collects the four corners (adjacent across the edges), BD the central square with a don’t-care, BCD′ a pair"
+/>
+
 <div data-note-id="teoria/mappe-di-karnaugh/implicanti-primi-ed-essenziali">
 
 ## Prime and essential implicants

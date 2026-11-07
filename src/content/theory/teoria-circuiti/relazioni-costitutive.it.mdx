@@ -59,6 +59,24 @@ _Nota._ Se $v$ contiene impulsi (casi con elementi ideali incongruenti) la conti
 
 </details>
 
+<Figure
+  caption="Caratteristiche di due resistori lineari: rette per l’origine con pendenza 1/R (R₁ < R₂)"
+  num="1"
+  id="fig-1"
+>
+  <Diagram
+    type="function-plot"
+    params={{
+      x: { min: -4, max: 4, label: 'v', unit: 'V' },
+      y: { label: 'i', unit: 'A', min: -4, max: 4 },
+      series: [
+        { kind: 'poly', coeffs: [0, 1], label: 'R_1' },
+        { kind: 'poly', coeffs: [0, 0.4], label: 'R_2' },
+      ],
+    }}
+  />
+</Figure>
+
 <Formula id="resistore" />
 <Formula id="condensatore" />
 <Formula id="induttore" />

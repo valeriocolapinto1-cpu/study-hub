@@ -15,7 +15,8 @@ test visivi (390 e 1280 px, chiaro e scuro), axe in IT/EN e `tests/e2e/figure.sp
 | `src/figures/schemas.ts` | schemi **Zod** dei parametri, `parseDiagram()`, `DiagramSpecSchema`, tipi `DiagramParams`/`DiagramSpec` | build-time, test, collection `exercises` |
 | `src/figures/core.ts` | costruttore SVG (`Svg`), toni dai token, etichette con pedici, frecce, quote, archi, `finish()` | ovunque |
 | `src/figures/axes.ts` | assi con tacche "belle", griglia, etichette con unità | ovunque |
-| `src/figures/types/*.ts` | disegnatori per gruppo: `mechanics`, `plots`, `thermo`, `em`, `fields` (Gauss, campi uniformi, induzione), `waves`, `optics`, `cs` | ovunque |
+| `src/figures/types/*.ts` | disegnatori per gruppo: `mechanics`, `plots`, `thermo`, `em`, `fields` (Gauss, campi uniformi, induzione), `waves`, `optics`, `cs`, `signals` (Bode, poli e zeri, diagrammi temporali), `structures` (Karnaugh, campi di bit, pipeline, grafi) | ovunque |
+| `src/figures/schemas-signals.ts` | schemi Zod dei tipi di `signals` e `structures` (registrati in `DIAGRAM_SCHEMAS`) | build-time |
 | `src/figures/render.ts` | `renderDiagram(type, params, opts)` sincrono (tutti i gruppi) | build-time |
 | `src/figures/lazy.ts` | `renderDiagramAsync(type, params, opts)`: importa solo il gruppo necessario | browser |
 | `src/figures/Diagram.astro` | `<Diagram type params caption? title? id? lang? />`: valida e disegna, **zero JS** | Astro, MDX |
@@ -74,7 +75,12 @@ generate(seed, lang) {
 ```
 
 La prima variante è resa a build-time (`withPregenerated`); «Nuova variante» carica `lazy.ts` e solo il
-gruppo della figura. `validateGenerated` controlla che il tipo esista; i test del corso dovrebbero passare
+gruppo della figura.
+
+Copertura per corso: `tests/unit/fisica-2/figure.test.ts` e `tests/unit/figure-corsi/<corso>.test.ts` controllano
+che ogni esercizio statico abbia una figura valida in IT ed EN (eccezioni elencate con il motivo), che ogni
+generatore ne produca una per più semi e che la teoria IT ed EN abbia le stesse figure del kit
+(`theoryDiagrams()` in `tests/unit/figure-corsi/helpers.ts`). `validateGenerated` controlla che il tipo esista; i test del corso dovrebbero passare
 i parametri a `parseDiagram` per qualche seme (vedi `tests/unit/figures.test.ts`).
 
 ### In codice Astro o TypeScript
@@ -98,7 +104,7 @@ Angoli in gradi, 0° = verso destra, antiorario. Le etichette (`label`, `…Labe
 | `projectile` | `v0` [m/s], `angle` (0–90), `h0?` [m], `g?` (9,81), `vectors?` (0–7, default 3), `components? (sì)`, `apex? (sì)`, `range? (sì)`, `values? (sì)`; gittata, quota massima e tempo di volo nella descrizione |
 | `circular-motion` | `angle`, `velocity? (sì)`, `centripetal? (sì)`, `tangential? none\|speeding\|slowing`, `direction? ccw\|cw`, `radiusLabel?`, `angleLabel?`, `showAngle? (sì)` |
 | `motion-graphs` | `segments[{duration, a}]` (moto a tratti con a costante), `x0?`, `v0?`, `show? ['x','v','a']` |
-| `function-plot` | `x{min, max, label?, unit?}`, `y?{min?, max?, label?, unit?}`, `series[]` di tipo `points{points}`, `poly{coeffs}`, `sin{amp, omega?, phase?, offset?}`, `exp{a, b, c?}` (+ `label?`, `tone?`, `dash?`); `markers?`, `vlines?`, `hlines?`, `area?{series, from, to, label?}`, `grid? (sì)` |
+| `function-plot` | `x{min, max, label?, unit?}`, `y?{min?, max?, label?, unit?}`, `series[]` di tipo `points{points}`, `poly{coeffs}`, `sin{amp, omega?, phase?, offset?}`, `exp{a, b, c?}`, `damped{amp, alpha, omega?, phase?, offset?}` (offset + amp·e^(−αx)·cos(ωx + fase): transitori del secondo ordine) (+ `label?`, `tone?`, `dash?`); `markers?`, `vlines?`, `hlines?`, `area?{series, from, to, label?}`, `grid? (sì)` |
 | `collision` | `before[]`, `after[]` di `{label, mass?, v, angle?}` (con `angle` urto nel piano, altrimenti lungo x con il segno di v), `values? (sì)`, `unit?` |
 | `pv-cycle` | `states[{id, p, V}]`, `processes[{from, to, kind isothermal\|adiabatic\|isochoric\|isobaric\|linear}]`, `gamma?` (1,4), `work? (sì)` (area del ciclo o sotto le trasformazioni), `isotherms?`, `units?{p, V}` (kPa, L), `values? (sì)`. Lo schema verifica che gli stati siano coerenti con le trasformazioni (2 %) |
 | `point-charges` | `charges[{x, y, q, label?}]` (\|q\| ≤ 5), `bounds?`, `lines?` (per unità di carica, default 8), `equipotentials?` (default 4), `testPoint?{x, y, label?}` |
@@ -120,6 +126,13 @@ Angoli in gradi, 0° = verso destra, antiorario. Le etichette (`label`, `…Labe
 | `truth-table` | `inputs[]` (1–5), `outputs[{label, values[0\|1\|'x'\|'-']}]` (2ⁿ valori, primo ingresso = bit più significativo), `highlight?[righe]` |
 | `scene` | schizzo a primitive in coordinate del mondo (x a destra, y in alto, scala automatica): `items[]` con `kind` = `surface` (tratteggio a destra del verso from→to), `line{points, closed?, fill?, arrow? mid\|end, label?}`, `rod`, `block{at, w, h, angle?}`, `disc{at, r, style? disc\|ring\|sphere, hole?, radius?}`, `pivot{style? hinge\|support\|pin}`, `spring`, `vector{from, to, vkind? (toni delle forze, velocity, acceleration)}`, `rotation{at, r (px), from, to}`, `arc`, `dim`, `angle`, `dot`, `label{text}`; `title?`, `description?` ({it, en}), `width?`, `maxHeight?`. La descrizione accessibile elenca da sola gli elementi con etichetta |
 | `heat-engine` | `kind engine\|refrigerator\|heat-pump`, `reservoirs[{label, heat?, side hot\|cold, flow? in\|out}]` (2–4, calde in alto e fredde in basso), `work?` (default `W`, vuoto = senza freccia), `engineLabel?` |
+| `bode` | forma K·(s)ⁿ·Π(1+s/z)/Π(1+s/p): `gain?` (1), `zeros?[]`, `poles?[]` di `{w, zeta?}` (con `zeta` coppia complessa 1+2ζ(s/ω)+(s/ω)²), `origin?` (−2…2, zeri o poli nell'origine), `range?{min, max}` [rad/s], `show? ['mag','phase']`, `asymptotes?`, `markers?[{w, label?}]`, `label?` (H) |
+| `pole-zero` | `poles?[]`, `zeros?[]` di `{re, im, label?}` (le coppie coniugate si elencano entrambe), `stableRegion?` (semipiano sinistro evidenziato), `range?`, `axisLabels?` (σ, jω) |
+| `timing` | `signals[]` di `{label, kind: 'clock'}`, `{label, wave: '01x.z'}` (`.` ripete il livello, `x` indefinito, `z` alta impedenza) o `{label, bus: ['A', 'A', 'B']}`; `steps?` (mezzi periodi del clock), `markers?[{at, label?}]` |
+| `karnaugh` | `vars[]` (2–4, la prima è la più significativa: righe = prime ⌊n/2⌋ variabili, colonne = le altre, in codice Gray), `values[]` per mintermine (0, 1, `x`/`-` indifferenza), `groups?[{cells[], label?, tone?}]` (1, 2, 4, 8 o 16 celle; i gruppi che girano oltre il bordo sono disegnati in più pezzi), `output?` |
+| `bitfield` | `bits` (dal più significativo; `0`, `1`, `?`, spazi ignorati; ≤ 32), `fields?[{msb, lsb, label, tone?}]` (bit numerati da destra a partire da 0), `indices? (sì)`, `caption?` |
+| `pipeline` | `rows[{label, start, stages[]}]` (uno stadio per ciclo da `start`, `-` = stallo), `forwards?[{from: [riga, ciclo], to: [riga, ciclo]}]` |
+| `graph` | `nodes[{id, label?, x?, y?}]` (posizioni 0–10 per tutti o per nessuno: altrimenti in cerchio), `edges[{from, to, label?, highlight?, dashed?}]` (lati paralleli curvati), `directed?` |
 
 Toni disponibili per `tone`: `ink`, `muted`, `accent`, `accent2`, `info`, `success`, `warning`, `danger`.
 

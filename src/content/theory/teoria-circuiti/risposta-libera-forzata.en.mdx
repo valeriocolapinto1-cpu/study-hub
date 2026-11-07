@@ -28,6 +28,25 @@ With Laplace: in the transformed circuit set the initial conditions to zero (zer
 
 </div>
 
+<Figure
+  caption="Complete response (solid) = zero-input 2e^{−t} + zero-state 10(1 − e^{−t}) (dashed), for v_C(0) = 2 V, v_∞ = 10 V, τ = 1 s"
+  num="1"
+  id="fig-1"
+>
+  <Diagram
+    type="function-plot"
+    params={{
+      x: { min: 0, max: 5, label: 't', unit: 's' },
+      y: { label: 'v_C', unit: 'V', min: 0, max: 11 },
+      series: [
+        { kind: 'exp', a: 2, b: -1, dash: true },
+        { kind: 'exp', a: -10, b: -1, c: 10, dash: true },
+        { kind: 'exp', a: -8, b: -1, c: 10 },
+      ],
+    }}
+  />
+</Figure>
+
 <Formula id="y-libera-forzata" />
 
 </Layer>

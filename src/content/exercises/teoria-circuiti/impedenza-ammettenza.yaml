@@ -75,6 +75,24 @@
   statement:
     it: "Un RC serie con $R=1\\,\\Omega$, $C=1\\,\\mathrm F$ a $\\omega=1$ ha impedenza:"
     en: "A series RC with $R=1\\,\\Omega$, $C=1\\,\\mathrm F$ at $\\omega=1$ has impedance:"
+  figure:
+    netlist:
+      elements:
+        - type: R
+          id: R
+          a: a
+          b: b
+          value: 1
+        - type: C
+          id: C
+          a: b
+          b: '0'
+          value: 1
+      ports:
+        - id: Z
+          plus: a
+          minus: '0'
+          label: Z
   steps:
     - title:
         it: Spiegazione

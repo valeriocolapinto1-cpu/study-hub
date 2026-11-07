@@ -150,6 +150,94 @@
     en:
       'Write the complete control sequence of the instruction `Load R1, (R2)` on a **single-bus** datapath: it
       loads into R1 the contents of the cell whose address is in R2.'
+  figure:
+    diagram:
+      type: block-diagram
+      params:
+        blocks:
+          - id: pc
+            text: PC
+            col: 0
+            row: 0
+          - id: ir
+            text: IR
+            col: 1
+            row: 0
+          - id: r1
+            text: R1
+            col: 2
+            row: 0
+          - id: r2
+            text: R2
+            col: 3
+            row: 0
+          - id: bus
+            text:
+              it: bus interno
+              en: internal bus
+            col: 0
+            row: 1
+            span: 4
+            emphasis: true
+          - id: mar
+            text: MAR
+            col: 0
+            row: 2
+          - id: mdr
+            text: MDR
+            col: 1
+            row: 2
+          - id: y
+            text: Y
+            col: 2
+            row: 2
+          - id: z
+            text: Z
+            col: 3
+            row: 2
+          - id: mem
+            text:
+              it: memoria
+              en: memory
+            col: 0
+            row: 3
+            span: 2
+          - id: alu
+            text: ALU
+            col: 2
+            row: 3
+            span: 2
+        links:
+          - from: pc
+            to: bus
+            both: true
+          - from: ir
+            to: bus
+            both: true
+          - from: r1
+            to: bus
+            both: true
+          - from: r2
+            to: bus
+            both: true
+          - from: bus
+            to: mar
+          - from: mdr
+            to: bus
+            both: true
+          - from: bus
+            to: y
+          - from: z
+            to: bus
+          - from: mar
+            to: mem
+          - from: mdr
+            to: mem
+            both: true
+          - from: y
+            to: alu
+          - from: alu
+            to: z
   steps:
     - title:
         it: Da dove si comincia

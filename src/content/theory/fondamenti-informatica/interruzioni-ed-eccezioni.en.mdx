@@ -59,6 +59,32 @@ import Schema from '../../../courses/fondamenti-informatica/components/Schema.as
 
 </div>
 
+<Diagram
+  type="flowchart"
+  params={{
+    nodes: [
+      { id: 'a', kind: 'process', text: { it: 'esegue l’istruzione', en: 'execute instruction' } },
+      { id: 'b', kind: 'decision', text: { it: 'richiesta e IE = 1?', en: 'request and IE = 1?' } },
+      {
+        id: 'c',
+        kind: 'process',
+        text: { it: 'salva PC e stato, disabilita', en: 'save PC and status, disable' },
+      },
+      { id: 'd', kind: 'call', text: { it: 'routine di servizio', en: 'service routine' } },
+      { id: 'e', kind: 'process', text: { it: 'ripristina e riprende', en: 'restore and resume' } },
+    ],
+    edges: [
+      { from: 'a', to: 'b' },
+      { from: 'b', to: 'c', label: { it: 'sì', en: 'yes' } },
+      { from: 'b', to: 'a', label: 'no' },
+      { from: 'c', to: 'd' },
+      { from: 'd', to: 'e' },
+      { from: 'e', to: 'a' },
+    ],
+  }}
+  caption="Servicing an interrupt: the current instruction completes, PC and status are saved, the routine runs and execution resumes"
+/>
+
 <div data-note-id="teoria/interruzioni-ed-eccezioni/priorita-e-annidamento">
 
 ## Priority and nesting

@@ -34,6 +34,26 @@ Un induttore ha reattanza positiva (ritarda la corrente rispetto alla tensione),
 
 </div>
 
+<Figure
+  caption="Triangolo dell’impedenza di un carico ohmico-induttivo: Z = R + jX, |Z| e argomento φ"
+  num="1"
+  id="fig-1"
+>
+  <Diagram
+    type="vectors"
+    params={{
+      vectors: [
+        { id: 'R', label: 'R', dx: 4, dy: 0, tone: 'accent' },
+        { id: 'X', label: 'jX', dx: 0, dy: 3, from: 'R', tone: 'info' },
+      ],
+      sum: { of: ['R', 'X'], label: 'Z' },
+      axes: true,
+      axisLabels: ['Re', 'Im'],
+      range: { xMin: -0.5, xMax: 5, yMin: -0.5, yMax: 4 },
+    }}
+  />
+</Figure>
+
 <Formula id="imped-r" />
 <Formula id="imped-l" />
 <Formula id="imped-c" />

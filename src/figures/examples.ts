@@ -682,4 +682,141 @@ export const EXAMPLES: DiagramExample[] = [
       },
     },
   ),
+  // ------------------------------------------------- segnali, reti e logica
+  ex(
+    'transitorio-rlc',
+    'Risposta al gradino di un RLC nei tre regimi',
+    'Step response of an RLC circuit in the three regimes',
+    {
+      type: 'function-plot',
+      params: {
+        x: { min: 0, max: 10, label: 't', unit: 's' },
+        y: { min: 0, max: 1.6, label: 'v_C', unit: 'V' },
+        series: [
+          { kind: 'damped', amp: -1, alpha: 0.4, omega: 1.5, phase: -0.26, offset: 1, label: 'ζ<1' },
+          { kind: 'exp', a: -1, b: -0.5, c: 1, label: 'ζ>1', dash: true },
+        ],
+        hlines: [{ y: 1 }],
+      },
+    },
+  ),
+  ex(
+    'bode-passa-basso',
+    'Passa-basso del primo ordine: modulo e fase',
+    'First-order low-pass: magnitude and phase',
+    {
+      type: 'bode',
+      params: { poles: [{ w: 100 }], asymptotes: true, markers: [{ w: 100, label: 'ω_c' }] },
+    },
+  ),
+  ex('bode-risonanza', 'Coppia di poli complessi poco smorzata', 'Lightly damped complex pole pair', {
+    type: 'bode',
+    params: { poles: [{ w: 10, zeta: 0.15 }], show: ['mag'], asymptotes: true },
+  }),
+  ex(
+    'poli-zeri',
+    'Poli e zeri di una funzione di rete stabile',
+    'Poles and zeros of a stable network function',
+    {
+      type: 'pole-zero',
+      params: {
+        poles: [
+          { re: -1, im: 2 },
+          { re: -1, im: -2 },
+          { re: -3, im: 0 },
+        ],
+        zeros: [{ re: 0, im: 0 }],
+        stableRegion: true,
+      },
+    },
+  ),
+  ex(
+    'temporizzazione-ff-d',
+    'Flip-flop D: Q copia D sui fronti di salita',
+    'D flip-flop: Q copies D on rising edges',
+    {
+      type: 'timing',
+      params: {
+        steps: 12,
+        signals: [
+          { label: 'CK', kind: 'clock' },
+          { label: 'D', wave: '0011110000.1' },
+          { label: 'Q', wave: 'x.0.1...0...', tone: 'info' },
+          { label: 'bus', bus: ['', '', 'A', 'A', 'A', 'A', 'B', 'B', 'B', 'B', '', ''] },
+        ],
+      },
+    },
+  ),
+  ex(
+    'karnaugh-4',
+    'Mappa a quattro variabili con indifferenze e gruppi',
+    'Four-variable map with don’t-cares and groups',
+    {
+      type: 'karnaugh',
+      params: {
+        vars: ['A', 'B', 'C', 'D'],
+        values: [1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 'x', 1, 1, 'x'],
+        groups: [
+          { cells: [0, 2, 8, 10], label: "B'D'" },
+          { cells: [5, 13, 7, 15], label: 'BD' },
+          { cells: [6, 14], label: "BCD'" },
+        ],
+      },
+    },
+  ),
+  ex(
+    'campi-ieee',
+    'Singola precisione IEEE 754: segno, esponente, mantissa',
+    'IEEE 754 single precision: sign, exponent, fraction',
+    {
+      type: 'bitfield',
+      params: {
+        bits: '1 10000010 10001100000000000000000',
+        fields: [
+          { msb: 31, lsb: 31, label: 'S' },
+          { msb: 30, lsb: 23, label: { it: 'esponente', en: 'exponent' } },
+          { msb: 22, lsb: 0, label: { it: 'mantissa', en: 'fraction' } },
+        ],
+      },
+    },
+  ),
+  ex('pipeline-forwarding', 'Dipendenza con stallo e inoltro', 'Dependency with a stall and forwarding', {
+    type: 'pipeline',
+    params: {
+      rows: [
+        { label: 'Load R1,(R2)', start: 1, stages: ['F', 'D', 'E', 'M', 'W'] },
+        { label: 'Add R3,R1,R4', start: 2, stages: ['F', 'D', '-', 'E', 'M', 'W'] },
+        { label: 'Sub R5,R3,R6', start: 3, stages: ['F', '-', 'D', 'E', 'M', 'W'] },
+      ],
+      forwards: [
+        { from: [0, 4], to: [1, 5] },
+        { from: [1, 5], to: [2, 6] },
+      ],
+    },
+  }),
+  ex(
+    'grafo-albero',
+    'Grafo di un circuito con un albero evidenziato',
+    'Circuit graph with a highlighted tree',
+    {
+      type: 'graph',
+      params: {
+        nodes: [
+          { id: '0', x: 5, y: 9 },
+          { id: '1', x: 1, y: 1 },
+          { id: '2', x: 5, y: 1 },
+          { id: '3', x: 9, y: 1 },
+        ],
+        edges: [
+          { from: '1', to: '0', label: 'r_1', highlight: true },
+          { from: '1', to: '2', label: 'r_2' },
+          { from: '2', to: '0', label: 'r_3', highlight: true },
+          { from: '2', to: '3', label: 'r_4' },
+          { from: '3', to: '0', label: 'r_5', highlight: true },
+          { from: '1', to: '2', label: 'r_6' },
+        ],
+        directed: true,
+      },
+    },
+  ),
 ];

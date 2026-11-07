@@ -143,6 +143,25 @@
   statement:
     it: A $\omega_0=1$ e $\dot V=\tfrac12-\tfrac12j$ corrisponde $v(t)=\tfrac12\cos t+\tfrac12\sin t$.
     en: At $\omega_0=1$ the phasor $\dot V=\tfrac12-\tfrac12j$ corresponds to $v(t)=\tfrac12\cos t+\tfrac12\sin t$.
+  figure:
+    diagram:
+      type: vectors
+      params:
+        vectors:
+          - label: V̇
+            dx: 0.5
+            dy: -0.5
+            tone: accent
+            components: true
+        axes: true
+        axisLabels:
+          - Re
+          - Im
+        range:
+          xMin: -1
+          xMax: 1
+          yMin: -1
+          yMax: 1
   steps:
     - title:
         it: Spiegazione
@@ -169,6 +188,27 @@
   statement:
     it: "Il circuito RC serie ($R=C=1$) con $v_g=\\cos t$: l'espressione di $v_C$ in regime è:"
     en: "Series RC circuit ($R=C=1$) with $v_g=\\cos t$: the steady-state expression of $v_C$ is:"
+  figure:
+    netlist:
+      elements:
+        - type: V
+          id: vg
+          a: a
+          b: '0'
+          ac: 1
+        - type: R
+          id: R
+          a: a
+          b: b
+          value: 1
+        - type: C
+          id: C
+          a: b
+          b: '0'
+          value: 1
+          show:
+            v: v_C
+      omega: 1
   steps:
     - title:
         it: Spiegazione

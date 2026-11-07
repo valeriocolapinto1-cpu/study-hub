@@ -112,3 +112,18 @@ describe('schema SVG generato dalla netlist', () => {
     expect(renderSchematic(EXAMPLES.scala).svg).toBe(renderSchematic(EXAMPLES.scala).svg);
   });
 });
+
+describe('show.value e show.name per elemento', () => {
+  it('nascondono valore e nome stampati', () => {
+    const net = {
+      elements: [
+        { type: 'V' as const, id: 'Vg', a: 'a', b: '0', dc: 5, show: { value: false } },
+        { type: 'R' as const, id: 'R1', a: 'a', b: '0', value: 470, show: { name: false } },
+      ],
+    };
+    const { svg } = renderSchematic(net, { lang: 'it' });
+    expect(svg).not.toContain('5 V');
+    expect(svg).toContain('470');
+    expect(svg).toContain('V<tspan');
+  });
+});

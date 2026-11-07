@@ -102,6 +102,22 @@ Senza rimedi la seconda istruzione deve **stallare** (si inseriscono bolle) finc
 
 </div>
 
+<Diagram
+  type="pipeline"
+  params={{
+    rows: [
+      { label: 'Load R1,(R2)', start: 1, stages: ['F', 'D', 'E', 'M', 'W'] },
+      { label: 'Add R3,R1,R4', start: 2, stages: ['F', 'D', '-', 'E', 'M', 'W'] },
+      { label: 'Sub R5,R3,R6', start: 3, stages: ['F', '-', 'D', 'E', 'M', 'W'] },
+    ],
+    forwards: [
+      { from: [0, 4], to: [1, 5] },
+      { from: [1, 5], to: [2, 6] },
+    ],
+  }}
+  caption="Load seguita da un’istruzione che usa il dato: anche con l’inoltro serve uno stallo, perché il valore esce dallo stadio M"
+/>
+
 <div data-note-id="teoria/pipeline/salti">
 
 ## Salti

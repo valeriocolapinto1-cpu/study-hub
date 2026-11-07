@@ -40,6 +40,26 @@ Per un bipolo di impedenza $Z=R+jX$ con corrente efficace $I$: $P=RI^2$, $Q=XI^2
 
 </details>
 
+<Figure
+  caption="Triangolo delle potenze di un carico induttivo: S = P + jQ, con |S| potenza apparente e cos φ = P/|S|"
+  num="1"
+  id="fig-1"
+>
+  <Diagram
+    type="vectors"
+    params={{
+      vectors: [
+        { id: 'P', label: 'P', dx: 4, dy: 0, tone: 'accent' },
+        { id: 'Q', label: 'Q', dx: 0, dy: 3, from: 'P', tone: 'info' },
+      ],
+      sum: { of: ['P', 'Q'], label: 'S' },
+      axes: true,
+      axisLabels: ['P', 'Q'],
+      range: { xMin: -0.5, xMax: 5, yMin: -0.5, yMax: 4 },
+    }}
+  />
+</Figure>
+
 <Formula id="p-picco" />
 <Formula id="p-eff" />
 <Formula id="q-eff" />

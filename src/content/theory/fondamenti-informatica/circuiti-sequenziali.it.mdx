@@ -74,6 +74,19 @@ Un **flip-flop** è un elemento bistabile che memorizza **1 bit** e commuta solo
 
 </div>
 
+<Diagram
+  type="timing"
+  params={{
+    steps: 14,
+    signals: [
+      { label: 'CK', kind: 'clock' },
+      { label: 'D', wave: '00111011001110' },
+      { label: 'Q', wave: '00111111001111', tone: 'info' },
+    ],
+  }}
+  caption="Flip-flop D sensibile al fronte di salita: Q copia D solo sui fronti del clock e resta fermo fra un fronte e l’altro"
+/>
+
 <div data-note-id="teoria/circuiti-sequenziali/master-slave">
 
 ## Master-slave

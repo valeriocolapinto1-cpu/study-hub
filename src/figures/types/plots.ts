@@ -127,6 +127,10 @@ function evalSeries(sr: Series, x: number): number {
       return (sr.offset ?? 0) + sr.amp * Math.sin((sr.omega ?? 1) * x + (sr.phase ?? 0));
     case 'exp':
       return sr.a * Math.exp(sr.b * x) + (sr.c ?? 0);
+    case 'damped':
+      return (
+        (sr.offset ?? 0) + sr.amp * Math.exp(-sr.alpha * x) * Math.cos((sr.omega ?? 0) * x + (sr.phase ?? 0))
+      );
     default:
       return NaN;
   }
@@ -159,6 +163,19 @@ function seriesText(sr: Series, c: Ctx): string {
           sr.b < 0 ? 'esponenziale decrescente' : 'esponenziale crescente',
           sr.b < 0 ? 'decaying exponential' : 'growing exponential',
         )
+      );
+    case 'damped':
+      return (
+        lab +
+        (sr.omega
+          ? c.L(
+              `oscillazione smorzata (α = ${c.num(sr.alpha)}, ω = ${c.num(sr.omega)}) attorno a ${c.num(sr.offset ?? 0)}`,
+              `damped oscillation (α = ${c.num(sr.alpha)}, ω = ${c.num(sr.omega)}) around ${c.num(sr.offset ?? 0)}`,
+            )
+          : c.L(
+              `esponenziale con α = ${c.num(sr.alpha)} verso ${c.num(sr.offset ?? 0)}`,
+              `exponential with α = ${c.num(sr.alpha)} towards ${c.num(sr.offset ?? 0)}`,
+            ))
       );
     default:
       return (

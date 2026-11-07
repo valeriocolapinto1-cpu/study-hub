@@ -38,6 +38,25 @@ A linear system is **asymptotically stable** if the zero-input response tends to
 
 </details>
 
+<Figure
+  caption="Poles of an asymptotically stable network function: all in the left half-plane (shaded)"
+  num="1"
+  id="fig-1"
+>
+  <Diagram
+    type="pole-zero"
+    params={{
+      poles: [
+        { re: -1, im: 2 },
+        { re: -1, im: -2 },
+        { re: -3, im: 0 },
+      ],
+      zeros: [{ re: -2, im: 0 }],
+      stableRegion: true,
+    }}
+  />
+</Figure>
+
 <Formula id="stab-poli" />
 <Formula id="routh2" />
 <Formula id="routh3" />

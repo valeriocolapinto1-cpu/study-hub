@@ -10,6 +10,20 @@
       `0x0C3`.
     en: '**4 KiB** pages. Translate the virtual address `0x0002A7F4` knowing that the page sought is in frame
       `0x0C3`.'
+  figure:
+    diagram:
+      type: bitfield
+      params:
+        bits: 0000 0000 0000 0010 1010 0111 1111 0100
+        fields:
+          - msb: 31
+            lsb: 12
+            label:
+              it: numero di pagina virtuale
+              en: virtual page number
+          - msb: 11
+            lsb: 0
+            label: offset
   steps:
     - title:
         it: Da dove si comincia

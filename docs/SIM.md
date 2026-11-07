@@ -90,6 +90,8 @@ Senza `wave`, un generatore vale `dc + |ac|·cos(ωt + fase)` per ogni t.
 
 - `show: { v: true | 'v_{x}', i: true | 'i_x', name: false, value: false }` sull'elemento: segni + e − della
   tensione (sul lato opposto all'etichetta) e freccia della corrente (sul reoforo dal lato di `a`, verso a→b).
+  `name: false` e `value: false` nascondono nome e valore stampati (esercizi letterali, generatori di valore
+  qualsiasi).
 - `label: '2R'` sostituisce il valore stampato (utile per esercizi letterali).
 - `ports: [{ id: AB, plus: c, minus: '0', label: 'A–B' }]`: morsetti aperti disegnati (Thévenin, carichi).
 - `probes: [{ kind: v, plus, minus, label }]`, `[{ kind: i, element, label }]`: grandezze evidenziate.

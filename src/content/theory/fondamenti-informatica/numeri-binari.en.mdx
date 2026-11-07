@@ -92,6 +92,18 @@ The most significant bit has **negative** weight: on 4 bits, `1011₂ = −8 + 0
 
 </Callout>
 
+<Diagram
+  type="bitfield"
+  params={{
+    bits: '1010 1101',
+    fields: [
+      { msb: 7, lsb: 7, label: '−128' },
+      { msb: 6, lsb: 0, label: '+45' },
+    ],
+  }}
+  caption="−83 in two’s complement on 8 bits: 1010 1101 (= 0xAD); the most significant bit weighs −128"
+/>
+
 <div data-note-id="teoria/numeri-binari/range">
 
 ## Range

@@ -34,6 +34,24 @@ Never add phasors at different frequencies: they are numbers attached to differe
 
 </div>
 
+<Figure
+  caption="Superposition: DC component 4 V (dashed) plus the sinusoid ½cos t + ½sin t; the responses add in time, not as phasors"
+  num="1"
+  id="fig-1"
+>
+  <Diagram
+    type="function-plot"
+    params={{
+      x: { min: -12, max: 0, label: 't', unit: 's' },
+      y: { label: 'v_C', unit: 'V', min: 2.5, max: 5 },
+      series: [
+        { kind: 'poly', coeffs: [4], dash: true },
+        { kind: 'sin', amp: 0.7071, phase: 0.7854, offset: 4 },
+      ],
+    }}
+  />
+</Figure>
+
 <Formula id="sovrapposizione" />
 <Formula id="cond-iniz-mista" />
 

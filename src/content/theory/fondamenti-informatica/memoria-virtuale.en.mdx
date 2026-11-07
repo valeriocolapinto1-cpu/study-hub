@@ -64,6 +64,18 @@ The offset is not touched: page and frame have the same size, so only the upper 
 
 </div>
 
+<Diagram
+  type="bitfield"
+  params={{
+    bits: '????????????????????????????????',
+    fields: [
+      { msb: 31, lsb: 12, label: { it: 'numero di pagina virtuale', en: 'virtual page number' } },
+      { msb: 11, lsb: 0, label: 'offset' },
+    ],
+  }}
+  caption="32-bit virtual address with 4 KiB pages: the 12 low bits are the offset and pass through unchanged, the 20 high bits are the page number to translate"
+/>
+
 <div data-note-id="teoria/memoria-virtuale/la-tabella-delle-pagine">
 
 ## The page table

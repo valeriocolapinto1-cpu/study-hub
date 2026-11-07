@@ -75,6 +75,24 @@
   statement:
     it: "$V_{th}=8\\,\\mathrm V$, $R_{th}=4\\,\\Omega$: $I_N=$"
     en: "$V_{th}=8\\,\\mathrm V$, $R_{th}=4\\,\\Omega$: $I_N=$"
+  figure:
+    netlist:
+      elements:
+        - type: V
+          id: Vth
+          a: a
+          b: '0'
+          dc: 8
+        - type: R
+          id: Rth
+          a: a
+          b: b
+          value: 4
+      ports:
+        - id: AB
+          plus: b
+          minus: '0'
+          label: A–B
   steps:
     - title:
         it: Spiegazione

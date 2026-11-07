@@ -113,6 +113,19 @@ The stack carries the return address, parameters, local variables and the regist
 
 </div>
 
+<Diagram
+  type="memory"
+  params={{
+    kind: 'stack',
+    title: { it: 'Pila durante C', en: 'Stack while C runs' },
+    cells: [
+      { value: 'ret. to A', label: 'SP+4' },
+      { value: 'ret. to B', label: 'SP', highlight: true },
+    ],
+  }}
+  caption="The stack when A has called B and B has called C: each call pushes its return address on top of the previous one"
+/>
+
 <div data-note-id="teoria/risc-cisc-assembly/un-programma-completo">
 
 ## A complete program

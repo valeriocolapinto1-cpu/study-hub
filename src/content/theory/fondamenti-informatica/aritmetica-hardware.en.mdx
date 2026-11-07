@@ -69,6 +69,18 @@ It is built from two half adders plus an OR. In the drawing remember to break it
 
 </div>
 
+<Diagram
+  type="truth-table"
+  params={{
+    inputs: ['A', 'B', 'Cin'],
+    outputs: [
+      { label: 'S', values: [0, 1, 1, 0, 1, 0, 0, 1] },
+      { label: 'Cout', values: [0, 0, 0, 1, 0, 1, 1, 1] },
+    ],
+  }}
+  caption="Full adder truth table: S = A ⊕ B ⊕ Cin, Cout = 1 when at least two inputs are 1"
+/>
+
 <div data-note-id="teoria/aritmetica-hardware/ripple-carry-semplice-ma-lento">
 
 ## Ripple-carry: simple but slow

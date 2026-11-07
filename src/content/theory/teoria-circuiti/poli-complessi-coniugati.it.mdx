@@ -32,6 +32,25 @@ $\alpha>0$: oscillazione smorzata; $\alpha=0$: oscillazione permanente (marginal
 
 </div>
 
+<Figure
+  caption="Contributo di una coppia di poli −a ± jω (a = 0,3, ω = 2): oscillazione e^{−at}cos ωt dentro l’inviluppo ±e^{−at}"
+  num="1"
+  id="fig-1"
+>
+  <Diagram
+    type="function-plot"
+    params={{
+      x: { min: 0, max: 12, label: 't', unit: 's' },
+      y: { label: 'f', min: -1.1, max: 1.1 },
+      series: [
+        { kind: 'damped', amp: 1, alpha: 0.3, omega: 2, label: 'f(t)' },
+        { kind: 'exp', a: 1, b: -0.3, dash: true, tone: 'muted' },
+        { kind: 'exp', a: -1, b: -0.3, dash: true, tone: 'muted' },
+      ],
+    }}
+  />
+</Figure>
+
 <Formula id="complessi-antitr" />
 
 </Layer>

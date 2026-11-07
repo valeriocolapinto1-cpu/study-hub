@@ -75,6 +75,20 @@ Sbagliare l'ordine è l'errore più comune: la mappa smette di essere adiacente 
 
 </div>
 
+<Diagram
+  type="karnaugh"
+  params={{
+    vars: ['A', 'B', 'C', 'D'],
+    values: [1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 'x', 1, 1, 'x'],
+    groups: [
+      { cells: [0, 2, 8, 10], label: "B'D'" },
+      { cells: [5, 7, 13, 15], label: 'BD' },
+      { cells: [6, 14], label: "BCD'" },
+    ],
+  }}
+  caption="Mappa a quattro variabili: B′D′ raccoglie i quattro angoli (adiacenti attraverso i bordi), BD il quadrato centrale con un’indifferenza, BCD′ una coppia"
+/>
+
 <div data-note-id="teoria/mappe-di-karnaugh/implicanti-primi-ed-essenziali">
 
 ## Implicanti primi ed essenziali

@@ -72,6 +72,17 @@ Un filtro è un circuito che tratta le frequenze in modo diverso: un RC con usci
   </svg>
 </Figure>
 
+<Figure
+  caption="Bode di un passa-alto del primo ordine (ω_c = 1 rad/s): +20 dB/decade sotto ω_c, −3 dB e +45° a ω_c"
+  num="2"
+  id="fig-2"
+>
+  <Diagram
+    type="bode"
+    params={{ origin: 1, poles: [{ w: 1 }], asymptotes: true, markers: [{ w: 1, label: 'ω_c' }] }}
+  />
+</Figure>
+
 <Formula id="wc-rc" />
 <Formula id="wc-rl" />
 <Formula id="mod-lp" />

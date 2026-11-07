@@ -360,6 +360,23 @@
       '**2-way** set-associative cache with **2 sets** (four blocks in all), **LRU** policy. The set is chosen
       by “block number modulo 2”. Trace the accesses to blocks `0, 1, 2, 0, 3, 1, 2, 4, 0` marking hits and
       misses.'
+  figure:
+    diagram:
+      type: memory
+      params:
+        kind: memory
+        title:
+          it: Cache a 2 vie, 2 gruppi (vuota)
+          en: 2-way cache, 2 sets (empty)
+        cells:
+          - value: —
+            label: G0 · via 0
+          - value: —
+            label: G0 · via 1
+          - value: —
+            label: G1 · via 0
+          - value: —
+            label: G1 · via 1
   steps:
     - title:
         it: Da dove si comincia

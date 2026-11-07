@@ -49,6 +49,26 @@
   statement:
     it: "$|V_{th}|=10\\,\\mathrm V$ (picco), $R_{th}=5\\,\\Omega$: $P_{max}=$"
     en: "$|V_{th}|=10\\,\\mathrm V$ (peak), $R_{th}=5\\,\\Omega$: $P_{max}=$"
+  figure:
+    netlist:
+      elements:
+        - type: V
+          id: Vth
+          a: a
+          b: '0'
+          ac: 10
+        - type: R
+          id: Rth
+          a: a
+          b: b
+          value: 5
+        - type: R
+          id: ZL
+          a: b
+          b: '0'
+          value: 5
+          show:
+            value: false
   steps:
     - title:
         it: Spiegazione

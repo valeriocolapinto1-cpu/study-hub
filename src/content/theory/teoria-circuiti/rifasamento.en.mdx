@@ -32,6 +32,27 @@ The goal is to reduce the current (and hence the losses) for the same $P$: $I=P/
 
 </div>
 
+<Figure
+  caption="Power-factor correction: the capacitor adds Q_C < 0, the active power P stays the same and the apparent power falls from |S₁| to |S₂|"
+  num="1"
+  id="fig-1"
+>
+  <Diagram
+    type="vectors"
+    params={{
+      vectors: [
+        { id: 'P', label: 'P', dx: 4, dy: 0, tone: 'accent' },
+        { id: 'S1', label: 'S_1', dx: 4, dy: 3, tone: 'danger' },
+        { id: 'S2', label: 'S_2', dx: 4, dy: 1, tone: 'success', dashed: true },
+        { label: 'Q_C', x: 4.35, y: 3, dx: 0, dy: -2, tone: 'warning', dashed: true },
+      ],
+      axes: true,
+      axisLabels: ['P', 'Q'],
+      range: { xMin: -0.5, xMax: 5.5, yMin: -0.5, yMax: 4 },
+    }}
+  />
+</Figure>
+
 <Formula id="rifasamento-c" />
 <Formula id="q-c" />
 

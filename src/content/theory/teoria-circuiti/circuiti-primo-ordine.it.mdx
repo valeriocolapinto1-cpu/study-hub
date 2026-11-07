@@ -62,6 +62,24 @@ Un circuito con un solo elemento di memoria e generatori indipendenti è descrit
 
 </details>
 
+<Figure
+  caption="Carica del condensatore dell’esempio: v_C(t) = 10 − 8e^{−t} V tende a v_∞ = 10 V; dopo un τ manca il 37 % del salto"
+  num="2"
+  id="fig-2"
+>
+  <Diagram
+    type="function-plot"
+    params={{
+      x: { min: 0, max: 5, label: 't', unit: 's' },
+      y: { label: 'v_C', unit: 'V', min: 0, max: 11 },
+      series: [{ kind: 'exp', a: -8, b: -1, c: 10 }],
+      hlines: [{ y: 10, label: 'v_∞' }],
+      vlines: [{ x: 1, label: 'τ' }],
+      markers: [{ x: 1, y: 7.057 }],
+    }}
+  />
+</Figure>
+
 <Formula id="tau-rc" />
 <Formula id="tau-rl" />
 <Formula id="sol-primo-ordine" />
