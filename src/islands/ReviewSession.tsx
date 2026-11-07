@@ -4,7 +4,7 @@
  * fronte/retro, valutazione Again/Hard/Good/Easy con anteprima degli
  * intervalli, scorciatoie da tastiera, statistiche e previsione.
  */
-import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
 import type { CardData, CourseData } from '../engine/course-data';
 import {
   buildQueue,
@@ -153,7 +153,9 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
     requestAnimationFrame(() => cardRef.current?.focus());
   };
 
-  useEffect(() => {
+  // useLayoutEffect: il listener con lo stato aggiornato è attivo subito dopo il render, non dopo il disegno;
+  // con useEffect un tasto premuto fra render e disegno trovava ancora lo stato precedente (carta già girata).
+  useLayoutEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const el = e.target as HTMLElement | null;
       if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) return;
