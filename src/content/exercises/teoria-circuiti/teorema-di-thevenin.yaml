@@ -125,6 +125,29 @@
   statement:
     it: "$12\\,\\mathrm V$ in serie a $2\\,\\Omega$ con $4\\,\\Omega$ verso massa: la porta ai capi di $4\\,\\Omega$ ha $V_{th}$ e $R_{th}$:"
     en: "$12\\,\\mathrm V$ in series with $2\\,\\Omega$ and $4\\,\\Omega$ to ground: the port across $4\\,\\Omega$ has $V_{th}$ and $R_{th}$:"
+  figure:
+    netlist:
+      elements:
+        - type: V
+          id: V1
+          a: a
+          b: "0"
+          dc: 12
+        - type: R
+          id: R1
+          a: a
+          b: b
+          value: 2
+        - type: R
+          id: R2
+          a: b
+          b: "0"
+          value: 4
+      ports:
+        - id: AB
+          plus: b
+          minus: "0"
+          label: A–B
   steps:
     - title:
         it: Spiegazione

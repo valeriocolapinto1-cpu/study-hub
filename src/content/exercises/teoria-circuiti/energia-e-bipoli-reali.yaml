@@ -41,6 +41,28 @@
   statement:
     it: "$C=1\\,\\mathrm F$ a $2\\,\\mathrm V$ viene collegato in parallelo a $C=1\\,\\mathrm F$ scarico. L'energia finale rispetto a quella iniziale:"
     en: "$C=1\\,\\mathrm F$ charged to $2\\,\\mathrm V$ is connected in parallel with an uncharged $C=1\\,\\mathrm F$. Compared with the initial energy, the final energy:"
+  figure:
+    netlist:
+      elements:
+        - type: C
+          id: C1
+          a: a
+          b: "0"
+          value: 1
+          v0: 2
+          show:
+            v: true
+        - type: SW
+          id: S
+          a: a
+          b: b
+          closed: false
+          toggleAt: 0
+        - type: C
+          id: C2
+          a: b
+          b: "0"
+          value: 1
   steps:
     - title:
         it: Spiegazione

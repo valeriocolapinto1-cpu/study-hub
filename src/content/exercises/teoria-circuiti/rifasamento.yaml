@@ -83,6 +83,44 @@
   statement:
     it: "$P=100\\,\\mathrm W$, $V=10\\,\\mathrm V$, $\\omega=10$, $\\tan\\varphi_1=3/4$, rifasamento completo: $C=$"
     en: "$P=100\\,\\mathrm W$, $V=10\\,\\mathrm V$, $\\omega=10$, $\\tan\\varphi_1=3/4$, full correction: $C=$"
+  figure:
+    diagram:
+      type: vectors
+      params:
+        vectors:
+          - id: P
+            label: P
+            dx: 4
+            dy: 0
+            tone: accent
+          - id: Q1
+            label: Q_1
+            dx: 0
+            dy: 3
+            from: P
+            tone: info
+          - id: QC
+            label: Q_C
+            x: 4.25
+            y: 3
+            dx: 0
+            dy: -3
+            tone: danger
+            dashed: true
+        sum:
+          of:
+            - P
+            - Q1
+          label: S_1
+        axes: true
+        axisLabels:
+          - P
+          - Q
+        range:
+          xMin: -1
+          xMax: 5
+          yMin: -1
+          yMax: 4
   steps:
     - title:
         it: Spiegazione

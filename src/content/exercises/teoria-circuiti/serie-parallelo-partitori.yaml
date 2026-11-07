@@ -7,6 +7,24 @@
   statement:
     it: "Due resistori $6\\,\\Omega$ e $3\\,\\Omega$ in parallelo equivalgono a:"
     en: "Two resistors of $6\\,\\Omega$ and $3\\,\\Omega$ in parallel are equivalent to:"
+  figure:
+    netlist:
+      elements:
+        - type: R
+          id: R1
+          a: a
+          b: "0"
+          value: 6
+        - type: R
+          id: R2
+          a: a
+          b: "0"
+          value: 3
+      ports:
+        - id: AB
+          plus: a
+          minus: "0"
+          label: R_{eq}
   steps:
     - title:
         it: Spiegazione
@@ -41,6 +59,26 @@
   statement:
     it: "$R_1=1\\,\\Omega$ e $R_2=3\\,\\Omega$ in serie con $12\\,\\mathrm V$: la tensione su $R_2$ è"
     en: "$R_1=1\\,\\Omega$ and $R_2=3\\,\\Omega$ in series with $12\\,\\mathrm V$: the voltage across $R_2$ is"
+  figure:
+    netlist:
+      elements:
+        - type: V
+          id: V1
+          a: a
+          b: "0"
+          dc: 12
+        - type: R
+          id: R1
+          a: a
+          b: b
+          value: 1
+        - type: R
+          id: R2
+          a: b
+          b: "0"
+          value: 3
+          show:
+            v: v_2
   steps:
     - title:
         it: Spiegazione
@@ -75,6 +113,32 @@
   statement:
     it: "Partitore di corrente: $i$ entra nel parallelo di $G_1=1\\,\\mathrm S$ e $G_2=3\\,\\mathrm S$. La corrente in $G_2$ è:"
     en: "Current divider: $i$ enters the parallel of $G_1=1\\,\\mathrm S$ and $G_2=3\\,\\mathrm S$. The current in $G_2$ is:"
+  figure:
+    netlist:
+      elements:
+        - type: I
+          id: i
+          a: "0"
+          b: a
+          dc: 1
+          show:
+            value: false
+        - type: R
+          id: G1
+          a: a
+          b: "0"
+          value: 1
+          label: 1 S
+          show:
+            i: i_1
+        - type: R
+          id: G2
+          a: a
+          b: "0"
+          value: 0.3333333333333333
+          label: 3 S
+          show:
+            i: i_2
   steps:
     - title:
         it: Spiegazione
@@ -135,6 +199,29 @@
   statement:
     it: "$R_{eq}$ fra i capi di un resistore da $4\\,\\Omega$ in parallelo alla serie $2\\,\\Omega+2\\,\\Omega$:"
     en: "$R_{eq}$ across a $4\\,\\Omega$ resistor in parallel with the series $2\\,\\Omega+2\\,\\Omega$:"
+  figure:
+    netlist:
+      elements:
+        - type: R
+          id: R1
+          a: a
+          b: "0"
+          value: 4
+        - type: R
+          id: R2
+          a: a
+          b: b
+          value: 2
+        - type: R
+          id: R3
+          a: b
+          b: "0"
+          value: 2
+      ports:
+        - id: AB
+          plus: a
+          minus: "0"
+          label: R_{eq}
   steps:
     - title:
         it: Spiegazione

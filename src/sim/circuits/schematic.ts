@@ -1473,8 +1473,10 @@ function makeLabels(
     return lbl;
   };
   const labels: Labels = {
-    name: (e, sub) => (sub === 'nor' ? '' : nameMarkup(e.id)),
+    name: (e, sub) => (sub === 'nor' || e.show?.name === false ? '' : nameMarkup(e.id)),
     value(e, sub) {
+      // `show.value: false` sull'elemento nasconde il valore stampato (esercizi letterali)
+      if (e.show?.value === false && !e.label) return '';
       if (!showValues && !['E', 'G', 'H', 'F'].includes(e.type)) return e.label ?? '';
       if (e.label) return e.label;
       const f = (x: number, u: string): string => fmt(x, u, lang, digits);

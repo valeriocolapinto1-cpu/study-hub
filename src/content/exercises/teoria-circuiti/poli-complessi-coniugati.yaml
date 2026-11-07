@@ -15,6 +15,18 @@
   statement:
     it: "Poli $s=\\pm j\\omega_0$ danno un contributo temporale:"
     en: "Poles $s=\\pm j\\omega_0$ give a time-domain contribution that is:"
+  figure:
+    diagram:
+      type: pole-zero
+      params:
+        poles:
+          - re: 0
+            im: 2
+            label: jω_0
+          - re: 0
+            im: -2
+            label: −jω_0
+        range: 3
   steps:
     - title:
         it: Spiegazione
@@ -49,6 +61,18 @@
   statement:
     it: "Poli $-a\\pm j\\omega$ con $a>0$ danno:"
     en: "Poles $-a\\pm j\\omega$ with $a>0$ give:"
+  figure:
+    diagram:
+      type: pole-zero
+      params:
+        poles:
+          - re: -1
+            im: 2
+            label: −a+jω
+          - re: -1
+            im: -2
+            label: −a−jω
+        range: 3
   steps:
     - title:
         it: Spiegazione

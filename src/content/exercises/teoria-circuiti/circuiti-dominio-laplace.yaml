@@ -75,6 +75,22 @@
   statement:
     it: "$R=2\\,\\Omega$, $C=1\\,\\mathrm F$, $v_C(0^-)=4\\,\\mathrm V$, generatori spenti: $V_C(s)=$"
     en: "$R=2\\,\\Omega$, $C=1\\,\\mathrm F$, $v_C(0^-)=4\\,\\mathrm V$, sources off: $V_C(s)=$"
+  figure:
+    netlist:
+      elements:
+        - type: C
+          id: C
+          a: n
+          b: "0"
+          value: 1
+          v0: 4
+          show:
+            v: v_C
+        - type: R
+          id: R
+          a: n
+          b: "0"
+          value: 2
   steps:
     - title:
         it: Spiegazione

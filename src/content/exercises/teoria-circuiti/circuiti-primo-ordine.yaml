@@ -98,6 +98,19 @@
   statement:
     it: Per un RL con $L=2\,\mathrm H$ e $R_{eq}=5\,\Omega$, $\tau=$
     en: For an RL with $L=2\,\mathrm H$ and $R_{eq}=5\,\Omega$, $\tau=$
+  figure:
+    netlist:
+      elements:
+        - type: L
+          id: L
+          a: n
+          b: "0"
+          value: 2
+        - type: R
+          id: Req
+          a: n
+          b: "0"
+          value: 5
   steps:
     - title:
         it: Spiegazione

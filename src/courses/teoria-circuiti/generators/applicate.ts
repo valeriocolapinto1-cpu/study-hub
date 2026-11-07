@@ -12,6 +12,19 @@ import { generateInstance } from '../lib/generate';
 import { withDec } from '../lib/explain';
 import { instanceNetlist, kitNetlist } from '../lib/kit';
 import { nz } from '../lib/templates';
+import {
+  figDoppioBipolo,
+  figFiltro,
+  figGrafo,
+  figImpulsiva,
+  figMaxTrasf,
+  figOpamp,
+  figPoli,
+  figPotenze,
+  figRifasamento,
+  figRisonanza,
+  figSegnaleTratti,
+} from './figure';
 
 type Build = (rng: Rng, lang: Lang) => GeneratedExercise;
 const L = (x: Rational | number | string) => R(x).toLatex();
@@ -80,6 +93,7 @@ const maxTrasf: Build = (rng, lang) => {
   const z = `${r}${x >= 0 ? '+' : '-'}j${Math.abs(x)}`;
   const zc = `${r}${-x >= 0 ? '+' : '-'}j${Math.abs(x)}`;
   return {
+    figure: figMaxTrasf(vp, r, x),
     statement: tr(
       lang,
       `Un bipolo in regime sinusoidale ha equivalente di Thevenin con $\\dot V_{th}=${vp}\\,\\mathrm V$ (ampiezza di **picco**) e $Z_{th}=${z}\\,\\Omega$. Determinare l'impedenza di carico $Z_L$ che massimizza la potenza attiva assorbita e il valore massimo $P_{max}$.`,
@@ -145,6 +159,7 @@ const filtro: Build = (rng, lang) => {
   }[kind];
   const tipo = lp ? tr(lang, 'passa-basso', 'low-pass') : tr(lang, 'passa-alto', 'high-pass');
   return {
+    figure: figFiltro(kind, r, x),
     statement: tr(
       lang,
       `Un filtro del primo ordine è formato da ${desc}; l'uscita è la tensione sull'elemento in parallelo. Determinare la pulsazione di taglio a 3 dB e il modulo della risposta in continua $|H(0)|$ (che dice il tipo di filtro).`,
@@ -195,6 +210,7 @@ const risonanza: Build = (rng, lang) => {
   const band = R(w0).div(qf);
   const tipo = serie ? tr(lang, 'serie', 'series') : tr(lang, 'parallelo', 'parallel');
   return {
+    figure: figRisonanza(serie, r, l, n(c)),
     statement: tr(
       lang,
       `Un circuito RLC ${tipo} ha $R=${r}\\,\\Omega$, $L=${l}\\,\\mathrm H$, $C=${L(c)}\\,\\mathrm F$. Determinare la pulsazione di risonanza, il fattore di merito $Q$ e la banda a 3 dB.`,
@@ -300,6 +316,7 @@ const impulsiva: Build = (rng, lang) => {
   const x = rng.int(1, 4);
   const a = rc ? R(1, r * x) : R(r, x);
   return {
+    figure: figImpulsiva(rc, r, x),
     statement: rc
       ? tr(
           lang,
@@ -338,6 +355,7 @@ const doppiBipoli: Build = (rng, lang) => {
   const [a, b, c] = [rng.int(1, 5), rng.int(1, 5), rng.int(1, 5)];
   if (rng.chance(0.5))
     return {
+      figure: figDoppioBipolo(true, a, b, c),
       statement: tr(
         lang,
         `Un doppio bipolo a «T» ha due resistori in serie ($R_a=${a}\\,\\Omega$ sulla porta 1, $R_b=${b}\\,\\Omega$ sulla porta 2) e un resistore in derivazione $R_c=${c}\\,\\Omega$ verso il morsetto comune. Determinare la matrice delle impedenze $Z$ (correnti entranti nelle porte).`,
@@ -374,6 +392,7 @@ const doppiBipoli: Build = (rng, lang) => {
       ],
     };
   return {
+    figure: figDoppioBipolo(false, a, b, c),
     statement: tr(
       lang,
       `Un doppio bipolo a «π» ha un conduttore in derivazione sulla porta 1 ($G_a=${a}\\,\\mathrm S$), uno sulla porta 2 ($G_b=${b}\\,\\mathrm S$) e uno in serie tra i morsetti superiori ($G_c=${c}\\,\\mathrm S$). Determinare la matrice delle ammettenze $Y$.`,
@@ -431,6 +450,7 @@ const rifasamento: Build = (rng, lang) => {
       .mul(R(tan1).sub(second[1]!))
       .div(R(w * v * v));
     return {
+      figure: figRifasamento(n(R(tan1)), n(R(second[1]!))),
       statement: tr(
         lang,
         `Un carico assorbe $P=${p}\\,\\mathrm W$ con tensione efficace $V=${v}\\,\\mathrm V$ a $\\omega=${w}\\,\\mathrm{rad/s}$ e fattore di potenza $\\cos\\varphi_1=${L(cos1)}$ (induttivo). Calcolare la capacità $C$ in parallelo che porta il fattore di potenza a $\\cos\\varphi_2=${L(second[0]!)}$.`,
@@ -464,6 +484,7 @@ const potenze: Build = (rng, lang) => {
   const Q = half.mul(sn);
   const zmod = R(vm, im);
   return {
+    figure: figPotenze(n(R(cs)), n(R(sn))),
     statement: tr(
       lang,
       `In regime sinusoidale $v(t)=${vm}\\cos(\\omega t)\\,\\mathrm V$ e $i(t)=${im}\\cos(\\omega t-\\varphi)\\,\\mathrm A$ (convenzione degli utilizzatori) con $\\cos\\varphi=${L(cs)}$, $\\sin\\varphi=${L(sn)}$. Calcolare $P$, $Q$, il modulo di $S$ e l'impedenza $Z=R+jX$.`,
@@ -505,6 +526,7 @@ const laplaceTratti: Build = (rng, lang) => {
   if (rng.chance(0.5)) {
     const val = a * (1 - Math.exp(-T));
     return {
+      figure: figSegnaleTratti(true, a, T),
       statement: tr(
         lang,
         `Il segnale vale $x(t)=${a}$ per $0<t<${T}$ e $0$ altrove. Calcolare $X(1)$, cioè la trasformata di Laplace in $s=1$, con almeno 3 cifre significative.`,
@@ -529,6 +551,7 @@ const laplaceTratti: Build = (rng, lang) => {
   }
   const val = a * (1 - Math.exp(-T) * (1 + T));
   return {
+    figure: figSegnaleTratti(false, a, T),
     statement: tr(
       lang,
       `Il segnale è una rampa $x(t)=${a}\\,t$ per $0<t<${T}$ e $0$ altrove. Calcolare $X(1)$ con almeno 3 cifre significative.`,
@@ -602,6 +625,7 @@ const opamp: Build = (rng, lang) => {
     sol = `$v_o=\\dfrac{R_2}{R_1}(V_{g2}-V_{g1})=${withDec(vo, lang)}\\,\\mathrm V$.`;
   }
   return {
+    figure: figOpamp(kind),
     statement: tr(
       lang,
       `Con amplificatore operazionale ideale (nullore), configurazione ${text}. Calcolare la tensione di uscita $v_o$.`,
@@ -635,6 +659,7 @@ const topologia: Build = (rng, lang) => {
   const b = edges.length;
   const list = edges.map(([x, y], i) => `$r_{${i + 1}}:\\ ${x}\\to${y}$`).join(', ');
   return {
+    figure: figGrafo(nn, edges),
     statement: tr(
       lang,
       `Un circuito ha ${nn} nodi (numerati da 0 a ${nn - 1}) e ${b} rami, collegati come segue: ${list}. Il grafo è connesso. Quanti rami ha un albero, quante sono le maglie fondamentali e quanti i tagli fondamentali?`,
@@ -827,6 +852,7 @@ const antiSingolo: Build = (rng, lang) => {
   const a = rng.int(1, 6);
   const k = nz(rng, 9);
   return {
+    figure: figPoli([[-a, 0]]),
     statement: tr(
       lang,
       `Calcolare la trasformata inversa $f(t)=A\\,e^{-pt}$, per $t>0$, di $F(s)=\\dfrac{${k}}{s+${a}}$: determinare $A$ e $p$.`,
@@ -849,6 +875,13 @@ const antiFratti: Build = (rng, lang) => {
   const c0 = a * q + b * p;
   const num = `${c1 === 1 ? '' : c1 === -1 ? '-' : c1}s${c0 >= 0 ? '+' : ''}${c0}`.replace(/^0s\+?/, '');
   return {
+    figure: figPoli(
+      [
+        [-p, 0],
+        [-q, 0],
+      ],
+      c1 !== 0 ? [[-c0 / c1, 0]] : [],
+    ),
     statement: tr(
       lang,
       `Calcolare $f(t)=A\\,e^{-${p}t}+B\\,e^{-${q}t}$, per $t>0$, antitrasformata di $F(s)=\\dfrac{${num}}{(s+${p})(s+${q})}$: determinare $A$ e $B$.`,
@@ -880,6 +913,13 @@ const antiOscill: Build = (rng, lang) => {
   const b = nz(rng, 8);
   const ratio = R(b, w);
   return {
+    figure: figPoli(
+      [
+        [0, w],
+        [0, -w],
+      ],
+      [[-b / a, 0]],
+    ),
     statement: tr(
       lang,
       `Calcolare $f(t)=A\\cos(${w}t)+B\\sin(${w}t)$, per $t>0$, antitrasformata di $F(s)=\\dfrac{${a === 1 ? '' : a === -1 ? '-' : a}s${b >= 0 ? '+' : ''}${b}}{s^2+${w * w}}$: determinare $A$ e $B$.`,

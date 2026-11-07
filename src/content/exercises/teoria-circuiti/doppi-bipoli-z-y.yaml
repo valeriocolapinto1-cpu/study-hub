@@ -226,6 +226,33 @@
   statement:
     it: '$T$ di resistori: $R_a=1,R_b=2$ (serie) e $R_c=3$ (derivazione). $z_{12}=$'
     en: 'T of resistors: $R_a=1,R_b=2$ (series) and $R_c=3$ (shunt). $z_{12}=$'
+  figure:
+    netlist:
+      elements:
+        - type: R
+          id: Ra
+          a: p1
+          b: m
+          value: 1
+        - type: R
+          id: Rb
+          a: m
+          b: p2
+          value: 2
+        - type: R
+          id: Rc
+          a: m
+          b: "0"
+          value: 3
+      ports:
+        - id: P1
+          plus: p1
+          minus: "0"
+          label: "1"
+        - id: P2
+          plus: p2
+          minus: "0"
+          label: "2"
   steps:
     - title:
         it: Spiegazione

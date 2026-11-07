@@ -63,6 +63,29 @@
   statement:
     it: "Con $n=2$, un carico $Z_L=3\\,\\Omega$ alla porta 2 è visto dalla porta 1 come:"
     en: "With $n=2$, a load $Z_L=3\\,\\Omega$ at port 2 is seen from port 1 as:"
+  figure:
+    netlist:
+      elements:
+        - type: T
+          id: T1
+          p1a: p
+          p1b: "0"
+          p2a: s
+          p2b: "0"
+          n: 2
+        - type: R
+          id: ZL
+          a: s
+          b: "0"
+          value: 3
+          label: 3 Ω
+      ports:
+        - id: P1
+          plus: p
+          minus: "0"
+          label: Z_1
+      layout:
+        order: [p, s]
   steps:
     - title:
         it: Spiegazione

@@ -113,6 +113,32 @@
   statement:
     it: "Op-amp ideale in configurazione invertente con $R_1=2\\,\\Omega$, $R_2=8\\,\\Omega$ e $V_g=1\\,\\mathrm V$: $v_o=$"
     en: "Ideal op-amp in the inverting configuration with $R_1=2\\,\\Omega$, $R_2=8\\,\\Omega$ and $V_g=1\\,\\mathrm V$: $v_o=$"
+  figure:
+    netlist:
+      elements:
+        - type: V
+          id: Vg
+          a: g
+          b: "0"
+          dc: 1
+        - type: R
+          id: R1
+          a: g
+          b: m
+          value: 2
+        - type: R
+          id: R2
+          a: m
+          b: o
+          value: 8
+        - type: OA
+          id: A1
+          plus: "0"
+          minus: m
+          out: o
+      nodes:
+        o:
+          label: v_o
   steps:
     - title:
         it: Spiegazione
@@ -147,6 +173,34 @@
   statement:
     it: "Op-amp non invertente con $R_1=1\\,\\Omega$ (verso massa) e $R_2=3\\,\\Omega$ (retroazione): il guadagno è"
     en: "Non-inverting op-amp with $R_1=1\\,\\Omega$ (to ground) and $R_2=3\\,\\Omega$ (feedback): the gain is"
+  figure:
+    netlist:
+      elements:
+        - type: V
+          id: Vi
+          a: i
+          b: "0"
+          dc: 1
+          show:
+            value: false
+        - type: OA
+          id: A1
+          plus: i
+          minus: m
+          out: o
+        - type: R
+          id: R1
+          a: m
+          b: "0"
+          value: 1
+        - type: R
+          id: R2
+          a: m
+          b: o
+          value: 3
+      nodes:
+        o:
+          label: v_o
   steps:
     - title:
         it: Spiegazione

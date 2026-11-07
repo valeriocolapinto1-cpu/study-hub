@@ -83,6 +83,36 @@
   statement:
     it: "$P=300\\,\\mathrm W$, $Q=400\\,\\mathrm{var}$: $|S|=$"
     en: "$P=300\\,\\mathrm W$, $Q=400\\,\\mathrm{var}$: $|S|=$"
+  figure:
+    diagram:
+      type: vectors
+      params:
+        vectors:
+          - id: P
+            label: P
+            dx: 3
+            dy: 0
+            tone: accent
+          - id: Q
+            label: Q
+            dx: 0
+            dy: 4
+            from: P
+            tone: info
+        sum:
+          of:
+            - P
+            - Q
+          label: S
+        axes: true
+        axisLabels:
+          - P
+          - Q
+        range:
+          xMin: -1
+          xMax: 5
+          yMin: -1
+          yMax: 5
   steps:
     - title:
         it: Spiegazione

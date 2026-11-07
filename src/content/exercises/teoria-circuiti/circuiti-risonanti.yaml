@@ -151,6 +151,30 @@
   statement:
     it: "RLC serie con $L=1\\,\\mathrm H$, $C=1/4\\,\\mathrm F$, $R=1\\,\\Omega$: $\\omega_0$ e $Q$ valgono"
     en: "Series RLC with $L=1\\,\\mathrm H$, $C=1/4\\,\\mathrm F$, $R=1\\,\\Omega$: $\\omega_0$ and $Q$ are"
+  figure:
+    netlist:
+      elements:
+        - type: V
+          id: Vg
+          a: a
+          b: "0"
+          ac: 1
+        - type: R
+          id: R
+          a: a
+          b: b
+          value: 1
+        - type: L
+          id: L
+          a: b
+          b: c
+          value: 1
+        - type: C
+          id: C
+          a: c
+          b: "0"
+          value: 0.25
+          label: 1/4 F
   steps:
     - title:
         it: Spiegazione

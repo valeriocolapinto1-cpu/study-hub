@@ -186,6 +186,31 @@
   statement:
     it: 'RL con uscita sul resistore (serie $L$, $R$) è:'
     en: 'RL with the output across the resistor (series $L$, $R$) is:'
+  figure:
+    netlist:
+      elements:
+        - type: V
+          id: vi
+          a: a
+          b: "0"
+          ac: 1
+          show:
+            value: false
+        - type: L
+          id: L
+          a: a
+          b: o
+          value: 1
+          show:
+            value: false
+        - type: R
+          id: R
+          a: o
+          b: "0"
+          value: 1
+          show:
+            v: v_o
+            value: false
   steps:
     - title:
         it: Spiegazione
