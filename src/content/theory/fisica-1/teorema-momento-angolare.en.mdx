@@ -1,0 +1,187 @@
+---
+course: fisica-1
+topic: teorema-momento-angolare
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/teorema-momento-angolare/idea">
+
+It is the rotational twin of the first cardinal equation: just as internal forces cannot move the CM, internal torques cannot make the system as a whole rotate. A falling cat turns over without violating the law: it changes its shape (and therefore its partial moments of inertia) while keeping the total L equal to zero.
+
+</div>
+
+<div class="muted" data-note-id="teoria/teorema-momento-angolare/prerequisiti">
+
+**Before this topic:** [Torque and angular momentum](../momento-angolare/) · [Centre of mass and the first cardinal equation](../centro-di-massa/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/teorema-momento-angolare/definizioni">
+
+## Definitions
+
+For a system of point particles, the total angular momentum about a pole O is $\vec{L} = \sum_i \vec{r}_i\times m_i\vec{v}_i$ and the resultant torque of the external forces is $\vec{\tau}^{ext} = \sum_i \vec{r}_i\times\vec{F}_i^{ext}$. The second cardinal equation states: $d\vec{L}/dt = \vec{\tau}^{ext}$, valid if the pole is fixed in an inertial frame or coincides with the centre of mass. Torques of internal forces do not contribute.
+
+</div>
+
+<div data-note-id="teoria/teorema-momento-angolare/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Differentiate the total angular momentum (fixed pole O)</summary>
+
+$$
+\frac{d\vec{L}}{dt} = \sum_i \vec{v}_i\times m_i\vec{v}_i + \sum_i \vec{r}_i\times m_i\vec{a}_i = \sum_i \vec{r}_i\times m_i\vec{a}_i
+$$
+
+The first term vanishes (v × v = 0).
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Substitute Newton for each point</summary>
+
+$$
+\frac{d\vec{L}}{dt} = \sum_i \vec{r}_i\times\Big(\vec{F}_i^{ext} + \sum_{j\neq i}\vec{f}_{ij}\Big) = \vec{\tau}^{ext} + \sum_{pairs}(\vec{r}_i - \vec{r}_j)\times\vec{f}_{ij}
+$$
+
+Group the torques of internal forces in action–reaction pairs using f_ji = −f_ij.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Internal torques cancel</summary>
+
+$$
+(\vec{r}_i - \vec{r}_j) \parallel \vec{f}_{ij} \;\Rightarrow\; (\vec{r}_i - \vec{r}_j)\times\vec{f}_{ij} = \vec{0}
+$$
+
+The strong form of the third law is needed: internal forces act along the line joining the two points (true for gravity, contact and elastic forces).
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Second cardinal equation</summary>
+
+$$
+\frac{d\vec{L}}{dt} = \vec{\tau}^{ext}
+$$
+
+Only external torques change the total angular momentum of the system.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Validity with a moving pole</summary>
+
+$$
+\frac{d\vec{L}_Q}{dt} = \vec{\tau}_Q^{ext} - \vec{v}_Q\times M\vec{v}_{cm}
+$$
+
+The spurious term vanishes if: (a) Q is fixed; (b) v_Q ∥ v_cm; (c) Q ≡ CM. This is why the centre of mass is always an admissible pole, even when accelerating.
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Rigid body with a fixed symmetry axis</summary>
+
+$$
+L_z = I\omega \;\Rightarrow\; I\frac{d\omega}{dt} = I\alpha = \tau_z^{ext}
+$$
+
+Projecting on the rotation axis gives the rotational analogue of F = ma: the equation used to solve pulleys, flywheels, physical pendulums.
+
+</details>
+
+<details id="passo-7">
+<summary>Step 7 · Conservation of angular momentum</summary>
+
+$$
+\vec{\tau}^{ext} = \vec{0} \;\Rightarrow\; \vec{L} = \text{const}
+$$
+
+The third great conservation law. Examples: skater (I₁ω₁ = I₂ω₂), collapsing star, planets.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/teorema-momento-angolare/ipotesi">
+
+## Validity assumptions
+
+Newton's third law in strong form (central internal forces); pole fixed in an inertial frame or pole at the CM; L = Iω requires a rigid body rotating about a fixed or symmetry axis.
+
+</div>
+
+<div data-note-id="teoria/teorema-momento-angolare/casi-limite">
+
+## Limiting cases
+
+Isolated system or forces with zero torque: L conserved. Central forces with the pole at the centre: the conservation for the point particle is recovered. If the axis is not a symmetry axis, L is not parallel to ω and torques appear on the bearings (wheel imbalance).
+
+</div>
+
+<div data-note-id="teoria/teorema-momento-angolare/formule">
+
+## Key formulas
+
+<Formula id="teorema-momento-angolare-f1" />
+
+<Formula id="teorema-momento-angolare-f2" />
+
+<Formula id="teorema-momento-angolare-f3" />
+
+<Formula id="teorema-momento-angolare-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/teorema-momento-angolare/esempio">
+
+A bucket of mass m = 4.0 kg hangs from a rope wound on a winch shaped like a disc of mass M = 6.0 kg and radius R = 0.15 m, free to rotate without friction about its axis. The bucket is released from rest. Find: (a) the acceleration of the bucket; (b) the tension in the rope; (c) the angular velocity of the winch after the bucket has descended 2.0 m.
+
+1. **Equations of motion.** Bucket: $mg - T = ma$. Winch: $TR = I\alpha = \tfrac12 MR^2\,(a/R)$, i.e. $T = \tfrac12 Ma$. Adding: $a = \dfrac{mg}{m + M/2} = \dfrac{39.24}{7.0} \approx 5.61\ \text{m/s}^2$.
+2. **Tension.** $T = \tfrac12 Ma \approx 16.8\ \text{N}$, less than the weight of the bucket (39.2 N).
+3. **Angular velocity.** $v = \sqrt{2ah} \approx 4.74\ \text{m/s}$, $\omega = v/R \approx 31.6\ \text{rad/s}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/teorema-momento-angolare/errori">
+
+- Using an arbitrary moving point as pole without the correction term: only the CM is always admissible.
+- Including torques of internal forces.
+- Writing L = Iω as a general vector relation: it holds along the rotation axis (or for principal axes).
+- Forgetting to check that the pole used for τ and the one used for L are the same.
+
+</div>
+
+<div data-note-id="teoria/teorema-momento-angolare/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- Why is the centre of mass an admissible pole even when it accelerates?
+- When a skater pulls in her arms her kinetic energy increases: who does the work?
+- Are the two cardinal equations enough to determine the motion of a rigid body?
+
+</div>
+
+</Layer>

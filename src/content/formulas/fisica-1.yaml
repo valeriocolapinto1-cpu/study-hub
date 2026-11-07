@@ -1,0 +1,806 @@
+- id: moto-circolare-vario-f1
+  topic: moto-circolare-vario
+  latex: v = \omega R
+  label:
+    it: Velocità e velocità angolare
+    en: Speed and angular velocity
+- id: moto-circolare-vario-f2
+  topic: moto-circolare-vario
+  latex: a_t = \alpha R = \frac{dv}{dt}
+  label:
+    it: Accelerazione tangenziale
+    en: Tangential acceleration
+- id: moto-circolare-vario-f3
+  topic: moto-circolare-vario
+  latex: a_n = \omega^2 R = \frac{v^2}{R}
+  label:
+    it: Accelerazione centripeta
+    en: Centripetal acceleration
+- id: moto-circolare-vario-f4
+  topic: moto-circolare-vario
+  latex: '|\vec{a}| = \sqrt{a_t^2 + a_n^2}'
+  label:
+    it: Modulo dell'accelerazione totale
+    en: Magnitude of the total acceleration
+- id: moto-armonico-f1
+  topic: moto-armonico
+  latex: x(t) = A\cos(\omega t + \varphi)
+  label:
+    it: Legge oraria del moto armonico
+    en: Equation of simple harmonic motion
+- id: moto-armonico-f2
+  topic: moto-armonico
+  latex: \ddot{x} = -\omega^2 x
+  label:
+    it: Equazione differenziale del moto armonico
+    en: Differential equation of harmonic motion
+- id: moto-armonico-f3
+  topic: moto-armonico
+  latex: T = \frac{2\pi}{\omega}
+  label:
+    it: Periodo
+    en: Period
+- id: moto-armonico-f4
+  topic: moto-armonico
+  latex: A = \sqrt{x_0^2 + v_0^2/\omega^2}
+  label:
+    it: Ampiezza dalle condizioni iniziali
+    en: Amplitude from the initial conditions
+- id: moto-armonico-f5
+  topic: moto-armonico
+  latex: v_{max} = A\omega,\; a_{max} = A\omega^2
+  label:
+    it: Velocità e accelerazione massime
+    en: Maximum velocity and acceleration
+- id: oscillatore-massa-molla-f1
+  topic: oscillatore-massa-molla
+  latex: F = -kx
+  label:
+    it: Legge di Hooke
+    en: Hooke's law
+- id: oscillatore-massa-molla-f2
+  topic: oscillatore-massa-molla
+  latex: \omega = \sqrt{k/m}
+  label:
+    it: Pulsazione propria
+    en: Natural angular frequency
+- id: oscillatore-massa-molla-f3
+  topic: oscillatore-massa-molla
+  latex: T = 2\pi\sqrt{m/k}
+  label:
+    it: Periodo del sistema massa-molla
+    en: Period of the mass–spring system
+- id: oscillatore-massa-molla-f4
+  topic: oscillatore-massa-molla
+  latex: U = \frac{1}{2}kx^2
+  label:
+    it: Energia potenziale elastica
+    en: Elastic potential energy
+- id: oscillatore-massa-molla-f5
+  topic: oscillatore-massa-molla
+  latex: E = \frac{1}{2}kA^2
+  label:
+    it: Energia meccanica dell'oscillatore
+    en: Mechanical energy of the oscillator
+- id: pendolo-semplice-f1
+  topic: pendolo-semplice
+  latex: \ddot{\theta} + \frac{g}{L}\sin\theta = 0
+  label:
+    it: Equazione esatta del pendolo
+    en: Exact pendulum equation
+- id: pendolo-semplice-f2
+  topic: pendolo-semplice
+  latex: \omega = \sqrt{g/L}
+  label:
+    it: Pulsazione delle piccole oscillazioni
+    en: Small-oscillation angular frequency
+- id: pendolo-semplice-f3
+  topic: pendolo-semplice
+  latex: T = 2\pi\sqrt{L/g}
+  label:
+    it: Periodo delle piccole oscillazioni
+    en: Small-oscillation period
+- id: pendolo-semplice-f4
+  topic: pendolo-semplice
+  latex: T_{filo} = mg\cos\theta + \frac{mv^2}{L}
+  label:
+    it: Tensione del filo
+    en: String tension
+  latexEn: T_{string} = mg\cos\theta + \frac{mv^2}{L}
+- id: sistemi-di-riferimento-f1
+  topic: sistemi-di-riferimento
+  latex: \vec{a} = \vec{a}' + \vec{A}
+  label:
+    it: Composizione delle accelerazioni
+    en: Composition of accelerations
+- id: sistemi-di-riferimento-f2
+  topic: sistemi-di-riferimento
+  latex: m\vec{a}' = \vec{F} - m\vec{A}
+  label:
+    it: Seconda legge nel riferimento accelerato
+    en: Second law in the accelerating frame
+- id: sistemi-di-riferimento-f3
+  topic: sistemi-di-riferimento
+  latex: \vec{F}_{app} = -m\vec{A}
+  label:
+    it: Forza apparente
+    en: Fictitious force
+  latexEn: \vec{F}_{fict} = -m\vec{A}
+- id: sistemi-di-riferimento-f4
+  topic: sistemi-di-riferimento
+  latex: N = m(g \pm A)
+  label:
+    it: Peso apparente in ascensore
+    en: Apparent weight in a lift
+- id: oscillatore-smorzato-f1
+  topic: oscillatore-smorzato
+  latex: \ddot{x} + 2\gamma\dot{x} + \omega_0^2 x = 0
+  label:
+    it: Equazione dell'oscillatore smorzato
+    en: Damped oscillator equation
+- id: oscillatore-smorzato-f2
+  topic: oscillatore-smorzato
+  latex: x = Ae^{-\gamma t}\cos(\omega_s t + \varphi)
+  label:
+    it: Soluzione sottosmorzata
+    en: Underdamped solution
+- id: oscillatore-smorzato-f3
+  topic: oscillatore-smorzato
+  latex: \omega_s = \sqrt{\omega_0^2 - \gamma^2}
+  label:
+    it: Pulsazione smorzata
+    en: Damped angular frequency
+- id: oscillatore-smorzato-f4
+  topic: oscillatore-smorzato
+  latex: \frac{dE}{dt} = -b\dot{x}^2
+  label:
+    it: Potenza dissipata
+    en: Dissipated power
+- id: oscillatore-smorzato-f5
+  topic: oscillatore-smorzato
+  latex: Q = \frac{\omega_0}{2\gamma}
+  label:
+    it: Fattore di qualità
+    en: Quality factor
+- id: risonanza-f1
+  topic: risonanza
+  latex: \ddot{x} + 2\gamma\dot{x} + \omega_0^2 x = \frac{F_0}{m}\cos\Omega t
+  label:
+    it: Equazione dell'oscillatore forzato
+    en: Driven oscillator equation
+- id: risonanza-f2
+  topic: risonanza
+  latex: A(\Omega) = \frac{F_0/m}{\sqrt{(\omega_0^2-\Omega^2)^2 + 4\gamma^2\Omega^2}}
+  label:
+    it: Ampiezza a regime (curva di risonanza)
+    en: Steady-state amplitude (resonance curve)
+- id: risonanza-f3
+  topic: risonanza
+  latex: \tan\delta = \frac{2\gamma\Omega}{\omega_0^2-\Omega^2}
+  label:
+    it: Ritardo di fase
+    en: Phase lag
+- id: risonanza-f4
+  topic: risonanza
+  latex: \Omega_{ris} = \sqrt{\omega_0^2 - 2\gamma^2}
+  label:
+    it: Pulsazione di risonanza dell'ampiezza
+    en: Amplitude resonance frequency
+- id: lavoro-energia-cinetica-f1
+  topic: lavoro-energia-cinetica
+  latex: W = \int_A^B \vec{F}\cdot d\vec{r}
+  label:
+    it: Lavoro di una forza
+    en: Work of a force
+- id: lavoro-energia-cinetica-f2
+  topic: lavoro-energia-cinetica
+  latex: K = \frac{1}{2}mv^2
+  label:
+    it: Energia cinetica
+    en: Kinetic energy
+- id: lavoro-energia-cinetica-f3
+  topic: lavoro-energia-cinetica
+  latex: W_{tot} = \Delta K
+  label:
+    it: Teorema dell'energia cinetica
+    en: Work–kinetic energy theorem
+- id: lavoro-energia-cinetica-f4
+  topic: lavoro-energia-cinetica
+  latex: P = \vec{F}\cdot\vec{v}
+  label:
+    it: Potenza
+    en: Power
+- id: forze-conservative-f1
+  topic: forze-conservative
+  latex: \oint \vec{F}\cdot d\vec{r} = 0
+  label:
+    it: Circuitazione nulla
+    en: Zero circulation
+- id: forze-conservative-f2
+  topic: forze-conservative
+  latex: W_{A\to B} = -\Delta U
+  label:
+    it: Lavoro ed energia potenziale
+    en: Work and potential energy
+- id: forze-conservative-f3
+  topic: forze-conservative
+  latex: E = K + U = \text{cost}
+  label:
+    it: Conservazione dell'energia meccanica
+    en: Conservation of mechanical energy
+  latexEn: E = K + U = \text{const}
+- id: forze-conservative-f4
+  topic: forze-conservative
+  latex: \vec{F} = -\vec{\nabla}U
+  label:
+    it: Forza come gradiente del potenziale
+    en: Force as gradient of the potential
+- id: forze-conservative-f5
+  topic: forze-conservative
+  latex: U_{grav} = mgh,\; U_{el} = \tfrac{1}{2}kx^2
+  label:
+    it: Energie potenziali notevoli
+    en: Notable potential energies
+- id: forze-non-conservative-f1
+  topic: forze-non-conservative
+  latex: \Delta E = \Delta(K+U) = W_{nc}
+  label:
+    it: Bilancio dell'energia meccanica
+    en: Mechanical energy balance
+- id: forze-non-conservative-f2
+  topic: forze-non-conservative
+  latex: W_{attr} = -\mu_d N d
+  label:
+    it: Lavoro dell'attrito radente
+    en: Work of sliding friction
+  latexEn: W_{fr} = -\mu_d N d
+- id: forze-non-conservative-f3
+  topic: forze-non-conservative
+  latex: '|W_{attr}| = \Delta E_{interna}'
+  label:
+    it: Energia dissipata in energia interna
+    en: Energy dissipated into internal energy
+  latexEn: '|W_{fr}| = \Delta E_{internal}'
+- id: momento-angolare-f1
+  topic: momento-angolare
+  latex: \vec{\tau} = \vec{r}\times\vec{F},\; |\vec{\tau}| = Fb
+  label:
+    it: Momento di una forza
+    en: Torque
+- id: momento-angolare-f2
+  topic: momento-angolare
+  latex: \vec{L} = \vec{r}\times m\vec{v}
+  label:
+    it: Momento angolare del punto
+    en: Angular momentum of a particle
+- id: momento-angolare-f3
+  topic: momento-angolare
+  latex: \frac{d\vec{L}}{dt} = \vec{\tau}
+  label:
+    it: Teorema del momento angolare (punto)
+    en: Angular momentum theorem (particle)
+- id: momento-angolare-f4
+  topic: momento-angolare
+  latex: \vec{F}\text{ centrale} \Rightarrow \vec{L} = \text{cost}
+  label:
+    it: Conservazione con forze centrali
+    en: Conservation with central forces
+  latexEn: \vec{F}\text{ central} \Rightarrow \vec{L} = \text{const}
+- id: centro-di-massa-f1
+  topic: centro-di-massa
+  latex: \vec{r}_{cm} = \frac{1}{M}\sum m_i\vec{r}_i
+  label:
+    it: Posizione del centro di massa
+    en: Position of the centre of mass
+- id: centro-di-massa-f2
+  topic: centro-di-massa
+  latex: \vec{P} = M\vec{v}_{cm}
+  label:
+    it: Quantità di moto totale
+    en: Total momentum
+- id: centro-di-massa-f3
+  topic: centro-di-massa
+  latex: \vec{F}^{ext} = M\vec{a}_{cm} = \frac{d\vec{P}}{dt}
+  label:
+    it: Prima equazione cardinale
+    en: First cardinal equation
+- id: centro-di-massa-f4
+  topic: centro-di-massa
+  latex: \vec{F}^{ext}=0 \Rightarrow \vec{P}=\text{cost}
+  label:
+    it: Conservazione della quantità di moto
+    en: Conservation of momentum
+  latexEn: \vec{F}^{ext}=0 \Rightarrow \vec{P}=\text{const}
+- id: momenti-di-inerzia-f1
+  topic: momenti-di-inerzia
+  latex: I = \int r^2\,dm
+  label:
+    it: Momento d'inerzia
+    en: Moment of inertia
+- id: momenti-di-inerzia-f2
+  topic: momenti-di-inerzia
+  latex: K_{rot} = \frac{1}{2}I\omega^2
+  label:
+    it: Energia cinetica di rotazione
+    en: Rotational kinetic energy
+- id: momenti-di-inerzia-f3
+  topic: momenti-di-inerzia
+  latex: I = I_{cm} + Md^2
+  label:
+    it: Teorema di Huygens-Steiner
+    en: Huygens–Steiner theorem
+- id: momenti-di-inerzia-f4
+  topic: momenti-di-inerzia
+  latex: I_{disco} = \tfrac{1}{2}MR^2,\; I_{sfera} = \tfrac{2}{5}MR^2,\; I_{asta,cm} = \tfrac{1}{12}ML^2
+  label:
+    it: Momenti d'inerzia notevoli
+    en: Notable moments of inertia
+  latexEn: I_{disc} = \tfrac{1}{2}MR^2,\; I_{sphere} = \tfrac{2}{5}MR^2,\; I_{rod,cm} = \tfrac{1}{12}ML^2
+- id: teorema-momento-angolare-f1
+  topic: teorema-momento-angolare
+  latex: \vec{L} = \sum \vec{r}_i\times m_i\vec{v}_i
+  label:
+    it: Momento angolare di un sistema
+    en: Angular momentum of a system
+- id: teorema-momento-angolare-f2
+  topic: teorema-momento-angolare
+  latex: \frac{d\vec{L}}{dt} = \vec{\tau}^{ext}
+  label:
+    it: Seconda equazione cardinale
+    en: Second cardinal equation
+- id: teorema-momento-angolare-f3
+  topic: teorema-momento-angolare
+  latex: L_z = I\omega,\;\; I\alpha = \tau_z
+  label:
+    it: Rotazione attorno a un asse fisso
+    en: Rotation about a fixed axis
+- id: teorema-momento-angolare-f4
+  topic: teorema-momento-angolare
+  latex: \tau^{ext}=0 \Rightarrow \vec{L}=\text{cost}
+  label:
+    it: Conservazione del momento angolare
+    en: Conservation of angular momentum
+  latexEn: \tau^{ext}=0 \Rightarrow \vec{L}=\text{const}
+- id: teorema-di-koenig-f1
+  topic: teorema-di-koenig
+  latex: \vec{L} = \vec{r}_{cm}\times M\vec{v}_{cm} + \vec{L}'
+  label:
+    it: Primo teorema di König
+    en: König's first theorem
+- id: teorema-di-koenig-f2
+  topic: teorema-di-koenig
+  latex: K = \frac{1}{2}Mv_{cm}^2 + K'
+  label:
+    it: Secondo teorema di König
+    en: König's second theorem
+- id: teorema-di-koenig-f3
+  topic: teorema-di-koenig
+  latex: K_{rigido} = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2
+  label:
+    it: Energia cinetica del corpo rigido
+    en: Kinetic energy of a rigid body
+- id: moto-corpo-rigido-f1
+  topic: moto-corpo-rigido
+  latex: \vec{v}_P = \vec{v}_{cm} + \vec{\omega}\times\vec{r}_P
+  label:
+    it: Campo delle velocità del corpo rigido
+    en: Velocity field of a rigid body
+- id: moto-corpo-rigido-f2
+  topic: moto-corpo-rigido
+  latex: \vec{F}^{ext} = M\vec{a}_{cm},\;\; \vec{\tau}_{cm} = \frac{d\vec{L}_{cm}}{dt}
+  label:
+    it: Equazioni cardinali del corpo rigido
+    en: Cardinal equations of a rigid body
+- id: moto-corpo-rigido-f3
+  topic: moto-corpo-rigido
+  latex: I\alpha = \tau_z
+  label:
+    it: Equazione della rotazione
+    en: Equation of rotation
+- id: moto-corpo-rigido-f4
+  topic: moto-corpo-rigido
+  latex: P = \tau\omega
+  label:
+    it: Potenza nella rotazione
+    en: Power in rotation
+- id: statica-corpo-rigido-f1
+  topic: statica-corpo-rigido
+  latex: \sum\vec{F}^{ext} = \vec{0}
+  label:
+    it: Equilibrio delle forze
+    en: Force equilibrium
+- id: statica-corpo-rigido-f2
+  topic: statica-corpo-rigido
+  latex: \sum\vec{\tau}^{ext} = \vec{0}\;\forall\text{ polo}
+  label:
+    it: Equilibrio dei momenti
+    en: Torque equilibrium
+  latexEn: \sum\vec{\tau}^{ext} = \vec{0}\;\forall\text{ pole}
+- id: statica-corpo-rigido-f3
+  topic: statica-corpo-rigido
+  latex: \vec{\tau}_{peso} = \vec{r}_{cm}\times M\vec{g}
+  label:
+    it: Momento del peso
+    en: Torque of the weight
+  latexEn: \vec{\tau}_{weight} = \vec{r}_{cm}\times M\vec{g}
+- id: statica-corpo-rigido-f4
+  topic: statica-corpo-rigido
+  latex: f_s \le \mu_s N
+  label:
+    it: Limite dell'attrito statico
+    en: Static friction limit
+- id: energia-corpo-rigido-f1
+  topic: energia-corpo-rigido
+  latex: K = \frac{1}{2}I_{asse}\omega^2
+  label:
+    it: Energia cinetica con asse fisso
+    en: Kinetic energy with a fixed axis
+  latexEn: K = \frac{1}{2}I_{axis}\omega^2
+- id: energia-corpo-rigido-f2
+  topic: energia-corpo-rigido
+  latex: K = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2
+  label:
+    it: Energia cinetica (König)
+    en: Kinetic energy (König)
+- id: energia-corpo-rigido-f3
+  topic: energia-corpo-rigido
+  latex: U = Mg\,z_{cm}
+  label:
+    it: Energia potenziale del corpo rigido
+    en: Potential energy of a rigid body
+- id: energia-corpo-rigido-f4
+  topic: energia-corpo-rigido
+  latex: W_{rot} = \int \tau\,d\theta
+  label:
+    it: Lavoro nella rotazione
+    en: Work in rotation
+- id: pendolo-fisico-f1
+  topic: pendolo-fisico
+  latex: I\ddot{\theta} = -Mgd\sin\theta
+  label:
+    it: Equazione del pendolo fisico
+    en: Physical pendulum equation
+- id: pendolo-fisico-f2
+  topic: pendolo-fisico
+  latex: \omega = \sqrt{\frac{Mgd}{I}}
+  label:
+    it: Pulsazione del pendolo fisico
+    en: Physical pendulum angular frequency
+- id: pendolo-fisico-f3
+  topic: pendolo-fisico
+  latex: T = 2\pi\sqrt{\frac{I}{Mgd}}
+  label:
+    it: Periodo del pendolo fisico
+    en: Physical pendulum period
+- id: pendolo-fisico-f4
+  topic: pendolo-fisico
+  latex: \ell = \frac{I}{Md}
+  label:
+    it: Lunghezza ridotta
+    en: Reduced length
+- id: rotolamento-puro-f1
+  topic: rotolamento-puro
+  latex: v_{cm} = \omega R
+  label:
+    it: Vincolo di rotolamento puro
+    en: Pure-rolling constraint
+- id: rotolamento-puro-f2
+  topic: rotolamento-puro
+  latex: K = \frac{1}{2}(1+\beta)Mv_{cm}^2,\;\beta = \frac{I_{cm}}{MR^2}
+  label:
+    it: Energia cinetica nel rotolamento
+    en: Kinetic energy in rolling
+- id: rotolamento-puro-f3
+  topic: rotolamento-puro
+  latex: a_{cm} = \frac{g\sin\theta}{1+\beta}
+  label:
+    it: Accelerazione lungo il piano inclinato
+    en: Acceleration down the incline
+- id: rotolamento-puro-f4
+  topic: rotolamento-puro
+  latex: f_s \le \mu_s Mg\cos\theta
+  label:
+    it: Condizione di non strisciamento
+    en: No-slip condition
+- id: urti-centrali-f1
+  topic: urti-centrali
+  latex: m_1v_1 + m_2v_2 = m_1v_1' + m_2v_2'
+  label:
+    it: Conservazione della quantità di moto nell'urto
+    en: Conservation of momentum in the collision
+- id: urti-centrali-f2
+  topic: urti-centrali
+  latex: v_1' - v_2' = -(v_1 - v_2)\;(\text{elastico})
+  label:
+    it: Inversione della velocità relativa (elastico)
+    en: Reversal of relative velocity (elastic)
+  latexEn: v_1' - v_2' = -(v_1 - v_2)\;(\text{elastic})
+- id: urti-centrali-f3
+  topic: urti-centrali
+  latex: v' = v_{cm}\;(\text{perf. anelastico})
+  label:
+    it: Velocità finale (perfettamente anelastico)
+    en: Final velocity (perfectly inelastic)
+  latexEn: v' = v_{cm}\;(\text{perf. inelastic})
+- id: urti-centrali-f4
+  topic: urti-centrali
+  latex: \Delta K = -\tfrac{1}{2}\mu v_{rel}^2
+  label:
+    it: Energia dissipata
+    en: Dissipated energy
+- id: pendolo-balistico-f1
+  topic: pendolo-balistico
+  latex: mv_0 = (m+M)V
+  label:
+    it: Urto perfettamente anelastico
+    en: Perfectly inelastic collision
+- id: pendolo-balistico-f2
+  topic: pendolo-balistico
+  latex: \frac{1}{2}(m+M)V^2 = (m+M)gh
+  label:
+    it: Risalita del pendolo
+    en: Rise of the pendulum
+- id: pendolo-balistico-f3
+  topic: pendolo-balistico
+  latex: v_0 = \frac{m+M}{m}\sqrt{2gh}
+  label:
+    it: Velocità del proiettile
+    en: Speed of the projectile
+- id: pendolo-balistico-f4
+  topic: pendolo-balistico
+  latex: h = L(1-\cos\theta_{max})
+  label:
+    it: Altezza dall'angolo massimo
+    en: Height from the maximum angle
+- id: legge-di-stevino-f1
+  topic: legge-di-stevino
+  latex: p = \frac{dF_\perp}{dA}
+  label:
+    it: Definizione di pressione
+    en: Definition of pressure
+- id: legge-di-stevino-f2
+  topic: legge-di-stevino
+  latex: \frac{dp}{dz} = -\rho g
+  label:
+    it: Equazione fondamentale della statica dei fluidi
+    en: Fundamental equation of fluid statics
+- id: legge-di-stevino-f3
+  topic: legge-di-stevino
+  latex: p = p_0 + \rho g h
+  label:
+    it: Legge di Stevino
+    en: Stevin's law
+- id: legge-di-stevino-f4
+  topic: legge-di-stevino
+  latex: F_{Arch} = \rho_{fl}\,g\,V_{imm}
+  label:
+    it: Spinta di Archimede
+    en: Archimedes' buoyant force
+- id: teoria-cinetica-gas-f1
+  topic: teoria-cinetica-gas
+  latex: p = \frac{1}{3}\frac{N}{V}m\langle v^2\rangle
+  label:
+    it: Pressione cinetica
+    en: Kinetic pressure
+- id: teoria-cinetica-gas-f2
+  topic: teoria-cinetica-gas
+  latex: pV = \frac{2}{3}N\langle\tfrac{1}{2}mv^2\rangle
+  label:
+    it: Pressione ed energia cinetica media
+    en: Pressure and average kinetic energy
+- id: teoria-cinetica-gas-f3
+  topic: teoria-cinetica-gas
+  latex: \langle\tfrac{1}{2}mv^2\rangle = \frac{3}{2}k_BT
+  label:
+    it: Temperatura ed energia cinetica media
+    en: Temperature and average kinetic energy
+- id: teoria-cinetica-gas-f4
+  topic: teoria-cinetica-gas
+  latex: v_{qm} = \sqrt{3RT/M_{mol}}
+  label:
+    it: Velocità quadratica media
+    en: Root-mean-square speed
+- id: legge-gas-perfetti-f1
+  topic: legge-gas-perfetti
+  latex: pV = nRT
+  label:
+    it: Equazione di stato dei gas perfetti
+    en: Ideal-gas equation of state
+- id: legge-gas-perfetti-f2
+  topic: legge-gas-perfetti
+  latex: pV = Nk_BT
+  label:
+    it: Forma microscopica
+    en: Microscopic form
+- id: legge-gas-perfetti-f3
+  topic: legge-gas-perfetti
+  latex: \frac{p_1V_1}{T_1} = \frac{p_2V_2}{T_2}
+  label:
+    it: Legge combinata dei gas
+    en: Combined gas law
+- id: legge-gas-perfetti-f4
+  topic: legge-gas-perfetti
+  latex: R = 8.314\;\text{J/(mol·K)}
+  label:
+    it: Costante dei gas
+    en: Gas constant
+- id: equipartizione-energia-f1
+  topic: equipartizione-energia
+  latex: \langle E \rangle = \frac{1}{2}k_BT\;\text{per grado quadratico}
+  label:
+    it: Principio di equipartizione
+    en: Equipartition principle
+  latexEn: \langle E \rangle = \frac{1}{2}k_BT\;\text{per quadratic degree}
+- id: equipartizione-energia-f2
+  topic: equipartizione-energia
+  latex: U = \frac{f}{2}nRT
+  label:
+    it: Energia interna del gas perfetto
+    en: Internal energy of the ideal gas
+- id: equipartizione-energia-f3
+  topic: equipartizione-energia
+  latex: \Delta U = n c_V \Delta T\;\text{(sempre)}
+  label:
+    it: Variazione di energia interna
+    en: Change in internal energy
+  latexEn: \Delta U = n c_V \Delta T\;\text{(always)}
+- id: equipartizione-energia-f4
+  topic: equipartizione-energia
+  latex: f = 3\;\text{mono},\; 5\;\text{biat}
+  label:
+    it: Gradi di libertà
+    en: Degrees of freedom
+  latexEn: f = 3\;\text{mono},\; 5\;\text{diat}
+- id: calori-molari-f1
+  topic: calori-molari
+  latex: c_V = \frac{f}{2}R
+  label:
+    it: Calore molare a volume costante
+    en: Molar heat capacity at constant volume
+- id: calori-molari-f2
+  topic: calori-molari
+  latex: c_p = c_V + R
+  label:
+    it: Relazione di Mayer
+    en: Mayer's relation
+- id: calori-molari-f3
+  topic: calori-molari
+  latex: \gamma = \frac{c_p}{c_V} = 1 + \frac{2}{f}
+  label:
+    it: Coefficiente γ
+    en: Coefficient γ
+- id: calori-molari-f4
+  topic: calori-molari
+  latex: c_{solido} \approx 3R
+  label:
+    it: Legge di Dulong-Petit
+    en: Dulong–Petit law
+- id: primo-principio-f1
+  topic: primo-principio
+  latex: \Delta U = Q - W
+  label:
+    it: Primo principio
+    en: First law
+- id: primo-principio-f2
+  topic: primo-principio
+  latex: W = \int p\,dV
+  label:
+    it: Lavoro di espansione
+    en: Expansion work
+- id: primo-principio-f3
+  topic: primo-principio
+  latex: Q_{isot} = nRT\ln\frac{V_2}{V_1}
+  label:
+    it: Calore nell'isoterma
+    en: Heat in the isotherm
+  latexEn: Q_{isoth} = nRT\ln\frac{V_2}{V_1}
+- id: primo-principio-f4
+  topic: primo-principio
+  latex: pV^\gamma = \text{cost},\; TV^{\gamma-1} = \text{cost}
+  label:
+    it: Equazioni delle adiabatiche reversibili
+    en: Reversible adiabatic equations
+  latexEn: pV^\gamma = \text{const},\; TV^{\gamma-1} = \text{const}
+- id: secondo-principio-f1
+  topic: secondo-principio
+  latex: \eta = \frac{W}{Q_C} = 1 - \frac{|Q_F|}{Q_C} < 1
+  label:
+    it: Rendimento di una macchina termica
+    en: Efficiency of a heat engine
+- id: secondo-principio-f2
+  topic: secondo-principio
+  latex: \text{COP}_f = \frac{Q_F}{W}
+  label:
+    it: COP del frigorifero
+    en: Refrigerator COP
+- id: secondo-principio-f3
+  topic: secondo-principio
+  latex: \text{COP}_p = \frac{Q_C}{W}
+  label:
+    it: COP della pompa di calore
+    en: Heat-pump COP
+- id: ciclo-di-carnot-f1
+  topic: ciclo-di-carnot
+  latex: Q_C = nRT_C\ln\frac{V_2}{V_1}
+  label:
+    it: Calore assorbito sull'isoterma calda
+    en: Heat absorbed on the hot isotherm
+- id: ciclo-di-carnot-f2
+  topic: ciclo-di-carnot
+  latex: \frac{V_2}{V_1} = \frac{V_3}{V_4}
+  label:
+    it: Vincolo delle adiabatiche
+    en: Adiabatic constraint
+- id: ciclo-di-carnot-f3
+  topic: ciclo-di-carnot
+  latex: \eta_{Carnot} = 1 - \frac{T_F}{T_C}
+  label:
+    it: Rendimento di Carnot
+    en: Carnot efficiency
+- id: ciclo-di-carnot-f4
+  topic: ciclo-di-carnot
+  latex: \frac{Q_C}{T_C} = \frac{|Q_F|}{T_F}
+  label:
+    it: Bilancio dei calori ridotti
+    en: Balance of reduced heats
+- id: teorema-di-carnot-f1
+  topic: teorema-di-carnot
+  latex: \eta_{qualsiasi} \le \eta_{rev} = 1 - \frac{T_F}{T_C}
+  label:
+    it: Teorema di Carnot
+    en: Carnot's theorem
+  latexEn: \eta_{any} \le \eta_{rev} = 1 - \frac{T_F}{T_C}
+- id: teorema-di-carnot-f2
+  topic: teorema-di-carnot
+  latex: \frac{|Q_F|}{Q_C} = \frac{T_F}{T_C}\;(\text{rev})
+  label:
+    it: Rapporto dei calori nelle macchine reversibili
+    en: Ratio of heats in reversible engines
+- id: disuguaglianza-di-clausius-f1
+  topic: disuguaglianza-di-clausius
+  latex: \oint \frac{\delta Q}{T} \le 0
+  label:
+    it: Disuguaglianza di Clausius
+    en: Clausius' inequality
+- id: disuguaglianza-di-clausius-f2
+  topic: disuguaglianza-di-clausius
+  latex: \oint \frac{\delta Q_{rev}}{T} = 0
+  label:
+    it: Cicli reversibili
+    en: Reversible cycles
+- id: disuguaglianza-di-clausius-f3
+  topic: disuguaglianza-di-clausius
+  latex: \frac{Q_C}{T_C} + \frac{Q_F}{T_F} \le 0
+  label:
+    it: Caso a due sorgenti
+    en: Two-reservoir case
+- id: entropia-adiabatiche-f1
+  topic: entropia-adiabatiche
+  latex: dS = \frac{\delta Q_{rev}}{T}
+  label:
+    it: Definizione di entropia
+    en: Definition of entropy
+- id: entropia-adiabatiche-f2
+  topic: entropia-adiabatiche
+  latex: \Delta S \ge \int \frac{\delta Q}{T}
+  label:
+    it: Disuguaglianza per trasformazioni qualsiasi
+    en: Inequality for arbitrary transformations
+- id: entropia-adiabatiche-f3
+  topic: entropia-adiabatiche
+  latex: \Delta S_{isolato} \ge 0
+  label:
+    it: Aumento dell'entropia
+    en: Entropy increase
+- id: entropia-adiabatiche-f4
+  topic: entropia-adiabatiche
+  latex: \Delta S = nc_V\ln\frac{T_B}{T_A} + nR\ln\frac{V_B}{V_A}
+  label:
+    it: Entropia del gas perfetto
+    en: Entropy of the ideal gas
+- id: entropia-adiabatiche-f5
+  topic: entropia-adiabatiche
+  latex: S = k_B\ln\Omega
+  label:
+    it: Entropia di Boltzmann
+    en: Boltzmann entropy

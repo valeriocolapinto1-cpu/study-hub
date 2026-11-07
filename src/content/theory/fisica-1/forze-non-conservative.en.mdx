@@ -1,0 +1,174 @@
+---
+course: fisica-1
+topic: forze-non-conservative
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/forze-non-conservative/idea">
+
+ΔE = W_nc is the 'current account' of mechanical energy: conservative forces move funds between the deposits K and U without touching the balance, non-conservative forces make deposits (engines) or withdrawals (friction). The money withdrawn by friction is not destroyed: it is converted into the 'disordered' currency of thermal energy, which can no longer be fully converted back into motion.
+
+</div>
+
+<div class="muted" data-note-id="teoria/forze-non-conservative/prerequisiti">
+
+**Before this topic:** [Conservative forces, potential energy and conservation of mechanical energy](../forze-conservative/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/forze-non-conservative/definizioni">
+
+## Definitions
+
+When non-conservative forces also act on the system (sliding friction, drag, driving forces), the mechanical energy E = K + U is not conserved: its change equals the work of the non-conservative forces alone, $\Delta E = W_{nc}$. Dissipative forces (friction) always have $W_{nc} < 0$ and convert mechanical energy into internal energy (heat); a driving force can have $W_{nc} > 0$ and increase E.
+
+</div>
+
+<div data-note-id="teoria/forze-non-conservative/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Split the total work into conservative and non-conservative parts</summary>
+
+$$
+W_{tot} = W_{cons} + W_{nc}
+$$
+
+Every acting force is classified into one of the two families.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Kinetic energy theorem</summary>
+
+$$
+\Delta K = W_{tot} = W_{cons} + W_{nc}
+$$
+
+It always holds, for any kind of force.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Express the conservative work through U</summary>
+
+$$
+W_{cons} = -\Delta U \;\Rightarrow\; \Delta K = -\Delta U + W_{nc}
+$$
+
+Only the conservative part admits a potential energy.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Balance of mechanical energy</summary>
+
+$$
+\Delta(K + U) = \Delta E = W_{nc}
+$$
+
+Balance theorem: the mechanical energy changes exactly by the non-conservative work. If W_nc = 0 conservation is recovered.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Example: sliding friction on a plane</summary>
+
+$$
+W_{fr} = -\mu_d N \, d \;\Rightarrow\; \frac{1}{2}mv_B^2 + U_B = \frac{1}{2}mv_A^2 + U_A - \mu_d N d
+$$
+
+d is the length of the path actually travelled (not the net displacement!): this is why the work of friction depends on the path.
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Thermodynamic interpretation</summary>
+
+$$
+|W_{fr}| = \Delta E_{internal} \;(\text{heating of the surfaces})
+$$
+
+The mechanical energy 'lost' does not vanish: it becomes internal energy (thermal agitation). The overall energy balance still holds — this is the bridge to the first law of thermodynamics.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/forze-non-conservative/ipotesi">
+
+## Validity assumptions
+
+A system in which forces can be classified as conservative or not; for sliding friction, Coulomb's model F = μ_d N with constant μ_d; N known along the path.
+
+</div>
+
+<div data-note-id="teoria/forze-non-conservative/casi-limite">
+
+## Limiting cases
+
+W_nc = 0: exact conservation of E. Steady motion (constant speed) with friction: the driving force exactly compensates the dissipation, ΔK = 0 and W_driving = −W_friction. Long times with dissipation only: E decreases monotonically down to the lowest accessible minimum of U.
+
+</div>
+
+<div data-note-id="teoria/forze-non-conservative/formule">
+
+## Key formulas
+
+<Formula id="forze-non-conservative-f1" />
+
+<Formula id="forze-non-conservative-f2" />
+
+<Formula id="forze-non-conservative-f3" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/forze-non-conservative/esempio">
+
+A block is launched with speed v₀ = 6.0 m/s up a 30° incline with kinetic friction coefficient μd = 0.20 (static friction is less than tan 30°, so it slides back). Find: (a) the distance travelled along the incline before stopping; (b) the energy dissipated per unit mass on the way up; (c) the speed with which it passes the launch point again.
+
+1. **Going up.** $\tfrac12 v_0^2 = g d(\sin\theta + \mu_k\cos\theta) \Rightarrow d = \dfrac{18}{9.81\,(0.5 + 0.1732)} \approx 2.73\ \text{m}$.
+2. **Dissipated energy.** $|W_{fr}|/m = \mu_k g\cos\theta\, d \approx 1.699 \cdot 2.73 \approx 4.64\ \text{J/kg}$.
+3. **Coming down.** $\tfrac12 v_f^2 = g d(\sin\theta - \mu_k\cos\theta) \Rightarrow v_f \approx 4.18\ \text{m/s}$: compared with v₀, the energy dissipated on the two legs is missing.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/forze-non-conservative/errori">
+
+- Using E = const in the presence of friction doing work.
+- In the work of friction, using the net displacement instead of the length of the path travelled.
+- Forgetting the sign: the work of sliding friction on the sliding body is always negative (opposite to the relative motion).
+- Saying that energy 'is lost': it is transformed into internal energy, the overall balance adds up.
+
+</div>
+
+<div data-note-id="teoria/forze-non-conservative/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- A block slides up and back down a rough incline: why is the return speed lower than the launch speed, and how do you compute it?
+- In pure rolling, does static friction dissipate energy?
+- How is ΔE = W_nc related to the first law of thermodynamics?
+
+</div>
+
+</Layer>

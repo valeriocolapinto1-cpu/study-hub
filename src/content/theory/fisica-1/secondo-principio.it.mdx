@@ -1,0 +1,163 @@
+---
+course: fisica-1
+topic: secondo-principio
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/secondo-principio/idea">
+
+Il primo principio dice che l'energia si conserva; il secondo dice che ha una direzione preferita di degrado: il lavoro si converte in calore integralmente e spontaneamente, il contrario mai del tutto. Il calore è energia 'disordinata': raccoglierla tutta e riordinarla in lavoro richiederebbe di riordinare il caos molecolare, e la natura non lo fa gratis.
+
+</div>
+
+<div class="muted" data-note-id="teoria/secondo-principio/prerequisiti">
+
+**Prima di questo argomento:** [Primo principio della termodinamica](../primo-principio/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/secondo-principio/definizioni">
+
+## Definizioni
+
+Il secondo principio stabilisce l'irreversibilità dei processi naturali attraverso due enunciati equivalenti. Kelvin-Planck: è impossibile una trasformazione ciclica il cui UNICO risultato sia convertire integralmente in lavoro il calore prelevato da una sola sorgente. Clausius: è impossibile una trasformazione ciclica il cui UNICO risultato sia trasferire calore da un corpo freddo a uno caldo. Una macchina termica deve quindi sempre cedere calore a una sorgente fredda: il rendimento $\eta = W/Q_{ass} = 1 - Q_{ced}/Q_{ass}$ è sempre minore di 1.
+
+</div>
+
+<div data-note-id="teoria/secondo-principio/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Schema della macchina termica e rendimento</summary>
+
+$$
+W = Q_C - |Q_F|, \qquad \eta = \frac{W}{Q_C} = 1 - \frac{|Q_F|}{Q_C}
+$$
+
+In un ciclo ΔU = 0, quindi il lavoro netto è la differenza tra calore assorbito dalla sorgente calda e calore ceduto alla fredda. Kelvin-Planck vieta |Q_F| = 0, cioè η = 1.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · ¬Clausius ⇒ ¬Kelvin (prima metà dell'equivalenza)</summary>
+
+$$
+\text{frigo perfetto} + \text{macchina reale} \Rightarrow \text{motore perfetto}
+$$
+
+Se esistesse un frigorifero perfetto (calore da freddo a caldo senza lavoro), lo accoppio a una macchina reale: il frigo restituisce alla sorgente calda il calore che la macchina cede alla fredda. Il sistema composto preleva calore SOLO dalla sorgente calda e lo converte tutto in lavoro: violato Kelvin-Planck.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · ¬Kelvin ⇒ ¬Clausius (seconda metà)</summary>
+
+$$
+\text{motore perfetto} + \text{frigorifero reale} \Rightarrow \text{frigo perfetto}
+$$
+
+Se esistesse un motore perfetto, uso il suo lavoro per azionare un frigorifero reale: il sistema composto sposta calore dal freddo al caldo senza alcun apporto esterno di lavoro: violato Clausius. Le due negazioni si implicano a vicenda: gli enunciati sono equivalenti.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Reversibilità e irreversibilità</summary>
+
+$$
+\text{reversibile} \iff \text{quasi-statica e senza attriti/dissipazioni}
+$$
+
+Una trasformazione è reversibile se può essere invertita riportando sistema E ambiente allo stato iniziale. Attrito, diffusione, passaggio di calore con differenza finita di temperatura, espansione libera: tutti irreversibili. Il secondo principio codifica questa freccia.
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Macchine frigorifere e coefficiente di prestazione</summary>
+
+$$
+\text{COP}_{frigo} = \frac{Q_F}{W}, \qquad \text{COP}_{pompa} = \frac{Q_C}{W} = \text{COP}_{frigo} + 1
+$$
+
+Il ciclo percorso al contrario assorbe lavoro per spostare calore dal freddo al caldo: Clausius impone W &gt; 0 (il COP è finito, ma può superare 1: non è un rendimento).
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/secondo-principio/ipotesi">
+
+## Ipotesi di validità
+
+Sistemi che operano in CICLI (lo stato finale della macchina uguale all'iniziale: essenziale per la parola 'unico risultato'); sorgenti termiche ideali (capacità infinita, temperatura costante).
+
+</div>
+
+<div data-note-id="teoria/secondo-principio/casi-limite">
+
+## Casi limite
+
+Trasformazione non ciclica: convertire tutto il calore in lavoro È possibile (isoterma del gas perfetto: Q = W), ma lo stato del gas cambia — non viola Kelvin-Planck. Limite reversibile: le disuguaglianze del secondo principio diventano uguaglianze (ciclo di Carnot).
+
+</div>
+
+<div data-note-id="teoria/secondo-principio/formule">
+
+## Formule chiave
+
+<Formula id="secondo-principio-f1" />
+
+<Formula id="secondo-principio-f2" />
+
+<Formula id="secondo-principio-f3" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/secondo-principio/esempio">
+
+Un motore termico assorbe 2,4 kJ di calore a ogni ciclo e compie 600 J di lavoro; esegue 25 cicli al secondo. Calcolare: (a) il rendimento; (b) il calore ceduto per ciclo; (c) la potenza meccanica e quella termica scaricata.
+
+1. **Rendimento.** $\eta = W/Q_C = 600/2400 = 0{,}25$.
+2. **Bilancio del ciclo.** ΔU = 0 sul ciclo: $|Q_F| = Q_C - W = 1800\ \text{J}$.
+3. **Potenze.** $P = 25 \cdot 600 = 15\ \text{kW}$ meccanici, $25 \cdot 1800 = 45\ \text{kW}$ scaricati: tre volte la potenza utile.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/secondo-principio/errori">
+
+- Dimenticare 'unico risultato'/'ciclico' negli enunciati: senza, gli enunciati sono falsi (controesempio: isoterma).
+- Credere che il frigorifero violi Clausius: assorbe lavoro, quindi il trasferimento non è l'unico risultato.
+- Confondere rendimento (≤1) e COP (anche &gt;1).
+- Pensare che il secondo principio derivi dal primo: sono indipendenti (il primo non vieta il motore perfetto).
+
+</div>
+
+<div data-note-id="teoria/secondo-principio/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Perché la parola 'ciclico' è indispensabile nell'enunciato di Kelvin-Planck?
+- Il moto perpetuo di seconda specie: cosa sarebbe e quale enunciato viola?
+- Che legame c'è tra il secondo principio e la freccia del tempo?
+
+</div>
+
+</Layer>

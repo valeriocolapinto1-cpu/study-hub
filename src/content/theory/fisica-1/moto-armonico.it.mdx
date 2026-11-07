@@ -1,0 +1,178 @@
+---
+course: fisica-1
+topic: moto-armonico
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/moto-armonico/idea">
+
+Il moto armonico nasce ogni volta che un sistema, spostato dall'equilibrio, subisce un richiamo proporzionale allo spostamento. È il 'mattone universale' delle oscillazioni: qualsiasi potenziale liscio, vicino a un minimo, è approssimativamente parabolico, quindi quasi tutti i sistemi oscillano armonicamente per piccole perturbazioni.
+
+</div>
+
+<Callout tone="nota" title="Vedi in azione">
+
+[Apri la simulazione interattiva](../../extra/simulazioni/#sim-moto-armonico)
+
+</Callout>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/moto-armonico/definizioni">
+
+## Definizioni
+
+Un moto rettilineo si dice armonico semplice quando la posizione varia sinusoidalmente nel tempo: $x(t) = A\cos(\omega t + \varphi)$. A è l'ampiezza (massimo scostamento dalla posizione di equilibrio), ω la pulsazione (rad/s), $\varphi$ la fase iniziale (fissa posizione e velocità a t = 0), $T = 2\pi/\omega$ il periodo e $\nu = 1/T$ la frequenza. Il moto armonico è la soluzione dell'equazione differenziale $\ddot{x} = -\omega^2 x$.
+
+</div>
+
+<div data-note-id="teoria/moto-armonico/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Equazione caratteristica del moto armonico</summary>
+
+$$
+\ddot{x}(t) = -\omega^2\, x(t)
+$$
+
+Definizione dinamica: l'accelerazione è proporzionale all'opposto della posizione. Ogni sistema che obbedisce a questa equazione compie moto armonico.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Verifica che la sinusoide è soluzione</summary>
+
+$$
+x = A\cos(\omega t + \varphi) \;\Rightarrow\; \dot{x} = -A\omega\sin(\omega t + \varphi) \;\Rightarrow\; \ddot{x} = -A\omega^2\cos(\omega t + \varphi) = -\omega^2 x
+$$
+
+Derivando due volte si riottiene la funzione moltiplicata per −ω²: la soluzione generale ha due costanti libere, A e φ, fissate dalle condizioni iniziali.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Determinazione di A e φ dalle condizioni iniziali</summary>
+
+$$
+x_0 = A\cos\varphi, \quad v_0 = -A\omega\sin\varphi \;\Rightarrow\; A = \sqrt{x_0^2 + \frac{v_0^2}{\omega^2}}, \quad \tan\varphi = -\frac{v_0}{\omega x_0}
+$$
+
+Si quadra e si somma per eliminare φ; si divide per eliminare A. Le condizioni iniziali determinano completamente il moto.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Periodicità</summary>
+
+$$
+x(t + T) = x(t) \iff \omega T = 2\pi \;\Rightarrow\; T = \frac{2\pi}{\omega}, \qquad \nu = \frac{1}{T} = \frac{\omega}{2\pi}
+$$
+
+Il coseno è periodico di 2π: il periodo non dipende dall'ampiezza (isocronismo).
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Velocità e accelerazione massime</summary>
+
+$$
+v_{max} = A\omega \;(\text{in } x = 0), \qquad a_{max} = A\omega^2 \;(\text{in } x = \pm A)
+$$
+
+La velocità è massima al passaggio per l'equilibrio, l'accelerazione agli estremi, dove il moto si inverte.
+
+</details>
+
+<details id="passo-6">
+<summary>Passo 6 · Legame con il moto circolare uniforme</summary>
+
+$$
+x(t) = R\cos(\omega t + \varphi)
+$$
+
+Il moto armonico è la proiezione su un diametro di un moto circolare uniforme di raggio R = A e velocità angolare ω: utile per visualizzare fase e pulsazione.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/moto-armonico/ipotesi">
+
+## Ipotesi di validità
+
+Moto unidimensionale; forza (o accelerazione) di richiamo esattamente lineare in x. Nessuna dissipazione.
+
+</div>
+
+<div data-note-id="teoria/moto-armonico/casi-limite">
+
+## Casi limite
+
+Se $v_0 = 0$: φ = 0 e A = x₀ (parte da fermo dall'estremo). Se $x_0 = 0$: φ = ±π/2 e A = v₀/ω (parte dall'equilibrio con velocità massima). Per ω → 0 il periodo diverge: il sistema non richiama più.
+
+</div>
+
+<div data-note-id="teoria/moto-armonico/formule">
+
+## Formule chiave
+
+<Formula id="moto-armonico-f1" />
+
+<Formula id="moto-armonico-f2" />
+
+<Formula id="moto-armonico-f3" />
+
+<Formula id="moto-armonico-f4" />
+
+<Formula id="moto-armonico-f5" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto: Dalle condizioni iniziali alla legge oraria">
+
+<div data-note-id="teoria/moto-armonico/esempio">
+
+Un corpo in moto armonico con ω = 4 rad/s passa all'istante t = 0 per x₀ = 0,03 m con velocità v₀ = −0,16 m/s. Trovare ampiezza, fase iniziale e velocità massima.
+
+1. Ampiezza: $A = \sqrt{x_0^2 + v_0^2/\omega^2} = \sqrt{0{,}0009 + 0{,}0016} = 0{,}05\ \text{m}$.
+2. Fase: $\cos\varphi = x_0/A = 0{,}6$ e $\sin\varphi = -v_0/(A\omega) = 0{,}8$, quindi $\varphi \approx 0{,}93\ \text{rad}$ (primo quadrante: attenzione a non usare solo l'arcotangente).
+3. Velocità massima: $v_{max} = A\omega = 0{,}20\ \text{m/s}$, raggiunta al passaggio per x = 0.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/moto-armonico/errori">
+
+- Confondere pulsazione ω (rad/s) e frequenza ν (Hz): ω = 2πν.
+- Credere che il periodo dipenda dall'ampiezza: nel moto armonico ideale è isocrono.
+- Sbagliare i segni derivando: la velocità è −Aω sin(…), non +.
+- Dimenticare che A e φ vengono dalle condizioni iniziali, non dall'equazione del moto.
+
+</div>
+
+<div data-note-id="teoria/moto-armonico/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Perché quasi ogni sistema fisico oscilla armonicamente attorno a un equilibrio stabile?
+- Come si scrive la stessa soluzione nella forma x = a cos ωt + b sin ωt e che relazione c'è con A e φ?
+- Cosa succede alla traiettoria nello spazio delle fasi (x, v)?
+
+</div>
+
+</Layer>

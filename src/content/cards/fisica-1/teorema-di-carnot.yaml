@@ -1,0 +1,250 @@
+- id: teorema-di-carnot-esposizione
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.1
+    - teorema-di-carnot.2
+    - teorema-di-carnot.3
+    - teorema-di-carnot.4
+    - teorema-di-carnot.5
+    - teorema-di-carnot.6
+    - teorema-di-carnot.7
+  kind: orale
+  front:
+    it: "Esponi all'orale: «Teorema di Carnot»."
+    en: "Present at the oral exam: “Carnot's theorem”."
+  back:
+    it: >-
+      Il teorema mette un tetto universale all'efficienza: non importa quanto ingegnoso sia il progetto, il
+      rendimento è limitato dal solo dislivello di temperatura. Il trucco della dimostrazione è elegante: se
+      qualcuno costruisse una macchina migliore di Carnot, accoppiandola a una Carnot rovesciata otterremmo
+      una pompa di calore gratuita — e la natura, per il secondo principio, non concede pasti gratis.
+
+
+      **Scaletta:**
+
+
+      - Enunciare le due parti del teorema
+
+      - Impostare la dimostrazione per assurdo con la macchina composta
+
+      - Spiegare il ruolo essenziale della reversibilità di R
+
+      - Mostrare la violazione di Clausius nel bilancio
+
+      - Dimostrare l'uguaglianza dei rendimenti reversibili nei due versi
+
+      - Dedurre |Q_F|/Q_C = T_F/T_C e la scala assoluta
+
+      - Distinguere il caso irreversibile (disuguaglianza stretta)
+    en: >-
+      The theorem puts a universal ceiling on efficiency: however ingenious the design, efficiency is limited
+      by the temperature difference alone. The trick of the proof is elegant: if someone built an engine
+      better than Carnot's, coupling it to a reversed Carnot engine would give a free heat pump — and nature,
+      by the second law, gives no free lunches.
+
+
+      **Outline:**
+
+
+      - State the two parts of the theorem
+
+      - Set up the proof by contradiction with the composite machine
+
+      - Explain the essential role of the reversibility of R
+
+      - Show the violation of Clausius in the balance
+
+      - Prove the equality of reversible efficiencies both ways
+
+      - Deduce |Q_F|/Q_C = T_F/T_C and the absolute scale
+
+      - Distinguish the irreversible case (strict inequality)
+- id: teorema-di-carnot-orale-1
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.6
+    - teorema-di-carnot.7
+  kind: orale
+  front:
+    it: In che senso il teorema di Carnot permette di definire la temperatura senza termometri a gas?
+    en: In what sense does Carnot's theorem allow temperature to be defined without gas thermometers?
+  back:
+    it: >-
+      Poiché \(|Q_F|/Q_C = T_F/T_C\) per ogni macchina reversibile, qualunque sia la sostanza, il rapporto di
+      due temperature si può definire misurando i calori scambiati da una macchina reversibile tra le due
+      sorgenti; fissando un punto di riferimento (il punto triplo dell'acqua, 273,16 K) la scala è
+      completamente determinata. È la scala termodinamica (Kelvin), che coincide con quella del termometro a
+      gas perfetto.
+    en: >-
+      Since \(|Q_F|/Q_C = T_F/T_C\) for every reversible engine, whatever the substance, the ratio of two
+      temperatures can be defined by measuring the heats exchanged by a reversible engine between the two
+      reservoirs; fixing one reference point (the triple point of water, 273.16 K) determines the scale
+      completely. It is the thermodynamic (Kelvin) scale, which coincides with that of the ideal-gas
+      thermometer.
+- id: teorema-di-carnot-orale-2
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.6
+    - teorema-di-carnot.7
+  kind: orale
+  front:
+    it: >-
+      Una centrale termoelettrica opera tra 800 K e 300 K: qual è il tetto teorico del rendimento e perché
+      quello reale è più basso?
+    en: >-
+      A thermal power plant works between 800 K and 300 K: what is the theoretical ceiling on its efficiency,
+      and why is the real one lower?
+  back:
+    it: >-
+      Il tetto è \(\eta_{max} = 1 - 300/800 = 0{,}625\). Il rendimento reale (≈ 0,35–0,45) è più basso perché
+      gli scambi di calore avvengono con differenze di temperatura finite (servono per avere potenza), ci sono
+      attriti e perdite, e il calore non è assorbito tutto alla temperatura massima ma lungo un intervallo di
+      temperature (cicli Rankine o Brayton, non Carnot).
+    en: >-
+      The ceiling is \(\eta_{max} = 1 - 300/800 = 0.625\). The real efficiency (≈ 0.35–0.45) is lower because
+      heat exchanges take place across finite temperature differences (needed to have power), there are
+      friction and losses, and heat is not all absorbed at the maximum temperature but over a range of
+      temperatures (Rankine or Brayton cycles, not Carnot).
+- id: teorema-di-carnot-orale-3
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.6
+    - teorema-di-carnot.7
+  kind: orale
+  front:
+    it: Il teorema vale anche per macchine che scambiano calore con più di due sorgenti?
+    en: Does the theorem also hold for engines exchanging heat with more than two reservoirs?
+  back:
+    it: >-
+      Con più sorgenti l'enunciato a due temperature non basta, ma l'idea si estende: approssimando gli scambi
+      con molte sorgenti e usando macchine di Carnot ausiliarie si ottiene la disuguaglianza di Clausius
+      \(\oint\delta Q/T \le 0\). Ne segue che il rendimento di un ciclo che lavora tra \(T_{min}\) e
+      \(T_{max}\) non può superare \(1 - T_{min}/T_{max}\), e che i cicli reversibili con più sorgenti hanno
+      rendimento minore di quello di Carnot tra le temperature estreme.
+    en: >-
+      With more reservoirs the two-temperature statement is not enough, but the idea extends: approximating
+      the exchanges with many reservoirs and using auxiliary Carnot engines gives Clausius' inequality
+      \(\oint\delta Q/T \le 0\). It follows that the efficiency of a cycle working between \(T_{min}\) and
+      \(T_{max}\) cannot exceed \(1 - T_{min}/T_{max}\), and that reversible cycles with several reservoirs
+      have lower efficiency than Carnot's between the extreme temperatures.
+- id: teorema-di-carnot-definizione
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.1
+  kind: definizione
+  front:
+    it: 'Definizione: Teorema di Carnot'
+    en: "Definition: Carnot's theorem"
+  back:
+    it: >-
+      Il teorema di Carnot afferma: (1) nessuna macchina termica operante tra due sorgenti può avere
+      rendimento maggiore della macchina reversibile di Carnot operante tra le stesse sorgenti; (2) tutte le
+      macchine reversibili tra le stesse due sorgenti hanno lo stesso rendimento, \(\eta_{rev} = 1 -
+      T_F/T_C\), indipendente dal fluido e dal meccanismo. Il teorema fonda la scala termodinamica assoluta di
+      temperatura.
+    en: >-
+      Carnot's theorem states: (1) no heat engine working between two reservoirs can have an efficiency
+      greater than the reversible Carnot engine working between the same reservoirs; (2) all reversible
+      engines between the same two reservoirs have the same efficiency, \(\eta_{rev} = 1 - T_F/T_C\),
+      independent of the fluid and the mechanism. The theorem founds the absolute thermodynamic temperature
+      scale.
+- id: teorema-di-carnot-formule
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.1
+    - teorema-di-carnot.2
+    - teorema-di-carnot.3
+    - teorema-di-carnot.4
+    - teorema-di-carnot.5
+    - teorema-di-carnot.6
+    - teorema-di-carnot.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Teorema di Carnot»
+    en: The key formulas of “Carnot's theorem”
+  back:
+    it: |-
+      - \(\eta_{qualsiasi} \le \eta_{rev} = 1 - \frac{T_F}{T_C}\)
+      - \(\frac{|Q_F|}{Q_C} = \frac{T_F}{T_C}\;(\text{rev})\)
+    en: |-
+      - \(\eta_{any} \le \eta_{rev} = 1 - \frac{T_F}{T_C}\)
+      - \(\frac{|Q_F|}{Q_C} = \frac{T_F}{T_C}\;(\text{rev})\)
+- id: teorema-di-carnot-ipotesi
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.1
+    - teorema-di-carnot.2
+    - teorema-di-carnot.3
+    - teorema-di-carnot.4
+    - teorema-di-carnot.5
+    - teorema-di-carnot.6
+    - teorema-di-carnot.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Teorema di Carnot'
+    en: "Validity assumptions: Carnot's theorem"
+  back:
+    it: >-
+      Validità del secondo principio (enunciato di Clausius o Kelvin-Planck); due sorgenti termiche ideali a
+      temperature fisse; macchine cicliche. La macchina X è del tutto arbitraria (reale, irreversibile,
+      qualunque fluido).
+    en: >-
+      Validity of the second law (Clausius or Kelvin–Planck statement); two ideal thermal reservoirs at fixed
+      temperatures; cyclic machines. Engine X is completely arbitrary (real, irreversible, any fluid).
+- id: teorema-di-carnot-casi-limite
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.1
+    - teorema-di-carnot.2
+    - teorema-di-carnot.3
+    - teorema-di-carnot.4
+    - teorema-di-carnot.5
+    - teorema-di-carnot.6
+    - teorema-di-carnot.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Teorema di Carnot'
+    en: "Limiting cases: Carnot's theorem"
+  back:
+    it: >-
+      Macchina irreversibile: η < η_rev strettamente (attriti, salti termici finiti). Macchina reversibile: η
+      = 1 − T_F/T_C esattamente. Il teorema non dice nulla sulla potenza: la macchina di Carnot ideale è
+      infinitamente lenta.
+    en: >-
+      Irreversible engine: η < η_rev strictly (friction, finite temperature jumps). Reversible engine: η = 1 −
+      T_F/T_C exactly. The theorem says nothing about power: the ideal Carnot engine is infinitely slow.
+- id: teorema-di-carnot-errori
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.1
+    - teorema-di-carnot.2
+    - teorema-di-carnot.3
+    - teorema-di-carnot.4
+    - teorema-di-carnot.5
+    - teorema-di-carnot.6
+    - teorema-di-carnot.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Teorema di Carnot'
+    en: "Mistakes to avoid: Carnot's theorem"
+  back:
+    it: >-
+      - Dimostrare il teorema usando solo il ciclo di Carnot a gas perfetto: la forza del teorema è
+      l'universalità, che richiede l'argomento per assurdo.
+
+      - Dimenticare che l'inversione richiede la reversibilità di R: una macchina reale non si può 'far girare
+      al contrario' con gli stessi scambi.
+
+      - Concludere che tutte le macchine hanno η = 1 − T_F/T_C: solo le reversibili; le altre stanno sotto.
+
+      - Trascurare la clausola 'stesse due sorgenti'.
+    en: >-
+      - Proving the theorem using only the ideal-gas Carnot cycle: the strength of the theorem is its
+      universality, which requires the argument by contradiction.
+
+      - Forgetting that reversing requires R to be reversible: a real engine cannot be 'run backwards' with
+      the same exchanges.
+
+      - Concluding that all engines have η = 1 − T_F/T_C: only reversible ones; the others fall below.
+
+      - Neglecting the clause 'same two reservoirs'.

@@ -1,46 +1,64 @@
 # Glossario IT → EN per le traduzioni dei contenuti.
 # Ogni voce: it (termine italiano), en (traduzione da usare), note (facoltativa).
 # Ordine alfabetico per `it`. Un test verifica che non ci siano duplicati.
+- { it: accelerazione centripeta, en: centripetal acceleration }
 - { it: adattamento coniugato, en: conjugate matching }
 - { it: albero, en: tree }
 - { it: algebra di Boole, en: Boolean algebra }
 - { it: alta impedenza, en: high impedance }
 - { it: ammettenza, en: admittance }
-- { it: amplificatore operazionale, en: operational amplifier, note: 'abbreviato op-amp' }
+- { it: amplificatore operazionale, en: operational amplifier, note: abbreviato op-amp }
 - { it: anello, en: loop, note: 'maglia: mesh' }
 - { it: antitrasformata, en: inverse transform }
 - { it: appello, en: exam session }
 - { it: assemblatore, en: assembler }
+- { it: attrito radente, en: sliding friction, note: 'dinamico: kinetic; statico: static' }
+- { it: attrito volvente, en: rolling resistance }
 - { it: banda passante, en: bandwidth }
 - {
     it: bipolo,
     en: two-terminal element,
-    note: 'Teoria dei Circuiti: one-port (il bipolo come porta), in coppia con two-port',
+    note: 'Teoria dei Circuiti: one-port (il bipolo come porta), in coppia con
+      two-port',
   }
 - { it: bit di segno, en: sign bit }
+- { it: calore molare, en: molar heat capacity }
 - { it: cammino critico, en: critical path }
 - { it: campo elettrico, en: electric field }
 - { it: campo magnetico, en: magnetic field }
 - { it: capacità, en: capacitance, note: 'componente: capacitor (condensatore)' }
 - { it: carica, en: charge }
 - { it: caricatore, en: loader }
+- { it: casi limite, en: limiting cases }
+- { it: centro di massa, en: centre of mass }
+- { it: ciclo di Carnot, en: Carnot cycle }
 - { it: circuito, en: circuit }
 - { it: coalbero, en: cotree }
 - { it: codificatore di priorità, en: priority encoder }
 - { it: collegatore, en: linker }
-- { it: complemento a 1, en: "ones' complement" }
-- { it: complemento a 2, en: "two's complement", note: 'abbreviato CP2 in italiano' }
+- { it: complemento a 1, en: ones' complement }
+- { it: complemento a 2, en: two's complement, note: abbreviato CP2 in italiano }
 - { it: componente, en: component }
 - { it: condensatore, en: capacitor }
 - { it: conduttanza, en: conductance }
 - { it: convenzione degli utilizzatori, en: passive sign convention }
 - { it: convenzione dei generatori, en: active sign convention }
+- { it: corpo rigido, en: rigid body }
 - { it: corrente, en: current }
 - { it: corrente di cortocircuito, en: short-circuit current }
 - { it: cortocircuito, en: short circuit }
 - { it: costanti concentrate, en: lumped parameters }
 - { it: decodificatore, en: decoder }
+- { it: disuguaglianza di Clausius, en: Clausius' inequality }
 - { it: doppio bipolo, en: two-port network }
+- { it: energia interna, en: internal energy }
+- { it: entropia, en: entropy }
+- {
+    it: equazioni cardinali,
+    en: cardinal equations,
+    note: 'prima/seconda equazione cardinale: first/second cardinal equation',
+  }
+- { it: equipartizione, en: equipartition }
 - { it: equivalente di Norton, en: Norton equivalent }
 - { it: equivalente di Thévenin, en: Thévenin equivalent }
 - { it: esercizio svolto, en: worked example }
@@ -51,6 +69,7 @@
 - { it: fattore di potenza, en: power factor }
 - { it: flusso, en: flux }
 - { it: formulario, en: formula sheet }
+- { it: forza apparente, en: fictitious force }
 - { it: fratti semplici, en: partial fractions }
 - { it: funzione di rete, en: network function }
 - { it: funzione di trasferimento, en: transfer function }
@@ -63,30 +82,31 @@
 - { it: impedenza, en: impedance }
 - { it: impedenza riportata, en: reflected impedance }
 - { it: implicante primo, en: prime implicant }
-- { it: indifferenza, en: "don't care" }
+- { it: indifferenza, en: don't care }
 - { it: induttanza, en: inductance }
 - { it: induttore, en: inductor }
 - { it: insieme funzionalmente completo, en: functionally complete set }
 - { it: interruzione, en: interrupt }
 - { it: lavoro, en: work }
-- { it: legge di Kirchhoff delle correnti, en: "Kirchhoff's current law", note: 'KCL' }
-- { it: legge di Kirchhoff delle tensioni, en: "Kirchhoff's voltage law", note: 'KVL' }
-- {
-    it: maglia,
-    en: mesh,
-    note: 'nella topologia (maglie e tagli fondamentali, KVL su una maglia): loop; mesh per il metodo delle maglie',
-  }
+- { it: legge di Kirchhoff delle correnti, en: Kirchhoff's current law, note: KCL }
+- { it: legge di Kirchhoff delle tensioni, en: Kirchhoff's voltage law, note: KVL }
+- { it: lunghezza ridotta, en: reduced length, note: pendolo fisico }
+- { it: maglia, en: mesh, note: 'nella topologia (maglie e tagli fondamentali, KVL su una maglia): loop;
+      mesh per il metodo delle maglie' }
 - { it: maglia fondamentale, en: fundamental loop }
 - { it: mappa di Karnaugh, en: Karnaugh map }
 - { it: mappatura diretta, en: direct mapping }
 - { it: massimo trasferimento di potenza, en: maximum power transfer }
 - { it: matrice di trasmissione, en: transmission matrix }
 - { it: memoria virtuale, en: virtual memory }
-- { it: metodo dei nodi, en: nodal analysis, note: 'anche node method' }
+- { it: metodo dei nodi, en: nodal analysis, note: anche node method }
 - { it: metodo delle maglie, en: mesh analysis }
 - { it: mintermine, en: minterm }
 - { it: modi di indirizzamento, en: addressing modes }
 - { it: modulo e segno, en: sign-magnitude }
+- { it: momento angolare, en: angular momentum }
+- { it: momento d'inerzia, en: moment of inertia }
+- { it: momento di una forza, en: torque }
 - { it: nodo, en: node }
 - { it: noratore, en: norator }
 - { it: nullatore, en: nullator }
@@ -95,20 +115,22 @@
 - { it: orale, en: oral exam }
 - { it: partitore di corrente, en: current divider }
 - { it: partitore di tensione, en: voltage divider }
+- { it: pendolo balistico, en: ballistic pendulum }
 - { it: percorso dati, en: datapath }
 - { it: pila, en: stack }
-- { it: polarizzazione, en: bias, note: 'esponente IEEE 754' }
+- { it: polarizzazione, en: bias, note: esponente IEEE 754 }
 - { it: potenza apparente, en: apparent power }
 - { it: potenza attiva, en: active power }
 - { it: potenza complessa, en: complex power }
 - { it: potenza reattiva, en: reactive power }
 - { it: potenziale elettrico, en: electric potential }
-- { it: "prova d'esame", en: practice exam }
+- { it: prova d'esame, en: practice exam }
 - { it: prova di validità, en: validity test }
 - { it: pulsazione, en: angular frequency }
 - { it: pulsazione di taglio, en: cut-off angular frequency }
 - { it: quantità di moto, en: momentum }
 - { it: regime sinusoidale, en: sinusoidal steady state }
+- { it: rendimento, en: efficiency }
 - { it: resistenza, en: resistance, note: 'componente: resistor (resistore)' }
 - { it: resistore, en: resistor }
 - { it: rifasamento, en: power-factor correction }
@@ -121,10 +143,18 @@
 - { it: risposta in frequenza, en: frequency response }
 - { it: risposta libera, en: zero-input response }
 - { it: risposta permanente, en: steady-state response }
+- { it: rotolamento puro, en: pure rolling }
 - { it: scritto, en: written exam }
 - { it: semisommatore, en: half adder }
 - { it: set-associativa, en: set-associative }
+- { it: sistema di riferimento, en: reference frame }
+- { it: smorzamento, en: damping }
 - { it: sommatore completo, en: full adder }
+- {
+    it: sorgente termica,
+    en: thermal reservoir,
+    note: 'T_C calda (caldo), T_F fredda (freddo): notazione mantenuta',
+  }
 - { it: sovrapposizione degli effetti, en: superposition }
 - { it: spegnere un generatore, en: switch off a source, note: 'tensione → corto, corrente → aperto' }
 - { it: spiazzamento, en: offset, note: 'campo dell’indirizzo; per l’indirizzamento: displacement' }
@@ -137,10 +167,13 @@
 - { it: taglio fondamentale, en: fundamental cut set }
 - { it: tensione, en: voltage }
 - { it: tensione a vuoto, en: open-circuit voltage }
+- { it: teorema di Huygens-Steiner, en: Huygens–Steiner (parallel-axis) theorem }
 - { it: teorema di sostituzione, en: substitution theorem }
 - { it: transitorio, en: transient }
 - { it: trasformatore ideale, en: ideal transformer }
 - { it: unità di controllo, en: control unit }
+- { it: urto anelastico, en: inelastic collision }
 - { it: valore di picco, en: peak value }
 - { it: valore efficace, en: RMS value }
+- { it: velocità quadratica media, en: root-mean-square speed }
 - { it: virgola mobile, en: floating point }

@@ -1,0 +1,175 @@
+---
+course: fisica-1
+topic: calori-molari
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/calori-molari/idea">
+
+Heating at constant volume 'pours' energy only into the internal tank; heating at constant pressure also forces you to pay the toll of expansion work, always equal to R per mole per degree: that is Mayer. In solids every atom, a spring among springs, has six pockets of ½k_BT: that is why very different materials share the same molar heat capacity 3R.
+
+</div>
+
+<div class="muted" data-note-id="teoria/calori-molari/prerequisiti">
+
+**Before this topic:** [Internal energy of gases and the equipartition principle](../equipartizione-energia/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/calori-molari/definizioni">
+
+## Definitions
+
+The molar heat capacity is the heat needed to raise the temperature of one mole by 1 K: $c = \frac{1}{n}\frac{\delta Q}{dT}$. It depends on the transformation: at constant volume c_V, at constant pressure c_p. For ideal gases Mayer's relation $c_p = c_V + R$ holds and one defines $\gamma = c_p/c_V$. For crystalline solids the Dulong–Petit law predicts c ≈ 3R, independent of the material.
+
+</div>
+
+<div data-note-id="teoria/calori-molari/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Molar heat capacity at constant volume</summary>
+
+$$
+V = \text{const} \Rightarrow W = 0 \Rightarrow \delta Q = dU \;\Rightarrow\; c_V = \frac{1}{n}\Big(\frac{dU}{dT}\Big) = \frac{f}{2}R
+$$
+
+With no work, all the heat goes into internal energy: c_V directly measures the capacity of the gas to store energy in its degrees of freedom.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Molar heat capacity at constant pressure</summary>
+
+$$
+\delta Q = dU + p\,dV = nc_V\,dT + p\,dV
+$$
+
+At constant pressure the gas expands as it heats up: part of the heat pays for the expansion work.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Use the equation of state for the work term</summary>
+
+$$
+pV = nRT \;\xrightarrow{p\;\text{const}}\; p\,dV = nR\,dT
+$$
+
+Differentiate the equation of state at constant p.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Mayer's relation</summary>
+
+$$
+nc_p\,dT = nc_V\,dT + nR\,dT \;\Rightarrow\; c_p = c_V + R
+$$
+
+c_p always exceeds c_V by exactly R: the surcharge is the expansion work per degree of heating. It holds for every ideal gas, whatever f.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Numerical values and the ratio γ</summary>
+
+$$
+\text{mono: } c_V = \tfrac{3}{2}R,\; c_p = \tfrac{5}{2}R,\; \gamma = \tfrac{5}{3}; \qquad \text{diat: } c_V = \tfrac{5}{2}R,\; c_p = \tfrac{7}{2}R,\; \gamma = \tfrac{7}{5}
+$$
+
+γ = 1 + 2/f is measurable (speed of sound, adiabatics): an experimental confirmation of the count of degrees of freedom.
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Ideal solid: the Dulong–Petit law</summary>
+
+$$
+\text{3 oscillators} \times 2\;\text{quadratic terms} = 6 \;\Rightarrow\; U = 3nRT \;\Rightarrow\; c \approx 3R \approx 25\;\tfrac{\text{J}}{\text{mol·K}}
+$$
+
+Every atom of the lattice is a 3D oscillator: 3 kinetic + 3 elastic potential terms, each ½k_BT. The molar heat capacity is the same for (almost) all solids at room temperature; it collapses at low T because of quantum effects (Einstein, Debye).
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/calori-molari/ipotesi">
+
+## Validity assumptions
+
+Ideal gas at equilibrium; quasi-static transformations; degrees of freedom classically active. For Dulong–Petit: harmonic crystalline solid at high enough temperature (T above the Debye temperature).
+
+</div>
+
+<div data-note-id="teoria/calori-molari/casi-limite">
+
+## Limiting cases
+
+For solids at low T: c → 0 as T³ (Debye), Dulong–Petit fails. For gases at increasing T: c_V rises in steps as rotations and vibrations switch on. For liquids there is no equally simple theory.
+
+</div>
+
+<div data-note-id="teoria/calori-molari/formule">
+
+## Key formulas
+
+<Formula id="calori-molari-f1" />
+
+<Formula id="calori-molari-f2" />
+
+<Formula id="calori-molari-f3" />
+
+<Formula id="calori-molari-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/calori-molari/esempio">
+
+3.0 mol of air (ideal diatomic gas) are to be heated from 290 K to 340 K. Find the heat needed: (a) at constant volume; (b) at constant pressure; (c) the work done by the gas in case (b).
+
+1. **Constant volume.** $Q_V = nc_V\Delta T = 3 \cdot 2.5 \cdot 8.314 \cdot 50 \approx 3118\ \text{J}$.
+2. **Constant pressure.** $Q_p = nc_p\Delta T = 3 \cdot 3.5 \cdot 8.314 \cdot 50 \approx 4365\ \text{J}$; the difference is $W = nR\Delta T \approx 1247\ \text{J}$ (Mayer).
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/calori-molari/errori">
+
+- Saying that the molar heat capacity is a single property of the gas: it depends on the transformation (c_V ≠ c_p, and every polytropic has its own).
+- Using c_p in ΔU = nc ΔT: internal energy always goes with c_V.
+- Forgetting that Mayer's relation holds only for ideal gases.
+- Counting 3 degrees of freedom for the atom of a solid instead of 6 (the elastic potential is missing).
+
+</div>
+
+<div data-note-id="teoria/calori-molari/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- Why does γ appear in the adiabatic equation and in the speed of sound?
+- Is a transformation with negative molar heat capacity possible?
+- What does the collapse of c for solids at low temperature measure?
+
+</div>
+
+</Layer>

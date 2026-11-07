@@ -39,4 +39,9 @@ export const SAMPLE_PAGES: SamplePage[] = [
   { name: 'tdc-formulario-it', path: `${BASE}it/anno-2/teoria-circuiti/formulario/`, visual: false },
   { name: 'tdc-esercizi-it', path: `${BASE}it/anno-2/teoria-circuiti/esercizi/circuiti-primo-ordine/` },
   { name: 'tdc-extra-it', path: `${BASE}it/anno-2/teoria-circuiti/extra/esame-info/` },
+  { name: 'f1-panoramica-it', path: `${BASE}it/anno-1/fisica-1/` },
+  { name: 'f1-teoria-en', path: `${BASE}en/anno-1/fisica-1/teoria/ciclo-di-carnot/` },
+  { name: 'f1-esercizi-it', path: `${BASE}it/anno-1/fisica-1/esercizi/urti-centrali/` },
+  { name: 'f1-formulario-en', path: `${BASE}en/anno-1/fisica-1/formulario/`, visual: false },
+  { name: 'f1-orale-it', path: `${BASE}it/anno-1/fisica-1/extra/simulazione-orale/` },
 ];

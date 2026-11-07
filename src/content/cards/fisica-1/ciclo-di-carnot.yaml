@@ -1,0 +1,249 @@
+- id: ciclo-di-carnot-esposizione
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.1
+    - ciclo-di-carnot.2
+    - ciclo-di-carnot.3
+    - ciclo-di-carnot.4
+    - ciclo-di-carnot.5
+    - ciclo-di-carnot.6
+    - ciclo-di-carnot.7
+  kind: orale
+  front:
+    it: "Esponi all'orale: «Ciclo di Carnot»."
+    en: 'Present at the oral exam: “Carnot cycle”.'
+  back:
+    it: >-
+      Carnot progetta la macchina 'perfetta' eliminando ogni spreco: mai un contatto termico con salto finito
+      di temperatura (per questo il calore si scambia solo lungo isoterme) e mai attriti. Anche così, una
+      parte del calore DEVE essere scaricata alla sorgente fredda: è il prezzo minimo, dettato dal rapporto
+      delle temperature, che nessuna ingegneria può eliminare.
+
+
+      **Scaletta:**
+
+
+      - Disegnare il ciclo nel piano p-V (e sapere com'è nel piano T-S)
+
+      - Descrivere le quattro trasformazioni con i segni di Q e W
+
+      - Calcolare Q_C e Q_F sulle isoterme
+
+      - Dimostrare V₂/V₁ = V₃/V₄ con le adiabatiche
+
+      - Ricavare η = 1 − T_F/T_C
+
+      - Osservare che Q_C/T_C = |Q_F|/T_F
+
+      - Discutere i casi limite e il ciclo invertito
+    en: >-
+      Carnot designs the 'perfect' engine by eliminating every waste: never a thermal contact across a finite
+      temperature jump (that is why heat is exchanged only along isotherms) and never friction. Even so, part
+      of the heat MUST be discharged to the cold reservoir: it is the minimum price, dictated by the ratio of
+      temperatures, that no engineering can eliminate.
+
+
+      **Outline:**
+
+
+      - Draw the cycle in the p-V plane (and know what it looks like in the T-S plane)
+
+      - Describe the four transformations with the signs of Q and W
+
+      - Compute Q_C and Q_F on the isotherms
+
+      - Prove V₂/V₁ = V₃/V₄ with the adiabatics
+
+      - Derive η = 1 − T_F/T_C
+
+      - Observe that Q_C/T_C = |Q_F|/T_F
+
+      - Discuss the limiting cases and the reversed cycle
+- id: ciclo-di-carnot-orale-1
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.6
+    - ciclo-di-carnot.7
+  kind: orale
+  front:
+    it: >-
+      Perché scambiare calore lungo un'isoterma reversibile richiede tempi infiniti, e cosa comporta per la
+      potenza di una macchina di Carnot reale?
+    en: >-
+      Why does exchanging heat along a reversible isotherm require infinite time, and what does this imply for
+      the power of a real Carnot engine?
+  back:
+    it: >-
+      Il calore fluisce solo se c'è una differenza di temperatura, e la trasformazione è reversibile solo se
+      questa differenza è infinitesima: il flusso di calore tende a zero e servono tempi infiniti per
+      scambiare un calore finito. Una macchina di Carnot ideale ha quindi rendimento massimo ma potenza nulla.
+      Le macchine reali accettano differenze finite (irreversibili) per avere potenza; a massima potenza il
+      rendimento è circa \(1 - \sqrt{T_F/T_C}\) (Curzon-Ahlborn).
+    en: >-
+      Heat flows only if there is a temperature difference, and the transformation is reversible only if that
+      difference is infinitesimal: the heat flow tends to zero and infinite time is needed to exchange a
+      finite amount of heat. An ideal Carnot engine therefore has maximum efficiency but zero power. Real
+      engines accept finite (irreversible) differences in order to have power; at maximum power the efficiency
+      is about \(1 - \sqrt{T_F/T_C}\) (Curzon–Ahlborn).
+- id: ciclo-di-carnot-orale-2
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.6
+    - ciclo-di-carnot.7
+  kind: orale
+  front:
+    it: Come appare il ciclo di Carnot nel piano T-S e perché lì il calcolo del rendimento è immediato?
+    en: >-
+      What does the Carnot cycle look like in the T-S plane, and why is the efficiency calculation immediate
+      there?
+  back:
+    it: >-
+      Le isoterme sono segmenti orizzontali (T costante) e le adiabatiche reversibili segmenti verticali (S
+      costante, \(\delta Q = T\,dS = 0\)): il ciclo è un rettangolo. Il calore assorbito è l'area sotto il
+      lato superiore, \(Q_C = T_C\Delta S\), quello ceduto \(|Q_F| = T_F\Delta S\), il lavoro è l'area del
+      rettangolo \((T_C - T_F)\Delta S\), e \(\eta = 1 - T_F/T_C\) si legge subito.
+    en: >-
+      Isotherms are horizontal segments (constant T) and reversible adiabatics vertical segments (constant S,
+      \(\delta Q = T\,dS = 0\)): the cycle is a rectangle. The absorbed heat is the area under the upper side,
+      \(Q_C = T_C\Delta S\), the released heat \(|Q_F| = T_F\Delta S\), the work is the area of the rectangle
+      \((T_C - T_F)\Delta S\), and \(\eta = 1 - T_F/T_C\) can be read off at once.
+- id: ciclo-di-carnot-orale-3
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.6
+    - ciclo-di-carnot.7
+  kind: orale
+  front:
+    it: Se il fluido non è un gas perfetto il rendimento cambia? Perché no?
+    en: If the fluid is not an ideal gas, does the efficiency change? Why not?
+  back:
+    it: >-
+      No. Per il teorema di Carnot tutte le macchine reversibili che lavorano tra le stesse due sorgenti hanno
+      lo stesso rendimento: se una ne avesse di più, accoppiandola all'altra fatta funzionare all'indietro si
+      violerebbe il secondo principio. Il gas perfetto serve solo a fare il conto esplicito; il risultato \(1
+      - T_F/T_C\) è universale ed è anzi usato per definire la temperatura termodinamica.
+    en: >-
+      No. By Carnot's theorem all reversible engines working between the same two reservoirs have the same
+      efficiency: if one had more, coupling it to the other run backwards would violate the second law. The
+      ideal gas only serves to make the explicit calculation; the result \(1 - T_F/T_C\) is universal and is
+      in fact used to define thermodynamic temperature.
+- id: ciclo-di-carnot-definizione
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.1
+  kind: definizione
+  front:
+    it: 'Definizione: Ciclo di Carnot'
+    en: 'Definition: Carnot cycle'
+  back:
+    it: >-
+      Il ciclo di Carnot è il ciclo reversibile compiuto tra DUE sole sorgenti termiche (T_C calda e T_F
+      fredda), composto da quattro trasformazioni quasi-statiche: espansione isoterma a T_C, espansione
+      adiabatica da T_C a T_F, compressione isoterma a T_F, compressione adiabatica di ritorno a T_C. Per un
+      gas perfetto il suo rendimento vale \(\eta_{Carnot} = 1 - T_F/T_C\): dipende solo dalle temperature
+      delle sorgenti.
+    en: >-
+      The Carnot cycle is the reversible cycle performed between only TWO thermal reservoirs (hot T_C, from
+      Italian caldo, and cold T_F, from freddo), made of four quasi-static transformations: isothermal
+      expansion at T_C, adiabatic expansion from T_C to T_F, isothermal compression at T_F, adiabatic
+      compression back to T_C. For an ideal gas its efficiency is \(\eta_{Carnot} = 1 - T_F/T_C\): it depends
+      only on the temperatures of the reservoirs.
+- id: ciclo-di-carnot-formule
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.1
+    - ciclo-di-carnot.2
+    - ciclo-di-carnot.3
+    - ciclo-di-carnot.4
+    - ciclo-di-carnot.5
+    - ciclo-di-carnot.6
+    - ciclo-di-carnot.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Ciclo di Carnot»
+    en: The key formulas of “Carnot cycle”
+  back:
+    it: |-
+      - \(Q_C = nRT_C\ln\frac{V_2}{V_1}\)
+      - \(\frac{V_2}{V_1} = \frac{V_3}{V_4}\)
+      - \(\eta_{Carnot} = 1 - \frac{T_F}{T_C}\)
+      - \(\frac{Q_C}{T_C} = \frac{|Q_F|}{T_F}\)
+    en: |-
+      - \(Q_C = nRT_C\ln\frac{V_2}{V_1}\)
+      - \(\frac{V_2}{V_1} = \frac{V_3}{V_4}\)
+      - \(\eta_{Carnot} = 1 - \frac{T_F}{T_C}\)
+      - \(\frac{Q_C}{T_C} = \frac{|Q_F|}{T_F}\)
+- id: ciclo-di-carnot-ipotesi
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.1
+    - ciclo-di-carnot.2
+    - ciclo-di-carnot.3
+    - ciclo-di-carnot.4
+    - ciclo-di-carnot.5
+    - ciclo-di-carnot.6
+    - ciclo-di-carnot.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Ciclo di Carnot'
+    en: 'Validity assumptions: Carnot cycle'
+  back:
+    it: >-
+      Tutte le trasformazioni reversibili (quasi-statiche, senza attriti, scambi termici a differenza di
+      temperatura infinitesima); due sole sorgenti ideali; per il calcolo esplicito, gas perfetto come fluido
+      di lavoro (ma il risultato è universale per il teorema di Carnot).
+    en: >-
+      All transformations reversible (quasi-static, frictionless, heat exchanges across infinitesimal
+      temperature differences); only two ideal reservoirs; for the explicit calculation, an ideal gas as
+      working fluid (but the result is universal by Carnot's theorem).
+- id: ciclo-di-carnot-casi-limite
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.1
+    - ciclo-di-carnot.2
+    - ciclo-di-carnot.3
+    - ciclo-di-carnot.4
+    - ciclo-di-carnot.5
+    - ciclo-di-carnot.6
+    - ciclo-di-carnot.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Ciclo di Carnot'
+    en: 'Limiting cases: Carnot cycle'
+  back:
+    it: >-
+      T_F → T_C: η → 0, senza dislivello termico niente lavoro. T_F → 0: η → 1, ma lo zero assoluto è
+      irraggiungibile (terzo principio). Ciclo invertito: frigorifero di Carnot con COP = T_F/(T_C − T_F), il
+      massimo possibile.
+    en: >-
+      T_F → T_C: η → 0, no temperature difference, no work. T_F → 0: η → 1, but absolute zero is unreachable
+      (third law). Reversed cycle: Carnot refrigerator with COP = T_F/(T_C − T_F), the maximum possible.
+- id: ciclo-di-carnot-errori
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.1
+    - ciclo-di-carnot.2
+    - ciclo-di-carnot.3
+    - ciclo-di-carnot.4
+    - ciclo-di-carnot.5
+    - ciclo-di-carnot.6
+    - ciclo-di-carnot.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Ciclo di Carnot'
+    en: 'Mistakes to avoid: Carnot cycle'
+  back:
+    it: |-
+      - Usare le temperature in gradi Celsius nel rendimento.
+      - Dire che il rendimento dipende dal gas o dalle dimensioni del ciclo: solo dalle temperature.
+      - Dimenticare la dimostrazione del vincolo V₂/V₁ = V₃/V₄ (l'esaminatore la chiede).
+      - Confondere il lavoro dei singoli tratti con il lavoro netto del ciclo (area racchiusa nel piano p-V).
+    en: >-
+      - Using temperatures in degrees Celsius in the efficiency.
+
+      - Saying that the efficiency depends on the gas or on the size of the cycle: only on the temperatures.
+
+      - Forgetting the proof of the constraint V₂/V₁ = V₃/V₄ (the examiner asks for it).
+
+      - Confusing the work of the single branches with the net work of the cycle (area enclosed in the p-V
+      plane).

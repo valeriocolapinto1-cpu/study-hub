@@ -1,0 +1,174 @@
+---
+course: fisica-1
+topic: forze-non-conservative
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/forze-non-conservative/idea">
+
+ΔE = W_nc è il 'conto corrente' dell'energia meccanica: le forze conservative spostano fondi tra i depositi K e U senza toccare il saldo, le non conservative fanno versamenti (motori) o prelievi (attriti). Il denaro prelevato dall'attrito non è distrutto: è convertito nella valuta 'disordinata' dell'energia termica, non più interamente riconvertibile in moto.
+
+</div>
+
+<div class="muted" data-note-id="teoria/forze-non-conservative/prerequisiti">
+
+**Prima di questo argomento:** [Forze conservative, energia potenziale e conservazione dell'energia meccanica](../forze-conservative/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/forze-non-conservative/definizioni">
+
+## Definizioni
+
+Quando sul sistema agiscono anche forze non conservative (attrito radente, resistenza del mezzo, forze motrici), l'energia meccanica E = K + U non si conserva: la sua variazione è pari al lavoro delle sole forze non conservative, $\Delta E = W_{nc}$. Le forze dissipative (attrito) hanno sempre $W_{nc} < 0$ e convertono energia meccanica in energia interna (calore); una forza motrice può avere $W_{nc} > 0$ e aumentare E.
+
+</div>
+
+<div data-note-id="teoria/forze-non-conservative/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Separo il lavoro totale in parte conservativa e non</summary>
+
+$$
+W_{tot} = W_{cons} + W_{nc}
+$$
+
+Ogni forza agente è classificata in una delle due famiglie.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Teorema dell'energia cinetica</summary>
+
+$$
+\Delta K = W_{tot} = W_{cons} + W_{nc}
+$$
+
+Vale sempre, per qualunque tipo di forza.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Esprimo il lavoro conservativo tramite U</summary>
+
+$$
+W_{cons} = -\Delta U \;\Rightarrow\; \Delta K = -\Delta U + W_{nc}
+$$
+
+Solo la parte conservativa ammette energia potenziale.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Bilancio dell'energia meccanica</summary>
+
+$$
+\Delta(K + U) = \Delta E = W_{nc}
+$$
+
+Teorema di bilancio: l'energia meccanica varia esattamente del lavoro non conservativo. Se W_nc = 0 si riottiene la conservazione.
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Esempio: attrito radente su un piano</summary>
+
+$$
+W_{attr} = -\mu_d N \, d \;\Rightarrow\; \frac{1}{2}mv_B^2 + U_B = \frac{1}{2}mv_A^2 + U_A - \mu_d N d
+$$
+
+d è la lunghezza del cammino effettivamente percorso (non lo spostamento netto!): per questo il lavoro dell'attrito dipende dal percorso.
+
+</details>
+
+<details id="passo-6">
+<summary>Passo 6 · Interpretazione termodinamica</summary>
+
+$$
+|W_{attr}| = \Delta E_{interna} \;(\text{riscaldamento delle superfici})
+$$
+
+L'energia meccanica 'persa' non sparisce: diventa energia interna (agitazione termica). Il bilancio totale dell'energia resta valido — è il ponte verso il primo principio della termodinamica.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/forze-non-conservative/ipotesi">
+
+## Ipotesi di validità
+
+Sistema in cui le forze sono classificabili in conservative e non; per l'attrito radente, modello di Coulomb F = μ_d N con μ_d costante; N nota lungo il cammino.
+
+</div>
+
+<div data-note-id="teoria/forze-non-conservative/casi-limite">
+
+## Casi limite
+
+W_nc = 0: conservazione esatta di E. Moto a regime (velocità costante) con attrito: la forza motrice compensa esattamente la dissipazione, ΔK = 0 e W_motrice = −W_attrito. Tempo lungo con sola dissipazione: E decresce monotonicamente fino al minimo di U accessibile.
+
+</div>
+
+<div data-note-id="teoria/forze-non-conservative/formule">
+
+## Formule chiave
+
+<Formula id="forze-non-conservative-f1" />
+
+<Formula id="forze-non-conservative-f2" />
+
+<Formula id="forze-non-conservative-f3" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/forze-non-conservative/esempio">
+
+Un blocco viene lanciato con velocità v₀ = 6,0 m/s su per un piano inclinato di 30° con coefficiente di attrito dinamico μd = 0,20 (lo statico è minore di tan 30°, quindi ridiscende). Calcolare: (a) la distanza percorsa lungo il piano prima di fermarsi; (b) l'energia dissipata per unità di massa nell'andata; (c) la velocità con cui ripassa dal punto di lancio.
+
+1. **Salita.** $\tfrac12 v_0^2 = g d(\sin\theta + \mu_d\cos\theta) \Rightarrow d = \dfrac{18}{9{,}81\,(0{,}5 + 0{,}1732)} \approx 2{,}73\ \text{m}$.
+2. **Energia dissipata.** $|W_{attr}|/m = \mu_d g\cos\theta\, d \approx 1{,}699 \cdot 2{,}73 \approx 4{,}64\ \text{J/kg}$.
+3. **Discesa.** $\tfrac12 v_f^2 = g d(\sin\theta - \mu_d\cos\theta) \Rightarrow v_f \approx 4{,}18\ \text{m/s}$: rispetto a v₀ manca l'energia dissipata nei due tratti.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/forze-non-conservative/errori">
+
+- Usare E = cost in presenza di attrito che lavora.
+- Nel lavoro dell'attrito usare lo spostamento netto invece della lunghezza del cammino percorso.
+- Dimenticare il segno: il lavoro dell'attrito radente sul corpo che striscia è sempre negativo (opposto al moto relativo).
+- Dire che l'energia 'si perde': si trasforma in energia interna, il bilancio complessivo torna.
+
+</div>
+
+<div data-note-id="teoria/forze-non-conservative/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Un blocco sale e ridiscende un piano inclinato scabro: perché la velocità di ritorno è minore di quella di lancio, e come la calcoli?
+- Nel rotolamento puro l'attrito statico dissipa energia?
+- Come si collega ΔE = W_nc al primo principio della termodinamica?
+
+</div>
+
+</Layer>

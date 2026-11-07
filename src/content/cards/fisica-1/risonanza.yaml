@@ -1,0 +1,248 @@
+- id: risonanza-esposizione
+  topic: risonanza
+  objectives:
+    - risonanza.1
+    - risonanza.2
+    - risonanza.3
+    - risonanza.4
+    - risonanza.5
+    - risonanza.6
+    - risonanza.7
+  kind: orale
+  front:
+    it: "Esponi all'orale: «Risonanza in un oscillatore forzato»."
+    en: 'Present at the oral exam: “Resonance in a driven oscillator”.'
+  back:
+    it: >-
+      La risonanza è spingere l'altalena al momento giusto: se ogni spinta arriva in fase con la velocità,
+      tutta la potenza entra nel sistema e l'ampiezza cresce finché le perdite per attrito non pareggiano
+      l'apporto. Ecco perché a risonanza la fase è π/2: la forza è sincronizzata con la velocità, non con la
+      posizione.
+
+
+      **Scaletta:**
+
+
+      - Scrivere l'equazione forzata e separare transitorio e regime
+
+      - Ricavare (o impostare) A(Ω) e tan δ
+
+      - Tracciare qualitativamente la curva di risonanza per diversi γ
+
+      - Discutere il massimo dell'ampiezza e l'effetto dello smorzamento
+
+      - Descrivere l'andamento della fase nei tre regimi di frequenza
+
+      - Spiegare perché il massimo assorbimento di potenza è a ω₀
+
+      - Fare un esempio reale (ponte, altalena, circuito RLC)
+    en: >-
+      Resonance is pushing a swing at the right moment: if every push arrives in phase with the velocity, all
+      the power goes into the system and the amplitude grows until friction losses balance the input. That is
+      why the phase at resonance is π/2: the force is synchronised with the velocity, not with the position.
+
+
+      **Outline:**
+
+
+      - Write the driven equation and separate transient and steady state
+
+      - Derive (or set up) A(Ω) and tan δ
+
+      - Sketch qualitatively the resonance curve for different γ
+
+      - Discuss the amplitude maximum and the effect of damping
+
+      - Describe the behaviour of the phase in the three frequency ranges
+
+      - Explain why maximum power absorption is at ω₀
+
+      - Give a real example (bridge, swing, RLC circuit)
+- id: risonanza-orale-1
+  topic: risonanza
+  objectives:
+    - risonanza.6
+    - risonanza.7
+  kind: orale
+  front:
+    it: Che analogia c'è con il circuito RLC serie forzato?
+    en: What is the analogy with the driven series RLC circuit?
+  back:
+    it: >-
+      La maglia RLC serie forzata da \(V_0\cos\Omega t\) obbedisce a \(L\ddot q + R\dot q + q/C =
+      V_0\cos\Omega t\), formalmente identica a \(m\ddot x + b\dot x + kx = F_0\cos\Omega t\): carica ↔
+      spostamento, corrente ↔ velocità, L ↔ m (inerzia), R ↔ b (dissipazione), 1/C ↔ k (richiamo), \(\omega_0
+      = 1/\sqrt{LC}\), \(\gamma = R/2L\). La risonanza in corrente (massima potenza) è esattamente a ω₀, come
+      la potenza assorbita dall'oscillatore meccanico.
+    en: >-
+      The series RLC loop driven by \(V_0\cos\Omega t\) obeys \(L\ddot q + R\dot q + q/C = V_0\cos\Omega t\),
+      formally identical to \(m\ddot x + b\dot x + kx = F_0\cos\Omega t\): charge ↔ displacement, current ↔
+      velocity, L ↔ m (inertia), R ↔ b (dissipation), 1/C ↔ k (restoring), \(\omega_0 = 1/\sqrt{LC}\),
+      \(\gamma = R/2L\). Current resonance (maximum power) is exactly at ω₀, like the power absorbed by the
+      mechanical oscillator.
+- id: risonanza-orale-2
+  topic: risonanza
+  objectives:
+    - risonanza.6
+    - risonanza.7
+  kind: orale
+  front:
+    it: Cosa determina la larghezza del picco di risonanza?
+    en: What determines the width of the resonance peak?
+  back:
+    it: >-
+      La larghezza a metà potenza della curva di potenza assorbita vale \(\Delta\omega \approx 2\gamma\) (per
+      smorzamento debole), quindi \(Q = \omega_0/\Delta\omega = \omega_0/2\gamma\): più lo smorzamento è
+      debole, più il picco è stretto e selettivo. Q misura anche quante oscillazioni servono per raggiungere
+      (o perdere) il regime: il tempo di assestamento è dell'ordine di 1/γ.
+    en: >-
+      The half-power width of the absorbed-power curve is \(\Delta\omega \approx 2\gamma\) (for weak damping),
+      so \(Q = \omega_0/\Delta\omega = \omega_0/2\gamma\): the weaker the damping, the narrower and more
+      selective the peak. Q also measures how many oscillations it takes to reach (or lose) the steady state:
+      the settling time is of order 1/γ.
+- id: risonanza-orale-3
+  topic: risonanza
+  objectives:
+    - risonanza.6
+    - risonanza.7
+  kind: orale
+  front:
+    it: Perché ai soldati si ordina di rompere il passo su un ponte?
+    en: Why are soldiers ordered to break step on a bridge?
+  back:
+    it: >-
+      Il passo cadenzato è una forzante periodica: se la sua frequenza coincide con una frequenza propria del
+      ponte, ogni passo arriva in fase con la velocità della struttura e le cede energia, e l'ampiezza cresce
+      fino a valori limitati solo dallo smorzamento (piccolo nelle strutture), con rischio di danni. Rompere
+      il passo rende la forzante incoerente (somma di fasi casuali), che non alimenta in modo sistematico
+      nessun modo proprio.
+    en: >-
+      Marching in step is a periodic driving force: if its frequency matches a natural frequency of the
+      bridge, every step arrives in phase with the velocity of the structure and feeds it energy, and the
+      amplitude grows to values limited only by damping (small in structures), with a risk of damage. Breaking
+      step makes the driving force incoherent (a sum of random phases), which does not systematically feed any
+      normal mode.
+- id: risonanza-definizione
+  topic: risonanza
+  objectives:
+    - risonanza.1
+  kind: definizione
+  front:
+    it: 'Definizione: Risonanza in un oscillatore forzato'
+    en: 'Definition: Resonance in a driven oscillator'
+  back:
+    it: >-
+      Un oscillatore forzato è un oscillatore smorzato su cui agisce anche una forza esterna periodica \(F(t)
+      = F_0\cos(\Omega t)\). Dopo un transitorio, il sistema oscilla alla pulsazione Ω della forzante
+      (soluzione a regime) con un'ampiezza che dipende da Ω: quando Ω si avvicina alla pulsazione propria ω₀
+      l'ampiezza cresce fortemente — fenomeno della risonanza. Più lo smorzamento è debole, più il picco di
+      risonanza è alto e stretto.
+    en: >-
+      A driven oscillator is a damped oscillator also acted upon by a periodic external force \(F(t) =
+      F_0\cos(\Omega t)\). After a transient, the system oscillates at the angular frequency Ω of the driving
+      force (steady-state solution) with an amplitude that depends on Ω: when Ω approaches the natural angular
+      frequency ω₀ the amplitude grows strongly — the phenomenon of resonance. The weaker the damping, the
+      higher and narrower the resonance peak.
+- id: risonanza-formule
+  topic: risonanza
+  objectives:
+    - risonanza.1
+    - risonanza.2
+    - risonanza.3
+    - risonanza.4
+    - risonanza.5
+    - risonanza.6
+    - risonanza.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Risonanza in un oscillatore forzato»
+    en: The key formulas of “Resonance in a driven oscillator”
+  back:
+    it: |-
+      - \(\ddot{x} + 2\gamma\dot{x} + \omega_0^2 x = \frac{F_0}{m}\cos\Omega t\)
+      - \(A(\Omega) = \frac{F_0/m}{\sqrt{(\omega_0^2-\Omega^2)^2 + 4\gamma^2\Omega^2}}\)
+      - \(\tan\delta = \frac{2\gamma\Omega}{\omega_0^2-\Omega^2}\)
+      - \(\Omega_{ris} = \sqrt{\omega_0^2 - 2\gamma^2}\)
+    en: |-
+      - \(\ddot{x} + 2\gamma\dot{x} + \omega_0^2 x = \frac{F_0}{m}\cos\Omega t\)
+      - \(A(\Omega) = \frac{F_0/m}{\sqrt{(\omega_0^2-\Omega^2)^2 + 4\gamma^2\Omega^2}}\)
+      - \(\tan\delta = \frac{2\gamma\Omega}{\omega_0^2-\Omega^2}\)
+      - \(\Omega_{ris} = \sqrt{\omega_0^2 - 2\gamma^2}\)
+- id: risonanza-ipotesi
+  topic: risonanza
+  objectives:
+    - risonanza.1
+    - risonanza.2
+    - risonanza.3
+    - risonanza.4
+    - risonanza.5
+    - risonanza.6
+    - risonanza.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Risonanza in un oscillatore forzato'
+    en: 'Validity assumptions: Resonance in a driven oscillator'
+  back:
+    it: >-
+      Sistema lineare (Hooke + attrito viscoso lineare); forzante armonica pura; si osserva il sistema dopo
+      l'estinzione del transitorio (t ≫ 1/γ).
+    en: >-
+      Linear system (Hooke + linear viscous friction); pure harmonic driving force; the system is observed
+      after the transient has died out (t ≫ 1/γ).
+- id: risonanza-casi-limite
+  topic: risonanza
+  objectives:
+    - risonanza.1
+    - risonanza.2
+    - risonanza.3
+    - risonanza.4
+    - risonanza.5
+    - risonanza.6
+    - risonanza.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Risonanza in un oscillatore forzato'
+    en: 'Limiting cases: Resonance in a driven oscillator'
+  back:
+    it: >-
+      γ → 0: picco di risonanza infinitamente alto e stretto (in un sistema reale l'ampiezza cresce finché non
+      intervengono non linearità o rotture). Ω → 0: A → F₀/(mω₀²) = F₀/k, risposta statica della molla. Ω → ∞:
+      A → 0, l'inerzia impedisce di seguire la forzante.
+    en: >-
+      γ → 0: infinitely high and narrow resonance peak (in a real system the amplitude grows until
+      non-linearities or breakage intervene). Ω → 0: A → F₀/(mω₀²) = F₀/k, the static response of the spring.
+      Ω → ∞: A → 0, inertia prevents the system from following the force.
+- id: risonanza-errori
+  topic: risonanza
+  objectives:
+    - risonanza.1
+    - risonanza.2
+    - risonanza.3
+    - risonanza.4
+    - risonanza.5
+    - risonanza.6
+    - risonanza.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Risonanza in un oscillatore forzato'
+    en: 'Mistakes to avoid: Resonance in a driven oscillator'
+  back:
+    it: >-
+      - Dire che a regime il sistema oscilla a ω₀: oscilla alla pulsazione Ω della forzante.
+
+      - Confondere il picco d'ampiezza (a √(ω₀²−2γ²)) con il picco di potenza assorbita (esattamente a ω₀).
+
+      - Dimenticare il transitorio: subito dopo l'accensione della forzante il moto è la somma delle due
+      soluzioni.
+
+      - Credere che a risonanza forzante e spostamento siano in fase: sono sfasati di π/2.
+    en: >-
+      - Saying that in steady state the system oscillates at ω₀: it oscillates at the driving angular
+      frequency Ω.
+
+      - Confusing the amplitude peak (at √(ω₀²−2γ²)) with the peak of absorbed power (exactly at ω₀).
+
+      - Forgetting the transient: right after the driving force is switched on, the motion is the sum of the
+      two solutions.
+
+      - Believing that at resonance force and displacement are in phase: they are π/2 out of phase.

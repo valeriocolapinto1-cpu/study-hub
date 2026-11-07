@@ -1,0 +1,175 @@
+---
+course: fisica-1
+topic: energia-corpo-rigido
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/energia-corpo-rigido/idea">
+
+A rigid body stores kinetic energy in two 'tanks': the overall motion of the centre of mass and the rotation about it. The choice between the two equivalent forms (fixed axis vs König) is only a matter of convenience: the energy is the same. Potential energy, instead, has a single tank: the height of the centre of mass.
+
+</div>
+
+<div class="muted" data-note-id="teoria/energia-corpo-rigido/prerequisiti">
+
+**Before this topic:** [Moments of inertia and the Huygens–Steiner theorem](../momenti-di-inerzia/) · [König's theorem (angular momentum and kinetic energy)](../teorema-di-koenig/) · [Motion of a rigid body](../moto-corpo-rigido/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/energia-corpo-rigido/definizioni">
+
+## Definitions
+
+The kinetic energy of a rigid body splits (König) into translation of the CM plus rotation about the CM: $K = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2$. For rotation about a fixed axis: $K = \frac{1}{2}I_{axis}\omega^2$. The mechanical energy is E = K + U with $U = Mgh_{cm}$ (the gravitational potential energy of a rigid body depends only on the height of the CM). If only conservative forces do work and the constraints do not dissipate, E is conserved.
+
+</div>
+
+<div data-note-id="teoria/energia-corpo-rigido/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Kinetic energy for rotation about a fixed axis</summary>
+
+$$
+K = \sum_i \frac{1}{2}m_i v_i^2 = \sum_i \frac{1}{2}m_i(\omega r_i)^2 = \frac{1}{2}I_{axis}\,\omega^2
+$$
+
+Every point has v = ωrᵢ with the same ω: the moment of inertia collects all the geometry.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · General case via König</summary>
+
+$$
+K = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2
+$$
+
+Translation + rotation about the CM. The two forms are consistent: for rotation about a fixed axis at distance d from the CM, ½I_axis ω² = ½(I_cm + Md²)ω² = ½Mv_cm² + ½I_cm ω², with v_cm = ωd.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Gravitational potential energy of the rigid body</summary>
+
+$$
+U = \sum_i m_i g z_i = g\sum_i m_i z_i = Mg\,z_{cm}
+$$
+
+In a uniform field the potential energy of the whole body is that of the total mass placed at the CM.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Kinetic energy theorem for the rigid body</summary>
+
+$$
+\Delta K = W^{ext}
+$$
+
+The work of internal forces is zero because of the rigidity constraint (distances do not change): only external work counts. For rotation: W = ∫τ dθ.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Conservation of mechanical energy</summary>
+
+$$
+\frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2 + Mg\,z_{cm} = \text{const}
+$$
+
+Valid if the active forces are conservative and the constraint reactions do no work (smooth pivots, pure rolling).
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Example: hinged rod falling from horizontal</summary>
+
+$$
+Mg\frac{L}{2} = \frac{1}{2}\Big(\frac{1}{3}ML^2\Big)\omega^2 \;\Rightarrow\; \omega = \sqrt{\frac{3g}{L}}
+$$
+
+The CM drops by L/2; the energy goes entirely into rotation about the pivot (I = ML²/3). A classic oral-exam example.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/energia-corpo-rigido/ipotesi">
+
+## Validity assumptions
+
+Rigid body; uniform gravitational field; ideal (non-dissipative) constraints; for K = ½Iω² a fixed axis.
+
+</div>
+
+<div data-note-id="teoria/energia-corpo-rigido/casi-limite">
+
+## Limiting cases
+
+Pure translation: K = ½Mv². Pure rotation about the CM: K = ½I_cmω². Pure rolling: both terms with the constraint v = ωR. Rough pivot or slipping: E is not conserved, ΔE = W_friction.
+
+</div>
+
+<div data-note-id="teoria/energia-corpo-rigido/formule">
+
+## Key formulas
+
+<Formula id="energia-corpo-rigido-f1" />
+
+<Formula id="energia-corpo-rigido-f2" />
+
+<Formula id="energia-corpo-rigido-f3" />
+
+<Formula id="energia-corpo-rigido-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/energia-corpo-rigido/esempio">
+
+A uniform rod of length L = 1.2 m, hinged without friction at one end, is released from rest in the horizontal position. When it passes through the vertical, find: (a) the angular velocity; (b) the speed of the free end; (c) the speed of the centre of mass.
+
+1. **Energy conservation.** $Mg\,\tfrac L2 = \tfrac12 \cdot \tfrac13 ML^2\omega^2 \Rightarrow \omega = \sqrt{3g/L} \approx 4.95\ \text{rad/s}$.
+2. **Speeds.** End: $v = \omega L \approx 5.94\ \text{m/s}$; CM: $v_{cm} = \omega L/2 \approx 2.97\ \text{m/s}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/energia-corpo-rigido/errori">
+
+- Adding ½I_axis ω² (with I about the pivot) AND ½Mv_cm²: translation is counted twice.
+- Using I_cm when the rotation is about an off-centre pivot (or vice versa) without Huygens–Steiner.
+- Computing U with the height of an arbitrary point instead of the CM.
+- Forgetting to check that the constraints do no work before conserving E.
+
+</div>
+
+<div data-note-id="teoria/energia-corpo-rigido/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- In the falling rod, which point hits the ground faster than in free fall?
+- Why does the reaction of the pivot do no work even though it is not zero?
+- How does the result change if the rod is hinged at 1/4 of its length?
+
+</div>
+
+</Layer>

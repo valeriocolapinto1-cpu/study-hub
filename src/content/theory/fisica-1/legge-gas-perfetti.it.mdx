@@ -1,0 +1,175 @@
+---
+course: fisica-1
+topic: legge-gas-perfetti
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/legge-gas-perfetti/idea">
+
+Tre leggi sperimentali indipendenti, scoperte in due secoli, si incastrano in un'unica equazione a patto di misurare la temperatura dalla giusta origine: lo zero assoluto. L'universalità (stessa R per tutti i gas) grida che a basse densità le molecole non si 'vedono' tra loro: conta solo quante sono, non chi sono — ed è esattamente ciò che il modello cinetico assume.
+
+</div>
+
+<div class="muted" data-note-id="teoria/legge-gas-perfetti/prerequisiti">
+
+**Prima di questo argomento:** [Pressione e legge di Stevino](../legge-di-stevino/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/legge-gas-perfetti/definizioni">
+
+## Definizioni
+
+L'equazione di stato dei gas perfetti, $pV = nRT$, sintetizza in un'unica relazione le leggi empiriche ottenute tra Seicento e Ottocento: legge di Boyle (isoterma: pV = cost), prima legge di Gay-Lussac/Charles (isobara: V ∝ T), seconda legge di Gay-Lussac (isocora: p ∝ T) e principio di Avogadro (volumi uguali, stessa T e p → stesso numero di moli). R = 8.314 J/(mol·K) è la costante universale dei gas; T è la temperatura assoluta in kelvin.
+
+</div>
+
+<div data-note-id="teoria/legge-gas-perfetti/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Legge di Boyle (T costante)</summary>
+
+$$
+pV = \text{cost} \qquad (T\;\text{fissata})
+$$
+
+Comprimendo isotermicamente un gas rarefatto, pressione e volume sono inversamente proporzionali: iperboli nel piano p-V.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Leggi di Volta-Gay-Lussac (p o V costanti)</summary>
+
+$$
+V = V_0(1 + \alpha t) \;\;(p\;\text{cost}), \qquad p = p_0(1 + \alpha t) \;\;(V\;\text{cost}), \qquad \alpha = \frac{1}{273.15\,°C}
+$$
+
+Il coefficiente α è LO STESSO per tutti i gas rarefatti: fatto sperimentale notevole che suggerisce un comportamento universale.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Nasce la temperatura assoluta</summary>
+
+$$
+T = t + 273.15 \;\Rightarrow\; V = V_0\,\alpha\,T, \qquad p = p_0\,\alpha\,T
+$$
+
+Tutte le rette estrapolate si annullano a t = −273.15 °C: scegliendo lì lo zero, le leggi diventano proporzionalità dirette. Lo zero assoluto emerge dai dati, non da un postulato.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Combino le leggi</summary>
+
+$$
+\frac{pV}{T} = \text{cost per una data quantità di gas}
+$$
+
+Trasformazione in due passi (isoterma + isobara) da (p₁,V₁,T₁) a (p₂,V₂,T₂): la combinazione delle due leggi dà p₁V₁/T₁ = p₂V₂/T₂.
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Principio di Avogadro fissa la costante</summary>
+
+$$
+pV = nRT, \qquad R = 8.314\;\tfrac{\text{J}}{\text{mol·K}}
+$$
+
+A parità di p, V, T ogni gas contiene lo stesso numero di moli: la costante è proporzionale a n ed è universale. Un mole a 0 °C e 1 atm occupa 22.4 L.
+
+</details>
+
+<details id="passo-6">
+<summary>Passo 6 · Forma microscopica</summary>
+
+$$
+pV = Nk_BT, \qquad k_B = \frac{R}{N_A} = 1.38\times10^{-23}\;\tfrac{\text{J}}{\text{K}}
+$$
+
+Con N = nN_A molecole: la costante di Boltzmann è la R 'per molecola'. Questa forma si salda con la derivazione cinetica della pressione.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/legge-gas-perfetti/ipotesi">
+
+## Ipotesi di validità
+
+Gas sufficientemente rarefatto (limite di bassa densità): tutte le leggi empiriche valgono tanto meglio quanto più il gas è lontano dalla condensazione; equilibrio termodinamico (p, T uniformi e ben definite).
+
+</div>
+
+<div data-note-id="teoria/legge-gas-perfetti/casi-limite">
+
+## Casi limite
+
+Alta densità/bassa T: deviazioni descritte da Van der Waals $(p + an^2/V^2)(V - nb) = nRT$. Vicino alla liquefazione la legge fallisce del tutto. Nel limite p → 0 tutti i gas reali tendono al comportamento perfetto: per questo il gas perfetto definisce la scala di temperatura.
+
+</div>
+
+<div data-note-id="teoria/legge-gas-perfetti/formule">
+
+## Formule chiave
+
+<Formula id="legge-gas-perfetti-f1" />
+
+<Formula id="legge-gas-perfetti-f2" />
+
+<Formula id="legge-gas-perfetti-f3" />
+
+<Formula id="legge-gas-perfetti-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/legge-gas-perfetti/esempio">
+
+Un pneumatico viene gonfiato a 2,2·10⁵ Pa di pressione relativa a 15 °C (pressione atmosferica 1,0·10⁵ Pa). Dopo un lungo viaggio la temperatura dell'aria interna è 45 °C. Supponendo il volume costante calcolare: (a) la nuova pressione assoluta; (b) la nuova pressione relativa; (c) le moli d'aria se il volume è 25 L.
+
+1. **Isocora con temperature in kelvin.** $p_2 = p_1 T_2/T_1 = 3{,}2\cdot 10^5 \cdot 318{,}15/288{,}15 \approx 3{,}533\cdot 10^5\ \text{Pa}$ (assoluta!); relativa $\approx 2{,}53\cdot 10^5\ \text{Pa}$.
+2. **Moli.** $n = p_1V/(RT_1) = \dfrac{3{,}2\cdot 10^5 \cdot 0{,}025}{8{,}314 \cdot 288{,}15} \approx 3{,}34\ \text{mol}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/legge-gas-perfetti/errori">
+
+- Usare la temperatura in gradi Celsius dentro pV = nRT: serve il kelvin.
+- Sbagliare unità di R (8.314 J/mol·K vs 0.0821 L·atm/mol·K).
+- Applicare la legge a vapori vicini alla condensazione.
+- Confondere n (moli) con N (molecole) e R con k_B.
+
+</div>
+
+<div data-note-id="teoria/legge-gas-perfetti/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Perché il termometro a gas perfetto è lo strumento di riferimento per definire la temperatura?
+- Che significato fisico hanno i termini correttivi a e b di Van der Waals?
+- Disegna nel piano p-V le isoterme di un gas perfetto e indica come cambiano al crescere di T.
+
+</div>
+
+</Layer>

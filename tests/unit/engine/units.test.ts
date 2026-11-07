@@ -70,6 +70,9 @@ describe('unità', () => {
     expect(U.convert(1, 'MiB', 'KiB')).toBe(1024);
     expect(U.convert(1, 'atm', 'bar')).toBeCloseTo(1.01325);
     expect(U.convert(1, 'L', 'm^3')).toBeCloseTo(1e-3);
+    expect(U.sameDimension('J/(kg·K)', 'J/kg/K')).toBe(true);
+    expect(U.sameDimension('J/(mol K)', 'J·mol^-1·K^-1')).toBe(true);
+    expect(U.convert(1, 'kJ/(kg·K)', 'J/(kg·K)')).toBeCloseTo(1000);
   });
   it('errori', () => {
     expect(U.parseUnit('xyz')).toBeNull();

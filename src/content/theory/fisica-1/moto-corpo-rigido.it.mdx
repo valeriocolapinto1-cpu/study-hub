@@ -1,0 +1,176 @@
+---
+course: fisica-1
+topic: moto-corpo-rigido
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/moto-corpo-rigido/idea">
+
+Il vincolo di rigidità riduce un numero enorme di gradi di libertà a soli 6: dire dove sta il CM e come il corpo è orientato basta a conoscere la posizione di ogni suo punto. Il moto si legge sempre come 'il CM trasla + il corpo gira attorno al CM', e ciascuna delle due parti obbedisce alla propria equazione cardinale.
+
+</div>
+
+<div class="muted" data-note-id="teoria/moto-corpo-rigido/prerequisiti">
+
+**Prima di questo argomento:** [Centro di massa e prima equazione cardinale](../centro-di-massa/) · [Momenti di inerzia e teorema di Huygens-Steiner](../momenti-di-inerzia/) · [Teorema del momento angolare (seconda equazione cardinale)](../teorema-momento-angolare/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/moto-corpo-rigido/definizioni">
+
+## Definizioni
+
+Un corpo rigido è un sistema di punti le cui distanze mutue restano costanti. Il suo moto più generale è la composizione di una traslazione (descritta dal moto del CM) e di una rotazione attorno a un asse passante per il CM: servono 6 coordinate (3 + 3). Il campo delle velocità è $\vec{v}_P = \vec{v}_{cm} + \vec{\omega}\times\vec{r}_{P}$, con r_P posizione di P rispetto al CM. Il moto è governato dalle due equazioni cardinali.
+
+</div>
+
+<div data-note-id="teoria/moto-corpo-rigido/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Vincolo di rigidità e campo delle velocità</summary>
+
+$$
+|\vec{r}_P - \vec{r}_Q| = \text{cost} \;\Rightarrow\; \vec{v}_P = \vec{v}_Q + \vec{\omega}\times(\vec{r}_P - \vec{r}_Q)
+$$
+
+Derivando il vincolo si mostra che le velocità relative tra punti del rigido sono puramente rotatorie: ω è la stessa per tutto il corpo (formula fondamentale della cinematica rigida).
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Le equazioni del moto</summary>
+
+$$
+\vec{F}^{ext} = M\vec{a}_{cm}, \qquad \frac{d\vec{L}_{cm}}{dt} = \vec{\tau}_{cm}^{ext}
+$$
+
+Prima cardinale per la traslazione del CM, seconda (con polo nel CM, sempre lecito) per la rotazione: 3+3 equazioni per 6 gradi di libertà — il moto è completamente determinato.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Rotazione attorno ad asse fisso</summary>
+
+$$
+L_z = I_z\omega \;\Rightarrow\; I_z\alpha = \tau_z
+$$
+
+Caso più comune negli esercizi: tutte le grandezze proiettate sull'asse. L'analogia con F = ma è completa: m→I, F→τ, a→α, v→ω, x→θ.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Cinematica rotazionale (α costante)</summary>
+
+$$
+\omega(t) = \omega_0 + \alpha t, \qquad \theta(t) = \theta_0 + \omega_0 t + \frac{1}{2}\alpha t^2, \qquad \omega^2 = \omega_0^2 + 2\alpha\Delta\theta
+$$
+
+Identiche alle formule del moto uniformemente accelerato con la sostituzione x→θ, v→ω, a→α.
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Asse istantaneo di rotazione</summary>
+
+$$
+\vec{v}_C = \vec{0} \;\Rightarrow\; \vec{v}_P = \vec{\omega}\times(\vec{r}_P - \vec{r}_C)
+$$
+
+Nel moto piano esiste a ogni istante un punto C a velocità nulla (centro di istantanea rotazione): il moto appare come pura rotazione attorno a C. Nel rotolamento C è il punto di contatto.
+
+</details>
+
+<details id="passo-6">
+<summary>Passo 6 · Lavoro e potenza nella rotazione</summary>
+
+$$
+dW = \tau_z\,d\theta, \qquad P = \tau_z\,\omega
+$$
+
+Analoghi rotazionali di dW = F dx e P = Fv; il teorema dell'energia cinetica diventa W = Δ(½Iω²).
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/moto-corpo-rigido/ipotesi">
+
+## Ipotesi di validità
+
+Rigidità perfetta (nessuna deformazione); per L = Iω asse fisso o principale d'inerzia; sistemi di riferimento inerziali (o polo nel CM).
+
+</div>
+
+<div data-note-id="teoria/moto-corpo-rigido/casi-limite">
+
+## Casi limite
+
+Pura traslazione: ω = 0, tutti i punti hanno la stessa velocità. Pura rotazione attorno ad asse fisso: v_cm dell'asse nulla. Rotolamento: combinazione con vincolo v_cm = ωR. Corpo libero nello spazio: il CM va di moto rettilineo uniforme e il corpo ruota attorno a esso.
+
+</div>
+
+<div data-note-id="teoria/moto-corpo-rigido/formule">
+
+## Formule chiave
+
+<Formula id="moto-corpo-rigido-f1" />
+
+<Formula id="moto-corpo-rigido-f2" />
+
+<Formula id="moto-corpo-rigido-f3" />
+
+<Formula id="moto-corpo-rigido-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/moto-corpo-rigido/esempio">
+
+Un volano (disco omogeneo di massa 20 kg e raggio 0,30 m) ruota a 600 giri/min. Un freno applica un momento costante di 1,5 N·m. Calcolare: (a) la decelerazione angolare; (b) il tempo per fermarlo; (c) il numero di giri compiuti durante la frenata.
+
+1. **Equazione del moto.** $I = \tfrac12 MR^2 = 0{,}90\ \text{kg·m}^2$; $\alpha = \tau/I \approx 1{,}667\ \text{rad/s}^2$.
+2. **Tempo.** $\omega_0 = 600 \cdot 2\pi/60 = 20\pi \approx 62{,}83\ \text{rad/s}$; $t = \omega_0/\alpha \approx 37{,}7\ \text{s}$.
+3. **Giri.** $\Delta\theta = \omega_0^2/(2\alpha) \approx 1184\ \text{rad}$, cioè circa 188 giri.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/moto-corpo-rigido/errori">
+
+- Assegnare ω 'a un punto': la velocità angolare è unica per tutto il corpo rigido.
+- Usare la seconda cardinale con polo mobile diverso dal CM senza correzioni.
+- Applicare L = Iω vettorialmente quando l'asse non è principale.
+- Dimenticare che servono ENTRAMBE le cardinali: la sola prima non descrive la rotazione.
+
+</div>
+
+<div data-note-id="teoria/moto-corpo-rigido/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Perché per un corpo rigido il lavoro delle forze interne è nullo?
+- Come trovi graficamente il centro di istantanea rotazione conoscendo le velocità di due punti?
+- Cosa succede se si applica una forza il cui momento rispetto al CM è nullo?
+
+</div>
+
+</Layer>

@@ -1,0 +1,252 @@
+- id: rotolamento-puro-esposizione
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.1
+    - rotolamento-puro.2
+    - rotolamento-puro.3
+    - rotolamento-puro.4
+    - rotolamento-puro.5
+    - rotolamento-puro.6
+    - rotolamento-puro.7
+  kind: orale
+  front:
+    it: "Esponi all'orale: «Rotolamento puro»."
+    en: 'Present at the oral exam: “Pure rolling”.'
+  back:
+    it: >-
+      Nel rotolamento l'attrito statico è un 'regista' che non spende energia: costringe traslazione e
+      rotazione a marciare insieme (v = ωR) redistribuendo la spinta della gravità tra i due moti. La gara sul
+      piano inclinato la vince chi ha meno inerzia rotazionale relativa: la sfera batte il disco che batte
+      l'anello — sempre, a prescindere da massa e raggio.
+
+
+      **Scaletta:**
+
+
+      - Enunciare e giustificare il vincolo v_cm = ωR
+
+      - Scrivere K con König e il vincolo (forma con β)
+
+      - Impostare le due cardinali per la discesa dal piano inclinato
+
+      - Ricavare a_cm = g sinθ/(1+β) e f_s
+
+      - Ricavare la condizione sul μ_s per il rotolamento puro
+
+      - Rifare il calcolo con la conservazione dell'energia
+
+      - Spiegare perché l'attrito statico non dissipa
+    en: >-
+      In rolling, static friction is a 'director' that spends no energy: it forces translation and rotation to
+      march together (v = ωR), redistributing gravity's push between the two motions. The race down the
+      incline is won by the body with the least relative rotational inertia: the sphere beats the disc, which
+      beats the ring — always, regardless of mass and radius.
+
+
+      **Outline:**
+
+
+      - State and justify the constraint v_cm = ωR
+
+      - Write K with König and the constraint (β form)
+
+      - Set up the two cardinal equations for rolling down an incline
+
+      - Derive a_cm = g sinθ/(1+β) and f_s
+
+      - Derive the condition on μ_s for pure rolling
+
+      - Redo the calculation with energy conservation
+
+      - Explain why static friction does not dissipate
+- id: rotolamento-puro-orale-1
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.6
+    - rotolamento-puro.7
+  kind: orale
+  front:
+    it: >-
+      Una sfera lanciata strisciando su un pavimento scabro: come evolve fino al rotolamento puro e quale
+      grandezza conviene conservare?
+    en: >-
+      A sphere launched sliding on a rough floor: how does it evolve until pure rolling, and which quantity is
+      best conserved?
+  back:
+    it: >-
+      All'inizio la sfera ha \(v_0\) e ω = 0: il contatto striscia e l'attrito dinamico \(\mu_d Mg\), opposto
+      al moto, frena la traslazione e (con il suo momento rispetto al CM) accelera la rotazione, finché \(v =
+      \omega R\). L'attrito ha momento nullo rispetto al punto di contatto, quindi lì L si conserva: \(Mv_0R =
+      MvR + I_{cm}v/R\), da cui \(v_f = v_0/(1+\beta) = \tfrac57 v_0\). Durante lo strisciamento si dissipa
+      energia.
+    en: >-
+      Initially the sphere has \(v_0\) and ω = 0: the contact slides and kinetic friction \(\mu_k Mg\),
+      opposite to the motion, slows the translation and (through its torque about the CM) speeds up the
+      rotation, until \(v = \omega R\). Friction has zero torque about the contact point, so L about it is
+      conserved: \(Mv_0R = MvR + I_{cm}v/R\), giving \(v_f = v_0/(1+\beta) = \tfrac57 v_0\). Energy is
+      dissipated during the sliding.
+- id: rotolamento-puro-orale-2
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.6
+    - rotolamento-puro.7
+  kind: orale
+  front:
+    it: >-
+      Perché nel rotolamento in salita l'attrito statico punta verso l'alto o verso il basso a seconda dei
+      casi?
+    en: Why, when rolling uphill, does static friction point up or down the slope depending on the case?
+  back:
+    it: >-
+      Il verso dell'attrito statico è quello che serve a mantenere il vincolo v = ωR. Per un corpo che rotola
+      liberamente su un piano inclinato (in salita o in discesa) la gravità tende ad accelerare la traslazione
+      più della rotazione, e l'attrito punta verso l'alto del piano. Se invece c'è un momento motore sulla
+      ruota (ruota motrice), l'attrito spinge in avanti; se c'è un momento frenante, punta all'indietro:
+      dipende da chi "anticipa" tra traslazione e rotazione.
+    en: >-
+      The direction of static friction is whatever is needed to keep the constraint v = ωR. For a body rolling
+      freely on an incline (up or down) gravity tends to accelerate the translation more than the rotation,
+      and friction points up the slope. If instead there is a driving torque on the wheel (drive wheel),
+      friction pushes forward; with a braking torque, it points backwards: it depends on which of translation
+      and rotation "gets ahead".
+- id: rotolamento-puro-orale-3
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.6
+    - rotolamento-puro.7
+  kind: orale
+  front:
+    it: Cos'è l'attrito volvente e perché una ruota reale prima o poi si ferma?
+    en: What is rolling resistance and why does a real wheel eventually stop?
+  back:
+    it: >-
+      È la resistenza al rotolamento: ruota e piano si deformano, la reazione normale si sposta leggermente in
+      avanti rispetto alla verticale del CM e produce un momento frenante \(N\cdot\delta\) (δ coefficiente di
+      attrito volvente, una lunghezza). L'energia si dissipa nei cicli di deformazione (isteresi). Senza
+      attrito volvente una ruota ideale rotolerebbe per sempre su un piano orizzontale.
+    en: >-
+      It is rolling resistance: wheel and surface deform, the normal reaction shifts slightly ahead of the
+      vertical through the CM and produces a braking torque \(N\cdot\delta\) (δ the rolling-resistance
+      coefficient, a length). Energy is dissipated in the deformation cycles (hysteresis). Without rolling
+      resistance an ideal wheel would roll forever on a horizontal plane.
+- id: rotolamento-puro-definizione
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.1
+  kind: definizione
+  front:
+    it: 'Definizione: Rotolamento puro'
+    en: 'Definition: Pure rolling'
+  back:
+    it: >-
+      Un corpo rotondo (raggio R) rotola senza strisciare su una superficie quando il punto di contatto ha
+      velocità istantanea nulla: questo impone il vincolo di rotolamento puro \(v_{cm} = \omega R\) (e
+      derivando \(a_{cm} = \alpha R\)). Il moto è la sovrapposizione di traslazione e rotazione; l'attrito in
+      gioco è STATICO (il contatto non striscia) e non dissipa energia.
+    en: >-
+      A round body (radius R) rolls without slipping on a surface when the contact point has zero
+      instantaneous velocity: this imposes the pure-rolling constraint \(v_{cm} = \omega R\) (and,
+      differentiating, \(a_{cm} = \alpha R\)). The motion is the superposition of translation and rotation;
+      the friction involved is STATIC (the contact does not slide) and does not dissipate energy.
+- id: rotolamento-puro-formule
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.1
+    - rotolamento-puro.2
+    - rotolamento-puro.3
+    - rotolamento-puro.4
+    - rotolamento-puro.5
+    - rotolamento-puro.6
+    - rotolamento-puro.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Rotolamento puro»
+    en: The key formulas of “Pure rolling”
+  back:
+    it: |-
+      - \(v_{cm} = \omega R\)
+      - \(K = \frac{1}{2}(1+\beta)Mv_{cm}^2,\;\beta = \frac{I_{cm}}{MR^2}\)
+      - \(a_{cm} = \frac{g\sin\theta}{1+\beta}\)
+      - \(f_s \le \mu_s Mg\cos\theta\)
+    en: |-
+      - \(v_{cm} = \omega R\)
+      - \(K = \frac{1}{2}(1+\beta)Mv_{cm}^2,\;\beta = \frac{I_{cm}}{MR^2}\)
+      - \(a_{cm} = \frac{g\sin\theta}{1+\beta}\)
+      - \(f_s \le \mu_s Mg\cos\theta\)
+- id: rotolamento-puro-ipotesi
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.1
+    - rotolamento-puro.2
+    - rotolamento-puro.3
+    - rotolamento-puro.4
+    - rotolamento-puro.5
+    - rotolamento-puro.6
+    - rotolamento-puro.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Rotolamento puro'
+    en: 'Validity assumptions: Pure rolling'
+  back:
+    it: >-
+      Corpo rigido a sezione circolare; contatto puntiforme; rotolamento puro (v_contatto = 0) con attrito
+      statico sufficiente; si trascura l'attrito volvente (resistenza al rotolamento).
+    en: >-
+      Rigid body with circular cross-section; point contact; pure rolling (v_contact = 0) with sufficient
+      static friction; rolling resistance is neglected.
+- id: rotolamento-puro-casi-limite
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.1
+    - rotolamento-puro.2
+    - rotolamento-puro.3
+    - rotolamento-puro.4
+    - rotolamento-puro.5
+    - rotolamento-puro.6
+    - rotolamento-puro.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Rotolamento puro'
+    en: 'Limiting cases: Pure rolling'
+  back:
+    it: >-
+      μ_s = 0 (piano liscio): il corpo non può rotolare, slitta traslando con a = g sin θ senza ruotare. β → 0
+      (massa tutta nel centro): a → g sin θ, come un punto che scivola. Strisciamento: v_cm ≠ ωR, l'attrito
+      diventa dinamico e dissipa finché il vincolo non si ristabilisce.
+    en: >-
+      μ_s = 0 (smooth plane): the body cannot roll, it slides translating with a = g sin θ without rotating. β
+      → 0 (all mass at the centre): a → g sin θ, like a sliding point. Slipping: v_cm ≠ ωR, friction becomes
+      kinetic and dissipates until the constraint is restored.
+- id: rotolamento-puro-errori
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.1
+    - rotolamento-puro.2
+    - rotolamento-puro.3
+    - rotolamento-puro.4
+    - rotolamento-puro.5
+    - rotolamento-puro.6
+    - rotolamento-puro.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Rotolamento puro'
+    en: 'Mistakes to avoid: Pure rolling'
+  back:
+    it: >-
+      - Dire che l'attrito statico dissipa energia nel rotolamento puro: il punto di applicazione è fermo, W =
+      0.
+
+      - Imporre f_s = μ_sN: nel rotolamento f_s è un'incognita, μ_sN è solo il suo limite.
+
+      - Dimenticare il termine rotazionale nell'energia.
+
+      - Applicare v_cm = ωR anche quando il corpo striscia.
+    en: >-
+      - Saying that static friction dissipates energy in pure rolling: the point of application is at rest, W
+      = 0.
+
+      - Imposing f_s = μ_sN: in rolling f_s is an unknown, μ_sN is only its limit.
+
+      - Forgetting the rotational term in the energy.
+
+      - Applying v_cm = ωR even when the body slips.

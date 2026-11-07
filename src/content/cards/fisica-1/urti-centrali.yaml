@@ -1,0 +1,253 @@
+- id: urti-centrali-esposizione
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.1
+    - urti-centrali.2
+    - urti-centrali.3
+    - urti-centrali.4
+    - urti-centrali.5
+    - urti-centrali.6
+    - urti-centrali.7
+  kind: orale
+  front:
+    it: "Esponi all'orale: «Urti centrali elastici e anelastici»."
+    en: 'Present at the oral exam: “Central elastic and inelastic collisions”.'
+  back:
+    it: >-
+      In ogni urto la quantità di moto è sacra (le forze interne si scambiano impulsi uguali e opposti),
+      mentre l'energia cinetica è negoziabile: può finire in deformazioni, suono, calore. La scomposizione di
+      König chiarisce il bilancio: l'energia 'del CM' è protetta dalla conservazione di P; solo l'energia del
+      moto relativo può essere spesa — e l'urto perfettamente anelastico la spende tutta.
+
+
+      **Scaletta:**
+
+
+      - Giustificare la conservazione di P con l'approssimazione impulsiva
+
+      - Classificare gli urti (elastico, anelastico, perfettamente anelastico)
+
+      - Ricavare l'inversione della velocità relativa nell'urto elastico
+
+      - Scrivere le soluzioni generali e discutere i casi notevoli
+
+      - Ricavare v' = v_cm e ΔK nell'urto perfettamente anelastico
+
+      - Spiegare con König perché si dissipa solo l'energia del moto relativo
+
+      - Menzionare il coefficiente di restituzione per i casi intermedi
+    en: >-
+      In every collision momentum is sacred (internal forces exchange equal and opposite impulses), while
+      kinetic energy is negotiable: it can end up in deformation, sound, heat. König's decomposition clarifies
+      the balance: the 'CM' energy is protected by the conservation of P; only the energy of relative motion
+      can be spent — and the perfectly inelastic collision spends all of it.
+
+
+      **Outline:**
+
+
+      - Justify the conservation of P with the impulse approximation
+
+      - Classify collisions (elastic, inelastic, perfectly inelastic)
+
+      - Derive the reversal of the relative velocity in the elastic collision
+
+      - Write the general solutions and discuss the notable cases
+
+      - Derive v' = v_cm and ΔK in the perfectly inelastic collision
+
+      - Explain with König why only the energy of relative motion is dissipated
+
+      - Mention the coefficient of restitution for intermediate cases
+- id: urti-centrali-orale-1
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.6
+    - urti-centrali.7
+  kind: orale
+  front:
+    it: >-
+      Perché nel sistema del centro di massa l'urto elastico si descrive come semplice inversione delle
+      velocità?
+    en: >-
+      Why, in the centre-of-mass frame, is an elastic collision described as a simple reversal of the
+      velocities?
+  back:
+    it: >-
+      Nel riferimento del CM la quantità di moto totale è nulla: prima \(m_1u_1 + m_2u_2 = 0\), dopo lo
+      stesso. In un urto elastico anche \(K'\) si conserva, e l'unica soluzione non banale con P = 0 è \(u_1'
+      = -u_1\), \(u_2' = -u_2\): ciascun corpo rimbalza con la stessa velocità in modulo. Tornando al
+      laboratorio si ritrovano le formule generali; per e < 1 le velocità nel CM si riducono del fattore e.
+    en: >-
+      In the CM frame total momentum is zero: before \(m_1u_1 + m_2u_2 = 0\), and the same after. In an
+      elastic collision \(K'\) is also conserved, and the only non-trivial solution with P = 0 is \(u_1' =
+      -u_1\), \(u_2' = -u_2\): each body bounces back with the same speed. Going back to the lab frame gives
+      the general formulas; for e < 1 the CM velocities are reduced by the factor e.
+- id: urti-centrali-orale-2
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.6
+    - urti-centrali.7
+  kind: orale
+  front:
+    it: Nel pendolo di Newton perché cade una sola sfera dall'altra parte e non due a velocità metà?
+    en: In Newton's cradle, why does a single ball leave on the other side and not two at half the speed?
+  back:
+    it: >-
+      Con una sfera di massa m in arrivo a velocità v: se ne partissero due a v/2 la quantità di moto sarebbe
+      conservata (\(2m\cdot v/2 = mv\)), ma l'energia cinetica sarebbe \(2\cdot\tfrac12 m(v/2)^2 = \tfrac14
+      mv^2\), metà di quella iniziale. Solo "una sfera a velocità v" conserva entrambe: P e K insieme fissano
+      numero e velocità delle sfere che partono (in buona approssimazione, perché gli urti sono quasi elastici
+      e si propagano come una sequenza di urti a coppie).
+    en: >-
+      With one ball of mass m arriving at speed v: if two left at v/2, momentum would be conserved (\(2m\cdot
+      v/2 = mv\)), but the kinetic energy would be \(2\cdot\tfrac12 m(v/2)^2 = \tfrac14 mv^2\), half the
+      initial one. Only "one ball at speed v" conserves both: P and K together fix the number and speed of the
+      balls that leave (to a good approximation, because the collisions are nearly elastic and propagate as a
+      sequence of pairwise collisions).
+- id: urti-centrali-orale-3
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.6
+    - urti-centrali.7
+  kind: orale
+  front:
+    it: Come si generalizza l'urto elastico in 2D e perché servono più informazioni (parametro d'urto)?
+    en: How does the elastic collision generalise to 2D, and why is more information needed (impact parameter)?
+  back:
+    it: >-
+      In 2D le incognite sono 4 (due componenti per ciascuna velocità finale) e le equazioni 3 (due componenti
+      di P e l'energia): manca un'informazione, che dipende dalla geometria dell'urto, cioè dal parametro
+      d'urto b (distanza tra la retta del moto incidente e il centro del bersaglio), che fissa la direzione
+      dell'impulso scambiato. Caso notevole: masse uguali e bersaglio fermo, le velocità finali sono
+      perpendicolari.
+    en: >-
+      In 2D there are 4 unknowns (two components for each final velocity) and 3 equations (two components of P
+      and energy): one piece of information is missing, which depends on the geometry of the collision, i.e.
+      on the impact parameter b (distance between the incoming line of motion and the centre of the target),
+      which fixes the direction of the exchanged impulse. Notable case: equal masses and target at rest, the
+      final velocities are perpendicular.
+- id: urti-centrali-definizione
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.1
+  kind: definizione
+  front:
+    it: 'Definizione: Urti centrali elastici e anelastici'
+    en: 'Definition: Central elastic and inelastic collisions'
+  back:
+    it: >-
+      Un urto è un'interazione impulsiva tra due corpi, di durata così breve che le forze esterne sono
+      trascurabili rispetto a quelle interne: la quantità di moto totale si conserva SEMPRE. L'urto è elastico
+      se si conserva anche l'energia cinetica, anelastico se parte di K si converte in altre forme,
+      perfettamente anelastico se i corpi restano attaccati (massima perdita di K compatibile con la
+      conservazione di P). Un urto è centrale (frontale) se le velocità giacciono sulla congiungente dei
+      centri: il problema è unidimensionale.
+    en: >-
+      A collision is an impulsive interaction between two bodies, so short that external forces are negligible
+      compared with internal ones: total momentum is ALWAYS conserved. The collision is elastic if kinetic
+      energy is also conserved, inelastic if part of K is converted into other forms, perfectly inelastic if
+      the bodies stick together (maximum loss of K compatible with conservation of P). A collision is central
+      (head-on) if the velocities lie along the line joining the centres: the problem is one-dimensional.
+- id: urti-centrali-formule
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.1
+    - urti-centrali.2
+    - urti-centrali.3
+    - urti-centrali.4
+    - urti-centrali.5
+    - urti-centrali.6
+    - urti-centrali.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Urti centrali elastici e anelastici»
+    en: The key formulas of “Central elastic and inelastic collisions”
+  back:
+    it: |-
+      - \(m_1v_1 + m_2v_2 = m_1v_1' + m_2v_2'\)
+      - \(v_1' - v_2' = -(v_1 - v_2)\;(\text{elastico})\)
+      - \(v' = v_{cm}\;(\text{perf. anelastico})\)
+      - \(\Delta K = -\tfrac{1}{2}\mu v_{rel}^2\)
+    en: |-
+      - \(m_1v_1 + m_2v_2 = m_1v_1' + m_2v_2'\)
+      - \(v_1' - v_2' = -(v_1 - v_2)\;(\text{elastic})\)
+      - \(v' = v_{cm}\;(\text{perf. inelastic})\)
+      - \(\Delta K = -\tfrac{1}{2}\mu v_{rel}^2\)
+- id: urti-centrali-ipotesi
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.1
+    - urti-centrali.2
+    - urti-centrali.3
+    - urti-centrali.4
+    - urti-centrali.5
+    - urti-centrali.6
+    - urti-centrali.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Urti centrali elastici e anelastici'
+    en: 'Validity assumptions: Central elastic and inelastic collisions'
+  back:
+    it: >-
+      Forze esterne trascurabili durante l'urto (approssimazione impulsiva); urto centrale → problema 1D;
+      corpi puntiformi o comunque senza rotazioni indotte.
+    en: >-
+      External forces negligible during the collision (impulse approximation); central collision → 1D problem;
+      point-like bodies or at least no induced rotations.
+- id: urti-centrali-casi-limite
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.1
+    - urti-centrali.2
+    - urti-centrali.3
+    - urti-centrali.4
+    - urti-centrali.5
+    - urti-centrali.6
+    - urti-centrali.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Urti centrali elastici e anelastici'
+    en: 'Limiting cases: Central elastic and inelastic collisions'
+  back:
+    it: >-
+      Urto elastico con bersaglio infinitamente massivo: inversione pura della velocità (palla contro muro).
+      Masse uguali elastico: scambio delle velocità (biliardo, pendolo di Newton). Anelastico con corpi che
+      partono l'uno contro l'altro con P totale nulla: si fermano entrambi, K interamente dissipata.
+    en: >-
+      Elastic collision with an infinitely massive target: pure reversal of velocity (ball against a wall).
+      Equal masses, elastic: exchange of velocities (billiards, Newton's cradle). Inelastic with bodies
+      approaching each other with zero total P: both stop, K entirely dissipated.
+- id: urti-centrali-errori
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.1
+    - urti-centrali.2
+    - urti-centrali.3
+    - urti-centrali.4
+    - urti-centrali.5
+    - urti-centrali.6
+    - urti-centrali.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Urti centrali elastici e anelastici'
+    en: 'Mistakes to avoid: Central elastic and inelastic collisions'
+  back:
+    it: >-
+      - Conservare l'energia cinetica in un urto anelastico.
+
+      - Non conservare la quantità di moto 'perché c'è attrito col piano': durante l'urto le forze impulsive
+      dominano.
+
+      - Usare le formule dell'urto elastico con v₂ = 0 anche quando il bersaglio si muove.
+
+      - Dimenticare che nell'urto perfettamente anelastico la perdita di K è determinata, non arbitraria.
+    en: >-
+      - Conserving kinetic energy in an inelastic collision.
+
+      - Not conserving momentum 'because there is friction with the floor': during the collision impulsive
+      forces dominate.
+
+      - Using the elastic formulas with v₂ = 0 even when the target is moving.
+
+      - Forgetting that in a perfectly inelastic collision the loss of K is determined, not arbitrary.

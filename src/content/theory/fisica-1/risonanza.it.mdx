@@ -1,0 +1,183 @@
+---
+course: fisica-1
+topic: risonanza
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/risonanza/idea">
+
+La risonanza è spingere l'altalena al momento giusto: se ogni spinta arriva in fase con la velocità, tutta la potenza entra nel sistema e l'ampiezza cresce finché le perdite per attrito non pareggiano l'apporto. Ecco perché a risonanza la fase è π/2: la forza è sincronizzata con la velocità, non con la posizione.
+
+</div>
+
+<div class="muted" data-note-id="teoria/risonanza/prerequisiti">
+
+**Prima di questo argomento:** [Oscillatore armonico smorzato](../oscillatore-smorzato/)
+
+</div>
+
+<Callout tone="nota" title="Vedi in azione">
+
+[Apri la simulazione interattiva](../../extra/simulazioni/#sim-risonanza)
+
+</Callout>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/risonanza/definizioni">
+
+## Definizioni
+
+Un oscillatore forzato è un oscillatore smorzato su cui agisce anche una forza esterna periodica $F(t) = F_0\cos(\Omega t)$. Dopo un transitorio, il sistema oscilla alla pulsazione Ω della forzante (soluzione a regime) con un'ampiezza che dipende da Ω: quando Ω si avvicina alla pulsazione propria ω₀ l'ampiezza cresce fortemente — fenomeno della risonanza. Più lo smorzamento è debole, più il picco di risonanza è alto e stretto.
+
+</div>
+
+<div data-note-id="teoria/risonanza/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Equazione del moto forzato</summary>
+
+$$
+\ddot{x} + 2\gamma\dot{x} + \omega_0^2 x = \frac{F_0}{m}\cos(\Omega t)
+$$
+
+Equazione lineare non omogenea: soluzione = omogenea (transitorio, muore come e^\{−γt\}) + particolare (regime).
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Soluzione a regime (ansatz oscillante alla pulsazione Ω)</summary>
+
+$$
+x_p(t) = A(\Omega)\cos(\Omega t - \delta)
+$$
+
+A regime il sistema risponde alla frequenza della forzante, non alla propria; δ è il ritardo di fase della risposta rispetto alla forzante.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Sostituzione e identificazione dei coefficienti</summary>
+
+$$
+A(\Omega) = \frac{F_0/m}{\sqrt{(\omega_0^2 - \Omega^2)^2 + 4\gamma^2\Omega^2}}, \qquad \tan\delta = \frac{2\gamma\Omega}{\omega_0^2 - \Omega^2}
+$$
+
+Si sostituisce x_p nell'equazione e si uguagliano i coefficienti di cos e sin (o si usano i fasori). Questa è la curva di risonanza.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Massimo dell'ampiezza</summary>
+
+$$
+\frac{dA}{d\Omega} = 0 \;\Rightarrow\; \Omega_{ris} = \sqrt{\omega_0^2 - 2\gamma^2}, \qquad A_{max} = \frac{F_0/m}{2\gamma\sqrt{\omega_0^2 - \gamma^2}}
+$$
+
+Per smorzamento debole Ω_ris ≈ ω₀ e A_max ≈ F₀/(2mγω₀): l'ampiezza a risonanza è limitata solo dallo smorzamento; per γ → 0 divergerebbe.
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Comportamento della fase</summary>
+
+$$
+\Omega \ll \omega_0: \delta \to 0; \qquad \Omega = \omega_0: \delta = \frac{\pi}{2}; \qquad \Omega \gg \omega_0: \delta \to \pi
+$$
+
+A bassa frequenza la massa segue la forzante in fase; a risonanza è in quadratura (la forzante è in fase con la velocità: massimo trasferimento di potenza); ad alta frequenza risponde in opposizione di fase, dominata dall'inerzia.
+
+</details>
+
+<details id="passo-6">
+<summary>Passo 6 · Potenza assorbita a regime</summary>
+
+$$
+\langle P \rangle = \frac{1}{2}F_0\,\Omega A\sin\delta \;\; \text{massima per } \Omega = \omega_0
+$$
+
+A regime la potenza media fornita dalla forzante uguaglia quella dissipata dall'attrito: l'assorbimento di potenza è massimo esattamente a ω₀.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/risonanza/ipotesi">
+
+## Ipotesi di validità
+
+Sistema lineare (Hooke + attrito viscoso lineare); forzante armonica pura; si osserva il sistema dopo l'estinzione del transitorio (t ≫ 1/γ).
+
+</div>
+
+<div data-note-id="teoria/risonanza/casi-limite">
+
+## Casi limite
+
+γ → 0: picco di risonanza infinitamente alto e stretto (in un sistema reale l'ampiezza cresce finché non intervengono non linearità o rotture). Ω → 0: A → F₀/(mω₀²) = F₀/k, risposta statica della molla. Ω → ∞: A → 0, l'inerzia impedisce di seguire la forzante.
+
+</div>
+
+<div data-note-id="teoria/risonanza/formule">
+
+## Formule chiave
+
+<Formula id="risonanza-f1" />
+
+<Formula id="risonanza-f2" />
+
+<Formula id="risonanza-f3" />
+
+<Formula id="risonanza-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/risonanza/esempio">
+
+Un oscillatore con m = 0,20 kg, k = 80 N/m e b = 0,40 kg/s è forzato da F(t) = F₀ cos(Ωt) con F₀ = 0,50 N. Calcolare: (a) ω₀ e γ; (b) l'ampiezza a regime per Ω = 15 rad/s; (c) l'ampiezza massima e la pulsazione a cui si ha; (d) il ritardo di fase a Ω = 15 rad/s.
+
+1. **Parametri.** $\omega_0 = \sqrt{80/0{,}2} = 20\ \text{rad/s}$, $\gamma = b/2m = 1{,}0\ \text{s}^{-1}$, $F_0/m = 2{,}5\ \text{m/s}^2$.
+2. **Ampiezza a Ω = 15 rad/s.** $A = \dfrac{2{,}5}{\sqrt{(400-225)^2 + 4\cdot 225}} = \dfrac{2{,}5}{\sqrt{30625 + 900}} \approx 0{,}01408\ \text{m}$.
+3. **Picco.** $\Omega_{ris} = \sqrt{\omega_0^2 - 2\gamma^2} = \sqrt{398} \approx 19{,}95\ \text{rad/s}$; $A_{max} = \dfrac{F_0/m}{2\gamma\sqrt{\omega_0^2-\gamma^2}} = \dfrac{2{,}5}{2\sqrt{399}} \approx 0{,}0626\ \text{m}$, circa 10 volte la risposta statica $F_0/k = 6{,}25\ \text{mm}$ (≈ Q = 10).
+4. **Fase.** $\tan\delta = \dfrac{2\gamma\Omega}{\omega_0^2-\Omega^2} = 30/175 \Rightarrow \delta \approx 0{,}170\ \text{rad}$: sotto risonanza la risposta è quasi in fase.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/risonanza/errori">
+
+- Dire che a regime il sistema oscilla a ω₀: oscilla alla pulsazione Ω della forzante.
+- Confondere il picco d'ampiezza (a √(ω₀²−2γ²)) con il picco di potenza assorbita (esattamente a ω₀).
+- Dimenticare il transitorio: subito dopo l'accensione della forzante il moto è la somma delle due soluzioni.
+- Credere che a risonanza forzante e spostamento siano in fase: sono sfasati di π/2.
+
+</div>
+
+<div data-note-id="teoria/risonanza/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Che analogia c'è con il circuito RLC serie forzato?
+- Cosa determina la larghezza del picco di risonanza?
+- Perché ai soldati si ordina di rompere il passo su un ponte?
+
+</div>
+
+</Layer>

@@ -1,0 +1,188 @@
+---
+course: fisica-1
+topic: entropia-adiabatiche
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/entropia-adiabatiche/idea">
+
+Entropy is the odometer of irreversibility: it records how much 'quality' energy has lost. Every real process leaves the universe with more entropy than before — not because a force imposes it, but because disordered states are astronomically more numerous than ordered ones. The reversible adiabatic is the perfect motion that leaves no trace; free expansion is the same absence of exchanges, but with an indelible trace.
+
+</div>
+
+<div class="muted" data-note-id="teoria/entropia-adiabatiche/prerequisiti">
+
+**Before this topic:** [Clausius' inequality](../disuguaglianza-di-clausius/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/entropia-adiabatiche/definizioni">
+
+## Definitions
+
+Entropy is the state function defined by $dS = \delta Q_{rev}/T$: the change between two states is computed along ANY reversible transformation connecting them, $\Delta S = \int_A^B \delta Q_{rev}/T$. For an arbitrary transformation $\Delta S \ge \int_A^B \delta Q/T$ holds (equality if reversible). In an isolated system (in particular an adiabatic one: δQ = 0) entropy cannot decrease: $\Delta S \ge 0$ — the law of entropy increase.
+
+</div>
+
+<div data-note-id="teoria/entropia-adiabatiche/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · S is a state function (from Clausius' inequality)</summary>
+
+$$
+\oint \frac{\delta Q_{rev}}{T} = 0 \;\Rightarrow\; \int_A^B \frac{\delta Q_{rev}}{T} \;\text{independent of the reversible path}
+$$
+
+Two reversible paths from A to B form a reversible cycle: the integral around the cycle vanishes, so the two integrals coincide. It is legitimate to define S(B) − S(A).
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Inequality for open transformations</summary>
+
+$$
+\text{cycle: } A \xrightarrow{irr} B \xrightarrow{rev} A \;\Rightarrow\; \int_A^B \frac{\delta Q}{T} - \Delta S \le 0 \;\Rightarrow\; \Delta S \ge \int_A^B \frac{\delta Q}{T}
+$$
+
+Close the irreversible transformation with a reversible return and apply Clausius to the cycle: entropy grows at least as much as the reduced heat exchanged.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Law of entropy increase</summary>
+
+$$
+\delta Q = 0 \;\Rightarrow\; \Delta S \ge 0 \qquad (= 0 \iff \text{reversible})
+$$
+
+In an adiabatic or isolated system entropy never decreases. Reversible adiabatics are ISENTROPIC (constant S); irreversible ones increase S. For the universe (system + surroundings): ΔS_univ ≥ 0 always.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Entropy of the ideal gas</summary>
+
+$$
+dS = \frac{dU + p\,dV}{T} = nc_V\frac{dT}{T} + nR\frac{dV}{V} \;\Rightarrow\; \Delta S = nc_V\ln\frac{T_B}{T_A} + nR\ln\frac{V_B}{V_A}
+$$
+
+From the first law in reversible form (δQ_rev = dU + pdV) and the equation of state: an operational formula for ANY pair of states of the ideal gas, even if connected by irreversible processes (S is a state function!).
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Consistency: the reversible adiabatic as an isentropic</summary>
+
+$$
+\Delta S = 0 \Rightarrow c_V\ln\frac{T_B}{T_A} = -R\ln\frac{V_B}{V_A} \Rightarrow TV^{\gamma-1} = \text{const}
+$$
+
+Imposing constant S in the ideal-gas formula gives back the equation of reversible adiabatics: the two routes (first law / entropy) agree.
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Irreversible example: free expansion (Joule)</summary>
+
+$$
+Q = W = 0,\; \Delta T = 0 \;\Rightarrow\; \Delta S = nR\ln\frac{V_B}{V_A} > 0
+$$
+
+Adiabatic BUT irreversible: even without exchanges, entropy grows. It is computed with the state formula (or with an auxiliary reversible isotherm between the same states). The key example of the difference between 'adiabatic' and 'isentropic'.
+
+</details>
+
+<details id="passo-7">
+<summary>Step 7 · Microscopic interpretation (outline)</summary>
+
+$$
+S = k_B\ln\Omega
+$$
+
+Boltzmann: entropy counts the microstates compatible with the macroscopic state. The increase of S is the spontaneous evolution towards enormously more probable states: disorder wins by statistics, not by force.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/entropia-adiabatiche/ipotesi">
+
+## Validity assumptions
+
+Existence of reversible paths between the states (equilibrium states); T well defined along the reversible path used for the calculation; for the law of increase: isolated or adiabatic system.
+
+</div>
+
+<div data-note-id="teoria/entropia-adiabatiche/casi-limite">
+
+## Limiting cases
+
+Reversible adiabatic transformation: ΔS = 0. Reversible isotherm: ΔS = Q/T. Heat exchange between two bodies at different temperatures: ΔS_univ = Q(1/T_F − 1/T_C) &gt; 0, the quintessence of irreversibility. Any cycle: ΔS_system = 0 (state function) but ΔS_univ ≥ 0.
+
+</div>
+
+<div data-note-id="teoria/entropia-adiabatiche/formule">
+
+## Key formulas
+
+<Formula id="entropia-adiabatiche-f1" />
+
+<Formula id="entropia-adiabatiche-f2" />
+
+<Formula id="entropia-adiabatiche-f3" />
+
+<Formula id="entropia-adiabatiche-f4" />
+
+<Formula id="entropia-adiabatiche-f5" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/entropia-adiabatiche/esempio">
+
+2.0 mol of ideal gas expand freely into vacuum from 10 L to 30 L in an insulated container. Find: (a) the change in temperature; (b) the entropy change of the gas; (c) the entropy change of the universe.
+
+1. **First law.** Q = 0, W = 0 ⇒ ΔU = 0 ⇒ ΔT = 0 for the ideal gas.
+2. **Entropy along a reversible path.** Use a reversible isotherm between the same states: $\Delta S = nR\ln(V_B/V_A) = 2 \cdot 8.314 \cdot \ln 3 \approx 18.3\ \text{J/K}$. The surroundings exchange nothing: $\Delta S_{univ} = 18.3\ \text{J/K}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/entropia-adiabatiche/errori">
+
+- Computing ΔS by integrating δQ/T along the real irreversible transformation: an auxiliary reversible path must be used.
+- Believing that adiabatic implies ΔS = 0: only if also reversible (counterexample: free expansion).
+- Saying that the entropy of a system can never decrease: it can, if it releases heat; it is the entropy of the universe that does not decrease.
+- Forgetting that over a cycle the ΔS of the system is zero by definition of state function.
+
+</div>
+
+<div data-note-id="teoria/entropia-adiabatiche/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- Two identical bodies at T₁ and T₂ are put in contact: compute the total ΔS and show that it is positive.
+- Why is the area under the curve in the T-S plane the heat exchanged reversibly?
+- In what sense does entropy define the arrow of time while Newton's laws are reversible?
+
+</div>
+
+</Layer>

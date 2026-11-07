@@ -50,7 +50,7 @@ const search = [label, f.symbols && tr(f.symbols, lang), f.usage && tr(f.usage, 
       </button>
     )}
   </div>
-  <Formula id={f.id} tex={f.latex} />
+  <Formula id={f.id} tex={lang === 'en' && f.latexEn ? f.latexEn : f.latex} />
   {!compact && (
     <dl class="formula-entry__meta">
       {f.symbols && (

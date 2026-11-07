@@ -1,0 +1,182 @@
+---
+course: fisica-1
+topic: ciclo-di-carnot
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/ciclo-di-carnot/idea">
+
+Carnot designs the 'perfect' engine by eliminating every waste: never a thermal contact across a finite temperature jump (that is why heat is exchanged only along isotherms) and never friction. Even so, part of the heat MUST be discharged to the cold reservoir: it is the minimum price, dictated by the ratio of temperatures, that no engineering can eliminate.
+
+</div>
+
+<div class="muted" data-note-id="teoria/ciclo-di-carnot/prerequisiti">
+
+**Before this topic:** [First law of thermodynamics](../primo-principio/) · [Second law of thermodynamics](../secondo-principio/)
+
+</div>
+
+<Callout tone="nota" title="See it in action">
+
+[Open the interactive simulation](../../extra/simulazioni/#sim-ciclo-di-carnot)
+
+</Callout>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/ciclo-di-carnot/definizioni">
+
+## Definitions
+
+The Carnot cycle is the reversible cycle performed between only TWO thermal reservoirs (hot T*C, from Italian caldo, and cold T_F, from freddo), made of four quasi-static transformations: isothermal expansion at T_C, adiabatic expansion from T_C to T_F, isothermal compression at T_F, adiabatic compression back to T_C. For an ideal gas its efficiency is $\eta*{Carnot} = 1 - T_F/T_C$: it depends only on the temperatures of the reservoirs.
+
+</div>
+
+<div data-note-id="teoria/ciclo-di-carnot/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Branch 1→2: isothermal expansion at T_C</summary>
+
+$$
+\Delta U = 0 \;\Rightarrow\; Q_C = W_{12} = nRT_C\ln\frac{V_2}{V_1} > 0
+$$
+
+The gas absorbs Q_C from the hot reservoir and converts it entirely into work (for this branch). Perfect thermal contact and infinite slowness are required: reversible.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Branch 2→3: adiabatic expansion</summary>
+
+$$
+Q = 0, \qquad W_{23} = -\Delta U = nc_V(T_C - T_F) > 0
+$$
+
+Thermally isolated, the gas keeps expanding while cooling from T_C to T_F: the work is paid for by internal energy.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Branch 3→4: isothermal compression at T_F</summary>
+
+$$
+Q_F = W_{34} = nRT_F\ln\frac{V_4}{V_3} < 0
+$$
+
+The gas is compressed, releasing to the cold reservoir the heat |Q_F| = nRT_F ln(V₃/V₄).
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Branch 4→1: adiabatic compression</summary>
+
+$$
+Q = 0, \qquad W_{41} = -nc_V(T_C - T_F) < 0
+$$
+
+Adiabatic compression heats the gas back to T_C: it closes the cycle. The works of the two adiabatic branches cancel exactly.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Geometric constraint from the adiabatics</summary>
+
+$$
+T_CV_2^{\gamma-1} = T_FV_3^{\gamma-1}, \quad T_CV_1^{\gamma-1} = T_FV_4^{\gamma-1} \;\Rightarrow\; \frac{V_2}{V_1} = \frac{V_3}{V_4}
+$$
+
+Dividing the two adiabatic relations: the isothermal expansion ratios are equal. This is the key step that lets the logarithms cancel.
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Efficiency of the cycle</summary>
+
+$$
+\eta = 1 - \frac{|Q_F|}{Q_C} = 1 - \frac{nRT_F\ln(V_3/V_4)}{nRT_C\ln(V_2/V_1)} = 1 - \frac{T_F}{T_C}
+$$
+
+Thanks to the equality of the volume ratios the logarithms cancel: the efficiency depends ONLY on the temperatures. Immediate corollary: Q_C/T_C = |Q_F|/T_F (the 'reduced heats' balance).
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/ciclo-di-carnot/ipotesi">
+
+## Validity assumptions
+
+All transformations reversible (quasi-static, frictionless, heat exchanges across infinitesimal temperature differences); only two ideal reservoirs; for the explicit calculation, an ideal gas as working fluid (but the result is universal by Carnot's theorem).
+
+</div>
+
+<div data-note-id="teoria/ciclo-di-carnot/casi-limite">
+
+## Limiting cases
+
+T_F → T_C: η → 0, no temperature difference, no work. T_F → 0: η → 1, but absolute zero is unreachable (third law). Reversed cycle: Carnot refrigerator with COP = T_F/(T_C − T_F), the maximum possible.
+
+</div>
+
+<div data-note-id="teoria/ciclo-di-carnot/formule">
+
+## Key formulas
+
+<Formula id="ciclo-di-carnot-f1" />
+
+<Formula id="ciclo-di-carnot-f2" />
+
+<Formula id="ciclo-di-carnot-f3" />
+
+<Formula id="ciclo-di-carnot-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/ciclo-di-carnot/esempio">
+
+0.20 mol of monatomic ideal gas performs a Carnot cycle between 600 K and 300 K. In the isothermal expansion the volume doubles. Find: (a) the absorbed heat Q_C; (b) the efficiency; (c) the net work per cycle; (d) the ratio between the maximum and minimum volume of the cycle.
+
+1. **Hot isotherm.** $Q_C = nRT_C\ln 2 = 0.20 \cdot 8.314 \cdot 600 \cdot 0.693 \approx 691.5\ \text{J}$.
+2. **Efficiency and work.** $\eta = 1 - 300/600 = 0.50$, $W = \eta Q_C \approx 345.8\ \text{J}$.
+3. **Volumes.** Adiabatic 2→3: $V_3/V_2 = (T_C/T_F)^{1/(\gamma-1)} = 2^{3/2} \approx 2.83$. Hence $V_3/V_1 = 2 \cdot 2.83 \approx 5.66$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/ciclo-di-carnot/errori">
+
+- Using temperatures in degrees Celsius in the efficiency.
+- Saying that the efficiency depends on the gas or on the size of the cycle: only on the temperatures.
+- Forgetting the proof of the constraint V₂/V₁ = V₃/V₄ (the examiner asks for it).
+- Confusing the work of the single branches with the net work of the cycle (area enclosed in the p-V plane).
+
+</div>
+
+<div data-note-id="teoria/ciclo-di-carnot/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- Why does exchanging heat along a reversible isotherm require infinite time, and what does this imply for the power of a real Carnot engine?
+- What does the Carnot cycle look like in the T-S plane, and why is the efficiency calculation immediate there?
+- If the fluid is not an ideal gas, does the efficiency change? Why not?
+
+</div>
+
+</Layer>

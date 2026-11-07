@@ -305,11 +305,19 @@ function parseAtom(symbol: string): ParsedUnit | null {
  * Converte una stringa di unità (anche composta) in fattore SI e dimensione.
  * Separatori ammessi: `·`, `*`, `.`, spazio (prodotto) e `/` (quoziente);
  * potenze con `^n` o apici. Esempi: `kΩ`, `V/m`, `N·m`, `m/s^2`, `kg·m²/s²`,
- * `1/s`, `Ω·m`, `KiB/s`. `°C` e `°F` sono gestite solo da sole (sono affini).
+ * `1/s`, `Ω·m`, `KiB/s`, `J/(kg·K)`. `°C` e `°F` sono gestite solo da sole (sono affini).
  * Stringa vuota = adimensionale.
  */
 export function parseUnit(input: string): ParsedUnit | null {
-  const text = normalizeSuperscripts(normalizeInput(input));
+  // Denominatore tra parentesi: "J/(kg·K)" → "J/kg/K" (un solo livello, senza potenze sul gruppo).
+  const text = normalizeSuperscripts(normalizeInput(input)).replace(
+    /\/\(([^()^]+)\)/g,
+    (_, g: string) =>
+      `/${g
+        .trim()
+        .split(/\s*[·*.\s]\s*/)
+        .join('/')}`,
+  );
   if (text === '') return { factor: 1, dim: DIMLESS };
   if (text === '°C' || text === 'degC') return { factor: 1, dim: D(0, 0, 0, 0, 1), offset: 273.15 };
   if (text === '°F' || text === 'degF')

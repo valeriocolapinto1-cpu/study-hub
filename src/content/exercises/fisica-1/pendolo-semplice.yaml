@@ -1,0 +1,128 @@
+- id: pendolo-periodo-tensione
+  topic: pendolo-semplice
+  objectives:
+    - pendolo-semplice.1
+    - pendolo-semplice.2
+    - pendolo-semplice.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un pendolo semplice ha lunghezza L = 0,80 m e massa m = 0,25 kg; oscilla con ampiezza θ₀ = 8°.
+      Calcolare: (a) il periodo delle piccole oscillazioni; (b) la velocità massima; (c) la tensione massima
+      del filo.
+    en: >-
+      A simple pendulum has length L = 0.80 m and mass m = 0.25 kg; it swings with amplitude θ₀ = 8°. Find:
+      (a) the small-oscillation period; (b) the maximum speed; (c) the maximum string tension.
+  steps:
+    - title:
+        it: Periodo
+        en: Period
+      body:
+        it: \(T = 2\pi\sqrt{L/g} = 2\pi\sqrt{0{,}80/9{,}81} \approx 1{,}794\ \text{s}\).
+        en: \(T = 2\pi\sqrt{L/g} = 2\pi\sqrt{0.80/9.81} \approx 1.794\ \text{s}\).
+    - title:
+        it: Velocità massima
+        en: Maximum speed
+      body:
+        it: >-
+          Dall'energia: \(v_{max} = \sqrt{2gL(1-\cos\theta_0)} \approx 0{,}391\ \text{m/s}\)
+          (l'approssimazione armonica \(\theta_0 L\omega\) dà lo stesso valore entro lo 0,1%).
+        en: >-
+          From energy: \(v_{max} = \sqrt{2gL(1-\cos\theta_0)} \approx 0.391\ \text{m/s}\) (the harmonic
+          approximation \(\theta_0 L\omega\) gives the same value within 0.1%).
+    - title:
+        it: Tensione massima
+        en: Maximum tension
+      body:
+        it: >-
+          Nel punto più basso: \(T_{filo} = mg + mv_{max}^2/L \approx 2{,}453 + 0{,}048 \approx 2{,}50\
+          \text{N}\).
+        en: >-
+          At the lowest point: \(T_{string} = mg + mv_{max}^2/L \approx 2.453 + 0.048 \approx 2.50\
+          \text{N}\).
+  answer:
+    - label:
+        it: T
+        en: T
+      value: 1.794
+      unit: s
+    - label:
+        it: v_max
+        en: v_max
+      value: 0.391
+      unit: m/s
+    - label:
+        it: T_filo max
+        en: max tension
+      value: 2.5
+      unit: 'N'
+  origin: originale
+- id: pendolo-vagone
+  topic: pendolo-semplice
+  objectives:
+    - pendolo-semplice.1
+    - pendolo-semplice.2
+    - pendolo-semplice.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Un pendolo di lunghezza L = 0,50 m è appeso al soffitto di un vagone che accelera orizzontalmente con a
+      = 2,5 m/s². Calcolare: (a) l'angolo della posizione di equilibrio rispetto alla verticale; (b) il
+      periodo delle piccole oscillazioni attorno a essa; (c) il rapporto con il periodo a vagone fermo.
+    en: >-
+      A pendulum of length L = 0.50 m hangs from the ceiling of a railway car accelerating horizontally with a
+      = 2.5 m/s². Find: (a) the angle of the equilibrium position from the vertical; (b) the small-oscillation
+      period about it; (c) its ratio to the period with the car at rest.
+  steps:
+    - title:
+        it: Gravità efficace
+        en: Effective gravity
+      body:
+        it: >-
+          Nel vagone agisce la forza apparente −m\(\vec a\): la gravità efficace è \(\vec g_{eff} = \vec g -
+          \vec a\), di modulo \(\sqrt{g^2 + a^2} \approx 10{,}12\ \text{m/s}^2\), inclinata di \(\tan\theta =
+          a/g\), cioè \(\theta \approx 14{,}3°\) (all'indietro).
+        en: >-
+          In the car there is the fictitious force −m\(\vec a\): the effective gravity is \(\vec g_{eff} =
+          \vec g - \vec a\), of magnitude \(\sqrt{g^2 + a^2} \approx 10.12\ \text{m/s}^2\), tilted by
+          \(\tan\theta = a/g\), i.e. \(\theta \approx 14.3°\) (backwards).
+    - title:
+        it: Periodo
+        en: Period
+      body:
+        it: \(T = 2\pi\sqrt{L/g_{eff}} \approx 1{,}397\ \text{s}\).
+        en: \(T = 2\pi\sqrt{L/g_{eff}} \approx 1.397\ \text{s}\).
+    - title:
+        it: Confronto
+        en: Comparison
+      body:
+        it: '\(T/T_0 = (g/g_{eff})^{1/2} \approx 0{,}985\): il pendolo oscilla un po'' più in fretta.'
+        en: '\(T/T_0 = (g/g_{eff})^{1/2} \approx 0.985\): the pendulum swings slightly faster.'
+  answer:
+    - label:
+        it: θ_eq
+        en: θ_eq
+      value: 14.3
+      unit: °
+    - label:
+        it: T
+        en: T
+      value: 1.397
+      unit: s
+    - label:
+        it: T/T₀
+        en: T/T₀
+      value: 0.985
+      tol: 0.005
+  origin: originale
+- id: pendolo-variante
+  topic: pendolo-semplice
+  objectives:
+    - pendolo-semplice.1
+    - pendolo-semplice.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/pendolo
+  origin: tipologia-appello

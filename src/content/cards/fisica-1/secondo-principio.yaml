@@ -1,0 +1,249 @@
+- id: secondo-principio-esposizione
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.1
+    - secondo-principio.2
+    - secondo-principio.3
+    - secondo-principio.4
+    - secondo-principio.5
+    - secondo-principio.6
+    - secondo-principio.7
+  kind: orale
+  front:
+    it: "Esponi all'orale: «Secondo principio della termodinamica»."
+    en: 'Present at the oral exam: “Second law of thermodynamics”.'
+  back:
+    it: >-
+      Il primo principio dice che l'energia si conserva; il secondo dice che ha una direzione preferita di
+      degrado: il lavoro si converte in calore integralmente e spontaneamente, il contrario mai del tutto. Il
+      calore è energia 'disordinata': raccoglierla tutta e riordinarla in lavoro richiederebbe di riordinare
+      il caos molecolare, e la natura non lo fa gratis.
+
+
+      **Scaletta:**
+
+
+      - Enunciare Kelvin-Planck con tutte le clausole (ciclico, unico risultato)
+
+      - Enunciare Clausius correttamente
+
+      - Dimostrare l'equivalenza nei due versi (per assurdo, con le macchine composte)
+
+      - Definire rendimento e mostrare η < 1
+
+      - Definire i COP di frigorifero e pompa di calore
+
+      - Spiegare cos'è una trasformazione reversibile e dare esempi di irreversibilità
+
+      - Chiarire perché l'isoterma non viola Kelvin-Planck
+    en: >-
+      The first law says energy is conserved; the second says it has a preferred direction of degradation:
+      work turns into heat completely and spontaneously, the reverse never entirely. Heat is 'disordered'
+      energy: collecting all of it and reordering it into work would require reordering molecular chaos, and
+      nature does not do that for free.
+
+
+      **Outline:**
+
+
+      - State Kelvin–Planck with all its clauses (cyclic, only result)
+
+      - State Clausius correctly
+
+      - Prove the equivalence both ways (by contradiction, with composite machines)
+
+      - Define efficiency and show η < 1
+
+      - Define the COPs of refrigerator and heat pump
+
+      - Explain what a reversible transformation is and give examples of irreversibility
+
+      - Make clear why the isotherm does not violate Kelvin–Planck
+- id: secondo-principio-orale-1
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.6
+    - secondo-principio.7
+  kind: orale
+  front:
+    it: Perché la parola 'ciclico' è indispensabile nell'enunciato di Kelvin-Planck?
+    en: Why is the word 'cyclic' indispensable in the Kelvin–Planck statement?
+  back:
+    it: >-
+      Perché senza "ciclico" l'enunciato è falso: nell'espansione isoterma reversibile di un gas perfetto ΔU =
+      0 e tutto il calore assorbito diventa lavoro, Q = W. Ma il gas non torna allo stato iniziale (si è
+      espanso): il risultato non è "unico". Per ripetere il processo bisogna ricomprimere il gas, e per farlo
+      con meno lavoro serve cedere calore a una sorgente più fredda.
+    en: >-
+      Because without "cyclic" the statement is false: in the reversible isothermal expansion of an ideal gas
+      ΔU = 0 and all the absorbed heat becomes work, Q = W. But the gas does not return to its initial state
+      (it has expanded): the result is not the "only" one. To repeat the process the gas must be recompressed,
+      and doing so with less work requires releasing heat to a colder reservoir.
+- id: secondo-principio-orale-2
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.6
+    - secondo-principio.7
+  kind: orale
+  front:
+    it: 'Il moto perpetuo di seconda specie: cosa sarebbe e quale enunciato viola?'
+    en: 'Perpetual motion of the second kind: what would it be and which statement does it violate?'
+  back:
+    it: >-
+      Sarebbe una macchina ciclica che estrae calore da un'unica sorgente (per esempio il mare o l'atmosfera)
+      e lo trasforma tutto in lavoro: non violerebbe il primo principio (l'energia si conserva) ma viola
+      l'enunciato di Kelvin-Planck, e quindi anche quello di Clausius. Il moto perpetuo di prima specie,
+      invece, creerebbe energia dal nulla e viola il primo principio.
+    en: >-
+      It would be a cyclic machine taking heat from a single reservoir (for example the sea or the atmosphere)
+      and turning it all into work: it would not violate the first law (energy is conserved) but it violates
+      the Kelvin–Planck statement, and hence Clausius's too. Perpetual motion of the first kind, instead,
+      would create energy from nothing and violates the first law.
+- id: secondo-principio-orale-3
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.6
+    - secondo-principio.7
+  kind: orale
+  front:
+    it: Che legame c'è tra il secondo principio e la freccia del tempo?
+    en: What is the link between the second law and the arrow of time?
+  back:
+    it: >-
+      Le leggi microscopiche della meccanica sono reversibili nel tempo, ma i processi macroscopici spontanei
+      vanno in un solo verso (il calore passa dal caldo al freddo, i gas si mescolano, l'attrito scalda). Il
+      secondo principio, tramite l'entropia che in un sistema isolato non diminuisce mai, distingue passato e
+      futuro: è la base termodinamica della freccia del tempo, interpretata statisticamente come evoluzione
+      verso gli stati macroscopici più probabili.
+    en: >-
+      The microscopic laws of mechanics are time-reversible, but spontaneous macroscopic processes go only one
+      way (heat flows from hot to cold, gases mix, friction heats). The second law, through entropy which
+      never decreases in an isolated system, distinguishes past and future: it is the thermodynamic basis of
+      the arrow of time, interpreted statistically as evolution towards the most probable macroscopic states.
+- id: secondo-principio-definizione
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.1
+  kind: definizione
+  front:
+    it: 'Definizione: Secondo principio della termodinamica'
+    en: 'Definition: Second law of thermodynamics'
+  back:
+    it: >-
+      Il secondo principio stabilisce l'irreversibilità dei processi naturali attraverso due enunciati
+      equivalenti. Kelvin-Planck: è impossibile una trasformazione ciclica il cui UNICO risultato sia
+      convertire integralmente in lavoro il calore prelevato da una sola sorgente. Clausius: è impossibile una
+      trasformazione ciclica il cui UNICO risultato sia trasferire calore da un corpo freddo a uno caldo. Una
+      macchina termica deve quindi sempre cedere calore a una sorgente fredda: il rendimento \(\eta =
+      W/Q_{ass} = 1 - Q_{ced}/Q_{ass}\) è sempre minore di 1.
+    en: >-
+      The second law establishes the irreversibility of natural processes through two equivalent statements.
+      Kelvin–Planck: no cyclic transformation is possible whose ONLY result is the complete conversion into
+      work of heat taken from a single reservoir. Clausius: no cyclic transformation is possible whose ONLY
+      result is the transfer of heat from a colder body to a hotter one. A heat engine must therefore always
+      release heat to a cold reservoir: the efficiency \(\eta = W/Q_{ass} = 1 - Q_{ced}/Q_{ass}\) (absorbed
+      and released heat) is always less than 1.
+- id: secondo-principio-formule
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.1
+    - secondo-principio.2
+    - secondo-principio.3
+    - secondo-principio.4
+    - secondo-principio.5
+    - secondo-principio.6
+    - secondo-principio.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Secondo principio della termodinamica»
+    en: The key formulas of “Second law of thermodynamics”
+  back:
+    it: |-
+      - \(\eta = \frac{W}{Q_C} = 1 - \frac{|Q_F|}{Q_C} < 1\)
+      - \(\text{COP}_f = \frac{Q_F}{W}\)
+      - \(\text{COP}_p = \frac{Q_C}{W}\)
+    en: |-
+      - \(\eta = \frac{W}{Q_C} = 1 - \frac{|Q_F|}{Q_C} < 1\)
+      - \(\text{COP}_f = \frac{Q_F}{W}\)
+      - \(\text{COP}_p = \frac{Q_C}{W}\)
+- id: secondo-principio-ipotesi
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.1
+    - secondo-principio.2
+    - secondo-principio.3
+    - secondo-principio.4
+    - secondo-principio.5
+    - secondo-principio.6
+    - secondo-principio.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Secondo principio della termodinamica'
+    en: 'Validity assumptions: Second law of thermodynamics'
+  back:
+    it: >-
+      Sistemi che operano in CICLI (lo stato finale della macchina uguale all'iniziale: essenziale per la
+      parola 'unico risultato'); sorgenti termiche ideali (capacità infinita, temperatura costante).
+    en: >-
+      Systems working in CYCLES (final state of the machine equal to the initial one: essential for the words
+      'only result'); ideal thermal reservoirs (infinite capacity, constant temperature).
+- id: secondo-principio-casi-limite
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.1
+    - secondo-principio.2
+    - secondo-principio.3
+    - secondo-principio.4
+    - secondo-principio.5
+    - secondo-principio.6
+    - secondo-principio.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Secondo principio della termodinamica'
+    en: 'Limiting cases: Second law of thermodynamics'
+  back:
+    it: >-
+      Trasformazione non ciclica: convertire tutto il calore in lavoro È possibile (isoterma del gas perfetto:
+      Q = W), ma lo stato del gas cambia — non viola Kelvin-Planck. Limite reversibile: le disuguaglianze del
+      secondo principio diventano uguaglianze (ciclo di Carnot).
+    en: >-
+      Non-cyclic transformation: converting all the heat into work IS possible (isotherm of the ideal gas: Q =
+      W), but the state of the gas changes — it does not violate Kelvin–Planck. Reversible limit: the
+      inequalities of the second law become equalities (Carnot cycle).
+- id: secondo-principio-errori
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.1
+    - secondo-principio.2
+    - secondo-principio.3
+    - secondo-principio.4
+    - secondo-principio.5
+    - secondo-principio.6
+    - secondo-principio.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Secondo principio della termodinamica'
+    en: 'Mistakes to avoid: Second law of thermodynamics'
+  back:
+    it: >-
+      - Dimenticare 'unico risultato'/'ciclico' negli enunciati: senza, gli enunciati sono falsi
+      (controesempio: isoterma).
+
+      - Credere che il frigorifero violi Clausius: assorbe lavoro, quindi il trasferimento non è l'unico
+      risultato.
+
+      - Confondere rendimento (≤1) e COP (anche >1).
+
+      - Pensare che il secondo principio derivi dal primo: sono indipendenti (il primo non vieta il motore
+      perfetto).
+    en: >-
+      - Forgetting 'only result'/'cyclic' in the statements: without them the statements are false
+      (counterexample: isotherm).
+
+      - Believing that the refrigerator violates Clausius: it absorbs work, so the transfer is not the only
+      result.
+
+      - Confusing efficiency (≤1) and COP (even >1).
+
+      - Thinking that the second law follows from the first: they are independent (the first does not forbid
+      the perfect engine).

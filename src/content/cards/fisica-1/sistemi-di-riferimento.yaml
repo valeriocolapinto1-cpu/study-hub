@@ -1,0 +1,254 @@
+- id: sistemi-di-riferimento-esposizione
+  topic: sistemi-di-riferimento
+  objectives:
+    - sistemi-di-riferimento.1
+    - sistemi-di-riferimento.2
+    - sistemi-di-riferimento.3
+    - sistemi-di-riferimento.4
+    - sistemi-di-riferimento.5
+    - sistemi-di-riferimento.6
+    - sistemi-di-riferimento.7
+  kind: orale
+  front:
+    it: "Esponi all'orale: «Sistemi di riferimento inerziali e non inerziali traslatori»."
+    en: 'Present at the oral exam: “Inertial and non-inertial translating reference frames”.'
+  back:
+    it: >-
+      Le forze apparenti sono il 'trucco contabile' che permette di continuare a usare Newton in un sistema
+      che accelera: siccome tutto il sistema accelera con A, ogni massa sembra ricevere una spinta −mA. La
+      loro firma caratteristica è la proporzionalità alla massa — esattamente come la gravità, ed è questa
+      somiglianza che ispirerà il principio di equivalenza.
+
+
+      **Scaletta:**
+
+
+      - Definire sistema inerziale tramite il principio d'inerzia
+
+      - Enunciare la relatività galileiana (sistemi in moto rettilineo uniforme tra loro)
+
+      - Ricavare a = a' + A derivando la trasformazione delle posizioni
+
+      - Ricavare la forza apparente F_app = −mA
+
+      - Spiegare perché le forze apparenti non hanno reazione
+
+      - Discutere l'esempio dell'ascensore e il peso apparente
+
+      - Menzionare il caso di caduta libera (assenza di peso)
+    en: >-
+      Fictitious forces are the 'bookkeeping trick' that lets us keep using Newton in an accelerating frame:
+      since the whole frame accelerates with A, every mass seems to receive a push −mA. Their hallmark is
+      proportionality to the mass — exactly like gravity, and this similarity will inspire the equivalence
+      principle.
+
+
+      **Outline:**
+
+
+      - Define an inertial frame through the principle of inertia
+
+      - State Galilean relativity (frames in uniform rectilinear motion relative to each other)
+
+      - Derive a = a' + A by differentiating the transformation of positions
+
+      - Derive the fictitious force F_fict = −mA
+
+      - Explain why fictitious forces have no reaction
+
+      - Discuss the lift example and apparent weight
+
+      - Mention the free-fall case (weightlessness)
+- id: sistemi-di-riferimento-orale-1
+  topic: sistemi-di-riferimento
+  objectives:
+    - sistemi-di-riferimento.6
+    - sistemi-di-riferimento.7
+  kind: orale
+  front:
+    it: >-
+      Come distingueresti sperimentalmente, stando chiuso in una scatola, un sistema inerziale da uno
+      accelerato?
+    en: How would you tell experimentally, shut inside a box, an inertial frame from an accelerating one?
+  back:
+    it: >-
+      Si osserva un corpo libero da interazioni: in un sistema inerziale resta in quiete o in moto rettilineo
+      uniforme, in uno accelerato "parte da solo" in verso opposto ad A (un pendolo si inclina, una pallina
+      rotola, una bilancia segna un peso diverso da mg). Una scatola in moto rettilineo uniforme invece è
+      indistinguibile da una ferma: nessun esperimento meccanico interno la rivela (relatività galileiana).
+      Nota: in un campo di gravità uniforme un'accelerazione è indistinguibile da una gravità aggiuntiva.
+    en: >-
+      Watch a body free from interactions: in an inertial frame it stays at rest or in uniform rectilinear
+      motion, in an accelerating one it "starts moving by itself" opposite to A (a pendulum tilts, a ball
+      rolls, a scale reads a weight different from mg). A box in uniform rectilinear motion, instead, cannot
+      be told from one at rest: no internal mechanical experiment reveals it (Galilean relativity). Note: in a
+      uniform gravitational field an acceleration is indistinguishable from extra gravity.
+- id: sistemi-di-riferimento-orale-2
+  topic: sistemi-di-riferimento
+  objectives:
+    - sistemi-di-riferimento.6
+    - sistemi-di-riferimento.7
+  kind: orale
+  front:
+    it: 'Un pendolo dentro un vagone che accelera con a: qual è la nuova posizione di equilibrio?'
+    en: 'A pendulum inside a railway car accelerating with a: what is the new equilibrium position?'
+  back:
+    it: >-
+      Nel vagone sul pendolo agiscono peso, tensione e forza apparente −ma (orizzontale, all'indietro).
+      All'equilibrio la tensione bilancia la somma di peso e forza apparente, cioè è allineata con \(\vec
+      g_{eff} = \vec g - \vec a\): il filo si inclina all'indietro di un angolo con \(\tan\theta = a/g\). Le
+      piccole oscillazioni avvengono attorno a questa posizione con \(T = 2\pi\sqrt{L/\sqrt{g^2+a^2}}\).
+    en: >-
+      In the car the pendulum feels weight, tension and the fictitious force −ma (horizontal, backwards). At
+      equilibrium the tension balances the sum of weight and fictitious force, i.e. it is aligned with \(\vec
+      g_{eff} = \vec g - \vec a\): the string tilts backwards by an angle with \(\tan\theta = a/g\). Small
+      oscillations take place around this position with \(T = 2\pi\sqrt{L/\sqrt{g^2+a^2}}\).
+- id: sistemi-di-riferimento-orale-3
+  topic: sistemi-di-riferimento
+  objectives:
+    - sistemi-di-riferimento.6
+    - sistemi-di-riferimento.7
+  kind: orale
+  front:
+    it: Perché la Terra è solo approssimativamente un sistema inerziale?
+    en: Why is the Earth only approximately an inertial frame?
+  back:
+    it: >-
+      Perché ruota su sé stessa (e attorno al Sole): un riferimento solidale con la superficie terrestre ha
+      un'accelerazione centripeta di trascinamento fino a \(\omega^2 R_T \approx 0{,}034\ \text{m/s}^2\)
+      all'equatore e vi compaiono forze centrifuga e di Coriolis. Sono effetti piccoli rispetto a g (circa lo
+      0,3%), quindi per la maggior parte dei problemi la Terra è "abbastanza" inerziale, ma si vedono nel
+      pendolo di Foucault, nella deviazione dei gravi verso est e nella circolazione dei venti.
+    en: >-
+      Because it rotates about its axis (and around the Sun): a frame attached to the Earth's surface has a
+      centripetal transport acceleration up to \(\omega^2 R_E \approx 0.034\ \text{m/s}^2\) at the equator,
+      and centrifugal and Coriolis forces appear in it. These effects are small compared with g (about 0.3%),
+      so for most problems the Earth is "inertial enough", but they show up in Foucault's pendulum, in the
+      eastward deflection of falling bodies and in the circulation of winds.
+- id: sistemi-di-riferimento-definizione
+  topic: sistemi-di-riferimento
+  objectives:
+    - sistemi-di-riferimento.1
+  kind: definizione
+  front:
+    it: 'Definizione: Sistemi di riferimento inerziali e non inerziali traslatori'
+    en: 'Definition: Inertial and non-inertial translating reference frames'
+  back:
+    it: >-
+      Un sistema di riferimento è inerziale se in esso vale il principio d'inerzia: un corpo non soggetto a
+      forze si muove di moto rettilineo uniforme. Ogni sistema in moto rettilineo uniforme rispetto a un
+      inerziale è a sua volta inerziale (relatività galileiana). Un sistema che accelera rispetto a un
+      inerziale è non inerziale: per usare F = ma al suo interno occorre introdurre forze apparenti (o
+      fittizie, o d'inerzia), che non hanno reazione perché non nascono da interazioni.
+    en: >-
+      A reference frame is inertial if the principle of inertia holds in it: a body subject to no forces moves
+      in uniform rectilinear motion. Every frame in uniform rectilinear motion with respect to an inertial one
+      is itself inertial (Galilean relativity). A frame that accelerates with respect to an inertial one is
+      non-inertial: to use F = ma in it one must introduce fictitious (or apparent, or inertial) forces, which
+      have no reaction because they do not arise from interactions.
+- id: sistemi-di-riferimento-formule
+  topic: sistemi-di-riferimento
+  objectives:
+    - sistemi-di-riferimento.1
+    - sistemi-di-riferimento.2
+    - sistemi-di-riferimento.3
+    - sistemi-di-riferimento.4
+    - sistemi-di-riferimento.5
+    - sistemi-di-riferimento.6
+    - sistemi-di-riferimento.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Sistemi di riferimento inerziali e non inerziali traslatori»
+    en: The key formulas of “Inertial and non-inertial translating reference frames”
+  back:
+    it: |-
+      - \(\vec{a} = \vec{a}' + \vec{A}\)
+      - \(m\vec{a}' = \vec{F} - m\vec{A}\)
+      - \(\vec{F}_{app} = -m\vec{A}\)
+      - \(N = m(g \pm A)\)
+    en: |-
+      - \(\vec{a} = \vec{a}' + \vec{A}\)
+      - \(m\vec{a}' = \vec{F} - m\vec{A}\)
+      - \(\vec{F}_{fict} = -m\vec{A}\)
+      - \(N = m(g \pm A)\)
+- id: sistemi-di-riferimento-ipotesi
+  topic: sistemi-di-riferimento
+  objectives:
+    - sistemi-di-riferimento.1
+    - sistemi-di-riferimento.2
+    - sistemi-di-riferimento.3
+    - sistemi-di-riferimento.4
+    - sistemi-di-riferimento.5
+    - sistemi-di-riferimento.6
+    - sistemi-di-riferimento.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Sistemi di riferimento inerziali e non inerziali traslatori'
+    en: 'Validity assumptions: Inertial and non-inertial translating reference frames'
+  back:
+    it: >-
+      Meccanica classica (tempo assoluto, trasformazioni di Galileo). Sistema mobile in pura traslazione: assi
+      sempre paralleli, altrimenti compaiono anche forza centrifuga e di Coriolis. Massa costante.
+    en: >-
+      Classical mechanics (absolute time, Galilean transformations). Moving frame in pure translation: axes
+      always parallel, otherwise centrifugal and Coriolis forces also appear. Constant mass.
+- id: sistemi-di-riferimento-casi-limite
+  topic: sistemi-di-riferimento
+  objectives:
+    - sistemi-di-riferimento.1
+    - sistemi-di-riferimento.2
+    - sistemi-di-riferimento.3
+    - sistemi-di-riferimento.4
+    - sistemi-di-riferimento.5
+    - sistemi-di-riferimento.6
+    - sistemi-di-riferimento.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Sistemi di riferimento inerziali e non inerziali traslatori'
+    en: 'Limiting cases: Inertial and non-inertial translating reference frames'
+  back:
+    it: >-
+      A = 0: S' è inerziale, le forze apparenti spariscono e si ritrova l'invarianza galileiana. A = g (caduta
+      libera): la forza apparente cancella esattamente il peso — dentro il sistema tutto 'galleggia'
+      (principio di equivalenza in embrione).
+    en: >-
+      A = 0: S' is inertial, fictitious forces vanish and Galilean invariance is recovered. A = g (free fall):
+      the fictitious force exactly cancels the weight — inside the frame everything 'floats' (the equivalence
+      principle in embryo).
+- id: sistemi-di-riferimento-errori
+  topic: sistemi-di-riferimento
+  objectives:
+    - sistemi-di-riferimento.1
+    - sistemi-di-riferimento.2
+    - sistemi-di-riferimento.3
+    - sistemi-di-riferimento.4
+    - sistemi-di-riferimento.5
+    - sistemi-di-riferimento.6
+    - sistemi-di-riferimento.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Sistemi di riferimento inerziali e non inerziali traslatori'
+    en: 'Mistakes to avoid: Inertial and non-inertial translating reference frames'
+  back:
+    it: >-
+      - Trattare la forza apparente come un'interazione reale e cercarle una reazione (terza legge): non ce
+      l'ha.
+
+      - Usare F = ma in un sistema accelerato senza aggiungere −mA.
+
+      - Confondere il peso (forza gravitazionale mg) con il peso apparente (la normale N misurata dalla
+      bilancia).
+
+      - Credere che 'sentire la spinta' in frenata sia una forza vera: è l'inerzia vista da un sistema non
+      inerziale.
+    en: >-
+      - Treating the fictitious force as a real interaction and looking for its reaction (third law): it has
+      none.
+
+      - Using F = ma in an accelerating frame without adding −mA.
+
+      - Confusing the weight (gravitational force mg) with the apparent weight (the normal force N measured by
+      the scale).
+
+      - Believing that 'feeling pushed' when braking is a real force: it is inertia seen from a non-inertial
+      frame.

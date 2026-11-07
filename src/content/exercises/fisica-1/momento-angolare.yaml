@@ -1,0 +1,129 @@
+- id: momento-chiave-inglese
+  topic: momento-angolare
+  objectives:
+    - momento-angolare.1
+    - momento-angolare.2
+    - momento-angolare.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Si stringe un bullone con una chiave lunga 25 cm applicando all'estremità una forza di 80 N che forma un
+      angolo di 60° con la chiave. Calcolare: (a) il braccio della forza; (b) il modulo del momento rispetto
+      all'asse del bullone; (c) la forza minima che darebbe lo stesso momento.
+    en: >-
+      A bolt is tightened with a 25 cm long wrench by applying at its end a force of 80 N at an angle of 60°
+      to the wrench. Find: (a) the lever arm of the force; (b) the magnitude of the torque about the bolt
+      axis; (c) the minimum force that would give the same torque.
+  steps:
+    - title:
+        it: Braccio
+        en: Lever arm
+      body:
+        it: \(b = r\sin\theta = 0{,}25 \cdot \sin 60° \approx 0{,}2165\ \text{m}\).
+        en: \(b = r\sin\theta = 0.25 \cdot \sin 60° \approx 0.2165\ \text{m}\).
+    - title:
+        it: Momento
+        en: Torque
+      body:
+        it: \(\tau = Fb \approx 80 \cdot 0{,}2165 \approx 17{,}3\ \text{N·m}\).
+        en: \(\tau = Fb \approx 80 \cdot 0.2165 \approx 17.3\ \text{N·m}\).
+    - title:
+        it: Forza minima
+        en: Minimum force
+      body:
+        it: >-
+          Il braccio massimo è r (forza perpendicolare alla chiave): \(F_{min} = \tau/r \approx 69{,}3\
+          \text{N}\).
+        en: >-
+          The largest lever arm is r (force perpendicular to the wrench): \(F_{min} = \tau/r \approx 69.3\
+          \text{N}\).
+  answer:
+    - label:
+        it: b
+        en: b
+      value: 0.2165
+      unit: m
+    - label:
+        it: τ
+        en: τ
+      value: 17.3
+      unit: N·m
+    - label:
+        it: F_min
+        en: F_min
+      value: 69.3
+      unit: 'N'
+  origin: originale
+- id: pallina-filo-che-si-accorcia
+  topic: momento-angolare
+  objectives:
+    - momento-angolare.1
+    - momento-angolare.2
+    - momento-angolare.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Una pallina di massa m = 0,10 kg ruota su un piano orizzontale liscio legata a un filo che passa per un
+      foro al centro. Il raggio iniziale è r₁ = 0,50 m con velocità v₁ = 2,0 m/s. Tirando lentamente il filo
+      da sotto si porta il raggio a r₂ = 0,20 m. Calcolare: (a) la nuova velocità; (b) la variazione di
+      energia cinetica; (c) la tensione finale del filo.
+    en: >-
+      A ball of mass m = 0.10 kg rotates on a smooth horizontal plane, tied to a string that passes through a
+      hole at the centre. The initial radius is r₁ = 0.50 m with speed v₁ = 2.0 m/s. By slowly pulling the
+      string from below, the radius is reduced to r₂ = 0.20 m. Find: (a) the new speed; (b) the change in
+      kinetic energy; (c) the final tension in the string.
+  steps:
+    - title:
+        it: Forza centrale
+        en: Central force
+      body:
+        it: >-
+          La tensione punta sempre verso il foro: il momento rispetto al foro è nullo e \(L = mvr\) si
+          conserva. \(v_2 = v_1 r_1/r_2 = 5{,}0\ \text{m/s}\).
+        en: >-
+          The tension always points towards the hole: its torque about the hole is zero and \(L = mvr\) is
+          conserved. \(v_2 = v_1 r_1/r_2 = 5.0\ \text{m/s}\).
+    - title:
+        it: Energia
+        en: Energy
+      body:
+        it: >-
+          \(\Delta K = \tfrac12 m(v_2^2 - v_1^2) = 0{,}05 \cdot 21 = 1{,}05\ \text{J}\): è il lavoro fatto da
+          chi tira il filo (la tensione ha una componente lungo lo spostamento radiale).
+        en: >-
+          \(\Delta K = \tfrac12 m(v_2^2 - v_1^2) = 0.05 \cdot 21 = 1.05\ \text{J}\): it is the work done by
+          whoever pulls the string (the tension has a component along the radial displacement).
+    - title:
+        it: Tensione
+        en: Tension
+      body:
+        it: \(T = mv_2^2/r_2 = 0{,}10 \cdot 25/0{,}20 = 12{,}5\ \text{N}\).
+        en: \(T = mv_2^2/r_2 = 0.10 \cdot 25/0.20 = 12.5\ \text{N}\).
+  answer:
+    - label:
+        it: v₂
+        en: v₂
+      value: 5
+      unit: m/s
+    - label:
+        it: ΔK
+        en: ΔK
+      value: 1.05
+      unit: J
+    - label:
+        it: T
+        en: T
+      value: 12.5
+      unit: 'N'
+  origin: originale
+- id: momento-angolare-filo-variante
+  topic: momento-angolare
+  objectives:
+    - momento-angolare.1
+    - momento-angolare.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/momento-angolare-filo
+  origin: tipologia-appello

@@ -1,0 +1,46 @@
+id: oscillatore-smorzato
+course: fisica-1
+order: 6
+title:
+  it: Oscillatore armonico smorzato
+  en: Damped harmonic oscillator
+summary:
+  it: >-
+    L'attrito viscoso sottrae energia a ogni oscillazione, quindi l'ampiezza si spegne esponenzialmente; se lo
+    smorzamento è forte, l'energia viene drenata prima ancora che il sistema riesca a completare
+    un'oscillazione.
+  en: >-
+    Viscous friction removes energy at every oscillation, so the amplitude dies out exponentially; if damping
+    is strong, the energy is drained before the system can even complete an oscillation.
+group:
+  it: Cinematica e oscillazioni
+  en: Kinematics and oscillations
+objectives:
+  - id: oscillatore-smorzato.1
+    text:
+      it: Scrivere l'equazione ẍ + 2γẋ + ω₀²x = 0 definendo γ e ω₀
+      en: Write the equation ẍ + 2γẋ + ω₀²x = 0 defining γ and ω₀
+  - id: oscillatore-smorzato.2
+    text:
+      it: Risolvere con l'esponenziale e discutere il discriminante
+      en: Solve with the exponential and discuss the discriminant
+  - id: oscillatore-smorzato.3
+    text:
+      it: Descrivere i tre regimi con le rispettive soluzioni
+      en: Describe the three regimes with their solutions
+  - id: oscillatore-smorzato.4
+    text:
+      it: Scrivere la soluzione sottosmorzata con inviluppo e ω_s
+      en: Write the underdamped solution with envelope and ω_s
+  - id: oscillatore-smorzato.5
+    text:
+      it: Dimostrare che dE/dt = −bv² ≤ 0
+      en: Prove that dE/dt = −bv² ≤ 0
+  - id: oscillatore-smorzato.6
+    text:
+      it: Spiegare perché lo smorzamento critico è usato negli ammortizzatori
+      en: Explain why critical damping is used in shock absorbers
+  - id: oscillatore-smorzato.7
+    text:
+      it: Definire il fattore di qualità Q
+      en: Define the quality factor Q

@@ -1,0 +1,146 @@
+- id: smorzato-decremento
+  topic: oscillatore-smorzato
+  objectives:
+    - oscillatore-smorzato.1
+    - oscillatore-smorzato.2
+    - oscillatore-smorzato.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Un corpo di massa m = 0,50 kg, attaccato a una molla di costante k = 50 N/m, è immerso in un fluido
+      viscoso con b = 0,40 kg/s. Calcolare: (a) ω₀ e γ, e dire in che regime si trova; (b) la pulsazione delle
+      oscillazioni smorzate; (c) il rapporto tra due massimi successivi dello spostamento; (d) il fattore di
+      qualità.
+    en: >-
+      A body of mass m = 0.50 kg, attached to a spring of constant k = 50 N/m, is immersed in a viscous fluid
+      with b = 0.40 kg/s. Find: (a) ω₀ and γ, and state the regime; (b) the angular frequency of the damped
+      oscillations; (c) the ratio of two successive displacement maxima; (d) the quality factor.
+  steps:
+    - title:
+        it: Parametri
+        en: Parameters
+      body:
+        it: >-
+          \(\omega_0 = \sqrt{k/m} = 10\ \text{rad/s}\), \(\gamma = b/2m = 0{,}40\ \text{s}^{-1}\): \(\gamma
+          \ll \omega_0\), regime sottosmorzato.
+        en: >-
+          \(\omega_0 = \sqrt{k/m} = 10\ \text{rad/s}\), \(\gamma = b/2m = 0.40\ \text{s}^{-1}\): \(\gamma \ll
+          \omega_0\), underdamped regime.
+    - title:
+        it: Pulsazione smorzata
+        en: Damped angular frequency
+      body:
+        it: >-
+          \(\omega_s = \sqrt{\omega_0^2 - \gamma^2} = \sqrt{100 - 0{,}16} \approx 9{,}992\ \text{rad/s}\):
+          praticamente ω₀.
+        en: >-
+          \(\omega_s = \sqrt{\omega_0^2 - \gamma^2} = \sqrt{100 - 0.16} \approx 9.992\ \text{rad/s}\):
+          practically ω₀.
+    - title:
+        it: Massimi successivi
+        en: Successive maxima
+      body:
+        it: >-
+          Distano \(T_s = 2\pi/\omega_s \approx 0{,}629\ \text{s}\), quindi \(x_n/x_{n+1} = e^{\gamma T_s}
+          \approx e^{0{,}2515} \approx 1{,}286\).
+        en: >-
+          They are \(T_s = 2\pi/\omega_s \approx 0.629\ \text{s}\) apart, so \(x_n/x_{n+1} = e^{\gamma T_s}
+          \approx e^{0.2515} \approx 1.286\).
+    - title:
+        it: Fattore di qualità
+        en: Quality factor
+      body:
+        it: \(Q = \omega_0/(2\gamma) = 12{,}5\).
+        en: \(Q = \omega_0/(2\gamma) = 12.5\).
+  answer:
+    - label:
+        it: γ
+        en: γ
+      value: 0.4
+      unit: 1/s
+    - label:
+        it: ω_s
+        en: ω_s
+      value: 9.992
+      unit: rad/s
+      tol: 0.001
+    - label:
+        it: x_n/x_(n+1)
+        en: x_n/x_(n+1)
+      value: 1.286
+      tol: 0.005
+    - label:
+        it: Q
+        en: Q
+      value: 12.5
+  origin: originale
+- id: smorzamento-critico-ammortizzatore
+  topic: oscillatore-smorzato
+  objectives:
+    - oscillatore-smorzato.1
+    - oscillatore-smorzato.2
+    - oscillatore-smorzato.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      La sospensione di una ruota si modella come una massa m = 300 kg su una molla di costante k = 3,0·10⁴
+      N/m. (a) Quale coefficiente di attrito viscoso b dà smorzamento critico? (b) Con questo b, dopo quanto
+      tempo un piccolo spostamento iniziale x₀ (da fermo) si riduce sotto l'1% di x₀?
+    en: >-
+      A wheel suspension is modelled as a mass m = 300 kg on a spring of constant k = 3.0·10⁴ N/m. (a) What
+      viscous friction coefficient b gives critical damping? (b) With this b, how long does it take for a
+      small initial displacement x₀ (from rest) to fall below 1% of x₀?
+  steps:
+    - title:
+        it: Smorzamento critico
+        en: Critical damping
+      body:
+        it: >-
+          \(\omega_0 = \sqrt{k/m} = 10\ \text{rad/s}\); critico per \(\gamma = \omega_0\), cioè \(b =
+          2m\omega_0 = 6000\ \text{kg/s}\).
+        en: >-
+          \(\omega_0 = \sqrt{k/m} = 10\ \text{rad/s}\); critical for \(\gamma = \omega_0\), i.e. \(b =
+          2m\omega_0 = 6000\ \text{kg/s}\).
+    - title:
+        it: Soluzione con le condizioni iniziali
+        en: Solution with the initial conditions
+      body:
+        it: >-
+          \(x = (C_1 + C_2 t)e^{-\omega_0 t}\) con \(x(0)=x_0\), \(\dot x(0)=0\) dà \(C_1 = x_0\), \(C_2 =
+          \omega_0 x_0\): \(x(t) = x_0(1 + \omega_0 t)e^{-\omega_0 t}\).
+        en: >-
+          \(x = (C_1 + C_2 t)e^{-\omega_0 t}\) with \(x(0)=x_0\), \(\dot x(0)=0\) gives \(C_1 = x_0\), \(C_2 =
+          \omega_0 x_0\): \(x(t) = x_0(1 + \omega_0 t)e^{-\omega_0 t}\).
+    - title:
+        it: Tempo
+        en: Time
+      body:
+        it: >-
+          Si risolve numericamente \((1 + u)e^{-u} = 0{,}01\) con \(u = \omega_0 t\): \(u \approx 6{,}64\),
+          quindi \(t \approx 0{,}664\ \text{s}\).
+        en: >-
+          Solve numerically \((1 + u)e^{-u} = 0.01\) with \(u = \omega_0 t\): \(u \approx 6.64\), so \(t
+          \approx 0.664\ \text{s}\).
+  answer:
+    - label:
+        it: b
+        en: b
+      value: 6000
+      unit: kg/s
+    - label:
+        it: t
+        en: t
+      value: 0.664
+      unit: s
+  origin: originale
+- id: oscillatore-smorzato-variante
+  topic: oscillatore-smorzato
+  objectives:
+    - oscillatore-smorzato.1
+    - oscillatore-smorzato.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/oscillatore-smorzato
+  origin: tipologia-appello

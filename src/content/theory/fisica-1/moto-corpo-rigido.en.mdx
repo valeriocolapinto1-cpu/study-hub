@@ -1,0 +1,176 @@
+---
+course: fisica-1
+topic: moto-corpo-rigido
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/moto-corpo-rigido/idea">
+
+The rigidity constraint reduces an enormous number of degrees of freedom to just 6: knowing where the CM is and how the body is oriented is enough to know the position of every point. The motion can always be read as 'the CM translates + the body spins about the CM', and each of the two parts obeys its own cardinal equation.
+
+</div>
+
+<div class="muted" data-note-id="teoria/moto-corpo-rigido/prerequisiti">
+
+**Before this topic:** [Centre of mass and the first cardinal equation](../centro-di-massa/) · [Moments of inertia and the Huygens–Steiner theorem](../momenti-di-inerzia/) · [Angular momentum theorem (second cardinal equation)](../teorema-momento-angolare/)
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/moto-corpo-rigido/definizioni">
+
+## Definitions
+
+A rigid body is a system of points whose mutual distances stay constant. Its most general motion is the composition of a translation (described by the motion of the CM) and a rotation about an axis through the CM: 6 coordinates are needed (3 + 3). The velocity field is $\vec{v}_P = \vec{v}_{cm} + \vec{\omega}\times\vec{r}_{P}$, with r_P the position of P relative to the CM. The motion is governed by the two cardinal equations.
+
+</div>
+
+<div data-note-id="teoria/moto-corpo-rigido/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Rigidity constraint and velocity field</summary>
+
+$$
+|\vec{r}_P - \vec{r}_Q| = \text{const} \;\Rightarrow\; \vec{v}_P = \vec{v}_Q + \vec{\omega}\times(\vec{r}_P - \vec{r}_Q)
+$$
+
+Differentiating the constraint shows that relative velocities between points of the rigid body are purely rotational: ω is the same for the whole body (fundamental formula of rigid kinematics).
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · The equations of motion</summary>
+
+$$
+\vec{F}^{ext} = M\vec{a}_{cm}, \qquad \frac{d\vec{L}_{cm}}{dt} = \vec{\tau}_{cm}^{ext}
+$$
+
+First cardinal equation for the translation of the CM, second (with the pole at the CM, always admissible) for the rotation: 3+3 equations for 6 degrees of freedom — the motion is completely determined.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Rotation about a fixed axis</summary>
+
+$$
+L_z = I_z\omega \;\Rightarrow\; I_z\alpha = \tau_z
+$$
+
+The most common case in exercises: all quantities projected on the axis. The analogy with F = ma is complete: m→I, F→τ, a→α, v→ω, x→θ.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Rotational kinematics (constant α)</summary>
+
+$$
+\omega(t) = \omega_0 + \alpha t, \qquad \theta(t) = \theta_0 + \omega_0 t + \frac{1}{2}\alpha t^2, \qquad \omega^2 = \omega_0^2 + 2\alpha\Delta\theta
+$$
+
+Identical to the formulas of uniformly accelerated motion with the substitution x→θ, v→ω, a→α.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Instantaneous axis of rotation</summary>
+
+$$
+\vec{v}_C = \vec{0} \;\Rightarrow\; \vec{v}_P = \vec{\omega}\times(\vec{r}_P - \vec{r}_C)
+$$
+
+In plane motion there is at every instant a point C with zero velocity (instantaneous centre of rotation): the motion appears as a pure rotation about C. In rolling, C is the contact point.
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · Work and power in rotation</summary>
+
+$$
+dW = \tau_z\,d\theta, \qquad P = \tau_z\,\omega
+$$
+
+Rotational analogues of dW = F dx and P = Fv; the kinetic energy theorem becomes W = Δ(½Iω²).
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/moto-corpo-rigido/ipotesi">
+
+## Validity assumptions
+
+Perfect rigidity (no deformation); for L = Iω a fixed axis or a principal axis of inertia; inertial reference frames (or pole at the CM).
+
+</div>
+
+<div data-note-id="teoria/moto-corpo-rigido/casi-limite">
+
+## Limiting cases
+
+Pure translation: ω = 0, all points have the same velocity. Pure rotation about a fixed axis: zero velocity of the axis. Rolling: combination with the constraint v_cm = ωR. Free body in space: the CM moves in uniform rectilinear motion and the body rotates about it.
+
+</div>
+
+<div data-note-id="teoria/moto-corpo-rigido/formule">
+
+## Key formulas
+
+<Formula id="moto-corpo-rigido-f1" />
+
+<Formula id="moto-corpo-rigido-f2" />
+
+<Formula id="moto-corpo-rigido-f3" />
+
+<Formula id="moto-corpo-rigido-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/moto-corpo-rigido/esempio">
+
+A flywheel (uniform disc of mass 20 kg and radius 0.30 m) spins at 600 rpm. A brake applies a constant torque of 1.5 N·m. Find: (a) the angular deceleration; (b) the time to stop it; (c) the number of revolutions during braking.
+
+1. **Equation of motion.** $I = \tfrac12 MR^2 = 0.90\ \text{kg·m}^2$; $\alpha = \tau/I \approx 1.667\ \text{rad/s}^2$.
+2. **Time.** $\omega_0 = 600 \cdot 2\pi/60 = 20\pi \approx 62.83\ \text{rad/s}$; $t = \omega_0/\alpha \approx 37.7\ \text{s}$.
+3. **Revolutions.** $\Delta\theta = \omega_0^2/(2\alpha) \approx 1184\ \text{rad}$, i.e. about 188 revolutions.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/moto-corpo-rigido/errori">
+
+- Assigning ω 'to a point': the angular velocity is unique for the whole rigid body.
+- Using the second cardinal equation with a moving pole other than the CM without corrections.
+- Applying L = Iω as a vector relation when the axis is not principal.
+- Forgetting that BOTH cardinal equations are needed: the first alone does not describe rotation.
+
+</div>
+
+<div data-note-id="teoria/moto-corpo-rigido/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- Why is the work of internal forces zero for a rigid body?
+- How do you find the instantaneous centre of rotation graphically, knowing the velocities of two points?
+- What happens if you apply a force whose torque about the CM is zero?
+
+</div>
+
+</Layer>

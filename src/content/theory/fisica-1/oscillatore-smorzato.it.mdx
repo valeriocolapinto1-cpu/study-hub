@@ -1,0 +1,185 @@
+---
+course: fisica-1
+topic: oscillatore-smorzato
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/oscillatore-smorzato/idea">
+
+L'attrito viscoso sottrae energia a ogni oscillazione, quindi l'ampiezza si spegne esponenzialmente; se lo smorzamento è forte, l'energia viene drenata prima ancora che il sistema riesca a completare un'oscillazione. Lo smorzamento critico è il punto di equilibrio perfetto tra 'tornare in fretta' e 'non oltrepassare l'equilibrio'.
+
+</div>
+
+<div class="muted" data-note-id="teoria/oscillatore-smorzato/prerequisiti">
+
+**Prima di questo argomento:** [Oscillatore armonico massa-molla](../oscillatore-massa-molla/)
+
+</div>
+
+<Callout tone="nota" title="Vedi in azione">
+
+[Apri la simulazione interattiva](../../extra/simulazioni/#sim-oscillatore-smorzato)
+
+</Callout>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/oscillatore-smorzato/definizioni">
+
+## Definizioni
+
+Un oscillatore smorzato è un oscillatore armonico soggetto anche a una forza di attrito viscoso proporzionale alla velocità, $F_v = -b\dot{x}$. Si definiscono il coefficiente di smorzamento $\gamma = b/2m$ e la pulsazione propria $\omega_0 = \sqrt{k/m}$. A seconda del rapporto tra γ e ω₀ il moto è sottosmorzato (oscillazioni con ampiezza che decade esponenzialmente), criticamente smorzato o sovrasmorzato (ritorno all'equilibrio senza oscillare).
+
+</div>
+
+<div data-note-id="teoria/oscillatore-smorzato/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Equazione del moto con attrito viscoso</summary>
+
+$$
+m\ddot{x} = -kx - b\dot{x} \;\Rightarrow\; \ddot{x} + 2\gamma\dot{x} + \omega_0^2 x = 0, \quad \gamma = \frac{b}{2m},\; \omega_0^2 = \frac{k}{m}
+$$
+
+Equazione differenziale lineare omogenea a coefficienti costanti: si cerca una soluzione esponenziale.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · Ansatz esponenziale ed equazione caratteristica</summary>
+
+$$
+x = e^{\lambda t} \;\Rightarrow\; \lambda^2 + 2\gamma\lambda + \omega_0^2 = 0 \;\Rightarrow\; \lambda_{1,2} = -\gamma \pm \sqrt{\gamma^2 - \omega_0^2}
+$$
+
+Il segno del discriminante γ² − ω₀² separa i tre regimi.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Caso sottosmorzato (γ &lt; ω₀)</summary>
+
+$$
+x(t) = A\,e^{-\gamma t}\cos(\omega_s t + \varphi), \qquad \omega_s = \sqrt{\omega_0^2 - \gamma^2}
+$$
+
+Le radici sono complesse coniugate: oscillazione a pulsazione ω_s &lt; ω₀ dentro un inviluppo esponenziale Ae^\{−γt\}. Il tempo caratteristico di decadimento dell'ampiezza è τ = 1/γ.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Caso critico (γ = ω₀) e sovrasmorzato (γ &gt; ω₀)</summary>
+
+$$
+x = (C_1 + C_2 t)e^{-\gamma t} \quad\text{oppure}\quad x = C_1 e^{\lambda_1 t} + C_2 e^{\lambda_2 t},\; \lambda_{1,2}<0
+$$
+
+Nessuna oscillazione. Lo smorzamento critico è il ritorno all'equilibrio più rapido possibile: per questo si usa negli ammortizzatori e negli strumenti di misura.
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Bilancio energetico</summary>
+
+$$
+\frac{dE}{dt} = \frac{d}{dt}\Big(\frac{1}{2}m\dot{x}^2 + \frac{1}{2}kx^2\Big) = \dot{x}(m\ddot{x} + kx) = -b\dot{x}^2 \le 0
+$$
+
+L'energia meccanica decresce sempre: la potenza dissipata dall'attrito viscoso è bv². Nel regime sottosmorzato E(t) ≈ E₀e^\{−2γt\} (decade col quadrato dell'ampiezza).
+
+</details>
+
+<details id="passo-6">
+<summary>Passo 6 · Fattore di qualità</summary>
+
+$$
+Q = \frac{\omega_0}{2\gamma}
+$$
+
+Q conta (a meno di 2π) quante oscillazioni compie il sistema prima di dissipare gran parte dell'energia: Q alto = smorzamento debole.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/oscillatore-smorzato/ipotesi">
+
+## Ipotesi di validità
+
+Attrito puramente viscoso, lineare nella velocità (valido per moti lenti in fluidi, regime di Stokes); molla ideale lineare; parametri m, b, k costanti.
+
+</div>
+
+<div data-note-id="teoria/oscillatore-smorzato/casi-limite">
+
+## Casi limite
+
+b → 0: si ritrova l'oscillatore armonico ideale (γ = 0, ω_s = ω₀). γ ≪ ω₀: molte oscillazioni quasi armoniche con ampiezza lentamente decrescente. γ ≫ ω₀: moto 'strisciante', ritorno lentissimo dominato dalla radice piccola.
+
+</div>
+
+<div data-note-id="teoria/oscillatore-smorzato/formule">
+
+## Formule chiave
+
+<Formula id="oscillatore-smorzato-f1" />
+
+<Formula id="oscillatore-smorzato-f2" />
+
+<Formula id="oscillatore-smorzato-f3" />
+
+<Formula id="oscillatore-smorzato-f4" />
+
+<Formula id="oscillatore-smorzato-f5" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Esempio svolto">
+
+<div data-note-id="teoria/oscillatore-smorzato/esempio">
+
+Un corpo di massa m = 0,50 kg, attaccato a una molla di costante k = 50 N/m, è immerso in un fluido viscoso con b = 0,40 kg/s. Calcolare: (a) ω₀ e γ, e dire in che regime si trova; (b) la pulsazione delle oscillazioni smorzate; (c) il rapporto tra due massimi successivi dello spostamento; (d) il fattore di qualità.
+
+1. **Parametri.** $\omega_0 = \sqrt{k/m} = 10\ \text{rad/s}$, $\gamma = b/2m = 0{,}40\ \text{s}^{-1}$: $\gamma \ll \omega_0$, regime sottosmorzato.
+2. **Pulsazione smorzata.** $\omega_s = \sqrt{\omega_0^2 - \gamma^2} = \sqrt{100 - 0{,}16} \approx 9{,}992\ \text{rad/s}$: praticamente ω₀.
+3. **Massimi successivi.** Distano $T_s = 2\pi/\omega_s \approx 0{,}629\ \text{s}$, quindi $x_n/x_{n+1} = e^{\gamma T_s} \approx e^{0{,}2515} \approx 1{,}286$.
+4. **Fattore di qualità.** $Q = \omega_0/(2\gamma) = 12{,}5$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/oscillatore-smorzato/errori">
+
+- Scrivere che la pulsazione di oscillazione resta ω₀: è ω_s = √(ω₀² − γ²) &lt; ω₀.
+- Confondere il decadimento dell'ampiezza (e^\{−γt\}) con quello dell'energia (e^\{−2γt\}).
+- Credere che il sovrasmorzato torni all'equilibrio più in fretta del critico: è il contrario.
+- Dimenticare il fattore 2 nella definizione γ = b/2m.
+
+</div>
+
+<div data-note-id="teoria/oscillatore-smorzato/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Come misureresti sperimentalmente γ da un grafico x(t)?
+- Cosa rappresenta la traiettoria nello spazio delle fasi nei tre regimi?
+- Perché per un attrito radente costante (non viscoso) il decadimento dell'ampiezza è lineare e non esponenziale?
+
+</div>
+
+</Layer>

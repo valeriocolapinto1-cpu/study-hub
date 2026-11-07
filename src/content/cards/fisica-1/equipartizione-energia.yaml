@@ -1,0 +1,245 @@
+- id: equipartizione-energia-esposizione
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.1
+    - equipartizione-energia.2
+    - equipartizione-energia.3
+    - equipartizione-energia.4
+    - equipartizione-energia.5
+    - equipartizione-energia.6
+    - equipartizione-energia.7
+  kind: orale
+  front:
+    it: "Esponi all'orale: «Energia interna dei gas e principio di equipartizione»."
+    en: 'Present at the oral exam: “Internal energy of gases and the equipartition principle”.'
+  back:
+    it: >-
+      All'equilibrio l'energia termica è perfettamente democratica: gli urti continui la redistribuiscono
+      finché ogni 'modo quadratico' di immagazzinarla — muoversi lungo x, ruotare, vibrare — ne possiede in
+      media la stessa quota ½k_BT. L'energia interna è il censimento di questi modi; e il fatto che dipenda
+      solo da T (non da V) rispecchia l'assenza di legami tra molecole che non si parlano.
+
+
+      **Scaletta:**
+
+
+      - Enunciare il principio di equipartizione con precisione (termini quadratici)
+
+      - Contare i gradi di libertà di mono e biatomici
+
+      - Spiegare perché la rotazione assiale del biatomico non conta
+
+      - Ricavare U = (f/2)nRT
+
+      - Enunciare la legge di Joule e l'esperimento dell'espansione libera
+
+      - Dedurre c_V = (f/2)R
+
+      - Accennare al congelamento quantistico dei gradi di libertà
+    en: >-
+      At equilibrium thermal energy is perfectly democratic: continual collisions redistribute it until every
+      'quadratic mode' of storing it — moving along x, rotating, vibrating — owns on average the same share
+      ½k_BT. Internal energy is the census of these modes; and the fact that it depends only on T (not on V)
+      mirrors the absence of bonds between molecules that do not talk to each other.
+
+
+      **Outline:**
+
+
+      - State the equipartition principle precisely (quadratic terms)
+
+      - Count the degrees of freedom of monatomic and diatomic gases
+
+      - Explain why axial rotation of the diatomic molecule does not count
+
+      - Derive U = (f/2)nRT
+
+      - State Joule's law and the free-expansion experiment
+
+      - Deduce c_V = (f/2)R
+
+      - Mention the quantum freezing of degrees of freedom
+- id: equipartizione-energia-orale-1
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.6
+    - equipartizione-energia.7
+  kind: orale
+  front:
+    it: >-
+      Perché l'espansione libera nel vuoto di un gas perfetto non ne cambia la temperatura, mentre per un gas
+      reale sì (leggermente)?
+    en: >-
+      Why does the free expansion into vacuum of an ideal gas not change its temperature, while for a real gas
+      it does (slightly)?
+  back:
+    it: >-
+      Nell'espansione libera Q = 0 (pareti adiabatiche) e W = 0 (il gas non spinge nulla), quindi ΔU = 0. Per
+      il gas perfetto U dipende solo da T, dunque T non cambia. In un gas reale U contiene anche l'energia
+      potenziale attrattiva tra le molecole, che cresce (diventa meno negativa) quando il volume aumenta: a U
+      costante l'energia cinetica deve diminuire e il gas si raffredda leggermente.
+    en: >-
+      In free expansion Q = 0 (adiabatic walls) and W = 0 (the gas pushes nothing), so ΔU = 0. For the ideal
+      gas U depends only on T, therefore T does not change. In a real gas U also contains the attractive
+      potential energy between molecules, which increases (becomes less negative) as the volume grows: at
+      constant U the kinetic energy must decrease and the gas cools slightly.
+- id: equipartizione-energia-orale-2
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.6
+    - equipartizione-energia.7
+  kind: orale
+  front:
+    it: Come spiega l'equipartizione la legge di Dulong-Petit per i solidi?
+    en: How does equipartition explain the Dulong–Petit law for solids?
+  back:
+    it: >-
+      In un solido ogni atomo oscilla attorno alla sua posizione di equilibrio come un oscillatore armonico
+      tridimensionale: 3 termini cinetici e 3 termini elastici, 6 termini quadratici. Per l'equipartizione
+      l'energia media per atomo è \(6\cdot\tfrac12 k_BT = 3k_BT\), quindi \(U = 3nRT\) e \(c = 3R \approx 25\
+      \text{J/(mol·K)}\), indipendente dal materiale (legge di Dulong-Petit), valida ad alta temperatura.
+    en: >-
+      In a solid every atom oscillates around its equilibrium position as a three-dimensional harmonic
+      oscillator: 3 kinetic terms and 3 elastic terms, 6 quadratic terms. By equipartition the average energy
+      per atom is \(6\cdot\tfrac12 k_BT = 3k_BT\), so \(U = 3nRT\) and \(c = 3R \approx 25\
+      \text{J/(mol·K)}\), independent of the material (Dulong–Petit law), valid at high temperature.
+- id: equipartizione-energia-orale-3
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.6
+    - equipartizione-energia.7
+  kind: orale
+  front:
+    it: Perché il calore specifico dell'idrogeno cresce a gradini con la temperatura?
+    en: Why does the specific heat of hydrogen grow in steps with temperature?
+  back:
+    it: >-
+      Le energie di rotazione e di vibrazione sono quantizzate: un grado di libertà contribuisce ½k_BT solo
+      quando k_BT supera la spaziatura dei suoi livelli. Per H₂ (molecola leggera, momento d'inerzia piccolo)
+      le rotazioni si attivano solo sopra circa 100 K e le vibrazioni sopra qualche migliaio di kelvin:
+      \(c_V\) passa da \(\tfrac32 R\) a \(\tfrac52 R\) e poi verso \(\tfrac72 R\), a gradini. La fisica
+      classica prevedrebbe un valore costante.
+    en: >-
+      Rotational and vibrational energies are quantised: a degree of freedom contributes ½k_BT only when k_BT
+      exceeds the spacing of its levels. For H₂ (a light molecule, small moment of inertia) rotations switch
+      on only above about 100 K and vibrations above a few thousand kelvin: \(c_V\) goes from \(\tfrac32 R\)
+      to \(\tfrac52 R\) and then towards \(\tfrac72 R\), in steps. Classical physics would predict a constant
+      value.
+- id: equipartizione-energia-definizione
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.1
+  kind: definizione
+  front:
+    it: 'Definizione: Energia interna dei gas e principio di equipartizione'
+    en: 'Definition: Internal energy of gases and the equipartition principle'
+  back:
+    it: >-
+      L'energia interna U di un gas perfetto è la somma delle energie cinetiche delle sue molecole (non c'è
+      potenziale intermolecolare). Il principio di equipartizione dell'energia afferma che, all'equilibrio a
+      temperatura T, ogni grado di libertà quadratico nell'energia contribuisce in media con
+      \(\frac{1}{2}k_BT\) per molecola. Ne segue \(U = \frac{f}{2}nRT\), con f numero di gradi di libertà
+      attivi: f = 3 per gas monoatomici, f = 5 per biatomici a temperatura ambiente. U dipende SOLO dalla
+      temperatura (legge di Joule).
+    en: >-
+      The internal energy U of an ideal gas is the sum of the kinetic energies of its molecules (there is no
+      intermolecular potential). The principle of equipartition of energy states that, at equilibrium at
+      temperature T, each degree of freedom that is quadratic in the energy contributes on average
+      \(\frac{1}{2}k_BT\) per molecule. It follows that \(U = \frac{f}{2}nRT\), with f the number of active
+      degrees of freedom: f = 3 for monatomic gases, f = 5 for diatomic gases at room temperature. U depends
+      ONLY on temperature (Joule's law).
+- id: equipartizione-energia-formule
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.1
+    - equipartizione-energia.2
+    - equipartizione-energia.3
+    - equipartizione-energia.4
+    - equipartizione-energia.5
+    - equipartizione-energia.6
+    - equipartizione-energia.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Energia interna dei gas e principio di equipartizione»
+    en: The key formulas of “Internal energy of gases and the equipartition principle”
+  back:
+    it: |-
+      - \(\langle E \rangle = \frac{1}{2}k_BT\;\text{per grado quadratico}\)
+      - \(U = \frac{f}{2}nRT\)
+      - \(\Delta U = n c_V \Delta T\;\text{(sempre)}\)
+      - \(f = 3\;\text{mono},\; 5\;\text{biat}\)
+    en: |-
+      - \(\langle E \rangle = \frac{1}{2}k_BT\;\text{per quadratic degree}\)
+      - \(U = \frac{f}{2}nRT\)
+      - \(\Delta U = n c_V \Delta T\;\text{(always)}\)
+      - \(f = 3\;\text{mono},\; 5\;\text{diat}\)
+- id: equipartizione-energia-ipotesi
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.1
+    - equipartizione-energia.2
+    - equipartizione-energia.3
+    - equipartizione-energia.4
+    - equipartizione-energia.5
+    - equipartizione-energia.6
+    - equipartizione-energia.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Energia interna dei gas e principio di equipartizione'
+    en: 'Validity assumptions: Internal energy of gases and the equipartition principle'
+  back:
+    it: >-
+      Gas perfetto (niente interazioni intermolecolari); equilibrio termodinamico; validità della meccanica
+      classica per i gradi di libertà considerati (fallisce quando i quanti di energia
+      rotazionali/vibrazionali superano k_BT).
+    en: >-
+      Ideal gas (no intermolecular interactions); thermodynamic equilibrium; validity of classical mechanics
+      for the degrees of freedom considered (it fails when rotational/vibrational energy quanta exceed k_BT).
+- id: equipartizione-energia-casi-limite
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.1
+    - equipartizione-energia.2
+    - equipartizione-energia.3
+    - equipartizione-energia.4
+    - equipartizione-energia.5
+    - equipartizione-energia.6
+    - equipartizione-energia.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Energia interna dei gas e principio di equipartizione'
+    en: 'Limiting cases: Internal energy of gases and the equipartition principle'
+  back:
+    it: >-
+      Basse temperature: le rotazioni si 'congelano' e il biatomico si comporta da monoatomico (f→3). Alte
+      temperature: si attiva la vibrazione (f→7). Questi gradini nei calori specifici sono inspiegabili
+      classicamente: prima evidenza storica della quantizzazione.
+    en: >-
+      Low temperatures: rotations 'freeze' and the diatomic gas behaves as monatomic (f→3). High temperatures:
+      vibration is activated (f→7). These steps in the specific heats cannot be explained classically: the
+      first historical evidence of quantisation.
+- id: equipartizione-energia-errori
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.1
+    - equipartizione-energia.2
+    - equipartizione-energia.3
+    - equipartizione-energia.4
+    - equipartizione-energia.5
+    - equipartizione-energia.6
+    - equipartizione-energia.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Energia interna dei gas e principio di equipartizione'
+    en: 'Mistakes to avoid: Internal energy of gases and the equipartition principle'
+  back:
+    it: |-
+      - Contare 3 rotazioni per il biatomico invece di 2.
+      - Usare ΔU = nc_VΔT solo per le isocore: vale per ogni trasformazione del gas perfetto.
+      - Includere un'energia potenziale intermolecolare nell'energia interna del gas perfetto.
+      - Dimenticare che la vibrazione conta 2 mezzi-k_BT (termine cinetico + termine elastico).
+    en: |-
+      - Counting 3 rotations for the diatomic molecule instead of 2.
+      - Using ΔU = nc_VΔT only for isochoric processes: it holds for every transformation of the ideal gas.
+      - Including an intermolecular potential energy in the internal energy of the ideal gas.
+      - Forgetting that vibration counts 2 halves of k_BT (kinetic term + elastic term).

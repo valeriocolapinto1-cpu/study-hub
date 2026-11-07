@@ -1,0 +1,41 @@
+id: moto-armonico
+course: fisica-1
+order: 2
+title:
+  it: 'Moto armonico: ampiezza, pulsazione, periodo, fase iniziale'
+  en: 'Simple harmonic motion: amplitude, angular frequency, period, initial phase'
+summary:
+  it: >-
+    Il moto armonico nasce ogni volta che un sistema, spostato dall'equilibrio, subisce un richiamo
+    proporzionale allo spostamento.
+  en: >-
+    Harmonic motion arises whenever a system displaced from equilibrium feels a restoring action proportional
+    to the displacement.
+group:
+  it: Cinematica e oscillazioni
+  en: Kinematics and oscillations
+objectives:
+  - id: moto-armonico.1
+    text:
+      it: Scrivere l'equazione differenziale ẍ = −ω²x e dire che definisce il moto armonico
+      en: Write the differential equation ẍ = −ω²x and state that it defines harmonic motion
+  - id: moto-armonico.2
+    text:
+      it: Verificare per sostituzione che x = A cos(ωt+φ) è soluzione
+      en: Verify by substitution that x = A cos(ωt+φ) is a solution
+  - id: moto-armonico.3
+    text:
+      it: Definire con precisione A, ω, T, ν, φ e le loro unità
+      en: Define precisely A, ω, T, ν, φ and their units
+  - id: moto-armonico.4
+    text:
+      it: Ricavare A e φ dalle condizioni iniziali
+      en: Derive A and φ from the initial conditions
+  - id: moto-armonico.5
+    text:
+      it: Indicare dove sono massime velocità e accelerazione
+      en: State where velocity and acceleration are maximum
+  - id: moto-armonico.6
+    text:
+      it: Spiegare l'isocronismo e il legame col moto circolare uniforme
+      en: Explain isochronism and the link with uniform circular motion
