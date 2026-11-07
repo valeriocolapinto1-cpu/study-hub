@@ -1,0 +1,107 @@
+---
+course: teoria-circuiti
+topic: altre-rappresentazioni-doppi-bipoli
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-intuizione-1">
+
+The $Z$ and $Y$ matrices treat the two ports alike; the transmission matrix instead describes the two-port as a "stretch of road" carrying quantities from the output back to the input. It is the natural choice when two-ports are lined up one after another.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-teoria-1">
+
+**Inverse transmission matrix** (ABCD): $\begin{pmatrix}v_1\\i_1\end{pmatrix}=\begin{pmatrix}A&B\\C&D\end{pmatrix}\begin{pmatrix}v_2\\-i_2\end{pmatrix}$. From $Z$: $A=\dfrac{z_{11}}{z_{21}}$, $B=\dfrac{\Delta_z}{z_{21}}$, $C=\dfrac{1}{z_{21}}$, $D=\dfrac{z_{22}}{z_{21}}$ with $\Delta_z=z_{11}z_{22}-z_{12}z_{21}$. Reciprocal network: $AD-BC=1$.
+
+</div>
+
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-teoria-2">
+
+**Hybrid** parameters $h$: $v_1=h_{11}i_1+h_{12}v_2$, $i_2=h_{21}i_1+h_{22}v_2$ (typical of transistors).
+
+</div>
+
+<details class="proof" data-note-id="altre-rappresentazioni-doppi-bipoli-dimostrazione-1">
+<summary>Proof: From $Z$ to the transmission matrix</summary>
+
+1. From $v_2=z_{21}i_1+z_{22}i_2$: $i_1=\dfrac{v_2-z_{22}i_2}{z_{21}}=\dfrac1{z_{21}}v_2+\dfrac{z_{22}}{z_{21}}(-i_2)$: $C=1/z_{21}$, $D=z_{22}/z_{21}$.
+2. Substituting into $v_1=z_{11}i_1+z_{12}i_2$: $v_1=\dfrac{z_{11}}{z_{21}}v_2+\left(\dfrac{z_{11}z_{22}}{z_{21}}-z_{12}\right)(-i_2)$.
+3. Hence $A=z_{11}/z_{21}$ and $B=\Delta_z/z_{21}$. $\square$
+
+</details>
+
+<Formula id="t-def" />
+<Formula id="t-da-z" />
+<Formula id="t-recip" />
+<Formula id="h-def2" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="altre-rappresentazioni-doppi-bipoli-esempio-1">
+
+### T network
+
+$Z=\begin{pmatrix}4&3\\3&5\end{pmatrix}$.
+
+**Solution.**
+
+1. $\Delta_z=20-9=11$: $A=\tfrac43$, $B=\tfrac{11}3$, $C=\tfrac13$, $D=\tfrac53$.
+2. $AD-BC=\tfrac{20}{9}-\tfrac{11}{9}=1$ ✓.
+
+</div>
+
+<div class="worked" data-note-id="altre-rappresentazioni-doppi-bipoli-esempio-2">
+
+### Series resistor
+
+$R=2$ in series on the upper branch.
+
+**Solution.**
+
+1. $v_1=v_2+R(-i_2)$, $i_1=-i_2$: $T=\begin{pmatrix}1&2\\0&1\end{pmatrix}$.
+
+</div>
+
+<div class="worked" data-note-id="altre-rappresentazioni-doppi-bipoli-esempio-3">
+
+### Shunt conductance
+
+$G=\tfrac13$ between the two branches.
+
+**Solution.**
+
+1. $v_1=v_2$, $i_1=Gv_2+(-i_2)$: $T=\begin{pmatrix}1&0\\1/3&1\end{pmatrix}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-errore-1">
+
+- **Wrong:** Using $i_2$ instead of $-i_2$ in the transmission matrix.
+- **Right:** The current $-i_2$ leaves port 2 (towards the load).
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-esame-1">
+
+Two-ports: $Z$, $Y$, inverse $T$ matrices: 15-9-2000, 17-7-2002, 3-7-2003, 23-9-2008 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

@@ -1,0 +1,44 @@
+- id: orale-t-34
+  topic: prove-validita-connessioni
+  objectives:
+    - prove-validita-connessioni.1
+    - prove-validita-connessioni.2
+  kind: orale
+  front:
+    it: '**Prove di validità delle connessioni.** Spiega perché servono le prove di validità e come si eseguono per la connessione serie-serie.'
+    en: '**Validity tests for connections.** Explain why validity tests are needed and how they are carried out for the series-series connection.'
+  back:
+    it: |-
+      **Risposta modello.** Le formule di somma delle matrici valgono solo se, dopo il collegamento, le correnti di ogni porta restano uguali (entrante e uscente). Per la prova si alimentano le porte a vuoto e si controlla che la tensione tra i morsetti da collegare sia nulla. Se la prova fallisce si inserisce un trasformatore di isolamento 1:1.
+
+      **Punti da toccare:**
+
+      - Le formule di somma valgono solo se le correnti entranti e uscenti di ogni porta restano uguali
+      - La prova: si alimentano le porte a vuoto e si verifica che tra i morsetti da collegare la tensione sia nulla
+      - Rimedio: trasformatore di isolamento 1:1
+    en: |-
+      **Model answer.** The formulas adding the matrices hold only if, after the connection, the currents of each port stay equal (entering and leaving). For the test the ports are driven with the others open and one checks that the voltage between the terminals to be connected is zero. If the test fails, a 1:1 isolation transformer is inserted.
+
+      **Points to cover:**
+
+      - The sum formulas hold only if the entering and leaving currents of each port stay equal
+      - The test: drive the ports with the others open and check that the voltage between the terminals to be connected is zero
+      - Remedy: a 1:1 isolation transformer
+- id: formula-prova-validita
+  topic: prove-validita-connessioni
+  objectives:
+    - prove-validita-connessioni.1
+    - prove-validita-connessioni.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Prova di validità**. Uso: Prima di usare le formule di connessione.'
+    en: 'Write the formula: **Validity test**. Use: Before using the connection formulas.'
+  back:
+    it: |-
+      $$i_{ingresso}=i_{uscita}\ \text{a ogni porta dopo il collegamento}$$
+
+      porta: i entrante = i uscente
+    en: |-
+      $$i_{ingresso}=i_{uscita}\ \text{a ogni porta dopo il collegamento}$$
+
+      port: entering i = leaving i

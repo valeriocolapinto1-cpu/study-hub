@@ -1,0 +1,60 @@
+- id: q-vi-023
+  topic: altre-rappresentazioni-doppi-bipoli
+  objectives:
+    - altre-rappresentazioni-doppi-bipoli.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'La matrice di trasmissione (inversa) lega:'
+    en: 'The (inverse) transmission matrix relates:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Rappresentazione a cascata.
+        en: Cascade representation.
+  choices:
+    - text:
+        it: $(i_1,i_2)$ a $(v_1,v_2)$
+        en: $(i_1,i_2)$ to $(v_1,v_2)$
+      correct: false
+    - text:
+        it: $(v_1,i_1)$ a $(v_2,-i_2)$
+        en: $(v_1,i_1)$ to $(v_2,-i_2)$
+      correct: true
+    - text:
+        it: $(v_1,v_2)$ a $(i_1,i_2)$
+        en: $(v_1,v_2)$ to $(i_1,i_2)$
+      correct: false
+    - text:
+        it: $(v_1,i_2)$ a $(v_2,i_1)$
+        en: $(v_1,i_2)$ to $(v_2,i_1)$
+      correct: false
+  origin: originale
+- id: q-vi-024
+  topic: altre-rappresentazioni-doppi-bipoli
+  objectives:
+    - altre-rappresentazioni-doppi-bipoli.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Nelle matrici ibride $h$ le variabili indipendenti sono $i_1$ e $v_2$.
+    en: In the hybrid matrices $h$ the independent variables are $i_1$ and $v_2$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $v_1=h_{11}i_1+h_{12}v_2$, $i_2=h_{21}i_1+h_{22}v_2$.
+        en: $v_1=h_{11}i_1+h_{12}v_2$, $i_2=h_{21}i_1+h_{22}v_2$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale

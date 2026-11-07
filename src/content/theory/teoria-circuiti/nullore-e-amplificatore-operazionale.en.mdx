@@ -1,0 +1,188 @@
+---
+course: teoria-circuiti
+topic: nullore-e-amplificatore-operazionale
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="nullore-e-amplificatore-operazionale-intuizione-1">
+
+An operational amplifier with enormous gain, closed in a feedback loop, adjusts itself until the difference between its inputs is practically zero. The nullor captures this behaviour exactly: at the input "no voltage and no current", at the output "whatever it takes" to satisfy that constraint.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="nullore-e-amplificatore-operazionale-teoria-1">
+
+The **nullator** is a one-port with $v=0$ and $i=0$ at the same time. The **norator** is a one-port with _arbitrary_ voltage and current. A **nullor** is the two-port formed by the nullator (port 1) and the norator (port 2): it imposes $v_1=0$, $i_1=0$ and leaves $v_2$, $i_2$ free. Exercises usually use the unbalanced version (one common terminal).
+
+</div>
+
+<div data-note-id="nullore-e-amplificatore-operazionale-teoria-2">
+
+**From the real component to the ideal one.** In its linear region the real operational amplifier can be modelled with an input resistance $R_i$ ($10^5$–$10^{12}\,\Omega$), an output resistance $R_o$ ($5$–$50\,\Omega$) and a controlled source $v_o=A\,v_d$ with $v_d=v_2-v_1$ and $A$ between $10^5$ and $10^8$. It has three regions: linear and two saturation regions ($\pm V_{cc}$). In the ideal limit $A\to\infty$, $R_i\to\infty$, $R_o=0$ we get $v_d=0$ and zero input currents: it is a nullor.
+
+</div>
+
+<div data-note-id="nullore-e-amplificatore-operazionale-teoria-3">
+
+**Two typical configurations with the nullor.** (a) _Voltage source:_ the current $I_g$ flowing through $R$ produces $V=R\,I_g$; the driving source has zero voltage and delivers no power (the power comes from the nullor). (b) _Current source:_ the voltage $V_g$ is copied across $R$ and gives $I=V_g/R$; the driving source has zero current.
+
+</div>
+
+<div data-note-id="nullore-e-amplificatore-operazionale-teoria-4">
+
+| Circuit              | Output                                                                             |
+| -------------------- | ---------------------------------------------------------------------------------- |
+| Inverting            | $v_o=-\dfrac{R_2}{R_1}V_g$                                                         |
+| Inverting summer     | $v_o=-R_0\left(\dfrac{V_{g1}}{R_1}+\dfrac{V_{g2}}{R_2}+\dfrac{V_{g3}}{R_3}\right)$ |
+| Non-inverting        | $v_o=\left(1+\dfrac{R_2}{R_1}\right)V_g$                                           |
+| Voltage follower     | $v_o=V_g$ (theoretically infinite input impedance)                                 |
+| Difference amplifier | $v_o=\dfrac{R_2}{R_1}(V_{g2}-V_{g1})$                                              |
+
+</div>
+
+<Figure caption="Nullor: nullator (v=0, i=0) followed by norator (free v and i)" num="1" id="fig-1">
+  <svg
+    viewBox="0 0 300 150"
+    xmlns="http://www.w3.org/2000/svg"
+    stroke="currentColor"
+    stroke-width="2"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    font-family="system-ui,sans-serif"
+    font-size="14"
+    aria-hidden="true"
+    focusable="false"
+    class="diagram"
+    style="max-width: 300px"
+  >
+    <rect x="95" y="45" width="50" height="60" />
+    <rect x="155" y="45" width="50" height="60" />
+    <polyline points="40 60 95 60" />
+    <polyline points="40 90 95 90" />
+    <polyline points="205 60 260 60" />
+    <polyline points="205 90 260 90" />
+    <text x="120" y="72" text-anchor="middle" fill="currentColor" stroke="none">
+      {'v=0'}
+    </text>
+    <text x="120" y="92" text-anchor="middle" fill="currentColor" stroke="none">
+      {'i=0'}
+    </text>
+    <text x="180" y="72" text-anchor="middle" fill="currentColor" stroke="none">
+      {'v, i'}
+    </text>
+    <text x="180" y="92" text-anchor="middle" fill="currentColor" stroke="none">
+      {'libere'}
+    </text>
+    <text x="120" y="38" text-anchor="middle" fill="currentColor" stroke="none">
+      {'nullatore'}
+    </text>
+    <text x="180" y="38" text-anchor="middle" fill="currentColor" stroke="none">
+      {'noratore'}
+    </text>
+    <circle cx="40" cy="60" r="3" fill="currentColor" />
+    <circle cx="40" cy="90" r="3" fill="currentColor" />
+    <circle cx="260" cy="60" r="3" fill="currentColor" />
+    <circle cx="260" cy="90" r="3" fill="currentColor" />
+  </svg>
+</Figure>
+
+<Figure
+  caption="Operational amplifier in inverting configuration with R₁ at the input and R₂ in the feedback path"
+  num="2"
+  id="fig-2"
+>
+  <Circuit
+    netlist={{
+      elements: [
+        { type: 'V', id: 'Vg', a: 'in', b: '0', dc: 1 },
+        { type: 'R', id: 'R1', a: 'in', b: 'x', value: 1 },
+        { type: 'OA', id: 'OA1', plus: '0', minus: 'x', out: 'o' },
+        { type: 'R', id: 'R2', a: 'x', b: 'o', value: 1 },
+      ],
+      nodes: { o: { label: 'v_o' } },
+    }}
+    values={false}
+  />
+</Figure>
+
+<details class="proof" data-note-id="nullore-e-amplificatore-operazionale-dimostrazione-1">
+<summary>Proof: Gain of the inverting amplifier, from the finite-$A$ model to the nullor</summary>
+
+**Statement.** With the linear model ($R_i\to\infty$, $R_o=0$, gain $A$) the gain is $v_o/V_g=-\dfrac{R_2}{R_1}\cdot\dfrac{1}{1+(1+R_2/R_1)/A}$, which tends to $-R_2/R_1$ as $A\to\infty$.
+
+1. Non-inverting input grounded: $v_d=v_+-v_-=-v_-$, hence $v_o=A\,v_d=-A\,v_-$ and $v_-=-v_o/A$.
+2. KCL at the inverting node (zero input current): $\dfrac{V_g-v_-}{R_1}=\dfrac{v_--v_o}{R_2}$.
+3. Substitute $v_-$: $\dfrac{V_g+v_o/A}{R_1}=\dfrac{-v_o/A-v_o}{R_2}$, i.e. $R_2V_g+\dfrac{R_2}{A}v_o=-\dfrac{R_1}{A}v_o-R_1v_o$.
+4. Collect $v_o$: $R_2V_g=-v_o\left(R_1+\dfrac{R_1+R_2}{A}\right)$, which gives the formula in the statement.
+5. As $A\to\infty$: $v_d=-v_-=v_o/A\to0$ (nullator) and $v_o=-(R_2/R_1)V_g$. $\square$
+
+</details>
+
+<Formula id="invertente" />
+<Formula id="sommatore" />
+<Formula id="non-invertente" />
+<Formula id="inseguitore" />
+<Formula id="differenziale" />
+<Formula id="nullore-def" />
+<Formula id="opamp-reale" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="nullore-e-amplificatore-operazionale-esempio-1">
+
+### Real versus ideal
+
+Inverting amplifier with $R_2/R_1=10$ and $A=10^5$: compare the real gain with the ideal one.
+
+**Solution.**
+
+1. Ideal: $-10$.
+2. Real: $-10/(1+11/10^5)=-10/1.00011\approx-9.9989$.
+3. Relative difference $\approx0.011\%$: the idealisation is excellent.
+
+</div>
+
+<div class="worked" data-note-id="nullore-e-amplificatore-operazionale-esempio-2">
+
+### Nullor as a voltage source
+
+A nullor has a current source $I_g=2\,\mathrm{A}$ at the nullator, in series with $R=3\,\Omega$ towards the norator: what is the imposed voltage?
+
+**Solution.**
+
+1. $I_g$ flows through $R$ (the nullator draws no current): $V=R\,I_g=3\cdot2=6\,\mathrm{V}$.
+2. The voltage across the nullator is zero: the driving current source delivers no power.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="nullore-e-amplificatore-operazionale-errore-1">
+
+- **Wrong:** Saying that the input current is zero "because the input voltage is zero", as for a short circuit.
+- **Right:** In the nullator voltage _and_ current are both zero: the current is zero because $R_i\to\infty$, the voltage because $A\to\infty$ with feedback.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="nullore-e-amplificatore-operazionale-esame-1">
+
+Nullor: properties and configurations 25-10-2001 <span class="badge badge--info">PAST EXAMS</span>; present in 4 of the 14 analysis exercises 2015–2024 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

@@ -1,0 +1,86 @@
+- id: q-i-027
+  topic: generatori-controllati
+  objectives:
+    - generatori-controllati.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Un generatore di corrente controllato in tensione (VCCS) è descritto da:'
+    en: 'A voltage-controlled current source (VCCS) is described by:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'VCCS: $i_2=g_m v_1$ con $i_1=0$.'
+        en: 'VCCS: $i_2=g_m v_1$ with $i_1=0$.'
+  choices:
+    - text:
+        it: $v_2=r_mi_1$
+        en: $v_2=r_mi_1$
+      correct: false
+    - text:
+        it: $v_2=\mu v_1$
+        en: $v_2=\mu v_1$
+      correct: false
+    - text:
+        it: $i_2=g_mv_1$
+        en: $i_2=g_mv_1$
+      correct: true
+    - text:
+        it: $i_2=\beta i_1$
+        en: $i_2=\beta i_1$
+      correct: false
+  origin: originale
+- id: q-i-028
+  topic: generatori-controllati
+  objectives:
+    - generatori-controllati.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Per calcolare la resistenza equivalente con il metodo del generatore di prova si spengono anche i generatori controllati.
+    en: To compute the equivalent resistance with the test-source method, the controlled sources are switched off as well.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Si spengono solo gli indipendenti; i controllati restano.
+        en: Only the independent sources are switched off; the controlled ones stay.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-i-029
+  topic: generatori-controllati
+  objectives:
+    - generatori-controllati.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: I generatori controllati sono elementi attivi.
+    en: Controlled sources are active elements.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Possono erogare potenza netta.
+        en: They can deliver net power.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale

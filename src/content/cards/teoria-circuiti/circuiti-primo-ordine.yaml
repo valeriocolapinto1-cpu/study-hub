@@ -1,0 +1,125 @@
+- id: orale-t-44
+  topic: circuiti-primo-ordine
+  objectives:
+    - circuiti-primo-ordine.3
+    - circuiti-primo-ordine.1
+  kind: orale
+  front:
+    it: '**Costante di tempo e scarica RC.** Ricava la scarica di un condensatore su un resistore e definisci la costante di tempo.'
+    en: '**Time constant and RC discharge.** Derive the discharge of a capacitor through a resistor and define the time constant.'
+  back:
+    it: |-
+      **Risposta modello.** La KVL dà R C dv/dt + v = 0 con v(0) = V0. La soluzione è un esponenziale decrescente v(t) = V0 e^{-t/tau} con costante di tempo tau = RC. Dopo 5 tau il transitorio è esaurito, meno dell'1 per cento.
+
+      **Punti da toccare:**
+
+      - Equazione $RC\,\dot v+v=0$ con $v(0)=V_0$
+      - Soluzione $v(t)=V_0e^{-t/\tau}$
+      - $\tau=RC$
+      - Dopo $5\tau$ il transitorio è esaurito (<1%)
+    en: |-
+      **Model answer.** KVL gives R C dv/dt + v = 0 with v(0) = V0. The solution is a decreasing exponential v(t) = V0 e^{-t/tau} with time constant tau = RC. After 5 tau the transient is over, less than 1 per cent.
+
+      **Points to cover:**
+
+      - Equation $RC\,\dot v+v=0$ with $v(0)=V_0$
+      - Solution $v(t)=V_0e^{-t/\tau}$
+      - $\tau=RC$
+      - After $5\tau$ the transient is over (<1%)
+- id: orale-t-45
+  topic: circuiti-primo-ordine
+  objectives:
+    - circuiti-primo-ordine.1
+    - circuiti-primo-ordine.3
+  kind: orale
+  front:
+    it: '**Carica di un condensatore e continuità.** Descrivi la carica di un RC con generatore costante e spiega la continuità di $v_C$.'
+    en: '**Charging a capacitor and continuity.** Describe the charging of an RC with a constant source and explain the continuity of $v_C$.'
+  back:
+    it: |-
+      **Risposta modello.** La tensione sul condensatore è vC(t) = Vg + (V0 - Vg) e^{-t/tau}: una carica esponenziale verso Vg. vC è continua perché la corrente è limitata e quindi l'integrale è continuo. A regime il condensatore si comporta come un circuito aperto.
+
+      **Punti da toccare:**
+
+      - $v_C(t)=V_g+(V_0-V_g)e^{-t/\tau}$
+      - $v_C$ è continua perché la corrente è limitata
+      - A regime il condensatore è un circuito aperto
+    en: |-
+      **Model answer.** The capacitor voltage is vC(t) = Vg + (V0 - Vg) e^{-t/tau}: an exponential charge towards Vg. vC is continuous because the current is bounded and hence the integral is continuous. In steady state the capacitor behaves as an open circuit.
+
+      **Points to cover:**
+
+      - $v_C(t)=V_g+(V_0-V_g)e^{-t/\tau}$
+      - $v_C$ is continuous because the current is bounded
+      - In steady state the capacitor is an open circuit
+- id: formula-tau-rc
+  topic: circuiti-primo-ordine
+  objectives:
+    - circuiti-primo-ordine.1
+    - circuiti-primo-ordine.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Costante di tempo RC**. Uso: Circuiti del primo ordine con condensatore.'
+    en: 'Write the formula: **RC time constant**. Use: First-order circuits with a capacitor.'
+  back:
+    it: |-
+      $$\tau=R_{eq}C$$
+
+      R_eq vista dai morsetti di C, indipendenti spenti [Ω]; C [F]
+    en: |-
+      $$\tau=R_{eq}C$$
+
+      R_eq seen from the terminals of C, independent sources off [Ω]; C [F]
+- id: formula-tau-rl
+  topic: circuiti-primo-ordine
+  objectives:
+    - circuiti-primo-ordine.1
+    - circuiti-primo-ordine.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Costante di tempo RL**. Uso: Circuiti del primo ordine con induttore.'
+    en: 'Write the formula: **RL time constant**. Use: First-order circuits with an inductor.'
+  back:
+    it: |-
+      $$\tau=\dfrac{L}{R_{eq}}$$
+
+      L [H]
+    en: |-
+      $$\tau=\dfrac{L}{R_{eq}}$$
+
+      L [H]
+- id: formula-sol-primo-ordine
+  topic: circuiti-primo-ordine
+  objectives:
+    - circuiti-primo-ordine.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Soluzione del primo ordine**. Uso: Eccitazione variabile.'
+    en: 'Write the formula: **First-order solution**. Use: Time-varying excitation.'
+  back:
+    it: |-
+      $$x(t)=x_0e^{-t/\tau}+\frac1\tau\int_0^te^{-(t-s)/\tau}f(s)ds$$
+
+      x_0 = x(0⁻)
+    en: |-
+      $$x(t)=x_0e^{-t/\tau}+\frac1\tau\int_0^te^{-(t-s)/\tau}f(s)ds$$
+
+      x_0 = x(0⁻)
+- id: formula-regola-vfc
+  topic: circuiti-primo-ordine
+  objectives:
+    - circuiti-primo-ordine.1
+    - circuiti-primo-ordine.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Regola valore iniziale/finale**. Uso: Eccitazione costante.'
+    en: 'Write the formula: **Initial/final value rule**. Use: Constant excitation.'
+  back:
+    it: |-
+      $$x(t)=x_\infty+(x_0-x_\infty)e^{-t/\tau}$$
+
+      x_∞ valore di regime (C aperto, L corto)
+    en: |-
+      $$x(t)=x_\infty+(x_0-x_\infty)e^{-t/\tau}$$
+
+      x_∞ steady-state value (C open, L shorted)

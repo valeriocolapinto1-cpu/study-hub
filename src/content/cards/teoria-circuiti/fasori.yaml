@@ -1,0 +1,100 @@
+- id: orale-t-14
+  topic: fasori
+  objectives:
+    - fasori.1
+    - fasori.2
+  kind: orale
+  front:
+    it: '**Fasori: validità e applicabilità.** Quando si può usare il metodo dei fasori? Applicalo a un circuito dato fuori dalle ipotesi: cosa succede?'
+    en: '**Phasors: validity and applicability.** When can the phasor method be used? Apply it to a given circuit outside its assumptions: what happens?'
+  back:
+    it: |-
+      **Risposta modello.** Il metodo dei fasori vale per circuiti lineari e tempo-invarianti con generatori sinusoidali alla stessa frequenza e dà la risposta di regime, purché il sistema sia stabile. Con frequenze diverse si analizzano separatamente e si sommano le risposte nel tempo.
+
+      **Punti da toccare:**
+
+      - Ipotesi: circuito lineare e tempo-invariante
+      - Generatori sinusoidali alla stessa frequenza
+      - Si ottiene solo la risposta a regime (e il sistema deve essere stabile)
+      - Con frequenze diverse si sovrappongono le risposte nel tempo
+
+      **Da evitare:** Somma di fasori a frequenze diverse.
+    en: |-
+      **Model answer.** The phasor method holds for linear time-invariant circuits with sinusoidal sources at the same frequency and gives the steady-state response, provided that the system is stable. With different frequencies, analyse them separately and add the responses in time.
+
+      **Points to cover:**
+
+      - Assumption: linear time-invariant circuit
+      - Sinusoidal sources at the same frequency
+      - Only the steady-state response is obtained (and the system must be stable)
+      - With different frequencies the responses are superposed in time
+
+      **Avoid:** Adding phasors at different frequencies.
+- id: formula-fasore
+  topic: fasori
+  objectives:
+    - fasori.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Fasore**. Uso: Regime sinusoidale.'
+    en: 'Write the formula: **Phasor**. Use: Sinusoidal steady state.'
+  back:
+    it: |-
+      $$v(t)=V_m\cos(\omega t+\varphi)\ \leftrightarrow\ \dot V=V_me^{j\varphi}$$
+
+      V_m ampiezza di picco, φ fase
+    en: |-
+      $$v(t)=V_m\cos(\omega t+\varphi)\ \leftrightarrow\ \dot V=V_me^{j\varphi}$$
+
+      V_m peak amplitude, φ phase
+- id: formula-fasore-sin
+  topic: fasori
+  objectives:
+    - fasori.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Fasore del seno**. Uso: Ridurre seni a coseni.'
+    en: 'Write the formula: **Phasor of a sine**. Use: Reducing sines to cosines.'
+  back:
+    it: |-
+      $$A\sin\omega t\ \leftrightarrow\ -jA$$
+
+      A ampiezza di picco; ω pulsazione [rad/s]
+    en: |-
+      $$A\sin\omega t\ \leftrightarrow\ -jA$$
+
+      A peak amplitude; ω angular frequency [rad/s]
+- id: formula-deriv-fasore
+  topic: fasori
+  objectives:
+    - fasori.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Derivata e integrale nei fasori**. Uso: Costitutive di L e C.'
+    en: 'Write the formula: **Derivative and integral with phasors**. Use: Constitutive relations of L and C.'
+  back:
+    it: |-
+      $$\frac{d}{dt}\to j\omega,\qquad\int dt\to\frac1{j\omega}$$
+
+      ω [rad/s]
+    en: |-
+      $$\frac{d}{dt}\to j\omega,\qquad\int dt\to\frac1{j\omega}$$
+
+      ω [rad/s]
+- id: formula-cos-sin-ampl
+  topic: fasori
+  objectives:
+    - fasori.3
+  kind: formula
+  front:
+    it: "Scrivi la formula: **Forma cartesiana e ampiezza-fase**. Uso: Passare da una forma all'altra."
+    en: 'Write the formula: **Cartesian and amplitude-phase form**. Use: Converting between the two forms.'
+  back:
+    it: |-
+      $$a\cos\omega t+b\sin\omega t=\sqrt{a^2+b^2}\cos(\omega t-\varphi),\ \tan\varphi=\frac ba$$
+
+      a, b coefficienti
+    en: |-
+      $$a\cos\omega t+b\sin\omega t=\sqrt{a^2+b^2}\cos(\omega t-\varphi),\ \tan\varphi=\frac ba$$
+
+      a, b coefficients

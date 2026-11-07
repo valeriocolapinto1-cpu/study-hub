@@ -1,0 +1,101 @@
+---
+course: teoria-circuiti
+topic: rifasamento
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="rifasamento-intuizione-1">
+
+A motor (inductive load) also draws reactive power from the grid, which drives current through the cables without doing any work. A capacitor in parallel supplies that reactive power "locally": the grid sees a more resistive load, the current drops and so do the losses.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="rifasamento-teoria-1">
+
+An inductive load with $P$ and $\cos\varphi_1$ absorbs $Q_1=P\tan\varphi_1$. Connecting a capacitor $C$ in parallel, the load voltage does not change and the capacitor absorbs $Q_C=-\omega CV^2$. The total reactive power becomes $Q_2=Q_1-\omega CV^2=P\tan\varphi_2$, with $\varphi_2$ the new phase angle.
+
+</div>
+
+<div data-note-id="rifasamento-teoria-2">
+
+$$
+C=\frac{P(\tan\varphi_1-\tan\varphi_2)}{\omega V^2}\quad(V\text{ RMS}).
+$$
+
+The goal is to reduce the current (and hence the losses) for the same $P$: $I=P/(V\cos\varphi)$.
+
+</div>
+
+<Formula id="rifasamento-c" />
+<Formula id="q-c" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="rifasamento-esempio-1">
+
+### Full correction
+
+$P=100\,\mathrm W$, $V=10\,\mathrm V$, $\omega=10\,\mathrm{rad/s}$, $\cos\varphi_1=0.8$ (inductive), $\cos\varphi_2=1$.
+
+**Solution.**
+
+1. $\tan\varphi_1=3/4$, $\tan\varphi_2=0$.
+2. $C=\dfrac{100\cdot0.75}{10\cdot100}=0.075\,\mathrm F$.
+3. Check: $Q_1=75\,\mathrm{var}$, $Q_C=-\omega CV^2=-10\cdot0.075\cdot100=-75$: zero total reactive power. ✓
+
+</div>
+
+<div class="worked" data-note-id="rifasamento-esempio-2">
+
+### Partial correction
+
+Same load, but $\cos\varphi_2=12/13$ ($\tan\varphi_2=5/12$) is required.
+
+**Solution.**
+
+1. $C=\dfrac{100(3/4-5/12)}{1000}=\dfrac{100\cdot1/3}{1000}=\tfrac1{30}\approx0.0333\,\mathrm F$.
+
+</div>
+
+<div class="worked" data-note-id="rifasamento-esempio-3">
+
+### Current before and after
+
+Same load: compare the RMS currents before and after full correction.
+
+**Solution.**
+
+1. Before: $I_1=P/(V\cos\varphi_1)=100/(10\cdot0.8)=12.5\,\mathrm A$. After: $I_2=100/10=10\,\mathrm A$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="rifasamento-errore-1">
+
+- **Wrong:** Connecting a correction inductor (instead of a capacitor) or the capacitor in series.
+- **Right:** The capacitor goes in parallel with the inductive load.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="rifasamento-esame-1">
+
+Power-factor correction: 19-6-2002 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

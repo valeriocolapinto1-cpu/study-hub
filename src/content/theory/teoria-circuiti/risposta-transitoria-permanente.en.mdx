@@ -1,0 +1,95 @@
+---
+course: teoria-circuiti
+topic: risposta-transitoria-permanente
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="risposta-transitoria-permanente-intuizione-1">
+
+As soon as an input is switched on, the circuit "settles": for a while its natural modes coexist with the response to the input. In a stable system the former die out and only the latter remains, with the same shape as the input: the steady-state response.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="risposta-transitoria-permanente-teoria-1">
+
+For a stable system and a sinusoidal input $x=A\cos(\omega_0t+\varphi)$ the **steady-state response** is $y_p=A|F(j\omega_0)|\cos(\omega_0t+\varphi+\arg F(j\omega_0))$; the **transient** is made of the natural modes (poles of $F$) and dies out.
+
+</div>
+
+<div data-note-id="risposta-transitoria-permanente-teoria-2">
+
+With Laplace: $Y(s)=F(s)X(s)$; in the partial-fraction expansion the poles of $X$ give the steady state, the poles of $F$ the transient.
+
+</div>
+
+<Formula id="y-permanente" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="risposta-transitoria-permanente-esempio-1">
+
+### RC with a cosine input
+
+$F=\dfrac1{s+1}$, $x=\cos t$, zero initial conditions.
+
+**Solution.**
+
+1. $F(j)=\dfrac{1}{1+j}=\tfrac{1}{\sqrt2}e^{-j45^\circ}$: $y_p=\tfrac1{\sqrt2}\cos(t-45^\circ)=\tfrac12\cos t+\tfrac12\sin t$.
+2. $Y=\dfrac{s}{(s+1)(s^2+1)}=\dfrac{-1/2}{s+1}+\dfrac{\tfrac12s+\tfrac12}{s^2+1}$: transient $-\tfrac12e^{-t}$.
+
+</div>
+
+<div class="worked" data-note-id="risposta-transitoria-permanente-esempio-2">
+
+### Settling time
+
+After how long is the transient $-\tfrac12e^{-t}$ below $1\%$ of the steady-state amplitude ($\tfrac1{\sqrt2}$)?
+
+**Solution.**
+
+1. $\tfrac12e^{-t}<0.007\Rightarrow t>\ln(71)\approx4.3\,\mathrm s\approx4.3\tau$.
+
+</div>
+
+<div class="worked" data-note-id="risposta-transitoria-permanente-esempio-3">
+
+### Step input
+
+Same $F$, $x=u_{-1}$.
+
+**Solution.**
+
+1. Steady state: $F(0)=1$ (constant); transient: $-e^{-t}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="risposta-transitoria-permanente-errore-1">
+
+- **Wrong:** Computing the steady state with $F(s)$ at $s=\omega_0$.
+- **Right:** $F$ is evaluated at $s=j\omega_0$.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="risposta-transitoria-permanente-esame-1">
+
+Steady-state and transient response from $F(s)$ and $x(t)$: 25-9-2003, 12-7-2005, 7-7-2008, 24-4-2009 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

@@ -1,0 +1,25 @@
+id: trasformatore-ideale
+course: teoria-circuiti
+order: 8
+title:
+  it: Trasformatore ideale
+  en: Ideal transformer
+summary:
+  it: Equazioni del trasformatore ideale, potenza assorbita nulla e impedenza riportata $n^2Z$.
+  en: Equations of the ideal transformer, zero absorbed power and reflected impedance $n^2Z$.
+objectives:
+  - id: trasformatore-ideale.1
+    text:
+      it: Scrivere le equazioni del trasformatore ideale
+      en: Write the equations of the ideal transformer
+  - id: trasformatore-ideale.2
+    text:
+      it: Dimostrare che non assorbe potenza netta
+      en: Prove that it absorbs no net power
+  - id: trasformatore-ideale.3
+    text:
+      it: Riportare impedenze da una porta all'altra
+      en: Reflect impedances from one port to the other
+group:
+  it: I · Costanti concentrate
+  en: I · Lumped parameters

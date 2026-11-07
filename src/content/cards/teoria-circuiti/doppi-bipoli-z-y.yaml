@@ -1,0 +1,192 @@
+- id: orale-t-31
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.1
+    - doppi-bipoli-z-y.2
+  kind: orale
+  front:
+    it: '**Doppi bipoli: matrici Z, Y e T inversa.** Definisci le matrici $Z$, $Y$ e di trasmissione inversa di un doppio bipolo e indica come si misurano i parametri.'
+    en: '**Two-ports: Z, Y and inverse T matrices.** Define the $Z$, $Y$ and inverse transmission matrices of a two-port and say how the parameters are measured.'
+  back:
+    it: |-
+      **Risposta modello.** La matrice Z lega le tensioni alle correnti, v = Z i: z11 e z21 si misurano con la porta 2 aperta, z12 e z22 con la porta 1 aperta. La matrice Y è definita da i = Y v e i parametri si misurano con una porta in cortocircuito. Se esistono Y = Z^{-1}, cioè la matrice inversa. La matrice di trasmissione lega (v1,i1) a (v2,-i2) ed è utile per la cascata.
+
+      **Punti da toccare:**
+
+      - $\mathbf v=Z\mathbf i$: $z_{11}$, $z_{21}$ con la porta 2 aperta; $z_{12}$, $z_{22}$ con la porta 1 aperta
+      - $\mathbf i=Y\mathbf v$: parametri con una porta in cortocircuito
+      - Relazione $Y=Z^{-1}$ (se esiste)
+      - Matrice di trasmissione inversa: lega $(v_1,i_1)$ a $(v_2,-i_2)$, utile per la cascata
+    en: |-
+      **Model answer.** The Z matrix relates voltages to currents, v = Z i: z11 and z21 are measured with port 2 open, z12 and z22 with port 1 open. The Y matrix is defined by i = Y v and its parameters are measured with one port short-circuited. If they exist, Y = Z^{-1}, i.e. the inverse matrix. The transmission matrix relates (v1,i1) to (v2,-i2) and is useful for cascades.
+
+      **Points to cover:**
+
+      - $\mathbf v=Z\mathbf i$: $z_{11}$, $z_{21}$ with port 2 open; $z_{12}$, $z_{22}$ with port 1 open
+      - $\mathbf i=Y\mathbf v$: parameters with one port short-circuited
+      - Relation $Y=Z^{-1}$ (if it exists)
+      - Inverse transmission matrix: relates $(v_1,i_1)$ to $(v_2,-i_2)$, useful for cascades
+- id: orale-t-32
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.1
+    - doppi-bipoli-z-y.2
+  kind: orale
+  front:
+    it: '**Calcolo di Z di un doppio bipolo a T.** Calcola la matrice $Z$ di un doppio bipolo a T con $R_a=1$, $R_b=2$ in serie e $R_c=3$ in derivazione.'
+    en: '**Computing Z of a T two-port.** Compute the $Z$ matrix of a T two-port with $R_a=1$, $R_b=2$ in series and $R_c=3$ in shunt.'
+  back:
+    it: |-
+      **Risposta modello.** Con la porta 2 aperta z11 = Ra + Rc = 4 e z21 = Rc = 3. Con la porta 1 aperta z22 = Rb + Rc = 5 e z12 = Rc = 3. La rete è reciproca perché z12 = z21: la matrice Z ha z11 = 4, z12 = 3, z22 = 5.
+
+      **Punti da toccare:**
+
+      - $z_{11}=R_a+R_c=4$
+      - $z_{22}=R_b+R_c=5$
+      - $z_{12}=z_{21}=R_c=3$
+      - Rete reciproca
+    en: |-
+      **Model answer.** With port 2 open z11 = Ra + Rc = 4 and z21 = Rc = 3. With port 1 open z22 = Rb + Rc = 5 and z12 = Rc = 3. The network is reciprocal because z12 = z21: the Z matrix has z11 = 4, z12 = 3, z22 = 5.
+
+      **Points to cover:**
+
+      - $z_{11}=R_a+R_c=4$
+      - $z_{22}=R_b+R_c=5$
+      - $z_{12}=z_{21}=R_c=3$
+      - Reciprocal network
+- id: formula-z-def
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Matrice Z**.'
+    en: 'Write the formula: **Z matrix**.'
+  back:
+    it: |-
+      $$\begin{pmatrix}v_1\\v_2\end{pmatrix}=\begin{pmatrix}z_{11}&z_{12}\\z_{21}&z_{22}\end{pmatrix}\begin{pmatrix}i_1\\i_2\end{pmatrix}$$
+
+      correnti entranti
+    en: |-
+      $$\begin{pmatrix}v_1\\v_2\end{pmatrix}=\begin{pmatrix}z_{11}&z_{12}\\z_{21}&z_{22}\end{pmatrix}\begin{pmatrix}i_1\\i_2\end{pmatrix}$$
+
+      entering currents
+- id: formula-y-def
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Matrice Y**. Uso: Rappresentazione in ammettenze.'
+    en: 'Write the formula: **Y matrix**. Use: Admittance representation.'
+  back:
+    it: |-
+      $$\begin{pmatrix}i_1\\i_2\end{pmatrix}=\begin{pmatrix}y_{11}&y_{12}\\y_{21}&y_{22}\end{pmatrix}\begin{pmatrix}v_1\\v_2\end{pmatrix}$$
+
+      y_jk in siemens [S]; correnti entranti nelle porte
+    en: |-
+      $$\begin{pmatrix}i_1\\i_2\end{pmatrix}=\begin{pmatrix}y_{11}&y_{12}\\y_{21}&y_{22}\end{pmatrix}\begin{pmatrix}v_1\\v_2\end{pmatrix}$$
+
+      y_jk in siemens [S]; currents entering the ports
+- id: formula-z-y-inv
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Legame Z–Y**.'
+    en: 'Write the formula: **Z–Y relation**.'
+  back:
+    it: |-
+      $$Y=Z^{-1}$$
+
+      se esiste
+    en: |-
+      $$Y=Z^{-1}$$
+
+      if it exists
+- id: formula-z11
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Misura dei parametri Z**.'
+    en: 'Write the formula: **Measuring the Z parameters**.'
+  back:
+    it: |-
+      $$z_{11}=\frac{v_1}{i_1}\Big|_{i_2=0},\ \ z_{21}=\frac{v_2}{i_1}\Big|_{i_2=0}$$
+
+      porta 2 aperta
+    en: |-
+      $$z_{11}=\frac{v_1}{i_1}\Big|_{i_2=0},\ \ z_{21}=\frac{v_2}{i_1}\Big|_{i_2=0}$$
+
+      port 2 open
+- id: formula-y11
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Misura dei parametri Y**.'
+    en: 'Write the formula: **Measuring the Y parameters**.'
+  back:
+    it: |-
+      $$y_{11}=\frac{i_1}{v_1}\Big|_{v_2=0},\ \ y_{21}=\frac{i_2}{v_1}\Big|_{v_2=0}$$
+
+      porta 2 in corto
+    en: |-
+      $$y_{11}=\frac{i_1}{v_1}\Big|_{v_2=0},\ \ y_{21}=\frac{i_2}{v_1}\Big|_{v_2=0}$$
+
+      port 2 shorted
+- id: formula-reciprocita
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Reciprocità**.'
+    en: 'Write the formula: **Reciprocity**.'
+  back:
+    it: |-
+      $$z_{12}=z_{21},\quad y_{12}=y_{21}$$
+
+      reti di soli R, L, C
+    en: |-
+      $$z_{12}=z_{21},\quad y_{12}=y_{21}$$
+
+      networks of R, L, C only
+- id: formula-rete-t
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Rete a T**.'
+    en: 'Write the formula: **T network**.'
+  back:
+    it: |-
+      $$Z=\begin{pmatrix}R_a+R_c&R_c\\R_c&R_b+R_c\end{pmatrix}$$
+
+      R_a, R_b in serie; R_c in derivazione
+    en: |-
+      $$Z=\begin{pmatrix}R_a+R_c&R_c\\R_c&R_b+R_c\end{pmatrix}$$
+
+      R_a, R_b in series; R_c in shunt
+- id: formula-rete-pi
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Rete a π**.'
+    en: 'Write the formula: **π network**.'
+  back:
+    it: |-
+      $$Y=\begin{pmatrix}G_a+G_c&-G_c\\-G_c&G_b+G_c\end{pmatrix}$$
+
+      G_a, G_b in derivazione; G_c in serie
+    en: |-
+      $$Y=\begin{pmatrix}G_a+G_c&-G_c\\-G_c&G_b+G_c\end{pmatrix}$$
+
+      G_a, G_b in shunt; G_c in series

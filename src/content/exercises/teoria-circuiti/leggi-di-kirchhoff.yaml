@@ -1,0 +1,146 @@
+- id: q-i-005
+  topic: leggi-di-kirchhoff
+  objectives:
+    - leggi-di-kirchhoff.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'La KCL applicata a un nodo afferma che:'
+    en: 'KCL applied to a node states that:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "KCL: $\\sum\\pm i_k=0$ per ogni nodo (e ogni taglio)."
+        en: "KCL: $\\sum\\pm i_k=0$ for every node (and every cut set)."
+  choices:
+    - text:
+        it: la tensione è la stessa su tutti i rami
+        en: the voltage is the same on every branch
+      correct: false
+    - text:
+        it: la somma algebrica delle correnti dei rami è nulla
+        en: the algebraic sum of the branch currents is zero
+      correct: true
+    - text:
+        it: la somma delle tensioni dei rami è nulla
+        en: the sum of the branch voltages is zero
+      correct: false
+    - text:
+        it: la potenza assorbita è massima
+        en: the absorbed power is maximum
+      correct: false
+  origin: originale
+- id: q-i-006
+  topic: leggi-di-kirchhoff
+  objectives:
+    - leggi-di-kirchhoff.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Un taglio che separa il circuito in due parti è attraversato da correnti $i_1=2\\,\\mathrm A$ (verso $A\\to B$), $i_2=-5\\,\\mathrm A$ (verso $A\\to B$) e $i_3$ (verso $A\\to B$). Allora $i_3$ vale:"
+    en: "A cut set splitting the circuit into two parts carries the currents $i_1=2\\,\\mathrm A$ (direction $A\\to B$), $i_2=-5\\,\\mathrm A$ (direction $A\\to B$) and $i_3$ (direction $A\\to B$). Then $i_3$ equals:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "KCL sul taglio: $2-5+i_3=0\\Rightarrow i_3=3\\,\\mathrm A$."
+        en: "KCL on the cut set: $2-5+i_3=0\\Rightarrow i_3=3\\,\\mathrm A$."
+  choices:
+    - text:
+        it: $-3\,\mathrm A$
+        en: $-3\,\mathrm A$
+      correct: false
+    - text:
+        it: $-7\,\mathrm A$
+        en: $-7\,\mathrm A$
+      correct: false
+    - text:
+        it: $7\,\mathrm A$
+        en: $7\,\mathrm A$
+      correct: false
+    - text:
+        it: $3\,\mathrm A$
+        en: $3\,\mathrm A$
+      correct: true
+  origin: originale
+- id: q-i-007
+  topic: leggi-di-kirchhoff
+  objectives:
+    - leggi-di-kirchhoff.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: La KVL vale lungo una maglia anche se non contiene generatori.
+    en: KVL holds around a loop even if the loop contains no sources.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Dipende solo dalla topologia: la somma algebrica delle tensioni di ramo è nulla.'
+        en: 'It depends only on the topology: the algebraic sum of the branch voltages is zero.'
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-i-008
+  topic: leggi-di-kirchhoff
+  objectives:
+    - leggi-di-kirchhoff.2
+  difficulty: 3
+  kind: static
+  statement:
+    it: La KCL per un taglio è una conseguenza delle KCL dei nodi contenuti in una delle due parti.
+    en: KCL for a cut set is a consequence of the KCLs of the nodes contained in one of the two parts.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Sommando le KCL dei nodi interni le correnti dei rami interni si cancellano a coppie.
+        en: Adding the KCLs of the inner nodes, the currents of the inner branches cancel in pairs.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-i-040
+  topic: leggi-di-kirchhoff
+  objectives:
+    - leggi-di-kirchhoff.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: La KVL richiede che i bipoli della maglia siano tutti resistori.
+    en: KVL requires the one-ports of the loop to be all resistors.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Vale per qualunque bipolo: dipende solo dalla topologia.'
+        en: 'It holds for any one-port: it depends only on the topology.'
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale

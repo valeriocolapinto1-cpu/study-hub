@@ -1,0 +1,48 @@
+---
+/** Extra «Libri e risorse gratuite»: testi di riferimento e materiali liberi e legali, con gli argomenti coperti. */
+import Reliability from '../components/Reliability.astro';
+import { BOOKS, BOOKS_NOTE, RESOURCES } from '../data';
+import { localizePath, type Lang } from '../../../i18n';
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+---
+
+<div class="prose">
+  <h2 id="libri">{it ? 'Libri' : 'Books'}</h2>
+  <ul>
+    {BOOKS.map((b) => (
+      <li>
+        <strong>{b.title}</strong> — {b.authors}, {b.publisher}. <em>{b.role[lang]}</em>.
+        {b.note && ` ${b.note[lang]}`} <Reliability kind={b.r} lang={lang} />
+      </li>
+    ))}
+  </ul>
+  <p class="muted">{BOOKS_NOTE[lang]}</p>
+  <h2 id="gratuite">{it ? 'Risorse gratuite e legali' : 'Free and legal resources'}</h2>
+  {RESOURCES.map((r) => (
+    <section class="worked">
+      <h3>
+        <a href={r.url} rel="noopener noreferrer">
+          {r.title}
+        </a>
+      </h3>
+      <p class="muted">
+        {r.by} · {r.kind[lang]} · {r.lang.toUpperCase()} · {r.licence}{' '}
+        <Reliability kind="non-ufficiale" lang={lang} />
+      </p>
+      <p>{r.note[lang]}</p>
+      <p>
+        {it ? 'Utile per' : 'Useful for'}:{' '}
+        {r.covers.map((t, i) => (
+          <>
+            {i > 0 && ', '}
+            <a href={localizePath(`anno-2/teoria-circuiti/teoria/${t}`, lang)}>{t.replaceAll('-', ' ')}</a>
+          </>
+        ))}
+      </p>
+    </section>
+  ))}
+</div>

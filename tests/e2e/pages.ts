@@ -8,8 +8,8 @@ export interface SamplePage {
   name: string;
   path: string;
   /**
-   * false = solo axe/smoke, niente screenshot: pagine molto lunghe (un formulario completo) superano il
-   * tempo dello screenshot a pagina intera e un'immagine alta metri non aiuta a vedere le regressioni.
+   * false per le pagine troppo lunghe per uno screenshot a pagina intera entro il timeout
+   * (es. un formulario completo): restano nei test a11y e smoke.
    */
   visual?: boolean;
 }
@@ -29,6 +29,16 @@ export const SAMPLE_PAGES: SamplePage[] = [
   { name: 'contribuisci-en', path: `${BASE}en/contribuisci/` },
   { name: 'ringraziamenti-en', path: `${BASE}en/ringraziamenti/` },
   { name: 'offline-it', path: `${BASE}it/offline/` },
+  { name: 'fi-panoramica-it', path: `${BASE}it/anno-1/fondamenti-informatica/` },
+  { name: 'fi-teoria-en', path: `${BASE}en/anno-1/fondamenti-informatica/teoria/gerarchia-di-memoria/` },
+  { name: 'fi-esercizi-it', path: `${BASE}it/anno-1/fondamenti-informatica/esercizi/mappe-di-karnaugh/` },
+  { name: 'fi-formulario-it', path: `${BASE}it/anno-1/fondamenti-informatica/formulario/` },
+  { name: 'fi-convertitori-en', path: `${BASE}en/anno-1/fondamenti-informatica/extra/convertitori/` },
+  { name: 'tdc-panoramica-it', path: `${BASE}it/anno-2/teoria-circuiti/` },
+  { name: 'tdc-teoria-en', path: `${BASE}en/anno-2/teoria-circuiti/teoria/teorema-di-thevenin/` },
+  { name: 'tdc-formulario-it', path: `${BASE}it/anno-2/teoria-circuiti/formulario/`, visual: false },
+  { name: 'tdc-esercizi-it', path: `${BASE}it/anno-2/teoria-circuiti/esercizi/circuiti-primo-ordine/` },
+  { name: 'tdc-extra-it', path: `${BASE}it/anno-2/teoria-circuiti/extra/esame-info/` },
   { name: 'fisica-2-panoramica-it', path: `${BASE}it/anno-2/fisica-2/` },
   { name: 'fisica-2-teoria-it', path: `${BASE}it/anno-2/fisica-2/teoria/fisica-moderna/` },
   { name: 'fisica-2-teoria-en', path: `${BASE}en/anno-2/fisica-2/teoria/magnetismo-nella-materia/` },
@@ -36,9 +46,4 @@ export const SAMPLE_PAGES: SamplePage[] = [
   { name: 'fisica-2-esercizi-en', path: `${BASE}en/anno-2/fisica-2/esercizi/onde-elettromagnetiche/` },
   { name: 'fisica-2-laboratorio-en', path: `${BASE}en/anno-2/fisica-2/extra/laboratorio/` },
   { name: 'fisica-2-appelli-it', path: `${BASE}it/anno-2/fisica-2/extra/appelli/` },
-  { name: 'fi-panoramica-it', path: `${BASE}it/anno-1/fondamenti-informatica/` },
-  { name: 'fi-teoria-en', path: `${BASE}en/anno-1/fondamenti-informatica/teoria/gerarchia-di-memoria/` },
-  { name: 'fi-esercizi-it', path: `${BASE}it/anno-1/fondamenti-informatica/esercizi/mappe-di-karnaugh/` },
-  { name: 'fi-formulario-it', path: `${BASE}it/anno-1/fondamenti-informatica/formulario/` },
-  { name: 'fi-convertitori-en', path: `${BASE}en/anno-1/fondamenti-informatica/extra/convertitori/` },
 ];

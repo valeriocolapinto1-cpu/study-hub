@@ -1,0 +1,25 @@
+id: teorema-di-norton
+course: teoria-circuiti
+order: 43
+title:
+  it: Teorema di Norton
+  en: Norton's theorem
+summary:
+  it: Il teorema di Norton, il legame con Thevenin e il calcolo della corrente di cortocircuito.
+  en: Norton's theorem, its link with Thévenin and the computation of the short-circuit current.
+objectives:
+  - id: teorema-di-norton.1
+    text:
+      it: Enunciare Norton
+      en: State Norton's theorem
+  - id: teorema-di-norton.2
+    text:
+      it: Legarlo a Thevenin
+      en: Relate it to Thévenin
+  - id: teorema-di-norton.3
+    text:
+      it: Calcolare $I_N$ con la porta in corto
+      en: Compute $I_N$ with the port short-circuited
+group:
+  it: VI · Caratterizzazione esterna
+  en: VI · External characterisation

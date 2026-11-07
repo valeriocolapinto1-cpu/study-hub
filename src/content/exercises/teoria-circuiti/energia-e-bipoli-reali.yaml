@@ -1,0 +1,120 @@
+- id: q-i-023
+  topic: energia-e-bipoli-reali
+  objectives:
+    - energia-e-bipoli-reali.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "L'energia immagazzinata in un induttore $L=2\\,\\mathrm H$ percorso da $i=3\\,\\mathrm A$ è:"
+    en: "The energy stored in an inductor $L=2\\,\\mathrm H$ carrying $i=3\\,\\mathrm A$ is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $W=\tfrac12Li^2=\tfrac12\cdot2\cdot9=9\,\mathrm J$.
+        en: $W=\tfrac12Li^2=\tfrac12\cdot2\cdot9=9\,\mathrm J$.
+  choices:
+    - text:
+        it: $3\,\mathrm J$
+        en: $3\,\mathrm J$
+      correct: false
+    - text:
+        it: $9\,\mathrm J$
+        en: $9\,\mathrm J$
+      correct: true
+    - text:
+        it: $18\,\mathrm J$
+        en: $18\,\mathrm J$
+      correct: false
+    - text:
+        it: $6\,\mathrm J$
+        en: $6\,\mathrm J$
+      correct: false
+  origin: originale
+- id: q-i-024
+  topic: energia-e-bipoli-reali
+  objectives:
+    - energia-e-bipoli-reali.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "$C=1\\,\\mathrm F$ a $2\\,\\mathrm V$ viene collegato in parallelo a $C=1\\,\\mathrm F$ scarico. L'energia finale rispetto a quella iniziale:"
+    en: "$C=1\\,\\mathrm F$ charged to $2\\,\\mathrm V$ is connected in parallel with an uncharged $C=1\\,\\mathrm F$. Compared with the initial energy, the final energy:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Iniziale $2\\,\\mathrm J$, finale $\\tfrac12\\cdot2\\cdot1^2=1\\,\\mathrm J$: metà."
+        en: "Initial $2\\,\\mathrm J$, final $\\tfrac12\\cdot2\\cdot1^2=1\\,\\mathrm J$: half."
+  choices:
+    - text:
+        it: è uguale
+        en: is the same
+      correct: false
+    - text:
+        it: è la metà
+        en: is half
+      correct: true
+    - text:
+        it: è nulla
+        en: is zero
+      correct: false
+    - text:
+        it: è doppia
+        en: is double
+      correct: false
+  origin: originale
+- id: q-i-025
+  topic: energia-e-bipoli-reali
+  objectives:
+    - energia-e-bipoli-reali.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: Due generatori ideali di tensione diversi collegati in parallelo costituiscono una situazione incongruente.
+    en: Two different ideal voltage sources connected in parallel form an inconsistent situation.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Violano la KVL: la stessa tensione non può avere due valori.'
+        en: 'They violate KVL: the same voltage cannot have two values.'
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-i-026
+  topic: energia-e-bipoli-reali
+  objectives:
+    - energia-e-bipoli-reali.3
+  difficulty: 3
+  kind: static
+  statement:
+    it: Una pila reale si può modellare con un generatore ideale di tensione in serie a una resistenza.
+    en: A real battery can be modelled as an ideal voltage source in series with a resistance.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Modello $v=E-r\,i$.
+        en: Model $v=E-r\,i$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale

@@ -1,0 +1,214 @@
+- id: q-iii-011
+  topic: impedenza-ammettenza
+  objectives:
+    - impedenza-ammettenza.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: "L'impedenza di un induttore è:"
+    en: 'The impedance of an inductor is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $Z_L=j\omega L$.
+        en: $Z_L=j\omega L$.
+  choices:
+    - text:
+        it: $1/(j\omega L)$
+        en: $1/(j\omega L)$
+      correct: false
+    - text:
+        it: $-j\omega L$
+        en: $-j\omega L$
+      correct: false
+    - text:
+        it: $j\omega L$
+        en: $j\omega L$
+      correct: true
+    - text:
+        it: $L$
+        en: $L$
+      correct: false
+  origin: originale
+- id: q-iii-012
+  topic: impedenza-ammettenza
+  objectives:
+    - impedenza-ammettenza.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: "L'impedenza di un condensatore è:"
+    en: 'The impedance of a capacitor is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $Z_C=1/(j\omega C)=-j/(\omega C)$.
+        en: $Z_C=1/(j\omega C)=-j/(\omega C)$.
+  choices:
+    - text:
+        it: $C$
+        en: $C$
+      correct: false
+    - text:
+        it: $j\omega C$
+        en: $j\omega C$
+      correct: false
+    - text:
+        it: $1/(j\omega C)$
+        en: $1/(j\omega C)$
+      correct: true
+    - text:
+        it: $-j/(\omega)$
+        en: $-j/(\omega)$
+      correct: false
+  origin: originale
+- id: q-iii-013
+  topic: impedenza-ammettenza
+  objectives:
+    - impedenza-ammettenza.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Un RC serie con $R=1\\,\\Omega$, $C=1\\,\\mathrm F$ a $\\omega=1$ ha impedenza:"
+    en: "A series RC with $R=1\\,\\Omega$, $C=1\\,\\mathrm F$ at $\\omega=1$ has impedance:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $R+1/(j\omega C)=1-j$.
+        en: $R+1/(j\omega C)=1-j$.
+  choices:
+    - text:
+        it: $1-j$
+        en: $1-j$
+      correct: true
+    - text:
+        it: $j$
+        en: $j$
+      correct: false
+    - text:
+        it: $1+j$
+        en: $1+j$
+      correct: false
+    - text:
+        it: $1$
+        en: $1$
+      correct: false
+  origin: originale
+- id: q-iii-014
+  topic: impedenza-ammettenza
+  objectives:
+    - impedenza-ammettenza.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: L'ammettenza è l'inverso dell'impedenza.
+    en: The admittance is the reciprocal of the impedance.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $Y=1/Z$.
+        en: $Y=1/Z$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-iii-015
+  topic: impedenza-ammettenza
+  objectives:
+    - impedenza-ammettenza.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: In regime sinusoidale, l'impedenza di un resistore dipende dalla frequenza.
+    en: In sinusoidal steady state, the impedance of a resistor depends on frequency.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $Z_R=R$.
+        en: $Z_R=R$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-iii-039
+  topic: impedenza-ammettenza
+  objectives:
+    - impedenza-ammettenza.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: L'impedenza di un condensatore ideale è reale e positiva.
+    en: The impedance of an ideal capacitor is real and positive.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $Z_C=1/(j\omega C)$ è immaginaria pura negativa.
+        en: $Z_C=1/(j\omega C)$ is purely imaginary and negative.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-iii-043
+  topic: impedenza-ammettenza
+  objectives:
+    - impedenza-ammettenza.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: $Z_L=$ ___.
+    en: $Z_L=$ ___.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Impedenza dell'induttore.
+        en: Impedance of the inductor.
+  choices:
+    - text:
+        it: $\omega L$
+        en: $\omega L$
+      correct: false
+    - text:
+        it: $j\omega L$
+        en: $j\omega L$
+      correct: true
+    - text:
+        it: $-L$
+        en: $-L$
+      correct: false
+    - text:
+        it: $1/(j\omega L)$
+        en: $1/(j\omega L)$
+      correct: false
+  origin: originale

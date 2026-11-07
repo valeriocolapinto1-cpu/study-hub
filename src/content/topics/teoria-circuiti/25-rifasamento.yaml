@@ -1,0 +1,25 @@
+id: rifasamento
+course: teoria-circuiti
+order: 25
+title:
+  it: Rifasamento
+  en: Power-factor correction
+summary:
+  it: Perché si rifasa un carico induttivo e come si calcola la capacità di rifasamento.
+  en: Why an inductive load is power-factor corrected and how to compute the correction capacitance.
+objectives:
+  - id: rifasamento.1
+    text:
+      it: Spiegare lo scopo del rifasamento
+      en: Explain the purpose of power-factor correction
+  - id: rifasamento.2
+    text:
+      it: Calcolare la capacità di rifasamento
+      en: Compute the correction capacitance
+  - id: rifasamento.3
+    text:
+      it: Verificare il risultato con la potenza reattiva
+      en: Check the result with the reactive power
+group:
+  it: III · Regime sinusoidale
+  en: III · Sinusoidal steady state

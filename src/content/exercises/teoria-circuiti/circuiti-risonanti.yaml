@@ -1,0 +1,316 @@
+- id: gen-risonanza
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/risonanza
+  origin: tipologia-appello
+- id: q-v-034
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'La pulsazione di risonanza di un RLC è:'
+    en: 'The resonant angular frequency of an RLC is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\omega_0=1/\sqrt{LC}$.
+        en: $\omega_0=1/\sqrt{LC}$.
+  choices:
+    - text:
+        it: $\omega_0=1/(RC)$
+        en: $\omega_0=1/(RC)$
+      correct: false
+    - text:
+        it: $\omega_0=R/L$
+        en: $\omega_0=R/L$
+      correct: false
+    - text:
+        it: $\omega_0=1/\sqrt{LC}$
+        en: $\omega_0=1/\sqrt{LC}$
+      correct: true
+    - text:
+        it: $\omega_0=\sqrt{LC}$
+        en: $\omega_0=\sqrt{LC}$
+      correct: false
+  origin: originale
+- id: q-v-035
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Nel RLC serie $Q=$
+    en: In the series RLC $Q=$
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $Q_{serie}=\omega_0L/R=1/(\omega_0RC)$.
+        en: $Q_{series}=\omega_0L/R=1/(\omega_0RC)$.
+  choices:
+    - text:
+        it: $R/(\omega_0L)$
+        en: $R/(\omega_0L)$
+      correct: false
+    - text:
+        it: $\omega_0L/R$
+        en: $\omega_0L/R$
+      correct: true
+    - text:
+        it: $\omega_0RC$
+        en: $\omega_0RC$
+      correct: false
+    - text:
+        it: $LC$
+        en: $LC$
+      correct: false
+  origin: originale
+- id: q-v-036
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Nel RLC parallelo $Q=$
+    en: In the parallel RLC $Q=$
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $Q_{par}=R/(\omega_0L)=\omega_0RC$.
+        en: $Q_{par}=R/(\omega_0L)=\omega_0RC$.
+  choices:
+    - text:
+        it: $L/(RC)$
+        en: $L/(RC)$
+      correct: false
+    - text:
+        it: $\omega_0L/R$
+        en: $\omega_0L/R$
+      correct: false
+    - text:
+        it: $R\omega_0L$
+        en: $R\omega_0L$
+      correct: false
+    - text:
+        it: $R/(\omega_0L)$
+        en: $R/(\omega_0L)$
+      correct: true
+  origin: originale
+- id: q-v-037
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "La banda a $3\\,\\mathrm{dB}$ è:"
+    en: "The $3\\,\\mathrm{dB}$ bandwidth is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $B=\omega_0/Q$.
+        en: $B=\omega_0/Q$.
+  choices:
+    - text:
+        it: $B=Q/\omega_0$
+        en: $B=Q/\omega_0$
+      correct: false
+    - text:
+        it: $B=\omega_0^2$
+        en: $B=\omega_0^2$
+      correct: false
+    - text:
+        it: $B=\omega_0Q$
+        en: $B=\omega_0Q$
+      correct: false
+    - text:
+        it: $B=\omega_0/Q$
+        en: $B=\omega_0/Q$
+      correct: true
+  origin: originale
+- id: q-v-038
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "RLC serie con $L=1\\,\\mathrm H$, $C=1/4\\,\\mathrm F$, $R=1\\,\\Omega$: $\\omega_0$ e $Q$ valgono"
+    en: "Series RLC with $L=1\\,\\mathrm H$, $C=1/4\\,\\mathrm F$, $R=1\\,\\Omega$: $\\omega_0$ and $Q$ are"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\omega_0=1/\sqrt{1/4}=2$; $Q=2\cdot1/1=2$.
+        en: $\omega_0=1/\sqrt{1/4}=2$; $Q=2\cdot1/1=2$.
+  choices:
+    - text:
+        it: $4$ e $2$
+        en: $4$ and $2$
+      correct: false
+    - text:
+        it: $2$ e $2$
+        en: $2$ and $2$
+      correct: true
+    - text:
+        it: $2$ e $1/2$
+        en: $2$ and $1/2$
+      correct: false
+    - text:
+        it: $1/2$ e $2$
+        en: $1/2$ and $2$
+      correct: false
+  origin: originale
+- id: q-v-039
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Alla risonanza serie l'impedenza è puramente resistiva e minima.
+    en: At series resonance the impedance is purely resistive and minimum.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: '$X_L+X_C=0$: $Z=R$.'
+        en: '$X_L+X_C=0$: $Z=R$.'
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-v-040
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Alla risonanza parallelo l'impedenza è massima.
+    en: At parallel resonance the impedance is maximum.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Ammettenza minima.
+        en: Minimum admittance.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-v-041
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: A parità di $\omega_0$ un $Q$ più alto dà una banda più stretta.
+    en: For the same $\omega_0$, a higher $Q$ gives a narrower bandwidth.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $B=\omega_0/Q$.
+        en: $B=\omega_0/Q$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-v-044
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Nel RLC serie alla risonanza l'impedenza è massima.
+    en: In the series RLC at resonance the impedance is maximum.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: È minima e pari a $R$.
+        en: It is minimum and equal to $R$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-v-048
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: $B=\omega_0/\square$.
+    en: $B=\omega_0/\square$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Banda a 3 dB.
+        en: 3 dB bandwidth.
+  choices:
+    - text:
+        it: $L$
+        en: $L$
+      correct: false
+    - text:
+        it: $Q$
+        en: $Q$
+      correct: true
+    - text:
+        it: $R$
+        en: $R$
+      correct: false
+    - text:
+        it: $Q^2$
+        en: $Q^2$
+      correct: false
+  origin: originale

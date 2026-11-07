@@ -1,0 +1,62 @@
+- id: orale-t-46
+  topic: leggi-di-kirchhoff
+  objectives:
+    - leggi-di-kirchhoff.2
+    - leggi-di-kirchhoff.3
+  kind: orale
+  front:
+    it: '**Leggi di Kirchhoff.** Enuncia le leggi di Kirchhoff e dimostra la KCL per un taglio.'
+    en: "**Kirchhoff's laws.** State Kirchhoff's laws and prove KCL for a cut set."
+  back:
+    it: |-
+      **Risposta modello.** La KCL dice che la somma algebrica delle correnti in un nodo è nulla; la KVL che la somma algebrica delle tensioni di una maglia è nulla. Per un taglio si sommano le KCL dei nodi interni a una delle due parti: le correnti dei rami interni compaiono due volte con segno opposto e si cancellano, restano quelle del taglio.
+
+      **Punti da toccare:**
+
+      - KCL: somma algebrica delle correnti in un nodo nulla
+      - KVL: somma algebrica delle tensioni di una maglia nulla
+      - Per il taglio: somma delle KCL dei nodi interni
+      - Le correnti dei rami interni si cancellano a coppie
+    en: |-
+      **Model answer.** KCL says that the algebraic sum of the currents at a node is zero; KVL that the algebraic sum of the voltages around a loop is zero. For a cut set the KCLs of the nodes inside one of the two parts are added: the currents of the inner branches appear twice with opposite signs and cancel, leaving those of the cut set.
+
+      **Points to cover:**
+
+      - KCL: zero algebraic sum of the currents at a node
+      - KVL: zero algebraic sum of the voltages around a loop
+      - For the cut set: sum of the KCLs of the inner nodes
+      - The currents of the inner branches cancel in pairs
+- id: formula-kcl
+  topic: leggi-di-kirchhoff
+  objectives:
+    - leggi-di-kirchhoff.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Legge di Kirchhoff delle correnti**. Uso: Ogni nodo e ogni taglio.'
+    en: "Write the formula: **Kirchhoff's current law**. Use: Every node and every cut set."
+  back:
+    it: |-
+      $$\sum_{k\in\text{nodo/taglio}}\pm i_k=0$$
+
+      i_k corrente di ramo [A]; segno + uscenti, − entranti
+    en: |-
+      $$\sum_{k\in\text{nodo/taglio}}\pm i_k=0$$
+
+      i_k branch current [A]; sign + leaving, − entering
+- id: formula-kvl
+  topic: leggi-di-kirchhoff
+  objectives:
+    - leggi-di-kirchhoff.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Legge di Kirchhoff delle tensioni**. Uso: Ogni maglia.'
+    en: "Write the formula: **Kirchhoff's voltage law**. Use: Every loop."
+  back:
+    it: |-
+      $$\sum_{k\in\text{maglia}}\pm v_k=0$$
+
+      v_k tensione di ramo [V]; + se concorde col giro
+    en: |-
+      $$\sum_{k\in\text{maglia}}\pm v_k=0$$
+
+      v_k branch voltage [V]; + if it agrees with the traversal

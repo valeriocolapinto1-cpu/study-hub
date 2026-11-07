@@ -1,0 +1,114 @@
+---
+course: teoria-circuiti
+topic: potenza-complessa
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="potenza-complessa-intuizione-1">
+
+In regime sinusoidale l'energia va e viene: una parte viene davvero consumata (la potenza attiva, che scalda e fa lavoro), un'altra rimbalza avanti e indietro tra generatore, induttori e condensatori senza essere usata (la reattiva). La potenza complessa mette le due cose in un unico numero.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="potenza-complessa-teoria-1">
+
+Con $v=V_m\cos\omega t$, $i=I_m\cos(\omega t-\varphi)$ la potenza istantanea è $p=\tfrac12V_mI_m[\cos\varphi+\cos(2\omega t-\varphi)]$. La **potenza attiva** è il valor medio: $P=\tfrac12V_mI_m\cos\varphi=VI\cos\varphi$ (efficaci $V=V_m/\sqrt2$). La **reattiva** è $Q=VI\sin\varphi$, la **complessa** $S=\dot V\dot I^*=P+jQ$, l'**apparente** $|S|=VI$. Il **fattore di potenza** è $\cos\varphi=P/|S|$.
+
+</div>
+
+<div data-note-id="potenza-complessa-teoria-2">
+
+Per un bipolo di impedenza $Z=R+jX$ con corrente efficace $I$: $P=RI^2$, $Q=XI^2$. Per $R$: $Q=0$; per $L$: $Q=\omega LI^2>0$; per $C$: $Q=-I^2/(\omega C)<0$ (convenzione degli utilizzatori).
+
+</div>
+
+<details class="proof" data-note-id="potenza-complessa-dimostrazione-1">
+<summary>Dimostrazione: Relazione tra potenza reattiva ed energie medie</summary>
+
+**Enunciato.** In regime sinusoidale, per un circuito con induttori e condensatori, $Q=2\omega(W_L-W_C)$, con $W_L$, $W_C$ somme delle energie medie immagazzinate.
+
+1. Induttore: $Q_L=\omega LI^2$ (efficace). L'energia istantanea $\tfrac12Li^2$ ha valor medio $W_L=\tfrac12L\,\overline{i^2}=\tfrac12LI^2$, quindi $Q_L=2\omega W_L$.
+2. Condensatore: $Q_C=-\dfrac{I^2}{\omega C}=-\omega CV_C^2$ e $W_C=\tfrac12CV_C^2$ (efficace), quindi $Q_C=-2\omega W_C$.
+3. Resistore: $Q_R=0$ e nessuna energia immagazzinata.
+4. Per la conservazione della potenza complessa (Tellegen) la reattiva totale assorbita dagli elementi è nulla se si include il generatore; la reattiva erogata dai generatori è la somma $\sum Q_k=2\omega(W_L-W_C)$ degli elementi passivi. $\square$
+
+</details>
+
+<Formula id="p-picco" />
+<Formula id="p-eff" />
+<Formula id="q-eff" />
+<Formula id="s-compl" />
+<Formula id="cosphi" />
+<Formula id="p-ri2" />
+<Formula id="q-xi2" />
+<Formula id="q-energia" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="potenza-complessa-esempio-1">
+
+### Potenze da $v(t)$ e $i(t)$
+
+$v=20\cos\omega t$, $i=4\cos(\omega t-\varphi)$, $\cos\varphi=3/5$ ($\sin\varphi=4/5$). Trova $P$, $Q$, $|S|$.
+
+**Soluzione.**
+
+1. $\tfrac12V_mI_m=40$.
+2. $P=40\cdot\tfrac35=24\,\mathrm W$, $Q=40\cdot\tfrac45=32\,\mathrm{var}$, $|S|=40\,\mathrm{VA}$ (verifica: $\sqrt{24^2+32^2}=40$).
+
+</div>
+
+<div class="worked" data-note-id="potenza-complessa-esempio-2">
+
+### Da $Z$ alle potenze
+
+$Z=3+4j\,\Omega$, corrente efficace $I=2\,\mathrm A$.
+
+**Soluzione.**
+
+1. $P=RI^2=12\,\mathrm W$, $Q=XI^2=16\,\mathrm{var}$, $|S|=20\,\mathrm{VA}$, $\cos\varphi=0{,}6$.
+
+</div>
+
+<div class="worked" data-note-id="potenza-complessa-esempio-3">
+
+### Fattore di potenza
+
+$P=300\,\mathrm W$, $Q=400\,\mathrm{var}$.
+
+**Soluzione.**
+
+1. $|S|=500\,\mathrm{VA}$, $\cos\varphi=0{,}6$ (carico induttivo).
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="potenza-complessa-errore-1">
+
+- **Sbagliato:** Usare $P=V_mI_m\cos\varphi$ con valori di picco.
+- **Corretto:** Con picchi serve il fattore $\tfrac12$; con efficaci no.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="potenza-complessa-esame-1">
+
+Potenze attiva, reattiva, complessa, fattore di potenza; $Q\leftrightarrow$ energia media: 1-6-2000, 14-7-2000, 15-9-2000, 13-2-2001, 13-2-2002, 12-7-2005, 12-7-2007, 25-9-2007, 11-2-2008 <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

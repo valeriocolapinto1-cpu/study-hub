@@ -1,0 +1,80 @@
+---
+course: teoria-circuiti
+topic: energia-e-bipoli-reali
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="energia-e-bipoli-reali-intuizione-1">
+
+Gli elementi ideali sono comodi ma «troppo perfetti»: due batterie ideali diverse in parallelo dovrebbero far scorrere una corrente infinita. La natura risolve il paradosso con piccole resistenze che il modello trascura. Un buon modello di un componente reale aggiunge proprio questi dettagli, come la resistenza interna di una pila.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="energia-e-bipoli-reali-teoria-1">
+
+**Energie.** Resistore: potenza assorbita $p=Ri^2=v^2/R\ge0$ (sempre dissipata). Condensatore: energia $W_C=\tfrac12 C v^2$. Induttore: $W_L=\tfrac12 L i^2$. Tutti e tre sono passivi per $R,C,L>0$.
+
+</div>
+
+<div data-note-id="energia-e-bipoli-reali-teoria-2">
+
+**Incongruenze degli elementi ideali.** Gli elementi ideali possono produrre situazioni prive di soluzione o con valori impulsivi: due generatori di tensione diversi in parallelo violano la KVL; un generatore di corrente su un circuito aperto (o in serie con un altro di valore diverso) viola la KCL; un generatore di tensione in corto ha corrente indeterminata; due condensatori a tensione diversa collegati in parallelo imporrebbero un salto istantaneo di tensione.
+
+</div>
+
+<div data-note-id="energia-e-bipoli-reali-teoria-3">
+
+**Bipoli reali.** Un componente reale si descrive con un circuito equivalente più ricco: una pila reale è un generatore di tensione $E$ con una resistenza interna $r$ in serie ($v=E-r\,i$), oppure un generatore di corrente $E/r$ in parallelo a $r$. L'incongruenza sparisce tenendo conto delle resistenze (piccole ma non nulle) dei collegamenti.
+
+</div>
+
+<Formula id="energia-c" />
+<Formula id="energia-l" />
+<Formula id="pila-reale" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="energia-e-bipoli-reali-esempio-1">
+
+### Due condensatori collegati in parallelo
+
+$C_1=C_2=1\,\mathrm{F}$ con $v_1=2\,\mathrm{V}$ e $v_2=0$ vengono collegati in parallelo. Trova la tensione finale e la variazione di energia.
+
+**Soluzione.**
+
+1. Conservazione della carica: $Q=C_1 v_1 + C_2 v_2 = 2\,\mathrm{C}$. Finale: $v=Q/(C_1+C_2)=1\,\mathrm{V}$.
+2. Energia iniziale: $\tfrac12\cdot1\cdot2^2=2\,\mathrm{J}$. Finale: $\tfrac12\cdot 2\cdot1^2 = 1\,\mathrm{J}$.
+3. Un joule va perso: nel modello ideale non c'è un elemento dissipativo, ma nel circuito reale c'è sempre una resistenza (o radiazione) che lo dissipa.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="energia-e-bipoli-reali-errore-1">
+
+- **Sbagliato:** Concludere che l'energia si conserva sempre nel circuito ideale.
+- **Corretto:** Un collegamento ideale può avere transitorio impulsivo con perdita di energia: il risultato dipende da una resistenza trascurata.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="energia-e-bipoli-reali-esame-1">
+
+Aspetti energetici e passività: 12-7-2005, 25-9-2007, 11-2-2008 (domande su potenze e proprietà) <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

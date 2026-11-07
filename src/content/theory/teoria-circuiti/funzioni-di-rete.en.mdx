@@ -1,0 +1,108 @@
+---
+course: teoria-circuiti
+topic: funzioni-di-rete
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="funzioni-di-rete-intuizione-1">
+
+A network function is the "identity card" of a circuit seen from an input to an output: a ratio of polynomials in $s$ containing the whole behaviour of the circuit at rest. Its poles tell how the circuit "vibrates" on its own, its zeros which signals it blocks.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="funzioni-di-rete-teoria-1">
+
+The **network function** is $H(s)=\dfrac{Y(s)}{X(s)}$ with zero initial conditions, between an output quantity $Y$ and an input quantity $X$. If input and output are at the same port it is called a driving-point impedance or admittance; otherwise a transfer function (voltage or current ratio, transimpedance, transadmittance).
+
+</div>
+
+<div data-note-id="funzioni-di-rete-teoria-2">
+
+For linear time-invariant lumped circuits $H(s)=\dfrac{N(s)}{D(s)}$ is _rational with real coefficients_. The roots of $D$ are the **poles**, those of $N$ the **zeros**; non-real poles and zeros come in complex-conjugate pairs.
+
+</div>
+
+<details class="proof" data-note-id="funzioni-di-rete-dimostrazione-1">
+<summary>Proof: Network functions are rational with real coefficients</summary>
+
+1. In the $s$ domain, with zero initial conditions, every element has an algebraic relation: $V=RI$, $V=sLI$, $I=sCV$, with real $R,L,C$; controlled sources have real gains.
+2. KCL and KVL have coefficients $0,\pm1$. The circuit is therefore described by a linear system $\mathcal A(s)\mathbf z=\mathbf b$ whose coefficients are polynomials in $s$ with real coefficients.
+3. By Cramer's rule every unknown is $\det\mathcal A_k(s)/\det\mathcal A(s)$: a ratio of polynomials in $s$ with real coefficients.
+4. Hence $H=Y/X$ is a ratio of real polynomials. Real polynomials have non-real roots in conjugate pairs. $\square$
+
+</details>
+
+<Formula id="h-def" />
+<Formula id="h-razionale" />
+<Formula id="h-rc-lp" />
+<Formula id="h-rc-hp" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="funzioni-di-rete-esempio-1">
+
+### RC low-pass
+
+$R=2$, $C=\tfrac12$, output across $C$: $H(s)$, poles, zeros.
+
+**Solution.**
+
+1. $H=\dfrac{1/(sC)}{R+1/(sC)}=\dfrac{1}{1+sRC}=\dfrac{1}{s+1}$.
+2. Pole at $-1$, no zeros.
+
+</div>
+
+<div class="worked" data-note-id="funzioni-di-rete-esempio-2">
+
+### RL high-pass
+
+$R=1$, $L=1$, output across $L$.
+
+**Solution.**
+
+1. $H=\dfrac{sL}{R+sL}=\dfrac{s}{s+1}$: zero at $0$, pole at $-1$.
+
+</div>
+
+<div class="worked" data-note-id="funzioni-di-rete-esempio-3">
+
+### Driving-point impedance
+
+$Z(s)$ of a series $R=1$, $C=1$.
+
+**Solution.**
+
+1. $Z=1+\dfrac1s=\dfrac{s+1}{s}$: zero at $-1$, pole at $0$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="funzioni-di-rete-errore-1">
+
+- **Wrong:** Computing $H(s)$ with $v_C(0^-)\ne0$ without setting it to zero.
+- **Right:** The network function is defined with zero initial conditions.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="funzioni-di-rete-esame-1">
+
+Network functions, rational with real coefficients: 4-7-2000 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

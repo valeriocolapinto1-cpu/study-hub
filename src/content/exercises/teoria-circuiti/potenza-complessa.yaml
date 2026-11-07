@@ -1,0 +1,316 @@
+- id: gen-potenze
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.3
+  difficulty: 2
+  kind: generated
+  generator: teoria-circuiti/potenze
+  origin: tipologia-appello
+- id: q-iii-022
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Con valori di picco la potenza attiva è:'
+    en: 'With peak values the active power is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $P=\tfrac12V_mI_m\cos\varphi$.
+        en: $P=\tfrac12V_mI_m\cos\varphi$.
+  choices:
+    - text:
+        it: $V_mI_m\sin\varphi$
+        en: $V_mI_m\sin\varphi$
+      correct: false
+    - text:
+        it: $\tfrac12V_mI_m\cos\varphi$
+        en: $\tfrac12V_mI_m\cos\varphi$
+      correct: true
+    - text:
+        it: $V_mI_m\cos\varphi$
+        en: $V_mI_m\cos\varphi$
+      correct: false
+    - text:
+        it: $\tfrac12V_mI_m$
+        en: $\tfrac12V_mI_m$
+      correct: false
+  origin: originale
+- id: q-iii-023
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Con valori efficaci la potenza reattiva è:'
+    en: 'With RMS values the reactive power is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $Q=VI\sin\varphi$.
+        en: $Q=VI\sin\varphi$.
+  choices:
+    - text:
+        it: $V^2/R$
+        en: $V^2/R$
+      correct: false
+    - text:
+        it: $VI\cos\varphi$
+        en: $VI\cos\varphi$
+      correct: false
+    - text:
+        it: $VI\sin\varphi$
+        en: $VI\sin\varphi$
+      correct: true
+    - text:
+        it: $VI$
+        en: $VI$
+      correct: false
+  origin: originale
+- id: q-iii-024
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "$P=300\\,\\mathrm W$, $Q=400\\,\\mathrm{var}$: $|S|=$"
+    en: "$P=300\\,\\mathrm W$, $Q=400\\,\\mathrm{var}$: $|S|=$"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $|S|=\sqrt{300^2+400^2}=500$.
+        en: $|S|=\sqrt{300^2+400^2}=500$.
+  choices:
+    - text:
+        it: $500\,\mathrm{VA}$
+        en: $500\,\mathrm{VA}$
+      correct: true
+    - text:
+        it: $700\,\mathrm{VA}$
+        en: $700\,\mathrm{VA}$
+      correct: false
+    - text:
+        it: $350\,\mathrm{VA}$
+        en: $350\,\mathrm{VA}$
+      correct: false
+    - text:
+        it: $100\,\mathrm{VA}$
+        en: $100\,\mathrm{VA}$
+      correct: false
+  origin: originale
+- id: q-iii-025
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Fattore di potenza di $P=300$, $Q=400$:'
+    en: 'Power factor of $P=300$, $Q=400$:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $\cos\varphi=P/|S|=300/500$.
+        en: $\cos\varphi=P/|S|=300/500$.
+  choices:
+    - text:
+        it: $0{,}6$
+        en: $0.6$
+      correct: true
+    - text:
+        it: $0{,}8$
+        en: $0.8$
+      correct: false
+    - text:
+        it: $0{,}75$
+        en: $0.75$
+      correct: false
+    - text:
+        it: $1$
+        en: $1$
+      correct: false
+  origin: originale
+- id: q-iii-026
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: La potenza reattiva di un induttore ideale è positiva (convenzione degli utilizzatori).
+    en: The reactive power of an ideal inductor is positive (passive sign convention).
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $Q_L=\omega L I^2>0$.
+        en: $Q_L=\omega L I^2>0$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-iii-027
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: La potenza attiva media assorbita da un induttore o da un condensatore ideale è nulla in regime sinusoidale.
+    en: The average active power absorbed by an ideal inductor or capacitor is zero in sinusoidal steady state.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Solo scambio di energia.
+        en: Energy is only exchanged.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-iii-028
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: $Q=2\omega(W_L-W_C)$ con $W$ valori medi delle energie immagazzinate.
+    en: $Q=2\omega(W_L-W_C)$, with $W$ the average values of the stored energies.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Relazione tra reattiva ed energie medie (valori efficaci).
+        en: Relation between reactive power and average energies (RMS values).
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-iii-029
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "La potenza complessa è $S=P+jQ=\\dot V\\,\\dot I^{\\,\\square}$ (valori efficaci); al posto di $\\square$ va:"
+    en: "The complex power is $S=P+jQ=\\dot V\\,\\dot I^{\\,\\square}$ (RMS values); $\\square$ stands for:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $S=\dot V\dot I^*$.
+        en: $S=\dot V\dot I^*$.
+  choices:
+    - text:
+        it: $*$ (coniugato)
+        en: $*$ (conjugate)
+      correct: true
+    - text:
+        it: $\mathsf T$
+        en: $\mathsf T$
+      correct: false
+    - text:
+        it: $2$
+        en: $2$
+      correct: false
+    - text:
+        it: $-1$
+        en: $-1$
+      correct: false
+  origin: originale
+- id: q-iii-041
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Un resistore assorbe potenza reattiva non nulla in regime sinusoidale.
+    en: A resistor absorbs non-zero reactive power in sinusoidal steady state.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: '$Q_R=0$: la tensione è in fase con la corrente.'
+        en: '$Q_R=0$: the voltage is in phase with the current.'
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-iii-044
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: $|S|=\sqrt{P^2+\square}$.
+    en: $|S|=\sqrt{P^2+\square}$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $|S|^2=P^2+Q^2$.
+        en: $|S|^2=P^2+Q^2$.
+  choices:
+    - text:
+        it: $P$
+        en: $P$
+      correct: false
+    - text:
+        it: $Q^2$
+        en: $Q^2$
+      correct: true
+    - text:
+        it: $PQ$
+        en: $PQ$
+      correct: false
+    - text:
+        it: $Q$
+        en: $Q$
+      correct: false
+  origin: originale

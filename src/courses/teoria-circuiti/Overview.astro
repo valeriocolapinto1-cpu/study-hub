@@ -1,0 +1,72 @@
+---
+/** Introduzione della Panoramica di Teoria dei Circuiti: dati del corso, pesi dei blocchi, procedura d'esame. */
+import Reliability from './components/Reliability.astro';
+import Rich from './components/Rich.astro';
+import { BLOCK_WEIGHTS, FACTS, PROCEDURE } from './data';
+import { localizePath, type Lang } from '../../i18n';
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+const base = 'anno-2/teoria-circuiti';
+---
+
+<h2 id="corso">{it ? 'Il corso' : 'The course'}</h2>
+<dl class="facts">
+  {FACTS.map((f) => (
+    <>
+      <dt>{f.k[lang]}</dt>
+      <dd>
+        {f.v[lang]} <Reliability kind={f.r} lang={lang} />
+      </dd>
+    </>
+  ))}
+</dl>
+<p>
+  {it
+    ? 'Il programma ha 6 blocchi. I pesi qui sotto sono una stima basata sulla struttura storica delle prove, non un dato ufficiale:'
+    : 'The syllabus has 6 blocks. The weights below are an estimate based on the historical structure of the exams, not an official figure:'}
+  <Reliability kind="inferenza" lang={lang} />
+</p>
+<ul class="weights">
+  {BLOCK_WEIGHTS.map((b) => (
+    <li>
+      <span class="weights__label">
+        {it ? 'Blocco' : 'Block'} {b.group}
+      </span>
+      <span class="progress weights__bar" aria-hidden="true">
+        <span class="progress__bar">
+          <span class="progress__fill" style={`--value: ${b.weight * 4}`} />
+        </span>
+      </span>
+      <span class="weights__value">≈ {b.weight}%</span>
+    </li>
+  ))}
+</ul>
+
+<h2 id="procedura">{it ? "L'esercizio d'analisi in 8 passi" : 'The analysis exercise in 8 steps'}</h2>
+<p>
+  <Rich
+    inline
+    text={
+      it
+        ? "Il cuore dello scritto è «determinare $v_{out}(t)$ per tutto l'asse dei tempi» con un solo elemento con memoria. La procedura è sempre la stessa:"
+        : 'The core of the written exam is "find $v_{out}(t)$ over the whole time axis" with a single memory element. The procedure is always the same:'
+    }
+  />
+</p>
+<ol>
+  {PROCEDURE.map((p) => (
+    <li>
+      <Rich text={p[lang]} inline />
+    </li>
+  ))}
+</ol>
+<p>
+  {it ? 'Dettagli su formato e incognite dell’esame: ' : 'Details on the exam format and open questions: '}
+  <a href={localizePath(`${base}/extra/esame-info`, lang)}>
+    {it ? "L'esame, cosa sappiamo e cosa no" : "The exam, what we know and what we don't"}
+  </a>
+  .
+</p>

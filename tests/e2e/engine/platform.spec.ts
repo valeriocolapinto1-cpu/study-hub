@@ -119,6 +119,10 @@ test.describe('offline', () => {
   test('avvisa quando c’è una nuova versione e aggiorna solo su richiesta', async ({ page }) => {
     await page.goto(`${B}it/`);
     await expect(page.locator('html')).toHaveAttribute('data-sw', 'ready', { timeout: 20_000 });
+    // «ready» = worker attivo; la pagina passa sotto il suo controllo solo dopo clients.claim().
+    // L'avviso compare solo per le pagine controllate: senza attesa, su macchine lente, il nuovo
+    // worker può installarsi prima del claim e l'avviso non viene mai mostrato.
+    await page.waitForFunction(() => !!navigator.serviceWorker.controller, undefined, { timeout: 20_000 });
     // Simula una nuova pubblicazione: sw.js con un'altra versione sul server.
     const file = 'dist-fixtures/sw.js';
     const original = readFileSync(file, 'utf8');

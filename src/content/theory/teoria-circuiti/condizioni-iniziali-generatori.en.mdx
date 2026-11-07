@@ -1,0 +1,106 @@
+---
+course: teoria-circuiti
+topic: condizioni-iniziali-generatori
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="condizioni-iniziali-generatori-intuizione-1">
+
+A charged capacitor is like an uncharged one with a small battery in series: the energy stored before $t=0$ becomes a source in the transformed circuit. This way the "memory" of the past enters the computation like any other source.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="condizioni-iniziali-generatori-teoria-1">
+
+**Capacitor.** $V=\dfrac1{sC}I+\dfrac{v_C(0^-)}{s}$: impedance $1/(sC)$ in series with a voltage source $v_C(0^-)/s$; or $I=sCV-Cv_C(0^-)$: admittance $sC$ in parallel with a current source $Cv_C(0^-)$.
+
+</div>
+
+<div data-note-id="condizioni-iniziali-generatori-teoria-2">
+
+**Inductor.** $V=sLI-Li_L(0^-)$: impedance $sL$ in series with a source $-Li_L(0^-)$ (opposite to the voltage drop); or $I=\dfrac{V}{sL}+\dfrac{i_L(0^-)}{s}$: $sL$ in parallel with a current source $i_L(0^-)/s$.
+
+</div>
+
+<details class="proof" data-note-id="condizioni-iniziali-generatori-dimostrazione-1">
+<summary>Proof: Models of $L$ and $C$ with initial conditions</summary>
+
+1. $C$: $i=C\,dv/dt\Rightarrow I=C[sV-v(0^-)]\Rightarrow V=\dfrac{I}{sC}+\dfrac{v(0^-)}{s}$.
+2. $L$: $v=L\,di/dt\Rightarrow V=L[sI-i(0^-)]=sLI-Li(0^-)$. $\square$
+
+</details>
+
+<Formula id="modello-c-serie" />
+<Formula id="modello-c-par" />
+<Formula id="modello-l-serie" />
+<Formula id="modello-l-par" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="condizioni-iniziali-generatori-esempio-1">
+
+### Zero-input RL
+
+$R=4\,\Omega$, $L=2\,\mathrm H$, $i_L(0^-)=3\,\mathrm A$, sources off. Find $i_L(t)$.
+
+**Solution.**
+
+1. $(R+sL)I=Li_0\Rightarrow I=\dfrac{2\cdot3}{4+2s}=\dfrac{3}{s+2}$.
+2. $i_L=3e^{-2t}\,\mathrm A$ ($\tau=L/R=\tfrac12$ ✓).
+
+</div>
+
+<div class="worked" data-note-id="condizioni-iniziali-generatori-esempio-2">
+
+### Zero-input RC
+
+$R=2$, $C=1$, $v_C(0^-)=4$.
+
+**Solution.**
+
+1. $V_C=\dfrac{4}{s+1/2}$, $v_C=4e^{-t/2}$.
+
+</div>
+
+<div class="worked" data-note-id="condizioni-iniziali-generatori-esempio-3">
+
+### Output across a resistor
+
+Same RC: voltage across the resistor after $t=0$.
+
+**Solution.**
+
+1. $v_R=-v_C$ (KVL, sources off): $v_R=-4e^{-t/2}$; at $t=0^+$ it jumps from $v_R(0^-)$ to $-4$ (the resistor voltage is not continuous).
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="condizioni-iniziali-generatori-errore-1">
+
+- **Wrong:** Placing the source $v_C(0^-)/s$ with the wrong polarity.
+- **Right:** From KVL: the drop across $1/(sC)$ plus $v_C(0^-)/s$ equals the terminal voltage.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="condizioni-iniziali-generatori-esame-1">
+
+Initial conditions as sources: step 4 of the analysis exercise <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

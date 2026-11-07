@@ -1,0 +1,227 @@
+- id: orale-t-19
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.1
+    - laplace-definizione-proprieta.3
+  kind: orale
+  front:
+    it: '**Trasformata di Laplace: proprietà.** Definisci la trasformata di Laplace unilatera e enuncia le proprietà principali (linearità, derivata, integrale, traslazione, convoluzione).'
+    en: '**Laplace transform: properties.** Define the unilateral Laplace transform and state its main properties (linearity, derivative, integral, shift, convolution).'
+  back:
+    it: |-
+      **Risposta modello.** X(s) è l'integrale da 0 meno a infinito di x(t) e^{-st}. La trasformata è lineare. La derivata si trasforma in s X(s) - x(0-), l'integrale in X(s)/s. Un ritardo T dà il fattore e^{-sT} (traslazione nel tempo). La convoluzione nel tempo diventa prodotto in frequenza.
+
+      **Punti da toccare:**
+
+      - Definizione: $X(s)=\int_{0^-}^{\infty}x(t)e^{-st}dt$
+      - Linearità
+      - Derivata: $sX(s)-x(0^-)$; integrale: $X(s)/s$
+      - Traslazione temporale $e^{-sT}X(s)$
+      - Convoluzione ↔ prodotto
+    en: |-
+      **Model answer.** X(s) is the integral from 0 minus to infinity of x(t) e^{-st}. The transform is linear. The derivative becomes s X(s) - x(0-), the integral X(s)/s. A delay T gives the factor e^{-sT} (time shift). Convolution in time becomes a product in frequency.
+
+      **Points to cover:**
+
+      - Definition: $X(s)=\int_{0^-}^{\infty}x(t)e^{-st}dt$
+      - Linearity
+      - Derivative: $sX(s)-x(0^-)$; integral: $X(s)/s$
+      - Time shift $e^{-sT}X(s)$
+      - Convolution ↔ product
+- id: orale-t-20
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.1
+  kind: orale
+  front:
+    it: '**Trasformata di un segnale a tratti.** Trasforma un impulso rettangolare di ampiezza $A$ e durata $T$ ($0<t<T$) e spiega il procedimento.'
+    en: '**Transform of a piecewise signal.** Transform a rectangular pulse of amplitude $A$ and duration $T$ ($0<t<T$) and explain the procedure.'
+  back:
+    it: |-
+      **Risposta modello.** Si scrive il segnale come differenza di due gradini: A[u(t) - u(t-T)]. Il gradino ha trasformata 1/s e il ritardo di T moltiplica per e^{-sT}. Il risultato è A(1 - e^{-sT})/s.
+
+      **Punti da toccare:**
+
+      - Esprime il segnale con gradini: $A[u_{-1}(t)-u_{-1}(t-T)]$
+      - Trasformata del gradino $1/s$
+      - Ritardo: $e^{-sT}$
+      - Risultato $A(1-e^{-sT})/s$
+    en: |-
+      **Model answer.** The signal is written as the difference of two steps: A[u(t) - u(t-T)]. The step has transform 1/s and the delay T multiplies by e^{-sT}. The result is A(1 - e^{-sT})/s.
+
+      **Points to cover:**
+
+      - Writes the signal with steps: $A[u_{-1}(t)-u_{-1}(t-T)]$
+      - Transform of the step $1/s$
+      - Delay: $e^{-sT}$
+      - Result $A(1-e^{-sT})/s$
+- id: formula-laplace-def
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Trasformata di Laplace**. Uso: Definizione.'
+    en: 'Write the formula: **Laplace transform**. Use: Definition.'
+  back:
+    it: |-
+      $$X(s)=\int_{0^-}^{\infty}x(t)e^{-st}dt$$
+
+      s = σ + jω
+    en: |-
+      $$X(s)=\int_{0^-}^{\infty}x(t)e^{-st}dt$$
+
+      s = σ + jω
+- id: formula-laplace-lin
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Linearità**. Uso: Trasformare combinazioni di segnali.'
+    en: 'Write the formula: **Linearity**. Use: Transforming combinations of signals.'
+  back:
+    it: |-
+      $$\mathcal L\{ax+by\}=aX+bY$$
+
+      a, b costanti; X, Y trasformate di x, y
+    en: |-
+      $$\mathcal L\{ax+by\}=aX+bY$$
+
+      a, b constants; X, Y transforms of x, y
+- id: formula-laplace-der
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Derivata**. Uso: Equazioni differenziali, condizioni iniziali.'
+    en: 'Write the formula: **Derivative**. Use: Differential equations, initial conditions.'
+  back:
+    it: |-
+      $$\mathcal L\{\dot x\}=sX(s)-x(0^-)$$
+
+      X(s) trasformata di x; x(0⁻) condizione iniziale
+    en: |-
+      $$\mathcal L\{\dot x\}=sX(s)-x(0^-)$$
+
+      X(s) transform of x; x(0⁻) initial condition
+- id: formula-laplace-der2
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Derivata seconda**. Uso: Equazioni del secondo ordine.'
+    en: 'Write the formula: **Second derivative**. Use: Second-order equations.'
+  back:
+    it: |-
+      $$\mathcal L\{\ddot x\}=s^2X-sx(0^-)-\dot x(0^-)$$
+
+      x(0⁻), ẋ(0⁻) condizioni iniziali
+    en: |-
+      $$\mathcal L\{\ddot x\}=s^2X-sx(0^-)-\dot x(0^-)$$
+
+      x(0⁻), ẋ(0⁻) initial conditions
+- id: formula-laplace-int
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Integrale**. Uso: Equazioni integro-differenziali.'
+    en: 'Write the formula: **Integral**. Use: Integro-differential equations.'
+  back:
+    it: |-
+      $$\mathcal L\left\{\int_{0^-}^{t}x\right\}=\frac{X(s)}{s}$$
+
+      X(s) trasformata
+    en: |-
+      $$\mathcal L\left\{\int_{0^-}^{t}x\right\}=\frac{X(s)}{s}$$
+
+      X(s) transform
+- id: formula-laplace-ritardo
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Ritardo**. Uso: Segnali a tratti.'
+    en: 'Write the formula: **Time delay**. Use: Piecewise signals.'
+  back:
+    it: |-
+      $$\mathcal L\{x(t-T)u_{-1}(t-T)\}=e^{-sT}X(s)$$
+
+      T ritardo [s]
+    en: |-
+      $$\mathcal L\{x(t-T)u_{-1}(t-T)\}=e^{-sT}X(s)$$
+
+      T delay [s]
+- id: formula-laplace-shift
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Traslazione in frequenza**. Uso: Segnali smorzati esponenzialmente.'
+    en: 'Write the formula: **Frequency shift**. Use: Exponentially damped signals.'
+  back:
+    it: |-
+      $$\mathcal L\{e^{-at}x(t)\}=X(s+a)$$
+
+      a costante reale; X(s+a) trasformata traslata
+    en: |-
+      $$\mathcal L\{e^{-at}x(t)\}=X(s+a)$$
+
+      a real constant; X(s+a) shifted transform
+- id: formula-laplace-conv
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Convoluzione**. Uso: Risposta di un sistema.'
+    en: 'Write the formula: **Convolution**. Use: Response of a system.'
+  back:
+    it: |-
+      $$\mathcal L\{x*y\}=X(s)\,Y(s)$$
+
+      x*y convoluzione; X, Y trasformate
+    en: |-
+      $$\mathcal L\{x*y\}=X(s)\,Y(s)$$
+
+      x*y convolution; X, Y transforms
+- id: formula-val-iniz
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Valore iniziale**. Uso: Valore di x subito dopo t=0.'
+    en: 'Write the formula: **Initial value**. Use: Value of x just after t=0.'
+  back:
+    it: |-
+      $$x(0^+)=\lim_{s\to\infty}sX(s)$$
+
+      X(s) trasformata; limite per s→∞
+    en: |-
+      $$x(0^+)=\lim_{s\to\infty}sX(s)$$
+
+      X(s) transform; limit as s→∞
+- id: formula-val-fin
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Valore finale**.'
+    en: 'Write the formula: **Final value**.'
+  back:
+    it: |-
+      $$x(\infty)=\lim_{s\to0}sX(s)$$
+
+      valido se i poli di sX(s) hanno Re<0
+    en: |-
+      $$x(\infty)=\lim_{s\to0}sX(s)$$
+
+      valid if the poles of sX(s) have Re<0

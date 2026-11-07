@@ -1,0 +1,34 @@
+- id: formula-potenza-istantanea
+  topic: porta-e-bipolo
+  objectives:
+    - porta-e-bipolo.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Potenza istantanea assorbita**. Uso: Bilanci di potenza.'
+    en: 'Write the formula: **Instantaneous absorbed power**. Use: Power balances.'
+  back:
+    it: |-
+      $$p(t)=v(t)\,i(t)$$
+
+      v [V], i [A], p [W]; convenzione degli utilizzatori
+    en: |-
+      $$p(t)=v(t)\,i(t)$$
+
+      v [V], i [A], p [W]; passive sign convention
+- id: formula-energia
+  topic: porta-e-bipolo
+  objectives:
+    - porta-e-bipolo.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Energia assorbita**. Uso: Passività, energia immagazzinata.'
+    en: 'Write the formula: **Absorbed energy**. Use: Passivity, stored energy.'
+  back:
+    it: |-
+      $$w(t_0,t)=\int_{t_0}^{t}v(\tau)\,i(\tau)\,d\tau$$
+
+      w [J]
+    en: |-
+      $$w(t_0,t)=\int_{t_0}^{t}v(\tau)\,i(\tau)\,d\tau$$
+
+      w [J]

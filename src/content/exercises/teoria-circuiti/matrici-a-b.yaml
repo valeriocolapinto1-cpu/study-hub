@@ -1,0 +1,248 @@
+- id: q-ii-011
+  topic: matrici-a-b
+  objectives:
+    - matrici-a-b.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'La matrice di incidenza ridotta $A$ di un grafo con $n$ nodi e $b$ rami ha dimensione:'
+    en: 'The reduced incidence matrix $A$ of a graph with $n$ nodes and $b$ branches has size:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Si elimina la riga del nodo di riferimento.
+        en: The row of the reference node is removed.
+  choices:
+    - text:
+        it: $(n-1)\times b$
+        en: $(n-1)\times b$
+      correct: true
+    - text:
+        it: $n\times b$
+        en: $n\times b$
+      correct: false
+    - text:
+        it: $b\times b$
+        en: $b\times b$
+      correct: false
+    - text:
+        it: $b\times(n-1)$
+        en: $b\times(n-1)$
+      correct: false
+  origin: originale
+- id: q-ii-012
+  topic: matrici-a-b
+  objectives:
+    - matrici-a-b.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'La KCL in forma matriciale è:'
+    en: 'KCL in matrix form is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $A\mathbf i=\mathbf0$.
+        en: $A\mathbf i=\mathbf0$.
+  choices:
+    - text:
+        it: $A\mathbf i=0$
+        en: $A\mathbf i=0$
+      correct: true
+    - text:
+        it: $\mathbf v=B^{\mathsf T}\mathbf i$
+        en: $\mathbf v=B^{\mathsf T}\mathbf i$
+      correct: false
+    - text:
+        it: $B\mathbf i=0$
+        en: $B\mathbf i=0$
+      correct: false
+    - text:
+        it: $A\mathbf v=0$
+        en: $A\mathbf v=0$
+      correct: false
+  origin: originale
+- id: q-ii-013
+  topic: matrici-a-b
+  objectives:
+    - matrici-a-b.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'La KVL in forma matriciale è:'
+    en: 'KVL in matrix form is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $B\mathbf v=\mathbf0$ (maglie fondamentali).
+        en: $B\mathbf v=\mathbf0$ (fundamental loops).
+  choices:
+    - text:
+        it: $\mathbf i=A^{\mathsf T}\mathbf v$
+        en: $\mathbf i=A^{\mathsf T}\mathbf v$
+      correct: false
+    - text:
+        it: $A\mathbf v=0$
+        en: $A\mathbf v=0$
+      correct: false
+    - text:
+        it: $B\mathbf i=0$
+        en: $B\mathbf i=0$
+      correct: false
+    - text:
+        it: $B\mathbf v=0$
+        en: $B\mathbf v=0$
+      correct: true
+  origin: originale
+- id: q-ii-014
+  topic: matrici-a-b
+  objectives:
+    - matrici-a-b.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: "Con $A=[A_t\\ A_c]$ e $F=A_t^{-1}A_c$, la matrice delle maglie fondamentali (con $B_c=\\mathbb1$) è:"
+    en: "With $A=[A_t\\ A_c]$ and $F=A_t^{-1}A_c$, the fundamental loop matrix (with $B_c=\\mathbb1$) is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Da $AB^{\\mathsf T}=0$: $B_t=-F^{\\mathsf T}$."
+        en: "From $AB^{\\mathsf T}=0$: $B_t=-F^{\\mathsf T}$."
+  choices:
+    - text:
+        it: $[\mathbb1\ \ F]$
+        en: $[\mathbb1\ \ F]$
+      correct: false
+    - text:
+        it: $[F^{\mathsf T}\ \ \mathbb1]$
+        en: $[F^{\mathsf T}\ \ \mathbb1]$
+      correct: false
+    - text:
+        it: $[-F\ \ \mathbb1]$
+        en: $[-F\ \ \mathbb1]$
+      correct: false
+    - text:
+        it: $[-F^{\mathsf T}\ \ \mathbb1]$
+        en: $[-F^{\mathsf T}\ \ \mathbb1]$
+      correct: true
+  origin: originale
+- id: q-ii-015
+  topic: matrici-a-b
+  objectives:
+    - matrici-a-b.3
+  difficulty: 3
+  kind: static
+  statement:
+    it: Le matrici complete $A$ e $B$ hanno la stessa dimensione e $B=-A^{\mathsf T}$.
+    en: The full matrices $A$ and $B$ have the same size and $B=-A^{\mathsf T}$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Dimensioni diverse: la relazione vale tra i blocchi.'
+        en: 'Different sizes: the relation holds between the blocks.'
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-ii-016
+  topic: matrici-a-b
+  objectives:
+    - matrici-a-b.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Per ogni grafo orientato vale $A\,B^{\mathsf T}=0$.
+    en: For every directed graph $A\,B^{\mathsf T}=0$ holds.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Segue dal fatto che le tensioni $\mathbf v=A^{\mathsf T}\mathbf e$ soddisfano $B\mathbf v=0$ per ogni $\mathbf e$.
+        en: It follows from the fact that the voltages $\mathbf v=A^{\mathsf T}\mathbf e$ satisfy $B\mathbf v=0$ for every $\mathbf e$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-ii-040
+  topic: matrici-a-b
+  objectives:
+    - matrici-a-b.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Nella matrice $A$ il ramo $k$ che esce dal nodo $j$ ha $a_{jk}=$
+    en: In the matrix $A$, branch $k$ leaving node $j$ has $a_{jk}=$
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Convenzione: $+1$ uscente, $-1$ entrante.'
+        en: 'Convention: $+1$ leaving, $-1$ entering.'
+  choices:
+    - text:
+        it: $-1$
+        en: $-1$
+      correct: false
+    - text:
+        it: $2$
+        en: $2$
+      correct: false
+    - text:
+        it: $0$
+        en: $0$
+      correct: false
+    - text:
+        it: $+1$
+        en: $+1$
+      correct: true
+  origin: originale
+- id: q-ii-042
+  topic: matrici-a-b
+  objectives:
+    - matrici-a-b.2
+  difficulty: 3
+  kind: static
+  statement:
+    it: La KCL in forma matriciale è $B\mathbf i=0$.
+    en: KCL in matrix form is $B\mathbf i=0$.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: La KCL è $A\mathbf i=0$; $B\mathbf v=0$ è la KVL.
+        en: KCL is $A\mathbf i=0$; $B\mathbf v=0$ is KVL.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale

@@ -1,0 +1,101 @@
+---
+course: teoria-circuiti
+topic: rifasamento
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="rifasamento-intuizione-1">
+
+Un motore (carico induttivo) chiede alla rete anche potenza reattiva, che fa scorrere corrente nei cavi senza produrre lavoro. Un condensatore in parallelo fornisce «sul posto» quella reattiva: la rete vede un carico più resistivo, la corrente scende e con lei le perdite.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="rifasamento-teoria-1">
+
+Un carico induttivo con $P$ e $\cos\varphi_1$ assorbe $Q_1=P\tan\varphi_1$. Collegando in parallelo un condensatore $C$, la tensione sul carico non cambia e il condensatore assorbe $Q_C=-\omega CV^2$. La reattiva totale diventa $Q_2=Q_1-\omega CV^2=P\tan\varphi_2$, con $\varphi_2$ nuovo sfasamento.
+
+</div>
+
+<div data-note-id="rifasamento-teoria-2">
+
+$$
+C=\frac{P(\tan\varphi_1-\tan\varphi_2)}{\omega V^2}\quad(V\text{ efficace}).
+$$
+
+Lo scopo è ridurre la corrente (e quindi le perdite) a parità di $P$: $I=P/(V\cos\varphi)$.
+
+</div>
+
+<Formula id="rifasamento-c" />
+<Formula id="q-c" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="rifasamento-esempio-1">
+
+### Rifasamento completo
+
+$P=100\,\mathrm W$, $V=10\,\mathrm V$, $\omega=10\,\mathrm{rad/s}$, $\cos\varphi_1=0{,}8$ (induttivo), $\cos\varphi_2=1$.
+
+**Soluzione.**
+
+1. $\tan\varphi_1=3/4$, $\tan\varphi_2=0$.
+2. $C=\dfrac{100\cdot0{,}75}{10\cdot100}=0{,}075\,\mathrm F$.
+3. Verifica: $Q_1=75\,\mathrm{var}$, $Q_C=-\omega CV^2=-10\cdot0{,}075\cdot100=-75$: reattiva totale nulla. ✓
+
+</div>
+
+<div class="worked" data-note-id="rifasamento-esempio-2">
+
+### Rifasamento parziale
+
+Stesso carico, ma si vuole $\cos\varphi_2=12/13$ ($\tan\varphi_2=5/12$).
+
+**Soluzione.**
+
+1. $C=\dfrac{100(3/4-5/12)}{1000}=\dfrac{100\cdot1/3}{1000}=\tfrac1{30}\approx0{,}0333\,\mathrm F$.
+
+</div>
+
+<div class="worked" data-note-id="rifasamento-esempio-3">
+
+### Corrente prima e dopo
+
+Stesso carico: confronta le correnti efficaci prima e dopo il rifasamento completo.
+
+**Soluzione.**
+
+1. Prima: $I_1=P/(V\cos\varphi_1)=100/(10\cdot0{,}8)=12{,}5\,\mathrm A$. Dopo: $I_2=100/10=10\,\mathrm A$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="rifasamento-errore-1">
+
+- **Sbagliato:** Collegare l'induttore di rifasamento (invece del condensatore) o il condensatore in serie.
+- **Corretto:** Il condensatore va in parallelo al carico induttivo.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="rifasamento-esame-1">
+
+Rifasamento: 19-6-2002 <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

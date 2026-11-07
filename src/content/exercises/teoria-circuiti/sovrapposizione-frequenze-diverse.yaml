@@ -1,0 +1,128 @@
+- id: gen-passo-condizione-iniziale-3
+  topic: sovrapposizione-frequenze-diverse
+  objectives:
+    - sovrapposizione-frequenze-diverse.3
+  difficulty: 1
+  kind: generated
+  generator: teoria-circuiti/passo-condizione-iniziale-3
+  origin: tipologia-appello
+- id: q-iii-019
+  topic: sovrapposizione-frequenze-diverse
+  objectives:
+    - sovrapposizione-frequenze-diverse.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Due generatori a frequenze diverse alimentano un circuito lineare. La tensione totale in uscita si ottiene:'
+    en: 'Two sources at different frequencies drive a linear circuit. The total output voltage is obtained:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Sovrapposizione nel tempo, mai dei fasori a frequenze diverse.
+        en: Superposition in time, never of phasors at different frequencies.
+  choices:
+    - text:
+        it: sommando nel tempo le risposte calcolate separatamente
+        en: by adding in time the responses computed separately
+      correct: true
+    - text:
+        it: sommando i fasori
+        en: by adding the phasors
+      correct: false
+    - text:
+        it: sommando i moduli
+        en: by adding the magnitudes
+      correct: false
+    - text:
+        it: non è calcolabile
+        en: it cannot be computed
+      correct: false
+  origin: originale
+- id: q-iii-020
+  topic: sovrapposizione-frequenze-diverse
+  objectives:
+    - sovrapposizione-frequenze-diverse.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: Un generatore continuo e uno sinusoidale si analizzano separatamente e le risposte si sommano nel tempo.
+    en: A DC source and a sinusoidal one are analysed separately and the responses are added in time.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: La continua si tratta con $C$ aperto e $L$ corto.
+        en: DC is handled with $C$ open and $L$ shorted.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-iii-021
+  topic: sovrapposizione-frequenze-diverse
+  objectives:
+    - sovrapposizione-frequenze-diverse.3
+  difficulty: 3
+  kind: static
+  statement:
+    it: "Per $t<0$: $v_C=4+\\tfrac12\\cos t+\\tfrac12\\sin t$. La condizione iniziale è:"
+    en: "For $t<0$: $v_C=4+\\tfrac12\\cos t+\\tfrac12\\sin t$. The initial condition is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Valore a $t=0$: $4+\\tfrac12+0$."
+        en: "Value at $t=0$: $4+\\tfrac12+0$."
+  choices:
+    - text:
+        it: $4$
+        en: $4$
+      correct: false
+    - text:
+        it: $5$
+        en: $5$
+      correct: false
+    - text:
+        it: $4{,}5\sqrt2$
+        en: $4.5\sqrt2$
+      correct: false
+    - text:
+        it: $4{,}5$
+        en: $4.5$
+      correct: true
+  origin: originale
+- id: q-iii-040
+  topic: sovrapposizione-frequenze-diverse
+  objectives:
+    - sovrapposizione-frequenze-diverse.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Per sommare le risposte a due frequenze diverse basta sommare i fasori.
+    en: To add the responses at two different frequencies it is enough to add the phasors.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Si sommano le risposte nel tempo.
+        en: The responses are added in time.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale

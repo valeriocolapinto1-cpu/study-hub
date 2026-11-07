@@ -1,0 +1,159 @@
+- id: orale-t-06
+  topic: massimo-trasferimento-potenza
+  objectives:
+    - massimo-trasferimento-potenza.1
+    - massimo-trasferimento-potenza.2
+  kind: orale
+  front:
+    it: '**Massimo trasferimento di potenza: dimostrazione.** Dimostra che la potenza attiva ceduta a un carico $Z_L$ da un equivalente di Thevenin è massima per $Z_L=Z_{th}^*$ e calcola $P_{max}$.'
+    en: '**Maximum power transfer: proof.** Prove that the active power delivered to a load $Z_L$ by a Thévenin equivalent is maximum for $Z_L=Z_{th}^*$ and compute $P_{max}$.'
+  back:
+    it: |-
+      **Risposta modello.** La corrente nel carico è Vth/(Zth+ZL); la potenza attiva è metà del prodotto R_L per il modulo quadro della corrente. Scegliendo X_L = -X_th la reattanza totale è nulla e il modulo della corrente è massimo. Poi si deriva rispetto a R_L e si trova il massimo per R_L = R_th, quindi ZL = Zth coniugata. Pmax = |Vth|^2/(8 Rth) con valori di picco.
+
+      **Punti da toccare:**
+
+      - Scrive la potenza attiva sul carico in funzione di $R_L$ e $X_L$
+      - Per $X_L=-X_{th}$ si massimizza la corrente (reattanza totale nulla)
+      - Si deriva rispetto a $R_L$: massimo per $R_L=R_{th}$
+      - $P_{max}=|V_{th}|^2/(8R_{th})$ con ampiezze di picco (o $/(4R_{th})$ con efficaci)
+    en: |-
+      **Model answer.** The load current is Vth/(Zth+ZL); the active power is half the product of R_L and the squared magnitude of the current. Choosing X_L = -X_th the total reactance is zero and the magnitude of the current is maximum. Then differentiating with respect to R_L the maximum is found at R_L = R_th, hence ZL = Zth conjugate. Pmax = |Vth|^2/(8 Rth) with peak values.
+
+      **Points to cover:**
+
+      - Writes the active power in the load as a function of $R_L$ and $X_L$
+      - For $X_L=-X_{th}$ the current is maximised (zero total reactance)
+      - Differentiating with respect to $R_L$: maximum at $R_L=R_{th}$
+      - $P_{max}=|V_{th}|^2/(8R_{th})$ with peak amplitudes (or $/(4R_{th})$ with RMS values)
+- id: orale-t-07
+  topic: massimo-trasferimento-potenza
+  objectives:
+    - massimo-trasferimento-potenza.3
+    - massimo-trasferimento-potenza.1
+  kind: orale
+  front:
+    it: '**Massimo trasferimento con trasformatore ideale.** Un generatore reale (equivalente $V_{th}$, $R_{th}$) alimenta un carico resistivo $R_L$ attraverso un trasformatore ideale di rapporto $n$. Come si sceglie $n$ per il massimo trasferimento e che potenza si ottiene?'
+    en: '**Maximum transfer with an ideal transformer.** A real source (equivalent $V_{th}$, $R_{th}$) feeds a resistive load $R_L$ through an ideal transformer of ratio $n$. How is $n$ chosen for maximum transfer and what power is obtained?'
+  back:
+    it: |-
+      **Risposta modello.** Il carico visto dal primario è l'impedenza riportata n^2 R_L. Per il massimo trasferimento si impone l'adattamento n^2 R_L = R_th, quindi n = sqrt(R_th/R_L). La potenza massima è Vth^2/(8 R_th) con valori di picco e non dipende dal rapporto scelto.
+
+      **Punti da toccare:**
+
+      - Il carico visto dal primario è $n^2R_L$ (impedenza riportata)
+      - Condizione di adattamento: $n^2R_L=R_{th}$
+      - La potenza massima è $|V_{th}|^2/(8R_{th})$ (picco): non dipende da $n$
+    en: |-
+      **Model answer.** The load seen from the primary is the reflected impedance n^2 R_L. For maximum transfer the matching n^2 R_L = R_th is imposed, hence n = sqrt(R_th/R_L). The maximum power is Vth^2/(8 R_th) with peak values and does not depend on the chosen ratio.
+
+      **Points to cover:**
+
+      - The load seen from the primary is $n^2R_L$ (reflected impedance)
+      - Matching condition: $n^2R_L=R_{th}$
+      - The maximum power is $|V_{th}|^2/(8R_{th})$ (peak): it does not depend on $n$
+- id: formula-pmax-picco
+  topic: massimo-trasferimento-potenza
+  objectives:
+    - massimo-trasferimento-potenza.1
+    - massimo-trasferimento-potenza.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Potenza massima (picco)**.'
+    en: 'Write the formula: **Maximum power (peak)**.'
+  back:
+    it: |-
+      $$P_{max}=\frac{|V_{th}|^2}{8R_{th}}$$
+
+      V_th di picco
+    en: |-
+      $$P_{max}=\frac{|V_{th}|^2}{8R_{th}}$$
+
+      peak V_th
+- id: formula-pmax-eff
+  topic: massimo-trasferimento-potenza
+  objectives:
+    - massimo-trasferimento-potenza.1
+    - massimo-trasferimento-potenza.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Potenza massima (efficace)**.'
+    en: 'Write the formula: **Maximum power (RMS)**.'
+  back:
+    it: |-
+      $$P_{max}=\frac{|V_{th}|^2}{4R_{th}}$$
+
+      V_th efficace
+    en: |-
+      $$P_{max}=\frac{|V_{th}|^2}{4R_{th}}$$
+
+      RMS V_th
+- id: formula-zl-coniugata
+  topic: massimo-trasferimento-potenza
+  objectives:
+    - massimo-trasferimento-potenza.1
+    - massimo-trasferimento-potenza.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Adattamento coniugato**. Uso: Massimo trasferimento di potenza attiva.'
+    en: 'Write the formula: **Conjugate matching**. Use: Maximum active power transfer.'
+  back:
+    it: |-
+      $$Z_L=Z_{th}^{*}$$
+
+      Z_th* coniugato dell'impedenza di Thevenin [Ω]
+    en: |-
+      $$Z_L=Z_{th}^{*}$$
+
+      Z_th* conjugate of the Thévenin impedance [Ω]
+- id: formula-rl-modulo
+  topic: massimo-trasferimento-potenza
+  objectives:
+    - massimo-trasferimento-potenza.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Carico resistivo**. Uso: Carico puramente resistivo.'
+    en: 'Write the formula: **Resistive load**. Use: Purely resistive load.'
+  back:
+    it: |-
+      $$R_L=|Z_{th}|=\sqrt{R_{th}^2+X_{th}^2}$$
+
+      R_th, X_th resistenza e reattanza di Thevenin [Ω]
+    en: |-
+      $$R_L=|Z_{th}|=\sqrt{R_{th}^2+X_{th}^2}$$
+
+      R_th, X_th Thévenin resistance and reactance [Ω]
+- id: formula-rendimento-50
+  topic: massimo-trasferimento-potenza
+  objectives:
+    - massimo-trasferimento-potenza.3
+  kind: formula
+  front:
+    it: "Scrivi la formula: **Rendimento all'adattamento**. Uso: Commento all'adattamento coniugato."
+    en: 'Write the formula: **Efficiency at matching**. Use: Remark on conjugate matching.'
+  back:
+    it: |-
+      $$\eta=50\%$$
+
+      η rapporto tra potenza sul carico e potenza del generatore equivalente
+    en: |-
+      $$\eta=50\%$$
+
+      η ratio of load power to the power of the equivalent source
+- id: formula-adatt-trasf
+  topic: massimo-trasferimento-potenza
+  objectives:
+    - massimo-trasferimento-potenza.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Adattamento con trasformatore**. Uso: Adattare un carico con un trasformatore ideale.'
+    en: 'Write the formula: **Matching with a transformer**. Use: Matching a load with an ideal transformer.'
+  back:
+    it: |-
+      $$n^2R_L=R_{th}$$
+
+      n rapporto di trasformazione; R_L carico [Ω]; R_th [Ω]
+    en: |-
+      $$n^2R_L=R_{th}$$
+
+      n turns ratio; R_L load [Ω]; R_th [Ω]

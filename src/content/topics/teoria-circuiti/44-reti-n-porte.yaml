@@ -1,0 +1,25 @@
+id: reti-n-porte
+course: teoria-circuiti
+order: 44
+title:
+  it: Reti N-porte
+  en: N-port networks
+summary:
+  it: Reti a $N$ porte, condizione di porta e numero di relazioni che le descrivono.
+  en: $N$-port networks, the port condition and the number of relations describing them.
+objectives:
+  - id: reti-n-porte.1
+    text:
+      it: Definire una rete a $N$ porte
+      en: Define an $N$-port network
+  - id: reti-n-porte.2
+    text:
+      it: Contare le relazioni che la descrivono
+      en: Count the relations describing it
+  - id: reti-n-porte.3
+    text:
+      it: Capire la condizione di porta
+      en: Understand the port condition
+group:
+  it: VI · Caratterizzazione esterna
+  en: VI · External characterisation

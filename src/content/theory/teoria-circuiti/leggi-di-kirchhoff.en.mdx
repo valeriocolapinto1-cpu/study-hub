@@ -1,0 +1,138 @@
+---
+course: teoria-circuiti
+topic: leggi-di-kirchhoff
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="leggi-di-kirchhoff-intuizione-1">
+
+Charge does not pile up in wires and nodes: whatever current flows in must flow out. And if you walk around a closed path back to where you started, you find the same potential again: the voltage "rises" and "drops" cancel out. These two ideas, charge conservation and a well-defined potential, are all you need.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="leggi-di-kirchhoff-teoria-1">
+
+**Kirchhoff's current law (KCL).** At every instant the algebraic sum of the currents of the branches meeting at a node is zero: $\sum_k \pm i_k = 0$, with sign $+$ for leaving currents and $-$ for entering ones (or vice versa, as long as you are consistent).
+
+</div>
+
+<div data-note-id="leggi-di-kirchhoff-teoria-2">
+
+**Kirchhoff's voltage law (KVL).** At every instant the algebraic sum of the branch voltages around a loop, traversed in one direction, is zero: $\sum_k \pm v_k = 0$, with $+$ when the reference direction of the voltage agrees with the direction of traversal.
+
+</div>
+
+<div data-note-id="leggi-di-kirchhoff-teoria-3">
+
+Both laws depend only on the _topology_ (how the branches are connected), not on the nature of the components. They hold at every instant, for any waveform, within the lumped-parameter model.
+
+</div>
+
+<div data-note-id="leggi-di-kirchhoff-teoria-4">
+
+**Extension to cut sets.** A _cut set_ is a set of branches whose removal splits the circuit into two parts: KCL holds for every cut set (algebraic sum of the currents crossing the closed surface that encloses one of the two parts).
+
+</div>
+
+<Figure
+  caption="Node with one entering current i₁ and two leaving currents i₂, i₃: i₁ = i₂ + i₃"
+  num="1"
+  id="fig-1"
+>
+  <svg
+    viewBox="0 0 260 150"
+    xmlns="http://www.w3.org/2000/svg"
+    stroke="currentColor"
+    stroke-width="2"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    font-family="system-ui,sans-serif"
+    font-size="14"
+    aria-hidden="true"
+    focusable="false"
+    class="diagram"
+    style="max-width: 260px"
+  >
+    <circle cx="130" cy="75" r="3" fill="currentColor" />
+    <polyline points="30 75 124 75" />
+    <polyline points="117.7,72.0 124,75 117.7,78.0" />
+    <polyline points="136 75 230 40" />
+    <polyline points="223.0,39.3 230,40 225.2,45.1" />
+    <polyline points="136 75 230 115" />
+    <polyline points="225.4,109.7 230,115 223.0,115.3" />
+    <text x="60" y="62" text-anchor="middle" fill="currentColor" stroke="none">
+      {'i₁'}
+    </text>
+    <text x="205" y="48" text-anchor="end" fill="currentColor" stroke="none">
+      {'i₂'}
+    </text>
+    <text x="205" y="135" text-anchor="end" fill="currentColor" stroke="none">
+      {'i₃'}
+    </text>
+    <text x="130" y="100" text-anchor="middle" fill="currentColor" stroke="none">
+      {'i₁ = i₂ + i₃'}
+    </text>
+  </svg>
+</Figure>
+
+<details class="proof" data-note-id="leggi-di-kirchhoff-dimostrazione-1">
+<summary>Proof: KCL holds for every cut set</summary>
+
+**Statement.** Let $S$ be a closed surface enclosing a set of nodes: the algebraic sum of the currents of the branches crossing it is zero.
+
+1. Write KCL for each node enclosed by $S$: $\sum_{k\in\text{node}} \pm i_k = 0$.
+2. Add up the equations of all the inner nodes.
+3. A branch lying entirely inside $S$ joins two inner nodes: its current appears in two equations with opposite signs (it leaves one node and enters the other) and cancels out.
+4. Only the currents of the branches crossing $S$ remain, with consistent signs (what leaves the inner node leaves $S$). Their sum is zero. $\square$
+
+</details>
+
+<Formula id="kcl" />
+<Formula id="kvl" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="leggi-di-kirchhoff-esempio-1">
+
+### Numerical KCL and KVL
+
+Currents $i_1 = 3\,\mathrm{A}$ and $i_2 = 2\,\mathrm{A}$ enter a node, while $i_3 = 4\,\mathrm{A}$ and $i_4$ leave it. Find $i_4$. Then, in a three-branch loop, $v_1 = 5\,\mathrm{V}$ and $v_2 = -2\,\mathrm{V}$ (directions agreeing with the traversal): find $v_3$.
+
+**Solution.**
+
+1. KCL (entering $=$ leaving): $3+2 = 4 + i_4 \Rightarrow i_4 = 1\,\mathrm{A}$.
+2. KVL: $v_1+v_2+v_3 = 0 \Rightarrow v_3 = -(5-2) = -3\,\mathrm{V}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="leggi-di-kirchhoff-errore-1">
+
+- **Wrong:** Writing KCL with mixed signs without fixing a convention, obtaining $i_1+i_2+i_3=0$ with all currents entering but positive.
+- **Right:** Fix "leaving $+$, entering $-$" and derive the signs from the reference directions, not from the values.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="leggi-di-kirchhoff-esame-1">
+
+Kirchhoff's laws are the basis of every analysis exercise; as a stand-alone topic they do not emerge from past exam papers <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

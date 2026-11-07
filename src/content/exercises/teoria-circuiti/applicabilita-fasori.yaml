@@ -1,0 +1,86 @@
+- id: q-iii-016
+  topic: applicabilita-fasori
+  objectives:
+    - applicabilita-fasori.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Il metodo dei fasori si applica a circuiti:'
+    en: 'The phasor method applies to circuits that are:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Servono linearità, permanenza e regime.
+        en: Linearity, time invariance and steady state are required.
+  choices:
+    - text:
+        it: qualsiasi, anche non lineari
+        en: any, even nonlinear
+      correct: false
+    - text:
+        it: solo resistivi
+        en: purely resistive only
+      correct: false
+    - text:
+        it: solo con generatori di corrente
+        en: with current sources only
+      correct: false
+    - text:
+        it: lineari, tempo-invarianti, in regime sinusoidale a una sola frequenza
+        en: linear, time-invariant, in sinusoidal steady state at a single frequency
+      correct: true
+  origin: originale
+- id: q-iii-017
+  topic: applicabilita-fasori
+  objectives:
+    - applicabilita-fasori.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Il metodo dei fasori fornisce il transitorio dopo l'accensione di un generatore.
+    en: The phasor method gives the transient after a source is switched on.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Fornisce solo la risposta a regime.
+        en: It only gives the steady-state response.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-iii-018
+  topic: applicabilita-fasori
+  objectives:
+    - applicabilita-fasori.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Con un diodo nel circuito si può comunque usare il metodo dei fasori senza approssimazioni.
+    en: With a diode in the circuit the phasor method can still be used without approximations.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: L'elemento non lineare viola l'ipotesi di linearità.
+        en: The nonlinear element violates the linearity assumption.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale

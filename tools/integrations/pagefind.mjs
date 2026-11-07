@@ -30,11 +30,9 @@ export async function buildSearchIndex(distDir, base, logger) {
   }
 
   for (const lang of ['it', 'en']) {
-    // La matematica KaTeX compare tre volte nell'HTML (MathML, resa visiva, annotazione TeX): indicizzata
-    // produrrebbe parole spurie ("qqq" da $q$) ed estratti illeggibili. Le formule restano cercabili
-    // tramite i record del formulario.
     const { index, errors } = await pagefind.createIndex({
       forceLanguage: lang,
+      // il testo interno di KaTeX (glifi ripetuti, sorgente TeX) renderebbe illeggibili gli estratti
       excludeSelectors: ['.katex'],
     });
     if (!index) throw new Error(`Pagefind: ${errors.join('; ')}`);

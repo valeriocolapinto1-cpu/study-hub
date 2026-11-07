@@ -1,0 +1,82 @@
+---
+/** Extra «L'esame, cosa sappiamo e cosa no»: fatti con etichetta di affidabilità e domande al docente. */
+import Callout from '../../../components/Callout.astro';
+import Reliability from '../components/Reliability.astro';
+import { EXAM_KNOWN, EXAM_UNKNOWN, LECTURER_QUESTIONS, RELIABILITY, type Reliability as R } from '../data';
+import type { Lang } from '../../../i18n';
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const it = lang === 'it';
+const kinds = Object.keys(RELIABILITY) as R[];
+---
+
+<div class="prose">
+  <p class="lede">
+    {it
+      ? 'Il sito originale distingueva con cura ciò che è ufficiale da ciò che è ricostruito dalle prove passate. Questa pagina conserva quella distinzione: ogni affermazione ha la sua etichetta.'
+      : 'The original site carefully separated what is official from what is reconstructed from past exams. This page keeps that distinction: every statement carries its label.'}
+  </p>
+  <h2 id="noto">{it ? 'Cosa è noto' : 'What is known'}</h2>
+  <ul>
+    {EXAM_KNOWN.map((k) => (
+      <li data-note-id={`esame-info-noto-${k.r[0]}`}>
+        {k.text[lang]}{' '}
+        {k.r.map((r) => (
+          <Reliability kind={r} lang={lang} />
+        ))}
+      </li>
+    ))}
+  </ul>
+  <h2 id="non-noto">{it ? 'Cosa non è pubblico' : 'What is not public'}</h2>
+  <Callout tone="attenzione" title={RELIABILITY['da-verificare'].label[lang]}>
+    <p>{EXAM_UNKNOWN[lang]}</p>
+  </Callout>
+  <h2 id="domande">{it ? 'Domande da fare al docente' : 'Questions to ask the lecturer'}</h2>
+  <ol id="domande-docente">
+    {LECTURER_QUESTIONS.map((q) => (
+      <li>{q[lang]}</li>
+    ))}
+  </ol>
+  <p>
+    <button
+      type="button"
+      class="btn btn--ghost btn--sm"
+      data-copy="#domande-docente"
+      data-done={it ? 'Copiato.' : 'Copied.'}
+    >
+      {it ? "Copia l'elenco" : 'Copy the list'}
+    </button>
+    <span class="muted" aria-live="polite" data-copy-status></span>
+  </p>
+  <h2 id="etichette">{it ? 'Le etichette' : 'The labels'}</h2>
+  <dl>
+    {kinds.map((k) => (
+      <>
+        <dt>
+          <Reliability kind={k} lang={lang} />
+        </dt>
+        <dd>{RELIABILITY[k].text[lang]}</dd>
+      </>
+    ))}
+  </dl>
+</div>
+
+<script>
+  for (const b of document.querySelectorAll<HTMLButtonElement>('[data-copy]')) {
+    b.addEventListener('click', async () => {
+      const list = document.querySelector(b.dataset.copy!);
+      const status = b.parentElement?.querySelector<HTMLElement>('[data-copy-status]');
+      const text = [...(list?.querySelectorAll('li') ?? [])]
+        .map((li, i) => `${i + 1}. ${li.textContent ?? ''}`)
+        .join('\n');
+      try {
+        await navigator.clipboard.writeText(text);
+        if (status) status.textContent = b.dataset.done ?? '';
+      } catch {
+        if (status) status.textContent = '—';
+      }
+    });
+  }
+</script>

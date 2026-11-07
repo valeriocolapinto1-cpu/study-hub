@@ -1,0 +1,25 @@
+id: circuiti-dominio-laplace
+course: teoria-circuiti
+order: 31
+title:
+  it: Circuiti con memoria nel dominio di Laplace
+  en: Circuits with memory in the Laplace domain
+summary:
+  it: 'Il circuito trasformato: impedenze $R$, $sL$, $1/(sC)$, generatori trasformati e risoluzione con i metodi delle reti resistive.'
+  en: 'The transformed circuit: impedances $R$, $sL$, $1/(sC)$, transformed sources and solution with the methods of resistive networks.'
+objectives:
+  - id: circuiti-dominio-laplace.1
+    text:
+      it: Trasformare un circuito con memoria nel dominio di Laplace
+      en: Transform a circuit with memory into the Laplace domain
+  - id: circuiti-dominio-laplace.2
+    text:
+      it: Usare impedenze $R$, $sL$, $1/(sC)$
+      en: Use the impedances $R$, $sL$, $1/(sC)$
+  - id: circuiti-dominio-laplace.3
+    text:
+      it: Risolvere con partitori e maglie
+      en: Solve with dividers and meshes
+group:
+  it: IV · Trasformata di Laplace
+  en: IV · Laplace transform

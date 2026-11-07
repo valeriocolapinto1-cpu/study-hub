@@ -1,0 +1,282 @@
+- id: q-i-017
+  topic: relazioni-costitutive
+  objectives:
+    - relazioni-costitutive.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'La relazione costitutiva del condensatore è:'
+    en: 'The constitutive relation of the capacitor is:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $i=C\,dv/dt$.
+        en: $i=C\,dv/dt$.
+  choices:
+    - text:
+        it: $v=C\,i$
+        en: $v=C\,i$
+      correct: false
+    - text:
+        it: $i=C\,dv/dt$
+        en: $i=C\,dv/dt$
+      correct: true
+    - text:
+        it: $v=C\,di/dt$
+        en: $v=C\,di/dt$
+      correct: false
+    - text:
+        it: $i=C\,v$
+        en: $i=C\,v$
+      correct: false
+  origin: originale
+- id: q-i-018
+  topic: relazioni-costitutive
+  objectives:
+    - relazioni-costitutive.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: "In regime continuo l'induttore ideale si comporta come:"
+    en: 'In DC steady state the ideal inductor behaves as:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "$v=L\\,di/dt=0$ se $i$ è costante: tensione nulla, cioè corto."
+        en: "$v=L\\,di/dt=0$ if $i$ is constant: zero voltage, i.e. a short circuit."
+  choices:
+    - text:
+        it: circuito aperto
+        en: an open circuit
+      correct: false
+    - text:
+        it: resistore da $1\,\Omega$
+        en: a $1\,\Omega$ resistor
+      correct: false
+    - text:
+        it: generatore di corrente
+        en: a current source
+      correct: false
+    - text:
+        it: cortocircuito
+        en: a short circuit
+      correct: true
+  origin: originale
+- id: q-i-019
+  topic: relazioni-costitutive
+  objectives:
+    - relazioni-costitutive.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'La tensione ai capi di un condensatore è continua se:'
+    en: 'The voltage across a capacitor is continuous if:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "$v_C(t)=v_C(t_0)+\\frac1C\\int i\\,d\\tau$: con $i$ limitata l'integrale è continuo."
+        en: "$v_C(t)=v_C(t_0)+\\frac1C\\int i\\,d\\tau$: with bounded $i$ the integral is continuous."
+  choices:
+    - text:
+        it: la capacità è unitaria
+        en: the capacitance is unity
+      correct: false
+    - text:
+        it: la corrente è limitata
+        en: the current is bounded
+      correct: true
+    - text:
+        it: la carica è nulla
+        en: the charge is zero
+      correct: false
+    - text:
+        it: la tensione è limitata
+        en: the voltage is bounded
+      correct: false
+  origin: originale
+- id: q-i-020
+  topic: relazioni-costitutive
+  objectives:
+    - relazioni-costitutive.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: Se $v_L$ è limitata, $i_L$ è continua.
+    en: If $v_L$ is bounded, $i_L$ is continuous.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: L'integrale di una funzione limitata è continuo.
+        en: The integral of a bounded function is continuous.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-i-021
+  topic: relazioni-costitutive
+  objectives:
+    - relazioni-costitutive.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Un generatore ideale di corrente con valore nullo equivale a un ___.
+    en: An ideal current source with zero value is equivalent to a ___.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: 'Corrente nulla qualunque sia la tensione: aperto.'
+        en: 'Zero current whatever the voltage: an open circuit.'
+  choices:
+    - text:
+        it: cortocircuito
+        en: short circuit
+      correct: false
+    - text:
+        it: resistore
+        en: resistor
+      correct: false
+    - text:
+        it: circuito aperto
+        en: open circuit
+      correct: true
+    - text:
+        it: condensatore
+        en: capacitor
+      correct: false
+  origin: originale
+- id: q-i-022
+  topic: relazioni-costitutive
+  objectives:
+    - relazioni-costitutive.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Per $t>0$ in un circuito RC la tensione $v_C(0^+)$ vale:'
+    en: 'For $t>0$ in an RC circuit the voltage $v_C(0^+)$ equals:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: '$v_C$ è continua: $v_C(0^+)=v_C(0^-)$.'
+        en: '$v_C$ is continuous: $v_C(0^+)=v_C(0^-)$.'
+  choices:
+    - text:
+        it: non è determinabile
+        en: it cannot be determined
+      correct: false
+    - text:
+        it: $0$
+        en: $0$
+      correct: false
+    - text:
+        it: $v_C(0^-)$
+        en: $v_C(0^-)$
+      correct: true
+    - text:
+        it: la tensione del generatore
+        en: the source voltage
+      correct: false
+  origin: originale
+- id: q-i-041
+  topic: relazioni-costitutive
+  objectives:
+    - relazioni-costitutive.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: In un condensatore ideale la tensione può variare in modo discontinuo con una corrente limitata.
+    en: In an ideal capacitor the voltage can change discontinuously with a bounded current.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Con $i$ limitata $v_C$ è continua.
+        en: With bounded $i$, $v_C$ is continuous.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-i-042
+  topic: relazioni-costitutive
+  objectives:
+    - relazioni-costitutive.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: Un induttore ideale in regime continuo ha tensione non nulla ai suoi capi.
+    en: An ideal inductor in DC steady state has a non-zero voltage across it.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "$v=L\\,di/dt=0$: è un corto."
+        en: "$v=L\\,di/dt=0$: it is a short circuit."
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-i-046
+  topic: relazioni-costitutive
+  objectives:
+    - relazioni-costitutive.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "L'induttore: $v_L=L\\cdot$ ___."
+    en: "The inductor: $v_L=L\\cdot$ ___."
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $v=L\,di/dt$.
+        en: $v=L\,di/dt$.
+  choices:
+    - text:
+        it: $i$
+        en: $i$
+      correct: false
+    - text:
+        it: $dv/dt$
+        en: $dv/dt$
+      correct: false
+    - text:
+        it: $\int i\,dt$
+        en: $\int i\,dt$
+      correct: false
+    - text:
+        it: $di/dt$
+        en: $di/dt$
+      correct: true
+  origin: originale

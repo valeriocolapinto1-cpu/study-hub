@@ -1,0 +1,15 @@
+---
+/** Etichetta di affidabilità del sito originale (Ufficiale, Storico, …). */
+import { RELIABILITY, type Reliability } from '../data';
+import type { Lang } from '../../../i18n';
+interface Props {
+  kind: Reliability;
+  lang: Lang;
+}
+const { kind, lang } = Astro.props;
+const r = RELIABILITY[kind];
+---
+
+<span class={`badge badge--${r.tone}`} title={r.text[lang]}>
+  {r.label[lang]}
+</span>

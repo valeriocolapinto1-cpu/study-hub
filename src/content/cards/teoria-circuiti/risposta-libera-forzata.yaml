@@ -1,0 +1,46 @@
+- id: orale-t-27
+  topic: risposta-libera-forzata
+  objectives:
+    - risposta-libera-forzata.1
+    - risposta-libera-forzata.2
+  kind: orale
+  front:
+    it: '**Risposta libera e forzata con Laplace.** Spiega come si ottengono risposta libera e forzata con il metodo di Laplace per un circuito con memoria.'
+    en: '**Zero-input and zero-state response with Laplace.** Explain how the zero-input and zero-state responses are obtained with the Laplace method for a circuit with memory.'
+  back:
+    it: |-
+      **Risposta modello.** Con Laplace le condizioni iniziali diventano generatori: v_C(0-)/s in serie al condensatore e L i_L(0-) in serie all'induttore. La risposta forzata si ha con condizioni iniziali nulle e ingresso non nullo, quella libera con ingresso nullo e condizioni iniziali non nulle. Per la sovrapposizione la risposta totale è la somma.
+
+      **Punti da toccare:**
+
+      - Condizioni iniziali come generatori ($v_C(0^-)/s$, $L\,i_L(0^-)$)
+      - Forzata: condizioni iniziali nulle, ingresso non nullo
+      - Libera: ingresso nullo, condizioni iniziali non nulle
+      - Sovrapposizione: risposta totale = libera + forzata
+    en: |-
+      **Model answer.** With Laplace the initial conditions become sources: v_C(0-)/s in series with the capacitor and L i_L(0-) in series with the inductor. The zero-state response is obtained with zero initial conditions and a non-zero input, the zero-input response with zero input and non-zero initial conditions. By superposition the total response is the sum.
+
+      **Points to cover:**
+
+      - Initial conditions as sources ($v_C(0^-)/s$, $L\,i_L(0^-)$)
+      - Zero-state: zero initial conditions, non-zero input
+      - Zero-input: zero input, non-zero initial conditions
+      - Superposition: total response = zero-input + zero-state
+- id: formula-y-libera-forzata
+  topic: risposta-libera-forzata
+  objectives:
+    - risposta-libera-forzata.1
+    - risposta-libera-forzata.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Libera + forzata**. Uso: Scomposizione della risposta completa.'
+    en: 'Write the formula: **Zero-input + zero-state**. Use: Splitting the complete response.'
+  back:
+    it: |-
+      $$y=y_{lib}+y_{forz}$$
+
+      y_lib da condizioni iniziali; y_forz da ingresso
+    en: |-
+      $$y=y_{lib}+y_{forz}$$
+
+      y_zi from the initial conditions; y_zs from the input

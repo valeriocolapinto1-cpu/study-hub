@@ -1,0 +1,154 @@
+- id: orale-t-01
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.1
+    - teorema-di-thevenin.3
+  kind: orale
+  front:
+    it: "**Teorema di Thevenin: enunciato e condizioni.** Enuncia il teorema di Thevenin, precisando le ipotesi e come si calcolano i due elementi dell'equivalente."
+    en: "**Thévenin's theorem: statement and conditions.** State Thévenin's theorem, specifying the assumptions and how the two elements of the equivalent are computed."
+  back:
+    it: |-
+      **Risposta modello.** Un bipolo lineare può essere sostituito, rispetto a un carico collegato ai suoi morsetti, da un generatore ideale di tensione Vth in serie a un'impedenza Zth. Vth è la tensione a vuoto, cioè a circuito aperto. Zth è l'impedenza vista dai morsetti dopo aver spento i generatori indipendenti (i controllati restano), oppure si trova con un generatore di prova.
+
+      **Punti da toccare:**
+
+      - Ipotesi: bipolo lineare
+      - Equivalente: generatore di tensione in serie a un'impedenza
+      - $V_{th}$ è la tensione a vuoto
+      - $Z_{th}$ si calcola con i generatori indipendenti spenti (o generatore di prova)
+
+      **Da evitare:** Non si spengono i generatori controllati.
+    en: |-
+      **Model answer.** A linear one-port can be replaced, as far as a load connected to its terminals is concerned, by an ideal voltage source Vth in series with an impedance Zth. Vth is the open-circuit voltage. Zth is the impedance seen from the terminals after switching off the independent sources (the controlled ones stay), or it is found with a test source.
+
+      **Points to cover:**
+
+      - Assumption: linear one-port
+      - Equivalent: voltage source in series with an impedance
+      - $V_{th}$ is the open-circuit voltage
+      - $Z_{th}$ is computed with the independent sources off (or with a test source)
+
+      **Avoid:** Controlled sources are not switched off.
+- id: orale-t-02
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.1
+    - teorema-di-thevenin.2
+  kind: orale
+  front:
+    it: '**Teorema di Thevenin: dimostrazione.** Dimostra il teorema di Thevenin.'
+    en: "**Thévenin's theorem: proof.** Prove Thévenin's theorem."
+  back:
+    it: |-
+      **Risposta modello.** Si sostituisce il carico con un generatore di tensione che impone la stessa tensione v (teorema di sostituzione, la soluzione è unica). Per la sovrapposizione degli effetti la corrente è somma di due contributi: quello dei generatori interni con generatore di carico spento, che equivale alla tensione a vuoto, e quello del generatore v con gli interni spenti, proporzionale a v tramite l'impedenza equivalente. Si ricava v = Vth - Zth i.
+
+      **Punti da toccare:**
+
+      - Si sostituisce il carico con un generatore di tensione (teorema di sostituzione)
+      - Si usa la sovrapposizione degli effetti (linearità)
+      - Un contributo con i generatori interni accesi e il generatore del carico spento dà la tensione a vuoto
+      - L'altro contributo, a generatori interni spenti, è proporzionale alla corrente: $-Z_{th}i$
+    en: |-
+      **Model answer.** The load is replaced by a voltage source imposing the same voltage v (substitution theorem, the solution is unique). By superposition the current is the sum of two contributions: that of the internal sources with the load source off, which corresponds to the open-circuit voltage, and that of the source v with the internal sources off, proportional to v through the equivalent impedance. This gives v = Vth - Zth i.
+
+      **Points to cover:**
+
+      - The load is replaced by a voltage source (substitution theorem)
+      - Superposition is used (linearity)
+      - One contribution, with the internal sources on and the load source off, gives the open-circuit voltage
+      - The other contribution, with the internal sources off, is proportional to the current: $-Z_{th}i$
+- id: orale-t-03
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.3
+    - teorema-di-thevenin.1
+  kind: orale
+  front:
+    it: '**Thevenin: esempio di non applicabilità.** Fai un esempio di bipolo per il quale il teorema di Thevenin non si applica e spiega perché.'
+    en: "**Thévenin: an example where it does not apply.** Give an example of a one-port to which Thévenin's theorem does not apply and explain why."
+  back:
+    it: |-
+      **Risposta modello.** Se il bipolo contiene un diodo, cioè è non lineare, non vale la sovrapposizione degli effetti e non esiste un equivalente lineare di Thevenin. Anche un generatore ideale di corrente non ha Thevenin perché l'impedenza sarebbe infinita; esiste invece Norton.
+
+      **Punti da toccare:**
+
+      - Bipolo non lineare (es. diodo)
+      - Manca l'equivalente lineare/la sovrapposizione degli effetti non vale
+      - Oppure bipolo con generatore ideale di corrente: non esiste Thevenin (impedenza infinita)
+    en: |-
+      **Model answer.** If the one-port contains a diode, i.e. it is nonlinear, superposition does not hold and there is no linear Thévenin equivalent. An ideal current source has no Thévenin equivalent either, because the impedance would be infinite; Norton exists instead.
+
+      **Points to cover:**
+
+      - Nonlinear one-port (e.g. a diode)
+      - No linear equivalent / superposition does not hold
+      - Or a one-port with an ideal current source: Thévenin does not exist (infinite impedance)
+- id: formula-th-vth
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Tensione di Thevenin**.'
+    en: 'Write the formula: **Thévenin voltage**.'
+  back:
+    it: |-
+      $$V_{th}=v_{AB}\big|_{i=0}$$
+
+      a vuoto
+    en: |-
+      $$V_{th}=v_{AB}\big|_{i=0}$$
+
+      open circuit
+- id: formula-th-zth
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Impedenza di Thevenin**. Uso: Impedenza di Thevenin.'
+    en: 'Write the formula: **Thévenin impedance**. Use: Thévenin impedance.'
+  back:
+    it: |-
+      $$Z_{th}=\frac{V_{th}}{I_{sc}}=\frac{V}{I}\Big|_{\text{indip. spenti}}$$
+
+      I_sc corrente di cortocircuito [A]; V, I tensione e corrente del generatore di prova
+    en: |-
+      $$Z_{th}=\frac{V_{th}}{I_{sc}}=\frac{V}{I}\Big|_{\text{indip. spenti}}$$
+
+      I_sc short-circuit current [A]; V, I voltage and current of the test source
+- id: formula-th-eq
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Equivalente di Thevenin**.'
+    en: 'Write the formula: **Thévenin equivalent**.'
+  back:
+    it: |-
+      $$v=V_{th}-Z_{th}\,i$$
+
+      i corrente uscente dal bipolo
+    en: |-
+      $$v=V_{th}-Z_{th}\,i$$
+
+      i current leaving the one-port
+- id: formula-th-prova
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Generatore di prova**. Uso: Circuiti con controllati.'
+    en: 'Write the formula: **Test source**. Use: Circuits with controlled sources.'
+  back:
+    it: |-
+      $$Z_{th}=\frac{V_{test}}{I_{test}}$$
+
+      controllati lasciati accesi
+    en: |-
+      $$Z_{th}=\frac{V_{test}}{I_{test}}$$
+
+      controlled sources left on

@@ -1,0 +1,25 @@
+id: massimo-trasferimento-potenza
+course: teoria-circuiti
+order: 49
+title:
+  it: Massimo trasferimento di potenza attiva
+  en: Maximum active power transfer
+summary:
+  it: Adattamento coniugato $Z_L=Z_{th}^*$, potenza massima con valori di picco ed efficaci, carico resistivo e adattamento con trasformatore.
+  en: Conjugate matching $Z_L=Z_{th}^*$, maximum power with peak and RMS values, resistive load and matching with a transformer.
+objectives:
+  - id: massimo-trasferimento-potenza.1
+    text:
+      it: Dimostrare $Z_L=Z_{th}^*$ per il massimo trasferimento
+      en: Prove $Z_L=Z_{th}^*$ for maximum transfer
+  - id: massimo-trasferimento-potenza.2
+    text:
+      it: Calcolare $P_{max}$ con valori di picco ed efficaci
+      en: Compute $P_{max}$ with peak and RMS values
+  - id: massimo-trasferimento-potenza.3
+    text:
+      it: Adattare un carico con un trasformatore ideale
+      en: Match a load with an ideal transformer
+group:
+  it: VI · Caratterizzazione esterna
+  en: VI · External characterisation

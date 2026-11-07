@@ -1,0 +1,57 @@
+id: teoria-circuiti
+year: 2
+semester: 1
+title:
+  it: Teoria dei Circuiti
+  en: Circuit Theory
+description:
+  it: >-
+    Analisi dei circuiti a costanti concentrate: topologia e Tellegen, metodi dei nodi e delle maglie, regime
+    sinusoidale e potenze, trasformata di Laplace, funzioni di rete e stabilità, Thevenin, Norton e doppi bipoli.
+    Teoria con dimostrazioni, esercizi «tipo appello» generati e verificati, ripasso e prove a tempo.
+  en: >-
+    Analysis of lumped-parameter circuits: topology and Tellegen, node and mesh methods, sinusoidal steady state and
+    power, the Laplace transform, network functions and stability, Thévenin, Norton and two-ports. Theory with
+    proofs, generated and verified exam-style exercises, spaced review and timed mock exams.
+accent: prugna
+exam:
+  format: scritto
+  durationMin: 150
+  structure:
+    - label:
+        it: Esercizio d'analisi (v_out(t) su tutto l'asse dei tempi)
+        en: Analysis exercise (v_out(t) over the whole time axis)
+      points: 30
+      kind: esercizio
+    - label:
+        it: Tre domande (teoria + parte applicata), 10 punti ciascuna
+        en: Three questions (theory + applied part), 10 points each
+      points: 30
+      kind: domande
+    - label:
+        it: Domanda facoltativa
+        en: Optional question
+      points: 3
+      kind: facoltativa
+extras:
+  - slug: esame-info
+    title:
+      it: L'esame, cosa sappiamo e cosa no
+      en: The exam, what we know and what we don't
+  - slug: errori-tipici
+    title:
+      it: Errori tipici e strategia di studio
+      en: Common mistakes and study strategy
+  - slug: archivio-appelli
+    title:
+      it: Archivio degli appelli
+      en: Past exam archive
+  - slug: risorse
+    title:
+      it: Libri e risorse gratuite
+      en: Books and free resources
+examDates:
+  - '2026-10-29'
+  - '2026-11-03'
+legacyRepo: teoria-circuiti
+order: 1

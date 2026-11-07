@@ -1,0 +1,86 @@
+- id: q-iii-030
+  topic: conservazione-potenza-complessa
+  objectives:
+    - conservazione-potenza-complessa.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'La conservazione della potenza complessa afferma che:'
+    en: 'Conservation of complex power states that:'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: "Tellegen applicato ai fasori: $\\sum\\dot V_k\\dot I_k^*=0$."
+        en: "Tellegen applied to phasors: $\\sum\\dot V_k\\dot I_k^*=0$."
+  choices:
+    - text:
+        it: $S$ è costante nel tempo
+        en: $S$ is constant in time
+      correct: false
+    - text:
+        it: la somma delle $S$ assorbite da tutti i rami è nulla
+        en: the sum of the $S$ absorbed by all the branches is zero
+      correct: true
+    - text:
+        it: la somma dei moduli $|S|$ è nulla
+        en: the sum of the magnitudes $|S|$ is zero
+      correct: false
+    - text:
+        it: $P=Q$
+        en: $P=Q$
+      correct: false
+  origin: originale
+- id: q-iii-031
+  topic: conservazione-potenza-complessa
+  objectives:
+    - conservazione-potenza-complessa.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Poiché $\sum S_k=0$, anche la somma dei moduli $|S_k|$ è nulla.
+    en: Since $\sum S_k=0$, the sum of the magnitudes $|S_k|$ is also zero.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Si conservano $P$ e $Q$ separatamente, non i moduli.
+        en: $P$ and $Q$ are conserved separately, not the magnitudes.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-iii-032
+  topic: conservazione-potenza-complessa
+  objectives:
+    - conservazione-potenza-complessa.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Il bilancio delle potenze attive: potenza erogata dai generatori = potenza assorbita dai resistori.'
+    en: 'Active-power balance: power delivered by the sources = power absorbed by the resistors.'
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Gli elementi reattivi hanno $P=0$.
+        en: Reactive elements have $P=0$.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale

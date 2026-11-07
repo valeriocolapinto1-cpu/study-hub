@@ -1,0 +1,25 @@
+id: poli-complessi-coniugati
+course: teoria-circuiti
+order: 29
+title:
+  it: Antitrasformata con poli complessi coniugati
+  en: Inverse transform with complex-conjugate poles
+summary:
+  it: Antitrasformata con poli complessi coniugati tramite il completamento del quadrato, e significato di smorzamento e oscillazione.
+  en: Inverse transform with complex-conjugate poles by completing the square, and the meaning of damping and oscillation.
+objectives:
+  - id: poli-complessi-coniugati.1
+    text:
+      it: Antitrasformare poli complessi coniugati
+      en: Invert complex-conjugate poles
+  - id: poli-complessi-coniugati.2
+    text:
+      it: Ricondurre il denominatore a $(s+\alpha)^2+\omega^2$
+      en: Bring the denominator to the form $(s+\alpha)^2+\omega^2$
+  - id: poli-complessi-coniugati.3
+    text:
+      it: Interpretare smorzamento e oscillazione
+      en: Interpret damping and oscillation
+group:
+  it: IV · Trasformata di Laplace
+  en: IV · Laplace transform

@@ -96,24 +96,31 @@ for (const btn of document.querySelectorAll<HTMLButtonElement>('[data-drawer-ope
 }
 
 syncToggles();
-// Voci di migrazione dei singoli corsi (src/courses/<id>/migrations.ts, registerMigration):
-// importate qui perché la tabella sia completa prima di eseguirla.
-import.meta.glob('../courses/*/migrations.ts', { eager: true });
 runMigrations();
+// Migrazioni dei corsi dalle chiavi dei vecchi siti: il codice si scarica solo se nel
+// browser c'è almeno una chiave che non è del nuovo formato (`sh:`), cioè quasi mai.
+const courseMigrations = import.meta.glob('../courses/*/migrations.ts');
+const hasLegacyKeys = (): boolean => {
+  try {
+    for (let i = 0; i < localStorage.length; i++) if (!localStorage.key(i)?.startsWith('sh:')) return true;
+  } catch {
+    // storage non disponibile: niente da migrare
+  }
+  return false;
+};
+if (hasLegacyKeys()) {
+  void Promise.all(Object.values(courseMigrations).map((load) => load())).then(() => runMigrations());
+}
 
-/*
- * Formule in display più larghe della colonna: scorrono in orizzontale (prose.css) e devono essere
- * raggiungibili da tastiera (WCAG 2.1.1, regola axe "scrollable-region-focusable").
- */
-function markScrollableMath(): void {
+// Formule display più larghe della colonna: scorrono in orizzontale, quindi devono
+// essere raggiungibili da tastiera (WCAG 2.1.1). Solo quelle che scorrono davvero.
+const markScrollableMath = () => {
   for (const el of document.querySelectorAll<HTMLElement>('.katex-display')) {
     if (el.scrollWidth > el.clientWidth + 1) el.tabIndex = 0;
     else el.removeAttribute('tabindex');
   }
-}
+};
 markScrollableMath();
-let mathTimer: ReturnType<typeof setTimeout> | undefined;
-globalThis.addEventListener?.('resize', () => {
-  clearTimeout(mathTimer);
-  mathTimer = setTimeout(markScrollableMath, 150);
-});
+globalThis.addEventListener?.('resize', markScrollableMath, { passive: true });
+// I font di KaTeX e del testo arrivano dopo: le formule possono diventare più larghe della colonna.
+void document.fonts?.ready.then(markScrollableMath);

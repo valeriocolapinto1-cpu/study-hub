@@ -1,0 +1,117 @@
+---
+course: teoria-circuiti
+topic: porta-e-bipolo
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="porta-e-bipolo-intuizione-1">
+
+A one-port is a "black box" with two terminals: we do not care what is inside, only about the relation between the voltage across it and the current through it. To know whether the box absorbs or supplies energy, fix the reference directions once and for all and look at the sign of $v\,i$.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="porta-e-bipolo-teoria-1">
+
+A **port** is a pair of terminals such that, at every instant, the current entering one terminal equals the current leaving the other. A **one-port** (two-terminal element) is an element with two terminals forming a port; a **two-port** (two ports) has four terminals coupled in pairs.
+
+</div>
+
+<div data-note-id="porta-e-bipolo-teoria-2">
+
+On each port we fix a reference direction for the current $i$ and one for the voltage $v$. In the **passive (load) sign convention** the current enters the terminal at the higher reference potential (the $+$ of the voltage): then $p = v\,i$ is the _absorbed_ power. In the **active (generator) sign convention** the current leaves the $+$ terminal and $p=v\,i$ is the _delivered_ power.
+
+</div>
+
+<div data-note-id="porta-e-bipolo-teoria-3">
+
+The energy absorbed between $t_0$ and $t$ is $w(t_0,t)=\int_{t_0}^{t} v(\tau)\,i(\tau)\,d\tau$.
+
+</div>
+
+<Figure
+  caption="One-port with current i entering the positive terminal and voltage v across the terminals (passive sign convention)"
+  num="1"
+  id="fig-1"
+>
+  <svg
+    viewBox="0 0 260 130"
+    xmlns="http://www.w3.org/2000/svg"
+    stroke="currentColor"
+    stroke-width="2"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    font-family="system-ui,sans-serif"
+    font-size="14"
+    aria-hidden="true"
+    focusable="false"
+    class="diagram"
+    style="max-width: 260px"
+  >
+    <polyline points="20 65 90 65" />
+    <rect x="90" y="40" width="80" height="50" />
+    <polyline points="170 65 240 65" />
+    <polyline points="30 65 85 65" />
+    <polyline points="78.7,62.0 85,65 78.7,68.0" />
+    <text x="55" y="52" text-anchor="middle" fill="currentColor" stroke="none">
+      {'i'}
+    </text>
+    <text x="20" y="88" text-anchor="start" fill="currentColor" stroke="none">
+      {'v'}
+    </text>
+    <text x="130" y="70" text-anchor="middle" fill="currentColor" stroke="none">
+      {'bipolo'}
+    </text>
+    <circle cx="20" cy="65" r="3" fill="currentColor" />
+    <circle cx="240" cy="65" r="3" fill="currentColor" />
+  </svg>
+</Figure>
+
+<Formula id="potenza-istantanea" />
+<Formula id="energia" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="porta-e-bipolo-esempio-1">
+
+### Absorbed and delivered power
+
+A one-port has $v = 12\,\mathrm{V}$ and $i = -2\,\mathrm{A}$ with the passive sign convention. Does it absorb or deliver power?
+
+**Solution.**
+
+1. $p = v\,i = 12\cdot(-2) = -24\,\mathrm{W}$ (absorbed).
+2. A negative absorbed power means that the one-port _delivers_ $24\,\mathrm{W}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="porta-e-bipolo-errore-1">
+
+- **Wrong:** Using $p=vi$ as the absorbed power when $i$ is referenced as leaving the $+$ terminal.
+- **Right:** With the active sign convention $p=vi$ is the delivered power; the absorbed power has the opposite sign.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="porta-e-bipolo-esame-1">
+
+A basic concept; it appears in the questions on circuit properties and on power <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

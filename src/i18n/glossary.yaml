@@ -1,16 +1,24 @@
 # Glossario IT → EN per le traduzioni dei contenuti.
 # Ogni voce: it (termine italiano), en (traduzione da usare), note (facoltativa).
 # Ordine alfabetico per `it`. Un test verifica che non ci siano duplicati.
+- { it: adattamento coniugato, en: conjugate matching }
+- { it: albero, en: tree }
 - { it: algebra di Boole, en: Boolean algebra }
 - { it: alta impedenza, en: high impedance }
 - { it: ammettenza, en: admittance }
 - { it: amplificatore operazionale, en: operational amplifier, note: 'abbreviato op-amp' }
 - { it: anello, en: loop, note: 'maglia: mesh' }
 - { it: angolo limite, en: critical angle }
+- { it: antitrasformata, en: inverse transform }
 - { it: appello, en: exam session }
 - { it: assemblatore, en: assembler }
 - { it: autoinduzione, en: self-induction, note: 'coefficiente: self-inductance' }
-- { it: bipolo, en: two-terminal element }
+- { it: banda passante, en: bandwidth }
+- {
+    it: bipolo,
+    en: two-terminal element,
+    note: 'Teoria dei Circuiti: one-port (il bipolo come porta), in coppia con two-port',
+  }
 - { it: bit di segno, en: sign bit }
 - { it: cammino critico, en: critical path }
 - { it: cammino ottico, en: optical path }
@@ -23,6 +31,7 @@
 - { it: cariche di polarizzazione, en: polarisation charges, note: 'anche bound charges' }
 - { it: circuitazione, en: circulation }
 - { it: circuito, en: circuit }
+- { it: coalbero, en: cotree }
 - { it: codificatore di priorità, en: priority encoder }
 - { it: collegatore, en: linker }
 - { it: complemento a 1, en: "ones' complement" }
@@ -31,6 +40,8 @@
 - { it: condensatore, en: capacitor }
 - { it: condizioni di raccordo, en: boundary conditions }
 - { it: conduttanza, en: conductance }
+- { it: convenzione degli utilizzatori, en: passive sign convention }
+- { it: convenzione dei generatori, en: active sign convention }
 - { it: corrente, en: current }
 - { it: corrente di cortocircuito, en: short-circuit current }
 - { it: corrente di spostamento, en: displacement current }
@@ -38,6 +49,7 @@
 - { it: correnti di Foucault, en: eddy currents }
 - { it: cortocircuito, en: short circuit }
 - { it: costante dielettrica relativa, en: relative dielectric constant, note: 'anche relative permittivity' }
+- { it: costanti concentrate, en: lumped parameters }
 - { it: decodificatore, en: decoder }
 - { it: densità di corrente, en: current density }
 - { it: dielettrico, en: dielectric }
@@ -53,16 +65,24 @@
 - { it: estensione del segno, en: sign extension }
 - { it: f.e.m., en: emf, note: 'forza elettromotrice: electromotive force' }
 - { it: fasore, en: phasor }
+- { it: fattore di merito, en: quality factor }
+- { it: fattore di potenza, en: power factor }
 - { it: flusso, en: flux }
 - { it: flusso concatenato, en: linked flux }
 - { it: formulario, en: formula sheet }
 - { it: frange, en: fringes, note: 'interfrangia: fringe spacing' }
+- { it: fratti semplici, en: partial fractions }
+- { it: funzione di rete, en: network function }
 - { it: funzione di trasferimento, en: transfer function }
 - { it: gauge di Lorentz, en: Lorenz gauge, note: 'grafia di L. Lorenz' }
+- { it: generatore controllato, en: controlled source }
 - { it: generatore di corrente, en: current source }
+- { it: generatore di prova, en: test source }
 - { it: generatore di tensione, en: voltage source }
 - { it: generatore pilotato, en: dependent source }
+- { it: gradino unitario, en: unit step }
 - { it: impedenza, en: impedance }
+- { it: impedenza riportata, en: reflected impedance }
 - { it: implicante primo, en: prime implicant }
 - { it: indifferenza, en: "don't care" }
 - { it: induttanza, en: inductance }
@@ -78,24 +98,38 @@
 - { it: legge di Felici, en: "Felici's law" }
 - { it: legge di Kirchhoff delle correnti, en: "Kirchhoff's current law", note: 'KCL' }
 - { it: legge di Kirchhoff delle tensioni, en: "Kirchhoff's voltage law", note: 'KVL' }
-- { it: maglia, en: mesh }
+- {
+    it: maglia,
+    en: mesh,
+    note: 'nella topologia (maglie e tagli fondamentali, KVL su una maglia): loop; mesh per il metodo delle maglie',
+  }
+- { it: maglia fondamentale, en: fundamental loop }
 - { it: magnetizzazione, en: magnetisation }
 - { it: mappa di Karnaugh, en: Karnaugh map }
 - { it: mappatura diretta, en: direct mapping }
+- { it: massimo trasferimento di potenza, en: maximum power transfer }
+- { it: matrice di trasmissione, en: transmission matrix }
 - { it: memoria virtuale, en: virtual memory }
-- { it: metodo dei nodi, en: nodal analysis }
+- { it: metodo dei nodi, en: nodal analysis, note: 'anche node method' }
 - { it: metodo delle maglie, en: mesh analysis }
 - { it: mintermine, en: minterm }
 - { it: modi di indirizzamento, en: addressing modes }
 - { it: modulo e segno, en: sign-magnitude }
 - { it: mutua induzione, en: mutual induction, note: 'coefficiente: mutual inductance' }
 - { it: nodo, en: node }
+- { it: noratore, en: norator }
+- { it: nullatore, en: nullator }
+- { it: nullore, en: nullor }
 - { it: obiettivo, en: learning objective }
 - { it: orale, en: oral exam }
+- { it: partitore di corrente, en: current divider }
+- { it: partitore di tensione, en: voltage divider }
 - { it: percorso dati, en: datapath }
 - { it: pila, en: stack }
 - { it: polarizzazione, en: bias, note: 'esponente IEEE 754' }
+- { it: potenza apparente, en: apparent power }
 - { it: potenza attiva, en: active power }
+- { it: potenza complessa, en: complex power }
 - { it: potenza reattiva, en: reactive power }
 - { it: potenziale elettrico, en: electric potential }
 - { it: potere delle punte, en: point effect }
@@ -103,11 +137,15 @@
 - { it: pressione elettrostatica, en: electrostatic pressure }
 - { it: profondità di penetrazione, en: skin depth }
 - { it: "prova d'esame", en: practice exam }
+- { it: prova di validità, en: validity test }
+- { it: pulsazione, en: angular frequency }
+- { it: pulsazione di taglio, en: cut-off angular frequency }
 - { it: quantità di moto, en: momentum }
 - { it: regime sinusoidale, en: sinusoidal steady state }
 - { it: relazione di laboratorio, en: laboratory report }
 - { it: resistenza, en: resistance, note: 'componente: resistor (resistore)' }
 - { it: resistore, en: resistor }
+- { it: rifasamento, en: power-factor correction }
 - { it: riflessione totale, en: total internal reflection }
 - { it: rigidità dielettrica, en: dielectric strength }
 - { it: rilocazione, en: relocation }
@@ -115,7 +153,11 @@
 - { it: ripasso spaziato, en: spaced repetition }
 - { it: riporto, en: carry }
 - { it: riporto uscente, en: carry-out }
+- { it: risposta forzata, en: zero-state response }
+- { it: risposta impulsiva, en: impulse response }
 - { it: risposta in frequenza, en: frequency response }
+- { it: risposta libera, en: zero-input response }
+- { it: risposta permanente, en: steady-state response }
 - { it: rotore, en: curl }
 - { it: scatoletta (di Gauss), en: pillbox }
 - { it: schermo elettrostatico, en: electrostatic shielding }
@@ -124,18 +166,27 @@
 - { it: set-associativa, en: set-associative }
 - { it: sommatore completo, en: full adder }
 - { it: sovrapposizione degli effetti, en: superposition }
+- { it: spegnere un generatore, en: switch off a source, note: 'tensione → corto, corrente → aperto' }
 - { it: spiazzamento, en: offset, note: 'campo dell’indirizzo; per l’indirizzamento: displacement' }
 - { it: spira, en: loop, note: 'bobina: coil; avvolgimento: winding' }
+- { it: supermaglia, en: supermesh }
+- { it: supernodo, en: supernode }
 - { it: suscettività, en: susceptibility }
 - { it: tabella dei simboli, en: symbol table }
 - { it: tabella delle pagine, en: page table }
 - { it: tabella di verità, en: truth table }
+- { it: taglio, en: cut set }
+- { it: taglio fondamentale, en: fundamental cut set }
 - { it: tensione, en: voltage }
 - { it: tensione a vuoto, en: open-circuit voltage }
 - { it: teorema della circuitazione di Ampère, en: "Ampère's circuital theorem" }
+- { it: teorema di sostituzione, en: substitution theorem }
 - { it: traferro, en: air gap }
 - { it: transitorio, en: transient }
+- { it: trasformatore ideale, en: ideal transformer }
 - { it: unità di controllo, en: control unit }
+- { it: valore di picco, en: peak value }
+- { it: valore efficace, en: RMS value }
 - { it: velocità di deriva, en: drift velocity }
 - { it: vettore di Poynting, en: Poynting vector }
 - { it: vettore polarizzazione, en: polarisation vector }

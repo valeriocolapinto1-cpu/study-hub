@@ -1,0 +1,95 @@
+---
+course: teoria-circuiti
+topic: fasori-e-laplace
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="fasori-e-laplace-intuizione-1">
+
+Fasori e Laplace non sono due mondi separati: i fasori sono Laplace «ristretto» all'asse immaginario, $s=j\omega$, e senza condizioni iniziali. Per questo vedono solo il regime, e solo se il regime esiste.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="fasori-e-laplace-teoria-1">
+
+La funzione di rete per i fasori è $H(j\omega)=H(s)\big|_{s=j\omega}$, valida per sistemi stabili. Modulo $|H(j\omega)|$ e fase $\arg H(j\omega)$ dicono come l'uscita sinusoidale a regime è scalata e sfasata rispetto all'ingresso.
+
+</div>
+
+<div data-note-id="fasori-e-laplace-teoria-2">
+
+Le equazioni dei fasori sono quelle di Laplace con $s=j\omega$ e _senza_ condizioni iniziali: il metodo dei fasori vede solo il regime.
+
+</div>
+
+<Formula id="hjw-def" />
+<Formula id="mod-fase" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="fasori-e-laplace-esempio-1">
+
+### Modulo e fase
+
+$H=\dfrac{1}{s+1}$ a $\omega=1$.
+
+**Soluzione.**
+
+1. $H(j)=\dfrac1{1+j}$: $|H|=\tfrac1{\sqrt2}\approx0{,}707$, $\arg=-45^\circ$.
+
+</div>
+
+<div class="worked" data-note-id="fasori-e-laplace-esempio-2">
+
+### Passa-alto
+
+$H=\dfrac{s}{s+1}$ a $\omega=1$.
+
+**Soluzione.**
+
+1. $\dfrac{j}{1+j}=\dfrac{j(1-j)}2=\dfrac{1+j}{2}$: $|H|=\tfrac1{\sqrt2}$, $\arg=+45^\circ$.
+
+</div>
+
+<div class="worked" data-note-id="fasori-e-laplace-esempio-3">
+
+### Uscita a regime
+
+$x=4\cos t$ nel primo sistema.
+
+**Soluzione.**
+
+1. $y_p=4\cdot0{,}707\cos(t-45^\circ)\approx2{,}83\cos(t-45^\circ)$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="fasori-e-laplace-errore-1">
+
+- **Sbagliato:** Usare $H(j\omega)$ per sistemi instabili.
+- **Corretto:** Il legame vale solo con poli a parte reale negativa.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="fasori-e-laplace-esame-1">
+
+Relazione fasori–Laplace; risposta in frequenza <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

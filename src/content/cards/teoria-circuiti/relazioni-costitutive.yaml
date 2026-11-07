@@ -1,0 +1,70 @@
+- id: formula-resistore
+  topic: relazioni-costitutive
+  objectives:
+    - relazioni-costitutive.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Resistore**. Uso: Legge di Ohm.'
+    en: "Write the formula: **Resistor**. Use: Ohm's law."
+  back:
+    it: |-
+      $$v=R\,i,\qquad i=G\,v,\qquad G=\frac1R$$
+
+      R [Ω], G [S]
+    en: |-
+      $$v=R\,i,\qquad i=G\,v,\qquad G=\frac1R$$
+
+      R [Ω], G [S]
+- id: formula-condensatore
+  topic: relazioni-costitutive
+  objectives:
+    - relazioni-costitutive.2
+    - relazioni-costitutive.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Condensatore**. Uso: In continua è un aperto.'
+    en: 'Write the formula: **Capacitor**. Use: In DC it is an open circuit.'
+  back:
+    it: |-
+      $$i=C\frac{dv}{dt},\qquad v(t)=v(t_0)+\frac1C\int_{t_0}^{t}i\,d\tau$$
+
+      C [F]
+    en: |-
+      $$i=C\frac{dv}{dt},\qquad v(t)=v(t_0)+\frac1C\int_{t_0}^{t}i\,d\tau$$
+
+      C [F]
+- id: formula-induttore
+  topic: relazioni-costitutive
+  objectives:
+    - relazioni-costitutive.2
+    - relazioni-costitutive.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Induttore**. Uso: In continua è un corto.'
+    en: 'Write the formula: **Inductor**. Use: In DC it is a short circuit.'
+  back:
+    it: |-
+      $$v=L\frac{di}{dt},\qquad i(t)=i(t_0)+\frac1L\int_{t_0}^{t}v\,d\tau$$
+
+      L [H]
+    en: |-
+      $$v=L\frac{di}{dt},\qquad i(t)=i(t_0)+\frac1L\int_{t_0}^{t}v\,d\tau$$
+
+      L [H]
+- id: formula-cont-vc-il
+  topic: relazioni-costitutive
+  objectives:
+    - relazioni-costitutive.2
+  kind: formula
+  front:
+    it: "Scrivi la formula: **Continuità di vC e iL**. Uso: Passo 3 e 8 della procedura d'esame."
+    en: 'Write the formula: **Continuity of vC and iL**. Use: Steps 3 and 8 of the exam procedure.'
+  back:
+    it: |-
+      $$v_C(0^+)=v_C(0^-),\qquad i_L(0^+)=i_L(0^-)$$
+
+      Valida se i_C e v_L sono limitate
+    en: |-
+      $$v_C(0^+)=v_C(0^-),\qquad i_L(0^+)=i_L(0^-)$$
+
+      Valid if i_C and v_L are bounded

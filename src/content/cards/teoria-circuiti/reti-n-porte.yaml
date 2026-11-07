@@ -1,0 +1,18 @@
+- id: formula-nporte-rel
+  topic: reti-n-porte
+  objectives:
+    - reti-n-porte.1
+    - reti-n-porte.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Rete a N porte**. Uso: Descrizione di reti a più porte.'
+    en: 'Write the formula: **N-port network**. Use: Describing multi-port networks.'
+  back:
+    it: |-
+      $$N\ \text{relazioni tra}\ 2N\ \text{variabili}$$
+
+      N numero di porte; v_k, i_k tensione e corrente alla porta k
+    en: |-
+      $$N\ \text{relazioni tra}\ 2N\ \text{variabili}$$
+
+      N number of ports; v_k, i_k voltage and current at port k

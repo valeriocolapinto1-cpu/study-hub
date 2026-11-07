@@ -1,0 +1,25 @@
+id: fratti-semplici
+course: teoria-circuiti
+order: 28
+title:
+  it: 'Antitrasformata di funzioni razionali: fratti semplici'
+  en: 'Inverse transform of rational functions: partial fractions'
+summary:
+  it: Scomposizione in fratti semplici con poli semplici e doppi, residui e antitrasformata termine a termine.
+  en: Partial-fraction expansion with simple and double poles, residues and term-by-term inverse transform.
+objectives:
+  - id: fratti-semplici.1
+    text:
+      it: Scomporre una funzione razionale in fratti semplici
+      en: Expand a rational function into partial fractions
+  - id: fratti-semplici.2
+    text:
+      it: Antitrasformare termine a termine
+      en: Invert term by term
+  - id: fratti-semplici.3
+    text:
+      it: Trattare poli doppi
+      en: Handle double poles
+group:
+  it: IV · Trasformata di Laplace
+  en: IV · Laplace transform

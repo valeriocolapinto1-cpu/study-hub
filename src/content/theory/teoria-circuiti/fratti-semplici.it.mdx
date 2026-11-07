@@ -1,0 +1,99 @@
+---
+course: teoria-circuiti
+topic: fratti-semplici
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="fratti-semplici-intuizione-1">
+
+Una funzione razionale complicata è una somma di pezzi semplici, uno per polo, e ogni pezzo corrisponde a un esponenziale noto. Il residuo dice «quanto pesa» ciascun esponenziale nella risposta.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="fratti-semplici-teoria-1">
+
+Una $F(s)=N(s)/D(s)$ con $\deg N<\deg D$ si scompone in fratti semplici. Per un polo semplice $p$ il termine è $\dfrac{r}{s-p}$ con residuo $r=\lim_{s\to p}(s-p)F(s)$ e dà $re^{pt}$. Se $\deg N\ge\deg D$ si esegue prima la divisione (compare un termine polinomiale in $s$, cioè impulsi).
+
+</div>
+
+<div data-note-id="fratti-semplici-teoria-2">
+
+Per un polo doppio $p$: $\dfrac{r_2}{(s-p)^2}+\dfrac{r_1}{s-p}$ con $r_2=\lim(s-p)^2F$, $r_1=\lim\dfrac{d}{ds}\left[(s-p)^2F\right]$; dà $(r_2t+r_1)e^{pt}$.
+
+</div>
+
+<Formula id="residuo" />
+<Formula id="polo-doppio" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="fratti-semplici-esempio-1">
+
+### Due poli reali
+
+$F(s)=\dfrac{3s+5}{(s+1)(s+3)}$.
+
+**Soluzione.**
+
+1. $A=\left.\dfrac{3s+5}{s+3}\right|_{-1}=1$, $B=\left.\dfrac{3s+5}{s+1}\right|_{-3}=2$.
+2. $f(t)=e^{-t}+2e^{-3t}$ ($t>0$).
+
+</div>
+
+<div class="worked" data-note-id="fratti-semplici-esempio-2">
+
+### Polo doppio
+
+$F(s)=\dfrac{1}{s(s+1)^2}$.
+
+**Soluzione.**
+
+1. $\dfrac1s-\dfrac1{s+1}-\dfrac1{(s+1)^2}$.
+2. $f(t)=1-e^{-t}-te^{-t}$.
+3. Verifica a $s=1$: $1-\tfrac12-\tfrac14=\tfrac14$ ✓.
+
+</div>
+
+<div class="worked" data-note-id="fratti-semplici-esempio-3">
+
+### Grado uguale
+
+$F(s)=\dfrac{s+3}{s+1}$.
+
+**Soluzione.**
+
+1. $F=1+\dfrac2{s+1}$.
+2. $f(t)=\delta(t)+2e^{-t}u_{-1}(t)$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="fratti-semplici-errore-1">
+
+- **Sbagliato:** Scomporre senza dividere quando $\deg N=\deg D$.
+- **Corretto:** Dividi prima: il quoziente dà un impulso.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="fratti-semplici-esame-1">
+
+Antitrasformata con fratti semplici è il passo 6 dell'esercizio d'analisi <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

@@ -1,0 +1,100 @@
+---
+course: teoria-circuiti
+topic: poli-complessi-coniugati
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="poli-complessi-coniugati-intuizione-1">
+
+Two complex-conjugate poles are the signature of an oscillation: the imaginary part gives the angular frequency, the real part tells whether the amplitude dies out, stays constant or grows. Writing the denominator as $(s+\alpha)^2+\omega^2$ makes both visible.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="poli-complessi-coniugati-teoria-1">
+
+Poles $-\alpha\pm j\omega$ come in conjugate pairs for real coefficients. Write the denominator as $(s+\alpha)^2+\omega^2$ and the numerator as $a(s+\alpha)+c$:
+
+$$
+\mathcal L^{-1}\left\{\frac{as+b}{(s+\alpha)^2+\omega^2}\right\}=e^{-\alpha t}\left[a\cos\omega t+\frac{b-a\alpha}{\omega}\sin\omega t\right].
+$$
+
+</div>
+
+<div data-note-id="poli-complessi-coniugati-teoria-2">
+
+$\alpha>0$: damped oscillation; $\alpha=0$: sustained (marginal) oscillation; $\alpha<0$: growing (unstable).
+
+</div>
+
+<Formula id="complessi-antitr" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="poli-complessi-coniugati-esempio-1">
+
+### Purely imaginary poles
+
+$F(s)=\dfrac{2s+6}{s^2+9}$.
+
+**Solution.**
+
+1. $\alpha=0$, $\omega=3$, $a=2$, $b=6$: $f=2\cos3t+2\sin3t$.
+
+</div>
+
+<div class="worked" data-note-id="poli-complessi-coniugati-esempio-2">
+
+### Poles with a real part
+
+$F(s)=\dfrac{s+3}{s^2+2s+5}$.
+
+**Solution.**
+
+1. $(s+1)^2+4$: $\alpha=1$, $\omega=2$, $a=1$, $b=3$.
+2. $f=e^{-t}\left[\cos2t+\dfrac{3-1}{2}\sin2t\right]=e^{-t}(\cos2t+\sin2t)$.
+
+</div>
+
+<div class="worked" data-note-id="poli-complessi-coniugati-esempio-3">
+
+### Amplitude and phase
+
+Write $e^{-t}(\cos2t+\sin2t)$ in amplitude-phase form.
+
+**Solution.**
+
+1. $\cos2t+\sin2t=\sqrt2\cos(2t-45^\circ)$.
+2. $f=\sqrt2e^{-t}\cos(2t-45^\circ)$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="poli-complessi-coniugati-errore-1">
+
+- **Wrong:** Factoring $s^2+2s+5$ into real factors.
+- **Right:** It has complex roots: complete the square.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="poli-complessi-coniugati-esame-1">
+
+Inverse transforms with complex-conjugate poles: a typical mistake listed for the analysis exercise <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

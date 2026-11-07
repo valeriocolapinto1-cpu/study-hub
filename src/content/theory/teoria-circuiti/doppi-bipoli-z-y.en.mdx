@@ -1,0 +1,112 @@
+---
+course: teoria-circuiti
+topic: doppi-bipoli-z-y
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="doppi-bipoli-z-y-intuizione-1">
+
+A linear two-port is "measured" with four experiments: drive one port and look at what happens at both, with the other port open ($Z$ parameters) or shorted ($Y$ parameters). The four numbers obtained are enough to predict its behaviour with any external connection.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="doppi-bipoli-z-y-teoria-1">
+
+With currents entering the ports: $\mathbf v=Z\mathbf i$, i.e. $v_1=z_{11}i_1+z_{12}i_2$, $v_2=z_{21}i_1+z_{22}i_2$. _Open-circuit_ parameters: $z_{11}=v_1/i_1|_{i_2=0}$, $z_{21}=v_2/i_1|_{i_2=0}$, $z_{12}=v_1/i_2|_{i_1=0}$, $z_{22}=v_2/i_2|_{i_1=0}$. $\mathbf i=Y\mathbf v$ with _short-circuit_ parameters: $y_{11}=i_1/v_1|_{v_2=0}$ etc. If both exist, $Y=Z^{-1}$.
+
+</div>
+
+<div data-note-id="doppi-bipoli-z-y-teoria-2">
+
+A **reciprocal** network (only $R$, $L$, $C$ and coupled transformers): $z_{12}=z_{21}$, $y_{12}=y_{21}$. With controlled sources it may not be. The ideal transformer has neither $Z$ nor $Y$.
+
+</div>
+
+<Formula id="z-def" />
+<Formula id="y-def" />
+<Formula id="z-y-inv" />
+<Formula id="z11" />
+<Formula id="y11" />
+<Formula id="reciprocita" />
+<Formula id="rete-t" />
+<Formula id="rete-pi" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="doppi-bipoli-z-y-esempio-1">
+
+### T two-port
+
+$R_a=1$ (port 1), $R_b=2$ (port 2), $R_c=3$ in shunt.
+
+**Solution.**
+
+1. Port 2 open: $z_{11}=R_a+R_c=4$, $z_{21}=R_c=3$.
+2. Port 1 open: $z_{22}=R_b+R_c=5$, $z_{12}=R_c=3$.
+3. $Z=\begin{pmatrix}4&3\\3&5\end{pmatrix}$ (reciprocal).
+
+</div>
+
+<div class="worked" data-note-id="doppi-bipoli-z-y-esempio-2">
+
+### π two-port
+
+$G_a=1$ (port 1), $G_b=2$ (port 2), $G_c=3$ in series between the upper terminals.
+
+**Solution.**
+
+1. Port 2 shorted: $y_{11}=G_a+G_c=4$, $y_{21}=-G_c=-3$.
+2. Port 1 shorted: $y_{22}=G_b+G_c=5$, $y_{12}=-3$.
+3. $Y=\begin{pmatrix}4&-3\\-3&5\end{pmatrix}$ and $Z=Y^{-1}=\dfrac1{11}\begin{pmatrix}5&3\\3&4\end{pmatrix}$.
+
+</div>
+
+<div class="worked" data-note-id="doppi-bipoli-z-y-esempio-3">
+
+### Using the matrix
+
+$Z$ as above: $i_1=1$, port 2 open ($i_2=0$).
+
+**Solution.**
+
+1. $v_1=4$, $v_2=3$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="doppi-bipoli-z-y-errore-1">
+
+- **Wrong:** Measuring $z_{11}$ with port 2 shorted.
+- **Right:** $z_{11}$ is measured with port 2 _open_ ($i_2=0$).
+
+</div>
+
+<div data-note-id="doppi-bipoli-z-y-errore-2">
+
+- **Wrong:** Current signs: assuming $i_2$ leaving.
+- **Right:** Standard convention: currents entering both ports.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="doppi-bipoli-z-y-esame-1">
+
+Two-ports: $Z$, $Y$ matrices and their computation on a circuit: 15-9-2000, 17-7-2002, 3-7-2003, 23-9-2008; only $Z$ and $Y$ appear in the 2015–2024 exercises <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

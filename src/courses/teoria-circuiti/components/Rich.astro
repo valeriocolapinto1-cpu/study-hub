@@ -1,0 +1,11 @@
+---
+/** Testo ricco (Markdown minimo + KaTeX a build-time). `inline` per frasi senza paragrafo. */
+import { richHtml, richInline } from '../../../lib/rich-server';
+interface Props {
+  text: string;
+  inline?: boolean;
+}
+const { text, inline = false } = Astro.props;
+---
+
+{inline ? <span set:html={richInline(text)} /> : <div class="rich" set:html={richHtml(text)} />}

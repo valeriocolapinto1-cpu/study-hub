@@ -1,0 +1,107 @@
+- id: orale-t-21
+  topic: stabilita-poli
+  objectives:
+    - stabilita-poli.1
+    - stabilita-poli.2
+  kind: orale
+  front:
+    it: '**Stabilità e poli.** Enuncia e dimostra la condizione di stabilità asintotica di un sistema lineare in termini dei poli.'
+    en: '**Stability and poles.** State and prove the asymptotic-stability condition of a linear system in terms of its poles.'
+  back:
+    it: |-
+      **Risposta modello.** Il sistema è asintoticamente stabile se e solo se tutti i poli hanno parte reale negativa, cioè stanno nel semipiano sinistro aperto. Si scompone H(s) in fratti semplici: ogni polo p dà un modo esponenziale e^{pt}. Se la parte reale è negativa il modo decade a zero; se è positiva il modo diverge e il sistema è instabile.
+
+      **Punti da toccare:**
+
+      - Condizione: tutti i poli con parte reale negativa (semipiano sinistro aperto)
+      - Antitrasformata: ogni polo $p$ dà un modo $e^{pt}$ (o $t^ke^{pt}$)
+      - Se $\mathrm{Re}\,p<0$ i modi decadono a zero
+      - Se c'è un polo con $\mathrm{Re}\,p>0$ (o doppio sull'asse) il modo diverge
+    en: |-
+      **Model answer.** The system is asymptotically stable if and only if all the poles have negative real part, i.e. lie in the open left half-plane. H(s) is expanded in partial fractions: each pole p gives an exponential mode e^{pt}. If the real part is negative the mode decays to zero; if it is positive the mode diverges and the system is unstable.
+
+      **Points to cover:**
+
+      - Condition: all the poles with negative real part (open left half-plane)
+      - Inverse transform: each pole $p$ gives a mode $e^{pt}$ (or $t^ke^{pt}$)
+      - If $\mathrm{Re}\,p<0$ the modes decay to zero
+      - If there is a pole with $\mathrm{Re}\,p>0$ (or a double one on the axis) the mode diverges
+- id: orale-t-22
+  topic: stabilita-poli
+  objectives:
+    - stabilita-poli.3
+    - stabilita-poli.1
+  kind: orale
+  front:
+    it: '**Stabilità al variare di un parametro.** Data $D(s)=s^3+2s^2+3s+k$, determina per quali $k$ il sistema è stabile e spiega il metodo.'
+    en: '**Stability as a parameter varies.** Given $D(s)=s^3+2s^2+3s+k$, find for which $k$ the system is stable and explain the method.'
+  back:
+    it: |-
+      **Risposta modello.** Si applica il criterio di Routh-Hurwitz per un polinomio di terzo grado: i coefficienti devono essere tutti positivi, quindi k > 0, e deve valere a2 a1 > a0, cioè 2 per 3 maggiore di k, k < 6. Il sistema è stabile per 0 < k < 6.
+
+      **Punti da toccare:**
+
+      - Criterio di Routh/Hurwitz
+      - Coefficienti tutti positivi: $k>0$
+      - Condizione $a_2a_1>a_0$: $6>k$
+      - Risultato $0<k<6$
+    en: |-
+      **Model answer.** The Routh-Hurwitz criterion for a third-degree polynomial is applied: the coefficients must all be positive, so k > 0, and a2 a1 > a0 must hold, i.e. 2 times 3 greater than k, k < 6. The system is stable for 0 < k < 6.
+
+      **Points to cover:**
+
+      - Routh/Hurwitz criterion
+      - All coefficients positive: $k>0$
+      - Condition $a_2a_1>a_0$: $6>k$
+      - Result $0<k<6$
+- id: formula-stab-poli
+  topic: stabilita-poli
+  objectives:
+    - stabilita-poli.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Stabilità asintotica**. Uso: Condizione necessaria e sufficiente.'
+    en: 'Write the formula: **Asymptotic stability**. Use: Necessary and sufficient condition.'
+  back:
+    it: |-
+      $$\mathrm{Re}\,p_i<0\ \ \forall i$$
+
+      p_i poli di H
+    en: |-
+      $$\mathrm{Re}\,p_i<0\ \ \forall i$$
+
+      p_i poles of H
+- id: formula-routh2
+  topic: stabilita-poli
+  objectives:
+    - stabilita-poli.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Stabilità del 2° grado**. Uso: Stabilità di un polinomio di 2º grado.'
+    en: 'Write the formula: **Stability of degree 2**. Use: Stability of a second-degree polynomial.'
+  back:
+    it: |-
+      $$s^2+a_1s+a_0:\ a_1>0,\ a_0>0$$
+
+      a₀, a₁ coefficienti del denominatore
+    en: |-
+      $$s^2+a_1s+a_0:\ a_1>0,\ a_0>0$$
+
+      a₀, a₁ coefficients of the denominator
+- id: formula-routh3
+  topic: stabilita-poli
+  objectives:
+    - stabilita-poli.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Stabilità del 3° grado**. Uso: Stabilità di un polinomio di 3º grado.'
+    en: 'Write the formula: **Stability of degree 3**. Use: Stability of a third-degree polynomial.'
+  back:
+    it: |-
+      $$s^3+a_2s^2+a_1s+a_0:\ a_i>0,\ a_2a_1>a_0$$
+
+      a₀, a₁, a₂ coefficienti del denominatore
+    en: |-
+      $$s^3+a_2s^2+a_1s+a_0:\ a_i>0,\ a_2a_1>a_0$$
+
+      a₀, a₁, a₂ coefficients of the denominator

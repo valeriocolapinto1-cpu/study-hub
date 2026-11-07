@@ -1,0 +1,109 @@
+---
+course: teoria-circuiti
+topic: risposta-impulsiva-convoluzione
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="risposta-impulsiva-convoluzione-intuizione-1">
+
+An instantaneous "kick" at the input makes the circuit ring according to its nature: that response is its fingerprint. Any input can be seen as a train of successive kicks, and convolution adds up their responses.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="risposta-impulsiva-convoluzione-teoria-1">
+
+The **impulse response** $h(t)$ is the output for $x=\delta(t)$ with zero initial conditions. For a causal system $h(t)=0$ for $t<0$. The output for any input (zero initial conditions) is the **convolution** $y(t)=\int_{0}^{t}h(\tau)x(t-\tau)\,d\tau$. The step response is the integral of $h$.
+
+</div>
+
+<div data-note-id="risposta-impulsiva-convoluzione-teoria-2">
+
+The link with the network function is $h(t)=\mathcal L^{-1}\{H(s)\}$: the poles of $H$ determine the modes of $h$ and hence stability (if $h$ is absolutely integrable the system is stable).
+
+</div>
+
+<details class="proof" data-note-id="risposta-impulsiva-convoluzione-dimostrazione-1">
+<summary>Proof: Impulse response and network function</summary>
+
+**Statement.** $h(t)=\mathcal L^{-1}\{H(s)\}$ and $y=h*x$.
+
+1. For $x=\delta(t)$ we have $X(s)=1$.
+2. With zero initial conditions $Y(s)=H(s)X(s)=H(s)$.
+3. Inverting, $y=h=\mathcal L^{-1}\{H\}$.
+4. For any input $Y=HX$; since $\mathcal L\{h*x\}=HX$ (convolution property), $y=h*x$. $\square$
+
+</details>
+
+<Formula id="h-imp" />
+<Formula id="y-conv" />
+<Formula id="y-gradino" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="risposta-impulsiva-convoluzione-esempio-1">
+
+### Impulse response of an RC
+
+$H=\dfrac{1}{s+1}$.
+
+**Solution.**
+
+1. $h(t)=e^{-t}u_{-1}(t)$.
+
+</div>
+
+<div class="worked" data-note-id="risposta-impulsiva-convoluzione-esempio-2">
+
+### Step response
+
+Same system, input $u_{-1}$.
+
+**Solution.**
+
+1. $y=\int_0^th=1-e^{-t}$ for $t>0$.
+
+</div>
+
+<div class="worked" data-note-id="risposta-impulsiva-convoluzione-esempio-3">
+
+### Rectangular pulse
+
+Same system, input $1$ for $0<t<1$.
+
+**Solution.**
+
+1. $0<t<1$: $y=1-e^{-t}$.
+2. $t>1$: $y=(1-e^{-1})e^{-(t-1)}$ (continuity at $t=1$).
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="risposta-impulsiva-convoluzione-errore-1">
+
+- **Wrong:** Deriving $h$ from the step response without differentiating.
+- **Right:** $h=\dfrac{d}{dt}y_{step}$.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="risposta-impulsiva-convoluzione-esame-1">
+
+Impulse response and network function: 18-9-2002, 19-11-2003 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

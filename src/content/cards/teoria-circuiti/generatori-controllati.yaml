@@ -1,0 +1,68 @@
+- id: formula-vcvs
+  topic: generatori-controllati
+  objectives:
+    - generatori-controllati.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Generatore controllato VCVS**. Uso: Amplificatori di tensione.'
+    en: 'Write the formula: **Controlled source VCVS**. Use: Voltage amplifiers.'
+  back:
+    it: |-
+      $$v_2=\mu\,v_1,\quad i_1=0$$
+
+      μ guadagno di tensione
+    en: |-
+      $$v_2=\mu\,v_1,\quad i_1=0$$
+
+      μ voltage gain
+- id: formula-vccs
+  topic: generatori-controllati
+  objectives:
+    - generatori-controllati.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Generatore controllato VCCS**. Uso: Transistor.'
+    en: 'Write the formula: **Controlled source VCCS**. Use: Transistors.'
+  back:
+    it: |-
+      $$i_2=g_m\,v_1,\quad i_1=0$$
+
+      g_m transconduttanza [S]
+    en: |-
+      $$i_2=g_m\,v_1,\quad i_1=0$$
+
+      g_m transconductance [S]
+- id: formula-ccvs
+  topic: generatori-controllati
+  objectives:
+    - generatori-controllati.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Generatore controllato CCVS**. Uso: Amplificatori di corrente-tensione.'
+    en: 'Write the formula: **Controlled source CCVS**. Use: Current-to-voltage amplifiers.'
+  back:
+    it: |-
+      $$v_2=r_m\,i_1,\quad v_1=0$$
+
+      r_m transresistenza [Ω]
+    en: |-
+      $$v_2=r_m\,i_1,\quad v_1=0$$
+
+      r_m transresistance [Ω]
+- id: formula-cccs
+  topic: generatori-controllati
+  objectives:
+    - generatori-controllati.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Generatore controllato CCCS**. Uso: Transistor bipolare (modello).'
+    en: 'Write the formula: **Controlled source CCCS**. Use: Bipolar transistor (model).'
+  back:
+    it: |-
+      $$i_2=\beta\,i_1,\quad v_1=0$$
+
+      β guadagno di corrente
+    en: |-
+      $$i_2=\beta\,i_1,\quad v_1=0$$
+
+      β current gain

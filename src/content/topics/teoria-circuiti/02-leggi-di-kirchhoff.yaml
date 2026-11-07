@@ -1,0 +1,25 @@
+id: leggi-di-kirchhoff
+course: teoria-circuiti
+order: 2
+title:
+  it: Leggi di Kirchhoff
+  en: Kirchhoff's laws
+summary:
+  it: Le due leggi topologiche (KCL e KVL) su nodi, maglie e tagli, con le convenzioni di segno.
+  en: The two topological laws (KCL and KVL) on nodes, loops and cut sets, with their sign conventions.
+objectives:
+  - id: leggi-di-kirchhoff.1
+    text:
+      it: Enunciare KCL e KVL per nodi, tagli e maglie
+      en: State KCL and KVL for nodes, cut sets and loops
+  - id: leggi-di-kirchhoff.2
+    text:
+      it: Dimostrare che la KCL vale per ogni taglio
+      en: Prove that KCL holds for every cut set
+  - id: leggi-di-kirchhoff.3
+    text:
+      it: Applicare le leggi con convenzioni di segno corrette
+      en: Apply the laws with correct sign conventions
+group:
+  it: I · Costanti concentrate
+  en: I · Lumped parameters

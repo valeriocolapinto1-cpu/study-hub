@@ -1,0 +1,113 @@
+---
+course: teoria-circuiti
+topic: trasformatore-ideale
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="trasformatore-ideale-intuizione-1">
+
+Il trasformatore ideale è una «leva» elettrica: moltiplica la tensione per $n$ e divide la corrente per $n$, così il prodotto (la potenza) resta lo stesso. Un carico visto «attraverso la leva» sembra più grande o più piccolo di un fattore $n^2$.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="trasformatore-ideale-teoria-1">
+
+Il **trasformatore ideale** con rapporto $n$ è un doppio bipolo lineare e senza memoria. Con la convenzione degli utilizzatori su entrambe le porte:
+
+$$
+v_1 = n\,v_2,\qquad i_1 = -\frac{i_2}{n}.
+$$
+
+</div>
+
+<div data-note-id="trasformatore-ideale-teoria-2">
+
+Non è un induttore: funziona anche in continua ed è un modello limite (accoppiamento perfetto, induttanze infinite, perdite nulle).
+
+</div>
+
+<div data-note-id="trasformatore-ideale-teoria-3">
+
+**Proprietà.** La potenza assorbita complessiva è nulla in ogni istante; un carico $Z_L$ alla porta 2 è visto dalla porta 1 come $n^2 Z_L$ (con $n$ definito come sopra).
+
+</div>
+
+<Figure
+  caption="Trasformatore ideale con rapporto n:1, correnti i₁ e i₂ entranti e tensioni v₁, v₂"
+  num="1"
+  id="fig-1"
+>
+  <Circuit
+    netlist={{
+      elements: [{ type: 'T', id: 'T1', p1a: 'a', p1b: '0', p2a: 'b', p2b: '0', n: 2, label: 'n : 1' }],
+      ports: [
+        { id: 'P1', plus: 'a', minus: '0', label: 'v_1' },
+        { id: 'P2', plus: 'b', minus: '0', label: 'v_2' },
+      ],
+    }}
+    values={false}
+  />
+</Figure>
+
+<details class="proof" data-note-id="trasformatore-ideale-dimostrazione-1">
+<summary>Dimostrazione: Il trasformatore ideale non assorbe potenza e riporta le impedenze</summary>
+
+**Enunciato.** Con $v_1=nv_2$ e $i_1=-i_2/n$: (a) $p_1+p_2=0$; (b) se $v_2=-Z_L\,i_2$ allora $v_1/i_1=n^2Z_L$.
+
+1. (a) $p=v_1 i_1+v_2 i_2 = (n v_2)(-i_2/n)+v_2 i_2 = -v_2 i_2+v_2 i_2 = 0$.
+2. (b) La porta 2 è chiusa su $Z_L$; con $i_2$ entrante nel trasformatore, la corrente nel carico è $-i_2$, quindi $v_2=Z_L(-i_2)$.
+3. $Z_{in}=\dfrac{v_1}{i_1}=\dfrac{n\,v_2}{-i_2/n}=n^2\,\dfrac{v_2}{-i_2}=n^2 Z_L$. $\square$
+
+</details>
+
+<Formula id="trasf-v" />
+<Formula id="trasf-i" />
+<Formula id="trasf-z" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="trasformatore-ideale-esempio-1">
+
+### Trasformatore con carico resistivo
+
+$n=2$, carico $R_L=3\,\Omega$ alla porta 2; alla porta 1 un generatore $24\,\mathrm{V}$ in serie con $12\,\Omega$. Trova $v_2$ e la potenza nel carico.
+
+**Soluzione.**
+
+1. $R_{in}=n^2R_L=12\,\Omega$.
+2. Maglia primaria: $24=12\,i_1+12\,i_1\Rightarrow i_1=1\,\mathrm{A}$, $v_1=12\,\mathrm{V}$.
+3. $v_2=v_1/n=6\,\mathrm{V}$, $i_2=-n\,i_1=-2\,\mathrm{A}$ (la corrente nel carico è $2\,\mathrm{A}$).
+4. $P_L=6\cdot2=12\,\mathrm{W}=v_1 i_1$: la potenza si conserva. ✓
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="trasformatore-ideale-errore-1">
+
+- **Sbagliato:** Usare $i_1=i_2/n$ con entrambe le correnti entranti.
+- **Corretto:** Con convenzione degli utilizzatori su entrambe le porte, $i_1=-i_2/n$ (il segno meno compensa i versi).
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="trasformatore-ideale-esame-1">
+
+Trasformatore ideale: 30-10-2002 e 24-4-2009 (anche con massimo trasferimento di potenza); compare tra gli elementi dell'esercizio d'analisi recente <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

@@ -1,0 +1,222 @@
+- id: q-ii-025
+  topic: serie-parallelo-partitori
+  objectives:
+    - serie-parallelo-partitori.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Due resistori $6\\,\\Omega$ e $3\\,\\Omega$ in parallelo equivalgono a:"
+    en: "Two resistors of $6\\,\\Omega$ and $3\\,\\Omega$ in parallel are equivalent to:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $6\cdot3/9=2\,\Omega$.
+        en: $6\cdot3/9=2\,\Omega$.
+  choices:
+    - text:
+        it: $2\,\Omega$
+        en: $2\,\Omega$
+      correct: true
+    - text:
+        it: $18\,\Omega$
+        en: $18\,\Omega$
+      correct: false
+    - text:
+        it: $9\,\Omega$
+        en: $9\,\Omega$
+      correct: false
+    - text:
+        it: $4{,}5\,\Omega$
+        en: $4.5\,\Omega$
+      correct: false
+  origin: originale
+- id: q-ii-026
+  topic: serie-parallelo-partitori
+  objectives:
+    - serie-parallelo-partitori.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: "$R_1=1\\,\\Omega$ e $R_2=3\\,\\Omega$ in serie con $12\\,\\mathrm V$: la tensione su $R_2$ è"
+    en: "$R_1=1\\,\\Omega$ and $R_2=3\\,\\Omega$ in series with $12\\,\\mathrm V$: the voltage across $R_2$ is"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $12\cdot3/4=9\,\mathrm V$.
+        en: $12\cdot3/4=9\,\mathrm V$.
+  choices:
+    - text:
+        it: $4\,\mathrm V$
+        en: $4\,\mathrm V$
+      correct: false
+    - text:
+        it: $3\,\mathrm V$
+        en: $3\,\mathrm V$
+      correct: false
+    - text:
+        it: $9\,\mathrm V$
+        en: $9\,\mathrm V$
+      correct: true
+    - text:
+        it: $12\,\mathrm V$
+        en: $12\,\mathrm V$
+      correct: false
+  origin: originale
+- id: q-ii-027
+  topic: serie-parallelo-partitori
+  objectives:
+    - serie-parallelo-partitori.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Partitore di corrente: $i$ entra nel parallelo di $G_1=1\\,\\mathrm S$ e $G_2=3\\,\\mathrm S$. La corrente in $G_2$ è:"
+    en: "Current divider: $i$ enters the parallel of $G_1=1\\,\\mathrm S$ and $G_2=3\\,\\mathrm S$. The current in $G_2$ is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $i_2=i\,G_2/(G_1+G_2)$.
+        en: $i_2=i\,G_2/(G_1+G_2)$.
+  choices:
+    - text:
+        it: $i/4$
+        en: $i/4$
+      correct: false
+    - text:
+        it: $3i$
+        en: $3i$
+      correct: false
+    - text:
+        it: $3i/4$
+        en: $3i/4$
+      correct: true
+    - text:
+        it: $i/3$
+        en: $i/3$
+      correct: false
+  origin: originale
+- id: q-ii-028
+  topic: serie-parallelo-partitori
+  objectives:
+    - serie-parallelo-partitori.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: Il partitore di tensione si applica correttamente se la corrente nei due resistori è la stessa.
+    en: The voltage divider is correctly applied if the current in the two resistors is the same.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Cioè in assenza di carico che sottragga corrente.
+        en: That is, with no load drawing current.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-ii-037
+  topic: serie-parallelo-partitori
+  objectives:
+    - serie-parallelo-partitori.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "$R_{eq}$ fra i capi di un resistore da $4\\,\\Omega$ in parallelo alla serie $2\\,\\Omega+2\\,\\Omega$:"
+    en: "$R_{eq}$ across a $4\\,\\Omega$ resistor in parallel with the series $2\\,\\Omega+2\\,\\Omega$:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: $4\parallel4=2\,\Omega$.
+        en: $4\parallel4=2\,\Omega$.
+  choices:
+    - text:
+        it: $1\,\Omega$
+        en: $1\,\Omega$
+      correct: false
+    - text:
+        it: $8\,\Omega$
+        en: $8\,\Omega$
+      correct: false
+    - text:
+        it: $2\,\Omega$
+        en: $2\,\Omega$
+      correct: true
+    - text:
+        it: $4\,\Omega$
+        en: $4\,\Omega$
+      correct: false
+  origin: originale
+- id: q-ii-044
+  topic: serie-parallelo-partitori
+  objectives:
+    - serie-parallelo-partitori.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Due resistori in parallelo hanno resistenza equivalente maggiore di ciascuno dei due.
+    en: Two resistors in parallel have an equivalent resistance larger than either of them.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Il parallelo ha resistenza minore del minore dei due.
+        en: The parallel has a resistance smaller than the smaller of the two.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: false
+    - text:
+        it: Falso
+        en: 'False'
+      correct: true
+  origin: originale
+- id: q-ii-047
+  topic: serie-parallelo-partitori
+  objectives:
+    - serie-parallelo-partitori.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: Per $n$ resistori in serie $R_{eq}=$ ___.
+    en: For $n$ resistors in series $R_{eq}=$ ___.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Le resistenze si sommano.
+        en: The resistances add.
+  choices:
+    - text:
+        it: $1/\sum R_k$
+        en: $1/\sum R_k$
+      correct: false
+    - text:
+        it: $\sum R_k$
+        en: $\sum R_k$
+      correct: true
+    - text:
+        it: $\prod R_k$
+        en: $\prod R_k$
+      correct: false
+    - text:
+        it: $\sum 1/R_k$
+        en: $\sum 1/R_k$
+      correct: false
+  origin: originale

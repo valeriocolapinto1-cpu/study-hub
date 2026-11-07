@@ -1,0 +1,25 @@
+id: grafo-maglie-tagli
+course: teoria-circuiti
+order: 10
+title:
+  it: Grafo orientato, maglie e tagli
+  en: Directed graph, loops and cut sets
+summary:
+  it: Il grafo orientato di un circuito, con le definizioni di maglia e taglio e i primi conteggi su nodi e rami.
+  en: The directed graph of a circuit, with the definitions of loop and cut set and the first counts of nodes and branches.
+objectives:
+  - id: grafo-maglie-tagli.1
+    text:
+      it: Rappresentare un circuito con un grafo orientato
+      en: Represent a circuit with a directed graph
+  - id: grafo-maglie-tagli.2
+    text:
+      it: Distinguere maglie e tagli
+      en: Distinguish loops and cut sets
+  - id: grafo-maglie-tagli.3
+    text:
+      it: Contare nodi, rami e connessione
+      en: Count nodes and branches and check connectedness
+group:
+  it: II · Circuiti senza memoria
+  en: II · Memoryless circuits

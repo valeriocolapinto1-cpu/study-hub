@@ -1,0 +1,120 @@
+- id: q-ii-033
+  topic: metodo-delle-maglie
+  objectives:
+    - metodo-delle-maglie.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Nel metodo delle maglie l'elemento $R_{jk}$ ($j\\ne k$) con tutte le correnti di maglia orarie è:"
+    en: "In the mesh method, the element $R_{jk}$ ($j\\ne k$) with all mesh currents clockwise is:"
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Nel ramo comune le correnti hanno versi opposti.
+        en: In the shared branch the currents have opposite directions.
+  choices:
+    - text:
+        it: nullo
+        en: zero
+      correct: false
+    - text:
+        it: la resistenza condivisa con segno $-$
+        en: the shared resistance with sign $-$
+      correct: true
+    - text:
+        it: la resistenza condivisa con segno $+$
+        en: the shared resistance with sign $+$
+      correct: false
+    - text:
+        it: la somma delle resistenze
+        en: the sum of the resistances
+      correct: false
+  origin: originale
+- id: q-ii-034
+  topic: metodo-delle-maglie
+  objectives:
+    - metodo-delle-maglie.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: Un generatore di corrente su un solo ramo di una maglia fissa la corrente di quella maglia.
+    en: A current source in a branch belonging to a single loop fixes the current of that loop.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Elimina un'incognita.
+        en: It removes one unknown.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-ii-035
+  topic: metodo-delle-maglie
+  objectives:
+    - metodo-delle-maglie.1
+  difficulty: 3
+  kind: static
+  statement:
+    it: Il metodo delle maglie è il duale del metodo dei nodi.
+    en: The mesh method is the dual of the node method.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Tensioni ↔ correnti, resistenze ↔ conduttanze.
+        en: Voltages ↔ currents, resistances ↔ conductances.
+  choices:
+    - text:
+        it: Vero
+        en: 'True'
+      correct: true
+    - text:
+        it: Falso
+        en: 'False'
+      correct: false
+  origin: originale
+- id: q-ii-036
+  topic: metodo-delle-maglie
+  objectives:
+    - metodo-delle-maglie.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: Con $b-n+1$ maglie indipendenti si scrivono ___ equazioni di KVL.
+    en: With $b-n+1$ independent loops, ___ KVL equations are written.
+  steps:
+    - title:
+        it: Spiegazione
+        en: Explanation
+      body:
+        it: Una per ogni maglia fondamentale.
+        en: One for each fundamental loop.
+  choices:
+    - text:
+        it: $b$
+        en: $b$
+      correct: false
+    - text:
+        it: $n$
+        en: $n$
+      correct: false
+    - text:
+        it: $n-1$
+        en: $n-1$
+      correct: false
+    - text:
+        it: $b-n+1$
+        en: $b-n+1$
+      correct: true
+  origin: originale

@@ -1,0 +1,108 @@
+---
+course: teoria-circuiti
+topic: conservazione-potenza-complessa
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="conservazione-potenza-complessa-intuizione-1">
+
+Come in continua nessuna energia compare dal nulla, così in regime sinusoidale la potenza attiva e quella reattiva fanno separatamente «i conti in pareggio». Le potenze apparenti invece no: sono moduli, e i moduli di numeri complessi non si sommano.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="conservazione-potenza-complessa-teoria-1">
+
+In regime sinusoidale la somma delle potenze complesse assorbite da tutti i rami (generatori inclusi, convenzione degli utilizzatori) è nulla: $\sum_k\dot V_k\dot I_k^*=0$. Quindi si conservano separatamente $\sum P_k=0$ e $\sum Q_k=0$, mentre i moduli $|S_k|$ non si conservano.
+
+</div>
+
+<div data-note-id="conservazione-potenza-complessa-teoria-2">
+
+**Bilancio.** La potenza attiva erogata dai generatori è uguale a quella assorbita dai resistori; la reattiva erogata è uguale alla reattiva assorbita da induttori e condensatori (con segno).
+
+</div>
+
+<details class="proof" data-note-id="conservazione-potenza-complessa-dimostrazione-1">
+<summary>Dimostrazione: Conservazione della potenza complessa</summary>
+
+**Enunciato.** $\sum_k\dot V_k\dot I_k^*=0$ (valori efficaci, convenzione degli utilizzatori).
+
+1. I fasori $\dot{\mathbf V}$ soddisfano la KVL e $\dot{\mathbf I}$ la KCL (le equazioni hanno coefficienti reali $0,\pm1$).
+2. Anche $\dot{\mathbf I}^*$ soddisfa la KCL, perché la coniugazione conserva le equazioni a coefficienti reali.
+3. Per il teorema di Tellegen $\dot{\mathbf V}^{\mathsf T}\dot{\mathbf I}^*=0$, cioè $\sum_k\dot V_k\dot I_k^*=0$. Parte reale: $\sum P_k=0$; parte immaginaria: $\sum Q_k=0$. $\square$
+
+</details>
+
+<Formula id="cons-s" />
+<Formula id="bilancio-p" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="conservazione-potenza-complessa-esempio-1">
+
+### Bilancio su RL serie
+
+$\dot V_g=10\,\mathrm V$ (efficace) su $R=3\,\Omega$ in serie a $X_L=4\,\Omega$. Verifica il bilancio.
+
+**Soluzione.**
+
+1. $\dot I=\dfrac{10}{3+4j}=1{,}2-1{,}6j$, $|I|^2=4$.
+2. Generatore (erogata): $S=\dot V\dot I^*=10(1{,}2+1{,}6j)=12+16j$.
+3. Assorbite: $R$: $P=3\cdot4=12$; $L$: $Q=4\cdot4=16$. Quadra. ✓
+
+</div>
+
+<div class="worked" data-note-id="conservazione-potenza-complessa-esempio-2">
+
+### Cosa non si conserva
+
+In un circuito $|S_g|=20$, $|S_R|=12$, $|S_L|=16$. Si conservano i moduli?
+
+**Soluzione.**
+
+1. $12+16=28\ne20$: i moduli no; si conservano $P$ ($12$) e $Q$ ($16$).
+
+</div>
+
+<div class="worked" data-note-id="conservazione-potenza-complessa-esempio-3">
+
+### Reattiva con condensatore
+
+Carico $P=12$, $Q_L=16$ con un condensatore che assorbe $Q_C=-16$.
+
+**Soluzione.**
+
+1. $\sum Q=16-16=0$: il generatore eroga solo potenza attiva: rifasamento completo.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="conservazione-potenza-complessa-errore-1">
+
+- **Sbagliato:** Sommare le potenze apparenti dei rami.
+- **Corretto:** Si sommano le potenze complesse (o $P$ e $Q$ separatamente).
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="conservazione-potenza-complessa-esame-1">
+
+Conservazione e bilancio: 12-7-2005, 12-7-2007, 25-9-2007, 11-2-2008 <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

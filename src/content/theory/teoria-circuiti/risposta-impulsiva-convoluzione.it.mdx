@@ -1,0 +1,109 @@
+---
+course: teoria-circuiti
+topic: risposta-impulsiva-convoluzione
+lang: it
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="risposta-impulsiva-convoluzione-intuizione-1">
+
+Un «colpo» istantaneo all'ingresso fa risuonare il circuito secondo la sua natura: quella risposta è la sua impronta digitale. Qualsiasi ingresso si può vedere come una fila di colpi successivi, e la convoluzione somma le loro risposte.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="risposta-impulsiva-convoluzione-teoria-1">
+
+La **risposta impulsiva** $h(t)$ è l'uscita a $x=\delta(t)$ con condizioni iniziali nulle. Per un sistema causale $h(t)=0$ per $t<0$. L'uscita a un ingresso qualsiasi (condizioni iniziali nulle) è la **convoluzione** $y(t)=\int_{0}^{t}h(\tau)x(t-\tau)\,d\tau$. La risposta al gradino è l'integrale di $h$.
+
+</div>
+
+<div data-note-id="risposta-impulsiva-convoluzione-teoria-2">
+
+Il legame con la funzione di rete è $h(t)=\mathcal L^{-1}\{H(s)\}$: i poli di $H$ determinano i modi di $h$ e quindi la stabilità (se $h$ è assolutamente integrabile il sistema è stabile).
+
+</div>
+
+<details class="proof" data-note-id="risposta-impulsiva-convoluzione-dimostrazione-1">
+<summary>Dimostrazione: Risposta impulsiva e funzione di rete</summary>
+
+**Enunciato.** $h(t)=\mathcal L^{-1}\{H(s)\}$ e $y=h*x$.
+
+1. Per $x=\delta(t)$ si ha $X(s)=1$.
+2. A condizioni iniziali nulle $Y(s)=H(s)X(s)=H(s)$.
+3. Antitrasformando $y=h=\mathcal L^{-1}\{H\}$.
+4. Per un ingresso qualsiasi $Y=HX$; poiché $\mathcal L\{h*x\}=HX$ (proprietà della convoluzione), $y=h*x$. $\square$
+
+</details>
+
+<Formula id="h-imp" />
+<Formula id="y-conv" />
+<Formula id="y-gradino" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="risposta-impulsiva-convoluzione-esempio-1">
+
+### Risposta impulsiva di un RC
+
+$H=\dfrac{1}{s+1}$.
+
+**Soluzione.**
+
+1. $h(t)=e^{-t}u_{-1}(t)$.
+
+</div>
+
+<div class="worked" data-note-id="risposta-impulsiva-convoluzione-esempio-2">
+
+### Risposta al gradino
+
+Stesso sistema, ingresso $u_{-1}$.
+
+**Soluzione.**
+
+1. $y=\int_0^th=1-e^{-t}$ per $t>0$.
+
+</div>
+
+<div class="worked" data-note-id="risposta-impulsiva-convoluzione-esempio-3">
+
+### Impulso rettangolare
+
+Stesso sistema, ingresso $1$ per $0<t<1$.
+
+**Soluzione.**
+
+1. $0<t<1$: $y=1-e^{-t}$.
+2. $t>1$: $y=(1-e^{-1})e^{-(t-1)}$ (continuità in $t=1$).
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="risposta-impulsiva-convoluzione-errore-1">
+
+- **Sbagliato:** Dedurre $h$ dalla risposta al gradino senza derivare.
+- **Corretto:** $h=\dfrac{d}{dt}y_{gradino}$.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="risposta-impulsiva-convoluzione-esame-1">
+
+Risposta impulsiva e funzione di rete: 18-9-2002, 19-11-2003 <span class="badge badge--info">STORICO</span>.
+
+</div>
+
+</Callout>

@@ -1,0 +1,80 @@
+---
+course: teoria-circuiti
+topic: energia-e-bipoli-reali
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="energia-e-bipoli-reali-intuizione-1">
+
+Ideal elements are handy but "too perfect": two different ideal batteries in parallel would drive an infinite current. Nature resolves the paradox with small resistances that the model neglects. A good model of a real component adds exactly these details, such as the internal resistance of a battery.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="energia-e-bipoli-reali-teoria-1">
+
+**Energies.** Resistor: absorbed power $p=Ri^2=v^2/R\ge0$ (always dissipated). Capacitor: energy $W_C=\tfrac12 C v^2$. Inductor: $W_L=\tfrac12 L i^2$. All three are passive for $R,C,L>0$.
+
+</div>
+
+<div data-note-id="energia-e-bipoli-reali-teoria-2">
+
+**Inconsistencies of ideal elements.** Ideal elements can produce situations with no solution or with impulsive values: two different voltage sources in parallel violate KVL; a current source on an open circuit (or in series with another one of different value) violates KCL; a short-circuited voltage source has an undetermined current; two capacitors at different voltages connected in parallel would require an instantaneous voltage jump.
+
+</div>
+
+<div data-note-id="energia-e-bipoli-reali-teoria-3">
+
+**Real one-ports.** A real component is described by a richer equivalent circuit: a real battery is a voltage source $E$ with an internal resistance $r$ in series ($v=E-r\,i$), or a current source $E/r$ in parallel with $r$. The inconsistency disappears once the (small but non-zero) resistances of the connections are taken into account.
+
+</div>
+
+<Formula id="energia-c" />
+<Formula id="energia-l" />
+<Formula id="pila-reale" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="energia-e-bipoli-reali-esempio-1">
+
+### Two capacitors connected in parallel
+
+$C_1=C_2=1\,\mathrm{F}$ with $v_1=2\,\mathrm{V}$ and $v_2=0$ are connected in parallel. Find the final voltage and the change in energy.
+
+**Solution.**
+
+1. Charge conservation: $Q=C_1 v_1 + C_2 v_2 = 2\,\mathrm{C}$. Final value: $v=Q/(C_1+C_2)=1\,\mathrm{V}$.
+2. Initial energy: $\tfrac12\cdot1\cdot2^2=2\,\mathrm{J}$. Final: $\tfrac12\cdot 2\cdot1^2 = 1\,\mathrm{J}$.
+3. One joule is lost: the ideal model has no dissipative element, but the real circuit always has a resistance (or radiation) that dissipates it.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="energia-e-bipoli-reali-errore-1">
+
+- **Wrong:** Concluding that energy is always conserved in the ideal circuit.
+- **Right:** An ideal connection can have an impulsive transient with energy loss: the result depends on a neglected resistance.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="energia-e-bipoli-reali-esame-1">
+
+Energy aspects and passivity: 12-7-2005, 25-9-2007, 11-2-2008 (questions on power and properties) <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

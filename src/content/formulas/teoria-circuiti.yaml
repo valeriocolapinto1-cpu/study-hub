@@ -1,0 +1,2064 @@
+- id: lambda
+  topic: modellamento-costanti-concentrate
+  latex: \lambda=\frac{c}{f}
+  label:
+    it: Lunghezza d'onda
+    en: Wavelength
+  symbols:
+    it: λ lunghezza d'onda [m]; c ≈ 3·10⁸ m/s; f frequenza [Hz]
+    en: λ wavelength [m]; c ≈ 3·10⁸ m/s; f frequency [Hz]
+  usage:
+    it: 'Verifica del modello a costanti concentrate: serve L ≪ λ.'
+    en: 'Checking the lumped-parameter model: L ≪ λ is required.'
+  pitfall:
+    it: Applicare Kirchhoff ad alta frequenza.
+    en: Applying Kirchhoff's laws at high frequency.
+- id: concentrate
+  topic: modellamento-costanti-concentrate
+  latex: L\ll\lambda,\qquad \frac{L}{c}\ll T=\frac1f
+  label:
+    it: Condizione di validità delle costanti concentrate
+    en: Validity condition of lumped parameters
+  symbols:
+    it: L dimensione massima del circuito [m]; T periodo [s]
+    en: L largest dimension of the circuit [m]; T period [s]
+  usage:
+    it: Prima di usare KCL/KVL.
+    en: Before using KCL/KVL.
+  pitfall:
+    it: Dimenticare di confrontare L con λ.
+    en: Forgetting to compare L with λ.
+- id: kcl
+  topic: leggi-di-kirchhoff
+  latex: \sum_{k\in\text{nodo/taglio}}\pm i_k=0
+  label:
+    it: Legge di Kirchhoff delle correnti
+    en: Kirchhoff's current law
+  symbols:
+    it: i_k corrente di ramo [A]; segno + uscenti, − entranti
+    en: i_k branch current [A]; sign + leaving, − entering
+  usage:
+    it: Ogni nodo e ogni taglio.
+    en: Every node and every cut set.
+  pitfall:
+    it: Mescolare convenzioni di segno.
+    en: Mixing sign conventions.
+- id: kvl
+  topic: leggi-di-kirchhoff
+  latex: \sum_{k\in\text{maglia}}\pm v_k=0
+  label:
+    it: Legge di Kirchhoff delle tensioni
+    en: Kirchhoff's voltage law
+  symbols:
+    it: v_k tensione di ramo [V]; + se concorde col giro
+    en: v_k branch voltage [V]; + if it agrees with the traversal
+  usage:
+    it: Ogni maglia.
+    en: Every loop.
+  pitfall:
+    it: 'Segni: seguire il verso di percorrenza, non il valore.'
+    en: 'Signs: follow the direction of traversal, not the value.'
+- id: potenza-istantanea
+  topic: porta-e-bipolo
+  latex: p(t)=v(t)\,i(t)
+  label:
+    it: Potenza istantanea assorbita
+    en: Instantaneous absorbed power
+  symbols:
+    it: v [V], i [A], p [W]; convenzione degli utilizzatori
+    en: v [V], i [A], p [W]; passive sign convention
+  usage:
+    it: Bilanci di potenza.
+    en: Power balances.
+  pitfall:
+    it: Usarla con la convenzione dei generatori.
+    en: Using it with the active sign convention.
+- id: energia
+  topic: porta-e-bipolo
+  latex: w(t_0,t)=\int_{t_0}^{t}v(\tau)\,i(\tau)\,d\tau
+  label:
+    it: Energia assorbita
+    en: Absorbed energy
+  symbols:
+    it: w [J]
+    en: w [J]
+  usage:
+    it: Passività, energia immagazzinata.
+    en: Passivity, stored energy.
+  pitfall:
+    it: Scordare l'energia iniziale.
+    en: Forgetting the initial energy.
+- id: linearita
+  topic: linearita-passivita-causalita
+  latex: x=a\,x_1+b\,x_2\ \Rightarrow\ y=a\,y_1+b\,y_2
+  label:
+    it: Linearità
+    en: Linearity
+  symbols:
+    it: x ingresso, y uscita; a, b costanti
+    en: x input, y output; a, b constants
+  usage:
+    it: Sovrapposizione degli effetti.
+    en: Superposition.
+  pitfall:
+    it: Applicarla a grandezze quadratiche (potenza).
+    en: Applying it to quadratic quantities (power).
+- id: tempo-invarianza
+  topic: linearita-passivita-causalita
+  latex: x(t-T)\ \mapsto\ y(t-T)
+  label:
+    it: Tempo-invarianza
+    en: Time invariance
+  symbols:
+    it: T traslazione temporale [s]
+    en: T time shift [s]
+  usage:
+    it: Elementi con parametri costanti.
+    en: Elements with constant parameters.
+  pitfall:
+    it: Confondere con causalità.
+    en: Confusing it with causality.
+- id: resistore
+  topic: relazioni-costitutive
+  latex: v=R\,i,\qquad i=G\,v,\qquad G=\frac1R
+  label:
+    it: Resistore
+    en: Resistor
+  symbols:
+    it: R [Ω], G [S]
+    en: R [Ω], G [S]
+  usage:
+    it: Legge di Ohm.
+    en: Ohm's law.
+  pitfall:
+    it: Dimenticare il verso (utilizzatori).
+    en: Forgetting the direction (passive convention).
+- id: condensatore
+  topic: relazioni-costitutive
+  latex: i=C\frac{dv}{dt},\qquad v(t)=v(t_0)+\frac1C\int_{t_0}^{t}i\,d\tau
+  label:
+    it: Condensatore
+    en: Capacitor
+  symbols:
+    it: C [F]
+    en: C [F]
+  usage:
+    it: In continua è un aperto.
+    en: In DC it is an open circuit.
+  pitfall:
+    it: Imporre v_C(0⁺)=0 dopo un regime.
+    en: Imposing v_C(0⁺)=0 after a steady state.
+- id: induttore
+  topic: relazioni-costitutive
+  latex: v=L\frac{di}{dt},\qquad i(t)=i(t_0)+\frac1L\int_{t_0}^{t}v\,d\tau
+  label:
+    it: Induttore
+    en: Inductor
+  symbols:
+    it: L [H]
+    en: L [H]
+  usage:
+    it: In continua è un corto.
+    en: In DC it is a short circuit.
+  pitfall:
+    it: Imporre i_L(0⁺)=0 dopo un regime.
+    en: Imposing i_L(0⁺)=0 after a steady state.
+- id: cont-vc-il
+  topic: relazioni-costitutive
+  latex: v_C(0^+)=v_C(0^-),\qquad i_L(0^+)=i_L(0^-)
+  label:
+    it: Continuità di vC e iL
+    en: Continuity of vC and iL
+  symbols:
+    it: Valida se i_C e v_L sono limitate
+    en: Valid if i_C and v_L are bounded
+  usage:
+    it: Passo 3 e 8 della procedura d'esame.
+    en: Steps 3 and 8 of the exam procedure.
+  pitfall:
+    it: Applicarla a v_out o ad altre grandezze.
+    en: Applying it to v_out or to other quantities.
+- id: energia-c
+  topic: energia-e-bipoli-reali
+  latex: W_C=\tfrac12\,C\,v^2
+  label:
+    it: Energia nel condensatore
+    en: Energy in the capacitor
+  symbols:
+    it: W [J]
+    en: W [J]
+  usage:
+    it: Bilanci energetici.
+    en: Energy balances.
+  pitfall:
+    it: Usare ½Cv² con v di ramo sbagliato.
+    en: Using ½Cv² with the wrong branch voltage.
+- id: energia-l
+  topic: energia-e-bipoli-reali
+  latex: W_L=\tfrac12\,L\,i^2
+  label:
+    it: Energia nell'induttore
+    en: Energy in the inductor
+  symbols:
+    it: W [J]
+    en: W [J]
+  usage:
+    it: Bilanci energetici.
+    en: Energy balances.
+  pitfall:
+    it: Usare ½Li² con la corrente di ramo sbagliata.
+    en: Using ½Li² with the wrong branch current.
+- id: pila-reale
+  topic: energia-e-bipoli-reali
+  latex: v=E-r\,i
+  label:
+    it: Generatore reale di tensione
+    en: Real voltage source
+  symbols:
+    it: E f.e.m. [V]; r resistenza interna [Ω]
+    en: E e.m.f. [V]; r internal resistance [Ω]
+  usage:
+    it: Modello di una pila.
+    en: Model of a battery.
+  pitfall:
+    it: Trattarla come generatore ideale con corto.
+    en: Treating it as an ideal source when short-circuited.
+- id: vcvs
+  topic: generatori-controllati
+  latex: v_2=\mu\,v_1,\quad i_1=0
+  label:
+    it: Generatore controllato VCVS
+    en: Controlled source VCVS
+  symbols:
+    it: μ guadagno di tensione
+    en: μ voltage gain
+  usage:
+    it: Amplificatori di tensione.
+    en: Voltage amplifiers.
+  pitfall:
+    it: Spegnerlo con gli indipendenti.
+    en: Switching it off together with the independent sources.
+- id: vccs
+  topic: generatori-controllati
+  latex: i_2=g_m\,v_1,\quad i_1=0
+  label:
+    it: Generatore controllato VCCS
+    en: Controlled source VCCS
+  symbols:
+    it: g_m transconduttanza [S]
+    en: g_m transconductance [S]
+  usage:
+    it: Transistor.
+    en: Transistors.
+  pitfall:
+    it: Spegnerlo con gli indipendenti.
+    en: Switching it off together with the independent sources.
+- id: ccvs
+  topic: generatori-controllati
+  latex: v_2=r_m\,i_1,\quad v_1=0
+  label:
+    it: Generatore controllato CCVS
+    en: Controlled source CCVS
+  symbols:
+    it: r_m transresistenza [Ω]
+    en: r_m transresistance [Ω]
+  usage:
+    it: Amplificatori di corrente-tensione.
+    en: Current-to-voltage amplifiers.
+  pitfall:
+    it: Spegnerlo con gli indipendenti.
+    en: Switching it off together with the independent sources.
+- id: cccs
+  topic: generatori-controllati
+  latex: i_2=\beta\,i_1,\quad v_1=0
+  label:
+    it: Generatore controllato CCCS
+    en: Controlled source CCCS
+  symbols:
+    it: β guadagno di corrente
+    en: β current gain
+  usage:
+    it: Transistor bipolare (modello).
+    en: Bipolar transistor (model).
+  pitfall:
+    it: Spegnerlo con gli indipendenti.
+    en: Switching it off together with the independent sources.
+- id: trasf-v
+  topic: trasformatore-ideale
+  latex: v_1=n\,v_2
+  label:
+    it: 'Trasformatore ideale: tensioni'
+    en: 'Ideal transformer: voltages'
+  symbols:
+    it: n rapporto di trasformazione
+    en: n turns ratio
+  usage:
+    it: Equazioni del trasformatore.
+    en: Transformer equations.
+  pitfall:
+    it: Scambiare n con 1/n.
+    en: Swapping n with 1/n.
+- id: trasf-i
+  topic: trasformatore-ideale
+  latex: i_1=-\frac{i_2}{n}
+  label:
+    it: 'Trasformatore ideale: correnti'
+    en: 'Ideal transformer: currents'
+  symbols:
+    it: Convenzione degli utilizzatori su entrambe le porte
+    en: Passive sign convention on both ports
+  usage:
+    it: Con la precedente.
+    en: Together with the previous one.
+  pitfall:
+    it: Dimenticare il segno meno.
+    en: Forgetting the minus sign.
+- id: trasf-z
+  topic: trasformatore-ideale
+  latex: Z_{in}=n^2\,Z_L
+  label:
+    it: Impedenza riportata
+    en: Reflected impedance
+  symbols:
+    it: Z_L carico alla porta 2 [Ω]
+    en: Z_L load at port 2 [Ω]
+  usage:
+    it: Riduzione di circuiti col trasformatore.
+    en: Reducing circuits with a transformer.
+  pitfall:
+    it: Usare n invece di n².
+    en: Using n instead of n².
+- id: nullore-def
+  topic: nullore-e-amplificatore-operazionale
+  latex: v_1=0,\quad i_1=0;\quad v_2,\,i_2\ \text{qualsiasi}
+  label:
+    it: Nullore
+    en: Nullor
+  symbols:
+    it: Porta 1 nullatore, porta 2 noratore
+    en: Port 1 nullator, port 2 norator
+  usage:
+    it: Op-amp ideale.
+    en: Ideal op-amp.
+  pitfall:
+    it: Credere che i_2 sia nulla.
+    en: Believing that i_2 is zero.
+- id: opamp-reale
+  topic: nullore-e-amplificatore-operazionale
+  latex: v_o=A\,(v_+-v_-),\quad A\in[10^5,10^8]
+  label:
+    it: Amplificatore operazionale lineare
+    en: Linear operational amplifier
+  symbols:
+    it: A guadagno differenziale
+    en: A differential gain
+  usage:
+    it: Dal reale all'ideale.
+    en: From the real to the ideal amplifier.
+  pitfall:
+    it: Dimenticare le saturazioni ±V_cc.
+    en: Forgetting saturation at ±V_cc.
+- id: invertente
+  topic: nullore-e-amplificatore-operazionale
+  latex: v_o=-\frac{R_2}{R_1}\,V_g
+  label:
+    it: Op-amp invertente
+    en: Inverting op-amp
+  symbols:
+    it: R_1 ingresso, R_2 retroazione
+    en: R_1 input, R_2 feedback
+  usage:
+    it: Amplificazione con inversione.
+    en: Amplification with inversion.
+  pitfall:
+    it: Dimenticare il segno meno.
+    en: Forgetting the minus sign.
+- id: sommatore
+  topic: nullore-e-amplificatore-operazionale
+  latex: v_o=-R_0\left(\frac{V_{g1}}{R_1}+\frac{V_{g2}}{R_2}+\frac{V_{g3}}{R_3}\right)
+  label:
+    it: Sommatore invertente
+    en: Inverting summer
+  symbols:
+    it: R_0 retroazione
+    en: R_0 feedback
+  usage:
+    it: Somma pesata.
+    en: Weighted sum.
+  pitfall:
+    it: Confondere R_0 con R_k.
+    en: Confusing R_0 with R_k.
+- id: non-invertente
+  topic: nullore-e-amplificatore-operazionale
+  latex: v_o=\left(1+\frac{R_2}{R_1}\right)V_g
+  label:
+    it: Op-amp non invertente
+    en: Non-inverting op-amp
+  symbols:
+    it: R₁ verso massa, R₂ in retroazione [Ω]
+    en: R₁ to ground, R₂ in feedback [Ω]
+  usage:
+    it: Guadagno ≥ 1.
+    en: Gain ≥ 1.
+  pitfall:
+    it: Usare la formula dell'invertente.
+    en: Using the inverting formula.
+- id: inseguitore
+  topic: nullore-e-amplificatore-operazionale
+  latex: v_o=V_g
+  label:
+    it: Inseguitore (buffer)
+    en: Voltage follower (buffer)
+  symbols:
+    it: Impedenza d'ingresso ∞, d'uscita 0
+    en: Input impedance ∞, output impedance 0
+  usage:
+    it: Disaccoppiamento.
+    en: Decoupling.
+  pitfall:
+    it: Credere che amplifichi.
+    en: Believing that it amplifies.
+- id: differenziale
+  topic: nullore-e-amplificatore-operazionale
+  latex: v_o=\frac{R_2}{R_1}\,(V_{g2}-V_{g1})
+  label:
+    it: Amplificatore differenziale
+    en: Difference amplifier
+  symbols:
+    it: Con rapporti R uguali sui due rami
+    en: With equal resistor ratios on the two branches
+  usage:
+    it: Differenza di segnali.
+    en: Difference of signals.
+  pitfall:
+    it: Resistenze non appaiate.
+    en: Unmatched resistors.
+- id: n-b
+  topic: grafo-maglie-tagli
+  latex: \#\text{albero}=n-1,\qquad \#\text{coalbero}=b-n+1
+  label:
+    it: Rami, nodi, albero, coalbero
+    en: Branches, nodes, tree, cotree
+  symbols:
+    it: n nodi, b rami
+    en: n nodes, b branches
+  usage:
+    it: Contare equazioni indipendenti.
+    en: Counting independent equations.
+  pitfall:
+    it: Dimenticare che il grafo deve essere connesso.
+    en: Forgetting that the graph must be connected.
+- id: albero-coalbero
+  topic: albero-coalbero
+  latex: \#\text{maglie fond.}=b-n+1,\qquad \#\text{tagli fond.}=n-1
+  label:
+    it: Maglie e tagli fondamentali
+    en: Fundamental loops and cut sets
+  symbols:
+    it: n nodi, b rami
+    en: n nodes, b branches
+  usage:
+    it: Costruire B e Q.
+    en: Building B and Q.
+  pitfall:
+    it: Albero non connesso o con maglie.
+    en: A tree that is not connected or contains loops.
+- id: kcl-mat
+  topic: matrici-a-b
+  latex: A\,\mathbf i=\mathbf 0
+  label:
+    it: KCL in forma matriciale
+    en: KCL in matrix form
+  symbols:
+    it: A (n−1)×b incidenza ridotta
+    en: A (n−1)×b reduced incidence matrix
+  usage:
+    it: Metodo dei nodi.
+    en: Node method.
+  pitfall:
+    it: Usare la matrice non ridotta (righe dipendenti).
+    en: Using the non-reduced matrix (dependent rows).
+- id: kvl-mat
+  topic: matrici-a-b
+  latex: B\,\mathbf v=\mathbf 0,\qquad \mathbf v=A^{\mathsf T}\mathbf e
+  label:
+    it: KVL in forma matriciale
+    en: KVL in matrix form
+  symbols:
+    it: B (b−n+1)×b; e tensioni di nodo
+    en: B (b−n+1)×b; e node voltages
+  usage:
+    it: Metodo delle maglie.
+    en: Mesh method.
+- id: b-da-a
+  topic: matrici-a-b
+  latex: B=[-F^{\mathsf T}\ \ \mathbb 1],\quad F=A_t^{-1}A_c
+  label:
+    it: B in funzione di A (blocchi)
+    en: B as a function of A (blocks)
+  symbols:
+    it: Albero | coalbero
+    en: Tree | cotree
+  usage:
+    it: Ricostruire B da A.
+    en: Rebuilding B from A.
+  pitfall:
+    it: Scrivere B = −Aᵀ tra matrici di dimensioni diverse.
+    en: Writing B = −Aᵀ between matrices of different sizes.
+- id: tens-indip
+  topic: tensioni-correnti-indipendenti
+  latex: \mathbf v_c=F^{\mathsf T}\mathbf v_t
+  label:
+    it: Tensioni indipendenti
+    en: Independent voltages
+  symbols:
+    it: v_t tensioni d'albero
+    en: v_t tree voltages
+  usage:
+    it: Ridurre le incognite.
+    en: Reducing the unknowns.
+- id: corr-indip
+  topic: tensioni-correnti-indipendenti
+  latex: \mathbf i_t=-F\,\mathbf i_c,\qquad \mathbf i=B^{\mathsf T}\mathbf j
+  label:
+    it: Correnti indipendenti
+    en: Independent currents
+  symbols:
+    it: j correnti di maglia
+    en: j loop currents
+  usage:
+    it: Ridurre le incognite.
+    en: Reducing the unknowns.
+- id: tellegen
+  topic: teorema-di-tellegen
+  latex: \mathbf v^{\mathsf T}\mathbf i=\sum_k v_k i_k=0
+  label:
+    it: Teorema di Tellegen
+    en: Tellegen's theorem
+  symbols:
+    it: v soddisfa KVL, i soddisfa KCL, stesso grafo
+    en: v satisfies KVL, i satisfies KCL, same graph
+  usage:
+    it: Bilanci di potenza, ortogonalità.
+    en: Power balances, orthogonality.
+  pitfall:
+    it: Convenzioni miste.
+    en: Mixed conventions.
+- id: ortogonalita
+  topic: teorema-di-tellegen
+  latex: \operatorname{Im}A^{\mathsf T}\perp\ker A
+  label:
+    it: Ortogonalità tensioni–correnti
+    en: Voltage–current orthogonality
+  symbols:
+    it: 'Im A^T: tensioni ammissibili; ker A: correnti ammissibili'
+    en: 'Im Aᵀ: admissible voltages; ker A: admissible currents'
+  usage:
+    it: Dimostrazione di Tellegen.
+    en: Proof of Tellegen.
+- id: serie
+  topic: serie-parallelo-partitori
+  latex: R_{eq}=\sum_k R_k
+  label:
+    it: Resistori in serie
+    en: Resistors in series
+  symbols:
+    it: R_k resistenze [Ω]
+    en: R_k resistances [Ω]
+  usage:
+    it: Stessa corrente.
+    en: Same current.
+  pitfall:
+    it: Usarla con rami che hanno un nodo di derivazione.
+    en: Using it with branches that have a junction node between them.
+- id: parallelo
+  topic: serie-parallelo-partitori
+  latex: \frac1{R_{eq}}=\sum_k\frac1{R_k},\quad R_{eq}=\frac{R_1R_2}{R_1+R_2}
+  label:
+    it: Resistori in parallelo
+    en: Resistors in parallel
+  symbols:
+    it: R_k resistenze [Ω]
+    en: R_k resistances [Ω]
+  usage:
+    it: Stessa tensione.
+    en: Same voltage.
+  pitfall:
+    it: Scordare l'inverso.
+    en: Forgetting the reciprocal.
+- id: part-v
+  topic: serie-parallelo-partitori
+  latex: v_k=v\,\frac{R_k}{\sum_jR_j}
+  label:
+    it: Partitore di tensione
+    en: Voltage divider
+  symbols:
+    it: v tensione totale [V]; R_k [Ω]
+    en: v total voltage [V]; R_k [Ω]
+  usage:
+    it: Serie senza carico a valle.
+    en: Series with no downstream load.
+  pitfall:
+    it: Ignorare il carico.
+    en: Ignoring the load.
+- id: part-i
+  topic: serie-parallelo-partitori
+  latex: i_k=i\,\frac{G_k}{\sum_jG_j}
+  label:
+    it: Partitore di corrente
+    en: Current divider
+  symbols:
+    it: G conduttanze [S]
+    en: G conductances [S]
+  usage:
+    it: Parallelo.
+    en: Parallel.
+  pitfall:
+    it: Usare R al posto di G.
+    en: Using R instead of G.
+- id: nodi
+  topic: metodo-dei-nodi
+  latex: G_{jj}=\sum G\ \text{al nodo}\ j,\quad G_{jk}=-G_{jk}^{\text{ramo}}
+  label:
+    it: Metodo dei nodi (rete resistiva)
+    en: Node method (resistive network)
+  symbols:
+    it: i_s correnti entranti nei nodi
+    en: i_s currents entering the nodes
+  usage:
+    it: Reti con pochi nodi.
+    en: Networks with few nodes.
+  pitfall:
+    it: Corrente del generatore con segno sbagliato.
+    en: Source current with the wrong sign.
+- id: nodi-mat
+  topic: metodo-dei-nodi
+  latex: A\,\mathcal G\,A^{\mathsf T}\,\mathbf e=\mathbf i_s
+  label:
+    it: Equazioni ai nodi
+    en: Node equations
+  symbols:
+    it: 𝒢 = diag(G_k)
+    en: 𝒢 = diag(G_k)
+  usage:
+    it: Forma compatta.
+    en: Compact form.
+- id: maglie
+  topic: metodo-delle-maglie
+  latex: R_{jj}=\sum R\ \text{della maglia},\quad R_{jk}=-R\ \text{condivisa}
+  label:
+    it: Metodo delle maglie
+    en: Mesh method
+  symbols:
+    it: v_s tensioni dei generatori nel giro
+    en: v_s source voltages along the loop
+  usage:
+    it: Reti con poche maglie.
+    en: Networks with few loops.
+  pitfall:
+    it: Segno dei termini mutui.
+    en: Sign of the mutual terms.
+- id: maglie-mat
+  topic: metodo-delle-maglie
+  latex: B\,\mathcal R\,B^{\mathsf T}\,\mathbf j=\mathbf v_s
+  label:
+    it: Equazioni alle maglie
+    en: Mesh equations
+  symbols:
+    it: ℛ = diag(R_k)
+    en: ℛ = diag(R_k)
+  usage:
+    it: Forma compatta.
+    en: Compact form.
+- id: tau-rc
+  topic: circuiti-primo-ordine
+  latex: \tau=R_{eq}C
+  label:
+    it: Costante di tempo RC
+    en: RC time constant
+  symbols:
+    it: R_eq vista dai morsetti di C, indipendenti spenti [Ω]; C [F]
+    en: R_eq seen from the terminals of C, independent sources off [Ω]; C [F]
+  usage:
+    it: Circuiti del primo ordine con condensatore.
+    en: First-order circuits with a capacitor.
+  pitfall:
+    it: Usare una resistenza qualsiasi invece di R_eq.
+    en: Using any resistance instead of R_eq.
+- id: tau-rl
+  topic: circuiti-primo-ordine
+  latex: \tau=\dfrac{L}{R_{eq}}
+  label:
+    it: Costante di tempo RL
+    en: RL time constant
+  symbols:
+    it: L [H]
+    en: L [H]
+  usage:
+    it: Circuiti del primo ordine con induttore.
+    en: First-order circuits with an inductor.
+  pitfall:
+    it: Scambiare L/R con R/L.
+    en: Swapping L/R with R/L.
+- id: sol-primo-ordine
+  topic: circuiti-primo-ordine
+  latex: x(t)=x_0e^{-t/\tau}+\frac1\tau\int_0^te^{-(t-s)/\tau}f(s)ds
+  label:
+    it: Soluzione del primo ordine
+    en: First-order solution
+  symbols:
+    it: x_0 = x(0⁻)
+    en: x_0 = x(0⁻)
+  usage:
+    it: Eccitazione variabile.
+    en: Time-varying excitation.
+  pitfall:
+    it: Dimenticare il fattore 1/τ.
+    en: Forgetting the factor 1/τ.
+- id: regola-vfc
+  topic: circuiti-primo-ordine
+  latex: x(t)=x_\infty+(x_0-x_\infty)e^{-t/\tau}
+  label:
+    it: Regola valore iniziale/finale
+    en: Initial/final value rule
+  symbols:
+    it: x_∞ valore di regime (C aperto, L corto)
+    en: x_∞ steady-state value (C open, L shorted)
+  usage:
+    it: Eccitazione costante.
+    en: Constant excitation.
+  pitfall:
+    it: Usare x(0⁺)=0.
+    en: Using x(0⁺)=0.
+- id: fasore
+  topic: fasori
+  latex: v(t)=V_m\cos(\omega t+\varphi)\ \leftrightarrow\ \dot V=V_me^{j\varphi}
+  label:
+    it: Fasore
+    en: Phasor
+  symbols:
+    it: V_m ampiezza di picco, φ fase
+    en: V_m peak amplitude, φ phase
+  usage:
+    it: Regime sinusoidale.
+    en: Sinusoidal steady state.
+  pitfall:
+    it: Confondere picco ed efficace.
+    en: Confusing peak and RMS values.
+- id: fasore-sin
+  topic: fasori
+  latex: A\sin\omega t\ \leftrightarrow\ -jA
+  label:
+    it: Fasore del seno
+    en: Phasor of a sine
+  symbols:
+    it: A ampiezza di picco; ω pulsazione [rad/s]
+    en: A peak amplitude; ω angular frequency [rad/s]
+  usage:
+    it: Ridurre seni a coseni.
+    en: Reducing sines to cosines.
+  pitfall:
+    it: Usare +jA.
+    en: Using +jA.
+- id: deriv-fasore
+  topic: fasori
+  latex: \frac{d}{dt}\to j\omega,\qquad\int dt\to\frac1{j\omega}
+  label:
+    it: Derivata e integrale nei fasori
+    en: Derivative and integral with phasors
+  symbols:
+    it: ω [rad/s]
+    en: ω [rad/s]
+  usage:
+    it: Costitutive di L e C.
+    en: Constitutive relations of L and C.
+- id: cos-sin-ampl
+  topic: fasori
+  latex: a\cos\omega t+b\sin\omega t=\sqrt{a^2+b^2}\cos(\omega t-\varphi),\ \tan\varphi=\frac ba
+  label:
+    it: Forma cartesiana e ampiezza-fase
+    en: Cartesian and amplitude-phase form
+  symbols:
+    it: a, b coefficienti
+    en: a, b coefficients
+  usage:
+    it: Passare da una forma all'altra.
+    en: Converting between the two forms.
+  pitfall:
+    it: Segno della fase.
+    en: Sign of the phase.
+- id: imped-r
+  topic: impedenza-ammettenza
+  latex: Z_R=R
+  label:
+    it: Impedenza del resistore
+    en: Impedance of the resistor
+  symbols:
+    it: R resistenza [Ω]
+    en: R resistance [Ω]
+  usage:
+    it: Circuito fittizio dei fasori.
+    en: Fictitious phasor circuit.
+- id: imped-l
+  topic: impedenza-ammettenza
+  latex: Z_L=j\omega L
+  label:
+    it: Impedenza dell'induttore
+    en: Impedance of the inductor
+  symbols:
+    it: L induttanza [H]; ω pulsazione [rad/s]; Z in Ω
+    en: L inductance [H]; ω angular frequency [rad/s]; Z in Ω
+  usage:
+    it: Circuito fittizio dei fasori.
+    en: Fictitious phasor circuit.
+- id: imped-c
+  topic: impedenza-ammettenza
+  latex: Z_C=\frac{1}{j\omega C}=-\frac{j}{\omega C}
+  label:
+    it: Impedenza del condensatore
+    en: Impedance of the capacitor
+  symbols:
+    it: C capacità [F]; ω pulsazione [rad/s]; Z in Ω
+    en: C capacitance [F]; ω angular frequency [rad/s]; Z in Ω
+  usage:
+    it: Circuito fittizio dei fasori.
+    en: Fictitious phasor circuit.
+  pitfall:
+    it: Scrivere jωC.
+    en: Writing jωC.
+- id: ammettenza
+  topic: impedenza-ammettenza
+  latex: Y=\frac1Z=G+jB
+  label:
+    it: Ammettenza
+    en: Admittance
+  symbols:
+    it: G conduttanza, B suscettanza [S]
+    en: G conductance, B susceptance [S]
+  usage:
+    it: Parallelo di bipoli.
+    en: Parallel one-ports.
+- id: serie-imped
+  topic: impedenza-ammettenza
+  latex: Z_{s}=\sum Z_k,\qquad Y_{p}=\sum Y_k
+  label:
+    it: Impedenze in serie e in parallelo
+    en: Impedances in series and in parallel
+  symbols:
+    it: Z impedenze [Ω]; Y ammettenze [S]
+    en: Z impedances [Ω]; Y admittances [S]
+  usage:
+    it: Riduzione di reti.
+    en: Network reduction.
+- id: part-v-fasori
+  topic: impedenza-ammettenza
+  latex: \dot V_k=\dot V\,\frac{Z_k}{\sum Z_j}
+  label:
+    it: Partitore di tensione complesso
+    en: Complex voltage divider
+  symbols:
+    it: V̇ tensione totale; Z_k impedenza del tratto k [Ω]
+    en: V̇ total voltage; Z_k impedance of section k [Ω]
+  usage:
+    it: Serie senza carico a valle.
+    en: Series with no downstream load.
+- id: fasori-validita
+  topic: applicabilita-fasori
+  latex: H(j\omega)=\frac{\sum b_k(j\omega)^k}{\sum a_k(j\omega)^k},\ \ \mathrm{Re}\,p_i<0
+  label:
+    it: Validità dei fasori
+    en: Validity of phasors
+  symbols:
+    it: a_k, b_k coefficienti reali; p_i poli
+    en: a_k, b_k real coefficients; p_i poles
+  usage:
+    it: Condizione di applicabilità.
+    en: Applicability condition.
+  pitfall:
+    it: Usarli con elementi non lineari.
+    en: Using them with nonlinear elements.
+- id: hjw-def
+  topic: applicabilita-fasori
+  latex: \dot Y=H(j\omega)\dot X
+  label:
+    it: Funzione di rete in regime sinusoidale
+    en: Network function in sinusoidal steady state
+  symbols:
+    it: Ẋ ingresso, Ẏ uscita (fasori); H adimensionale o in Ω, S
+    en: Ẋ input, Ẏ output (phasors); H dimensionless or in Ω, S
+  usage:
+    it: Risposta di regime.
+    en: Steady-state response.
+- id: sovrapposizione
+  topic: sovrapposizione-frequenze-diverse
+  latex: y(t)=y_{dc}+\sum_k\mathrm{Re}\{Y_ke^{j\omega_kt}\}
+  label:
+    it: Sovrapposizione nel tempo
+    en: Superposition in time
+  symbols:
+    it: ω_k frequenze diverse
+    en: ω_k different frequencies
+  usage:
+    it: Più generatori a frequenze diverse.
+    en: Several sources at different frequencies.
+  pitfall:
+    it: Sommare i fasori.
+    en: Adding the phasors.
+- id: cond-iniz-mista
+  topic: sovrapposizione-frequenze-diverse
+  latex: x(0^-)=x_{dc}+\sum_k\mathrm{Re}\{X_k\}
+  label:
+    it: Condizione iniziale nel caso misto
+    en: Initial condition in the mixed case
+  symbols:
+    it: x_dc valore continuo; X_k fasore della k-esima sinusoide
+    en: x_dc DC value; X_k phasor of the k-th sinusoid
+  usage:
+    it: Passo 3 dell'esercizio.
+    en: Step 3 of the exercise.
+  pitfall:
+    it: Usare il modulo.
+    en: Using the magnitude.
+- id: p-picco
+  topic: potenza-complessa
+  latex: P=\tfrac12V_mI_m\cos\varphi
+  label:
+    it: Potenza attiva (picco)
+    en: Active power (peak)
+  symbols:
+    it: V_m, I_m ampiezze di picco; φ sfasamento tensione–corrente
+    en: V_m, I_m peak amplitudes; φ voltage–current phase shift
+  usage:
+    it: Valori di picco.
+    en: Peak values.
+  pitfall:
+    it: Dimenticare ½.
+    en: Forgetting ½.
+- id: p-eff
+  topic: potenza-complessa
+  latex: P=VI\cos\varphi
+  label:
+    it: Potenza attiva (efficaci)
+    en: Active power (RMS)
+  symbols:
+    it: V, I efficaci
+    en: V, I RMS values
+  usage:
+    it: Valori efficaci.
+    en: RMS values.
+- id: q-eff
+  topic: potenza-complessa
+  latex: Q=VI\sin\varphi
+  label:
+    it: Potenza reattiva
+    en: Reactive power
+  symbols:
+    it: '[var]'
+    en: '[var]'
+- id: s-compl
+  topic: potenza-complessa
+  latex: S=\dot V\dot I^{*}=P+jQ,\ |S|=VI
+  label:
+    it: Potenza complessa
+    en: Complex power
+  symbols:
+    it: '[VA]'
+    en: '[VA]'
+  pitfall:
+    it: Dimenticare il coniugato.
+    en: Forgetting the conjugate.
+- id: cosphi
+  topic: potenza-complessa
+  latex: \cos\varphi=\frac{P}{|S|},\ \tan\varphi=\frac QP
+  label:
+    it: Fattore di potenza
+    en: Power factor
+  symbols:
+    it: P attiva [W]; Q reattiva [var]; |S| apparente [VA]
+    en: P active [W]; Q reactive [var]; |S| apparent [VA]
+  usage:
+    it: Fattore di potenza e tangente dello sfasamento.
+    en: Power factor and tangent of the phase angle.
+- id: p-ri2
+  topic: potenza-complessa
+  latex: P=RI^2
+  label:
+    it: Potenza attiva su un'impedenza
+    en: Active power on an impedance
+  symbols:
+    it: I efficace
+    en: I RMS value
+- id: q-xi2
+  topic: potenza-complessa
+  latex: Q=XI^2
+  label:
+    it: Potenza reattiva su un'impedenza
+    en: Reactive power on an impedance
+  symbols:
+    it: X reattanza
+    en: X reactance
+- id: q-energia
+  topic: potenza-complessa
+  latex: Q=2\omega(W_L-W_C)
+  label:
+    it: Reattiva ed energie medie
+    en: Reactive power and average energies
+  symbols:
+    it: W energie medie immagazzinate [J]
+    en: W average stored energies [J]
+- id: cons-s
+  topic: conservazione-potenza-complessa
+  latex: \sum_k\dot V_k\dot I_k^{*}=0
+  label:
+    it: Conservazione della potenza complessa
+    en: Conservation of complex power
+  symbols:
+    it: convenzione degli utilizzatori
+    en: passive sign convention
+  usage:
+    it: Bilanci di potenza.
+    en: Power balances.
+  pitfall:
+    it: Sommare i moduli.
+    en: Adding the magnitudes.
+- id: bilancio-p
+  topic: conservazione-potenza-complessa
+  latex: \sum P_{gen}=\sum P_{ass},\quad \sum Q_{gen}=\sum Q_{ass}
+  label:
+    it: Bilancio delle potenze
+    en: Power balance
+  symbols:
+    it: P attive [W]; Q reattive [var]
+    en: P active [W]; Q reactive [var]
+  usage:
+    it: Verifica di un calcolo di potenze.
+    en: Checking a power computation.
+- id: rifasamento-c
+  topic: rifasamento
+  latex: C=\frac{P(\tan\varphi_1-\tan\varphi_2)}{\omega V^2}
+  label:
+    it: Capacità di rifasamento
+    en: Power-factor correction capacitance
+  symbols:
+    it: P attiva [W], V efficace [V]
+    en: P active [W], V RMS [V]
+  usage:
+    it: Rifasare un carico induttivo.
+    en: Correcting an inductive load.
+  pitfall:
+    it: Usare V di picco.
+    en: Using the peak value of V.
+- id: q-c
+  topic: rifasamento
+  latex: Q_C=-\omega CV^2
+  label:
+    it: Reattiva del condensatore
+    en: Reactive power of the capacitor
+  symbols:
+    it: C [F]; V efficace [V]; ω [rad/s]; Q in var
+    en: C [F]; V RMS [V]; ω [rad/s]; Q in var
+  usage:
+    it: Reattiva assorbita dal condensatore.
+    en: Reactive power absorbed by the capacitor.
+- id: laplace-def
+  topic: laplace-definizione-proprieta
+  latex: X(s)=\int_{0^-}^{\infty}x(t)e^{-st}dt
+  label:
+    it: Trasformata di Laplace
+    en: Laplace transform
+  symbols:
+    it: s = σ + jω
+    en: s = σ + jω
+  usage:
+    it: Definizione.
+    en: Definition.
+  pitfall:
+    it: Usare 0⁺ perdendo gli impulsi.
+    en: Using 0⁺ and losing the impulses.
+- id: laplace-lin
+  topic: laplace-definizione-proprieta
+  latex: \mathcal L\{ax+by\}=aX+bY
+  label:
+    it: Linearità
+    en: Linearity
+  symbols:
+    it: a, b costanti; X, Y trasformate di x, y
+    en: a, b constants; X, Y transforms of x, y
+  usage:
+    it: Trasformare combinazioni di segnali.
+    en: Transforming combinations of signals.
+- id: laplace-der
+  topic: laplace-definizione-proprieta
+  latex: \mathcal L\{\dot x\}=sX(s)-x(0^-)
+  label:
+    it: Derivata
+    en: Derivative
+  symbols:
+    it: X(s) trasformata di x; x(0⁻) condizione iniziale
+    en: X(s) transform of x; x(0⁻) initial condition
+  usage:
+    it: Equazioni differenziali, condizioni iniziali.
+    en: Differential equations, initial conditions.
+  pitfall:
+    it: Dimenticare x(0⁻).
+    en: Forgetting x(0⁻).
+- id: laplace-der2
+  topic: laplace-definizione-proprieta
+  latex: \mathcal L\{\ddot x\}=s^2X-sx(0^-)-\dot x(0^-)
+  label:
+    it: Derivata seconda
+    en: Second derivative
+  symbols:
+    it: x(0⁻), ẋ(0⁻) condizioni iniziali
+    en: x(0⁻), ẋ(0⁻) initial conditions
+  usage:
+    it: Equazioni del secondo ordine.
+    en: Second-order equations.
+- id: laplace-int
+  topic: laplace-definizione-proprieta
+  latex: \mathcal L\left\{\int_{0^-}^{t}x\right\}=\frac{X(s)}{s}
+  label:
+    it: Integrale
+    en: Integral
+  symbols:
+    it: X(s) trasformata
+    en: X(s) transform
+  usage:
+    it: Equazioni integro-differenziali.
+    en: Integro-differential equations.
+- id: laplace-ritardo
+  topic: laplace-definizione-proprieta
+  latex: \mathcal L\{x(t-T)u_{-1}(t-T)\}=e^{-sT}X(s)
+  label:
+    it: Ritardo
+    en: Time delay
+  symbols:
+    it: T ritardo [s]
+    en: T delay [s]
+  usage:
+    it: Segnali a tratti.
+    en: Piecewise signals.
+- id: laplace-shift
+  topic: laplace-definizione-proprieta
+  latex: \mathcal L\{e^{-at}x(t)\}=X(s+a)
+  label:
+    it: Traslazione in frequenza
+    en: Frequency shift
+  symbols:
+    it: a costante reale; X(s+a) trasformata traslata
+    en: a real constant; X(s+a) shifted transform
+  usage:
+    it: Segnali smorzati esponenzialmente.
+    en: Exponentially damped signals.
+- id: laplace-conv
+  topic: laplace-definizione-proprieta
+  latex: \mathcal L\{x*y\}=X(s)\,Y(s)
+  label:
+    it: Convoluzione
+    en: Convolution
+  symbols:
+    it: x*y convoluzione; X, Y trasformate
+    en: x*y convolution; X, Y transforms
+  usage:
+    it: Risposta di un sistema.
+    en: Response of a system.
+- id: val-iniz
+  topic: laplace-definizione-proprieta
+  latex: x(0^+)=\lim_{s\to\infty}sX(s)
+  label:
+    it: Valore iniziale
+    en: Initial value
+  symbols:
+    it: X(s) trasformata; limite per s→∞
+    en: X(s) transform; limit as s→∞
+  usage:
+    it: Valore di x subito dopo t=0.
+    en: Value of x just after t=0.
+- id: val-fin
+  topic: laplace-definizione-proprieta
+  latex: x(\infty)=\lim_{s\to0}sX(s)
+  label:
+    it: Valore finale
+    en: Final value
+  symbols:
+    it: valido se i poli di sX(s) hanno Re<0
+    en: valid if the poles of sX(s) have Re<0
+  pitfall:
+    it: Poli sull'asse immaginario.
+    en: Poles on the imaginary axis.
+- id: l-delta
+  topic: trasformate-notevoli
+  latex: \mathcal L\{\delta(t)\}=1
+  label:
+    it: Impulso
+    en: Impulse
+  symbols:
+    it: δ(t) impulso unitario
+    en: δ(t) unit impulse
+  usage:
+    it: Tabella delle trasformate.
+    en: Table of transforms.
+- id: l-gradino
+  topic: trasformate-notevoli
+  latex: \mathcal L\{u_{-1}(t)\}=\frac1s
+  label:
+    it: Gradino
+    en: Step
+  symbols:
+    it: u₋₁(t) gradino unitario
+    en: u₋₁(t) unit step
+  usage:
+    it: Tabella delle trasformate.
+    en: Table of transforms.
+- id: l-rampa
+  topic: trasformate-notevoli
+  latex: \mathcal L\{t\}=\frac1{s^2}
+  label:
+    it: Rampa
+    en: Ramp
+  symbols:
+    it: t tempo [s]
+    en: t time [s]
+  usage:
+    it: Tabella delle trasformate.
+    en: Table of transforms.
+- id: l-exp
+  topic: trasformate-notevoli
+  latex: \mathcal L\{e^{-at}\}=\frac{1}{s+a}
+  label:
+    it: Esponenziale
+    en: Exponential
+  symbols:
+    it: a costante [1/s]
+    en: a constant [1/s]
+  usage:
+    it: Tabella delle trasformate.
+    en: Table of transforms.
+- id: l-cos
+  topic: trasformate-notevoli
+  latex: \mathcal L\{\cos\omega t\}=\frac{s}{s^2+\omega^2}
+  label:
+    it: Coseno
+    en: Cosine
+  symbols:
+    it: ω pulsazione [rad/s]
+    en: ω angular frequency [rad/s]
+  usage:
+    it: Tabella delle trasformate.
+    en: Table of transforms.
+  pitfall:
+    it: Scambiare con il seno.
+    en: Swapping it with the sine.
+- id: l-sin
+  topic: trasformate-notevoli
+  latex: \mathcal L\{\sin\omega t\}=\frac{\omega}{s^2+\omega^2}
+  label:
+    it: Seno
+    en: Sine
+  symbols:
+    it: ω pulsazione [rad/s]
+    en: ω angular frequency [rad/s]
+  usage:
+    it: Tabella delle trasformate.
+    en: Table of transforms.
+- id: l-texp
+  topic: trasformate-notevoli
+  latex: \mathcal L\{te^{-at}\}=\frac{1}{(s+a)^2}
+  label:
+    it: t per esponenziale
+    en: t times exponential
+  symbols:
+    it: a costante [1/s]
+    en: a constant [1/s]
+  usage:
+    it: Polo doppio.
+    en: Double pole.
+- id: l-expcos
+  topic: trasformate-notevoli
+  latex: \mathcal L\{e^{-at}\cos\omega t\}=\frac{s+a}{(s+a)^2+\omega^2}
+  label:
+    it: Coseno smorzato
+    en: Damped cosine
+  symbols:
+    it: a, ω costanti [1/s], [rad/s]
+    en: a, ω constants [1/s], [rad/s]
+  usage:
+    it: Oscillazioni smorzate.
+    en: Damped oscillations.
+- id: l-expsin
+  topic: trasformate-notevoli
+  latex: \mathcal L\{e^{-at}\sin\omega t\}=\frac{\omega}{(s+a)^2+\omega^2}
+  label:
+    it: Seno smorzato
+    en: Damped sine
+  symbols:
+    it: a, ω costanti [1/s], [rad/s]
+    en: a, ω constants [1/s], [rad/s]
+  usage:
+    it: Oscillazioni smorzate.
+    en: Damped oscillations.
+- id: l-impulso-rett
+  topic: trasformate-notevoli
+  latex: A[u_{-1}(t)-u_{-1}(t-T)]\ \to\ A\,\frac{1-e^{-sT}}{s}
+  label:
+    it: Impulso rettangolare
+    en: Rectangular pulse
+  symbols:
+    it: A ampiezza; T durata [s]
+    en: A amplitude; T duration [s]
+  usage:
+    it: Segnali a tratti.
+    en: Piecewise signals.
+- id: residuo
+  topic: fratti-semplici
+  latex: r=\lim_{s\to p}(s-p)F(s)\ \Rightarrow\ f(t)=re^{pt}
+  label:
+    it: Residuo di un polo semplice
+    en: Residue of a simple pole
+  symbols:
+    it: p polo; r residuo; F(s) funzione razionale
+    en: p pole; r residue; F(s) rational function
+  usage:
+    it: Fratti semplici.
+    en: Partial fractions.
+- id: polo-doppio
+  topic: fratti-semplici
+  latex: \frac{r_2}{(s-p)^2}+\frac{r_1}{s-p}\to(r_2t+r_1)e^{pt}
+  label:
+    it: Polo doppio
+    en: Double pole
+  symbols:
+    it: r₁ = d/ds[(s−p)²F]
+    en: r₁ = d/ds[(s−p)²F]
+- id: complessi-antitr
+  topic: poli-complessi-coniugati
+  latex: \mathcal L^{-1}\left\{\frac{as+b}{(s+\alpha)^2+\omega^2}\right\}=e^{-\alpha t}\left[a\cos\omega t+\frac{b-a\alpha}{\omega}\sin\omega t\right]
+  label:
+    it: Poli complessi coniugati
+    en: Complex-conjugate poles
+  symbols:
+    it: α parte reale (smorzamento) [1/s]; ω pulsazione [rad/s]; a, b coefficienti del numeratore
+    en: α real part (damping) [1/s]; ω angular frequency [rad/s]; a, b numerator coefficients
+  usage:
+    it: Antitrasformata con poli complessi coniugati.
+    en: Inverse transform with complex-conjugate poles.
+  pitfall:
+    it: Dimenticare b−aα.
+    en: Forgetting b−aα.
+- id: imped-s
+  topic: circuiti-dominio-laplace
+  latex: Z_R=R,\quad Z_L=sL,\quad Z_C=\frac1{sC}
+  label:
+    it: Impedenze di Laplace
+    en: Laplace impedances
+  symbols:
+    it: s variabile di Laplace [1/s]; R [Ω]; L [H]; C [F]
+    en: s Laplace variable [1/s]; R [Ω]; L [H]; C [F]
+  usage:
+    it: Circuito trasformato.
+    en: Transformed circuit.
+- id: l-cos-gen
+  topic: circuiti-dominio-laplace
+  latex: V_m\cos\omega t\ \to\ \frac{V_ms}{s^2+\omega^2}
+  label:
+    it: Generatore sinusoidale in Laplace
+    en: Sinusoidal source in Laplace
+  symbols:
+    it: V_m ampiezza; ω pulsazione
+    en: V_m amplitude; ω angular frequency
+  usage:
+    it: Generatori sinusoidali in Laplace.
+    en: Sinusoidal sources in Laplace.
+- id: modello-c-serie
+  topic: condizioni-iniziali-generatori
+  latex: V=\frac{I}{sC}+\frac{v_C(0^-)}{s}
+  label:
+    it: Condensatore con condizione iniziale (serie)
+    en: Capacitor with initial condition (series)
+  symbols:
+    it: I(s) corrente; C [F]; v_C(0⁻) tensione iniziale [V]
+    en: I(s) current; C [F]; v_C(0⁻) initial voltage [V]
+  usage:
+    it: Passo 4 dell'esercizio.
+    en: Step 4 of the exercise.
+  pitfall:
+    it: Polarità del generatore.
+    en: Polarity of the source.
+- id: modello-c-par
+  topic: condizioni-iniziali-generatori
+  latex: I=sC\,V-C\,v_C(0^-)
+  label:
+    it: Condensatore con condizione iniziale (parallelo)
+    en: Capacitor with initial condition (parallel)
+  symbols:
+    it: generatore di corrente C v_C(0⁻)
+    en: current source C v_C(0⁻)
+- id: modello-l-serie
+  topic: condizioni-iniziali-generatori
+  latex: V=sL\,I-L\,i_L(0^-)
+  label:
+    it: Induttore con condizione iniziale (serie)
+    en: Inductor with initial condition (series)
+  symbols:
+    it: L [H]; i_L(0⁻) corrente iniziale [A]
+    en: L [H]; i_L(0⁻) initial current [A]
+  usage:
+    it: Induttore con condizione iniziale (modello in serie).
+    en: Inductor with initial condition (series model).
+- id: modello-l-par
+  topic: condizioni-iniziali-generatori
+  latex: I=\frac{V}{sL}+\frac{i_L(0^-)}{s}
+  label:
+    it: Induttore con condizione iniziale (parallelo)
+    en: Inductor with initial condition (parallel)
+  symbols:
+    it: L [H]; i_L(0⁻) [A]
+    en: L [H]; i_L(0⁻) [A]
+  usage:
+    it: Induttore con condizione iniziale (modello in parallelo).
+    en: Inductor with initial condition (parallel model).
+- id: h-def
+  topic: funzioni-di-rete
+  latex: H(s)=\frac{Y(s)}{X(s)}
+  label:
+    it: Funzione di rete
+    en: Network function
+  symbols:
+    it: condizioni iniziali nulle
+    en: zero initial conditions
+  usage:
+    it: Rapporto uscita/ingresso.
+    en: Output/input ratio.
+  pitfall:
+    it: Condizioni iniziali non nulle.
+    en: Non-zero initial conditions.
+- id: h-razionale
+  topic: funzioni-di-rete
+  latex: H(s)=\frac{N(s)}{D(s)}=K\frac{\prod(s-z_i)}{\prod(s-p_i)}
+  label:
+    it: Forma razionale
+    en: Rational form
+  symbols:
+    it: z zeri, p poli
+    en: z zeros, p poles
+  usage:
+    it: Poli e zeri.
+    en: Poles and zeros.
+- id: h-rc-lp
+  topic: funzioni-di-rete
+  latex: H(s)=\frac{1}{1+sRC}
+  label:
+    it: RC passa-basso
+    en: RC low-pass
+  symbols:
+    it: R [Ω]; C [F]; s [1/s]
+    en: R [Ω]; C [F]; s [1/s]
+  usage:
+    it: Funzione di rete del filtro RC con uscita sul condensatore.
+    en: Network function of the RC filter with the output across the capacitor.
+- id: h-rc-hp
+  topic: funzioni-di-rete
+  latex: H(s)=\frac{sRC}{1+sRC}
+  label:
+    it: RC passa-alto
+    en: RC high-pass
+  symbols:
+    it: uscita su R
+    en: output across R
+- id: h-imp
+  topic: risposta-impulsiva-convoluzione
+  latex: h(t)=\mathcal L^{-1}\{H(s)\}
+  label:
+    it: Risposta impulsiva
+    en: Impulse response
+  symbols:
+    it: h(t) risposta impulsiva; H(s) funzione di rete
+    en: h(t) impulse response; H(s) network function
+  usage:
+    it: Risposta a un impulso.
+    en: Response to an impulse.
+- id: y-conv
+  topic: risposta-impulsiva-convoluzione
+  latex: y(t)=\int_0^th(\tau)x(t-\tau)d\tau
+  label:
+    it: Convoluzione
+    en: Convolution
+  symbols:
+    it: h risposta impulsiva; x ingresso; τ variabile di integrazione [s]
+    en: h impulse response; x input; τ integration variable [s]
+  usage:
+    it: Risposta con condizioni nulle.
+    en: Response with zero initial conditions.
+- id: y-gradino
+  topic: risposta-impulsiva-convoluzione
+  latex: y_{gr}(t)=\int_0^th(\tau)d\tau
+  label:
+    it: Risposta al gradino
+    en: Step response
+  symbols:
+    it: h risposta impulsiva
+    en: h impulse response
+  usage:
+    it: Risposta a un ingresso a gradino.
+    en: Response to a step input.
+- id: y-libera-forzata
+  topic: risposta-libera-forzata
+  latex: y=y_{lib}+y_{forz}
+  label:
+    it: Libera + forzata
+    en: Zero-input + zero-state
+  symbols:
+    it: y_lib da condizioni iniziali; y_forz da ingresso
+    en: y_zi from the initial conditions; y_zs from the input
+  usage:
+    it: Scomposizione della risposta completa.
+    en: Splitting the complete response.
+- id: stab-poli
+  topic: stabilita-poli
+  latex: \mathrm{Re}\,p_i<0\ \ \forall i
+  label:
+    it: Stabilità asintotica
+    en: Asymptotic stability
+  symbols:
+    it: p_i poli di H
+    en: p_i poles of H
+  usage:
+    it: Condizione necessaria e sufficiente.
+    en: Necessary and sufficient condition.
+  pitfall:
+    it: Polo sull'asse immaginario.
+    en: A pole on the imaginary axis.
+- id: routh2
+  topic: stabilita-poli
+  latex: s^2+a_1s+a_0:\ a_1>0,\ a_0>0
+  label:
+    it: Stabilità del 2° grado
+    en: Stability of degree 2
+  symbols:
+    it: a₀, a₁ coefficienti del denominatore
+    en: a₀, a₁ coefficients of the denominator
+  usage:
+    it: Stabilità di un polinomio di 2º grado.
+    en: Stability of a second-degree polynomial.
+- id: routh3
+  topic: stabilita-poli
+  latex: s^3+a_2s^2+a_1s+a_0:\ a_i>0,\ a_2a_1>a_0
+  label:
+    it: Stabilità del 3° grado
+    en: Stability of degree 3
+  symbols:
+    it: a₀, a₁, a₂ coefficienti del denominatore
+    en: a₀, a₁, a₂ coefficients of the denominator
+  usage:
+    it: Stabilità di un polinomio di 3º grado.
+    en: Stability of a third-degree polynomial.
+- id: y-permanente
+  topic: risposta-transitoria-permanente
+  latex: y_p=A|F(j\omega_0)|\cos(\omega_0t+\varphi+\arg F(j\omega_0))
+  label:
+    it: Risposta permanente
+    en: Steady-state response
+  symbols:
+    it: A ampiezza; ω₀ pulsazione; φ fase dell'ingresso; F funzione di rete
+    en: A amplitude; ω₀ angular frequency; φ input phase; F network function
+  usage:
+    it: Ingresso sinusoidale, sistema stabile.
+    en: Sinusoidal input, stable system.
+  pitfall:
+    it: Usare F(s) con s=ω.
+    en: Using F(s) with s=ω.
+- id: mod-fase
+  topic: fasori-e-laplace
+  latex: "|H(j\\omega)|,\\ \\ \\arg H(j\\omega)"
+  label:
+    it: Modulo e fase
+    en: Magnitude and phase
+  symbols:
+    it: H(jω) funzione di rete per i fasori
+    en: H(jω) network function for phasors
+  usage:
+    it: Risposta in frequenza.
+    en: Frequency response.
+- id: wc-rc
+  topic: risposta-in-frequenza-filtri
+  latex: \omega_c=\frac1{RC}
+  label:
+    it: Pulsazione di taglio RC
+    en: RC cut-off frequency
+  symbols:
+    it: R [Ω]; C [F]; ω_c in rad/s
+    en: R [Ω]; C [F]; ω_c in rad/s
+  usage:
+    it: Pulsazione di taglio a 3 dB del filtro RC.
+    en: 3 dB cut-off of the RC filter.
+- id: wc-rl
+  topic: risposta-in-frequenza-filtri
+  latex: \omega_c=\frac RL
+  label:
+    it: Pulsazione di taglio RL
+    en: RL cut-off frequency
+  symbols:
+    it: R [Ω]; L [H]; ω_c in rad/s
+    en: R [Ω]; L [H]; ω_c in rad/s
+  usage:
+    it: Pulsazione di taglio a 3 dB del filtro RL.
+    en: 3 dB cut-off of the RL filter.
+- id: mod-lp
+  topic: risposta-in-frequenza-filtri
+  latex: "|H(j\\omega)|=\\frac{1}{\\sqrt{1+(\\omega/\\omega_c)^2}}"
+  label:
+    it: Modulo del passa-basso
+    en: Magnitude of the low-pass
+  symbols:
+    it: ω_c pulsazione di taglio [rad/s]
+    en: ω_c cut-off angular frequency [rad/s]
+  usage:
+    it: Modulo di un passa-basso del primo ordine.
+    en: Magnitude of a first-order low-pass.
+- id: db
+  topic: risposta-in-frequenza-filtri
+  latex: "|H|_{dB}=20\\log_{10}|H|"
+  label:
+    it: Decibel
+    en: Decibel
+  symbols:
+    it: '|H| modulo adimensionale; risultato in dB'
+    en: '|H| dimensionless magnitude; result in dB'
+  usage:
+    it: Diagrammi di Bode.
+    en: Bode plots.
+  pitfall:
+    it: 10 log per grandezze di campo.
+    en: 10 log for field quantities.
+- id: bode-pend
+  topic: risposta-in-frequenza-filtri
+  latex: -20\ \mathrm{dB/dec}\ \text{per ogni polo oltre}\ \omega_c
+  label:
+    it: Pendenza di Bode
+    en: Bode slope
+  symbols:
+    it: dec = decade di frequenza
+    en: dec = frequency decade
+  usage:
+    it: Tracciare i diagrammi asintotici.
+    en: Drawing asymptotic plots.
+- id: w0
+  topic: circuiti-risonanti
+  latex: \omega_0=\frac1{\sqrt{LC}}
+  label:
+    it: Pulsazione di risonanza
+    en: Resonant angular frequency
+  symbols:
+    it: L [H]; C [F]; ω₀ in rad/s
+    en: L [H]; C [F]; ω₀ in rad/s
+  usage:
+    it: Risonanza di RLC serie e parallelo.
+    en: Resonance of series and parallel RLC.
+- id: q-serie
+  topic: circuiti-risonanti
+  latex: Q=\frac{\omega_0L}{R}=\frac1{\omega_0RC}
+  label:
+    it: Q del RLC serie
+    en: Q of the series RLC
+  symbols:
+    it: ω₀ [rad/s]; L [H]; R [Ω]; C [F]
+    en: ω₀ [rad/s]; L [H]; R [Ω]; C [F]
+  usage:
+    it: Fattore di merito del RLC serie.
+    en: Quality factor of the series RLC.
+- id: q-par
+  topic: circuiti-risonanti
+  latex: Q=\frac{R}{\omega_0L}=\omega_0RC
+  label:
+    it: Q del RLC parallelo
+    en: Q of the parallel RLC
+  symbols:
+    it: ω₀ [rad/s]; L [H]; R [Ω]; C [F]
+    en: ω₀ [rad/s]; L [H]; R [Ω]; C [F]
+  usage:
+    it: Fattore di merito del RLC parallelo.
+    en: Quality factor of the parallel RLC.
+- id: banda
+  topic: circuiti-risonanti
+  latex: B=\frac{\omega_0}{Q}
+  label:
+    it: Banda a 3 dB
+    en: 3 dB bandwidth
+  symbols:
+    it: 'serie: R/L; parallelo: 1/(RC)'
+    en: 'series: R/L; parallel: 1/(RC)'
+- id: z-ris-serie
+  topic: circuiti-risonanti
+  latex: Z(\omega_0)=R
+  label:
+    it: Impedenza serie in risonanza
+    en: Series impedance at resonance
+  symbols:
+    it: minima
+    en: minimum
+- id: z-ris-par
+  topic: circuiti-risonanti
+  latex: Z(\omega_0)=R
+  label:
+    it: Impedenza parallelo in risonanza
+    en: Parallel impedance at resonance
+  symbols:
+    it: massima
+    en: maximum
+- id: sost
+  topic: teorema-di-sostituzione
+  latex: \text{bipolo}\ (v^*,i^*)\ \Rightarrow\ \text{generatore}\ v=v^*\ \text{o}\ i=i^*
+  label:
+    it: Teorema di sostituzione
+    en: Substitution theorem
+  symbols:
+    it: soluzione unica
+    en: unique solution
+  usage:
+    it: Semplificare un circuito.
+    en: Simplifying a circuit.
+  pitfall:
+    it: Non verificare l'unicità.
+    en: Not checking uniqueness.
+- id: th-vth
+  topic: teorema-di-thevenin
+  latex: V_{th}=v_{AB}\big|_{i=0}
+  label:
+    it: Tensione di Thevenin
+    en: Thévenin voltage
+  symbols:
+    it: a vuoto
+    en: open circuit
+- id: th-zth
+  topic: teorema-di-thevenin
+  latex: Z_{th}=\frac{V_{th}}{I_{sc}}=\frac{V}{I}\Big|_{\text{indip. spenti}}
+  label:
+    it: Impedenza di Thevenin
+    en: Thévenin impedance
+  symbols:
+    it: I_sc corrente di cortocircuito [A]; V, I tensione e corrente del generatore di prova
+    en: I_sc short-circuit current [A]; V, I voltage and current of the test source
+  usage:
+    it: Impedenza di Thevenin.
+    en: Thévenin impedance.
+  pitfall:
+    it: Spegnere i controllati.
+    en: Switching off the controlled sources.
+- id: th-eq
+  topic: teorema-di-thevenin
+  latex: v=V_{th}-Z_{th}\,i
+  label:
+    it: Equivalente di Thevenin
+    en: Thévenin equivalent
+  symbols:
+    it: i corrente uscente dal bipolo
+    en: i current leaving the one-port
+- id: th-prova
+  topic: teorema-di-thevenin
+  latex: Z_{th}=\frac{V_{test}}{I_{test}}
+  label:
+    it: Generatore di prova
+    en: Test source
+  symbols:
+    it: controllati lasciati accesi
+    en: controlled sources left on
+  usage:
+    it: Circuiti con controllati.
+    en: Circuits with controlled sources.
+- id: n-in
+  topic: teorema-di-norton
+  latex: I_N=I_{sc}
+  label:
+    it: Corrente di Norton
+    en: Norton current
+  symbols:
+    it: I_sc corrente con la porta in cortocircuito [A]
+    en: I_sc current with the port short-circuited [A]
+  usage:
+    it: Generatore del circuito equivalente di Norton.
+    en: Source of the Norton equivalent.
+  pitfall:
+    it: Misurarla a porta aperta.
+    en: Measuring it with the port open.
+- id: n-zn
+  topic: teorema-di-norton
+  latex: Z_N=Z_{th}
+  label:
+    it: Impedenza di Norton
+    en: Norton impedance
+  symbols:
+    it: Z_N [Ω]
+    en: Z_N [Ω]
+  usage:
+    it: Impedenza dell'equivalente di Norton.
+    en: Impedance of the Norton equivalent.
+- id: th-norton
+  topic: teorema-di-norton
+  latex: I_N=\frac{V_{th}}{Z_{th}}
+  label:
+    it: Trasformazione di generatori
+    en: Source transformation
+  symbols:
+    it: V_th [V]; Z_th [Ω]; I_N [A]
+    en: V_th [V]; Z_th [Ω]; I_N [A]
+  usage:
+    it: Passare da Thevenin a Norton e viceversa.
+    en: Switching between Thévenin and Norton.
+- id: nporte-rel
+  topic: reti-n-porte
+  latex: N\ \text{relazioni tra}\ 2N\ \text{variabili}
+  label:
+    it: Rete a N porte
+    en: N-port network
+  symbols:
+    it: N numero di porte; v_k, i_k tensione e corrente alla porta k
+    en: N number of ports; v_k, i_k voltage and current at port k
+  usage:
+    it: Descrizione di reti a più porte.
+    en: Describing multi-port networks.
+- id: z-def
+  topic: doppi-bipoli-z-y
+  latex: \begin{pmatrix}v_1\\v_2\end{pmatrix}=\begin{pmatrix}z_{11}&z_{12}\\z_{21}&z_{22}\end{pmatrix}\begin{pmatrix}i_1\\i_2\end{pmatrix}
+  label:
+    it: Matrice Z
+    en: Z matrix
+  symbols:
+    it: correnti entranti
+    en: entering currents
+- id: y-def
+  topic: doppi-bipoli-z-y
+  latex: \begin{pmatrix}i_1\\i_2\end{pmatrix}=\begin{pmatrix}y_{11}&y_{12}\\y_{21}&y_{22}\end{pmatrix}\begin{pmatrix}v_1\\v_2\end{pmatrix}
+  label:
+    it: Matrice Y
+    en: Y matrix
+  symbols:
+    it: y_jk in siemens [S]; correnti entranti nelle porte
+    en: y_jk in siemens [S]; currents entering the ports
+  usage:
+    it: Rappresentazione in ammettenze.
+    en: Admittance representation.
+- id: z-y-inv
+  topic: doppi-bipoli-z-y
+  latex: Y=Z^{-1}
+  label:
+    it: Legame Z–Y
+    en: Z–Y relation
+  symbols:
+    it: se esiste
+    en: if it exists
+- id: z11
+  topic: doppi-bipoli-z-y
+  latex: z_{11}=\frac{v_1}{i_1}\Big|_{i_2=0},\ \ z_{21}=\frac{v_2}{i_1}\Big|_{i_2=0}
+  label:
+    it: Misura dei parametri Z
+    en: Measuring the Z parameters
+  symbols:
+    it: porta 2 aperta
+    en: port 2 open
+  pitfall:
+    it: Corto invece di aperto.
+    en: Short instead of open.
+- id: y11
+  topic: doppi-bipoli-z-y
+  latex: y_{11}=\frac{i_1}{v_1}\Big|_{v_2=0},\ \ y_{21}=\frac{i_2}{v_1}\Big|_{v_2=0}
+  label:
+    it: Misura dei parametri Y
+    en: Measuring the Y parameters
+  symbols:
+    it: porta 2 in corto
+    en: port 2 shorted
+- id: reciprocita
+  topic: doppi-bipoli-z-y
+  latex: z_{12}=z_{21},\quad y_{12}=y_{21}
+  label:
+    it: Reciprocità
+    en: Reciprocity
+  symbols:
+    it: reti di soli R, L, C
+    en: networks of R, L, C only
+- id: rete-t
+  topic: doppi-bipoli-z-y
+  latex: Z=\begin{pmatrix}R_a+R_c&R_c\\R_c&R_b+R_c\end{pmatrix}
+  label:
+    it: Rete a T
+    en: T network
+  symbols:
+    it: R_a, R_b in serie; R_c in derivazione
+    en: R_a, R_b in series; R_c in shunt
+- id: rete-pi
+  topic: doppi-bipoli-z-y
+  latex: Y=\begin{pmatrix}G_a+G_c&-G_c\\-G_c&G_b+G_c\end{pmatrix}
+  label:
+    it: Rete a π
+    en: π network
+  symbols:
+    it: G_a, G_b in derivazione; G_c in serie
+    en: G_a, G_b in shunt; G_c in series
+- id: t-def
+  topic: altre-rappresentazioni-doppi-bipoli
+  latex: \begin{pmatrix}v_1\\i_1\end{pmatrix}=\begin{pmatrix}A&B\\C&D\end{pmatrix}\begin{pmatrix}v_2\\-i_2\end{pmatrix}
+  label:
+    it: Matrice di trasmissione inversa
+    en: Inverse transmission matrix
+  symbols:
+    it: A, D adimensionali; B in Ω; C in S; −i₂ corrente uscente dalla porta 2
+    en: A, D dimensionless; B in Ω; C in S; −i₂ current leaving port 2
+  usage:
+    it: Cascata.
+    en: Cascade.
+  pitfall:
+    it: Usare i₂ invece di −i₂.
+    en: Using i₂ instead of −i₂.
+- id: t-da-z
+  topic: altre-rappresentazioni-doppi-bipoli
+  latex: A=\frac{z_{11}}{z_{21}},\ B=\frac{\Delta_z}{z_{21}},\ C=\frac1{z_{21}},\ D=\frac{z_{22}}{z_{21}}
+  label:
+    it: Da Z a T
+    en: From Z to T
+  symbols:
+    it: Δ_z = z₁₁z₂₂ − z₁₂z₂₁
+    en: Δ_z = z₁₁z₂₂ − z₁₂z₂₁
+- id: t-recip
+  topic: altre-rappresentazioni-doppi-bipoli
+  latex: AD-BC=1
+  label:
+    it: Reciprocità in T
+    en: Reciprocity in T
+  symbols:
+    it: rete reciproca
+    en: reciprocal network
+- id: h-def2
+  topic: altre-rappresentazioni-doppi-bipoli
+  latex: v_1=h_{11}i_1+h_{12}v_2,\quad i_2=h_{21}i_1+h_{22}v_2
+  label:
+    it: Parametri ibridi
+    en: Hybrid parameters
+  symbols:
+    it: h₁₁ [Ω]; h₂₂ [S]; h₁₂, h₂₁ adimensionali
+    en: h₁₁ [Ω]; h₂₂ [S]; h₁₂, h₂₁ dimensionless
+  usage:
+    it: Parametri ibridi (transistor).
+    en: Hybrid parameters (transistors).
+- id: conn-ss
+  topic: connessioni-doppi-bipoli
+  latex: Z=Z_a+Z_b
+  label:
+    it: Serie-serie
+    en: Series-series
+  symbols:
+    it: Z_a, Z_b matrici delle impedenze [Ω]
+    en: Z_a, Z_b impedance matrices [Ω]
+  usage:
+    it: Prova di validità.
+    en: Validity test.
+- id: conn-pp
+  topic: connessioni-doppi-bipoli
+  latex: Y=Y_a+Y_b
+  label:
+    it: Parallelo-parallelo
+    en: Parallel-parallel
+  symbols:
+    it: Y_a, Y_b matrici delle ammettenze [S]
+    en: Y_a, Y_b admittance matrices [S]
+  usage:
+    it: Prova di validità.
+    en: Validity test.
+- id: conn-cascata
+  topic: connessioni-doppi-bipoli
+  latex: T=T_a\,T_b
+  label:
+    it: Cascata
+    en: Cascade
+  symbols:
+    it: T_a, T_b matrici di trasmissione
+    en: T_a, T_b transmission matrices
+  usage:
+    it: Doppi bipoli in cascata.
+    en: Two-ports in cascade.
+  pitfall:
+    it: Sommare le T.
+    en: Adding the T matrices.
+- id: prova-validita
+  topic: prove-validita-connessioni
+  latex: i_{ingresso}=i_{uscita}\ \text{a ogni porta dopo il collegamento}
+  label:
+    it: Prova di validità
+    en: Validity test
+  symbols:
+    it: 'porta: i entrante = i uscente'
+    en: 'port: entering i = leaving i'
+  usage:
+    it: Prima di usare le formule di connessione.
+    en: Before using the connection formulas.
+  pitfall:
+    it: Omettere la prova.
+    en: Skipping the test.
+- id: pmax-picco
+  topic: massimo-trasferimento-potenza
+  latex: P_{max}=\frac{|V_{th}|^2}{8R_{th}}
+  label:
+    it: Potenza massima (picco)
+    en: Maximum power (peak)
+  symbols:
+    it: V_th di picco
+    en: peak V_th
+- id: pmax-eff
+  topic: massimo-trasferimento-potenza
+  latex: P_{max}=\frac{|V_{th}|^2}{4R_{th}}
+  label:
+    it: Potenza massima (efficace)
+    en: Maximum power (RMS)
+  symbols:
+    it: V_th efficace
+    en: RMS V_th
+- id: zl-coniugata
+  topic: massimo-trasferimento-potenza
+  latex: Z_L=Z_{th}^{*}
+  label:
+    it: Adattamento coniugato
+    en: Conjugate matching
+  symbols:
+    it: Z_th* coniugato dell'impedenza di Thevenin [Ω]
+    en: Z_th* conjugate of the Thévenin impedance [Ω]
+  usage:
+    it: Massimo trasferimento di potenza attiva.
+    en: Maximum active power transfer.
+  pitfall:
+    it: Z_L = Z_th.
+    en: Z_L = Z_th.
+- id: rl-modulo
+  topic: massimo-trasferimento-potenza
+  latex: R_L=|Z_{th}|=\sqrt{R_{th}^2+X_{th}^2}
+  label:
+    it: Carico resistivo
+    en: Resistive load
+  symbols:
+    it: R_th, X_th resistenza e reattanza di Thevenin [Ω]
+    en: R_th, X_th Thévenin resistance and reactance [Ω]
+  usage:
+    it: Carico puramente resistivo.
+    en: Purely resistive load.
+- id: rendimento-50
+  topic: massimo-trasferimento-potenza
+  latex: \eta=50\%
+  label:
+    it: Rendimento all'adattamento
+    en: Efficiency at matching
+  symbols:
+    it: η rapporto tra potenza sul carico e potenza del generatore equivalente
+    en: η ratio of load power to the power of the equivalent source
+  usage:
+    it: Commento all'adattamento coniugato.
+    en: Remark on conjugate matching.
+- id: adatt-trasf
+  topic: massimo-trasferimento-potenza
+  latex: n^2R_L=R_{th}
+  label:
+    it: Adattamento con trasformatore
+    en: Matching with a transformer
+  symbols:
+    it: n rapporto di trasformazione; R_L carico [Ω]; R_th [Ω]
+    en: n turns ratio; R_L load [Ω]; R_th [Ω]
+  usage:
+    it: Adattare un carico con un trasformatore ideale.
+    en: Matching a load with an ideal transformer.

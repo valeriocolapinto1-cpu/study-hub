@@ -1,0 +1,63 @@
+- id: orale-t-18
+  topic: rifasamento
+  objectives:
+    - rifasamento.2
+    - rifasamento.3
+  kind: orale
+  front:
+    it: "**Rifasamento.** Che cos'è il rifasamento? Ricava la capacità da collegare in parallelo a un carico induttivo."
+    en: '**Power-factor correction.** What is power-factor correction? Derive the capacitance to connect in parallel with an inductive load.'
+  back:
+    it: |-
+      **Risposta modello.** Il rifasamento riduce la potenza reattiva scambiata con la rete, aumentando il fattore di potenza. Si collega un condensatore in parallelo al carico induttivo, così la tensione non cambia. La reattiva del condensatore è Q_C = P (tan phi1 - tan phi2) = omega C V^2, da cui C = P (tan phi1 - tan phi2) / (omega V^2).
+
+      **Punti da toccare:**
+
+      - Obiettivo: ridurre la potenza reattiva scambiata con la rete (alzare il fattore di potenza)
+      - Condensatore in parallelo al carico (non modifica la tensione)
+      - $Q_C=P(\tan\varphi_1-\tan\varphi_2)$
+      - $C=\dfrac{P(\tan\varphi_1-\tan\varphi_2)}{\omega V^2}$
+    en: |-
+      **Model answer.** Power-factor correction reduces the reactive power exchanged with the grid, raising the power factor. A capacitor is connected in parallel with the inductive load, so that the voltage does not change. The reactive power of the capacitor is Q_C = P (tan phi1 - tan phi2) = omega C V^2, from which C = P (tan phi1 - tan phi2) / (omega V^2).
+
+      **Points to cover:**
+
+      - Goal: reduce the reactive power exchanged with the grid (raise the power factor)
+      - Capacitor in parallel with the load (it does not change the voltage)
+      - $Q_C=P(\tan\varphi_1-\tan\varphi_2)$
+      - $C=\dfrac{P(\tan\varphi_1-\tan\varphi_2)}{\omega V^2}$
+- id: formula-rifasamento-c
+  topic: rifasamento
+  objectives:
+    - rifasamento.2
+    - rifasamento.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Capacità di rifasamento**. Uso: Rifasare un carico induttivo.'
+    en: 'Write the formula: **Power-factor correction capacitance**. Use: Correcting an inductive load.'
+  back:
+    it: |-
+      $$C=\frac{P(\tan\varphi_1-\tan\varphi_2)}{\omega V^2}$$
+
+      P attiva [W], V efficace [V]
+    en: |-
+      $$C=\frac{P(\tan\varphi_1-\tan\varphi_2)}{\omega V^2}$$
+
+      P active [W], V RMS [V]
+- id: formula-q-c
+  topic: rifasamento
+  objectives:
+    - rifasamento.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Reattiva del condensatore**. Uso: Reattiva assorbita dal condensatore.'
+    en: 'Write the formula: **Reactive power of the capacitor**. Use: Reactive power absorbed by the capacitor.'
+  back:
+    it: |-
+      $$Q_C=-\omega CV^2$$
+
+      C [F]; V efficace [V]; ω [rad/s]; Q in var
+    en: |-
+      $$Q_C=-\omega CV^2$$
+
+      C [F]; V RMS [V]; ω [rad/s]; Q in var

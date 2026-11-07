@@ -1,0 +1,95 @@
+---
+course: teoria-circuiti
+topic: fasori-e-laplace
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="fasori-e-laplace-intuizione-1">
+
+Phasors and Laplace are not two separate worlds: phasors are Laplace "restricted" to the imaginary axis, $s=j\omega$, without initial conditions. That is why they only see the steady state, and only if a steady state exists.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="fasori-e-laplace-teoria-1">
+
+The network function for phasors is $H(j\omega)=H(s)\big|_{s=j\omega}$, valid for stable systems. The magnitude $|H(j\omega)|$ and the phase $\arg H(j\omega)$ tell how the steady-state sinusoidal output is scaled and shifted with respect to the input.
+
+</div>
+
+<div data-note-id="fasori-e-laplace-teoria-2">
+
+The phasor equations are the Laplace ones with $s=j\omega$ and _without_ initial conditions: the phasor method only sees the steady state.
+
+</div>
+
+<Formula id="hjw-def" />
+<Formula id="mod-fase" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="fasori-e-laplace-esempio-1">
+
+### Magnitude and phase
+
+$H=\dfrac{1}{s+1}$ at $\omega=1$.
+
+**Solution.**
+
+1. $H(j)=\dfrac1{1+j}$: $|H|=\tfrac1{\sqrt2}\approx0.707$, $\arg=-45^\circ$.
+
+</div>
+
+<div class="worked" data-note-id="fasori-e-laplace-esempio-2">
+
+### High-pass
+
+$H=\dfrac{s}{s+1}$ at $\omega=1$.
+
+**Solution.**
+
+1. $\dfrac{j}{1+j}=\dfrac{j(1-j)}2=\dfrac{1+j}{2}$: $|H|=\tfrac1{\sqrt2}$, $\arg=+45^\circ$.
+
+</div>
+
+<div class="worked" data-note-id="fasori-e-laplace-esempio-3">
+
+### Steady-state output
+
+$x=4\cos t$ in the first system.
+
+**Solution.**
+
+1. $y_p=4\cdot0.707\cos(t-45^\circ)\approx2.83\cos(t-45^\circ)$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="fasori-e-laplace-errore-1">
+
+- **Wrong:** Using $H(j\omega)$ for unstable systems.
+- **Right:** The relation holds only with poles with negative real part.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="fasori-e-laplace-esame-1">
+
+Phasors–Laplace relation; frequency response <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

@@ -1,0 +1,25 @@
+id: teorema-di-thevenin
+course: teoria-circuiti
+order: 42
+title:
+  it: Teorema di Thevenin
+  en: Thévenin's theorem
+summary:
+  it: Enunciato, ipotesi e dimostrazione del teorema di Thevenin; calcolo di $V_{th}$ e $Z_{th}$ anche con generatori controllati.
+  en: Statement, assumptions and proof of Thévenin's theorem; computing $V_{th}$ and $Z_{th}$ also with controlled sources.
+objectives:
+  - id: teorema-di-thevenin.1
+    text:
+      it: Enunciare Thevenin con le ipotesi
+      en: State Thévenin's theorem with its assumptions
+  - id: teorema-di-thevenin.2
+    text:
+      it: Dimostrarlo
+      en: Prove it
+  - id: teorema-di-thevenin.3
+    text:
+      it: Calcolare $V_{th}$ e $R_{th}$ anche con generatori controllati
+      en: Compute $V_{th}$ and $R_{th}$ also with controlled sources
+group:
+  it: VI · Caratterizzazione esterna
+  en: VI · External characterisation

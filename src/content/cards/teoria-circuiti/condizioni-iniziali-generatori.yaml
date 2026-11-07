@@ -1,0 +1,72 @@
+- id: formula-modello-c-serie
+  topic: condizioni-iniziali-generatori
+  objectives:
+    - condizioni-iniziali-generatori.1
+    - condizioni-iniziali-generatori.2
+  kind: formula
+  front:
+    it: "Scrivi la formula: **Condensatore con condizione iniziale (serie)**. Uso: Passo 4 dell'esercizio."
+    en: 'Write the formula: **Capacitor with initial condition (series)**. Use: Step 4 of the exercise.'
+  back:
+    it: |-
+      $$V=\frac{I}{sC}+\frac{v_C(0^-)}{s}$$
+
+      I(s) corrente; C [F]; v_C(0⁻) tensione iniziale [V]
+    en: |-
+      $$V=\frac{I}{sC}+\frac{v_C(0^-)}{s}$$
+
+      I(s) current; C [F]; v_C(0⁻) initial voltage [V]
+- id: formula-modello-c-par
+  topic: condizioni-iniziali-generatori
+  objectives:
+    - condizioni-iniziali-generatori.1
+    - condizioni-iniziali-generatori.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Condensatore con condizione iniziale (parallelo)**.'
+    en: 'Write the formula: **Capacitor with initial condition (parallel)**.'
+  back:
+    it: |-
+      $$I=sC\,V-C\,v_C(0^-)$$
+
+      generatore di corrente C v_C(0⁻)
+    en: |-
+      $$I=sC\,V-C\,v_C(0^-)$$
+
+      current source C v_C(0⁻)
+- id: formula-modello-l-serie
+  topic: condizioni-iniziali-generatori
+  objectives:
+    - condizioni-iniziali-generatori.1
+    - condizioni-iniziali-generatori.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Induttore con condizione iniziale (serie)**. Uso: Induttore con condizione iniziale (modello in serie).'
+    en: 'Write the formula: **Inductor with initial condition (series)**. Use: Inductor with initial condition (series model).'
+  back:
+    it: |-
+      $$V=sL\,I-L\,i_L(0^-)$$
+
+      L [H]; i_L(0⁻) corrente iniziale [A]
+    en: |-
+      $$V=sL\,I-L\,i_L(0^-)$$
+
+      L [H]; i_L(0⁻) initial current [A]
+- id: formula-modello-l-par
+  topic: condizioni-iniziali-generatori
+  objectives:
+    - condizioni-iniziali-generatori.1
+    - condizioni-iniziali-generatori.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Induttore con condizione iniziale (parallelo)**. Uso: Induttore con condizione iniziale (modello in parallelo).'
+    en: 'Write the formula: **Inductor with initial condition (parallel)**. Use: Inductor with initial condition (parallel model).'
+  back:
+    it: |-
+      $$I=\frac{V}{sL}+\frac{i_L(0^-)}{s}$$
+
+      L [H]; i_L(0⁻) [A]
+    en: |-
+      $$I=\frac{V}{sL}+\frac{i_L(0^-)}{s}$$
+
+      L [H]; i_L(0⁻) [A]

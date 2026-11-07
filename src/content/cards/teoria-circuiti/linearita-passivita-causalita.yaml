@@ -1,0 +1,91 @@
+- id: orale-t-41
+  topic: linearita-passivita-causalita
+  objectives:
+    - linearita-passivita-causalita.1
+    - linearita-passivita-causalita.2
+  kind: orale
+  front:
+    it: '**Linearità e permanenza.** Definisci linearità e permanenza (tempo-invarianza) e mostra che un condensatore costante le soddisfa.'
+    en: '**Linearity and time invariance.** Define linearity and time invariance and show that a constant capacitor satisfies them.'
+  back:
+    it: |-
+      **Risposta modello.** Un elemento è lineare se vale la sovrapposizione: additività e omogeneità. È permanente se traslando l'ingresso nel tempo l'uscita trasla della stessa quantità. Per il condensatore i = C dv/dt è lineare perché la derivata è un operatore lineare, ed è tempo invariante perché C è costante e non dipende dal tempo.
+
+      **Punti da toccare:**
+
+      - Linearità: sovrapposizione (additività e omogeneità)
+      - Permanenza: traslazione nel tempo dell'ingresso → stessa traslazione dell'uscita
+      - $i=C\,dv/dt$ lineare perché la derivata è lineare
+      - Tempo-invariante perché $C$ non dipende da $t$
+    en: |-
+      **Model answer.** An element is linear if superposition holds: additivity and homogeneity. It is time-invariant if shifting the input in time shifts the output by the same amount. For the capacitor i = C dv/dt is linear because the derivative is a linear operator, and it is time-invariant because C is constant and does not depend on time.
+
+      **Points to cover:**
+
+      - Linearity: superposition (additivity and homogeneity)
+      - Time invariance: a time shift of the input → the same shift of the output
+      - $i=C\,dv/dt$ is linear because the derivative is linear
+      - Time-invariant because $C$ does not depend on $t$
+- id: orale-t-42
+  topic: linearita-passivita-causalita
+  objectives:
+    - linearita-passivita-causalita.1
+    - linearita-passivita-causalita.2
+  kind: orale
+  front:
+    it: '**Passività.** Definisci la passività di un bipolo e verifica quella di $R$, $L$, $C$; porta un esempio di elemento non passivo.'
+    en: '**Passivity.** Define the passivity of a one-port and check it for $R$, $L$, $C$; give an example of a non-passive element.'
+  back:
+    it: |-
+      **Risposta modello.** Un bipolo è passivo se l'energia assorbita non è mai negativa. Per il resistore la potenza p = R i^2 è non negativa. Per induttore e condensatore l'energia immagazzinata ½ L i^2 e ½ C v^2 è non negativa. Non sono passivi i generatori, i controllati e una resistenza negativa.
+
+      **Punti da toccare:**
+
+      - Passivo: l'energia assorbita non è mai negativa
+      - $R$: $p=Ri^2\ge0$
+      - $L$, $C$: energia immagazzinata $\tfrac12Li^2$, $\tfrac12Cv^2\ge0$
+      - Non passivi: generatori indipendenti, controllati, resistenza negativa
+    en: |-
+      **Model answer.** A one-port is passive if the absorbed energy is never negative. For the resistor the power p = R i^2 is non-negative. For the inductor and the capacitor the stored energy ½ L i^2 and ½ C v^2 is non-negative. Sources, controlled sources and a negative resistance are not passive.
+
+      **Points to cover:**
+
+      - Passive: the absorbed energy is never negative
+      - $R$: $p=Ri^2\ge0$
+      - $L$, $C$: stored energy $\tfrac12Li^2$, $\tfrac12Cv^2\ge0$
+      - Not passive: independent sources, controlled sources, negative resistance
+- id: formula-linearita
+  topic: linearita-passivita-causalita
+  objectives:
+    - linearita-passivita-causalita.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Linearità**. Uso: Sovrapposizione degli effetti.'
+    en: 'Write the formula: **Linearity**. Use: Superposition.'
+  back:
+    it: |-
+      $$x=a\,x_1+b\,x_2\ \Rightarrow\ y=a\,y_1+b\,y_2$$
+
+      x ingresso, y uscita; a, b costanti
+    en: |-
+      $$x=a\,x_1+b\,x_2\ \Rightarrow\ y=a\,y_1+b\,y_2$$
+
+      x input, y output; a, b constants
+- id: formula-tempo-invarianza
+  topic: linearita-passivita-causalita
+  objectives:
+    - linearita-passivita-causalita.1
+    - linearita-passivita-causalita.2
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Tempo-invarianza**. Uso: Elementi con parametri costanti.'
+    en: 'Write the formula: **Time invariance**. Use: Elements with constant parameters.'
+  back:
+    it: |-
+      $$x(t-T)\ \mapsto\ y(t-T)$$
+
+      T traslazione temporale [s]
+    en: |-
+      $$x(t-T)\ \mapsto\ y(t-T)$$
+
+      T time shift [s]

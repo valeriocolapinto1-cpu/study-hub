@@ -1,0 +1,25 @@
+id: risposta-libera-forzata
+course: teoria-circuiti
+order: 35
+title:
+  it: Risposta libera e risposta forzata
+  en: Zero-input and zero-state response
+summary:
+  it: Risposta libera e forzata, come si calcolano con Laplace e come si ricompone la risposta completa.
+  en: Zero-input and zero-state response, how to compute them with Laplace and how to rebuild the complete response.
+objectives:
+  - id: risposta-libera-forzata.1
+    text:
+      it: Distinguere risposta libera e forzata
+      en: Distinguish the zero-input and zero-state responses
+  - id: risposta-libera-forzata.2
+    text:
+      it: Calcolarle con Laplace
+      en: Compute them with Laplace
+  - id: risposta-libera-forzata.3
+    text:
+      it: Ricomporre la risposta completa
+      en: Rebuild the complete response
+group:
+  it: V · Funzioni di rete e stabilità
+  en: V · Network functions and stability

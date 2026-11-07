@@ -1,0 +1,117 @@
+---
+course: teoria-circuiti
+topic: matrici-a-b
+lang: en
+---
+
+<Layer kind="intuizione">
+
+<div data-note-id="matrici-a-b-intuizione-1">
+
+Matrices $A$ and $B$ are the graph "translated into numbers": one row per node (or loop), one column per branch, and a $\pm1$ wherever branch and node (or loop) touch. With them Kirchhoff's laws become matrix-vector products, ready to be solved systematically.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo">
+
+<div data-note-id="matrici-a-b-teoria-1">
+
+**Reduced incidence matrix** $A$, of size $(n-1)\times b$ (the row of a reference node is removed): $a_{jk}=+1$ if branch $k$ leaves node $j$, $-1$ if it enters it, $0$ otherwise.
+
+</div>
+
+<div data-note-id="matrici-a-b-teoria-2">
+
+**Fundamental loop matrix** $B$, of size $(b-n+1)\times b$: $b_{jk}=+1$ if branch $k$ belongs to loop $j$ with the same direction, $-1$ with the opposite direction, $0$ otherwise.
+
+</div>
+
+<div data-note-id="matrici-a-b-teoria-3">
+
+**Kirchhoff's laws in matrix form** (with $\mathbf i,\mathbf v\in\mathbb R^b$):
+
+$$
+A\,\mathbf i=\mathbf 0\ \ (\text{KCL}),\qquad B\,\mathbf v=\mathbf 0\ \ (\text{KVL}).
+$$
+
+</div>
+
+<div data-note-id="matrici-a-b-teoria-4">
+
+**Block form.** Ordering the branches with the tree first and then the cotree, $A=[A_t\ A_c]$ with $A_t$ square $(n-1)\times(n-1)$ and invertible, and $B=[B_t\ B_c]$. Choosing the cotree loops as fundamental loops, $B_c=\mathbb 1$. Defining $F=A_t^{-1}A_c$ (fundamental cut-set matrix $Q=A_t^{-1}A=[\mathbb 1\ F]$), we get
+
+$$
+B=[-F^{\mathsf T}\ \ \mathbb 1].
+$$
+
+Hence _the tree block of $B$ is minus the transpose of the cotree block of $Q$_.
+
+</div>
+
+<div data-note-id="matrici-a-b-teoria-5">
+
+Beware: $A$ and $B$ have **different sizes** ($(n-1)\times b$ and $(b-n+1)\times b$) and are not the transpose of each other; the relation holds between the _blocks_, with $A_t=\mathbb 1$.
+
+</div>
+
+<details class="proof" data-note-id="matrici-a-b-dimostrazione-1">
+<summary>Proof: Relation between B and A in block form</summary>
+
+**Statement.** With $A=[A_t\ A_c]$ ($A_t$ invertible) and $B=[B_t\ \mathbb 1]$, KVL is equivalent to $B_t=-(A_t^{-1}A_c)^{\mathsf T}=-F^{\mathsf T}$.
+
+1. The branch voltages satisfy $\mathbf v=A^{\mathsf T}\mathbf e$ for a suitable vector $\mathbf e$ of node voltages (potentials), whatever it is.
+2. Since KVL must hold for every $\mathbf e$: $B\,A^{\mathsf T}\mathbf e=\mathbf0$ for every $\mathbf e$, i.e. $B\,A^{\mathsf T}=0$, or $A\,B^{\mathsf T}=0$.
+3. In blocks: $A\,B^{\mathsf T}=A_tB_t^{\mathsf T}+A_c\mathbb 1=0$.
+4. Multiply on the left by $A_t^{-1}$: $B_t^{\mathsf T}=-A_t^{-1}A_c=-F$, hence $B_t=-F^{\mathsf T}$. $\square$
+
+_Note._ The exact formulation given in class may differ (for instance normalised with $A_t=\mathbb1$) <span class="badge badge--warning">TO BE VERIFIED</span>.
+
+</details>
+
+<Formula id="kcl-mat" />
+<Formula id="kvl-mat" />
+<Formula id="b-da-a" />
+
+</Layer>
+
+<Layer kind="esempio">
+
+<div class="worked" data-note-id="matrici-a-b-esempio-1">
+
+### Matrices of the 3-node graph (triangle)
+
+Triangle with nodes $0,1,2$ and branches: $a$: $0\to1$, $b$: $0\to2$, $c$: $1\to2$. Tree: $a,b$. Build $A$, $B$ and check $A\,B^{\mathsf T}=0$.
+
+**Solution.**
+
+1. Reference node 0; rows: nodes 1, 2; columns $a,b,c$. Branch $a$ enters 1: $-1$; $b$ enters 2: $-1$; $c$ leaves 1 and enters 2: $+1$ in row 1, $-1$ in row 2. $A=\begin{pmatrix}-1&0&1\\0&-1&-1\end{pmatrix}$.
+2. Tree $\{a,b\}$: $A_t=\begin{pmatrix}-1&0\\0&-1\end{pmatrix}=-\mathbb1$, $A_c=\begin{pmatrix}1\\-1\end{pmatrix}$, $F=A_t^{-1}A_c=\begin{pmatrix}-1\\1\end{pmatrix}$.
+3. $B_t=-F^{\mathsf T}=(1\ \ -1)$, $B=(1\ \ -1\ \ 1)$: loop $a$, $-b$, $c$ (path $0\to1\to2\to0$ ✓).
+4. Check: $A B^{\mathsf T}=\begin{pmatrix}-1\cdot1+0+1\cdot1\\0+(-1)(-1)+(-1)(1)\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}$. ✓
+
+</div>
+
+</Layer>
+
+<Layer kind="errori">
+
+<div data-note-id="matrici-a-b-errore-1">
+
+- **Wrong:** Writing $B=-A^{\mathsf T}$ as a relation between the full matrices.
+- **Right:** The sizes do not match: the relation is $B_t=-(A_t^{-1}A_c)^{\mathsf T}$ between blocks.
+
+</div>
+
+</Layer>
+
+<Callout tone="esame">
+
+<div data-note-id="matrici-a-b-esame-1">
+
+Topology, $B=-A^{\mathsf T}$ (in block form) and independent voltages: 18-9-2002, 30-10-2002, 24-4-2003, 12-7-2005 <span class="badge badge--info">PAST EXAMS</span>.
+
+</div>
+
+</Callout>

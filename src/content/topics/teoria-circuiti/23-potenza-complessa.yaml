@@ -1,0 +1,25 @@
+id: potenza-complessa
+course: teoria-circuiti
+order: 23
+title:
+  it: Potenza attiva, reattiva e complessa
+  en: Active, reactive and complex power
+summary:
+  it: Potenza istantanea, attiva, reattiva, complessa e apparente, fattore di potenza e legame tra reattiva ed energie medie.
+  en: Instantaneous, active, reactive, complex and apparent power, power factor and the link between reactive power and average energies.
+objectives:
+  - id: potenza-complessa.1
+    text:
+      it: Definire P, Q, S e il fattore di potenza
+      en: Define P, Q, S and the power factor
+  - id: potenza-complessa.2
+    text:
+      it: Dimostrare $Q=2\omega(W_L-W_C)$
+      en: Prove $Q=2\omega(W_L-W_C)$
+  - id: potenza-complessa.3
+    text:
+      it: Calcolare le potenze da $v(t)$ e $i(t)$
+      en: Compute the powers from $v(t)$ and $i(t)$
+group:
+  it: III · Regime sinusoidale
+  en: III · Sinusoidal steady state

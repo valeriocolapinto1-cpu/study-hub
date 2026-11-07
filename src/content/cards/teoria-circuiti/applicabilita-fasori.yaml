@@ -1,0 +1,35 @@
+- id: formula-fasori-validita
+  topic: applicabilita-fasori
+  objectives:
+    - applicabilita-fasori.1
+    - applicabilita-fasori.3
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Validità dei fasori**. Uso: Condizione di applicabilità.'
+    en: 'Write the formula: **Validity of phasors**. Use: Applicability condition.'
+  back:
+    it: |-
+      $$H(j\omega)=\frac{\sum b_k(j\omega)^k}{\sum a_k(j\omega)^k},\ \ \mathrm{Re}\,p_i<0$$
+
+      a_k, b_k coefficienti reali; p_i poli
+    en: |-
+      $$H(j\omega)=\frac{\sum b_k(j\omega)^k}{\sum a_k(j\omega)^k},\ \ \mathrm{Re}\,p_i<0$$
+
+      a_k, b_k real coefficients; p_i poles
+- id: formula-hjw-def
+  topic: applicabilita-fasori
+  objectives:
+    - applicabilita-fasori.1
+  kind: formula
+  front:
+    it: 'Scrivi la formula: **Funzione di rete in regime sinusoidale**. Uso: Risposta di regime.'
+    en: 'Write the formula: **Network function in sinusoidal steady state**. Use: Steady-state response.'
+  back:
+    it: |-
+      $$\dot Y=H(j\omega)\dot X$$
+
+      Ẋ ingresso, Ẏ uscita (fasori); H adimensionale o in Ω, S
+    en: |-
+      $$\dot Y=H(j\omega)\dot X$$
+
+      Ẋ input, Ẏ output (phasors); H dimensionless or in Ω, S
