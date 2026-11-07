@@ -154,6 +154,8 @@ const GENERATORI_SENZA_FIGURA: Record<string, string> = {
 };
 
 const eccezioni = flatten(SENZA_FIGURA);
+/** Figure del kit nella teoria (IT + EN): 19 argomenti. */
+const MIN_TEORIA = 38;
 
 describe('teoria-circuiti: figure degli esercizi statici', () => {
   const statics = all.filter((e) => e.kind === 'static');
@@ -197,7 +199,7 @@ describe('teoria-circuiti: figure della teoria', () => {
     const per = (lang: string) =>
       diagrams.filter((d) => d.file.endsWith(`.${lang}.mdx`)).map((d) => `${d.file.split('.')[0]}:${d.type}`);
     expect(per('en')).toEqual(per('it'));
-    expect(diagrams.length).toBeGreaterThanOrEqual(38);
+    expect(diagrams.length).toBeGreaterThanOrEqual(MIN_TEORIA);
   });
   for (const d of diagrams)
     it(`${d.file}: ${d.type} valido`, () => {
