@@ -13,17 +13,17 @@
         - type: R
           id: R1
           a: a
-          b: "0"
+          b: '0'
           value: 6
         - type: R
           id: R2
           a: a
-          b: "0"
+          b: '0'
           value: 3
       ports:
         - id: AB
           plus: a
-          minus: "0"
+          minus: '0'
           label: R_{eq}
   steps:
     - title:
@@ -65,7 +65,7 @@
         - type: V
           id: V1
           a: a
-          b: "0"
+          b: '0'
           dc: 12
         - type: R
           id: R1
@@ -75,7 +75,7 @@
         - type: R
           id: R2
           a: b
-          b: "0"
+          b: '0'
           value: 3
           show:
             v: v_2
@@ -118,7 +118,7 @@
       elements:
         - type: I
           id: i
-          a: "0"
+          a: '0'
           b: a
           dc: 1
           show:
@@ -126,7 +126,7 @@
         - type: R
           id: G1
           a: a
-          b: "0"
+          b: '0'
           value: 1
           label: 1 S
           show:
@@ -134,7 +134,7 @@
         - type: R
           id: G2
           a: a
-          b: "0"
+          b: '0'
           value: 0.3333333333333333
           label: 3 S
           show:
@@ -205,7 +205,7 @@
         - type: R
           id: R1
           a: a
-          b: "0"
+          b: '0'
           value: 4
         - type: R
           id: R2
@@ -215,12 +215,12 @@
         - type: R
           id: R3
           a: b
-          b: "0"
+          b: '0'
           value: 2
       ports:
         - id: AB
           plus: a
-          minus: "0"
+          minus: '0'
           label: R_{eq}
   steps:
     - title:

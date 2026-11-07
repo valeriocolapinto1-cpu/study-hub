@@ -55,7 +55,7 @@
         - type: V
           id: Vth
           a: a
-          b: "0"
+          b: '0'
           ac: 10
         - type: R
           id: Rth
@@ -65,7 +65,7 @@
         - type: R
           id: ZL
           a: b
-          b: "0"
+          b: '0'
           value: 5
           show:
             value: false

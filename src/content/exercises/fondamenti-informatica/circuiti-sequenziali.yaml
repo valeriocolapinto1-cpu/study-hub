@@ -72,9 +72,9 @@
           - label: CK
             kind: clock
           - label: J
-            wave: "1"
+            wave: '1'
           - label: K
-            wave: "1"
+            wave: '1'
   steps:
     - title:
         it: Da dove si comincia
@@ -225,13 +225,13 @@
           it: Contenuto iniziale (scorre a destra; entrano 1, 0, 1)
           en: Initial content (shifts right; 1, 0, 1 enter)
         cells:
-          - value: "1"
+          - value: '1'
             label: Q3
-          - value: "0"
+          - value: '0'
             label: Q2
-          - value: "1"
+          - value: '1'
             label: Q1
-          - value: "1"
+          - value: '1'
             label: Q0
   steps:
     - title:

@@ -86,12 +86,12 @@
         - type: C
           id: C
           a: b
-          b: "0"
+          b: '0'
           value: 1
       ports:
         - id: Z
           plus: a
-          minus: "0"
+          minus: '0'
           label: Z
   steps:
     - title:

@@ -81,7 +81,7 @@
         - type: V
           id: Vth
           a: a
-          b: "0"
+          b: '0'
           dc: 8
         - type: R
           id: Rth
@@ -91,7 +91,7 @@
       ports:
         - id: AB
           plus: b
-          minus: "0"
+          minus: '0'
           label: A–B
   steps:
     - title:

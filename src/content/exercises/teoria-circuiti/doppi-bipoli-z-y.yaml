@@ -242,17 +242,17 @@
         - type: R
           id: Rc
           a: m
-          b: "0"
+          b: '0'
           value: 3
       ports:
         - id: P1
           plus: p1
-          minus: "0"
-          label: "1"
+          minus: '0'
+          label: '1'
         - id: P2
           plus: p2
-          minus: "0"
-          label: "2"
+          minus: '0'
+          label: '2'
   steps:
     - title:
         it: Spiegazione

@@ -489,7 +489,7 @@
             label: LOC1
           - value: b
             label: LOC2
-          - value: "?"
+          - value: '?'
             label: LOC3
             highlight: true
   steps:
@@ -545,7 +545,7 @@
           - value: …
           - value: x_N
             label: LIST+4(N−1)
-          - value: "?"
+          - value: '?'
             label: SUM
             highlight: true
   steps:

@@ -131,7 +131,7 @@
         - type: V
           id: V1
           a: a
-          b: "0"
+          b: '0'
           dc: 12
         - type: R
           id: R1
@@ -141,12 +141,12 @@
         - type: R
           id: R2
           a: b
-          b: "0"
+          b: '0'
           value: 4
       ports:
         - id: AB
           plus: b
-          minus: "0"
+          minus: '0'
           label: A–B
   steps:
     - title:

@@ -119,7 +119,7 @@
         - type: V
           id: Vg
           a: g
-          b: "0"
+          b: '0'
           dc: 1
         - type: R
           id: R1
@@ -133,7 +133,7 @@
           value: 8
         - type: OA
           id: A1
-          plus: "0"
+          plus: '0'
           minus: m
           out: o
       nodes:
@@ -179,7 +179,7 @@
         - type: V
           id: Vi
           a: i
-          b: "0"
+          b: '0'
           dc: 1
           show:
             value: false
@@ -191,7 +191,7 @@
         - type: R
           id: R1
           a: m
-          b: "0"
+          b: '0'
           value: 1
         - type: R
           id: R2
