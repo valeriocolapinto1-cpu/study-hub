@@ -1,6 +1,7 @@
 /** Generatori su sistemi di punti, corpo rigido e urti (area C dell'originale). */
 import { registerGenerator } from '../../../engine/generators/registry';
 import { createRng } from '../../../engine/random';
+import * as Fig from '../lib/figures';
 import { G, L, ans, exercise, num, q, rad, step } from '../lib/gen';
 
 export const filoCheSiAccorcia = registerGenerator({
@@ -47,6 +48,7 @@ export const filoCheSiAccorcia = registerGenerator({
         ),
       ],
       [ans('v₂', v2, 'm/s'), ans('ΔK', dK, 'J'), ans('T', T, 'N')],
+      Fig.stringThroughHole({ r1: 2.5, r2: (2.5 * r2) / r1 }),
     );
   },
 });
@@ -93,6 +95,7 @@ export const barca = registerGenerator({
         ),
       ],
       [ans(L(lang, 'Δx barca', 'Δx boat'), db, 'm'), ans(L(lang, 'Δx persona', 'Δx person'), du, 'm')],
+      Fig.boat(),
     );
   },
 });
@@ -133,6 +136,7 @@ export const astaConMasse = registerGenerator({
         ),
       ],
       [ans('I_cm', Icm, 'kg·m²'), ans(L(lang, 'I estremo', 'I end'), Iend, 'kg·m²')],
+      Fig.rodWithMasses(),
     );
   },
 });
@@ -181,6 +185,7 @@ export const carrucola = registerGenerator({
         ),
       ],
       [ans('a', a, 'm/s²'), ans('T', T, 'N'), ans('ω', w, 'rad/s')],
+      Fig.pulley({ masses: [{ label: 'm', side: 'right' }] }),
     );
   },
 });
@@ -246,6 +251,10 @@ export const rotolamento = registerGenerator({
         ),
       ],
       [ans('a', a, 'm/s²'), ans('v', v, 'm/s'), ans('μ_s min', mu)],
+      Fig.rollingIncline({
+        angle: th,
+        style: body.beta === 1 ? 'ring' : body.beta === 1 / 2 ? 'disc' : 'sphere',
+      }),
     );
   },
 });
@@ -295,6 +304,20 @@ export const urtoElastico = registerGenerator({
         ),
       ],
       [ans("v₁'", u1, 'm/s'), ans("v₂'", u2, 'm/s')],
+      {
+        type: 'collision',
+        params: {
+          unit: 'm/s',
+          before: [
+            { label: '1', mass: 'm_1', v: v1 },
+            { label: '2', mass: 'm_2', v: v2 },
+          ],
+          after: [
+            { label: '1', mass: 'm_1', v: Number(u1.toPrecision(3)) },
+            { label: '2', mass: 'm_2', v: Number(u2.toPrecision(3)) },
+          ],
+        },
+      },
     );
   },
 });
@@ -348,6 +371,7 @@ export const pendoloBalistico = registerGenerator({
         ans('v₀', v0, 'm/s'),
         ans(L(lang, 'frazione dissipata', 'dissipated fraction'), frac, undefined, 0.002),
       ],
+      Fig.ballisticPendulum({ angle: th }),
     );
   },
 });
@@ -387,6 +411,7 @@ export const pendoloFisico = registerGenerator({
         ),
       ],
       [ans('ℓ', ell, 'm'), ans('T', T, 's')],
+      Fig.physicalPendulum({ shape: 'rod', dFrac: d / Lr }),
     );
   },
 });
@@ -428,6 +453,7 @@ export const astaCheCade = registerGenerator({
         ),
       ],
       [ans('ω', w, 'rad/s'), ans(L(lang, 'v estremo', 'v end'), vEnd, 'm/s')],
+      Fig.rodFalling({ angle: th }),
     );
   },
 });

@@ -99,28 +99,32 @@ export function pulley(o: {
   );
 }
 
-/** Asta incernierata a un estremo, lasciata cadere dall'orizzontale; tratteggiata la posizione verticale. */
-export function rodFalling(o: { lengthLabel?: string } = {}): DiagramSpec {
-  return scene(
-    [
-      { kind: 'pivot', at: P(0, 0), style: 'hinge', label: 'O', labelAngle: 135 },
-      { kind: 'rod', from: P(0, 0), to: P(4, 0), label: o.lengthLabel ?? 'L' },
-      { kind: 'line', points: [P(0, 0), P(0, -4)], dash: true, tone: 'muted', width: 'thick' },
-      { kind: 'dot', at: P(2, 0), label: 'CM', labelAngle: 270 },
-      { kind: 'vector', from: P(2, 0), to: P(2, -1.4), label: 'Mg', labelAngle: 0, vkind: 'weight' },
-      { kind: 'rotation', at: P(0, 0), r: 60, from: -10, to: -75, label: 'ω' },
-      { kind: 'dot', at: P(0, -2), label: 'CM', labelAngle: 0, tone: 'muted' },
-      { kind: 'vector', from: P(0, -4), to: P(1.6, -4), label: 'v', vkind: 'velocity' },
-    ],
-    {
-      it: "Asta incernierata in O, lasciata da ferma in orizzontale; tratteggiata la posizione verticale con la velocità dell'estremo.",
-      en: 'Rod hinged at O, released from rest horizontally; dashed: the vertical position with the velocity of the free end.',
-    },
-  );
+/**
+ * Asta incernierata in O, lasciata da ferma inclinata di `angle` gradi sopra l'orizzontale
+ * (0 = orizzontale); tratteggiata la posizione verticale in basso.
+ */
+export function rodFalling(o: { lengthLabel?: string; angle?: number } = {}): DiagramSpec {
+  const a = o.angle ?? 0;
+  const end = P(4 * cosd(a), 4 * sind(a));
+  const cm = P(end[0] / 2, end[1] / 2);
+  const items: Item[] = [
+    { kind: 'pivot', at: P(0, 0), style: 'hinge', label: 'O', labelAngle: 150 },
+    { kind: 'rod', from: P(0, 0), to: end, label: o.lengthLabel ?? 'L' },
+    { kind: 'line', points: [P(0, 0), P(0, -4)], dash: true, tone: 'muted', width: 'thick' },
+    { kind: 'dot', at: cm, label: 'CM', labelAngle: 90 + a },
+    { kind: 'vector', from: cm, to: P(cm[0], cm[1] - 1.4), label: 'Mg', labelAngle: 0, vkind: 'weight' },
+    { kind: 'rotation', at: P(0, 0), r: 60, from: a - 10, to: a - 75, label: 'ω' },
+    { kind: 'vector', from: P(0, -4), to: P(1.6, -4), label: 'v', vkind: 'velocity' },
+  ];
+  if (a > 0) items.push({ kind: 'angle', at: P(0, 0), from: 0, to: a, r: 34, label: `${a}°` });
+  return scene(items, {
+    it: "Asta incernierata in O, lasciata da ferma; tratteggiata la posizione verticale, in cui l'estremo libero ha velocità v.",
+    en: 'Rod hinged at O, released from rest; dashed: the vertical position, where the free end has speed v.',
+  });
 }
 
 /** Pendolo fisico: asta appesa a distanza d dal centro, oppure anello appeso a un chiodo. */
-export function physicalPendulum(o: { shape: 'rod' | 'ring'; angle?: number }): DiagramSpec {
+export function physicalPendulum(o: { shape: 'rod' | 'ring'; angle?: number; dFrac?: number }): DiagramSpec {
   const a = o.angle ?? 18;
   const dir = (t: number): Pt => P(t * sind(a), -t * cosd(a));
   const items: Item[] = [
@@ -129,11 +133,13 @@ export function physicalPendulum(o: { shape: 'rod' | 'ring'; angle?: number }): 
     { kind: 'line', points: [P(0, 0), P(0, -4.2)], dash: true, tone: 'muted', width: 'thin' },
   ];
   if (o.shape === 'rod') {
+    // asse a distanza d = dFrac·L dal centro (0,5 = estremo)
+    const d = 4 * (o.dFrac ?? 0.5);
     items.push(
-      { kind: 'rod', from: P(0, 0), to: dir(4) },
+      { kind: 'rod', from: dir(2 - d), to: dir(6 - d) },
       { kind: 'pivot', at: P(0, 0), style: 'pin', label: 'O', labelAngle: 160 },
-      { kind: 'dot', at: dir(2), label: 'CM', labelAngle: 0 },
-      { kind: 'dim', from: P(0, 0), to: dir(2), label: 'd', offset: -16 },
+      { kind: 'dot', at: dir(d), label: 'CM', labelAngle: 0 },
+      { kind: 'dim', from: P(0, 0), to: dir(d), label: 'd', offset: -16 },
     );
   } else {
     const c = dir(1.6);
@@ -144,7 +150,7 @@ export function physicalPendulum(o: { shape: 'rod' | 'ring'; angle?: number }): 
       { kind: 'dim', from: P(0, 0), to: c, label: 'R', offset: -14 },
     );
   }
-  const cm = o.shape === 'rod' ? dir(2) : dir(1.6);
+  const cm = o.shape === 'rod' ? dir(4 * (o.dFrac ?? 0.5)) : dir(1.6);
   items.push(
     { kind: 'angle', at: P(0, 0), from: -90, to: -90 + a, r: 40, label: 'θ' },
     { kind: 'vector', from: cm, to: P(cm[0], cm[1] - 1.3), label: 'Mg', labelAngle: 0, vkind: 'weight' },
@@ -674,7 +680,11 @@ export function braking(): DiagramSpec {
 }
 
 /** Corpo dentro un riferimento accelerato: forza apparente −mA (ascensore, camion, vagone). */
-export function acceleratedFrame(o: { mode: 'elevator' | 'truck' | 'wagon'; angle?: number }): DiagramSpec {
+export function acceleratedFrame(o: {
+  mode: 'elevator' | 'truck' | 'wagon';
+  angle?: number;
+  down?: boolean;
+}): DiagramSpec {
   if (o.mode === 'elevator') {
     return scene(
       [
@@ -1053,4 +1063,172 @@ export function calorimeter(o: { body: Txt; water: Txt }): DiagramSpec {
     },
     { maxHeight: 220 },
   );
+}
+
+// ------------------------------------------------------------ grafici e cicli
+const R_GAS = 8.314;
+const sample = (f: (t: number) => number, a: number, b: number, n: number): Pt[] =>
+  Array.from({ length: n + 1 }, (_, i) => {
+    const t = a + ((b - a) * i) / n;
+    return [Math.round(t * 1e4) / 1e4, Math.round(f(t) * 1e4) / 1e4] as Pt;
+  });
+const r4 = (x: number): number => Number(x.toPrecision(4));
+
+/** Legge oraria x(t) = A cos(ωt + φ) su due periodi, con la posizione iniziale (in cm). */
+export function harmonicPlot(o: { T: number; x0: number; v0: number }): DiagramSpec {
+  const w = (2 * Math.PI) / o.T;
+  const A = Math.hypot(o.x0, o.v0 / w) * 100;
+  const phi = Math.atan2(-o.v0 / w, o.x0);
+  return {
+    type: 'function-plot',
+    params: {
+      x: { min: 0, max: r4(2 * o.T), label: 't', unit: 's' },
+      y: { min: r4(-1.25 * A), max: r4(1.25 * A), label: 'x', unit: 'cm' },
+      series: [{ kind: 'sin', amp: r4(A), omega: r4(w), phase: r4(phi + Math.PI / 2) }],
+      markers: [{ x: 0, y: r4(o.x0 * 100), label: 'x_0' }],
+      vlines: [{ x: r4(o.T), label: 'T' }],
+    },
+  };
+}
+
+/** Oscillazione smorzata normalizzata x/x₀ = e^(−γt) cos(ω_s t) con l'inviluppo, su ~6 periodi. */
+export function dampedPlot(o: { gamma: number; omega: number }): DiagramSpec {
+  const tEnd = r4((6 * 2 * Math.PI) / o.omega);
+  return {
+    type: 'function-plot',
+    params: {
+      x: { min: 0, max: tEnd, label: 't', unit: 's' },
+      y: { min: -1.1, max: 1.1, label: 'x/x_0' },
+      series: [
+        {
+          kind: 'points',
+          points: sample((t) => Math.exp(-o.gamma * t) * Math.cos(o.omega * t), 0, tEnd, 150),
+        },
+        { kind: 'exp', a: 1, b: r4(-o.gamma), dash: true, tone: 'muted', label: 'e^{-γt}' },
+        { kind: 'exp', a: -1, b: r4(-o.gamma), dash: true, tone: 'muted' },
+      ],
+    },
+  };
+}
+
+/** Curva di risonanza A(Ω) in mm, con la pulsazione propria e il punto di lavoro Ω. */
+export function resonancePlot(o: { m: number; k: number; b: number; F0: number; Om: number }): DiagramSpec {
+  const w0 = Math.sqrt(o.k / o.m);
+  const g = o.b / (2 * o.m);
+  const A = (W: number): number =>
+    (1000 * o.F0) / o.m / Math.sqrt((w0 * w0 - W * W) ** 2 + 4 * g * g * W * W);
+  const max = r4(Math.max(2 * w0, 1.3 * o.Om));
+  return {
+    type: 'function-plot',
+    params: {
+      x: { min: 0, max, label: 'Ω', unit: '1/s' },
+      y: { min: 0, label: 'A', unit: 'mm' },
+      series: [{ kind: 'points', points: sample(A, 0, max, 120) }],
+      vlines: [{ x: r4(w0), label: 'ω_0' }],
+      markers: [{ x: r4(o.Om), y: r4(A(o.Om)), label: 'Ω' }],
+    },
+  };
+}
+
+type PvState = { id: string; V: number; p: number };
+const pv = (
+  states: PvState[],
+  processes: Array<[string, string, 'isothermal' | 'adiabatic' | 'isochoric' | 'isobaric' | 'linear']>,
+  extra: Record<string, unknown> = {},
+): DiagramSpec => ({
+  type: 'pv-cycle',
+  params: {
+    ...extra,
+    states: states.map((s) => ({ id: s.id, V: r4(s.V), p: r4(s.p) })),
+    processes: processes.map(([from, to, kind]) => ({ from, to, kind })),
+  } as DiagramParams['pv-cycle'],
+});
+
+/** Riscaldamento di ΔT dallo stato A (300 K, 100 kPa): isocora A→B e isobara A→C. */
+export function heatingPv(o: { n: number; dT: number }): DiagramSpec {
+  const V = (o.n * R_GAS * 300) / 100; // L con p in kPa
+  const f = (300 + o.dT) / 300;
+  return pv(
+    [
+      { id: 'A', V, p: 100 },
+      { id: 'B', V, p: 100 * f },
+      { id: 'C', V: V * f, p: 100 },
+    ],
+    [
+      ['A', 'B', 'isochoric'],
+      ['A', 'C', 'isobaric'],
+    ],
+    { values: false, work: true },
+  );
+}
+
+/** Espansione di un fattore k da (V₁ = 10 L, T₁): isoterma A→B e adiabatica A→C. */
+export function expansionPv(o: { n: number; T1: number; k: number; gamma: number }): DiagramSpec {
+  const V1 = 10;
+  const p1 = (o.n * R_GAS * o.T1) / V1;
+  return pv(
+    [
+      { id: 'A', V: V1, p: p1 },
+      { id: 'B', V: V1 * o.k, p: p1 / o.k },
+      { id: 'C', V: V1 * o.k, p: p1 * o.k ** -o.gamma },
+    ],
+    [
+      ['A', 'B', 'isothermal'],
+      ['A', 'C', 'adiabatic'],
+    ],
+    { values: false, work: false, gamma: r4(o.gamma) },
+  );
+}
+
+/** Ciclo di Carnot tra T_C e T_F con rapporto k dei volumi nell'isoterma (V_A = 10 L). */
+export function carnotPv(o: { n: number; Tc: number; Tf: number; k: number; gamma?: number }): DiagramSpec {
+  const g = o.gamma ?? 1.4;
+  const VA = 10;
+  const VB = VA * o.k;
+  const s = (o.Tc / o.Tf) ** (1 / (g - 1));
+  const p = (T: number, V: number): number => (o.n * R_GAS * T) / V;
+  return pv(
+    [
+      { id: 'A', V: VA, p: p(o.Tc, VA) },
+      { id: 'B', V: VB, p: p(o.Tc, VB) },
+      { id: 'C', V: VB * s, p: p(o.Tf, VB * s) },
+      { id: 'D', V: VA * s, p: p(o.Tf, VA * s) },
+    ],
+    [
+      ['A', 'B', 'isothermal'],
+      ['B', 'C', 'adiabatic'],
+      ['C', 'D', 'isothermal'],
+      ['D', 'A', 'adiabatic'],
+    ],
+    { values: false, work: true, gamma: g },
+  );
+}
+
+/** Trasformazione generica tra due stati noti (p in Pa, V in L), tracciata come segmento. */
+export function twoStatesPv(o: { V1: number; p1: number; V2: number; p2: number }): DiagramSpec {
+  return pv(
+    [
+      { id: '1', V: o.V1, p: o.p1 / 1000 },
+      { id: '2', V: o.V2, p: o.p2 / 1000 },
+    ],
+    [['1', '2', 'linear']],
+    { values: true, work: false },
+  );
+}
+
+/** Macchina termica (o frigorifero) con le etichette standard. */
+export function heatEngine(
+  kind: 'engine' | 'refrigerator' | 'heat-pump' = 'engine',
+  T?: { hot: string; cold: string },
+): DiagramSpec {
+  return {
+    type: 'heat-engine',
+    params: {
+      kind,
+      reservoirs: [
+        { label: T?.hot ?? 'T_C', heat: 'Q_C', side: 'hot' },
+        { label: T?.cold ?? 'T_F', heat: 'Q_F', side: 'cold' },
+      ],
+    },
+  };
 }
