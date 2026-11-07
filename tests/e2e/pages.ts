@@ -42,6 +42,6 @@ export const SAMPLE_PAGES: SamplePage[] = [
   { name: 'f1-panoramica-it', path: `${BASE}it/anno-1/fisica-1/` },
   { name: 'f1-teoria-en', path: `${BASE}en/anno-1/fisica-1/teoria/ciclo-di-carnot/` },
   { name: 'f1-esercizi-it', path: `${BASE}it/anno-1/fisica-1/esercizi/urti-centrali/` },
-  { name: 'f1-formulario-en', path: `${BASE}en/anno-1/fisica-1/formulario/` },
+  { name: 'f1-formulario-en', path: `${BASE}en/anno-1/fisica-1/formulario/`, visual: false },
   { name: 'f1-orale-it', path: `${BASE}it/anno-1/fisica-1/extra/simulazione-orale/` },
 ];
