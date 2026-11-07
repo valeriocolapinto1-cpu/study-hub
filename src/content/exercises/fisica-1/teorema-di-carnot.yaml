@@ -15,6 +15,20 @@
       An inventor claims an engine that, working between 500 K and 300 K, absorbs 10 kJ per cycle and produces
       4.5 kJ of work. Find: (a) the claimed efficiency; (b) the maximum theoretical efficiency; (c) the
       maximum work per cycle for the same absorbed heat. Is the claim credible?
+  figure:
+    diagram:
+      {
+        'type': 'heat-engine',
+        'params':
+          {
+            'kind': 'engine',
+            'reservoirs':
+              [
+                { 'label': 'T_C = 500 K', 'heat': 'Q_C', 'side': 'hot' },
+                { 'label': 'T_F = 300 K', 'heat': 'Q_F', 'side': 'cold' },
+              ],
+          },
+      }
   steps:
     - title:
         it: Confronto con Carnot
@@ -68,6 +82,21 @@
       A power plant delivers 500 MW of electrical power with a real efficiency of 38%, taking heat at 820 K
       and discharging it at 300 K. Find: (a) the thermal power discharged; (b) the Carnot efficiency; (c) the
       power discharged if the plant worked at the Carnot efficiency for the same electrical power.
+  figure:
+    diagram:
+      {
+        'type': 'heat-engine',
+        'params':
+          {
+            'kind': 'engine',
+            'reservoirs':
+              [
+                { 'label': 'T_C = 820 K', 'heat': 'P_C', 'side': 'hot' },
+                { 'label': 'T_F = 300 K', 'heat': 'P_F', 'side': 'cold' },
+              ],
+            'work': 'P_{el}',
+          },
+      }
   steps:
     - title:
         it: Bilancio reale

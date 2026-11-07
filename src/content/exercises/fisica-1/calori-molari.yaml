@@ -14,6 +14,27 @@
     en: >-
       3.0 mol of air (ideal diatomic gas) are to be heated from 290 K to 340 K. Find the heat needed: (a) at
       constant volume; (b) at constant pressure; (c) the work done by the gas in case (b).
+  figure:
+    diagram:
+      {
+        'type': 'pv-cycle',
+        'params':
+          {
+            'values': false,
+            'work': true,
+            'states':
+              [
+                { 'id': 'A', 'V': 72.3, 'p': 100 },
+                { 'id': 'B', 'V': 72.3, 'p': 117.2 },
+                { 'id': 'C', 'V': 84.8, 'p': 100 },
+              ],
+            'processes':
+              [
+                { 'from': 'A', 'to': 'B', 'kind': 'isochoric' },
+                { 'from': 'A', 'to': 'C', 'kind': 'isobaric' },
+              ],
+          },
+      }
   steps:
     - title:
         it: Volume costante
@@ -65,6 +86,45 @@
       A 500 g copper block (molar mass 63.5 g/mol) at 100 °C is dropped into 1.0 kg of water at 20 °C (c_water
       = 4186 J/(kg·K)) in an insulated container. Using the Dulong–Petit law for copper, find: (a) the
       specific heat of copper per unit mass; (b) the equilibrium temperature.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Corpo immerso in acqua in un recipiente isolato: il calore ceduto dal corpo è assorbito dall’acqua fino all’equilibrio.',
+                'en': 'Body immersed in water in an insulated vessel: the heat released by the body is absorbed by the water until equilibrium.',
+              },
+            'maxHeight': 220,
+            'items':
+              [
+                {
+                  'kind': 'line',
+                  'points': [[-2.4, 3], [-2.4, -0.2], [2.4, -0.2], [2.4, 3]],
+                  'width': 'thick',
+                },
+                {
+                  'kind': 'line',
+                  'points': [[-2.2, 2.3], [2.2, 2.3], [2.2, 0], [-2.2, 0]],
+                  'closed': true,
+                  'fill': 'soft',
+                  'tone': 'info',
+                  'width': 'thin',
+                },
+                { 'kind': 'block', 'at': [0, 0.8], 'w': 1.2, 'h': 0.9 },
+                { 'kind': 'label', 'at': [0, 0.8], 'text': 'Cu' },
+                {
+                  'kind': 'label',
+                  'at': [-1.1, 1.9],
+                  'text': { 'it': 'acqua', 'en': 'water' },
+                  'muted': true,
+                  'size': 12,
+                },
+              ],
+          },
+      }
   steps:
     - title:
         it: Dulong-Petit

@@ -15,6 +15,55 @@
       A 10 g bullet embeds itself in a 2.0 kg wooden block hanging from 1.5 m strings; the pendulum rises to a
       maximum angle of 18°. Find: (a) the rise height; (b) the speed of the block right after the collision;
       (c) the speed of the bullet; (d) the fraction of energy dissipated.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Pendolo balistico: il proiettile si conficca nel blocco appeso, che risale di h deviando i fili di θ.',
+                'en': 'Ballistic pendulum: the bullet embeds in the hanging block, which rises by h as the strings swing by θ.',
+              },
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-2.5, 0], 'to': [2.5, 0] },
+                { 'kind': 'line', 'points': [[-0.4, 0], [-0.4, -3.5]], 'dash': true, 'tone': 'muted' },
+                { 'kind': 'line', 'points': [[0.4, 0], [0.4, -3.5]], 'dash': true, 'tone': 'muted' },
+                { 'kind': 'block', 'at': [0, -4], 'w': 1.2, 'h': 1, 'label': 'M' },
+                { 'kind': 'block', 'at': [-3.6, -4], 'w': 0.5, 'h': 0.22 },
+                {
+                  'kind': 'vector',
+                  'from': [-3.3, -4],
+                  'to': [-1.9, -4],
+                  'label': 'v',
+                  'labelAngle': 90,
+                  'vkind': 'velocity',
+                },
+                { 'kind': 'label', 'at': [-3.6, -4.55], 'text': 'm', 'italic': true },
+                { 'kind': 'line', 'points': [[-0.4, 0], [0.836, -3.304]] },
+                { 'kind': 'line', 'points': [[0.4, 0], [1.636, -3.304]] },
+                { 'kind': 'block', 'at': [1.236, -3.804], 'w': 1.2, 'h': 1, 'angle': 0, 'label': 'm+M' },
+                { 'kind': 'angle', 'at': [0, 0], 'from': -90, 'to': -72, 'r': 44, 'label': 'θ' },
+                { 'kind': 'dim', 'from': [2.9, -4], 'to': [2.9, -3.804], 'label': 'h', 'offset': 0 },
+                {
+                  'kind': 'line',
+                  'points': [[0.6, -4], [3.1, -4]],
+                  'dash': true,
+                  'tone': 'muted',
+                  'width': 'thin',
+                },
+                {
+                  'kind': 'line',
+                  'points': [[1.836, -3.804], [3.1, -3.804]],
+                  'dash': true,
+                  'tone': 'muted',
+                  'width': 'thin',
+                },
+              ],
+          },
+      }
   steps:
     - title:
         it: Risalita
@@ -81,6 +130,55 @@
       A 5.0 g bullet at 300 m/s embeds itself in a hanging 1.0 kg block. Find: (a) the correct rise height;
       (b) the height one would get (wrongly) by conserving energy across the collision; (c) the ratio between
       the two.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Pendolo balistico: il proiettile si conficca nel blocco appeso, che risale di h deviando i fili di θ.',
+                'en': 'Ballistic pendulum: the bullet embeds in the hanging block, which rises by h as the strings swing by θ.',
+              },
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-2.5, 0], 'to': [2.5, 0] },
+                { 'kind': 'line', 'points': [[-0.4, 0], [-0.4, -3.5]], 'dash': true, 'tone': 'muted' },
+                { 'kind': 'line', 'points': [[0.4, 0], [0.4, -3.5]], 'dash': true, 'tone': 'muted' },
+                { 'kind': 'block', 'at': [0, -4], 'w': 1.2, 'h': 1, 'label': 'M' },
+                { 'kind': 'block', 'at': [-3.6, -4], 'w': 0.5, 'h': 0.22 },
+                {
+                  'kind': 'vector',
+                  'from': [-3.3, -4],
+                  'to': [-1.9, -4],
+                  'label': 'v',
+                  'labelAngle': 90,
+                  'vkind': 'velocity',
+                },
+                { 'kind': 'label', 'at': [-3.6, -4.55], 'text': 'm', 'italic': true },
+                { 'kind': 'line', 'points': [[-0.4, 0], [1.098, -3.209]] },
+                { 'kind': 'line', 'points': [[0.4, 0], [1.898, -3.209]] },
+                { 'kind': 'block', 'at': [1.498, -3.709], 'w': 1.2, 'h': 1, 'angle': 0, 'label': 'm+M' },
+                { 'kind': 'angle', 'at': [0, 0], 'from': -90, 'to': -68, 'r': 44, 'label': 'θ' },
+                { 'kind': 'dim', 'from': [2.9, -4], 'to': [2.9, -3.709], 'label': 'h', 'offset': 0 },
+                {
+                  'kind': 'line',
+                  'points': [[0.6, -4], [3.1, -4]],
+                  'dash': true,
+                  'tone': 'muted',
+                  'width': 'thin',
+                },
+                {
+                  'kind': 'line',
+                  'points': [[2.098, -3.709], [3.1, -3.709]],
+                  'dash': true,
+                  'tone': 'muted',
+                  'width': 'thin',
+                },
+              ],
+          },
+      }
   steps:
     - title:
         it: Procedura corretta

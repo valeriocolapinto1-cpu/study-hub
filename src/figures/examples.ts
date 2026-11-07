@@ -428,4 +428,104 @@ export const EXAMPLES: DiagramExample[] = [
       highlight: [7],
     },
   }),
+  // ------------------------------------------------- schizzi e macchine termiche
+  ex(
+    'schizzo-carrucola',
+    'Carrucola con due masse (macchina di Atwood)',
+    'Pulley with two masses (Atwood machine)',
+    {
+      type: 'scene',
+      params: {
+        description: { it: 'Carrucola a disco con perno fisso.', en: 'Disc pulley on a fixed axle.' },
+        items: [
+          { kind: 'surface', from: [-2.2, 3], to: [2.2, 3] },
+          {
+            kind: 'line',
+            points: [
+              [0, 3],
+              [0, 0],
+            ],
+            width: 'thick',
+          },
+          { kind: 'disc', at: [0, 0], r: 1, label: 'M', labelAngle: 90, radius: { angle: -35, label: 'R' } },
+          {
+            kind: 'line',
+            points: [
+              [-1, 0],
+              [-1, -4],
+            ],
+          },
+          {
+            kind: 'line',
+            points: [
+              [1, 0],
+              [1, -3],
+            ],
+          },
+          { kind: 'block', at: [-1, -4.6], w: 1.2, h: 1.2, label: 'm_1' },
+          { kind: 'block', at: [1, -3.6], w: 1.2, h: 1.2, label: 'm_2' },
+          { kind: 'vector', from: [-1, -4], to: [-1, -2.7], label: 'T_1', labelAngle: 180, vkind: 'tension' },
+          { kind: 'vector', from: [1, -3], to: [1, -1.7], label: 'T_2', labelAngle: 0, vkind: 'tension' },
+          {
+            kind: 'vector',
+            from: [-1, -5.2],
+            to: [-1, -6.5],
+            label: 'm_1g',
+            labelAngle: 180,
+            vkind: 'weight',
+          },
+          { kind: 'vector', from: [1, -4.2], to: [1, -5.5], label: 'm_2g', labelAngle: 0, vkind: 'weight' },
+          { kind: 'rotation', at: [0, 0], r: 46, from: 60, to: 130, label: 'α' },
+        ],
+      },
+    },
+  ),
+  ex('schizzo-scala', 'Scala appoggiata a un muro liscio', 'Ladder against a smooth wall', {
+    type: 'scene',
+    params: {
+      items: [
+        { kind: 'surface', from: [-3.7, 0], to: [0.6, 0] },
+        { kind: 'surface', from: [0, 0], to: [0, 5.1] },
+        { kind: 'rod', from: [-2.5, 0], to: [0, 4.33], thickness: 7 },
+        { kind: 'angle', at: [-2.5, 0], from: 0, to: 60, r: 34, label: 'θ' },
+        {
+          kind: 'vector',
+          from: [-1.25, 2.17],
+          to: [-1.25, 0.67],
+          label: 'mg',
+          labelAngle: 0,
+          vkind: 'weight',
+        },
+        { kind: 'vector', from: [0, 4.33], to: [-1.4, 4.33], label: 'N_m', labelAngle: 90, vkind: 'normal' },
+        { kind: 'vector', from: [-2.5, 0], to: [-2.5, 1.5], label: 'N_p', labelAngle: 180, vkind: 'normal' },
+        { kind: 'vector', from: [-2.5, 0], to: [-1.1, 0], label: 'f_s', labelAngle: 270, vkind: 'friction' },
+        { kind: 'dim', from: [-2.5, 0], to: [0, 4.33], label: 'L', offset: 18 },
+      ],
+    },
+  }),
+  ex('macchina-termica', 'Macchina termica tra due sorgenti', 'Heat engine between two reservoirs', {
+    type: 'heat-engine',
+    params: {
+      kind: 'engine',
+      reservoirs: [
+        { label: 'T_C', heat: 'Q_C', side: 'hot' },
+        { label: 'T_F', heat: 'Q_F', side: 'cold' },
+      ],
+    },
+  }),
+  ex(
+    'frigorifero',
+    'Frigorifero: il lavoro porta calore dalla sorgente fredda alla calda',
+    'Refrigerator: work carries heat from the cold to the hot reservoir',
+    {
+      type: 'heat-engine',
+      params: {
+        kind: 'refrigerator',
+        reservoirs: [
+          { label: 'T_C', heat: 'Q_C', side: 'hot' },
+          { label: 'T_F', heat: 'Q_F', side: 'cold' },
+        ],
+      },
+    },
+  ),
 ];

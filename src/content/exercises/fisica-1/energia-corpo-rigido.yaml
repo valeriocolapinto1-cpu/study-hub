@@ -15,6 +15,43 @@
       A uniform rod of length L = 1.2 m, hinged without friction at one end, is released from rest in the
       horizontal position. When it passes through the vertical, find: (a) the angular velocity; (b) the speed
       of the free end; (c) the speed of the centre of mass.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': "Asta incernierata in O, lasciata da ferma in orizzontale; tratteggiata la posizione verticale con la velocità dell'estremo.",
+                'en': 'Rod hinged at O, released from rest horizontally; dashed: the vertical position with the velocity of the free end.',
+              },
+            'items':
+              [
+                { 'kind': 'pivot', 'at': [0, 0], 'style': 'hinge', 'label': 'O', 'labelAngle': 135 },
+                { 'kind': 'rod', 'from': [0, 0], 'to': [4, 0], 'label': 'L' },
+                {
+                  'kind': 'line',
+                  'points': [[0, 0], [0, -4]],
+                  'dash': true,
+                  'tone': 'muted',
+                  'width': 'thick',
+                },
+                { 'kind': 'dot', 'at': [2, 0], 'label': 'CM', 'labelAngle': 270 },
+                {
+                  'kind': 'vector',
+                  'from': [2, 0],
+                  'to': [2, -1.4],
+                  'label': 'Mg',
+                  'labelAngle': 0,
+                  'vkind': 'weight',
+                },
+                { 'kind': 'rotation', 'at': [0, 0], 'r': 60, 'from': -10, 'to': -75, 'label': 'ω' },
+                { 'kind': 'dot', 'at': [0, -2], 'label': 'CM', 'labelAngle': 0, 'tone': 'muted' },
+                { 'kind': 'vector', 'from': [0, -4], 'to': [1.6, -4], 'label': 'v', 'vkind': 'velocity' },
+              ],
+          },
+      }
   steps:
     - title:
         it: Conservazione dell'energia
@@ -71,6 +108,60 @@
       A mass m = 2.0 kg hangs from a string wound on a disc (M = 4.0 kg, R = 0.25 m) free to rotate about its
       axis. Starting from rest, the mass descends h = 1.5 m. Using energy conservation, find: (a) the speed of
       the mass; (b) the fraction of the energy ending up in the rotation of the disc.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Carrucola a disco con perno fisso; la fune non slitta.',
+                'en': 'Disc pulley on a fixed axle; the rope does not slip.',
+              },
+            'maxHeight': 420,
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-2.2, 3], 'to': [2.2, 3] },
+                { 'kind': 'line', 'points': [[0, 3], [0, 0]], 'width': 'thick' },
+                {
+                  'kind': 'disc',
+                  'at': [0, 0],
+                  'r': 1,
+                  'label': 'M',
+                  'labelAngle': 90,
+                  'radius': { 'angle': -35, 'label': 'R' },
+                },
+                { 'kind': 'line', 'points': [[1, 0], [1, -3]] },
+                { 'kind': 'block', 'at': [1, -3.6], 'w': 1.2, 'h': 1.2, 'label': 'm' },
+                {
+                  'kind': 'vector',
+                  'from': [1, -3],
+                  'to': [1, -1.7],
+                  'label': 'T',
+                  'labelAngle': 0,
+                  'vkind': 'tension',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [1, -4.2],
+                  'to': [1, -5.5],
+                  'label': 'mg',
+                  'labelAngle': 0,
+                  'vkind': 'weight',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [2.3, -3.2],
+                  'to': [2.3, -4.6],
+                  'label': 'a',
+                  'labelAngle': 0,
+                  'vkind': 'acceleration',
+                },
+                { 'kind': 'rotation', 'at': [0, 0], 'r': 46, 'from': 120, 'to': 50, 'label': 'α' },
+              ],
+          },
+      }
   steps:
     - title:
         it: Bilancio

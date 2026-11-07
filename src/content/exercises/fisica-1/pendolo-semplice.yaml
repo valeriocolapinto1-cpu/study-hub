@@ -14,6 +14,12 @@
     en: >-
       A simple pendulum has length L = 0.80 m and mass m = 0.25 kg; it swings with amplitude θ₀ = 8°. Find:
       (a) the small-oscillation period; (b) the maximum speed; (c) the maximum string tension.
+  figure:
+    diagram:
+      {
+        'type': 'pendulum',
+        'params': { 'angle': 15, 'forces': true, 'lengthLabel': 'L', 'massLabel': 'm', 'angleLabel': 'θ_0' },
+      }
   steps:
     - title:
         it: Periodo
@@ -75,6 +81,58 @@
       A pendulum of length L = 0.50 m hangs from the ceiling of a railway car accelerating horizontally with a
       = 2.5 m/s². Find: (a) the angle of the equilibrium position from the vertical; (b) the small-oscillation
       period about it; (c) its ratio to the period with the car at rest.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': "Pendolo appeso al soffitto di un vagone che accelera: all'equilibrio relativo il filo è inclinato all'indietro di θ, con tan θ = A/g.",
+                'en': 'Pendulum hanging from the ceiling of an accelerating carriage: at relative equilibrium the string is tilted backwards by θ, with tan θ = A/g.',
+              },
+            'items':
+              [
+                { 'kind': 'surface', 'from': [2.5, 0], 'to': [-2.5, 0] },
+                {
+                  'kind': 'line',
+                  'points': [[0, 0], [0, -3.3]],
+                  'dash': true,
+                  'tone': 'muted',
+                  'width': 'thin',
+                },
+                { 'kind': 'line', 'points': [[0, 0], [-0.726, -2.911]] },
+                { 'kind': 'disc', 'at': [-0.726, -2.911], 'r': 0.25, 'style': 'sphere', 'axle': false },
+                { 'kind': 'angle', 'at': [0, 0], 'from': -104, 'to': -90, 'r': 46, 'label': 'θ' },
+                {
+                  'kind': 'vector',
+                  'from': [-0.726, -2.911],
+                  'to': [-0.726, -4.311],
+                  'label': 'mg',
+                  'labelAngle': 0,
+                  'vkind': 'weight',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [-0.726, -2.911],
+                  'to': [-1.826, -2.911],
+                  'label': '−mA',
+                  'labelAngle': 270,
+                  'vkind': 'other',
+                  'dash': true,
+                },
+                {
+                  'kind': 'vector',
+                  'from': [1.2, -1.5],
+                  'to': [2.6, -1.5],
+                  'label': 'A',
+                  'labelAngle': 90,
+                  'vkind': 'acceleration',
+                },
+              ],
+          },
+      }
   steps:
     - title:
         it: Gravità efficace

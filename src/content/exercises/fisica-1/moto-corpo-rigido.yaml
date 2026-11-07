@@ -15,6 +15,48 @@
       A flywheel (uniform disc of mass 20 kg and radius 0.30 m) spins at 600 rpm. A brake applies a constant
       torque of 1.5 N·m. Find: (a) the angular deceleration; (b) the time to stop it; (c) the number of
       revolutions during braking.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Disco che ruota attorno al proprio asse fisso.',
+                'en': 'Disc spinning about its fixed axis.',
+              },
+            'items':
+              [
+                {
+                  'kind': 'disc',
+                  'at': [0, 0],
+                  'r': 2,
+                  'label': 'I',
+                  'labelAngle': 225,
+                  'radius': { 'angle': 200, 'label': 'R' },
+                },
+                {
+                  'kind': 'rotation',
+                  'at': [0, 0],
+                  'r': 72,
+                  'from': 20,
+                  'to': 110,
+                  'label': 'ω',
+                  'tone': 'accent2',
+                },
+                {
+                  'kind': 'rotation',
+                  'at': [0, 0],
+                  'r': 30,
+                  'from': 150,
+                  'to': 60,
+                  'label': 'τ',
+                  'tone': 'warning',
+                },
+              ],
+          },
+      }
   steps:
     - title:
         it: Equazione del moto
@@ -73,6 +115,78 @@
       radius R = 0.10 m) with a smooth axle; the rope does not slip. Find: (a) the acceleration of the masses;
       (b) the tensions in the two parts of the rope; (c) the instantaneous power of the net torque on the
       pulley when the masses move at 1.0 m/s.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Carrucola a disco con perno fisso; la fune non slitta.',
+                'en': 'Disc pulley on a fixed axle; the rope does not slip.',
+              },
+            'maxHeight': 420,
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-2.2, 3], 'to': [2.2, 3] },
+                { 'kind': 'line', 'points': [[0, 3], [0, 0]], 'width': 'thick' },
+                {
+                  'kind': 'disc',
+                  'at': [0, 0],
+                  'r': 1,
+                  'label': 'M',
+                  'labelAngle': 90,
+                  'radius': { 'angle': -35, 'label': 'R' },
+                },
+                { 'kind': 'line', 'points': [[-1, 0], [-1, -4]] },
+                { 'kind': 'block', 'at': [-1, -4.6], 'w': 1.2, 'h': 1.2, 'label': 'm_1' },
+                {
+                  'kind': 'vector',
+                  'from': [-1, -4],
+                  'to': [-1, -2.7],
+                  'label': 'T_1',
+                  'labelAngle': 180,
+                  'vkind': 'tension',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [-1, -5.2],
+                  'to': [-1, -6.5],
+                  'label': 'm_1g',
+                  'labelAngle': 180,
+                  'vkind': 'weight',
+                },
+                { 'kind': 'line', 'points': [[1, 0], [1, -3]] },
+                { 'kind': 'block', 'at': [1, -3.6], 'w': 1.2, 'h': 1.2, 'label': 'm_2' },
+                {
+                  'kind': 'vector',
+                  'from': [1, -3],
+                  'to': [1, -1.7],
+                  'label': 'T_2',
+                  'labelAngle': 0,
+                  'vkind': 'tension',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [1, -4.2],
+                  'to': [1, -5.5],
+                  'label': 'm_2g',
+                  'labelAngle': 0,
+                  'vkind': 'weight',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [-2.3, -3.2],
+                  'to': [-2.3, -4.6],
+                  'label': 'a',
+                  'labelAngle': 180,
+                  'vkind': 'acceleration',
+                },
+                { 'kind': 'rotation', 'at': [0, 0], 'r': 46, 'from': 60, 'to': 130, 'label': 'α' },
+              ],
+          },
+      }
   steps:
     - title:
         it: Sistema di equazioni

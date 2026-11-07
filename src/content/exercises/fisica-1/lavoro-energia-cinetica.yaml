@@ -15,6 +15,51 @@
       A car of mass m = 1200 kg travels at 90 km/h and brakes to a stop on a straight horizontal stretch.
       Find: (a) the total work of the forces; (b) the braking distance if the braking force is constant and
       equal to 6000 N; (c) the average power dissipated if braking lasts 5.0 s.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Veicolo che frena con forza costante F fino a fermarsi dopo lo spazio d.',
+                'en': 'Vehicle braking with a constant force F until it stops after a distance d.',
+              },
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-1, 0], 'to': [8, 0] },
+                {
+                  'kind': 'line',
+                  'points':
+                    [[0, 0.35], [0, 1.1], [0.6, 1.1], [1, 1.6], [2.2, 1.6], [2.7, 1.1], [3, 1.1], [3, 0.35]],
+                  'closed': true,
+                  'fill': 'surface2',
+                },
+                { 'kind': 'disc', 'at': [0.7, 0.3], 'r': 0.3 },
+                { 'kind': 'disc', 'at': [2.4, 0.3], 'r': 0.3 },
+                {
+                  'kind': 'vector',
+                  'from': [3, 1.9],
+                  'to': [4.6, 1.9],
+                  'label': 'v_0',
+                  'labelAngle': 0,
+                  'vkind': 'velocity',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [1.5, 0.05],
+                  'to': [0.1, 0.05],
+                  'label': 'F',
+                  'labelAngle': 270,
+                  'vkind': 'friction',
+                },
+                { 'kind': 'dim', 'from': [3, -0.7], 'to': [7.6, -0.7], 'label': 'd', 'offset': 0 },
+                { 'kind': 'line', 'points': [[7.6, 0], [7.6, 1.6]], 'dash': true, 'tone': 'muted' },
+                { 'kind': 'label', 'at': [7.6, 2], 'text': 'v = 0', 'italic': true },
+              ],
+          },
+      }
   steps:
     - title:
         it: Teorema dell'energia cinetica
@@ -80,6 +125,18 @@
       A body of mass m = 2.0 kg starts from rest at x = 0 and moves along the x axis under the sole force F(x)
       = 6x − x² (N, with x in metres). Find: (a) the work of the force from x = 0 to x = 4 m; (b) the speed at
       x = 4 m; (c) the instantaneous power at x = 4 m.
+  figure:
+    diagram:
+      {
+        'type': 'function-plot',
+        'params':
+          {
+            'x': { 'min': 0, 'max': 6, 'label': 'x', 'unit': 'm' },
+            'y': { 'min': 0, 'max': 10, 'label': 'F', 'unit': 'N' },
+            'series': [{ 'kind': 'poly', 'coeffs': [0, 6, -1], 'label': 'F(x)' }],
+            'area': { 'series': 0, 'from': 0, 'to': 4, 'label': 'W' },
+          },
+      }
   steps:
     - title:
         it: Lavoro come integrale

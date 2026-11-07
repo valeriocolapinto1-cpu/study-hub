@@ -17,6 +17,60 @@
       radius R = 0.15 m, free to rotate without friction about its axis. The bucket is released from rest.
       Find: (a) the acceleration of the bucket; (b) the tension in the rope; (c) the angular velocity of the
       winch after the bucket has descended 2.0 m.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Carrucola a disco con perno fisso; la fune non slitta.',
+                'en': 'Disc pulley on a fixed axle; the rope does not slip.',
+              },
+            'maxHeight': 420,
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-2.2, 3], 'to': [2.2, 3] },
+                { 'kind': 'line', 'points': [[0, 3], [0, 0]], 'width': 'thick' },
+                {
+                  'kind': 'disc',
+                  'at': [0, 0],
+                  'r': 1,
+                  'label': 'M',
+                  'labelAngle': 90,
+                  'radius': { 'angle': -35, 'label': 'R' },
+                },
+                { 'kind': 'line', 'points': [[1, 0], [1, -3]] },
+                { 'kind': 'block', 'at': [1, -3.6], 'w': 1.2, 'h': 1.2, 'label': 'm' },
+                {
+                  'kind': 'vector',
+                  'from': [1, -3],
+                  'to': [1, -1.7],
+                  'label': 'T',
+                  'labelAngle': 0,
+                  'vkind': 'tension',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [1, -4.2],
+                  'to': [1, -5.5],
+                  'label': 'mg',
+                  'labelAngle': 0,
+                  'vkind': 'weight',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [2.3, -3.2],
+                  'to': [2.3, -4.6],
+                  'label': 'a',
+                  'labelAngle': 0,
+                  'vkind': 'acceleration',
+                },
+                { 'kind': 'rotation', 'at': [0, 0], 'r': 46, 'from': 120, 'to': 50, 'label': 'α' },
+              ],
+          },
+      }
   steps:
     - title:
         it: Equazioni del moto
@@ -74,6 +128,32 @@
       A skater spins at 2.0 rev/s with open arms (I₁ = 3.6 kg·m²). Pulling her arms in she reduces her moment
       of inertia to I₂ = 1.2 kg·m². Find: (a) the new rotation frequency; (b) the initial and final kinetic
       energy; (c) the work done by the muscles.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': "Vista dall'alto: chiudendo le braccia il momento d'inerzia diminuisce e, a momento angolare costante, la velocità angolare aumenta.",
+                'en': 'Top view: pulling the arms in lowers the moment of inertia and, with constant angular momentum, the angular velocity increases.',
+              },
+            'maxHeight': 200,
+            'items':
+              [
+                { 'kind': 'disc', 'at': [-3, 0], 'r': 0.5, 'axle': false },
+                { 'kind': 'rod', 'from': [-5, 0], 'to': [-1, 0], 'thickness': 5 },
+                { 'kind': 'rotation', 'at': [-3, 0], 'r': 46, 'from': 30, 'to': 150, 'label': 'ω_1' },
+                { 'kind': 'label', 'at': [-3, -1.4], 'text': 'I_1', 'italic': true },
+                { 'kind': 'disc', 'at': [3, 0], 'r': 0.5, 'axle': false },
+                { 'kind': 'rod', 'from': [2.3, 0], 'to': [3.7, 0], 'thickness': 5 },
+                { 'kind': 'rotation', 'at': [3, 0], 'r': 30, 'from': 10, 'to': 170, 'label': 'ω_2' },
+                { 'kind': 'label', 'at': [3, -1.4], 'text': 'I_2 < I_1', 'italic': true },
+                { 'kind': 'vector', 'from': [-0.6, 0.9], 'to': [0.9, 0.9], 'tone': 'muted' },
+              ],
+          },
+      }
   steps:
     - title:
         it: Conservazione di L
