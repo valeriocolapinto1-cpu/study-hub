@@ -294,6 +294,8 @@ export const Capacitor = z.strictObject({
   dielectric: z.enum(['none', 'full', 'half', 'layers', 'side-by-side']).optional(),
   /** Etichette dei dielettrici (uno o due, es. ['ε_{r1}', 'ε_{r2}']). */
   dielectricLabels: z.array(label).min(1).max(2).optional(),
+  /** Condensatore piano: generatore collegato alle armature (default sì; no = armature isolate). */
+  battery: z.boolean().optional(),
   fringe: z.boolean().optional(),
   dLabel: label.optional(),
   areaLabel: label.optional(),
@@ -414,7 +416,10 @@ export const Induction = z.strictObject({
   velocityLabel: label.optional(),
   resistanceLabel: label.optional(),
   omegaLabel: label.optional(),
+  /** Corrente nel filo (spira vicino al filo). */
   currentLabel: label.optional(),
+  /** Corrente (o campo elettrico) indotta. */
+  inducedLabel: label.optional(),
   forceLabel: label.optional(),
 });
 

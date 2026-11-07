@@ -248,10 +248,23 @@ export function capacitor(p: P<'capacitor'>, c: Ctx): Drawn {
     const y1 = 66;
     const y2 = 226;
     const diel = p.dielectric ?? 'none';
-    if (diel !== 'none') {
+    const dl = p.dielectricLabels ?? [];
+    if (diel === 'layers') {
+      const xm = (xl + xr) / 2;
+      s.rect(xl, y1, xm - xl, y2 - y1, { fill: 'surface2', tone: 'faint', width: 1 });
+      s.rect(xm, y1, xr - xm, y2 - y1, { fill: 'soft', tone: 'faint', width: 1 });
+      s.text((xl + xm) / 2, y2 - 14, dl[0] ?? 'ε_{r1}', { italic: true, size: 13, halo: true });
+      s.text((xm + xr) / 2, y2 - 14, dl[1] ?? 'ε_{r2}', { italic: true, size: 13, halo: true });
+    } else if (diel === 'side-by-side') {
+      const ym = (y1 + y2) / 2;
+      s.rect(xl, y1, xr - xl, ym - y1, { fill: 'surface2', tone: 'faint', width: 1 });
+      s.rect(xl, ym, xr - xl, y2 - ym, { fill: 'soft', tone: 'faint', width: 1 });
+      s.text((xl + xr) / 2, ym - 8, dl[0] ?? 'ε_{r1}', { italic: true, size: 13, halo: true });
+      s.text((xl + xr) / 2, y2 - 8, dl[1] ?? 'ε_{r2}', { italic: true, size: 13, halo: true });
+    } else if (diel !== 'none') {
       const w = diel === 'full' ? xr - xl : (xr - xl) / 2;
       s.rect(xl, y1, w, y2 - y1, { fill: 'surface2', tone: 'faint', width: 1 });
-      s.text(xl + w / 2, y2 - 14, 'ε_r', { italic: true, size: 13 });
+      s.text(xl + w / 2, y2 - 14, dl[0] ?? 'ε_r', { italic: true, size: 13, halo: true });
     }
     if (field) {
       const n = 6;
@@ -282,29 +295,31 @@ export function capacitor(p: P<'capacitor'>, c: Ctx): Drawn {
       }
     }
     // generatore
-    const top = 26;
-    s.polyline(
-      [
-        [xl - 3, y1],
-        [xl - 3, top],
-        [176, top],
-      ],
-      { width: 1.4 },
-    );
-    s.polyline(
-      [
-        [xr + 3, y1],
-        [xr + 3, top],
-        [204, top],
-      ],
-      { width: 1.4 },
-    );
-    s.line(176, top - 13, 176, top + 13, { width: 1.8 });
-    s.line(186, top - 7, 186, top + 7, { width: 3 });
-    s.line(194, top - 13, 194, top + 13, { width: 1.8 });
-    s.line(204, top - 7, 204, top + 7, { width: 3 });
-    s.text(170, top - 18, '+', { size: 12, muted: true });
-    s.text(232, top - 14, p.voltageLabel ?? 'ΔV', { italic: true, size: 13, anchor: 'start' });
+    if (p.battery !== false) {
+      const top = 26;
+      s.polyline(
+        [
+          [xl - 3, y1],
+          [xl - 3, top],
+          [176, top],
+        ],
+        { width: 1.4 },
+      );
+      s.polyline(
+        [
+          [xr + 3, y1],
+          [xr + 3, top],
+          [204, top],
+        ],
+        { width: 1.4 },
+      );
+      s.line(176, top - 13, 176, top + 13, { width: 1.8 });
+      s.line(186, top - 7, 186, top + 7, { width: 3 });
+      s.line(194, top - 13, 194, top + 13, { width: 1.8 });
+      s.line(204, top - 7, 204, top + 7, { width: 3 });
+      s.text(170, top - 18, '+', { size: 12, muted: true });
+      s.text(232, top - 14, p.voltageLabel ?? 'ΔV', { italic: true, size: 13, anchor: 'start' });
+    }
     s.dimension(xl, y2 + 30, xr, y2 + 30, p.dLabel ?? 'd');
     s.text(xl - 40, y1 + 12, p.areaLabel ?? 'A', { italic: true, size: 13 });
   } else {
@@ -313,8 +328,11 @@ export function capacitor(p: P<'capacitor'>, c: Ctx): Drawn {
     const O: Pt = [150, 150];
     const a = 46;
     const b = 112;
-    s.circle(O[0], O[1], b, { width: 4, fill: 'none' });
+    const dielR = (p.dielectric ?? 'none') !== 'none';
+    s.circle(O[0], O[1], b, { width: 4, fill: dielR ? 'soft' : 'none' });
     s.circle(O[0], O[1], a, { fill: 'surface2', width: 2 });
+    if (dielR)
+      s.text(O[0] - 62, O[1] + 70, p.dielectricLabels?.[0] ?? 'ε_r', { italic: true, size: 13, halo: true });
     if (field) {
       for (let i = 0; i < 12; i++) {
         const t = (i * Math.PI) / 6 + Math.PI / 12;
@@ -373,14 +391,21 @@ export function capacitor(p: P<'capacitor'>, c: Ctx): Drawn {
   const desc =
     geo === 'parallel'
       ? c.L(
-          `Due armature piane parallele di area ${plainLabel(p.areaLabel ?? 'A')} a distanza ${plainLabel(p.dLabel ?? 'd')}, collegate a un generatore di tensione ${plainLabel(p.voltageLabel ?? 'ΔV')}: l'armatura di sinistra è positiva, quella di destra negativa.${field ? ' Il campo E tra le armature è uniforme e va dalla positiva alla negativa.' : ''}${p.fringe ? ' Ai bordi le linee si incurvano (effetti di bordo).' : ''}${p.dielectric === 'full' ? ' Lo spazio è riempito da un dielettrico.' : p.dielectric === 'half' ? ' Metà dello spessore è occupata da una lastra di dielettrico.' : ''}`,
-          `Two parallel plates of area ${plainLabel(p.areaLabel ?? 'A')} a distance ${plainLabel(p.dLabel ?? 'd')} apart, connected to a source ${plainLabel(p.voltageLabel ?? 'ΔV')}: the left plate is positive, the right one negative.${field ? ' The field E between the plates is uniform, from the positive to the negative plate.' : ''}${p.fringe ? ' Field lines bend at the edges (fringe effects).' : ''}${p.dielectric === 'full' ? ' The gap is filled with a dielectric.' : p.dielectric === 'half' ? ' A dielectric slab fills half of the gap thickness.' : ''}`,
+          `Due armature piane parallele di area ${plainLabel(p.areaLabel ?? 'A')} a distanza ${plainLabel(p.dLabel ?? 'd')}, ${p.battery !== false ? `collegate a un generatore di tensione ${plainLabel(p.voltageLabel ?? 'ΔV')}` : 'isolate'}: l'armatura di sinistra è positiva, quella di destra negativa.${field ? ' Il campo E tra le armature è uniforme e va dalla positiva alla negativa.' : ''}${p.fringe ? ' Ai bordi le linee si incurvano (effetti di bordo).' : ''}${p.dielectric === 'full' ? ' Lo spazio è riempito da un dielettrico.' : p.dielectric === 'half' ? ' Metà dello spessore è occupata da una lastra di dielettrico.' : p.dielectric === 'layers' ? ' Lo spazio è occupato da due strati di dielettrici diversi affiancati alle armature (condensatori in serie): D è lo stesso nei due strati, E no.' : p.dielectric === 'side-by-side' ? ' Lo spazio è diviso in due metà riempite da dielettrici diversi (condensatori in parallelo): E è lo stesso nelle due metà, D no.' : ''}`,
+          `Two parallel plates of area ${plainLabel(p.areaLabel ?? 'A')} a distance ${plainLabel(p.dLabel ?? 'd')} apart, ${p.battery !== false ? `connected to a source ${plainLabel(p.voltageLabel ?? 'ΔV')}` : 'isolated'}: the left plate is positive, the right one negative.${field ? ' The field E between the plates is uniform, from the positive to the negative plate.' : ''}${p.fringe ? ' Field lines bend at the edges (fringe effects).' : ''}${p.dielectric === 'full' ? ' The gap is filled with a dielectric.' : p.dielectric === 'half' ? ' A dielectric slab fills half of the gap thickness.' : p.dielectric === 'layers' ? ' The gap holds two layers of different dielectrics parallel to the plates (capacitors in series): D is the same in both layers, E is not.' : p.dielectric === 'side-by-side' ? ' The gap is split into two halves filled with different dielectrics (capacitors in parallel): E is the same in both halves, D is not.' : ''}`,
         )
       : c.L(
           `${geo === 'spherical' ? 'Sezione di due sfere conduttrici concentriche' : 'Sezione di due conduttori cilindrici coassiali'} di raggi ${plainLabel(p.innerLabel ?? 'a')} (interno, carica positiva) e ${plainLabel(p.outerLabel ?? 'b')} (esterno, carica negativa).${field ? ' Il campo E è radiale, diretto verso l’esterno e presente solo tra i due conduttori.' : ''}${geo === 'cylindrical' ? ' A destra la vista laterale, di lunghezza L.' : ''}`,
           `${geo === 'spherical' ? 'Cross-section of two concentric conducting spheres' : 'Cross-section of two coaxial conducting cylinders'} with radii ${plainLabel(p.innerLabel ?? 'a')} (inner, positive) and ${plainLabel(p.outerLabel ?? 'b')} (outer, negative).${field ? ' The field E is radial, pointing outwards, and exists only between the conductors.' : ''}${geo === 'cylindrical' ? ' Side view of length L on the right.' : ''}`,
         );
-  return { svg: s, title: name, description: desc };
+  const dielNote =
+    geo !== 'parallel' && (p.dielectric ?? 'none') !== 'none'
+      ? c.L(
+          ' Lo spazio tra i conduttori è riempito da un dielettrico.',
+          ' The space between the conductors is filled with a dielectric.',
+        )
+      : '';
+  return { svg: s, title: name, description: desc + dielNote };
 }
 
 // ------------------------------------------------------------------- campo magnetico
@@ -539,7 +564,7 @@ function magneticExtra(p: P<'magnetic-field'>, c: Ctx): Drawn | null {
       s.rect(O[0] + r1 - 3, O[1] - g, r2 - r1 + 6, 2 * g, { tone: 'faint', width: 0, fill: 'bg' });
       s.line(O[0] + r1, O[1] - g, O[0] + r2, O[1] - g, { width: 1.6 });
       s.line(O[0] + r1, O[1] + g, O[0] + r2, O[1] + g, { width: 1.6 });
-      s.text(O[0] + r2 + 8, O[1] - 18, p.gapLabel ?? 'h', { italic: true, anchor: 'start', halo: true });
+      s.text(O[0] + rm, O[1] - g - 12, p.gapLabel ?? 'h', { italic: true, halo: true });
     }
     const n = p.turns ?? 12;
     for (let k = 0; k < n; k++) {

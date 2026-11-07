@@ -11,6 +11,7 @@
 import {
   registerGenerator,
   type AnswerItem,
+  type ExerciseFigure,
   type GeneratedExercise,
   type Lang,
 } from '../../../engine/generators/registry';
@@ -128,6 +129,24 @@ export interface Template {
   objectives: string[];
   tema: { it: string; en: string };
   make: (r: Rand, f: Fmt) => TemplateOutput;
+  /** Figura (kit `src/figures` o netlist) costruita dai parametri dell'esercizio generato. */
+  figure?: (p: Record<string, number>, lang: Lang) => ExerciseFigure;
+}
+
+/**
+ * Etichetta di una figura con valore e unità in testo semplice (virgola decimale in italiano):
+ * `lv(0.035, 'cm', 'it', 100)` → `3,5 cm`; valori grandi o piccoli come `1,5·10^{11}`.
+ */
+export function lv(x: number, unit: string, lang: Lang, scale = 1, n = 3): string {
+  const v = x * scale;
+  const a = Math.abs(v);
+  let t: string;
+  if (a !== 0 && (a >= 1e5 || a < 1e-3)) {
+    const e = Math.floor(Math.log10(a));
+    t = `${Number((v / 10 ** e).toPrecision(n))}·10^{${e}}`;
+  } else t = String(Number(v.toPrecision(n)));
+  if (lang === 'it') t = t.replace('.', ',');
+  return unit ? `${t} ${unit}` : t;
 }
 
 export const TEMPLATES: Record<string, Template> = {};
@@ -145,8 +164,10 @@ export function defineTemplate(tpl: Template): Template {
     objectives: tpl.objectives,
     generate(seed: number, lang: Lang): GeneratedExercise {
       const out = runTemplate(tpl, seed, lang);
+      const figure = tpl.figure?.(out.parametri, lang);
       return {
         statement: out.statement,
+        ...(figure ? { figure } : {}),
         steps: out.steps.map((body, i) => ({ title: `${lang === 'it' ? 'Passo' : 'Step'} ${i + 1}`, body })),
         answer: out.answer,
       };

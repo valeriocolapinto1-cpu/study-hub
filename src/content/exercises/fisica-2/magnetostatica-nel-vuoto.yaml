@@ -5,6 +5,10 @@
     - magnetostatica-nel-vuoto.1
   difficulty: 1
   kind: static
+  figure:
+    diagram:
+      type: uniform-field
+      params: { field: B-in, object: particle, forces: false }
   statement:
     it: 'Il lavoro compiuto dalla forza magnetica su una carica in moto è:'
     en: 'The work done by the magnetic force on a moving charge is:'
@@ -73,6 +77,10 @@
     - magnetostatica-nel-vuoto.6
   difficulty: 1
   kind: static
+  figure:
+    diagram:
+      type: magnetic-field
+      params: { source: wire-pair, forces: false }
   statement:
     it: 'Due fili paralleli percorsi da correnti nello stesso verso:'
     en: 'Two parallel wires carrying currents in the same direction:'
@@ -107,6 +115,10 @@
     - magnetostatica-nel-vuoto.2
   difficulty: 1
   kind: static
+  figure:
+    diagram:
+      type: uniform-field
+      params: { field: B-right, object: loop, angle: 50, forces: false }
   statement:
     it: 'Una spira percorsa da corrente in un campo magnetico uniforme tende a disporsi:'
     en: 'A current loop in a uniform magnetic field tends to settle:'
@@ -175,6 +187,10 @@
     - magnetostatica-nel-vuoto.3
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: magnetic-field
+      params: { source: wire-section, currentLabel: I = 10 A }
   statement:
     it: Filo rettilineo infinito percorso da $I=10$ A. Calcola il campo magnetico a 5 cm (in μT).
     en: Infinite straight wire carrying $I=10$ A. Compute the magnetic field at 5 cm (in μT).
@@ -199,6 +215,10 @@
     - magnetostatica-nel-vuoto.3
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: magnetic-field
+      params: { source: solenoid, turns: 10 }
   statement:
     it: Solenoide lungo con 1000 spire/m percorso da 2 A. Calcola il campo magnetico all'interno (in mT).
     en: Long solenoid with 1000 turns/m carrying 2 A. Compute the magnetic field inside (in mT).
@@ -223,6 +243,10 @@
     - magnetostatica-nel-vuoto.1
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: uniform-field
+      params: { field: B-in, object: particle, charge: negative, chargeLabel: e^− }
   statement:
     it: Un elettrone con velocità $v=10^6$ m/s entra perpendicolarmente in un campo $B=10$ mT. Calcola il raggio della traiettoria (in mm).
     en: An electron with speed $v=10^6$ m/s enters perpendicularly a field $B=10$ mT. Compute the radius of its trajectory (in mm).
@@ -247,6 +271,10 @@
     - magnetostatica-nel-vuoto.6
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: magnetic-field
+      params: { source: wire-pair, forces: false, distanceLabel: d = 10 cm }
   statement:
     it: Due fili paralleli distanti 10 cm sono percorsi da 5 A ciascuno. Calcola la forza per unità di lunghezza (in μN/m).
     en: Two parallel wires 10 cm apart each carry 5 A. Compute the force per unit length (in μN/m).
@@ -271,6 +299,10 @@
     - magnetostatica-nel-vuoto.3
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: magnetic-field
+      params: { source: loop }
   statement:
     it: Spira circolare di raggio 5 cm percorsa da 3 A. Calcola il campo al centro (in μT).
     en: Circular loop of radius 5 cm carrying 3 A. Compute the field at the centre (in μT).
@@ -295,6 +327,10 @@
     - magnetostatica-nel-vuoto.1
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: uniform-field
+      params: { field: B-in, object: particle }
   statement:
     it: "Un protone e un elettrone entrano con la stessa velocità, perpendicolarmente, nello stesso campo magnetico uniforme. Rispetto al raggio dell'elettrone, quello del protone è:"
     en: "A proton and an electron enter the same uniform magnetic field perpendicularly with the same speed. Compared with the electron's radius, the proton's is:"

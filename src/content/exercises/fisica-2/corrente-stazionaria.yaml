@@ -107,6 +107,13 @@
     - corrente-stazionaria.7
   difficulty: 1
   kind: static
+  figure:
+    netlist:
+      elements:
+        - { type: V, id: E, a: a, b: '0', label: ' ' }
+        - { type: SW, id: T, a: a, b: b, closed: false, toggleAt: 0 }
+        - { type: R, id: R, a: b, b: c, value: 1, label: ' ' }
+        - { type: C, id: C, a: c, b: '0', value: 1, label: ' ' }
   statement:
     it: "Durante la carica di un condensatore da parte di un generatore ideale attraverso una resistenza $R$, l'energia dissipata per effetto Joule è:"
     en: 'While an ideal generator charges a capacitor through a resistance $R$, the energy dissipated by Joule heating is:'
@@ -209,6 +216,13 @@
     - corrente-stazionaria.5
   difficulty: 2
   kind: static
+  figure:
+    netlist:
+      elements:
+        - { type: R, id: R4, a: a, b: b, value: 4 }
+        - { type: R, id: R1, a: b, b: '0', value: 6 }
+        - { type: R, id: R2, a: b, b: '0', value: 6 }
+        - { type: R, id: R3, a: b, b: '0', value: 6 }
   statement:
     it: Tre resistori da $R=6\ \Omega$ sono collegati in parallelo e il gruppo è in serie a un resistore da $4\ \Omega$. Calcola la resistenza equivalente (in Ω).
     en: Three $R=6\ \Omega$ resistors are connected in parallel and the group is in series with a $4\ \Omega$ resistor. Compute the equivalent resistance (in Ω).
@@ -233,6 +247,13 @@
     - corrente-stazionaria.7
   difficulty: 2
   kind: static
+  figure:
+    netlist:
+      elements:
+        - { type: V, id: E, a: a, b: '0', label: ' ' }
+        - { type: SW, id: T, a: a, b: b, closed: false, toggleAt: 0 }
+        - { type: R, id: R, a: b, b: c, value: 10k }
+        - { type: C, id: C, a: c, b: '0', value: 100u }
   statement:
     it: Circuito RC con $R=10$ kΩ e $C=100$ μF. Calcola la costante di tempo (in s).
     en: RC circuit with $R=10$ kΩ and $C=100$ μF. Compute the time constant (in s).
@@ -257,6 +278,12 @@
     - corrente-stazionaria.7
   difficulty: 2
   kind: static
+  figure:
+    netlist:
+      elements:
+        - { type: C, id: C, a: a, b: '0', value: 1, label: ' ', show: { v: v_C } }
+        - { type: SW, id: T, a: a, b: b, closed: false, toggleAt: 0 }
+        - { type: R, id: R, a: b, b: '0', value: 1, label: ' ' }
   statement:
     it: Un condensatore si scarica attraverso una resistenza con $\tau=2$ s. Dopo quanti secondi la sua tensione si è dimezzata?
     en: A capacitor discharges through a resistance with $\tau=2$ s. After how many seconds has its voltage halved?
@@ -281,6 +308,12 @@
     - corrente-stazionaria.4
   difficulty: 2
   kind: static
+  figure:
+    netlist:
+      elements:
+        - { type: V, id: E, a: a, b: '0', dc: 12 }
+        - { type: R, id: r, a: a, b: b, value: 2 }
+        - { type: R, id: RL, a: b, b: '0', value: 1, label: ' ' }
   statement:
     it: Generatore con f.e.m. $\mathcal E=12$ V e resistenza interna $r=2\ \Omega$. Calcola la massima potenza trasferibile a un carico (in W).
     en: Generator with emf $\mathcal E=12$ V and internal resistance $r=2\ \Omega$. Compute the maximum power that can be transferred to a load (in W).
@@ -329,6 +362,12 @@
     - corrente-stazionaria.7
   difficulty: 2
   kind: static
+  figure:
+    netlist:
+      elements:
+        - { type: C, id: C1, a: a, b: '0', value: 1, label: ' ', show: { v: V_0 } }
+        - { type: SW, id: T, a: a, b: b, closed: false, toggleAt: 0 }
+        - { type: C, id: C2, a: b, b: '0', value: 1, label: ' ' }
   statement:
     it: "Un condensatore $C$ carico a $V_0$ viene collegato a un secondo condensatore identico scarico. La tensione finale e l'energia finale sono:"
     en: 'A capacitor $C$ charged to $V_0$ is connected to a second, identical, uncharged capacitor. The final voltage and final energy are:'
@@ -363,6 +402,15 @@
     - corrente-stazionaria.6
   difficulty: 2
   kind: static
+  figure:
+    netlist:
+      elements:
+        - { type: V, id: E, a: A, b: '0', label: ' ' }
+        - { type: R, id: R1, a: A, b: C, value: 1, label: ' ' }
+        - { type: R, id: R2, a: C, b: '0', value: 1, label: ' ' }
+        - { type: R, id: R3, a: A, b: D, value: 1, label: ' ' }
+        - { type: R, id: R4, a: D, b: '0', value: 1, label: ' ' }
+        - { type: R, id: G, a: C, b: D, value: 1, label: ' ' }
   statement:
     it: "Nel ponte di Wheatstone all'equilibrio ($R_1$, $R_2$ su un ramo, $R_3$, $R_4$ sull'altro) vale:"
     en: 'In a balanced Wheatstone bridge ($R_1$, $R_2$ on one branch, $R_3$, $R_4$ on the other):'

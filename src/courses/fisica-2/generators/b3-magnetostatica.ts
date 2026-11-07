@@ -1,8 +1,19 @@
 /** Blocco 3 — Magnetostatica nel vuoto e nella materia (template del sito originale). */
-import { defineTemplate, MU0, PI, S, step } from './lib';
+import { defineTemplate, MU0, PI, S, step, lv } from './lib';
 
 defineTemplate({
   id: 'b3-coassiale',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'magnetic-field',
+      params: {
+        source: 'coax',
+        innerLabel: `a = ${lv(p.a!, 'mm', lang, 1000)}`,
+        outerLabel: `b = ${lv(p.b!, 'mm', lang, 1000)}`,
+        shellLabel: `c = ${lv(p.c!, 'mm', lang, 1000)}`,
+      },
+    },
+  }),
   blocco: 'b3',
   topic: 'magnetostatica-nel-vuoto',
   objectives: ['magnetostatica-nel-vuoto.4'],
@@ -51,6 +62,16 @@ defineTemplate({
 
 defineTemplate({
   id: 'b3-cilindro-j-kr',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'magnetic-field',
+      params: {
+        source: 'wire-section',
+        radiusLabel: `R = ${lv(p.R!, 'cm', lang, 100)}`,
+        currentLabel: 'J = k r',
+      },
+    },
+  }),
   blocco: 'b3',
   topic: 'magnetostatica-nel-vuoto',
   objectives: ['magnetostatica-nel-vuoto.4'],
@@ -91,6 +112,16 @@ defineTemplate({
 
 defineTemplate({
   id: 'b3-spira-semicerchio',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'magnetic-field',
+      params: {
+        source: 'hairpin',
+        radiusLabel: `R = ${lv(p.R!, 'cm', lang, 100)}`,
+        currentLabel: `I = ${lv(p.I!, 'A', lang)}`,
+      },
+    },
+  }),
   blocco: 'b3',
   topic: 'magnetostatica-nel-vuoto',
   objectives: ['magnetostatica-nel-vuoto.3'],
@@ -131,6 +162,19 @@ defineTemplate({
 
 defineTemplate({
   id: 'b3-toroide-traferro',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'magnetic-field',
+      params: {
+        source: 'toroid',
+        gap: true,
+        turns: 12,
+        radiusLabel: `R = ${lv(p.R!, 'cm', lang, 100)}`,
+        innerLabel: `L = ${lv(p.L!, 'cm', lang, 100)}`,
+        gapLabel: `d = ${lv(p.d!, 'mm', lang, 1000)}`,
+      },
+    },
+  }),
   blocco: 'b3',
   topic: 'magnetismo-nella-materia',
   objectives: ['magnetismo-nella-materia.5', 'magnetismo-nella-materia.2'],
@@ -183,6 +227,19 @@ defineTemplate({
 
 defineTemplate({
   id: 'b3-spira-filo-carica',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'induction',
+      params: {
+        setup: 'loop-near-wire',
+        motion: 'away',
+        currentLabel: `I = ${lv(p.I!, 'A', lang)}`,
+        lengthLabel: `h = ${lv(p.h!, 'cm', lang, 100)}`,
+        widthLabel: `l = ${lv(p.l!, 'cm', lang, 100)}`,
+        distanceLabel: `d_1 = ${lv(p.d1!, 'cm', lang, 100)}`,
+      },
+    },
+  }),
   blocco: 'b3',
   topic: 'campi-variabili',
   objectives: ['campi-variabili.5'],

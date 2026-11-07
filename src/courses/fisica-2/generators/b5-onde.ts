@@ -1,8 +1,14 @@
 /** Blocco 5 — Onde elettromagnetiche e ottica (template del sito originale). */
-import { defineTemplate, C0, EPS0, PI, S, pick, step } from './lib';
+import { defineTemplate, C0, EPS0, PI, S, pick, step, lv } from './lib';
 
 defineTemplate({
   id: 'b5-stella',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'wave',
+      params: { kind: 'spherical', sourceLabel: 'P', distanceLabel: `d = ${lv(p.d!, 'm', lang)}` },
+    },
+  }),
   blocco: 'b5',
   topic: 'onde-elettromagnetiche',
   objectives: ['onde-elettromagnetiche.4'],
@@ -50,6 +56,7 @@ defineTemplate({
 
 defineTemplate({
   id: 'b5-laser',
+  figure: () => ({ diagram: { type: 'wave', params: { kind: 'electromagnetic' } } }),
   blocco: 'b5',
   topic: 'onde-elettromagnetiche',
   objectives: ['onde-elettromagnetiche.4'],
@@ -97,6 +104,18 @@ defineTemplate({
 
 defineTemplate({
   id: 'b5-young',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'slits',
+      params: {
+        slits: 2,
+        plate: true,
+        separationLabel: `d = ${lv(p.d!, 'mm', lang, 1000)}`,
+        distanceLabel: `D = ${lv(p.D!, 'm', lang)}`,
+        plateLabel: `n = ${lv(p.n!, '', lang)}`,
+      },
+    },
+  }),
   blocco: 'b5',
   topic: 'radiazione-materia',
   objectives: ['radiazione-materia.6'],
@@ -146,6 +165,7 @@ defineTemplate({
 
 defineTemplate({
   id: 'b5-spira-onda',
+  figure: () => ({ diagram: { type: 'wave', params: { kind: 'electromagnetic' } } }),
   blocco: 'b5',
   topic: 'onde-elettromagnetiche',
   objectives: ['onde-elettromagnetiche.2'],
@@ -186,6 +206,22 @@ defineTemplate({
 
 defineTemplate({
   id: 'b5-angolo-limite-specchio',
+  figure: (p) => ({
+    diagram: {
+      type: 'refraction',
+      params: {
+        n1: p.n!,
+        n2: 1,
+        incidence: (Math.asin(1 / p.n!) * 180) / Math.PI,
+        critical: true,
+        reflected: false,
+        mediumLabels: [
+          { it: 'acqua', en: 'water' },
+          { it: 'aria', en: 'air' },
+        ],
+      },
+    },
+  }),
   blocco: 'b5',
   topic: 'radiazione-materia',
   objectives: ['radiazione-materia.2'],
@@ -231,6 +267,7 @@ defineTemplate({
 
 defineTemplate({
   id: 'b5-onda-piana',
+  figure: () => ({ diagram: { type: 'wave', params: { kind: 'electromagnetic' } } }),
   blocco: 'b5',
   topic: 'onde-elettromagnetiche',
   objectives: ['onde-elettromagnetiche.2', 'onde-elettromagnetiche.4'],

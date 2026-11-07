@@ -39,6 +39,10 @@
     - elettrostatica-nel-vuoto.8
   difficulty: 1
   kind: static
+  figure:
+    diagram:
+      type: uniform-field
+      params: { field: E-right, object: dipole, angle: 40, forces: false }
   statement:
     it: 'Un dipolo elettrico immerso in un campo elettrico uniforme subisce:'
     en: 'An electric dipole in a uniform electric field feels:'
@@ -107,6 +111,16 @@
     - elettrostatica-nel-vuoto.1
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: point-charges
+      params:
+        {
+          charges: [{ x: 0, y: 0, q: 1, label: q }],
+          equipotentials: 0,
+          testPoint: { x: 1.2, y: 0, label: P },
+          bounds: { xMin: -1.6, xMax: 2.4, yMin: -1.5, yMax: 1.5 },
+        }
   statement:
     it: Una carica puntiforme $q=2$ nC è nel vuoto. Calcola il modulo del campo elettrico a $r=30$ cm (in V/m).
     en: A point charge $q=2$ nC is in vacuum. Compute the magnitude of the electric field at $r=30$ cm (in V/m).
@@ -131,6 +145,10 @@
     - elettrostatica-nel-vuoto.4
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: charge-distribution
+      params: { shape: sphere, gaussian: 0.5, gaussLabel: R/2, field: false }
   statement:
     it: 'Una sfera isolante di raggio $R$ è uniformemente carica. A distanza $r=R/2$ dal centro il campo vale, rispetto a quello sulla superficie:'
     en: 'An insulating sphere of radius $R$ is uniformly charged. At distance $r=R/2$ from the centre the field, compared with that at the surface, is:'
@@ -165,6 +183,10 @@
     - elettrostatica-nel-vuoto.4
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: charge-distribution
+      params: { shape: wire, gaussLabel: r = 2 cm, field: false }
   statement:
     it: Filo rettilineo infinito con densità lineare $\lambda=1$ nC/m. Calcola il campo a distanza $r=2$ cm (in V/m).
     en: Infinite straight wire with linear density $\lambda=1$ nC/m. Compute the field at distance $r=2$ cm (in V/m).

@@ -256,6 +256,14 @@ export const EXAMPLES: DiagramExample[] = [
     type: 'magnetic-field',
     params: { source: 'solenoid', turns: 8 },
   }),
+  ex('condensatore-strati', 'Due dielettrici in serie', 'Two dielectrics in series', {
+    type: 'capacitor',
+    params: { geometry: 'parallel', dielectric: 'layers' },
+  }),
+  ex('condensatore-affiancati', 'Due dielettrici in parallelo', 'Two dielectrics in parallel', {
+    type: 'capacitor',
+    params: { geometry: 'parallel', dielectric: 'side-by-side', field: false },
+  }),
   ex(
     'coppia-fili',
     'Due fili con correnti concordi: si attraggono',

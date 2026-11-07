@@ -629,7 +629,7 @@ export function induction(p: P<'induction'>, c: Ctx): Drawn {
   const fieldOut = p.field === 'out';
   const Bl = p.fieldLabel ?? 'B';
   const showI = p.induced !== false;
-  const Il = p.currentLabel ?? 'i';
+  const Il = p.inducedLabel ?? 'i';
   switch (p.setup) {
     case 'sliding-bar': {
       const s = new Svg(440, 280);

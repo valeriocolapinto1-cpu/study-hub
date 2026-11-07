@@ -39,6 +39,10 @@
     - conduttori-capacita.1
   difficulty: 1
   kind: static
+  figure:
+    diagram:
+      type: charge-distribution
+      params: { shape: sphere, conductor: true, gaussian: 0, field: false, densityLabel: σ }
   statement:
     it: "Campo elettrico immediatamente all'esterno della superficie di un conduttore carico con densità $\\sigma$:"
     en: "Electric field just outside the surface of a conductor charged with density $\\sigma$:"
@@ -73,6 +77,12 @@
     - conduttori-capacita.4
   difficulty: 1
   kind: static
+  figure:
+    netlist:
+      elements:
+        - { type: V, id: V, a: a, b: '0', label: ' ' }
+        - { type: C, id: C1, a: a, b: b, value: 1, label: ' ' }
+        - { type: C, id: C2, a: b, b: '0', value: 1, label: ' ' }
   statement:
     it: 'Due condensatori $C_1$ e $C_2$ in serie hanno capacità equivalente:'
     en: 'Two capacitors $C_1$ and $C_2$ in series have equivalent capacitance:'
@@ -107,6 +117,18 @@
     - conduttori-capacita.3
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: capacitor
+      params:
+        {
+          geometry: parallel,
+          battery: false,
+          field: false,
+          charges: false,
+          areaLabel: S = 100 cm²,
+          dLabel: d = 1 mm,
+        }
   statement:
     it: Condensatore piano nel vuoto con armature di area $S=100\ \mathrm{cm^2}$ a distanza $d=1$ mm. Calcola la capacità in pF.
     en: Parallel-plate capacitor in vacuum with plates of area $S=100\ \mathrm{cm^2}$ at distance $d=1$ mm. Compute the capacitance in pF.
@@ -131,6 +153,10 @@
     - conduttori-capacita.5
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: capacitor
+      params: { geometry: parallel, voltageLabel: V = 100 V, dLabel: d = 1 mm, areaLabel: S }
   statement:
     it: Lo stesso condensatore ($C\simeq88{,}5$ pF) è caricato a $V=100$ V. Calcola l'energia immagazzinata in nJ.
     en: The same capacitor ($C\simeq88.5$ pF) is charged to $V=100$ V. Compute the stored energy in nJ.
@@ -155,6 +181,10 @@
     - conduttori-capacita.3
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: charge-distribution
+      params: { shape: sphere, conductor: true, gaussian: 0, radiusLabel: R = 10 cm, densityLabel: Q = 10 nC }
   statement:
     it: Sfera conduttrice di raggio $R=10$ cm con carica $Q=10$ nC. Calcola il potenziale della sfera (in V, con $V(\infty)=0$).
     en: Conducting sphere of radius $R=10$ cm with charge $Q=10$ nC. Compute the potential of the sphere (in V, with $V(\infty)=0$).
@@ -179,6 +209,10 @@
     - conduttori-capacita.4
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: capacitor
+      params: { geometry: parallel, voltageLabel: V, dLabel: d → 2d }
   statement:
     it: 'Un condensatore resta collegato a un generatore di tensione $V$ mentre si raddoppia la distanza tra le armature. La carica sulle armature:'
     en: 'A capacitor stays connected to a voltage generator $V$ while the distance between the plates is doubled. The charge on the plates:'
