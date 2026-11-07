@@ -119,3 +119,12 @@
       value: 0.0548
       unit: m
   origin: originale
+- id: massa-molla-variante
+  topic: oscillatore-massa-molla
+  objectives:
+    - oscillatore-massa-molla.1
+    - oscillatore-massa-molla.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/massa-molla
+  origin: tipologia-appello

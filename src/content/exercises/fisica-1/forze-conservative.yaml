@@ -126,3 +126,12 @@
       value: 8.83
       unit: m/s
   origin: originale
+- id: giro-della-morte-variante
+  topic: forze-conservative
+  objectives:
+    - forze-conservative.1
+    - forze-conservative.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/giro-della-morte
+  origin: tipologia-appello

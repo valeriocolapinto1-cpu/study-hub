@@ -116,3 +116,12 @@
       value: 41.3
       unit: W
   origin: originale
+- id: lavoro-frenata-variante
+  topic: lavoro-energia-cinetica
+  objectives:
+    - lavoro-energia-cinetica.1
+    - lavoro-energia-cinetica.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/lavoro-frenata
+  origin: tipologia-appello

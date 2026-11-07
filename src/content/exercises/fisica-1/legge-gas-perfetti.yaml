@@ -100,3 +100,12 @@
       value: 3.06
       unit: cm³
   origin: originale
+- id: legge-combinata-variante
+  topic: legge-gas-perfetti
+  objectives:
+    - legge-gas-perfetti.1
+    - legge-gas-perfetti.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/legge-combinata
+  origin: tipologia-appello

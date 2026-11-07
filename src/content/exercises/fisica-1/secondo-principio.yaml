@@ -103,3 +103,12 @@
         en: fridge COP
       value: 2.6
   origin: originale
+- id: macchina-termica-variante
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.1
+    - secondo-principio.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/macchina-termica
+  origin: tipologia-appello

@@ -113,3 +113,12 @@
       value: 150000
       unit: J/m³
   origin: originale
+- id: velocita-quadratica-media-variante
+  topic: teoria-cinetica-gas
+  objectives:
+    - teoria-cinetica-gas.1
+    - teoria-cinetica-gas.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/velocita-quadratica-media
+  origin: tipologia-appello

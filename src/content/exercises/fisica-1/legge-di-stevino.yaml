@@ -103,3 +103,12 @@
       value: 25.2
       unit: cm
   origin: originale
+- id: stevino-variante
+  topic: legge-di-stevino
+  objectives:
+    - legge-di-stevino.1
+    - legge-di-stevino.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/stevino
+  origin: tipologia-appello

@@ -103,3 +103,12 @@
         en: rotational fraction
       value: 0.5
   origin: originale
+- id: asta-che-cade-variante
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.1
+    - energia-corpo-rigido.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/asta-che-cade
+  origin: tipologia-appello

@@ -58,7 +58,14 @@ const pickText = (l: Localized | undefined, lang: 'it' | 'en') =>
 export interface RecordSources {
   lang: 'it' | 'en';
   courses: { id: string; paths: { overview: string; exercises: string; review: string } }[];
-  formulas: { id: string; course: string; latex: string; label: Localized; note?: Localized | undefined }[];
+  formulas: {
+    id: string;
+    course: string;
+    latex: string;
+    latexEn?: string | undefined;
+    label: Localized;
+    note?: Localized | undefined;
+  }[];
   exercises: {
     id: string;
     course: string;
@@ -83,7 +90,11 @@ export function buildRecords(src: RecordSources): SearchRecord[] {
     out.push({
       url: `${p.overview}formulario/#f-${f.id}`,
       language: lang,
-      content: clip([label, plainText(pickText(f.note, lang)), f.latex].filter(Boolean).join(' — ')),
+      content: clip(
+        [label, plainText(pickText(f.note, lang)), (lang === 'en' && f.latexEn) || f.latex]
+          .filter(Boolean)
+          .join(' — '),
+      ),
       meta: { title: label },
       filters: { tipo: ['formula'], corso: [f.course] },
     });

@@ -135,3 +135,12 @@
       value: 0.664
       unit: s
   origin: originale
+- id: oscillatore-smorzato-variante
+  topic: oscillatore-smorzato
+  objectives:
+    - oscillatore-smorzato.1
+    - oscillatore-smorzato.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/oscillatore-smorzato
+  origin: tipologia-appello

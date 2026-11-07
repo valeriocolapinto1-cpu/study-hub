@@ -118,3 +118,12 @@
         en: ratio
       value: 201
   origin: originale
+- id: pendolo-balistico-variante
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.1
+    - pendolo-balistico.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/pendolo-balistico
+  origin: tipologia-appello

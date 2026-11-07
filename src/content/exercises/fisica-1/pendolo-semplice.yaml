@@ -117,3 +117,12 @@
       value: 0.985
       tol: 0.005
   origin: originale
+- id: pendolo-variante
+  topic: pendolo-semplice
+  objectives:
+    - pendolo-semplice.1
+    - pendolo-semplice.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/pendolo
+  origin: tipologia-appello

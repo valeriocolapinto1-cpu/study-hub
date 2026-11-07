@@ -98,3 +98,12 @@
       value: 1.419
       unit: s
   origin: originale
+- id: pendolo-fisico-variante
+  topic: pendolo-fisico
+  objectives:
+    - pendolo-fisico.1
+    - pendolo-fisico.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/pendolo-fisico
+  origin: tipologia-appello

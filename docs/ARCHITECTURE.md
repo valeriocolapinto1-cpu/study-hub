@@ -71,7 +71,7 @@ Schemi in `src/content/schemas.ts`; tutti gli id kebab-case, stabili e unici nel
 | `courses` | `src/content/courses/<courseId>.yaml` | id, year, semester?, title, subtitle?, description, accent, exam{format, durationMin?, structure[]}, extras[], examDates?, legacyRepo, order |
 | `topics` | `src/content/topics/<courseId>/<NN>-<topicId>.yaml` | id, course, order, title, summary, objectives[{id,text}], group? |
 | `theory` | `src/content/theory/<courseId>/<topicId>.<lang>.mdx` | frontmatter {course, topic, lang}; blocchi `<Layer kind="intuizione\|formalismo\|esempio\|errori">` |
-| `formulas` | `src/content/formulas/<courseId>.yaml` (elenco) | id, topic, objectives?, latex, label, note? |
+| `formulas` | `src/content/formulas/<courseId>.yaml` (elenco) | id, topic, objectives?, latex, latexEn? (variante inglese se `latex` contiene parole italiane), label, note?, symbols?, usage?, pitfall? |
 | `exercises` | `src/content/exercises/<courseId>/<topicId>.yaml` (elenco) | id, topic, objectives, difficulty 1-3, kind static\|generated, generator?, statement, figure?{netlist\|svg}, steps[], answer[]\|choices[], origin |
 | `cards` | `src/content/cards/<courseId>/<topicId>.yaml` (elenco) | id, topic, objectives, kind, front, back |
 

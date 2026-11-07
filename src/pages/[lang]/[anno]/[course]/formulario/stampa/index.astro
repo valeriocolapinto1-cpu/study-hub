@@ -49,7 +49,11 @@ const groups = groupTopics(topics, lang)
         <h2>{g.title}</h2>
         {g.formulas.map((f) => (
           <div data-formula={f.id}>
-            <Formula id={f.id} tex={f.latex} caption={tr(f.label, lang)} />
+            <Formula
+              id={f.id}
+              tex={lang === 'en' && f.latexEn ? f.latexEn : f.latex}
+              caption={tr(f.label, lang)}
+            />
           </div>
         ))}
       </section>

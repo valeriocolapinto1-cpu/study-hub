@@ -129,3 +129,12 @@
       value: 4.36
       unit: m/s²
   origin: originale
+- id: moto-circolare-variante
+  topic: moto-circolare-vario
+  objectives:
+    - moto-circolare-vario.1
+    - moto-circolare-vario.2
+  difficulty: 2
+  kind: generated
+  generator: fisica-1/moto-circolare
+  origin: tipologia-appello
