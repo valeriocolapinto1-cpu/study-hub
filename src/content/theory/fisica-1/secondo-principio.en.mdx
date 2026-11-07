@@ -1,0 +1,159 @@
+---
+course: fisica-1
+topic: secondo-principio
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/secondo-principio/idea">
+
+The first law says energy is conserved; the second says it has a preferred direction of degradation: work turns into heat completely and spontaneously, the reverse never entirely. Heat is 'disordered' energy: collecting all of it and reordering it into work would require reordering molecular chaos, and nature does not do that for free.
+
+</div>
+
+<p class="muted" data-note-id="teoria/secondo-principio/prerequisiti"><strong>Before this topic:</strong> <a href="../primo-principio/">First law of thermodynamics</a></p>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/secondo-principio/definizioni">
+
+## Definitions
+
+The second law establishes the irreversibility of natural processes through two equivalent statements. Kelvin–Planck: no cyclic transformation is possible whose ONLY result is the complete conversion into work of heat taken from a single reservoir. Clausius: no cyclic transformation is possible whose ONLY result is the transfer of heat from a colder body to a hotter one. A heat engine must therefore always release heat to a cold reservoir: the efficiency $\eta = W/Q_{ass} = 1 - Q_{ced}/Q_{ass}$ (absorbed and released heat) is always less than 1.
+
+</div>
+
+<div data-note-id="teoria/secondo-principio/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Scheme of the heat engine and efficiency</summary>
+
+$$
+W = Q_C - |Q_F|, \qquad \eta = \frac{W}{Q_C} = 1 - \frac{|Q_F|}{Q_C}
+$$
+
+In a cycle ΔU = 0, so the net work is the difference between the heat absorbed from the hot reservoir (subscript C, caldo) and the heat released to the cold one (F, freddo). Kelvin–Planck forbids |Q_F| = 0, i.e. η = 1.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · ¬Clausius ⇒ ¬Kelvin (first half of the equivalence)</summary>
+
+$$
+\text{perfect fridge} + \text{real engine} \Rightarrow \text{perfect engine}
+$$
+
+If a perfect refrigerator existed (heat from cold to hot without work), couple it to a real engine: the fridge returns to the hot reservoir the heat the engine releases to the cold one. The combined system takes heat ONLY from the hot reservoir and turns it all into work: Kelvin–Planck violated.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · ¬Kelvin ⇒ ¬Clausius (second half)</summary>
+
+$$
+\text{perfect engine} + \text{real refrigerator} \Rightarrow \text{perfect fridge}
+$$
+
+If a perfect engine existed, use its work to drive a real refrigerator: the combined system moves heat from cold to hot with no external work input: Clausius violated. The two negations imply each other: the statements are equivalent.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Reversibility and irreversibility</summary>
+
+$$
+\text{reversible} \iff \text{quasi-static and without friction/dissipation}
+$$
+
+A transformation is reversible if it can be inverted bringing both system AND surroundings back to the initial state. Friction, diffusion, heat flow across a finite temperature difference, free expansion: all irreversible. The second law encodes this arrow.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · Refrigerators and coefficient of performance</summary>
+
+$$
+\text{COP}_{frigo} = \frac{Q_F}{W}, \qquad \text{COP}_{pompa} = \frac{Q_C}{W} = \text{COP}_{frigo} + 1
+$$
+
+The cycle run backwards absorbs work to move heat from cold to hot: Clausius requires W &gt; 0 (the COP is finite, but it can exceed 1: it is not an efficiency).
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/secondo-principio/ipotesi">
+
+## Validity assumptions
+
+Systems working in CYCLES (final state of the machine equal to the initial one: essential for the words 'only result'); ideal thermal reservoirs (infinite capacity, constant temperature).
+
+</div>
+
+<div data-note-id="teoria/secondo-principio/casi-limite">
+
+## Limiting cases
+
+Non-cyclic transformation: converting all the heat into work IS possible (isotherm of the ideal gas: Q = W), but the state of the gas changes — it does not violate Kelvin–Planck. Reversible limit: the inequalities of the second law become equalities (Carnot cycle).
+
+</div>
+
+<div data-note-id="teoria/secondo-principio/formule">
+
+## Key formulas
+
+<Formula id="secondo-principio-f1" />
+
+<Formula id="secondo-principio-f2" />
+
+<Formula id="secondo-principio-f3" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/secondo-principio/esempio">
+
+A heat engine absorbs 2.4 kJ of heat per cycle and does 600 J of work; it performs 25 cycles per second. Find: (a) the efficiency; (b) the heat released per cycle; (c) the mechanical power and the thermal power discharged.
+
+1. **Efficiency.** $\eta = W/Q_C = 600/2400 = 0.25$.
+2. **Cycle balance.** ΔU = 0 over the cycle: $|Q_F| = Q_C - W = 1800\ \text{J}$.
+3. **Powers.** $P = 25 \cdot 600 = 15\ \text{kW}$ mechanical, $25 \cdot 1800 = 45\ \text{kW}$ discharged: three times the useful power.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/secondo-principio/errori">
+
+- Forgetting 'only result'/'cyclic' in the statements: without them the statements are false (counterexample: isotherm).
+- Believing that the refrigerator violates Clausius: it absorbs work, so the transfer is not the only result.
+- Confusing efficiency (≤1) and COP (even &gt;1).
+- Thinking that the second law follows from the first: they are independent (the first does not forbid the perfect engine).
+
+</div>
+
+<div data-note-id="teoria/secondo-principio/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- Why is the word 'cyclic' indispensable in the Kelvin–Planck statement?
+- Perpetual motion of the second kind: what would it be and which statement does it violate?
+- What is the link between the second law and the arrow of time?
+
+</div>
+
+</Layer>

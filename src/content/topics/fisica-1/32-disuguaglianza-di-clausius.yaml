@@ -3,10 +3,14 @@ course: fisica-1
 order: 32
 title:
   it: Disuguaglianza di Clausius
+  en: Clausius' inequality
 summary:
   it: >-
     Il rapporto Q/T pesa il calore per la 'qualità' della temperatura a cui viene scambiato: calore preso ad
     alta temperatura è pregiato, calore scaricato a bassa temperatura è degradato.
+  en: >-
+    The ratio Q/T weighs heat by the 'quality' of the temperature at which it is exchanged: heat taken at high
+    temperature is valuable, heat discharged at low temperature is degraded.
 group:
   it: Fluidi e termodinamica
   en: Fluids and thermodynamics
@@ -14,21 +18,28 @@ objectives:
   - id: disuguaglianza-di-clausius.1
     text:
       it: Enunciare la disuguaglianza precisando cos'è T
+      en: State the inequality, specifying what T is
   - id: disuguaglianza-di-clausius.2
     text:
       it: Verificarla sul caso a due sorgenti (rev e irrev)
+      en: Check it in the two-reservoir case (reversible and irreversible)
   - id: disuguaglianza-di-clausius.3
     text:
       it: Descrivere la costruzione con le macchine ausiliarie di Carnot
+      en: Describe the construction with auxiliary Carnot engines
   - id: disuguaglianza-di-clausius.4
     text:
       it: Applicare Kelvin-Planck al sistema composto
+      en: Apply Kelvin–Planck to the composite system
   - id: disuguaglianza-di-clausius.5
     text:
       it: Dimostrare l'uguaglianza per i cicli reversibili (inversione)
+      en: Prove the equality for reversible cycles (by reversal)
   - id: disuguaglianza-di-clausius.6
     text:
       it: Dedurre che δQ_rev/T è un differenziale esatto
+      en: Deduce that δQ_rev/T is an exact differential
   - id: disuguaglianza-di-clausius.7
     text:
       it: Collegare al concetto di entropia
+      en: Link it to the concept of entropy

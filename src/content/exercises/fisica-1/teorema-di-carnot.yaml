@@ -1,0 +1,99 @@
+- id: verifica-macchina-dichiarata
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.1
+    - teorema-di-carnot.2
+    - teorema-di-carnot.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un inventore dichiara un motore che, operando tra 500 K e 300 K, assorbe 10 kJ per ciclo e produce 4,5
+      kJ di lavoro. Calcolare: (a) il rendimento dichiarato; (b) il rendimento massimo teorico; (c) il lavoro
+      massimo per ciclo con lo stesso calore assorbito. La dichiarazione è credibile?
+    en: >-
+      An inventor claims an engine that, working between 500 K and 300 K, absorbs 10 kJ per cycle and produces
+      4.5 kJ of work. Find: (a) the claimed efficiency; (b) the maximum theoretical efficiency; (c) the
+      maximum work per cycle for the same absorbed heat. Is the claim credible?
+  steps:
+    - title:
+        it: Confronto con Carnot
+        en: Comparison with Carnot
+      body:
+        it: >-
+          \(\eta_{dich} = 4{,}5/10 = 0{,}45\); \(\eta_{rev} = 1 - 300/500 = 0{,}40\). Il lavoro massimo è
+          \(0{,}40 \cdot 10 = 4{,}0\ \text{kJ}\).
+        en: >-
+          \(\eta_{claim} = 4.5/10 = 0.45\); \(\eta_{rev} = 1 - 300/500 = 0.40\). The maximum work is \(0.40
+          \cdot 10 = 4.0\ \text{kJ}\).
+    - title:
+        it: Verdetto
+        en: Verdict
+      body:
+        it: >-
+          Il rendimento dichiarato supera quello di Carnot: per il teorema di Carnot la macchina è impossibile
+          (violerebbe il secondo principio).
+        en: >-
+          The claimed efficiency exceeds Carnot's: by Carnot's theorem the engine is impossible (it would
+          violate the second law).
+  answer:
+    - label:
+        it: η dichiarato
+        en: claimed η
+      value: 0.45
+    - label:
+        it: η massimo
+        en: maximum η
+      value: 0.4
+    - label:
+        it: W massimo
+        en: maximum W
+      value: 4
+      unit: kJ
+  origin: originale
+- id: centrale-termoelettrica
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.1
+    - teorema-di-carnot.2
+    - teorema-di-carnot.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Una centrale eroga 500 MW elettrici con rendimento reale del 38%, prendendo calore a 820 K e
+      scaricandolo a 300 K. Calcolare: (a) la potenza termica scaricata; (b) il rendimento di Carnot; (c) la
+      potenza scaricata se la centrale funzionasse con il rendimento di Carnot a parità di potenza elettrica.
+    en: >-
+      A power plant delivers 500 MW of electrical power with a real efficiency of 38%, taking heat at 820 K
+      and discharging it at 300 K. Find: (a) the thermal power discharged; (b) the Carnot efficiency; (c) the
+      power discharged if the plant worked at the Carnot efficiency for the same electrical power.
+  steps:
+    - title:
+        it: Bilancio reale
+        en: Real balance
+      body:
+        it: \(P_C = 500/0{,}38 \approx 1316\ \text{MW}\), scaricati \(P_F = P_C - P \approx 816\ \text{MW}\).
+        en: \(P_C = 500/0.38 \approx 1316\ \text{MW}\), discharged \(P_F = P_C - P \approx 816\ \text{MW}\).
+    - title:
+        it: Limite ideale
+        en: Ideal limit
+      body:
+        it: \(\eta_C = 1 - 300/820 \approx 0{,}634\); \(P_F = P(1/\eta_C - 1) \approx 288\ \text{MW}\).
+        en: \(\eta_C = 1 - 300/820 \approx 0.634\); \(P_F = P(1/\eta_C - 1) \approx 288\ \text{MW}\).
+  answer:
+    - label:
+        it: P scaricata
+        en: discharged P
+      value: 816
+      unit: MW
+    - label:
+        it: η Carnot
+        en: Carnot η
+      value: 0.634
+    - label:
+        it: P scaricata ideale
+        en: ideal discharged P
+      value: 288
+      unit: MW
+  origin: originale

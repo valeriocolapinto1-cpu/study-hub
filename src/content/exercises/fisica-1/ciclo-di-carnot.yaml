@@ -1,0 +1,110 @@
+- id: carnot-gas-perfetto
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.1
+    - ciclo-di-carnot.2
+    - ciclo-di-carnot.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      0,20 mol di gas perfetto monoatomico compiono un ciclo di Carnot tra 600 K e 300 K. Nell'espansione
+      isoterma il volume raddoppia. Calcolare: (a) il calore assorbito Q_C; (b) il rendimento; (c) il lavoro
+      netto per ciclo; (d) il rapporto tra il volume massimo e il volume minimo del ciclo.
+    en: >-
+      0.20 mol of monatomic ideal gas performs a Carnot cycle between 600 K and 300 K. In the isothermal
+      expansion the volume doubles. Find: (a) the absorbed heat Q_C; (b) the efficiency; (c) the net work per
+      cycle; (d) the ratio between the maximum and minimum volume of the cycle.
+  steps:
+    - title:
+        it: Isoterma calda
+        en: Hot isotherm
+      body:
+        it: \(Q_C = nRT_C\ln 2 = 0{,}20 \cdot 8{,}314 \cdot 600 \cdot 0{,}693 \approx 691{,}5\ \text{J}\).
+        en: \(Q_C = nRT_C\ln 2 = 0.20 \cdot 8.314 \cdot 600 \cdot 0.693 \approx 691.5\ \text{J}\).
+    - title:
+        it: Rendimento e lavoro
+        en: Efficiency and work
+      body:
+        it: \(\eta = 1 - 300/600 = 0{,}50\), \(W = \eta Q_C \approx 345{,}8\ \text{J}\).
+        en: \(\eta = 1 - 300/600 = 0.50\), \(W = \eta Q_C \approx 345.8\ \text{J}\).
+    - title:
+        it: Volumi
+        en: Volumes
+      body:
+        it: >-
+          Adiabatica 2→3: \(V_3/V_2 = (T_C/T_F)^{1/(\gamma-1)} = 2^{3/2} \approx 2{,}83\). Quindi \(V_3/V_1 =
+          2 \cdot 2{,}83 \approx 5{,}66\).
+        en: >-
+          Adiabatic 2→3: \(V_3/V_2 = (T_C/T_F)^{1/(\gamma-1)} = 2^{3/2} \approx 2.83\). Hence \(V_3/V_1 = 2
+          \cdot 2.83 \approx 5.66\).
+  answer:
+    - label:
+        it: Q_C
+        en: Q_C
+      value: 691.5
+      unit: J
+    - label:
+        it: η
+        en: η
+      value: 0.5
+    - label:
+        it: W
+        en: W
+      value: 345.8
+      unit: J
+    - label:
+        it: V_max/V_min
+        en: V_max/V_min
+      value: 5.66
+  origin: originale
+- id: frigorifero-carnot
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.1
+    - ciclo-di-carnot.2
+    - ciclo-di-carnot.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un congelatore ideale (ciclo di Carnot invertito) mantiene l'interno a −18 °C in una cucina a 25 °C.
+      Calcolare: (a) il COP massimo; (b) il lavoro minimo per estrarre 100 kJ dall'interno; (c) il calore
+      ceduto alla cucina.
+    en: >-
+      An ideal freezer (reversed Carnot cycle) keeps its interior at −18 °C in a kitchen at 25 °C. Find: (a)
+      the maximum COP; (b) the minimum work needed to extract 100 kJ from the interior; (c) the heat released
+      to the kitchen.
+  steps:
+    - title:
+        it: COP di Carnot
+        en: Carnot COP
+      body:
+        it: \(\text{COP} = T_F/(T_C - T_F) = 255{,}15/43 \approx 5{,}93\).
+        en: \(\text{COP} = T_F/(T_C - T_F) = 255.15/43 \approx 5.93\).
+    - title:
+        it: Lavoro e calore ceduto
+        en: Work and released heat
+      body:
+        it: >-
+          \(W = Q_F/\text{COP} \approx 16{,}9\ \text{kJ}\); \(Q_C = Q_F + W \approx 116{,}9\ \text{kJ}\): la
+          cucina si scalda più di quanto il congelatore si raffreddi.
+        en: >-
+          \(W = Q_F/\text{COP} \approx 16.9\ \text{kJ}\); \(Q_C = Q_F + W \approx 116.9\ \text{kJ}\): the
+          kitchen heats up more than the freezer cools down.
+  answer:
+    - label:
+        it: COP
+        en: COP
+      value: 5.93
+    - label:
+        it: W
+        en: W
+      value: 16.9
+      unit: kJ
+    - label:
+        it: Q_C
+        en: Q_C
+      value: 116.9
+      unit: kJ
+  origin: originale

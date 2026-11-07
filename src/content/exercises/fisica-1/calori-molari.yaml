@@ -1,0 +1,100 @@
+- id: riscaldamento-isobaro-isocoro
+  topic: calori-molari
+  objectives:
+    - calori-molari.1
+    - calori-molari.2
+    - calori-molari.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Si vogliono scaldare 3,0 mol di aria (biatomico ideale) da 290 K a 340 K. Calcolare il calore
+      necessario: (a) a volume costante; (b) a pressione costante; (c) il lavoro compiuto dal gas nel caso
+      (b).
+    en: >-
+      3.0 mol of air (ideal diatomic gas) are to be heated from 290 K to 340 K. Find the heat needed: (a) at
+      constant volume; (b) at constant pressure; (c) the work done by the gas in case (b).
+  steps:
+    - title:
+        it: Volume costante
+        en: Constant volume
+      body:
+        it: \(Q_V = nc_V\Delta T = 3 \cdot 2{,}5 \cdot 8{,}314 \cdot 50 \approx 3118\ \text{J}\).
+        en: \(Q_V = nc_V\Delta T = 3 \cdot 2.5 \cdot 8.314 \cdot 50 \approx 3118\ \text{J}\).
+    - title:
+        it: Pressione costante
+        en: Constant pressure
+      body:
+        it: >-
+          \(Q_p = nc_p\Delta T = 3 \cdot 3{,}5 \cdot 8{,}314 \cdot 50 \approx 4365\ \text{J}\); la differenza
+          è \(W = nR\Delta T \approx 1247\ \text{J}\) (Mayer).
+        en: >-
+          \(Q_p = nc_p\Delta T = 3 \cdot 3.5 \cdot 8.314 \cdot 50 \approx 4365\ \text{J}\); the difference is
+          \(W = nR\Delta T \approx 1247\ \text{J}\) (Mayer).
+  answer:
+    - label:
+        it: Q_V
+        en: Q_V
+      value: 3118
+      unit: J
+    - label:
+        it: Q_p
+        en: Q_p
+      value: 4365
+      unit: J
+    - label:
+        it: W
+        en: W
+      value: 1247
+      unit: J
+  origin: originale
+- id: dulong-petit-rame
+  topic: calori-molari
+  objectives:
+    - calori-molari.1
+    - calori-molari.2
+    - calori-molari.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Un blocco di rame di 500 g (massa molare 63,5 g/mol) a 100 °C viene immerso in 1,0 kg d'acqua a 20 °C
+      (c_acqua = 4186 J/(kg·K)) in un recipiente isolato. Usando la legge di Dulong-Petit per il rame
+      calcolare: (a) il calore specifico del rame per unità di massa; (b) la temperatura di equilibrio.
+    en: >-
+      A 500 g copper block (molar mass 63.5 g/mol) at 100 °C is dropped into 1.0 kg of water at 20 °C (c_water
+      = 4186 J/(kg·K)) in an insulated container. Using the Dulong–Petit law for copper, find: (a) the
+      specific heat of copper per unit mass; (b) the equilibrium temperature.
+  steps:
+    - title:
+        it: Dulong-Petit
+        en: Dulong–Petit
+      body:
+        it: >-
+          \(c = 3R/M = 24{,}94/0{,}0635 \approx 393\ \text{J/(kg·K)}\) (il valore misurato è 385: ottimo
+          accordo).
+        en: >-
+          \(c = 3R/M = 24.94/0.0635 \approx 393\ \text{J/(kg·K)}\) (the measured value is 385: excellent
+          agreement).
+    - title:
+        it: Equilibrio
+        en: Equilibrium
+      body:
+        it: >-
+          \(0{,}5 \cdot 393 \cdot (100 - T) = 1{,}0 \cdot 4186 \cdot (T - 20) \Rightarrow T \approx 23{,}4\
+          °\text{C}\).
+        en: >-
+          \(0.5 \cdot 393 \cdot (100 - T) = 1.0 \cdot 4186 \cdot (T - 20) \Rightarrow T \approx 23.4\
+          °\text{C}\).
+  answer:
+    - label:
+        it: c rame
+        en: c copper
+      value: 393
+      unit: J/(kg·K)
+    - label:
+        it: T equilibrio
+        en: equilibrium T
+      value: 23.4
+      unit: °C
+  origin: originale
