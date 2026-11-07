@@ -43,6 +43,8 @@ module.exports = {
         `${BASE}/en/anno-1/fondamenti-informatica/`,
         `${BASE}/it/anno-2/teoria-circuiti/`,
         `${BASE}/it/anno-2/teoria-circuiti/teoria/teorema-di-thevenin/`,
+        `${BASE}/it/anno-1/fisica-1/teoria/rotolamento-puro/`,
+        `${BASE}/en/anno-1/fisica-1/extra/simulazioni/`,
       ],
       numberOfRuns: 3,
       ...(process.env.CHROME_PATH ? { chromePath: process.env.CHROME_PATH } : {}),

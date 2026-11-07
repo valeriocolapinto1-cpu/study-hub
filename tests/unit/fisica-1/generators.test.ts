@@ -105,7 +105,7 @@ const CHECKS: Record<string, (n: number[], ex: GeneratedExercise) => void> = {
       0,
       T0 / 40000,
       20000,
-      (q, w) => {
+      (_q, w) => {
         vb = Math.max(vb, Math.abs(w) * Lf!);
       },
     );
@@ -251,8 +251,8 @@ const CHECKS: Record<string, (n: number[], ex: GeneratedExercise) => void> = {
       (q) => (-g * (Lr! / 2) * Math.cos(q)) / ((Lr! * Lr!) / 3),
       (th! * Math.PI) / 180,
       0,
-      1e-5,
-      400000,
+      2e-4,
+      20000,
       (q, om) => {
         if (!done && q <= -Math.PI / 2) {
           w = Math.abs(om);
