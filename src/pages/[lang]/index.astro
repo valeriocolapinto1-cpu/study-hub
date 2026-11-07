@@ -166,7 +166,7 @@ const metaLine = (id: string) => {
                         ? t(lang, 'course.yearSemester', { year: c.year, semester: c.semester })
                         : t(lang, 'home.year', { year: c.year })}
                     </p>
-                    <span class="home-course__badge">online</span>
+                    <span class="home-course__badge">{t(lang, 'home.courseOnline')}</span>
                   </div>
                   <h4 class="home-course__title">
                     <a href={localizePath(coursePath(c), lang)}>{tr(c.title, lang)}</a>
