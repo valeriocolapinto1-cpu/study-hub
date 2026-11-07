@@ -48,6 +48,32 @@ Somme e differenze: si sommano in quadratura le incertezze assolute. Prodotti e 
 - **Confronto tra misure**: $t=\frac{|x_1-x_2|}{\sqrt{\sigma_1^2+\sigma_2^2}}$. Si considerano compatibili se $t\lesssim2$ (in genere; con poche misure si usa la distribuzione t di Student). Lo scarto relativo rispetto a un valore atteso è $|x-x_{rif}|/x_{rif}$.
 - **Minimi quadrati** (retta $y=a+bx$ con uguale incertezza su $y$): si minimizza $\sum(y_i-a-bx_i)^2$, ottenendo $b=\frac{N\sum x_iy_i-\sum x_i\sum y_i}{\Delta}$ e $a=\frac{\sum x_i^2\sum y_i-\sum x_i\sum x_iy_i}{\Delta}$, con $\Delta=N\sum x_i^2-(\sum x_i)^2$. Le leggi esponenziali si **linearizzano** con il logaritmo (ad esempio $\ln V=\ln V_0-t/\tau$).
 
+<Diagram
+  type="function-plot"
+  params={{
+    x: { min: 0, max: 5, label: 't', unit: 's' },
+    y: { min: -2.6, max: 0.4, label: 'ln(V/V_0)' },
+    series: [
+      {
+        kind: 'points',
+        points: [
+          [0.5, -0.21],
+          [1, -0.52],
+          [1.5, -0.71],
+          [2, -1.03],
+          [2.5, -1.22],
+          [3, -1.53],
+          [3.5, -1.72],
+          [4, -2.04],
+        ],
+        label: 'dati',
+      },
+      { kind: 'poly', coeffs: [0.0, -0.505], label: 'retta', dash: true },
+    ],
+  }}
+  caption="Scarica di un condensatore linearizzata: la pendenza della retta dei minimi quadrati è −1/τ."
+/>
+
 ## Le esperienze di laboratorio
 
 - **Misure in corrente continua**: uso del multimetro come voltmetro (in parallelo), amperometro (in serie) e ohmmetro (circuito non alimentato). Verifica della legge di Ohm e delle resistenze equivalenti; attenzione agli errori di inserzione e alle portate.

@@ -22,6 +22,12 @@ $$
 \mathcal E_i=-\frac{d\Phi(\vec B)}{dt}
 $$
 
+<Diagram
+  type="induction"
+  params={{ setup: 'loop-in-field', fieldLabel: 'B(t)' }}
+  caption="Spira in un campo che cresce: la corrente indotta produce un campo opposto all’aumento del flusso (Lenz)."
+/>
+
 Il segno meno esprime la **legge di Lenz**: la corrente indotta ha un verso tale da opporsi alla variazione di flusso che l'ha generata (conservazione dell'energia). Il flusso può variare perché cambia $B$, perché cambia l'area o perché cambia l'orientazione.
 
 ## Interpretazione fisica
@@ -60,6 +66,12 @@ Il flusso che il circuito 1 produce nel circuito 2 è $\Phi_{21}=MI_1$, e vale $
 - Due solenoidi coassiali di uguale lunghezza $l$: $M=\mu_0n_1n_2S_{int}l$.
 - Filo infinito e spira rettangolare complanare (lati $a$ parallelo al filo e $b$, a distanza $d$): $\Phi=\int_d^{d+b}\frac{\mu_0I}{2\pi r}a\,dr$ ⇒ $M=\frac{\mu_0a}{2\pi}\ln\frac{d+b}{d}$.
 
+<Diagram
+  type="induction"
+  params={{ setup: 'loop-near-wire', trend: 'increasing' }}
+  caption="Spira vicino a un filo: il flusso del campo del filo nella spira è M I."
+/>
+
 Il **trasformatore** ideale (nucleo comune, senza perdite) ha $\frac{V_2}{V_1}=\frac{N_2}{N_1}$.
 
 ## Circuito RL e analisi energetica
@@ -90,6 +102,12 @@ Per due circuiti accoppiati $U=\frac12L_1I_1^2+\frac12L_2I_2^2+MI_1I_2$. Le forz
 - **Dinamo a disco** (disco di Faraday): un disco conduttore che ruota in $B$ assiale produce tra centro e bordo $\mathcal E=\frac12B\omega R^2$.
 - **Motore**: una spira percorsa da corrente in $B$ subisce un momento; la rotazione induce una forza controelettromotrice che limita la corrente.
 - **Correnti di Foucault**: in un conduttore massiccio con flusso variabile circolano correnti parassite che dissipano energia e frenano il moto (freno elettromagnetico). Nei trasformatori si usano nuclei laminati per ridurle.
+
+<Diagram
+  type="induction"
+  params={{ setup: 'rotating-loop', angle: 50 }}
+  caption="Alternatore: la spira ruota nel campo uniforme e il flusso varia come cos ωt."
+/>
 
 ## Corrente di spostamento e IV equazione di Maxwell
 
@@ -124,6 +142,12 @@ Insieme alla forza di Lorentz descrivono tutto l'elettromagnetismo classico. La 
 ## Esempio svolto: sbarretta su rotaie
 
 Una sbarretta conduttrice di massa $m=100\ \mathrm g$ e lunghezza $l=20\ \mathrm{cm}$ scorre senza attrito su due rotaie orizzontali chiuse da una resistenza $R=2\ \Omega$, in un campo uniforme verticale $B=0{,}5\ \mathrm T$. Viene tirata da una forza costante $F_0=50\ \mathrm{mN}$ e parte da ferma.
+
+<Diagram
+  type="induction"
+  params={{ setup: 'sliding-bar', forceLabel: 'F' }}
+  caption="Sbarretta su rotaie: la corrente indotta frena la sbarretta."
+/>
 
 1. **F.e.m. e corrente.** Il flusso concatenato cresce come $Blx$, quindi $|\mathcal E|=Blv$ e $I=Blv/R$ (verso dato da Lenz: la corrente si oppone all'aumento di flusso).
 2. **Forza frenante.** Sulla sbarretta agisce $F_B=IlB=\dfrac{B^2l^2}{R}v$, opposta al moto. L'equazione del moto è $m\dot v=F_0-\dfrac{B^2l^2}{R}v$.

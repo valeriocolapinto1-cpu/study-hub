@@ -1,8 +1,19 @@
 /** Blocco 4 — Induzione elettromagnetica, induttanza, energia (template del sito originale). */
-import { defineTemplate, C0, EPS0, MU0, PI, S, pick, step } from './lib';
+import { defineTemplate, C0, EPS0, MU0, PI, S, pick, step, lv } from './lib';
 
 defineTemplate({
   id: 'b4-rl-apertura',
+  figure: (p) => ({
+    netlist: {
+      elements: [
+        { type: 'V', id: 'E', a: 'a', b: '0', dc: p.E! },
+        { type: 'SW', id: 'T', a: 'a', b: 'b', closed: true, toggleAt: 0 },
+        { type: 'R', id: 'R1', a: 'b', b: 'c', value: p.R1! },
+        { type: 'L', id: 'L', a: 'c', b: '0', value: p.L!, show: { i: true } },
+        { type: 'R', id: 'R2', a: 'c', b: '0', value: p.R2! },
+      ],
+    },
+  }),
   blocco: 'b4',
   topic: 'campi-variabili',
   objectives: ['campi-variabili.4'],
@@ -50,6 +61,17 @@ defineTemplate({
 
 defineTemplate({
   id: 'b4-spira-b-variabile',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'induction',
+      params: {
+        setup: 'loop-in-field',
+        trend: p.B0! < 0 ? 'decreasing' : 'increasing',
+        fieldLabel: 'B(t)',
+        lengthLabel: `a = ${lv(p.a!, 'cm', lang, 100)}`,
+      },
+    },
+  }),
   blocco: 'b4',
   topic: 'campi-variabili',
   objectives: ['campi-variabili.1', 'campi-variabili.5'],
@@ -101,6 +123,18 @@ defineTemplate({
 
 defineTemplate({
   id: 'b4-barretta-rotaie',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'induction',
+      params: {
+        setup: 'sliding-bar',
+        fieldLabel: `B = ${lv(p.B!, 'T', lang)}`,
+        lengthLabel: `h = ${lv(p.h!, 'cm', lang, 100)}`,
+        resistanceLabel: `R = ${lv(p.R!, 'Ω', lang)}`,
+        forceLabel: 'F',
+      },
+    },
+  }),
   blocco: 'b4',
   topic: 'campi-variabili',
   objectives: ['campi-variabili.1'],
@@ -151,6 +185,17 @@ defineTemplate({
 
 defineTemplate({
   id: 'b4-sbarra-rotante',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'induction',
+      params: {
+        setup: 'rotating-rod',
+        fieldLabel: `B = ${lv(p.B!, 'T', lang)}`,
+        lengthLabel: `l = ${lv(p.l!, 'cm', lang, 100)}`,
+        omegaLabel: `ω = ${lv(p.w!, 'rad/s', lang)}`,
+      },
+    },
+  }),
   blocco: 'b4',
   topic: 'campi-variabili',
   objectives: ['campi-variabili.1', 'campi-variabili.7'],
@@ -197,6 +242,20 @@ defineTemplate({
 
 defineTemplate({
   id: 'b4-mutua-filo-spira',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'induction',
+      params: {
+        setup: 'loop-near-wire',
+        motion: 'none',
+        trend: 'increasing',
+        currentLabel: 'I = k t',
+        lengthLabel: `a = ${lv(p.a!, 'cm', lang, 100)}`,
+        widthLabel: 'a',
+        distanceLabel: `d = ${lv(p.d!, 'cm', lang, 100)}`,
+      },
+    },
+  }),
   blocco: 'b4',
   topic: 'campi-variabili',
   objectives: ['campi-variabili.3'],
@@ -244,6 +303,19 @@ defineTemplate({
 
 defineTemplate({
   id: 'b4-solenoide-bobina',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'induction',
+      params: {
+        setup: 'loop-in-field',
+        loop: 'square',
+        field: 'out',
+        trend: 'decreasing',
+        fieldLabel: 'B = μ_0 n I(t)',
+        lengthLabel: `d = ${lv(p.d!, 'cm', lang, 100)}`,
+      },
+    },
+  }),
   blocco: 'b4',
   topic: 'campi-variabili',
   objectives: ['campi-variabili.1', 'campi-variabili.5'],
@@ -294,6 +366,18 @@ defineTemplate({
 
 defineTemplate({
   id: 'b4-spira-rotante',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'induction',
+      params: {
+        setup: 'rotating-loop',
+        angle: 50,
+        fieldLabel: `B = ${lv(p.B!, 'T', lang)}`,
+        omegaLabel: `ω = 2π · ${lv(p.f!, 'Hz', lang)}`,
+        lengthLabel: `N = ${p.N!}`,
+      },
+    },
+  }),
   blocco: 'b4',
   topic: 'campi-variabili',
   objectives: ['campi-variabili.7'],
@@ -343,6 +427,17 @@ defineTemplate({
 
 defineTemplate({
   id: 'b4-toroide-l',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'magnetic-field',
+      params: {
+        source: 'toroid',
+        turns: 12,
+        radiusLabel: `R = ${lv(p.R!, 'cm', lang, 100)}`,
+        innerLabel: `a = ${lv(p.a!, 'cm', lang, 100)}`,
+      },
+    },
+  }),
   blocco: 'b4',
   topic: 'campi-variabili',
   objectives: ['campi-variabili.3', 'campi-variabili.6'],
@@ -391,6 +486,19 @@ defineTemplate({
 
 defineTemplate({
   id: 'b4-rapporto-densita',
+  figure: (p, lang) => ({
+    diagram: {
+      type: 'induction',
+      params: {
+        setup: 'loop-in-field',
+        field: 'out',
+        trend: 'decreasing',
+        fieldLabel: 'B = μ_0 n I(t)',
+        inducedLabel: 'E',
+        lengthLabel: `r = ${lv(p.r!, 'cm', lang, 100)}`,
+      },
+    },
+  }),
   blocco: 'b4',
   topic: 'campi-variabili',
   objectives: ['campi-variabili.2', 'campi-variabili.6'],

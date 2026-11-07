@@ -248,10 +248,23 @@ export function capacitor(p: P<'capacitor'>, c: Ctx): Drawn {
     const y1 = 66;
     const y2 = 226;
     const diel = p.dielectric ?? 'none';
-    if (diel !== 'none') {
+    const dl = p.dielectricLabels ?? [];
+    if (diel === 'layers') {
+      const xm = (xl + xr) / 2;
+      s.rect(xl, y1, xm - xl, y2 - y1, { fill: 'surface2', tone: 'faint', width: 1 });
+      s.rect(xm, y1, xr - xm, y2 - y1, { fill: 'soft', tone: 'faint', width: 1 });
+      s.text((xl + xm) / 2, y2 - 14, dl[0] ?? 'ε_{r1}', { italic: true, size: 13, halo: true });
+      s.text((xm + xr) / 2, y2 - 14, dl[1] ?? 'ε_{r2}', { italic: true, size: 13, halo: true });
+    } else if (diel === 'side-by-side') {
+      const ym = (y1 + y2) / 2;
+      s.rect(xl, y1, xr - xl, ym - y1, { fill: 'surface2', tone: 'faint', width: 1 });
+      s.rect(xl, ym, xr - xl, y2 - ym, { fill: 'soft', tone: 'faint', width: 1 });
+      s.text((xl + xr) / 2, ym - 8, dl[0] ?? 'ε_{r1}', { italic: true, size: 13, halo: true });
+      s.text((xl + xr) / 2, y2 - 8, dl[1] ?? 'ε_{r2}', { italic: true, size: 13, halo: true });
+    } else if (diel !== 'none') {
       const w = diel === 'full' ? xr - xl : (xr - xl) / 2;
       s.rect(xl, y1, w, y2 - y1, { fill: 'surface2', tone: 'faint', width: 1 });
-      s.text(xl + w / 2, y2 - 14, 'ε_r', { italic: true, size: 13 });
+      s.text(xl + w / 2, y2 - 14, dl[0] ?? 'ε_r', { italic: true, size: 13, halo: true });
     }
     if (field) {
       const n = 6;
@@ -282,29 +295,31 @@ export function capacitor(p: P<'capacitor'>, c: Ctx): Drawn {
       }
     }
     // generatore
-    const top = 26;
-    s.polyline(
-      [
-        [xl - 3, y1],
-        [xl - 3, top],
-        [176, top],
-      ],
-      { width: 1.4 },
-    );
-    s.polyline(
-      [
-        [xr + 3, y1],
-        [xr + 3, top],
-        [204, top],
-      ],
-      { width: 1.4 },
-    );
-    s.line(176, top - 13, 176, top + 13, { width: 1.8 });
-    s.line(186, top - 7, 186, top + 7, { width: 3 });
-    s.line(194, top - 13, 194, top + 13, { width: 1.8 });
-    s.line(204, top - 7, 204, top + 7, { width: 3 });
-    s.text(170, top - 18, '+', { size: 12, muted: true });
-    s.text(232, top - 14, p.voltageLabel ?? 'ΔV', { italic: true, size: 13, anchor: 'start' });
+    if (p.battery !== false) {
+      const top = 26;
+      s.polyline(
+        [
+          [xl - 3, y1],
+          [xl - 3, top],
+          [176, top],
+        ],
+        { width: 1.4 },
+      );
+      s.polyline(
+        [
+          [xr + 3, y1],
+          [xr + 3, top],
+          [204, top],
+        ],
+        { width: 1.4 },
+      );
+      s.line(176, top - 13, 176, top + 13, { width: 1.8 });
+      s.line(186, top - 7, 186, top + 7, { width: 3 });
+      s.line(194, top - 13, 194, top + 13, { width: 1.8 });
+      s.line(204, top - 7, 204, top + 7, { width: 3 });
+      s.text(170, top - 18, '+', { size: 12, muted: true });
+      s.text(232, top - 14, p.voltageLabel ?? 'ΔV', { italic: true, size: 13, anchor: 'start' });
+    }
     s.dimension(xl, y2 + 30, xr, y2 + 30, p.dLabel ?? 'd');
     s.text(xl - 40, y1 + 12, p.areaLabel ?? 'A', { italic: true, size: 13 });
   } else {
@@ -313,8 +328,11 @@ export function capacitor(p: P<'capacitor'>, c: Ctx): Drawn {
     const O: Pt = [150, 150];
     const a = 46;
     const b = 112;
-    s.circle(O[0], O[1], b, { width: 4, fill: 'none' });
+    const dielR = (p.dielectric ?? 'none') !== 'none';
+    s.circle(O[0], O[1], b, { width: 4, fill: dielR ? 'soft' : 'none' });
     s.circle(O[0], O[1], a, { fill: 'surface2', width: 2 });
+    if (dielR)
+      s.text(O[0] - 62, O[1] + 70, p.dielectricLabels?.[0] ?? 'ε_r', { italic: true, size: 13, halo: true });
     if (field) {
       for (let i = 0; i < 12; i++) {
         const t = (i * Math.PI) / 6 + Math.PI / 12;
@@ -373,14 +391,21 @@ export function capacitor(p: P<'capacitor'>, c: Ctx): Drawn {
   const desc =
     geo === 'parallel'
       ? c.L(
-          `Due armature piane parallele di area ${plainLabel(p.areaLabel ?? 'A')} a distanza ${plainLabel(p.dLabel ?? 'd')}, collegate a un generatore di tensione ${plainLabel(p.voltageLabel ?? 'ΔV')}: l'armatura di sinistra è positiva, quella di destra negativa.${field ? ' Il campo E tra le armature è uniforme e va dalla positiva alla negativa.' : ''}${p.fringe ? ' Ai bordi le linee si incurvano (effetti di bordo).' : ''}${p.dielectric === 'full' ? ' Lo spazio è riempito da un dielettrico.' : p.dielectric === 'half' ? ' Metà dello spessore è occupata da una lastra di dielettrico.' : ''}`,
-          `Two parallel plates of area ${plainLabel(p.areaLabel ?? 'A')} a distance ${plainLabel(p.dLabel ?? 'd')} apart, connected to a source ${plainLabel(p.voltageLabel ?? 'ΔV')}: the left plate is positive, the right one negative.${field ? ' The field E between the plates is uniform, from the positive to the negative plate.' : ''}${p.fringe ? ' Field lines bend at the edges (fringe effects).' : ''}${p.dielectric === 'full' ? ' The gap is filled with a dielectric.' : p.dielectric === 'half' ? ' A dielectric slab fills half of the gap thickness.' : ''}`,
+          `Due armature piane parallele di area ${plainLabel(p.areaLabel ?? 'A')} a distanza ${plainLabel(p.dLabel ?? 'd')}, ${p.battery !== false ? `collegate a un generatore di tensione ${plainLabel(p.voltageLabel ?? 'ΔV')}` : 'isolate'}: l'armatura di sinistra è positiva, quella di destra negativa.${field ? ' Il campo E tra le armature è uniforme e va dalla positiva alla negativa.' : ''}${p.fringe ? ' Ai bordi le linee si incurvano (effetti di bordo).' : ''}${p.dielectric === 'full' ? ' Lo spazio è riempito da un dielettrico.' : p.dielectric === 'half' ? ' Metà dello spessore è occupata da una lastra di dielettrico.' : p.dielectric === 'layers' ? ' Lo spazio è occupato da due strati di dielettrici diversi affiancati alle armature (condensatori in serie): D è lo stesso nei due strati, E no.' : p.dielectric === 'side-by-side' ? ' Lo spazio è diviso in due metà riempite da dielettrici diversi (condensatori in parallelo): E è lo stesso nelle due metà, D no.' : ''}`,
+          `Two parallel plates of area ${plainLabel(p.areaLabel ?? 'A')} a distance ${plainLabel(p.dLabel ?? 'd')} apart, ${p.battery !== false ? `connected to a source ${plainLabel(p.voltageLabel ?? 'ΔV')}` : 'isolated'}: the left plate is positive, the right one negative.${field ? ' The field E between the plates is uniform, from the positive to the negative plate.' : ''}${p.fringe ? ' Field lines bend at the edges (fringe effects).' : ''}${p.dielectric === 'full' ? ' The gap is filled with a dielectric.' : p.dielectric === 'half' ? ' A dielectric slab fills half of the gap thickness.' : p.dielectric === 'layers' ? ' The gap holds two layers of different dielectrics parallel to the plates (capacitors in series): D is the same in both layers, E is not.' : p.dielectric === 'side-by-side' ? ' The gap is split into two halves filled with different dielectrics (capacitors in parallel): E is the same in both halves, D is not.' : ''}`,
         )
       : c.L(
           `${geo === 'spherical' ? 'Sezione di due sfere conduttrici concentriche' : 'Sezione di due conduttori cilindrici coassiali'} di raggi ${plainLabel(p.innerLabel ?? 'a')} (interno, carica positiva) e ${plainLabel(p.outerLabel ?? 'b')} (esterno, carica negativa).${field ? ' Il campo E è radiale, diretto verso l’esterno e presente solo tra i due conduttori.' : ''}${geo === 'cylindrical' ? ' A destra la vista laterale, di lunghezza L.' : ''}`,
           `${geo === 'spherical' ? 'Cross-section of two concentric conducting spheres' : 'Cross-section of two coaxial conducting cylinders'} with radii ${plainLabel(p.innerLabel ?? 'a')} (inner, positive) and ${plainLabel(p.outerLabel ?? 'b')} (outer, negative).${field ? ' The field E is radial, pointing outwards, and exists only between the conductors.' : ''}${geo === 'cylindrical' ? ' Side view of length L on the right.' : ''}`,
         );
-  return { svg: s, title: name, description: desc };
+  const dielNote =
+    geo !== 'parallel' && (p.dielectric ?? 'none') !== 'none'
+      ? c.L(
+          ' Lo spazio tra i conduttori è riempito da un dielettrico.',
+          ' The space between the conductors is filled with a dielectric.',
+        )
+      : '';
+  return { svg: s, title: name, description: desc + dielNote };
 }
 
 // ------------------------------------------------------------------- campo magnetico
@@ -422,7 +447,198 @@ function rightHand(s: Svg, x: number, y: number, thumb: string, curl: string, c:
   s.text(x + 56, y + 108, c.L('mano destra', 'right hand'), { muted: true, size: 10 });
 }
 
+/** Cerchio orientato (verso antiorario per chi guarda il foglio se `ccw`). */
+function ring(s: Svg, O: Pt, r: number, ccw: boolean, tone: Tone = 'accent', width = 1.3): void {
+  s.circle(O[0], O[1], r, { tone, width });
+  s.head(O[0] + r, O[1], 0, ccw ? -1 : 1, 9, tone);
+  s.head(O[0] - r, O[1], 0, ccw ? 1 : -1, 9, tone);
+}
+
+/** Sorgenti aggiunte per Fisica II: coppia di fili, cavo coassiale, toroide, filo a U. */
+function magneticExtra(p: P<'magnetic-field'>, c: Ctx): Drawn | null {
+  const pos = p.current !== 'negative';
+  const I = p.currentLabel ?? 'I';
+  const Bl = p.fieldLabel ?? 'B';
+  const lines = p.fieldLines !== false;
+  if (p.source === 'wire-pair') {
+    const W = 400;
+    const H = 280;
+    const s = new Svg(W, H);
+    const pos2 = (p.current2 ?? p.current ?? 'positive') !== 'negative';
+    const src: PointSource[] = [
+      { x: -1, y: 0, q: pos ? 1 : -1 },
+      { x: 1, y: 0, q: pos2 ? 1 : -1 },
+    ];
+    const b: Bounds = { xMin: -3.2, xMax: 3.2, yMin: -2.24, yMax: 2.24 };
+    const v = viewport(b, W, H, 4);
+    if (lines) {
+      const F = wiresMagneticField(src, 1, 1e-4);
+      const opts = {
+        bounds: b,
+        step: 0.02,
+        maxSteps: 2400,
+        sinks: src.map((q) => ({ x: q.x, y: q.y, r: 0.06 })),
+      };
+      const seeds =
+        pos === pos2 ? [-2.7, -2.1, -1.5, -0.55, 0.55, 1.5, 2.1, 2.7] : [-0.75, -0.5, -0.25, 0.25, 0.5, 0.75];
+      for (const x0 of seeds) {
+        const line = closedLine(F, [x0, 0], opts);
+        const pts: Pt[] = line.map(([x, y]) => [v.X(x), v.Y(y)]);
+        s.polyline(pts, { tone: 'accent', width: 1.2 });
+        midArrow(s, pts, 'accent', 0.25, 8);
+      }
+    }
+    const P1: Pt = [v.X(-1), v.Y(0)];
+    const P2: Pt = [v.X(1), v.Y(0)];
+    if (p.forces !== false) {
+      const attract = pos === pos2;
+      const d = attract ? 1 : -1;
+      s.arrow(P1[0] + d * 14, P1[1] - 0, P1[0] + d * 58, P1[1], { tone: 'danger', width: 2.6 });
+      s.arrow(P2[0] - d * 14, P2[1], P2[0] - d * 58, P2[1], { tone: 'danger', width: 2.6 });
+      s.text(P1[0] + d * 40, P1[1] + 18, 'F', { italic: true, halo: true });
+      s.text(P2[0] - d * 40, P2[1] + 18, 'F', { italic: true, halo: true });
+    }
+    perp(s, P1[0], P1[1], pos, 12, 'danger');
+    perp(s, P2[0], P2[1], pos2, 12, 'danger');
+    s.text(P1[0] - 6, P1[1] - 24, `${plainLabel(I) === 'I' ? 'I_1' : I}`, { italic: true, halo: true });
+    s.text(P2[0] + 6, P2[1] - 24, 'I_2', { italic: true, halo: true });
+    s.dimension(P1[0], H - 24, P2[0], H - 24, p.distanceLabel ?? 'd');
+    const attract = pos === pos2;
+    return {
+      svg: s,
+      title: c.L('Due fili paralleli percorsi da corrente', 'Two parallel current-carrying wires'),
+      description: c.L(
+        `Due fili paralleli perpendicolari al foglio, a distanza ${plainLabel(p.distanceLabel ?? 'd')}, con correnti ${attract ? 'nello stesso verso' : 'in versi opposti'} (${pos ? '⊙' : '⊗'} e ${pos2 ? '⊙' : '⊗'}). Linee del campo magnetico totale${p.forces !== false ? `; ciascun filo risente del campo dell'altro e i fili si ${attract ? 'attraggono' : 'respingono'}, con forza per unità di lunghezza μ₀ I₁ I₂ /(2π d)` : ''}.`,
+        `Two parallel wires perpendicular to the page, ${plainLabel(p.distanceLabel ?? 'd')} apart, carrying currents ${attract ? 'in the same direction' : 'in opposite directions'} (${pos ? '⊙' : '⊗'} and ${pos2 ? '⊙' : '⊗'}). Lines of the total magnetic field${p.forces !== false ? `; each wire feels the other's field and the wires ${attract ? 'attract' : 'repel'}, with force per unit length μ₀ I₁ I₂ /(2π d)` : ''}.`,
+      ),
+    };
+  }
+  if (p.source === 'coax') {
+    const s = new Svg(340, 320);
+    const O: Pt = [170, 160];
+    const [a, bb, cc] = [30, 82, 104];
+    s.circle(O[0], O[1], cc, { tone: 'ink', width: 1.4, fill: 'soft' });
+    s.circle(O[0], O[1], bb, { tone: 'ink', width: 1.4, fill: 'bg' });
+    s.circle(O[0], O[1], a, { tone: 'ink', width: 1.4, fill: 'soft' });
+    if (lines) {
+      ring(s, O, 18, pos, 'accent', 1);
+      ring(s, O, 50, pos, 'accent', 1.5);
+      ring(s, O, 68, pos, 'accent', 1.5);
+      ring(s, O, 93, pos, 'accent', 1);
+    }
+    perp(s, O[0], O[1], pos, 8, 'danger');
+    for (const ang of [30, 150, 270]) {
+      const t = (ang * Math.PI) / 180;
+      perp(s, O[0] + 93 * Math.cos(t), O[1] - 93 * Math.sin(t), !pos, 6, 'danger');
+    }
+    const dim = (r: number, ang: number, lab: string): void => {
+      const t = (ang * Math.PI) / 180;
+      s.line(O[0], O[1], O[0] + r * Math.cos(t), O[1] - r * Math.sin(t), { tone: 'muted', width: 1 });
+      s.text(O[0] + (r + 12) * Math.cos(t), O[1] - (r + 12) * Math.sin(t), lab, { italic: true, halo: true });
+    };
+    dim(a, 215, p.innerLabel ?? 'a');
+    dim(bb, 250, p.outerLabel ?? 'b');
+    dim(cc, 305, p.shellLabel ?? 'c');
+    s.text(O[0] + 118, 22, `${plainLabel(Bl)} = 0`, { size: 12, halo: true });
+    s.text(O[0] + 40, O[1] - 48, Bl, { italic: true, halo: true });
+    return {
+      svg: s,
+      title: c.L('Cavo coassiale (sezione)', 'Coaxial cable (cross-section)'),
+      description: c.L(
+        `Sezione di un cavo coassiale: conduttore pieno di raggio ${plainLabel(p.innerLabel ?? 'a')} con corrente ${plainLabel(I)} ${pos ? 'uscente' : 'entrante'} e conduttore tubolare tra ${plainLabel(p.outerLabel ?? 'b')} e ${plainLabel(p.shellLabel ?? 'c')} con la stessa corrente in verso opposto. Le linee di ${plainLabel(Bl)} sono circonferenze ${pos ? 'antiorarie' : 'orarie'}: il campo cresce come r nel conduttore interno, vale μ₀I/(2πr) tra i conduttori, cala a zero nel tubo ed è nullo fuori.`,
+        `Cross-section of a coaxial cable: solid conductor of radius ${plainLabel(p.innerLabel ?? 'a')} with current ${plainLabel(I)} ${pos ? 'out of' : 'into'} the page and tubular conductor between ${plainLabel(p.outerLabel ?? 'b')} and ${plainLabel(p.shellLabel ?? 'c')} carrying the same current the opposite way. The ${plainLabel(Bl)} lines are ${pos ? 'counter-clockwise' : 'clockwise'} circles: the field grows as r inside the inner conductor, equals μ₀I/(2πr) between the conductors, drops to zero across the tube and vanishes outside.`,
+      ),
+    };
+  }
+  if (p.source === 'toroid') {
+    const s = new Svg(360, 330);
+    const O: Pt = [180, 165];
+    const r1 = 74;
+    const r2 = 122;
+    const rm = (r1 + r2) / 2;
+    s.circle(O[0], O[1], r2, { tone: 'ink', width: 1.6, fill: 'surface2' });
+    s.circle(O[0], O[1], r1, { tone: 'ink', width: 1.6, fill: 'bg' });
+    const gap = p.gap === true;
+    const g = 8;
+    if (gap) {
+      s.rect(O[0] + r1 - 3, O[1] - g, r2 - r1 + 6, 2 * g, { tone: 'faint', width: 0, fill: 'bg' });
+      s.line(O[0] + r1, O[1] - g, O[0] + r2, O[1] - g, { width: 1.6 });
+      s.line(O[0] + r1, O[1] + g, O[0] + r2, O[1] + g, { width: 1.6 });
+      s.text(O[0] + rm, O[1] - g - 12, p.gapLabel ?? 'h', { italic: true, halo: true });
+    }
+    const n = p.turns ?? 12;
+    for (let k = 0; k < n; k++) {
+      const ang = 30 + (300 * (k + 0.5)) / n;
+      const t = (ang * Math.PI) / 180;
+      s.line(
+        O[0] + (r1 - 5) * Math.cos(t),
+        O[1] - (r1 - 5) * Math.sin(t),
+        O[0] + (r2 + 5) * Math.cos(t),
+        O[1] - (r2 + 5) * Math.sin(t),
+        {
+          tone: 'danger',
+          width: 2,
+        },
+      );
+    }
+    if (lines) {
+      s.circle(O[0], O[1], rm, { tone: 'accent', width: 1.6, dash: '7 4' });
+      s.head(O[0], O[1] - rm, pos ? -1 : 1, 0, 10, 'accent');
+      s.head(O[0], O[1] + rm, pos ? 1 : -1, 0, 10, 'accent');
+      s.text(O[0] - 14, O[1] - rm + 18, Bl, { italic: true, halo: true });
+    }
+    s.line(O[0], O[1], O[0] - rm * Math.cos(Math.PI / 4), O[1] + rm * Math.sin(Math.PI / 4), {
+      tone: 'muted',
+      width: 1,
+    });
+    s.text(O[0] - 26, O[1] + 14, p.radiusLabel ?? 'R', { italic: true, halo: true });
+    if (p.innerLabel) s.dimension(O[0] - r2, O[1] + 6, O[0] - r1, O[1] + 6, p.innerLabel, { offset: 0 });
+    s.text(O[0], O[1] - 10, `N, ${plainLabel(I)}`, { italic: true, size: 12, muted: true });
+    return {
+      svg: s,
+      title: gap ? c.L('Toroide con traferro', 'Toroid with an air gap') : c.L('Toroide', 'Toroid'),
+      description: c.L(
+        `Nucleo toroidale di raggio medio ${plainLabel(p.radiusLabel ?? 'R')} avvolto da N spire con corrente ${plainLabel(I)}. Le linee di ${plainLabel(Bl)} sono circonferenze dentro il nucleo; fuori il campo è nullo.${gap ? ` Il nucleo è interrotto da un traferro di spessore ${plainLabel(p.gapLabel ?? 'h')}: B è continuo attraverso il traferro, mentre H è μ_r volte più grande che nel ferro.` : ''}`,
+        `Toroidal core of mean radius ${plainLabel(p.radiusLabel ?? 'R')} wound with N turns carrying current ${plainLabel(I)}. The ${plainLabel(Bl)} lines are circles inside the core; outside the field is zero.${gap ? ` The core is cut by an air gap of thickness ${plainLabel(p.gapLabel ?? 'h')}: B is continuous across the gap, while H is μ_r times larger than in the iron.` : ''}`,
+      ),
+    };
+  }
+  if (p.source === 'hairpin') {
+    const s = new Svg(400, 270);
+    const C: Pt = [250, 135];
+    const R = 72;
+    const cw = pos; // positivo = orario sul semicerchio
+    s.line(20, C[1] - R, C[0], C[1] - R, { width: 2.6 });
+    s.line(20, C[1] + R, C[0], C[1] + R, { width: 2.6 });
+    s.line(4, C[1] - R, 20, C[1] - R, { width: 2.6, dash: '3 4' });
+    s.line(4, C[1] + R, 20, C[1] + R, { width: 2.6, dash: '3 4' });
+    s.path(`M${C[0]} ${C[1] - R}A${R} ${R} 0 0 1 ${C[0]} ${C[1] + R}`, { width: 2.6 });
+    const d = cw ? 1 : -1;
+    s.arrow(90 - d * 20, C[1] - R, 90 + d * 20, C[1] - R, { tone: 'danger', width: 2.6 });
+    s.arrow(90 + d * 20, C[1] + R, 90 - d * 20, C[1] + R, { tone: 'danger', width: 2.6 });
+    s.head(C[0] + R, C[1] + (cw ? 6 : -6), 0, d, 11, 'danger');
+    s.text(90, C[1] - R - 16, I, { italic: true, halo: true });
+    s.dot(C[0], C[1], 3);
+    s.text(C[0] - 14, C[1] + 4, 'C', { italic: true, halo: true });
+    s.line(C[0], C[1], C[0] + R * Math.cos(-0.6), C[1] - R * Math.sin(-0.6), { tone: 'muted', width: 1 });
+    s.text(C[0] + 40, C[1] + 34, p.radiusLabel ?? 'R', { italic: true, halo: true });
+    perp(s, C[0] + 30, C[1] - 22, !cw, 8, 'accent');
+    s.text(C[0] + 48, C[1] - 22, Bl, { italic: true, anchor: 'start', halo: true });
+    return {
+      svg: s,
+      title: c.L('Filo a U con semicerchio', 'U-shaped wire with a semicircle'),
+      description: c.L(
+        `Filo formato da due tratti rettilinei semi-infiniti paralleli e da un semicerchio di raggio ${plainLabel(p.radiusLabel ?? 'R')}, percorso dalla corrente ${plainLabel(I)} in senso ${cw ? 'orario' : 'antiorario'}. Nel centro C del semicerchio i contributi del semicerchio e dei due tratti rettilinei hanno lo stesso verso: ${plainLabel(Bl)} è ${cw ? 'entrante nel' : 'uscente dal'} foglio.`,
+        `Wire made of two parallel semi-infinite straight segments and a semicircle of radius ${plainLabel(p.radiusLabel ?? 'R')}, carrying current ${plainLabel(I)} ${cw ? 'clockwise' : 'counter-clockwise'}. At the centre C of the semicircle the contributions of the semicircle and of the two straight segments point the same way: ${plainLabel(Bl)} points ${cw ? 'into' : 'out of'} the page.`,
+      ),
+    };
+  }
+  return null;
+}
+
 export function magneticField(p: P<'magnetic-field'>, c: Ctx): Drawn {
+  const extra = magneticExtra(p, c);
+  if (extra) return extra;
   const pos = p.current !== 'negative';
   const I = p.currentLabel ?? 'I';
   const Bl = p.fieldLabel ?? 'B';
@@ -440,6 +656,11 @@ export function magneticField(p: P<'magnetic-field'>, c: Ctx): Drawn {
         s.head(O[0] + r, O[1], 0, pos ? -1 : 1, 9, 'accent');
         s.head(O[0] - r, O[1], 0, pos ? 1 : -1, 9, 'accent');
       }
+    if (p.radiusLabel) {
+      s.circle(O[0], O[1], 30, { tone: 'ink', width: 1.6, fill: 'soft' });
+      s.line(O[0], O[1], O[0] - 21, O[1] + 21, { tone: 'muted', width: 1 });
+      s.text(O[0] - 30, O[1] + 34, p.radiusLabel, { italic: true, halo: true });
+    }
     perp(s, O[0], O[1], pos, 13, 'danger');
     s.text(O[0] + 20, O[1] - 18, I, { italic: true, size: 14, halo: true });
     s.text(O[0] + 76 * 0.72 + 10, O[1] - 76 * 0.72 - 6, Bl, { italic: true, size: 14, halo: true });
@@ -553,6 +774,11 @@ export function magneticField(p: P<'magnetic-field'>, c: Ctx): Drawn {
           `Circular loop seen edge-on: current ${plainLabel(I)} comes out of the page at the top (⊙) and goes in at the bottom (⊗)${pos ? '' : ' (reversed)'}. The ${plainLabel(Bl)} lines wrap around the conductors and at the centre of the loop are parallel to the axis, pointing ${pos ? 'right' : 'left'}.`,
         );
   }
+  if (p.source === 'wire-section' && p.radiusLabel)
+    desc += c.L(
+      ` Il conduttore ha raggio ${plainLabel(p.radiusLabel)}: fuori il campo è quello di un filo sottile, dentro dipende da come è distribuita la corrente nella sezione.`,
+      ` The conductor has radius ${plainLabel(p.radiusLabel)}: outside, the field is that of a thin wire; inside, it depends on how the current is spread over the cross-section.`,
+    );
   if (p.rightHand)
     desc += c.L(
       p.source === 'wire' || p.source === 'wire-section'

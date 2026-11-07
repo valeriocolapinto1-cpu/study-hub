@@ -209,6 +209,10 @@
     - campi-variabili.1
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: induction
+      params: { setup: sliding-bar, lengthLabel: l = 20 cm, velocityLabel: v = 3 m/s, induced: false }
   statement:
     it: Una sbarretta lunga 20 cm scorre a 3 m/s su binari, perpendicolare a un campo $B=0{,}5$ T. Calcola la f.e.m. indotta (in V).
     en: A 20 cm bar slides at 3 m/s on rails, perpendicular to a field $B=0.5$ T. Compute the induced emf (in V).
@@ -233,6 +237,10 @@
     - campi-variabili.3
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: magnetic-field
+      params: { source: solenoid, turns: 12 }
   statement:
     it: Solenoide di 1000 spire, lungo 50 cm, con raggio 2 cm. Calcola l'induttanza (in mH).
     en: Solenoid with 1000 turns, 50 cm long, radius 2 cm. Compute its inductance (in mH).
@@ -257,6 +265,12 @@
     - campi-variabili.4
   difficulty: 2
   kind: static
+  figure:
+    netlist:
+      elements:
+        - { type: L, id: L, a: a, b: '0', value: 0.2 }
+        - { type: SW, id: T, a: a, b: b, closed: false, toggleAt: 0 }
+        - { type: R, id: R, a: b, b: '0', value: 50 }
   statement:
     it: Circuito RL con $L=0{,}2$ H e $R=50\ \Omega$. Calcola la costante di tempo (in ms).
     en: RL circuit with $L=0.2$ H and $R=50\ \Omega$. Compute the time constant (in ms).
@@ -281,6 +295,10 @@
     - campi-variabili.1
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: induction
+      params: { setup: rotating-rod, lengthLabel: l = 50 cm, omegaLabel: ω = 100 rad/s }
   statement:
     it: Sbarretta conduttrice lunga 50 cm che ruota attorno a un estremo con $\omega=100$ rad/s, perpendicolare a $B=0{,}1$ T. Calcola la d.d.p. tra gli estremi (in V).
     en: A 50 cm conducting bar rotates about one end with $\omega=100$ rad/s, perpendicular to $B=0.1$ T. Compute the potential difference between its ends (in V).
@@ -305,6 +323,10 @@
     - campi-variabili.7
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: induction
+      params: { setup: rotating-loop, angle: 50, lengthLabel: N = 100, omegaLabel: ω = 2π · 50 Hz }
   statement:
     it: Bobina di 100 spire di area 100 cm² che ruota a 50 giri/s in $B=0{,}2$ T. Calcola l'ampiezza della f.e.m. (in V).
     en: A coil of 100 turns of area 100 cm² rotates at 50 revolutions/s in $B=0.2$ T. Compute the amplitude of the emf (in V).
@@ -353,6 +375,10 @@
     - campi-variabili.1
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: induction
+      params: { setup: loop-near-wire, motion: away, induced: false }
   statement:
     it: 'Una spira è ferma vicino a un filo rettilineo percorso da corrente costante. Se la spira si allontana dal filo, la corrente indotta nella spira:'
     en: 'A loop is at rest near a straight wire carrying a constant current. If the loop moves away from the wire, the current induced in the loop:'
@@ -387,6 +413,10 @@
     - campi-variabili.8
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: capacitor
+      params: { geometry: parallel, battery: false, charges: false }
   statement:
     it: "In un condensatore piano circolare (raggio $R$) che si carica con corrente $I$, il campo magnetico tra le armature a distanza $r\\lt R$ dall'asse vale:"
     en: "In a circular parallel-plate capacitor (radius $R$) charging with current $I$, the magnetic field between the plates at distance $r\\lt R$ from the axis is:"

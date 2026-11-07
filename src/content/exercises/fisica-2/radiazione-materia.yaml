@@ -73,6 +73,10 @@
     - radiazione-materia.6
   difficulty: 1
   kind: static
+  figure:
+    diagram:
+      type: slits
+      params: { slits: 2 }
   statement:
     it: "Nell'esperimento di Young, allontanando tra loro le due fenditure la distanza tra le frange:"
     en: "In Young's experiment, moving the two slits further apart makes the fringe spacing:"
@@ -107,6 +111,10 @@
     - radiazione-materia.6
   difficulty: 1
   kind: static
+  figure:
+    diagram:
+      type: slits
+      params: { slits: 1 }
   statement:
     it: 'Nella diffrazione di Fraunhofer da una fenditura di larghezza $a$, restringendo la fenditura il massimo centrale:'
     en: 'In Fraunhofer diffraction by a slit of width $a$, narrowing the slit makes the central maximum:'
@@ -141,6 +149,19 @@
     - radiazione-materia.2
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: refraction
+      params:
+        {
+          n1: 1.5,
+          n2: 1,
+          incidence: 41.81,
+          critical: true,
+          reflected: false,
+          values: false,
+          mediumLabels: [{ it: vetro, en: glass }, { it: aria, en: air }],
+        }
   statement:
     it: Calcola l'angolo limite per la riflessione totale tra vetro ($n=1{,}5$) e aria (in gradi).
     en: Compute the critical angle for total internal reflection between glass ($n=1.5$) and air (in degrees).
@@ -165,6 +186,17 @@
     - radiazione-materia.2
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: refraction
+      params:
+        {
+          n1: 1,
+          n2: 1.33,
+          incidence: 0,
+          values: false,
+          mediumLabels: [{ it: aria, en: air }, { it: acqua, en: water }],
+        }
   statement:
     it: Luce che passa dall'aria all'acqua ($n=1{,}33$) all'incidenza normale. Calcola la frazione di intensità riflessa (in %).
     en: Light passes from air to water ($n=1.33$) at normal incidence. Compute the fraction of intensity reflected (in %).
@@ -189,6 +221,10 @@
     - radiazione-materia.6
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: slits
+      params: { slits: 2, separationLabel: d, distanceLabel: L = 2 m, fringeLabel: Δy }
   statement:
     it: 'Young: fenditure a 0,2 mm, schermo a 2 m, λ = 600 nm. Calcola la distanza tra due frange chiare consecutive (in mm).'
     en: 'Young: slits 0.2 mm apart, screen at 2 m, λ = 600 nm. Compute the distance between two consecutive bright fringes (in mm).'
@@ -213,6 +249,10 @@
     - radiazione-materia.4
   difficulty: 2
   kind: static
+  figure:
+    diagram:
+      type: polarizers
+      params: { axes: [0, 60], intensities: false }
   statement:
     it: Luce non polarizzata di intensità $I_0=40$ W/m² attraversa due polarizzatori con assi a 60°. Calcola l'intensità finale (in W/m²).
     en: Unpolarised light of intensity $I_0=40$ W/m² goes through two polarisers with axes at 60°. Compute the final intensity (in W/m²).

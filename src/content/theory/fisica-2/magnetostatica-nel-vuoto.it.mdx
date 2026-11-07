@@ -22,6 +22,12 @@ $$
 \vec F = q\left(\vec E+\vec v\times\vec B\right)
 $$
 
+<Diagram
+  type="uniform-field"
+  params={{ field: 'B-in', object: 'particle' }}
+  caption="Carica positiva in un campo B entrante: la forza di Lorentz è sempre perpendicolare alla velocità e la curva su una circonferenza."
+/>
+
 che definisce $\vec B$ (tesla, T). La forza magnetica è sempre perpendicolare alla velocità: **non compie lavoro** e non cambia l'energia cinetica.
 
 - **Moto in B uniforme**: circolare con $r=\frac{mv_\perp}{|q|B}$ e pulsazione di ciclotrone $\omega=\frac{|q|B}{m}$, indipendente dalla velocità. Se c'è una componente parallela a $\vec B$ il moto è elicoidale.
@@ -38,6 +44,12 @@ $$
 \vec M=\vec m\times\vec B,\qquad U=-\vec m\cdot\vec B,\qquad \vec F=\nabla(\vec m\cdot\vec B)
 $$
 
+<Diagram
+  type="uniform-field"
+  params={{ field: 'B-right', object: 'loop', angle: 50 }}
+  caption="Spira in un campo uniforme: forza totale nulla, momento M = μ × B."
+/>
+
 Il **teorema di equivalenza di Ampère** afferma che una spira percorsa da corrente equivale, a grande distanza, a un dipolo magnetico di momento $\vec m$: il suo campo ha la stessa forma di quello del dipolo elettrico. Su questo principio si basano motori e galvanometri.
 
 ## Campo prodotto da correnti stazionarie
@@ -47,6 +59,12 @@ Un elemento di corrente produce il campo dato dalla **I formula di Laplace** (Bi
 $$
 d\vec B=\frac{\mu_0}{4\pi}\frac{I\,d\vec l\times\hat u_r}{r^2}
 $$
+
+<Diagram
+  type="magnetic-field"
+  params={{ source: 'wire', rightHand: true }}
+  caption="Filo rettilineo: linee di B circolari, verso dato dalla regola della mano destra."
+/>
 
 - Filo rettilineo infinito: $B=\frac{\mu_0I}{2\pi r}$, linee circolari (regola della mano destra). Filo finito: $B=\frac{\mu_0I}{4\pi d}(\sin\theta_2-\sin\theta_1)$.
 - Spira circolare, sull'asse: $B=\frac{\mu_0IR^2}{2(R^2+z^2)^{3/2}}$; al centro $B=\frac{\mu_0I}{2R}$. Un arco di angolo $\alpha$ dà al centro $B=\frac{\mu_0I\alpha}{4\pi R}$ (semicerchio: $\frac{\mu_0I}{4R}$).
@@ -61,6 +79,12 @@ Le linee di $\vec B$ sono chiuse (non esistono monopoli magnetici). Il flusso at
 $$
 \oint_S\vec B\cdot\hat n\,dS = 0\quad\Longleftrightarrow\quad\nabla\cdot\vec B=0
 $$
+
+<Diagram
+  type="magnetic-field"
+  params={{ source: 'solenoid', turns: 10 }}
+  caption="Solenoide: con la legge di Ampère su un rettangolo a cavallo delle spire si trova B = μ0 n I all’interno."
+/>
 
 **Teorema della circuitazione di Ampère**: la circuitazione di $\vec B$ lungo una curva chiusa è $\mu_0$ per la corrente concatenata. Con Stokes si ottiene la forma locale:
 
@@ -94,6 +118,12 @@ $$
 \frac{F}{l}=\frac{\mu_0I_1I_2}{2\pi d}
 $$
 
+<Diagram
+  type="magnetic-field"
+  params={{ source: 'wire-pair' }}
+  caption="Due fili con correnti concordi: ciascuno sta nel campo dell’altro e si attraggono."
+/>
+
 Questa relazione definiva l'ampere (fino al 2019: $2\times10^{-7}$ N/m tra fili a 1 m con 1 A). Tra circuiti rigidi le forze si ricavano dall'energia di interazione $U=-I_2\Phi_{21}$ (a correnti costanti $F=+\nabla(I_2\Phi_{21})$).
 
 **Effetto Hall**: in una lamina percorsa da corrente e immersa in $\vec B$ perpendicolare, i portatori vengono deviati lateralmente finché il campo elettrico trasversale non bilancia la forza magnetica: $E_H=v_dB$. La tensione di Hall vale
@@ -118,6 +148,12 @@ Dal segno di $V_H$ si ricava il segno dei portatori, dal modulo la loro densità
 ## Esempio svolto: campo di un cavo coassiale
 
 Un cavo coassiale indefinito ha conduttore interno pieno di raggio $a=1\ \mathrm{mm}$ e conduttore esterno cilindrico con raggi $b=4\ \mathrm{mm}$ e $c=5\ \mathrm{mm}$; i due conduttori portano correnti opposte $I=10\ \mathrm A$, distribuite uniformemente nelle sezioni.
+
+<Diagram
+  type="magnetic-field"
+  params={{ source: 'coax' }}
+  caption="Cavo coassiale in sezione: le circonferenze di Ampère nelle quattro regioni."
+/>
 
 1. **Simmetria.** Le linee di $\vec B$ sono circonferenze coassiali e sul contorno di raggio $r$ il modulo è costante: Ampère dà $B\,2\pi r=\mu_0I_{conc}(r)$.
 2. **Dentro il conduttore interno** ($r<a$): $I_{conc}=I\,r^2/a^2$, quindi $B=\frac{\mu_0Ir}{2\pi a^2}$; a $r=0{,}5\ \mathrm{mm}$ vale $1{,}0\ \mathrm{mT}$.

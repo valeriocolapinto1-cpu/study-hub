@@ -290,7 +290,12 @@ export const Capacitor = z.strictObject({
   geometry: z.enum(['parallel', 'spherical', 'cylindrical']),
   field: z.boolean().optional(),
   charges: z.boolean().optional(),
-  dielectric: z.enum(['none', 'full', 'half']).optional(),
+  /** `layers`: due strati sovrapposti (in serie); `side-by-side`: due dielettrici affiancati (in parallelo). */
+  dielectric: z.enum(['none', 'full', 'half', 'layers', 'side-by-side']).optional(),
+  /** Etichette dei dielettrici (uno o due, es. ['ε_{r1}', 'ε_{r2}']). */
+  dielectricLabels: z.array(label).min(1).max(2).optional(),
+  /** Condensatore piano: generatore collegato alle armature (default sì; no = armature isolate). */
+  battery: z.boolean().optional(),
   fringe: z.boolean().optional(),
   dLabel: label.optional(),
   areaLabel: label.optional(),
@@ -300,19 +305,131 @@ export const Capacitor = z.strictObject({
 });
 
 export const MagneticField = z.strictObject({
-  source: z.enum(['wire', 'wire-section', 'loop', 'solenoid']),
-  /** Verso della corrente: `positive` = verso l'alto (filo), uscente (sezione), antiorario visto da destra (spira). */
+  source: z.enum(['wire', 'wire-section', 'loop', 'solenoid', 'wire-pair', 'coax', 'toroid', 'hairpin']),
+  /** Verso della corrente: `positive` = verso l'alto (filo), uscente (sezione, coppia, coassiale: conduttore interno), antiorario visto da destra (spira), antiorario (toroide, U). */
   current: z.enum(['positive', 'negative']).optional(),
+  /** Coppia di fili: verso della corrente nel secondo filo (default uguale al primo). */
+  current2: z.enum(['positive', 'negative']).optional(),
+  /** Coppia di fili: forze tra i fili (default sì). */
+  forces: z.boolean().optional(),
+  /** Toroide: traferro. */
+  gap: z.boolean().optional(),
   rightHand: z.boolean().optional(),
   turns: z.number().int().min(3).max(14).optional(),
   fieldLines: z.boolean().optional(),
   currentLabel: label.optional(),
   fieldLabel: label.optional(),
+  /** Sezione: raggio del conduttore spesso; U: raggio del semicerchio; toroide: raggio medio. */
+  radiusLabel: label.optional(),
+  /** Coassiale: raggi `a`, `b`, `c`; toroide: lato della sezione e traferro. */
+  innerLabel: label.optional(),
+  outerLabel: label.optional(),
+  shellLabel: label.optional(),
+  gapLabel: label.optional(),
+  /** Coppia di fili: distanza. */
+  distanceLabel: label.optional(),
+});
+
+export const ChargeDistribution = z.strictObject({
+  /**
+   * `sphere`, `shell` (tra due raggi), `cylinder` (sezione), `plane` (piano carico di profilo), `wire` (filo
+   * indefinito di lato), `ring` (anello con asse), `rod` (segmento carico), `sphere-in-shell` (sfera conduttrice
+   * dentro un guscio conduttore).
+   */
+  shape: z.enum(['sphere', 'shell', 'cylinder', 'plane', 'wire', 'ring', 'rod', 'sphere-in-shell']),
+  /** Conduttore in equilibrio: carica in superficie, campo nullo all'interno. */
+  conductor: z.boolean().optional(),
+  charge: z.enum(['positive', 'negative']).optional(),
+  /** Superficie di Gauss: raggio in unità del raggio esterno (0 = nessuna, default 1,5). */
+  gaussian: finite.refine((v) => v >= 0 && v <= 3, 'tra 0 e 3').optional(),
+  field: z.boolean().optional(),
+  radiusLabel: label.optional(),
+  innerLabel: label.optional(),
+  outerLabel: label.optional(),
+  gaussLabel: label.optional(),
+  densityLabel: label.optional(),
+  /** Anello e segmento: punto P (distanza in unità del raggio o della lunghezza, default 1). */
+  point: z
+    .strictObject({
+      distance: finite.refine((v) => v >= 0 && v <= 3, 'tra 0 e 3'),
+      label: label.optional(),
+      distanceLabel: label.optional(),
+    })
+    .optional(),
+  /** Sfera nel guscio: filo che collega i due conduttori. */
+  connected: z.boolean().optional(),
+});
+
+export const UniformField = z
+  .strictObject({
+    /** B entrante/uscente dal foglio o nel piano (verso destra); E verso l'alto, il basso o destra. */
+    field: z.enum(['B-in', 'B-out', 'B-right', 'E-up', 'E-down', 'E-right']),
+    object: z.enum(['particle', 'dipole', 'loop', 'none']),
+    charge: z.enum(['positive', 'negative']).optional(),
+    /** Traiettoria della particella (default sì). */
+    trajectory: z.boolean().optional(),
+    /** Dipolo, spira: angolo in gradi tra p (o μ) e il campo. */
+    angle: finite.refine((v) => v >= 0 && v <= 180, 'tra 0° e 180°').optional(),
+    forces: z.boolean().optional(),
+    fieldLabel: label.optional(),
+    velocityLabel: label.optional(),
+    radiusLabel: label.optional(),
+    chargeLabel: label.optional(),
+    momentLabel: label.optional(),
+  })
+  .superRefine((p, ctx) => {
+    const ok =
+      p.object === 'none' ||
+      (p.object === 'particle' && p.field !== 'B-right' && p.field !== 'E-right') ||
+      (p.object === 'dipole' && p.field === 'E-right') ||
+      (p.object === 'loop' && p.field === 'B-right');
+    if (!ok)
+      ctx.addIssue({
+        code: 'custom',
+        path: ['object'],
+        message: 'particella con B ⊥ al foglio o E verticale; dipolo con E-right; spira con B-right',
+      });
+  });
+
+export const Induction = z.strictObject({
+  setup: z.enum(['sliding-bar', 'rotating-rod', 'rotating-loop', 'loop-near-wire', 'loop-in-field']),
+  /** Verso di B (rotaie, sbarra, spira nel campo). */
+  field: z.enum(['in', 'out']).optional(),
+  /** Rotaie: verso della velocità della barretta (la resistenza è a sinistra). */
+  velocity: z.enum(['right', 'left']).optional(),
+  /** Sbarra rotante: verso di rotazione. */
+  rotation: z.enum(['ccw', 'cw']).optional(),
+  /** Spira vicino al filo: la spira si allontana, si avvicina o è ferma. */
+  motion: z.enum(['away', 'toward', 'none']).optional(),
+  /** Andamento della sorgente nel tempo (B o corrente del filo). */
+  trend: z.enum(['increasing', 'decreasing', 'constant']).optional(),
+  /** Spira rotante: angolo tra normale e B, in gradi. */
+  angle: finite.refine((v) => v >= 0 && v <= 180, 'tra 0° e 180°').optional(),
+  /** Spira nel campo: forma. */
+  loop: z.enum(['circle', 'square']).optional(),
+  /** Corrente indotta (default sì). */
+  induced: z.boolean().optional(),
+  fieldLabel: label.optional(),
+  lengthLabel: label.optional(),
+  widthLabel: label.optional(),
+  distanceLabel: label.optional(),
+  velocityLabel: label.optional(),
+  resistanceLabel: label.optional(),
+  omegaLabel: label.optional(),
+  /** Corrente nel filo (spira vicino al filo). */
+  currentLabel: label.optional(),
+  /** Corrente (o campo elettrico) indotta. */
+  inducedLabel: label.optional(),
+  forceLabel: label.optional(),
 });
 
 // ---------------------------------------------------------------------- onde
 export const Wave = z.strictObject({
-  kind: z.enum(['traveling', 'standing']),
+  /** `electromagnetic`: E e B in fase e ortogonali; `spherical`: fronti d'onda da una sorgente puntiforme. */
+  kind: z.enum(['traveling', 'standing', 'electromagnetic', 'spherical']),
+  /** Onda sferica: punto a distanza (etichetta della distanza). */
+  distanceLabel: label.optional(),
+  sourceLabel: label.optional(),
   /** Lunghezze d'onda mostrate (onda progressiva). */
   wavelengths: finite.refine((v) => v >= 0.5 && v <= 5, 'tra 0,5 e 5').optional(),
   /** Armonica (onda stazionaria). */
@@ -324,6 +441,52 @@ export const Wave = z.strictObject({
   lambda: z.boolean().optional(),
   amplitude: z.boolean().optional(),
   nodes: z.boolean().optional(),
+});
+
+// ------------------------------------------------------------------- ottica
+export const Refraction = z.strictObject({
+  /** Indici dei due mezzi (sopra, sotto). */
+  n1: finite.refine((v) => v >= 1 && v <= 4, 'tra 1 e 4'),
+  n2: finite.refine((v) => v >= 1 && v <= 4, 'tra 1 e 4'),
+  /** Angolo di incidenza dalla normale, in gradi (0–89). */
+  incidence: finite.refine((v) => v >= 0 && v <= 89, 'tra 0° e 89°'),
+  reflected: z.boolean().optional(),
+  /** Polarizzazione dei raggi (punti = ⊥ al piano di incidenza, trattini = nel piano). */
+  polarization: z.boolean().optional(),
+  /** Angolo limite: tratteggia il raggio rifratto radente. */
+  critical: z.boolean().optional(),
+  values: z.boolean().optional(),
+  mediumLabels: z.array(FigText).length(2).optional(),
+});
+
+export const Slits = z.strictObject({
+  slits: z.union([z.literal(1), z.literal(2)]),
+  /** Larghezza della fenditura in lunghezze d'onda. */
+  width: finite.refine((v) => v >= 1 && v <= 20, 'tra 1 e 20').optional(),
+  /** Distanza tra le fenditure in lunghezze d'onda (doppia fenditura). */
+  separation: finite.refine((v) => v >= 2 && v <= 60, 'tra 2 e 60').optional(),
+  /** Profilo di intensità sullo schermo (default sì). */
+  pattern: z.boolean().optional(),
+  /** Lastrina trasparente davanti alla fenditura superiore (frange spostate). */
+  plate: z.boolean().optional(),
+  widthLabel: label.optional(),
+  separationLabel: label.optional(),
+  distanceLabel: label.optional(),
+  fringeLabel: label.optional(),
+  plateLabel: label.optional(),
+});
+
+export const Polarizers = z.strictObject({
+  /** Assi dei polarizzatori in gradi dalla verticale (1–4). */
+  axes: z
+    .array(finite.refine((v) => v >= -180 && v <= 180, 'tra −180° e 180°'))
+    .min(1)
+    .max(4),
+  /** Luce incidente non polarizzata (default sì) o polarizzata verticalmente. */
+  unpolarized: z.boolean().optional(),
+  /** Intensità dopo ogni elemento (frazioni di I_0). */
+  intensities: z.boolean().optional(),
+  intensityLabel: label.optional(),
 });
 
 // ------------------------------------------------------------------ vettori
@@ -535,7 +698,13 @@ export const DIAGRAM_SCHEMAS = {
   'point-charges': PointCharges,
   capacitor: Capacitor,
   'magnetic-field': MagneticField,
+  'charge-distribution': ChargeDistribution,
+  'uniform-field': UniformField,
+  induction: Induction,
   wave: Wave,
+  refraction: Refraction,
+  slits: Slits,
+  polarizers: Polarizers,
   vectors: Vectors,
   flowchart: Flowchart,
   'block-diagram': BlockDiagram,

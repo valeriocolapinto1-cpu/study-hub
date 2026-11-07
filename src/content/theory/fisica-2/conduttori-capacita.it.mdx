@@ -22,6 +22,12 @@ In un conduttore in equilibrio elettrostatico le cariche libere sono ferme, quin
 - la carica in eccesso si trova solo sulla **superficie** (per Gauss $\rho=0$ all'interno);
 - il conduttore è un volume **equipotenziale** e il campo esterno è perpendicolare alla superficie.
 
+<Diagram
+  type="charge-distribution"
+  params={{ shape: 'sphere', conductor: true, gaussian: 0.6 }}
+  caption="Conduttore carico in equilibrio: la carica sta sulla superficie e una superficie di Gauss interna non racchiude carica, quindi E = 0."
+/>
+
 **Teorema di Coulomb.** Con una scatoletta a cavallo della superficie (flusso solo dalla faccia esterna): $E\,dS = \sigma\,dS/\varepsilon_0$, cioè
 
 $$
@@ -35,6 +41,12 @@ $$
 ## Capacità e condensatori
 
 Per un conduttore isolato $Q$ e $V$ sono proporzionali: $C = Q/V$ (farad). Sfera: $C=4\pi\varepsilon_0R$; la Terra ($R\simeq6{,}4\times10^6$ m) ha $C\simeq0{,}7$ mF. Per un sistema di conduttori si definiscono i _coefficienti di potenziale_ $V_i=\sum_j p_{ij}Q_j$ e di _induzione_ $Q_i=\sum_j c_{ij}V_j$ (matrici simmetriche).
+
+<Diagram
+  type="capacitor"
+  params={{ geometry: 'parallel', fringe: true }}
+  caption="Condensatore piano: campo uniforme tra le armature; ai bordi le linee si incurvano."
+/>
 
 Un **condensatore** è formato da due conduttori in induzione completa con cariche $\pm Q$: $C = Q/\Delta V$. Procedura: si calcola $E$ tra le armature con Gauss, si integra per avere $\Delta V$, si divide.
 
