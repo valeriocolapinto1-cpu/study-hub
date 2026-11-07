@@ -187,5 +187,7 @@ In locale con un Chromium già installato: `PW_CHROMIUM_PATH=/opt/pw-browsers/ch
 - **Baseline visive**: si generano solo in CI con il workflow *Aggiorna baseline visive* (avvio manuale, oppure push su un branch con `[baseline]` nel messaggio dell'ultimo commit)
   (`visual-baselines.yml`), che le committa sul branch. Dopo il suo commit serve un nuovo push perché la CI riparta
   (i commit fatti con `GITHUB_TOKEN` non avviano workflow).
+- **Tema nei test**: il sito è scuro di default e non segue `prefers-color-scheme`; axe, visual e simulazioni scelgono il tema
+  scrivendo `sh:v1:global:theme` con `addInitScript`. Gli screenshot attendono `networkidle` (le isole cambiano l'altezza della pagina).
 - `.github/workflows/deploy.yml` (push su main): build e pubblicazione con `actions/deploy-pages`.
   Richiede Settings → Pages → Source: **GitHub Actions**.
