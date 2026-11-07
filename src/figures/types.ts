@@ -27,6 +27,8 @@ export const DIAGRAM_TYPES = [
   'linked-list',
   'tree',
   'truth-table',
+  'scene',
+  'heat-engine',
 ] as const;
 
 export type DiagramType = (typeof DIAGRAM_TYPES)[number];

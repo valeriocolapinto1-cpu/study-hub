@@ -4,6 +4,8 @@ topic: statica-corpo-rigido
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/statica-corpo-rigido/idea">
@@ -29,6 +31,16 @@ Equilibrium means that the forces do not push the body anywhere AND do not make 
 A rigid body is in static equilibrium when it is at rest and stays at rest: all accelerations (linear and angular) are zero. There are two equilibrium conditions: zero resultant of the external forces $\big(\sum\vec{F} = \vec{0}\big)$ and zero resultant torque about any pole $\big(\sum\vec{\tau} = \vec{0}\big)$. In the plane they become 3 scalar equations: two for forces and one for torques.
 
 </div>
+
+<Diagram
+  {...Fig.ladder({ angle: 60 })}
+  caption="Ladder in equilibrium: zero net force and zero torque about a convenient pole (the foot of the ladder removes two unknowns)."
+/>
+
+<Diagram
+  {...Fig.beam({ loadAt: 1 / 3 })}
+  caption="Beam on two supports: torques about A give R_B at once, then the net force gives R_A."
+/>
 
 <div data-note-id="teoria/statica-corpo-rigido/derivazione" class="derivation">
 

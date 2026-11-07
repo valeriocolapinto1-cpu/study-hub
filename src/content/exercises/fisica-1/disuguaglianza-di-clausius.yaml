@@ -15,6 +15,20 @@
       In each cycle an engine absorbs 1200 J from a reservoir at 600 K and releases 800 J to a reservoir at
       300 K. Find: (a) the sum of the reduced heats \(\sum Q_i/T_i\); (b) the efficiency; (c) the increase in
       the entropy of the universe per cycle. Is the engine reversible?
+  figure:
+    diagram:
+      {
+        'type': 'heat-engine',
+        'params':
+          {
+            'kind': 'engine',
+            'reservoirs':
+              [
+                { 'label': 'T_1 = 600 K', 'heat': 'Q_1', 'side': 'hot' },
+                { 'label': 'T_2 = 300 K', 'heat': 'Q_2', 'side': 'cold' },
+              ],
+          },
+      }
   steps:
     - title:
         it: Calori ridotti
@@ -69,6 +83,21 @@
       A cycle exchanges heat with three reservoirs: it absorbs 500 J at 500 K and 300 J at 400 K, and releases
       heat at 250 K. Find: (a) the maximum work per cycle compatible with Clausius' inequality; (b) the
       corresponding efficiency; (c) the Carnot efficiency between the extreme temperatures.
+  figure:
+    diagram:
+      {
+        'type': 'heat-engine',
+        'params':
+          {
+            'kind': 'engine',
+            'reservoirs':
+              [
+                { 'label': 'T_1 = 500 K', 'heat': 'Q_1', 'side': 'hot' },
+                { 'label': 'T_2 = 400 K', 'heat': 'Q_2', 'side': 'hot' },
+                { 'label': 'T_3 = 250 K', 'heat': 'Q_3', 'side': 'cold' },
+              ],
+          },
+      }
   steps:
     - title:
         it: Calore minimo ceduto

@@ -15,6 +15,28 @@
       1.0 mol of monatomic ideal gas at 300 K and 2.0·10⁵ Pa expands until its volume doubles. Find the work
       done by the gas and the final temperature: (a) if the expansion is reversible isothermal; (b) if it is
       reversible adiabatic.
+  figure:
+    diagram:
+      {
+        'type': 'pv-cycle',
+        'params':
+          {
+            'gamma': 1.6667,
+            'values': false,
+            'work': false,
+            'states':
+              [
+                { 'id': 'A', 'V': 12.47, 'p': 200 },
+                { 'id': 'B', 'V': 24.94, 'p': 100 },
+                { 'id': 'C', 'V': 24.94, 'p': 63 },
+              ],
+            'processes':
+              [
+                { 'from': 'A', 'to': 'B', 'kind': 'isothermal' },
+                { 'from': 'A', 'to': 'C', 'kind': 'adiabatic' },
+              ],
+          },
+      }
   steps:
     - title:
         it: Isoterma
@@ -68,6 +90,30 @@
       A diatomic ideal gas (n = 0.50 mol) goes clockwise around a rectangular cycle in the p-V plane between
       p₁ = 1.0·10⁵ Pa, p₂ = 3.0·10⁵ Pa, V₁ = 10 L, V₂ = 25 L. Find: (a) the net work; (b) the heat absorbed in
       the branches where heat flows in; (c) the efficiency of the cycle.
+  figure:
+    diagram:
+      {
+        'type': 'pv-cycle',
+        'params':
+          {
+            'values': true,
+            'work': true,
+            'states':
+              [
+                { 'id': '1', 'V': 10, 'p': 100 },
+                { 'id': '2', 'V': 10, 'p': 300 },
+                { 'id': '3', 'V': 25, 'p': 300 },
+                { 'id': '4', 'V': 25, 'p': 100 },
+              ],
+            'processes':
+              [
+                { 'from': '1', 'to': '2', 'kind': 'isochoric' },
+                { 'from': '2', 'to': '3', 'kind': 'isobaric' },
+                { 'from': '3', 'to': '4', 'kind': 'isochoric' },
+                { 'from': '4', 'to': '1', 'kind': 'isobaric' },
+              ],
+          },
+      }
   steps:
     - title:
         it: Lavoro netto

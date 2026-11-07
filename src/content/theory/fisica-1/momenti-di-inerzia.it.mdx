@@ -4,6 +4,8 @@ topic: momenti-di-inerzia
 lang: it
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="L'idea in sintesi">
 
 <div data-note-id="teoria/momenti-di-inerzia/idea">
@@ -35,6 +37,11 @@ Il momento di inerzia pesa la massa col quadrato della distanza dall'asse: la ma
 Il momento di inerzia di un corpo rispetto a un asse è $I = \sum_i m_i r_i^2$ (discreto) o $I = \int r^2\,dm$ (continuo), dove r è la distanza di ciascun elemento di massa dall'asse. È la misura dell'inerzia rotazionale: quanto il corpo 'resiste' alle variazioni di velocità angolare attorno a quell'asse. Dipende dall'asse scelto e da come la massa è distribuita rispetto a esso. Il teorema di Huygens-Steiner collega il momento rispetto a un asse qualsiasi a quello rispetto all'asse parallelo passante per il CM: $I = I_{cm} + Md^2$.
 
 </div>
+
+<Diagram
+  {...Fig.rodWithMasses()}
+  caption="Lo stesso corpo ha momenti d'inerzia diversi rispetto ad assi diversi: per assi paralleli vale Huygens-Steiner, I = I_cm + Md²."
+/>
 
 <div data-note-id="teoria/momenti-di-inerzia/derivazione" class="derivation">
 

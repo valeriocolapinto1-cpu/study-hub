@@ -4,6 +4,8 @@ topic: moto-corpo-rigido
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/moto-corpo-rigido/idea">
@@ -29,6 +31,17 @@ The rigidity constraint reduces an enormous number of degrees of freedom to just
 A rigid body is a system of points whose mutual distances stay constant. Its most general motion is the composition of a translation (described by the motion of the CM) and a rotation about an axis through the CM: 6 coordinates are needed (3 + 3). The velocity field is $\vec{v}_P = \vec{v}_{cm} + \vec{\omega}\times\vec{r}_{P}$, with r_P the position of P relative to the CM. The motion is governed by the two cardinal equations.
 
 </div>
+
+<Diagram
+  {...Fig.pulley({
+    masses: [
+      { label: 'm_1', side: 'left' },
+      { label: 'm_2', side: 'right' },
+    ],
+    heavier: 'left',
+  })}
+  caption="Massive pulley: the difference of the tensions T₁ − T₂ provides the torque that accelerates the disc, τ = Iα."
+/>
 
 <div data-note-id="teoria/moto-corpo-rigido/derivazione" class="derivation">
 

@@ -4,6 +4,8 @@ topic: teorema-momento-angolare
 lang: it
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="L'idea in sintesi">
 
 <div data-note-id="teoria/teorema-momento-angolare/idea">
@@ -29,6 +31,11 @@ lang: it
 Per un sistema di punti materiali, il momento angolare totale rispetto a un polo O è $\vec{L} = \sum_i \vec{r}_i\times m_i\vec{v}_i$ e il momento risultante delle forze esterne è $\vec{\tau}^{ext} = \sum_i \vec{r}_i\times\vec{F}_i^{ext}$. La seconda equazione cardinale afferma: $d\vec{L}/dt = \vec{\tau}^{ext}$, valida se il polo è fisso in un sistema inerziale oppure coincide con il centro di massa. I momenti delle forze interne non contribuiscono.
 
 </div>
+
+<Diagram
+  {...Fig.skater()}
+  caption="Senza momenti esterni il momento angolare si conserva: diminuendo I la velocità angolare aumenta."
+/>
 
 <div data-note-id="teoria/teorema-momento-angolare/derivazione" class="derivation">
 

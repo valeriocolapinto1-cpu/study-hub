@@ -4,6 +4,8 @@ topic: secondo-principio
 lang: it
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="L'idea in sintesi">
 
 <div data-note-id="teoria/secondo-principio/idea">
@@ -29,6 +31,16 @@ Il primo principio dice che l'energia si conserva; il secondo dice che ha una di
 Il secondo principio stabilisce l'irreversibilità dei processi naturali attraverso due enunciati equivalenti. Kelvin-Planck: è impossibile una trasformazione ciclica il cui UNICO risultato sia convertire integralmente in lavoro il calore prelevato da una sola sorgente. Clausius: è impossibile una trasformazione ciclica il cui UNICO risultato sia trasferire calore da un corpo freddo a uno caldo. Una macchina termica deve quindi sempre cedere calore a una sorgente fredda: il rendimento $\eta = W/Q_{ass} = 1 - Q_{ced}/Q_{ass}$ è sempre minore di 1.
 
 </div>
+
+<Diagram
+  {...Fig.heatEngine('engine')}
+  caption="Macchina termica: per Kelvin-Planck una parte del calore assorbito Q_C deve sempre essere ceduta alla sorgente fredda."
+/>
+
+<Diagram
+  {...Fig.heatEngine('refrigerator')}
+  caption="Frigorifero: per Clausius il calore passa dalla sorgente fredda alla calda solo spendendo lavoro."
+/>
 
 <div data-note-id="teoria/secondo-principio/derivazione" class="derivation">
 

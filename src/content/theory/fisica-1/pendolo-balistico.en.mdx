@@ -4,6 +4,8 @@ topic: pendolo-balistico
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/pendolo-balistico/idea">
@@ -29,6 +31,11 @@ The ballistic pendulum is the perfect example of 'each phase has its law': the c
 The ballistic pendulum is a device for measuring the speed of a projectile: a block of mass M hangs from strings; the projectile of mass m embeds itself in it (perfectly inelastic collision) and the system rises by a height h. The problem is solved in TWO phases with different conservation laws: in the collision momentum is conserved (not energy), in the rise mechanical energy is conserved (not momentum, because gravity and tensions act).
 
 </div>
+
+<Diagram
+  {...Fig.ballisticPendulum()}
+  caption="Two stages: in the collision momentum is conserved (not energy), during the swing mechanical energy is conserved."
+/>
 
 <div data-note-id="teoria/pendolo-balistico/derivazione" class="derivation">
 

@@ -24,6 +24,17 @@ The elementary work of a force $\vec{F}$ over an infinitesimal displacement $d\v
 
 </div>
 
+<Diagram
+  type="function-plot"
+  params={{
+    x: { min: 0, max: 8, label: 'x', unit: 'm' },
+    y: { min: 0, label: 'F_x', unit: 'N' },
+    series: [{ kind: 'poly', coeffs: [2, 1.5, -0.15], label: 'F_x(x)' }],
+    area: { series: 0, from: 1, to: 6, label: 'W' },
+  }}
+  caption="In one dimension the work of a variable force between two positions is the area under the graph of F_x(x)."
+/>
+
 <div data-note-id="teoria/lavoro-energia-cinetica/derivazione" class="derivation">
 
 ## Step-by-step derivation

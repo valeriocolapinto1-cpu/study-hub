@@ -4,6 +4,8 @@ topic: calori-molari
 lang: it
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="L'idea in sintesi">
 
 <div data-note-id="teoria/calori-molari/idea">
@@ -29,6 +31,11 @@ Scaldare a volume costante è 'versare' energia solo nel serbatoio interno; scal
 Il calore molare è il calore necessario per innalzare di 1 K la temperatura di una mole: $c = \frac{1}{n}\frac{\delta Q}{dT}$. Dipende dalla trasformazione: a volume costante c_V, a pressione costante c_p. Per i gas perfetti vale la relazione di Mayer $c_p = c_V + R$ e si definisce $\gamma = c_p/c_V$. Per i solidi cristallini la legge di Dulong-Petit prevede c ≈ 3R, indipendente dal materiale.
 
 </div>
+
+<Diagram
+  {...Fig.heatingPv({ n: 1, dT: 100 })}
+  caption="Stesso ΔT, stessa ΔU: lungo l'isobara il gas compie anche il lavoro (area colorata), perciò c_p = c_V + R."
+/>
 
 <div data-note-id="teoria/calori-molari/derivazione" class="derivation">
 

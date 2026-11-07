@@ -15,6 +15,41 @@
       A bolt is tightened with a 25 cm long wrench by applying at its end a force of 80 N at an angle of 60°
       to the wrench. Find: (a) the lever arm of the force; (b) the magnitude of the torque about the bolt
       axis; (c) the minimum force that would give the same torque.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': "Chiave che stringe un bullone: la forza F applicata all'estremità forma l'angolo φ con la chiave; il braccio è r sin φ.",
+                'en': 'Wrench tightening a bolt: the force F at the end makes the angle φ with the wrench; the lever arm is r sin φ.',
+              },
+            'items':
+              [
+                { 'kind': 'rod', 'from': [0, 0], 'to': [5, 0], 'thickness': 10, 'label': 'r' },
+                { 'kind': 'disc', 'at': [0, 0], 'r': 0.45, 'axle': true },
+                { 'kind': 'vector', 'from': [5, 0], 'to': [5.9, 1.559], 'label': 'F', 'vkind': 'applied' },
+                {
+                  'kind': 'line',
+                  'points': [[5, 0], [6.6, 0]],
+                  'dash': true,
+                  'tone': 'muted',
+                  'width': 'thin',
+                },
+                { 'kind': 'angle', 'at': [5, 0], 'from': 0, 'to': 60, 'r': 26, 'label': 'φ' },
+                {
+                  'kind': 'line',
+                  'points': [[3.7, -2.252], [5, 0]],
+                  'dash': true,
+                  'tone': 'muted',
+                  'width': 'thin',
+                },
+                { 'kind': 'rotation', 'at': [0, 0], 'r': 30, 'from': -60, 'to': 60, 'label': 'τ' },
+              ],
+          },
+      }
   steps:
     - title:
         it: Braccio
@@ -74,6 +109,62 @@
       hole at the centre. The initial radius is r₁ = 0.50 m with speed v₁ = 2.0 m/s. By slowly pulling the
       string from below, the radius is reduced to r₂ = 0.20 m. Find: (a) the new speed; (b) the change in
       kinetic energy; (c) the final tension in the string.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': "Vista dall'alto: la pallina gira legata a un filo che passa per il foro centrale; tirando il filo il raggio passa da r₁ a r₂ e il momento angolare rispetto al foro si conserva.",
+                'en': 'Top view: the ball circles on a string through the central hole; pulling the string reduces the radius from r₁ to r₂ while the angular momentum about the hole is conserved.',
+              },
+            'items':
+              [
+                { 'kind': 'arc', 'center': [0, 0], 'r': 2.5, 'tone': 'muted', 'dash': true },
+                { 'kind': 'arc', 'center': [0, 0], 'r': 1, 'tone': 'muted', 'dash': true },
+                { 'kind': 'disc', 'at': [0, 0], 'r': 0.12, 'axle': false },
+                { 'kind': 'line', 'points': [[0, 0], [2.5, 0]], 'tone': 'success' },
+                {
+                  'kind': 'disc',
+                  'at': [2.5, 0],
+                  'r': 0.22,
+                  'axle': false,
+                  'style': 'sphere',
+                  'label': 'm',
+                  'labelAngle': -30,
+                },
+                {
+                  'kind': 'vector',
+                  'from': [2.5, 0],
+                  'to': [2.5, 1.6],
+                  'label': 'v_1',
+                  'labelAngle': 0,
+                  'vkind': 'velocity',
+                },
+                { 'kind': 'disc', 'at': [0, 1], 'r': 0.22, 'axle': false, 'style': 'sphere' },
+                {
+                  'kind': 'vector',
+                  'from': [0, 1],
+                  'to': [-1.9, 1],
+                  'label': 'v_2',
+                  'labelAngle': 90,
+                  'vkind': 'velocity',
+                },
+                { 'kind': 'dim', 'from': [0, 0], 'to': [1.915, -1.607], 'label': 'r_1', 'offset': 0 },
+                { 'kind': 'dim', 'from': [0, 0], 'to': [-0.766, -0.643], 'label': 'r_2', 'offset': 0 },
+                {
+                  'kind': 'vector',
+                  'from': [2.25, 0],
+                  'to': [1.2, 0],
+                  'label': 'T',
+                  'labelAngle': 270,
+                  'vkind': 'tension',
+                },
+              ],
+          },
+      }
   steps:
     - title:
         it: Forza centrale

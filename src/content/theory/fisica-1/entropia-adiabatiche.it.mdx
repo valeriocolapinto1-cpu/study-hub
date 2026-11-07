@@ -4,6 +4,8 @@ topic: entropia-adiabatiche
 lang: it
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="L'idea in sintesi">
 
 <div data-note-id="teoria/entropia-adiabatiche/idea">
@@ -29,6 +31,11 @@ L'entropia è il contachilometri dell'irreversibilità: registra quanta 'qualit�
 L'entropia è la funzione di stato definita da $dS = \delta Q_{rev}/T$: la variazione tra due stati si calcola lungo una QUALSIASI trasformazione reversibile che li congiunge, $\Delta S = \int_A^B \delta Q_{rev}/T$. Per una trasformazione qualunque vale $\Delta S \ge \int_A^B \delta Q/T$ (uguaglianza se reversibile). In un sistema isolato (in particolare adiabatico: δQ = 0) l'entropia non può diminuire: $\Delta S \ge 0$ — legge dell'aumento dell'entropia.
 
 </div>
+
+<Diagram
+  {...Fig.expansionPv({ n: 1, T1: 400, k: 3, gamma: 1.4 })}
+  caption="Dallo stesso stato A l'adiabatica reversibile (a entropia costante) è più ripida dell'isoterma: pV^γ = cost."
+/>
 
 <div data-note-id="teoria/entropia-adiabatiche/derivazione" class="derivation">
 

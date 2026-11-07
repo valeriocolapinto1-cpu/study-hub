@@ -4,6 +4,8 @@ topic: centro-di-massa
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/centro-di-massa/idea">
@@ -29,6 +31,11 @@ The centre of mass is the system's 'spokesperson': however the pieces interact, 
 For a system of N point particles, the centre of mass (CM) is the point with position $\vec{r}_{cm} = \frac{1}{M}\sum_i m_i\vec{r}_i$, with $M = \sum_i m_i$ (for a continuous body the integral $\vec{r}_{cm} = \frac{1}{M}\int \vec{r}\,dm$). The first cardinal equation states that the resultant of the external forces alone governs the motion of the centre of mass: $\vec{F}^{ext} = M\vec{a}_{cm}$. Equivalently, $\vec{F}^{ext} = d\vec{P}/dt$ with $\vec{P} = M\vec{v}_{cm}$ the total momentum.
 
 </div>
+
+<Diagram
+  {...Fig.explosion()}
+  caption="The internal forces of the explosion do not change the motion of the centre of mass, which continues like the whole projectile."
+/>
 
 <div data-note-id="teoria/centro-di-massa/derivazione" class="derivation">
 

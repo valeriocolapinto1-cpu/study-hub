@@ -30,6 +30,19 @@ La disuguaglianza di Clausius generalizza il teorema di Carnot a cicli qualsiasi
 
 </div>
 
+<Diagram
+  type="heat-engine"
+  params={{
+    kind: 'engine',
+    reservoirs: [
+      { label: 'T_1', heat: 'Q_1', side: 'hot' },
+      { label: 'T_2', heat: 'Q_2', side: 'hot' },
+      { label: 'T_3', heat: 'Q_3', side: 'cold' },
+    ],
+  }}
+  caption="Ciclo che scambia calore con più sorgenti: la somma dei calori ridotti Σ Q_i/T_i non può essere positiva."
+/>
+
 <div data-note-id="teoria/disuguaglianza-di-clausius/derivazione" class="derivation">
 
 ## Derivazione passo per passo

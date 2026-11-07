@@ -37,6 +37,8 @@ const GROUP: Record<DiagramType, [Loader, string]> = {
   'linked-list': [() => import('./types/cs'), 'linkedList'],
   tree: [() => import('./types/cs'), 'tree'],
   'truth-table': [() => import('./types/cs'), 'truthTable'],
+  scene: [() => import('./types/scene'), 'scene'],
+  'heat-engine': [() => import('./types/thermo'), 'heatEngine'],
 };
 
 export async function renderDiagramAsync(

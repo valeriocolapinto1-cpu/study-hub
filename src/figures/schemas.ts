@@ -683,6 +683,154 @@ export const TruthTable = z
     });
   });
 
+// ------------------------------------------------- schizzi e macchine termiche
+const pt = z.tuple([finite, finite]);
+const sceneItem = z.discriminatedUnion('kind', [
+  /** Superficie con tratteggio a destra del verso from → to (pavimento: da sinistra a destra). */
+  z.strictObject({ kind: z.literal('surface'), from: pt, to: pt, label: FigText.optional() }),
+  z.strictObject({
+    kind: z.literal('line'),
+    points: z.array(pt).min(2).max(200),
+    closed: z.boolean().optional(),
+    fill: z.enum(['none', 'soft', 'surface', 'surface2']).optional(),
+    tone: tone.optional(),
+    dash: z.boolean().optional(),
+    width: z.enum(['thin', 'normal', 'thick']).optional(),
+    arrow: z.enum(['mid', 'end']).optional(),
+    label: FigText.optional(),
+    labelAt: pt.optional(),
+  }),
+  z.strictObject({
+    kind: z.literal('rod'),
+    from: pt,
+    to: pt,
+    thickness: finite.refine((v) => v >= 2 && v <= 20, 'spessore tra 2 e 20 px').optional(),
+    label: label.optional(),
+  }),
+  z.strictObject({
+    kind: z.literal('block'),
+    at: pt,
+    w: pos,
+    h: pos,
+    angle: deg.optional(),
+    label: label.optional(),
+  }),
+  z.strictObject({
+    kind: z.literal('disc'),
+    at: pt,
+    r: pos,
+    style: z.enum(['disc', 'ring', 'sphere']).optional(),
+    axle: z.boolean().optional(),
+    hole: z.strictObject({ at: pt, r: pos }).optional(),
+    radius: z.strictObject({ angle: deg.optional(), label: label.optional() }).optional(),
+    label: label.optional(),
+    labelAngle: deg.optional(),
+  }),
+  z.strictObject({
+    kind: z.literal('pivot'),
+    at: pt,
+    style: z.enum(['hinge', 'support', 'pin']).optional(),
+    label: label.optional(),
+    labelAngle: deg.optional(),
+  }),
+  z.strictObject({
+    kind: z.literal('spring'),
+    from: pt,
+    to: pt,
+    coils: z.number().int().min(3).max(20).optional(),
+    label: label.optional(),
+  }),
+  z.strictObject({
+    kind: z.literal('vector'),
+    from: pt,
+    to: pt,
+    label: label.optional(),
+    labelAngle: deg.optional(),
+    vkind: z
+      .enum(['weight', 'normal', 'friction', 'tension', 'applied', 'velocity', 'acceleration', 'other'])
+      .optional(),
+    tone: tone.optional(),
+    dash: z.boolean().optional(),
+  }),
+  /** Freccia curva di rotazione (raggio in px, angoli in gradi; to > from = antiorario). */
+  z.strictObject({
+    kind: z.literal('rotation'),
+    at: pt,
+    r: finite.refine((v) => v >= 8 && v <= 80, 'raggio tra 8 e 80 px'),
+    from: deg,
+    to: deg,
+    label: label.optional(),
+    tone: tone.optional(),
+  }),
+  z.strictObject({
+    kind: z.literal('arc'),
+    center: pt,
+    r: pos,
+    from: deg.optional(),
+    to: deg.optional(),
+    tone: tone.optional(),
+    dash: z.boolean().optional(),
+    width: z.enum(['thin', 'normal', 'thick']).optional(),
+  }),
+  /** Quota: `offset` in px a sinistra del verso from → to. */
+  z.strictObject({ kind: z.literal('dim'), from: pt, to: pt, label, offset: finite.optional() }),
+  z.strictObject({
+    kind: z.literal('angle'),
+    at: pt,
+    from: deg,
+    to: deg,
+    r: finite.refine((v) => v >= 10 && v <= 80, 'raggio tra 10 e 80 px').optional(),
+    label: label.optional(),
+  }),
+  z.strictObject({
+    kind: z.literal('dot'),
+    at: pt,
+    label: label.optional(),
+    labelAngle: deg.optional(),
+    tone: tone.optional(),
+  }),
+  z.strictObject({
+    kind: z.literal('label'),
+    at: pt,
+    text: FigText,
+    italic: z.boolean().optional(),
+    muted: z.boolean().optional(),
+    size: z.number().int().min(10).max(16).optional(),
+  }),
+]);
+export const Scene = z.strictObject({
+  title: FigText.optional(),
+  /** Frase per i lettori di schermo, prima dell'elenco generato degli elementi. */
+  description: FigText.optional(),
+  /** Larghezza massima in px (default 420) e altezza massima (default 340). */
+  width: z.number().int().min(200).max(640).optional(),
+  maxHeight: z.number().int().min(120).max(480).optional(),
+  items: z.array(sceneItem).min(1).max(60),
+});
+
+const reservoir = z.strictObject({
+  /** Temperatura (es. `T_C = 600 K`). */
+  label: z.string().min(1).max(24),
+  /** Calore scambiato con la macchina (es. `Q_C`). */
+  heat: z.string().max(24).optional(),
+  side: z.enum(['hot', 'cold']),
+  /** Verso del calore rispetto alla macchina; default dal tipo (motore: entra dalla calda, esce verso la fredda). */
+  flow: z.enum(['in', 'out']).optional(),
+});
+export const HeatEngine = z.strictObject({
+  kind: z.enum(['engine', 'refrigerator', 'heat-pump']),
+  reservoirs: z
+    .array(reservoir)
+    .min(2)
+    .max(4)
+    .refine((r) => r.some((x) => x.side === 'hot') && r.some((x) => x.side === 'cold'), {
+      message: 'serve almeno una sorgente calda e una fredda',
+    }),
+  /** Etichetta del lavoro (default `W`); stringa vuota = niente freccia del lavoro. */
+  work: z.string().max(24).optional(),
+  engineLabel: z.string().max(8).optional(),
+});
+
 // ---------------------------------------------------------------- registro
 export const DIAGRAM_SCHEMAS = {
   'free-body': FreeBody,
@@ -712,6 +860,8 @@ export const DIAGRAM_SCHEMAS = {
   'linked-list': LinkedList,
   tree: Tree,
   'truth-table': TruthTable,
+  scene: Scene,
+  'heat-engine': HeatEngine,
 } satisfies Record<DiagramType, z.ZodType>;
 
 export type DiagramParams = { [K in DiagramType]: z.input<(typeof DIAGRAM_SCHEMAS)[K]> };

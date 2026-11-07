@@ -17,7 +17,8 @@ import {
   springMass,
 } from './types/mechanics';
 import { functionPlot, motionGraphs } from './types/plots';
-import { pvCycle } from './types/thermo';
+import { heatEngine, pvCycle } from './types/thermo';
+import { scene } from './types/scene';
 import { capacitor, magneticField, pointCharges } from './types/em';
 import { chargeDistribution, induction, uniformField } from './types/fields';
 import { polarizers, refraction, slits } from './types/optics';
@@ -54,6 +55,8 @@ export const RENDERERS: { [K in DiagramType]: Renderer<K> } = {
   'linked-list': linkedList,
   tree,
   'truth-table': truthTable,
+  scene,
+  'heat-engine': heatEngine,
 };
 
 export function renderDiagram<K extends DiagramType>(

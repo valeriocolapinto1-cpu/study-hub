@@ -4,6 +4,7 @@
  * compatta di passi e risposte.
  */
 import type { AnswerItem, ExerciseStep, GeneratedExercise } from '../../../engine/generators/registry';
+import type { DiagramSpec } from '../../../figures/schemas';
 
 export type Lang = 'it' | 'en';
 export const COURSE = 'fisica-1';
@@ -54,8 +55,10 @@ export const exercise = (
   statement: string,
   steps: ExerciseStep[],
   answer: AnswerItem[],
+  diagram?: DiagramSpec,
 ): GeneratedExercise => ({
   statement,
+  ...(diagram ? { figure: { diagram } } : {}),
   steps,
   answer,
 });

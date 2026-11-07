@@ -17,6 +17,55 @@
       calm water (negligible friction). The man walks to the bow. Find: (a) the displacement of the boat; (b)
       the displacement of the man relative to the shore; (c) the velocity of the boat when the man walks at
       1.2 m/s relative to the shore.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Barca in acqua ferma con una persona che cammina da poppa a prua; senza forze esterne orizzontali il centro di massa resta fermo e la barca arretra.',
+                'en': 'Boat in still water with a person walking from stern to bow; with no horizontal external forces the centre of mass stays put and the boat moves back.',
+              },
+            'items':
+              [
+                {
+                  'kind': 'line',
+                  'points': [[-4, 0], [4.5, 0], [4.5, -1.2], [-4, -1.2]],
+                  'closed': true,
+                  'fill': 'soft',
+                  'tone': 'info',
+                },
+                {
+                  'kind': 'line',
+                  'points': [[-2.5, 0.6], [2.5, 0.6], [2, -0.4], [-2, -0.4]],
+                  'closed': true,
+                  'fill': 'surface2',
+                },
+                { 'kind': 'block', 'at': [-2.1, 1.25], 'w': 0.4, 'h': 1.3, 'label': 'm' },
+                { 'kind': 'block', 'at': [2.1, 1.25], 'w': 0.4, 'h': 1.3 },
+                { 'kind': 'label', 'at': [0, 0.15], 'text': 'M', 'italic': true },
+                { 'kind': 'dim', 'from': [-2.5, -0.9], 'to': [2.5, -0.9], 'label': 'L', 'offset': 0 },
+                {
+                  'kind': 'vector',
+                  'from': [-1.4, 2.3],
+                  'to': [1.4, 2.3],
+                  'label': 'v_{uomo}',
+                  'labelAngle': 90,
+                  'vkind': 'velocity',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [0.6, -1.6],
+                  'to': [-0.8, -1.6],
+                  'label': 'V',
+                  'labelAngle': 270,
+                  'vkind': 'velocity',
+                },
+              ],
+          },
+      }
   steps:
     - title:
         it: Il CM resta fermo
@@ -80,6 +129,93 @@
       fragments. The first, of 1.0 kg, leaves horizontally at 30 m/s. Find: (a) the velocity of the second
       fragment; (b) the horizontal distance between the landing points of the two fragments; (c) where the
       centre of mass lands.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Proiettile che esplode nel punto più alto in due frammenti con velocità orizzontali opposte; il centro di massa continua la traiettoria del proiettile intero.',
+                'en': 'Projectile exploding at the top into two fragments with opposite horizontal velocities; the centre of mass continues the trajectory of the whole projectile.',
+              },
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-4, 0], 'to': [4, 0] },
+                { 'kind': 'line', 'points': [[0, 0], [0, 4]], 'dash': true, 'tone': 'muted' },
+                {
+                  'kind': 'line',
+                  'points':
+                    [
+                      [0, 4],
+                      [0.177, 3.984],
+                      [0.354, 3.938],
+                      [0.53, 3.859],
+                      [0.707, 3.75],
+                      [0.884, 3.609],
+                      [1.061, 3.438],
+                      [1.237, 3.234],
+                      [1.414, 3],
+                      [1.591, 2.734],
+                      [1.768, 2.438],
+                      [1.945, 2.109],
+                      [2.121, 1.75],
+                      [2.298, 1.359],
+                      [2.475, 0.938],
+                      [2.652, 0.484],
+                      [2.828, 0],
+                    ],
+                  'tone': 'accent2',
+                  'arrow': 'end',
+                },
+                {
+                  'kind': 'line',
+                  'points':
+                    [
+                      [0, 4],
+                      [-0.088, 3.984],
+                      [-0.177, 3.938],
+                      [-0.265, 3.859],
+                      [-0.354, 3.75],
+                      [-0.442, 3.609],
+                      [-0.53, 3.438],
+                      [-0.619, 3.234],
+                      [-0.707, 3],
+                      [-0.795, 2.734],
+                      [-0.884, 2.438],
+                      [-0.972, 2.109],
+                      [-1.061, 1.75],
+                      [-1.149, 1.359],
+                      [-1.237, 0.938],
+                      [-1.326, 0.484],
+                      [-1.414, 0],
+                    ],
+                  'tone': 'accent',
+                  'arrow': 'end',
+                },
+                { 'kind': 'dot', 'at': [0, 4], 'label': 'H', 'labelAngle': 135 },
+                {
+                  'kind': 'vector',
+                  'from': [0, 4],
+                  'to': [1.3, 4],
+                  'label': 'v_1',
+                  'labelAngle': 90,
+                  'vkind': 'velocity',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [0, 4],
+                  'to': [-0.8, 4],
+                  'label': 'v_2',
+                  'labelAngle': 90,
+                  'vkind': 'velocity',
+                },
+                { 'kind': 'dot', 'at': [0, 0], 'label': 'CM', 'labelAngle': 270, 'tone': 'accent' },
+                { 'kind': 'dim', 'from': [0, 0], 'to': [0, 4], 'label': 'h', 'offset': 22 },
+              ],
+          },
+      }
   steps:
     - title:
         it: Conservazione di P nell'esplosione

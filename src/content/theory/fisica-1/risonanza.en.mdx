@@ -4,6 +4,8 @@ topic: risonanza
 lang: en
 ---
 
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
 <Layer kind="intuizione" title="The idea in brief">
 
 <div data-note-id="teoria/risonanza/idea">
@@ -35,6 +37,11 @@ Resonance is pushing a swing at the right moment: if every push arrives in phase
 A driven oscillator is a damped oscillator also acted upon by a periodic external force $F(t) = F_0\cos(\Omega t)$. After a transient, the system oscillates at the angular frequency Ω of the driving force (steady-state solution) with an amplitude that depends on Ω: when Ω approaches the natural angular frequency ω₀ the amplitude grows strongly — the phenomenon of resonance. The weaker the damping, the higher and narrower the resonance peak.
 
 </div>
+
+<Diagram
+  {...Fig.resonancePlot({ m: 1, k: 100, b: 2, F0: 1, Om: 8 })}
+  caption="Steady-state amplitude versus driving frequency: the peak is near ω₀, higher and narrower the weaker the damping."
+/>
 
 <div data-note-id="teoria/risonanza/derivazione" class="derivation">
 

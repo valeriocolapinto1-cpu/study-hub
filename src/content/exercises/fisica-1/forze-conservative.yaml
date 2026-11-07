@@ -17,6 +17,57 @@
       vertical loop of radius R = 0.40 m. Find: (a) the minimum height h for it to complete the loop without
       leaving the track; (b) the speed at the lowest point in that case; (c) the reaction of the track at the
       lowest point.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Guida liscia: discesa da quota h e giro della morte di raggio R; A punto più alto, B punto più basso.',
+                'en': 'Smooth track: descent from height h and vertical loop of radius R; A top point, B lowest point.',
+              },
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-3.4, 0], 'to': [4.6, 0] },
+                {
+                  'kind': 'line',
+                  'points':
+                    [
+                      [-3, 2.5],
+                      [-2.72, 2.256],
+                      [-2.44, 2.025],
+                      [-2.16, 1.806],
+                      [-1.88, 1.6],
+                      [-1.6, 1.406],
+                      [-1.32, 1.225],
+                      [-1.04, 1.056],
+                      [-0.76, 0.9],
+                      [-0.48, 0.756],
+                      [-0.2, 0.625],
+                      [0.08, 0.506],
+                      [0.36, 0.4],
+                      [0.64, 0.306],
+                      [0.92, 0.225],
+                      [1.2, 0.156],
+                      [1.48, 0.1],
+                      [1.76, 0.056],
+                      [2.04, 0.025],
+                      [2.32, 0.006],
+                      [2.6, 0],
+                    ],
+                  'width': 'thick',
+                },
+                { 'kind': 'arc', 'center': [2.6, 1], 'r': 1, 'width': 'thick' },
+                { 'kind': 'block', 'at': [-2.75, 2.7], 'w': 0.45, 'h': 0.35, 'angle': -40, 'label': '' },
+                { 'kind': 'dim', 'from': [-3.5, 0], 'to': [-3.5, 2.5], 'label': 'h', 'offset': 0 },
+                { 'kind': 'dim', 'from': [2.6, 1], 'to': [3.419, 1.574], 'label': 'R', 'offset': 0 },
+                { 'kind': 'dot', 'at': [2.6, 2], 'label': 'A', 'labelAngle': 90 },
+                { 'kind': 'dot', 'at': [2.6, 0], 'label': 'B', 'labelAngle': 270 },
+              ],
+          },
+      }
   steps:
     - title:
         it: Condizione in cima
@@ -82,6 +133,57 @@
       top of it. When the spring is released, find: (a) the stored elastic potential energy; (b) the maximum
       height reached by the ball relative to the initial position; (c) the speed of the ball when the spring
       returns to its rest length.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Molla verticale compressa di x con una pallina appoggiata sopra.',
+                'en': 'Vertical spring compressed by x with a ball resting on top.',
+              },
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-2, 0], 'to': [2, 0] },
+                { 'kind': 'spring', 'from': [0, 0], 'to': [0, 1.6], 'label': 'k', 'coils': 7 },
+                { 'kind': 'line', 'points': [[-0.7, 1.6], [0.7, 1.6]], 'width': 'thick' },
+                {
+                  'kind': 'disc',
+                  'at': [0, 1.95],
+                  'r': 0.35,
+                  'style': 'sphere',
+                  'axle': false,
+                  'label': 'm',
+                  'labelAngle': 0,
+                },
+                {
+                  'kind': 'line',
+                  'points': [[-1.5, 2.6], [1.5, 2.6]],
+                  'dash': true,
+                  'tone': 'muted',
+                  'width': 'thin',
+                },
+                { 'kind': 'dim', 'from': [-1.3, 1.6], 'to': [-1.3, 2.6], 'label': 'x', 'offset': 0 },
+                {
+                  'kind': 'vector',
+                  'from': [0.9, 2.4],
+                  'to': [0.9, 4],
+                  'label': 'v',
+                  'labelAngle': 0,
+                  'vkind': 'velocity',
+                },
+                {
+                  'kind': 'label',
+                  'at': [1.7, 2.85],
+                  'text': { 'it': 'riposo', 'en': 'rest' },
+                  'muted': true,
+                  'size': 11,
+                },
+              ],
+          },
+      }
   steps:
     - title:
         it: Energia elastica

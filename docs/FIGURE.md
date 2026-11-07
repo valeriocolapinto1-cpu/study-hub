@@ -118,8 +118,26 @@ Angoli in gradi, 0° = verso destra, antiorario. Le etichette (`label`, `…Labe
 | `linked-list` | `nodes[{value, highlight?}]`, `doubly?`, `circular?`, `head?`, `tail?`, `nullLabel?` |
 | `tree` | `root{value, highlight?, children?[nodo \| null]}`, `binary?` (i `null` tengono il posto del figlio mancante) |
 | `truth-table` | `inputs[]` (1–5), `outputs[{label, values[0\|1\|'x'\|'-']}]` (2ⁿ valori, primo ingresso = bit più significativo), `highlight?[righe]` |
+| `scene` | schizzo a primitive in coordinate del mondo (x a destra, y in alto, scala automatica): `items[]` con `kind` = `surface` (tratteggio a destra del verso from→to), `line{points, closed?, fill?, arrow? mid\|end, label?}`, `rod`, `block{at, w, h, angle?}`, `disc{at, r, style? disc\|ring\|sphere, hole?, radius?}`, `pivot{style? hinge\|support\|pin}`, `spring`, `vector{from, to, vkind? (toni delle forze, velocity, acceleration)}`, `rotation{at, r (px), from, to}`, `arc`, `dim`, `angle`, `dot`, `label{text}`; `title?`, `description?` ({it, en}), `width?`, `maxHeight?`. La descrizione accessibile elenca da sola gli elementi con etichetta |
+| `heat-engine` | `kind engine\|refrigerator\|heat-pump`, `reservoirs[{label, heat?, side hot\|cold, flow? in\|out}]` (2–4, calde in alto e fredde in basso), `work?` (default `W`, vuoto = senza freccia), `engineLabel?` |
 
 Toni disponibili per `tone`: `ink`, `muted`, `accent`, `accent2`, `info`, `success`, `warning`, `danger`.
+
+### Figure ricorrenti di un corso
+
+Quando la stessa situazione torna in teoria, esercizi e generatori conviene un costruttore nel corso che
+restituisce `{ type, params }` (di solito una `scene`): Fisica 1 li ha in `src/courses/fisica-1/lib/figures.ts`
+(carrucola, asta incernierata, scala, trave, rotolamento, giro della morte, pendolo balistico, tubo a U,
+riferimenti accelerati, cicli pV dai parametri…). Nelle pagine MDX si importano e si passano con lo spread:
+
+```mdx
+import * as Fig from '../../../courses/fisica-1/lib/figures';
+
+<Diagram {...Fig.ladder({ angle: 60 })} caption="…" />
+```
+
+I test del corso (`tests/unit/fisica-1/figures.test.ts`) verificano che ogni esercizio statico abbia una figura
+(eccezioni in una whitelist motivata) e che ogni generatore ne restituisca una valida per più semi.
 
 ## Varianti interattive
 

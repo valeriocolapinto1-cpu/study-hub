@@ -15,6 +15,59 @@
       A uniform ladder of mass 12 kg and length 4.0 m leans against a smooth wall at an angle of 60° with the
       rough floor. Find: (a) the reaction of the wall; (b) the static friction force needed; (c) the minimum
       friction coefficient for it not to slip.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Scala appoggiata a un muro liscio e a un pavimento scabro, inclinata di θ sul pavimento.',
+                'en': 'Ladder leaning on a smooth wall and a rough floor, at an angle θ to the floor.',
+              },
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-3.7, 0], 'to': [0.6, 0] },
+                { 'kind': 'surface', 'from': [0, 0], 'to': [0, 5.13] },
+                { 'kind': 'rod', 'from': [-2.5, 0], 'to': [0, 4.33], 'thickness': 7 },
+                { 'kind': 'angle', 'at': [-2.5, 0], 'from': 0, 'to': 60, 'r': 34, 'label': 'θ' },
+                {
+                  'kind': 'vector',
+                  'from': [-1.25, 2.165],
+                  'to': [-1.25, 0.665],
+                  'label': 'mg',
+                  'labelAngle': 0,
+                  'vkind': 'weight',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [0, 4.33],
+                  'to': [-1.4, 4.33],
+                  'label': 'N_m',
+                  'labelAngle': 90,
+                  'vkind': 'normal',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [-2.5, 0],
+                  'to': [-2.5, 1.5],
+                  'label': 'N_p',
+                  'labelAngle': 180,
+                  'vkind': 'normal',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [-2.5, 0],
+                  'to': [-1.1, 0],
+                  'label': 'f_s',
+                  'labelAngle': 270,
+                  'vkind': 'friction',
+                },
+                { 'kind': 'dim', 'from': [-2.5, 0], 'to': [0, 4.33], 'label': 'L', 'offset': 18 },
+              ],
+          },
+      }
   steps:
     - title:
         it: Momenti rispetto al piede
@@ -75,6 +128,60 @@
     en: >-
       A uniform 6.0 m beam of mass 40 kg rests on two supports at its ends A and B. A 60 kg load is placed 2.0
       m from A. Find the reactions of the two supports.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Trave omogenea su due appoggi alle estremità con un carico a distanza d da A.',
+                'en': 'Uniform beam on two supports at its ends with a load at distance d from A.',
+              },
+            'items':
+              [
+                { 'kind': 'rod', 'from': [0, 0], 'to': [6, 0], 'thickness': 10 },
+                { 'kind': 'pivot', 'at': [0, -0.12], 'style': 'support', 'label': 'A', 'labelAngle': 200 },
+                { 'kind': 'pivot', 'at': [6, -0.12], 'style': 'support', 'label': 'B', 'labelAngle': -20 },
+                { 'kind': 'block', 'at': [2, 0.6], 'w': 0.9, 'h': 0.9 },
+                {
+                  'kind': 'vector',
+                  'from': [2, 0.15],
+                  'to': [2, -1.4],
+                  'label': 'mg',
+                  'labelAngle': 0,
+                  'vkind': 'weight',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [3, 0],
+                  'to': [3, -1.2],
+                  'label': 'Mg',
+                  'labelAngle': 0,
+                  'vkind': 'weight',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [0, -1.5],
+                  'to': [0, -0.15],
+                  'label': 'R_A',
+                  'labelAngle': 180,
+                  'vkind': 'normal',
+                },
+                {
+                  'kind': 'vector',
+                  'from': [6, -1.5],
+                  'to': [6, -0.15],
+                  'label': 'R_B',
+                  'labelAngle': 0,
+                  'vkind': 'normal',
+                },
+                { 'kind': 'dim', 'from': [0, 1.4], 'to': [2, 1.4], 'label': 'd', 'offset': 0 },
+                { 'kind': 'dim', 'from': [0, 2.1], 'to': [6, 2.1], 'label': 'L', 'offset': 0 },
+              ],
+          },
+      }
   steps:
     - title:
         it: Momenti rispetto ad A

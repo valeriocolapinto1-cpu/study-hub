@@ -15,6 +15,49 @@
       Find the root-mean-square speed of the molecules: (a) of helium (M = 4.0 g/mol) at 300 K; (b) of oxygen
       (M = 32 g/mol) at the same temperature; (c) the average translational kinetic energy per molecule at 300
       K.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Molecole di gas in un recipiente, in moto disordinato; un urto elastico con la parete inverte la componente della velocità perpendicolare alla parete.',
+                'en': 'Gas molecules moving randomly in a container; an elastic collision with the wall reverses the velocity component perpendicular to it.',
+              },
+            'items':
+              [
+                {
+                  'kind': 'line',
+                  'points': [[0, 0], [6, 0], [6, 4], [0, 4]],
+                  'closed': true,
+                  'fill': 'surface',
+                  'width': 'thick',
+                },
+                { 'kind': 'disc', 'at': [0.8, 0.7], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [0.8, 0.7], 'to': [1.276, 0.975], 'vkind': 'velocity' },
+                { 'kind': 'disc', 'at': [2.1, 2.2], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [2.1, 2.2], 'to': [1.395, 2.457], 'vkind': 'velocity' },
+                { 'kind': 'disc', 'at': [3.4, 1.1], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [3.4, 1.1], 'to': [3.075, 0.207], 'vkind': 'velocity' },
+                { 'kind': 'disc', 'at': [4.6, 2.6], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [4.6, 2.6], 'to': [4.696, 3.142], 'vkind': 'velocity' },
+                { 'kind': 'disc', 'at': [1.4, 3.1], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [1.4, 3.1], 'to': [1.775, 2.45], 'vkind': 'velocity' },
+                { 'kind': 'disc', 'at': [3, 3.3], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [3, 3.3], 'to': [2.107, 2.975], 'vkind': 'velocity' },
+                { 'kind': 'disc', 'at': [5.2, 1], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [5.2, 1], 'to': [4.925, 1.476], 'vkind': 'velocity' },
+                { 'kind': 'disc', 'at': [0.6, 2], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [0.6, 2], 'to': [1.339, 2.13], 'vkind': 'velocity' },
+                { 'kind': 'disc', 'at': [2.6, 0.5], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [2.6, 0.5], 'to': [3.493, 0.175], 'vkind': 'velocity' },
+                { 'kind': 'disc', 'at': [4, 1.9], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [4, 1.9], 'to': [3.579, 1.546], 'vkind': 'velocity' },
+              ],
+          },
+      }
   steps:
     - title:
         it: Velocità quadratiche medie
@@ -70,6 +113,59 @@
       A 2.0 L container holds nitrogen (M = 28 g/mol) at 1.0·10⁵ Pa and 300 K. Find: (a) the number of
       molecules; (b) the mass of gas; (c) the translational kinetic energy density (J/m³), and check that it
       equals 3p/2.
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Molecole di gas in un recipiente, in moto disordinato; un urto elastico con la parete inverte la componente della velocità perpendicolare alla parete.',
+                'en': 'Gas molecules moving randomly in a container; an elastic collision with the wall reverses the velocity component perpendicular to it.',
+              },
+            'items':
+              [
+                {
+                  'kind': 'line',
+                  'points': [[0, 0], [6, 0], [6, 4], [0, 4]],
+                  'closed': true,
+                  'fill': 'surface',
+                  'width': 'thick',
+                },
+                { 'kind': 'disc', 'at': [0.8, 0.7], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [0.8, 0.7], 'to': [1.276, 0.975], 'vkind': 'velocity' },
+                { 'kind': 'disc', 'at': [2.1, 2.2], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [2.1, 2.2], 'to': [1.395, 2.457], 'vkind': 'velocity' },
+                { 'kind': 'disc', 'at': [3.4, 1.1], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [3.4, 1.1], 'to': [3.075, 0.207], 'vkind': 'velocity' },
+                { 'kind': 'disc', 'at': [4.6, 2.6], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [4.6, 2.6], 'to': [4.696, 3.142], 'vkind': 'velocity' },
+                { 'kind': 'disc', 'at': [1.4, 3.1], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [1.4, 3.1], 'to': [1.775, 2.45], 'vkind': 'velocity' },
+                { 'kind': 'disc', 'at': [3, 3.3], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [3, 3.3], 'to': [2.107, 2.975], 'vkind': 'velocity' },
+                { 'kind': 'disc', 'at': [5.2, 1], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [5.2, 1], 'to': [4.925, 1.476], 'vkind': 'velocity' },
+                { 'kind': 'disc', 'at': [0.6, 2], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [0.6, 2], 'to': [1.339, 2.13], 'vkind': 'velocity' },
+                { 'kind': 'disc', 'at': [2.6, 0.5], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [2.6, 0.5], 'to': [3.493, 0.175], 'vkind': 'velocity' },
+                { 'kind': 'disc', 'at': [4, 1.9], 'r': 0.12, 'axle': false },
+                { 'kind': 'vector', 'from': [4, 1.9], 'to': [3.579, 1.546], 'vkind': 'velocity' },
+                {
+                  'kind': 'vector',
+                  'from': [4.9, 3],
+                  'to': [5.85, 3],
+                  'label': 'v_x',
+                  'labelAngle': 90,
+                  'vkind': 'velocity',
+                },
+                { 'kind': 'vector', 'from': [5.85, 3], 'to': [4.9, 3], 'vkind': 'other', 'dash': true },
+                { 'kind': 'label', 'at': [5, 3.55], 'text': 'Δp = 2mv_x', 'italic': true, 'size': 12 },
+              ],
+          },
+      }
   steps:
     - title:
         it: Numero di molecole

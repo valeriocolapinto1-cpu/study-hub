@@ -1,6 +1,7 @@
 /** Generatori di lavoro ed energia (area B dell'originale). */
 import { registerGenerator } from '../../../engine/generators/registry';
 import { createRng } from '../../../engine/random';
+import * as Fig from '../lib/figures';
 import { G, L, ans, exercise, q, rad, step } from '../lib/gen';
 
 export const frenata = registerGenerator({
@@ -46,6 +47,7 @@ export const frenata = registerGenerator({
         ),
       ],
       [ans('W_tot', -K, 'J'), ans('d', d, 'm')],
+      Fig.braking(),
     );
   },
 });
@@ -98,6 +100,7 @@ export const giroDellaMorte = registerGenerator({
         ans(L(lang, 'v in cima', 'v at the top'), vt, 'm/s'),
         ans('N', Nt, 'N'),
       ],
+      Fig.loop({ hOverR: h / R }),
     );
   },
 });
@@ -146,6 +149,7 @@ export const pianoScabro = registerGenerator({
         ),
       ],
       [ans('d', d, 'm'), ans('v_f', vf, 'm/s')],
+      { type: 'inclined-plane', params: { angle: th, friction: true, motion: 'up', massLabel: 'm' } },
     );
   },
 });
