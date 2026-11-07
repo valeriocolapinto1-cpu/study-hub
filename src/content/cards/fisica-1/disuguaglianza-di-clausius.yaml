@@ -1,0 +1,124 @@
+- id: disuguaglianza-di-clausius-esposizione
+  topic: disuguaglianza-di-clausius
+  objectives:
+    - disuguaglianza-di-clausius.1
+    - disuguaglianza-di-clausius.2
+    - disuguaglianza-di-clausius.3
+    - disuguaglianza-di-clausius.4
+    - disuguaglianza-di-clausius.5
+    - disuguaglianza-di-clausius.6
+    - disuguaglianza-di-clausius.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Disuguaglianza di Clausius».'
+  back:
+    it: >-
+      Il rapporto Q/T pesa il calore per la 'qualità' della temperatura a cui viene scambiato: calore preso ad
+      alta temperatura è pregiato, calore scaricato a bassa temperatura è degradato. La disuguaglianza dice
+      che in ogni giro completo il bilancio dei calori pesati non può mai essere positivo: un ciclo non può
+      'guadagnare qualità'. Al pareggio esatto operano solo i cicli reversibili — ed è quel pareggio a rendere
+      ben definita l'entropia.
+
+
+      **Scaletta:**
+
+
+      - Enunciare la disuguaglianza precisando cos'è T
+
+      - Verificarla sul caso a due sorgenti (rev e irrev)
+
+      - Descrivere la costruzione con le macchine ausiliarie di Carnot
+
+      - Applicare Kelvin-Planck al sistema composto
+
+      - Dimostrare l'uguaglianza per i cicli reversibili (inversione)
+
+      - Dedurre che δQ_rev/T è un differenziale esatto
+
+      - Collegare al concetto di entropia
+- id: disuguaglianza-di-clausius-definizione
+  topic: disuguaglianza-di-clausius
+  objectives:
+    - disuguaglianza-di-clausius.1
+  kind: definizione
+  front:
+    it: 'Definizione: Disuguaglianza di Clausius'
+  back:
+    it: >-
+      La disuguaglianza di Clausius generalizza il teorema di Carnot a cicli qualsiasi con scambi di calore a
+      più temperature: per ogni ciclo termodinamico \(\oint \frac{\delta Q}{T} \le 0\), dove δQ è il calore
+      assorbito dal sistema e T la temperatura della SORGENTE con cui avviene lo scambio. L'uguaglianza vale
+      se e solo se il ciclo è reversibile. È il ponte che porta dalla teoria delle macchine alla definizione
+      di entropia.
+- id: disuguaglianza-di-clausius-formule
+  topic: disuguaglianza-di-clausius
+  objectives:
+    - disuguaglianza-di-clausius.1
+    - disuguaglianza-di-clausius.2
+    - disuguaglianza-di-clausius.3
+    - disuguaglianza-di-clausius.4
+    - disuguaglianza-di-clausius.5
+    - disuguaglianza-di-clausius.6
+    - disuguaglianza-di-clausius.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Disuguaglianza di Clausius»
+  back:
+    it: |-
+      - \(\oint \frac{\delta Q}{T} \le 0\)
+      - \(\oint \frac{\delta Q_{rev}}{T} = 0\)
+      - \(\frac{Q_C}{T_C} + \frac{Q_F}{T_F} \le 0\)
+- id: disuguaglianza-di-clausius-ipotesi
+  topic: disuguaglianza-di-clausius
+  objectives:
+    - disuguaglianza-di-clausius.1
+    - disuguaglianza-di-clausius.2
+    - disuguaglianza-di-clausius.3
+    - disuguaglianza-di-clausius.4
+    - disuguaglianza-di-clausius.5
+    - disuguaglianza-di-clausius.6
+    - disuguaglianza-di-clausius.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Disuguaglianza di Clausius'
+  back:
+    it: >-
+      Secondo principio (Kelvin-Planck); T nella formula è la temperatura della sorgente esterna (coincide con
+      quella del sistema solo negli scambi reversibili); macchine ausiliarie di Carnot ideali; cicli chiusi.
+- id: disuguaglianza-di-clausius-casi-limite
+  topic: disuguaglianza-di-clausius
+  objectives:
+    - disuguaglianza-di-clausius.1
+    - disuguaglianza-di-clausius.2
+    - disuguaglianza-di-clausius.3
+    - disuguaglianza-di-clausius.4
+    - disuguaglianza-di-clausius.5
+    - disuguaglianza-di-clausius.6
+    - disuguaglianza-di-clausius.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Disuguaglianza di Clausius'
+  back:
+    it: >-
+      Ciclo reversibile: uguaglianza. Due sole sorgenti: si riottiene il teorema di Carnot. Ciclo con un solo
+      contatto termico (una sorgente): ∮δQ/T = Q/T₀ ≤ 0, cioè Q ≤ 0 — un ciclo monotermo può solo cedere
+      calore (ri-ottengo Kelvin-Planck: coerenza perfetta).
+- id: disuguaglianza-di-clausius-errori
+  topic: disuguaglianza-di-clausius
+  objectives:
+    - disuguaglianza-di-clausius.1
+    - disuguaglianza-di-clausius.2
+    - disuguaglianza-di-clausius.3
+    - disuguaglianza-di-clausius.4
+    - disuguaglianza-di-clausius.5
+    - disuguaglianza-di-clausius.6
+    - disuguaglianza-di-clausius.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Disuguaglianza di Clausius'
+  back:
+    it: |-
+      - Usare la temperatura del sistema invece di quella della sorgente nei processi irreversibili.
+      - Concludere che ∮δQ/T = 0 per ogni ciclo: solo per i reversibili.
+      - Dimenticare i segni dei Qᵢ (assorbito positivo, ceduto negativo).
+      - Non saper motivare il passaggio con le macchine ausiliarie (il cuore della dimostrazione).

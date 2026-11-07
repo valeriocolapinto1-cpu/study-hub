@@ -1,0 +1,34 @@
+id: ciclo-di-carnot
+course: fisica-1
+order: 30
+title:
+  it: Ciclo di Carnot
+summary:
+  it: >-
+    Carnot progetta la macchina 'perfetta' eliminando ogni spreco: mai un contatto termico con salto finito di
+    temperatura (per questo il calore si scambia solo lungo isoterme) e mai attriti.
+group:
+  it: Fluidi e termodinamica
+  en: Fluids and thermodynamics
+objectives:
+  - id: ciclo-di-carnot.1
+    text:
+      it: Disegnare il ciclo nel piano p-V (e sapere com'è nel piano T-S)
+  - id: ciclo-di-carnot.2
+    text:
+      it: Descrivere le quattro trasformazioni con i segni di Q e W
+  - id: ciclo-di-carnot.3
+    text:
+      it: Calcolare Q_C e Q_F sulle isoterme
+  - id: ciclo-di-carnot.4
+    text:
+      it: Dimostrare V₂/V₁ = V₃/V₄ con le adiabatiche
+  - id: ciclo-di-carnot.5
+    text:
+      it: Ricavare η = 1 − T_F/T_C
+  - id: ciclo-di-carnot.6
+    text:
+      it: Osservare che Q_C/T_C = |Q_F|/T_F
+  - id: ciclo-di-carnot.7
+    text:
+      it: Discutere i casi limite e il ciclo invertito

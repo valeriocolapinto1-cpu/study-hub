@@ -1,0 +1,139 @@
+- id: rotolamento-puro-esposizione
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.1
+    - rotolamento-puro.2
+    - rotolamento-puro.3
+    - rotolamento-puro.4
+    - rotolamento-puro.5
+    - rotolamento-puro.6
+    - rotolamento-puro.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Rotolamento puro».'
+  back:
+    it: >-
+      Nel rotolamento l'attrito statico è un 'regista' che non spende energia: costringe traslazione e
+      rotazione a marciare insieme (v = ωR) redistribuendo la spinta della gravità tra i due moti. La gara sul
+      piano inclinato la vince chi ha meno inerzia rotazionale relativa: la sfera batte il disco che batte
+      l'anello — sempre, a prescindere da massa e raggio.
+
+
+      **Scaletta:**
+
+
+      - Enunciare e giustificare il vincolo v_cm = ωR
+
+      - Scrivere K con König e il vincolo (forma con β)
+
+      - Impostare le due cardinali per la discesa dal piano inclinato
+
+      - Ricavare a_cm = g sinθ/(1+β) e f_s
+
+      - Ricavare la condizione sul μ_s per il rotolamento puro
+
+      - Rifare il calcolo con la conservazione dell'energia
+
+      - Spiegare perché l'attrito statico non dissipa
+- id: rotolamento-puro-orale-1
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.6
+    - rotolamento-puro.7
+  kind: orale
+  front:
+    it: >-
+      Una sfera lanciata strisciando su un pavimento scabro: come evolve fino al rotolamento puro e quale
+      grandezza conviene conservare?
+  back:
+    it: L rispetto al punto di contatto.
+- id: rotolamento-puro-definizione
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.1
+  kind: definizione
+  front:
+    it: 'Definizione: Rotolamento puro'
+  back:
+    it: >-
+      Un corpo rotondo (raggio R) rotola senza strisciare su una superficie quando il punto di contatto ha
+      velocità istantanea nulla: questo impone il vincolo di rotolamento puro \(v_{cm} = \omega R\) (e
+      derivando \(a_{cm} = \alpha R\)). Il moto è la sovrapposizione di traslazione e rotazione; l'attrito in
+      gioco è STATICO (il contatto non striscia) e non dissipa energia.
+- id: rotolamento-puro-formule
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.1
+    - rotolamento-puro.2
+    - rotolamento-puro.3
+    - rotolamento-puro.4
+    - rotolamento-puro.5
+    - rotolamento-puro.6
+    - rotolamento-puro.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Rotolamento puro»
+  back:
+    it: |-
+      - \(v_{cm} = \omega R\)
+      - \(K = \frac{1}{2}(1+\beta)Mv_{cm}^2,\;\beta = \frac{I_{cm}}{MR^2}\)
+      - \(a_{cm} = \frac{g\sin\theta}{1+\beta}\)
+      - \(f_s \le \mu_s Mg\cos\theta\)
+- id: rotolamento-puro-ipotesi
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.1
+    - rotolamento-puro.2
+    - rotolamento-puro.3
+    - rotolamento-puro.4
+    - rotolamento-puro.5
+    - rotolamento-puro.6
+    - rotolamento-puro.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Rotolamento puro'
+  back:
+    it: >-
+      Corpo rigido a sezione circolare; contatto puntiforme; rotolamento puro (v_contatto = 0) con attrito
+      statico sufficiente; si trascura l'attrito volvente (resistenza al rotolamento).
+- id: rotolamento-puro-casi-limite
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.1
+    - rotolamento-puro.2
+    - rotolamento-puro.3
+    - rotolamento-puro.4
+    - rotolamento-puro.5
+    - rotolamento-puro.6
+    - rotolamento-puro.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Rotolamento puro'
+  back:
+    it: >-
+      μ_s = 0 (piano liscio): il corpo non può rotolare, slitta traslando con a = g sin θ senza ruotare. β → 0
+      (massa tutta nel centro): a → g sin θ, come un punto che scivola. Strisciamento: v_cm ≠ ωR, l'attrito
+      diventa dinamico e dissipa finché il vincolo non si ristabilisce.
+- id: rotolamento-puro-errori
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.1
+    - rotolamento-puro.2
+    - rotolamento-puro.3
+    - rotolamento-puro.4
+    - rotolamento-puro.5
+    - rotolamento-puro.6
+    - rotolamento-puro.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Rotolamento puro'
+  back:
+    it: >-
+      - Dire che l'attrito statico dissipa energia nel rotolamento puro: il punto di applicazione è fermo, W =
+      0.
+
+      - Imporre f_s = μ_sN: nel rotolamento f_s è un'incognita, μ_sN è solo il suo limite.
+
+      - Dimenticare il termine rotazionale nell'energia.
+
+      - Applicare v_cm = ωR anche quando il corpo striscia.

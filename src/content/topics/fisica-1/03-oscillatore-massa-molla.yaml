@@ -1,0 +1,45 @@
+id: oscillatore-massa-molla
+course: fisica-1
+order: 3
+title:
+  it: Oscillatore armonico massa-molla
+  en: Mass–spring harmonic oscillator
+summary:
+  it: >-
+    La molla 'insiste' a riportare la massa all'equilibrio ma la massa, per inerzia, lo supera ogni volta:
+    l'oscillazione è il compromesso perpetuo tra richiamo elastico e inerzia.
+  en: >-
+    The spring 'insists' on bringing the mass back to equilibrium, but the mass, by inertia, overshoots it
+    every time: the oscillation is the endless compromise between elastic restoring and inertia.
+group:
+  it: Cinematica e oscillazioni
+  en: Kinematics and oscillations
+objectives:
+  - id: oscillatore-massa-molla.1
+    text:
+      it: Scrivere F = −kx e giustificarla come approssimazione lineare
+      en: Write F = −kx and justify it as a linear approximation
+  - id: oscillatore-massa-molla.2
+    text:
+      it: Ricavare l'equazione del moto e portarla in forma canonica
+      en: Derive the equation of motion and bring it to canonical form
+  - id: oscillatore-massa-molla.3
+    text:
+      it: Identificare ω = √(k/m) e T = 2π√(m/k)
+      en: Identify ω = √(k/m) and T = 2π√(m/k)
+  - id: oscillatore-massa-molla.4
+    text:
+      it: Ricavare U = ½kx² per integrazione della forza
+      en: Derive U = ½kx² by integrating the force
+  - id: oscillatore-massa-molla.5
+    text:
+      it: Dimostrare la conservazione di E = ½mv² + ½kx² = ½kA²
+      en: Prove the conservation of E = ½mv² + ½kx² = ½kA²
+  - id: oscillatore-massa-molla.6
+    text:
+      it: Trattare il caso verticale con il cambio di coordinata
+      en: Treat the vertical case with the change of coordinate
+  - id: oscillatore-massa-molla.7
+    text:
+      it: Discutere da cosa dipende (e da cosa non dipende) il periodo
+      en: Discuss what the period depends on (and what it does not)

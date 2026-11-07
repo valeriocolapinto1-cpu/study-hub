@@ -1,0 +1,35 @@
+id: equipartizione-energia
+course: fisica-1
+order: 26
+title:
+  it: Energia interna dei gas e principio di equipartizione
+summary:
+  it: >-
+    All'equilibrio l'energia termica è perfettamente democratica: gli urti continui la redistribuiscono finché
+    ogni 'modo quadratico' di immagazzinarla — muoversi lungo x, ruotare, vibrare — ne possiede in media la
+    stessa quota ½k_BT.
+group:
+  it: Fluidi e termodinamica
+  en: Fluids and thermodynamics
+objectives:
+  - id: equipartizione-energia.1
+    text:
+      it: Enunciare il principio di equipartizione con precisione (termini quadratici)
+  - id: equipartizione-energia.2
+    text:
+      it: Contare i gradi di libertà di mono e biatomici
+  - id: equipartizione-energia.3
+    text:
+      it: Spiegare perché la rotazione assiale del biatomico non conta
+  - id: equipartizione-energia.4
+    text:
+      it: Ricavare U = (f/2)nRT
+  - id: equipartizione-energia.5
+    text:
+      it: Enunciare la legge di Joule e l'esperimento dell'espansione libera
+  - id: equipartizione-energia.6
+    text:
+      it: Dedurre c_V = (f/2)R
+  - id: equipartizione-energia.7
+    text:
+      it: Accennare al congelamento quantistico dei gradi di libertà

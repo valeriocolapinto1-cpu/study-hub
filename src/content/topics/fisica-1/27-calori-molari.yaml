@@ -1,0 +1,35 @@
+id: calori-molari
+course: fisica-1
+order: 27
+title:
+  it: Calori molari dei gas ideali e dei solidi ideali
+summary:
+  it: >-
+    Scaldare a volume costante è 'versare' energia solo nel serbatoio interno; scaldare a pressione costante
+    costringe anche a pagare il pedaggio del lavoro di espansione, sempre pari a R per mole e per grado: ecco
+    Mayer.
+group:
+  it: Fluidi e termodinamica
+  en: Fluids and thermodynamics
+objectives:
+  - id: calori-molari.1
+    text:
+      it: Definire il calore molare e spiegare perché dipende dalla trasformazione
+  - id: calori-molari.2
+    text:
+      it: Ricavare c_V = (f/2)R dal primo principio a V costante
+  - id: calori-molari.3
+    text:
+      it: Dimostrare la relazione di Mayer c_p = c_V + R
+  - id: calori-molari.4
+    text:
+      it: Interpretare fisicamente la differenza c_p − c_V
+  - id: calori-molari.5
+    text:
+      it: Dare i valori per mono/biatomici e definire γ = 1 + 2/f
+  - id: calori-molari.6
+    text:
+      it: Ricavare Dulong-Petit contando i termini quadratici
+  - id: calori-molari.7
+    text:
+      it: Accennare ai limiti quantistici (basse temperature)

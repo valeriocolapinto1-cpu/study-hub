@@ -1,0 +1,31 @@
+id: energia-corpo-rigido
+course: fisica-1
+order: 18
+title:
+  it: Energia cinetica e meccanica di un corpo rigido
+summary:
+  it: >-
+    Un corpo rigido immagazzina energia cinetica in due 'serbatoi': il moto d'insieme del baricentro e la
+    rotazione attorno a esso.
+group:
+  it: Sistemi di punti e corpo rigido
+  en: Systems of particles and rigid bodies
+objectives:
+  - id: energia-corpo-rigido.1
+    text:
+      it: Ricavare K = ½Iω² per l'asse fisso
+  - id: energia-corpo-rigido.2
+    text:
+      it: Scrivere la forma di König e mostrare la coerenza delle due scritture
+  - id: energia-corpo-rigido.3
+    text:
+      it: Dimostrare U = Mgz_cm
+  - id: energia-corpo-rigido.4
+    text:
+      it: Spiegare perché il lavoro delle forze interne di un rigido è nullo
+  - id: energia-corpo-rigido.5
+    text:
+      it: Precisare le condizioni per conservare E (vincoli ideali)
+  - id: energia-corpo-rigido.6
+    text:
+      it: Risolvere l'esempio dell'asta incernierata che cade

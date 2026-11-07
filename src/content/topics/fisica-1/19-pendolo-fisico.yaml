@@ -1,0 +1,34 @@
+id: pendolo-fisico
+course: fisica-1
+order: 19
+title:
+  it: Pendolo fisico (o composto)
+summary:
+  it: >-
+    Nel pendolo fisico il peso 'tira giù' il baricentro con braccio d, ma deve far ruotare tutta l'inerzia I
+    distribuita nel corpo.
+group:
+  it: Sistemi di punti e corpo rigido
+  en: Systems of particles and rigid bodies
+objectives:
+  - id: pendolo-fisico.1
+    text:
+      it: Impostare la seconda cardinale rispetto all'asse di sospensione
+  - id: pendolo-fisico.2
+    text:
+      it: Spiegare perché la reazione del perno non ha momento
+  - id: pendolo-fisico.3
+    text:
+      it: Linearizzare e ricavare ω = √(Mgd/I)
+  - id: pendolo-fisico.4
+    text:
+      it: Definire la lunghezza ridotta e il pendolo semplice equivalente
+  - id: pendolo-fisico.5
+    text:
+      it: Verificare il limite del punto materiale
+  - id: pendolo-fisico.6
+    text:
+      it: Svolgere l'esempio dell'asta sospesa a un estremo
+  - id: pendolo-fisico.7
+    text:
+      it: Discutere il caso d → 0

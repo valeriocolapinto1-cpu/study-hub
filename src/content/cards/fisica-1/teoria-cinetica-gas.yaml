@@ -1,0 +1,139 @@
+- id: teoria-cinetica-gas-esposizione
+  topic: teoria-cinetica-gas
+  objectives:
+    - teoria-cinetica-gas.1
+    - teoria-cinetica-gas.2
+    - teoria-cinetica-gas.3
+    - teoria-cinetica-gas.4
+    - teoria-cinetica-gas.5
+    - teoria-cinetica-gas.6
+    - teoria-cinetica-gas.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Teoria cinetica dei gas: la pressione dei gas perfetti».'
+  back:
+    it: >-
+      La pressione di un gas è un tamburellare fittissimo di molecole sulla parete: ogni urto è una piccola
+      spinta, e la media di miliardi di spinte al secondo è una forza costante. La temperatura, vista da qui,
+      smette di essere primitiva: è semplicemente il nome macroscopico dell'agitazione cinetica media delle
+      molecole.
+
+
+      **Scaletta:**
+
+
+      - Elencare le ipotesi del modello di gas perfetto
+
+      - Calcolare l'impulso ceduto in un urto elastico sulla parete
+
+      - Contare gli urti per unità di tempo sulla parete
+
+      - Usare l'isotropia per passare da ⟨v_x²⟩ a ⟨v²⟩/3
+
+      - Ottenere pV = (2/3)N⟨½mv²⟩
+
+      - Confrontare con pV = Nk_BT e interpretare la temperatura
+
+      - Definire la velocità quadratica media
+- id: teoria-cinetica-gas-orale-2
+  topic: teoria-cinetica-gas
+  objectives:
+    - teoria-cinetica-gas.6
+    - teoria-cinetica-gas.7
+  kind: orale
+  front:
+    it: Come stimeresti v_qm per l'azoto a temperatura ambiente?
+  back:
+    it: ≈ 500 m/s.
+- id: teoria-cinetica-gas-definizione
+  topic: teoria-cinetica-gas
+  objectives:
+    - teoria-cinetica-gas.1
+  kind: definizione
+  front:
+    it: 'Definizione: Teoria cinetica dei gas: la pressione dei gas perfetti'
+  back:
+    it: >-
+      La teoria cinetica interpreta le grandezze macroscopiche di un gas in termini del moto disordinato delle
+      sue molecole. Modello di gas perfetto: N molecole puntiformi identiche, non interagenti se non tramite
+      urti elastici istantanei, in moto caotico e isotropo. Risultato centrale: la pressione sulle pareti è
+      \(p = \frac{1}{3}\frac{N}{V}m\langle v^2\rangle\), cioè due terzi della densità di energia cinetica
+      traslazionale.
+- id: teoria-cinetica-gas-formule
+  topic: teoria-cinetica-gas
+  objectives:
+    - teoria-cinetica-gas.1
+    - teoria-cinetica-gas.2
+    - teoria-cinetica-gas.3
+    - teoria-cinetica-gas.4
+    - teoria-cinetica-gas.5
+    - teoria-cinetica-gas.6
+    - teoria-cinetica-gas.7
+  kind: formula
+  front:
+    it: 'Le formule chiave di «Teoria cinetica dei gas: la pressione dei gas perfetti»'
+  back:
+    it: |-
+      - \(p = \frac{1}{3}\frac{N}{V}m\langle v^2\rangle\)
+      - \(pV = \frac{2}{3}N\langle\tfrac{1}{2}mv^2\rangle\)
+      - \(\langle\tfrac{1}{2}mv^2\rangle = \frac{3}{2}k_BT\)
+      - \(v_{qm} = \sqrt{3RT/M_{mol}}\)
+- id: teoria-cinetica-gas-ipotesi
+  topic: teoria-cinetica-gas
+  objectives:
+    - teoria-cinetica-gas.1
+    - teoria-cinetica-gas.2
+    - teoria-cinetica-gas.3
+    - teoria-cinetica-gas.4
+    - teoria-cinetica-gas.5
+    - teoria-cinetica-gas.6
+    - teoria-cinetica-gas.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Teoria cinetica dei gas: la pressione dei gas perfetti'
+  back:
+    it: >-
+      Gas perfetto: molecole puntiformi (volume proprio trascurabile), nessuna interazione a distanza, urti
+      elastici; numero enorme di molecole; moto caotico e isotropo; distribuzione delle velocità stazionaria;
+      pareti lisce.
+- id: teoria-cinetica-gas-casi-limite
+  topic: teoria-cinetica-gas
+  objectives:
+    - teoria-cinetica-gas.1
+    - teoria-cinetica-gas.2
+    - teoria-cinetica-gas.3
+    - teoria-cinetica-gas.4
+    - teoria-cinetica-gas.5
+    - teoria-cinetica-gas.6
+    - teoria-cinetica-gas.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Teoria cinetica dei gas: la pressione dei gas perfetti'
+  back:
+    it: >-
+      Alta pressione o bassa temperatura: il volume proprio e le interazioni non sono più trascurabili → gas
+      reali (Van der Waals). T → 0: v_qm → 0 (classicamente). Miscela di gas: ogni specie contribuisce con la
+      propria pressione parziale (legge di Dalton, immediata dalla derivazione).
+- id: teoria-cinetica-gas-errori
+  topic: teoria-cinetica-gas
+  objectives:
+    - teoria-cinetica-gas.1
+    - teoria-cinetica-gas.2
+    - teoria-cinetica-gas.3
+    - teoria-cinetica-gas.4
+    - teoria-cinetica-gas.5
+    - teoria-cinetica-gas.6
+    - teoria-cinetica-gas.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Teoria cinetica dei gas: la pressione dei gas perfetti'
+  back:
+    it: >-
+      - Dimenticare il fattore 1/3 (isotropia) o il fattore 2 dell'impulso.
+
+      - Confondere velocità media, velocità quadratica media e velocità più probabile.
+
+      - Dire che la temperatura misura l'energia TOTALE delle molecole: misura solo quella cinetica
+      traslazionale media.
+
+      - Pensare che tutte le molecole abbiano la stessa velocità: c'è una distribuzione (Maxwell-Boltzmann).

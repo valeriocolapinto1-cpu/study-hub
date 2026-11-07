@@ -1,0 +1,118 @@
+- id: frenata-lavoro-attrito
+  topic: lavoro-energia-cinetica
+  objectives:
+    - lavoro-energia-cinetica.1
+    - lavoro-energia-cinetica.2
+    - lavoro-energia-cinetica.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un'auto di massa m = 1200 kg viaggia a 90 km/h e frena fino a fermarsi su un tratto rettilineo
+      orizzontale. Calcolare: (a) il lavoro totale delle forze; (b) lo spazio di frenata se la forza frenante
+      è costante e vale 6000 N; (c) la potenza media dissipata se la frenata dura 5,0 s.
+    en: >-
+      A car of mass m = 1200 kg travels at 90 km/h and brakes to a stop on a straight horizontal stretch.
+      Find: (a) the total work of the forces; (b) the braking distance if the braking force is constant and
+      equal to 6000 N; (c) the average power dissipated if braking lasts 5.0 s.
+  steps:
+    - title:
+        it: Teorema dell'energia cinetica
+        en: Kinetic energy theorem
+      body:
+        it: >-
+          90 km/h = 25 m/s. \(W_{tot} = \Delta K = 0 - \tfrac12 \cdot 1200 \cdot 25^2 = -3{,}75\cdot 10^5\
+          \text{J}\).
+        en: >-
+          90 km/h = 25 m/s. \(W_{tot} = \Delta K = 0 - \tfrac12 \cdot 1200 \cdot 25^2 = -3.75\cdot 10^5\
+          \text{J}\).
+    - title:
+        it: Spazio di frenata
+        en: Braking distance
+      body:
+        it: >-
+          Peso e normale non lavorano; resta la forza frenante: \(-F d = \Delta K \Rightarrow d = 3{,}75\cdot
+          10^5/6000 = 62{,}5\ \text{m}\).
+        en: >-
+          Weight and normal force do no work; only the braking force remains: \(-F d = \Delta K \Rightarrow d
+          = 3.75\cdot 10^5/6000 = 62.5\ \text{m}\).
+    - title:
+        it: Potenza media
+        en: Average power
+      body:
+        it: >-
+          \(\bar P = |W|/\Delta t = 3{,}75\cdot 10^5/5{,}0 = 7{,}5\cdot 10^4\ \text{W}\) (75 kW, convertiti in
+          calore nei freni).
+        en: >-
+          \(\bar P = |W|/\Delta t = 3.75\cdot 10^5/5.0 = 7.5\cdot 10^4\ \text{W}\) (75 kW, turned into heat in
+          the brakes).
+  answer:
+    - label:
+        it: W_tot
+        en: W_tot
+      value: -375000
+      unit: J
+    - label:
+        it: d
+        en: d
+      value: 62.5
+      unit: m
+    - label:
+        it: P media
+        en: average P
+      value: 75000
+      unit: W
+  origin: originale
+- id: lavoro-forza-variabile
+  topic: lavoro-energia-cinetica
+  objectives:
+    - lavoro-energia-cinetica.1
+    - lavoro-energia-cinetica.2
+    - lavoro-energia-cinetica.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Un corpo di massa m = 2,0 kg parte da fermo in x = 0 e si muove lungo l'asse x sotto l'azione della sola
+      forza F(x) = 6x − x² (N, con x in metri). Calcolare: (a) il lavoro della forza da x = 0 a x = 4 m; (b)
+      la velocità in x = 4 m; (c) la potenza istantanea in x = 4 m.
+    en: >-
+      A body of mass m = 2.0 kg starts from rest at x = 0 and moves along the x axis under the sole force F(x)
+      = 6x − x² (N, with x in metres). Find: (a) the work of the force from x = 0 to x = 4 m; (b) the speed at
+      x = 4 m; (c) the instantaneous power at x = 4 m.
+  steps:
+    - title:
+        it: Lavoro come integrale
+        en: Work as an integral
+      body:
+        it: \(W = \int_0^4 (6x - x^2)\,dx = [3x^2 - x^3/3]_0^4 = 48 - 21{,}33 = 26{,}67\ \text{J}\).
+        en: \(W = \int_0^4 (6x - x^2)\,dx = [3x^2 - x^3/3]_0^4 = 48 - 21.33 = 26.67\ \text{J}\).
+    - title:
+        it: Velocità
+        en: Speed
+      body:
+        it: \(\tfrac12 mv^2 = W \Rightarrow v = \sqrt{2W/m} = \sqrt{26{,}67} \approx 5{,}16\ \text{m/s}\).
+        en: \(\tfrac12 mv^2 = W \Rightarrow v = \sqrt{2W/m} = \sqrt{26.67} \approx 5.16\ \text{m/s}\).
+    - title:
+        it: Potenza
+        en: Power
+      body:
+        it: \(F(4) = 24 - 16 = 8\ \text{N}\), quindi \(P = Fv \approx 41{,}3\ \text{W}\).
+        en: \(F(4) = 24 - 16 = 8\ \text{N}\), so \(P = Fv \approx 41.3\ \text{W}\).
+  answer:
+    - label:
+        it: W
+        en: W
+      value: 26.67
+      unit: J
+    - label:
+        it: v
+        en: v
+      value: 5.16
+      unit: m/s
+    - label:
+        it: P
+        en: P
+      value: 41.3
+      unit: W
+  origin: originale

@@ -1,0 +1,148 @@
+---
+course: fisica-1
+topic: primo-principio
+lang: it
+---
+
+<Layer kind="intuizione" title="L'idea in sintesi">
+
+<div data-note-id="teoria/primo-principio/idea">
+
+L'energia interna è il conto in banca del sistema; calore e lavoro sono solo i due sportelli da cui l'energia entra ed esce. Lo stato del conto non ricorda da quale sportello i soldi sono passati: per questo U è funzione di stato mentre Q e W no. Il primo principio è la contabilità esatta: nessuna energia si crea o si perde, si sposta.
+
+</div>
+
+<p class="muted" data-note-id="teoria/primo-principio/prerequisiti"><strong>Prima di questo argomento:</strong> <a href="../forze-non-conservative/">Energia meccanica in presenza di forze non conservative</a> · <a href="../equipartizione-energia/">Energia interna dei gas e principio di equipartizione</a></p>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definizioni e derivazione">
+
+<div data-note-id="teoria/primo-principio/definizioni">
+
+## Definizioni
+
+Il primo principio della termodinamica è la conservazione dell'energia estesa ai fenomeni termici: la variazione di energia interna di un sistema è $\Delta U = Q - W$, dove Q è il calore assorbito DAL sistema e W il lavoro compiuto DAL sistema (convenzione usuale in Fisica 1). U è una funzione di stato (dipende solo dallo stato del sistema), mentre Q e W dipendono dalla trasformazione: in forma infinitesima $dU = \delta Q - \delta W$, con δ a ricordare che calore e lavoro non sono differenziali esatti.
+
+</div>
+
+<div data-note-id="teoria/primo-principio/derivazione" class="derivation">
+
+## Derivazione passo per passo
+
+<p class="muted">Prova prima a ricavarla a voce, poi apri un passaggio alla volta.</p>
+
+<details id="passo-1">
+<summary>Passo 1 · Lavoro di espansione quasi-statica</summary>
+
+$$
+\delta W = F\,dx = pA\,dx = p\,dV \;\Rightarrow\; W = \int_{V_1}^{V_2} p\,dV
+$$
+
+Un gas che spinge un pistone di area A compie lavoro p dV. Graficamente W è l'area sotto la curva nel piano p-V: dipende dal cammino, non solo dagli estremi.
+
+</details>
+
+<details id="passo-2">
+<summary>Passo 2 · U è funzione di stato (fondamento sperimentale)</summary>
+
+$$
+W_{adiabatico} = -\Delta U \;\;\text{indipendente dal cammino}
+$$
+
+Esperimenti di Joule: per portare adiabaticamente un sistema da uno stato A a uno stato B serve sempre lo stesso lavoro, comunque lo si esegua (mulinello, resistenza…). Questo permette di DEFINIRE U.
+
+</details>
+
+<details id="passo-3">
+<summary>Passo 3 · Definizione operativa del calore</summary>
+
+$$
+Q \equiv \Delta U + W
+$$
+
+In una trasformazione non adiabatica il bilancio W = −ΔU fallisce: il calore è per definizione l'energia scambiata per via non meccanica (differenza di temperatura). Il primo principio diventa: l'energia si conserva contando ENTRAMBI i canali.
+
+</details>
+
+<details id="passo-4">
+<summary>Passo 4 · Applicazione alle trasformazioni del gas perfetto</summary>
+
+$$
+\begin{aligned} &\text{isocora: } W = 0,\; Q = \Delta U = nc_V\Delta T \\ &\text{isobara: } W = p\Delta V = nR\Delta T,\; Q = nc_p\Delta T \\ &\text{isoterma: } \Delta U = 0,\; Q = W = nRT\ln\frac{V_2}{V_1} \\ &\text{adiabatica: } Q = 0,\; W = -\Delta U = nc_V(T_1 - T_2) \end{aligned}
+$$
+
+Il quartetto fondamentale. Per l'isoterma: W = ∫nRT dV/V = nRT ln(V₂/V₁). Ogni riga discende dal primo principio più l'equazione di stato.
+
+</details>
+
+<details id="passo-5">
+<summary>Passo 5 · Derivazione dell'equazione delle adiabatiche</summary>
+
+$$
+0 = nc_V\,dT + p\,dV \;\xrightarrow{pV = nRT}\; \frac{dT}{T} = -\frac{R}{c_V}\frac{dV}{V} \;\Rightarrow\; TV^{\gamma-1} = \text{cost}, \quad pV^{\gamma} = \text{cost}
+$$
+
+Da δQ = 0: dU = −pdV; elimino T con l'equazione di stato e integro (R/c_V = γ−1). Le adiabatiche nel piano p-V sono più ripide delle isoterme di un fattore γ.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/primo-principio/ipotesi">
+
+## Ipotesi di validità
+
+Sistema chiuso (non scambia materia); per W = ∫p dV trasformazioni quasi-statiche (p definita a ogni istante); convenzione dei segni dichiarata esplicitamente (Q &gt; 0 assorbito, W &gt; 0 compiuto dal sistema).
+
+</div>
+
+<div data-note-id="teoria/primo-principio/casi-limite">
+
+## Casi limite
+
+Trasformazione ciclica: ΔU = 0 ⇒ Q = W (tutto il calore netto diventa lavoro netto e viceversa). Adiabatica: Q = 0. Espansione libera (nel vuoto): W = 0 e Q = 0 ⇒ ΔU = 0, ma NON è quasi-statica: niente W = ∫p dV.
+
+</div>
+
+<div data-note-id="teoria/primo-principio/formule">
+
+## Formule chiave
+
+<Formula id="primo-principio-f1" />
+
+<Formula id="primo-principio-f2" />
+
+<Formula id="primo-principio-f3" />
+
+<Formula id="primo-principio-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Errori tipici">
+
+<div data-note-id="teoria/primo-principio/errori">
+
+- Confondere le convenzioni dei segni (ΔU = Q − W vs Q + W a seconda della definizione di W).
+- Trattare Q e W come funzioni di stato: 'il calore contenuto in un corpo' non esiste.
+- Usare W = pΔV in trasformazioni non isobare.
+- Applicare W = ∫p dV all'espansione libera, che non è quasi-statica.
+- Usare c_p per calcolare ΔU.
+
+</div>
+
+<div data-note-id="teoria/primo-principio/verso-orale">
+
+## Verso l’orale
+
+Domande di approfondimento che possono seguire l’esposizione (con risposta modello nel ripasso):
+
+- Perché un'adiabatica è più ripida di un'isoterma nello stesso punto del piano p-V?
+- In un ciclo percorso in senso orario nel piano p-V il lavoro netto è positivo o negativo? Perché?
+- Che differenza c'è tra l'espansione adiabatica quasi-statica e l'espansione libera di Joule, se entrambe hanno Q = 0?
+
+</div>
+
+</Layer>

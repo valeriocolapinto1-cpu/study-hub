@@ -1,0 +1,248 @@
+- id: centro-di-massa-esposizione
+  topic: centro-di-massa
+  objectives:
+    - centro-di-massa.1
+    - centro-di-massa.2
+    - centro-di-massa.3
+    - centro-di-massa.4
+    - centro-di-massa.5
+    - centro-di-massa.6
+    - centro-di-massa.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Centro di massa e prima equazione cardinale».'
+    en: 'Present at the oral exam: “Centre of mass and the first cardinal equation”.'
+  back:
+    it: >-
+      Il centro di massa è il 'portavoce' del sistema: comunque i pezzi interagiscano tra loro, tirandosi e
+      spingendosi, nessuna forza interna può spostare il baricentro del gruppo — per farlo serve una spinta
+      dall'esterno. È il motivo per cui non puoi sollevarti tirando i tuoi capelli, e perché i fuochi
+      d'artificio esplodono 'attorno' alla traiettoria che il razzo avrebbe seguito.
+
+
+      **Scaletta:**
+
+
+      - Definire r_cm per sistemi discreti e continui
+
+      - Scrivere Newton per il singolo punto separando interne ed esterne
+
+      - Mostrare l'elisione delle forze interne con la terza legge
+
+      - Ricavare F_ext = Ma_cm = dP/dt
+
+      - Enunciare la conservazione di P per sistemi isolati
+
+      - Discutere l'esempio del proiettile che esplode
+
+      - Chiarire che non serve la rigidità del sistema
+    en: >-
+      The centre of mass is the system's 'spokesperson': however the pieces interact, pulling and pushing each
+      other, no internal force can move the group's centre — that takes a push from outside. This is why you
+      cannot lift yourself by pulling your own hair, and why fireworks burst 'around' the trajectory the
+      rocket would have followed.
+
+
+      **Outline:**
+
+
+      - Define r_cm for discrete and continuous systems
+
+      - Write Newton for a single point, separating internal and external forces
+
+      - Show the cancellation of internal forces with the third law
+
+      - Derive F_ext = Ma_cm = dP/dt
+
+      - State the conservation of P for isolated systems
+
+      - Discuss the example of the exploding projectile
+
+      - Make clear that rigidity of the system is not needed
+- id: centro-di-massa-orale-1
+  topic: centro-di-massa
+  objectives:
+    - centro-di-massa.6
+    - centro-di-massa.7
+  kind: orale
+  front:
+    it: Come si calcola il CM di un corpo composito o con un foro?
+    en: How do you compute the CM of a composite body or of one with a hole?
+  back:
+    it: >-
+      Il CM è additivo: si spezza il corpo in parti di cui si conosce il CM e si fa la media pesata \(\vec
+      r_{cm} = \sum_k M_k\vec r_{cm,k}/\sum_k M_k\). Un foro si tratta come il corpo pieno più una "massa
+      negativa" pari alla massa mancante, posta nel centro del foro: \(\vec r_{cm} = (M_{pieno}\vec r_{pieno}
+      - m_{foro}\vec r_{foro})/(M_{pieno} - m_{foro})\).
+    en: >-
+      The CM is additive: split the body into parts whose CM is known and take the weighted average \(\vec
+      r_{cm} = \sum_k M_k\vec r_{cm,k}/\sum_k M_k\). A hole is treated as the full body plus a "negative mass"
+      equal to the missing mass, placed at the centre of the hole: \(\vec r_{cm} = (M_{full}\vec r_{full} -
+      m_{hole}\vec r_{hole})/(M_{full} - m_{hole})\).
+- id: centro-di-massa-orale-2
+  topic: centro-di-massa
+  objectives:
+    - centro-di-massa.6
+    - centro-di-massa.7
+  kind: orale
+  front:
+    it: 'Un uomo cammina su una barca ferma in acqua calma senza attrito: cosa fa la barca e cosa resta fermo?'
+    en: >-
+      A man walks on a boat at rest in calm water without friction: what does the boat do and what stays
+      still?
+  back:
+    it: >-
+      Le forze orizzontali tra uomo e barca sono interne e l'acqua non esercita forze orizzontali: la
+      risultante esterna orizzontale è nulla e il CM del sistema uomo+barca, inizialmente fermo, resta fermo.
+      Quando l'uomo avanza la barca arretra, con \(m\,\Delta x_{uomo} + M\,\Delta x_{barca} = 0\); se l'uomo
+      si ferma, si ferma anche la barca.
+    en: >-
+      The horizontal forces between man and boat are internal and the water exerts no horizontal forces: the
+      external horizontal resultant is zero and the CM of the man+boat system, initially at rest, stays at
+      rest. When the man moves forward the boat moves back, with \(m\,\Delta x_{man} + M\,\Delta x_{boat} =
+      0\); if the man stops, so does the boat.
+- id: centro-di-massa-orale-3
+  topic: centro-di-massa
+  objectives:
+    - centro-di-massa.6
+    - centro-di-massa.7
+  kind: orale
+  front:
+    it: La prima cardinale determina completamente il moto di un corpo rigido?
+    en: Does the first cardinal equation completely determine the motion of a rigid body?
+  back:
+    it: >-
+      No: fissa solo il moto del centro di massa (3 gradi di libertà). L'orientazione del corpo rigido (altri
+      3 gradi di libertà) è governata dalla seconda equazione cardinale \(d\vec L/dt = \vec\tau^{ext}\).
+      Insieme le due cardinali sono 6 equazioni scalari per i 6 gradi di libertà del corpo rigido e ne
+      determinano completamente il moto.
+    en: >-
+      No: it fixes only the motion of the centre of mass (3 degrees of freedom). The orientation of the rigid
+      body (another 3 degrees of freedom) is governed by the second cardinal equation \(d\vec L/dt =
+      \vec\tau^{ext}\). Together the two cardinal equations are 6 scalar equations for the 6 degrees of
+      freedom of the rigid body and determine its motion completely.
+- id: centro-di-massa-definizione
+  topic: centro-di-massa
+  objectives:
+    - centro-di-massa.1
+  kind: definizione
+  front:
+    it: 'Definizione: Centro di massa e prima equazione cardinale'
+    en: 'Definition: Centre of mass and the first cardinal equation'
+  back:
+    it: >-
+      Per un sistema di N punti materiali, il centro di massa (CM) è il punto di posizione \(\vec{r}_{cm} =
+      \frac{1}{M}\sum_i m_i\vec{r}_i\), con \(M = \sum_i m_i\) (per un corpo continuo l'integrale
+      \(\vec{r}_{cm} = \frac{1}{M}\int \vec{r}\,dm\)). La prima equazione cardinale afferma che la risultante
+      delle sole forze esterne governa il moto del centro di massa: \(\vec{F}^{ext} = M\vec{a}_{cm}\).
+      Equivalentemente, \(\vec{F}^{ext} = d\vec{P}/dt\) con \(\vec{P} = M\vec{v}_{cm}\) quantità di moto
+      totale.
+    en: >-
+      For a system of N point particles, the centre of mass (CM) is the point with position \(\vec{r}_{cm} =
+      \frac{1}{M}\sum_i m_i\vec{r}_i\), with \(M = \sum_i m_i\) (for a continuous body the integral
+      \(\vec{r}_{cm} = \frac{1}{M}\int \vec{r}\,dm\)). The first cardinal equation states that the resultant
+      of the external forces alone governs the motion of the centre of mass: \(\vec{F}^{ext} =
+      M\vec{a}_{cm}\). Equivalently, \(\vec{F}^{ext} = d\vec{P}/dt\) with \(\vec{P} = M\vec{v}_{cm}\) the
+      total momentum.
+- id: centro-di-massa-formule
+  topic: centro-di-massa
+  objectives:
+    - centro-di-massa.1
+    - centro-di-massa.2
+    - centro-di-massa.3
+    - centro-di-massa.4
+    - centro-di-massa.5
+    - centro-di-massa.6
+    - centro-di-massa.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Centro di massa e prima equazione cardinale»
+    en: The key formulas of “Centre of mass and the first cardinal equation”
+  back:
+    it: |-
+      - \(\vec{r}_{cm} = \frac{1}{M}\sum m_i\vec{r}_i\)
+      - \(\vec{P} = M\vec{v}_{cm}\)
+      - \(\vec{F}^{ext} = M\vec{a}_{cm} = \frac{d\vec{P}}{dt}\)
+      - \(\vec{F}^{ext}=0 \Rightarrow \vec{P}=\text{cost}\)
+    en: |-
+      - \(\vec{r}_{cm} = \frac{1}{M}\sum m_i\vec{r}_i\)
+      - \(\vec{P} = M\vec{v}_{cm}\)
+      - \(\vec{F}^{ext} = M\vec{a}_{cm} = \frac{d\vec{P}}{dt}\)
+      - \(\vec{F}^{ext}=0 \Rightarrow \vec{P}=\text{const}\)
+- id: centro-di-massa-ipotesi
+  topic: centro-di-massa
+  objectives:
+    - centro-di-massa.1
+    - centro-di-massa.2
+    - centro-di-massa.3
+    - centro-di-massa.4
+    - centro-di-massa.5
+    - centro-di-massa.6
+    - centro-di-massa.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Centro di massa e prima equazione cardinale'
+    en: 'Validity assumptions: Centre of mass and the first cardinal equation'
+  back:
+    it: >-
+      Validità della terza legge di Newton per le forze interne; masse costanti; sistema di riferimento
+      inerziale. Non serve alcuna ipotesi di rigidità: vale per qualsiasi sistema.
+    en: >-
+      Validity of Newton's third law for internal forces; constant masses; inertial reference frame. No
+      rigidity assumption is needed: it holds for any system.
+- id: centro-di-massa-casi-limite
+  topic: centro-di-massa
+  objectives:
+    - centro-di-massa.1
+    - centro-di-massa.2
+    - centro-di-massa.3
+    - centro-di-massa.4
+    - centro-di-massa.5
+    - centro-di-massa.6
+    - centro-di-massa.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Centro di massa e prima equazione cardinale'
+    en: 'Limiting cases: Centre of mass and the first cardinal equation'
+  back:
+    it: >-
+      Sistema isolato: P costante (base per lo studio degli urti). Proiettile che esplode in volo: i frammenti
+      si disperdono ma il loro CM continua sulla parabola originaria. Corpo rigido: r_cm coincide col centro
+      geometrico se la densità è uniforme e c'è simmetria.
+    en: >-
+      Isolated system: P constant (the basis for studying collisions). A projectile exploding in flight: the
+      fragments scatter but their CM continues along the original parabola. Rigid body: r_cm coincides with
+      the geometric centre if density is uniform and there is symmetry.
+- id: centro-di-massa-errori
+  topic: centro-di-massa
+  objectives:
+    - centro-di-massa.1
+    - centro-di-massa.2
+    - centro-di-massa.3
+    - centro-di-massa.4
+    - centro-di-massa.5
+    - centro-di-massa.6
+    - centro-di-massa.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Centro di massa e prima equazione cardinale'
+    en: 'Mistakes to avoid: Centre of mass and the first cardinal equation'
+  back:
+    it: >-
+      - Includere le forze interne nella prima cardinale: contano solo le esterne.
+
+      - Credere che il CM debba trovarsi dentro il corpo (controesempio: anello, boomerang).
+
+      - Confondere v_cm con la velocità di un punto specifico del corpo.
+
+      - Usare la conservazione di P quando la risultante esterna non è nulla (es. durante un urto con vincoli
+      esterni impulsivi).
+    en: >-
+      - Including internal forces in the first cardinal equation: only external ones count.
+
+      - Believing that the CM must lie inside the body (counterexamples: ring, boomerang).
+
+      - Confusing v_cm with the velocity of a specific point of the body.
+
+      - Using conservation of P when the external resultant is not zero (e.g. during a collision with
+      impulsive external constraints).

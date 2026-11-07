@@ -1,0 +1,250 @@
+- id: moto-circolare-vario-esposizione
+  topic: moto-circolare-vario
+  objectives:
+    - moto-circolare-vario.1
+    - moto-circolare-vario.2
+    - moto-circolare-vario.3
+    - moto-circolare-vario.4
+    - moto-circolare-vario.5
+    - moto-circolare-vario.6
+    - moto-circolare-vario.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Moto circolare vario: accelerazione tangenziale e centripeta».'
+    en: 'Present at the oral exam: “Non-uniform circular motion: tangential and centripetal acceleration”.'
+  back:
+    it: >-
+      L'accelerazione centripeta esiste perché girare significa cambiare continuamente direzione: anche a
+      velocità (in modulo) costante, il vettore velocità ruota, e la rapidità con cui ruota è misurata da
+      v²/R. Quella tangenziale è l'accelerazione 'ordinaria' del tachimetro: dice se stai andando più forte o
+      più piano lungo la curva.
+
+
+      **Scaletta:**
+
+
+      - Definire ω e α come derivate di θ
+
+      - Ricavare v = ωR dalla coordinata curvilinea s = θR
+
+      - Spiegare perché la derivata del versore tangente non è nulla e da dove esce û_n
+
+      - Ricavare a_t = αR e a_n = ω²R = v²/R
+
+      - Disegnare i vettori v, a_t, a_n su una circonferenza
+
+      - Discutere il caso limite del moto circolare uniforme
+
+      - Saper calcolare il modulo dell'accelerazione totale
+    en: >-
+      Centripetal acceleration exists because turning means continuously changing direction: even at constant
+      speed the velocity vector rotates, and how fast it rotates is measured by v²/R. The tangential
+      acceleration is the 'ordinary' speedometer acceleration: it tells you whether you are going faster or
+      slower along the curve.
+
+
+      **Outline:**
+
+
+      - Define ω and α as derivatives of θ
+
+      - Derive v = ωR from the arc-length coordinate s = θR
+
+      - Explain why the derivative of the tangent unit vector is not zero and where û_n comes from
+
+      - Derive a_t = αR and a_n = ω²R = v²/R
+
+      - Draw the vectors v, a_t, a_n on a circle
+
+      - Discuss the limiting case of uniform circular motion
+
+      - Compute the magnitude of the total acceleration
+- id: moto-circolare-vario-orale-1
+  topic: moto-circolare-vario
+  objectives:
+    - moto-circolare-vario.6
+    - moto-circolare-vario.7
+  kind: orale
+  front:
+    it: In un moto curvilineo qualsiasi (non circolare) come si generalizza a_n?
+    en: In a generic curvilinear (non-circular) motion, how does a_n generalise?
+  back:
+    it: >-
+      Nel moto curvilineo generico si usa il cerchio osculatore: localmente la traiettoria è approssimata da
+      una circonferenza di raggio ρ (raggio di curvatura), quindi \(a_n = v^2/\rho\) diretta verso il centro
+      di curvatura, mentre \(a_t = dv/dt\) resta invariata. Per una retta ρ → ∞ e a_n = 0.
+    en: >-
+      For a generic curvilinear motion one uses the osculating circle: locally the trajectory is approximated
+      by a circle of radius ρ (radius of curvature), so \(a_n = v^2/\rho\) points towards the centre of
+      curvature, while \(a_t = dv/dt\) is unchanged. For a straight line ρ → ∞ and a_n = 0.
+- id: moto-circolare-vario-orale-2
+  topic: moto-circolare-vario
+  objectives:
+    - moto-circolare-vario.6
+    - moto-circolare-vario.7
+  kind: orale
+  front:
+    it: >-
+      Un'auto percorre una curva a velocità di modulo crescente: in quale direzione punta l'accelerazione
+      totale rispetto al raggio?
+    en: >-
+      A car takes a bend with increasing speed: in which direction does the total acceleration point with
+      respect to the radius?
+  back:
+    it: >-
+      L'accelerazione totale ha una componente centripeta (verso il centro) e una tangenziale concorde con la
+      velocità, perché il modulo cresce. Il vettore risultante punta quindi verso l'interno della curva ma
+      inclinato in avanti rispetto al raggio, di un angolo β con \(\tan\beta = a_t/a_n\).
+    en: >-
+      The total acceleration has a centripetal component (towards the centre) and a tangential one along the
+      velocity, because the speed increases. The resulting vector therefore points towards the inside of the
+      bend but tilted forward with respect to the radius, by an angle β with \(\tan\beta = a_t/a_n\).
+- id: moto-circolare-vario-orale-3
+  topic: moto-circolare-vario
+  objectives:
+    - moto-circolare-vario.6
+    - moto-circolare-vario.7
+  kind: orale
+  front:
+    it: Perché nel moto circolare uniforme il lavoro della forza risultante è nullo?
+    en: Why is the work done by the resultant force zero in uniform circular motion?
+  back:
+    it: >-
+      Nel moto circolare uniforme la risultante è puramente centripeta, quindi sempre perpendicolare alla
+      velocità: la potenza \(P = \vec{F}\cdot\vec{v}\) è nulla istante per istante e il lavoro è zero.
+      Coerentemente, per il teorema lavoro-energia cinetica, il modulo della velocità (e quindi K) resta
+      costante.
+    en: >-
+      In uniform circular motion the resultant is purely centripetal, hence always perpendicular to the
+      velocity: the power \(P = \vec{F}\cdot\vec{v}\) is zero at every instant and so is the work.
+      Consistently, by the work–kinetic energy theorem, the speed (and therefore K) stays constant.
+- id: moto-circolare-vario-definizione
+  topic: moto-circolare-vario
+  objectives:
+    - moto-circolare-vario.1
+  kind: definizione
+  front:
+    it: 'Definizione: Moto circolare vario: accelerazione tangenziale e centripeta'
+    en: 'Definition: Non-uniform circular motion: tangential and centripetal acceleration'
+  back:
+    it: >-
+      Un punto materiale si muove di moto circolare quando la sua traiettoria è una circonferenza di raggio R.
+      Si definiscono: la coordinata curvilinea s(t) lungo la circonferenza, la velocità angolare \(\omega =
+      d\theta/dt\) e l'accelerazione angolare \(\alpha = d\omega/dt\). Nel moto circolare vario il modulo
+      della velocità non è costante, quindi l'accelerazione ha due componenti: quella tangenziale, che
+      modifica il modulo della velocità, e quella centripeta (o normale), che modifica la direzione della
+      velocità puntando verso il centro.
+    en: >-
+      A point particle moves in circular motion when its trajectory is a circle of radius R. We define the
+      arc-length coordinate s(t) along the circle, the angular velocity \(\omega = d\theta/dt\) and the
+      angular acceleration \(\alpha = d\omega/dt\). In non-uniform circular motion the speed is not constant,
+      so the acceleration has two components: the tangential one, which changes the magnitude of the velocity,
+      and the centripetal (or normal) one, which changes its direction and points towards the centre.
+- id: moto-circolare-vario-formule
+  topic: moto-circolare-vario
+  objectives:
+    - moto-circolare-vario.1
+    - moto-circolare-vario.2
+    - moto-circolare-vario.3
+    - moto-circolare-vario.4
+    - moto-circolare-vario.5
+    - moto-circolare-vario.6
+    - moto-circolare-vario.7
+  kind: formula
+  front:
+    it: 'Le formule chiave di «Moto circolare vario: accelerazione tangenziale e centripeta»'
+    en: 'The key formulas of “Non-uniform circular motion: tangential and centripetal acceleration”'
+  back:
+    it: |-
+      - \(v = \omega R\)
+      - \(a_t = \alpha R = \frac{dv}{dt}\)
+      - \(a_n = \omega^2 R = \frac{v^2}{R}\)
+      - \(|\vec{a}| = \sqrt{a_t^2 + a_n^2}\)
+    en: |-
+      - \(v = \omega R\)
+      - \(a_t = \alpha R = \frac{dv}{dt}\)
+      - \(a_n = \omega^2 R = \frac{v^2}{R}\)
+      - \(|\vec{a}| = \sqrt{a_t^2 + a_n^2}\)
+- id: moto-circolare-vario-ipotesi
+  topic: moto-circolare-vario
+  objectives:
+    - moto-circolare-vario.1
+    - moto-circolare-vario.2
+    - moto-circolare-vario.3
+    - moto-circolare-vario.4
+    - moto-circolare-vario.5
+    - moto-circolare-vario.6
+    - moto-circolare-vario.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Moto circolare vario: accelerazione tangenziale e centripeta'
+    en: 'Validity assumptions: Non-uniform circular motion: tangential and centripetal acceleration'
+  back:
+    it: >-
+      Punto materiale vincolato a una traiettoria circolare di raggio R costante; cinematica classica (non
+      relativistica). Non serve alcuna ipotesi sulla causa del moto: è pura cinematica.
+    en: >-
+      Point particle constrained to a circular path of constant radius R; classical (non-relativistic)
+      kinematics. No assumption on the cause of the motion is needed: this is pure kinematics.
+- id: moto-circolare-vario-casi-limite
+  topic: moto-circolare-vario
+  objectives:
+    - moto-circolare-vario.1
+    - moto-circolare-vario.2
+    - moto-circolare-vario.3
+    - moto-circolare-vario.4
+    - moto-circolare-vario.5
+    - moto-circolare-vario.6
+    - moto-circolare-vario.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Moto circolare vario: accelerazione tangenziale e centripeta'
+    en: 'Limiting cases: Non-uniform circular motion: tangential and centripetal acceleration'
+  back:
+    it: >-
+      Se \(\alpha = 0\) (ω costante) il moto è circolare uniforme: resta solo l'accelerazione centripeta \(a_n
+      = \omega^2 R\). Se \(R \to \infty\) la traiettoria tende a una retta e \(a_n \to 0\): resta solo
+      l'accelerazione tangenziale, come nel moto rettilineo. Se v = 0 istantaneamente (inversione del moto),
+      a_n = 0 in quell'istante.
+    en: >-
+      If \(\alpha = 0\) (constant ω) the motion is uniform circular motion: only the centripetal acceleration
+      \(a_n = \omega^2 R\) remains. If \(R \to \infty\) the path tends to a straight line and \(a_n \to 0\):
+      only the tangential acceleration remains, as in rectilinear motion. If v = 0 at some instant (reversal
+      of motion), a_n = 0 at that instant.
+- id: moto-circolare-vario-errori
+  topic: moto-circolare-vario
+  objectives:
+    - moto-circolare-vario.1
+    - moto-circolare-vario.2
+    - moto-circolare-vario.3
+    - moto-circolare-vario.4
+    - moto-circolare-vario.5
+    - moto-circolare-vario.6
+    - moto-circolare-vario.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Moto circolare vario: accelerazione tangenziale e centripeta'
+    en: 'Mistakes to avoid: Non-uniform circular motion: tangential and centripetal acceleration'
+  back:
+    it: >-
+      - Dire che nel moto circolare uniforme l'accelerazione è nulla perché la velocità 'è costante': è
+      costante solo il modulo, non il vettore.
+
+      - Confondere a_t = αR (deriva dal cambiamento del modulo di v) con a_n = ω²R (deriva dal cambiamento di
+      direzione).
+
+      - Scrivere a_n = v²/R con v velocità angolare invece che tangenziale.
+
+      - Trattare la 'forza centripeta' come una forza in più: è la risultante delle forze reali proiettata
+      sulla normale.
+    en: >-
+      - Saying that in uniform circular motion the acceleration is zero because the velocity 'is constant':
+      only its magnitude is constant, not the vector.
+
+      - Confusing a_t = αR (due to the change in the magnitude of v) with a_n = ω²R (due to the change in
+      direction).
+
+      - Writing a_n = v²/R with v the angular velocity instead of the tangential speed.
+
+      - Treating the 'centripetal force' as an extra force: it is the resultant of the real forces projected
+      on the normal.

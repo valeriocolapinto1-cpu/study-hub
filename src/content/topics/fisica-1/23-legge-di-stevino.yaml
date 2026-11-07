@@ -1,0 +1,34 @@
+id: legge-di-stevino
+course: fisica-1
+order: 23
+title:
+  it: Pressione e legge di Stevino
+summary:
+  it: >-
+    Ogni strato di fluido deve sorreggere tutto il fluido che gli sta sopra: scendendo, il carico cresce e con
+    esso la pressione.
+group:
+  it: Fluidi e termodinamica
+  en: Fluids and thermodynamics
+objectives:
+  - id: legge-di-stevino.1
+    text:
+      it: Definire la pressione e le sue unità (Pa, atm, mmHg)
+  - id: legge-di-stevino.2
+    text:
+      it: Enunciare il principio di Pascal (isotropia della pressione)
+  - id: legge-di-stevino.3
+    text:
+      it: Ricavare dp/dz = −ρg dall'equilibrio del cilindretto
+  - id: legge-di-stevino.4
+    text:
+      it: Integrare e ottenere p = p₀ + ρgh
+  - id: legge-di-stevino.5
+    text:
+      it: Spiegare vasi comunicanti e paradosso idrostatico
+  - id: legge-di-stevino.6
+    text:
+      it: Descrivere il barometro di Torricelli
+  - id: legge-di-stevino.7
+    text:
+      it: Collegare Stevino alla spinta di Archimede

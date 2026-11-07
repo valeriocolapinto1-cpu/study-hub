@@ -1,0 +1,46 @@
+id: centro-di-massa
+course: fisica-1
+order: 12
+title:
+  it: Centro di massa e prima equazione cardinale
+  en: Centre of mass and the first cardinal equation
+summary:
+  it: >-
+    Il centro di massa è il 'portavoce' del sistema: comunque i pezzi interagiscano tra loro, tirandosi e
+    spingendosi, nessuna forza interna può spostare il baricentro del gruppo — per farlo serve una spinta
+    dall'esterno.
+  en: >-
+    The centre of mass is the system's 'spokesperson': however the pieces interact, pulling and pushing each
+    other, no internal force can move the group's centre — that takes a push from outside.
+group:
+  it: Sistemi di punti e corpo rigido
+  en: Systems of particles and rigid bodies
+objectives:
+  - id: centro-di-massa.1
+    text:
+      it: Definire r_cm per sistemi discreti e continui
+      en: Define r_cm for discrete and continuous systems
+  - id: centro-di-massa.2
+    text:
+      it: Scrivere Newton per il singolo punto separando interne ed esterne
+      en: Write Newton for a single point, separating internal and external forces
+  - id: centro-di-massa.3
+    text:
+      it: Mostrare l'elisione delle forze interne con la terza legge
+      en: Show the cancellation of internal forces with the third law
+  - id: centro-di-massa.4
+    text:
+      it: Ricavare F_ext = Ma_cm = dP/dt
+      en: Derive F_ext = Ma_cm = dP/dt
+  - id: centro-di-massa.5
+    text:
+      it: Enunciare la conservazione di P per sistemi isolati
+      en: State the conservation of P for isolated systems
+  - id: centro-di-massa.6
+    text:
+      it: Discutere l'esempio del proiettile che esplode
+      en: Discuss the example of the exploding projectile
+  - id: centro-di-massa.7
+    text:
+      it: Chiarire che non serve la rigidità del sistema
+      en: Make clear that rigidity of the system is not needed

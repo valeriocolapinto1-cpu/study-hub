@@ -1,0 +1,125 @@
+- id: legge-gas-perfetti-esposizione
+  topic: legge-gas-perfetti
+  objectives:
+    - legge-gas-perfetti.1
+    - legge-gas-perfetti.2
+    - legge-gas-perfetti.3
+    - legge-gas-perfetti.4
+    - legge-gas-perfetti.5
+    - legge-gas-perfetti.6
+    - legge-gas-perfetti.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Legge empirica dei gas perfetti».'
+  back:
+    it: >-
+      Tre leggi sperimentali indipendenti, scoperte in due secoli, si incastrano in un'unica equazione a patto
+      di misurare la temperatura dalla giusta origine: lo zero assoluto. L'universalità (stessa R per tutti i
+      gas) grida che a basse densità le molecole non si 'vedono' tra loro: conta solo quante sono, non chi
+      sono — ed è esattamente ciò che il modello cinetico assume.
+
+
+      **Scaletta:**
+
+
+      - Enunciare Boyle e le due leggi di Gay-Lussac coi rispettivi vincoli
+
+      - Spiegare il significato del coefficiente α uguale per tutti i gas
+
+      - Mostrare come nasce la temperatura assoluta dall'estrapolazione
+
+      - Combinare le leggi in pV/T = cost
+
+      - Introdurre Avogadro e scrivere pV = nRT
+
+      - Passare alla forma microscopica pV = Nk_BT
+
+      - Dire quando la legge cessa di valere
+- id: legge-gas-perfetti-definizione
+  topic: legge-gas-perfetti
+  objectives:
+    - legge-gas-perfetti.1
+  kind: definizione
+  front:
+    it: 'Definizione: Legge empirica dei gas perfetti'
+  back:
+    it: >-
+      L'equazione di stato dei gas perfetti, \(pV = nRT\), sintetizza in un'unica relazione le leggi empiriche
+      ottenute tra Seicento e Ottocento: legge di Boyle (isoterma: pV = cost), prima legge di
+      Gay-Lussac/Charles (isobara: V ∝ T), seconda legge di Gay-Lussac (isocora: p ∝ T) e principio di
+      Avogadro (volumi uguali, stessa T e p → stesso numero di moli). R = 8.314 J/(mol·K) è la costante
+      universale dei gas; T è la temperatura assoluta in kelvin.
+- id: legge-gas-perfetti-formule
+  topic: legge-gas-perfetti
+  objectives:
+    - legge-gas-perfetti.1
+    - legge-gas-perfetti.2
+    - legge-gas-perfetti.3
+    - legge-gas-perfetti.4
+    - legge-gas-perfetti.5
+    - legge-gas-perfetti.6
+    - legge-gas-perfetti.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Legge empirica dei gas perfetti»
+  back:
+    it: |-
+      - \(pV = nRT\)
+      - \(pV = Nk_BT\)
+      - \(\frac{p_1V_1}{T_1} = \frac{p_2V_2}{T_2}\)
+      - \(R = 8.314\;\text{J/(mol·K)}\)
+- id: legge-gas-perfetti-ipotesi
+  topic: legge-gas-perfetti
+  objectives:
+    - legge-gas-perfetti.1
+    - legge-gas-perfetti.2
+    - legge-gas-perfetti.3
+    - legge-gas-perfetti.4
+    - legge-gas-perfetti.5
+    - legge-gas-perfetti.6
+    - legge-gas-perfetti.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Legge empirica dei gas perfetti'
+  back:
+    it: >-
+      Gas sufficientemente rarefatto (limite di bassa densità): tutte le leggi empiriche valgono tanto meglio
+      quanto più il gas è lontano dalla condensazione; equilibrio termodinamico (p, T uniformi e ben
+      definite).
+- id: legge-gas-perfetti-casi-limite
+  topic: legge-gas-perfetti
+  objectives:
+    - legge-gas-perfetti.1
+    - legge-gas-perfetti.2
+    - legge-gas-perfetti.3
+    - legge-gas-perfetti.4
+    - legge-gas-perfetti.5
+    - legge-gas-perfetti.6
+    - legge-gas-perfetti.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Legge empirica dei gas perfetti'
+  back:
+    it: >-
+      Alta densità/bassa T: deviazioni descritte da Van der Waals \((p + an^2/V^2)(V - nb) = nRT\). Vicino
+      alla liquefazione la legge fallisce del tutto. Nel limite p → 0 tutti i gas reali tendono al
+      comportamento perfetto: per questo il gas perfetto definisce la scala di temperatura.
+- id: legge-gas-perfetti-errori
+  topic: legge-gas-perfetti
+  objectives:
+    - legge-gas-perfetti.1
+    - legge-gas-perfetti.2
+    - legge-gas-perfetti.3
+    - legge-gas-perfetti.4
+    - legge-gas-perfetti.5
+    - legge-gas-perfetti.6
+    - legge-gas-perfetti.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Legge empirica dei gas perfetti'
+  back:
+    it: |-
+      - Usare la temperatura in gradi Celsius dentro pV = nRT: serve il kelvin.
+      - Sbagliare unità di R (8.314 J/mol·K vs 0.0821 L·atm/mol·K).
+      - Applicare la legge a vapori vicini alla condensazione.
+      - Confondere n (moli) con N (molecole) e R con k_B.

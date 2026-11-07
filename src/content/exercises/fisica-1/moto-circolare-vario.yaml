@@ -1,0 +1,131 @@
+- id: volano-avviamento
+  topic: moto-circolare-vario
+  objectives:
+    - moto-circolare-vario.1
+    - moto-circolare-vario.2
+    - moto-circolare-vario.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un volano di raggio R = 0,40 m parte da fermo con accelerazione angolare costante α = 3,0 rad/s². Per un
+      punto del bordo, all'istante t = 2,0 s, calcolare: (a) la velocità angolare; (b) l'accelerazione
+      tangenziale; (c) l'accelerazione centripeta; (d) il modulo dell'accelerazione totale.
+    en: >-
+      A flywheel of radius R = 0.40 m starts from rest with constant angular acceleration α = 3.0 rad/s². For
+      a point on the rim, at time t = 2.0 s, find: (a) the angular velocity; (b) the tangential acceleration;
+      (c) the centripetal acceleration; (d) the magnitude of the total acceleration.
+  steps:
+    - title:
+        it: Velocità angolare
+        en: Angular velocity
+      body:
+        it: 'Con α costante e partenza da fermo: \(\omega = \alpha t = 3{,}0 \cdot 2{,}0 = 6{,}0\ \text{rad/s}\).'
+        en: 'With constant α and starting from rest: \(\omega = \alpha t = 3.0 \cdot 2.0 = 6.0\ \text{rad/s}\).'
+    - title:
+        it: Componenti dell'accelerazione
+        en: Acceleration components
+      body:
+        it: >-
+          \(a_t = \alpha R = 1{,}2\ \text{m/s}^2\) (costante); \(a_n = \omega^2 R = 36 \cdot 0{,}40 = 14{,}4\
+          \text{m/s}^2\) (cresce con t²).
+        en: >-
+          \(a_t = \alpha R = 1.2\ \text{m/s}^2\) (constant); \(a_n = \omega^2 R = 36 \cdot 0.40 = 14.4\
+          \text{m/s}^2\) (grows as t²).
+    - title:
+        it: Modulo
+        en: Magnitude
+      body:
+        it: >-
+          \(|\vec a| = \sqrt{1{,}2^2 + 14{,}4^2} \approx 14{,}45\ \text{m/s}^2\): già dopo 2 s domina la
+          componente centripeta.
+        en: >-
+          \(|\vec a| = \sqrt{1.2^2 + 14.4^2} \approx 14.45\ \text{m/s}^2\): after only 2 s the centripetal
+          component dominates.
+  answer:
+    - label:
+        it: ω
+        en: ω
+      value: 6
+      unit: rad/s
+    - label:
+        it: a_t
+        en: a_t
+      value: 1.2
+      unit: m/s²
+    - label:
+        it: a_n
+        en: a_n
+      value: 14.4
+      unit: m/s²
+    - label:
+        it: '|a|'
+        en: '|a|'
+      value: 14.45
+      unit: m/s²
+  origin: originale
+- id: curva-frenata
+  topic: moto-circolare-vario
+  objectives:
+    - moto-circolare-vario.1
+    - moto-circolare-vario.2
+    - moto-circolare-vario.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Un'auto entra in una curva di raggio R = 80 m a 25 m/s e frena uniformemente fino a 15 m/s dopo aver
+      percorso 60 m lungo la curva. Calcolare: (a) l'accelerazione tangenziale; (b) il modulo
+      dell'accelerazione totale all'inizio della frenata; (c) la stessa grandezza alla fine.
+    en: >-
+      A car enters a bend of radius R = 80 m at 25 m/s and brakes uniformly down to 15 m/s after travelling 60
+      m along the bend. Find: (a) the tangential acceleration; (b) the magnitude of the total acceleration at
+      the start of braking; (c) the same quantity at the end.
+  steps:
+    - title:
+        it: Accelerazione tangenziale
+        en: Tangential acceleration
+      body:
+        it: >-
+          Lungo l'arco vale la cinematica del moto uniformemente accelerato in s: \(v_f^2 = v_i^2 + 2a_t s
+          \Rightarrow a_t = (225 - 625)/120 \approx -3{,}33\ \text{m/s}^2\).
+        en: >-
+          Along the arc the kinematics of uniformly accelerated motion holds in s: \(v_f^2 = v_i^2 + 2a_t s
+          \Rightarrow a_t = (225 - 625)/120 \approx -3.33\ \text{m/s}^2\).
+    - title:
+        it: Inizio della frenata
+        en: Start of braking
+      body:
+        it: >-
+          \(a_n = 25^2/80 \approx 7{,}81\ \text{m/s}^2\), quindi \(|\vec a| = \sqrt{3{,}33^2 + 7{,}81^2}
+          \approx 8{,}49\ \text{m/s}^2\).
+        en: >-
+          \(a_n = 25^2/80 \approx 7.81\ \text{m/s}^2\), so \(|\vec a| = \sqrt{3.33^2 + 7.81^2} \approx 8.49\
+          \text{m/s}^2\).
+    - title:
+        it: Fine della frenata
+        en: End of braking
+      body:
+        it: >-
+          \(a_n = 15^2/80 \approx 2{,}81\ \text{m/s}^2\), \(|\vec a| = \sqrt{3{,}33^2 + 2{,}81^2} \approx
+          4{,}36\ \text{m/s}^2\). La componente centripeta cala col quadrato della velocità.
+        en: >-
+          \(a_n = 15^2/80 \approx 2.81\ \text{m/s}^2\), \(|\vec a| = \sqrt{3.33^2 + 2.81^2} \approx 4.36\
+          \text{m/s}^2\). The centripetal component drops with the square of the speed.
+  answer:
+    - label:
+        it: a_t
+        en: a_t
+      value: -3.33
+      unit: m/s²
+    - label:
+        it: '|a| iniziale'
+        en: initial |a|
+      value: 8.49
+      unit: m/s²
+    - label:
+        it: '|a| finale'
+        en: final |a|
+      value: 4.36
+      unit: m/s²
+  origin: originale

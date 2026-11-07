@@ -1,0 +1,37 @@
+id: teorema-di-koenig
+course: fisica-1
+order: 15
+title:
+  it: Teorema di König (momento angolare ed energia cinetica)
+  en: König's theorem (angular momentum and kinetic energy)
+summary:
+  it: König separa il moto 'del sistema come un tutto' dal moto 'interno'.
+  en: König separates the motion 'of the system as a whole' from the 'internal' motion.
+group:
+  it: Sistemi di punti e corpo rigido
+  en: Systems of particles and rigid bodies
+objectives:
+  - id: teorema-di-koenig.1
+    text:
+      it: Definire il sistema di riferimento del centro di massa
+      en: Define the centre-of-mass reference frame
+  - id: teorema-di-koenig.2
+    text:
+      it: Dimostrare le proprietà Σmᵢr'ᵢ = 0 e Σmᵢv'ᵢ = 0
+      en: Prove the properties Σmᵢr'ᵢ = 0 and Σmᵢv'ᵢ = 0
+  - id: teorema-di-koenig.3
+    text:
+      it: Dimostrare il primo teorema (L) mostrando l'annullarsi dei termini misti
+      en: Prove the first theorem (L) showing that the mixed terms vanish
+  - id: teorema-di-koenig.4
+    text:
+      it: Dimostrare il secondo teorema (K)
+      en: Prove the second theorem (K)
+  - id: teorema-di-koenig.5
+    text:
+      it: 'Specializzare al corpo rigido: K = ½Mv_cm² + ½I_cmω²'
+      en: 'Specialise to the rigid body: K = ½Mv_cm² + ½I_cmω²'
+  - id: teorema-di-koenig.6
+    text:
+      it: Applicare al rotolamento o a un urto
+      en: Apply it to rolling or to a collision

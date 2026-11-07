@@ -1,0 +1,34 @@
+id: teoria-cinetica-gas
+course: fisica-1
+order: 24
+title:
+  it: 'Teoria cinetica dei gas: la pressione dei gas perfetti'
+summary:
+  it: >-
+    La pressione di un gas è un tamburellare fittissimo di molecole sulla parete: ogni urto è una piccola
+    spinta, e la media di miliardi di spinte al secondo è una forza costante.
+group:
+  it: Fluidi e termodinamica
+  en: Fluids and thermodynamics
+objectives:
+  - id: teoria-cinetica-gas.1
+    text:
+      it: Elencare le ipotesi del modello di gas perfetto
+  - id: teoria-cinetica-gas.2
+    text:
+      it: Calcolare l'impulso ceduto in un urto elastico sulla parete
+  - id: teoria-cinetica-gas.3
+    text:
+      it: Contare gli urti per unità di tempo sulla parete
+  - id: teoria-cinetica-gas.4
+    text:
+      it: Usare l'isotropia per passare da ⟨v_x²⟩ a ⟨v²⟩/3
+  - id: teoria-cinetica-gas.5
+    text:
+      it: Ottenere pV = (2/3)N⟨½mv²⟩
+  - id: teoria-cinetica-gas.6
+    text:
+      it: Confrontare con pV = Nk_BT e interpretare la temperatura
+  - id: teoria-cinetica-gas.7
+    text:
+      it: Definire la velocità quadratica media

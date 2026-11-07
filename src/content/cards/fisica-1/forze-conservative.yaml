@@ -1,0 +1,255 @@
+- id: forze-conservative-esposizione
+  topic: forze-conservative
+  objectives:
+    - forze-conservative.1
+    - forze-conservative.2
+    - forze-conservative.3
+    - forze-conservative.4
+    - forze-conservative.5
+    - forze-conservative.6
+    - forze-conservative.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Forze conservative, energia potenziale e conservazione dell''energia meccanica».'
+    en: 'Present at the oral exam: “Conservative forces, potential energy and conservation of mechanical energy”.'
+  back:
+    it: >-
+      Una forza conservativa è una 'banca perfetta' dell'energia: qualunque lavoro spendi contro di essa lo
+      riavrai per intero al ritorno. L'energia potenziale è il libretto di risparmio: registra il credito
+      accumulato in funzione della sola posizione. Il paesaggio di U (colline e valli) permette di leggere il
+      moto a colpo d'occhio: il corpo accelera verso le valli e può arrivare solo dove E ≥ U.
+
+
+      **Scaletta:**
+
+
+      - Dare le due definizioni equivalenti di forza conservativa (cammino / circuitazione nulla)
+
+      - Definire U con l'integrale e discutere l'arbitrarietà della costante
+
+      - Dimostrare ΔK = −ΔU ⇒ E = K + U costante
+
+      - Scrivere F = −∇U e discutere gli equilibri
+
+      - Elencare esempi conservativi e non (attrito)
+
+      - Usare il grafico di U(x) per discutere il moto qualitativamente
+
+      - Risolvere un esempio (caduta, molla) con la conservazione
+    en: >-
+      A conservative force is a 'perfect bank' for energy: any work you spend against it you get back in full
+      on the way back. Potential energy is the savings book: it records the accumulated credit as a function
+      of position alone. The landscape of U (hills and valleys) lets you read the motion at a glance: the body
+      accelerates towards valleys and can only reach places where E ≥ U.
+
+
+      **Outline:**
+
+
+      - Give the two equivalent definitions of a conservative force (path / zero circulation)
+
+      - Define U through the integral and discuss the arbitrary constant
+
+      - Prove ΔK = −ΔU ⇒ E = K + U constant
+
+      - Write F = −∇U and discuss equilibria
+
+      - List conservative and non-conservative examples (friction)
+
+      - Use the graph of U(x) to discuss the motion qualitatively
+
+      - Solve an example (fall, spring) with conservation
+- id: forze-conservative-orale-1
+  topic: forze-conservative
+  objectives:
+    - forze-conservative.6
+    - forze-conservative.7
+  kind: orale
+  front:
+    it: Come si verifica in pratica che un campo di forze è conservativo?
+    en: How do you check in practice that a force field is conservative?
+  back:
+    it: >-
+      Si verifica che il rotore sia nullo, \(\nabla\times\vec F = 0\), cioè che le derivate incrociate
+      coincidano (\(\partial F_x/\partial y = \partial F_y/\partial x\), ecc.), in un dominio semplicemente
+      connesso: allora per il teorema di Stokes la circuitazione su ogni cammino chiuso è nulla. In
+      alternativa si cerca esplicitamente una U con \(\vec F = -\nabla U\), oppure si calcola il lavoro su due
+      cammini diversi. Sono conservative, per esempio, tutte le forze centrali a simmetria sferica e le forze
+      costanti.
+    en: >-
+      Check that the curl vanishes, \(\nabla\times\vec F = 0\), i.e. that the cross derivatives agree
+      (\(\partial F_x/\partial y = \partial F_y/\partial x\), etc.), in a simply connected region: then by
+      Stokes' theorem the circulation around every closed path is zero. Alternatively, look explicitly for a U
+      with \(\vec F = -\nabla U\), or compute the work along two different paths. All spherically symmetric
+      central forces and all constant forces, for example, are conservative.
+- id: forze-conservative-orale-2
+  topic: forze-conservative
+  objectives:
+    - forze-conservative.6
+    - forze-conservative.7
+  kind: orale
+  front:
+    it: Che cosa sono i punti di inversione del moto sul grafico di U(x)?
+    en: What are the turning points of the motion on the graph of U(x)?
+  back:
+    it: >-
+      Poiché \(K = E - U(x) \ge 0\), il moto è confinato dove \(U(x) \le E\). Nei punti in cui la retta
+      orizzontale E interseca il grafico di U la velocità si annulla e il corpo inverte il moto, perché lì la
+      forza \(-dU/dx\) lo spinge indietro. Tra due punti di inversione attorno a un minimo il moto è periodico
+      (oscillazione); se c'è un solo punto di inversione il moto è illimitato.
+    en: >-
+      Since \(K = E - U(x) \ge 0\), the motion is confined to where \(U(x) \le E\). Where the horizontal line
+      E meets the graph of U the velocity vanishes and the body reverses, because there the force \(-dU/dx\)
+      pushes it back. Between two turning points around a minimum the motion is periodic (an oscillation);
+      with only one turning point the motion is unbounded.
+- id: forze-conservative-orale-3
+  topic: forze-conservative
+  objectives:
+    - forze-conservative.6
+    - forze-conservative.7
+  kind: orale
+  front:
+    it: >-
+      Perché la forza magnetica su una carica non compie mai lavoro pur non essendo conservativa in senso
+      stretto?
+    en: >-
+      Why does the magnetic force on a charge never do work, even though it is not conservative in the strict
+      sense?
+  back:
+    it: >-
+      La forza di Lorentz \(q\vec v\times\vec B\) è in ogni istante perpendicolare alla velocità, quindi la
+      sua potenza \(\vec F\cdot\vec v\) è identicamente nulla e non cambia l'energia cinetica: curva le
+      traiettorie senza accelerare in modulo. Non è conservativa nel senso della definizione perché dipende
+      dalla velocità, quindi non ammette un'energia potenziale funzione della sola posizione; semplicemente il
+      suo lavoro è sempre zero.
+    en: >-
+      The Lorentz force \(q\vec v\times\vec B\) is at every instant perpendicular to the velocity, so its
+      power \(\vec F\cdot\vec v\) is identically zero and it does not change the kinetic energy: it bends
+      trajectories without changing the speed. It is not conservative in the sense of the definition because
+      it depends on the velocity, so it has no potential energy depending on position alone; simply, its work
+      is always zero.
+- id: forze-conservative-definizione
+  topic: forze-conservative
+  objectives:
+    - forze-conservative.1
+  kind: definizione
+  front:
+    it: 'Definizione: Forze conservative, energia potenziale e conservazione dell''energia meccanica'
+    en: 'Definition: Conservative forces, potential energy and conservation of mechanical energy'
+  back:
+    it: >-
+      Una forza è conservativa se il suo lavoro tra due punti non dipende dal cammino percorso ma solo dagli
+      estremi; equivalentemente, il lavoro su qualunque cammino chiuso è nullo: \(\oint \vec{F}\cdot d\vec{r}
+      = 0\). A ogni forza conservativa si associa un'energia potenziale U definita da \(W_{A\to B} = U(A) -
+      U(B) = -\Delta U\) (definita a meno di una costante additiva). L'energia meccanica è \(E = K + U\): se
+      agiscono solo forze conservative, E si conserva.
+    en: >-
+      A force is conservative if its work between two points does not depend on the path followed but only on
+      the end points; equivalently, its work around any closed path is zero: \(\oint \vec{F}\cdot d\vec{r} =
+      0\). With every conservative force we associate a potential energy U defined by \(W_{A\to B} = U(A) -
+      U(B) = -\Delta U\) (defined up to an additive constant). The mechanical energy is \(E = K + U\): if only
+      conservative forces act, E is conserved.
+- id: forze-conservative-formule
+  topic: forze-conservative
+  objectives:
+    - forze-conservative.1
+    - forze-conservative.2
+    - forze-conservative.3
+    - forze-conservative.4
+    - forze-conservative.5
+    - forze-conservative.6
+    - forze-conservative.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Forze conservative, energia potenziale e conservazione dell'energia meccanica»
+    en: The key formulas of “Conservative forces, potential energy and conservation of mechanical energy”
+  back:
+    it: |-
+      - \(\oint \vec{F}\cdot d\vec{r} = 0\)
+      - \(W_{A\to B} = -\Delta U\)
+      - \(E = K + U = \text{cost}\)
+      - \(\vec{F} = -\vec{\nabla}U\)
+      - \(U_{grav} = mgh,\; U_{el} = \tfrac{1}{2}kx^2\)
+    en: |-
+      - \(\oint \vec{F}\cdot d\vec{r} = 0\)
+      - \(W_{A\to B} = -\Delta U\)
+      - \(E = K + U = \text{const}\)
+      - \(\vec{F} = -\vec{\nabla}U\)
+      - \(U_{grav} = mgh,\; U_{el} = \tfrac{1}{2}kx^2\)
+- id: forze-conservative-ipotesi
+  topic: forze-conservative
+  objectives:
+    - forze-conservative.1
+    - forze-conservative.2
+    - forze-conservative.3
+    - forze-conservative.4
+    - forze-conservative.5
+    - forze-conservative.6
+    - forze-conservative.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Forze conservative, energia potenziale e conservazione dell''energia meccanica'
+    en: 'Validity assumptions: Conservative forces, potential energy and conservation of mechanical energy'
+  back:
+    it: >-
+      Forze dipendenti solo dalla posizione (non da velocità o tempo); dominio spaziale in cui l'integrale di
+      linea è ben definito. Per la conservazione di E: nessuna forza non conservativa che compia lavoro.
+    en: >-
+      Forces depending only on position (not on velocity or time); a region of space where the line integral
+      is well defined. For the conservation of E: no non-conservative force doing work.
+- id: forze-conservative-casi-limite
+  topic: forze-conservative
+  objectives:
+    - forze-conservative.1
+    - forze-conservative.2
+    - forze-conservative.3
+    - forze-conservative.4
+    - forze-conservative.5
+    - forze-conservative.6
+    - forze-conservative.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Forze conservative, energia potenziale e conservazione dell''energia meccanica'
+    en: 'Limiting cases: Conservative forces, potential energy and conservation of mechanical energy'
+  back:
+    it: >-
+      Se una forza è perpendicolare al moto (normale, tensione) non lavora: E si conserva anche in sua
+      presenza. Campo uniforme: U lineare in h. La costante additiva di U non ha effetti fisici: contano solo
+      le differenze.
+    en: >-
+      If a force is perpendicular to the motion (normal force, tension) it does no work: E is conserved even
+      in its presence. Uniform field: U linear in h. The additive constant in U has no physical effect: only
+      differences matter.
+- id: forze-conservative-errori
+  topic: forze-conservative
+  objectives:
+    - forze-conservative.1
+    - forze-conservative.2
+    - forze-conservative.3
+    - forze-conservative.4
+    - forze-conservative.5
+    - forze-conservative.6
+    - forze-conservative.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Forze conservative, energia potenziale e conservazione dell''energia meccanica'
+    en: 'Mistakes to avoid: Conservative forces, potential energy and conservation of mechanical energy'
+  back:
+    it: >-
+      - Dire che U 'appartiene al corpo': appartiene al sistema corpo + campo (o alla configurazione).
+
+      - Sbagliare il segno: W_cons = −ΔU, non +ΔU.
+
+      - Considerare conservativa la forza di attrito perché 'costante': il suo lavoro dipende dal cammino ed è
+      sempre negativo.
+
+      - Dimenticare di verificare che TUTTE le forze che lavorano siano conservative prima di usare E = cost.
+    en: >-
+      - Saying that U 'belongs to the body': it belongs to the body + field system (or to the configuration).
+
+      - Getting the sign wrong: W_cons = −ΔU, not +ΔU.
+
+      - Considering friction conservative because it is 'constant': its work depends on the path and is always
+      negative.
+
+      - Forgetting to check that ALL the forces doing work are conservative before using E = const.

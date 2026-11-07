@@ -1,0 +1,121 @@
+- id: molla-orizzontale-energia
+  topic: oscillatore-massa-molla
+  objectives:
+    - oscillatore-massa-molla.1
+    - oscillatore-massa-molla.2
+    - oscillatore-massa-molla.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Un blocco di massa m = 0,80 kg su un piano orizzontale liscio è attaccato a una molla di costante k =
+      200 N/m. Viene spostato di 5,0 cm dalla posizione di riposo e lasciato da fermo. Calcolare: (a) il
+      periodo; (b) l'energia meccanica; (c) la velocità quando x = 3,0 cm.
+    en: >-
+      A block of mass m = 0.80 kg on a smooth horizontal plane is attached to a spring of constant k = 200
+      N/m. It is displaced 5.0 cm from the rest position and released from rest. Find: (a) the period; (b) the
+      mechanical energy; (c) the speed when x = 3.0 cm.
+  steps:
+    - title:
+        it: Periodo
+        en: Period
+      body:
+        it: \(T = 2\pi\sqrt{m/k} = 2\pi\sqrt{0{,}004} \approx 0{,}397\ \text{s}\).
+        en: \(T = 2\pi\sqrt{m/k} = 2\pi\sqrt{0.004} \approx 0.397\ \text{s}\).
+    - title:
+        it: Energia
+        en: Energy
+      body:
+        it: Parte da fermo, quindi A = 5,0 cm e \(E = \tfrac12 kA^2 = 0{,}25\ \text{J}\).
+        en: It starts at rest, so A = 5.0 cm and \(E = \tfrac12 kA^2 = 0.25\ \text{J}\).
+    - title:
+        it: Velocità in x = 3 cm
+        en: Speed at x = 3 cm
+      body:
+        it: >-
+          \(\tfrac12 mv^2 = \tfrac12 k(A^2 - x^2) \Rightarrow v = \sqrt{(k/m)(A^2 - x^2)} = \sqrt{250 \cdot
+          0{,}0016} = 0{,}632\ \text{m/s}\).
+        en: >-
+          \(\tfrac12 mv^2 = \tfrac12 k(A^2 - x^2) \Rightarrow v = \sqrt{(k/m)(A^2 - x^2)} = \sqrt{250 \cdot
+          0.0016} = 0.632\ \text{m/s}\).
+  answer:
+    - label:
+        it: T
+        en: T
+      value: 0.397
+      unit: s
+    - label:
+        it: E
+        en: E
+      value: 0.25
+      unit: J
+    - label:
+        it: v
+        en: v
+      value: 0.632
+      unit: m/s
+  origin: originale
+- id: molla-verticale-urto
+  topic: oscillatore-massa-molla
+  objectives:
+    - oscillatore-massa-molla.1
+    - oscillatore-massa-molla.2
+    - oscillatore-massa-molla.3
+  difficulty: 3
+  kind: static
+  statement:
+    it: >-
+      Un piattello di massa trascurabile poggia su una molla verticale di costante k = 400 N/m. Una pallina di
+      massa m = 0,20 kg vi cade da ferma da un'altezza h = 0,30 m sopra il piattello e vi resta attaccata.
+      Calcolare: (a) la velocità della pallina all'impatto; (b) la compressione massima della molla; (c)
+      l'ampiezza dell'oscillazione successiva.
+    en: >-
+      A pan of negligible mass rests on a vertical spring of constant k = 400 N/m. A ball of mass m = 0.20 kg
+      falls from rest from a height h = 0.30 m above the pan and sticks to it. Find: (a) the speed of the ball
+      at impact; (b) the maximum compression of the spring; (c) the amplitude of the subsequent oscillation.
+  steps:
+    - title:
+        it: Impatto
+        en: Impact
+      body:
+        it: \(v_0 = \sqrt{2gh} = \sqrt{2 \cdot 9{,}81 \cdot 0{,}30} \approx 2{,}43\ \text{m/s}\).
+        en: \(v_0 = \sqrt{2gh} = \sqrt{2 \cdot 9.81 \cdot 0.30} \approx 2.43\ \text{m/s}\).
+    - title:
+        it: Compressione massima
+        en: Maximum compression
+      body:
+        it: >-
+          Conservazione dell'energia dalla quiete iniziale al punto più basso (compressione d): \(mg(h + d) =
+          \tfrac12 kd^2\), cioè \(200 d^2 - 1{,}962 d - 0{,}589 = 0\), con radice positiva \(d \approx
+          0{,}0597\ \text{m}\).
+        en: >-
+          Energy conservation from the initial rest to the lowest point (compression d): \(mg(h + d) =
+          \tfrac12 kd^2\), i.e. \(200 d^2 - 1.962 d - 0.589 = 0\), whose positive root is \(d \approx 0.0597\
+          \text{m}\).
+    - title:
+        it: Ampiezza
+        en: Amplitude
+      body:
+        it: >-
+          Il nuovo equilibrio è a \(y_{eq} = mg/k \approx 0{,}0049\ \text{m}\) di compressione; l'ampiezza è
+          la distanza del punto più basso da esso: \(A = d - y_{eq} \approx 0{,}0548\ \text{m}\).
+        en: >-
+          The new equilibrium is at a compression \(y_{eq} = mg/k \approx 0.0049\ \text{m}\); the amplitude is
+          the distance of the lowest point from it: \(A = d - y_{eq} \approx 0.0548\ \text{m}\).
+  answer:
+    - label:
+        it: v₀
+        en: v₀
+      value: 2.43
+      unit: m/s
+    - label:
+        it: d
+        en: d
+      value: 0.0597
+      unit: m
+    - label:
+        it: A
+        en: A
+      value: 0.0548
+      unit: m
+  origin: originale

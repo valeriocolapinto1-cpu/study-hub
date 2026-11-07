@@ -1,0 +1,147 @@
+- id: ciclo-di-carnot-esposizione
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.1
+    - ciclo-di-carnot.2
+    - ciclo-di-carnot.3
+    - ciclo-di-carnot.4
+    - ciclo-di-carnot.5
+    - ciclo-di-carnot.6
+    - ciclo-di-carnot.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Ciclo di Carnot».'
+  back:
+    it: >-
+      Carnot progetta la macchina 'perfetta' eliminando ogni spreco: mai un contatto termico con salto finito
+      di temperatura (per questo il calore si scambia solo lungo isoterme) e mai attriti. Anche così, una
+      parte del calore DEVE essere scaricata alla sorgente fredda: è il prezzo minimo, dettato dal rapporto
+      delle temperature, che nessuna ingegneria può eliminare.
+
+
+      **Scaletta:**
+
+
+      - Disegnare il ciclo nel piano p-V (e sapere com'è nel piano T-S)
+
+      - Descrivere le quattro trasformazioni con i segni di Q e W
+
+      - Calcolare Q_C e Q_F sulle isoterme
+
+      - Dimostrare V₂/V₁ = V₃/V₄ con le adiabatiche
+
+      - Ricavare η = 1 − T_F/T_C
+
+      - Osservare che Q_C/T_C = |Q_F|/T_F
+
+      - Discutere i casi limite e il ciclo invertito
+- id: ciclo-di-carnot-orale-1
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.6
+    - ciclo-di-carnot.7
+  kind: orale
+  front:
+    it: >-
+      Perché scambiare calore lungo un'isoterma reversibile richiede tempi infiniti, e cosa comporta per la
+      potenza di una macchina di Carnot reale?
+  back:
+    it: Potenza nulla al rendimento massimo.
+- id: ciclo-di-carnot-orale-2
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.6
+    - ciclo-di-carnot.7
+  kind: orale
+  front:
+    it: Come appare il ciclo di Carnot nel piano T-S e perché lì il calcolo del rendimento è immediato?
+  back:
+    it: Un rettangolo.
+- id: ciclo-di-carnot-definizione
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.1
+  kind: definizione
+  front:
+    it: 'Definizione: Ciclo di Carnot'
+  back:
+    it: >-
+      Il ciclo di Carnot è il ciclo reversibile compiuto tra DUE sole sorgenti termiche (T_C calda e T_F
+      fredda), composto da quattro trasformazioni quasi-statiche: espansione isoterma a T_C, espansione
+      adiabatica da T_C a T_F, compressione isoterma a T_F, compressione adiabatica di ritorno a T_C. Per un
+      gas perfetto il suo rendimento vale \(\eta_{Carnot} = 1 - T_F/T_C\): dipende solo dalle temperature
+      delle sorgenti.
+- id: ciclo-di-carnot-formule
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.1
+    - ciclo-di-carnot.2
+    - ciclo-di-carnot.3
+    - ciclo-di-carnot.4
+    - ciclo-di-carnot.5
+    - ciclo-di-carnot.6
+    - ciclo-di-carnot.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Ciclo di Carnot»
+  back:
+    it: |-
+      - \(Q_C = nRT_C\ln\frac{V_2}{V_1}\)
+      - \(\frac{V_2}{V_1} = \frac{V_3}{V_4}\)
+      - \(\eta_{Carnot} = 1 - \frac{T_F}{T_C}\)
+      - \(\frac{Q_C}{T_C} = \frac{|Q_F|}{T_F}\)
+- id: ciclo-di-carnot-ipotesi
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.1
+    - ciclo-di-carnot.2
+    - ciclo-di-carnot.3
+    - ciclo-di-carnot.4
+    - ciclo-di-carnot.5
+    - ciclo-di-carnot.6
+    - ciclo-di-carnot.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Ciclo di Carnot'
+  back:
+    it: >-
+      Tutte le trasformazioni reversibili (quasi-statiche, senza attriti, scambi termici a differenza di
+      temperatura infinitesima); due sole sorgenti ideali; per il calcolo esplicito, gas perfetto come fluido
+      di lavoro (ma il risultato è universale per il teorema di Carnot).
+- id: ciclo-di-carnot-casi-limite
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.1
+    - ciclo-di-carnot.2
+    - ciclo-di-carnot.3
+    - ciclo-di-carnot.4
+    - ciclo-di-carnot.5
+    - ciclo-di-carnot.6
+    - ciclo-di-carnot.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Ciclo di Carnot'
+  back:
+    it: >-
+      T_F → T_C: η → 0, senza dislivello termico niente lavoro. T_F → 0: η → 1, ma lo zero assoluto è
+      irraggiungibile (terzo principio). Ciclo invertito: frigorifero di Carnot con COP = T_F/(T_C − T_F), il
+      massimo possibile.
+- id: ciclo-di-carnot-errori
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.1
+    - ciclo-di-carnot.2
+    - ciclo-di-carnot.3
+    - ciclo-di-carnot.4
+    - ciclo-di-carnot.5
+    - ciclo-di-carnot.6
+    - ciclo-di-carnot.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Ciclo di Carnot'
+  back:
+    it: |-
+      - Usare le temperature in gradi Celsius nel rendimento.
+      - Dire che il rendimento dipende dal gas o dalle dimensioni del ciclo: solo dalle temperature.
+      - Dimenticare la dimostrazione del vincolo V₂/V₁ = V₃/V₄ (l'esaminatore la chiede).
+      - Confondere il lavoro dei singoli tratti con il lavoro netto del ciclo (area racchiusa nel piano p-V).

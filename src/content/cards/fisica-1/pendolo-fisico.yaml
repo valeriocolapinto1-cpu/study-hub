@@ -1,0 +1,124 @@
+- id: pendolo-fisico-esposizione
+  topic: pendolo-fisico
+  objectives:
+    - pendolo-fisico.1
+    - pendolo-fisico.2
+    - pendolo-fisico.3
+    - pendolo-fisico.4
+    - pendolo-fisico.5
+    - pendolo-fisico.6
+    - pendolo-fisico.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Pendolo fisico (o composto)».'
+  back:
+    it: >-
+      Nel pendolo fisico il peso 'tira giù' il baricentro con braccio d, ma deve far ruotare tutta l'inerzia I
+      distribuita nel corpo. Il rapporto I/(Md) condensa la competizione: più inerzia lontana dall'asse
+      rallenta l'oscillazione, più braccio del peso la accelera. La lunghezza ridotta traduce tutto nel
+      linguaggio familiare del pendolo semplice.
+
+
+      **Scaletta:**
+
+
+      - Impostare la seconda cardinale rispetto all'asse di sospensione
+
+      - Spiegare perché la reazione del perno non ha momento
+
+      - Linearizzare e ricavare ω = √(Mgd/I)
+
+      - Definire la lunghezza ridotta e il pendolo semplice equivalente
+
+      - Verificare il limite del punto materiale
+
+      - Svolgere l'esempio dell'asta sospesa a un estremo
+
+      - Discutere il caso d → 0
+- id: pendolo-fisico-definizione
+  topic: pendolo-fisico
+  objectives:
+    - pendolo-fisico.1
+  kind: definizione
+  front:
+    it: 'Definizione: Pendolo fisico (o composto)'
+  back:
+    it: >-
+      Il pendolo fisico è un corpo rigido qualsiasi libero di oscillare in un piano verticale attorno a un
+      asse orizzontale fisso O che non passa per il centro di massa. Detta d la distanza tra l'asse e il CM e
+      I il momento d'inerzia rispetto all'asse, per piccole oscillazioni il moto è armonico con \(T =
+      2\pi\sqrt{I/(Mgd)}\). La lunghezza ridotta \(\ell = I/(Md)\) è la lunghezza del pendolo semplice
+      equivalente.
+- id: pendolo-fisico-formule
+  topic: pendolo-fisico
+  objectives:
+    - pendolo-fisico.1
+    - pendolo-fisico.2
+    - pendolo-fisico.3
+    - pendolo-fisico.4
+    - pendolo-fisico.5
+    - pendolo-fisico.6
+    - pendolo-fisico.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Pendolo fisico (o composto)»
+  back:
+    it: |-
+      - \(I\ddot{\theta} = -Mgd\sin\theta\)
+      - \(\omega = \sqrt{\frac{Mgd}{I}}\)
+      - \(T = 2\pi\sqrt{\frac{I}{Mgd}}\)
+      - \(\ell = \frac{I}{Md}\)
+- id: pendolo-fisico-ipotesi
+  topic: pendolo-fisico
+  objectives:
+    - pendolo-fisico.1
+    - pendolo-fisico.2
+    - pendolo-fisico.3
+    - pendolo-fisico.4
+    - pendolo-fisico.5
+    - pendolo-fisico.6
+    - pendolo-fisico.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Pendolo fisico (o composto)'
+  back:
+    it: >-
+      Corpo rigido; asse fisso orizzontale privo di attrito; campo di gravità uniforme; per l'isocronismo,
+      piccole oscillazioni.
+- id: pendolo-fisico-casi-limite
+  topic: pendolo-fisico
+  objectives:
+    - pendolo-fisico.1
+    - pendolo-fisico.2
+    - pendolo-fisico.3
+    - pendolo-fisico.4
+    - pendolo-fisico.5
+    - pendolo-fisico.6
+    - pendolo-fisico.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Pendolo fisico (o composto)'
+  back:
+    it: >-
+      d → 0 (sospensione nel CM): il momento di richiamo sparisce, T → ∞, equilibrio indifferente. Tutta la
+      massa a distanza d: pendolo semplice. Esiste un d che minimizza T: d = √(I_cm/M) (raggio giratore
+      baricentrico).
+- id: pendolo-fisico-errori
+  topic: pendolo-fisico
+  objectives:
+    - pendolo-fisico.1
+    - pendolo-fisico.2
+    - pendolo-fisico.3
+    - pendolo-fisico.4
+    - pendolo-fisico.5
+    - pendolo-fisico.6
+    - pendolo-fisico.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Pendolo fisico (o composto)'
+  back:
+    it: |-
+      - Usare I_cm al posto di I rispetto all'asse di sospensione (manca Md²).
+      - Confondere d (distanza asse-CM) con la lunghezza del corpo.
+      - Applicare la formula del pendolo semplice T = 2π√(L/g) con L lunghezza geometrica del corpo.
+      - Dimenticare che la formula del periodo vale solo per piccole oscillazioni.

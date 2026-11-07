@@ -1,0 +1,138 @@
+- id: calori-molari-esposizione
+  topic: calori-molari
+  objectives:
+    - calori-molari.1
+    - calori-molari.2
+    - calori-molari.3
+    - calori-molari.4
+    - calori-molari.5
+    - calori-molari.6
+    - calori-molari.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Calori molari dei gas ideali e dei solidi ideali».'
+  back:
+    it: >-
+      Scaldare a volume costante è 'versare' energia solo nel serbatoio interno; scaldare a pressione costante
+      costringe anche a pagare il pedaggio del lavoro di espansione, sempre pari a R per mole e per grado:
+      ecco Mayer. Nei solidi ogni atomo, molla tra molle, ha sei tasche da ½k_BT: per questo materiali
+      diversissimi condividono lo stesso calore molare 3R.
+
+
+      **Scaletta:**
+
+
+      - Definire il calore molare e spiegare perché dipende dalla trasformazione
+
+      - Ricavare c_V = (f/2)R dal primo principio a V costante
+
+      - Dimostrare la relazione di Mayer c_p = c_V + R
+
+      - Interpretare fisicamente la differenza c_p − c_V
+
+      - Dare i valori per mono/biatomici e definire γ = 1 + 2/f
+
+      - Ricavare Dulong-Petit contando i termini quadratici
+
+      - Accennare ai limiti quantistici (basse temperature)
+- id: calori-molari-orale-2
+  topic: calori-molari
+  objectives:
+    - calori-molari.6
+    - calori-molari.7
+  kind: orale
+  front:
+    it: È possibile una trasformazione con calore molare negativo?
+  back:
+    it: 'Sì: politropiche tra adiabatica e isoterma.'
+- id: calori-molari-definizione
+  topic: calori-molari
+  objectives:
+    - calori-molari.1
+  kind: definizione
+  front:
+    it: 'Definizione: Calori molari dei gas ideali e dei solidi ideali'
+  back:
+    it: >-
+      Il calore molare è il calore necessario per innalzare di 1 K la temperatura di una mole: \(c =
+      \frac{1}{n}\frac{\delta Q}{dT}\). Dipende dalla trasformazione: a volume costante c_V, a pressione
+      costante c_p. Per i gas perfetti vale la relazione di Mayer \(c_p = c_V + R\) e si definisce \(\gamma =
+      c_p/c_V\). Per i solidi cristallini la legge di Dulong-Petit prevede c ≈ 3R, indipendente dal materiale.
+- id: calori-molari-formule
+  topic: calori-molari
+  objectives:
+    - calori-molari.1
+    - calori-molari.2
+    - calori-molari.3
+    - calori-molari.4
+    - calori-molari.5
+    - calori-molari.6
+    - calori-molari.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Calori molari dei gas ideali e dei solidi ideali»
+  back:
+    it: |-
+      - \(c_V = \frac{f}{2}R\)
+      - \(c_p = c_V + R\)
+      - \(\gamma = \frac{c_p}{c_V} = 1 + \frac{2}{f}\)
+      - \(c_{solido} \approx 3R\)
+- id: calori-molari-ipotesi
+  topic: calori-molari
+  objectives:
+    - calori-molari.1
+    - calori-molari.2
+    - calori-molari.3
+    - calori-molari.4
+    - calori-molari.5
+    - calori-molari.6
+    - calori-molari.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Calori molari dei gas ideali e dei solidi ideali'
+  back:
+    it: >-
+      Gas perfetto in equilibrio; trasformazioni quasi-statiche; gradi di libertà classicamente attivi. Per
+      Dulong-Petit: solido cristallino armonico a temperatura abbastanza alta (T sopra la temperatura di
+      Debye).
+- id: calori-molari-casi-limite
+  topic: calori-molari
+  objectives:
+    - calori-molari.1
+    - calori-molari.2
+    - calori-molari.3
+    - calori-molari.4
+    - calori-molari.5
+    - calori-molari.6
+    - calori-molari.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Calori molari dei gas ideali e dei solidi ideali'
+  back:
+    it: >-
+      Per i solidi a bassa T: c → 0 come T³ (Debye), Dulong-Petit fallisce. Per i gas a T crescente: c_V sale
+      a gradini con l'attivazione di rotazioni e vibrazioni. Nei liquidi non esiste una teoria altrettanto
+      semplice.
+- id: calori-molari-errori
+  topic: calori-molari
+  objectives:
+    - calori-molari.1
+    - calori-molari.2
+    - calori-molari.3
+    - calori-molari.4
+    - calori-molari.5
+    - calori-molari.6
+    - calori-molari.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Calori molari dei gas ideali e dei solidi ideali'
+  back:
+    it: >-
+      - Dire che il calore molare è una proprietà unica del gas: dipende dalla trasformazione (c_V ≠ c_p, e
+      ogni politropica ha il suo).
+
+      - Usare c_p in ΔU = nc ΔT: l'energia interna va sempre con c_V.
+
+      - Dimenticare che la relazione di Mayer vale solo per i gas perfetti.
+
+      - Contare 3 gradi di libertà per l'atomo del solido invece di 6 (manca il potenziale elastico).

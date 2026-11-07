@@ -1,0 +1,124 @@
+- id: energia-corpo-rigido-esposizione
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.1
+    - energia-corpo-rigido.2
+    - energia-corpo-rigido.3
+    - energia-corpo-rigido.4
+    - energia-corpo-rigido.5
+    - energia-corpo-rigido.6
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Energia cinetica e meccanica di un corpo rigido».'
+  back:
+    it: >-
+      Un corpo rigido immagazzina energia cinetica in due 'serbatoi': il moto d'insieme del baricentro e la
+      rotazione attorno a esso. La scelta tra le due scritture equivalenti (asse fisso vs König) è solo
+      questione di comodità: l'energia è la stessa. Il potenziale, invece, ha un solo serbatoio: la quota del
+      baricentro.
+
+
+      **Scaletta:**
+
+
+      - Ricavare K = ½Iω² per l'asse fisso
+
+      - Scrivere la forma di König e mostrare la coerenza delle due scritture
+
+      - Dimostrare U = Mgz_cm
+
+      - Spiegare perché il lavoro delle forze interne di un rigido è nullo
+
+      - Precisare le condizioni per conservare E (vincoli ideali)
+
+      - Risolvere l'esempio dell'asta incernierata che cade
+- id: energia-corpo-rigido-orale-1
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.5
+    - energia-corpo-rigido.6
+  kind: orale
+  front:
+    it: Nell'asta che cade, quale punto tocca terra con velocità maggiore di quella di caduta libera?
+  back:
+    it: 'L''estremo: v = √(3gL) > √(2gL).'
+- id: energia-corpo-rigido-definizione
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.1
+  kind: definizione
+  front:
+    it: 'Definizione: Energia cinetica e meccanica di un corpo rigido'
+  back:
+    it: >-
+      L'energia cinetica di un corpo rigido si scompone (König) in traslazione del CM più rotazione attorno al
+      CM: \(K = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2\). Per rotazione attorno a un asse fisso: \(K
+      = \frac{1}{2}I_{asse}\omega^2\). L'energia meccanica è E = K + U con \(U = Mgh_{cm}\) (il potenziale
+      gravitazionale di un rigido dipende solo dalla quota del CM). Se lavorano solo forze conservative e i
+      vincoli non dissipano, E si conserva.
+- id: energia-corpo-rigido-formule
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.1
+    - energia-corpo-rigido.2
+    - energia-corpo-rigido.3
+    - energia-corpo-rigido.4
+    - energia-corpo-rigido.5
+    - energia-corpo-rigido.6
+  kind: formula
+  front:
+    it: Le formule chiave di «Energia cinetica e meccanica di un corpo rigido»
+  back:
+    it: |-
+      - \(K = \frac{1}{2}I_{asse}\omega^2\)
+      - \(K = \frac{1}{2}Mv_{cm}^2 + \frac{1}{2}I_{cm}\omega^2\)
+      - \(U = Mg\,z_{cm}\)
+      - \(W_{rot} = \int \tau\,d\theta\)
+- id: energia-corpo-rigido-ipotesi
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.1
+    - energia-corpo-rigido.2
+    - energia-corpo-rigido.3
+    - energia-corpo-rigido.4
+    - energia-corpo-rigido.5
+    - energia-corpo-rigido.6
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Energia cinetica e meccanica di un corpo rigido'
+  back:
+    it: Corpo rigido; campo gravitazionale uniforme; vincoli ideali (non dissipativi); per K = ½Iω² asse fisso.
+- id: energia-corpo-rigido-casi-limite
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.1
+    - energia-corpo-rigido.2
+    - energia-corpo-rigido.3
+    - energia-corpo-rigido.4
+    - energia-corpo-rigido.5
+    - energia-corpo-rigido.6
+  kind: concetto
+  front:
+    it: 'Casi limite: Energia cinetica e meccanica di un corpo rigido'
+  back:
+    it: >-
+      Pura traslazione: K = ½Mv². Pura rotazione baricentrica: K = ½I_cmω². Rotolamento puro: entrambi i
+      termini con il vincolo v = ωR. Perno scabro o strisciamento: E non si conserva, ΔE = W_attrito.
+- id: energia-corpo-rigido-errori
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.1
+    - energia-corpo-rigido.2
+    - energia-corpo-rigido.3
+    - energia-corpo-rigido.4
+    - energia-corpo-rigido.5
+    - energia-corpo-rigido.6
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Energia cinetica e meccanica di un corpo rigido'
+  back:
+    it: |-
+      - Sommare ½I_assek ω² (con I rispetto al perno) E ½Mv_cm²: si conta due volte la traslazione.
+      - Usare I_cm quando la rotazione è attorno a un perno decentrato (o viceversa) senza Huygens-Steiner.
+      - Calcolare U con la quota di un punto qualsiasi invece che del CM.
+      - Dimenticare di verificare che i vincoli non lavorino prima di conservare E.

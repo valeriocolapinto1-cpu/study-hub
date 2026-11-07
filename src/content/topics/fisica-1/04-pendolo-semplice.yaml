@@ -1,0 +1,45 @@
+id: pendolo-semplice
+course: fisica-1
+order: 4
+title:
+  it: Pendolo semplice
+  en: Simple pendulum
+summary:
+  it: >-
+    Il pendolo oscilla perché la gravità 'preme' il punto verso il fondo dell'arco, ma l'inerzia glielo fa
+    superare.
+  en: >-
+    The pendulum oscillates because gravity 'pushes' the point towards the bottom of the arc, but inertia
+    makes it overshoot.
+group:
+  it: Cinematica e oscillazioni
+  en: Kinematics and oscillations
+objectives:
+  - id: pendolo-semplice.1
+    text:
+      it: Disegnare il diagramma delle forze e proiettare peso e tensione
+      en: Draw the free-body diagram and project weight and tension
+  - id: pendolo-semplice.2
+    text:
+      it: Ricavare l'equazione esatta \(\ddot{\theta} + (g/L)\sin\theta = 0\)
+      en: Derive the exact equation \(\ddot{\theta} + (g/L)\sin\theta = 0\)
+  - id: pendolo-semplice.3
+    text:
+      it: Giustificare l'approssimazione sin θ ≈ θ e i suoi limiti di validità
+      en: Justify the approximation sin θ ≈ θ and its range of validity
+  - id: pendolo-semplice.4
+    text:
+      it: Ricavare ω = √(g/L) e T = 2π√(L/g)
+      en: Derive ω = √(g/L) and T = 2π√(L/g)
+  - id: pendolo-semplice.5
+    text:
+      it: Spiegare perché il periodo non dipende dalla massa
+      en: Explain why the period does not depend on the mass
+  - id: pendolo-semplice.6
+    text:
+      it: Calcolare la tensione del filo con l'equazione radiale
+      en: Compute the string tension from the radial equation
+  - id: pendolo-semplice.7
+    text:
+      it: Discutere cosa succede a grandi ampiezze
+      en: Discuss what happens at large amplitudes

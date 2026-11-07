@@ -1,0 +1,136 @@
+- id: equipartizione-energia-esposizione
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.1
+    - equipartizione-energia.2
+    - equipartizione-energia.3
+    - equipartizione-energia.4
+    - equipartizione-energia.5
+    - equipartizione-energia.6
+    - equipartizione-energia.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Energia interna dei gas e principio di equipartizione».'
+  back:
+    it: >-
+      All'equilibrio l'energia termica è perfettamente democratica: gli urti continui la redistribuiscono
+      finché ogni 'modo quadratico' di immagazzinarla — muoversi lungo x, ruotare, vibrare — ne possiede in
+      media la stessa quota ½k_BT. L'energia interna è il censimento di questi modi; e il fatto che dipenda
+      solo da T (non da V) rispecchia l'assenza di legami tra molecole che non si parlano.
+
+
+      **Scaletta:**
+
+
+      - Enunciare il principio di equipartizione con precisione (termini quadratici)
+
+      - Contare i gradi di libertà di mono e biatomici
+
+      - Spiegare perché la rotazione assiale del biatomico non conta
+
+      - Ricavare U = (f/2)nRT
+
+      - Enunciare la legge di Joule e l'esperimento dell'espansione libera
+
+      - Dedurre c_V = (f/2)R
+
+      - Accennare al congelamento quantistico dei gradi di libertà
+- id: equipartizione-energia-orale-2
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.6
+    - equipartizione-energia.7
+  kind: orale
+  front:
+    it: Come spiega l'equipartizione la legge di Dulong-Petit per i solidi?
+  back:
+    it: 6 termini quadratici → c = 3R.
+- id: equipartizione-energia-definizione
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.1
+  kind: definizione
+  front:
+    it: 'Definizione: Energia interna dei gas e principio di equipartizione'
+  back:
+    it: >-
+      L'energia interna U di un gas perfetto è la somma delle energie cinetiche delle sue molecole (non c'è
+      potenziale intermolecolare). Il principio di equipartizione dell'energia afferma che, all'equilibrio a
+      temperatura T, ogni grado di libertà quadratico nell'energia contribuisce in media con
+      \(\frac{1}{2}k_BT\) per molecola. Ne segue \(U = \frac{f}{2}nRT\), con f numero di gradi di libertà
+      attivi: f = 3 per gas monoatomici, f = 5 per biatomici a temperatura ambiente. U dipende SOLO dalla
+      temperatura (legge di Joule).
+- id: equipartizione-energia-formule
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.1
+    - equipartizione-energia.2
+    - equipartizione-energia.3
+    - equipartizione-energia.4
+    - equipartizione-energia.5
+    - equipartizione-energia.6
+    - equipartizione-energia.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Energia interna dei gas e principio di equipartizione»
+  back:
+    it: |-
+      - \(\langle E \rangle = \frac{1}{2}k_BT\;\text{per grado quadratico}\)
+      - \(U = \frac{f}{2}nRT\)
+      - \(\Delta U = n c_V \Delta T\;\text{(sempre)}\)
+      - \(f = 3\;\text{mono},\; 5\;\text{biat}\)
+- id: equipartizione-energia-ipotesi
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.1
+    - equipartizione-energia.2
+    - equipartizione-energia.3
+    - equipartizione-energia.4
+    - equipartizione-energia.5
+    - equipartizione-energia.6
+    - equipartizione-energia.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Energia interna dei gas e principio di equipartizione'
+  back:
+    it: >-
+      Gas perfetto (niente interazioni intermolecolari); equilibrio termodinamico; validità della meccanica
+      classica per i gradi di libertà considerati (fallisce quando i quanti di energia
+      rotazionali/vibrazionali superano k_BT).
+- id: equipartizione-energia-casi-limite
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.1
+    - equipartizione-energia.2
+    - equipartizione-energia.3
+    - equipartizione-energia.4
+    - equipartizione-energia.5
+    - equipartizione-energia.6
+    - equipartizione-energia.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Energia interna dei gas e principio di equipartizione'
+  back:
+    it: >-
+      Basse temperature: le rotazioni si 'congelano' e il biatomico si comporta da monoatomico (f→3). Alte
+      temperature: si attiva la vibrazione (f→7). Questi gradini nei calori specifici sono inspiegabili
+      classicamente: prima evidenza storica della quantizzazione.
+- id: equipartizione-energia-errori
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.1
+    - equipartizione-energia.2
+    - equipartizione-energia.3
+    - equipartizione-energia.4
+    - equipartizione-energia.5
+    - equipartizione-energia.6
+    - equipartizione-energia.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Energia interna dei gas e principio di equipartizione'
+  back:
+    it: |-
+      - Contare 3 rotazioni per il biatomico invece di 2.
+      - Usare ΔU = nc_VΔT solo per le isocore: vale per ogni trasformazione del gas perfetto.
+      - Includere un'energia potenziale intermolecolare nell'energia interna del gas perfetto.
+      - Dimenticare che la vibrazione conta 2 mezzi-k_BT (termine cinetico + termine elastico).

@@ -1,0 +1,45 @@
+id: moto-circolare-vario
+course: fisica-1
+order: 1
+title:
+  it: 'Moto circolare vario: accelerazione tangenziale e centripeta'
+  en: 'Non-uniform circular motion: tangential and centripetal acceleration'
+summary:
+  it: >-
+    L'accelerazione centripeta esiste perché girare significa cambiare continuamente direzione: anche a
+    velocità (in modulo) costante, il vettore velocità ruota, e la rapidità con cui ruota è misurata da v²/R.
+  en: >-
+    Centripetal acceleration exists because turning means continuously changing direction: even at constant
+    speed the velocity vector rotates, and how fast it rotates is measured by v²/R.
+group:
+  it: Cinematica e oscillazioni
+  en: Kinematics and oscillations
+objectives:
+  - id: moto-circolare-vario.1
+    text:
+      it: Definire ω e α come derivate di θ
+      en: Define ω and α as derivatives of θ
+  - id: moto-circolare-vario.2
+    text:
+      it: Ricavare v = ωR dalla coordinata curvilinea s = θR
+      en: Derive v = ωR from the arc-length coordinate s = θR
+  - id: moto-circolare-vario.3
+    text:
+      it: Spiegare perché la derivata del versore tangente non è nulla e da dove esce û_n
+      en: Explain why the derivative of the tangent unit vector is not zero and where û_n comes from
+  - id: moto-circolare-vario.4
+    text:
+      it: Ricavare a_t = αR e a_n = ω²R = v²/R
+      en: Derive a_t = αR and a_n = ω²R = v²/R
+  - id: moto-circolare-vario.5
+    text:
+      it: Disegnare i vettori v, a_t, a_n su una circonferenza
+      en: Draw the vectors v, a_t, a_n on a circle
+  - id: moto-circolare-vario.6
+    text:
+      it: Discutere il caso limite del moto circolare uniforme
+      en: Discuss the limiting case of uniform circular motion
+  - id: moto-circolare-vario.7
+    text:
+      it: Saper calcolare il modulo dell'accelerazione totale
+      en: Compute the magnitude of the total acceleration

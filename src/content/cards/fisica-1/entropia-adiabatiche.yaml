@@ -1,0 +1,139 @@
+- id: entropia-adiabatiche-esposizione
+  topic: entropia-adiabatiche
+  objectives:
+    - entropia-adiabatiche.1
+    - entropia-adiabatiche.2
+    - entropia-adiabatiche.3
+    - entropia-adiabatiche.4
+    - entropia-adiabatiche.5
+    - entropia-adiabatiche.6
+    - entropia-adiabatiche.7
+    - entropia-adiabatiche.8
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Entropia e trasformazioni adiabatiche».'
+  back:
+    it: >-
+      L'entropia è il contachilometri dell'irreversibilità: registra quanta 'qualità' l'energia ha perso. Ogni
+      processo reale lascia l'universo con più entropia di prima — non perché una forza lo imponga, ma perché
+      gli stati disordinati sono astronomicamente più numerosi di quelli ordinati. L'adiabatica reversibile è
+      il moto perfetto che non lascia traccia; l'espansione libera è la stessa assenza di scambi, ma con una
+      traccia indelebile.
+
+
+      **Scaletta:**
+
+
+      - Dimostrare che δQ_rev/T è un differenziale esatto (da Clausius)
+
+      - Definire ΔS e spiegare l'uso del cammino reversibile ausiliario
+
+      - Ricavare ΔS ≥ ∫δQ/T per trasformazioni aperte
+
+      - Enunciare la legge dell'aumento dell'entropia (sistema isolato / universo)
+
+      - Ricavare la formula ΔS del gas perfetto
+
+      - Distinguere adiabatico da isoentropico con l'espansione libera
+
+      - Calcolare ΔS_univ per lo scambio termico tra due corpi
+
+      - Accennare a S = k_B ln Ω
+- id: entropia-adiabatiche-definizione
+  topic: entropia-adiabatiche
+  objectives:
+    - entropia-adiabatiche.1
+  kind: definizione
+  front:
+    it: 'Definizione: Entropia e trasformazioni adiabatiche'
+  back:
+    it: >-
+      L'entropia è la funzione di stato definita da \(dS = \delta Q_{rev}/T\): la variazione tra due stati si
+      calcola lungo una QUALSIASI trasformazione reversibile che li congiunge, \(\Delta S = \int_A^B \delta
+      Q_{rev}/T\). Per una trasformazione qualunque vale \(\Delta S \ge \int_A^B \delta Q/T\) (uguaglianza se
+      reversibile). In un sistema isolato (in particolare adiabatico: δQ = 0) l'entropia non può diminuire:
+      \(\Delta S \ge 0\) — legge dell'aumento dell'entropia.
+- id: entropia-adiabatiche-formule
+  topic: entropia-adiabatiche
+  objectives:
+    - entropia-adiabatiche.1
+    - entropia-adiabatiche.2
+    - entropia-adiabatiche.3
+    - entropia-adiabatiche.4
+    - entropia-adiabatiche.5
+    - entropia-adiabatiche.6
+    - entropia-adiabatiche.7
+    - entropia-adiabatiche.8
+  kind: formula
+  front:
+    it: Le formule chiave di «Entropia e trasformazioni adiabatiche»
+  back:
+    it: |-
+      - \(dS = \frac{\delta Q_{rev}}{T}\)
+      - \(\Delta S \ge \int \frac{\delta Q}{T}\)
+      - \(\Delta S_{isolato} \ge 0\)
+      - \(\Delta S = nc_V\ln\frac{T_B}{T_A} + nR\ln\frac{V_B}{V_A}\)
+      - \(S = k_B\ln\Omega\)
+- id: entropia-adiabatiche-ipotesi
+  topic: entropia-adiabatiche
+  objectives:
+    - entropia-adiabatiche.1
+    - entropia-adiabatiche.2
+    - entropia-adiabatiche.3
+    - entropia-adiabatiche.4
+    - entropia-adiabatiche.5
+    - entropia-adiabatiche.6
+    - entropia-adiabatiche.7
+    - entropia-adiabatiche.8
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Entropia e trasformazioni adiabatiche'
+  back:
+    it: >-
+      Esistenza di cammini reversibili tra gli stati (stati di equilibrio); T ben definita lungo il cammino
+      reversibile usato per il calcolo; per la legge di aumento: sistema isolato o adiabatico.
+- id: entropia-adiabatiche-casi-limite
+  topic: entropia-adiabatiche
+  objectives:
+    - entropia-adiabatiche.1
+    - entropia-adiabatiche.2
+    - entropia-adiabatiche.3
+    - entropia-adiabatiche.4
+    - entropia-adiabatiche.5
+    - entropia-adiabatiche.6
+    - entropia-adiabatiche.7
+    - entropia-adiabatiche.8
+  kind: concetto
+  front:
+    it: 'Casi limite: Entropia e trasformazioni adiabatiche'
+  back:
+    it: >-
+      Trasformazione reversibile adiabatica: ΔS = 0. Isoterma reversibile: ΔS = Q/T. Scambio di calore tra due
+      corpi a temperature diverse: ΔS_univ = Q(1/T_F − 1/T_C) > 0, la quintessenza dell'irreversibilità. Ciclo
+      qualsiasi: ΔS_sistema = 0 (funzione di stato) ma ΔS_univ ≥ 0.
+- id: entropia-adiabatiche-errori
+  topic: entropia-adiabatiche
+  objectives:
+    - entropia-adiabatiche.1
+    - entropia-adiabatiche.2
+    - entropia-adiabatiche.3
+    - entropia-adiabatiche.4
+    - entropia-adiabatiche.5
+    - entropia-adiabatiche.6
+    - entropia-adiabatiche.7
+    - entropia-adiabatiche.8
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Entropia e trasformazioni adiabatiche'
+  back:
+    it: >-
+      - Calcolare ΔS integrando δQ/T lungo la trasformazione irreversibile reale: va usato un cammino
+      reversibile ausiliario.
+
+      - Credere che adiabatico implichi ΔS = 0: vale solo se anche reversibile (controesempio: espansione
+      libera).
+
+      - Dire che l'entropia di un sistema non può mai diminuire: può, se cede calore; è quella dell'universo a
+      non diminuire.
+
+      - Dimenticare che in un ciclo ΔS del sistema è nullo per definizione di funzione di stato.

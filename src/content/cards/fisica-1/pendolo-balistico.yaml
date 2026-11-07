@@ -1,0 +1,128 @@
+- id: pendolo-balistico-esposizione
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.1
+    - pendolo-balistico.2
+    - pendolo-balistico.3
+    - pendolo-balistico.4
+    - pendolo-balistico.5
+    - pendolo-balistico.6
+    - pendolo-balistico.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Pendolo balistico».'
+  back:
+    it: >-
+      Il pendolo balistico è l'esempio perfetto di 'ogni fase la sua legge': l'urto è violento e rapidissimo →
+      comanda la quantità di moto; la risalita è dolce e senza dissipazione → comanda l'energia. Confondere i
+      due regimi porta a errori grossolani, ed è esattamente ciò che l'esaminatore vuole verificare che tu
+      sappia distinguere.
+
+
+      **Scaletta:**
+
+
+      - Descrivere il dispositivo e il suo scopo
+
+      - Giustificare perché nell'urto si conserva P e non K
+
+      - Calcolare V dopo l'urto e l'energia dissipata
+
+      - Giustificare perché nella risalita si conserva E e non P
+
+      - Ricavare la formula finale v₀ = ((m+M)/m)√(2gh)
+
+      - Esprimere h tramite l'angolo massimo
+
+      - Discutere la frazione di energia persa M/(m+M)
+- id: pendolo-balistico-definizione
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.1
+  kind: definizione
+  front:
+    it: 'Definizione: Pendolo balistico'
+  back:
+    it: >-
+      Il pendolo balistico è un dispositivo per misurare la velocità di un proiettile: un blocco di massa M
+      appeso a fili; il proiettile di massa m vi si conficca (urto perfettamente anelastico) e il sistema
+      risale di un'altezza h. Il problema si risolve in DUE fasi con leggi di conservazione diverse: nell'urto
+      si conserva la quantità di moto (non l'energia), nella risalita si conserva l'energia meccanica (non la
+      quantità di moto, perché agiscono gravità e tensioni).
+- id: pendolo-balistico-formule
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.1
+    - pendolo-balistico.2
+    - pendolo-balistico.3
+    - pendolo-balistico.4
+    - pendolo-balistico.5
+    - pendolo-balistico.6
+    - pendolo-balistico.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Pendolo balistico»
+  back:
+    it: |-
+      - \(mv_0 = (m+M)V\)
+      - \(\frac{1}{2}(m+M)V^2 = (m+M)gh\)
+      - \(v_0 = \frac{m+M}{m}\sqrt{2gh}\)
+      - \(h = L(1-\cos\theta_{max})\)
+- id: pendolo-balistico-ipotesi
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.1
+    - pendolo-balistico.2
+    - pendolo-balistico.3
+    - pendolo-balistico.4
+    - pendolo-balistico.5
+    - pendolo-balistico.6
+    - pendolo-balistico.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Pendolo balistico'
+  back:
+    it: >-
+      Urto molto più breve del periodo del pendolo (così P si conserva e il pendolo non si sposta durante
+      l'urto); proiettile che resta conficcato; fili inestensibili e privi di massa; attriti trascurabili
+      nella risalita.
+- id: pendolo-balistico-casi-limite
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.1
+    - pendolo-balistico.2
+    - pendolo-balistico.3
+    - pendolo-balistico.4
+    - pendolo-balistico.5
+    - pendolo-balistico.6
+    - pendolo-balistico.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Pendolo balistico'
+  back:
+    it: >-
+      m ≪ M: V ≈ (m/M)v₀ molto piccola, quasi tutta l'energia dissipata (il caso reale). m ≫ M: V ≈ v₀, quasi
+      niente si dissipa. h → 0: v₀ → 0, coerente.
+- id: pendolo-balistico-errori
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.1
+    - pendolo-balistico.2
+    - pendolo-balistico.3
+    - pendolo-balistico.4
+    - pendolo-balistico.5
+    - pendolo-balistico.6
+    - pendolo-balistico.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Pendolo balistico'
+  back:
+    it: >-
+      - Conservare l'energia attraverso l'urto: ½mv₀² = (m+M)gh è SBAGLIATO e sovrastima h.
+
+      - Conservare la quantità di moto nella risalita (agiscono forze esterne non trascurabili sui tempi
+      lunghi).
+
+      - Dimenticare il fattore (m+M)/m risalendo da V a v₀.
+
+      - Usare h = L sin θ invece di h = L(1 − cos θ).

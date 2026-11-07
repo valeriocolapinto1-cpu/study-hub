@@ -1,0 +1,34 @@
+id: teorema-di-carnot
+course: fisica-1
+order: 31
+title:
+  it: Teorema di Carnot
+summary:
+  it: >-
+    Il teorema mette un tetto universale all'efficienza: non importa quanto ingegnoso sia il progetto, il
+    rendimento è limitato dal solo dislivello di temperatura.
+group:
+  it: Fluidi e termodinamica
+  en: Fluids and thermodynamics
+objectives:
+  - id: teorema-di-carnot.1
+    text:
+      it: Enunciare le due parti del teorema
+  - id: teorema-di-carnot.2
+    text:
+      it: Impostare la dimostrazione per assurdo con la macchina composta
+  - id: teorema-di-carnot.3
+    text:
+      it: Spiegare il ruolo essenziale della reversibilità di R
+  - id: teorema-di-carnot.4
+    text:
+      it: Mostrare la violazione di Clausius nel bilancio
+  - id: teorema-di-carnot.5
+    text:
+      it: Dimostrare l'uguaglianza dei rendimenti reversibili nei due versi
+  - id: teorema-di-carnot.6
+    text:
+      it: Dedurre |Q_F|/Q_C = T_F/T_C e la scala assoluta
+  - id: teorema-di-carnot.7
+    text:
+      it: Distinguere il caso irreversibile (disuguaglianza stretta)

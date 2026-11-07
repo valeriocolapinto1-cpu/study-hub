@@ -1,0 +1,158 @@
+---
+course: fisica-1
+topic: sistemi-di-riferimento
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/sistemi-di-riferimento/idea">
+
+Fictitious forces are the 'bookkeeping trick' that lets us keep using Newton in an accelerating frame: since the whole frame accelerates with A, every mass seems to receive a push −mA. Their hallmark is proportionality to the mass — exactly like gravity, and this similarity will inspire the equivalence principle.
+
+</div>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/sistemi-di-riferimento/definizioni">
+
+## Definitions
+
+A reference frame is inertial if the principle of inertia holds in it: a body subject to no forces moves in uniform rectilinear motion. Every frame in uniform rectilinear motion with respect to an inertial one is itself inertial (Galilean relativity). A frame that accelerates with respect to an inertial one is non-inertial: to use F = ma in it one must introduce fictitious (or apparent, or inertial) forces, which have no reaction because they do not arise from interactions.
+
+</div>
+
+<div data-note-id="teoria/sistemi-di-riferimento/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Transformation of positions (translating frames)</summary>
+
+$$
+\vec{r} = \vec{r}' + \vec{R}(t)
+$$
+
+r is the position in the inertial frame S, r' the one in the moving frame S', R the position of the origin of S' as seen from S. No rotations: the axes stay parallel.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · Differentiate twice with respect to time</summary>
+
+$$
+\vec{v} = \vec{v}' + \vec{V}(t), \qquad \vec{a} = \vec{a}' + \vec{A}(t)
+$$
+
+V and A are the transport velocity and acceleration of the origin of S'. The derivatives of the unit vectors vanish because S' translates without rotating.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · Second law in the inertial frame</summary>
+
+$$
+\vec{F} = m\vec{a} = m(\vec{a}' + \vec{A})
+$$
+
+F is the resultant of the real forces only (interactions: gravity, contact, elastic…).
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · Rewriting from the point of view of S'</summary>
+
+$$
+m\vec{a}' = \vec{F} - m\vec{A} \equiv \vec{F} + \vec{F}_{fict}
+$$
+
+In S' Newton's law 'works' only after adding the fictitious force F_fict = −mA, opposite to the transport acceleration and proportional to the mass.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · The accelerating lift</summary>
+
+$$
+N - mg = ma' \;\text{with}\; \vec{F}_{fict} = -m\vec{A} \;\Rightarrow\; N = m(g + A) \;\text{(accelerating upwards)}
+$$
+
+The apparent weight (read by the scale, i.e. the normal force N) increases if the lift accelerates upwards and decreases if it accelerates downwards; N = 0 in free fall: no apparent weight.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/sistemi-di-riferimento/ipotesi">
+
+## Validity assumptions
+
+Classical mechanics (absolute time, Galilean transformations). Moving frame in pure translation: axes always parallel, otherwise centrifugal and Coriolis forces also appear. Constant mass.
+
+</div>
+
+<div data-note-id="teoria/sistemi-di-riferimento/casi-limite">
+
+## Limiting cases
+
+A = 0: S' is inertial, fictitious forces vanish and Galilean invariance is recovered. A = g (free fall): the fictitious force exactly cancels the weight — inside the frame everything 'floats' (the equivalence principle in embryo).
+
+</div>
+
+<div data-note-id="teoria/sistemi-di-riferimento/formule">
+
+## Key formulas
+
+<Formula id="sistemi-di-riferimento-f1" />
+
+<Formula id="sistemi-di-riferimento-f2" />
+
+<Formula id="sistemi-di-riferimento-f3" />
+
+<Formula id="sistemi-di-riferimento-f4" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/sistemi-di-riferimento/esempio">
+
+A person of mass m = 70 kg stands on a bathroom scale inside a lift. Find the scale reading (in newtons) when the lift: (a) goes up accelerating with A = 1.5 m/s²; (b) goes up at constant speed; (c) goes up slowing down with deceleration 2.0 m/s².
+
+1. **In the lift frame.** The person is at rest relative to the lift: $N - mg - mA = 0$, with A positive if the acceleration points up. Hence $N = m(g + A)$.
+2. **The three cases.** (a) $N = 70 \cdot 11.31 \approx 792\ \text{N}$; (b) A = 0, $N = mg \approx 687\ \text{N}$; (c) going up while slowing down means a downward acceleration, A = −2.0 m/s²: $N = 70 \cdot 7.81 \approx 547\ \text{N}$.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/sistemi-di-riferimento/errori">
+
+- Treating the fictitious force as a real interaction and looking for its reaction (third law): it has none.
+- Using F = ma in an accelerating frame without adding −mA.
+- Confusing the weight (gravitational force mg) with the apparent weight (the normal force N measured by the scale).
+- Believing that 'feeling pushed' when braking is a real force: it is inertia seen from a non-inertial frame.
+
+</div>
+
+<div data-note-id="teoria/sistemi-di-riferimento/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- How would you tell experimentally, shut inside a box, an inertial frame from an accelerating one?
+- A pendulum inside a railway car accelerating with a: what is the new equilibrium position?
+- Why is the Earth only approximately an inertial frame?
+
+</div>
+
+</Layer>

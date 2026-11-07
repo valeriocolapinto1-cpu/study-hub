@@ -1,0 +1,170 @@
+---
+course: fisica-1
+topic: teorema-di-koenig
+lang: en
+---
+
+<Layer kind="intuizione" title="The idea in brief">
+
+<div data-note-id="teoria/teorema-di-koenig/idea">
+
+König separates the motion 'of the system as a whole' from the 'internal' motion. It is why we can say that the Earth has an orbital angular momentum around the Sun plus a spin angular momentum about its own axis, or that the energy of a rolling ball is translation plus rotation: the mathematics guarantees that the two contributions simply add up, with no cross terms.
+
+</div>
+
+<p class="muted" data-note-id="teoria/teorema-di-koenig/prerequisiti"><strong>Before this topic:</strong> <a href="../centro-di-massa/">Centre of mass and the first cardinal equation</a> · <a href="../momenti-di-inerzia/">Moments of inertia and the Huygens–Steiner theorem</a></p>
+
+</Layer>
+
+<Layer kind="formalismo" title="Definitions and derivation">
+
+<div data-note-id="teoria/teorema-di-koenig/definizioni">
+
+## Definitions
+
+König's theorems split the angular momentum and kinetic energy of a system into the sum of a 'centre-of-mass' term (as if all the mass were concentrated at the CM) and a term 'relative to the centre of mass' (internal motion seen from the CM frame): $\vec{L} = \vec{r}_{cm}\times M\vec{v}_{cm} + \vec{L}'$ and $K = \frac{1}{2}Mv_{cm}^2 + K'$. The CM frame is the frame with origin at the CM and axes parallel to the inertial ones.
+
+</div>
+
+<div data-note-id="teoria/teorema-di-koenig/derivazione" class="derivation">
+
+## Step-by-step derivation
+
+<p class="muted">Try deriving it aloud first, then open one step at a time.</p>
+
+<details id="passo-1">
+<summary>Step 1 · Decomposition of the coordinates relative to the CM</summary>
+
+$$
+\vec{r}_i = \vec{r}_{cm} + \vec{r}_i{'}, \qquad \vec{v}_i = \vec{v}_{cm} + \vec{v}_i{'}
+$$
+
+Primed quantities are measured in the centre-of-mass frame. Key property: $\sum_i m_i\vec{r}_i{'} = \vec{0}$ and, differentiating, $\sum_i m_i\vec{v}_i{'} = \vec{0}$.
+
+</details>
+
+<details id="passo-2">
+<summary>Step 2 · König for angular momentum: expansion</summary>
+
+$$
+\vec{L} = \sum_i (\vec{r}_{cm} + \vec{r}_i{'})\times m_i(\vec{v}_{cm} + \vec{v}_i{'})
+$$
+
+Four terms: two 'diagonal' and two mixed.
+
+</details>
+
+<details id="passo-3">
+<summary>Step 3 · The mixed terms vanish</summary>
+
+$$
+\vec{r}_{cm}\times\Big(\sum_i m_i\vec{v}_i{'}\Big) = \vec{0}, \qquad \Big(\sum_i m_i\vec{r}_i{'}\Big)\times\vec{v}_{cm} = \vec{0}
+$$
+
+Both sums are zero by definition of centre of mass.
+
+</details>
+
+<details id="passo-4">
+<summary>Step 4 · König's first theorem</summary>
+
+$$
+\vec{L} = \vec{r}_{cm}\times M\vec{v}_{cm} + \sum_i \vec{r}_i{'}\times m_i\vec{v}_i{'} = \vec{L}_{cm} + \vec{L}'
+$$
+
+'Orbital' angular momentum of the CM + 'spin' angular momentum about the CM. L' is intrinsic: it does not depend on the pole.
+
+</details>
+
+<details id="passo-5">
+<summary>Step 5 · König for kinetic energy: expansion</summary>
+
+$$
+K = \sum_i \frac{1}{2}m_i(\vec{v}_{cm} + \vec{v}_i{'})\cdot(\vec{v}_{cm} + \vec{v}_i{'}) = \frac{1}{2}Mv_{cm}^2 + \vec{v}_{cm}\cdot\sum_i m_i\vec{v}_i{'} + \sum_i\frac{1}{2}m_iv_i'^2
+$$
+
+Here too the mixed term contains Σmᵢv'ᵢ = 0.
+
+</details>
+
+<details id="passo-6">
+<summary>Step 6 · König's second theorem</summary>
+
+$$
+K = \frac{1}{2}Mv_{cm}^2 + K'
+$$
+
+Translational energy of the CM + energy of the motion about the CM. For a rigid body K' = ½I_cm ω²: hence K = ½Mv_cm² + ½I_cm ω² for rolling.
+
+</details>
+
+</div>
+
+<div data-note-id="teoria/teorema-di-koenig/ipotesi">
+
+## Validity assumptions
+
+CM reference frame in pure translation (axes parallel to the inertial ones, even if the CM accelerates); constant masses. No rigidity assumption for the general theorems.
+
+</div>
+
+<div data-note-id="teoria/teorema-di-koenig/casi-limite">
+
+## Limiting cases
+
+A body that only translates: K' = 0, K = ½Mv_cm². A body rotating about a CM at rest: K = ½I_cmω². Two-body system: K' = ½μv_rel² with μ the reduced mass — the decomposition used in collisions.
+
+</div>
+
+<div data-note-id="teoria/teorema-di-koenig/formule">
+
+## Key formulas
+
+<Formula id="teorema-di-koenig-f1" />
+
+<Formula id="teorema-di-koenig-f2" />
+
+<Formula id="teorema-di-koenig-f3" />
+
+</div>
+
+</Layer>
+
+<Layer kind="esempio" title="Worked example">
+
+<div data-note-id="teoria/teorema-di-koenig/esempio">
+
+A bicycle wheel (mass 1.5 kg concentrated practically on the rim of radius 0.35 m) rolls without slipping at 18 km/h. Find: (a) the translational kinetic energy; (b) the rotational kinetic energy about the CM; (c) the rotational fraction of the total energy.
+
+1. **Translation.** 18 km/h = 5.0 m/s: $K_{cm} = \tfrac12 Mv^2 = 18.75\ \text{J}$.
+2. **Rotation.** Ring: $I_{cm} = MR^2$, rolling $\omega = v/R$: $K' = \tfrac12 MR^2 (v/R)^2 = 18.75\ \text{J}$.
+3. **Fraction.** For a ring the split is exactly half and half: rotational fraction 0.50, independent of v and R.
+
+</div>
+
+</Layer>
+
+<Layer kind="errori" title="Common mistakes">
+
+<div data-note-id="teoria/teorema-di-koenig/errori">
+
+- Forgetting one of the two terms (typically: counting only translation in rolling).
+- Counting the rotational energy twice by using I about the contact point AND adding translation.
+- Believing that L' depends on the pole: it is intrinsic to the system.
+- Applying König with a relative frame that rotates: it must only translate with the CM.
+
+</div>
+
+<div data-note-id="teoria/teorema-di-koenig/verso-orale">
+
+## Towards the oral exam
+
+Follow-up questions that may come after your presentation (model answers in the review section):
+
+- Why is the total momentum zero in the CM frame, and why is it the ideal frame for collisions?
+- How do you write K' for two point particles in terms of the reduced mass?
+- Kinetic energy depends on the reference frame: which part of K is invariant?
+
+</div>
+
+</Layer>

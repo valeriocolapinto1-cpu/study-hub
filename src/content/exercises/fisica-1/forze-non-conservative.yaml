@@ -1,0 +1,122 @@
+- id: piano-scabro-andata-ritorno
+  topic: forze-non-conservative
+  objectives:
+    - forze-non-conservative.1
+    - forze-non-conservative.2
+    - forze-non-conservative.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: >-
+      Un blocco viene lanciato con velocità v₀ = 6,0 m/s su per un piano inclinato di 30° con coefficiente di
+      attrito dinamico μd = 0,20 (lo statico è minore di tan 30°, quindi ridiscende). Calcolare: (a) la
+      distanza percorsa lungo il piano prima di fermarsi; (b) l'energia dissipata per unità di massa
+      nell'andata; (c) la velocità con cui ripassa dal punto di lancio.
+    en: >-
+      A block is launched with speed v₀ = 6.0 m/s up a 30° incline with kinetic friction coefficient μd = 0.20
+      (static friction is less than tan 30°, so it slides back). Find: (a) the distance travelled along the
+      incline before stopping; (b) the energy dissipated per unit mass on the way up; (c) the speed with which
+      it passes the launch point again.
+  steps:
+    - title:
+        it: Salita
+        en: Going up
+      body:
+        it: >-
+          \(\tfrac12 v_0^2 = g d(\sin\theta + \mu_d\cos\theta) \Rightarrow d = \dfrac{18}{9{,}81\,(0{,}5 +
+          0{,}1732)} \approx 2{,}73\ \text{m}\).
+        en: >-
+          \(\tfrac12 v_0^2 = g d(\sin\theta + \mu_k\cos\theta) \Rightarrow d = \dfrac{18}{9.81\,(0.5 +
+          0.1732)} \approx 2.73\ \text{m}\).
+    - title:
+        it: Energia dissipata
+        en: Dissipated energy
+      body:
+        it: \(|W_{attr}|/m = \mu_d g\cos\theta\, d \approx 1{,}699 \cdot 2{,}73 \approx 4{,}64\ \text{J/kg}\).
+        en: \(|W_{fr}|/m = \mu_k g\cos\theta\, d \approx 1.699 \cdot 2.73 \approx 4.64\ \text{J/kg}\).
+    - title:
+        it: Discesa
+        en: Coming down
+      body:
+        it: >-
+          \(\tfrac12 v_f^2 = g d(\sin\theta - \mu_d\cos\theta) \Rightarrow v_f \approx 4{,}18\ \text{m/s}\):
+          rispetto a v₀ manca l'energia dissipata nei due tratti.
+        en: >-
+          \(\tfrac12 v_f^2 = g d(\sin\theta - \mu_k\cos\theta) \Rightarrow v_f \approx 4.18\ \text{m/s}\):
+          compared with v₀, the energy dissipated on the two legs is missing.
+  answer:
+    - label:
+        it: d
+        en: d
+      value: 2.73
+      unit: m
+    - label:
+        it: energia dissipata per kg
+        en: dissipated energy per kg
+      value: 4.64
+      unit: J/kg
+    - label:
+        it: v_f
+        en: v_f
+      value: 4.18
+      unit: m/s
+  origin: originale
+- id: slitta-tratto-scabro
+  topic: forze-non-conservative
+  objectives:
+    - forze-non-conservative.1
+    - forze-non-conservative.2
+    - forze-non-conservative.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: >-
+      Una slitta di massa 20 kg scende da ferma lungo una pista liscia da un'altezza di 5,0 m, poi prosegue su
+      un tratto orizzontale con attrito (μd = 0,40). Calcolare: (a) la velocità alla fine della discesa; (b)
+      la distanza percorsa sul tratto orizzontale prima di fermarsi; (c) l'energia meccanica convertita in
+      energia interna.
+    en: >-
+      A 20 kg sled slides from rest down a smooth track from a height of 5.0 m, then continues on a horizontal
+      stretch with friction (μd = 0.40). Find: (a) the speed at the end of the descent; (b) the distance
+      travelled on the horizontal stretch before stopping; (c) the mechanical energy converted into internal
+      energy.
+  steps:
+    - title:
+        it: Discesa liscia
+        en: Smooth descent
+      body:
+        it: \(v = \sqrt{2gh} = \sqrt{98{,}1} \approx 9{,}90\ \text{m/s}\).
+        en: \(v = \sqrt{2gh} = \sqrt{98.1} \approx 9.90\ \text{m/s}\).
+    - title:
+        it: Tratto scabro
+        en: Rough stretch
+      body:
+        it: >-
+          \(\Delta E = W_{nc}\): \(0 - mgh = -\mu_d mg\, d \Rightarrow d = h/\mu_d = 12{,}5\ \text{m}\),
+          indipendente dalla massa.
+        en: >-
+          \(\Delta E = W_{nc}\): \(0 - mgh = -\mu_k mg\, d \Rightarrow d = h/\mu_k = 12.5\ \text{m}\),
+          independent of the mass.
+    - title:
+        it: Energia dissipata
+        en: Dissipated energy
+      body:
+        it: 'Tutta l''energia meccanica iniziale: \(mgh = 20 \cdot 9{,}81 \cdot 5{,}0 \approx 981\ \text{J}\).'
+        en: 'All the initial mechanical energy: \(mgh = 20 \cdot 9.81 \cdot 5.0 \approx 981\ \text{J}\).'
+  answer:
+    - label:
+        it: v
+        en: v
+      value: 9.9
+      unit: m/s
+    - label:
+        it: d
+        en: d
+      value: 12.5
+      unit: m
+    - label:
+        it: energia dissipata
+        en: dissipated energy
+      value: 981
+      unit: J
+  origin: originale

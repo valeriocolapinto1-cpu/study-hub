@@ -1,0 +1,242 @@
+- id: teorema-momento-angolare-esposizione
+  topic: teorema-momento-angolare
+  objectives:
+    - teorema-momento-angolare.1
+    - teorema-momento-angolare.2
+    - teorema-momento-angolare.3
+    - teorema-momento-angolare.4
+    - teorema-momento-angolare.5
+    - teorema-momento-angolare.6
+    - teorema-momento-angolare.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Teorema del momento angolare (seconda equazione cardinale)».'
+    en: 'Present at the oral exam: “Angular momentum theorem (second cardinal equation)”.'
+  back:
+    it: >-
+      È il gemello rotazionale della prima cardinale: come le forze interne non possono spostare il CM, i
+      momenti interni non possono far ruotare il sistema nel suo complesso. Un gatto che cade ruota su sé
+      stesso senza violare la legge: cambia la sua forma (e quindi i suoi momenti d'inerzia parziali)
+      mantenendo L totale nullo.
+
+
+      **Scaletta:**
+
+
+      - Definire L e τ totali per un sistema rispetto a un polo
+
+      - Dimostrare dL/dt = τ_ext mostrando l'elisione dei momenti interni
+
+      - Precisare quando serve la forma forte della terza legge
+
+      - Discutere la scelta del polo: fisso oppure CM
+
+      - Ricavare Iα = τ per il corpo rigido con asse fisso
+
+      - Enunciare la conservazione di L con esempi
+
+      - Applicarla a un esercizio (pattinatrice o carrucola massiva)
+    en: >-
+      It is the rotational twin of the first cardinal equation: just as internal forces cannot move the CM,
+      internal torques cannot make the system as a whole rotate. A falling cat turns over without violating
+      the law: it changes its shape (and therefore its partial moments of inertia) while keeping the total L
+      equal to zero.
+
+
+      **Outline:**
+
+
+      - Define total L and τ for a system about a pole
+
+      - Prove dL/dt = τ_ext showing the cancellation of internal torques
+
+      - Specify when the strong form of the third law is needed
+
+      - Discuss the choice of pole: fixed or CM
+
+      - Derive Iα = τ for a rigid body with a fixed axis
+
+      - State the conservation of L with examples
+
+      - Apply it to an exercise (skater or massive pulley)
+- id: teorema-momento-angolare-orale-1
+  topic: teorema-momento-angolare
+  objectives:
+    - teorema-momento-angolare.6
+    - teorema-momento-angolare.7
+  kind: orale
+  front:
+    it: Perché il centro di massa è un polo lecito anche quando accelera?
+    en: Why is the centre of mass an admissible pole even when it accelerates?
+  back:
+    it: >-
+      Per un polo mobile Q vale \(d\vec L_Q/dt = \vec\tau_Q^{ext} - \vec v_Q\times M\vec v_{cm}\). Se Q
+      coincide con il CM, \(\vec v_Q = \vec v_{cm}\) e il prodotto vettoriale di un vettore con sé stesso è
+      nullo: il termine spurio sparisce qualunque sia l'accelerazione del CM. Equivalentemente: nel
+      riferimento del CM le forze apparenti \(-m_i\vec a_{cm}\) sono come un peso uniforme applicato nel CM, e
+      hanno momento nullo rispetto al CM.
+    en: >-
+      For a moving pole Q, \(d\vec L_Q/dt = \vec\tau_Q^{ext} - \vec v_Q\times M\vec v_{cm}\). If Q coincides
+      with the CM, \(\vec v_Q = \vec v_{cm}\) and the cross product of a vector with itself vanishes: the
+      spurious term disappears whatever the acceleration of the CM. Equivalently: in the CM frame the
+      fictitious forces \(-m_i\vec a_{cm}\) are like a uniform weight applied at the CM, and have zero torque
+      about the CM.
+- id: teorema-momento-angolare-orale-2
+  topic: teorema-momento-angolare
+  objectives:
+    - teorema-momento-angolare.6
+    - teorema-momento-angolare.7
+  kind: orale
+  front:
+    it: 'Nella pattinatrice che chiude le braccia l''energia cinetica aumenta: chi compie il lavoro?'
+    en: 'When a skater pulls in her arms her kinetic energy increases: who does the work?'
+  back:
+    it: >-
+      L si conserva, ma \(K = L^2/2I\) aumenta perché I diminuisce. Il lavoro lo fanno le forze interne, cioè
+      i muscoli delle braccia: nel riferimento rotante devono vincere la forza centrifuga apparente
+      \(m\omega^2 r\) mentre portano le masse verso l'asse. Il lavoro delle forze interne non è nullo perché
+      le distanze tra le parti del corpo cambiano (la pattinatrice non è un corpo rigido).
+    en: >-
+      L is conserved, but \(K = L^2/2I\) increases because I decreases. The work is done by internal forces,
+      i.e. the arm muscles: in the rotating frame they must overcome the apparent centrifugal force
+      \(m\omega^2 r\) while bringing the masses towards the axis. The work of internal forces is not zero
+      because the distances between parts of the body change (the skater is not a rigid body).
+- id: teorema-momento-angolare-orale-3
+  topic: teorema-momento-angolare
+  objectives:
+    - teorema-momento-angolare.6
+    - teorema-momento-angolare.7
+  kind: orale
+  front:
+    it: Le due equazioni cardinali bastano a determinare il moto di un corpo rigido?
+    en: Are the two cardinal equations enough to determine the motion of a rigid body?
+  back:
+    it: >-
+      Sì. Un corpo rigido ha 6 gradi di libertà (3 di traslazione del CM e 3 di orientazione) e le due
+      cardinali forniscono 6 equazioni scalari: \(\vec F^{ext} = M\vec a_{cm}\) e \(d\vec L/dt =
+      \vec\tau^{ext}\). Con le condizioni iniziali il moto è determinato; le forze interne non servono perché
+      le distanze non cambiano. Per un sistema non rigido invece non bastano.
+    en: >-
+      Yes. A rigid body has 6 degrees of freedom (3 for the translation of the CM and 3 for orientation) and
+      the two cardinal equations provide 6 scalar equations: \(\vec F^{ext} = M\vec a_{cm}\) and \(d\vec L/dt
+      = \vec\tau^{ext}\). With the initial conditions the motion is determined; internal forces are not needed
+      because distances do not change. For a non-rigid system they are not enough.
+- id: teorema-momento-angolare-definizione
+  topic: teorema-momento-angolare
+  objectives:
+    - teorema-momento-angolare.1
+  kind: definizione
+  front:
+    it: 'Definizione: Teorema del momento angolare (seconda equazione cardinale)'
+    en: 'Definition: Angular momentum theorem (second cardinal equation)'
+  back:
+    it: >-
+      Per un sistema di punti materiali, il momento angolare totale rispetto a un polo O è \(\vec{L} = \sum_i
+      \vec{r}_i\times m_i\vec{v}_i\) e il momento risultante delle forze esterne è \(\vec{\tau}^{ext} = \sum_i
+      \vec{r}_i\times\vec{F}_i^{ext}\). La seconda equazione cardinale afferma: \(d\vec{L}/dt =
+      \vec{\tau}^{ext}\), valida se il polo è fisso in un sistema inerziale oppure coincide con il centro di
+      massa. I momenti delle forze interne non contribuiscono.
+    en: >-
+      For a system of point particles, the total angular momentum about a pole O is \(\vec{L} = \sum_i
+      \vec{r}_i\times m_i\vec{v}_i\) and the resultant torque of the external forces is \(\vec{\tau}^{ext} =
+      \sum_i \vec{r}_i\times\vec{F}_i^{ext}\). The second cardinal equation states: \(d\vec{L}/dt =
+      \vec{\tau}^{ext}\), valid if the pole is fixed in an inertial frame or coincides with the centre of
+      mass. Torques of internal forces do not contribute.
+- id: teorema-momento-angolare-formule
+  topic: teorema-momento-angolare
+  objectives:
+    - teorema-momento-angolare.1
+    - teorema-momento-angolare.2
+    - teorema-momento-angolare.3
+    - teorema-momento-angolare.4
+    - teorema-momento-angolare.5
+    - teorema-momento-angolare.6
+    - teorema-momento-angolare.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Teorema del momento angolare (seconda equazione cardinale)»
+    en: The key formulas of “Angular momentum theorem (second cardinal equation)”
+  back:
+    it: |-
+      - \(\vec{L} = \sum \vec{r}_i\times m_i\vec{v}_i\)
+      - \(\frac{d\vec{L}}{dt} = \vec{\tau}^{ext}\)
+      - \(L_z = I\omega,\;\; I\alpha = \tau_z\)
+      - \(\tau^{ext}=0 \Rightarrow \vec{L}=\text{cost}\)
+    en: |-
+      - \(\vec{L} = \sum \vec{r}_i\times m_i\vec{v}_i\)
+      - \(\frac{d\vec{L}}{dt} = \vec{\tau}^{ext}\)
+      - \(L_z = I\omega,\;\; I\alpha = \tau_z\)
+      - \(\tau^{ext}=0 \Rightarrow \vec{L}=\text{const}\)
+- id: teorema-momento-angolare-ipotesi
+  topic: teorema-momento-angolare
+  objectives:
+    - teorema-momento-angolare.1
+    - teorema-momento-angolare.2
+    - teorema-momento-angolare.3
+    - teorema-momento-angolare.4
+    - teorema-momento-angolare.5
+    - teorema-momento-angolare.6
+    - teorema-momento-angolare.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Teorema del momento angolare (seconda equazione cardinale)'
+    en: 'Validity assumptions: Angular momentum theorem (second cardinal equation)'
+  back:
+    it: >-
+      Terza legge di Newton in forma forte (forze interne centrali); polo fisso in sistema inerziale oppure
+      polo nel CM; per L = Iω serve un corpo rigido che ruota attorno a un asse fisso o di simmetria.
+    en: >-
+      Newton's third law in strong form (central internal forces); pole fixed in an inertial frame or pole at
+      the CM; L = Iω requires a rigid body rotating about a fixed or symmetry axis.
+- id: teorema-momento-angolare-casi-limite
+  topic: teorema-momento-angolare
+  objectives:
+    - teorema-momento-angolare.1
+    - teorema-momento-angolare.2
+    - teorema-momento-angolare.3
+    - teorema-momento-angolare.4
+    - teorema-momento-angolare.5
+    - teorema-momento-angolare.6
+    - teorema-momento-angolare.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Teorema del momento angolare (seconda equazione cardinale)'
+    en: 'Limiting cases: Angular momentum theorem (second cardinal equation)'
+  back:
+    it: >-
+      Sistema isolato o forze a momento nullo: L conservato. Forze centrali col polo nel centro: si ritrova la
+      conservazione per il punto materiale. Se l'asse non è di simmetria, L non è parallelo a ω e compaiono
+      momenti sui supporti (squilibrio delle ruote).
+    en: >-
+      Isolated system or forces with zero torque: L conserved. Central forces with the pole at the centre: the
+      conservation for the point particle is recovered. If the axis is not a symmetry axis, L is not parallel
+      to ω and torques appear on the bearings (wheel imbalance).
+- id: teorema-momento-angolare-errori
+  topic: teorema-momento-angolare
+  objectives:
+    - teorema-momento-angolare.1
+    - teorema-momento-angolare.2
+    - teorema-momento-angolare.3
+    - teorema-momento-angolare.4
+    - teorema-momento-angolare.5
+    - teorema-momento-angolare.6
+    - teorema-momento-angolare.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Teorema del momento angolare (seconda equazione cardinale)'
+    en: 'Mistakes to avoid: Angular momentum theorem (second cardinal equation)'
+  back:
+    it: >-
+      - Usare come polo un punto mobile qualsiasi senza il termine correttivo: solo il CM è sempre lecito.
+
+      - Includere momenti delle forze interne.
+
+      - Scrivere L = Iω come relazione vettoriale generale: vale sull'asse di rotazione (o per assi
+      principali).
+
+      - Dimenticare di verificare che il polo usato per τ e quello usato per L siano lo stesso.
+    en: |-
+      - Using an arbitrary moving point as pole without the correction term: only the CM is always admissible.
+      - Including torques of internal forces.
+      - Writing L = Iω as a general vector relation: it holds along the rotation axis (or for principal axes).
+      - Forgetting to check that the pole used for τ and the one used for L are the same.

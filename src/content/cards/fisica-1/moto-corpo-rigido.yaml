@@ -1,0 +1,144 @@
+- id: moto-corpo-rigido-esposizione
+  topic: moto-corpo-rigido
+  objectives:
+    - moto-corpo-rigido.1
+    - moto-corpo-rigido.2
+    - moto-corpo-rigido.3
+    - moto-corpo-rigido.4
+    - moto-corpo-rigido.5
+    - moto-corpo-rigido.6
+    - moto-corpo-rigido.7
+  kind: orale
+  front:
+    it: 'Esponi all''orale: «Moto di un corpo rigido».'
+  back:
+    it: >-
+      Il vincolo di rigidità riduce un numero enorme di gradi di libertà a soli 6: dire dove sta il CM e come
+      il corpo è orientato basta a conoscere la posizione di ogni suo punto. Il moto si legge sempre come 'il
+      CM trasla + il corpo gira attorno al CM', e ciascuna delle due parti obbedisce alla propria equazione
+      cardinale.
+
+
+      **Scaletta:**
+
+
+      - Definire il corpo rigido e contarne i gradi di libertà
+
+      - Scrivere la formula fondamentale v_P = v_Q + ω×(r_P−r_Q)
+
+      - Impostare le due equazioni cardinali per il moto rototraslatorio
+
+      - Ricavare Iα = τ per l'asse fisso e l'analogia con F = ma
+
+      - Scrivere le leggi orarie rotazionali per α costante
+
+      - Spiegare il centro di istantanea rotazione
+
+      - Scrivere lavoro e potenza rotazionali
+- id: moto-corpo-rigido-orale-1
+  topic: moto-corpo-rigido
+  objectives:
+    - moto-corpo-rigido.6
+    - moto-corpo-rigido.7
+  kind: orale
+  front:
+    it: Perché per un corpo rigido il lavoro delle forze interne è nullo?
+  back:
+    it: Le distanze mutue non cambiano.
+- id: moto-corpo-rigido-orale-3
+  topic: moto-corpo-rigido
+  objectives:
+    - moto-corpo-rigido.6
+    - moto-corpo-rigido.7
+  kind: orale
+  front:
+    it: Cosa succede se si applica una forza il cui momento rispetto al CM è nullo?
+  back:
+    it: Pura traslazione accelerata.
+- id: moto-corpo-rigido-definizione
+  topic: moto-corpo-rigido
+  objectives:
+    - moto-corpo-rigido.1
+  kind: definizione
+  front:
+    it: 'Definizione: Moto di un corpo rigido'
+  back:
+    it: >-
+      Un corpo rigido è un sistema di punti le cui distanze mutue restano costanti. Il suo moto più generale è
+      la composizione di una traslazione (descritta dal moto del CM) e di una rotazione attorno a un asse
+      passante per il CM: servono 6 coordinate (3 + 3). Il campo delle velocità è \(\vec{v}_P = \vec{v}_{cm} +
+      \vec{\omega}\times\vec{r}_{P}\), con r_P posizione di P rispetto al CM. Il moto è governato dalle due
+      equazioni cardinali.
+- id: moto-corpo-rigido-formule
+  topic: moto-corpo-rigido
+  objectives:
+    - moto-corpo-rigido.1
+    - moto-corpo-rigido.2
+    - moto-corpo-rigido.3
+    - moto-corpo-rigido.4
+    - moto-corpo-rigido.5
+    - moto-corpo-rigido.6
+    - moto-corpo-rigido.7
+  kind: formula
+  front:
+    it: Le formule chiave di «Moto di un corpo rigido»
+  back:
+    it: |-
+      - \(\vec{v}_P = \vec{v}_{cm} + \vec{\omega}\times\vec{r}_P\)
+      - \(\vec{F}^{ext} = M\vec{a}_{cm},\;\; \vec{\tau}_{cm} = \frac{d\vec{L}_{cm}}{dt}\)
+      - \(I\alpha = \tau_z\)
+      - \(P = \tau\omega\)
+- id: moto-corpo-rigido-ipotesi
+  topic: moto-corpo-rigido
+  objectives:
+    - moto-corpo-rigido.1
+    - moto-corpo-rigido.2
+    - moto-corpo-rigido.3
+    - moto-corpo-rigido.4
+    - moto-corpo-rigido.5
+    - moto-corpo-rigido.6
+    - moto-corpo-rigido.7
+  kind: concetto
+  front:
+    it: 'Ipotesi di validità: Moto di un corpo rigido'
+  back:
+    it: >-
+      Rigidità perfetta (nessuna deformazione); per L = Iω asse fisso o principale d'inerzia; sistemi di
+      riferimento inerziali (o polo nel CM).
+- id: moto-corpo-rigido-casi-limite
+  topic: moto-corpo-rigido
+  objectives:
+    - moto-corpo-rigido.1
+    - moto-corpo-rigido.2
+    - moto-corpo-rigido.3
+    - moto-corpo-rigido.4
+    - moto-corpo-rigido.5
+    - moto-corpo-rigido.6
+    - moto-corpo-rigido.7
+  kind: concetto
+  front:
+    it: 'Casi limite: Moto di un corpo rigido'
+  back:
+    it: >-
+      Pura traslazione: ω = 0, tutti i punti hanno la stessa velocità. Pura rotazione attorno ad asse fisso:
+      v_cm dell'asse nulla. Rotolamento: combinazione con vincolo v_cm = ωR. Corpo libero nello spazio: il CM
+      va di moto rettilineo uniforme e il corpo ruota attorno a esso.
+- id: moto-corpo-rigido-errori
+  topic: moto-corpo-rigido
+  objectives:
+    - moto-corpo-rigido.1
+    - moto-corpo-rigido.2
+    - moto-corpo-rigido.3
+    - moto-corpo-rigido.4
+    - moto-corpo-rigido.5
+    - moto-corpo-rigido.6
+    - moto-corpo-rigido.7
+  kind: concetto
+  front:
+    it: 'Errori da evitare: Moto di un corpo rigido'
+  back:
+    it: |-
+      - Assegnare ω 'a un punto': la velocità angolare è unica per tutto il corpo rigido.
+      - Usare la seconda cardinale con polo mobile diverso dal CM senza correzioni.
+      - Applicare L = Iω vettorialmente quando l'asse non è principale.
+      - Dimenticare che servono ENTRAMBE le cardinali: la sola prima non descrive la rotazione.
