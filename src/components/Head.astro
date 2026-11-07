@@ -2,6 +2,8 @@
 /** Metadati comuni: titolo, descrizione, canonical, hreflang, Open Graph, tema. */
 import { DEFAULT_LANG, LANGS, SITE } from '../config/site';
 import { htmlLang, ogLocale, switchLangPath, withBase, type Lang } from '../i18n';
+// Font del testo precaricato: i titoli grandi nascono già in Geist (niente spostamento al cambio di font, CLS).
+import geistLatin from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
 
 interface Props {
   lang: Lang;
@@ -36,6 +38,7 @@ const fullTitle = title === SITE.title[lang] ? title : `${title} — ${SITE.shor
     href={new URL(switchLangPath(Astro.url, DEFAULT_LANG), site).href}
   />
 )}
+<link rel="preload" href={geistLatin} as="font" type="font/woff2" crossorigin />
 <link rel="icon" href={withBase('favicon.svg')} type="image/svg+xml" />
 <link rel="apple-touch-icon" href={withBase('apple-touch-icon.png')} />
 <link rel="manifest" href={withBase('site.webmanifest')} />

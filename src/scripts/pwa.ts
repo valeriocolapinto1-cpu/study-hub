@@ -67,6 +67,12 @@ async function register() {
   // Pagine lasciate aperte a lungo: controllo periodico degli aggiornamenti.
   setInterval(() => void reg.update().catch(() => undefined), 60 * 60 * 1000);
   await navigator.serviceWorker.ready;
+  // Alla prima visita il worker attivo prende il controllo con clients.claim() poco dopo:
+  // "ready" solo quando la pagina è davvero controllata (serve anche all'avviso di aggiornamento).
+  if (!navigator.serviceWorker.controller)
+    await new Promise((resolve) =>
+      navigator.serviceWorker.addEventListener('controllerchange', resolve, { once: true }),
+    );
   document.documentElement.dataset.sw = 'ready';
 }
 
