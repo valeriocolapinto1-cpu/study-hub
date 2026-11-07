@@ -130,6 +130,9 @@ import * as Fig from '../../../courses/fisica-1/lib/figures';
 <Diagram {...Fig.ladder({ angle: 60 })} caption="…" />
 ```
 
+I test del corso (`tests/unit/fisica-1/figures.test.ts`) verificano che ogni esercizio statico abbia una figura
+(eccezioni in una whitelist motivata) e che ogni generatore ne restituisca una valida per più semi.
+
 ## Varianti interattive
 
 `<DiagramLive kind="…" />` con `kind` = `inclined-plane` (θ, μ → accelerazione), `spring-mass` (x, k → forza
