@@ -43,7 +43,6 @@ document.addEventListener('click', (event) => {
   if (langLink?.dataset.langSwitch) write(GLOBAL_SCOPE, 'lang', langLink.dataset.langSwitch);
 });
 
-
 // ---- Menu mobile: si chiude con Esc, al cambio di larghezza e al clic su un link.
 const menuButton = document.querySelector<HTMLButtonElement>('.menu-toggle');
 const menu = document.getElementById('menu-mobile');

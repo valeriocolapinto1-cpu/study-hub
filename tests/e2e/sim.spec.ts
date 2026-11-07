@@ -89,6 +89,8 @@ test('pagina degli schemi: nessuna isola, ogni schema ha titolo e descrizione', 
 for (const theme of ['light', 'dark'] as const) {
   test(`axe WCAG 2.2 AA sulle simulazioni idratate (${theme})`, async ({ page }) => {
     await page.emulateMedia({ colorScheme: theme });
+    // Scuro di default: il tema chiaro si attiva con la scelta salvata dall'interruttore.
+    await page.addInitScript((t) => localStorage.setItem('sh:v1:global:theme', JSON.stringify(t)), theme);
     await page.goto(DEMO);
     await hydrateAll(page);
     const results = await new AxeBuilder({ page }).withTags(TAGS).analyze();

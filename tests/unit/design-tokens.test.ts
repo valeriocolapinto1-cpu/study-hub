@@ -56,6 +56,7 @@ const TEXT_PAIRS: [string, string, number][] = [
   ['--border-strong', '--surface', 3],
   ['--focus', '--bg', 3],
   ['--focus', '--surface', 3],
+  ['--brand-cyan-text', '--bg', 4.5],
 ];
 const ACCENT_PAIRS: [string, string, number][] = [
   ['--accent-strong', '--bg', 4.5],

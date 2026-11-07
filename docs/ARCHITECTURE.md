@@ -9,7 +9,7 @@ Pubblicato su GitHub Pages: `https://valeriocolapinto1-cpu.github.io/study-hub/`
 - **MDX** per la teoria; **content collections** con schemi **Zod** (`src/content.config.ts`, schemi in `src/content/schemas.ts`).
 - Matematica: **KaTeX a build-time** (`remark-math` + `rehype-katex`, uscita HTML+MathML) tramite il processore `unified()`
   di `@astrojs/markdown-remark` (Sätteri, il processore predefinito di Astro 7, non gestisce la matematica). Nessun MathJax.
-- TypeScript strict, Node 22 (`.nvmrc`), npm. Font Geist, Geist Mono e Source Serif 4 da `@fontsource-variable/*` (OFL).
+- TypeScript strict, Node 22 (`.nvmrc`), npm. Font Geist e Geist Mono da `@fontsource-variable/*` (OFL).
 - Nessun Tailwind, nessuna analytics, nessuna chiave API nel browser.
 
 `site` e `base` stanno **solo** in `astro.config.mjs`. Nel codice si usano `localizePath()`, `withBase()`

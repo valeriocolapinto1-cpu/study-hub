@@ -16,6 +16,8 @@ for (const theme of ['light', 'dark'] as const) {
       test(`${p.name} ${theme} ${vp.name}`, async ({ page }) => {
         await page.setViewportSize({ width: vp.width, height: vp.height });
         await page.emulateMedia({ colorScheme: theme, reducedMotion: 'reduce' });
+        // Il tema non segue il sistema (scuro di default): il chiaro si sceglie con l'interruttore.
+        await page.addInitScript((t) => localStorage.setItem('sh:v1:global:theme', JSON.stringify(t)), theme);
         await page.goto(p.path);
         await page.evaluate(() => document.fonts.ready);
         // Le isole client:visible (esercizi, appunti) si idratano quando entrano nella finestra e
