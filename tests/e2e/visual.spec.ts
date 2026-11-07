@@ -30,7 +30,11 @@ for (const theme of ['light', 'dark'] as const) {
         await page.waitForFunction(() => document.querySelectorAll('astro-island[ssr]').length === 0);
         await page.waitForLoadState('networkidle');
         await page.setViewportSize({ width: vp.width, height: vp.height });
-        await expect(page).toHaveScreenshot(`${p.name}-${theme}-${vp.name}.png`, { fullPage: true });
+        await expect(page).toHaveScreenshot(`${p.name}-${theme}-${vp.name}.png`, {
+          fullPage: true,
+          // Pagine lunghe (formulario) con la barra sfocata: in CI due catture superano i 5 s di default.
+          timeout: 20_000,
+        });
       });
     }
   }
