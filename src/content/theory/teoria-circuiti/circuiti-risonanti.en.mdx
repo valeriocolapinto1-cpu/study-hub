@@ -53,6 +53,23 @@ In an RLC circuit, inductor and capacitor exchange energy like a spring and a ma
 
 </details>
 
+<Figure
+  caption="Frequency response of an RLC band-pass (ω₀ = 1 rad/s, Q = 5): peak at ω₀, bandwidth B = ω₀/Q, phase from +90° to −90°"
+  num="2"
+  id="fig-2"
+>
+  <Diagram
+    type="bode"
+    params={{
+      gain: 0.2,
+      origin: 1,
+      poles: [{ w: 1, zeta: 0.1 }],
+      range: { min: 0.01, max: 100 },
+      markers: [{ w: 1, label: 'ω_0' }],
+    }}
+  />
+</Figure>
+
 <Formula id="w0" />
 <Formula id="q-serie" />
 <Formula id="q-par" />

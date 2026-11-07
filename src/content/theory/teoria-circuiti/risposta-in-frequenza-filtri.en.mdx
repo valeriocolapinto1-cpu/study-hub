@@ -72,6 +72,17 @@ A filter is a circuit that treats frequencies differently: an RC with the output
   </svg>
 </Figure>
 
+<Figure
+  caption="Bode plot of a first-order high-pass (ω_c = 1 rad/s): +20 dB/decade below ω_c, −3 dB and +45° at ω_c"
+  num="2"
+  id="fig-2"
+>
+  <Diagram
+    type="bode"
+    params={{ origin: 1, poles: [{ w: 1 }], asymptotes: true, markers: [{ w: 1, label: 'ω_c' }] }}
+  />
+</Figure>
+
 <Formula id="wc-rc" />
 <Formula id="wc-rl" />
 <Formula id="mod-lp" />

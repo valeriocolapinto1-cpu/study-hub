@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import '../../../src/courses/teoria-circuiti/generators/analisi';
 import '../../../src/courses/teoria-circuiti/generators/applicate';
 import { listGenerators, runGenerator } from '../../../src/engine/generators/registry';
-import { checkFigure, exercisesOf, flatten } from './helpers';
+import { checkFigure, exercisesOf, flatten, theoryDiagrams } from './helpers';
 
 const all = exercisesOf('teoria-circuiti');
 
@@ -188,5 +188,23 @@ describe('teoria-circuiti: figure dei generatori', () => {
           expect(ex.figure, `${g.id} ${seed}`).toBeDefined();
           checkFigure(ex.figure!, `${g.id} ${seed} ${lang}`, lang);
         }
+    });
+});
+
+describe('teoria-circuiti: figure della teoria', () => {
+  const diagrams = theoryDiagrams('teoria-circuiti');
+  it('le pagine IT ed EN hanno le stesse figure del kit', () => {
+    const per = (lang: string) =>
+      diagrams.filter((d) => d.file.endsWith(`.${lang}.mdx`)).map((d) => `${d.file.split('.')[0]}:${d.type}`);
+    expect(per('en')).toEqual(per('it'));
+    expect(diagrams.length).toBeGreaterThanOrEqual(38);
+  });
+  for (const d of diagrams)
+    it(`${d.file}: ${d.type} valido`, () => {
+      checkFigure(
+        { diagram: { type: d.type, params: d.params } as never },
+        d.file,
+        d.file.includes('.en.') ? 'en' : 'it',
+      );
     });
 });

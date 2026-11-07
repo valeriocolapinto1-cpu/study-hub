@@ -34,6 +34,25 @@ Ideal elements are handy but "too perfect": two different ideal batteries in par
 
 </div>
 
+<Figure
+  caption="Characteristic of a real source v = V₀ − R_i·i: open-circuit voltage V₀ and short-circuit current I_sc = V₀/R_i"
+  num="1"
+  id="fig-1"
+>
+  <Diagram
+    type="function-plot"
+    params={{
+      x: { min: 0, max: 6, label: 'i', unit: 'A' },
+      y: { label: 'v', unit: 'V', min: 0, max: 12 },
+      series: [{ kind: 'poly', coeffs: [10, -2] }],
+      markers: [
+        { x: 0, y: 10, label: 'V_0' },
+        { x: 5, y: 0, label: 'I_{sc}' },
+      ],
+    }}
+  />
+</Figure>
+
 <Formula id="energia-c" />
 <Formula id="energia-l" />
 <Formula id="pila-reale" />

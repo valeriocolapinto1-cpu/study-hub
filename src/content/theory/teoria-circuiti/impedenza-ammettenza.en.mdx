@@ -34,6 +34,26 @@ An inductor has positive reactance (the current lags the voltage), a capacitor n
 
 </div>
 
+<Figure
+  caption="Impedance triangle of a resistive-inductive load: Z = R + jX, |Z| and argument φ"
+  num="1"
+  id="fig-1"
+>
+  <Diagram
+    type="vectors"
+    params={{
+      vectors: [
+        { id: 'R', label: 'R', dx: 4, dy: 0, tone: 'accent' },
+        { id: 'X', label: 'jX', dx: 0, dy: 3, from: 'R', tone: 'info' },
+      ],
+      sum: { of: ['R', 'X'], label: 'Z' },
+      axes: true,
+      axisLabels: ['Re', 'Im'],
+      range: { xMin: -0.5, xMax: 5, yMin: -0.5, yMax: 4 },
+    }}
+  />
+</Figure>
+
 <Formula id="imped-r" />
 <Formula id="imped-l" />
 <Formula id="imped-c" />

@@ -53,6 +53,23 @@ In un RLC induttore e condensatore si scambiano energia come una molla e una mas
 
 </details>
 
+<Figure
+  caption="Risposta in frequenza di un passa-banda RLC (ω₀ = 1 rad/s, Q = 5): picco a ω₀, banda B = ω₀/Q, fase da +90° a −90°"
+  num="2"
+  id="fig-2"
+>
+  <Diagram
+    type="bode"
+    params={{
+      gain: 0.2,
+      origin: 1,
+      poles: [{ w: 1, zeta: 0.1 }],
+      range: { min: 0.01, max: 100 },
+      markers: [{ w: 1, label: 'ω_0' }],
+    }}
+  />
+</Figure>
+
 <Formula id="w0" />
 <Formula id="q-serie" />
 <Formula id="q-par" />

@@ -48,3 +48,27 @@ export function checkFigure(fig: ExerciseFigure, where: string, lang: 'it' | 'en
     expect(svg, where).toMatch(/^<svg[\s\S]*<\/svg>$/);
   }
 }
+
+/** Figure del kit nella teoria (MDX): `<Diagram type="…" params={{…}} />`, per file. */
+export function theoryDiagrams(course: string): Array<{ file: string; type: string; params: unknown }> {
+  const dir = `src/content/theory/${course}`;
+  const out: Array<{ file: string; type: string; params: unknown }> = [];
+  for (const file of readdirSync(dir).filter((f) => f.endsWith('.mdx'))) {
+    const src = readFileSync(join(dir, file), 'utf8');
+    const re = /<Diagram\s+type="([a-z-]+)"\s+params=\{/g;
+    for (let m = re.exec(src); m; m = re.exec(src)) {
+      let i = m.index + m[0].length;
+      const start = i;
+      let depth = 1;
+      while (depth > 0 && i < src.length) {
+        if (src[i] === '{') depth++;
+        else if (src[i] === '}') depth--;
+        i++;
+      }
+      // eslint-disable-next-line @typescript-eslint/no-implied-eval
+      const params: unknown = new Function(`return (${src.slice(start, i - 1)});`)();
+      out.push({ file, type: m[1]!, params });
+    }
+  }
+  return out;
+}

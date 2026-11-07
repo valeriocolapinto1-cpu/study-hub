@@ -40,6 +40,24 @@ Il legame con la funzione di rete è $h(t)=\mathcal L^{-1}\{H(s)\}$: i poli di $
 
 </details>
 
+<Figure
+  caption="Passa-basso RC con τ = 1 s: risposta impulsiva h(t) = e^{−t} e risposta al gradino, che ne è l’integrale"
+  num="1"
+  id="fig-1"
+>
+  <Diagram
+    type="function-plot"
+    params={{
+      x: { min: 0, max: 6, label: 't', unit: 's' },
+      y: { label: 'y', min: 0, max: 1.15 },
+      series: [
+        { kind: 'exp', a: 1, b: -1, label: 'h(t)' },
+        { kind: 'exp', a: -1, b: -1, c: 1, label: 'gradino', dash: true },
+      ],
+    }}
+  />
+</Figure>
+
 <Formula id="h-imp" />
 <Formula id="y-conv" />
 <Formula id="y-gradino" />
