@@ -8,7 +8,7 @@ import { carnotStates } from './live/CarnotLive';
 import type { Lang } from './core';
 
 export interface Props {
-  kind: 'inclined-plane' | 'spring-mass' | 'pv-cycle' | 'point-charges';
+  kind: 'inclined-plane' | 'spring-mass' | 'pv-cycle' | 'point-charges' | 'refraction';
   lang?: Lang;
   id?: string;
 }
@@ -48,3 +48,4 @@ const cycle = ['isothermal', 'adiabatic', 'isothermal', 'adiabatic'] as const;
     {...l}
   />
 )}
+{kind === 'refraction' && <Diagram type="refraction" params={{ n1: 1.5, n2: 1, incidence: 40 }} {...l} />}

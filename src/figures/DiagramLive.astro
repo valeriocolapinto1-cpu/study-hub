@@ -2,17 +2,18 @@
 /**
  * Variante interattiva di una figura (isola caricata quando entra nello schermo).
  * Uso in MDX/Astro: <DiagramLive kind="inclined-plane" />
- * Tipi disponibili: inclined-plane, spring-mass, pv-cycle (Carnot), point-charges.
+ * Tipi disponibili: inclined-plane, spring-mass, pv-cycle (Carnot), point-charges, refraction.
  */
 import InclinedPlaneLive from './live/InclinedPlaneLive';
 import SpringLive from './live/SpringLive';
 import CarnotLive from './live/CarnotLive';
 import FieldLinesLive from './live/FieldLinesLive';
+import RefractionLive from './live/RefractionLive';
 import { getLangFromUrl } from '../i18n';
 import type { Lang } from './core';
 
 export interface Props {
-  kind: 'inclined-plane' | 'spring-mass' | 'pv-cycle' | 'point-charges';
+  kind: 'inclined-plane' | 'spring-mass' | 'pv-cycle' | 'point-charges' | 'refraction';
   lang?: Lang;
   /** Id del titolo (unico nella pagina). */
   id?: string;
@@ -26,3 +27,4 @@ const pid = id ? { id } : {};
 {kind === 'spring-mass' && <SpringLive client:visible lang={lang} {...pid} />}
 {kind === 'pv-cycle' && <CarnotLive client:visible lang={lang} {...pid} />}
 {kind === 'point-charges' && <FieldLinesLive client:visible lang={lang} {...pid} />}
+{kind === 'refraction' && <RefractionLive client:visible lang={lang} {...pid} />}

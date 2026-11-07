@@ -15,6 +15,7 @@ import { DIAGRAM_TYPES } from '../../src/figures/types';
 import { labelTspans } from '../../src/figures/core';
 import { contours } from '../../src/figures/types/em';
 import { carnotStates } from '../../src/figures/live/CarnotLive';
+import RefractionLive from '../../src/figures/live/RefractionLive';
 import InclinedPlaneLive from '../../src/figures/live/InclinedPlaneLive';
 import { exerciseSchema } from '../../src/content/schemas';
 import {
@@ -299,5 +300,52 @@ describe('varianti interattive', () => {
     expect(html).toContain('role="img"');
     expect(html).toContain('type="range"');
     expect(html).toContain('a = g (sin θ − μ cos θ) = 3,21 m/s²');
+  });
+  it('la rifrazione dal vetro all’aria a 40° dà un raggio rifratto a 74,6°', () => {
+    const html = renderToString(h(RefractionLive, { lang: 'it' }));
+    expect(html).toContain('role="img"');
+    expect(html.match(/type="range"/g)).toHaveLength(3);
+    expect(html).toContain('θ₂ = 74,6°');
+  });
+});
+
+describe('fisica delle figure di elettromagnetismo e ottica', () => {
+  const d = (type: string, params: unknown, lang: 'it' | 'en' = 'it'): string =>
+    renderDiagram(type as never, params as never, { lang }).description;
+  it('forza di Lorentz: il verso di rotazione dipende da carica e campo', () => {
+    expect(d('uniform-field', { field: 'B-in', object: 'particle' })).toContain('senso antiorario');
+    expect(d('uniform-field', { field: 'B-in', object: 'particle', charge: 'negative' })).toContain(
+      'senso orario',
+    );
+    expect(d('uniform-field', { field: 'B-out', object: 'particle', charge: 'negative' })).toContain(
+      'senso antiorario',
+    );
+  });
+  it('legge di Lenz: verso della corrente indotta', () => {
+    expect(d('induction', { setup: 'sliding-bar' })).toContain('senso antiorario');
+    expect(d('induction', { setup: 'sliding-bar', velocity: 'left' })).toContain('senso orario');
+    expect(d('induction', { setup: 'loop-near-wire', motion: 'away' })).toContain('senso orario');
+    expect(d('induction', { setup: 'loop-in-field', field: 'out', trend: 'decreasing' })).toContain(
+      'senso antiorario',
+    );
+    expect(d('induction', { setup: 'rotating-rod' })).toContain('positivo sul perno');
+  });
+  it('rifrazione: legge di Snell e riflessione totale', () => {
+    expect(d('refraction', { n1: 1, n2: 1.5, incidence: 30 })).toContain('19,5°');
+    expect(d('refraction', { n1: 1.5, n2: 1, incidence: 50 })).toContain('angolo limite (41,8°)');
+  });
+  it('polarizzatori: legge di Malus', () => {
+    expect(d('polarizers', { axes: [0, 45, 90] })).toContain('0,5·I0, 0,25·I0, 0,125·I0');
+    expect(d('polarizers', { axes: [0, 90] })).toMatch(/0,5·I0, 0\./);
+  });
+  it('fili paralleli: correnti concordi si attraggono', () => {
+    expect(d('magnetic-field', { source: 'wire-pair' })).toContain('si attraggono');
+    expect(d('magnetic-field', { source: 'wire-pair', current2: 'negative' })).toContain('si respingono');
+  });
+  it('Gauss: campo nullo nella cavità e nel conduttore', () => {
+    expect(d('charge-distribution', { shape: 'shell', gaussian: 0.3 })).toContain('il campo è nullo');
+    expect(d('charge-distribution', { shape: 'sphere', conductor: true, gaussian: 0.5 })).toContain(
+      'il campo è nullo',
+    );
   });
 });

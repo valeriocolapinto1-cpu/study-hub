@@ -22,6 +22,12 @@ $$
 \mathcal E_i=-\frac{d\Phi(\vec B)}{dt}
 $$
 
+<Diagram
+  type="induction"
+  params={{ setup: 'loop-in-field', fieldLabel: 'B(t)' }}
+  caption="Loop in an increasing field: the induced current produces a field opposing the increase of flux (Lenz)."
+/>
+
 The minus sign expresses **Lenz's law**: the induced current flows in the direction that opposes the change of flux that produced it (energy conservation). The flux can change because $B$ changes, because the area changes or because the orientation changes.
 
 ## Physical interpretation
@@ -60,6 +66,12 @@ The flux that circuit 1 produces in circuit 2 is $\Phi_{21}=MI_1$, and $M_{12}=M
 - Two coaxial solenoids of equal length $l$: $M=\mu_0n_1n_2S_{int}l$.
 - Infinite wire and coplanar rectangular loop (side $a$ parallel to the wire and side $b$, at distance $d$): $\Phi=\int_d^{d+b}\frac{\mu_0I}{2\pi r}a\,dr$ ⇒ $M=\frac{\mu_0a}{2\pi}\ln\frac{d+b}{d}$.
 
+<Diagram
+  type="induction"
+  params={{ setup: 'loop-near-wire', trend: 'increasing' }}
+  caption="Loop near a wire: the flux of the wire’s field through the loop is M I."
+/>
+
 The ideal **transformer** (common core, no losses) has $\frac{V_2}{V_1}=\frac{N_2}{N_1}$.
 
 ## RL circuit and energy analysis
@@ -90,6 +102,12 @@ For two coupled circuits $U=\frac12L_1I_1^2+\frac12L_2I_2^2+MI_1I_2$. Forces fol
 - **Disc dynamo** (Faraday disc): a conducting disc rotating in an axial $B$ produces between centre and rim $\mathcal E=\frac12B\omega R^2$.
 - **Motor**: a current-carrying loop in $B$ feels a torque; the rotation induces a back emf that limits the current.
 - **Eddy currents**: in a bulk conductor with changing flux, parasitic currents flow that dissipate energy and brake the motion (electromagnetic brake). Transformers use laminated cores to reduce them.
+
+<Diagram
+  type="induction"
+  params={{ setup: 'rotating-loop', angle: 50 }}
+  caption="Alternator: the loop rotates in the uniform field and the flux varies as cos ωt."
+/>
 
 ## Displacement current and Maxwell's fourth equation
 
@@ -123,6 +141,12 @@ Together with the Lorentz force they describe all of classical electromagnetism.
 ## Worked example: bar on rails
 
 A conducting bar of mass $m=100\ \mathrm g$ and length $l=20\ \mathrm{cm}$ slides without friction on two horizontal rails closed by a resistor $R=2\ \Omega$, in a uniform vertical field $B=0.5\ \mathrm T$. It is pulled by a constant force $F_0=50\ \mathrm{mN}$ and starts from rest.
+
+<Diagram
+  type="induction"
+  params={{ setup: 'sliding-bar', forceLabel: 'F' }}
+  caption="Bar on rails: the induced current brakes the bar."
+/>
 
 1. **Emf and current.** The linked flux grows as $Blx$, so $|\mathcal E|=Blv$ and $I=Blv/R$ (direction given by Lenz: the current opposes the increase of flux).
 2. **Braking force.** The bar feels $F_B=IlB=\dfrac{B^2l^2}{R}v$, opposite to the motion. The equation of motion is $m\dot v=F_0-\dfrac{B^2l^2}{R}v$.

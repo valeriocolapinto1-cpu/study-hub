@@ -86,6 +86,24 @@ A conductor carrying current is not equipotential: small charges form on its sur
 
 If the changes are slow compared with the propagation time of signals, Kirchhoff's laws hold at every instant. **Charging** $C$ through $R$ with emf $\mathcal E$: $\mathcal E = RI+\frac qC$, with $I=\frac{dq}{dt}$, hence
 
+<Diagram
+  type="function-plot"
+  params={{
+    x: { min: 0, max: 5, label: 't/τ' },
+    y: { min: 0, max: 1.1, label: 'v_C/ℰ' },
+    series: [
+      { kind: 'exp', a: -1, b: -1, c: 1, label: 'carica' },
+      { kind: 'exp', a: 1, b: -1, label: 'scarica', dash: true },
+    ],
+    markers: [
+      { x: 1, y: 0.632, label: '63%' },
+      { x: 1, y: 0.368, label: '37%' },
+    ],
+    hlines: [{ y: 1 }],
+  }}
+  caption="Charging and discharging a capacitor: after one time constant τ the voltage has covered 63% of the change."
+/>
+
 $$
 q(t)=C\mathcal E\left(1-e^{-t/\tau}\right),\qquad I(t)=\frac{\mathcal E}{R}e^{-t/\tau},\qquad\tau=RC
 $$

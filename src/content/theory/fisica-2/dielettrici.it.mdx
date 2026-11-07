@@ -18,6 +18,12 @@ Per non dover inseguire le cariche di polarizzazione, che non controlliamo, si i
 
 Riempiendo un condensatore isolato con un isolante la tensione scende a $V_0/\varepsilon_r$, quindi la capacità diventa $C=\varepsilon_rC_0$. La **costante dielettrica relativa** $\varepsilon_r\ge1$ caratterizza il materiale ($\varepsilon=\varepsilon_0\varepsilon_r$). Il campo nel dielettrico si riduce: $E=E_0/\varepsilon_r$.
 
+<Diagram
+  type="capacitor"
+  params={{ geometry: 'parallel', dielectric: 'full', battery: false }}
+  caption="Condensatore isolato riempito da un dielettrico: a parità di carica il campo e la tensione si riducono di εr."
+/>
+
 ## Interpretazione microscopica e vettore polarizzazione
 
 - **Polarizzazione per deformazione** (elettronica): il campo sposta la nuvola elettronica rispetto al nucleo e induce un momento $\vec p=\alpha\vec E$. Nel modello di atomo a nube sferica uniforme $\vec p = 4\pi\varepsilon_0R^3\vec E$. Non dipende dalla temperatura.
@@ -69,6 +75,12 @@ Il **generatore di Van de Graaff** sfrutta il fatto che la carica portata all'in
 ## Esempio svolto: lastra dielettrica che riempie in parte un condensatore
 
 Un condensatore piano isolato ha armature di area $S=200\ \mathrm{cm^2}$ a distanza $d=4\ \mathrm{mm}$ e carica $Q=10\ \mathrm{nC}$. Su un'armatura è appoggiata una lastra di dielettrico di spessore $t=2\ \mathrm{mm}$ e $\varepsilon_r=4$.
+
+<Diagram
+  type="capacitor"
+  params={{ geometry: 'parallel', dielectric: 'half', field: false }}
+  caption="Lastra dielettrica che occupa metà dello spessore: due condensatori in serie."
+/>
 
 1. **Induzione elettrica.** Con una scatoletta di Gauss che racchiude l'armatura: $D=\sigma=Q/S=5\times10^{-7}\ \mathrm{C/m^2}$, uguale nell'aria e nel dielettrico (componente normale continua).
 2. **Campi.** In aria $E_a=D/\varepsilon_0\simeq 5{,}65\times10^4\ \mathrm{V/m}$; nel dielettrico $E_d=D/(\varepsilon_0\varepsilon_r)\simeq 1{,}41\times10^4\ \mathrm{V/m}$.
