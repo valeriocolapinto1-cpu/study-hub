@@ -18,8 +18,8 @@ group:
 objectives:
   - id: oscillatore-smorzato.1
     text:
-      it: Scrivere l'equazione \(\ddot{x} + 2\gamma\dot{x} + \omega_0^2 x = 0\) definendo γ e ω₀
-      en: Write the equation \(\ddot{x} + 2\gamma\dot{x} + \omega_0^2 x = 0\) defining γ and ω₀
+      it: Scrivere l'equazione ẍ + 2γẋ + ω₀²x = 0 definendo γ e ω₀
+      en: Write the equation ẍ + 2γẋ + ω₀²x = 0 defining γ and ω₀
   - id: oscillatore-smorzato.2
     text:
       it: Risolvere con l'esponenziale e discutere il discriminante

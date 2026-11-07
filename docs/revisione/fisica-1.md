@@ -10,6 +10,8 @@ sono applicate al testo italiano; i **dubbi** restano come nell'originale in att
 | energia-corpo-rigido | errori tipici, punto 1 | refuso «½I_assek ω²» → «½I_asse ω²» |
 | teoria-cinetica-gas | derivazione, passo 3 | la formula «2m⟨v_x²⟩^{1/2-media}·½n_vA⟨·⟩» era malformata (pezzi di testo dentro la formula): riscritta come $F = \langle 2mv_x \cdot \tfrac12 n_v A v_x\rangle \Rightarrow F = n_v m \langle v_x^2\rangle A$, che è ciò che il commento descrive |
 
+| moto-armonico, pendolo-semplice, oscillatore-smorzato | checklist d'orale (obiettivi) | formule LaTeX dentro la scaletta riscritte in Unicode (ẍ = −ω²x…): gli obiettivi sono testo semplice in tutte le viste del motore |
+
 ## Da decidere
 
 | Argomento | Dove | Dubbio e proposta |
