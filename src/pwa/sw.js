@@ -6,15 +6,19 @@
  *   già scaricati) che sono cambiati rispetto alla versione in uso.
  * - Attesa: la nuova versione non prende il controllo da sola; la pagina mostra
  *   "Nuova versione disponibile" e, alla conferma, invia SKIP_WAITING.
- * - Attivazione: sposta i file aggiornati nelle cache definitive e rimuove quelli spariti.
- * - Richieste: shell e corsi scaricati dalla cache; il resto dalla rete, con una copia
- *   nella cache di passaggio; offline, la pagina richiesta se è stata vista, altrimenti
- *   la pagina "sei offline" della lingua giusta.
+ * - Attivazione: sposta i file aggiornati nelle cache definitive, rimuove quelli spariti
+ *   e cancella le cache di passaggio delle versioni precedenti.
+ * - Richieste: i file con hash nel nome (/_astro/, frammenti di Pagefind) dalla cache, se ci
+ *   sono; pagine e altri file prima dalla rete (rivalidando la cache HTTP), con la copia in
+ *   cache solo se la rete non risponde entro NETWORK_TIMEOUT_MS o manca; offline, la pagina
+ *   richiesta se è stata vista, altrimenti la pagina "sei offline" della lingua giusta.
+ *   sw.js e version.json non passano mai dal service worker.
  * - Messaggi: COURSE_STATUS, COURSE_DOWNLOAD (con avanzamento), COURSE_REMOVE, SKIP_WAITING.
  */
-/* global MANIFEST, SHELL_CACHE, RUNTIME_CACHE, META_CACHE, RUNTIME_MAX, courseCacheName, parseCourseCache, stagingCacheName, diffEntries, lookupCandidates, langOf, courseStatus, pool */
+/* global MANIFEST, SHELL_CACHE, META_CACHE, RUNTIME_MAX, NETWORK_TIMEOUT_MS, runtimeCacheName, staleCaches, isImmutableAsset, isBypassed, courseCacheName, parseCourseCache, stagingCacheName, diffEntries, lookupCandidates, langOf, courseStatus, pool */
 
 const BASE = MANIFEST.base;
+const RUNTIME_CACHE = runtimeCacheName(MANIFEST.version);
 const ORIGIN = self.location.origin;
 const abs = (path) => new URL(path, ORIGIN).href;
 const metaKey = (cacheName) => abs(`${BASE}__sh-meta/${encodeURIComponent(cacheName)}`);
@@ -103,9 +107,9 @@ self.addEventListener('activate', (event) => {
           await writeMeta(name, null);
         }
       }
-      for (const name of await caches.keys()) if (name.startsWith('sh-staging:')) await caches.delete(name);
-      // Le pagine viste con la versione precedente possono richiamare risorse sparite.
-      await caches.delete(RUNTIME_CACHE);
+      // Cache temporanee e cache di passaggio delle versioni precedenti (le pagine viste con
+      // una versione vecchia possono richiamare risorse sparite).
+      for (const name of staleCaches(await caches.keys(), MANIFEST.version)) await caches.delete(name);
       await self.clients.claim();
     })(),
   );
@@ -134,23 +138,75 @@ async function remember(request, response) {
   for (let i = 0; i < keys.length - RUNTIME_MAX; i++) await cache.delete(keys[i]);
 }
 
+/** Richiesta alla rete: per le pagine si rivalida sempre la cache HTTP del browser. */
+function networkFetch(request, navigate) {
+  if (!navigate) return fetch(request);
+  let fresh;
+  try {
+    fresh = new Request(request, { cache: 'no-cache' });
+  } catch {
+    fresh = request;
+  }
+  return fetch(fresh);
+}
+
+async function offlineFallback(url, navigate, err) {
+  if (navigate) {
+    const offline = await caches.match(abs(`${BASE}${langOf(url.pathname, BASE)}/offline/`), {
+      cacheName: SHELL_CACHE,
+    });
+    if (offline) return offline;
+  }
+  throw err;
+}
+
 async function handle(event, url) {
   const { request } = event;
   const navigate = request.mode === 'navigate';
-  const cached = await matchOwned(url.pathname, navigate);
-  if (cached) return cached;
+  const key = navigate ? new Request(abs(url.pathname)) : request;
+  const keep = (res) => event.waitUntil(remember(key, res.clone()).catch(() => undefined));
+
+  // File con hash nel nome: lo stesso URL non cambia mai contenuto.
+  if (isImmutableAsset(url.pathname, BASE)) {
+    const cached = await matchOwned(url.pathname, false);
+    if (cached) return cached;
+    try {
+      const res = await fetch(request);
+      keep(res);
+      return res;
+    } catch (err) {
+      return offlineFallback(url, false, err);
+    }
+  }
+
+  // Pagine e file senza hash: prima la rete; la cache solo se la rete è lenta o assente.
+  const network = networkFetch(request, navigate);
+  network.catch(() => undefined);
+  const late = Symbol('late');
+  let timer;
+  const timeout = new Promise((resolve) => {
+    timer = setTimeout(() => resolve(late), NETWORK_TIMEOUT_MS);
+  });
   try {
-    const res = await fetch(request);
-    event.waitUntil(remember(navigate ? new Request(abs(url.pathname)) : request, res.clone()));
+    const first = await Promise.race([network, timeout]);
+    if (first !== late) {
+      keep(first);
+      return first;
+    }
+    const cached = await matchOwned(url.pathname, navigate);
+    if (cached) {
+      event.waitUntil(network.then(keep).catch(() => undefined));
+      return cached;
+    }
+    const res = await network;
+    keep(res);
     return res;
   } catch (err) {
-    if (navigate) {
-      const offline = await caches.match(abs(`${BASE}${langOf(url.pathname, BASE)}/offline/`), {
-        cacheName: SHELL_CACHE,
-      });
-      if (offline) return offline;
-    }
-    throw err;
+    const cached = await matchOwned(url.pathname, navigate);
+    if (cached) return cached;
+    return offlineFallback(url, navigate, err);
+  } finally {
+    clearTimeout(timer);
   }
 }
 
@@ -159,7 +215,7 @@ self.addEventListener('fetch', (event) => {
   if (request.method !== 'GET') return;
   const url = new URL(request.url);
   if (url.origin !== ORIGIN || !url.pathname.startsWith(BASE)) return;
-  if (url.pathname === `${BASE}sw.js`) return;
+  if (isBypassed(url.pathname, BASE)) return;
   event.respondWith(handle(event, url));
 });
 

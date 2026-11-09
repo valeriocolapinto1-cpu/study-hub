@@ -8,7 +8,6 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import {
   applyImport,
   buildExport,
-  exportFileName,
   serializeExport,
   summarize,
   validateExport,
@@ -17,6 +16,7 @@ import {
 } from '../engine/exportImport';
 import { decodeFromCollector, decodePasted, encodeForQr, FrameCollector, matrixToSvg } from '../engine/qr';
 import { isStorageAvailable } from '../engine/storage';
+import { downloadExport } from './lib/download-export';
 import { t, type Lang } from './lib/i18n';
 import './islands.css';
 
@@ -94,17 +94,7 @@ export default function ExportImport({ lang, courseTitles = {} }: ExportImportPr
     setPanel('none');
   };
 
-  const download = () => {
-    const blob = new Blob([JSON.stringify(buildExport(), null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = exportFileName();
-    document.body.append(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-  };
+  const download = downloadExport;
 
   const apply = (mode: 'merge' | 'replace') => {
     if (!pending) return;

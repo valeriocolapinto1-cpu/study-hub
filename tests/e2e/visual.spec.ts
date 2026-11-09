@@ -32,6 +32,8 @@ for (const theme of ['light', 'dark'] as const) {
         await page.setViewportSize({ width: vp.width, height: vp.height });
         await expect(page).toHaveScreenshot(`${p.name}-${theme}-${vp.name}.png`, {
           fullPage: true,
+          // Commit e data della build nel footer cambiano a ogni pubblicazione (larghezza fissa, font mono).
+          mask: [page.locator('[data-build]')],
           // Pagine lunghe (formulario) con la barra sfocata: in CI due catture superano i 5 s di default.
           timeout: 20_000,
         });

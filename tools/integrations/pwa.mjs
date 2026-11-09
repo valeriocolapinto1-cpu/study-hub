@@ -5,7 +5,9 @@
  *   - dist/sw.js: src/pwa/sw-core.js + src/pwa/sw.js preceduti dal manifest
  *     (shell e corsi, ogni file con revisione = hash del contenuto e dimensione);
  *   - dist/offline-summary.json: dimensione e numero di file di ogni corso per lingua
- *     (lo legge "Scarica per l'offline" per mostrare la stima prima di scaricare).
+ *     (lo legge "Scarica per l'offline" per mostrare la stima prima di scaricare);
+ *   - dist/version.json: commit e data della build (tools/build-info.mjs) e versione del
+ *     service worker; mai in cache, lo legge src/scripts/pwa.ts per cercare aggiornamenti.
  *
  * Shell (precache all'installazione): pagine globali, 404, radice, manifest, icone,
  * indice di ricerca, con tutte le risorse che richiamano. Corso (scaricabile su richiesta):
@@ -17,13 +19,21 @@ import { createHash } from 'node:crypto';
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { join, posix, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { buildInfo } from '../build-info.mjs';
 
 const ROOT = fileURLToPath(new URL('../../', import.meta.url));
 const COURSE_RE = /^(it|en)\/anno-\d+\/([a-z0-9-]+)\//;
 /** Pagine di servizio non messe in cache (strumenti di sviluppo). */
 const EXCLUDED_PAGES = [/^it\/stile\//];
 /** File di dist mai messi in cache. */
-const EXCLUDED_FILES = [/^sw\.js$/, /^sitemap.*\.xml$/, /^robots\.txt$/, /\.map$/, /^offline-summary\.json$/];
+const EXCLUDED_FILES = [
+  /^sw\.js$/,
+  /^sitemap.*\.xml$/,
+  /^robots\.txt$/,
+  /\.map$/,
+  /^offline-summary\.json$/,
+  /^version\.json$/,
+];
 /** Sottoinsiemi di font non necessari per testi italiani e inglesi (restano in cache solo se usati). */
 const SKIP_FONT = /(latin-ext|cyrillic|greek|vietnamese|hebrew|devanagari|arabic)/;
 
@@ -184,6 +194,7 @@ export async function buildServiceWorker(distDir, base, logger) {
   const sw = `/* study-hub service worker · versione ${version} · generato da tools/integrations/pwa.mjs */\n'use strict';\nconst MANIFEST = ${JSON.stringify(manifest)};\n${core}\n${main}`;
   await writeFile(join(distDir, 'sw.js'), sw);
   await writeFile(join(distDir, 'offline-summary.json'), JSON.stringify(summary));
+  await writeFile(join(distDir, 'version.json'), JSON.stringify({ ...buildInfo(), sw: version }));
   const kb = (n) => `${Math.round(n / 1024)} KB`;
   logger.info(
     `service worker ${version}: shell ${shellList.length} file (${kb(summary.shell.bytes)}), ` +

@@ -1,7 +1,7 @@
 /**
  * Piattaforma sul corso finto (build delle fixture): home per chi torna, ricerca con
  * filtri e record di formule/esercizi, service worker (download del corso, uso offline,
- * pagina "sei offline", avviso di nuova versione).
+ * pagina "sei offline", avviso di nuova versione, pagine sempre dalla rete, "Aggiorna il sito").
  */
 import AxeBuilder from '@axe-core/playwright';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -146,5 +146,68 @@ test.describe('offline', () => {
         }),
     );
     expect(version).toBe('nuova-versione');
+  });
+
+  test('dopo una pubblicazione la navigazione riceve subito l’HTML nuovo', async ({ page }) => {
+    const path = `${B}it/chi-sono/`;
+    await page.goto(path);
+    await expect(page.locator('html')).toHaveAttribute('data-sw', 'ready', { timeout: 20_000 });
+    await page.waitForFunction(() => !!navigator.serviceWorker.controller, undefined, { timeout: 20_000 });
+    // La pagina è nella shell in precache: con il vecchio cache-first resterebbe quella vecchia.
+    expect(
+      await page.evaluate(async (u) => !!(await caches.match(new URL(u, location.href).href)), path),
+    ).toBe(true);
+    const file = 'dist-fixtures/it/chi-sono/index.html';
+    const original = readFileSync(file, 'utf8');
+    writeFileSync(file, original.replace('<title>', '<title>Pubblicazione nuova · '));
+    try {
+      await page.goto(path);
+      await expect(page).toHaveTitle(/^Pubblicazione nuova · /);
+      expect(await page.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true);
+    } finally {
+      writeFileSync(file, original);
+    }
+  });
+
+  test('version.json più recente: avviso di aggiornamento', async ({ page }) => {
+    await page.goto(`${B}it/`);
+    await expect(page.locator('html')).toHaveAttribute('data-sw', 'ready', { timeout: 20_000 });
+    await expect(page.locator('[data-build]')).toContainText(/Versione \w{3,7} · \d{4}-\d{2}-\d{2}/);
+    await expect(page.locator('[data-pwa-update]')).toHaveCount(0);
+    const file = 'dist-fixtures/version.json';
+    const original = readFileSync(file, 'utf8');
+    writeFileSync(file, JSON.stringify({ commit: 'fffffff', date: '2999-01-01T00:00:00.000Z', sw: 'x' }));
+    try {
+      await page.reload();
+      const toast = page.locator('[data-pwa-update]');
+      await expect(toast).toBeVisible({ timeout: 20_000 });
+      await expect(toast).toContainText('Nuova versione disponibile');
+    } finally {
+      writeFileSync(file, original);
+    }
+  });
+
+  test('"Aggiorna il sito" salva un backup, svuota la cache e conserva i dati', async ({ page }) => {
+    await page.goto(`${B}it/i-miei-dati/`);
+    await expect(page.locator('html')).toHaveAttribute('data-sw', 'ready', { timeout: 20_000 });
+    await page.evaluate(() => {
+      localStorage.setItem('sh:v1:esempio:progress', JSON.stringify({ x: { solved: true } }));
+      localStorage.setItem('sh:v1:global:prova-aggiorna', '"resta"');
+    });
+    const before = await page.evaluate(() => localStorage.length);
+    expect(await page.evaluate(async () => (await caches.keys()).length)).toBeGreaterThan(0);
+    const section = page.locator('[data-refresh-site]');
+    await section.scrollIntoViewIfNeeded();
+    await axe(page);
+    page.once('dialog', (d) => void d.accept());
+    const [download] = await Promise.all([
+      page.waitForEvent('download'),
+      page.waitForEvent('load'),
+      section.getByRole('button', { name: 'Aggiorna il sito' }).click(),
+    ]);
+    expect(download.suggestedFilename()).toMatch(/\.json$/);
+    expect(await page.evaluate(() => localStorage.getItem('sh:v1:global:prova-aggiorna'))).toBe('"resta"');
+    expect(await page.evaluate(() => localStorage.getItem('sh:v1:esempio:progress'))).toContain('solved');
+    expect(await page.evaluate(() => localStorage.length)).toBe(before);
   });
 });
