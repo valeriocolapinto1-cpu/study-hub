@@ -38,7 +38,7 @@ export default function RefreshSite({ lang }: RefreshSiteProps) {
   };
 
   return (
-    <section class="sh-sync" aria-labelledby="sh-refresh-h" data-refresh-site>
+    <section class="sh-refresh" aria-labelledby="sh-refresh-h" data-refresh-site>
       <h2 id="sh-refresh-h">{t(lang, 'sync.refresh.title')}</h2>
       <p>{t(lang, 'sync.refresh.lead')}</p>
       <div class="sh-actions">
