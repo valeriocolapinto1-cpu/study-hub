@@ -67,6 +67,12 @@ I vecchi indirizzi pubblicati rimandano alle pagine corrispondenti di questo sit
 A ogni push su `main` il workflow `deploy.yml` compila e pubblica su GitHub Pages
 (Settings → Pages → Source: **GitHub Actions**).
 
+Aggiornare il sito sul proprio dispositivo non richiede di svuotare la cache: le pagine arrivano sempre dalla
+rete e, se il sito è stato pubblicato di nuovo, compare «Nuova versione disponibile — Aggiorna». Se resta
+ferma una versione vecchia (anche nell'app aggiunta alla schermata Home di iPhone), **I miei dati → Aggiorna il
+sito** scarica un backup, svuota la cache del sito e ricarica senza cancellare progressi, appunti e ripasso.
+La versione in uso (commit · data) è nel footer.
+
 ## Note legali e contatti
 
 Progetto **personale e non ufficiale**, non affiliato ad alcuna università o docente.
