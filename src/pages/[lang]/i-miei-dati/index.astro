@@ -1,8 +1,9 @@
 ---
-/** Esportazione/importazione dei dati locali (file e QR). */
+/** Esportazione/importazione dei dati locali (file e QR) e "Aggiorna il sito". */
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import ExportImport from '../../../islands/ExportImport';
+import RefreshSite from '../../../islands/RefreshSite';
 import { langPaths, t, tr, type Lang } from '../../../i18n';
 
 export const getStaticPaths = langPaths;
@@ -16,5 +17,6 @@ const courseTitles = Object.fromEntries(
   <div class="container page">
     <h1>{t(lang, 'page.sync.title')}</h1>
     <ExportImport client:load lang={lang} courseTitles={courseTitles} />
+    <RefreshSite client:visible lang={lang} />
   </div>
 </BaseLayout>

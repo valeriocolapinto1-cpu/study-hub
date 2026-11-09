@@ -3,6 +3,7 @@ import { SITE } from '../config/site';
 import { localizePath, t, type Lang } from '../i18n';
 import BrandMark from './BrandMark.astro';
 import Icon from './Icon.astro';
+import { formatBuild } from '../pwa/update';
 interface Props {
   lang: Lang;
 }
@@ -99,5 +100,8 @@ const year = 2026;
       © {year} {SITE.author}. {t(lang, 'footer.license')}
     </p>
     <p>{t(lang, 'footer.noTracking')}</p>
+    <p class="site-footer__build" data-build>
+      {t(lang, 'footer.build')} <span class="mono">{formatBuild(__SH_BUILD__)}</span>
+    </p>
   </div>
 </footer>

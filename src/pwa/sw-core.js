@@ -6,10 +6,49 @@
  */
 
 export const SHELL_CACHE = 'sh-shell';
-export const RUNTIME_CACHE = 'sh-runtime';
+/** Prefisso della cache "di passaggio": il nome completo contiene la versione della build. */
+export const RUNTIME_PREFIX = 'sh-runtime';
 export const META_CACHE = 'sh-meta';
 /** Voci massime della cache "di passaggio" (pagine e risorse viste ma non scaricate). */
 export const RUNTIME_MAX = 120;
+/** Attesa massima della rete per pagine e file senza hash prima di usare la copia in cache. */
+export const NETWORK_TIMEOUT_MS = 3000;
+
+/** @param {string} version */
+export const runtimeCacheName = (version) => `${RUNTIME_PREFIX}:${version}`;
+
+/**
+ * Cache da eliminare all'attivazione di `version`: quelle di passaggio delle versioni
+ * precedenti (anche il vecchio nome senza versione) e le cache temporanee d'installazione.
+ * @param {string[]} names @param {string} version
+ */
+export function staleCaches(names, version) {
+  const keep = runtimeCacheName(version);
+  return names.filter(
+    (n) =>
+      n.startsWith('sh-staging:') ||
+      (n !== keep && (n === RUNTIME_PREFIX || n.startsWith(`${RUNTIME_PREFIX}:`))),
+  );
+}
+
+/**
+ * File con l'hash del contenuto nel nome (mai modificati sullo stesso URL): si servono
+ * dalla cache senza chiedere alla rete. Tutto il resto (pagine, JSON, icone, pagefind.js…)
+ * passa prima dalla rete.
+ * @param {string} pathname @param {string} base
+ */
+export function isImmutableAsset(pathname, base) {
+  if (!pathname.startsWith(base)) return false;
+  const rest = pathname.slice(base.length);
+  return rest.startsWith('_astro/') || /^pagefind\/(?:[a-z]+\/)?(?:fragment|index|filter)\//.test(rest);
+}
+
+/**
+ * Percorsi mai intercettati dal service worker (sempre dalla rete, mai in cache).
+ * @param {string} pathname @param {string} base
+ */
+export const isBypassed = (pathname, base) =>
+  pathname === `${base}sw.js` || pathname === `${base}version.json`;
 
 /** @param {string} course @param {string} lang */
 export const courseCacheName = (course, lang) => `sh-course:${course}:${lang}`;

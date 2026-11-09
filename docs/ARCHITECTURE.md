@@ -151,7 +151,22 @@ pagine globali `/<lang>/ripasso/`, `/<lang>/appunti/`, `/<lang>/i-miei-dati/`, `
   l'offline" nella panoramica (`src/islands/OfflineCourse.tsx`, inserita da `CourseLayout`). Aggiornamenti
   incrementali (solo i file cambiati), attivati dopo conferma ("Nuova versione disponibile",
   `src/scripts/pwa.ts`); offline, le pagine non salvate portano a `/<lingua>/offline/`. Cache: `sh-shell`,
-  `sh-course:<id>:<lingua>`, `sh-runtime` (≤ 120 voci, svuotata a ogni versione), `sh-meta`.
+  `sh-course:<id>:<lingua>`, `sh-runtime:<versione>` (≤ 120 voci; quelle delle versioni precedenti si
+  eliminano all'attivazione), `sh-meta`.
+  **Strategie**: i file con hash nel nome (`/_astro/`, frammenti/indici/filtri di Pagefind) cache-first;
+  pagine e file senza hash (JSON, icone, `pagefind.js`) network-first rivalidando la cache HTTP, con la copia
+  in cache solo se la rete non risponde entro 3 s (`NETWORK_TIMEOUT_MS`) o manca. `sw.js` e `version.json`
+  non passano mai dal service worker (registrazione con `updateViaCache: 'none'`). Così dopo una
+  pubblicazione la pagina successiva è già quella nuova, anche senza confermare l'avviso.
+  **Versione**: `tools/build-info.mjs` (commit da `GITHUB_SHA` o git + data, una volta per build) finisce nelle
+  pagine (`__SH_BUILD__`, footer `[data-build]`, mascherato nei test visivi) e in `dist/version.json`
+  (`{ commit, date, sw }`). `pwa.ts` legge `version.json` (`cache: 'no-store'`) all'avvio, quando la pagina
+  torna visibile (`visibilitychange`/`pageshow`: la PWA su iPhone resta sospesa per giorni) e ogni 30 min;
+  se la build pubblicata è più recente (`isNewerBuild`, `src/pwa/update.ts`) chiama `registration.update()`
+  e mostra l'avviso (senza worker in attesa il pulsante ricarica e basta).
+  **"Aggiorna il sito"** (`src/islands/RefreshSite.tsx` in `/<lingua>/i-miei-dati/`): dopo conferma scarica il
+  backup (stesso file di "Esporta in un file"), deregistra i service worker, svuota Cache Storage e ricarica;
+  localStorage e IndexedDB (progressi, appunti, ripasso) non si toccano, i corsi offline vanno riscaricati.
   Nei test Playwright il service worker è bloccato salvo `test.use({ serviceWorkers: 'allow' })`.
 - **Contributi**: modulo `/<lingua>/contribuisci/` + Google Apps Script — vedi [CONTRIBUTI.md](CONTRIBUTI.md).
   Crediti nella collection `credits` (`src/content/credits.yaml`), pagina `/<lingua>/ringraziamenti/`.
