@@ -47,7 +47,7 @@ describe.skipIf(!have)('peso delle pagine HTML', () => {
         ['anno-2', 'fisica-2'],
         ['anno-2', 'teoria-circuiti'],
         ['anno-1', 'fondamenti-informatica'],
-      ])
+      ] as const)
         for (const sezione of ['ripasso', 'esercizi', 'esame', 'progressi'])
           expect(
             statSync(join(DIST, lang, anno, id, sezione, 'index.html')).size,
