@@ -156,7 +156,7 @@ export async function buildServiceWorker(distDir, base, logger) {
       coursePages.get(key).push(p);
     } else shellRoots.push(p);
   }
-  // Dati dei corsi (dati.json) vanno con il corso.
+  // Dati dei corsi (dati/*.json) vanno con il corso.
   for (const rel of info.keys()) {
     const m = COURSE_RE.exec(rel);
     if (m && !rel.endsWith('.html')) coursePages.get(`${m[2]}|${m[1]}`)?.push(rel);

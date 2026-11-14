@@ -1,9 +1,10 @@
 /** @jsxImportSource preact */
 /** Elenco filtrabile degli esercizi di un corso (argomento, obiettivo, difficoltà, stato, testo). */
 import { useMemo, useState } from 'preact/hooks';
-import type { TopicInfo } from '../engine/course-data';
+import type { CourseIndex, TopicInfo } from '../engine/course-data';
+import { dataUrl, INDEX_NAME } from '../engine/course-data';
 import { exerciseStatus, loadProgress, type ExerciseStatus, type ProgressState } from '../engine/progress';
-import { useStored } from './lib/hooks';
+import { useRemote, useStored } from './lib/hooks';
 import { t, type Lang } from './lib/i18n';
 import './islands.css';
 
@@ -21,12 +22,22 @@ export interface ExerciseListProps {
   lang: Lang;
   courseId: string;
   topics: TopicInfo[];
-  items: ExerciseSummary[];
+  /** Cartella dei dati del corso (`paths.data`): l'elenco arriva da `indice.json`. */
+  dataUrl: string;
+  /** Pagina Esercizi del corso (base dei link per argomento). */
+  exercisesPath: string;
 }
 
 const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
-export default function ExerciseList({ lang, courseId, topics, items }: ExerciseListProps) {
+export default function ExerciseList({
+  lang,
+  courseId,
+  topics,
+  dataUrl: base,
+  exercisesPath,
+}: ExerciseListProps) {
+  const remote = useRemote<CourseIndex>([dataUrl(base, INDEX_NAME)]);
   const [topic, setTopic] = useState('');
   const [objective, setObjective] = useState('');
   const [difficulty, setDifficulty] = useState('');
@@ -40,6 +51,24 @@ export default function ExerciseList({ lang, courseId, topics, items }: Exercise
   );
   const topicTitle = useMemo(() => Object.fromEntries(topics.map((tp) => [tp.id, tp.title])), [topics]);
   const objectives = topic ? (topics.find((tp) => tp.id === topic)?.objectives ?? []) : [];
+  const items = useMemo<ExerciseSummary[]>(
+    () =>
+      remote.state === 'ready'
+        ? remote.data[0]!.exercises.map((e) => ({
+            id: e.id,
+            topic: e.topic,
+            objectives: e.objectives,
+            difficulty: e.difficulty,
+            title:
+              e.kind === 'generated' && !e.hasStatement
+                ? `${topicTitle[e.topic] ?? e.topic} · ${t(lang, 'engine.generated')}`
+                : e.title,
+            generated: e.kind === 'generated',
+            href: `${exercisesPath}${e.topic}/#${e.id}`,
+          }))
+        : [],
+    [remote, topicTitle, exercisesPath, lang],
+  );
 
   const filtered = items.filter((it) => {
     if (topic && it.topic !== topic) return false;
@@ -150,9 +179,20 @@ export default function ExerciseList({ lang, courseId, topics, items }: Exercise
         )}
       </form>
       <p class="sh-count" role="status" aria-live="polite">
-        {t(lang, 'list.results', { n: filtered.length })}
+        {remote.state === 'ready' ? t(lang, 'list.results', { n: filtered.length }) : ''}
       </p>
-      {filtered.length === 0 ? (
+      {remote.state === 'loading' ? (
+        <p class="sh-muted" aria-busy="true">
+          {t(lang, 'engine.loading')}
+        </p>
+      ) : remote.state === 'error' ? (
+        <p class="sh-alert sh-alert--danger" role="alert">
+          {t(lang, 'engine.loadError')}{' '}
+          <button type="button" class="btn" onClick={remote.retry}>
+            {t(lang, 'engine.retry')}
+          </button>
+        </p>
+      ) : filtered.length === 0 ? (
         <p class="sh-muted">{t(lang, 'list.none')}</p>
       ) : (
         <ul class="sh-items">

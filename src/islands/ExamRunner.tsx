@@ -6,7 +6,8 @@
  * (pagina di stampa dedicata). La sessione in corso sopravvive al ricaricamento.
  */
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
-import type { CourseData, CourseSummary } from '../engine/course-data';
+import type { CourseIndex, CourseSummary } from '../engine/course-data';
+import { dataUrl, INDEX_NAME } from '../engine/course-data';
 import {
   analyze,
   assembleExam,
@@ -47,7 +48,7 @@ export interface ExamRunnerProps {
 type Phase = 'setup' | 'running' | 'result';
 
 export default function ExamRunner({ lang, course }: ExamRunnerProps) {
-  const remote = useRemote<CourseData>([course.paths.data]);
+  const remote = useRemote<CourseIndex>([dataUrl(course.paths.data, INDEX_NAME)]);
   const data = remote.state === 'ready' ? remote.data[0]! : null;
   const [phase, setPhase] = useState<Phase>('setup');
   const [examState, setExamState] = useState<ExamState | null>(null);

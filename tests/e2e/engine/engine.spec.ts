@@ -243,3 +243,38 @@ test('ExportImport: file andata e ritorno, QR e codice incollato', async ({ page
   await page.getByRole('button', { name: 'Leggi il codice' }).click();
   await expect(page.getByText('Codice incompleto o danneggiato.')).toBeVisible();
 });
+
+test('Dati divisi: la soluzione si scarica solo alla richiesta e un errore di rete si può ritentare', async ({
+  page,
+}) => {
+  const requested: string[] = [];
+  let fail = true;
+  await page.route('**/dati/*.json', (route) => {
+    requested.push(new URL(route.request().url()).pathname.split('/').pop()!);
+    return fail && route.request().url().includes('resistori') ? route.abort() : route.continue();
+  });
+  await page.goto(`${C}esercizi/resistori/`);
+  const ex = page.locator('article#partitore');
+  await hydrated(page, 'article#partitore');
+  expect(requested).toEqual([]);
+  await ex.getByRole('button', { name: 'Mostra tutta la soluzione' }).click();
+  await expect(ex.getByRole('alert')).toContainText('Impossibile caricare');
+  fail = false;
+  await ex.getByRole('button', { name: 'Riprova' }).click();
+  await ex.getByRole('button', { name: 'Mostra tutta la soluzione' }).click();
+  await expect(ex.locator('.sh-step')).toHaveCount(3);
+  expect(requested.every((r) => r === 'resistori.json')).toBe(true);
+  errors.length = 0; // la richiesta interrotta è voluta
+});
+
+test("ExerciseList: errore di rete sull'indice con «Riprova»", async ({ page }) => {
+  let fail = true;
+  await page.route('**/dati/indice.json', (route) => (fail ? route.abort() : route.continue()));
+  await page.goto(`${C}esercizi/`);
+  await hydrated(page, '.sh-list');
+  await expect(page.getByRole('alert')).toContainText('Impossibile caricare');
+  fail = false;
+  await page.getByRole('button', { name: 'Riprova' }).click();
+  await expect(page.locator('.sh-count')).toHaveText('6 esercizi');
+  errors.length = 0; // la richiesta interrotta è voluta
+});

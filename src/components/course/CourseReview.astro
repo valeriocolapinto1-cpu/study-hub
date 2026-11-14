@@ -15,7 +15,7 @@ interface Props {
 }
 const { lang, courseId } = Astro.props;
 const data = await getCourseData(courseId, lang);
-const decks = [{ courseId, title: data.title, cards: data.cards, examDates: data.examDates }];
+const decks = [{ courseId, title: data.title, dataUrl: data.paths.data, examDates: data.examDates }];
 ---
 
 <SectionHeader title={t(lang, 'page.review.title')} lead={t(lang, 'page.review.lead')} />

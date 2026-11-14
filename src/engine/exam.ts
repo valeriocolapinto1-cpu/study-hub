@@ -11,7 +11,15 @@
  */
 import { createRng, deriveSeed, type Rng } from './random';
 import { gradeAnswers, gradeChoice, type AnswerSpec, type GradeStatus } from './grading';
-import type { AnswerItemData, CardData, ChoiceData, ExamPartData, ExerciseData } from './course-data';
+import type {
+  AnswerItemData,
+  CardIndex,
+  ChoiceData,
+  ExamPartData,
+  ExerciseCategory,
+  ExerciseData,
+} from './course-data';
+import { exerciseCategory as categoryOfExercise } from './course-data';
 import { read, update, write } from './storage';
 
 export type ExamMode = 'completa' | 'personalizzata' | 'mirata';
@@ -50,9 +58,13 @@ export interface Exam {
   durationMin: number | null;
 }
 
+/** Esercizio nel pool: basta l'indice (`category`) o, in alternativa, risposte e scelte. */
+export type PoolExercise = Pick<ExerciseData, 'id' | 'topic' | 'objectives' | 'kind'> &
+  ({ category: ExerciseCategory } | Pick<ExerciseData, 'answer' | 'choices'>);
+
 export interface ExamPool {
-  exercises: readonly ExerciseData[];
-  cards: readonly CardData[];
+  exercises: readonly PoolExercise[];
+  cards: readonly Pick<CardIndex, 'id' | 'topic' | 'objectives'>[];
 }
 
 export interface ExamCourse {
@@ -81,10 +93,8 @@ interface Candidate {
   generated: boolean;
 }
 
-function exerciseCategory(e: ExerciseData): QuestionCategory {
-  if (e.choices && e.choices.length > 0) return 'choice';
-  if (e.answer.length > 0 || e.kind === 'generated') return 'numeric';
-  return 'open';
+function exerciseCategory(e: PoolExercise): QuestionCategory {
+  return 'category' in e ? e.category : categoryOfExercise(e);
 }
 
 function candidates(pool: ExamPool, topics: ReadonlySet<string> | null): Candidate[] {

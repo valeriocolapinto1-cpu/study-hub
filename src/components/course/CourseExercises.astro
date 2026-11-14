@@ -14,18 +14,6 @@ interface Props {
 }
 const { lang, courseId } = Astro.props;
 const data = await getCourseData(courseId, lang);
-const items = data.exercises.map((e) => ({
-  id: e.id,
-  topic: e.topic,
-  objectives: e.objectives,
-  difficulty: e.difficulty,
-  title:
-    e.kind === 'generated' && !e.statementHtml
-      ? `${data.topics.find((tp) => tp.id === e.topic)?.title ?? e.topic} · ${t(lang, 'engine.generated')}`
-      : e.title,
-  generated: e.kind === 'generated',
-  href: `${data.paths.exercises}${e.topic}/#${e.id}`,
-}));
 ---
 
 <SectionHeader title={t(lang, 'page.exercises.title')} lead={t(lang, 'page.exercises.lead')} />
@@ -41,4 +29,11 @@ const items = data.exercises.map((e) => ({
     })}
   </ul>
 </nav>
-<ExerciseList client:load lang={lang} courseId={courseId} topics={data.topics} items={items} />
+<ExerciseList
+  client:load
+  lang={lang}
+  courseId={courseId}
+  topics={data.topics}
+  dataUrl={data.paths.data}
+  exercisesPath={data.paths.exercises}
+/>

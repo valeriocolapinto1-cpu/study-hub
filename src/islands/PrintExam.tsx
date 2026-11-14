@@ -6,7 +6,8 @@
  * (il browser offre "Salva come PDF").
  */
 import { useEffect, useState } from 'preact/hooks';
-import type { CourseData } from '../engine/course-data';
+import type { CourseIndex } from '../engine/course-data';
+import { dataUrl, INDEX_NAME } from '../engine/course-data';
 import { assembleExam, parsePrintQuery, type Exam, type PrintParams } from '../engine/exam';
 import { formatNumber } from '../engine/units';
 import { fetchJson } from './lib/hooks';
@@ -17,14 +18,14 @@ import './islands.css';
 
 export interface PrintExamProps {
   lang: Lang;
-  /** id corso → URL di dati.json nella lingua della pagina. */
+  /** id corso → cartella dei dati (`paths.data`) nella lingua della pagina. */
   dataUrls: Record<string, string>;
 }
 
 type State =
   | { kind: 'loading' }
   | { kind: 'error'; key: string }
-  | { kind: 'ready'; params: PrintParams; data: CourseData; exam: Exam; contents: QuestionContent[] };
+  | { kind: 'ready'; params: PrintParams; data: CourseIndex; exam: Exam; contents: QuestionContent[] };
 
 export default function PrintExam({ lang, dataUrls }: PrintExamProps) {
   const [state, setState] = useState<State>({ kind: 'loading' });
@@ -34,7 +35,7 @@ export default function PrintExam({ lang, dataUrls }: PrintExamProps) {
     if (!params || !url) return setState({ kind: 'error', key: 'print.invalid' });
     void (async () => {
       try {
-        const data = await fetchJson<CourseData>(url);
+        const data = await fetchJson<CourseIndex>(dataUrl(url, INDEX_NAME));
         const exam = assembleExam(
           {
             id: data.id,
