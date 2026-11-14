@@ -5,8 +5,9 @@
  * a passi rivelabili, "nuova variante" per i generati. Salva i tentativi in
  * `sh:v1:<courseId>:progress`.
  */
+import type { ComponentChildren } from 'preact';
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
-import type { AnswerItemData, ChoiceData, ExerciseData, StepData } from '../engine/course-data';
+import type { AnswerItemData, ChoiceData, ExerciseData, StepData, TopicData } from '../engine/course-data';
 import { answerHelpKey } from '../engine/course-data';
 import { feedbackText, gradeAnswers, gradeChoice, type MultiResult } from '../engine/grading';
 import { toAnswerSpec } from '../engine/exam';
@@ -15,7 +16,7 @@ import { formatComplex, formatNumber, parseComplex } from '../engine/units';
 import { randomSeed } from '../engine/random';
 import { renderRichClient } from './lib/rich-client';
 import { plainText } from '../engine/rich';
-import { useStored } from './lib/hooks';
+import { fetchJson, useStored } from './lib/hooks';
 import { t, type Lang } from './lib/i18n';
 import './islands.css';
 
@@ -28,6 +29,14 @@ export interface ExercisePlayerProps {
   headingLevel?: 2 | 3;
   /** Seme iniziale per i generati (default: derivato dall'id, stabile tra SSR e client). */
   seed?: number;
+  /** `dati/<argomento>.json`: da qui si scaricano soluzione e spiegazioni di un esercizio `lean`. */
+  dataUrl?: string;
+  /**
+   * Enunciato e figura della variante iniziale come slot Astro: il pezzo più pesante della pagina
+   * resta nell'HTML una volta sola invece di essere ripetuto anche nelle props.
+   */
+  statement?: ComponentChildren;
+  figure?: ComponentChildren;
 }
 
 interface Content {
@@ -36,6 +45,8 @@ interface Content {
   steps: StepData[];
   answer: AnswerItemData[];
   choices?: ChoiceData[] | undefined;
+  /** Corpi dei passi e spiegazioni da scaricare (versione leggera delle props). */
+  lean?: boolean | undefined;
 }
 
 export function staticContent(ex: ExerciseData): Content {
@@ -45,6 +56,7 @@ export function staticContent(ex: ExerciseData): Content {
     steps: ex.steps,
     answer: ex.answer,
     choices: ex.choices,
+    lean: ex.lean,
   };
 }
 
@@ -120,6 +132,9 @@ export default function ExercisePlayer({
   number,
   headingLevel = 3,
   seed: seed0,
+  dataUrl,
+  statement: statementSlot,
+  figure: figureSlot,
 }: ExercisePlayerProps) {
   // Id derivati dall'esercizio: useId si ripete tra isole diverse (radici Preact separate).
   const uid = `ex-${exercise.id}`;
@@ -166,6 +181,32 @@ export default function ExercisePlayer({
     };
   }, [generated, seed, courseId, exercise, lang]);
 
+  // Soluzione e spiegazioni: si scaricano da dati/<argomento>.json alla prima richiesta.
+  const [loadingFull, setLoadingFull] = useState(false);
+  const [fullError, setFullError] = useState(false);
+  const loadFull = async (): Promise<boolean> => {
+    if (!content?.lean) return true;
+    if (!dataUrl) return false;
+    setLoadingFull(true);
+    setFullError(false);
+    try {
+      const full = (await fetchJson<TopicData>(dataUrl)).exercises.find((e) => e.id === exercise.id);
+      if (!full) throw new Error('esercizio mancante');
+      setContent((c) =>
+        c?.lean ? { ...c, steps: full.steps, choices: full.choices ?? c.choices, lean: false } : c,
+      );
+      return true;
+    } catch {
+      setFullError(true);
+      return false;
+    } finally {
+      setLoadingFull(false);
+    }
+  };
+
+  // gli slot valgono solo per la variante iniziale (nuove varianti: HTML da `content`)
+  const useSlots = !!statementSlot && (!generated || seed === exercise.pregeneratedSeed);
+
   const reset = () => {
     setFields([]);
     setPicked([]);
@@ -191,6 +232,7 @@ export default function ExercisePlayer({
           content.answer.map((_, i) => current[i] ?? ''),
         );
     setResult(r);
+    if (content.choices?.length && content.lean) void loadFull();
     if (r.status !== 'blank' && r.status !== 'invalid') {
       saveAttempt(courseId, exercise.id, {
         at: Date.now(),
@@ -254,18 +296,28 @@ export default function ExercisePlayer({
         </p>
       ) : (
         <>
-          <div
-            class="sh-exercise__statement prose"
-            dangerouslySetInnerHTML={{ __html: content.statementHtml }}
-          />
-          {content.figureSvg && (
-            <figure
-              class="sh-figure"
-              role="group"
-              aria-label={t(lang, 'exercise.figure')}
-              dangerouslySetInnerHTML={{ __html: content.figureSvg }}
+          {useSlots ? (
+            <div class="sh-exercise__statement prose">{statementSlot}</div>
+          ) : (
+            <div
+              class="sh-exercise__statement prose"
+              dangerouslySetInnerHTML={{ __html: content.statementHtml }}
             />
           )}
+          {useSlots
+            ? figureSlot && (
+                <figure class="sh-figure" role="group" aria-label={t(lang, 'exercise.figure')}>
+                  {figureSlot}
+                </figure>
+              )
+            : content.figureSvg && (
+                <figure
+                  class="sh-figure"
+                  role="group"
+                  aria-label={t(lang, 'exercise.figure')}
+                  dangerouslySetInnerHTML={{ __html: content.figureSvg }}
+                />
+              )}
 
           {content.choices?.length ? (
             <fieldset class="sh-choices">
@@ -427,14 +479,23 @@ export default function ExercisePlayer({
                       type="button"
                       class="btn"
                       aria-expanded={revealed > 0}
-                      onClick={() => {
+                      disabled={loadingFull}
+                      onClick={async () => {
+                        if (!(await loadFull())) return;
                         setRevealed(revealed + 1);
                         requestAnimationFrame(() => document.getElementById(`${uid}-s${revealed}`)?.focus());
                       }}
                     >
                       {t(lang, 'exercise.showStep')}
                     </button>
-                    <button type="button" class="btn btn--ghost" onClick={() => setRevealed(steps.length)}>
+                    <button
+                      type="button"
+                      class="btn btn--ghost"
+                      disabled={loadingFull}
+                      onClick={async () => {
+                        if (await loadFull()) setRevealed(steps.length);
+                      }}
+                    >
                       {t(lang, 'exercise.showSolution')}
                     </button>
                   </>
@@ -445,6 +506,19 @@ export default function ExercisePlayer({
                   </button>
                 )}
               </div>
+              {loadingFull && (
+                <p class="sh-muted" role="status" aria-busy="true">
+                  {t(lang, 'engine.loading')}
+                </p>
+              )}
+              {fullError && (
+                <p class="sh-alert sh-alert--danger" role="alert">
+                  {t(lang, 'engine.loadError')}{' '}
+                  <button type="button" class="btn" onClick={() => void loadFull()}>
+                    {t(lang, 'engine.retry')}
+                  </button>
+                </p>
+              )}
               {selfGraded && revealed >= steps.length && (
                 <div class="sh-actions" role="group" aria-label={t(lang, 'exam.selfGrade')}>
                   <button type="button" class="btn" onClick={() => selfGrade(0)}>

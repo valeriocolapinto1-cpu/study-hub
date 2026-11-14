@@ -2,17 +2,22 @@
  * Dati di un corso per le isole del motore, dalle content collections:
  * testi nella lingua della pagina (con ripiego sull'italiano segnalato) e
  * testi ricchi già in HTML. Usato dai componenti di src/components/course/
- * e dagli endpoint `dati.json`.
+ * e dagli endpoint `dati/*.json` (indice e file per argomento).
  */
 import { getCollection, type CollectionEntry } from 'astro:content';
 import type {
   CardData,
+  CardIndex,
   CourseData,
+  CourseIndex,
+  ExerciseIndex,
+  TopicData,
   CoursePaths,
   CourseSummary,
   ExerciseData,
   TopicInfo,
 } from '../engine/course-data';
+import { exerciseCategory } from '../engine/course-data';
 import { pick, tr, localizePath, type Lang } from '../i18n';
 import { coursePath } from './courses';
 import { plainText } from '../engine/rich';
@@ -20,6 +25,7 @@ import { richHtml, richInline } from './rich-server';
 import { renderSchematic } from '../sim/circuits/schematic';
 import { renderDiagram } from '../figures/render';
 import { loadCourseGenerators, runGenerator } from '../engine/generators/index';
+import { hashString } from '../engine/random';
 
 type CourseEntry = CollectionEntry<'courses'>['data'];
 
@@ -32,8 +38,8 @@ export function coursePaths(course: Pick<CourseEntry, 'id' | 'year'>, lang: Lang
     review: localizePath(`${base}/ripasso`, lang),
     exam: localizePath(`${base}/esame`, lang),
     progress: localizePath(`${base}/progressi`, lang),
-    // file statico generato dall'endpoint: niente barra finale
-    data: localizePath(`${base}/dati.json`, lang).replace(/\/$/, ''),
+    // cartella dei file statici generati dall'endpoint (`indice.json`, `<argomento>.json`): niente barra finale
+    data: localizePath(`${base}/dati`, lang).replace(/\/$/, ''),
     print: localizePath('stampa/prova', lang),
   };
 }
@@ -175,6 +181,70 @@ export function getCourseData(courseId: string, lang: Lang): Promise<CourseData>
     memo.set(key, p);
   }
   return p;
+}
+
+function exerciseIndex(e: ExerciseData): ExerciseIndex {
+  return {
+    id: e.id,
+    topic: e.topic,
+    objectives: e.objectives,
+    difficulty: e.difficulty,
+    kind: e.kind,
+    ...(e.generator ? { generator: e.generator } : {}),
+    title: e.title,
+    hasStatement: !!e.statementHtml,
+    category: exerciseCategory(e),
+  };
+}
+
+const cardIndex = (c: CardData): CardIndex => ({
+  id: c.id,
+  topic: c.topic,
+  objectives: c.objectives,
+  kind: c.kind,
+});
+
+/** Indice del corso (`dati/indice.json`): metadati senza HTML. */
+export async function getCourseIndex(courseId: string, lang: Lang): Promise<CourseIndex> {
+  const { exercises, cards, ...rest } = await getCourseData(courseId, lang);
+  return { ...rest, exercises: exercises.map(exerciseIndex), cards: cards.map(cardIndex) };
+}
+
+/**
+ * Contenuto di un argomento (`dati/<argomento>.json`). Per i generati c'è la variante già resa
+ * del seme predefinito della pagina dell'argomento (stessa di `TopicExercises`).
+ */
+export async function getTopicData(courseId: string, lang: Lang, topicId: string): Promise<TopicData> {
+  const data = await getCourseData(courseId, lang);
+  return {
+    exercises: await Promise.all(
+      data.exercises.filter((e) => e.topic === topicId).map((e) => pregeneratedDefault(e, lang)),
+    ),
+    cards: data.cards.filter((c) => c.topic === topicId),
+  };
+}
+
+const pregenMemo = new Map<string, Promise<ExerciseData>>();
+/** Variante di partenza di un esercizio (seme derivato dall'id), in memoria per la durata della build. */
+export function pregeneratedDefault(ex: ExerciseData, lang: Lang): Promise<ExerciseData> {
+  const key = `${lang}:${ex.id}`;
+  let p = pregenMemo.get(key);
+  if (!p) pregenMemo.set(key, (p = withPregenerated(ex, hashString(ex.id), lang)));
+  return p;
+}
+
+/**
+ * Versione leggera per le props di una pagina: senza i corpi dei passi e le spiegazioni delle
+ * scelte (l'isola li scarica da `dati/<argomento>.json` quando servono).
+ */
+export function leanExercise(ex: ExerciseData): ExerciseData {
+  const { choices, ...rest } = ex;
+  return {
+    ...rest,
+    steps: ex.steps.map((s) => ({ titleHtml: s.titleHtml, bodyHtml: '' })),
+    ...(choices ? { choices: choices.map(({ explanationHtml: _e, ...c }) => c) } : {}),
+    lean: true,
+  };
 }
 
 /** Argomenti nella forma del sommario laterale di CourseLayout (TopicNav). */

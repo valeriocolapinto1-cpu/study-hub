@@ -785,3 +785,13 @@ label.btn:focus-within {
     transition: none;
   }
 }
+
+/* Esame: altezza riservata in attesa dell'indice del corso (evita lo spostamento del layout). */
+.sh-exam-loading {
+  min-block-size: 36rem;
+}
+
+/* Ripasso: altezza riservata in attesa dell'indice (evita lo spostamento del layout). */
+.sh-review-loading {
+  min-block-size: 24rem;
+}

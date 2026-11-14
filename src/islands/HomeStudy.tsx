@@ -7,19 +7,22 @@
  * impostato prima del disegno da uno script inline della home.
  */
 import { useEffect, useState } from 'preact/hooks';
+import type { CourseIndex } from '../engine/course-data';
+import { dataUrl, INDEX_NAME } from '../engine/course-data';
 import { buildQueue } from '../engine/fsrs';
 import { daysUntil } from '../engine/mastery';
 import { allNotes } from '../engine/notes';
 import { exerciseStatus, loadProgress, loadSrs } from '../engine/progress';
 import { GLOBAL_SCOPE, read, subscribe } from '../engine/storage';
+import { fetchJson } from './lib/hooks';
 import './platform.css';
 
 export interface HomeCourse {
   id: string;
   title: string;
   examDates: string[];
-  exerciseIds: string[];
-  cardIds: string[];
+  /** Cartella dei dati del corso (`paths.data`): gli id di carte ed esercizi arrivano da `indice.json`. */
+  dataUrl: string;
   paths: { overview: string; review: string; progress: string; exercises: string };
 }
 
@@ -53,6 +56,9 @@ const fmt = (s: string | undefined, p: Record<string, string | number>) =>
 export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, texts: T }: HomeStudyProps) {
   const [rows, setRows] = useState<Row[] | null>(null);
   const [notes, setNotes] = useState<RecentNote[]>([]);
+  const [indexes, setIndexes] = useState<Record<string, CourseIndex> | null>(null);
+  const [failed, setFailed] = useState(false);
+  const [attempt, setAttempt] = useState(0);
   const titles = Object.fromEntries(courses.map((c) => [c.id, c.title]));
   const locale = lang === 'it' ? 'it-IT' : 'en-GB';
   const dateFmt = (iso: string) =>
@@ -62,28 +68,44 @@ export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, 
       timeZone: 'UTC',
     });
 
+  // Gli indici dei corsi si scaricano solo per chi ha già dati di studio (la sezione è altrimenti nascosta).
+  useEffect(() => {
+    if (document.documentElement.dataset.returning === undefined) return;
+    let alive = true;
+    setFailed(false);
+    Promise.all(courses.map((c) => fetchJson<CourseIndex>(dataUrl(c.dataUrl, INDEX_NAME))))
+      .then((list) => alive && setIndexes(Object.fromEntries(courses.map((c, i) => [c.id, list[i]!]))))
+      .catch(() => alive && setFailed(true));
+    return () => {
+      alive = false;
+    };
+  }, [attempt]);
+
   useEffect(() => {
     const load = () => {
       const now = Date.now();
       const newPerDay = read<{ newPerDay?: number }>(GLOBAL_SCOPE, 'settings', {}).newPerDay ?? 20;
       const personal = read<Record<string, string>>(GLOBAL_SCOPE, 'examDates', {});
       setRows(
-        courses.map((c) => {
-          const srs = loadSrs(c.id);
-          const progress = loadProgress(c.id);
-          const studied = Object.keys(srs.cards).length;
-          const due = studied ? buildQueue(c.cardIds, srs.cards, now, { newLimit: 0 }).length : 0;
-          const fresh = studied ? Math.min(newPerDay, Math.max(0, c.cardIds.length - studied)) : 0;
-          const date =
-            personal[c.id] ?? [...c.examDates].sort().find((d) => (daysUntil(d, now) ?? -1) >= 0) ?? null;
-          const days = date ? daysUntil(date, now) : null;
-          return {
-            id: c.id,
-            due: due + fresh,
-            solved: c.exerciseIds.filter((id) => exerciseStatus(progress.exercises[id]) === 'risolto').length,
-            exam: date && days !== null && days >= 0 ? { date, days } : null,
-          };
-        }),
+        indexes &&
+          courses.map((c) => {
+            const cardIds = indexes[c.id]!.cards.map((x) => x.id);
+            const exerciseIds = indexes[c.id]!.exercises.map((x) => x.id);
+            const srs = loadSrs(c.id);
+            const progress = loadProgress(c.id);
+            const studied = Object.keys(srs.cards).length;
+            const due = studied ? buildQueue(cardIds, srs.cards, now, { newLimit: 0 }).length : 0;
+            const fresh = studied ? Math.min(newPerDay, Math.max(0, cardIds.length - studied)) : 0;
+            const date =
+              personal[c.id] ?? [...c.examDates].sort().find((d) => (daysUntil(d, now) ?? -1) >= 0) ?? null;
+            const days = date ? daysUntil(date, now) : null;
+            return {
+              id: c.id,
+              due: due + fresh,
+              solved: exerciseIds.filter((id) => exerciseStatus(progress.exercises[id]) === 'risolto').length,
+              exam: date && days !== null && days >= 0 ? { date, days } : null,
+            };
+          }),
       );
       setNotes(
         allNotes()
@@ -105,7 +127,7 @@ export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, 
       ...courses.flatMap((c) => ['srs', 'progress', 'notes'].map((a) => subscribe(c.id, a, load))),
     ];
     return () => subs.forEach((u) => u());
-  }, []);
+  }, [indexes]);
 
   const totalDue = rows?.reduce((s, r) => s + r.due, 0) ?? 0;
   const next = rows?.filter((r) => r.exam).sort((a, b) => a.exam!.days - b.exam!.days)[0];
@@ -114,6 +136,14 @@ export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, 
   return (
     <section class="pf-home-study" aria-labelledby="pf-home-study-h" aria-busy={rows ? 'false' : 'true'}>
       <h2 id="pf-home-study-h">{T.title}</h2>
+      {failed && (
+        <p class="pf-stat__note" role="alert">
+          {T.loadError}{' '}
+          <button type="button" class="btn btn--sm" onClick={() => setAttempt((n) => n + 1)}>
+            {T.retry}
+          </button>
+        </p>
+      )}
       <div class="pf-home-study__stats">
         <div class="pf-stat">
           <p class="pf-stat__label">{T.reviewToday}</p>
@@ -160,7 +190,7 @@ export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, 
         <tbody>
           {courses.map((c) => {
             const r = rows?.find((x) => x.id === c.id);
-            const total = c.exerciseIds.length;
+            const total = indexes?.[c.id]?.exercises.length ?? 0;
             const pct = r && total ? Math.round((r.solved / total) * 100) : 0;
             return (
               <tr key={c.id} data-course={c.id}>

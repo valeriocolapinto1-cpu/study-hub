@@ -31,30 +31,45 @@ export function useNow(ms = 0): number {
 }
 
 const cache = new Map<string, Promise<unknown>>();
+const done = new Map<string, unknown>();
 
-/** JSON da un URL del sito, con cache in memoria per pagina. */
+/** JSON da un URL del sito, con cache in memoria per pagina (un errore non resta in cache). */
 export function fetchJson<T>(url: string): Promise<T> {
   let p = cache.get(url);
   if (!p) {
-    p = fetch(url).then((r) => {
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      return r.json();
-    });
+    p = fetch(url)
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then((v) => {
+        done.set(url, v);
+        return v;
+      });
     p.catch(() => cache.delete(url));
     cache.set(url, p);
   }
   return p as Promise<T>;
 }
 
+/** Valore già scaricato (sincrono), per non mostrare "caricamento" quando i dati sono in memoria. */
+export const peekJson = <T>(url: string): T | undefined => done.get(url) as T | undefined;
+
 export type Remote<T> =
   { state: 'loading' } | { state: 'error'; retry: () => void } | { state: 'ready'; data: T };
 
+/** Scarica più JSON insieme; senza URL è subito pronto. Stati: caricamento, errore con «Riprova», pronto. */
 export function useRemote<T>(urls: readonly string[]): Remote<T[]> {
   const [res, setRes] = useState<Remote<T[]>>({ state: 'loading' });
   const [attempt, setAttempt] = useState(0);
   const key = urls.join('|');
   useEffect(() => {
     let alive = true;
+    const cached = urls.map((u) => peekJson<T>(u));
+    if (cached.every((v) => v !== undefined)) {
+      setRes({ state: 'ready', data: cached as T[] });
+      return;
+    }
     setRes({ state: 'loading' });
     Promise.all(urls.map((u) => fetchJson<T>(u)))
       .then((data) => alive && setRes({ state: 'ready', data }))

@@ -15,9 +15,9 @@ Appena esistono `src/content/courses/<id>.yaml` e i contenuti, le pagine generic
 | `esercizi/` | `CourseExercises` | `ExerciseList` (client:load) |
 | `esercizi/<topic>/` | `TopicExercises` | `ExercisePlayer` (client:visible), `NotesLayer` |
 | `ripasso/` | `CourseReview` | `ReviewSession` |
-| `esame/` | `CourseExam` | `ExamRunner` (dati da `dati.json`) |
+| `esame/` | `CourseExam` | `ExamRunner` (dati da `dati/`) |
 | `progressi/` | `CourseProgress` | `ExamDatePicker`, `StudyPlan`, `MasteryMap` |
-| `dati.json` | endpoint | dati del corso localizzati, testi già in HTML |
+| `dati/indice.json`, `dati/<argomento>.json` | endpoint | indice (meta, id, obiettivi; niente HTML) e testi già in HTML di un argomento |
 
 Pagine globali: `/<lang>/ripasso/` (coda FSRS di tutti i corsi), `/<lang>/appunti/` (tutti gli appunti),
 `/<lang>/i-miei-dati/` (export/import, QR), `/<lang>/stampa/prova/?…` (stampa della prova, `noindex`).
@@ -135,7 +135,7 @@ e flag `fallback` quando manca l'inglese. `courseSummary`, `coursePaths`, `cours
 ## Stampa delle prove
 
 `ExamRunner` apre `/<lang>/stampa/prova/?corso=…&seme=…&modo=…&q=e:id,c:id&parte=prova|soluzioni`: la
-pagina ricostruisce la stessa prova (seme + riferimenti) da `dati.json`, la impagina con `print.css` e
+pagina ricostruisce la stessa prova (seme + riferimenti) da `dati/`, la impagina con `print.css` e
 chiama `window.print()` (il browser offre "Salva come PDF"). Le soluzioni sono un documento separato.
 
 ## Test

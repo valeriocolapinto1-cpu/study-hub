@@ -7,7 +7,9 @@ import 'katex/dist/katex.min.css';
 import ExercisePlayer from '../../islands/ExercisePlayer';
 import SectionHeader from './SectionHeader.astro';
 import Notes from './Notes.astro';
-import { getCourseData, withPregenerated } from '../../lib/course-data';
+import { getCourseData, leanExercise, pregeneratedDefault } from '../../lib/course-data';
+import { compactMathDeep } from '../../lib/rich-server';
+import { dataUrl } from '../../engine/course-data';
 import { hashString } from '../../engine/random';
 import { t, type Lang } from '../../i18n';
 
@@ -20,10 +22,18 @@ const { lang, courseId, topicId } = Astro.props;
 const data = await getCourseData(courseId, lang);
 const topic = data.topics.find((tp) => tp.id === topicId);
 if (!topic) throw new Error(`${courseId}: argomento sconosciuto "${topicId}"`);
-// la prima variante dei generati è resa qui: nel browser si scarica solo per «nuova variante»
-const exercises = await Promise.all(
-  data.exercises.filter((e) => e.topic === topicId).map((e) => withPregenerated(e, hashString(e.id), lang)),
+// la prima variante dei generati è resa qui: nel browser si scarica solo per «nuova variante».
+// Le props sono leggere: soluzioni e spiegazioni si scaricano da dati/<argomento>.json quando servono.
+const full = await Promise.all(
+  data.exercises.filter((e) => e.topic === topicId).map((e) => pregeneratedDefault(e, lang)),
 );
+// enunciato e figura vanno negli slot (una sola volta nell'HTML), non nelle props
+const exercises = full.map(({ statementHtml, figureSvg, ...e }) => ({
+  exercise: compactMathDeep(leanExercise(e as never)),
+  statementHtml,
+  figureSvg,
+}));
+const topicData = dataUrl(data.paths.data, topicId);
 ---
 
 <SectionHeader title={t(lang, 'page.topicExercises', { topic: topic.title })}>
@@ -32,16 +42,20 @@ const exercises = await Promise.all(
   </p>
 </SectionHeader>
 <div class="sh-exercise-stack">
-  {exercises.map((exercise, i) => (
+  {exercises.map(({ exercise, statementHtml, figureSvg }, i) => (
     <ExercisePlayer
       client:visible
       lang={lang}
       courseId={courseId}
       exercise={exercise}
+      dataUrl={topicData}
       number={i + 1}
       headingLevel={2}
       seed={hashString(exercise.id)}
-    />
+    >
+      <Fragment slot="statement" set:html={statementHtml ?? ''} />
+      {figureSvg && <Fragment slot="figure" set:html={figureSvg} />}
+    </ExercisePlayer>
   ))}
 </div>
 <Notes lang={lang} scope={courseId} />

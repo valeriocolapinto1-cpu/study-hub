@@ -66,8 +66,7 @@ const studyCourses = courses.map((c) => {
     id: c.id,
     title: tr(c.title, lang),
     examDates: c.examDates ?? [],
-    exerciseIds: exercises.filter((e) => e.data.course === c.id).map((e) => e.data.id),
-    cardIds: cards.filter((x) => x.data.course === c.id).map((x) => x.data.id),
+    dataUrl: paths.data,
     paths: {
       overview: paths.overview,
       review: paths.review,

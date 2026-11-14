@@ -129,7 +129,7 @@ Principi, componenti e regole d'uso: `docs/design/README.md`; catalogo visivo di
 ## Motore di studio
 
 Correzione, ripasso FSRS, prove d'esame stampabili, padronanza, piano di studio, appunti, export/QR: vedi
-**docs/ENGINE.md**. Le sezioni `esercizi/`, `ripasso/`, `esame/`, `progressi/` e `dati.json` di ogni corso
+**docs/ENGINE.md**. Le sezioni `esercizi/`, `ripasso/`, `esame/`, `progressi/` e `dati/` di ogni corso
 sono generate da `src/pages/[lang]/[anno]/[course]/` (sostituibili con pagine statiche allo stesso percorso);
 pagine globali `/<lang>/ripasso/`, `/<lang>/appunti/`, `/<lang>/i-miei-dati/`, `/<lang>/stampa/prova/`.
 

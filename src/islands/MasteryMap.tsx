@@ -15,7 +15,7 @@ const pct = (v: number) => Math.round(v * 100);
 
 export default function MasteryMap(props: MasteryMapProps) {
   const { lang, topics, paths } = props;
-  const { mastery } = useMastery(props);
+  const { mastery, error, retry } = useMastery(props);
   const tm = topicMastery(topics, mastery ?? {});
   const weak = mastery ? weakSpots(mastery) : [];
   const objText = Object.fromEntries(
@@ -26,6 +26,14 @@ export default function MasteryMap(props: MasteryMapProps) {
   return (
     <section class="sh-mastery" aria-labelledby="sh-mastery-h" aria-busy={!mastery}>
       <h2 id="sh-mastery-h">{t(lang, 'mastery.title')}</h2>
+      {error && (
+        <p class="sh-alert sh-alert--danger" role="alert">
+          {t(lang, 'engine.loadError')}{' '}
+          <button type="button" class="btn" onClick={retry}>
+            {t(lang, 'engine.retry')}
+          </button>
+        </p>
+      )}
       <p class="sh-help">{t(lang, 'mastery.legend')}</p>
       <p class="sh-overall">
         <span>{t(lang, 'mastery.overall')}</span>

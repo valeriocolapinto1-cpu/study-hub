@@ -5,7 +5,8 @@
  * intervalli, scorciatoie da tastiera, statistiche e previsione.
  */
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
-import type { CardData, CourseData } from '../engine/course-data';
+import type { CardIndex, CourseIndex, TopicData } from '../engine/course-data';
+import { dataUrl, INDEX_NAME } from '../engine/course-data';
 import {
   buildQueue,
   formatInterval,
@@ -19,17 +20,15 @@ import {
 import { loadSrs, reviewsOn, saveReview, type SrsState } from '../engine/progress';
 import { GLOBAL_SCOPE, read, subscribe, update } from '../engine/storage';
 import { daysUntil } from '../engine/mastery';
-import { useNow, useRemote } from './lib/hooks';
+import { fetchJson, useNow, useRemote } from './lib/hooks';
 import { t, type Lang } from './lib/i18n';
 import './islands.css';
 
 export interface Deck {
   courseId: string;
   title: string;
-  /** Carte già localizzate (pagina del corso). */
-  cards?: CardData[];
-  /** In alternativa: URL di `dati.json` del corso (coda globale). */
-  dataUrl?: string;
+  /** Cartella dei dati del corso (`paths.data`): `indice.json` e `<argomento>.json`. */
+  dataUrl: string;
   /** Date d'appello suggerite (per non programmare ripassi oltre l'esame). */
   examDates?: string[];
 }
@@ -61,8 +60,8 @@ function examLimit(courseId: string, suggested: string[] | undefined, now: numbe
 }
 
 export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
-  const remoteUrls = decks.filter((d) => !d.cards && d.dataUrl).map((d) => d.dataUrl!);
-  const remote = useRemote<CourseData>(remoteUrls);
+  const remoteUrls = decks.map((d) => dataUrl(d.dataUrl, INDEX_NAME));
+  const remote = useRemote<CourseIndex>(remoteUrls);
   const now = useNow(60_000);
   const [states, setStates] = useState<Record<string, SrsState>>({});
   const [settings, setSettings] = useState<Settings>({});
@@ -72,13 +71,17 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
 
   // Carte di tutti i mazzi, con id globale `<corso>::<carta>`.
   const allCards = useMemo(() => {
-    const out = new Map<string, { courseId: string; title: string; card: CardData }>();
-    let r = 0;
-    for (const d of decks) {
-      const cards = d.cards ?? (remote.state === 'ready' ? (remote.data[r++]?.cards ?? []) : []);
-      for (const c of cards)
-        out.set(`${d.courseId}${SEP}${c.id}`, { courseId: d.courseId, title: d.title, card: c });
-    }
+    const out = new Map<string, { courseId: string; title: string; dataUrl: string; card: CardIndex }>();
+    if (remote.state !== 'ready') return out;
+    decks.forEach((d, i) => {
+      for (const c of remote.data[i]?.cards ?? [])
+        out.set(`${d.courseId}${SEP}${c.id}`, {
+          courseId: d.courseId,
+          title: d.title,
+          dataUrl: d.dataUrl,
+          card: c,
+        });
+    });
     return out;
   }, [decks, remote]);
 
@@ -126,6 +129,20 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
 
   const current = queue[0];
   const info = current ? allCards.get(current.id) : undefined;
+  // Il testo delle carte sta nei file per argomento: si scarica quello della carta corrente
+  // e, in anticipo, quello della prossima.
+  const topicUrl = (id: string | undefined) => {
+    const i = id ? allCards.get(id) : undefined;
+    return i ? dataUrl(i.dataUrl, i.card.topic) : undefined;
+  };
+  const currentUrl = topicUrl(current?.id);
+  const topic = useRemote<TopicData>(currentUrl ? [currentUrl] : []);
+  const nextUrl = topicUrl(queue[1]?.id);
+  useEffect(() => {
+    if (nextUrl) fetchJson(nextUrl).catch(() => {});
+  }, [nextUrl]);
+  const face =
+    topic.state === 'ready' && info ? topic.data[0]?.cards.find((c) => c.id === info.card.id) : undefined;
   const dueCount = queue.filter((q) => q.card.state !== 'new').length;
   const newCount = queue.length - dueCount;
   const limitFor = (courseId: string) =>
@@ -138,7 +155,7 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
       : null;
 
   const rate = (rating: Rating) => {
-    if (!current || !info || !flipped) return;
+    if (!current || !info || !flipped || !face) return;
     const limit = limitFor(info.courseId);
     const next = saveReview(
       info.courseId,
@@ -165,6 +182,7 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
         (e.key === ' ' || e.key === 'Enter') &&
         !flipped &&
         current &&
+        face &&
         !(el && /^(BUTTON|A|SUMMARY)$/.test(el.tagName))
       ) {
         e.preventDefault();
@@ -178,17 +196,18 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
     return () => window.removeEventListener('keydown', onKey);
   });
 
-  if (remote.state === 'loading' && remoteUrls.length > 0)
+  if (remote.state === 'loading')
     return (
-      <p class="sh-muted" aria-busy="true">
-        {t(lang, 'engine.loading')}
-      </p>
+      <div class="sh-review-loading" aria-busy="true">
+        <p class="sh-muted">{t(lang, 'engine.loading')}</p>
+      </div>
     );
-  if (remote.state === 'error')
+  const failed = remote.state === 'error' ? remote : topic.state === 'error' ? topic : null;
+  if (failed)
     return (
       <p class="sh-alert sh-alert--danger" role="alert">
         {t(lang, 'engine.loadError')}{' '}
-        <button type="button" class="btn" onClick={remote.retry}>
+        <button type="button" class="btn" onClick={failed.retry}>
           {t(lang, 'engine.retry')}
         </button>
       </p>
@@ -216,12 +235,18 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
           </p>
           <div class="sh-flashcard__face">
             <h3 class="sh-visually-hidden">{t(lang, 'review.front')}</h3>
-            <div class="prose" dangerouslySetInnerHTML={{ __html: info.card.frontHtml }} />
+            {face ? (
+              <div class="prose" dangerouslySetInnerHTML={{ __html: face.frontHtml }} />
+            ) : (
+              <p class="sh-muted" aria-busy="true">
+                {t(lang, 'engine.loading')}
+              </p>
+            )}
           </div>
-          {flipped ? (
+          {flipped && face ? (
             <div class="sh-flashcard__face sh-flashcard__back">
               <h3 class="sh-visually-hidden">{t(lang, 'review.back')}</h3>
-              <div class="prose" dangerouslySetInnerHTML={{ __html: info.card.backHtml }} />
+              <div class="prose" dangerouslySetInnerHTML={{ __html: face.backHtml }} />
               <fieldset class="sh-ratings">
                 <legend>{t(lang, 'review.rate')}</legend>
                 {RATINGS.map((r) => (
@@ -243,6 +268,7 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
               <button
                 type="button"
                 class="btn btn--primary"
+                disabled={!face}
                 onClick={() => setFlipped(true)}
                 aria-keyshortcuts="Space"
               >

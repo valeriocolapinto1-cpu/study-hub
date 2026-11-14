@@ -1,8 +1,10 @@
 /** Contenuto delle domande di una prova (statiche, generate, flashcard), condiviso da ExamRunner e dalla stampa. */
-import type { AnswerItemData, ChoiceData, CourseData, StepData } from '../../engine/course-data';
+import type { AnswerItemData, ChoiceData, CourseIndex, StepData, TopicData } from '../../engine/course-data';
+import { dataUrl } from '../../engine/course-data';
 import type { Exam, ExamQuestion, ResolvedQuestion } from '../../engine/exam';
 import type { Lang } from '../../config/site';
 import { generatedContent, staticContent } from '../ExercisePlayer';
+import { fetchJson } from './hooks';
 
 export interface QuestionContent {
   statementHtml: string;
@@ -12,29 +14,36 @@ export interface QuestionContent {
   choices?: ChoiceData[] | undefined;
 }
 
+/** Contenuto di una domanda: carte ed esercizi statici dal file dell'argomento, i generati dal generatore. */
 export async function resolveQuestion(
-  data: CourseData,
+  data: CourseIndex,
   q: ExamQuestion,
   lang: Lang,
   answerTitle: string,
 ): Promise<QuestionContent> {
+  const topicFile = (topic: string) => fetchJson<TopicData>(dataUrl(data.paths.data, topic));
   if (q.ref.type === 'card') {
-    const c = data.cards.find((x) => x.id === q.ref.id);
-    if (!c) throw new Error(`carta sconosciuta: ${q.ref.id}`);
+    const meta = data.cards.find((x) => x.id === q.ref.id);
+    if (!meta) throw new Error(`carta sconosciuta: ${q.ref.id}`);
+    const c = (await topicFile(meta.topic)).cards.find((x) => x.id === meta.id);
+    if (!c) throw new Error(`carta mancante: ${meta.id}`);
     return {
       statementHtml: c.frontHtml,
       steps: [{ titleHtml: answerTitle, bodyHtml: c.backHtml }],
       answer: [],
     };
   }
-  const e = data.exercises.find((x) => x.id === q.ref.id);
-  if (!e) throw new Error(`esercizio sconosciuto: ${q.ref.id}`);
-  if (e.kind === 'generated' && e.generator) return generatedContent(data.id, e.generator, q.seed ?? 1, lang);
+  const meta = data.exercises.find((x) => x.id === q.ref.id);
+  if (!meta) throw new Error(`esercizio sconosciuto: ${q.ref.id}`);
+  if (meta.kind === 'generated' && meta.generator)
+    return generatedContent(data.id, meta.generator, q.seed ?? 1, lang);
+  const e = (await topicFile(meta.topic)).exercises.find((x) => x.id === meta.id);
+  if (!e) throw new Error(`esercizio mancante: ${meta.id}`);
   return staticContent(e);
 }
 
 export function resolveExam(
-  data: CourseData,
+  data: CourseIndex,
   exam: Exam,
   lang: Lang,
   answerTitle: string,
