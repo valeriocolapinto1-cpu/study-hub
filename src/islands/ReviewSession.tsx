@@ -198,9 +198,9 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
 
   if (remote.state === 'loading')
     return (
-      <p class="sh-muted" aria-busy="true">
-        {t(lang, 'engine.loading')}
-      </p>
+      <div class="sh-review-loading" aria-busy="true">
+        <p class="sh-muted">{t(lang, 'engine.loading')}</p>
+      </div>
     );
   const failed = remote.state === 'error' ? remote : topic.state === 'error' ? topic : null;
   if (failed)
