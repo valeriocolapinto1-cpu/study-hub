@@ -211,9 +211,10 @@ export default function ExamRunner({ lang, course }: ExamRunnerProps) {
 
   if (remote.state === 'loading')
     return (
-      <p class="sh-muted" aria-busy="true">
-        {t(lang, 'engine.loading')}
-      </p>
+      // spazio riservato: il modulo di impostazione che lo sostituisce non sposta il resto della pagina
+      <div class="sh-exam-loading" aria-busy="true">
+        <p class="sh-muted">{t(lang, 'engine.loading')}</p>
+      </div>
     );
   if (remote.state === 'error')
     return (

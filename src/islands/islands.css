@@ -785,3 +785,8 @@ label.btn:focus-within {
     transition: none;
   }
 }
+
+/* Esame: altezza riservata in attesa dell'indice del corso (evita lo spostamento del layout). */
+.sh-exam-loading {
+  min-block-size: 36rem;
+}
