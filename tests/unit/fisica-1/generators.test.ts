@@ -348,28 +348,34 @@ describe('generatori di Fisica 1', () => {
     expect(ids.filter((id) => !CHECKS[id])).toEqual([]);
   });
 
-  it.each(ids)('%s: uscita valida, deterministica, verificata in modo indipendente', (id) => {
-    for (const seed of SEEDS) {
-      const it_ = runGenerator(id, seed, 'it');
-      const en = runGenerator(id, seed, 'en');
-      expect(runGenerator(id, seed, 'it')).toEqual(it_);
-      expect(en.answer.map((a) => a.value)).toEqual(it_.answer.map((a) => a.value));
-      expect(en.statement).not.toEqual(it_.statement);
-      for (const a of it_.answer) expect(Number.isFinite(a.value as number)).toBe(true);
-      // la propria risposta è accettata dalla correzione
-      const graded = gradeAnswers(
-        it_.answer.map((a) => ({
-          label: a.label,
-          value: a.value,
-          ...(a.tol ? { tol: a.tol } : {}),
-          ...(a.unit ? { unit: a.unit } : {}),
-        })),
-        it_.answer.map((a) => String(a.value)),
-      );
-      expect(graded.score).toBe(1);
-      CHECKS[id]!(numbers(it_.statement), it_);
-    }
-  });
+  it.each(ids)(
+    '%s: uscita valida, deterministica, verificata in modo indipendente',
+    (id) => {
+      for (const seed of SEEDS) {
+        const it_ = runGenerator(id, seed, 'it');
+        const en = runGenerator(id, seed, 'en');
+        expect(runGenerator(id, seed, 'it')).toEqual(it_);
+        expect(en.answer.map((a) => a.value)).toEqual(it_.answer.map((a) => a.value));
+        expect(en.statement).not.toEqual(it_.statement);
+        for (const a of it_.answer) expect(Number.isFinite(a.value as number)).toBe(true);
+        // la propria risposta è accettata dalla correzione
+        const graded = gradeAnswers(
+          it_.answer.map((a) => ({
+            label: a.label,
+            value: a.value,
+            ...(a.tol ? { tol: a.tol } : {}),
+            ...(a.unit ? { unit: a.unit } : {}),
+          })),
+          it_.answer.map((a) => String(a.value)),
+        );
+        expect(graded.score).toBe(1);
+        CHECKS[id]!(numbers(it_.statement), it_);
+      }
+      // Come gli altri generatori (teoria-circuiti): in CI, con la copertura v8 e le suite pesanti in
+      // parallelo, il limite predefinito di 5 s non basta (pendolo-fisico è scaduto una volta).
+    },
+    60_000,
+  );
 
   it('formatta i numeri per lingua', () => {
     expect(num(3.14159, 'it')).toBe('3{,}14');
