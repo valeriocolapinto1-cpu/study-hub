@@ -19,6 +19,19 @@ for (const theme of ['light', 'dark'] as const) {
         await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
       });
       await page.waitForFunction(() => document.documentElement.dataset.mathScroll === 'ready');
+      // content-visibility: auto (voci dei formulari): finché una voce fuori schermo non è mai
+      // stata disegnata ha l'altezza stimata e il suo contenuto può uscirne, quindi axe
+      // misurerebbe sovrapposizioni che nessuno vede. Come nei test visivi, si porta tutta la
+      // pagina in vista una volta (le altezze reali restano ricordate da `auto`) e si torna alla
+      // finestra iniziale: axe analizza la geometria vera della pagina.
+      const viewport = page.viewportSize()!;
+      for (let last = 0, h = 1; h !== last;) {
+        last = h;
+        h = await page.evaluate(() => document.documentElement.scrollHeight);
+        await page.setViewportSize({ width: viewport.width, height: Math.max(viewport.height, h) });
+        await page.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
+      }
+      await page.setViewportSize(viewport);
       const results = await new AxeBuilder({ page }).withTags(TAGS).analyze();
       const serious = results.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
       expect(

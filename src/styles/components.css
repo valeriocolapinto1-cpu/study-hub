@@ -1608,8 +1608,8 @@ progress.progress__bar::-moz-progress-bar {
 .formulary__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
-  gap: var(--space-s) var(--space-l);
-  margin-top: var(--space-2xs);
+  gap: max(0px, var(--space-s) - 8px) var(--space-l);
+  margin-top: max(0px, var(--space-2xs) - 4px);
 }
 .formula-entry {
   min-width: 0;
@@ -1620,9 +1620,11 @@ progress.progress__bar::-moz-progress-bar {
   content-visibility: auto;
   contain-intrinsic-block-size: auto 13rem;
   /* Il contenimento del disegno taglia ciò che esce dalla voce: 4px di margine interno
-     compensato tengono visibile l'anello di focus (2px + 2px di distanza) dei pulsanti. */
+     tengono visibile l'anello di focus (2px + 2px di distanza) di pulsanti e link.
+     In orizzontale li compensa il margine negativo, in verticale lo spazio tra le righe
+     (.formulary__grid); un margine negativo in basso avvicinerebbe i link che seguono. */
   padding: 4px;
-  margin: -4px;
+  margin-inline: -4px;
 }
 .formula-entry__head {
   display: flex;
