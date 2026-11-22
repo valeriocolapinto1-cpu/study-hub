@@ -34,7 +34,10 @@ const LIMITS = {
   minFillMs: 3000,
 };
 
-/** Limiti di frequenza (finestra di un'ora). */
+/**
+ * Limiti di frequenza per ora. I contatori stanno in secchi orari (ora UTC
+ * intera): un secchio non si allunga a ogni invio e scade da solo.
+ */
 const RATE_LIMITS = {
   windowSeconds: 3600,
   perEmail: 5,
@@ -74,6 +77,7 @@ const SHEET_HEADERS = [
   'Consenso pubblicazione',
   'File',
   'Cartella',
+  'Note',
 ];
 
 /** Stati di una riga del foglio. Il processo notturno legge solo 'nuovo'. */
@@ -236,12 +240,32 @@ function evaluateRateLimit(counts) {
   return { allowed: true };
 }
 
-/** Chiavi di cache per il limite di frequenza. `hash` è una funzione stringa → stringa. */
-function rateLimitKeys(email, clientId, hash) {
-  const keys = { global: 'rl:g' };
-  if (email) keys.email = 'rl:e:' + hash(email);
+/** Secchio orario dei limiti di frequenza: numero dell'ora UTC dall'epoca. */
+function rateLimitBucket(nowMs) {
+  return Math.floor(nowMs / (RATE_LIMITS.windowSeconds * 1000));
+}
+
+/**
+ * Durata in cache dei contatori del secchio corrente: fino alla fine dell'ora
+ * più un minuto di margine. Riscrivere un contatore non sposta la scadenza
+ * oltre la fine del suo secchio.
+ */
+function rateLimitTtlSeconds(nowMs) {
+  const windowMs = RATE_LIMITS.windowSeconds * 1000;
+  const end = (rateLimitBucket(nowMs) + 1) * windowMs;
+  return Math.max(1, Math.ceil((end - nowMs) / 1000)) + 60;
+}
+
+/**
+ * Chiavi di cache per il limite di frequenza nel secchio `bucket`.
+ * `hash` è una funzione stringa → stringa.
+ */
+function rateLimitKeys(email, clientId, hash, bucket) {
+  const b = ':' + (bucket === undefined ? 0 : bucket);
+  const keys = { global: 'rl:g' + b };
+  if (email) keys.email = 'rl:e:' + hash(email) + b;
   const cid = typeof clientId === 'string' && /^[A-Za-z0-9-]{8,64}$/.test(clientId) ? clientId : '';
-  if (cid) keys.client = 'rl:c:' + hash(cid);
+  if (cid) keys.client = 'rl:c:' + hash(cid) + b;
   return keys;
 }
 
@@ -296,7 +320,54 @@ function buildSheetRow(id, dateIso, data, status, fileLinks, folderUrl) {
     data.consensoPubblicazione,
     (fileLinks || []).join('\n'),
     folderUrl || '',
+    '',
   ].map(sheetSafe);
+}
+
+/** Inverso di sheetSafe per i testi: toglie l'apostrofo aggiunto davanti a una formula. */
+function unSheetSafe(value) {
+  const s = value === null || value === undefined ? '' : String(value);
+  return /^'[=+\-@\t\r]/.test(s) ? s.slice(1) : s;
+}
+
+/**
+ * Ricostruisce dai valori di una riga del foglio i dati usati dalla notifica.
+ * Lo stato di un upload non conserva il messaggio (le proprietà dello script
+ * hanno un limite di 9 KB per valore): alla fine lo si rilegge dalla riga.
+ */
+function dataFromSheetRow(row) {
+  const get = function (name) {
+    return unSheetSafe(row[SHEET_HEADERS.indexOf(name)]);
+  };
+  const corso = get('Corso');
+  return {
+    tipo: get('Tipo'),
+    corso: corso === 'generale' ? '' : corso,
+    pagina: get('Pagina'),
+    lingua: get('Lingua') === 'en' ? 'en' : 'it',
+    messaggio: get('Messaggio'),
+    email: get('Email'),
+    nome: get('Nome per i crediti'),
+  };
+}
+
+/** Istante (ms) codificato nell'identificativo AAAAMMGG-HHMMSS-xxxx, oppure NaN. */
+function submissionTime(id) {
+  const m = /^(\d{4})(\d{2})(\d{2})-(\d{2})(\d{2})(\d{2})-/.exec(String(id || ''));
+  if (!m) return NaN;
+  return Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +m[6]);
+}
+
+/** Vero se l'invio `id` è più vecchio di `ttlMs` (o se l'identificativo non è leggibile). */
+function isUploadStale(id, nowMs, ttlMs) {
+  const t = submissionTime(id);
+  return !(t > 0) || nowMs - t > ttlMs;
+}
+
+/** ID della cartella Drive da un URL …/folders/<id>, oppure ''. */
+function folderIdFromUrl(url) {
+  const m = /\/folders\/([A-Za-z0-9_-]+)/.exec(String(url || ''));
+  return m ? m[1] : '';
 }
 
 /** Identificativo leggibile e ordinabile: AAAAMMGG-HHMMSS-xxxx. */
