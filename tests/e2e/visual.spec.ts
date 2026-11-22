@@ -4,6 +4,7 @@
  */
 import { expect, test } from '@playwright/test';
 import { SAMPLE_PAGES } from './pages';
+import { renderWholePage } from './render';
 
 const VIEWPORTS = [
   { name: 'mobile', width: 390, height: 844 },
@@ -23,15 +24,19 @@ for (const theme of ['light', 'dark'] as const) {
         await page.waitForLoadState('networkidle');
         await page.evaluate(() => document.fonts.ready);
         // Le isole client:visible (esercizi, appunti) si idratano quando entrano nella finestra e
-        // aggiungono markup: si porta tutta la pagina in vista, si aspetta che siano idratate e si
+        // aggiungono markup, e le voci con content-visibility hanno un'altezza stimata finché non si
+        // disegnano: si porta tutta la pagina in vista, si aspetta che le isole siano idratate e si
         // torna alla finestra iniziale, così lo screenshot a pagina intera non cambia mentre si scatta.
-        const fullHeight = await page.evaluate(() => document.documentElement.scrollHeight);
-        await page.setViewportSize({ width: vp.width, height: Math.max(vp.height, fullHeight) });
-        await page.waitForFunction(() => document.querySelectorAll('astro-island[ssr]').length === 0);
-        await page.waitForLoadState('networkidle');
-        await page.setViewportSize({ width: vp.width, height: vp.height });
+        await renderWholePage(page, async () => {
+          await page.waitForFunction(() => document.querySelectorAll('astro-island[ssr]').length === 0);
+          await page.waitForLoadState('networkidle');
+        });
+        // Lo screenshot a pagina intera scatta oltre la finestra senza allargarla: le voci con
+        // content-visibility: auto fuori dalla finestra resterebbero vuote (spazio giusto, nessun
+        // disegno). Si disegna tutto: la proprietà decide solo quando disegnare, non l'aspetto.
+        await page.addStyleTag({ content: '* { content-visibility: visible !important; }' });
         await expect(page).toHaveScreenshot(`${p.name}-${theme}-${vp.name}.png`, {
-          fullPage: true,
+          fullPage: p.visual !== 'viewport',
           // Commit e data della build nel footer cambiano a ogni pubblicazione (larghezza fissa, font mono).
           mask: [page.locator('[data-build]')],
           // Pagine lunghe (formulario) con la barra sfocata: in CI due catture superano i 5 s di default.

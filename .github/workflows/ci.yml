@@ -123,7 +123,8 @@ jobs:
     name: Lighthouse CI
     needs: build
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # ~45 s per pagina (3 esecuzioni): con 19+ pagine campione 15 minuti non bastano.
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
