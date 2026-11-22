@@ -15,7 +15,7 @@
  *   sw.js e version.json non passano mai dal service worker.
  * - Messaggi: COURSE_STATUS, COURSE_DOWNLOAD (con avanzamento), COURSE_REMOVE, SKIP_WAITING.
  */
-/* global MANIFEST, SHELL_CACHE, META_CACHE, RUNTIME_MAX, NETWORK_TIMEOUT_MS, runtimeCacheName, staleCaches, isImmutableAsset, isBypassed, courseCacheName, parseCourseCache, stagingCacheName, diffEntries, lookupCandidates, langOf, courseStatus, pool */
+/* global MANIFEST, SHELL_CACHE, META_CACHE, RUNTIME_MAX, NETWORK_TIMEOUT_MS, runtimeCacheName, shouldTrimRuntime, cachesFor, staleCaches, isImmutableAsset, isBypassed, courseCacheName, parseCourseCache, stagingCacheName, diffEntries, lookupCandidates, langOf, courseStatus, pool */
 
 const BASE = MANIFEST.base;
 const RUNTIME_CACHE = runtimeCacheName(MANIFEST.version);
@@ -47,6 +47,23 @@ async function fetchFresh(url) {
 async function downloadedCourses() {
   return (await caches.keys()).map((n) => [n, parseCourseCache(n)]).filter(([, p]) => p);
 }
+
+/**
+ * Nomi delle cache dei corsi scaricati, letti una volta per avvio del worker (non a ogni
+ * richiesta) e riletti dopo download, rimozione e attivazione.
+ * @type {Promise<string[]> | null}
+ */
+let ownedCourses = null;
+const ownedCourseCaches = () =>
+  (ownedCourses ??= downloadedCourses()
+    .then((list) => list.map(([n]) => n))
+    .catch((err) => {
+      ownedCourses = null;
+      throw err;
+    }));
+const forgetOwnedCourses = () => {
+  ownedCourses = null;
+};
 
 /* ------------------------------------------------------------------ install */
 
@@ -110,6 +127,7 @@ self.addEventListener('activate', (event) => {
       // Cache temporanee e cache di passaggio delle versioni precedenti (le pagine viste con
       // una versione vecchia possono richiamare risorse sparite).
       for (const name of staleCaches(await caches.keys(), MANIFEST.version)) await caches.delete(name);
+      forgetOwnedCourses();
       await self.clients.claim();
     })(),
   );
@@ -117,23 +135,32 @@ self.addEventListener('activate', (event) => {
 
 /* ------------------------------------------------------------------ fetch */
 
+/**
+ * Copia in cache di un percorso. I file con hash nel nome hanno lo stesso contenuto in qualunque
+ * cache: basta una ricerca su tutte. Gli altri si cercano solo nelle cache che possono
+ * contenerli (`cachesFor`): mai nelle cache temporanee di una versione non ancora attiva.
+ */
 async function matchOwned(pathname, navigate) {
-  const names = [SHELL_CACHE, ...(await downloadedCourses()).map(([n]) => n), RUNTIME_CACHE];
+  if (!navigate && isImmutableAsset(pathname, BASE)) return (await caches.match(abs(pathname))) ?? null;
+  const names = cachesFor(pathname, BASE, await ownedCourseCaches(), RUNTIME_CACHE);
   for (const candidate of lookupCandidates(pathname)) {
     const url = abs(candidate);
-    for (const name of names) {
-      const cache = await caches.open(name);
-      const res = await cache.match(url, { ignoreSearch: navigate });
+    for (const cacheName of names) {
+      const res = await caches.match(url, { cacheName, ignoreSearch: navigate });
       if (res) return res;
     }
   }
   return null;
 }
 
+/** Scritture nella cache di passaggio da quando il worker è stato avviato. */
+let runtimeWrites = 0;
+
 async function remember(request, response) {
   if (!response.ok || response.type !== 'basic') return;
   const cache = await caches.open(RUNTIME_CACHE);
   await cache.put(request, response);
+  if (!shouldTrimRuntime(++runtimeWrites)) return;
   const keys = await cache.keys();
   for (let i = 0; i < keys.length - RUNTIME_MAX; i++) await cache.delete(keys[i]);
 }
@@ -234,6 +261,7 @@ async function download(course, lang, port) {
   if (!entries) throw new Error('unknown');
   const name = courseCacheName(course, lang);
   const cache = await caches.open(name);
+  forgetOwnedCourses();
   const revs = (await readMeta(name)) ?? {};
   // La shell contiene già le risorse comuni: si scaricano solo quelle mancanti.
   const { fetch: todo } = diffEntries(entries, revs);
@@ -277,6 +305,7 @@ self.addEventListener('message', (event) => {
         (async () => {
           const name = courseCacheName(data.course, data.lang);
           await caches.delete(name);
+          forgetOwnedCourses();
           await writeMeta(name, null);
           reply({ type: 'status', ...(await courseState(data.course, data.lang)) });
         })(),

@@ -1,6 +1,7 @@
 import { mkdtempSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
+import { gzipSync } from 'node:zlib';
 import { describe, expect, it } from 'vitest';
 import { buildServiceWorker, extractRefs, publicUrl, resolveRef } from '../../../tools/integrations/pwa.mjs';
 
@@ -13,7 +14,11 @@ interface Built {
 const build = (dist: string) => buildServiceWorker(dist, BASE, silent) as unknown as Promise<Built>;
 const silent = { info: () => undefined, warn: () => undefined };
 
-function makeDist(files: Record<string, string>): string {
+/** Frammento di Pagefind come lo scrive Pagefind: gzip di `pagefind_dcd` + JSON. */
+const fragment = (url: string) =>
+  gzipSync(Buffer.from(`pagefind_dcd${JSON.stringify({ url, content: 'x' })}`));
+
+function makeDist(files: Record<string, string | Buffer>): string {
   const dir = mkdtempSync(join(tmpdir(), 'sh-dist-'));
   for (const [rel, content] of Object.entries(files)) {
     mkdirSync(dirname(join(dir, rel)), { recursive: true });
@@ -66,6 +71,7 @@ describe('buildServiceWorker', () => {
       '404.html': page(''),
       'it/index.html': page('<script type="module" src="/study-hub/_astro/site.js"></script>'),
       'it/stile/index.html': page('<script src="/study-hub/_astro/stile.js"></script>'),
+      'en/stile/figure/index.html': page('<script src="/study-hub/_astro/stile.js"></script>'),
       'it/anno-1/fisica-1/index.html': page(
         '<astro-island component-url="/study-hub/_astro/Offline.js"></astro-island>',
       ),
@@ -84,6 +90,15 @@ describe('buildServiceWorker', () => {
       '_astro/katex.js': 'k',
       '_astro/stile.js': 's',
       'pagefind/it/pagefind.js': 'pf',
+      'pagefind/it/pagefind-entry.json': '{}',
+      'pagefind/it/wasm.it.pagefind': 'w',
+      'pagefind/it/index/it_1.pf_index': 'i',
+      'pagefind/it/filter/corso_1.pf_filter': 'f',
+      'pagefind/it/fragment/a.pf_fragment': fragment('/it/anno-1/fisica-1/teoria/#x'),
+      'pagefind/it/fragment/b.pf_fragment': fragment('/it/anno-2/fisica-2/teoria/'),
+      'pagefind/it/fragment/c.pf_fragment': fragment('/it/chi-sono/'),
+      'pagefind/en/pagefind.js': 'pf-en',
+      'pagefind/en/fragment/d.pf_fragment': fragment('/en/anno-1/fisica-1/'),
       'site.webmanifest': '{}',
       'favicon.svg': '<svg/>',
       'sitemap-0.xml': '<x/>',
@@ -99,7 +114,6 @@ describe('buildServiceWorker', () => {
         '/study-hub/_astro/serif-latin.woff2',
         '/study-hub/_astro/site.js',
         '/study-hub/_astro/shared.js',
-        '/study-hub/pagefind/it/pagefind.js',
         '/study-hub/site.webmanifest',
         '/study-hub/favicon.svg',
       ]),
@@ -107,11 +121,14 @@ describe('buildServiceWorker', () => {
     // Esclusi: pagina di stile, sottoinsiemi di font inutili, woff, moduli caricati a richiesta, sitemap.
     for (const u of [
       'it/stile/',
+      'en/stile/',
       '_astro/stile.js',
       'serif-cyrillic',
       'serif-latin.woff"',
       'SearchDialog',
       'sitemap',
+      // l'indice di ricerca va con i corsi, non nella shell
+      'pagefind/',
     ])
       expect(JSON.stringify(shell)).not.toContain(u);
     const it = manifest.courses['fisica-1']!.it!.map((e) => e[0]);
@@ -122,9 +139,21 @@ describe('buildServiceWorker', () => {
       // dati delle isole divisi: indice e un file per argomento, tutti nel corso offline
       '/study-hub/it/anno-1/fisica-1/dati/indice.json',
       '/study-hub/it/anno-1/fisica-1/dati/moto-armonico.json',
+      // indice di ricerca della lingua: file comuni, frammenti del corso e delle pagine globali
+      '/study-hub/pagefind/it/filter/corso_1.pf_filter',
+      '/study-hub/pagefind/it/fragment/a.pf_fragment',
+      '/study-hub/pagefind/it/fragment/c.pf_fragment',
+      '/study-hub/pagefind/it/index/it_1.pf_index',
+      '/study-hub/pagefind/it/pagefind-entry.json',
+      '/study-hub/pagefind/it/pagefind.js',
+      '/study-hub/pagefind/it/wasm.it.pagefind',
     ]);
-    expect(manifest.courses['fisica-1']!.en!.map((e) => e[0])).toEqual(['/study-hub/en/anno-1/fisica-1/']);
-    expect(summary.courses['fisica-1']!.it!.files).toBe(5);
+    expect(manifest.courses['fisica-1']!.en!.map((e) => e[0]).sort()).toEqual([
+      '/study-hub/en/anno-1/fisica-1/',
+      '/study-hub/pagefind/en/fragment/d.pf_fragment',
+      '/study-hub/pagefind/en/pagefind.js',
+    ]);
+    expect(summary.courses['fisica-1']!.it!.files).toBe(12);
     const sw = readFileSync(join(dist, 'sw.js'), 'utf8');
     expect(sw).toContain(`const MANIFEST = {"version":"${manifest.version}"`);
     expect(sw).not.toMatch(/^export /m);

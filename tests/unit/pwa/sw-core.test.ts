@@ -1,12 +1,17 @@
 import { describe, expect, it } from 'vitest';
 import {
+  RUNTIME_TRIM_EVERY,
+  SHELL_CACHE,
+  cachesFor,
   courseCacheName,
+  courseOfPath,
   courseStatus,
   diffEntries,
   langOf,
   lookupCandidates,
   parseCourseCache,
   pool,
+  shouldTrimRuntime,
   stagingCacheName,
 } from '../../../src/pwa/sw-core.js';
 
@@ -83,5 +88,36 @@ describe('sw-core', () => {
     expect(peak).toBe(3);
     expect(done.sort()).toEqual([1, 2, 3, 4, 5, 6, 7]);
     await expect(pool([], 3, async () => undefined)).resolves.toBeUndefined();
+  });
+
+  it('sfoltisce la cache di passaggio alla prima scrittura e poi una volta ogni N', () => {
+    const trims = Array.from({ length: 3 * RUNTIME_TRIM_EVERY }, (_, i) => i + 1).filter(shouldTrimRuntime);
+    expect(trims).toEqual([1, RUNTIME_TRIM_EVERY + 1, 2 * RUNTIME_TRIM_EVERY + 1]);
+  });
+
+  it('cerca ogni percorso solo nelle cache che possono contenerlo', () => {
+    const B = '/study-hub/';
+    const runtime = 'sh-runtime:v1';
+    const f1 = courseCacheName('fisica-1', 'it');
+    const tc = courseCacheName('teoria-circuiti', 'en');
+    expect(courseOfPath(`${B}it/anno-1/fisica-1/teoria/`, B)).toEqual({ course: 'fisica-1', lang: 'it' });
+    expect(courseOfPath(`${B}it/anno-1/fisica-1/dati/indice.json`, B)).toEqual({
+      course: 'fisica-1',
+      lang: 'it',
+    });
+    expect(courseOfPath(`${B}it/chi-sono/`, B)).toBeNull();
+    expect(courseOfPath('/altro/it/anno-1/fisica-1/', B)).toBeNull();
+    // Pagina di un corso scaricato: la sua cache, poi quella di passaggio.
+    expect(cachesFor(`${B}it/anno-1/fisica-1/teoria/`, B, [f1, tc], runtime)).toEqual([f1, runtime]);
+    // Corso non scaricato (o scaricato nell'altra lingua): solo la cache di passaggio.
+    expect(cachesFor(`${B}en/anno-1/fisica-1/teoria/`, B, [f1, tc], runtime)).toEqual([runtime]);
+    // Risorse comuni (pagine globali, indice di ricerca): shell, corsi scaricati, passaggio.
+    expect(cachesFor(`${B}pagefind/it/pagefind.js`, B, [f1, tc], runtime)).toEqual([
+      SHELL_CACHE,
+      f1,
+      tc,
+      runtime,
+    ]);
+    expect(cachesFor(`${B}it/`, B, [], runtime)).toEqual([SHELL_CACHE, runtime]);
   });
 });

@@ -73,7 +73,8 @@ function SearchUI({ config, dialog }: { config: SearchConfig; dialog: HTMLDialog
   const [allLangs, setAllLangs] = useState(false);
   const [hits, setHits] = useState<Hit[]>([]);
   const [shown, setShown] = useState(PAGE);
-  const [data, setData] = useState<Record<string, PagefindResultData>>({});
+  // null = dettagli non disponibili (offline, frammento di un corso non scaricato): il risultato non si mostra.
+  const [data, setData] = useState<Record<string, PagefindResultData | null>>({});
   const [state, setState] = useState<'idle' | 'loading' | 'ready' | 'error'>('idle');
   const input = useRef<HTMLInputElement>(null);
   const list = useRef<HTMLOListElement>(null);
@@ -107,7 +108,9 @@ function SearchUI({ config, dialog }: { config: SearchConfig; dialog: HTMLDialog
       if (types.length) filters.tipo = { any: types };
       try {
         const langs = allLangs ? [lang, otherLang] : [lang];
-        const all = await Promise.all(
+        // Offline l'indice di una lingua può mancare (nessun corso scaricato in quella lingua):
+        // si usano le lingue disponibili, errore solo se non ne risponde nessuna.
+        const settled = await Promise.allSettled(
           langs.map(async (l) => {
             const pf = await loadPagefind(base, l);
             const r = await pf.search(q, { filters });
@@ -120,6 +123,8 @@ function SearchUI({ config, dialog }: { config: SearchConfig; dialog: HTMLDialog
           }),
         );
         if (my !== seq.current) return;
+        const all = settled.flatMap((r) => (r.status === 'fulfilled' ? [r.value] : []));
+        if (all.length === 0) throw new Error('ricerca non disponibile');
         setHits(all.flat().sort((a, b) => b.score - a.score));
         setShown(PAGE);
         setState('ready');
@@ -130,18 +135,31 @@ function SearchUI({ config, dialog }: { config: SearchConfig; dialog: HTMLDialog
     return () => clearTimeout(timer);
   }, [query, course, types.join(','), allLangs]);
 
-  // Carica i dettagli solo dei risultati visibili.
+  // Risultati della pagina corrente: i primi `shown` con dettagli disponibili (o in arrivo).
+  const page = useMemo(() => {
+    const out: Hit[] = [];
+    let n = 0;
+    for (const h of hits) {
+      if (n >= shown) break;
+      out.push(h);
+      if (data[h.key] !== null) n++;
+    }
+    return out;
+  }, [hits, shown, data]);
+
+  // Carica i dettagli solo dei risultati visibili (le chiavi restano valide tra una ricerca e l'altra).
+  const loading = useRef(new Set<string>());
   useEffect(() => {
-    let alive = true;
-    const missing = hits.slice(0, shown).filter((h) => !data[h.key]);
+    const missing = page.filter((h) => !(h.key in data) && !loading.current.has(h.key));
     if (missing.length === 0) return;
-    Promise.all(missing.map(async (h) => [h.key, await h.result.data()] as const))
-      .then((pairs) => alive && setData((d) => ({ ...d, ...Object.fromEntries(pairs) })))
-      .catch(() => undefined);
-    return () => {
-      alive = false;
-    };
-  }, [hits, shown]);
+    for (const h of missing) loading.current.add(h.key);
+    Promise.all(missing.map(async (h) => [h.key, await h.result.data().catch(() => null)] as const)).then(
+      (pairs) => {
+        for (const [k] of pairs) loading.current.delete(k);
+        setData((d) => ({ ...d, ...Object.fromEntries(pairs) }));
+      },
+    );
+  }, [page]);
 
   const toggleType = (k: string) =>
     setTypes((cur) => (cur.includes(k) ? cur.filter((x) => x !== k) : [...cur, k]));
@@ -174,16 +192,18 @@ function SearchUI({ config, dialog }: { config: SearchConfig; dialog: HTMLDialog
     else all[Math.max(0, Math.min(all.length - 1, i + (e.key === 'ArrowDown' ? 1 : -1)))]?.focus();
   };
 
-  const visible = hits.slice(0, shown);
+  const visible = page.filter((h) => data[h.key] !== null);
+  const unavailable = hits.reduce((n, h) => n + (data[h.key] === null ? 1 : 0), 0);
+  const found = hits.length - unavailable;
   const statusText =
     state === 'loading'
       ? T.loading
       : state === 'error'
         ? T.unavailable
         : state === 'ready'
-          ? hits.length === 0
+          ? found === 0
             ? T.none
-            : fmt(hits.length === 1 ? T.one : T.many, { n: hits.length })
+            : fmt(found === 1 ? T.one : T.many, { n: found })
           : '';
 
   return (
@@ -291,10 +311,10 @@ function SearchUI({ config, dialog }: { config: SearchConfig; dialog: HTMLDialog
             })}
           </ol>
         )}
-        {hits.length > shown && (
+        {hits.length > page.length && (
           <p>
             <button type="button" class="btn btn--sm" onClick={() => setShown((n) => n + PAGE)}>
-              {fmt(T.more, { n: Math.min(PAGE, hits.length - shown) })}
+              {fmt(T.more, { n: Math.min(PAGE, hits.length - page.length) })}
             </button>
           </p>
         )}
