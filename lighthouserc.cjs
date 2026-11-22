@@ -48,6 +48,11 @@ module.exports = {
         // Pagina esercizi (motore + ExercisePlayer): rientra nel budget col dizionario ridotto delle isole.
         `${BASE}/it/anno-2/teoria-circuiti/esercizi/circuiti-primo-ordine/`,
         `${BASE}/it/anno-1/fisica-1/teoria/rotolamento-puro/`,
+        // Formulari (100+ formule KaTeX): voci con content-visibility e tracciati SVG condivisi.
+        `${BASE}/it/anno-2/teoria-circuiti/formulario/`,
+        `${BASE}/it/anno-2/fisica-2/formulario/`,
+        `${BASE}/en/anno-1/fisica-1/formulario/`,
+        `${BASE}/it/anno-1/fondamenti-informatica/formulario/`,
         // Sezioni del motore con i dati delle isole fuori dall'HTML (indice + dati/<argomento>.json).
         `${BASE}/it/anno-1/fisica-1/ripasso/`,
         `${BASE}/it/anno-2/teoria-circuiti/esercizi/`,

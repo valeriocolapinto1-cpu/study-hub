@@ -17,6 +17,7 @@ import {
   type CourseData,
 } from '../../../../../lib/course-pages';
 import { localizePath, t, tr, type Lang } from '../../../../../i18n';
+import { renderDisplayMath, shareKatexPaths, STAR_SYMBOL } from '../../../../../lib/katex-sprite';
 
 export const getStaticPaths = coursePaths;
 interface Props {
@@ -34,6 +35,14 @@ const groups = groupTopics(topics, lang)
       .filter((x) => x.formulas.length > 0),
   }))
   .filter((g) => g.items.length > 0);
+// KaTeX reso qui, non in <Formula>, per condividere i tracciati SVG ripetuti (frecce dei
+// vettori, radici…) in un unico sprite per pagina, insieme alla stella dei preferiti.
+const shown = groups.flatMap((g) => g.items.flatMap((x) => x.formulas));
+const shared = shareKatexPaths(
+  shown.map((f) => renderDisplayMath(lang === 'en' && f.latexEn ? f.latexEn : f.latex)),
+  [STAR_SYMBOL],
+);
+const mathOf = new Map(shown.map((f, i) => [f.id, shared.htmls[i]]));
 ---
 
 <CourseLayout lang={lang} course={course} title={t(lang, 'nav.course.formulas')} wide>
@@ -70,6 +79,7 @@ const groups = groupTopics(topics, lang)
     </a>
     <p class="muted formulary-tools__count" aria-live="polite" data-fcount></p>
   </div>
+  <Fragment set:html={shared.sprite} />
   <div class="formulary">
     {groups.map((g, gi) => (
       <section class="formulary__group" data-group={String(gi)} aria-labelledby={`fg-${gi}`}>
@@ -88,6 +98,7 @@ const groups = groupTopics(topics, lang)
                   formula={f}
                   topicTitle={tr(topic.title, lang)}
                   theoryHref={localizePath(sectionPath(course, 'teoria', topic.id), lang)}
+                  html={mathOf.get(f.id)}
                 />
               ))}
             </div>
@@ -149,7 +160,8 @@ const groups = groupTopics(topics, lang)
     };
     for (const b of document.querySelectorAll<HTMLButtonElement>('[data-bookmark]')) {
       const id = b.dataset.bookmark!;
-      b.setAttribute('aria-pressed', String(marks.has(id)));
+      // aria-pressed="false" è già nell'HTML: si tocca il DOM solo per i preferiti.
+      if (marks.has(id)) b.setAttribute('aria-pressed', 'true');
       b.addEventListener('click', () => {
         if (marks.has(id)) marks.delete(id);
         else marks.add(id);
@@ -162,6 +174,9 @@ const groups = groupTopics(topics, lang)
     g.addEventListener('change', apply);
     star.addEventListener('change', apply);
     void fmt;
-    apply();
+    // Senza filtri (caso normale) non si scorre il DOM di tutte le voci: basta il conteggio.
+    // Con valori ripristinati dal browser (ritorno alla pagina) si applicano i filtri.
+    if (q.value || g.value || star.checked) apply();
+    else count.textContent = `${entries.length} / ${entries.length}`;
   }
 </script>

@@ -4,7 +4,7 @@
  * Fonte, in ordine: prop `tex`, contenuto (es. $$…$$ in MDX), collezione `formulas`
  * (`<course>/<id>`, con course dedotto dall'URL se non indicato).
  */
-import katex from 'katex';
+import { renderDisplayMath } from '../lib/katex-sprite';
 import { getEntry } from 'astro:content';
 import { getLangFromUrl, stripLang, t, tr, type Lang } from '../i18n';
 
@@ -16,12 +16,14 @@ interface Props {
   caption?: string;
   course?: string;
   lang?: Lang;
+  /** KaTeX già reso dalla pagina (formulario: tracciati SVG condivisi, vedi lib/katex-sprite). */
+  html?: string;
 }
 const { id, tex, num } = Astro.props;
 const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
 let caption = Astro.props.caption;
 let latex = tex;
-let html = Astro.slots.has('default') ? await Astro.slots.render('default') : '';
+let html = Astro.props.html ?? (Astro.slots.has('default') ? await Astro.slots.render('default') : '');
 
 if (!latex && !html) {
   const course = Astro.props.course ?? stripLang(Astro.url.pathname).split('/')[1];
@@ -30,8 +32,7 @@ if (!latex && !html) {
   latex = lang === 'en' && entry.data.latexEn ? entry.data.latexEn : entry.data.latex;
   caption ??= tr(entry.data.label, lang);
 }
-if (latex)
-  html = katex.renderToString(latex, { displayMode: true, output: 'htmlAndMathml', throwOnError: true });
+if (latex && !Astro.props.html) html = renderDisplayMath(latex);
 const anchor = `f-${id}`;
 ---
 

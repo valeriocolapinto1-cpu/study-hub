@@ -1581,6 +1581,13 @@ progress.progress__bar::-moz-progress-bar {
 }
 
 /* =========================== Formulario =========================== */
+/* Sprite SVG della pagina (tracciati KaTeX condivisi, stella): solo definizioni. */
+.sh-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
 .formulary-tools {
   display: flex;
   flex-wrap: wrap;
@@ -1601,11 +1608,23 @@ progress.progress__bar::-moz-progress-bar {
 .formulary__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
-  gap: var(--space-s) var(--space-l);
-  margin-top: var(--space-2xs);
+  gap: max(0px, var(--space-s) - 8px) var(--space-l);
+  margin-top: max(0px, var(--space-2xs) - 4px);
 }
 .formula-entry {
   min-width: 0;
+  /* Formulari con 100+ formule KaTeX (decine di migliaia di nodi): le voci fuori schermo
+     non si impaginano finché non servono. Per voce, non per argomento, così ogni misura
+     forzata (formule che scorrono, src/scripts/site.ts) impagina una sola voce; `auto`
+     ricorda poi l'altezza reale. */
+  content-visibility: auto;
+  contain-intrinsic-block-size: auto 13rem;
+  /* Il contenimento del disegno taglia ciò che esce dalla voce: 4px di margine interno
+     tengono visibile l'anello di focus (2px + 2px di distanza) di pulsanti e link.
+     In orizzontale li compensa il margine negativo, in verticale lo spazio tra le righe
+     (.formulary__grid); un margine negativo in basso avvicinerebbe i link che seguono. */
+  padding: 4px;
+  margin-inline: -4px;
 }
 .formula-entry__head {
   display: flex;
@@ -1621,7 +1640,12 @@ progress.progress__bar::-moz-progress-bar {
   margin: 0;
   font: 600 var(--step-0) / 1.3 var(--font-serif);
 }
-.formula-entry__star[aria-pressed='true'] path {
+.formula-entry__star svg {
+  fill: none;
+  stroke: currentColor;
+}
+/* La stella è un <use> dello sprite della pagina: colori ereditati dall'<svg>. */
+.formula-entry__star[aria-pressed='true'] svg {
   fill: var(--accent);
   stroke: var(--accent-strong);
 }

@@ -12,8 +12,10 @@ interface Props {
   /** Mostra il pulsante segnalibro (non in stampa). */
   bookmark?: boolean;
   compact?: boolean;
+  /** KaTeX già reso dalla pagina (vedi lib/katex-sprite). */
+  html?: string | undefined;
 }
-const { lang, formula: f, theoryHref, topicTitle, bookmark = true, compact = false } = Astro.props;
+const { lang, formula: f, theoryHref, topicTitle, bookmark = true, compact = false, html } = Astro.props;
 const label = tr(f.label, lang);
 const search = [label, f.symbols && tr(f.symbols, lang), f.usage && tr(f.usage, lang), topicTitle, f.id]
   .filter(Boolean)
@@ -39,14 +41,9 @@ const search = [label, f.symbols && tr(f.symbols, lang), f.usage && tr(f.usage, 
           aria-pressed="false"
           aria-label={t(lang, 'formulary.bookmark', { name: label })}
         >
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
-            <path
-              d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.6"
-              stroke-linejoin="round"
-            ></path>
+          {/* Stella dallo sprite della pagina (simbolo #i-star, vedi lib/katex-sprite). */}
+          <svg width="20" height="20" aria-hidden="true" focusable="false">
+            <use href="#i-star" />
           </svg>
         </button>
       )}
@@ -54,7 +51,7 @@ const search = [label, f.symbols && tr(f.symbols, lang), f.usage && tr(f.usage, 
       <span class="sh-note-slot no-print" data-note-slot></span>
     </span>
   </div>
-  <Formula id={f.id} tex={lang === 'en' && f.latexEn ? f.latexEn : f.latex} />
+  <Formula id={f.id} tex={lang === 'en' && f.latexEn ? f.latexEn : f.latex} html={html} />
   {!compact && (
     <dl class="formula-entry__meta">
       {f.symbols && (
