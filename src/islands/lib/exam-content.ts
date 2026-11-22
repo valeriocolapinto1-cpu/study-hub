@@ -3,7 +3,7 @@ import type { AnswerItemData, ChoiceData, CourseIndex, StepData } from '../../en
 import type { Exam, ExamQuestion, ResolvedQuestion } from '../../engine/exam';
 import { choiceOrder, deriveSeed } from '../../engine/random';
 import type { Lang } from '../../config/site';
-import { generatedContent, staticContent } from '../ExercisePlayer';
+import { generatedContent, staticContent } from './exercise-content';
 import { loadCard, loadExercise } from './course-data-client';
 
 export interface QuestionContent {

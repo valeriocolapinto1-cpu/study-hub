@@ -9,15 +9,13 @@
  */
 import type { ComponentChildren } from 'preact';
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
-import type { AnswerItemData, ChoiceData, ExerciseData, StepData, TopicData } from '../engine/course-data';
+import type { ExerciseData, TopicData } from '../engine/course-data';
 import { answerHelpKey } from '../engine/course-data';
 import { feedbackText, gradeAnswers, gradeChoice, type MultiResult } from '../engine/grading';
 import { toAnswerSpec } from '../engine/exam';
 import { exerciseStatus, loadProgress, saveAttempt, type ProgressState } from '../engine/progress';
-import { formatComplex, formatNumber, parseComplex } from '../engine/units';
 import { choiceOrder, deriveSeed, randomSeed } from '../engine/random';
-import { renderRichClient } from './lib/rich-client';
-import { plainText } from '../engine/rich';
+import { formatExpected, generatedContent, staticContent, type Content } from './lib/exercise-content';
 import { fetchJson, useStored } from './lib/hooks';
 import { t, type Lang } from './lib/i18n';
 import './islands.css';
@@ -39,81 +37,6 @@ export interface ExercisePlayerProps {
   figure?: ComponentChildren;
   /** Slot `c<i>` (testo della scelta i) e `l<i>` (etichetta del campo i), come sopra. */
   [slot: `c${number}` | `l${number}`]: ComponentChildren;
-}
-
-interface Content {
-  statementHtml: string;
-  figureSvg?: string | undefined;
-  steps: StepData[];
-  answer: AnswerItemData[];
-  choices?: ChoiceData[] | undefined;
-}
-
-export function staticContent(ex: ExerciseData): Content {
-  return {
-    statementHtml: ex.statementHtml ?? '',
-    figureSvg: ex.figureSvg,
-    steps: ex.steps,
-    answer: ex.answer,
-    choices: ex.choices,
-  };
-}
-
-/** Esegue un generatore nel browser e rende i testi (KaTeX lazy). */
-export async function generatedContent(
-  courseId: string,
-  generator: string,
-  seed: number,
-  lang: Lang,
-): Promise<Content> {
-  const { loadCourseGenerators, runGenerator } = await import('../engine/generators/index');
-  await loadCourseGenerators(courseId);
-  const g = runGenerator(generator, seed, lang);
-  const [statementHtml, steps, choices, answer] = await Promise.all([
-    renderRichClient(g.statement),
-    Promise.all(
-      g.steps.map(async (s) => ({
-        titleHtml: await renderRichClient(s.title, { inlineOnly: true }),
-        bodyHtml: await renderRichClient(s.body),
-      })),
-    ),
-    g.choices
-      ? Promise.all(
-          g.choices.map(async (c) => ({
-            html: await renderRichClient(c.text, { inlineOnly: true }),
-            label: plainText(c.text),
-            correct: c.correct,
-            ...(c.explanation ? { explanationHtml: await renderRichClient(c.explanation) } : {}),
-          })),
-        )
-      : Promise.resolve(undefined),
-    Promise.all(
-      g.answer.map(async (a) => ({
-        ...a,
-        label: plainText(a.label),
-        labelHtml: await renderRichClient(a.label, { inlineOnly: true }),
-      })),
-    ),
-  ]);
-  // figure da netlist o dal kit delle figure: il codice si carica solo quando un generatore lo usa
-  let figureSvg = g.figure?.svg;
-  const idPrefix = `fig-${generator.replace(/\W/g, '-')}-${seed}`;
-  if (!figureSvg && g.figure?.netlist) {
-    const { renderSchematic } = await import('../sim/circuits/schematic');
-    figureSvg = renderSchematic(g.figure.netlist, { lang, idPrefix }).svg;
-  } else if (!figureSvg && g.figure?.diagram) {
-    const { renderDiagramAsync } = await import('../figures/lazy');
-    figureSvg = (await renderDiagramAsync(g.figure.diagram.type, g.figure.diagram.params, { lang, idPrefix }))
-      .svg;
-  }
-  return { statementHtml, figureSvg, steps, answer, choices };
-}
-
-/** Valore atteso leggibile (per il feedback dopo la soluzione). */
-export function formatExpected(a: AnswerItemData, lang: Lang): string {
-  if (typeof a.value === 'number') return `${formatNumber(a.value, { lang })}${a.unit ? ` ${a.unit}` : ''}`;
-  const z = parseComplex(a.value);
-  return z ? `${formatComplex(z, { lang })}${a.unit ? ` ${a.unit}` : ''}` : a.value;
 }
 
 const STATUS_CLASS: Record<string, string> = {
