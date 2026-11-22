@@ -77,7 +77,7 @@ test.describe('telefono (390 px)', () => {
     await expect(page.locator('.course-nav')).toHaveCount(1);
     // su telefono l'indice si apre come menu dallo stesso elemento
     await expect(page.locator('.topic-nav')).toBeHidden();
-    await page.locator('[data-drawer-open]').first().click();
+    await page.locator('.course-bar__toggle').first().click();
     await expect(page.locator('.topic-nav')).toBeVisible();
     await expect(page.locator('.topic-nav a[aria-current="page"]')).toBeVisible();
     await page.keyboard.press('Escape');
@@ -90,5 +90,5 @@ test('teoria su desktop: indice degli argomenti nella barra laterale', async ({ 
   await page.goto(`${BASE}it/anno-2/teoria-circuiti/teoria/teorema-di-thevenin/`);
   await expect(page.locator('.topic-nav')).toHaveCount(1);
   await expect(page.locator('.topic-nav')).toBeVisible();
-  await expect(page.locator('[data-drawer-open]')).toBeHidden();
+  await expect(page.locator('.course-bar__toggle')).toBeHidden();
 });

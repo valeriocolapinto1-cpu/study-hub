@@ -85,9 +85,7 @@ document.addEventListener('keydown', (e) => {
     const entry = {
       href: location.pathname,
       title: bar.dataset.studyPage,
-      course,
       courseTitle: bar.dataset.studyCourse,
-      at: Date.now(),
     };
     write(course, 'lastPage', entry);
     write(GLOBAL_SCOPE, 'lastStudy', entry);
@@ -96,31 +94,18 @@ document.addEventListener('keydown', (e) => {
 
 // ---- Indice del corso: un solo elemento (`popover`), barra laterale da 1024 px e menu sotto.
 // Il popover nativo gestisce apertura, Esc, clic fuori e aria-expanded; qui solo la voce corrente
-// in vista all'apertura e un ripiego per i browser senza Popover API (attributo `data-open`).
-for (const btn of document.querySelectorAll<HTMLButtonElement>('[data-drawer-open]')) {
-  const side = document.getElementById(btn.dataset.drawerOpen ?? '');
-  if (!side) continue;
-  const showCurrent = () =>
-    side.querySelector('.topic-nav [aria-current]')?.scrollIntoView({ block: 'center' });
-  if ('popover' in HTMLElement.prototype) {
+// in vista all'apertura e, senza Popover API, l'attributo `data-open` commutato dai due pulsanti.
+// (Script globale: il budget JS di 50 KB delle pagine più pesanti ha pochi byte di margine.)
+{
+  const side = document.getElementById('indice-corso');
+  if (side && 'popover' in HTMLElement.prototype)
     side.addEventListener('toggle', (e) => {
-      if ((e as ToggleEvent).newState === 'open') showCurrent();
+      if ((e as ToggleEvent).newState === 'open')
+        side.querySelector('.topic-nav [aria-current]')?.scrollIntoView({ block: 'center' });
     });
-    globalThis.matchMedia?.('(min-width: 64em)').addEventListener('change', (e) => {
-      if (e.matches && side.matches(':popover-open')) side.hidePopover();
-    });
-  } else {
-    const set = (open: boolean) => {
-      side.toggleAttribute('data-open', open);
-      btn.setAttribute('aria-expanded', String(open));
-      if (open) showCurrent();
-    };
-    btn.setAttribute('aria-expanded', 'false');
-    btn.addEventListener('click', () => set(!side.hasAttribute('data-open')));
-    for (const close of side.querySelectorAll('[popovertarget]'))
-      close.addEventListener('click', () => set(false));
-    document.addEventListener('keydown', (e) => e.key === 'Escape' && set(false));
-  }
+  else if (side)
+    for (const b of document.querySelectorAll('[popovertarget]'))
+      b.addEventListener('click', () => side.toggleAttribute('data-open'));
 }
 
 // ---- Formule in display più larghe della colonna: scorrono in orizzontale, quindi
