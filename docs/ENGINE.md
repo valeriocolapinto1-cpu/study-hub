@@ -120,11 +120,15 @@ pagina è `hashString(id)` (SSR e client coincidono); "Nuova variante" usa `rand
 | `exportImport.ts` | `buildExport` (schema `{format:'study-hub', version:1, data}`), `validateExport`, `applyImport` (`merge` area per area o `replace`), `summarize` |
 | `qr.ts` | `compressText` (deflate + base64url), frame `SH1:i/n:crc:…` (`splitFrames`, `FrameCollector`), `encodeForQr` (null oltre 24 QR → file), `decodePasted`, `matrixToSvg` |
 | `rich.ts` | `renderRich` (Markdown minimo + matematica iniettata), `plainText` |
-| `storage.ts` | (PR1) + `readAll`, `clearScope`, `usageBytes`, `isStorageAvailable`; l'evento `sh:storage` con scope `*` notifica tutti (dopo un'importazione) |
+| `storage.ts` | (PR1) + `readAll`, `clearScope`, `usageBytes`, `isStorageAvailable`; l'evento `sh:storage` con scope `*` notifica tutti (dopo un'importazione); `sh:storage-error` quando una scrittura fallisce; `persist()` alla prima scrittura riuscita; `markExported` |
+| `backup.ts` | promemoria di backup (area `global:backup`, resta sul dispositivo): `backupDue`, `snoozeBackup`, `loadBackupState`, `hasUserData` |
 | `migrate.ts` | (PR1) + `registerMigration(m)` per aggiungere voci da `src/courses/<id>/migrations.ts`, `jsonTransform` |
 
 Aree di storage: per corso `progress`, `srs`, `exam`, `notes`, `settings` (`dailyMinutes`); globali
-`examDates` (`{ <courseId>: 'AAAA-MM-GG' }`), `settings` (`newPerDay`), `theme`, `lang`, `migrations`.
+`examDates` (`{ <courseId>: 'AAAA-MM-GG' }`), `settings` (`newPerDay`), `theme`, `lang`, `migrations`,
+`backup` (`{ lastExport?, snoozeUntil? }`). Ogni lettura di `progress`, `srs`, `exam`, `notes` passa dal `sanitize*`
+dell'area (`load*`, e `update` nei `save*`): un valore corrotto diventa lo stato vuoto o perde solo le voci malformate;
+gli esiti d'esame incompleti restano con valori neutri (come quelli migrati), così nessuno viene perso.
 
 ## Dati per le isole (src/lib/course-data.ts)
 
