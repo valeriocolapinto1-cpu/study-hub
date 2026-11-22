@@ -2,6 +2,7 @@
 /** Metadati comuni: titolo, descrizione, canonical, hreflang, Open Graph, tema. */
 import { DEFAULT_LANG, LANGS, SITE } from '../config/site';
 import { htmlLang, ogLocale, switchLangPath, withBase, type Lang } from '../i18n';
+import { texToPlain } from '../lib/inline-tex';
 // Font del testo precaricato: i titoli grandi nascono già in Geist (niente spostamento al cambio di font, CLS).
 import geistLatin from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
 
@@ -13,7 +14,9 @@ interface Props {
   alternates?: boolean;
   noindex?: boolean;
 }
-const { lang, title, description, alternates = true, noindex = false } = Astro.props;
+const { lang, title, alternates = true, noindex = false } = Astro.props;
+// I sommari possono contenere matematica `$…$`: nei metadati va in testo semplice.
+const description = texToPlain(Astro.props.description);
 const site = Astro.site ?? new URL('http://localhost');
 const canonical = new URL(Astro.url.pathname, site).href;
 const fullTitle = title === SITE.title[lang] ? title : `${title} — ${SITE.shortTitle[lang]}`;

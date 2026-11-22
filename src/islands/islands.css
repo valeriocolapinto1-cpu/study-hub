@@ -345,6 +345,130 @@ textarea.sh-input {
   color: var(--text-muted);
 }
 
+/* Indice degli esercizi: capitoli → argomenti (ancore #t-<argomento>) → righe compatte.
+   Riga: icona dello stato, titolo, e sulla stessa riga del titolo difficoltà (tacche),
+   generato/statico e stato in testo piccolo. Due colonne da 64em. */
+.ex-chapter + .ex-chapter {
+  margin-top: var(--space-l);
+}
+.ex-chapter__title {
+  margin: var(--space-m) 0 0;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border-strong);
+  font: 650 clamp(1.15rem, 1.1rem + 0.3vw, 1.3rem) / 1.25 var(--font-sans);
+  letter-spacing: -0.01em;
+}
+.ex-topic {
+  margin-top: var(--space-s);
+}
+.ex-topic__title {
+  margin: 0;
+  padding: 0.35rem 0 0.2rem;
+  font: 650 1rem / 1.35 var(--font-sans);
+}
+.ex-topic__title a {
+  color: var(--text);
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 0.2em;
+}
+.ex-topic__title a:hover {
+  color: var(--accent-strong);
+}
+.ex-topic__title .sh-muted {
+  font-weight: 400;
+}
+.ex-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+@media (min-width: 64em) {
+  .ex-rows {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-l);
+  }
+}
+.ex-row {
+  display: grid;
+  grid-template-columns: 1.1rem minmax(0, 1fr);
+  column-gap: 0.55rem;
+  align-items: start;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--border);
+  font: 400 0.92rem / 1.45 var(--font-sans);
+}
+.ex-row__icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.12em;
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.ex-row[data-status='risolto'] .ex-row__icon {
+  stroke: var(--success);
+}
+.ex-row[data-status='tentato'] .ex-row__icon {
+  stroke: var(--warning);
+}
+.ex-row__half {
+  fill: var(--warning);
+  stroke: none;
+}
+.ex-row__title {
+  color: var(--text);
+  text-decoration: none;
+}
+.ex-row__title:hover,
+.ex-row__title:focus-visible {
+  color: var(--accent-strong);
+  text-decoration: underline;
+}
+.ex-row__meta {
+  font: 500 0.78rem / 1.45 var(--font-sans);
+  color: var(--text-muted);
+}
+/* I dati della riga seguono il titolo sulla sua ultima riga e vanno a capo solo tra una voce e l'altra. */
+.ex-row__meta > span {
+  white-space: nowrap;
+}
+.ex-row__meta > span + span {
+  margin-left: 0.45rem;
+}
+.ex-diff {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  vertical-align: -0.1em;
+}
+.ex-diff__icon {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+.ex-diff__icon .on {
+  fill: currentColor;
+}
+.ex-diff__icon .off {
+  fill: var(--border-strong);
+}
+.ex-diff--2 {
+  color: var(--text);
+}
+.ex-diff--3 {
+  color: var(--accent-strong);
+}
+.ex-status--risolto {
+  color: var(--success);
+}
+.ex-kind::before,
+.ex-status::before {
+  content: '·';
+  margin-right: 0.45rem;
+}
+
 /* Ripasso */
 /* La carta arriva dopo l'idratazione (e il suo argomento da dati/<argomento>.json): lo spazio
    riservato tiene fermo il resto della pagina (CLS). */
@@ -655,18 +779,28 @@ label.btn:focus-within {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  inline-size: 2.75rem;
-  block-size: 2.75rem;
-  margin-inline-start: var(--space-2xs);
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  margin-inline-start: var(--space-3xs);
+  /* margini negativi: il pulsante in fondo al paragrafo non allarga la riga */
+  margin-block: -0.4rem;
   vertical-align: middle;
   border: 1px solid transparent;
   border-radius: var(--radius-s);
   background: transparent;
   color: var(--text-muted);
   cursor: pointer;
-  opacity: 0.6;
+  /* Discreta mentre si legge: piena al passaggio, al tocco, con il focus o se c'è un appunto. */
+  opacity: 0.4;
+  transition: opacity 0.15s;
+}
+.sh-note-btn svg {
+  inline-size: 1rem;
+  block-size: 1rem;
 }
 .sh-note-anchor:hover .sh-note-btn,
+.sh-note-btn:hover,
+.sh-note-btn:active,
 .sh-note-btn:focus-visible,
 .sh-note-btn.has-note {
   opacity: 1;
@@ -679,18 +813,26 @@ label.btn:focus-within {
    l'ultimo blocco; sta nell'angolo, in uno spazio riservato già nell'HTML statico. */
 :is(section, article, div)[data-note-id]:not(:has([data-note-slot])) {
   position: relative;
-  padding-inline-end: 3rem;
+  padding-inline-end: 2rem;
 }
 .sh-note-btn--corner {
   position: absolute;
-  inset-block-start: 0;
+  inset-block-start: 0.2em;
   inset-inline-end: 0;
   margin: 0;
 }
+/* Blocco che avvolge un solo paragrafo annotabile: la matita del paragrafo basta, quella del
+   blocco (stesso testo) compare solo se ha già un appunto. Niente spazio riservato a destra. */
+div[data-note-id]:has(> p[data-note-id]:only-child):not(:has(> .sh-note-btn.has-note)) {
+  padding-inline-end: 0;
+}
+div[data-note-id]:has(> p[data-note-id]:only-child) > .sh-note-btn--corner:not(.has-note) {
+  display: none;
+}
 .sh-note-slot {
   display: inline-flex;
-  min-inline-size: 2.75rem;
-  min-block-size: 2.75rem;
+  min-inline-size: 1.75rem;
+  min-block-size: 1.75rem;
 }
 .sh-note-preview {
   white-space: pre-wrap;

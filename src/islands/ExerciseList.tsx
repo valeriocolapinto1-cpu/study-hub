@@ -1,5 +1,9 @@
 /** @jsxImportSource preact */
-/** Elenco filtrabile degli esercizi di un corso (argomento, obiettivo, difficoltà, stato, testo). */
+/**
+ * Elenco filtrabile degli esercizi di un corso (argomento, obiettivo, difficoltà, stato, testo).
+ * Righe compatte raggruppate per capitolo e argomento (intestazioni con ancora `#t-<argomento>`,
+ * richiamate dall'indice in cima alla pagina): titolo, difficoltà con icona, generato/statico, stato.
+ */
 import { useMemo, useState } from 'preact/hooks';
 import type { TopicInfo } from '../engine/course-data';
 import { exerciseStatus, loadProgress, type ExerciseStatus, type ProgressState } from '../engine/progress';
@@ -45,6 +49,36 @@ export function unpackItem(s: string): ExerciseSummary {
   };
 }
 
+/** Stato: spunta (risolto), mezzo cerchio (tentato), cerchio vuoto (da fare). Il testo è accanto. */
+function StatusIcon({ status }: { status: ExerciseStatus }) {
+  return (
+    <svg class="ex-row__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <circle cx="12" cy="12" r="8.5" />
+      {status === 'risolto' && <path d="m8.2 12.3 2.6 2.6 5-5.4" />}
+      {status === 'tentato' && <path d="M12 3.5a8.5 8.5 0 0 1 0 17Z" class="ex-row__half" />}
+    </svg>
+  );
+}
+
+/** Difficoltà: tre tacche crescenti, piene fino al livello. */
+function DifficultyIcon({ level }: { level: 1 | 2 | 3 }) {
+  return (
+    <svg class="ex-diff__icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      {[0, 1, 2].map((i) => (
+        <rect
+          key={i}
+          x={1 + i * 5}
+          y={10 - i * 3.5}
+          width="3.5"
+          height={5 + i * 3.5}
+          rx="1"
+          class={i < level ? 'on' : 'off'}
+        />
+      ))}
+    </svg>
+  );
+}
+
 const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
 export default function ExerciseList({
@@ -78,6 +112,17 @@ export default function ExerciseList({
     return true;
   });
   const active = !!(topic || objective || difficulty || status || query);
+
+  // Capitoli → argomenti → esercizi, nell'ordine degli argomenti; gruppi vuoti omessi.
+  const groups: { title: string | undefined; topics: { topic: TopicInfo; items: ExerciseSummary[] }[] }[] =
+    [];
+  for (const tp of topics) {
+    const rows = filtered.filter((it) => it.topic === tp.id);
+    if (rows.length === 0) continue;
+    const last = groups.at(-1);
+    if (last && last.title === tp.group) last.topics.push({ topic: tp, items: rows });
+    else groups.push({ title: tp.group, topics: [{ topic: tp, items: rows }] });
+  }
 
   return (
     <section class="sh-list" aria-label={t(lang, 'page.exercises.title')}>
@@ -183,26 +228,48 @@ export default function ExerciseList({
       {filtered.length === 0 ? (
         <p class="sh-muted">{t(lang, 'list.none')}</p>
       ) : (
-        <ul class="sh-items">
-          {filtered.map((it) => {
-            const st = exerciseStatus(progress?.exercises[it.id]);
-            return (
-              <li class="sh-item" key={it.id} data-status={st}>
-                <a class="sh-item__link" href={`${exercisesPath}${it.topic}/#${it.id}`}>
-                  {it.title}
-                </a>
-                <span class="sh-item__meta">
-                  <span>{topicTitle[it.topic]}</span>
-                  <span class={`sh-tag sh-tag--d${it.difficulty}`}>
-                    {t(lang, `engine.difficulty.${it.difficulty}`)}
-                  </span>
-                  {it.generated && <span class="sh-tag">{t(lang, 'engine.generated')}</span>}
-                  <span class={`sh-tag sh-tag--${st}`}>{t(lang, `engine.status.${st}`)}</span>
-                </span>
-              </li>
-            );
-          })}
-        </ul>
+        groups.map((g, gi) => (
+          <section class="ex-chapter" key={gi} aria-labelledby={g.title ? `ex-ch-${gi}` : undefined}>
+            {g.title && (
+              <h2 class="ex-chapter__title" id={`ex-ch-${gi}`}>
+                {g.title}
+              </h2>
+            )}
+            {g.topics.map(({ topic: tp, items: rows }) => (
+              <section class="ex-topic" key={tp.id} id={`t-${tp.id}`} aria-labelledby={`t-${tp.id}-h`}>
+                <h3 class="ex-topic__title" id={`t-${tp.id}-h`}>
+                  <a href={`${exercisesPath}${tp.id}/`}>{tp.title}</a>{' '}
+                  <span class="sh-muted">({rows.length})</span>
+                </h3>
+                <ul class="ex-rows">
+                  {rows.map((it) => {
+                    const st = exerciseStatus(progress?.exercises[it.id]);
+                    return (
+                      <li class="ex-row" key={it.id} data-status={st}>
+                        <StatusIcon status={st} />
+                        <span class="ex-row__body">
+                          <a class="ex-row__title" href={`${exercisesPath}${it.topic}/#${it.id}`}>
+                            {it.title}
+                          </a>{' '}
+                          <span class="ex-row__meta">
+                            <span class={`ex-diff ex-diff--${it.difficulty}`}>
+                              <DifficultyIcon level={it.difficulty} />
+                              {t(lang, `engine.difficulty.${it.difficulty}`)}
+                            </span>
+                            <span class="ex-kind">
+                              {t(lang, it.generated ? 'engine.generated' : 'list.static')}
+                            </span>
+                            <span class={`ex-status ex-status--${st}`}>{t(lang, `engine.status.${st}`)}</span>
+                          </span>
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
+            ))}
+          </section>
+        ))
       )}
     </section>
   );

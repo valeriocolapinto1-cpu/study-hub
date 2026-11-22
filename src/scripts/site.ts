@@ -76,19 +76,51 @@ document.addEventListener('keydown', (e) => {
   openSearch();
 });
 
-// ---- Cassetto dell'indice del corso (mobile): <dialog> modale nativo.
+// ---- Ultima pagina di studio (teoria o esercizi di un argomento): «Riprendi da dove eri» in home
+// e nella panoramica del corso. Solo percorso e titolo, nello storage locale.
+{
+  const bar = document.querySelector<HTMLElement>('[data-study-page]');
+  const course = root.dataset.course;
+  if (bar && course) {
+    const entry = {
+      href: location.pathname,
+      title: bar.dataset.studyPage,
+      course,
+      courseTitle: bar.dataset.studyCourse,
+      at: Date.now(),
+    };
+    write(course, 'lastPage', entry);
+    write(GLOBAL_SCOPE, 'lastStudy', entry);
+  }
+}
+
+// ---- Indice del corso: un solo elemento (`popover`), barra laterale da 1024 px e menu sotto.
+// Il popover nativo gestisce apertura, Esc, clic fuori e aria-expanded; qui solo la voce corrente
+// in vista all'apertura e un ripiego per i browser senza Popover API (attributo `data-open`).
 for (const btn of document.querySelectorAll<HTMLButtonElement>('[data-drawer-open]')) {
-  const dialog = document.getElementById(btn.dataset.drawerOpen ?? '');
-  if (!(dialog instanceof HTMLDialogElement)) continue;
-  btn.addEventListener('click', () => {
-    dialog.showModal();
-    btn.setAttribute('aria-expanded', 'true');
-  });
-  dialog.addEventListener('close', () => btn.setAttribute('aria-expanded', 'false'));
-  // Chiusura con clic sullo sfondo o su un link interno.
-  dialog.addEventListener('click', (e) => {
-    if (e.target === dialog || (e.target instanceof Element && e.target.closest('a'))) dialog.close();
-  });
+  const side = document.getElementById(btn.dataset.drawerOpen ?? '');
+  if (!side) continue;
+  const showCurrent = () =>
+    side.querySelector('.topic-nav [aria-current]')?.scrollIntoView({ block: 'center' });
+  if ('popover' in HTMLElement.prototype) {
+    side.addEventListener('toggle', (e) => {
+      if ((e as ToggleEvent).newState === 'open') showCurrent();
+    });
+    globalThis.matchMedia?.('(min-width: 64em)').addEventListener('change', (e) => {
+      if (e.matches && side.matches(':popover-open')) side.hidePopover();
+    });
+  } else {
+    const set = (open: boolean) => {
+      side.toggleAttribute('data-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      if (open) showCurrent();
+    };
+    btn.setAttribute('aria-expanded', 'false');
+    btn.addEventListener('click', () => set(!side.hasAttribute('data-open')));
+    for (const close of side.querySelectorAll('[popovertarget]'))
+      close.addEventListener('click', () => set(false));
+    document.addEventListener('keydown', (e) => e.key === 'Escape' && set(false));
+  }
 }
 
 // ---- Formule in display più larghe della colonna: scorrono in orizzontale, quindi

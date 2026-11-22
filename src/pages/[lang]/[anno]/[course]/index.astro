@@ -1,11 +1,13 @@
 ---
 /**
- * Panoramica del corso: cos'è, struttura d'esame, date suggerite, come usare il sito, mappa degli argomenti.
+ * Panoramica del corso: azioni principali e stato locale, indice della pagina, cos'è, struttura d'esame,
+ * date suggerite, come usare il sito, mappa degli argomenti (righe compatte, capitoli fissi in alto).
  * Un corso può aggiungere un'introduzione propria in src/courses/<courseId>/Overview.astro (prop `lang`).
  */
 import CourseLayout from '../../../../layouts/CourseLayout.astro';
 import PageHeader from '../../../../components/PageHeader.astro';
-import TopicCard from '../../../../components/TopicCard.astro';
+import Icon, { type IconName } from '../../../../components/Icon.astro';
+import InlineTex from '../../../../components/InlineTex.astro';
 import {
   coursePaths,
   courseTopics,
@@ -14,6 +16,7 @@ import {
   type CourseData,
 } from '../../../../lib/course-pages';
 import { COURSE_SECTIONS } from '../../../../lib/courses';
+import { getCourseIndex } from '../../../../lib/course-data';
 import { localizePath, t, tr, type Lang } from '../../../../i18n';
 
 export const getStaticPaths = coursePaths;
@@ -34,6 +37,41 @@ const fmtDate = (d: string) =>
     new Date(`${d}T12:00:00Z`),
   );
 const total = course.exam.structure.reduce((s, x) => s + (x.points ?? 0), 0);
+const index = await getCourseIndex(course.id, lang);
+const actions: { slug: string; icon: IconName; key: string; meta: string }[] = [
+  {
+    slug: 'teoria',
+    icon: 'book',
+    key: 'nav.course.theory',
+    meta: t(lang, 'home.meta.topics', { n: topics.length }),
+  },
+  {
+    slug: 'esercizi',
+    icon: 'pencil',
+    key: 'nav.course.exercises',
+    meta: t(lang, 'home.meta.exercises', { n: index.exercises.length }),
+  },
+  {
+    slug: 'ripasso',
+    icon: 'cards',
+    key: 'nav.course.review',
+    meta: t(lang, 'home.meta.cards', { n: index.cards.length }),
+  },
+  {
+    slug: 'esame',
+    icon: 'clock',
+    key: 'nav.course.exam',
+    meta: course.exam.durationMin
+      ? t(lang, 'overview.duration', { min: course.exam.durationMin })
+      : t(lang, `overview.format.${course.exam.format}`),
+  },
+];
+const toc = [
+  ...(Intro ? [{ id: 'il-corso', key: 'overview.toc.course' }] : []),
+  { id: 'esame', key: 'overview.exam' },
+  { id: 'come-usare', key: 'overview.howto' },
+  { id: 'mappa', key: 'overview.toc.map' },
+];
 const howto = COURSE_SECTIONS.filter((s) => s.slug).map((s) => ({
   href: localizePath(sectionPath(course, s.slug), lang),
   title: t(lang, s.key),
@@ -41,14 +79,58 @@ const howto = COURSE_SECTIONS.filter((s) => s.slug).map((s) => ({
 }));
 ---
 
-<CourseLayout lang={lang} course={course} topics={topics} topicSection="teoria">
-  <PageHeader
-    eyebrow={t(lang, 'course.yearSemester', { year: course.year, semester: course.semester ?? 1 })}
-    title={tr(course.title, lang)}
-    lede={tr(course.description, lang)}
-  />
-  <div class="prose">
-    {Intro && <Intro lang={lang} />}
+<CourseLayout
+  lang={lang}
+  course={course}
+  topics={topics}
+  topicSection="teoria"
+  eyebrow={t(lang, 'course.yearSemester', { year: course.year, semester: course.semester ?? 1 })}
+>
+  <PageHeader title={tr(course.title, lang)} lede={tr(course.description, lang)} />
+  <nav class="course-actions" aria-label={t(lang, 'overview.actions')}>
+    <ul>
+      {actions.map((a) => (
+        <li>
+          <a href={localizePath(sectionPath(course, a.slug), lang)}>
+            <Icon name={a.icon} />
+            <span class="course-actions__title">{t(lang, a.key)}</span>
+            <span class="course-actions__meta">{a.meta}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+  <p
+    class="course-status"
+    data-course-status={course.id}
+    data-exercises={index.exercises.map((e) => e.id).join(' ')}
+    data-cards={index.cards.map((c) => c.id).join(' ')}
+    data-review={localizePath(sectionPath(course, 'ripasso'), lang)}
+    data-t-due={t(lang, 'overview.status.due')}
+    data-t-resume={t(lang, 'overview.status.resume')}
+  >
+    <span>
+      {t(lang, 'overview.status.solved')} <b data-solved>0</b> / {index.exercises.length}
+    </span>
+    <span>
+      {t(lang, 'overview.status.studied')} <b data-studied>0</b> / {index.cards.length}
+    </span>
+  </p>
+  <nav class="page-toc" aria-label={t(lang, 'overview.toc')}>
+    <ol>
+      {toc.map((x) => (
+        <li>
+          <a href={`#${x.id}`}>{t(lang, x.key)}</a>
+        </li>
+      ))}
+    </ol>
+  </nav>
+  <div class="prose prose--overview">
+    {Intro && (
+      <div id="il-corso" class="anchor-target">
+        <Intro lang={lang} />
+      </div>
+    )}
 
     <h2 id="esame">{t(lang, 'overview.exam')}</h2>
     <p>
@@ -88,7 +170,7 @@ const howto = COURSE_SECTIONS.filter((s) => s.slug).map((s) => ({
     {course.examDates && course.examDates.length > 0 && (
       <>
         <h3>{t(lang, 'overview.dates')}</h3>
-        <ul>
+        <ul class="inline-list">
           {course.examDates.map((d) => (
             <li>
               <time datetime={d}>{fmtDate(d)}</time>
@@ -100,37 +182,78 @@ const howto = COURSE_SECTIONS.filter((s) => s.slug).map((s) => ({
     )}
 
     <h2 id="come-usare">{t(lang, 'overview.howto')}</h2>
-    <dl>
+    <dl class="howto">
       {howto.map((h) => (
-        <>
+        <div>
           <dt>
             <a href={h.href}>{h.title}</a>
           </dt>
           <dd>{h.text}</dd>
-        </>
+        </div>
       ))}
     </dl>
 
     <h2 id="mappa">{t(lang, 'overview.map', { n: topics.length })}</h2>
   </div>
-  {groups.map((g, gi) => (
-    <section class="topic-index__group" aria-labelledby={`m-${gi + 1}`}>
-      {g.title && (
-        <h3 class="topic-index__group-title" id={`m-${gi + 1}`}>
-          {g.title}
-        </h3>
-      )}
-      <ol class="topic-index">
-        {g.items.map((x) => (
-          <TopicCard
-            num={x.order}
-            title={tr(x.title, lang)}
-            href={localizePath(sectionPath(course, 'teoria', x.id), lang)}
-            summary={tr(x.summary, lang)}
-            topicId={x.id}
-          />
-        ))}
-      </ol>
-    </section>
-  ))}
+  <div class="topic-map">
+    {groups.map((g, gi) => (
+      <section class="topic-map__group" aria-labelledby={g.title ? `m-${gi + 1}` : undefined}>
+        {g.title && (
+          <h3 class="topic-map__chapter" id={`m-${gi + 1}`}>
+            {g.title}
+          </h3>
+        )}
+        <ol class="topic-map__list">
+          {g.items.map((x) => (
+            <li data-topic={x.id}>
+              <span class="topic-map__num" aria-hidden="true">
+                {String(x.order).padStart(2, '0')}
+              </span>
+              <p class="topic-map__text">
+                <a class="topic-map__title" href={localizePath(sectionPath(course, 'teoria', x.id), lang)}>
+                  {tr(x.title, lang)}
+                </a>{' '}
+                <span class="topic-map__summary">
+                  <InlineTex text={tr(x.summary, lang)} />
+                </span>
+              </p>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))}
+  </div>
 </CourseLayout>
+
+<script>
+  import { buildQueue } from '../../../../engine/fsrs';
+  import { exerciseStatus, loadProgress, loadSrs } from '../../../../engine/progress';
+  import { read } from '../../../../engine/storage';
+
+  // Stato locale nella panoramica: esercizi risolti, carte studiate e da ripassare, ultima pagina.
+  const el = document.querySelector<HTMLElement>('[data-course-status]');
+  if (el) {
+    const id = el.dataset.courseStatus!;
+    const progress = loadProgress(id);
+    const srs = loadSrs(id);
+    const exercises = new Set((el.dataset.exercises ?? '').split(' '));
+    const cards = (el.dataset.cards ?? '').split(' ').filter((c) => c in srs.cards);
+    const solved = [...exercises].filter((e) => exerciseStatus(progress.exercises[e]) === 'risolto').length;
+    el.querySelector('[data-solved]')!.textContent = String(solved);
+    el.querySelector('[data-studied]')!.textContent = String(cards.length);
+    const due = cards.length ? buildQueue(cards, srs.cards, Date.now(), { newLimit: 0 }).length : 0;
+    if (due > 0) {
+      const a = document.createElement('a');
+      a.href = el.dataset.review!;
+      a.textContent = (el.dataset.tDue ?? '').replace('{n}', String(due));
+      el.append(a);
+    }
+    const last = read<{ href?: string; title?: string } | null>(id, 'lastPage', null);
+    if (last?.href && last.title && last.href.startsWith('/')) {
+      const a = document.createElement('a');
+      a.href = last.href;
+      a.textContent = `${el.dataset.tResume} ${last.title}`;
+      el.append(a);
+    }
+  }
+</script>

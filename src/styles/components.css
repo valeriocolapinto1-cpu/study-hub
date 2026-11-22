@@ -1321,53 +1321,6 @@ progress.progress__bar::-moz-progress-bar {
 .reading {
   max-width: var(--measure);
 }
-.course-drawer-toggle {
-  margin-bottom: var(--space-s);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  min-height: 2.75rem;
-  padding: 0 var(--space-s);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-m);
-  background: var(--surface);
-  color: var(--text);
-  font: 550 var(--step--1) / 1.2 var(--font-sans);
-}
-.course-drawer {
-  position: fixed;
-  inset: 0 auto 0 0;
-  width: min(22rem, 88vw);
-  max-width: none;
-  max-height: none;
-  height: 100dvh;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-right: 1px solid var(--border);
-  background: var(--bg);
-  color: var(--text);
-  box-shadow: var(--shadow-2);
-}
-.course-drawer::backdrop {
-  background: rgb(20 18 14 / 0.45);
-}
-.course-drawer__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-xs) var(--space-s);
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  background: var(--bg);
-}
-.course-drawer__body {
-  padding: var(--space-s);
-  display: grid;
-  gap: var(--space-l);
-}
 @media (min-width: 64em) {
   .course-shell {
     grid-template-columns: 15.5rem minmax(0, 1fr);
@@ -1378,15 +1331,8 @@ progress.progress__bar::-moz-progress-bar {
     display: grid;
     align-content: start;
     gap: var(--space-l);
-    position: sticky;
-    top: 4.75rem;
     max-height: calc(100dvh - 5.5rem);
-    overflow-y: auto;
-    padding-bottom: var(--space-l);
     scrollbar-width: thin;
-  }
-  .course-drawer-toggle {
-    display: none;
   }
 }
 

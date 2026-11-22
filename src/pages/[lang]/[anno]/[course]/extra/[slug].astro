@@ -33,7 +33,13 @@ const mod = find(load(), course.id, extra.slug)!;
 const Body = mod.default;
 ---
 
-<CourseLayout lang={lang} course={course} title={tr(extra.title, lang)} wide={mod.wide ?? false}>
-  <PageHeader eyebrow={tr(course.title, lang)} title={tr(extra.title, lang)} />
+<CourseLayout
+  lang={lang}
+  course={course}
+  title={tr(extra.title, lang)}
+  wide={mod.wide ?? false}
+  eyebrow={tr(course.title, lang)}
+>
+  <PageHeader title={tr(extra.title, lang)} />
   <Body lang={lang} course={course} />
 </CourseLayout>

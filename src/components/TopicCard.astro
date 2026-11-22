@@ -1,4 +1,5 @@
 ---
+import InlineTex from './InlineTex.astro';
 /**
  * Voce dell'indice degli argomenti: numero, titolo in serif, sintesi, metadati
  * e avanzamento sottile. Va usata dentro <ol class="topic-index">.
@@ -27,7 +28,11 @@ const state =
   <h3 class="topic-card__title">
     <a href={href}>{title}</a>
   </h3>
-  {summary && <p class="topic-card__summary">{summary}</p>}
+  {summary && (
+    <p class="topic-card__summary">
+      <InlineTex text={summary} />
+    </p>
+  )}
   <div class="topic-card__foot">
     {meta.length > 0 && (
       <p class="meta-row">

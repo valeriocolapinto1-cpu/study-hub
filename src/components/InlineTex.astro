@@ -1,0 +1,10 @@
+---
+/** Testo breve con matematica `$…$` resa a build-time (sommari, obiettivi). Senza `$` è testo semplice. */
+import { hasTex, texInlineHtml } from '../lib/inline-tex';
+interface Props {
+  text: string;
+}
+const { text } = Astro.props;
+---
+
+{hasTex(text) ? <Fragment set:html={texInlineHtml(text)} /> : text}
