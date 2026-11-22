@@ -48,6 +48,10 @@ module.exports = {
         // Pagina esercizi (motore + ExercisePlayer): rientra nel budget col dizionario ridotto delle isole.
         `${BASE}/it/anno-2/teoria-circuiti/esercizi/circuiti-primo-ordine/`,
         `${BASE}/it/anno-1/fisica-1/teoria/rotolamento-puro/`,
+        // Sezioni del motore con i dati delle isole fuori dall'HTML (indice + dati/<argomento>.json).
+        `${BASE}/it/anno-1/fisica-1/ripasso/`,
+        `${BASE}/it/anno-2/teoria-circuiti/esercizi/`,
+        `${BASE}/it/anno-2/fisica-2/esame/`,
         `${BASE}/en/anno-1/fisica-1/extra/simulazioni/`,
       ],
       numberOfRuns: 3,

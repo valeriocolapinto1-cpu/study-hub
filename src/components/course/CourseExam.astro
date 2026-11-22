@@ -8,7 +8,7 @@
 import 'katex/dist/katex.min.css';
 import ExamRunner from '../../islands/ExamRunner';
 import SectionHeader from './SectionHeader.astro';
-import { courseSummary, getCourse } from '../../lib/course-data';
+import { courseSummary, courseTopics, getCourse } from '../../lib/course-data';
 import { t, type Lang } from '../../i18n';
 
 interface Props {
@@ -17,7 +17,8 @@ interface Props {
 }
 const { lang, courseId } = Astro.props;
 const course = courseSummary(await getCourse(courseId), lang);
+const topics = (await courseTopics(courseId, lang)).map(({ id, title }) => ({ id, title }));
 ---
 
 <SectionHeader title={t(lang, 'page.exam.title')} lead={t(lang, 'page.exam.lead')} />
-<ExamRunner client:load lang={lang} course={course} />
+<ExamRunner client:load lang={lang} course={course} topics={topics} />

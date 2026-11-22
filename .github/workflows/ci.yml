@@ -57,8 +57,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      - name: Contenuti (schema, riferimenti, traduzioni, argomenti legacy, URL assoluti)
+      - name: Contenuti (schema, riferimenti, traduzioni, argomenti legacy, URL assoluti, peso delle pagine)
         run: npx vitest run tests/content
+        env:
+          # html-size.test.ts misura dist/: qui deve esistere
+          REQUIRE_DIST: '1'
       - name: Link interni del sito compilato
         run: node tools/check-links.mjs
       - name: Build delle fixture (corso finto per i test delle isole del motore)

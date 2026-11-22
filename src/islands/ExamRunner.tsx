@@ -36,17 +36,20 @@ import { formatNumber } from '../engine/units';
 import { resolveExam, toResolved, type QuestionContent } from './lib/exam-content';
 import { formatExpected } from './ExercisePlayer';
 import { LoadError, useNow, useRemote } from './lib/hooks';
+import { loadIndex } from './lib/course-data-client';
 import { t, type Lang } from './lib/i18n';
 import './islands.css';
 
 export interface ExamRunnerProps {
   lang: Lang;
   course: CourseSummary;
+  /** Argomenti (id, titolo) per la configurazione, già nell'HTML: l'indice serve solo alla partenza. */
+  topics: Array<{ id: string; title: string }>;
 }
 
 type Phase = 'setup' | 'running' | 'result';
 
-export default function ExamRunner({ lang, course }: ExamRunnerProps) {
+export default function ExamRunner({ lang, course, topics: topicList }: ExamRunnerProps) {
   const remote = useRemote<CourseIndex>([indexUrl(course.paths)]);
   const data = remote.state === 'ready' ? remote.data[0]! : null;
   const [phase, setPhase] = useState<Phase>('setup');
@@ -75,26 +78,32 @@ export default function ExamRunner({ lang, course }: ExamRunnerProps) {
 
   useEffect(() => setExamState(loadExamState(course.id)), [course.id]);
 
-  const topicTitle = useMemo(
-    () => Object.fromEntries((data?.topics ?? []).map((tp) => [tp.id, tp.title])),
-    [data],
-  );
+  const topicTitle = useMemo(() => Object.fromEntries(topicList.map((tp) => [tp.id, tp.title])), [topicList]);
   const objectiveText = useMemo(
     () => Object.fromEntries((data?.topics ?? []).flatMap((tp) => tp.objectives.map((o) => [o.id, o.text]))),
     [data],
   );
 
   const open = async (config: ExamConfig, refs: string[] | undefined, resume?: ExamSession) => {
-    if (!data) return;
     setError(null);
+    setOpening(true);
+    // l'indice si scarica all'apertura della pagina; qui si attende se non è ancora arrivato
+    let ix: CourseIndex;
+    try {
+      ix = await loadIndex(course.paths);
+    } catch {
+      setError(t(lang, 'engine.loadError'));
+      setOpening(false);
+      return;
+    }
     const weakness =
       config.mode === 'mirata'
         ? Object.fromEntries(
             Object.values(
               computeMastery({
-                objectives: data.topics.flatMap((tp) => tp.objectives.map((o) => o.id)),
-                exerciseObjectives: objectivesIndex(data.exercises),
-                cardObjectives: objectivesIndex(data.cards),
+                objectives: ix.topics.flatMap((tp) => tp.objectives.map((o) => o.id)),
+                exerciseObjectives: objectivesIndex(ix.exercises),
+                cardObjectives: objectivesIndex(ix.cards),
                 progress: loadProgress(course.id),
                 srs: loadSrs(course.id),
                 exams: loadExamState(course.id).history,
@@ -110,18 +119,18 @@ export default function ExamRunner({ lang, course }: ExamRunnerProps) {
         ...(course.durationMin ? { durationMin: course.durationMin } : {}),
         examFormat: course.examFormat,
       },
-      data,
+      ix,
       config,
       weakness,
       refs,
     );
     if (e.questions.length === 0) {
       setError(t(lang, 'exam.empty'));
+      setOpening(false);
       return;
     }
-    setOpening(true);
     try {
-      const c = await resolveExam(data, e, lang, t(lang, 'review.back'));
+      const c = await resolveExam(ix, e, lang, t(lang, 'review.back'));
       const s: ExamSession = resume ?? {
         config,
         startedAt: Date.now(),
@@ -213,22 +222,6 @@ export default function ExamRunner({ lang, course }: ExamRunnerProps) {
     if (phase === 'running' && now > 0 && remaining === 0) submit(true);
   }, [remaining, phase, now]);
 
-  if (remote.state === 'loading')
-    return (
-      <p class="sh-muted" aria-busy="true">
-        {t(lang, 'engine.loading')}
-      </p>
-    );
-  if (remote.state === 'error')
-    return (
-      <p class="sh-alert sh-alert--danger" role="alert">
-        {t(lang, 'engine.loadError')}{' '}
-        <button type="button" class="btn" onClick={remote.retry}>
-          {t(lang, 'engine.retry')}
-        </button>
-      </p>
-    );
-
   const printHref = (part: 'prova' | 'soluzioni') =>
     exam
       ? `${course.paths.print}${printQuery({ course: course.id, config: exam.config, part, refs: examRefs(exam) })}`
@@ -305,7 +298,7 @@ export default function ExamRunner({ lang, course }: ExamRunnerProps) {
               <fieldset>
                 <legend>{t(lang, 'exam.topics')}</legend>
                 <div class="sh-checkgrid">
-                  {(data?.topics ?? []).map((tp) => (
+                  {topicList.map((tp) => (
                     <label class="sh-check" key={tp.id}>
                       <input
                         type="checkbox"
@@ -358,6 +351,14 @@ export default function ExamRunner({ lang, course }: ExamRunnerProps) {
           {error && (
             <p class="sh-alert sh-alert--danger" role="alert">
               {error}
+            </p>
+          )}
+          {!error && remote.state === 'error' && (
+            <p class="sh-alert sh-alert--danger" role="alert">
+              {t(lang, 'engine.loadError')}{' '}
+              <button type="button" class="btn" onClick={remote.retry}>
+                {t(lang, 'engine.retry')}
+              </button>
             </p>
           )}
           <div class="sh-actions">
