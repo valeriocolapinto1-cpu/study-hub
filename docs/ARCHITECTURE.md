@@ -36,12 +36,14 @@ src/sim/                        kit simulatori e circuiti (netlist, MNA, schemi 
 src/figures/                    kit delle figure (parametri → SVG, <Diagram>, varianti interattive; docs/FIGURE.md)
 src/courses/<courseId>/         codice specifico: generators/*.ts, sims/*.tsx, extras/*
 src/content/                    content collections (dati)
-src/scripts/site.ts             script globale (tema, lingua, migrazioni)
+src/scripts/site.ts             script globale (tema, lingua, migrazioni, prefetch)
+src/lib/seo.ts, og-image.ts     JSON-LD e anteprime social; src/pages/og/, src/pages/site.webmanifest.ts
 src/pages/index.astro           radice: reindirizza alla lingua
 src/pages/[lang]/…              tutte le pagine (getStaticPaths su it/en)
 src/pages/404.astro             pagina 404 bilingue
 legacy/<courseId>/, legacy/hub/ sorgenti originali (git subtree), esclusi da build, tsc, vitest, prettier
-tools/                          serve-dist.mjs, check-links.mjs, site-base.mjs, legacy-topics/, apps-script/
+tools/                          serve-dist.mjs, check-links.mjs, site-base.mjs, legacy-topics/, apps-script/,
+                                integrations/ (csp, pagefind, pwa), og/fonts/, screenshots.mjs
 tests/unit, tests/content, tests/e2e, tests/fixtures
 ```
 
@@ -53,6 +55,32 @@ tests/unit, tests/content, tests/e2e, tests/fixtures
   `` (Panoramica), `teoria/` (+ `teoria/<topic>/`), `formulario/`, `esercizi/` (+ `esercizi/<topic>/`),
   `ripasso/`, `esame/`, `progressi/`; extra in `extra/<slug>/`.
 - Ogni pagina ha canonical e `hreflang` it-IT, en-US, x-default (`Head.astro`); sitemap da `@astrojs/sitemap` con i18n.
+
+## Intestazione, SEO, sicurezza
+
+- **Anteprime social**: `og:image` 1200×630 (`twitter:card` `summary_large_image`) generate a build-time da
+  `src/pages/og/[lang]/[name].png.ts` → `og/<lingua>/sito.png` e `og/<lingua>/<corso>.png` (`src/lib/og-image.ts`:
+  sharp, fondo SVG con i colori scuri del corso letti da `src/styles/courses/<id>.css`, testi in Geist TTF da
+  `tools/og/fonts/`, OFL). Le pagine di un corso usano l'immagine del corso (prop `course` di `Head`).
+- **Dati strutturati** (`src/lib/seo.ts`, componente `JsonLd`): `WebSite` + `SearchAction` nella home
+  (`?q=…` apre la ricerca già compilata, `src/scripts/search.ts`), `Course` nella panoramica di ogni corso,
+  `BreadcrumbList` dal componente `Breadcrumbs`.
+- **Tema e barra del browser**: lo script inline di `Head.astro` applica il tema salvato prima del disegno e tiene
+  `theme-color` uguale a `--bg` (anche del corso), ricalcolato quando cambia `data-theme`.
+- **iOS**: `apple-mobile-web-app-capable`, barra di stato `black-translucent`, `viewport-fit=cover`. Aree sicure in
+  `tokens.css` (`--safe-top|right|bottom|left`, `--safe-inline`), usate da intestazione, `.container`, piè di
+  pagina, indice del corso (`#indice-corso`), avvisi e ricerca; nel tema chiaro dell'app installata una fascia
+  scura sotto la barra di stato (testo bianco).
+- **Manifest** generato da `src/pages/site.webmanifest.ts`: `id` = URL di avvio, `lang`, scorciatoie (ripasso e
+  corsi), schermate `public/screenshots/` (rigenerabili con `node tools/screenshots.mjs` dopo la build).
+- **Prefetch** dei link interni con il modulo di Astro (`astro/virtual-modules/prefetch.js`, senza View
+  Transitions): caricato alla prima interazione da `site.ts`, poi al passaggio del puntatore (o al tocco senza hover).
+- **Content-Security-Policy** in `<meta>` (Pages non permette intestazioni), aggiunta dopo la build da
+  `tools/integrations/csp.mjs`: `script-src 'self'` + hash SHA-256 di ogni script inline della pagina (tema,
+  runtime delle isole, script piccoli di Vite) + `'wasm-unsafe-eval'` (Pagefind); `style-src 'unsafe-inline'`
+  (attributi `style` di KaTeX e simulatori); Turnstile e Apps Script solo in *Contribuisci*. Assente in
+  `astro dev`. Un nuovo dominio esterno va aggiunto in `csp.mjs` (`PAGE_POLICIES`). Verifiche:
+  `tests/content/head.test.ts` (sorgenti compilati), `tests/e2e/head.spec.ts` (violazioni nel browser).
 
 ## i18n
 
@@ -155,7 +183,8 @@ pagine globali `/<lang>/ripasso/`, `/<lang>/appunti/`, `/<lang>/i-miei-dati/`, `
   `src/pages/search-records.json.ts` (file rimosso dopo l'indicizzazione). Interfaccia propria
   (`src/islands/SearchDialog.tsx`), caricata alla prima apertura da `src/scripts/search.ts`: `/`, Ctrl/⌘+K o il
   pulsante dell'intestazione; filtri corso, tipo, lingua; funziona offline.
-- **PWA** (`tools/integrations/pwa.mjs` → `dist/sw.js` e `dist/offline-summary.json`): un solo service worker
+- **PWA** (`tools/integrations/pwa.mjs` → `dist/sw.js` e `dist/offline-summary.json`; `og/` e `screenshots/`
+  mai in cache): un solo service worker
   (`src/pwa/sw.js` + funzioni pure `src/pwa/sw-core.js`) con il manifest di ogni file (hash e dimensione).
   Shell in precache (pagine globali, 404, radice, icone e le risorse che richiamano, solo import statici e
   font latin woff2; ≤ 200 file e ≤ 1,5 MB, verificato da `tests/content/pwa-shell.test.ts`); ogni corso, per
