@@ -206,10 +206,10 @@ const howto = COURSE_SECTIONS.filter((s) => s.slug).map((s) => ({
         <ol class="topic-map__list">
           {g.items.map((x) => (
             <li data-topic={x.id}>
-              <span class="topic-map__num" aria-hidden="true">
-                {String(x.order).padStart(2, '0')}
-              </span>
               <p class="topic-map__text">
+                <span class="topic-map__num" aria-hidden="true">
+                  {String(x.order).padStart(2, '0')}
+                </span>
                 <a class="topic-map__title" href={localizePath(sectionPath(course, 'teoria', x.id), lang)}>
                   {tr(x.title, lang)}
                 </a>{' '}

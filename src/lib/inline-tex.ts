@@ -32,6 +32,7 @@ const ENTITIES: Record<string, string> = { amp: '&', lt: '<', gt: '>', quot: '"'
 /** Testo semplice: la formula diventa il testo del suo MathML (`$Z_{th}$` → «Zth», `\Omega` → «Ω»). */
 export function texToPlain(text: string): string {
   return text
+    .replace(/\$\$([\s\S]+?)\$\$/g, (_, tex: string) => texToPlain(`$${tex.replace(/\s+/g, ' ').trim()}$`))
     .replace(MATH, (_, pre: string, tex: string) => {
       const mathml = katex.renderToString(tex.trim(), { output: 'mathml', throwOnError: false });
       const plain = mathml

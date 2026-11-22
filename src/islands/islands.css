@@ -359,11 +359,11 @@ textarea.sh-input {
   letter-spacing: -0.01em;
 }
 .ex-topic {
-  margin-top: var(--space-s);
+  margin-top: var(--space-xs);
 }
 .ex-topic__title {
   margin: 0;
-  padding: 0.35rem 0 0.2rem;
+  padding: 0.25rem 0 0.1rem;
   font: 650 1rem / 1.35 var(--font-sans);
 }
 .ex-topic__title a {
@@ -394,9 +394,9 @@ textarea.sh-input {
   grid-template-columns: 1.1rem minmax(0, 1fr);
   column-gap: 0.55rem;
   align-items: start;
-  padding: 0.3rem 0;
+  padding: 0.25rem 0;
   border-bottom: 1px solid var(--border);
-  font: 400 0.92rem / 1.45 var(--font-sans);
+  font: 400 0.9rem / 1.42 var(--font-sans);
 }
 .ex-row__icon {
   width: 1.1rem;

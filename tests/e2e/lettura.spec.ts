@@ -10,7 +10,7 @@
 import { readFileSync } from 'node:fs';
 import { expect, test } from '@playwright/test';
 import { BASE } from './pages';
-import { PAGINE_LETTURA, normalizza, righeVisibili, testoUnito } from './lettura/testo';
+import { PAGINE_LETTURA, normalizza, righeVisibili, sciolto, testoUnito } from './lettura/testo';
 
 const FRASI = JSON.parse(readFileSync(new URL('./lettura/frasi.json', import.meta.url), 'utf8')) as Record<
   string,
@@ -23,8 +23,14 @@ for (const p of PAGINE_LETTURA) {
     await page.goto(`${BASE}${p.path}`, { waitUntil: 'networkidle' });
     const prima = FRASI[p.name]!;
     expect(await page.locator('main details:not([open])').count()).toBeLessThanOrEqual(prima.chiusi);
-    const testo = testoUnito(await righeVisibili(page));
-    const mancanti = prima.frasi.filter((f) => !testo.includes(normalizza(f)));
+    const righe = await righeVisibili(page);
+    const testo = testoUnito(righe);
+    const testoSciolto = sciolto(righe.join(' '));
+    // Le frasi con matematica scritta in chiaro (titoli degli esercizi: «50\,\mathrm{Hz}», «b-n+1») ora sono
+    // rese come testo («50 Hz», «b−n+1»): se il confronto esatto non basta, si confrontano lettere e cifre.
+    const mancanti = prima.frasi.filter(
+      (f) => !testo.includes(normalizza(f)) && !testoSciolto.includes(sciolto(f)),
+    );
     expect(mancanti).toEqual([]);
   });
 

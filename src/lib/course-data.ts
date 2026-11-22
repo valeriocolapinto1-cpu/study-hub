@@ -27,6 +27,7 @@ import { plainText } from '../engine/rich';
 import { hashString } from '../engine/random';
 import { richHtml as richHtmlFull, richInline as richInlineFull } from './rich-server';
 import { stripMathml } from './katex-lite';
+import { texToPlain } from './inline-tex';
 import { renderSchematic } from '../sim/circuits/schematic';
 import { renderDiagram } from '../figures/render';
 import { loadCourseGenerators, runGenerator } from '../engine/generators/index';
@@ -100,7 +101,8 @@ export function exerciseData(e: CollectionEntry<'exercises'>['data'], lang: Lang
     difficulty: e.difficulty,
     kind: e.kind,
     ...(e.generator ? { generator: e.generator } : {}),
-    title: statement ? plainText(statement.text).slice(0, 140) : e.id,
+    // titolo leggibile: la matematica diventa testo («$\lambda$» → «λ», «50\,\mathrm{Hz}» → «50 Hz»)
+    title: statement ? plainText(texToPlain(statement.text)).slice(0, 140) : e.id,
     ...(statement ? { statementHtml: richHtml(statement.text) } : {}),
     // la netlist diventa SVG a build-time (stessa funzione del risolutore, zero JS nel browser)
     ...(e.figure?.svg

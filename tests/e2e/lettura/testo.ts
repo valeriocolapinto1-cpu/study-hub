@@ -44,3 +44,15 @@ export const normalizza = (s: string) =>
     .trim()
     // il maiuscolo degli occhielli è solo presentazione (text-transform)
     .toLocaleLowerCase('it');
+
+/**
+ * Confronto «sciolto»: via comandi TeX, tutto ciò che non è lettera latina o cifra (simboli, lettere
+ * greche, punteggiatura, spazi). `\lambda` e «λ», `50\,\mathrm{Hz}` e «50 Hz» diventano uguali.
+ */
+export const sciolto = (s: string) =>
+  s
+    // gli operatori con nome restano scritti anche nella formula resa (\cos → «cos»)
+    .replace(/\\(cos|sin|tan|cot|arg|log|ln|exp|lim|max|min|det|Re|Im)(?![a-zA-Z])/g, '$1')
+    .replace(/\\[a-zA-Z]+/g, '')
+    .replace(/[^\p{Script=Latin}\p{N}]/gu, '')
+    .toLocaleLowerCase('it');
