@@ -30,8 +30,11 @@ export interface FakeFile {
 }
 
 export interface FakeEnv {
+  /** Orologio dello script (ms): `new Date()` e `Date.now()` lo leggono. */
+  now: number;
   properties: Record<string, string>;
-  cache: Map<string, string>;
+  /** CacheService: valore e scadenza (ms, sull'orologio finto). */
+  cache: Map<string, { value: string; expires: number }>;
   rows: unknown[][];
   folders: Map<string, { id: string; name: string; parent: string | null }>;
   files: FakeFile[];
@@ -41,6 +44,16 @@ export interface FakeEnv {
   turnstile: Record<string, unknown>;
   /** Sessioni di upload ripristinabile aperte (url → byte ricevuti). */
   sessions: Map<string, { name: string; mimeType: string; size: number; folderId: string; bytes: number[] }>;
+  /** Cartelle messe nel cestino. */
+  trashed: Set<string>;
+  /** Attivatori creati con ScriptApp.newTrigger. */
+  triggers: { handler: string; everyHours: number }[];
+  /** ScriptLock: vero mentre qualcuno lo tiene. Un secondo waitLock fallisce (attesa scaduta). */
+  lockHeld: boolean;
+  /** Se impostato, MailApp.sendEmail lancia questo errore (quota esaurita). */
+  mailError: string | null;
+  /** Chiamato a ogni PUT verso una sessione di upload, prima di registrare i byte. */
+  onPut: ((url: string) => void) | null;
 }
 
 const toSigned = (b: number) => (b > 127 ? b - 256 : b);
@@ -58,6 +71,10 @@ function makeFolderApi(env: FakeEnv, id: string): Record<string, unknown> {
     getId: () => id,
     getName: () => env.folders.get(id)!.name,
     getUrl: () => `https://drive.google.com/drive/folders/${id}`,
+    setTrashed: (v: boolean) => {
+      if (v) env.trashed.add(id);
+      else env.trashed.delete(id);
+    },
     createFolder: (name: string) => {
       const fid = 'folder-' + (env.folders.size + 1);
       env.folders.set(fid, { id: fid, name, parent: id });
@@ -83,6 +100,7 @@ function response(code: number, body: string, headers: Record<string, string> = 
 
 export function createEnv(overrides: Partial<FakeEnv> = {}): FakeEnv {
   const env: FakeEnv = {
+    now: Date.UTC(2026, 10, 22, 10, 15, 0),
     properties: {
       TURNSTILE_SECRET: 'segreto',
       DRIVE_FOLDER_ID: 'root',
@@ -97,9 +115,49 @@ export function createEnv(overrides: Partial<FakeEnv> = {}): FakeEnv {
     fetches: [],
     turnstile: { success: true, hostname: 'valeriocolapinto1-cpu.github.io', action: 'contribute' },
     sessions: new Map(),
+    trashed: new Set(),
+    triggers: [],
+    lockHeld: false,
+    mailError: null,
+    onPut: null,
     ...overrides,
   };
   return env;
+}
+
+/** Cella o intervallo del foglio finto (righe e colonne da 1, come in Apps Script). */
+function makeRange(env: FakeEnv, row: number, col: number, numRows = 1, numCols = 1) {
+  const cell = (r: number, c: number) => env.rows[r - 1]?.[c - 1] ?? '';
+  return {
+    getRow: () => row,
+    getValue: () => cell(row, col),
+    getValues: () =>
+      Array.from({ length: numRows }, (_, i) => Array.from({ length: numCols }, (_, j) => cell(row + i, col + j))),
+    setValue: (v: unknown) => {
+      const r = env.rows[row - 1]!;
+      while (r.length < col) r.push('');
+      r[col - 1] = v;
+    },
+    setFontWeight: () => undefined,
+    createTextFinder: (text: string) => {
+      let caseOk = false;
+      let entire = false;
+      const finder = {
+        matchCase: (v: boolean) => ((caseOk = v), finder),
+        matchEntireCell: (v: boolean) => ((entire = v), finder),
+        findNext: () => {
+          // Senza matchCase e matchEntireCell la ricerca sarebbe «contiene, senza maiuscole»:
+          // lo shim accetta solo la ricerca esatta che usa lo script.
+          if (!caseOk || !entire) throw new Error('TextFinder: usare matchCase e matchEntireCell');
+          for (let i = 0; i < numRows; i++)
+            for (let j = 0; j < numCols; j++)
+              if (String(cell(row + i, col + j)) === text) return makeRange(env, row + i, col + j);
+          return null;
+        },
+      };
+      return finder;
+    },
+  };
 }
 
 function globalsFor(env: FakeEnv): Record<string, unknown> {
@@ -108,45 +166,93 @@ function globalsFor(env: FakeEnv): Record<string, unknown> {
     appendRow: (values: unknown[]) => {
       env.rows.push([...values]);
     },
-    getRange: (row: number, col: number) => ({
-      setValue: (v: unknown) => {
-        env.rows[row - 1]![col - 1] = v;
-      },
-      setFontWeight: () => undefined,
-    }),
+    getRange: (row: number, col: number, numRows?: number, numCols?: number) =>
+      makeRange(env, row, col, numRows, numCols),
     setFrozenRows: () => undefined,
+  };
+  const RealDate = Date;
+  class FakeDate extends RealDate {
+    constructor(...args: unknown[]) {
+      if (args.length === 0) super(env.now);
+      else super(...(args as [number]));
+    }
+    static override now() {
+      return env.now;
+    }
+  }
+  const live = (k: string) => {
+    const e = env.cache.get(k);
+    if (e && e.expires <= env.now) env.cache.delete(k);
+    return env.cache.get(k);
   };
   return {
     console: { log: () => undefined, error: () => undefined },
     JSON,
+    Date: FakeDate,
     PropertiesService: {
       getScriptProperties: () => ({
         getProperty: (k: string) => env.properties[k] ?? null,
+        getProperties: () => ({ ...env.properties }),
         setProperty: (k: string, v: string) => {
+          if (v.length > 9 * 1024) throw new Error('Valore di proprietà oltre 9 KB');
           env.properties[k] = v;
+        },
+        deleteProperty: (k: string) => {
+          delete env.properties[k];
         },
       }),
     },
     CacheService: {
       getScriptCache: () => ({
-        get: (k: string) => env.cache.get(k) ?? null,
+        get: (k: string) => live(k)?.value ?? null,
         getAll: (keys: string[]) =>
-          Object.fromEntries(keys.filter((k) => env.cache.has(k)).map((k) => [k, env.cache.get(k)])),
-        put: (k: string, v: string) => {
+          Object.fromEntries(keys.filter((k) => live(k)).map((k) => [k, live(k)!.value])),
+        put: (k: string, v: string, ttl = 600) => {
           if (v.length > 100 * 1024) throw new Error('Valore di cache oltre 100 KB');
-          env.cache.set(k, v);
+          env.cache.set(k, { value: v, expires: env.now + ttl * 1000 });
         },
-        putAll: (o: Record<string, string>) => {
-          for (const [k, v] of Object.entries(o)) env.cache.set(k, v);
+        putAll: (o: Record<string, string>, ttl = 600) => {
+          for (const [k, v] of Object.entries(o)) env.cache.set(k, { value: v, expires: env.now + ttl * 1000 });
         },
         remove: (k: string) => {
           env.cache.delete(k);
         },
       }),
     },
-    LockService: { getScriptLock: () => ({ waitLock: () => undefined, releaseLock: () => undefined }) },
+    LockService: {
+      getScriptLock: () => {
+        let mine = false;
+        return {
+          waitLock: () => {
+            // Nel test non c'è parallelismo vero: se il lock è già tenuto, l'attesa scadrebbe.
+            if (env.lockHeld) throw new Error('Lock timeout: another process was holding the lock');
+            env.lockHeld = true;
+            mine = true;
+          },
+          releaseLock: () => {
+            if (mine) env.lockHeld = false;
+            mine = false;
+          },
+        };
+      },
+    },
     Session: { getEffectiveUser: () => ({ getEmail: () => 'owner@example.org' }) },
-    ScriptApp: { getOAuthToken: () => 'oauth-token' },
+    ScriptApp: {
+      getOAuthToken: () => 'oauth-token',
+      getProjectTriggers: () => env.triggers.map((t) => ({ getHandlerFunction: () => t.handler })),
+      newTrigger: (handler: string) => {
+        const t = { handler, everyHours: 0 };
+        const builder = {
+          timeBased: () => builder,
+          everyHours: (n: number) => ((t.everyHours = n), builder),
+          create: () => {
+            env.triggers.push(t);
+            return { getHandlerFunction: () => handler };
+          },
+        };
+        return builder;
+      },
+    },
     ContentService: {
       MimeType: { JSON: 'application/json' },
       createTextOutput: (text: string) => {
@@ -190,6 +296,7 @@ function globalsFor(env: FakeEnv): Record<string, unknown> {
     },
     MailApp: {
       sendEmail: (to: string, subject: string, body: string, options: Record<string, unknown>) => {
+        if (env.mailError) throw new Error(env.mailError);
         env.mails.push({ to, subject, body, options });
       },
     },
@@ -213,6 +320,7 @@ function globalsFor(env: FakeEnv): Record<string, unknown> {
         const session = env.sessions.get(url);
         if (session) {
           const range = /bytes (\d+)-(\d+)\/(\d+)/.exec(options.headers['Content-Range'])!;
+          env.onPut?.(url);
           if (Number(range[1]) !== session.bytes.length) return response(400, 'range');
           for (const b of options.payload as number[]) session.bytes.push(b);
           if (session.bytes.length < session.size) return response(308, '');

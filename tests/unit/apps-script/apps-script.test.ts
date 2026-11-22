@@ -137,8 +137,8 @@ describe('logica pura (Logic.gs)', () => {
     expect(ctx.evaluateRateLimit({ global: 120 }).reason).toBe('global');
     expect(ctx.evaluateRateLimit({ global: 1, email: 5 }).reason).toBe('email');
     expect(ctx.evaluateRateLimit({ global: 1, client: 5 }).reason).toBe('client');
-    const keys = ctx.rateLimitKeys('a@b.it', 'bad id!', (s: string) => `h(${s})`);
-    expect(keys).toEqual({ global: 'rl:g', email: 'rl:e:h(a@b.it)' });
+    const keys = ctx.rateLimitKeys('a@b.it', 'bad id!', (s: string) => `h(${s})`, 7);
+    expect(keys).toEqual({ global: 'rl:g:7', email: 'rl:e:h(a@b.it):7' });
   });
 
   it('interpreta la risposta di Turnstile', () => {
