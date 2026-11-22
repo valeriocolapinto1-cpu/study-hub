@@ -232,6 +232,8 @@ test.describe('offline', () => {
     expect(await page.evaluate(() => localStorage.getItem('sh:v1:esempio:progress'))).toContain('solved');
     // Unica chiave in più: la data del backup appena scaricato (promemoria di backup).
     expect(await page.evaluate(() => localStorage.length)).toBe(before + 1);
-    expect(await page.evaluate(() => localStorage.getItem('sh:v1:global:backup'))).toMatch(/^\{"lastExport":\d+\}$/);
+    expect(await page.evaluate(() => localStorage.getItem('sh:v1:global:backup'))).toMatch(
+      /^\{"lastExport":\d+\}$/,
+    );
   });
 });
