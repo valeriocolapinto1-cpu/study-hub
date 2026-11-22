@@ -17,10 +17,15 @@ describe('export/import', () => {
     saveNote('fisica-2', 'n1', 'testo', 5);
     S.write('global', 'examDates', { 'fisica-2': '2027-01-20' });
     S.write('global', 'migrations', ['hub/lang']);
+    S.write('global', 'lastStudy', { href: '/study-hub/it/', title: 'x' });
+    S.write('fisica-2', 'lastPage', { href: '/study-hub/it/', title: 'x' });
     S.write('fisica-2', 'exam', { v: 1, history: [] });
     const file = X.buildExport(new Date('2026-11-05T10:00:00Z'));
     expect(file.exportedAt).toBe('2026-11-05T10:00:00.000Z');
     expect(Object.keys(file.data)).not.toContain('sh:v1:global:migrations');
+    // l'ultima pagina di studio è memoria di navigazione del dispositivo
+    expect(Object.keys(file.data)).not.toContain('sh:v1:global:lastStudy');
+    expect(Object.keys(file.data)).not.toContain('sh:v1:fisica-2:lastPage');
     expect(X.exportFileName(new Date('2026-11-05T10:00:00Z'))).toBe('study-hub-2026-11-05.json');
     const v = X.validateExport(X.serializeExport(file));
     expect(v.ok).toBe(true);

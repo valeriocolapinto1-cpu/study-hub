@@ -3,6 +3,8 @@
  * Elenco filtrabile degli esercizi di un corso (argomento, obiettivo, difficoltà, stato, testo).
  * Righe compatte raggruppate per capitolo e argomento (intestazioni con ancora `#t-<argomento>`,
  * richiamate dall'indice in cima alla pagina): titolo, difficoltà con icona, generato/statico, stato.
+ * Icone di stato e difficoltà in solo CSS (islands.css) e link relativi alla pagina dell'indice
+ * (`<argomento>/#<id>`): con centinaia di righe ogni byte per riga conta (limite di 300 KB per pagina).
  */
 import { useMemo, useState } from 'preact/hooks';
 import type { TopicInfo } from '../engine/course-data';
@@ -47,36 +49,6 @@ export function unpackItem(s: string): ExerciseSummary {
     generated: generated === 'g',
     title: parts.slice(5).join(SEP),
   };
-}
-
-/** Stato: spunta (risolto), mezzo cerchio (tentato), cerchio vuoto (da fare). Il testo è accanto. */
-function StatusIcon({ status }: { status: ExerciseStatus }) {
-  return (
-    <svg class="ex-row__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <circle cx="12" cy="12" r="8.5" />
-      {status === 'risolto' && <path d="m8.2 12.3 2.6 2.6 5-5.4" />}
-      {status === 'tentato' && <path d="M12 3.5a8.5 8.5 0 0 1 0 17Z" class="ex-row__half" />}
-    </svg>
-  );
-}
-
-/** Difficoltà: tre tacche crescenti, piene fino al livello. */
-function DifficultyIcon({ level }: { level: 1 | 2 | 3 }) {
-  return (
-    <svg class="ex-diff__icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-      {[0, 1, 2].map((i) => (
-        <rect
-          key={i}
-          x={1 + i * 5}
-          y={10 - i * 3.5}
-          width="3.5"
-          height={5 + i * 3.5}
-          rx="1"
-          class={i < level ? 'on' : 'off'}
-        />
-      ))}
-    </svg>
-  );
 }
 
 const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -246,14 +218,12 @@ export default function ExerciseList({
                     const st = exerciseStatus(progress?.exercises[it.id]);
                     return (
                       <li class="ex-row" key={it.id} data-status={st}>
-                        <StatusIcon status={st} />
                         <span class="ex-row__body">
-                          <a class="ex-row__title" href={`${exercisesPath}${it.topic}/#${it.id}`}>
+                          <a class="ex-row__title" href={`${it.topic}/#${it.id}`}>
                             {it.title}
                           </a>{' '}
                           <span class="ex-row__meta">
                             <span class={`ex-diff ex-diff--${it.difficulty}`}>
-                              <DifficultyIcon level={it.difficulty} />
                               {t(lang, `engine.difficulty.${it.difficulty}`)}
                             </span>
                             <span class="ex-kind">

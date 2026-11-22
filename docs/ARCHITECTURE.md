@@ -98,7 +98,7 @@ I file `src/courses/<courseId>/generators/*.ts` si registrano da soli; `loadAllG
 `src/engine/storage.ts`: chiavi `sh:v1:<scope>:<area>` (scope = courseId | `global`), valori JSON, ogni accesso in try/catch.
 API: `read(scope, area, fallback)`, `write`, `update`, `remove`, `listKeys(scope?)`, `subscribe(scope, area, cb)` (evento `sh:storage`
 nella scheda e `storage` tra schede), `setStorageBackend()` per i test. Aree tipiche: `progress`, `srs`, `exam`, `notes`, `settings`;
-globali: `theme`, `lang`, `examDates`, `migrations`.
+globali: `theme`, `lang`, `examDates`, `migrations`, `lastStudy` (con `<corso>:lastPage`: ultima pagina di studio, «Riprendi da dove eri»; non esportate).
 
 `src/engine/migrate.ts`: tabella `MIGRATIONS` dalle chiavi legacy (stessa origine github.io). Ogni PR di corso aggiunge le sue
 voci `{ id, legacyKey, scope, area, transform, merge? }`. Le chiavi legacy non si cancellano mai; le migrazioni eseguite sono in

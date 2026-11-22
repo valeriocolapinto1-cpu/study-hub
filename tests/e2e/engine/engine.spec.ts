@@ -62,10 +62,13 @@ test('ExerciseList: filtri per argomento, difficoltà e testo', async ({ page })
   await expect(count).toHaveText('1 esercizi');
   await page.locator('.sh-filters').getByLabel('Argomento').selectOption('');
   await page.locator('.sh-filters').getByLabel('Difficoltà').selectOption('3');
-  await expect(page.locator('.sh-item')).toHaveCount(1);
+  await expect(page.locator('.ex-row')).toHaveCount(1);
   await page.getByRole('button', { name: 'Azzera i filtri' }).click();
   await page.getByRole('searchbox').fill('partitore');
-  await expect(page.locator('.sh-item__link')).toHaveText(/partitore/);
+  await expect(page.locator('.ex-row__title')).toHaveText(/partitore/);
+  // righe raggruppate per argomento, con l'ancora richiamata dall'indice in cima alla pagina
+  const row = page.locator('.ex-row').first();
+  await expect(page.locator('.ex-topic[id^="t-"]').filter({ has: row })).toHaveCount(1);
 });
 
 test('ExercisePlayer: verifica con unità, feedback, soluzione a passi, stato salvato', async ({ page }) => {

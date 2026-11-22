@@ -623,3 +623,17 @@
     grid-column: auto;
   }
 }
+
+/* ---------- Colori per la lettura prolungata ---------- */
+/* Nel testo i link hanno il colore del testo e il filo dell'accento (sottolineatura sempre visibile):
+   un paragrafo con molti rimandi non diventa una fila di parole luminose in competizione. */
+.prose a:not([class]) {
+  color: var(--text);
+  text-decoration-color: color-mix(in srgb, var(--accent) 75%, transparent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
+}
+.prose a:not([class]):hover {
+  color: var(--accent-strong);
+  text-decoration-color: currentColor;
+}

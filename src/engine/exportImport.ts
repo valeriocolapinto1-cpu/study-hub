@@ -7,8 +7,8 @@
  * { "format": "study-hub", "version": 1, "exportedAt": "2026-…Z",
  *   "data": { "sh:v1:fisica-2:srs": { … }, "sh:v1:global:examDates": { … } } }
  * ```
- * Le annotazioni delle migrazioni (`global:migrations`) restano sul
- * dispositivo. Importazione in due modalità:
+ * Le annotazioni delle migrazioni (`global:migrations`) e l'ultima pagina di studio
+ * (`lastPage`, `lastStudy`: memoria di navigazione del dispositivo) restano sul dispositivo. Importazione in due modalità:
  * - `merge`: fonde area per area tenendo il dato più recente o l'unione;
  * - `replace`: sostituisce tutti i dati del sito con quelli del file.
  */
@@ -28,7 +28,9 @@ export interface ExportFile {
   data: Record<string, unknown>;
 }
 
-const excluded = (key: string) => parseKey(key)?.area === MIGRATIONS_AREA;
+/** Aree che restano sul dispositivo: non si esportano. */
+export const LOCAL_ONLY_AREAS = [MIGRATIONS_AREA, 'lastPage', 'lastStudy'];
+const excluded = (key: string) => LOCAL_ONLY_AREAS.includes(parseKey(key)?.area ?? '');
 
 export function buildExport(now: Date = new Date()): ExportFile {
   const data = Object.fromEntries(Object.entries(readAll()).filter(([k]) => !excluded(k)));
