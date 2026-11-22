@@ -10,7 +10,7 @@
  */
 import { useEffect, useState } from 'preact/hooks';
 import { buildQueue } from '../engine/fsrs';
-import { daysUntil } from '../engine/mastery';
+import { daysUntil, examDateFor } from '../engine/mastery';
 import { allNotes } from '../engine/notes';
 import { exerciseStatus, loadProgress, loadSrs } from '../engine/progress';
 import { GLOBAL_SCOPE, read, subscribe } from '../engine/storage';
@@ -109,8 +109,7 @@ export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, 
           const studied = cardIds.length;
           const due = studied ? buildQueue(cardIds, srs.cards, now, { newLimit: 0 }).length : 0;
           const fresh = studied ? Math.min(newPerDay, Math.max(0, c.cardCount - studied)) : 0;
-          const date =
-            personal[c.id] ?? [...c.examDates].sort().find((d) => (daysUntil(d, now) ?? -1) >= 0) ?? null;
+          const date = examDateFor(personal[c.id], c.examDates, now);
           const days = date ? daysUntil(date, now) : null;
           return {
             id: c.id,

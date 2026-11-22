@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'preact/hooks';
 import { objectivesIndex, type TopicInfo } from '../../engine/course-data';
 import { loadIndex } from './course-data-client';
-import { computeMastery, daysUntil, type ObjectiveMastery } from '../../engine/mastery';
+import { computeMastery, examDateFor, type ObjectiveMastery } from '../../engine/mastery';
 import { loadProgress, loadSrs } from '../../engine/progress';
 import { loadExamState } from '../../engine/exam';
 import { GLOBAL_SCOPE, read, subscribe, update } from '../../engine/storage';
@@ -76,17 +76,15 @@ export function useMastery({ courseId, topics, dataPath }: MasteryProps): Master
 
 export type ExamDates = Record<string, string>;
 
-/** Data personale se impostata, altrimenti il primo appello suggerito non ancora passato. */
+/** Data personale se non è passata, altrimenti il primo appello suggerito non ancora passato. */
 export function effectiveExamDate(
   courseId: string,
   suggested: readonly string[],
   now: number,
   dates: ExamDates = read<ExamDates>(GLOBAL_SCOPE, 'examDates', {}),
 ): { date: string | null; personal: boolean } {
-  const personal = dates[courseId];
-  if (personal) return { date: personal, personal: true };
-  const next = [...suggested].sort().find((d) => (daysUntil(d, now) ?? -1) >= 0);
-  return { date: next ?? null, personal: false };
+  const date = examDateFor(dates[courseId], suggested, now);
+  return { date, personal: !!date && date === dates[courseId] };
 }
 
 export function useExamDates(): [ExamDates, (courseId: string, date: string | null) => void] {

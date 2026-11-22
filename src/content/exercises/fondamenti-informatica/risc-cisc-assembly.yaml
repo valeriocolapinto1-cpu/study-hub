@@ -70,6 +70,8 @@
     - risc-cisc-assembly.5
   difficulty: 1
   kind: static
+  examTags:
+    - assembly
   statement:
     it: 'Traduci in assembly questo ciclo: `somma = 0; for (i = 0; i < 10; i++) somma += i;`'
     en: 'Translate this loop into assembly: `sum = 0; for (i = 0; i < 10; i++) sum += i;`'
@@ -178,6 +180,8 @@
     - risc-cisc-assembly.5
   difficulty: 2
   kind: static
+  examTags:
+    - assembly
   statement:
     it:
       Scrivi un programma che trova il **valore massimo** in un vettore di N interi che comincia all’indirizzo
@@ -438,6 +442,8 @@
     - risc-cisc-assembly.3
   difficulty: 2
   kind: generated
+  examTags:
+    - assembly
   generator: fondamenti-informatica/assembly-snippet
   origin: originale
 - id: gen-assembly-ciclo
@@ -446,6 +452,8 @@
     - risc-cisc-assembly.3
   difficulty: 2
   kind: generated
+  examTags:
+    - assembly
   generator: fondamenti-informatica/assembly-ciclo
   origin: originale
 - id: gen-assembly-mul-cmp
@@ -454,6 +462,8 @@
     - risc-cisc-assembly.3
   difficulty: 2
   kind: generated
+  examTags:
+    - assembly
   generator: fondamenti-informatica/assembly-mul-cmp
   origin: originale
 - id: gen-assembly-shift
@@ -462,6 +472,8 @@
     - risc-cisc-assembly.3
   difficulty: 2
   kind: generated
+  examTags:
+    - assembly
   generator: fondamenti-informatica/assembly-shift
   origin: originale
 - id: asmw-mul
@@ -470,6 +482,8 @@
     - risc-cisc-assembly.5
   difficulty: 3
   kind: static
+  examTags:
+    - assembly
   statement:
     it: Scrivi un programma in stile RISC che calcoli la moltiplicazione di due numeri in LOC1 e LOC2 tramite
       somme successive, salvando il risultato in LOC3.
@@ -524,6 +538,8 @@
     - risc-cisc-assembly.5
   difficulty: 3
   kind: static
+  examTags:
+    - assembly
   statement:
     it: Scrivi un programma che sommi N valori contigui a partire dall'indirizzo LIST e salvi il totale in SUM.
     en: Write a program that adds N contiguous values starting at address LIST and saves the total in SUM.

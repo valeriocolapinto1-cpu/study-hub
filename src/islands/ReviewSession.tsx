@@ -18,7 +18,7 @@ import {
 } from '../engine/fsrs';
 import { loadSrs, reviewsOn, saveReview, type SrsState } from '../engine/progress';
 import { GLOBAL_SCOPE, read, subscribe, update } from '../engine/storage';
-import { daysUntil } from '../engine/mastery';
+import { examDateFor } from '../engine/mastery';
 import { useNow, useRemote } from './lib/hooks';
 import { loadCard, loadTopic } from './lib/course-data-client';
 import { t, type Lang } from './lib/i18n';
@@ -54,7 +54,7 @@ interface Settings {
 
 function examLimit(courseId: string, suggested: string[] | undefined, now: number): number | undefined {
   const personal = read<Record<string, string>>(GLOBAL_SCOPE, 'examDates', {})[courseId];
-  const date = personal ?? (suggested ?? []).find((d) => (daysUntil(d, now) ?? -1) > 0);
+  const date = examDateFor(personal, suggested ?? [], now);
   if (!date) return undefined;
   const [y, m, d] = date.split('-').map(Number) as [number, number, number];
   const at = new Date(y, m - 1, d, 8).getTime();

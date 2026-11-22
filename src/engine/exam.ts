@@ -89,6 +89,7 @@ interface Candidate {
   objectives: string[];
   category: QuestionCategory;
   generated: boolean;
+  tags?: string[] | undefined;
 }
 
 function candidates(pool: ExamPool, topics: ReadonlySet<string> | null): Candidate[] {
@@ -103,6 +104,7 @@ function candidates(pool: ExamPool, topics: ReadonlySet<string> | null): Candida
         objectives: e.objectives,
         category: exerciseCategory(e),
         generated: e.kind === 'generated',
+        tags: e.examTags,
       })),
     ...pool.cards
       .filter((c) => ok(c.topic))
@@ -131,11 +133,15 @@ function choose(
   used: Set<string>,
   usedTopics: Map<string, number>,
   weakness: Readonly<Record<string, number>> | null,
+  tag?: string,
 ): Candidate | null {
+  // Voce con etichetta («Karnaugh», «assembly»…): solo gli esercizi che la coprono, se ce ne sono.
+  const tagged = tag ? all.filter((c) => c.tags?.includes(tag)) : [];
+  const pool = tagged.length > 0 ? tagged : all;
   for (const cat of FALLBACK[category]) {
     // Preferisce gli esercizi alle flashcard per le categorie scritte e le carte "orale" per le aperte.
-    let list = all.filter((c) => c.category === cat && !used.has(`${c.type}:${c.id}`));
-    if (list.length === 0) list = all.filter((c) => c.category === cat);
+    let list = pool.filter((c) => c.category === cat && !used.has(`${c.type}:${c.id}`));
+    if (list.length === 0) list = pool.filter((c) => c.category === cat);
     if (list.length === 0) continue;
     const weights = list.map((c) => {
       const topicUses = usedTopics.get(c.topic) ?? 0;
@@ -169,12 +175,17 @@ export function assembleExam(
   const all = candidates(pool, topics);
   const used = new Set<string>();
   const usedTopics = new Map<string, number>();
-  const parts: Array<{ label: string; points: number; category: QuestionCategory }> = [];
+  const parts: Array<{ label: string; points: number; category: QuestionCategory; tag?: string }> = [];
 
   if (config.mode === 'completa' && course.structure.length > 0) {
     const anyPoints = course.structure.some((p) => p.points !== undefined);
     for (const p of course.structure)
-      parts.push({ label: p.label, points: anyPoints ? (p.points ?? 0) : 1, category: categoryOf(p.kind) });
+      parts.push({
+        label: p.label,
+        points: anyPoints ? (p.points ?? 0) : 1,
+        category: categoryOf(p.kind),
+        ...(p.tag ? { tag: p.tag } : {}),
+      });
   } else {
     const n = Math.max(1, Math.min(50, config.count ?? 6));
     const category: QuestionCategory = course.examFormat === 'orale' ? 'open' : 'numeric';
@@ -186,7 +197,15 @@ export function assembleExam(
     const forced = forcedRefs?.[i];
     const c = forcedRefs
       ? (all.find((x) => `${x.type === 'exercise' ? 'e' : 'c'}:${x.id}` === forced) ?? null)
-      : choose(rng, all, part.category, used, usedTopics, config.mode === 'mirata' ? (weakness ?? {}) : null);
+      : choose(
+          rng,
+          all,
+          part.category,
+          used,
+          usedTopics,
+          config.mode === 'mirata' ? (weakness ?? {}) : null,
+          part.tag,
+        );
     if (!c) return;
     used.add(`${c.type}:${c.id}`);
     usedTopics.set(c.topic, (usedTopics.get(c.topic) ?? 0) + 1);

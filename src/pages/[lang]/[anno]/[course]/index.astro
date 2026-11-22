@@ -15,6 +15,7 @@ import {
 } from '../../../../lib/course-pages';
 import { COURSE_SECTIONS } from '../../../../lib/courses';
 import { localizePath, t, tr, type Lang } from '../../../../i18n';
+import { upcomingDates } from '../../../../engine/mastery';
 
 export const getStaticPaths = coursePaths;
 interface Props {
@@ -33,6 +34,8 @@ const fmtDate = (d: string) =>
   new Intl.DateTimeFormat(lang === 'it' ? 'it-IT' : 'en-GB', { dateStyle: 'long', timeZone: 'UTC' }).format(
     new Date(`${d}T12:00:00Z`),
   );
+// Appelli già passati alla build: non si mostrano (vedi anche lo script più sotto).
+const dates = upcomingDates(course.examDates ?? [], Date.now());
 const total = course.exam.structure.reduce((s, x) => s + (x.points ?? 0), 0);
 const howto = COURSE_SECTIONS.filter((s) => s.slug).map((s) => ({
   href: localizePath(sectionPath(course, s.slug), lang),
@@ -85,17 +88,31 @@ const howto = COURSE_SECTIONS.filter((s) => s.slug).map((s) => ({
         </table>
       </div>
     )}
-    {course.examDates && course.examDates.length > 0 && (
+    {dates.length > 0 && (
       <>
-        <h3>{t(lang, 'overview.dates')}</h3>
-        <ul>
-          {course.examDates.map((d) => (
-            <li>
+        <h3 data-exam-dates>{t(lang, 'overview.dates')}</h3>
+        <ul data-exam-dates>
+          {dates.map((d) => (
+            <li data-date={d}>
               <time datetime={d}>{fmtDate(d)}</time>
             </li>
           ))}
         </ul>
-        <p class="muted">{t(lang, 'overview.datesNote')}</p>
+        <p class="muted" data-exam-dates>
+          {t(lang, 'overview.datesNote')}
+        </p>
+        {/* Pagina statica: gli appelli passati dopo la build si tolgono all'apertura. */}
+        <script is:inline>
+          {
+            const n = new Date();
+            const today = [n.getFullYear(), n.getMonth() + 1, n.getDate()]
+              .map((x) => String(x).padStart(2, '0'))
+              .join('-');
+            document.querySelectorAll('[data-date]').forEach((li) => li.dataset.date < today && li.remove());
+            if (!document.querySelector('[data-date]'))
+              document.querySelectorAll('[data-exam-dates]').forEach((el) => el.remove());
+          }
+        </script>
       </>
     )}
 

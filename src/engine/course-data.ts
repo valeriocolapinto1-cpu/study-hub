@@ -40,6 +40,8 @@ export interface ChoiceData {
   label?: string;
   correct: boolean;
   explanationHtml?: string;
+  /** Resta in fondo quando le alternative si rimescolano («Tutte le precedenti»). */
+  fixedLast?: boolean;
 }
 
 export interface StepData {
@@ -63,6 +65,8 @@ export interface ExerciseMeta {
   title: string;
   /** Tipo di domanda (scelta della prova d'esame). */
   category?: QuestionCategory;
+  /** Voci della struttura d'esame che l'esercizio può coprire (`tag` delle parti). */
+  examTags?: string[];
   /** Mostrato in italiano perché manca la traduzione. */
   fallback?: boolean;
 }
@@ -105,6 +109,8 @@ export interface ExamPartData {
   label: string;
   points?: number;
   kind: string;
+  /** Solo esercizi con questo `examTags` (se ce ne sono). */
+  tag?: string;
 }
 
 export interface CoursePaths {

@@ -15,7 +15,7 @@ import { feedbackText, gradeAnswers, gradeChoice, type MultiResult } from '../en
 import { toAnswerSpec } from '../engine/exam';
 import { exerciseStatus, loadProgress, saveAttempt, type ProgressState } from '../engine/progress';
 import { formatComplex, formatNumber, parseComplex } from '../engine/units';
-import { randomSeed } from '../engine/random';
+import { choiceOrder, deriveSeed, randomSeed } from '../engine/random';
 import { renderRichClient } from './lib/rich-client';
 import { plainText } from '../engine/rich';
 import { fetchJson, useStored } from './lib/hooks';
@@ -218,6 +218,20 @@ export default function ExercisePlayer({
     setHints(0);
   };
 
+  // Alternative rimescolate per esercizio, variante e giro: il giro è il numero di tentativi già
+  // fatti, letto una volta all'apertura (SSR e primo render: giro 0, stesso ordine) e poi fermo
+  // finché la pagina resta aperta. `picked` resta negli indici d'autore: la correzione non cambia.
+  const [round, setRound] = useState(0);
+  const roundRead = useRef(false);
+  useEffect(() => {
+    if (!progress || roundRead.current) return;
+    roundRead.current = true;
+    setRound(progress.exercises[exercise.id]?.attempts.length ?? 0);
+  }, [progress]);
+  const order = useMemo(
+    () => (content?.choices ? choiceOrder(content.choices, deriveSeed(exercise.id, seed, round)) : []),
+    [content, seed, round],
+  );
   const multiple = useMemo(() => (content?.choices?.filter((c) => c.correct).length ?? 0) > 1, [content]);
   const status = exerciseStatus(progress?.exercises[exercise.id]);
   const attempts = progress?.exercises[exercise.id]?.attempts.length ?? 0;
@@ -337,7 +351,8 @@ export default function ExercisePlayer({
           {content.choices?.length ? (
             <fieldset class="sh-choices">
               <legend>{t(lang, multiple ? 'exercise.chooseMany' : 'exercise.choose')}</legend>
-              {content.choices.map((c, i) => {
+              {order.map((i) => {
+                const c = content.choices![i]!;
                 const on = picked.includes(i);
                 const mark = result ? (c.correct ? 'is-correct' : on ? 'is-wrong' : '') : '';
                 return (

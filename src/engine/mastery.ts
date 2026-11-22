@@ -213,6 +213,23 @@ export function daysUntil(dateISO: string, now: number): number | null {
   return Math.round((target.getTime() - t0.getTime()) / DAY_MS);
 }
 
+/** Appelli non ancora passati (oggi compreso), in ordine di data. */
+export const upcomingDates = (dates: readonly string[], now: number): string[] =>
+  [...dates].sort().filter((d) => (daysUntil(d, now) ?? -1) >= 0);
+
+/**
+ * Data d'esame da usare (piano, ripasso, conto alla rovescia): quella personale se non è passata,
+ * altrimenti il primo appello suggerito non ancora passato, altrimenti nessuna.
+ */
+export function examDateFor(
+  personal: string | undefined,
+  suggested: readonly string[],
+  now: number,
+): string | null {
+  if (personal && (daysUntil(personal, now) ?? -1) >= 0) return personal;
+  return upcomingDates(suggested, now)[0] ?? null;
+}
+
 /** Minuti stimati per portare un obiettivo dalla padronanza attuale a "solido". */
 const minutesFor = (m: ObjectiveMastery) =>
   m.evidence === 0 ? 40 : Math.max(10, Math.round((0.9 - m.value) * 50));

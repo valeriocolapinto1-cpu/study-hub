@@ -642,6 +642,7 @@
         it: Tutte le precedenti
         en: All of the above
       correct: true
+      fixedLast: true
   origin: originale
 - id: mcq-irq-08
   topic: interruzioni-ed-eccezioni
@@ -894,6 +895,8 @@
     - interruzioni-ed-eccezioni.2
   difficulty: 2
   kind: static
+  examTags:
+    - schema-da-completare
   statement:
     it: >-
       Completa lo schema «Registri di controllo del processore»: scrivi per ogni posizione numerata

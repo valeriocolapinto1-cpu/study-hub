@@ -680,6 +680,8 @@
     - pipeline.4
   difficulty: 2
   kind: static
+  examTags:
+    - schema-da-completare
   statement:
     it: >-
       Completa lo schema «Percorso dati a pipeline di cinque stadi»: scrivi per ogni posizione numerata
@@ -802,6 +804,8 @@
     - pipeline.4
   difficulty: 2
   kind: static
+  examTags:
+    - schema-da-completare
   statement:
     it: >-
       Completa lo schema «Processore superscalare con due unità di esecuzione»: scrivi per ogni posizione
