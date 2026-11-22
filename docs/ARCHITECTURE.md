@@ -98,7 +98,18 @@ I file `src/courses/<courseId>/generators/*.ts` si registrano da soli; `loadAllG
 `src/engine/storage.ts`: chiavi `sh:v1:<scope>:<area>` (scope = courseId | `global`), valori JSON, ogni accesso in try/catch.
 API: `read(scope, area, fallback)`, `write`, `update`, `remove`, `listKeys(scope?)`, `subscribe(scope, area, cb)` (evento `sh:storage`
 nella scheda e `storage` tra schede), `setStorageBackend()` per i test. Aree tipiche: `progress`, `srs`, `exam`, `notes`, `settings`;
-globali: `theme`, `lang`, `examDates`, `migrations`, `lastStudy` (con `<corso>:lastPage`: ultima pagina di studio, «Riprendi da dove eri»; non esportate).
+globali: `theme`, `lang`, `examDates`, `migrations`, `backup`, `lastStudy` (con `<corso>:lastPage`: ultima pagina di studio, «Riprendi da dove eri»; non esportate).
+`read()` restituisce il ripiego anche se il valore salvato è di un altro tipo (oggetto/array/numero/stringa/booleano; con
+ripiego `null` passa tutto e normalizza il `sanitize*` dell'area). Una scrittura fallita emette `sh:storage-error`
+(`{ key, quota }`): `site.ts` mostra una volta l'avviso di `src/scripts/data-notice.ts` (caricato solo allora), con link a
+*I miei dati*. La prima scrittura riuscita della pagina chiede `navigator.storage.persist()` (se non già persistente).
+Promemoria di backup (`src/engine/backup.ts`, area `global:backup`, esclusa dall'export): avviso se l'ultimo export (file o
+QR, `markExported`) ha più di 30 giorni e ci sono dati; la prima scadenza parte dal primo controllo con dati.
+
+Errori nelle isole: ogni isola Preact è avvolta da `IslandBoundary` (`src/islands/lib/boundary.ts`) senza toccarla — il
+plugin `tools/vite/island-boundary.mjs` risolve `@astrojs/preact/client.js` in `src/islands/lib/boundary-client.ts`, che
+avvolge il componente prima dell'idratazione. Un'eccezione nel render o negli effetti mostra un messaggio con «Ricarica» e
+«Segnala errore» (Contribuisci precompilato con pagina, corso e messaggio); gli errori nei gestori di eventi no.
 
 `src/engine/migrate.ts`: tabella `MIGRATIONS` dalle chiavi legacy (stessa origine github.io). Ogni PR di corso aggiunge le sue
 voci `{ id, legacyKey, scope, area, transform, merge? }`. Le chiavi legacy non si cancellano mai; le migrazioni eseguite sono in

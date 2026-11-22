@@ -9,6 +9,7 @@ import rehypeKatex from 'rehype-katex';
 import platform from './tools/integrations/platform.mjs';
 import rehypeNoteIds from './src/lib/rehype-note-ids.mjs';
 import islandI18n from './tools/vite/island-i18n.mjs';
+import islandBoundary from './tools/vite/island-boundary.mjs';
 import { buildInfo } from './tools/build-info.mjs';
 
 // Unica impostazione di dominio e percorso base del sito: tutto il resto
@@ -45,8 +46,9 @@ export default defineConfig({
   vite: {
     // Commit e data della build: footer e controllo aggiornamenti (uguali a dist/version.json).
     define: { __SH_BUILD__: JSON.stringify(buildInfo()) },
-    // Dizionario ridotto per le isole (solo i namespace che usano).
-    plugins: [islandI18n()],
+    // Dizionario ridotto per le isole (solo i namespace che usano) e confine d'errore
+    // (IslandBoundary) attorno a ogni isola Preact.
+    plugins: [islandI18n(), islandBoundary()],
     server: { watch: { ignored: ['**/legacy/**'] } },
     optimizeDeps: { entries: ['src/**/*.{astro,ts,tsx}'] },
   },

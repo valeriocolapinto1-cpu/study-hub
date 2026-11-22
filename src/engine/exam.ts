@@ -386,19 +386,85 @@ export interface ExamState {
 export const MAX_HISTORY = 50;
 export const emptyExamState = (): ExamState => ({ v: 1, history: [] });
 
+const isObj = (x: unknown): x is Record<string, unknown> => !!x && typeof x === 'object' && !Array.isArray(x);
+const isNum = (x: unknown): x is number => typeof x === 'number' && Number.isFinite(x);
+const isStrArr = (x: unknown): x is string[] => Array.isArray(x) && x.every((v) => typeof v === 'string');
+
+function isConfig(x: unknown): x is ExamConfig {
+  return (
+    isObj(x) &&
+    typeof x.mode === 'string' &&
+    isNum(x.seed) &&
+    (x.topics === undefined || isStrArr(x.topics)) &&
+    (x.count === undefined || isNum(x.count)) &&
+    (x.durationMin === undefined || x.durationMin === null || isNum(x.durationMin))
+  );
+}
+
+/** Solo le voci `{ earned, max }` numeriche. */
+function breakdowns(x: unknown): Record<string, Breakdown> {
+  const out: Record<string, Breakdown> = {};
+  if (isObj(x))
+    for (const [k, b] of Object.entries(x))
+      if (isObj(b) && isNum(b.earned) && isNum(b.max)) out[k] = { earned: b.earned, max: b.max };
+  return out;
+}
+
+/**
+ * Esito salvato: bastano id, data e percentuale; il resto prende valori neutri
+ * (come gli esiti migrati dai siti originali) così nessun esito va perso e
+ * nessuna isola legge campi mancanti.
+ */
+function sanitizeRecord(x: unknown): ExamRecord | null {
+  if (!isObj(x) || typeof x.id !== 'string' || !isNum(x.at) || !isNum(x.percent)) return null;
+  return {
+    id: x.id,
+    at: x.at,
+    config: isConfig(x.config) ? x.config : { mode: 'personalizzata', seed: 0 },
+    earned: isNum(x.earned) ? x.earned : 0,
+    total: isNum(x.total) ? x.total : 0,
+    percent: x.percent,
+    ...(isNum(x.grade30) ? { grade30: x.grade30, lode: x.lode === true } : {}),
+    durationMs: isNum(x.durationMs) ? x.durationMs : 0,
+    byTopic: breakdowns(x.byTopic),
+    byObjective: breakdowns(x.byObjective),
+  };
+}
+
+function isSession(x: unknown): x is ExamSession {
+  return (
+    isObj(x) &&
+    isNum(x.startedAt) &&
+    isConfig(x.config) &&
+    Array.isArray(x.answers) &&
+    isNum(x.current) &&
+    (x.refs === undefined || isStrArr(x.refs))
+  );
+}
+
+/** Risposta salvata: in JSON le domande senza risposta diventano `null`. */
+function sanitizeAnswer(a: unknown): ExamAnswer | undefined {
+  if (!isObj(a)) return undefined;
+  const choices = Array.isArray(a.choices) ? a.choices.filter(isNum) : undefined;
+  return {
+    ...(isStrArr(a.fields) ? { fields: a.fields } : {}),
+    ...(choices ? { choices } : {}),
+    ...(a.self === 0 || a.self === 0.5 || a.self === 1 ? { self: a.self } : {}),
+  };
+}
+
+/** Normalizza uno stato letto o importato: scarta esiti e sessione malformati. */
 export function sanitizeExamState(x: unknown): ExamState {
-  if (!x || typeof x !== 'object') return emptyExamState();
-  const s = x as Partial<ExamState>;
-  const history = Array.isArray(s.history)
-    ? s.history
-        .filter(
-          (r): r is ExamRecord =>
-            !!r && typeof r.id === 'string' && typeof r.at === 'number' && typeof r.percent === 'number',
-        )
+  if (!isObj(x)) return emptyExamState();
+  const history = Array.isArray(x.history)
+    ? x.history
+        .map(sanitizeRecord)
+        .filter((r): r is ExamRecord => r !== null)
         .slice(-MAX_HISTORY)
     : [];
-  const session =
-    s.session && typeof s.session.startedAt === 'number' && s.session.config ? s.session : undefined;
+  const session = isSession(x.session)
+    ? { ...x.session, answers: x.session.answers.map(sanitizeAnswer) }
+    : undefined;
   return { v: 1, history, ...(session ? { session } : {}) };
 }
 

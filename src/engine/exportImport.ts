@@ -7,15 +7,16 @@
  * { "format": "study-hub", "version": 1, "exportedAt": "2026-…Z",
  *   "data": { "sh:v1:fisica-2:srs": { … }, "sh:v1:global:examDates": { … } } }
  * ```
- * Le annotazioni delle migrazioni (`global:migrations`) e l'ultima pagina di studio
- * (`lastPage`, `lastStudy`: memoria di navigazione del dispositivo) restano sul dispositivo. Importazione in due modalità:
+ * Le annotazioni delle migrazioni (`global:migrations`), il promemoria di backup (`global:backup`)
+ * e l'ultima pagina di studio (`lastPage`, `lastStudy`: memoria di navigazione) restano sul dispositivo.
+ * Importazione in due modalità:
  * - `merge`: fonde area per area tenendo il dato più recente o l'unione;
  * - `replace`: sostituisce tutti i dati del sito con quelli del file.
  */
 import { sanitizeProgress, sanitizeSrs, type ProgressState, type SrsState } from './progress';
 import { sanitizeNotes, type NotesState } from './notes';
 import { sanitizeExamState, type ExamState, MAX_HISTORY } from './exam';
-import { clearScope, listKeys, parseKey, readAll, readRaw, writeRaw } from './storage';
+import { BACKUP_AREA, clearScope, listKeys, parseKey, readAll, readRaw, writeRaw } from './storage';
 import { MIGRATIONS_AREA } from './migrate';
 
 export const EXPORT_FORMAT = 'study-hub';
@@ -28,8 +29,8 @@ export interface ExportFile {
   data: Record<string, unknown>;
 }
 
-/** Aree che restano sul dispositivo: non si esportano. */
-export const LOCAL_ONLY_AREAS = [MIGRATIONS_AREA, 'lastPage', 'lastStudy'];
+/** Aree che restano sul dispositivo: migrazioni eseguite, promemoria di backup, ultima pagina di studio. */
+export const LOCAL_ONLY_AREAS = [MIGRATIONS_AREA, BACKUP_AREA, 'lastPage', 'lastStudy'];
 const excluded = (key: string) => LOCAL_ONLY_AREAS.includes(parseKey(key)?.area ?? '');
 
 export function buildExport(now: Date = new Date()): ExportFile {
