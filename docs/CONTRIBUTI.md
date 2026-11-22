@@ -37,7 +37,8 @@ Processo notturno (Claude) ──legge righe "nuovo"──▶ branch + PR con la
 
 Istruzioni di installazione e protocollo: [`tools/apps-script/README.md`](../tools/apps-script/README.md).
 Colonne del foglio: `Data · ID · Stato · Tipo · Corso · Pagina · Lingua · Messaggio · Email · Nome per i crediti ·
-Consenso privacy · Dichiarazione diritti · Consenso pubblicazione · File · Cartella`. I valori che iniziano con
+Consenso privacy · Dichiarazione diritti · Consenso pubblicazione · File · Cartella · Note` (in `Note` lo script
+scrive gli imprevisti: notifica email non inviata, invio annullato o scartato dalla pulizia). I valori che iniziano con
 `= + - @` sono neutralizzati (niente formule iniettate). L'ID ha la forma `AAAAMMGG-HHMMSS-xxxxxx` ed è mostrato
 al contributore: serve per chiedere la cancellazione.
 
@@ -45,11 +46,11 @@ al contributore: serve per chiedere la cancellazione.
 
 | Stato | Significato | Chi lo imposta |
 |---|---|---|
-| `in-caricamento` | riga creata, allegati in arrivo (resta così se il browser si chiude a metà) | script |
+| `in-caricamento` | riga creata, allegati in arrivo (se il browser si chiude a metà, dopo 6 ore la pulizia oraria la scarta) | script |
 | `nuovo` | contributo completo, da esaminare | script |
 | `in-PR` | proposta aperta su GitHub (la colonna File/Cartella resta; aggiungere il link alla PR in fondo al messaggio o in una nota della cella) | processo notturno |
 | `integrato` | PR mergiata | Valerio (o il processo dopo il merge) |
-| `scartato` | non utilizzabile (spam, materiale non riusabile, duplicato) | Valerio |
+| `scartato` | non utilizzabile (spam, materiale non riusabile, duplicato), oppure invio annullato o allegati mai completati (cartella nel cestino) | Valerio, oppure lo script |
 
 **Conservazione** (come da informativa privacy): righe e allegati si cancellano quando il contributo è chiuso
 (`integrato`/`scartato`), al più tardi dopo 12 mesi; su richiesta, entro 30 giorni (riga, cartella ed email).
@@ -87,6 +88,8 @@ nome da loro scelto; si rimuovono su richiesta.
 
 - `tests/unit/apps-script/` — logica e flusso dello script con servizi Google finti (shim `vm`).
 - `tests/unit/platform/contribute-rules.test.ts` — regole condivise, precompilazione, email di ripiego, blocchi base64.
+- `tests/unit/platform/contribute-upload.test.ts` — protocollo del sito (`src/lib/contribute/upload.ts`) contro lo
+  script nello shim, con rete che perde richieste e risposte, 503, `busy`, ripresa e annullamento.
 - `tests/e2e/platform.spec.ts` — modulo nel browser: ripiego email, allegati non ammessi, invio completo con
   endpoint e Turnstile finti (blocchi ricomposti byte per byte), errori del server, axe.
   L'endpoint di prova si inietta con `window.__SH_CONTRIBUTE__` (solo nei test; in produzione vale `site.ts`).

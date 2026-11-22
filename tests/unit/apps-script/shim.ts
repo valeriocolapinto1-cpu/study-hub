@@ -132,7 +132,9 @@ function makeRange(env: FakeEnv, row: number, col: number, numRows = 1, numCols 
     getRow: () => row,
     getValue: () => cell(row, col),
     getValues: () =>
-      Array.from({ length: numRows }, (_, i) => Array.from({ length: numCols }, (_, j) => cell(row + i, col + j))),
+      Array.from({ length: numRows }, (_, i) =>
+        Array.from({ length: numCols }, (_, j) => cell(row + i, col + j)),
+      ),
     setValue: (v: unknown) => {
       const r = env.rows[row - 1]!;
       while (r.length < col) r.push('');
@@ -212,7 +214,8 @@ function globalsFor(env: FakeEnv): Record<string, unknown> {
           env.cache.set(k, { value: v, expires: env.now + ttl * 1000 });
         },
         putAll: (o: Record<string, string>, ttl = 600) => {
-          for (const [k, v] of Object.entries(o)) env.cache.set(k, { value: v, expires: env.now + ttl * 1000 });
+          for (const [k, v] of Object.entries(o))
+            env.cache.set(k, { value: v, expires: env.now + ttl * 1000 });
         },
         remove: (k: string) => {
           env.cache.delete(k);

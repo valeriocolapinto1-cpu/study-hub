@@ -3,8 +3,9 @@
  * Modulo "Contribuisci": suggerimenti, segnalazioni di errori, appunti e materiali.
  *
  * - Con endpoint e sitekey configurati (SITE.contribute) invia al Google Apps Script
- *   (tools/apps-script): POST text/plain con JSON, quindi senza preflight CORS;
- *   gli allegati viaggiano in blocchi base64 da 4 MiB dopo la verifica Turnstile.
+ *   (tools/apps-script) con il protocollo di src/lib/contribute/upload.ts: allegati
+ *   in blocchi da 4 MiB dopo la verifica Turnstile, ritentativi con attesa
+ *   crescente, ripresa dall'ultimo blocco ricevuto, annullamento.
  * - Senza configurazione (o se l'invio fallisce) prepara un'email precompilata.
  *
  * Turnstile si carica solo alla prima interazione con il modulo: chi legge
@@ -19,7 +20,6 @@ import {
   MESSAGE_MAX,
   NAME_MAX,
   buildMailto,
-  chunksOf,
   formatBytes,
   prefillFromQuery,
   validateFields,
@@ -28,6 +28,7 @@ import {
   type ContribType,
   type FieldErrors,
 } from '../lib/contribute/rules';
+import { ContributeError, sendContribution } from '../lib/contribute/upload';
 import './platform.css';
 
 type Texts = Record<string, string>;
@@ -97,33 +98,6 @@ function loadTurnstile(): Promise<void> {
   return turnstileLoading;
 }
 
-async function call(endpoint: string, body: unknown): Promise<Record<string, any>> {
-  const res = await fetch(endpoint, {
-    method: 'POST',
-    // text/plain: richiesta "semplice", nessun preflight (Apps Script non risponde a OPTIONS).
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify(body),
-    redirect: 'follow',
-  });
-  if (!res.ok) throw new Error(`http_${res.status}`);
-  return (await res.json()) as Record<string, any>;
-}
-
-async function callWithRetry(endpoint: string, body: unknown, tries = 3): Promise<Record<string, any>> {
-  let last: unknown;
-  for (let i = 0; i < tries; i++) {
-    try {
-      const r = await call(endpoint, body);
-      if (r.ok || r.error !== 'server') return r;
-      last = new Error('server');
-    } catch (err) {
-      last = err;
-    }
-    await new Promise((r) => setTimeout(r, 600 * 2 ** i));
-  }
-  throw last;
-}
-
 const EMPTY: ContribFields = {
   tipo: 'errore',
   corso: '',
@@ -170,6 +144,7 @@ export default function ContributeForm(props: ContributeFormProps) {
   const result = useRef<HTMLDivElement>(null);
   const honeypot = useRef<HTMLInputElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
+  const abort = useRef<AbortController | null>(null);
 
   useEffect(() => {
     const pre = prefillFromQuery(
@@ -292,63 +267,41 @@ export default function ContributeForm(props: ContributeFormProps) {
     }
     const total = totalBytes;
     setStatus({ kind: 'sending', sent: 0, total });
+    const ctrl = new AbortController();
+    abort.current = ctrl;
     try {
-      const sub = await call(endpoint, {
-        action: 'submit',
-        turnstileToken: token,
-        payload: {
-          ...f,
-          lingua: lang,
-          website: honeypot.current?.value ?? '',
-          elapsedMs: Date.now() - startedAt.current,
-          clientId: clientId(),
-          files: files.map((x) => ({ name: x.name, size: x.size, type: x.type })),
+      const sub = await sendContribution(
+        {
+          turnstileToken: token,
+          payload: {
+            ...f,
+            lingua: lang,
+            website: honeypot.current?.value ?? '',
+            elapsedMs: Date.now() - startedAt.current,
+            clientId: clientId(),
+            files: files.map((x) => ({ name: x.name, size: x.size, type: x.type })),
+          },
+          files,
         },
-      });
-      if (!sub.ok) {
-        if (sub.error === 'validation' && sub.fields) setErrors(sub.fields as FieldErrors);
-        throw Object.assign(new Error(String(sub.error)), { code: String(sub.error) });
-      }
-      if (sub.uploadToken) {
-        let sent = 0;
-        const size = Number(sub.chunkBytes) || undefined;
-        for (let fi = 0; fi < files.length; fi++) {
-          const file = files[fi]!;
-          const buf = await file.arrayBuffer();
-          let ci = 0;
-          for (const data of chunksOf(buf, size)) {
-            const r = await callWithRetry(endpoint, {
-              action: 'chunk',
-              id: sub.id,
-              uploadToken: sub.uploadToken,
-              fileIndex: fi,
-              chunkIndex: ci,
-              data,
-            });
-            if (!r.ok) throw Object.assign(new Error(String(r.error)), { code: String(r.error) });
-            sent +=
-              Math.round((data.length * 3) / 4) - (data.endsWith('==') ? 2 : data.endsWith('=') ? 1 : 0);
-            setStatus({ kind: 'sending', sent: Math.min(sent, total), total });
-            ci++;
-          }
-        }
-        const fin = await callWithRetry(endpoint, {
-          action: 'finalize',
-          id: sub.id,
-          uploadToken: sub.uploadToken,
-        });
-        if (!fin.ok) throw Object.assign(new Error(String(fin.error)), { code: String(fin.error) });
-      }
+        {
+          endpoint,
+          signal: ctrl.signal,
+          onProgress: (sent, all) => setStatus({ kind: 'sending', sent: Math.min(sent, all), total: all }),
+        },
+      );
       setStatus({ kind: 'done', id: String(sub.id) });
       setF({ ...EMPTY, corso: f.corso, pagina: f.pagina, tipo: f.tipo });
       setFiles([]);
       setShowErrors(false);
       requestAnimationFrame(() => result.current?.focus());
     } catch (err) {
-      const code = (err as { code?: string }).code ?? 'network';
+      const code = err instanceof ContributeError ? err.code : 'network';
+      if (code === 'validation' && err instanceof ContributeError && err.fields)
+        setErrors(err.fields as FieldErrors);
       setStatus({ kind: 'error', code });
       requestAnimationFrame(() => result.current?.focus());
     } finally {
+      abort.current = null;
       setToken('');
       if (widgetId.current && window.turnstile) window.turnstile.reset(widgetId.current);
     }
@@ -719,6 +672,11 @@ export default function ContributeForm(props: ContributeFormProps) {
         <button type="submit" class="btn btn--primary" disabled={busy}>
           {online ? (busy ? T.sending : T.submit) : T.submitMail}
         </button>
+        {busy && (
+          <button type="button" class="btn" onClick={() => abort.current?.abort()}>
+            {T.cancel}
+          </button>
+        )}
         {!online && (
           <a class="btn" href={issuesUrl} rel="noopener">
             {T.openIssue}

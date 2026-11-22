@@ -138,7 +138,8 @@ function handleChunk_(body) {
   // 1. Sotto lock, solo il tempo di leggere e segnare lo stato: l'upload è «occupato».
   const claim = withScriptLock_(function () {
     const state = loadUpload_(id);
-    if (!state || state.token !== body.uploadToken) return { response: result(false, { error: 'upload_state' }) };
+    if (!state || state.token !== body.uploadToken)
+      return { response: result(false, { error: 'upload_state' }) };
     const file = state.files[fi];
     if (!file || !Number.isInteger(ci) || ci < 0 || ci >= file.chunks)
       return { response: result(false, { error: 'chunk' }) };
@@ -174,7 +175,9 @@ function handleChunk_(body) {
           file.received = ci + 1;
         }
         saveUpload_(id, state);
-        return update ? result(true, { done: file.received === file.chunks, received: file.received }) : response;
+        return update
+          ? result(true, { done: file.received === file.chunks, received: file.received })
+          : response;
       }) || response;
   }
   return response;
@@ -192,7 +195,9 @@ function storeChunk_(file, folderId, ci, base64) {
   const mimeType = ALLOWED_EXTENSIONS[ext];
 
   if (file.chunks === 1) {
-    const created = DriveApp.getFolderById(folderId).createFile(Utilities.newBlob(bytes, mimeType, file.name));
+    const created = DriveApp.getFolderById(folderId).createFile(
+      Utilities.newBlob(bytes, mimeType, file.name),
+    );
     return { fileId: created.getId() };
   }
   const sessionUrl = ci === 0 ? startResumableUpload_(file, mimeType, folderId) : file.sessionUrl;
@@ -217,7 +222,8 @@ function handleFinalize_(body) {
   const cfg = config_();
   const claim = withScriptLock_(function () {
     const state = loadUpload_(id);
-    if (!state || state.token !== body.uploadToken) return { response: result(false, { error: 'upload_state' }) };
+    if (!state || state.token !== body.uploadToken)
+      return { response: result(false, { error: 'upload_state' }) };
     const incomplete = state.files.some(function (f) {
       return f.received !== f.chunks || !f.fileId;
     });
@@ -450,7 +456,11 @@ function notifySafe_(cfg, sheet, id, data, links, folder) {
     notify_(cfg, id, data, links, folder);
   } catch (err) {
     console.error('Notifica non inviata', id, err && err.stack ? err.stack : err);
-    addNote_(sheet, id, 'Email di notifica non inviata: ' + String((err && err.message) || err).slice(0, 200));
+    addNote_(
+      sheet,
+      id,
+      'Email di notifica non inviata: ' + String((err && err.message) || err).slice(0, 200),
+    );
   }
 }
 
@@ -515,6 +525,8 @@ function inizializza() {
     sheet.setFrozenRows(1);
     sheet.getRange(1, 1, 1, SHEET_HEADERS.length).setFontWeight('bold');
   }
+  // Fogli creati prima della colonna Note: si aggiunge l'intestazione in coda.
+  if (sheet.getRange(1, col_('Note')).getValue() !== 'Note') sheet.getRange(1, col_('Note')).setValue('Note');
   installaPulizia();
   verificaConfigurazione();
 }
@@ -538,7 +550,8 @@ function pulizia() {
     const id = String(row[col_('ID') - 1]);
     if (row[col_('Stato') - 1] !== STATUS.uploading || !isUploadStale(id, now, UPLOAD_TTL_MS)) return;
     const raw = props.getProperty('up:' + id);
-    const folderId = (raw && JSON.parse(raw).folderId) || folderIdFromUrl(unSheetSafe(row[col_('Cartella') - 1]));
+    const folderId =
+      (raw && JSON.parse(raw).folderId) || folderIdFromUrl(unSheetSafe(row[col_('Cartella') - 1]));
     withScriptLock_(function () {
       deleteUpload_(id);
     });

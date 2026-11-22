@@ -504,6 +504,8 @@
   "cf.doneBody": "It will be read as soon as possible. If you left your email you will get a reply; if the contribution is included, your name (if given) will appear in the acknowledgements.",
   "cf.doneId": "Contribution code:",
   "cf.again": "Send another contribution",
+  "cf.cancel": "Cancel sending",
+  "cf.fail.cancelled": "Sending cancelled: nothing was saved.",
   "cf.fail.generic": "Sending failed.",
   "cf.fail.network": "Sending failed: check your connection and try again.",
   "cf.fail.rate_limited": "You sent many contributions in a short time: try again in an hour.",
