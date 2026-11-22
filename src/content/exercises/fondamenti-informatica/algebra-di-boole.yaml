@@ -5,6 +5,8 @@
     - algebra-di-boole.2
   difficulty: 1
   kind: static
+  examTags:
+    - tabella-espressione
   statement:
     it: Una funzione di tre variabili vale 1 sulle righe `000`, `010`, `101`, `111`. Scrivi la forma SOP e la
       forma POS, poi semplifica la SOP.
@@ -499,6 +501,8 @@
     - algebra-di-boole.2
   difficulty: 2
   kind: generated
+  examTags:
+    - tabella-espressione
   generator: fondamenti-informatica/tabella-espressione
   origin: originale
 - id: mcq-bool-01

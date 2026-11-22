@@ -46,6 +46,8 @@ export const courseSchema = z.strictObject({
           label: localized,
           points: z.number().nonnegative().optional(),
           kind: kebabId,
+          /** La voce si copre solo con esercizi che hanno questo `examTags` (ripiego: per categoria). */
+          tag: kebabId.optional(),
         }),
       )
       .default([]),
@@ -148,6 +150,8 @@ export const choiceSchema = z.strictObject({
   text: localized,
   correct: z.boolean(),
   explanation: localized.optional(),
+  /** Resta in fondo quando le alternative si rimescolano (es. «Tutte le precedenti»). */
+  fixedLast: z.literal(true).optional(),
 });
 
 export const DEFAULT_TOLERANCE = 0.01;
@@ -166,6 +170,8 @@ export const exerciseSchema = z
     steps: z.array(stepSchema).default([]),
     answer: z.array(answerItemSchema).min(1).optional(),
     choices: z.array(choiceSchema).min(2).optional(),
+    /** Voci della struttura d'esame che l'esercizio può coprire (`exam.structure[].tag` del corso). */
+    examTags: z.array(kebabId).min(1).optional(),
     origin: z.enum(['originale', 'tipologia-appello']),
   })
   .superRefine((ex, ctx) => {

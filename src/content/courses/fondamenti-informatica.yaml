@@ -45,26 +45,31 @@ exam:
         en: 'Exercise: diagram to complete'
       points: 2.5
       kind: esercizio
+      tag: schema-da-completare
     - label:
         it: 'Esercizio: schema da completare'
         en: 'Exercise: diagram to complete'
       points: 2.5
       kind: esercizio
+      tag: schema-da-completare
     - label:
         it: 'Esercizio: dalla tabella di verità all’espressione'
         en: 'Exercise: from truth table to expression'
       points: 2.5
       kind: esercizio
+      tag: tabella-espressione
     - label:
         it: 'Esercizio: dalla tabella di verità all’espressione'
         en: 'Exercise: from truth table to expression'
       points: 2.5
       kind: esercizio
+      tag: tabella-espressione
     - label:
         it: 'Esercizio: sintesi con Karnaugh'
         en: 'Exercise: Karnaugh synthesis'
       points: 2.5
       kind: esercizio
+      tag: karnaugh
     - label:
         it: Domanda aperta
         en: Open question
@@ -80,6 +85,7 @@ exam:
         en: 'Exercise: assembly'
       points: 2.5
       kind: esercizio
+      tag: assembly
 extras:
   - slug: convertitori
     title:

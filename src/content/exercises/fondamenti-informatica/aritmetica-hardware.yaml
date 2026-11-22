@@ -4,6 +4,8 @@
     - aritmetica-hardware.1
   difficulty: 1
   kind: static
+  examTags:
+    - tabella-espressione
   statement:
     it: Compila la tabella di verità del **semisommatore** e ricava le espressioni della somma S e del riporto C.
     en: Fill in the truth table of the **half adder** and derive the expressions of the sum S and the carry C.
@@ -747,6 +749,8 @@
     - aritmetica-hardware.2
   difficulty: 2
   kind: static
+  examTags:
+    - schema-da-completare
   statement:
     it: >-
       Completa lo schema «Sommatore a propagazione di riporto»: scrivi per ogni posizione numerata l'etichetta
@@ -885,6 +889,8 @@
     - aritmetica-hardware.2
   difficulty: 2
   kind: static
+  examTags:
+    - schema-da-completare
   statement:
     it: >-
       Completa lo schema «Circuito di addizione e sottrazione»: scrivi per ogni posizione numerata l'etichetta
@@ -1030,6 +1036,8 @@
     - aritmetica-hardware.2
   difficulty: 2
   kind: static
+  examTags:
+    - schema-da-completare
   statement:
     it: >-
       Completa lo schema «Sommatore con riporto anticipato»: scrivi per ogni posizione numerata l'etichetta
@@ -1195,6 +1203,8 @@
     - aritmetica-hardware.2
   difficulty: 2
   kind: static
+  examTags:
+    - schema-da-completare
   statement:
     it: >-
       Completa lo schema «Moltiplicatore binario sequenziale»: scrivi per ogni posizione numerata l'etichetta
@@ -1341,6 +1351,8 @@
     - aritmetica-hardware.2
   difficulty: 2
   kind: static
+  examTags:
+    - schema-da-completare
   statement:
     it: >-
       Completa lo schema «Circuito per la divisione binaria»: scrivi per ogni posizione numerata l'etichetta

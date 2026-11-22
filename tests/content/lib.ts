@@ -205,6 +205,20 @@ export async function checkContent(opts: CheckOptions): Promise<string[]> {
     }
   }
 
+  // ---- etichette della struttura d'esame (`tag`) ed esercizi che le coprono (`examTags`)
+  for (const { file, data } of c.courses) {
+    const partTags = new Set(data.exam.structure.flatMap((p) => (p.tag ? [p.tag] : [])));
+    const exTags = new Set(
+      c.exercises
+        .filter((e) => e.data.course === data.id)
+        .flatMap((e) => (e.data.examTags as string[] | undefined) ?? []),
+    );
+    for (const tag of partTags)
+      if (!exTags.has(tag)) errors.push(`${file}: nessun esercizio con examTags "${tag}"`);
+    for (const tag of exTags)
+      if (!partTags.has(tag)) errors.push(`${file}: examTags "${tag}" senza voce nella struttura d'esame`);
+  }
+
   // ---- traduzioni mancanti nei campi localizzati
   const all: [string, Entry<Record<string, unknown>>[]][] = [
     ['courses', c.courses as unknown as Entry<Record<string, unknown>>[]],

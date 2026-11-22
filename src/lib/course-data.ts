@@ -65,6 +65,7 @@ export function courseSummary(course: CourseEntry, lang: Lang): CourseSummary {
       label: tr(p.label, lang),
       kind: p.kind,
       ...(p.points !== undefined ? { points: p.points } : {}),
+      ...(p.tag ? { tag: p.tag } : {}),
     })),
     examDates: course.examDates ?? [],
     paths: coursePaths(course, lang),
@@ -101,6 +102,7 @@ export function exerciseData(e: CollectionEntry<'exercises'>['data'], lang: Lang
     difficulty: e.difficulty,
     kind: e.kind,
     ...(e.generator ? { generator: e.generator } : {}),
+    ...(e.examTags ? { examTags: e.examTags } : {}),
     // titolo leggibile: la matematica diventa testo («$\lambda$» → «λ», «50\,\mathrm{Hz}» → «50 Hz»)
     title: statement ? plainText(texToPlain(statement.text)).slice(0, 140) : e.id,
     ...(statement ? { statementHtml: richHtml(statement.text) } : {}),
@@ -136,6 +138,7 @@ export function exerciseData(e: CollectionEntry<'exercises'>['data'], lang: Lang
             html: richInline(tr(c.text, lang)),
             label: plainText(tr(c.text, lang)),
             correct: c.correct,
+            ...(c.fixedLast ? { fixedLast: true } : {}),
             ...(c.explanation ? { explanationHtml: richHtml(tr(c.explanation, lang)) } : {}),
           })),
         }
@@ -204,6 +207,7 @@ export function exerciseMeta(e: ExerciseData): ExerciseMeta {
     ...(e.generator ? { generator: e.generator } : {}),
     title: e.title,
     category: exerciseCategory(e),
+    ...(e.examTags ? { examTags: e.examTags } : {}),
     ...(e.fallback ? { fallback: true } : {}),
   };
 }

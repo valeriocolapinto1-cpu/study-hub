@@ -116,3 +116,19 @@ export function randomSeed(): number {
     return Math.floor(Math.random() * 2 ** 32);
   }
 }
+
+/**
+ * Ordine di presentazione delle alternative di una crocetta: permutazione (Fisher–Yates) degli
+ * indici d'autore con il seme dato; quelle `fixedLast` («Tutte le precedenti»…) restano in fondo,
+ * nell'ordine d'autore. Stesso seme → stesso ordine (ripresa di una prova, stampa).
+ */
+export function choiceOrder(
+  choices: ReadonlyArray<{ fixedLast?: boolean | undefined }>,
+  seed: number,
+): number[] {
+  const idx = choices.map((_, i) => i);
+  return [
+    ...createRng(seed).shuffle(idx.filter((i) => !choices[i]!.fixedLast)),
+    ...idx.filter((i) => choices[i]!.fixedLast),
+  ];
+}
