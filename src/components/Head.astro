@@ -1,8 +1,14 @@
 ---
-/** Metadati comuni: titolo, descrizione, canonical, hreflang, Open Graph, tema. */
+/**
+ * Metadati comuni: titolo, descrizione, canonical, hreflang, Open Graph (immagine del sito o del
+ * corso, src/pages/og/), tema e colore della barra del browser, app web su iOS.
+ * La Content-Security-Policy si aggiunge dopo la build (tools/integrations/csp.mjs), con gli hash
+ * di tutti gli script inline della pagina.
+ */
 import { DEFAULT_LANG, LANGS, SITE } from '../config/site';
-import { htmlLang, ogLocale, switchLangPath, withBase, type Lang } from '../i18n';
+import { htmlLang, ogLocale, switchLangPath, t, withBase, type Lang } from '../i18n';
 import { texToPlain } from '../lib/inline-tex';
+import { OG_HEIGHT, OG_WIDTH, ogImagePath } from '../lib/seo';
 // Font del testo precaricato: i titoli grandi nascono già in Geist (niente spostamento al cambio di font, CLS).
 import geistLatin from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
 
@@ -13,17 +19,24 @@ interface Props {
   /** false per pagine senza equivalente nell'altra lingua (es. 404). */
   alternates?: boolean;
   noindex?: boolean;
+  /** Corso della pagina: immagine di anteprima del corso invece di quella del sito. */
+  course?: string | undefined;
 }
-const { lang, title, alternates = true, noindex = false } = Astro.props;
+const { lang, title, alternates = true, noindex = false, course } = Astro.props;
 // I sommari possono contenere matematica `$…$`: nei metadati va in testo semplice.
 const description = texToPlain(Astro.props.description);
 const site = Astro.site ?? new URL('http://localhost');
 const canonical = new URL(Astro.url.pathname, site).href;
 const fullTitle = title === SITE.title[lang] ? title : `${title} — ${SITE.shortTitle[lang]}`;
+const ogImage = new URL(withBase(ogImagePath(lang, course)), site).href;
+// Tema salvato applicato prima del primo disegno (niente lampo di colore), con il colore della barra
+// del browser; poi site.ts lo allinea allo sfondo effettivo (anche del corso). Lo script è piccolo e
+// fisso: il suo hash entra nella CSP.
+const themeScript = `try{var s=JSON.parse(localStorage.getItem('sh:v1:global:theme')||'null');if(s==='light'||s==='dark')document.documentElement.dataset.theme=s;if(s==='light')document.querySelector('meta[name=theme-color]').content='${SITE.themeColor.light}'}catch(e){}`;
 ---
 
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
 <meta name="author" content={SITE.author} />
@@ -47,18 +60,20 @@ const fullTitle = title === SITE.title[lang] ? title : `${title} — ${SITE.shor
 <link rel="manifest" href={withBase('site.webmanifest')} />
 <link rel="sitemap" href={withBase('sitemap-index.xml')} />
 <meta name="theme-color" content={SITE.themeColor.dark} />
+<script is:inline set:html={themeScript} />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content={SITE.shortTitle[lang]} />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content={SITE.title[lang]} />
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
 <meta property="og:locale" content={ogLocale[lang]} />
-<meta property="og:image" content={new URL(withBase('icon-512.png'), site).href} />
-<meta name="twitter:card" content="summary" />
-<script is:inline>
-  // Applica il tema salvato prima del primo disegno (evita il lampo di colore).
-  try {
-    var saved = JSON.parse(localStorage.getItem('sh:v1:global:theme') || 'null');
-    if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
-  } catch (e) {}
-</script>
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content={String(OG_WIDTH)} />
+<meta property="og:image:height" content={String(OG_HEIGHT)} />
+<meta property="og:image:alt" content={t(lang, 'og.imageAlt', { title: fullTitle })} />
+<meta name="twitter:card" content="summary_large_image" />

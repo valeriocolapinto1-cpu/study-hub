@@ -37,4 +37,10 @@ if (configEl) {
     }
   });
   root.dataset.search = 'ready';
+  // `?q=…` (SearchAction nei dati strutturati della home) apre la ricerca già compilata.
+  const q = new URLSearchParams(location.search).get('q');
+  if (q) {
+    config.query = q;
+    void open();
+  }
 }

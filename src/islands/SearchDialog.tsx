@@ -16,6 +16,8 @@ export interface SearchConfig {
   base: string;
   courses: { id: string; title: string }[];
   texts: Record<string, string>;
+  /** Ricerca iniziale (`?q=` nell'URL: SearchAction dei dati strutturati). */
+  query?: string;
 }
 
 interface PagefindResultData {
@@ -67,7 +69,7 @@ interface Hit {
 
 function SearchUI({ config, dialog }: { config: SearchConfig; dialog: HTMLDialogElement }) {
   const { lang, base, courses, texts: T } = config;
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(config.query ?? '');
   const [course, setCourse] = useState('');
   const [types, setTypes] = useState<string[]>([]);
   const [allLangs, setAllLangs] = useState(false);
