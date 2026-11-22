@@ -1,0 +1,639 @@
+/* =====================================================================
+   Lettura: pagine più leggere da leggere e da scorrere con gli occhi.
+   Stesso contenuto, presentazione più compatta (docs/design/README.md,
+   «Regole di lettura»). Strato sopra originale.css, solo token.
+   - gerarchia tipografica netta, corpo 17–18 px, interlinea 1,6, riga ~65ch;
+   - un solo livello di riquadri: la prosa sta sulla tela, gli strati
+     della teoria sono sezioni con un filo colorato a sinistra;
+   - una riga sola per indice del corso, percorso e occhiello;
+   - indici compatti (mappa degli argomenti, elenco esercizi, ancore).
+   ===================================================================== */
+
+/* ---------- Tipografia del testo lungo ---------- */
+.prose {
+  --flow: 0.95em;
+  font-size: clamp(1.0625rem, 1.02rem + 0.2vw, 1.125rem);
+  line-height: 1.6;
+  max-width: 65ch;
+}
+.prose > :where(h2) {
+  font: 650 clamp(1.4rem, 1.25rem + 0.7vw, 1.7rem) / 1.2 var(--font-sans);
+  letter-spacing: -0.02em;
+  margin-top: 1.75em;
+}
+.prose > :where(h3),
+.prose .layer > :where(h3) {
+  font: 650 clamp(1.15rem, 1.1rem + 0.25vw, 1.25rem) / 1.3 var(--font-sans);
+  letter-spacing: -0.01em;
+  margin-top: 1.6em;
+}
+.prose > :where(h4) {
+  font: 650 1em / 1.4 var(--font-sans);
+  margin-top: 1.4em;
+}
+.prose :where(h2, h3, h4) + * {
+  margin-top: 0.5em;
+}
+.prose .layer > :where(h2) {
+  font: 650 clamp(1.3rem, 1.2rem + 0.5vw, 1.55rem) / 1.2 var(--font-sans);
+  letter-spacing: -0.02em;
+}
+/* I grassetti esistenti fanno da appigli: ben visibili, nel colore pieno del testo. */
+.prose :where(strong, b) {
+  font-weight: 700;
+  color: var(--text);
+}
+.prose :where(ul, ol) {
+  padding-left: 1.3em;
+}
+.prose li + li {
+  margin-top: 0.35em;
+}
+.prose dl > dd {
+  margin-left: 0;
+}
+.prose .muted,
+.muted {
+  color: var(--text-muted);
+}
+
+/* Formule in display: più respiro sopra e sotto, scorrimento orizzontale pulito
+   (niente barra verticale, ombra ai bordi solo quando la formula esce dalla colonna). */
+.prose .katex-display {
+  margin-block: 1.1em;
+  padding-block: 0.35em;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.prose .katex-display[tabindex='0'] {
+  background:
+    linear-gradient(to right, var(--bg) 30%, transparent) left / 1.5rem 100% no-repeat local,
+    linear-gradient(to left, var(--bg) 30%, transparent) right / 1.5rem 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, var(--border-strong), transparent) left / 0.5rem 100% no-repeat
+      scroll,
+    radial-gradient(farthest-side at 100% 50%, var(--border-strong), transparent) right / 0.5rem 100%
+      no-repeat scroll;
+}
+
+/* ---------- Meno riquadri: un solo livello di card ---------- */
+/* Corpo della teoria e panoramica sulla tela: niente card attorno alla prosa
+   (dentro restano figure, richiami e dimostrazioni, un livello soltanto). */
+[data-area='course'] .reading > article.prose,
+[data-area='course'] .reading > .prose {
+  max-width: 65ch;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+
+/* Strati della teoria: sezione con filo colorato a sinistra ed etichetta, non card piena. */
+.layer {
+  margin-top: 2.25em;
+  padding-left: clamp(0.85rem, 2.5vw, 1.25rem);
+  border-left: 2px solid color-mix(in srgb, var(--layer-tone) 65%, transparent);
+}
+.prose > .layer:first-child {
+  margin-top: 0.5em;
+}
+.layer > * + * {
+  margin-top: var(--flow);
+}
+.layer::before {
+  content: none;
+}
+.layer__label {
+  font: 650 0.75rem / 1.3 var(--font-sans);
+  letter-spacing: 0.08em;
+}
+/* Riquadri dentro uno strato: un solo bordo, padding ridotto su telefono. */
+.prose .figure__media {
+  padding: clamp(0.5rem, 2vw, 1rem);
+}
+.prose .callout {
+  padding: clamp(0.75rem, 2.5vw, 1.1rem);
+}
+.prose details {
+  padding: 0.35rem clamp(0.65rem, 2.5vw, 1rem);
+}
+
+/* ---------- Intestazione compatta del corso: una riga ---------- */
+.course-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+  min-height: 2.5rem;
+}
+.course-bar .breadcrumbs {
+  min-width: 0;
+  flex: 0 1 auto;
+}
+.course-bar__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.25rem;
+  padding: 0 0.7rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--text);
+  font: 550 var(--step--1) / 1 var(--font-sans);
+  cursor: pointer;
+}
+.course-bar__toggle .icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  color: var(--accent-strong);
+}
+.course-bar__toggle:hover {
+  border-color: var(--accent);
+}
+.course-bar__eyebrow {
+  margin: 0;
+  font: 650 0.72rem / 1.4 var(--font-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+[data-area='course'] .page-header {
+  padding-block: var(--space-2xs) var(--space-s);
+}
+[data-area='course'] .page-header__lede {
+  margin-top: var(--space-2xs);
+  font: 400 clamp(1rem, 0.96rem + 0.2vw, 1.1rem) / 1.5 var(--font-sans);
+}
+@media (max-width: 63.99em) {
+  /* Su telefono il percorso mostra solo il livello superiore: «← Teoria». */
+  .course-bar .breadcrumbs li:not([data-parent]) {
+    display: none;
+  }
+  .course-bar .breadcrumbs li[data-parent]::before {
+    content: '←';
+    margin: 0 0.35em 0 0;
+    color: var(--text-muted);
+  }
+  .course-bar .breadcrumbs a {
+    min-height: 2.25rem;
+  }
+}
+@media (min-width: 64em) {
+  .course-bar__toggle {
+    display: none;
+  }
+  .course-bar__eyebrow {
+    margin-left: auto;
+  }
+}
+
+/* ---------- Indice del corso: barra laterale (desktop) e menu (telefono), un solo elemento ---------- */
+.course-side__head {
+  display: none;
+}
+.course-shell__side::backdrop {
+  background: rgb(0 0 0 / 0.45);
+}
+@media (max-width: 63.99em) {
+  .course-shell__side:popover-open,
+  .course-shell__side[data-open] {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 60;
+    display: grid;
+    align-content: start;
+    gap: var(--space-l);
+    width: min(22rem, 88vw);
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 0 var(--space-s) var(--space-l);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border: 0;
+    border-right: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    box-shadow: var(--shadow-2);
+  }
+  .course-shell__side:popover-open .course-side__head,
+  .course-shell__side[data-open] .course-side__head {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-inline: calc(-1 * var(--space-s));
+    padding: var(--space-xs) var(--space-s);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+}
+@media (min-width: 64em) {
+  /* Annulla gli stili del popover del browser: qui è una barra laterale normale. */
+  .course-shell__side,
+  .course-shell__side:popover-open {
+    position: sticky;
+    inset: auto;
+    top: 4.75rem;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0 0 var(--space-l);
+    border: 0;
+    background: none;
+    color: inherit;
+    overflow: hidden auto;
+  }
+}
+
+/* ---------- Indice della pagina (ancore) ---------- */
+.page-toc {
+  margin: var(--space-s) 0 var(--space-m);
+  padding: 0.4rem 0;
+  border-block: 1px solid var(--border);
+}
+.page-toc ol,
+.page-toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.25rem;
+  font: 500 var(--step--1) / 1.4 var(--font-sans);
+}
+.page-toc a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.page-toc a:hover,
+.page-toc a:focus-visible {
+  color: var(--accent-strong);
+  text-decoration: underline;
+}
+.page-toc li:has(> ol) {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.75rem;
+}
+.page-toc li > ol {
+  gap: 0 0.9rem;
+  font-weight: 400;
+}
+.page-toc li > ol a {
+  color: var(--text-muted);
+  opacity: 0.85;
+}
+.page-toc li > a:first-child {
+  color: var(--text);
+}
+/* Elenco lungo (argomenti degli esercizi): testo che scorre, con il conteggio accanto. */
+.page-toc--inline ul {
+  gap: 0 1rem;
+  line-height: 1.7;
+}
+.page-toc--inline li {
+  max-width: 100%;
+}
+.page-toc--inline a {
+  display: inline;
+  min-height: 0;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 0.2em;
+}
+.anchor-target,
+:is(.ex-topic, .ex-chapter, .layer, .topic-map__group)[id],
+.prose :where(h2, h3)[id] {
+  scroll-margin-top: 4.5rem;
+}
+
+/* ---------- Panoramica: azioni, stato, informazioni, mappa ---------- */
+.course-actions ul {
+  list-style: none;
+  margin: var(--space-xs) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+/* Telefono: quattro tessere in una riga (icona, nome, dato); da tablet icona a sinistra. */
+.course-actions a {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  row-gap: 0.15rem;
+  min-height: 3.25rem;
+  padding: 0.55rem 0.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l);
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.15s;
+}
+.course-actions a:hover {
+  border-color: var(--accent);
+}
+.course-actions .icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--accent-strong);
+}
+.course-actions__title {
+  font: 650 0.92rem / 1.2 var(--font-sans);
+}
+.course-actions__meta {
+  font: 400 0.75rem / 1.25 var(--font-sans);
+  color: var(--text-muted);
+}
+@media (min-width: 40em) {
+  .course-actions a {
+    grid-template-columns: auto minmax(0, 1fr);
+    justify-items: start;
+    align-items: center;
+    column-gap: 0.6rem;
+    padding: 0.6rem 0.75rem;
+    text-align: start;
+  }
+  .course-actions .icon {
+    grid-row: span 2;
+  }
+  .course-actions__title {
+    font-size: 1rem;
+  }
+}
+.course-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 1.25rem;
+  margin: 0.6rem 0 0;
+  font: 400 var(--step--1) / 1.6 var(--font-sans);
+  color: var(--text-muted);
+}
+.course-status b {
+  color: var(--text);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.course-status a {
+  color: var(--accent-strong);
+}
+
+/* Coppie etichetta/valore: lista compatta su telefono (etichetta sopra), due colonne da tablet. */
+/* Telefono: etichetta in linea all'inizio del valore (float), così ogni voce risparmia una riga. */
+.prose dl.facts {
+  display: block;
+  border-top: 1px solid var(--border);
+}
+.prose dl.facts > dt {
+  float: left;
+  clear: left;
+  margin-right: 0.5rem;
+  padding-top: 0.5rem;
+  font: 650 0.75rem / 1.5rem var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.prose dl.facts > dd {
+  margin: 0;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+  font: 450 1rem / 1.5 var(--font-sans);
+}
+@media (min-width: 40em) {
+  .prose dl.facts {
+    display: grid;
+    grid-template-columns: minmax(9rem, 13rem) minmax(0, 1fr);
+    column-gap: var(--space-s);
+  }
+  .prose dl.facts > dt {
+    float: none;
+    margin: 0;
+    padding-block: 0.65rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .prose dl.facts > dd {
+    margin: 0;
+    padding-block: 0.6rem;
+  }
+}
+.prose ul.inline-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+}
+.prose ul.inline-list li + li {
+  margin-top: 0;
+}
+/* Come usare il sito: voce e frase nello stesso blocco su telefono, due colonne da tablet. */
+.prose dl.howto {
+  display: grid;
+  gap: 0.6rem var(--space-l);
+}
+.prose dl.howto > div {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.prose dl.howto dt {
+  display: inline;
+  margin-right: 0.4rem;
+  font: 650 1rem / 1.35 var(--font-sans);
+}
+.prose dl.howto dd {
+  display: inline;
+  margin: 0;
+  color: var(--text-muted);
+}
+@media (min-width: 40em) {
+  .prose dl.howto {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .prose dl.howto dt {
+    display: block;
+  }
+  .prose dl.howto dd {
+    display: block;
+    margin-top: 0.1rem;
+  }
+}
+
+/* Mappa degli argomenti: righe numerate, titolo e descrizione più piccola; capitoli fissi in alto. */
+.topic-map {
+  max-width: 65ch;
+}
+.topic-map__chapter {
+  position: sticky;
+  top: 3.5rem;
+  z-index: 2;
+  margin: var(--space-xs) 0 0;
+  padding: 0.4rem 0 0.3rem;
+  border-bottom: 1px solid var(--border-strong);
+  background: var(--bg);
+  font: 650 1rem / 1.3 var(--font-sans);
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.topic-map__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.topic-map__list li {
+  padding: 0.25rem 0;
+  border-bottom: 1px solid var(--border);
+}
+/* Numero, titolo e descrizione nello stesso blocco: la descrizione, più piccola e più chiara,
+   segue il titolo e usa tutta la larghezza della colonna. */
+.topic-map__text {
+  margin: 0;
+  font: 400 0.82rem / 1.4 var(--font-sans);
+  color: var(--text-muted);
+}
+.topic-map__num {
+  display: inline-block;
+  min-width: 1.75rem;
+  font: 500 0.78rem / 1 var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}
+.topic-map__title {
+  margin-right: 0.35rem;
+  font: 600 0.97rem / 1.35 var(--font-sans);
+  color: var(--text);
+  text-decoration: none;
+}
+.topic-map__title:hover,
+.topic-map__title:focus-visible {
+  color: var(--accent-strong);
+  text-decoration: underline;
+}
+
+/* ---------- Piè di pagina e strumenti di pagina: meno vuoto su telefono ---------- */
+@media (max-width: 47.99em) {
+  .site-footer {
+    margin-top: var(--space-xl);
+  }
+  .site-footer__grid {
+    padding-block: var(--space-l) var(--space-m);
+  }
+  .page-tools {
+    margin-top: var(--space-l);
+  }
+  .site-footer__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-m) var(--space-s);
+  }
+  .site-footer__about {
+    grid-column: 1 / -1;
+  }
+  .site-footer li a {
+    min-height: 1.75rem;
+  }
+}
+
+/* ---------- Teoria: tempo di lettura, obiettivi a spunta, barra in fondo ---------- */
+.reading-time {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  font: 500 var(--step--1) / 1.4 var(--font-sans);
+  color: var(--text-muted);
+}
+.reading-time .icon {
+  width: 1rem;
+  height: 1rem;
+}
+.objectives {
+  margin-block: var(--space-s);
+}
+.check-list {
+  list-style: none;
+  margin: 0.35rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.3rem;
+  font: 400 1rem / 1.5 var(--font-sans);
+}
+.objectives ul.check-list {
+  padding-left: 0;
+}
+.check-list li {
+  position: relative;
+  padding-left: 1.6rem;
+}
+.check-list li::before {
+  content: '';
+  position: absolute;
+  left: 0.1rem;
+  top: 0.32em;
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+/* Spunta disegnata con un bordo ruotato: niente immagini né caratteri decorativi. */
+.check-list li::after {
+  content: '';
+  position: absolute;
+  left: 0.42rem;
+  top: 0.5em;
+  width: 0.28rem;
+  height: 0.5rem;
+  border: solid var(--accent-strong);
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+
+.pagination {
+  margin-top: var(--space-xl);
+  gap: 0.5rem;
+}
+.pagination a {
+  padding: 0.65rem 0.85rem;
+}
+.pagination__title {
+  font: 600 0.98rem / 1.3 var(--font-sans);
+}
+.pagination a.pagination__middle {
+  align-content: center;
+  text-align: center;
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+}
+.pagination__middle .pagination__title {
+  color: var(--accent-strong);
+}
+@media (min-width: 40em) {
+  .pagination--three {
+    grid-template-columns: 1fr auto 1fr;
+  }
+  .pagination--three .pagination__next:only-child {
+    grid-column: auto;
+  }
+}
+
+/* ---------- Colori per la lettura prolungata ---------- */
+/* Nel testo i link hanno il colore del testo e il filo dell'accento (sottolineatura sempre visibile):
+   un paragrafo con molti rimandi non diventa una fila di parole luminose in competizione. */
+.prose a:not([class]) {
+  color: var(--text);
+  text-decoration-color: color-mix(in srgb, var(--accent) 75%, transparent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
+}
+.prose a:not([class]):hover {
+  color: var(--accent-strong);
+  text-decoration-color: currentColor;
+}

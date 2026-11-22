@@ -1,5 +1,8 @@
 ---
-/** Pagina di teoria di un argomento: obiettivi, strati della spiegazione (MDX), navigazione. */
+/**
+ * Pagina di teoria di un argomento: sommario, tempo di lettura, obiettivi a spunta, indice della pagina,
+ * strati della spiegazione (MDX), barra ← precedente · esercizi dell'argomento · successivo →.
+ */
 import { render } from 'astro:content';
 import CourseLayout from '../../../../../layouts/CourseLayout.astro';
 import PageHeader from '../../../../../components/PageHeader.astro';
@@ -15,6 +18,8 @@ import Diagram from '../../../../../figures/Diagram.astro';
 import DiagramLive from '../../../../../figures/DiagramLive.astro';
 import Notes from '../../../../../components/course/Notes.astro';
 import Icon from '../../../../../components/Icon.astro';
+import InlineTex from '../../../../../components/InlineTex.astro';
+import { theoryOutline } from '../../../../../lib/theory-outline';
 import {
   coursePaths,
   courseTopics,
@@ -44,7 +49,10 @@ interface Props {
 const { course, topic, topics } = Astro.props;
 const lang = Astro.params.lang as Lang;
 const { entry, fallback } = await theoryEntry(course.id, topic.id, lang);
-const { Content } = await render(entry!);
+const { Content, headings } = await render(entry!);
+const outline = theoryOutline(entry!.body ?? '', headings);
+const minutes = Math.max(1, Math.round(outline.words / 200));
+const exercisesHref = localizePath(sectionPath(course, 'esercizi', topic.id), lang);
 const i = topics.findIndex((x) => x.id === topic.id);
 const link = (x: TopicData | undefined) =>
   x && { href: localizePath(sectionPath(course, 'teoria', x.id), lang), title: tr(x.title, lang) };
@@ -58,27 +66,57 @@ const link = (x: TopicData | undefined) =>
   topics={topics}
   topicSection="teoria"
   currentTopic={topic.id}
+  eyebrow={topic.group ? tr(topic.group, lang) : t(lang, 'nav.course.theory')}
 >
-  <PageHeader
-    eyebrow={topic.group ? tr(topic.group, lang) : t(lang, 'nav.course.theory')}
-    title={tr(topic.title, lang)}
-    lede={tr(topic.summary, lang)}
-  />
+  <PageHeader title={tr(topic.title, lang)}>
+    <InlineTex text={tr(topic.summary, lang)} />
+  </PageHeader>
+  <p class="reading-time">
+    <Icon name="clock" />
+    {t(lang, 'theory.readingTime', { n: minutes })}
+  </p>
   <FallbackNotice lang={lang} show={fallback} />
   <section class="objectives" aria-labelledby="obiettivi">
     <h2 id="obiettivi" class="eyebrow">
       {t(lang, 'theory.objectives')}
     </h2>
-    <ul>
+    <ul class="check-list">
       {topic.objectives.map((o) => (
-        <li data-objective={o.id}>{tr(o.text, lang)}</li>
+        <li data-objective={o.id}>
+          <InlineTex text={tr(o.text, lang)} />
+        </li>
       ))}
     </ul>
   </section>
+  {outline.items.length > 1 && (
+    <nav class="page-toc" aria-label={t(lang, 'theory.toc')}>
+      <ol>
+        {outline.items.map((x) => (
+          <li>
+            <a href={`#${x.id}`}>{x.kind ? t(lang, `layer.${x.kind}`) : x.text}</a>
+            {x.children.length > 0 && (
+              <ol>
+                {x.children.map((c) => (
+                  <li>
+                    <a href={`#${c.id}`}>{c.text}</a>
+                  </li>
+                ))}
+              </ol>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )}
   <article class="prose" data-topic={topic.id}>
     <Content components={{ Layer, Formula, Figure, Callout, Circuit, Diagram, DiagramLive, a: TheoryLink }} />
   </article>
-  <Pagination lang={lang} prev={link(topics[i - 1])} next={link(topics[i + 1])} />
+  <Pagination
+    lang={lang}
+    prev={link(topics[i - 1])}
+    next={link(topics[i + 1])}
+    middle={{ href: exercisesHref, title: t(lang, 'theory.exercisesOnTopic') }}
+  />
   <a
     slot="tools"
     class="report-error"

@@ -1,9 +1,9 @@
 ---
 /**
- * Home: per chi torna, la preparazione (ripasso del giorno, progressi per corso,
- * prossimo esame, appunti recenti: isola HomeStudy); per chi arriva, una presentazione
- * sobria con numeri reali calcolati dalle collections, i corsi per anno, cosa offre il
- * sito e chi lo cura. Con zero corsi resta coerente (avviso al posto dell'elenco).
+ * Home: presentazione breve e subito i corsi per anno; per chi torna «Riprendi da dove eri»
+ * (ultima pagina di studio, ripasso del giorno, progressi per corso, prossimo esame, appunti recenti:
+ * isola HomeStudy); poi i numeri reali calcolati dalle collections, cosa offre il sito e chi lo cura,
+ * in griglie compatte. Con zero corsi resta coerente (avviso al posto dell'elenco).
  */
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -78,7 +78,14 @@ const studyCourses = courses.map((c) => {
     },
   };
 });
-const offers = ['theory', 'exercises', 'review', 'exam', 'offline', 'data'] as const;
+const offers = [
+  ['theory', 'book'],
+  ['exercises', 'pencil'],
+  ['review', 'cards'],
+  ['exam', 'clock'],
+  ['offline', 'search'],
+  ['data', 'person'],
+] as const;
 const metaLine = (id: string) => {
   const m = perCourse[id]!;
   return [
@@ -95,7 +102,11 @@ const metaLine = (id: string) => {
     try {
       for (var i = 0; i < localStorage.length; i++) {
         var k = localStorage.key(i) || '';
-        if (/^sh:v1:[a-z0-9-]+:(progress|srs|notes|exam)$/.test(k) || k === 'sh:v1:global:examDates') {
+        if (
+          /^sh:v1:[a-z0-9-]+:(progress|srs|notes|exam)$/.test(k) ||
+          k === 'sh:v1:global:examDates' ||
+          k === 'sh:v1:global:lastStudy'
+        ) {
           document.documentElement.dataset.returning = '';
           break;
         }
@@ -120,31 +131,7 @@ const metaLine = (id: string) => {
           </a>
         </p>
       )}
-      {metrics.length > 0 && (
-        <dl class="home-metrics glass" aria-label={t(lang, 'home.metricsLabel')}>
-          {metrics.map(([k, n]) => (
-            <div>
-              <dt>{t(lang, `home.metric.${k}`)}</dt>
-              <dd>{nf.format(n)}</dd>
-            </div>
-          ))}
-        </dl>
-      )}
     </header>
-
-    {courses.length > 0 && (
-      <div class="home-study" data-pagefind-ignore>
-        <HomeStudy
-          client:idle
-          lang={lang}
-          base={BASE_URL}
-          courses={studyCourses}
-          reviewPath={localizePath('ripasso', lang)}
-          notesPath={localizePath('appunti', lang)}
-          texts={texts(lang, 'homeStudy.')}
-        />
-      </div>
-    )}
 
     <section class="home-section" aria-labelledby="corsi">
       <div class="home-section__head">
@@ -196,16 +183,50 @@ const metaLine = (id: string) => {
       ))}
     </section>
 
+    {courses.length > 0 && (
+      <div class="home-study" data-pagefind-ignore>
+        <HomeStudy
+          client:idle
+          lang={lang}
+          base={BASE_URL}
+          courses={studyCourses}
+          reviewPath={localizePath('ripasso', lang)}
+          notesPath={localizePath('appunti', lang)}
+          texts={texts(lang, 'homeStudy.')}
+        />
+      </div>
+    )}
+
+    <section class="home-numbers" aria-label={t(lang, 'home.metricsLabel')}>
+      {metrics.length > 0 && (
+        <dl class="home-metrics glass">
+          {metrics.map(([k, n]) => (
+            <div>
+              <dt>{t(lang, `home.metric.${k}`)}</dt>
+              <dd>{nf.format(n)}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+    </section>
+
     <section class="home-section" aria-labelledby="offerta">
       <div class="home-section__head">
         <h2 id="offerta">{t(lang, 'home.offer.title')}</h2>
       </div>
-      <ul class="home-offer">
-        {offers.map((k, i) => (
-          <li class="glass">
-            <span class="home-offer__n">{String(i + 1).padStart(2, '0')}</span>
-            <h3>{t(lang, `home.offer.${k}.title`)}</h3>
-            <p>{t(lang, `home.offer.${k}.text`)}</p>
+      <ul class="home-offer glass">
+        {offers.map(([k, icon], i) => (
+          <li>
+            <span class="home-offer__icon">
+              <Icon name={icon} />
+            </span>
+            <div>
+              <h3>
+                <span class="home-offer__n">{String(i + 1).padStart(2, '0')}</span>
+                {t(lang, `home.offer.${k}.title`)}
+              </h3>
+              <p>{t(lang, `home.offer.${k}.text`)}</p>
+            </div>
           </li>
         ))}
       </ul>
@@ -235,7 +256,7 @@ const metaLine = (id: string) => {
 <style>
   /* Home: struttura e aspetto del vecchio study-hub (hero, statistiche in vetro, card dei corsi). */
   .home-hero {
-    padding-block: clamp(2.5rem, 9vw, 6.5rem) var(--space-m);
+    padding-block: clamp(1.75rem, 6vw, 4.5rem) 0;
   }
   .home-hero h1 {
     margin: var(--space-s) 0 0;
@@ -264,10 +285,13 @@ const metaLine = (id: string) => {
     margin-top: var(--space-l);
     gap: var(--space-xs);
   }
+  .home-numbers {
+    margin-top: clamp(2.5rem, 7vw, 4.5rem);
+  }
   .home-metrics {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
-    margin: clamp(2.5rem, 7vw, 4.5rem) 0 0;
+    margin: 0;
     padding: 0.375rem;
     border-radius: var(--radius-xl);
   }
@@ -300,13 +324,16 @@ const metaLine = (id: string) => {
     }
   }
   .home-study {
-    margin-block: var(--space-xl) 0;
+    margin-block: clamp(2.5rem, 7vw, 4.5rem) 0;
   }
   :global(html:not([data-returning])) .home-study {
     display: none;
   }
   .home-section {
-    margin-block: clamp(3.5rem, 9vw, 6.5rem) 0;
+    margin-block: clamp(2.5rem, 7vw, 5rem) 0;
+  }
+  .home-section:first-of-type {
+    margin-top: clamp(2rem, 5vw, 3.5rem);
   }
   .home-section__head {
     margin-bottom: var(--space-m);
@@ -341,8 +368,8 @@ const metaLine = (id: string) => {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 0.875rem;
-    padding: 1.5rem;
+    gap: 0.75rem;
+    padding: clamp(1.125rem, 3vw, 1.5rem);
     border-radius: var(--radius-xl);
     transition:
       transform 0.45s var(--ease),
@@ -418,6 +445,7 @@ const metaLine = (id: string) => {
     margin: 0;
     color: var(--text-muted);
     font-size: 0.95rem;
+    line-height: 1.55;
   }
   .home-course__metrics {
     display: flex;
@@ -447,38 +475,57 @@ const metaLine = (id: string) => {
     margin: auto 0 0;
     padding-top: 0.375rem;
   }
+  /* Cosa trovi: un solo pannello, voci icona + titolo + frase in griglia compatta. */
   .home-offer {
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: clamp(1rem, 3vw, 1.75rem);
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
-    gap: 1rem;
-  }
-  .home-offer li {
-    padding: clamp(1.375rem, 3.4vw, 2rem);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+    gap: var(--space-m) var(--space-l);
     border-radius: var(--radius-xl);
   }
-  .home-offer__n {
-    font: 700 0.72rem / 1 var(--font-mono);
-    letter-spacing: 0.14em;
+  .home-offer li {
+    display: grid;
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    gap: var(--space-xs);
+    align-items: start;
+  }
+  .home-offer__icon {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 10px;
+    border: 1px solid var(--hair);
     color: var(--brand-cyan-text);
   }
+  .home-offer__icon :global(svg) {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+  .home-offer__n {
+    margin-right: 0.5em;
+    font: 700 0.72rem / 1 var(--font-mono);
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+  }
   .home-offer h3 {
-    margin: 0.875rem 0 0.5rem;
-    font: 650 1.3rem / 1.2 var(--font-sans);
-    letter-spacing: -0.02em;
+    margin: 0.35rem 0 0.25rem;
+    font: 650 1.05rem / 1.3 var(--font-sans);
+    letter-spacing: -0.01em;
   }
   .home-offer p {
     margin: 0;
     color: var(--text-muted);
-    font-size: 0.96rem;
+    font-size: 0.94rem;
+    line-height: 1.55;
   }
   .home-about {
     display: grid;
-    gap: clamp(1.25rem, 5vw, 3.5rem);
-    padding: clamp(1.625rem, 5vw, 3.25rem);
-    border-radius: 30px;
+    gap: clamp(0.75rem, 4vw, 3rem);
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    border-radius: var(--radius-xl);
   }
   .home-about h2 {
     font: 650 clamp(1.7rem, 4vw, 2.5rem) / 1.15 var(--font-sans);

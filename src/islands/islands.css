@@ -345,6 +345,152 @@ textarea.sh-input {
   color: var(--text-muted);
 }
 
+/* Indice degli esercizi: capitoli → argomenti (ancore #t-<argomento>) → righe compatte.
+   Riga: icona dello stato, titolo, e sulla stessa riga del titolo difficoltà (tacche),
+   generato/statico e stato in testo piccolo. Due colonne da 64em. */
+.ex-chapter + .ex-chapter {
+  margin-top: var(--space-l);
+}
+.ex-chapter__title {
+  margin: var(--space-m) 0 0;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border-strong);
+  font: 650 clamp(1.15rem, 1.1rem + 0.3vw, 1.3rem) / 1.25 var(--font-sans);
+  letter-spacing: -0.01em;
+}
+.ex-topic {
+  margin-top: var(--space-xs);
+}
+.ex-topic__title {
+  margin: 0;
+  padding: 0.25rem 0 0.1rem;
+  font: 650 1rem / 1.35 var(--font-sans);
+}
+.ex-topic__title a {
+  color: var(--text);
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 0.2em;
+}
+.ex-topic__title a:hover {
+  color: var(--accent-strong);
+}
+.ex-topic__title .sh-muted {
+  font-weight: 400;
+}
+.ex-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+@media (min-width: 64em) {
+  .ex-rows {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-l);
+  }
+}
+.ex-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1rem minmax(0, 1fr);
+  column-gap: 0.55rem;
+  align-items: start;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid var(--border);
+  font: 400 0.9rem / 1.42 var(--font-sans);
+}
+/* Stato: cerchio vuoto (da fare), mezzo pieno (tentato), con spunta (risolto). Il testo è nella riga. */
+.ex-row::before {
+  content: '';
+  width: 0.95rem;
+  height: 0.95rem;
+  margin: 0.2em 0 0 0.05rem;
+  border: 1.5px solid var(--text-muted);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+.ex-row[data-status='tentato']::before {
+  border-color: var(--warning);
+  background: linear-gradient(90deg, transparent 50%, var(--warning) 50%);
+}
+.ex-row[data-status='risolto']::before {
+  border-color: var(--success);
+  background: var(--success);
+}
+.ex-row[data-status='risolto']::after {
+  content: '';
+  position: absolute;
+  top: calc(0.25rem + 0.2em + 0.17rem);
+  left: 0.39rem;
+  width: 0.22rem;
+  height: 0.42rem;
+  border: solid var(--bg);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.ex-row__title {
+  color: var(--text);
+  text-decoration: none;
+}
+.ex-row__title:hover,
+.ex-row__title:focus-visible {
+  color: var(--accent-strong);
+  text-decoration: underline;
+}
+.ex-row__meta {
+  font: 500 0.78rem / 1.45 var(--font-sans);
+  color: var(--text-muted);
+}
+/* I dati della riga seguono il titolo sulla sua ultima riga e vanno a capo solo tra una voce e l'altra. */
+.ex-row__meta > span {
+  white-space: nowrap;
+}
+.ex-row__meta > span + span {
+  margin-left: 0.45rem;
+}
+/* Difficoltà: tre tacche crescenti, piene fino al livello (gradienti, nessun SVG per riga). */
+.ex-diff::before {
+  content: '';
+  display: inline-block;
+  width: 0.8rem;
+  height: 0.7rem;
+  margin-right: 0.25rem;
+  vertical-align: -0.05em;
+  --d1: var(--border-strong);
+  --d2: var(--border-strong);
+  --d3: var(--border-strong);
+  background:
+    linear-gradient(var(--d1), var(--d1)) 0 100% / 0.2rem 40% no-repeat,
+    linear-gradient(var(--d2), var(--d2)) 50% 100% / 0.2rem 70% no-repeat,
+    linear-gradient(var(--d3), var(--d3)) 100% 100% / 0.2rem 100% no-repeat;
+}
+.ex-diff--1::before {
+  --d1: currentColor;
+}
+.ex-diff--2::before {
+  --d1: currentColor;
+  --d2: currentColor;
+}
+.ex-diff--3::before {
+  --d1: currentColor;
+  --d2: currentColor;
+  --d3: currentColor;
+}
+.ex-diff--2 {
+  color: var(--text);
+}
+.ex-diff--3 {
+  color: var(--accent-strong);
+}
+.ex-status--risolto {
+  color: var(--success);
+}
+.ex-kind::before,
+.ex-status::before {
+  content: '·';
+  margin-right: 0.45rem;
+}
+
 /* Ripasso */
 /* La carta arriva dopo l'idratazione (e il suo argomento da dati/<argomento>.json): lo spazio
    riservato tiene fermo il resto della pagina (CLS). */
@@ -655,18 +801,28 @@ label.btn:focus-within {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  inline-size: 2.75rem;
-  block-size: 2.75rem;
-  margin-inline-start: var(--space-2xs);
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  margin-inline-start: var(--space-3xs);
+  /* margini negativi: il pulsante in fondo al paragrafo non allarga la riga */
+  margin-block: -0.4rem;
   vertical-align: middle;
   border: 1px solid transparent;
   border-radius: var(--radius-s);
   background: transparent;
   color: var(--text-muted);
   cursor: pointer;
-  opacity: 0.6;
+  /* Discreta mentre si legge: piena al passaggio, al tocco, con il focus o se c'è un appunto. */
+  opacity: 0.4;
+  transition: opacity 0.15s;
+}
+.sh-note-btn svg {
+  inline-size: 1rem;
+  block-size: 1rem;
 }
 .sh-note-anchor:hover .sh-note-btn,
+.sh-note-btn:hover,
+.sh-note-btn:active,
 .sh-note-btn:focus-visible,
 .sh-note-btn.has-note {
   opacity: 1;
@@ -679,18 +835,26 @@ label.btn:focus-within {
    l'ultimo blocco; sta nell'angolo, in uno spazio riservato già nell'HTML statico. */
 :is(section, article, div)[data-note-id]:not(:has([data-note-slot])) {
   position: relative;
-  padding-inline-end: 3rem;
+  padding-inline-end: 2rem;
 }
 .sh-note-btn--corner {
   position: absolute;
-  inset-block-start: 0;
+  inset-block-start: 0.2em;
   inset-inline-end: 0;
   margin: 0;
 }
+/* Blocco che avvolge un solo paragrafo annotabile: la matita del paragrafo basta, quella del
+   blocco (stesso testo) compare solo se ha già un appunto. Niente spazio riservato a destra. */
+div[data-note-id]:has(> p[data-note-id]:only-child):not(:has(> .sh-note-btn.has-note)) {
+  padding-inline-end: 0;
+}
+div[data-note-id]:has(> p[data-note-id]:only-child) > .sh-note-btn--corner:not(.has-note) {
+  display: none;
+}
 .sh-note-slot {
   display: inline-flex;
-  min-inline-size: 2.75rem;
-  min-block-size: 2.75rem;
+  min-inline-size: 1.75rem;
+  min-block-size: 1.75rem;
 }
 .sh-note-preview {
   white-space: pre-wrap;

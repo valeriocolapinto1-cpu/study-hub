@@ -171,16 +171,6 @@ h4 {
 .topic-nav a[aria-current] {
   border-left-color: var(--accent);
 }
-/* Corpo della teoria e panoramica: una card come .t-body di Fisica II. */
-[data-area='course'] .reading > article.prose,
-[data-area='course'] .reading > .prose {
-  max-width: none;
-  padding: clamp(1.125rem, 3vw, 2rem);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-l);
-  background: var(--surface);
-  box-shadow: var(--shadow-1);
-}
 [data-area='course'] .reading {
   max-width: 52rem;
 }

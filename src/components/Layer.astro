@@ -21,7 +21,12 @@ const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
 const labelId = `${id ?? kind}-label`;
 ---
 
-<section class="layer" data-kind={kind} id={id} aria-labelledby={title ? undefined : labelId}>
+<section
+  class="layer"
+  data-kind={kind}
+  id={id ?? `strato-${kind}`}
+  aria-labelledby={title ? undefined : labelId}
+>
   <p class="layer__label" id={labelId}>
     {t(lang, `layer.${kind}`)}
   </p>
