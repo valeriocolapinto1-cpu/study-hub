@@ -2,7 +2,8 @@
  * Script globale minimo: interruttore del tema, memoria della lingua scelta,
  * menu mobile, apertura della ricerca e cassetto dell'indice del corso.
  */
-import { GLOBAL_SCOPE, write } from '../engine/storage';
+import { GLOBAL_SCOPE, STORAGE_ERROR_EVENT, write } from '../engine/storage';
+import { backupDue, snoozeBackup } from '../engine/backup';
 import { runMigrations } from '../engine/migrate';
 import './search';
 import './pwa';
@@ -42,6 +43,15 @@ document.addEventListener('click', (event) => {
   const langLink = target?.closest<HTMLAnchorElement>('a[data-lang-switch]');
   if (langLink?.dataset.langSwitch) write(GLOBAL_SCOPE, 'lang', langLink.dataset.langSwitch);
 });
+
+// ---- Dati locali: avviso se una scrittura fallisce o se l'ultimo backup è vecchio.
+// Il modulo dell'avviso si scarica solo quando serve.
+const notice = (kind: 'storage' | 'backup') =>
+  import('./data-notice')
+    .then((m) => m.showNotice(kind, kind === 'backup' ? () => snoozeBackup() : undefined))
+    .catch(() => undefined);
+addEventListener(STORAGE_ERROR_EVENT, () => notice('storage'), { once: true });
+setTimeout(() => !/\/i-miei-dati\/$/.test(location.pathname) && backupDue() && notice('backup'), 3000);
 
 // ---- Menu mobile: si chiude con Esc, al cambio di larghezza e al clic su un link.
 const menuButton = document.querySelector<HTMLButtonElement>('.menu-toggle');

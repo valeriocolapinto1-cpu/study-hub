@@ -15,8 +15,9 @@ import {
   type ImportError,
 } from '../engine/exportImport';
 import { decodeFromCollector, decodePasted, encodeForQr, FrameCollector, matrixToSvg } from '../engine/qr';
-import { isStorageAvailable } from '../engine/storage';
+import { isStorageAvailable, markExported } from '../engine/storage';
 import { downloadExport } from './lib/download-export';
+import { StorageInfo } from './lib/StorageInfo';
 import { t, type Lang } from './lib/i18n';
 import './islands.css';
 
@@ -109,6 +110,7 @@ export default function ExportImport({ lang, courseTitles = {} }: ExportImportPr
       <h2 id="sh-sync-h">{t(lang, 'sync.title')}</h2>
       <p>{t(lang, 'sync.lead')}</p>
       {!available && <p class="sh-alert sh-alert--warning">{t(lang, 'engine.storageOff')}</p>}
+      <StorageInfo lang={lang} />
       <div class="sh-actions">
         <button type="button" class="btn btn--primary" onClick={download}>
           {t(lang, 'sync.export')}
@@ -202,6 +204,7 @@ function QrShow({ lang }: { lang: Lang }) {
       const f = await encodeForQr(serializeExport(buildExport()));
       if (!alive) return;
       setFrames(f);
+      if (f) markExported();
       if (f)
         setSvgs(
           await Promise.all(

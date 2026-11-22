@@ -1,4 +1,6 @@
-// Plugin Vite: `virtual:island-i18n` esporta { it, en } ridotti ai namespace delle isole.
+// Plugin Vite: dizionari delle isole ridotti ai namespace che usano.
+// `virtual:island-i18n/it` e `virtual:island-i18n/en` esportano il dizionario di una
+// lingua (moduli separati: nel browser se ne scarica solo uno, quello della pagina).
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { ISLAND_NAMESPACES } from '../../src/i18n/island-namespaces.mjs';
@@ -17,16 +19,15 @@ export default function islandI18n() {
     name: 'study-hub:island-i18n',
     /** @param {string} id */
     resolveId(id) {
-      return id === ID ? RESOLVED : null;
+      return /^virtual:island-i18n\/(it|en)$/.test(id) ? RESOLVED + id.slice(ID.length) : null;
     },
     /** @param {string} id */
     load(id) {
-      if (id !== RESOLVED) return null;
-      const [it, en] = files.map((f) => {
-        this.addWatchFile(f);
-        return filterIslandKeys(JSON.parse(readFileSync(f, 'utf8')));
-      });
-      return `export default ${JSON.stringify({ it, en })};`;
+      if (!id.startsWith(RESOLVED + '/')) return null;
+      const lang = id.slice(RESOLVED.length + 1);
+      const file = files[lang === 'en' ? 1 : 0] ?? '';
+      this.addWatchFile(file);
+      return `export default ${JSON.stringify(filterIslandKeys(JSON.parse(readFileSync(file, 'utf8'))))};`;
     },
   };
 }

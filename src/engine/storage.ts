@@ -8,9 +8,13 @@
 export const STORAGE_PREFIX = 'sh:v1:';
 export const GLOBAL_SCOPE = 'global';
 export const STORAGE_EVENT = 'sh:storage';
+/** Scrittura fallita (quota piena, storage bloccato): `detail` = `{ key, quota }`. */
+export const STORAGE_ERROR_EVENT = 'sh:storage-error';
 
 export type Scope = typeof GLOBAL_SCOPE | (string & {});
-export type GlobalArea = 'theme' | 'lang' | 'examDates' | 'migrations' | (string & {});
+export type GlobalArea = 'theme' | 'lang' | 'examDates' | 'migrations' | 'backup' | (string & {});
+/** Area globale del promemoria di backup (vedi backup.ts): qui per non creare chunk condivisi. */
+export const BACKUP_AREA = 'backup';
 export type CourseArea = 'progress' | 'srs' | 'exam' | 'notes' | 'settings' | (string & {});
 
 const SEGMENT_RE = /^[a-z0-9]+(?:[-.][a-z0-9]+)*$/i;
@@ -25,10 +29,12 @@ export interface StorageBackend {
 }
 
 let override: StorageBackend | null | undefined;
+let persistAsked = false;
 
 /** Per i test: imposta un backend (null = nessuno disponibile; undefined = ripristina). */
 export function setStorageBackend(backend: StorageBackend | null | undefined): void {
   override = backend;
+  persistAsked = false;
 }
 
 export function getBackend(): StorageBackend | null {
@@ -63,36 +69,73 @@ export function readRaw(key: string): string | null {
   }
 }
 
-export function writeRaw(key: string, value: string): boolean {
+function emit(type: string, detail: unknown): void {
   try {
-    const backend = getBackend();
-    if (!backend) return false;
-    backend.setItem(key, value);
-    return true;
+    if (typeof globalThis.dispatchEvent === 'function' && typeof CustomEvent === 'function') {
+      globalThis.dispatchEvent(new CustomEvent(type, { detail }));
+    }
   } catch {
-    return false;
+    /* nessun ambiente DOM */
   }
 }
 
-/** Legge un valore JSON; restituisce `fallback` se assente o illeggibile. */
+/**
+ * Alla prima scrittura riuscita della pagina chiede al browser di non liberare i dati
+ * del sito quando lo spazio scarseggia (Chrome decide da solo, Firefox può chiederlo
+ * all'utente: una volta, poi ricorda la risposta).
+ */
+function requestPersist(): void {
+  if (persistAsked) return;
+  persistAsked = true;
+  try {
+    const s = globalThis.navigator?.storage;
+    s?.persisted?.()
+      .then((done) => done || s.persist?.())
+      .catch(() => undefined);
+  } catch {
+    /* API assente */
+  }
+}
+
+/** Scrive una stringa grezza. Se non riesce emette `sh:storage-error` e restituisce false. */
+export function writeRaw(key: string, value: string): boolean {
+  let quota = false;
+  try {
+    const backend = getBackend();
+    if (backend) {
+      backend.setItem(key, value);
+      requestPersist();
+      return true;
+    }
+  } catch (e) {
+    // QuotaExceededError (Chrome, Safari) o NS_ERROR_DOM_QUOTA_REACHED (Firefox vecchi).
+    quota = /quota/i.test(String((e as { name?: unknown } | null)?.name));
+  }
+  emit(STORAGE_ERROR_EVENT, { key, quota });
+  return false;
+}
+
+const kind = (x: unknown): string => (x === null ? 'null' : Array.isArray(x) ? 'array' : typeof x);
+
+/**
+ * Legge un valore JSON; restituisce `fallback` se assente, illeggibile o di un tipo
+ * diverso dal ripiego (oggetto, array, numero, stringa, booleano): un valore corrotto
+ * come `null` o `"x"` al posto di un oggetto non arriva alle isole. Con ripiego `null`
+ * il valore passa com'è: lo normalizza il `sanitize*` dell'area (progress, srs, exam, notes).
+ */
 export function read<T>(scope: Scope, area: string, fallback: T): T {
   const raw = readRaw(storageKey(scope, area));
   if (raw === null) return fallback;
   try {
-    return JSON.parse(raw) as T;
+    const value: unknown = JSON.parse(raw);
+    return fallback === null || kind(value) === kind(fallback) ? (value as T) : fallback;
   } catch {
     return fallback;
   }
 }
 
 function notify(scope: string, area: string): void {
-  try {
-    if (typeof globalThis.dispatchEvent === 'function' && typeof CustomEvent === 'function') {
-      globalThis.dispatchEvent(new CustomEvent(STORAGE_EVENT, { detail: { scope, area } }));
-    }
-  } catch {
-    /* nessun ambiente DOM */
-  }
+  emit(STORAGE_EVENT, { scope, area });
 }
 
 /** Scrive un valore serializzabile in JSON. Restituisce false se non è stato possibile. */
@@ -221,4 +264,9 @@ export function usageBytes(): number {
   let total = 0;
   for (const key of listKeys()) total += (key.length + (readRaw(key)?.length ?? 0)) * 2;
   return total;
+}
+
+/** Da chiamare dopo un export dei dati (file o QR): azzera il promemoria di backup. */
+export function markExported(now = Date.now()): void {
+  write(GLOBAL_SCOPE, BACKUP_AREA, { lastExport: now });
 }
