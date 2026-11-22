@@ -11,7 +11,7 @@ import { assembleExam, parsePrintQuery, type Exam, type PrintParams } from '../e
 import { formatNumber } from '../engine/units';
 import { fetchJson } from './lib/hooks';
 import { resolveExam, type QuestionContent } from './lib/exam-content';
-import { formatExpected } from './ExercisePlayer';
+import { formatExpected } from './lib/exercise-content';
 import { t, type Lang } from './lib/i18n';
 import './islands.css';
 

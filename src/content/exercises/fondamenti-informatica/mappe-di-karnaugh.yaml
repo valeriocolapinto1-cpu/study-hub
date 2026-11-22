@@ -5,6 +5,8 @@
     - mappe-di-karnaugh.4
   difficulty: 1
   kind: static
+  examTags:
+    - karnaugh
   statement:
     it: Minimizza con la mappa di Karnaugh `Y(A,B,C) = Σm(1,2,3,6)`.
     en: Minimise with the Karnaugh map `Y(A,B,C) = Σm(1,2,3,6)`.
@@ -102,6 +104,8 @@
     - mappe-di-karnaugh.2
   difficulty: 1
   kind: static
+  examTags:
+    - karnaugh
   statement:
     it: Minimizza `Y(A,B,C,D) = Σm(0,2,8,10)`.
     en: Minimise `Y(A,B,C,D) = Σm(0,2,8,10)`.
@@ -217,6 +221,8 @@
     - mappe-di-karnaugh.3
   difficulty: 2
   kind: static
+  examTags:
+    - karnaugh
   statement:
     it: Minimizza `Y(A,B,C,D) = Σm(1,3,7,11,15) + d(0,2,5)`, dove `d` sono le **indifferenze**.
     en: Minimise `Y(A,B,C,D) = Σm(1,3,7,11,15) + d(0,2,5)`, where `d` are the **don’t cares**.
@@ -369,6 +375,8 @@
     - mappe-di-karnaugh.4
   difficulty: 2
   kind: static
+  examTags:
+    - karnaugh
   statement:
     it: Minimizza `Y(A,B,C) = Σm(0,1,2,5,6,7)`. Quanti implicanti **essenziali** ci sono?
     en: Minimise `Y(A,B,C) = Σm(0,1,2,5,6,7)`. How many **essential** implicants are there?
@@ -492,6 +500,8 @@
     - mappe-di-karnaugh.5
   difficulty: 2
   kind: static
+  examTags:
+    - karnaugh
   statement:
     it:
       Per la stessa funzione dell’esercizio precedente — `Y(A,B,C) = Σm(0,1,2,5,6,7)` — ricava la forma **POS**
@@ -598,6 +608,8 @@
     - mappe-di-karnaugh.3
   difficulty: 3
   kind: generated
+  examTags:
+    - karnaugh
   generator: fondamenti-informatica/karnaugh
   origin: originale
 - id: mcq-karnaugh-01

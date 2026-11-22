@@ -1,7 +1,7 @@
 /** @jsxImportSource preact */
 /** Data dell'esame: appelli suggeriti dal corso oppure una data personale (salvata in sh:v1:global:examDates). */
 import { useState } from 'preact/hooks';
-import { daysUntil } from '../engine/mastery';
+import { daysUntil, upcomingDates } from '../engine/mastery';
 import { useExamDates } from './lib/course-state';
 import { useNow } from './lib/hooks';
 import { t, type Lang } from './lib/i18n';
@@ -29,8 +29,9 @@ export default function ExamDatePicker({ lang, courseId, suggested }: ExamDatePi
   const [dates, setDate] = useExamDates();
   const now = useNow();
   const current = dates[courseId] ?? '';
-  const upcoming = now ? suggested.filter((d) => (daysUntil(d, now) ?? -1) >= 0) : suggested;
-  const isCustom = customMode || (current !== '' && !suggested.includes(current));
+  // Appelli passati nascosti (anche se scelti): senza appelli futuri resta solo la data personale.
+  const upcoming = now ? upcomingDates(suggested, now) : suggested;
+  const isCustom = customMode || (current !== '' && !upcoming.includes(current));
   const left = current && now ? daysUntil(current, now) : null;
 
   return (

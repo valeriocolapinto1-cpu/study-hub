@@ -77,6 +77,16 @@ Negli elementi resi da un'altra isola, un `<span data-note-slot />` vuoto indica
   concett…|apert…|dimostrazion…` → domanda aperta (flashcard o esercizio in autovalutazione); tutto il resto
   (`esercizio`, `problema`, …) → esercizio con risposta. Senza materiale del tipo richiesto si ripiega sugli altri.
   `points` assenti ovunque = 1 punto per domanda. Voto in trentesimi solo per la prova completa.
+  Una voce può avere `tag` (es. `karnaugh`): pesca solo esercizi con lo stesso valore in `examTags`
+  (anche di altra categoria), con ripiego sulla categoria se non ce ne sono (o se il filtro per argomento li esclude).
+  I controlli dei contenuti richiedono che ogni `tag` abbia esercizi e ogni `examTags` una voce.
+- **Crocette**: le alternative si rimescolano (`choiceOrder` in `random.ts`); quelle con `fixedLast: true`
+  («Tutte le precedenti») restano in fondo. Nella prova il seme è quello della prova + indice della domanda
+  (stesso ordine alla ripresa e in stampa; le risposte sono indici nell'ordine mostrato); negli esercizi il seme è
+  esercizio + variante + tentativi già fatti (giro 0 in SSR, letto una volta all'apertura) e le risposte restano
+  negli indici d'autore.
+- **Date d'esame**: `upcomingDates` / `examDateFor` (`mastery.ts`): appelli passati nascosti ovunque; la data
+  personale vale finché non è passata, poi si usa il primo appello futuro, altrimenti nessuna.
 - Ordine: argomenti come in `topics.order`; esercizi per argomento, difficoltà, id; carte per argomento, id.
 
 ## Generatori

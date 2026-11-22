@@ -34,7 +34,7 @@ import { answerHelpKey, indexUrl, objectivesIndex } from '../engine/course-data'
 import { randomSeed } from '../engine/random';
 import { formatNumber } from '../engine/units';
 import { resolveExam, toResolved, type QuestionContent } from './lib/exam-content';
-import { formatExpected } from './ExercisePlayer';
+import { formatExpected } from './lib/exercise-content';
 import { LoadError, useNow, useRemote } from './lib/hooks';
 import { loadIndex } from './lib/course-data-client';
 import { t, type Lang } from './lib/i18n';
