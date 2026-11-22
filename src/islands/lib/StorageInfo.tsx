@@ -7,20 +7,8 @@
 import { useEffect, useState } from 'preact/hooks';
 import { loadBackupState } from '../../engine/backup';
 import { BACKUP_AREA, GLOBAL_SCOPE, subscribe, usageBytes } from '../../engine/storage';
+import { formatBytes } from '../../lib/contribute/rules';
 import { t, type Lang } from './i18n';
-
-/** Byte in forma leggibile (KB/MB/GB in base 1024, con la virgola italiana dove serve). */
-export function formatBytes(n: number, lang: Lang): string {
-  const units = ['B', 'KB', 'MB', 'GB'];
-  let i = 0;
-  let v = n;
-  while (v >= 1024 && i < units.length - 1) {
-    v /= 1024;
-    i++;
-  }
-  const digits = i === 0 || v >= 100 ? 0 : 1;
-  return `${v.toLocaleString(lang === 'en' ? 'en-US' : 'it-IT', { maximumFractionDigits: digits })} ${units[i]}`;
-}
 
 interface Info {
   local: number;

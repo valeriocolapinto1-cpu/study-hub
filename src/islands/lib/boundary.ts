@@ -25,7 +25,7 @@ export function reportHref(loc: Pick<Location, 'pathname'>, base: string, error:
     ? loc.pathname.slice(base.length)
     : loc.pathname.replace(/^\//, '');
   const lang = rest.startsWith('en/') ? 'en' : 'it';
-  const page = `/${rest.replace(/^(it|en)\//, '')}`;
+  const page = `/${rest.replace(/^(it|en)\//, '').replace(/\/$/, '')}`;
   const course = /^anno-\d+\/([^/]+)/.exec(page.slice(1))?.[1];
   const q = new URLSearchParams({ tipo: 'errore', pagina: page, ...(course ? { corso: course } : {}) });
   q.set('messaggio', String((error as Error | undefined)?.message ?? error).slice(0, 300));
