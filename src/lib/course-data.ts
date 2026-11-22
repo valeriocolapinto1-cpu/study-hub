@@ -247,7 +247,11 @@ export function lightExercise(ex: ExerciseData, paths: Pick<CoursePaths, 'data'>
     ...rest,
     steps: [],
     stepCount: ex.steps.length,
-    ...(ex.choices ? { choices: ex.choices.map(({ explanationHtml: _, ...c }) => c) } : {}),
+    // testi delle scelte ed etichette dei campi: slot `c<i>` / `l<i>` della pagina
+    ...(ex.choices
+      ? { choices: ex.choices.map(({ explanationHtml: _, ...c }) => ({ ...c, html: '' })) }
+      : {}),
+    answer: ex.answer.map(({ labelHtml: _, ...a }) => a),
     detailsUrl: topicDataUrl(paths, ex.topic),
   };
 }

@@ -22,12 +22,39 @@ export interface ExerciseListProps {
   /** Percorso della sezione Esercizi: il link di una voce è `<percorso><argomento>/#<id>`. */
   exercisesPath: string;
   topics: TopicInfo[];
-  items: ExerciseSummary[];
+  /** Voci compatte (`packItem`): centinaia di oggetti nelle props di Astro pesavano il doppio. */
+  items: string[];
+}
+
+const SEP = '|';
+
+/** Voce compatta `id|argomento|obiettivi separati da spazi|difficoltà|g|titolo` (il titolo per ultimo: può contenere `|`). */
+export const packItem = (it: ExerciseSummary): string =>
+  [it.id, it.topic, it.objectives.join(' '), it.difficulty, it.generated ? 'g' : '', it.title].join(SEP);
+
+export function unpackItem(s: string): ExerciseSummary {
+  const parts = s.split(SEP);
+  const [id = '', topic = '', objectives = '', difficulty = '1', generated = ''] = parts;
+  return {
+    id,
+    topic,
+    objectives: objectives ? objectives.split(' ') : [],
+    difficulty: Number(difficulty) as 1 | 2 | 3,
+    generated: generated === 'g',
+    title: parts.slice(5).join(SEP),
+  };
 }
 
 const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
-export default function ExerciseList({ lang, courseId, exercisesPath, topics, items }: ExerciseListProps) {
+export default function ExerciseList({
+  lang,
+  courseId,
+  exercisesPath,
+  topics,
+  items: packed,
+}: ExerciseListProps) {
+  const items = useMemo(() => packed.map(unpackItem), [packed]);
   const [topic, setTopic] = useState('');
   const [objective, setObjective] = useState('');
   const [difficulty, setDifficulty] = useState('');

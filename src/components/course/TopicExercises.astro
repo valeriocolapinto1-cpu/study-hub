@@ -55,6 +55,10 @@ const exercises = await Promise.all(
           set:html={exercise.figureSvg}
         />
       )}
+      {exercise.choices?.map((c, j) => (
+        <span slot={`c${j}`} set:html={c.html} />
+      ))}
+      {exercise.answer.map((a, j) => a.labelHtml && <span slot={`l${j}`} set:html={a.labelHtml} />)}
     </ExercisePlayer>
   ))}
 </div>

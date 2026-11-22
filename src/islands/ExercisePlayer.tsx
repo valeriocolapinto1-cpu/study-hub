@@ -37,6 +37,8 @@ export interface ExercisePlayerProps {
    */
   statement?: ComponentChildren;
   figure?: ComponentChildren;
+  /** Slot `c<i>` (testo della scelta i) e `l<i>` (etichetta del campo i), come sopra. */
+  [slot: `c${number}` | `l${number}`]: ComponentChildren;
 }
 
 interface Content {
@@ -131,6 +133,7 @@ export default function ExercisePlayer({
   seed: seed0,
   statement,
   figure,
+  ...slots
 }: ExercisePlayerProps) {
   // Id derivati dall'esercizio: useId si ripete tra isole diverse (radici Preact separate).
   const uid = `ex-${exercise.id}`;
@@ -182,6 +185,9 @@ export default function ExercisePlayer({
   }, [generated, seed, courseId, exercise, lang]);
 
   const staticVariant = !generated || seed === exercise.pregeneratedSeed;
+  /** Slot della variante statica (HTML già nella pagina), se la pagina li passa. */
+  const slot = (name: `c${number}` | `l${number}`): ComponentChildren =>
+    staticVariant ? (slots as Record<string, ComponentChildren>)[name] : undefined;
   /** Il contenuto mostrato è la versione leggera: mancano passi e spiegazioni. */
   const lazy = !!exercise.detailsUrl && !full && staticVariant;
   const loadDetails = () => {
@@ -345,7 +351,7 @@ export default function ExercisePlayer({
                         setPicked(multiple ? (on ? picked.filter((x) => x !== i) : [...picked, i]) : [i])
                       }
                     />
-                    <span dangerouslySetInnerHTML={{ __html: c.html }} />
+                    {slot(`c${i}`) ?? <span dangerouslySetInnerHTML={{ __html: c.html }} />}
                     {result && c.explanationHtml && (on || c.correct) && (
                       <span class="sh-choice__why" dangerouslySetInnerHTML={{ __html: c.explanationHtml }} />
                     )}
@@ -362,7 +368,9 @@ export default function ExercisePlayer({
                 const id = `${uid}-f${i}`;
                 return (
                   <div class={`sh-field ${fr ? STATUS_CLASS[fr.status] : ''}`} key={`${seed}-${i}`}>
-                    {a.labelHtml ? (
+                    {slot(`l${i}`) ? (
+                      <label for={id}>{slot(`l${i}`)}</label>
+                    ) : a.labelHtml ? (
                       <label for={id} dangerouslySetInnerHTML={{ __html: a.labelHtml }} />
                     ) : (
                       <label for={id}>{a.label}</label>
@@ -372,7 +380,7 @@ export default function ExercisePlayer({
                         id={id}
                         class="sh-input"
                         // etichette di sole formule: il nome accessibile viene dal testo semplice
-                        aria-label={a.labelHtml ? a.label : undefined}
+                        aria-label={a.labelHtml || slot(`l${i}`) ? a.label : undefined}
                         type="text"
                         inputMode="text"
                         autoComplete="off"
