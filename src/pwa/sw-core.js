@@ -11,6 +11,13 @@ export const RUNTIME_PREFIX = 'sh-runtime';
 export const META_CACHE = 'sh-meta';
 /** Voci massime della cache "di passaggio" (pagine e risorse viste ma non scaricate). */
 export const RUNTIME_MAX = 120;
+/**
+ * La cache di passaggio si sfoltisce una volta ogni RUNTIME_TRIM_EVERY scritture (`cache.keys()`
+ * costa quanto il numero di voci) e alla prima scrittura di ogni avvio del worker, che il browser
+ * ferma dopo pochi secondi di inattività: senza quest'ultima la cache crescerebbe di qualche voce
+ * a ogni avvio.
+ */
+export const RUNTIME_TRIM_EVERY = 20;
 /** Attesa massima della rete per pagine e file senza hash prima di usare la copia in cache. */
 export const NETWORK_TIMEOUT_MS = 3000;
 
@@ -49,6 +56,40 @@ export function isImmutableAsset(pathname, base) {
  */
 export const isBypassed = (pathname, base) =>
   pathname === `${base}sw.js` || pathname === `${base}version.json`;
+
+/**
+ * Va sfoltita la cache di passaggio alla scrittura numero `n` (da 1) di questo avvio?
+ * @param {number} n
+ */
+export const shouldTrimRuntime = (n) => n % RUNTIME_TRIM_EVERY === 1;
+
+/**
+ * Corso e lingua di un percorso sotto `/<lingua>/anno-N/<corso>/` (null fuori dai corsi).
+ * @param {string} pathname @param {string} base
+ * @returns {{ course: string, lang: string } | null}
+ */
+export function courseOfPath(pathname, base) {
+  if (!pathname.startsWith(base)) return null;
+  const m = /^(it|en)\/anno-\d+\/([a-z0-9-]+)\//.exec(pathname.slice(base.length));
+  return m ? { course: /** @type {string} */ (m[2]), lang: /** @type {string} */ (m[1]) } : null;
+}
+
+/**
+ * Cache in cui cercare un percorso, in ordine. Le pagine e i dati di un corso stanno solo nella
+ * cache di quel corso (se scaricato) o in quella di passaggio; le risorse comuni nella shell, in
+ * uno dei corsi scaricati o in quella di passaggio.
+ * @param {string} pathname @param {string} base
+ * @param {string[]} owned nomi delle cache dei corsi scaricati
+ * @param {string} runtime nome della cache di passaggio
+ */
+export function cachesFor(pathname, base, owned, runtime) {
+  const c = courseOfPath(pathname, base);
+  if (c) {
+    const name = courseCacheName(c.course, c.lang);
+    return owned.includes(name) ? [name, runtime] : [runtime];
+  }
+  return [SHELL_CACHE, ...owned, runtime];
+}
 
 /** @param {string} course @param {string} lang */
 export const courseCacheName = (course, lang) => `sh-course:${course}:${lang}`;
