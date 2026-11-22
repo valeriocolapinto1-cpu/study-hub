@@ -109,6 +109,9 @@ export function prefillFromQuery(search: string, known: readonly string[]): Part
   if (corso && known.includes(corso)) out.corso = corso;
   const pagina = q.get('pagina');
   if (pagina && /^\/[^\s<>"]{0,299}$/.test(pagina)) out.pagina = pagina;
+  // Dal ripiego di un'isola che si è rotta (IslandBoundary): il messaggio d'errore.
+  const messaggio = q.get('messaggio')?.trim();
+  if (messaggio) out.messaggio = messaggio.slice(0, 1000);
   return out;
 }
 
@@ -142,7 +145,8 @@ export function formatBytes(bytes: number, lang: 'it' | 'en'): string {
     });
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${nf(bytes / 1024, 0)} KB`;
-  return `${nf(bytes / (1024 * 1024), 1)} MB`;
+  if (bytes < 1024 ** 3) return `${nf(bytes / (1024 * 1024), 1)} MB`;
+  return `${nf(bytes / 1024 ** 3, 1)} GB`;
 }
 
 /** Divide un ArrayBuffer in blocchi di CHUNK_BYTES codificati in base64. */

@@ -1,5 +1,6 @@
 /** Scarica un file JSON con l'esportazione completa dei dati locali (backup). */
 import { buildExport, exportFileName } from '../../engine/exportImport';
+import { markExported } from '../../engine/storage';
 
 export function downloadExport(): void {
   const blob = new Blob([JSON.stringify(buildExport(), null, 2)], { type: 'application/json' });
@@ -11,4 +12,5 @@ export function downloadExport(): void {
   a.click();
   a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
+  markExported();
 }

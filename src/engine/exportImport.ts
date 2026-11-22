@@ -7,15 +7,15 @@
  * { "format": "study-hub", "version": 1, "exportedAt": "2026-…Z",
  *   "data": { "sh:v1:fisica-2:srs": { … }, "sh:v1:global:examDates": { … } } }
  * ```
- * Le annotazioni delle migrazioni (`global:migrations`) restano sul
- * dispositivo. Importazione in due modalità:
+ * Le annotazioni delle migrazioni (`global:migrations`) e il promemoria di
+ * backup (`global:backup`) restano sul dispositivo. Importazione in due modalità:
  * - `merge`: fonde area per area tenendo il dato più recente o l'unione;
  * - `replace`: sostituisce tutti i dati del sito con quelli del file.
  */
 import { sanitizeProgress, sanitizeSrs, type ProgressState, type SrsState } from './progress';
 import { sanitizeNotes, type NotesState } from './notes';
 import { sanitizeExamState, type ExamState, MAX_HISTORY } from './exam';
-import { clearScope, listKeys, parseKey, readAll, readRaw, writeRaw } from './storage';
+import { BACKUP_AREA, clearScope, listKeys, parseKey, readAll, readRaw, writeRaw } from './storage';
 import { MIGRATIONS_AREA } from './migrate';
 
 export const EXPORT_FORMAT = 'study-hub';
@@ -28,7 +28,11 @@ export interface ExportFile {
   data: Record<string, unknown>;
 }
 
-const excluded = (key: string) => parseKey(key)?.area === MIGRATIONS_AREA;
+/** Aree che restano sul dispositivo: migrazioni eseguite e promemoria di backup. */
+const excluded = (key: string) => {
+  const area = parseKey(key)?.area;
+  return area === MIGRATIONS_AREA || area === BACKUP_AREA;
+};
 
 export function buildExport(now: Date = new Date()): ExportFile {
   const data = Object.fromEntries(Object.entries(readAll()).filter(([k]) => !excluded(k)));

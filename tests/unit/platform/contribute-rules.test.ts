@@ -84,6 +84,7 @@ describe('regole del modulo Contribuisci', () => {
     expect(formatBytes(500, 'it')).toBe('500 B');
     expect(formatBytes(2048, 'en')).toBe('2 KB');
     expect(formatBytes(1.5 * 1024 * 1024, 'it')).toBe('1,5 MB');
+    expect(formatBytes(2.5 * 1024 ** 3, 'en')).toBe('2.5 GB');
     const buf = new Uint8Array(CHUNK_BYTES + 5).map((_, i) => i % 251);
     const parts = [...chunksOf(buf.buffer)];
     expect(parts).toHaveLength(2);

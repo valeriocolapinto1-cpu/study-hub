@@ -230,6 +230,10 @@ test.describe('offline', () => {
     expect(download.suggestedFilename()).toMatch(/\.json$/);
     expect(await page.evaluate(() => localStorage.getItem('sh:v1:global:prova-aggiorna'))).toBe('"resta"');
     expect(await page.evaluate(() => localStorage.getItem('sh:v1:esempio:progress'))).toContain('solved');
-    expect(await page.evaluate(() => localStorage.length)).toBe(before);
+    // Unica chiave in più: la data del backup appena scaricato (promemoria di backup).
+    expect(await page.evaluate(() => localStorage.length)).toBe(before + 1);
+    expect(await page.evaluate(() => localStorage.getItem('sh:v1:global:backup'))).toMatch(
+      /^\{"lastExport":\d+\}$/,
+    );
   });
 });
