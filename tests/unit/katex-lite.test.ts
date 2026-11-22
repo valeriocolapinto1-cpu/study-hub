@@ -14,7 +14,8 @@ describe('stripMathml', () => {
     expect(lite).toContain('aria-label="E = mc^2"');
     expect(lite).toContain('katex-display');
     // la parte visiva è la stessa
-    const visual = (h: string) => h.match(/<span class="katex-html"[\s\S]*?(?=<span class="katex"|$)/g)?.join('');
+    const visual = (h: string) =>
+      h.match(/<span class="katex-html"[\s\S]*?(?=<span class="katex"|$)/g)?.join('');
     expect(visual(lite)).toBe(visual(full));
     expect(lite.length).toBeLessThan(full.length * 0.9);
   });
