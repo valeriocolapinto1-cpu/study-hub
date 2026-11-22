@@ -1,4 +1,8 @@
 ---
+/**
+ * Barra in fondo alla pagina: ← precedente · collegamento centrale facoltativo (es. esercizi
+ * dell'argomento) · successivo →. Su telefono le tre voci stanno una sotto l'altra, compatte.
+ */
 import { t, type Lang } from '../i18n';
 interface Link {
   href: string;
@@ -8,16 +12,24 @@ interface Props {
   lang: Lang;
   prev?: Link | undefined;
   next?: Link | undefined;
+  middle?: Link | undefined;
 }
-const { lang, prev, next } = Astro.props;
+const { lang, prev, next, middle } = Astro.props;
 ---
 
-{(prev || next) && (
-  <nav class="pagination" aria-label={t(lang, 'pagination.label')}>
-    {prev && (
+{(prev || next || middle) && (
+  <nav class:list={['pagination', { 'pagination--three': middle }]} aria-label={t(lang, 'pagination.label')}>
+    {prev ? (
       <a class="pagination__prev" href={prev.href} rel="prev">
         <span class="pagination__dir">← {t(lang, 'pagination.prev')}</span>
         <span class="pagination__title">{prev.title}</span>
+      </a>
+    ) : (
+      middle && <span class="pagination__gap" />
+    )}
+    {middle && (
+      <a class="pagination__middle" href={middle.href}>
+        <span class="pagination__title">{middle.title}</span>
       </a>
     )}
     {next && (

@@ -7,6 +7,7 @@ import ExerciseList, { packItem } from '../../islands/ExerciseList';
 import SectionHeader from './SectionHeader.astro';
 import { getCourseData } from '../../lib/course-data';
 import { t, type Lang } from '../../i18n';
+import { texToPlain } from '../../lib/inline-tex';
 
 interface Props {
   lang: Lang;
@@ -14,6 +15,13 @@ interface Props {
 }
 const { lang, courseId } = Astro.props;
 const data = await getCourseData(courseId, lang);
+// Le opzioni di un <select> non possono contenere KaTeX: obiettivi in testo semplice.
+const topics = data.topics.map((tp) => ({
+  ...tp,
+  objectives: tp.objectives.map((o) => ({ ...o, text: texToPlain(o.text) })),
+}));
+const counts = new Map<string, number>();
+for (const e of data.exercises) counts.set(e.topic, (counts.get(e.topic) ?? 0) + 1);
 const items = data.exercises
   .map((e) => ({
     id: e.id,
@@ -30,13 +38,13 @@ const items = data.exercises
 ---
 
 <SectionHeader title={t(lang, 'page.exercises.title')} lead={t(lang, 'page.exercises.lead')} />
-<nav aria-label={t(lang, 'engine.topic')}>
+<nav class="page-toc page-toc--inline" aria-label={t(lang, 'engine.topic')}>
   <ul class="sh-topic-links">
-    {data.topics.map((tp) => {
-      const n = data.exercises.filter((e) => e.topic === tp.id).length;
+    {topics.map((tp) => {
+      const n = counts.get(tp.id) ?? 0;
       return n > 0 ? (
         <li>
-          <a href={`${data.paths.exercises}${tp.id}/`}>{tp.title}</a> <span class="sh-muted">({n})</span>
+          <a href={`#t-${tp.id}`}>{tp.title}</a> <span class="sh-muted">({n})</span>
         </li>
       ) : null;
     })}
@@ -47,6 +55,6 @@ const items = data.exercises
   lang={lang}
   courseId={courseId}
   exercisesPath={data.paths.exercises}
-  topics={data.topics}
+  topics={topics}
   items={items}
 />

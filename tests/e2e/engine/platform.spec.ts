@@ -21,7 +21,7 @@ test.describe('home', () => {
   test('mostra la preparazione solo a chi ha già dati di studio', async ({ page }) => {
     await page.goto(`${B}it/`);
     await expect(page.locator('.home-metrics')).toContainText('esercizi');
-    await expect(page.getByRole('heading', { name: 'La tua preparazione' })).toBeHidden();
+    await expect(page.getByRole('heading', { name: 'Riprendi da dove eri' })).toBeHidden();
     await page.evaluate(() => {
       const now = Date.now();
       localStorage.setItem(
@@ -41,13 +41,26 @@ test.describe('home', () => {
       );
     });
     await page.reload();
-    await expect(page.getByRole('heading', { name: 'La tua preparazione' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Riprendi da dove eri' })).toBeVisible();
     await expect(page.locator('.pf-home-study__table tbody tr')).toHaveCount(1);
     await expect(page.getByRole('link', { name: 'Legge di Ohm' })).toHaveAttribute(
       'href',
       `${B}it/anno-1/esempio/teoria/resistori/`,
     );
+    await expect(page.getByText('Apri una pagina di teoria o di esercizi')).toBeVisible();
     await axe(page);
+  });
+
+  test('«Riprendi da dove eri»: l’ultima pagina di studio aperta', async ({ page }) => {
+    await page.goto(`${B}it/anno-1/esempio/teoria/resistori/`);
+    const title = (await page.locator('h1').textContent())!.trim();
+    await page.goto(`${B}it/`);
+    await expect(page.getByRole('heading', { name: 'Riprendi da dove eri' })).toBeVisible();
+    await expect(page.locator('.pf-stat--resume a')).toHaveText(title);
+    await expect(page.locator('.pf-stat--resume a')).toHaveAttribute(
+      'href',
+      `${B}it/anno-1/esempio/teoria/resistori/`,
+    );
   });
 });
 

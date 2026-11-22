@@ -37,6 +37,37 @@ Scala fluida `--step--2 … --step-5`; i titoli di pagina dei corsi seguono Fisi
 (`clamp(1.8rem, 1.2rem + 2vw, 2.4rem)`), quelli del hub il vecchio study-hub (fino a 4,4–5 rem in home, con la
 seconda riga in corsivo e gradiente `--brand-gradient-text`). Font self-hosted da `@fontsource-variable/*` (OFL 1.1).
 
+## Regole di lettura
+
+Le pagine si leggono e si scorrono con gli occhi: **nessun contenuto si toglie o si chiude** (niente `<details>` nuovi
+chiusi per default), cambia solo la presentazione. Regole in `src/styles/lettura.css` (strato sopra `originale.css`);
+il test `tests/e2e/lettura.spec.ts` verifica che le pagine campione contengano tutte le frasi della build di partenza.
+
+- **Gerarchia**: titolo di pagina (Fisica II, fino a 2,4 rem) → h2 1,4–1,7 rem → h3 1,15–1,25 rem → corpo; pesi 650,
+  Geist. **Corpo** della prosa 17 px su telefono e 18 px su desktop, interlinea 1,6, riga ≤ 65ch, spazio tra blocchi
+  costante (0,95 em). Grassetti a 700 nel colore pieno del testo: sono gli appigli visivi del testo lungo.
+- **Maiuscoletto spaziato solo per gli occhielli** (riga del corso, etichette degli strati, obiettivi, etichette dei
+  fatti). Capitoli, titoli degli argomenti e sezioni restano in minuscolo.
+- **Un solo livello di riquadri**: la prosa sta sulla tela, senza card attorno; dentro restano figure, richiami e
+  dimostrazioni (un livello). Gli **strati della teoria** sono sezioni con filo colorato a sinistra (2 px, tinta dello
+  strato) ed etichetta; padding ridotto su telefono.
+- **Riga del corso**: pulsante «Indice», percorso e occhiello in una riga (`.course-bar`); sotto i 1024 px il
+  percorso mostra solo il livello superiore («← Teoria»), il resto è già nell'intestazione e nel titolo.
+- **Indice del corso una volta sola nel DOM**: `<aside popover>` che da 1024 px è la barra laterale e sotto si apre
+  come menu (Popover API: Esc, clic fuori, `aria-expanded`; ripiego con `data-open` dove manca).
+- **Indici compatti**: indice della pagina con ancore (`.page-toc`) in panoramica, teoria ed esercizi; mappa degli
+  argomenti a righe numerate (titolo + descrizione più piccola e più chiara nello stesso blocco, capitoli fissi in alto);
+  elenco esercizi a righe raggruppate per capitolo e argomento (`#t-<argomento>`), con stato e difficoltà disegnati in
+  CSS (nessun SVG per riga: centinaia di righe per pagina).
+- **Coppie etichetta/valore** (`dl.facts`): su telefono etichetta in linea all'inizio del valore, da 40em due colonne.
+  Mai tabelle a due colonne strette che vanno a capo parola per parola.
+- **Matematica**: inline in sommari e obiettivi con `<InlineTex>` (KaTeX a build-time); nei metadati, nelle opzioni dei
+  `<select>` e nei titoli degli esercizi testo semplice con `texToPlain` (`src/lib/inline-tex.ts`). Formule display
+  con più respiro e scorrimento orizzontale con ombre ai bordi.
+- **Colori**: nel testo i link hanno il colore del testo e la sottolineatura dell'accento; l'accento pieno resta per
+  azioni, occhielli e voce corrente. Matite degli appunti piccole e attenuate (piene al passaggio, al tocco o col focus).
+- **Telefono**: piè di pagina con i link su tre colonne, meno spazio vuoto tra contenuto e piè di pagina.
+
 ## Token
 
 Tutti in `src/styles/tokens.css` (solo variabili). `:root` è il tema scuro, `:root[data-theme="light"]` il chiaro.
@@ -84,14 +115,15 @@ stampa in `print.css`. Le isole Preact usano le stesse classi.
 | Formula | `Formula.astro` (`tex`, slot o collezione `formulas`) | ancora `#f-<id>`, numero |
 | Figura | `Figure.astro` | didascalia numerata |
 | Note a margine | `<aside class="sidenote">` in `.reading--margin` | nel margine da 1440 px |
-| Indice argomenti | `TopicCard.astro` in `<ol class="topic-index">` | |
-| Navigazione | `Header` (prop `course`: barra del corso), `Footer`, `Breadcrumbs`, `CourseNav`, `TopicNav`, `Pagination`, `PageHeader` | |
+| Indice argomenti | `TopicCard.astro` in `<ol class="topic-index">` (indice della teoria); `.topic-map` (panoramica) | righe compatte, capitoli fissi |
+| Navigazione | `Header` (prop `course`: barra del corso), `Footer`, `Breadcrumbs` (`data-parent`), `CourseNav`, `TopicNav`, `Pagination` (prop `middle`), `PageHeader`, `.course-bar`, `.page-toc` | |
 | Varie | `SkipLink`, `ThemeToggle`, `LangSwitch`, `SearchButton`, `ReportError`, `FallbackNotice`, `Icon`, `BrandMark` | `BrandMark` è la V con gradiente (prop `gradientId` se compare due volte) |
 | Vetro | `.glass` (solo area hub) | pannelli, statistiche, card dei corsi; ripiego opaco senza `backdrop-filter` |
 | Sfondo | `.bg-orbs > .orb.orb--1/2/3 + .bg-orbs__grid` | inserito da `BaseLayout` fuori dai corsi |
 
-Layout: `BaseLayout` (meta, hreflang, canonical, icone), `CourseLayout` (accento, indice laterale da 1024 px,
-cassetto `<dialog>` su mobile, percorso automatico, colonna di lettura, "Segnala un errore"), `PrintLayout`
+Layout: `BaseLayout` (meta, hreflang, canonical, icone), `CourseLayout` (accento, indice del corso una volta sola:
+barra laterale da 1024 px e menu popover sotto, riga unica con indice, percorso e occhiello — prop `eyebrow` —,
+colonna di lettura, "Segnala un errore"), `PrintLayout`
 (`variant`: `formulary`, `theory`, `exam`).
 
 **Ricerca**: `SearchButton` è nascosto finché la ricerca non imposta `html[data-search="ready"]`; il clic e il tasto

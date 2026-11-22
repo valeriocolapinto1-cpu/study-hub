@@ -45,9 +45,14 @@ const shared = shareKatexPaths(
 const mathOf = new Map(shown.map((f, i) => [f.id, shared.htmls[i]]));
 ---
 
-<CourseLayout lang={lang} course={course} title={t(lang, 'nav.course.formulas')} wide>
+<CourseLayout
+  lang={lang}
+  course={course}
+  title={t(lang, 'nav.course.formulas')}
+  wide
+  eyebrow={tr(course.title, lang)}
+>
   <PageHeader
-    eyebrow={tr(course.title, lang)}
     title={t(lang, 'nav.course.formulas')}
     lede={t(lang, 'formulary.lede', { n: formulas.length })}
   />

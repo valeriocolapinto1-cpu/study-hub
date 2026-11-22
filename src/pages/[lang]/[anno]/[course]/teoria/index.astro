@@ -28,12 +28,9 @@ const groups = groupTopics(topics, lang);
   title={t(lang, 'nav.course.theory')}
   topics={topics}
   topicSection="teoria"
+  eyebrow={tr(course.title, lang)}
 >
-  <PageHeader
-    eyebrow={tr(course.title, lang)}
-    title={t(lang, 'nav.course.theory')}
-    lede={t(lang, 'theory.indexLede', { n: topics.length })}
-  />
+  <PageHeader title={t(lang, 'nav.course.theory')} lede={t(lang, 'theory.indexLede', { n: topics.length })} />
   {groups.map((g, gi) => (
     <section class="topic-index__group" aria-labelledby={`g-${gi + 1}`}>
       {g.title && (

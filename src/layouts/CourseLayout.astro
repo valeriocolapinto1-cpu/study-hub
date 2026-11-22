@@ -1,8 +1,9 @@
 ---
 /**
- * Layout delle pagine di un corso: accento del corso, indice laterale su desktop
- * (sezioni + sommario argomenti), cassetto modale su mobile, percorso, colonna di
- * lettura e strumenti di pagina (Segnala errore).
+ * Layout delle pagine di un corso: accento del corso, indice del corso (sezioni + sommario
+ * argomenti) presente UNA volta nel DOM — barra laterale da 1024 px, menu (popover) sotto —,
+ * una riga sola con pulsante dell'indice, percorso e occhiello, colonna di lettura e strumenti
+ * di pagina (Segnala errore).
  */
 import 'katex/dist/katex.min.css';
 import type { CollectionEntry } from 'astro:content';
@@ -31,6 +32,8 @@ interface Props {
   crumbs?: Crumb[] | undefined;
   /** Colonna larga (tabelle, simulatori) invece della misura di lettura. */
   wide?: boolean;
+  /** Occhiello della pagina (capitolo, anno): sta nella stessa riga del percorso. */
+  eyebrow?: string | undefined;
 }
 const {
   lang,
@@ -41,6 +44,7 @@ const {
   topicSection = 'teoria',
   currentTopic,
   wide = false,
+  eyebrow,
 } = Astro.props;
 const courseTitle = tr(course.title, lang);
 const pageTitle = title ? `${title} — ${courseTitle}` : courseTitle;
@@ -61,6 +65,9 @@ if (!crumbs) {
     crumbs.push({ label: t(lang, section.key), href: localizePath(`${base}/${section.slug}`, lang) });
   if (rest.length > 1 && title) crumbs.push({ label: title });
 }
+// L'occhiello identico al livello superiore del percorso (es. il nome del corso) non si ripete.
+const parentLabel = crumbs.findLast((c, i) => i < crumbs.length - 1 && c.href)?.label;
+const barEyebrow = eyebrow && eyebrow !== parentLabel ? eyebrow : undefined;
 ---
 
 <BaseLayout
@@ -71,7 +78,25 @@ if (!crumbs) {
 >
   <slot name="head" slot="head" />
   <div class="container course-shell">
-    <aside class="course-shell__side" data-pagefind-ignore aria-label={t(lang, 'nav.course.menu')}>
+    <aside
+      id="indice-corso"
+      class="course-shell__side"
+      popover="auto"
+      data-pagefind-ignore
+      aria-label={t(lang, 'nav.course.menu')}
+    >
+      <div class="course-side__head">
+        <span class="eyebrow">{t(lang, 'nav.course.menu')}</span>
+        <button
+          type="button"
+          class="icon-btn icon-btn--bare"
+          popovertarget="indice-corso"
+          popovertargetaction="hide"
+          aria-label={t(lang, 'dialog.close')}
+        >
+          <Icon name="close" />
+        </button>
+      </div>
       <CourseNav lang={lang} course={course} />
       {topics && topics.length > 0 && (
         <TopicNav
@@ -86,50 +111,23 @@ if (!crumbs) {
       <slot name="aside" />
     </aside>
     <div class="course-shell__main">
-      <button
-        type="button"
-        class="course-drawer-toggle"
+      <div
+        class="course-bar"
         data-pagefind-ignore
-        data-drawer-open="indice-corso"
-        aria-haspopup="dialog"
-        aria-expanded="false"
+        data-study-page={currentTopic && title ? title : undefined}
+        data-study-course={currentTopic ? courseTitle : undefined}
       >
-        <span>{courseTitle}</span>
-        <span class="meta-row">
+        <button
+          type="button"
+          class="course-bar__toggle"
+          popovertarget="indice-corso"
+          aria-label={t(lang, 'nav.course.menu')}
+        >
           <Icon name="list" />
-          {t(lang, 'nav.course.menu')}
-        </span>
-      </button>
-      <dialog
-        id="indice-corso"
-        class="course-drawer"
-        data-pagefind-ignore
-        aria-label={t(lang, 'nav.course.menu')}
-      >
-        <div class="course-drawer__head">
-          <span class="eyebrow">{t(lang, 'nav.course.menu')}</span>
-          <form method="dialog">
-            <button class="icon-btn icon-btn--bare" aria-label={t(lang, 'dialog.close')}>
-              <Icon name="close" />
-            </button>
-          </form>
-        </div>
-        <div class="course-drawer__body">
-          <CourseNav lang={lang} course={course} />
-          {topics && topics.length > 0 && (
-            <TopicNav
-              lang={lang}
-              coursePath={base}
-              topics={topics}
-              section={topicSection}
-              current={currentTopic}
-              idPrefix="drawer"
-            />
-          )}
-        </div>
-      </dialog>
-      <div data-pagefind-ignore>
+          <span class="course-bar__toggle-text">{t(lang, 'nav.course.menuShort')}</span>
+        </button>
         <Breadcrumbs lang={lang} items={crumbs} />
+        {barEyebrow && <p class="eyebrow course-bar__eyebrow">{barEyebrow}</p>}
       </div>
       <div class:list={[{ reading: !wide }]}>
         <slot />

@@ -62,6 +62,9 @@ export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, 
   const [known, setKnown] = useState<Record<string, Known>>({});
   const [waiting, setWaiting] = useState(0);
   const [notes, setNotes] = useState<RecentNote[]>([]);
+  const [lastPage, setLastPage] = useState<{ href: string; title: string; courseTitle?: string } | null>(
+    null,
+  );
   const titles = Object.fromEntries(courses.map((c) => [c.id, c.title]));
   const locale = lang === 'it' ? 'it-IT' : 'en-GB';
   const dateFmt = (iso: string) =>
@@ -135,6 +138,20 @@ export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, 
       );
     };
     load();
+    const last = read<{ href?: unknown; title?: unknown; courseTitle?: unknown } | null>(
+      GLOBAL_SCOPE,
+      'lastStudy',
+      null,
+    );
+    setLastPage(
+      last && typeof last.href === 'string' && last.href.startsWith('/') && typeof last.title === 'string'
+        ? {
+            href: last.href,
+            title: last.title,
+            ...(typeof last.courseTitle === 'string' ? { courseTitle: last.courseTitle } : {}),
+          }
+        : null,
+    );
     const subs = [
       subscribe(GLOBAL_SCOPE, 'examDates', load),
       ...courses.flatMap((c) => ['srs', 'progress', 'notes'].map((a) => subscribe(c.id, a, load))),
@@ -150,6 +167,19 @@ export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, 
     <section class="pf-home-study" aria-labelledby="pf-home-study-h" aria-busy={rows ? 'false' : 'true'}>
       <h2 id="pf-home-study-h">{T.title}</h2>
       <div class="pf-home-study__stats">
+        <div class="pf-stat pf-stat--resume">
+          <p class="pf-stat__label">{T.lastPage}</p>
+          {lastPage ? (
+            <>
+              <p class="pf-stat__value pf-stat__value--text">
+                <a href={lastPage.href}>{lastPage.title}</a>
+              </p>
+              {lastPage.courseTitle && <p class="pf-stat__note">{lastPage.courseTitle}</p>}
+            </>
+          ) : (
+            <p class="pf-stat__note">{T.noLastPage}</p>
+          )}
+        </div>
         <div class="pf-stat">
           <p class="pf-stat__label">{T.reviewToday}</p>
           <p class="pf-stat__value">{rows ? fmt(totalDue === 1 ? T.card : T.cards, { n: totalDue }) : '—'}</p>
