@@ -6,7 +6,7 @@
 import 'katex/dist/katex.min.css';
 import ReviewSession from '../../islands/ReviewSession';
 import SectionHeader from './SectionHeader.astro';
-import { getCourseData } from '../../lib/course-data';
+import { getCourseIndex } from '../../lib/course-data';
 import { t, type Lang } from '../../i18n';
 
 interface Props {
@@ -14,8 +14,11 @@ interface Props {
   courseId: string;
 }
 const { lang, courseId } = Astro.props;
-const data = await getCourseData(courseId, lang);
-const decks = [{ courseId, title: data.title, cards: data.cards, examDates: data.examDates }];
+// Solo le voci delle carte: fronte e retro arrivano da dati/<argomento>.json quando servono.
+const data = await getCourseIndex(courseId, lang);
+const decks = [
+  { courseId, title: data.title, dataPath: data.paths.data, cards: data.cards, examDates: data.examDates },
+];
 ---
 
 <SectionHeader title={t(lang, 'page.review.title')} lead={t(lang, 'page.review.lead')} />

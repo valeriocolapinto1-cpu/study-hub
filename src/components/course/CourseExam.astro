@@ -1,13 +1,14 @@
 ---
 /**
  * Sezione Esame: simulazione con la struttura `exam.structure` del corso. I dati
- * (esercizi e carte) sono caricati su richiesta da `dati.json`, non nell'HTML.
+ * sono caricati su richiesta: `dati/indice.json` per estrarre le domande, poi
+ * `dati/<argomento>.json` per i testi delle domande estratte; niente nell'HTML.
  * Uso: <CourseExam lang={lang} courseId="teoria-circuiti" />
  */
 import 'katex/dist/katex.min.css';
 import ExamRunner from '../../islands/ExamRunner';
 import SectionHeader from './SectionHeader.astro';
-import { courseSummary, getCourse } from '../../lib/course-data';
+import { courseSummary, courseTopics, getCourse } from '../../lib/course-data';
 import { t, type Lang } from '../../i18n';
 
 interface Props {
@@ -16,7 +17,8 @@ interface Props {
 }
 const { lang, courseId } = Astro.props;
 const course = courseSummary(await getCourse(courseId), lang);
+const topics = (await courseTopics(courseId, lang)).map(({ id, title }) => ({ id, title }));
 ---
 
 <SectionHeader title={t(lang, 'page.exam.title')} lead={t(lang, 'page.exam.lead')} />
-<ExamRunner client:load lang={lang} course={course} />
+<ExamRunner client:load lang={lang} course={course} topics={topics} />

@@ -153,20 +153,45 @@ export class Svg {
     const fill = o.fill ?? defFill;
     const st = [`stroke:${TONE_CSS[tone]}`, `fill:${fillCss(fill)}`];
     if (o.opacity !== undefined && o.opacity < 1) st.push(`opacity:${o.opacity}`);
+    // spessore 1.5 e terminazioni arrotondate sono i valori dell'<svg> (ROOT_STROKE): qui solo le eccezioni
+    const width = o.width ?? 1.5;
     return (
-      ` style="${st.join(';')}" stroke-width="${o.width ?? 1.5}"` +
+      ` style="${st.join(';')}"` +
+      (width !== 1.5 ? ` stroke-width="${width}"` : '') +
       (o.dash ? ` stroke-dasharray="${o.dash}"` : '') +
-      ` stroke-linecap="${o.cap ?? 'round'}" stroke-linejoin="${o.join ?? 'round'}"`
+      (o.cap && o.cap !== 'round' ? ` stroke-linecap="${o.cap}"` : '') +
+      (o.join && o.join !== 'round' ? ` stroke-linejoin="${o.join}"` : '')
     );
   }
 
+  /** Ultimo `<path>` di segmenti consecutivi con lo stesso tratto (vedi `line`). */
+  private lineRun: { at: number; stroke: string; d: string } | null = null;
+
   raw(s: string): this {
     this.parts.push(s);
+    this.lineRun = null;
     return this;
   }
 
+  /**
+   * Segmento. Segmenti consecutivi con lo stesso tratto diventano sottotracciati di un solo
+   * `<path>` (stesso disegno: tratteggio e terminazioni ripartono a ogni sottotracciato), così
+   * griglie di ⊗ e tratteggi non ripetono gli attributi per ogni linea. Con `opacity` restano
+   * separati: le sovrapposizioni di un unico tracciato non si scurirebbero.
+   */
   line(x1: number, y1: number, x2: number, y2: number, o: StrokeOpts = {}): this {
-    return this.raw(`<line x1="${r2(x1)}" y1="${r2(y1)}" x2="${r2(x2)}" y2="${r2(y2)}"${this.stroke(o)}/>`);
+    const st = this.stroke(o);
+    const seg = `M${r2(x1)} ${r2(y1)}L${r2(x2)} ${r2(y2)}`;
+    if (o.opacity !== undefined && o.opacity < 1) return this.raw(`<path d="${seg}"${st}/>`);
+    const run = this.lineRun;
+    if (run && run.stroke === st && run.at === this.parts.length - 1) {
+      run.d += seg;
+      this.parts[run.at] = `<path d="${run.d}"${st}/>`;
+      return this;
+    }
+    this.raw(`<path d="${seg}"${st}/>`);
+    this.lineRun = { at: this.parts.length - 1, stroke: st, d: seg };
+    return this;
   }
 
   path(d: string, o: StrokeOpts = {}): this {
@@ -332,8 +357,51 @@ function arrowHead(x: number, y: number, ux: number, uy: number, size: number, t
   return `<polygon points="${pts.map((p) => `${r2(p[0]!)},${r2(p[1]!)}`).join(' ')}" style="fill:${TONE_CSS[tone]};stroke:none"/>`;
 }
 
+/** Scarto massimo (unità del viewBox, ≈ px) dei punti tolti da `simplify`: invisibile a schermo. */
+const SIMPLIFY_EPS = 0.1;
+
+/**
+ * Ramer–Douglas–Peucker: toglie i punti che distano meno di `eps` dalla corda. Le linee di campo
+ * e i grafici campionati a passo fisso hanno centinaia di punti allineati (anche 30 KB per figura).
+ */
+export function simplify(pts: Pt[], eps = SIMPLIFY_EPS): Pt[] {
+  if (pts.length < 3) return pts;
+  const keep = new Uint8Array(pts.length);
+  keep[0] = keep[pts.length - 1] = 1;
+  const stack: Array<[number, number]> = [[0, pts.length - 1]];
+  while (stack.length) {
+    const [a, b] = stack.pop()!;
+    const [ax, ay] = pts[a]!;
+    const [bx, by] = pts[b]!;
+    const dx = bx - ax;
+    const dy = by - ay;
+    const len = Math.hypot(dx, dy);
+    let far = -1;
+    let max = eps;
+    for (let i = a + 1; i < b; i++) {
+      const [px, py] = pts[i]!;
+      // distanza dalla corda (o dal punto, se gli estremi coincidono: linee chiuse)
+      const d =
+        len > 1e-9 ? Math.abs(dy * px - dx * py + bx * ay - by * ax) / len : Math.hypot(px - ax, py - ay);
+      if (d > max) {
+        max = d;
+        far = i;
+      }
+    }
+    if (far >= 0) {
+      keep[far] = 1;
+      stack.push([a, far], [far, b]);
+    }
+  }
+  return pts.filter((_, i) => keep[i]);
+}
+
 export function pathD(pts: Pt[], close = false): string {
-  return pts.map((p, i) => `${i ? 'L' : 'M'}${r2(p[0])} ${r2(p[1])}`).join('') + (close ? 'Z' : '');
+  return (
+    simplify(pts)
+      .map((p, i) => `${i ? 'L' : 'M'}${r2(p[0])} ${r2(p[1])}`)
+      .join('') + (close ? 'Z' : '')
+  );
 }
 
 export interface RenderOptions {
@@ -371,6 +439,9 @@ export function makeCtx(lang: Lang): Ctx {
   return { lang, L: (it, en) => L(lang, it, en), num: (x, d) => num(x, lang, d) };
 }
 
+/** Tratto predefinito, ereditato dagli elementi (che lo ripetono solo se diverso). */
+const ROOT_STROKE = ' stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"';
+
 /** Avvolge il disegno nell'elemento <svg> accessibile. */
 export function finish(type: string, params: unknown, d: Drawn, opts: RenderOptions = {}): FigureResult {
   const title = opts.title ?? d.title;
@@ -378,7 +449,7 @@ export function finish(type: string, params: unknown, d: Drawn, opts: RenderOpti
   const { width, height } = d.svg;
   const cls = `figure-svg figure-svg--${type}${opts.className ? ` ${escapeXml(opts.className)}` : ''}`;
   const svg =
-    `<svg xmlns="http://www.w3.org/2000/svg" class="${cls}" viewBox="0 0 ${r2(width)} ${r2(height)}" width="${r2(width)}" height="${r2(height)}" role="img" aria-labelledby="${pre}-t ${pre}-d" style="max-width:100%;height:auto">` +
+    `<svg xmlns="http://www.w3.org/2000/svg" class="${cls}" viewBox="0 0 ${r2(width)} ${r2(height)}" width="${r2(width)}" height="${r2(height)}" role="img" aria-labelledby="${pre}-t ${pre}-d" style="max-width:100%;height:auto"${ROOT_STROKE}>` +
     `<title id="${pre}-t">${escapeXml(title)}</title><desc id="${pre}-d">${escapeXml(d.description)}</desc>` +
     d.svg.body +
     `</svg>`;

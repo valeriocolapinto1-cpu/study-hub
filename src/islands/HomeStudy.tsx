@@ -1,8 +1,10 @@
 /** @jsxImportSource preact */
 /**
  * Home, parte per chi torna: ripasso del giorno di tutti i corsi, esercizi risolti
- * per corso, prossimo esame e appunti recenti. Tutto dallo storage locale; i testi
- * arrivano dalle props (nessun dizionario nel bundle, per restare nel budget JS).
+ * per corso, prossimo esame e appunti recenti. Tutto dallo storage locale; gli id di
+ * esercizi e carte arrivano da `dati/indice.json`, scaricato solo per i corsi con dati
+ * locali (per scartare gli id che non esistono più). I testi arrivano dalle props
+ * (nessun dizionario nel bundle, per restare nel budget JS).
  * La sezione è nascosta via CSS a chi non ha ancora dati (html:not([data-returning])),
  * impostato prima del disegno da uno script inline della home.
  */
@@ -12,15 +14,17 @@ import { daysUntil } from '../engine/mastery';
 import { allNotes } from '../engine/notes';
 import { exerciseStatus, loadProgress, loadSrs } from '../engine/progress';
 import { GLOBAL_SCOPE, read, subscribe } from '../engine/storage';
+import { indexUrl, type CourseIndex } from '../engine/course-data';
+import { fetchJson } from './lib/hooks';
 import './platform.css';
 
 export interface HomeCourse {
   id: string;
   title: string;
   examDates: string[];
-  exerciseIds: string[];
-  cardIds: string[];
-  paths: { overview: string; review: string; progress: string; exercises: string };
+  exerciseCount: number;
+  cardCount: number;
+  paths: { overview: string; review: string; progress: string; exercises: string; data: string };
 }
 
 export interface HomeStudyProps {
@@ -50,8 +54,13 @@ interface RecentNote {
 const fmt = (s: string | undefined, p: Record<string, string | number>) =>
   (s ?? '').replace(/\{(\w+)\}/g, (m, k: string) => (k in p ? String(p[k]) : m));
 
+/** Id noti di un corso (dall'indice), `error` se non scaricabile. */
+type Known = { exercises: Set<string>; cards: Set<string> } | 'error';
+
 export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, texts: T }: HomeStudyProps) {
   const [rows, setRows] = useState<Row[] | null>(null);
+  const [known, setKnown] = useState<Record<string, Known>>({});
+  const [waiting, setWaiting] = useState(0);
   const [notes, setNotes] = useState<RecentNote[]>([]);
   const titles = Object.fromEntries(courses.map((c) => [c.id, c.title]));
   const locale = lang === 'it' ? 'it-IT' : 'en-GB';
@@ -62,6 +71,26 @@ export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, 
       timeZone: 'UTC',
     });
 
+  // Indici dei soli corsi con dati locali (chi arriva per la prima volta non scarica nulla).
+  useEffect(() => {
+    const withData = courses.filter((c) => {
+      const srs = loadSrs(c.id);
+      return Object.keys(srs.cards).length > 0 || Object.keys(loadProgress(c.id).exercises).length > 0;
+    });
+    setWaiting(withData.length);
+    for (const c of withData)
+      fetchJson<CourseIndex>(indexUrl(c.paths))
+        .then((ix) => ({
+          exercises: new Set(ix.exercises.map((e) => e.id)),
+          cards: new Set(ix.cards.map((x) => x.id)),
+        }))
+        .catch((): Known => 'error')
+        .then((k) => {
+          setKnown((m) => ({ ...m, [c.id]: k }));
+          setWaiting((n) => n - 1);
+        });
+  }, []);
+
   useEffect(() => {
     const load = () => {
       const now = Date.now();
@@ -71,16 +100,22 @@ export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, 
         courses.map((c) => {
           const srs = loadSrs(c.id);
           const progress = loadProgress(c.id);
-          const studied = Object.keys(srs.cards).length;
-          const due = studied ? buildQueue(c.cardIds, srs.cards, now, { newLimit: 0 }).length : 0;
-          const fresh = studied ? Math.min(newPerDay, Math.max(0, c.cardIds.length - studied)) : 0;
+          const k = known[c.id];
+          // Senza indice (in arrivo o non scaricabile) si contano gli id salvati.
+          const cardIds = Object.keys(srs.cards).filter((id) => !k || k === 'error' || k.cards.has(id));
+          const exerciseIds = Object.keys(progress.exercises).filter(
+            (id) => !k || k === 'error' || k.exercises.has(id),
+          );
+          const studied = cardIds.length;
+          const due = studied ? buildQueue(cardIds, srs.cards, now, { newLimit: 0 }).length : 0;
+          const fresh = studied ? Math.min(newPerDay, Math.max(0, c.cardCount - studied)) : 0;
           const date =
             personal[c.id] ?? [...c.examDates].sort().find((d) => (daysUntil(d, now) ?? -1) >= 0) ?? null;
           const days = date ? daysUntil(date, now) : null;
           return {
             id: c.id,
             due: due + fresh,
-            solved: c.exerciseIds.filter((id) => exerciseStatus(progress.exercises[id]) === 'risolto').length,
+            solved: exerciseIds.filter((id) => exerciseStatus(progress.exercises[id]) === 'risolto').length,
             exam: date && days !== null && days >= 0 ? { date, days } : null,
           };
         }),
@@ -105,7 +140,7 @@ export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, 
       ...courses.flatMap((c) => ['srs', 'progress', 'notes'].map((a) => subscribe(c.id, a, load))),
     ];
     return () => subs.forEach((u) => u());
-  }, []);
+  }, [known]);
 
   const totalDue = rows?.reduce((s, r) => s + r.due, 0) ?? 0;
   const next = rows?.filter((r) => r.exam).sort((a, b) => a.exam!.days - b.exam!.days)[0];
@@ -145,6 +180,18 @@ export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, 
         </div>
       </div>
 
+      {waiting > 0 ? (
+        <p class="pf-stat__note" aria-busy="true">
+          {T.loading}
+        </p>
+      ) : (
+        Object.values(known).includes('error') && (
+          <p class="pf-stat__note" role="alert">
+            {T.loadError}
+          </p>
+        )
+      )}
+
       <table class="pf-home-study__table">
         <caption class="visually-hidden">{T.tableCaption}</caption>
         <thead>
@@ -160,7 +207,7 @@ export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, 
         <tbody>
           {courses.map((c) => {
             const r = rows?.find((x) => x.id === c.id);
-            const total = c.exerciseIds.length;
+            const total = c.exerciseCount;
             const pct = r && total ? Math.round((r.solved / total) * 100) : 0;
             return (
               <tr key={c.id} data-course={c.id}>

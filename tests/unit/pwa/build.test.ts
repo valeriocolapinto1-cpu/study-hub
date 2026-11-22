@@ -69,7 +69,8 @@ describe('buildServiceWorker', () => {
       'it/anno-1/fisica-1/index.html': page(
         '<astro-island component-url="/study-hub/_astro/Offline.js"></astro-island>',
       ),
-      'it/anno-1/fisica-1/dati.json': '{}',
+      'it/anno-1/fisica-1/dati/indice.json': '{}',
+      'it/anno-1/fisica-1/dati/moto-armonico.json': '{}',
       'en/anno-1/fisica-1/index.html': page(''),
       '_astro/base.css':
         '@font-face{src:url(./serif-latin.woff2),url(./serif-latin.woff)}@font-face{src:url(./serif-cyrillic.woff2)}',
@@ -118,10 +119,12 @@ describe('buildServiceWorker', () => {
       '/study-hub/_astro/Offline.js',
       '/study-hub/_astro/katex.js',
       '/study-hub/it/anno-1/fisica-1/',
-      '/study-hub/it/anno-1/fisica-1/dati.json',
+      // dati delle isole divisi: indice e un file per argomento, tutti nel corso offline
+      '/study-hub/it/anno-1/fisica-1/dati/indice.json',
+      '/study-hub/it/anno-1/fisica-1/dati/moto-armonico.json',
     ]);
     expect(manifest.courses['fisica-1']!.en!.map((e) => e[0])).toEqual(['/study-hub/en/anno-1/fisica-1/']);
-    expect(summary.courses['fisica-1']!.it!.files).toBe(4);
+    expect(summary.courses['fisica-1']!.it!.files).toBe(5);
     const sw = readFileSync(join(dist, 'sw.js'), 'utf8');
     expect(sw).toContain(`const MANIFEST = {"version":"${manifest.version}"`);
     expect(sw).not.toMatch(/^export /m);

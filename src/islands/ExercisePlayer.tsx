@@ -3,10 +3,13 @@
  * Esercizio interattivo: enunciato, figura, risposta (con unità, complessi,
  * scelte), verifica con feedback sugli errori tipici, suggerimenti, soluzione
  * a passi rivelabili, "nuova variante" per i generati. Salva i tentativi in
- * `sh:v1:<courseId>:progress`.
+ * `sh:v1:<courseId>:progress`. Con `exercise.detailsUrl` (pagina di un argomento)
+ * passi e spiegazioni delle scelte non sono nelle props: si scaricano da
+ * `dati/<argomento>.json` al primo suggerimento, passo o verifica.
  */
+import type { ComponentChildren } from 'preact';
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
-import type { AnswerItemData, ChoiceData, ExerciseData, StepData } from '../engine/course-data';
+import type { AnswerItemData, ChoiceData, ExerciseData, StepData, TopicData } from '../engine/course-data';
 import { answerHelpKey } from '../engine/course-data';
 import { feedbackText, gradeAnswers, gradeChoice, type MultiResult } from '../engine/grading';
 import { toAnswerSpec } from '../engine/exam';
@@ -15,7 +18,7 @@ import { formatComplex, formatNumber, parseComplex } from '../engine/units';
 import { randomSeed } from '../engine/random';
 import { renderRichClient } from './lib/rich-client';
 import { plainText } from '../engine/rich';
-import { useStored } from './lib/hooks';
+import { fetchJson, useStored } from './lib/hooks';
 import { t, type Lang } from './lib/i18n';
 import './islands.css';
 
@@ -28,6 +31,14 @@ export interface ExercisePlayerProps {
   headingLevel?: 2 | 3;
   /** Seme iniziale per i generati (default: derivato dall'id, stabile tra SSR e client). */
   seed?: number;
+  /**
+   * Slot di Astro con enunciato e figura della variante statica già resi (pagina di un argomento):
+   * l'HTML resta nella pagina una volta sola, non anche nelle props.
+   */
+  statement?: ComponentChildren;
+  figure?: ComponentChildren;
+  /** Slot `c<i>` (testo della scelta i) e `l<i>` (etichetta del campo i), come sopra. */
+  [slot: `c${number}` | `l${number}`]: ComponentChildren;
 }
 
 interface Content {
@@ -120,6 +131,9 @@ export default function ExercisePlayer({
   number,
   headingLevel = 3,
   seed: seed0,
+  statement,
+  figure,
+  ...slots
 }: ExercisePlayerProps) {
   // Id derivati dall'esercizio: useId si ripete tra isole diverse (radici Preact separate).
   const uid = `ex-${exercise.id}`;
@@ -130,6 +144,10 @@ export default function ExercisePlayer({
     generated && !pregenerated ? null : staticContent(exercise),
   );
   const [genError, setGenError] = useState(false);
+  // Testi completi (passi, spiegazioni) della variante statica, se le props sono la versione leggera.
+  const [full, setFull] = useState<ExerciseData | null>(null);
+  const [details, setDetails] = useState<'idle' | 'loading' | 'error'>('idle');
+  const focusStep = useRef<number | null>(null);
   const [fields, setFieldsState] = useState<string[]>([]);
   // Copia sincrona: input rapidi in più campi non devono leggere uno stato vecchio.
   const fieldsRef = useRef<string[]>([]);
@@ -152,7 +170,7 @@ export default function ExercisePlayer({
     if (!generated) return;
     // variante già resa a build-time: niente generatori né KaTeX nel browser
     if (seed === exercise.pregeneratedSeed) {
-      setContent(staticContent(exercise));
+      setContent(staticContent(full ?? exercise));
       return;
     }
     let alive = true;
@@ -166,6 +184,32 @@ export default function ExercisePlayer({
     };
   }, [generated, seed, courseId, exercise, lang]);
 
+  const staticVariant = !generated || seed === exercise.pregeneratedSeed;
+  /** Slot della variante statica (HTML già nella pagina), se la pagina li passa. */
+  const slot = (name: `c${number}` | `l${number}`): ComponentChildren =>
+    staticVariant ? (slots as Record<string, ComponentChildren>)[name] : undefined;
+  /** Il contenuto mostrato è la versione leggera: mancano passi e spiegazioni. */
+  const lazy = !!exercise.detailsUrl && !full && staticVariant;
+  const loadDetails = () => {
+    if (!lazy || details === 'loading') return;
+    setDetails('loading');
+    fetchJson<TopicData>(exercise.detailsUrl!)
+      .then((d) => {
+        const ex = d.exercises.find((x) => x.id === exercise.id);
+        if (!ex) throw new Error(`esercizio assente: ${exercise.id}`);
+        setFull(ex);
+        setDetails('idle');
+      })
+      .catch(() => setDetails('error'));
+  };
+  useEffect(() => {
+    if (!full || !staticVariant) return;
+    setContent(staticContent(full));
+    const i = focusStep.current;
+    focusStep.current = null;
+    if (i !== null) requestAnimationFrame(() => document.getElementById(`${uid}-s${i}`)?.focus());
+  }, [full]);
+
   const reset = () => {
     setFields([]);
     setPicked([]);
@@ -178,12 +222,15 @@ export default function ExercisePlayer({
   const status = exerciseStatus(progress?.exercises[exercise.id]);
   const attempts = progress?.exercises[exercise.id]?.attempts.length ?? 0;
   const steps = content?.steps ?? [];
+  const stepTotal = lazy ? (exercise.stepCount ?? 0) : steps.length;
   const selfGraded = !!content && content.answer.length === 0 && !content.choices?.length;
   const H = `h${headingLevel}` as 'h2' | 'h3';
   const title = number !== undefined ? t(lang, 'exercise.title', { n: number }) : exercise.title;
 
   const check = (current: string[] = fieldsRef.current) => {
     if (!content) return;
+    // spiegazioni delle scelte: arrivano con i testi completi
+    if (content.choices?.length) loadDetails();
     const r = content.choices?.length
       ? gradeChoice({ correct: content.choices.flatMap((c, i) => (c.correct ? [i] : [])) }, picked)
       : gradeAnswers(
@@ -206,6 +253,20 @@ export default function ExercisePlayer({
     saveAttempt(courseId, exercise.id, { at: Date.now(), score });
     setResult({ status: score === 1 ? 'correct' : score > 0 ? 'partial' : 'wrong', score, fields: [] });
   };
+
+  const detailsStatus =
+    details === 'error' ? (
+      <p class="sh-alert sh-alert--danger" role="alert">
+        {t(lang, 'engine.loadError')}{' '}
+        <button type="button" class="btn" onClick={loadDetails}>
+          {t(lang, 'engine.retry')}
+        </button>
+      </p>
+    ) : (
+      <p class="sh-muted" aria-busy="true">
+        {t(lang, 'engine.loading')}
+      </p>
+    );
 
   const message = result
     ? {
@@ -254,18 +315,24 @@ export default function ExercisePlayer({
         </p>
       ) : (
         <>
-          <div
-            class="sh-exercise__statement prose"
-            dangerouslySetInnerHTML={{ __html: content.statementHtml }}
-          />
-          {content.figureSvg && (
-            <figure
-              class="sh-figure"
-              role="group"
-              aria-label={t(lang, 'exercise.figure')}
-              dangerouslySetInnerHTML={{ __html: content.figureSvg }}
+          {staticVariant && statement ? (
+            statement
+          ) : (
+            <div
+              class="sh-exercise__statement prose"
+              dangerouslySetInnerHTML={{ __html: content.statementHtml }}
             />
           )}
+          {staticVariant && statement
+            ? figure
+            : content.figureSvg && (
+                <figure
+                  class="sh-figure"
+                  role="group"
+                  aria-label={t(lang, 'exercise.figure')}
+                  dangerouslySetInnerHTML={{ __html: content.figureSvg }}
+                />
+              )}
 
           {content.choices?.length ? (
             <fieldset class="sh-choices">
@@ -284,7 +351,7 @@ export default function ExercisePlayer({
                         setPicked(multiple ? (on ? picked.filter((x) => x !== i) : [...picked, i]) : [i])
                       }
                     />
-                    <span dangerouslySetInnerHTML={{ __html: c.html }} />
+                    {slot(`c${i}`) ?? <span dangerouslySetInnerHTML={{ __html: c.html }} />}
                     {result && c.explanationHtml && (on || c.correct) && (
                       <span class="sh-choice__why" dangerouslySetInnerHTML={{ __html: c.explanationHtml }} />
                     )}
@@ -301,7 +368,9 @@ export default function ExercisePlayer({
                 const id = `${uid}-f${i}`;
                 return (
                   <div class={`sh-field ${fr ? STATUS_CLASS[fr.status] : ''}`} key={`${seed}-${i}`}>
-                    {a.labelHtml ? (
+                    {slot(`l${i}`) ? (
+                      <label for={id}>{slot(`l${i}`)}</label>
+                    ) : a.labelHtml ? (
                       <label for={id} dangerouslySetInnerHTML={{ __html: a.labelHtml }} />
                     ) : (
                       <label for={id}>{a.label}</label>
@@ -311,7 +380,7 @@ export default function ExercisePlayer({
                         id={id}
                         class="sh-input"
                         // etichette di sole formule: il nome accessibile viene dal testo semplice
-                        aria-label={a.labelHtml ? a.label : undefined}
+                        aria-label={a.labelHtml || slot(`l${i}`) ? a.label : undefined}
                         type="text"
                         inputMode="text"
                         autoComplete="off"
@@ -346,7 +415,7 @@ export default function ExercisePlayer({
                         ))}
                       </ul>
                     )}
-                    {fr && revealed >= steps.length && steps.length > 0 && fr.status !== 'correct' && (
+                    {fr && revealed >= stepTotal && stepTotal > 0 && fr.status !== 'correct' && (
                       <p class="sh-muted">
                         {t(lang, 'exercise.expected', { value: formatExpected(a, lang) })}
                       </p>
@@ -366,13 +435,16 @@ export default function ExercisePlayer({
                 {t(lang, 'exercise.check')}
               </button>
             )}
-            {steps.length > 0 && revealed === 0 && (
+            {stepTotal > 0 && revealed === 0 && (
               <button
                 type="button"
                 class="btn"
                 aria-describedby={hints > 0 ? `${uid}-hint` : undefined}
-                onClick={() => setHints((h) => Math.min(h + 1, steps.length))}
-                disabled={hints >= steps.length}
+                onClick={() => {
+                  loadDetails();
+                  setHints((h) => Math.min(h + 1, stepTotal));
+                }}
+                disabled={hints >= stepTotal}
               >
                 {t(lang, 'exercise.hint')}
               </button>
@@ -395,7 +467,8 @@ export default function ExercisePlayer({
             {message && <p class={`sh-result ${STATUS_CLASS[result!.status]}`}>{t(lang, message)}</p>}
           </div>
 
-          {hints > 0 && revealed === 0 && (
+          {hints > 0 && revealed === 0 && lazy && detailsStatus}
+          {hints > 0 && revealed === 0 && !lazy && (
             <ol id={`${uid}-hint`} class="sh-hints" aria-label={t(lang, 'exercise.hint')}>
               {steps.slice(0, hints).map((s, i) => (
                 <li key={i} dangerouslySetInnerHTML={{ __html: s.titleHtml }} />
@@ -403,9 +476,10 @@ export default function ExercisePlayer({
             </ol>
           )}
 
-          {steps.length > 0 && (
+          {stepTotal > 0 && (
             <section class="sh-solution" aria-label={t(lang, 'exercise.solution')}>
-              {revealed > 0 && (
+              {revealed > 0 && lazy && detailsStatus}
+              {revealed > 0 && !lazy && (
                 <ol class="sh-steps">
                   {steps.slice(0, revealed).map((s, i) => (
                     <li key={i} class="sh-step" tabIndex={-1} id={`${uid}-s${i}`}>
@@ -421,7 +495,7 @@ export default function ExercisePlayer({
                 </ol>
               )}
               <div class="sh-actions">
-                {revealed < steps.length && (
+                {revealed < stepTotal && (
                   <>
                     <button
                       type="button"
@@ -429,12 +503,25 @@ export default function ExercisePlayer({
                       aria-expanded={revealed > 0}
                       onClick={() => {
                         setRevealed(revealed + 1);
-                        requestAnimationFrame(() => document.getElementById(`${uid}-s${revealed}`)?.focus());
+                        if (lazy) {
+                          focusStep.current = revealed;
+                          loadDetails();
+                        } else
+                          requestAnimationFrame(() =>
+                            document.getElementById(`${uid}-s${revealed}`)?.focus(),
+                          );
                       }}
                     >
                       {t(lang, 'exercise.showStep')}
                     </button>
-                    <button type="button" class="btn btn--ghost" onClick={() => setRevealed(steps.length)}>
+                    <button
+                      type="button"
+                      class="btn btn--ghost"
+                      onClick={() => {
+                        loadDetails();
+                        setRevealed(stepTotal);
+                      }}
+                    >
                       {t(lang, 'exercise.showSolution')}
                     </button>
                   </>
@@ -445,7 +532,7 @@ export default function ExercisePlayer({
                   </button>
                 )}
               </div>
-              {selfGraded && revealed >= steps.length && (
+              {selfGraded && !lazy && revealed >= stepTotal && (
                 <div class="sh-actions" role="group" aria-label={t(lang, 'exam.selfGrade')}>
                   <button type="button" class="btn" onClick={() => selfGrade(0)}>
                     {t(lang, 'exercise.self.0')}
