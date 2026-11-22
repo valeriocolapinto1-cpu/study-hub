@@ -15,7 +15,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: calc(5rem + var(--safe-top));
   hanging-punctuation: first last;
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -162,12 +162,12 @@ abbr[title] {
   border: 0;
 }
 .container {
-  width: min(var(--content-max), 100% - 2 * var(--space-s));
+  width: min(var(--content-max), 100% - 2 * max(var(--space-s), var(--safe-inline)));
   margin-inline: auto;
 }
 @media (min-width: 48em) {
   .container {
-    width: min(var(--content-max), 100% - 2 * var(--space-l));
+    width: min(var(--content-max), 100% - 2 * max(var(--space-l), var(--safe-inline)));
   }
 }
 .muted {

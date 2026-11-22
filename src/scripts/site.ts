@@ -86,6 +86,23 @@ document.addEventListener('keydown', (e) => {
   openSearch();
 });
 
+// ---- Prefetch dei link interni (modulo di Astro, senza View Transitions: le isole tengono stato):
+// al passaggio del puntatore, o al tocco sugli schermi senza hover. Il modulo si scarica alla prima
+// interazione (`pointerover` arriva anche dal tocco), fuori dal budget JS del caricamento, e il link
+// che l'ha causata si carica subito. `init` agisce una volta sola.
+for (const type of ['pointerover', 'focusin'])
+  addEventListener(
+    type,
+    (e) => {
+      const link = (e.target as Element).closest?.('a');
+      import('astro/virtual-modules/prefetch.js').then(({ init, prefetch }) => {
+        init({ prefetchAll: true, defaultStrategy: matchMedia('(hover:hover)').matches ? 'hover' : 'tap' });
+        if (link) prefetch(link.href);
+      }, Boolean);
+    },
+    { once: true },
+  );
+
 // ---- Ultima pagina di studio (teoria o esercizi di un argomento): «Riprendi da dove eri» in home
 // e nella panoramica del corso. Solo percorso e titolo, nello storage locale.
 {

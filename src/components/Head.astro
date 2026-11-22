@@ -29,10 +29,19 @@ const site = Astro.site ?? new URL('http://localhost');
 const canonical = new URL(Astro.url.pathname, site).href;
 const fullTitle = title === SITE.title[lang] ? title : `${title} — ${SITE.shortTitle[lang]}`;
 const ogImage = new URL(withBase(ogImagePath(lang, course)), site).href;
-// Tema salvato applicato prima del primo disegno (niente lampo di colore), con il colore della barra
-// del browser; poi site.ts lo allinea allo sfondo effettivo (anche del corso). Lo script è piccolo e
-// fisso: il suo hash entra nella CSP.
-const themeScript = `try{var s=JSON.parse(localStorage.getItem('sh:v1:global:theme')||'null');if(s==='light'||s==='dark')document.documentElement.dataset.theme=s;if(s==='light')document.querySelector('meta[name=theme-color]').content='${SITE.themeColor.light}'}catch(e){}`;
+// Tema salvato applicato prima del primo disegno (niente lampo di colore). Il colore della barra del
+// browser segue lo sfondo effettivo (`--bg`, anche quello del corso), e lo ricalcola quando
+// l'interruttore cambia `data-theme`; finché il CSS non è pronto vale il colore chiaro/scuro del sito.
+// Script piccolo e fisso: il suo hash entra nella CSP; inline, non pesa sul budget JS.
+const { light, dark } = SITE.themeColor;
+const themeScript =
+  `try{var s=JSON.parse(localStorage.getItem('sh:v1:global:theme')||'null');` +
+  `if(s==='light'||s==='dark')document.documentElement.dataset.theme=s}catch(e){}` +
+  `(function(d,m){function f(){m.content=getComputedStyle(d).getPropertyValue('--bg').trim()||` +
+  `(d.dataset.theme==='light'?'${light}':'${dark}')}f();` +
+  `new MutationObserver(f).observe(d,{attributeFilter:['data-theme']});` +
+  `addEventListener('DOMContentLoaded',f);addEventListener('load',f)})` +
+  `(document.documentElement,document.querySelector('meta[name=theme-color]'))`;
 ---
 
 <meta charset="utf-8" />

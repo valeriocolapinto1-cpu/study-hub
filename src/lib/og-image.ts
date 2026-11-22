@@ -6,7 +6,7 @@
  */
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import sharp from 'sharp';
+import sharp, { type OverlayOptions } from 'sharp';
 import { OG_HEIGHT, OG_WIDTH } from './seo';
 
 const FONTS = join(process.cwd(), 'tools/og/fonts');
@@ -135,7 +135,7 @@ export async function renderOgImage(card: OgCard): Promise<Buffer> {
   const gap = 18;
   const blockHeight = eyebrow.height + gap + title.height + (subtitle ? gap + subtitle.height : 0);
   let y = Math.max(200, footerTop - 56 - blockHeight);
-  const layers: sharp.OverlayOptions[] = [{ input: eyebrow.data, left: MARGIN, top: y }];
+  const layers: OverlayOptions[] = [{ input: eyebrow.data, left: MARGIN, top: y }];
   y += eyebrow.height + gap;
   layers.push({ input: title.data, left: MARGIN, top: y });
   y += title.height + gap;

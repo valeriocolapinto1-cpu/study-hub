@@ -90,7 +90,7 @@ const courses = sortCourses((await getCollection('courses')).map((c) => c.data))
     }
     .contribute-layout__aside {
       position: sticky;
-      top: calc(var(--space-3xl) + var(--space-s));
+      top: calc(var(--space-3xl) + var(--space-s) + var(--safe-top));
     }
   }
   .contribute-layout__aside {

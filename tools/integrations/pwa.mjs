@@ -35,6 +35,9 @@ const EXCLUDED_PAGES = [/^(it|en)\/stile\//];
 /** File di dist mai messi in cache. */
 const EXCLUDED_FILES = [
   /^sw\.js$/,
+  // Anteprime per i social e schermate del manifest: non servono a chi usa il sito.
+  /^og\//,
+  /^screenshots\//,
   /^sitemap.*\.xml$/,
   /^robots\.txt$/,
   /\.map$/,
