@@ -9,22 +9,29 @@
  *   - dist/version.json: commit e data della build (tools/build-info.mjs) e versione del
  *     service worker; mai in cache, lo legge src/scripts/pwa.ts per cercare aggiornamenti.
  *
- * Shell (precache all'installazione): pagine globali, 404, radice, manifest, icone,
- * indice di ricerca, con tutte le risorse che richiamano. Corso (scaricabile su richiesta):
- * le pagine sotto /<lingua>/anno-N/<corso>/ e le risorse che usano e che non sono già
- * nella shell. Le risorse si trovano seguendo gli attributi dell'HTML, gli `url()` dei CSS
- * e gli import dei moduli JS.
+ * Shell (precache all'installazione): pagine globali, 404, radice, manifest, icone, con
+ * tutte le risorse che richiamano. Corso (scaricabile su richiesta): le pagine sotto
+ * /<lingua>/anno-N/<corso>/, ogni altro file sotto lo stesso percorso (dati delle isole),
+ * le risorse che usano e che non sono già nella shell, e l'indice di ricerca della lingua
+ * (`pagefind/<lingua>/` tranne i frammenti) con i frammenti delle pagine del corso e di
+ * quelle fuori dai corsi. Le risorse si trovano seguendo gli attributi dell'HTML, gli
+ * `url()` dei CSS e gli import dei moduli JS.
+ *
+ * L'indice di ricerca non sta nella shell: sono migliaia di file (un frammento per pagina e
+ * per record) che online si scaricano solo quando servono, cache-first perché hanno l'hash
+ * nel nome.
  */
 import { createHash } from 'node:crypto';
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { join, posix, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { gunzipSync } from 'node:zlib';
 import { buildInfo } from '../build-info.mjs';
 
 const ROOT = fileURLToPath(new URL('../../', import.meta.url));
 const COURSE_RE = /^(it|en)\/anno-\d+\/([a-z0-9-]+)\//;
 /** Pagine di servizio non messe in cache (strumenti di sviluppo). */
-const EXCLUDED_PAGES = [/^it\/stile\//];
+const EXCLUDED_PAGES = [/^(it|en)\/stile\//];
 /** File di dist mai messi in cache. */
 const EXCLUDED_FILES = [
   /^sw\.js$/,
@@ -36,6 +43,21 @@ const EXCLUDED_FILES = [
 ];
 /** Sottoinsiemi di font non necessari per testi italiani e inglesi (restano in cache solo se usati). */
 const SKIP_FONT = /(latin-ext|cyrillic|greek|vietnamese|hebrew|devanagari|arabic)/;
+
+/** File di Pagefind: `pagefind/<lingua>/<resto>`. */
+const PAGEFIND_RE = /^pagefind\/(it|en)\/(.+)$/;
+
+/**
+ * URL della pagina a cui appartiene un frammento di Pagefind (gzip con il prefisso
+ * `pagefind_dcd` e poi JSON), relativo alla radice di dist e senza barra iniziale.
+ * @param {Buffer} buf
+ */
+export function fragmentUrl(buf) {
+  const text = gunzipSync(buf).toString('utf8');
+  const json = text.slice(text.indexOf('{'));
+  const { url } = JSON.parse(json);
+  return String(url ?? '').replace(/^\/+/, '');
+}
 
 async function walk(dir, out = []) {
   for (const e of await readdir(dir, { withFileTypes: true })) {
@@ -96,7 +118,7 @@ export function publicUrl(rel, base) {
 /**
  * @param {string} distDir
  * @param {string} base
- * @param {{ info(msg: string): void }} logger
+ * @param {{ info(msg: string): void; warn?(msg: string): void }} logger
  */
 export async function buildServiceWorker(distDir, base, logger) {
   const files = (await walk(distDir)).map((p) => relative(distDir, p).split(sep).join('/'));
@@ -162,11 +184,31 @@ export async function buildServiceWorker(distDir, base, logger) {
     if (m && !rel.endsWith('.html')) coursePages.get(`${m[2]}|${m[1]}`)?.push(rel);
   }
   for (const rel of info.keys())
-    if (
-      rel.startsWith('pagefind/') ||
-      /^(site\.webmanifest|favicon\.svg|apple-touch-icon\.png|icon-[\w-]+\.png)$/.test(rel)
-    )
+    if (/^(site\.webmanifest|favicon\.svg|apple-touch-icon\.png|icon-[\w-]+\.png)$/.test(rel))
       shellRoots.push(rel);
+
+  // Indice di ricerca: per lingua, i file comuni e i frammenti divisi per corso ('' = fuori dai corsi).
+  /** @type {Map<string, { common: string[], fragments: Map<string, string[]> }>} */
+  const search = new Map();
+  for (const rel of info.keys()) {
+    const m = PAGEFIND_RE.exec(rel);
+    if (!m) continue;
+    const [, lang, rest] = m;
+    if (!search.has(lang)) search.set(lang, { common: [], fragments: new Map() });
+    const s = search.get(lang);
+    if (!rest.startsWith('fragment/')) {
+      s.common.push(rel);
+      continue;
+    }
+    let course = '';
+    try {
+      course = COURSE_RE.exec(fragmentUrl(info.get(rel).buf))?.[2] ?? '';
+    } catch {
+      logger.warn?.(`frammento di Pagefind illeggibile: ${rel}`);
+    }
+    if (!s.fragments.has(course)) s.fragments.set(course, []);
+    s.fragments.get(course).push(rel);
+  }
 
   const shell = closure(shellRoots, false);
   const entry = (rel) => [publicUrl(rel, base), info.get(rel).rev, info.get(rel).size];
@@ -174,7 +216,9 @@ export async function buildServiceWorker(distDir, base, logger) {
   const summary = { courses: {} };
   for (const [key, roots] of [...coursePages.entries()].sort()) {
     const [id, lang] = key.split('|');
-    const list = [...closure(roots, true)].filter((r) => !shell.has(r)).sort();
+    const s = search.get(lang);
+    const index = s ? [...s.common, ...(s.fragments.get(id) ?? []), ...(s.fragments.get('') ?? [])] : [];
+    const list = [...new Set([...closure(roots, true), ...index])].filter((r) => !shell.has(r)).sort();
     courses[id] ??= {};
     courses[id][lang] = list.map(entry);
     summary.courses[id] ??= {};

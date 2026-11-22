@@ -86,6 +86,13 @@ test.describe('offline', () => {
     const download = page.getByRole('button', { name: "Scarica per l'offline" });
     await expect(download).toBeVisible({ timeout: 15_000 });
     await expect(box).toContainText(/circa \d+/);
+    // Prima installazione leggera: l'indice di ricerca non è nella shell, arriva con il corso.
+    const shellSearch = () =>
+      page.evaluate(
+        async () =>
+          (await (await caches.open('sh-shell')).keys()).filter((r) => r.url.includes('/pagefind/')).length,
+      );
+    expect(await shellSearch()).toBe(0);
     await download.click();
     await expect(box).toHaveAttribute('data-state', 'complete', { timeout: 30_000 });
     await axe(page);
@@ -118,6 +125,11 @@ test.describe('offline', () => {
     await page.keyboard.press('Control+k');
     await page.getByRole('searchbox', { name: 'Cerca nel sito' }).fill('ohm');
     await expect(page.locator('#pf-search-status')).toHaveText(/\d+ risultat/);
+    // Dettagli dai frammenti scaricati con il corso.
+    await expect(page.locator('a.pf-search__link').first()).toHaveAttribute(
+      'href',
+      /\/it\/anno-1\/esempio\//,
+    );
 
     await context.setOffline(false);
     await page.goto(C);
