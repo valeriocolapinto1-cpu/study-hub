@@ -146,13 +146,17 @@ pagine globali `/<lang>/ripasso/`, `/<lang>/appunti/`, `/<lang>/i-miei-dati/`, `
   pulsante dell'intestazione; filtri corso, tipo, lingua; funziona offline.
 - **PWA** (`tools/integrations/pwa.mjs` → `dist/sw.js` e `dist/offline-summary.json`): un solo service worker
   (`src/pwa/sw.js` + funzioni pure `src/pwa/sw-core.js`) con il manifest di ogni file (hash e dimensione).
-  Shell in precache (pagine globali, 404, radice, indice di ricerca, icone e le risorse che richiamano, solo
-  import statici e font latin woff2); ogni corso, per lingua, scaricabile su richiesta da "Scarica per
-  l'offline" nella panoramica (`src/islands/OfflineCourse.tsx`, inserita da `CourseLayout`). Aggiornamenti
+  Shell in precache (pagine globali, 404, radice, icone e le risorse che richiamano, solo import statici e
+  font latin woff2; ≤ 200 file e ≤ 1,5 MB, verificato da `tests/content/pwa-shell.test.ts`); ogni corso, per
+  lingua, scaricabile su richiesta da "Scarica per l'offline" nella panoramica, con i file non HTML sotto il
+  suo percorso (`dati/`) e l'indice di ricerca della lingua (`pagefind/<lingua>/` tranne i frammenti, più i
+  frammenti delle pagine del corso e di quelle fuori dai corsi) (`src/islands/OfflineCourse.tsx`, inserita da `CourseLayout`). Aggiornamenti
   incrementali (solo i file cambiati), attivati dopo conferma ("Nuova versione disponibile",
   `src/scripts/pwa.ts`); offline, le pagine non salvate portano a `/<lingua>/offline/`. Cache: `sh-shell`,
-  `sh-course:<id>:<lingua>`, `sh-runtime:<versione>` (≤ 120 voci; quelle delle versioni precedenti si
-  eliminano all'attivazione), `sh-meta`.
+  `sh-course:<id>:<lingua>`, `sh-runtime:<versione>` (≤ 120 voci, sfoltita alla prima scrittura di ogni
+  avvio del worker e poi ogni 20; quelle delle versioni precedenti si eliminano all'attivazione), `sh-meta`.
+  Ricerca in cache: elenco dei corsi scaricati letto una volta per avvio; pagine e dati di un corso solo nella
+  sua cache e in quella di passaggio, le risorse comuni in shell, corsi e passaggio (`cachesFor`).
   **Strategie**: i file con hash nel nome (`/_astro/`, frammenti/indici/filtri di Pagefind) cache-first;
   pagine e file senza hash (JSON, icone, `pagefind.js`) network-first rivalidando la cache HTTP, con la copia
   in cache solo se la rete non risponde entro 3 s (`NETWORK_TIMEOUT_MS`) o manca. `sw.js` e `version.json`
