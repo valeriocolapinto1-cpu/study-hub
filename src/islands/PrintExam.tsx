@@ -6,7 +6,7 @@
  * (il browser offre "Salva come PDF").
  */
 import { useEffect, useState } from 'preact/hooks';
-import type { CourseData } from '../engine/course-data';
+import { indexUrl, type CourseIndex } from '../engine/course-data';
 import { assembleExam, parsePrintQuery, type Exam, type PrintParams } from '../engine/exam';
 import { formatNumber } from '../engine/units';
 import { fetchJson } from './lib/hooks';
@@ -17,24 +17,24 @@ import './islands.css';
 
 export interface PrintExamProps {
   lang: Lang;
-  /** id corso → URL di dati.json nella lingua della pagina. */
-  dataUrls: Record<string, string>;
+  /** id corso → cartella dei dati (`…/dati/`) nella lingua della pagina. */
+  dataPaths: Record<string, string>;
 }
 
 type State =
   | { kind: 'loading' }
   | { kind: 'error'; key: string }
-  | { kind: 'ready'; params: PrintParams; data: CourseData; exam: Exam; contents: QuestionContent[] };
+  | { kind: 'ready'; params: PrintParams; data: CourseIndex; exam: Exam; contents: QuestionContent[] };
 
-export default function PrintExam({ lang, dataUrls }: PrintExamProps) {
+export default function PrintExam({ lang, dataPaths }: PrintExamProps) {
   const [state, setState] = useState<State>({ kind: 'loading' });
   useEffect(() => {
     const params = parsePrintQuery(location.search);
-    const url = params ? dataUrls[params.course] : undefined;
-    if (!params || !url) return setState({ kind: 'error', key: 'print.invalid' });
+    const data0 = params ? dataPaths[params.course] : undefined;
+    if (!params || !data0) return setState({ kind: 'error', key: 'print.invalid' });
     void (async () => {
       try {
-        const data = await fetchJson<CourseData>(url);
+        const data = await fetchJson<CourseIndex>(indexUrl({ data: data0 }));
         const exam = assembleExam(
           {
             id: data.id,

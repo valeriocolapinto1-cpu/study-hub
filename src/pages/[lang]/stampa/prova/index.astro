@@ -13,7 +13,7 @@ import { langPaths, t, type Lang } from '../../../../i18n';
 
 export const getStaticPaths = langPaths;
 const lang = Astro.params.lang as Lang;
-const dataUrls = Object.fromEntries(
+const dataPaths = Object.fromEntries(
   (await getCollection('courses')).map((c) => [c.data.id, coursePaths(c.data, lang).data]),
 );
 ---
@@ -24,5 +24,5 @@ const dataUrls = Object.fromEntries(
   description={t(lang, 'page.exam.lead')}
   variant="exam"
 >
-  <PrintExam client:load lang={lang} dataUrls={dataUrls} />
+  <PrintExam client:load lang={lang} dataPaths={dataPaths} />
 </PrintLayout>

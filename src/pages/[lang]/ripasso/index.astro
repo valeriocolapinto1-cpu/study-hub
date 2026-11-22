@@ -15,7 +15,7 @@ const courses = sortCourses((await getCollection('courses')).map((c) => c.data))
 const decks = courses.map((c) => ({
   courseId: c.id,
   title: tr(c.title, lang),
-  dataUrl: coursePaths(c, lang).data,
+  dataPath: coursePaths(c, lang).data,
   examDates: c.examDates ?? [],
 }));
 ---

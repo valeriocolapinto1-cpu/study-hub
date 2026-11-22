@@ -1,27 +1,41 @@
 /**
  * Dati di un corso per le isole del motore, dalle content collections:
  * testi nella lingua della pagina (con ripiego sull'italiano segnalato) e
- * testi ricchi già in HTML. Usato dai componenti di src/components/course/
- * e dagli endpoint `dati.json`.
+ * testi ricchi già in HTML (KaTeX senza MathML: vedi katex-lite.ts). Usato dai
+ * componenti di src/components/course/ e dagli endpoint `dati/indice.json`
+ * (`getCourseIndex`) e `dati/<argomento>.json` (`getTopicData`).
  */
 import { getCollection, type CollectionEntry } from 'astro:content';
-import type {
-  CardData,
-  CourseData,
-  CoursePaths,
-  CourseSummary,
-  ExerciseData,
-  TopicInfo,
+import {
+  exerciseCategory,
+  INDEX_FILE,
+  topicDataUrl,
+  type CardData,
+  type CardMeta,
+  type CourseData,
+  type CourseIndex,
+  type CoursePaths,
+  type CourseSummary,
+  type ExerciseData,
+  type ExerciseMeta,
+  type TopicData,
+  type TopicInfo,
 } from '../engine/course-data';
 import { pick, tr, localizePath, type Lang } from '../i18n';
 import { coursePath } from './courses';
 import { plainText } from '../engine/rich';
-import { richHtml, richInline } from './rich-server';
+import { hashString } from '../engine/random';
+import { richHtml as richHtmlFull, richInline as richInlineFull } from './rich-server';
+import { stripMathml } from './katex-lite';
 import { renderSchematic } from '../sim/circuits/schematic';
 import { renderDiagram } from '../figures/render';
 import { loadCourseGenerators, runGenerator } from '../engine/generators/index';
 
 type CourseEntry = CollectionEntry<'courses'>['data'];
+
+// Testi per le isole: KaTeX senza la copia MathML (il TeX resta come nome accessibile).
+const richHtml = (text: string) => stripMathml(richHtmlFull(text));
+const richInline = (text: string) => stripMathml(richInlineFull(text));
 
 export function coursePaths(course: Pick<CourseEntry, 'id' | 'year'>, lang: Lang): CoursePaths {
   const base = coursePath(course);
@@ -32,8 +46,8 @@ export function coursePaths(course: Pick<CourseEntry, 'id' | 'year'>, lang: Lang
     review: localizePath(`${base}/ripasso`, lang),
     exam: localizePath(`${base}/esame`, lang),
     progress: localizePath(`${base}/progressi`, lang),
-    // file statico generato dall'endpoint: niente barra finale
-    data: localizePath(`${base}/dati.json`, lang).replace(/\/$/, ''),
+    // cartella dei file statici generati dagli endpoint dati/indice.json e dati/<argomento>.json
+    data: localizePath(`${base}/dati`, lang),
     print: localizePath('stampa/prova', lang),
   };
 }
@@ -177,6 +191,67 @@ export function getCourseData(courseId: string, lang: Lang): Promise<CourseData>
   return p;
 }
 
+/** Voce dell'indice di un esercizio (niente HTML). */
+export function exerciseMeta(e: ExerciseData): ExerciseMeta {
+  return {
+    id: e.id,
+    topic: e.topic,
+    objectives: e.objectives,
+    difficulty: e.difficulty,
+    kind: e.kind,
+    ...(e.generator ? { generator: e.generator } : {}),
+    title: e.title,
+    category: exerciseCategory(e),
+    ...(e.fallback ? { fallback: true } : {}),
+  };
+}
+
+export const cardMeta = (c: CardData): CardMeta => ({
+  id: c.id,
+  topic: c.topic,
+  objectives: c.objectives,
+  kind: c.kind,
+});
+
+/** `dati/indice.json`: riepilogo, argomenti con obiettivi, esercizi e carte senza testi HTML. */
+export async function getCourseIndex(courseId: string, lang: Lang): Promise<CourseIndex> {
+  const { exercises, cards, ...rest } = await getCourseData(courseId, lang);
+  if (rest.topics.some((t) => t.id === INDEX_FILE))
+    throw new Error(`${courseId}: "${INDEX_FILE}" è un nome riservato, non può essere un argomento`);
+  return { ...rest, exercises: exercises.map(exerciseMeta), cards: cards.map(cardMeta) };
+}
+
+/**
+ * `dati/<argomento>.json`: testi di esercizi e carte di un argomento. I generati hanno
+ * la stessa variante già resa della pagina dell'argomento (seme derivato dall'id).
+ */
+export async function getTopicData(courseId: string, topic: string, lang: Lang): Promise<TopicData> {
+  const data = await getCourseData(courseId, lang);
+  return {
+    topic,
+    exercises: await Promise.all(
+      data.exercises.filter((e) => e.topic === topic).map((e) => withPregenerated(e, hashString(e.id), lang)),
+    ),
+    cards: data.cards.filter((c) => c.topic === topic),
+  };
+}
+
+/**
+ * Versione leggera per la pagina di un argomento: senza passi della soluzione né spiegazioni
+ * delle scelte, che l'isola scarica da `dati/<argomento>.json` alla prima richiesta, e senza
+ * enunciato e figura, che la pagina passa come slot (HTML una volta sola, non anche nelle props).
+ */
+export function lightExercise(ex: ExerciseData, paths: Pick<CoursePaths, 'data'>): ExerciseData {
+  const { statementHtml: _s, figureSvg: _f, ...rest } = ex;
+  return {
+    ...rest,
+    steps: [],
+    stepCount: ex.steps.length,
+    ...(ex.choices ? { choices: ex.choices.map(({ explanationHtml: _, ...c }) => c) } : {}),
+    detailsUrl: topicDataUrl(paths, ex.topic),
+  };
+}
+
 /** Argomenti nella forma del sommario laterale di CourseLayout (TopicNav). */
 export async function courseTopicsNav(courseId: string) {
   return (await getCollection('topics'))
@@ -188,6 +263,21 @@ export async function courseTopicsNav(courseId: string) {
       ...(t.group ? { group: t.group } : {}),
     }))
     .sort((a, b) => a.order - b.order);
+}
+
+/** Percorsi statici `[lang]/[anno]/[course]/dati/[topic]` (un file per argomento e lingua). */
+export async function courseTopicStaticPaths() {
+  const [courses, topics] = await Promise.all([getCollection('courses'), getCollection('topics')]);
+  return courses.flatMap(({ data }) =>
+    topics
+      .filter((t) => t.data.course === data.id)
+      .flatMap((t) =>
+        (['it', 'en'] as const).map((lang) => ({
+          params: { lang, anno: `anno-${data.year}`, course: data.id, topic: t.data.id },
+          props: { courseId: data.id, topicId: t.data.id },
+        })),
+      ),
+  );
 }
 
 /** Percorsi statici `[lang]/[anno]/[course]` di tutti i corsi. */

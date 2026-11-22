@@ -14,19 +14,20 @@ export interface ExerciseSummary {
   difficulty: 1 | 2 | 3;
   title: string;
   generated: boolean;
-  href: string;
 }
 
 export interface ExerciseListProps {
   lang: Lang;
   courseId: string;
+  /** Percorso della sezione Esercizi: il link di una voce è `<percorso><argomento>/#<id>`. */
+  exercisesPath: string;
   topics: TopicInfo[];
   items: ExerciseSummary[];
 }
 
 const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
-export default function ExerciseList({ lang, courseId, topics, items }: ExerciseListProps) {
+export default function ExerciseList({ lang, courseId, exercisesPath, topics, items }: ExerciseListProps) {
   const [topic, setTopic] = useState('');
   const [objective, setObjective] = useState('');
   const [difficulty, setDifficulty] = useState('');
@@ -160,7 +161,7 @@ export default function ExerciseList({ lang, courseId, topics, items }: Exercise
             const st = exerciseStatus(progress?.exercises[it.id]);
             return (
               <li class="sh-item" key={it.id} data-status={st}>
-                <a class="sh-item__link" href={it.href}>
+                <a class="sh-item__link" href={`${exercisesPath}${it.topic}/#${it.id}`}>
                   {it.title}
                 </a>
                 <span class="sh-item__meta">

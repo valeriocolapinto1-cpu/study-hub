@@ -24,7 +24,6 @@ const items = data.exercises.map((e) => ({
       ? `${data.topics.find((tp) => tp.id === e.topic)?.title ?? e.topic} · ${t(lang, 'engine.generated')}`
       : e.title,
   generated: e.kind === 'generated',
-  href: `${data.paths.exercises}${e.topic}/#${e.id}`,
 }));
 ---
 
@@ -41,4 +40,11 @@ const items = data.exercises.map((e) => ({
     })}
   </ul>
 </nav>
-<ExerciseList client:load lang={lang} courseId={courseId} topics={data.topics} items={items} />
+<ExerciseList
+  client:load
+  lang={lang}
+  courseId={courseId}
+  exercisesPath={data.paths.exercises}
+  topics={data.topics}
+  items={items}
+/>

@@ -32,14 +32,26 @@ export function useNow(ms = 0): number {
 
 const cache = new Map<string, Promise<unknown>>();
 
-/** JSON da un URL del sito, con cache in memoria per pagina. */
+/** Errore di rete o HTTP nello scaricare i dati (distinto dagli errori dei generatori). */
+export class LoadError extends Error {
+  override name = 'LoadError';
+}
+
+/** JSON da un URL del sito, con cache in memoria per pagina (condivisa fra le isole). */
 export function fetchJson<T>(url: string): Promise<T> {
   let p = cache.get(url);
   if (!p) {
-    p = fetch(url).then((r) => {
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      return r.json();
-    });
+    p = fetch(url).then(
+      (r) => {
+        if (!r.ok) throw new LoadError(`HTTP ${r.status}: ${url}`);
+        return r.json().catch(() => {
+          throw new LoadError(`JSON non valido: ${url}`);
+        });
+      },
+      (e: unknown) => {
+        throw new LoadError(`rete: ${url} (${String(e)})`);
+      },
+    );
     p.catch(() => cache.delete(url));
     cache.set(url, p);
   }

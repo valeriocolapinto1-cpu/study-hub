@@ -7,7 +7,7 @@ import 'katex/dist/katex.min.css';
 import ExercisePlayer from '../../islands/ExercisePlayer';
 import SectionHeader from './SectionHeader.astro';
 import Notes from './Notes.astro';
-import { getCourseData, withPregenerated } from '../../lib/course-data';
+import { getCourseData, lightExercise, withPregenerated } from '../../lib/course-data';
 import { hashString } from '../../engine/random';
 import { t, type Lang } from '../../i18n';
 
@@ -20,7 +20,9 @@ const { lang, courseId, topicId } = Astro.props;
 const data = await getCourseData(courseId, lang);
 const topic = data.topics.find((tp) => tp.id === topicId);
 if (!topic) throw new Error(`${courseId}: argomento sconosciuto "${topicId}"`);
-// la prima variante dei generati è resa qui: nel browser si scarica solo per «nuova variante»
+// la prima variante dei generati è resa qui: nel browser si scarica solo per «nuova variante».
+// Passi della soluzione e spiegazioni delle scelte restano fuori dall'HTML: l'isola li scarica
+// da dati/<argomento>.json al primo suggerimento, passo o verifica.
 const exercises = await Promise.all(
   data.exercises.filter((e) => e.topic === topicId).map((e) => withPregenerated(e, hashString(e.id), lang)),
 );
@@ -37,11 +39,23 @@ const exercises = await Promise.all(
       client:visible
       lang={lang}
       courseId={courseId}
-      exercise={exercise}
+      exercise={lightExercise(exercise, data.paths)}
       number={i + 1}
       headingLevel={2}
       seed={hashString(exercise.id)}
-    />
+    >
+      {/* enunciato e figura come slot: nell'HTML una volta sola, non duplicati nelle props */}
+      <div slot="statement" class="sh-exercise__statement prose" set:html={exercise.statementHtml ?? ''} />
+      {exercise.figureSvg && (
+        <figure
+          slot="figure"
+          class="sh-figure"
+          role="group"
+          aria-label={t(lang, 'exercise.figure')}
+          set:html={exercise.figureSvg}
+        />
+      )}
+    </ExercisePlayer>
   ))}
 </div>
 <Notes lang={lang} scope={courseId} />
