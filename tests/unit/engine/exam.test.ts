@@ -2,6 +2,7 @@ import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import * as E from '../../../src/engine/exam';
 import { createMemoryBackend, setStorageBackend } from '../../../src/engine/storage';
 import { cards, exercises } from './fixtures';
+import { exerciseCategory } from '../../../src/engine/course-data';
 
 const course: E.ExamCourse = {
   id: 'esempio',
@@ -41,6 +42,26 @@ describe('assemblaggio', () => {
       ),
     );
     expect(seeds.size).toBeGreaterThan(1);
+  });
+  it("dall'indice (senza testi) la stessa prova che dai dati completi", () => {
+    // dati/indice.json: solo id, argomento, obiettivi e tipo
+    const index = {
+      exercises: exercises.map((e) => ({
+        id: e.id,
+        topic: e.topic,
+        objectives: e.objectives,
+        difficulty: e.difficulty,
+        kind: e.kind,
+        title: e.title,
+        category: exerciseCategory(e),
+      })),
+      cards: cards.map(({ id, topic, objectives, kind }) => ({ id, topic, objectives, kind })),
+    };
+    for (let s = 0; s < 20; s++)
+      for (const mode of ['completa', 'personalizzata'] as const)
+        expect(E.assembleExam(course, index, { mode, seed: s })).toEqual(
+          E.assembleExam(course, pool, { mode, seed: s }),
+        );
   });
   it('generati con seme derivato, filtro argomenti, durata', () => {
     for (let s = 0; s < 30; s++) {

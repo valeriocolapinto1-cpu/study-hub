@@ -53,6 +53,10 @@ module.exports = {
         `${BASE}/it/anno-2/fisica-2/formulario/`,
         `${BASE}/en/anno-1/fisica-1/formulario/`,
         `${BASE}/it/anno-1/fondamenti-informatica/formulario/`,
+        // Sezioni del motore con i dati delle isole fuori dall'HTML (indice + dati/<argomento>.json).
+        `${BASE}/it/anno-1/fisica-1/ripasso/`,
+        `${BASE}/it/anno-2/teoria-circuiti/esercizi/`,
+        `${BASE}/it/anno-2/fisica-2/esame/`,
         `${BASE}/en/anno-1/fisica-1/extra/simulazioni/`,
       ],
       numberOfRuns: 3,

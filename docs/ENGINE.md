@@ -15,9 +15,10 @@ Appena esistono `src/content/courses/<id>.yaml` e i contenuti, le pagine generic
 | `esercizi/` | `CourseExercises` | `ExerciseList` (client:load) |
 | `esercizi/<topic>/` | `TopicExercises` | `ExercisePlayer` (client:visible), `NotesLayer` |
 | `ripasso/` | `CourseReview` | `ReviewSession` |
-| `esame/` | `CourseExam` | `ExamRunner` (dati da `dati.json`) |
+| `esame/` | `CourseExam` | `ExamRunner` (indice e testi da `dati/`) |
 | `progressi/` | `CourseProgress` | `ExamDatePicker`, `StudyPlan`, `MasteryMap` |
-| `dati.json` | endpoint | dati del corso localizzati, testi già in HTML |
+| `dati/indice.json` | endpoint | indice del corso: meta, argomenti, obiettivi, id e tipo di esercizi e carte (niente HTML) |
+| `dati/<topic>.json` | endpoint | testi HTML di esercizi e carte di un argomento (KaTeX senza MathML) |
 
 Pagine globali: `/<lang>/ripasso/` (coda FSRS di tutti i corsi), `/<lang>/appunti/` (tutti gli appunti),
 `/<lang>/i-miei-dati/` (export/import, QR), `/<lang>/stampa/prova/?…` (stampa della prova, `noindex`).
@@ -128,14 +129,32 @@ Aree di storage: per corso `progress`, `srs`, `exam`, `notes`, `settings` (`dail
 ## Dati per le isole (src/lib/course-data.ts)
 
 `getCourseData(courseId, lang)` → `CourseData` (`src/engine/course-data.ts`): riepilogo del corso
-(`paths` con tutti i percorsi già localizzati), argomenti con obiettivi, esercizi e carte con testi in HTML
-e flag `fallback` quando manca l'inglese. `courseSummary`, `coursePaths`, `courseTopics`, `exerciseData`,
-`cardData`, `courseStaticPaths` sono esportati per pagine personalizzate.
+(`paths` con tutti i percorsi già localizzati; `paths.data` è la cartella `…/dati/`), argomenti con
+obiettivi, esercizi e carte con testi in HTML e flag `fallback` quando manca l'inglese. È solo per il
+server: alle isole arriva in due parti.
+
+- `getCourseIndex` → `dati/indice.json` (`CourseIndex`): riepilogo, argomenti, voci di esercizi
+  (`ExerciseMeta`, con `category` per la prova) e carte (`CardMeta`), **niente HTML**. Le isole
+  ricevono questo (o una sua parte) nelle props, o lo scaricano.
+- `getTopicData` → `dati/<topic>.json` (`TopicData`): testi HTML di un argomento (i generati con la
+  variante già resa, seme dall'id). Le isole li scaricano quando servono con `loadTopic`,
+  `loadExercise`, `loadCard` (`src/islands/lib/course-data-client.ts`, cache in memoria per pagina;
+  errori di rete come `LoadError`, mostrati con «Riprova»). `indice` è un nome riservato.
+- Nei testi per le isole KaTeX è senza MathML (`src/lib/katex-lite.ts`): `.katex` ha `role="img"` e il
+  TeX come `aria-label`. Le pagine statiche (teoria, formulario) tengono il MathML.
+- Pagina di un argomento: `lightExercise` toglie passi e spiegazioni (scaricati al primo suggerimento,
+  passo o verifica: `detailsUrl`, `stepCount`) e l'HTML di enunciato, figura, scelte ed etichette, che
+  `TopicExercises` passa come slot (`statement`, `figure`, `c<i>`, `l<i>`): nell'HTML una volta sola.
+- Limite: nessun HTML oltre 300 KB salvo formulari, stampa ed eccezioni elencate
+  (`tests/content/html-size.test.ts`).
+
+`courseSummary`, `coursePaths`, `courseTopics`, `exerciseData`, `cardData`, `courseStaticPaths`,
+`courseTopicStaticPaths` sono esportati per pagine personalizzate.
 
 ## Stampa delle prove
 
 `ExamRunner` apre `/<lang>/stampa/prova/?corso=…&seme=…&modo=…&q=e:id,c:id&parte=prova|soluzioni`: la
-pagina ricostruisce la stessa prova (seme + riferimenti) da `dati.json`, la impagina con `print.css` e
+pagina ricostruisce la stessa prova (seme + riferimenti) da `dati/indice.json` e dai file degli argomenti, la impagina con `print.css` e
 chiama `window.print()` (il browser offre "Salva come PDF"). Le soluzioni sono un documento separato.
 
 ## Test

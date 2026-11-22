@@ -5,7 +5,7 @@
  * intervalli, scorciatoie da tastiera, statistiche e previsione.
  */
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
-import type { CardData, CourseData } from '../engine/course-data';
+import { indexUrl, type CardData, type CardMeta, type CourseIndex } from '../engine/course-data';
 import {
   buildQueue,
   formatInterval,
@@ -20,16 +20,17 @@ import { loadSrs, reviewsOn, saveReview, type SrsState } from '../engine/progres
 import { GLOBAL_SCOPE, read, subscribe, update } from '../engine/storage';
 import { daysUntil } from '../engine/mastery';
 import { useNow, useRemote } from './lib/hooks';
+import { loadCard, loadTopic } from './lib/course-data-client';
 import { t, type Lang } from './lib/i18n';
 import './islands.css';
 
 export interface Deck {
   courseId: string;
   title: string;
-  /** Carte già localizzate (pagina del corso). */
-  cards?: CardData[];
-  /** In alternativa: URL di `dati.json` del corso (coda globale). */
-  dataUrl?: string;
+  /** Cartella dei dati del corso (`…/dati/`): testi delle carte in `<argomento>.json`. */
+  dataPath: string;
+  /** Voci delle carte (pagina del corso); se mancano si leggono da `indice.json` (coda globale). */
+  cards?: CardMeta[];
   /** Date d'appello suggerite (per non programmare ripassi oltre l'esame). */
   examDates?: string[];
 }
@@ -61,8 +62,8 @@ function examLimit(courseId: string, suggested: string[] | undefined, now: numbe
 }
 
 export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
-  const remoteUrls = decks.filter((d) => !d.cards && d.dataUrl).map((d) => d.dataUrl!);
-  const remote = useRemote<CourseData>(remoteUrls);
+  const remoteUrls = decks.filter((d) => !d.cards).map((d) => indexUrl({ data: d.dataPath }));
+  const remote = useRemote<CourseIndex>(remoteUrls);
   const now = useNow(60_000);
   const [states, setStates] = useState<Record<string, SrsState>>({});
   const [settings, setSettings] = useState<Settings>({});
@@ -72,12 +73,17 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
 
   // Carte di tutti i mazzi, con id globale `<corso>::<carta>`.
   const allCards = useMemo(() => {
-    const out = new Map<string, { courseId: string; title: string; card: CardData }>();
+    const out = new Map<string, { courseId: string; title: string; dataPath: string; card: CardMeta }>();
     let r = 0;
     for (const d of decks) {
       const cards = d.cards ?? (remote.state === 'ready' ? (remote.data[r++]?.cards ?? []) : []);
       for (const c of cards)
-        out.set(`${d.courseId}${SEP}${c.id}`, { courseId: d.courseId, title: d.title, card: c });
+        out.set(`${d.courseId}${SEP}${c.id}`, {
+          courseId: d.courseId,
+          title: d.title,
+          dataPath: d.dataPath,
+          card: c,
+        });
     }
     return out;
   }, [decks, remote]);
@@ -126,6 +132,24 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
 
   const current = queue[0];
   const info = current ? allCards.get(current.id) : undefined;
+
+  // Testi della carta corrente da dati/<argomento>.json (in memoria per argomento); si anticipa la successiva.
+  const [text, setText] = useState<{ id: string; card?: CardData; error?: boolean } | null>(null);
+  const [textAttempt, setTextAttempt] = useState(0);
+  const nextInfo = queue[1] ? allCards.get(queue[1].id) : undefined;
+  useEffect(() => {
+    if (!current || !info) return;
+    let alive = true;
+    setText((x) => (x?.id === current.id && x.card ? x : { id: current.id }));
+    loadCard({ data: info.dataPath }, info.card)
+      .then((card) => alive && setText({ id: current.id, card }))
+      .catch(() => alive && setText({ id: current.id, error: true }));
+    if (nextInfo) loadTopic({ data: nextInfo.dataPath }, nextInfo.card.topic).catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, [current?.id, info, textAttempt]);
+  const shown = text?.id === current?.id ? text : null;
   const dueCount = queue.filter((q) => q.card.state !== 'new').length;
   const newCount = queue.length - dueCount;
   const limitFor = (courseId: string) =>
@@ -165,6 +189,7 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
         (e.key === ' ' || e.key === 'Enter') &&
         !flipped &&
         current &&
+        shown?.card &&
         !(el && /^(BUTTON|A|SUMMARY)$/.test(el.tagName))
       ) {
         e.preventDefault();
@@ -216,12 +241,25 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
           </p>
           <div class="sh-flashcard__face">
             <h3 class="sh-visually-hidden">{t(lang, 'review.front')}</h3>
-            <div class="prose" dangerouslySetInnerHTML={{ __html: info.card.frontHtml }} />
+            {shown?.card ? (
+              <div class="prose" dangerouslySetInnerHTML={{ __html: shown.card.frontHtml }} />
+            ) : shown?.error ? (
+              <p class="sh-alert sh-alert--danger" role="alert">
+                {t(lang, 'engine.loadError')}{' '}
+                <button type="button" class="btn" onClick={() => setTextAttempt((a) => a + 1)}>
+                  {t(lang, 'engine.retry')}
+                </button>
+              </p>
+            ) : (
+              <p class="sh-muted" aria-busy="true">
+                {t(lang, 'engine.loading')}
+              </p>
+            )}
           </div>
-          {flipped ? (
+          {!shown?.card ? null : flipped ? (
             <div class="sh-flashcard__face sh-flashcard__back">
               <h3 class="sh-visually-hidden">{t(lang, 'review.back')}</h3>
-              <div class="prose" dangerouslySetInnerHTML={{ __html: info.card.backHtml }} />
+              <div class="prose" dangerouslySetInnerHTML={{ __html: shown.card.backHtml }} />
               <fieldset class="sh-ratings">
                 <legend>{t(lang, 'review.rate')}</legend>
                 {RATINGS.map((r) => (

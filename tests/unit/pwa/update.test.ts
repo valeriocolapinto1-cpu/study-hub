@@ -70,7 +70,7 @@ describe('strategie di cache del service worker', () => {
     expect(isImmutableAsset('/study-hub/pagefind/index/it_1a2b.pf_index', BASE)).toBe(true);
     expect(isImmutableAsset('/study-hub/it/', BASE)).toBe(false);
     expect(isImmutableAsset('/study-hub/pagefind/pagefind.js', BASE)).toBe(false);
-    expect(isImmutableAsset('/study-hub/it/anno-1/x/dati.json', BASE)).toBe(false);
+    expect(isImmutableAsset('/study-hub/it/anno-1/x/dati/indice.json', BASE)).toBe(false);
     expect(isImmutableAsset('/altro/_astro/a.js', BASE)).toBe(false);
   });
 

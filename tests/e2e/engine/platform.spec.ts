@@ -95,6 +95,16 @@ test.describe('offline', () => {
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Teoria');
     await page.goto(`${C}esercizi/resistori/`);
     await expect(page.locator('main')).toContainText(/Resistori|Ohm/);
+    // Dati divisi: i passi della soluzione arrivano da dati/<argomento>.json, in cache con il corso.
+    const div = page.locator('article#partitore');
+    await div.scrollIntoViewIfNeeded();
+    await expect(page.locator('astro-island:has(article#partitore)')).not.toHaveAttribute('ssr', /.*/);
+    await div.getByRole('button', { name: 'Mostra tutta la soluzione' }).click();
+    await expect(div.locator('.sh-step')).toHaveCount(3);
+    // Ripasso: indice nelle props, fronte della carta da dati/<argomento>.json.
+    await page.goto(`${C}ripasso/`);
+    await expect(page.getByRole('button', { name: 'Mostra la risposta' })).toBeVisible();
+    await expect(page.locator('.sh-flashcard .prose').first()).not.toBeEmpty();
     await page.goto(`${B}it/chi-sono/`);
     await expect(page).toHaveTitle(/Chi sono/);
     // Pagina del corso nell'altra lingua: non scaricata.

@@ -27,7 +27,7 @@ interface Settings {
 
 export default function StudyPlan(props: StudyPlanProps) {
   const { lang, courseId, topics } = props;
-  const { mastery, now } = useMastery(props);
+  const { mastery, now, cardCount, error } = useMastery(props);
   const [dates] = useExamDates();
   const [all, setAll] = useState(false);
   const [settings, setSettings] = useState<Settings>({});
@@ -38,9 +38,9 @@ export default function StudyPlan(props: StudyPlanProps) {
     if (!now) return 0;
     const cards = Object.values(loadSrs(courseId).cards);
     const dueSoon = cards.filter((c) => c.due <= now + 7 * DAY_MS).length;
-    const fresh = Math.max(0, Object.keys(props.cardObjectives).length - cards.length);
+    const fresh = Math.max(0, cardCount - cards.length);
     return Math.ceil(dueSoon / 7) + Math.min(10, fresh);
-  }, [now, courseId]);
+  }, [now, courseId, cardCount]);
   const plan =
     mastery && date
       ? buildStudyPlan({
@@ -73,7 +73,7 @@ export default function StudyPlan(props: StudyPlanProps) {
           : `${props.exercisesPath}${task.topic}/`;
 
   return (
-    <section class="sh-plan" aria-labelledby="sh-plan-h" aria-busy={!mastery}>
+    <section class="sh-plan" aria-labelledby="sh-plan-h" aria-busy={!mastery && !error}>
       <h2 id="sh-plan-h">{t(lang, 'plan.title')}</h2>
       <label class="sh-filter">
         <span>{t(lang, 'plan.dailyMinutes')}</span>

@@ -346,6 +346,11 @@ textarea.sh-input {
 }
 
 /* Ripasso */
+/* La carta arriva dopo l'idratazione (e il suo argomento da dati/<argomento>.json): lo spazio
+   riservato tiene fermo il resto della pagina (CLS). */
+.sh-review {
+  min-block-size: 60vh;
+}
 .sh-flashcard {
   max-inline-size: var(--measure);
   margin-block: var(--space-m);
