@@ -16,6 +16,9 @@
 }
 
 @media print {
+  .formula-entry {
+    content-visibility: visible;
+  }
   /* Specificità sopra quella dei file dei corsi (html[data-course]…): in stampa vince sempre la carta bianca. */
   html:root,
   html:root[data-theme],

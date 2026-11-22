@@ -12,11 +12,13 @@ for (const theme of ['light', 'dark'] as const) {
       await page.addInitScript((t) => localStorage.setItem('sh:v1:global:theme', JSON.stringify(t)), theme);
       await page.goto(p.path);
       // Le formule che scorrono diventano focusabili quando la loro larghezza è definitiva
-      // (font caricati, ResizeObserver eseguito): si analizza la pagina in quello stato.
+      // (font caricati, ResizeObserver eseguito; nei formulari anche le voci fuori schermo,
+      // misurate nei momenti liberi: `data-math-scroll="ready"`): si analizza la pagina in quello stato.
       await page.evaluate(async () => {
         await document.fonts.ready;
         await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
       });
+      await page.waitForFunction(() => document.documentElement.dataset.mathScroll === 'ready');
       const results = await new AxeBuilder({ page }).withTags(TAGS).analyze();
       const serious = results.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
       expect(

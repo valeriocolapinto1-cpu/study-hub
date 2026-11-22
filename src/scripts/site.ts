@@ -97,26 +97,71 @@ for (const btn of document.querySelectorAll<HTMLButtonElement>('[data-drawer-ope
 // Un ResizeObserver su contenitore e formula ricalcola quando arrivano i font o
 // cambia la colonna: prima un solo controllo al caricamento poteva arrivare prima
 // dei font (axe intermittente: scrollable-region-focusable).
-function markScrollableMath(el: HTMLElement): void {
-  if (el.scrollWidth > el.clientWidth + 1) el.tabIndex = 0;
-  else if (el.getAttribute('tabindex') === '0') el.removeAttribute('tabindex');
-}
+// Prestazioni (formulari con centinaia di formule): prima tutte le letture, poi tutte
+// le scritture, così il layout si calcola una volta sola e non a ogni formula; le formule
+// in voci non ancora disegnate (`content-visibility: auto`) si misurano una per volta nei
+// momenti di inattività, senza forzare subito il layout di tutta la pagina. A controllo
+// completo `<html data-math-scroll="ready">` (lo attendono i test axe).
 {
-  const displays = document.querySelectorAll<HTMLElement>('.katex-display');
-  displays.forEach(markScrollableMath);
+  const displays = [...document.querySelectorAll<HTMLElement>('.katex-display')];
+  const measured = new WeakSet<HTMLElement>();
+  const rendered = (el: HTMLElement): boolean =>
+    typeof el.checkVisibility !== 'function' || el.checkVisibility({ contentVisibilityAuto: true });
+  /** `force`: misura anche le formule in sezioni saltate dal rendering (forza il loro layout). */
+  const markScrollableMath = (els: HTMLElement[], force = false): void => {
+    const list = force ? els : els.filter(rendered);
+    const overflowing = list.map((el) => el.scrollWidth > el.clientWidth + 1);
+    list.forEach((el, i) => {
+      measured.add(el);
+      if (overflowing[i]) {
+        if (el.getAttribute('tabindex') !== '0') el.tabIndex = 0;
+      } else if (el.getAttribute('tabindex') === '0') el.removeAttribute('tabindex');
+    });
+  };
+  /** Tempo libero rimasto (ms): senza requestIdleCallback, un passo breve per volta. */
+  const idle = (cb: (left: () => number) => void): void => {
+    if ('requestIdleCallback' in window) requestIdleCallback((d) => cb(() => d.timeRemaining()));
+    else {
+      setTimeout(() => {
+        const end = performance.now() + 8;
+        cb(() => end - performance.now());
+      }, 16);
+    }
+  };
+  const ready = (): void => {
+    document.documentElement.dataset.mathScroll = 'ready';
+  };
+  // Una formula per volta finché resta tempo libero: ogni misura impagina solo la sua voce.
+  const measureRest = (left: () => number): void => {
+    for (const el of displays) {
+      if (measured.has(el)) continue;
+      if (left() < 4) return idle(measureRest);
+      markScrollableMath([el], true);
+    }
+    ready();
+  };
   if (displays.length > 0 && 'ResizeObserver' in window) {
     const ro = new ResizeObserver((entries) => {
+      const els = new Set<HTMLElement>();
       for (const e of entries) {
         const el = (e.target as HTMLElement).closest<HTMLElement>('.katex-display');
-        if (el) markScrollableMath(el);
+        if (el) els.add(el);
       }
+      markScrollableMath([...els]);
     });
     for (const el of displays) {
       ro.observe(el);
       if (el.firstElementChild) ro.observe(el.firstElementChild);
     }
   }
-  void document.fonts?.ready.then(() => displays.forEach(markScrollableMath));
+  const afterFonts = (): void => {
+    markScrollableMath(displays);
+    // Le formule già misurate prima dei font vanno rimisurate solo se disegnate (lo fa il
+    // ResizeObserver); quelle mai misurate si controllano nei momenti liberi.
+    idle(measureRest);
+  };
+  if (document.fonts) void document.fonts.ready.then(afterFonts);
+  else afterFonts();
 }
 
 syncToggles();
