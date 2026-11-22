@@ -18,7 +18,12 @@ export function openKeys(id: string) {
   const panel = document.getElementById(id);
   if (!panel || panel.matches(':popover-open')) return;
   const back = document.activeElement as HTMLElement | null;
-  panel.addEventListener('toggle', () => back?.isConnected && back.focus(), { once: true });
+  const onToggle = (e: Event) => {
+    if ((e as ToggleEvent).newState !== 'closed') return;
+    panel.removeEventListener('toggle', onToggle);
+    if (back?.isConnected) back.focus();
+  };
+  panel.addEventListener('toggle', onToggle);
   panel.showPopover();
   panel.querySelector<HTMLElement>('button')?.focus();
 }

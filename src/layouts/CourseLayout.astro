@@ -3,14 +3,16 @@
  * Layout delle pagine di un corso: accento del corso, indice del corso (sezioni + sommario
  * argomenti) presente UNA volta nel DOM — barra laterale da 1024 px, menu (popover) sotto —,
  * una riga sola con pulsante dell'indice, percorso e occhiello, colonna di lettura e strumenti
- * di pagina (Segnala errore).
+ * di pagina (Segnala errore); sotto i 48em la barra in basso con le sezioni di studio.
  */
 import 'katex/dist/katex.min.css';
+import '../styles/telefono.css';
 import type { CollectionEntry } from 'astro:content';
 import type { Topic } from '../content/schemas';
 import BaseLayout from './BaseLayout.astro';
 import Breadcrumbs, { type Crumb } from '../components/Breadcrumbs.astro';
 import CourseNav from '../components/CourseNav.astro';
+import CourseTabBar from '../components/CourseTabBar.astro';
 import Icon from '../components/Icon.astro';
 import ReportError from '../components/ReportError.astro';
 import TopicNav from '../components/TopicNav.astro';
@@ -147,4 +149,5 @@ const barEyebrow = eyebrow && eyebrow !== parentLabel ? eyebrow : undefined;
       </div>
     </div>
   </div>
+  <CourseTabBar lang={lang} course={course} />
 </BaseLayout>

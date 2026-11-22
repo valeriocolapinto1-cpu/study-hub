@@ -381,6 +381,34 @@ h4 {
   background: rgb(70 80 160 / 0.08);
 }
 
+/* Focus sul vetro: sopra sfere, griglia e sfocature lo sfondo cambia da punto a punto, quindi
+   l'anello del tema (--focus) ha un bordo interno del colore di fondo e un alone esterno: resta
+   leggibile in entrambi i temi su qualunque sfondo. Le pillole mantengono la loro forma. */
+[data-area='hub']
+  :is(
+    .btn,
+    .icon-btn,
+    .lang-switch,
+    .search-trigger,
+    .site-nav a,
+    .mobile-menu a,
+    .brand,
+    .glass a,
+    .sh-card :is(a, button, summary),
+    .callout a,
+    .notice a,
+    .dialog :is(a, button)
+  ):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  box-shadow:
+    0 0 0 2px var(--bg),
+    0 0 0 6px color-mix(in srgb, var(--focus) 30%, transparent);
+}
+[data-area='hub'] :is(.btn, .site-nav a, .icon-btn, .lang-switch, .search-trigger):focus-visible {
+  transform: none;
+}
+
 /* Pulsanti a pillola; il primario ha il gradiente del marchio. */
 [data-area='hub'] .btn {
   --btn-bg: rgb(255 255 255 / 0.05);

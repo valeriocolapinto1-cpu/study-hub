@@ -1,0 +1,92 @@
+/* =====================================================================
+   Telefono: barra di navigazione in basso nelle pagine dei corsi (sotto i 48em).
+   Margini dell'iPhone dalle variabili --safe-* di tokens.css (con ripiego su env()).
+   ===================================================================== */
+.course-tabbar {
+  display: none;
+}
+@media (max-width: 47.99em) {
+  :root:has(.course-tabbar) {
+    --tabbar-h: 3.25rem;
+    --tabbar-safe: var(--safe-bottom, env(safe-area-inset-bottom, 0px));
+    /* Il focus portato in vista dalla tastiera non finisce sotto la barra (WCAG 2.4.11). */
+    scroll-padding-bottom: calc(var(--tabbar-h) + var(--tabbar-safe) + var(--space-s));
+  }
+  body:has(.course-tabbar) {
+    padding-bottom: calc(var(--tabbar-h) + 1px + var(--tabbar-safe));
+  }
+  .course-tabbar {
+    display: block;
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 45;
+    padding: 0 var(--safe-right, env(safe-area-inset-right, 0px)) var(--tabbar-safe)
+      var(--safe-left, env(safe-area-inset-left, 0px));
+    border-top: 1px solid var(--border);
+    background: var(--header-bg);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    backdrop-filter: saturate(180%) blur(14px);
+  }
+  .course-tabbar ul {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .course-tabbar a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15rem;
+    min-height: var(--tabbar-h);
+    padding-inline: 0.125rem;
+    color: var(--text-muted);
+    font: 600 0.72rem / 1.1 var(--font-sans);
+    text-decoration: none;
+    text-align: center;
+  }
+  .course-tabbar a > span {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .course-tabbar .icon {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+  .course-tabbar a:hover,
+  .course-tabbar a[aria-current] {
+    color: var(--accent-strong);
+  }
+  .course-tabbar a[aria-current='page'] .icon {
+    stroke-width: 2.25;
+  }
+  /* Anello di focus dentro la barra (fuori sarebbe tagliato dal bordo dello schermo). */
+  .course-tabbar a:focus-visible {
+    outline-offset: -3px;
+    border-radius: var(--radius-m);
+  }
+  /* Avvisi sopra la barra. */
+  body:has(.course-tabbar) .toast-region {
+    bottom: calc(var(--tabbar-h) + var(--tabbar-safe) + var(--space-s));
+  }
+  /* Mentre si scrive la tastiera del telefono occupa già il fondo: la barra si toglie di mezzo. */
+  body:has(
+      :is(
+        input:not([type='checkbox'], [type='radio'], [type='button'], [type='submit']),
+        textarea,
+        select
+      ):focus
+    )
+    .course-tabbar {
+    display: none;
+  }
+}
+@media print {
+  .course-tabbar {
+    display: none !important;
+  }
+}

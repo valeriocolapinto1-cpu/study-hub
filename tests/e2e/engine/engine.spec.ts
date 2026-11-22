@@ -3,7 +3,7 @@
  * `npm run build:fixtures`, servita su una porta separata dal progetto `engine`).
  */
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 
 const B = '/study-hub/';
 const C = `${B}it/anno-1/esempio/`;
@@ -176,6 +176,126 @@ test('ExamRunner: prova completa, consegna, correzione, stampa', async ({ page, 
   await page.getByRole('button', { name: 'Nuova prova' }).click();
   await expect(page.locator('.sh-history .sh-item')).toHaveCount(1);
 });
+
+/** Preme Tab (o Maiusc+Tab) finché `target` ha il focus: il controllo è raggiungibile da tastiera. */
+async function tabTo(page: Page, target: Locator, key: 'Tab' | 'Shift+Tab' = 'Tab', max = 80) {
+  for (let i = 0; i < max; i++) {
+    if (await target.evaluate((el) => el === document.activeElement)) return;
+    await page.keyboard.press(key);
+  }
+  await expect(target).toBeFocused();
+}
+
+test('ExamRunner da tastiera: avvio, risposte, ← →, pannello «?», consegna, esito annunciato', async ({
+  page,
+}) => {
+  await page.goto(`${C}esame/`);
+  await hydrated(page, '.sh-exam');
+  const live = page.locator('.sh-exam ~ .sh-visually-hidden[role="status"]');
+  // durata breve: il tempo residuo si annuncia subito (soglia dei 5 minuti), non a ogni secondo
+  const duration = page.getByRole('spinbutton', { name: 'Durata (minuti)' });
+  await tabTo(page, duration);
+  await page.keyboard.press('ControlOrMeta+A');
+  await page.keyboard.type('5');
+  await tabTo(page, page.getByRole('button', { name: 'Inizia la prova' }));
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('heading', { name: /Domanda 1 di 3/ })).toBeFocused();
+  await expect(live).toHaveText('Tempo rimasto: 5 min');
+  await expect(page.locator('.sh-timer time')).not.toHaveAttribute('aria-live', /.*/);
+
+  // ← / → fra le domande quando il focus non è in un campo
+  await page.keyboard.press('ArrowRight');
+  await expect(page.getByRole('heading', { name: /Domanda 2 di 3/ })).toBeFocused();
+  await page.keyboard.press('ArrowLeft');
+  await expect(page.getByRole('heading', { name: /Domanda 1 di 3/ })).toBeFocused();
+
+  // risposta alla prima domanda: Tab fino al primo controllo della risposta
+  const control = page.locator('.sh-question :is(input, textarea)').first();
+  await tabTo(page, control);
+  const type = await control.evaluate((el) => (el as HTMLInputElement).type);
+  if (type === 'radio' || type === 'checkbox') await page.keyboard.press('Space');
+  else await page.keyboard.type('1');
+  // le frecce dentro un campo restano al campo
+  await page.keyboard.press('ArrowRight');
+  await expect(page.getByRole('heading', { name: /Domanda 1 di 3/ })).toBeVisible();
+  await expect(
+    page.getByRole('navigation', { name: 'Domande della prova' }).getByRole('button').first(),
+  ).toHaveAccessibleName('Domanda 1 di 3, risposta data');
+
+  await tabTo(page, page.getByRole('button', { name: 'Successiva' }));
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('heading', { name: /Domanda 2 di 3/ })).toBeFocused();
+
+  // pannello delle scorciatoie: «?» lo apre col focus dentro, Esc lo chiude e il focus torna
+  await page.keyboard.press('?');
+  const keys = page.getByRole('dialog', { name: 'Scorciatoie da tastiera' });
+  await expect(keys).toBeVisible();
+  await expect(keys).toContainText('Domanda precedente / successiva');
+  await expect(keys.getByRole('button', { name: 'Chiudi' })).toBeFocused();
+  await page.keyboard.press('Escape');
+  await expect(keys).toBeHidden();
+  await expect(page.getByRole('heading', { name: /Domanda 2 di 3/ })).toBeFocused();
+
+  await tabTo(page, page.getByRole('button', { name: 'Consegna' }), 'Shift+Tab');
+  page.once('dialog', (d) => d.accept());
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('heading', { name: 'Esito' })).toBeFocused();
+  await expect(live).toContainText('/ 30 punti');
+
+  // autovalutazione da tastiera
+  const knew = page
+    .getByRole('group', { name: 'Autovaluta la risposta' })
+    .first()
+    .getByRole('button', { name: 'La sapevo', exact: true });
+  await tabTo(page, knew);
+  await page.keyboard.press('Space');
+  await expect(knew).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('ReviewSession da tastiera: risposta col focus, valutazione annunciata, pannello «?»', async ({
+  page,
+}) => {
+  await page.goto(`${C}ripasso/`);
+  await hydrated(page, '.sh-review');
+  await expect(page.getByRole('button', { name: 'Mostra la risposta' })).toBeVisible();
+  await page.keyboard.press('Space');
+  await expect(page.locator('.sh-flashcard__back')).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('button', { name: /Di nuovo/ })).toBeFocused();
+  await page.keyboard.press('?');
+  const keys = page.getByRole('dialog', { name: 'Scorciatoie da tastiera' });
+  await expect(keys).toBeVisible();
+  await expect(keys).toContainText('Gira la carta');
+  await expect(keys.getByRole('button', { name: 'Chiudi' })).toBeFocused();
+  await page.keyboard.press('Escape');
+  await expect(keys).toBeHidden();
+  await expect(page.getByRole('button', { name: /Di nuovo/ })).toBeFocused();
+  await page.keyboard.press('3');
+  await expect(page.locator('.sh-review .sh-visually-hidden[role="status"]')).toHaveText(
+    /^Valutata «Bene»: torna fra .+\.$/,
+  );
+  await expect(page.getByRole('button', { name: 'Mostra la risposta' })).toBeVisible();
+});
+
+for (const theme of ['light', 'dark'] as const) {
+  test(`axe 390 px ${theme}: esame in corso e ripasso`, async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.emulateMedia({ colorScheme: theme });
+    await page.addInitScript((t) => localStorage.setItem('sh:v1:global:theme', JSON.stringify(t)), theme);
+    await page.goto(`${C}ripasso/`);
+    await hydrated(page, '.sh-review');
+    await page.keyboard.press('Space');
+    await axe(page);
+    await page.goto(`${C}esame/`);
+    await hydrated(page, '.sh-exam');
+    await axe(page);
+    await page.getByRole('button', { name: 'Inizia la prova' }).click();
+    await expect(page.getByRole('heading', { name: /Domanda 1 di 3/ })).toBeFocused();
+    await axe(page);
+    await page.getByRole('button', { name: 'Scorciatoie da tastiera' }).click();
+    await axe(page);
+  });
+}
 
 test('Stampa: parametri non validi', async ({ page }) => {
   await page.goto(`${B}it/stampa/prova/?corso=boh&seme=1&modo=completa`);
