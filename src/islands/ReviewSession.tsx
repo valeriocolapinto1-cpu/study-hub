@@ -22,6 +22,7 @@ import { examDateFor } from '../engine/mastery';
 import { useNow, useRemote } from './lib/hooks';
 import { loadCard, loadTopic } from './lib/course-data-client';
 import { t, type Lang } from './lib/i18n';
+import { KeysHelp, ignoreKey, openKeys } from './lib/keys';
 import './islands.css';
 
 export interface Deck {
@@ -41,6 +42,7 @@ export interface ReviewSessionProps {
 }
 
 const SEP = '::';
+const KEYS_ID = 'sh-review-keys';
 const RATING_KEYS: Record<Rating, string> = {
   1: 'review.again',
   2: 'review.hard',
@@ -70,6 +72,9 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
   const [flipped, setFlipped] = useState(false);
   const [doneToday, setDoneToday] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
+  const backRef = useRef<HTMLDivElement>(null);
+  // Esito dell'ultima valutazione per i lettori di schermo.
+  const [announce, setAnnounce] = useState('');
 
   // Carte di tutti i mazzi, con id globale `<corso>::<carta>`.
   const allCards = useMemo(() => {
@@ -172,18 +177,30 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
       limit ? { notAfter: limit } : {},
     );
     setStates((s) => ({ ...s, [info.courseId]: next }));
+    if (intervals)
+      setAnnounce(
+        t(lang, 'review.rated', {
+          rating: t(lang, RATING_KEYS[rating]),
+          interval: formatInterval(intervals[rating], lang),
+        }),
+      );
     setFlipped(false);
     setDoneToday((n) => n + 1);
     requestAnimationFrame(() => cardRef.current?.focus());
+  };
+
+  // Girata la carta, il focus va sulla risposta (che il lettore di schermo legge); Tab porta alle valutazioni.
+  const flip = () => {
+    setFlipped(true);
+    requestAnimationFrame(() => backRef.current?.focus());
   };
 
   // useLayoutEffect: il listener con lo stato aggiornato è attivo subito dopo il render, non dopo il disegno;
   // con useEffect un tasto premuto fra render e disegno trovava ancora lo stato precedente (carta già girata).
   useLayoutEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if (ignoreKey(e)) return;
       const el = e.target as HTMLElement | null;
-      if (el && (el.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName))) return;
-      if (e.altKey || e.ctrlKey || e.metaKey) return;
       // Su pulsanti e link Spazio/Invio hanno già il comportamento nativo.
       if (
         (e.key === ' ' || e.key === 'Enter') &&
@@ -193,10 +210,13 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
         !(el && /^(BUTTON|A|SUMMARY)$/.test(el.tagName))
       ) {
         e.preventDefault();
-        setFlipped(true);
+        flip();
       } else if (flipped && /^[1-4]$/.test(e.key)) {
         e.preventDefault();
         rate(Number(e.key) as Rating);
+      } else if (e.key === '?' && current) {
+        e.preventDefault();
+        openKeys(KEYS_ID);
       }
     };
     window.addEventListener('keydown', onKey);
@@ -257,7 +277,7 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
             )}
           </div>
           {!shown?.card ? null : flipped ? (
-            <div class="sh-flashcard__face sh-flashcard__back">
+            <div class="sh-flashcard__face sh-flashcard__back" ref={backRef} tabIndex={-1}>
               <h3 class="sh-visually-hidden">{t(lang, 'review.back')}</h3>
               <div class="prose" dangerouslySetInnerHTML={{ __html: shown.card.backHtml }} />
               <fieldset class="sh-ratings">
@@ -278,19 +298,27 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
             </div>
           ) : (
             <div class="sh-actions">
-              <button
-                type="button"
-                class="btn btn--primary"
-                onClick={() => setFlipped(true)}
-                aria-keyshortcuts="Space"
-              >
+              <button type="button" class="btn btn--primary" onClick={flip} aria-keyshortcuts="Space">
                 {t(lang, 'review.showAnswer')}
               </button>
             </div>
           )}
-          <p class="sh-help">{t(lang, 'review.keys')}</p>
+          <div class="sh-keys-row">
+            <p class="sh-help">{t(lang, 'review.keys')}</p>
+            <KeysHelp
+              id={KEYS_ID}
+              lang={lang}
+              items={[
+                [t(lang, 'review.keys.space'), t(lang, 'review.keys.flip')],
+                ['1 – 4', t(lang, 'review.keys.rate')],
+              ]}
+            />
+          </div>
         </div>
       )}
+      <p class="sh-visually-hidden" role="status">
+        {announce}
+      </p>
 
       {st && (
         <details class="sh-stats">
