@@ -34,14 +34,23 @@ type View =
 const fmt = (s: string | undefined, p: Record<string, string | number>) =>
   (s ?? '').replace(/\{(\w+)\}/g, (m, k: string) => (k in p ? String(p[k]) : m));
 
+/** Risposta del service worker (`src/pwa/sw-core.js`): avanzamento, errore o stato del corso. */
+type SwReply = Omit<Status, 'state'> & {
+  state: Status['state'] | 'unknown';
+  type?: string;
+  done: number;
+  total: number;
+  message?: string;
+};
+
 function ask(
   worker: ServiceWorker,
   msg: Record<string, unknown>,
   onProgress?: (d: number, t: number) => void,
 ) {
-  return new Promise<Record<string, any>>((resolve, reject) => {
+  return new Promise<SwReply>((resolve, reject) => {
     const ch = new MessageChannel();
-    ch.port1.onmessage = (e: MessageEvent<Record<string, any>>) => {
+    ch.port1.onmessage = (e: MessageEvent<SwReply>) => {
       const data = e.data;
       if (data.type === 'progress') onProgress?.(data.done, data.total);
       else if (data.type === 'error') reject(new Error(data.message));

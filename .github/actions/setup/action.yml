@@ -1,0 +1,13 @@
+# Node dalla versione di .nvmrc (con la cache di npm) e dipendenze da package-lock.json.
+# Un solo posto per i passi ripetuti in ogni job della CI e nel workflow delle baseline.
+name: Prepara Node e dipendenze
+description: setup-node con cache npm e npm ci
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v6
+      with:
+        node-version-file: .nvmrc
+        cache: npm
+    - run: npm ci
+      shell: bash

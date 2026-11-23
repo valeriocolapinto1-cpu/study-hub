@@ -23,7 +23,7 @@ export default function islandBoundary() {
     async resolveId(id, importer) {
       if (CLIENTS.includes(id)) return wrapper;
       if (id !== ORIGINAL) return null;
-      // @ts-ignore -- contesto del plugin Rollup
+      // @ts-expect-error -- contesto del plugin Rollup (this non tipizzato nel JSDoc)
       return this.resolve(CLIENTS[dev ? 1 : 0], importer, { skipSelf: true });
     },
   };

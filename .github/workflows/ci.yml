@@ -1,3 +1,7 @@
+# CI e pubblicazione. Sulle PR: controlli, test, build, Playwright e Lighthouse.
+# Su main (push o avvio manuale) si pubblica su GitHub Pages solo se TUTTI i job sono verdi,
+# e si pubblica proprio il dist/ costruito e provato in questo giro (dopo l'integrazione CSP).
+# GitHub Pages: Settings → Pages → Source: "GitHub Actions" (configure-pages prova ad abilitarlo).
 name: CI
 
 on:
@@ -11,25 +15,37 @@ permissions:
 
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  # Sulle PR un push nuovo annulla il giro precedente; su main no: un giro annullato non pubblicherebbe.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
   ASTRO_TELEMETRY_DISABLED: '1'
+  # Pubblicazione: push o avvio manuale su main (mai dalle PR).
+  PUBLISH: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
 
 jobs:
   check:
-    name: Controlli (astro check, tsc, prettier)
+    name: Controlli (astro check, tsc, ESLint, prettier)
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/setup
+      - run: npm run check
+      - run: npm run lint
+      - run: npm run format:check
+
+  audit:
+    name: Dipendenze (npm audit)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
-          cache: npm
-      - run: npm ci
-      - run: npm run check
-      - run: npm run format:check
+      # Solo le dipendenze che finiscono nel sito; blocca da "high" in su (vedi docs/decisions.md, PR9).
+      - run: npm audit --omit=dev --audit-level=high
 
   unit:
     name: Test unitari (vitest)
@@ -37,12 +53,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
-        with:
-          node-version-file: .nvmrc
-          cache: npm
-      - run: npm ci
-      # vitest con copertura: soglia del 90 % di righe su src/engine (vitest.config.ts)
+      - uses: ./.github/actions/setup
+      # vitest con copertura: soglie su src/engine in vitest.config.ts (valori misurati, PR9)
       - run: npm run test:coverage
 
   build:
@@ -51,16 +63,13 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
-        with:
-          node-version-file: .nvmrc
-          cache: npm
-      - run: npm ci
+      - uses: ./.github/actions/setup
+      # Unica build del sito: e2e, Lighthouse e pubblicazione usano questo dist/.
       - run: npm run build
-      - name: Contenuti (schema, riferimenti, traduzioni, argomenti legacy, URL assoluti, peso delle pagine)
+      - name: Contenuti (schema, riferimenti, traduzioni, argomenti legacy, URL assoluti, peso delle pagine, CSP)
         run: npx vitest run tests/content
         env:
-          # html-size.test.ts misura dist/: qui deve esistere
+          # html-size.test.ts e head.test.ts misurano dist/: qui deve esistere
           REQUIRE_DIST: '1'
       - name: Link interni del sito compilato
         run: node tools/check-links.mjs
@@ -78,6 +87,13 @@ jobs:
           path: dist-fixtures
           include-hidden-files: true
           retention-days: 3
+      # Lo stesso dist/ nel formato di GitHub Pages; lo pubblica il job deploy se tutto è verde.
+      - uses: actions/upload-pages-artifact@v5
+        if: env.PUBLISH == 'true'
+        with:
+          path: dist
+          # Include .well-known/security.txt
+          include-hidden-files: true
 
   e2e:
     name: Playwright (smoke, axe WCAG 2.2 AA, visual)
@@ -90,11 +106,7 @@ jobs:
       options: --user 1001
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
-        with:
-          node-version-file: .nvmrc
-          cache: npm
-      - run: npm ci
+      - uses: ./.github/actions/setup
       - uses: actions/download-artifact@v7
         with:
           name: dist
@@ -127,11 +139,7 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
-        with:
-          node-version-file: .nvmrc
-          cache: npm
-      - run: npm ci
+      - uses: ./.github/actions/setup
       - uses: actions/download-artifact@v7
         with:
           name: dist
@@ -143,3 +151,28 @@ jobs:
           name: lighthouse
           path: .lighthouseci
           retention-days: 7
+
+  deploy:
+    name: Pubblicazione su GitHub Pages
+    # Solo se tutti i job sono riusciti: un main rosso non va online.
+    needs: [check, audit, unit, build, e2e, lighthouse]
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v6
+        with:
+          enablement: true
+      - id: deployment
+        uses: actions/deploy-pages@v5

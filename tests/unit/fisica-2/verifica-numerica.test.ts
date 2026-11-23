@@ -25,7 +25,6 @@ const simpson = (f: (x: number) => number, a: number, b: number, n = 4000) => {
   for (let i = 1; i < n; i++) s += f(a + i * h) * (i % 2 ? 4 : 2);
   return (s * h) / 3;
 };
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Any = any;
 // Integrazioni numeriche e ODE su 40 semi: alcune verifiche durano qualche secondo sui runner della CI.
 const NUMERIC_TIMEOUT = 300_000;
@@ -95,7 +94,7 @@ each('b1-cilindro-rho-Ar', (p, v) => {
   close(v.dV, simpson(E, 1e-9, 2 * p.R, 8000), 1e-4, 'dV');
 });
 each('b1-anello-velocita', (p, v) => {
-  const Vz = (z) => simpson((ph) => (K * p.lam * p.R) / Math.hypot(p.R, z), 0, 2 * PI, 8);
+  const Vz = (z) => simpson((_ph) => (K * p.lam * p.R) / Math.hypot(p.R, z), 0, 2 * PI, 8);
   let Vmax = 0;
   for (let z = -5 * p.R; z <= 5 * p.R; z += p.R / 50) Vmax = Math.max(Vmax, Vz(z));
   close(v.V0, Vmax, 1e-9, 'V0');

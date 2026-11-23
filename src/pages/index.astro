@@ -19,17 +19,17 @@ const enHref = localizePath('', 'en');
     <link rel="alternate" hreflang="en-US" href={new URL(enHref, Astro.site).href} />
     <link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname, Astro.site).href} />
     <script is:inline define:vars={{ itHref, enHref }}>
-      var target = itHref;
+      let target = itHref;
       try {
-        var saved = JSON.parse(localStorage.getItem('sh:v1:global:lang') || 'null');
+        const saved = JSON.parse(localStorage.getItem('sh:v1:global:lang') || 'null');
         if (saved === 'en') target = enHref;
         else if (saved !== 'it') {
-          var langs =
+          const langs =
             navigator.languages && navigator.languages.length
               ? navigator.languages
               : [navigator.language || ''];
-          for (var i = 0; i < langs.length; i++) {
-            var l = String(langs[i]).toLowerCase();
+          for (let i = 0; i < langs.length; i++) {
+            const l = String(langs[i]).toLowerCase();
             if (l.indexOf('it') === 0) break;
             if (l.indexOf('en') === 0) {
               target = enHref;
@@ -37,7 +37,9 @@ const enHref = localizePath('', 'en');
             }
           }
         }
-      } catch (e) {}
+      } catch {
+        // localStorage non disponibile: resta l'italiano.
+      }
       location.replace(target + location.search + location.hash);
     </script>
     <noscript>

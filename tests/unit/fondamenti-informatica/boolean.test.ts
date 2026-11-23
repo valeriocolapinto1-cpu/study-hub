@@ -161,7 +161,7 @@ describe('minimalCover produce davvero la SOP minima', () => {
       const dontCares = new Set<number>();
       for (let m = 0; m < 16; m++) {
         if (nextBit()) onSet.add(m);
-        else if (nextBit() && nextBit()) dontCares.add(m);
+        else if (nextBit() === 1 && nextBit() === 1) dontCares.add(m);
       }
       if (onSet.size === 0 || onSet.size === 16) continue;
 

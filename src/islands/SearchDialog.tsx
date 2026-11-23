@@ -276,6 +276,7 @@ function SearchUI({ config, dialog }: { config: SearchConfig; dialog: HTMLDialog
         </p>
         {state === 'idle' && <p class="pf-search__hint muted">{T.hint}</p>}
         {visible.length > 0 && (
+          // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- frecce tra i link dei risultati (delega degli eventi dei figli)
           <ol id="pf-search-results" ref={list} class="pf-search__results" onKeyDown={onKeyList}>
             {visible.map((h) => {
               const d = data[h.key];

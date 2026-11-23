@@ -14,7 +14,7 @@
  */
 import { CHUNK_BYTES, toBase64 } from './rules';
 
-export type Reply = Record<string, any> & { ok: boolean; error?: string };
+export type Reply = Record<string, unknown> & { ok: boolean; error?: string };
 
 export interface UploadFile {
   readonly size: number;

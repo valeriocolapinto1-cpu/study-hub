@@ -18,6 +18,7 @@ const all: [string, string][] = [...items, ['?', t(lang, 'keys.help')]];
 <div id={id} class="sh-keys" popover="auto" role="dialog" aria-labelledby={`${id}-h`} data-pagefind-ignore>
   <div class="sh-keys__head">
     <h2 id={`${id}-h`}>{t(lang, 'engine.keys')}</h2>
+    {/* eslint-disable-next-line astro/jsx-a11y/no-autofocus -- nei popover autofocus è il modo previsto dall'HTML per portare il fuoco all'apertura */}
     <button type="button" class="btn btn--sm" popovertarget={id} popovertargetaction="hide" autofocus>
       {t(lang, 'keys.close')}
     </button>

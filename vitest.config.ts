@@ -18,7 +18,9 @@ export default getViteConfig({
       // import.meta.glob: coperto dai test end-to-end, non da vitest.
       exclude: ['src/engine/generators/index.ts'],
       reporter: ['text-summary', 'text'],
-      thresholds: { lines: 90, statements: 90 },
+      // Soglie al valore misurato il 2026-11-23 (righe 97,78 %, istruzioni 97,04 %, funzioni 97,07 %,
+      // rami 93,17 %), arrotondato per difetto: la copertura del motore non può scendere.
+      thresholds: { lines: 97, statements: 97, functions: 97, branches: 93 },
     },
   },
 });

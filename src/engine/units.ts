@@ -352,7 +352,7 @@ export function parseUnit(input: string): ParsedUnit | null {
       continue;
     }
     if (!expectOperand) return null;
-    const m = /^([^\^]+)(?:\^\(?([+-]?\d+(?:\.\d+)?)\)?)?$/.exec(tok);
+    const m = /^([^^]+)(?:\^\(?([+-]?\d+(?:\.\d+)?)\)?)?$/.exec(tok);
     if (!m) return null;
     const base = m[1] as string;
     const power = (m[2] !== undefined ? Number(m[2]) : 1) * sign;
@@ -574,7 +574,8 @@ export function parseAngle(input: string, fallback: 'deg' | 'rad'): number | nul
   const unitMatch = /(°|º|deg|rad)$/.exec(text);
   const unit = unitMatch ? (unitMatch[1] === 'rad' ? 'rad' : 'deg') : fallback;
   const body = unitMatch ? text.slice(0, -(unitMatch[1] as string).length) : text;
-  let value: number | null;
+  // Calcolato prima del ramo con π (dove vale null e non si usa): bundle più corto di qualche byte.
+  const value = parseNumber(body);
   if (/π|pi/.test(body)) {
     const m = /^([+-]?[\d.,]*)\*?(?:π|pi)(?:\/([\d.,]+))?$/.exec(body);
     if (!m) return null;
@@ -583,7 +584,6 @@ export function parseAngle(input: string, fallback: 'deg' | 'rad'): number | nul
     if (k === null || div === null || div === 0) return null;
     return (k * Math.PI) / div; // π implica radianti
   }
-  value = parseNumber(body);
   if (value === null) return null;
   return unit === 'deg' ? (value * Math.PI) / 180 : value;
 }

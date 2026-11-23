@@ -114,8 +114,8 @@ const metaLine = (id: string) => {
   <script is:inline slot="head">
     // Chi ha già dati di studio vede subito "La tua preparazione" (prima del disegno: niente salti).
     try {
-      for (var i = 0; i < localStorage.length; i++) {
-        var k = localStorage.key(i) || '';
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i) || '';
         if (
           /^sh:v1:[a-z0-9-]+:(progress|srs|notes|exam)$/.test(k) ||
           k === 'sh:v1:global:examDates' ||
@@ -125,7 +125,9 @@ const metaLine = (id: string) => {
           break;
         }
       }
-    } catch (e) {}
+    } catch {
+      // localStorage non disponibile (modalità privata, blocco dei cookie): home per chi arriva.
+    }
   </script>
   <div class="container page home">
     <header class="home-hero">

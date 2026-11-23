@@ -1,0 +1,45 @@
+# Aggiornamenti settimanali raggruppati: una PR per le minori/patch di produzione, una per quelle
+# di sviluppo, una per le GitHub Actions; le versioni maggiori arrivano una per PR.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '05:17'
+      timezone: Europe/Rome
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: Dipendenze
+    groups:
+      produzione:
+        dependency-type: production
+        update-types: [minor, patch]
+      sviluppo:
+        dependency-type: development
+        update-types: [minor, patch]
+    ignore:
+      # Playwright va di pari passo con l'immagine del container in ci.yml e visual-baselines.yml
+      # (stesso Chromium delle baseline visive): si aggiorna a mano, insieme, rigenerando le baseline.
+      - dependency-name: '@playwright/test'
+      # eslint-plugin-jsx-a11y non dichiara ancora ESLint 10 e eslint-plugin-astro 2+ lo richiede:
+      # restano su ESLint 9 / plugin Astro 1.x finché jsx-a11y non lo supporta (docs/decisions.md, PR9).
+      - dependency-name: eslint
+        update-types: [version-update:semver-major]
+      - dependency-name: '@eslint/js'
+        update-types: [version-update:semver-major]
+      - dependency-name: eslint-plugin-astro
+        update-types: [version-update:semver-major]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '05:17'
+      timezone: Europe/Rome
+    commit-message:
+      prefix: Actions
+    groups:
+      actions:
+        patterns: ['*']
