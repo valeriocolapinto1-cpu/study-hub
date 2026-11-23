@@ -43,6 +43,9 @@ export default tseslint.config(
           ignoreRestSiblings: true,
         },
       ],
+      // Spazi speciali (spazio fine, non separabile…) ammessi nelle espressioni regolari che li
+      // normalizzano: scritti come \uXXXX occuperebbero più byte nel bundle della pagina esame.
+      'no-irregular-whitespace': ['error', { skipRegExps: true }],
       // Commenti @ts-…: ammessi solo con la spiegazione dopo «--».
       '@typescript-eslint/ban-ts-comment': [
         'error',

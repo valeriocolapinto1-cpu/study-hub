@@ -45,7 +45,7 @@ export function texToPlain(text: string): string {
               )
             : (ENTITIES[code] ?? e),
         )
-        .replace(/[\u2061-\u2064\u200b]/g, '')
+        .replace(/[⁡-⁤​]/g, '')
         .replace(/\s+/g, ' ')
         .trim();
       return pre + plain;

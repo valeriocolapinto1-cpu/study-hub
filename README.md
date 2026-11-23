@@ -30,6 +30,7 @@ Richiede Node 22 (`.nvmrc`).
 npm ci
 npm run dev          # http://localhost:4321/study-hub/
 npm run check        # astro check + tsc
+npm run lint         # ESLint (TypeScript, Astro, accessibilità del JSX)
 npm test             # vitest: unit e contenuti
 npm run build        # dist/
 npm run test:links   # link interni di dist/
@@ -48,7 +49,7 @@ Le baseline dei test visivi si generano solo in CI (workflow «Aggiorna baseline
 - **Un corso nuovo**: procedura in [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
 Regole (bilinguismo, originalità, glossario): [`docs/CONTRIBUTING-CONTENT.md`](docs/CONTRIBUTING-CONTENT.md).
-Prima di una PR: `npm run check && npm test && npm run build`.
+Prima di una PR: `npm run check && npm run lint && npm test && npm run build`.
 
 ## Documentazione
 
@@ -64,8 +65,8 @@ I vecchi indirizzi pubblicati rimandano alle pagine corrispondenti di questo sit
 
 ## Pubblicazione
 
-A ogni push su `main` il workflow `deploy.yml` compila e pubblica su GitHub Pages
-(Settings → Pages → Source: **GitHub Actions**).
+A ogni push su `main` il workflow CI (`ci.yml`) compila, prova e, solo se tutti i controlli sono verdi, pubblica su
+GitHub Pages lo stesso sito provato (Settings → Pages → Source: **GitHub Actions**).
 
 Aggiornare il sito sul proprio dispositivo non richiede di svuotare la cache: le pagine arrivano sempre dalla
 rete e, se il sito è stato pubblicato di nuovo, compare «Nuova versione disponibile — Aggiorna». Se resta

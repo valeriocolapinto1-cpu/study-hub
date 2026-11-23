@@ -227,6 +227,7 @@ pagine globali `/<lang>/ripasso/`, `/<lang>/appunti/`, `/<lang>/i-miei-dati/`, `
 | `npm run dev` | server di sviluppo |
 | `npm run build` | build statica in `dist/` |
 | `npm run check` | `astro check` + `tsc --noEmit` |
+| `npm run lint` | ESLint (`eslint.config.js`) |
 | `npm test` | vitest (unit + contenuti) |
 | `npm run test:coverage` | vitest con copertura (≥ 90 % righe su `src/engine`) |
 | `npm run build:fixtures` | build del corso finto di `tests/fixtures/content` in `dist-fixtures/` (e2e delle isole) |
@@ -241,8 +242,9 @@ In locale con un Chromium già installato: `PW_CHROMIUM_PATH=/opt/pw-browsers/ch
 
 ## CI e deploy
 
-- `.github/workflows/ci.yml` (PR e push su main): `check` (astro check, tsc, prettier), `unit` (vitest con copertura), `build`
-  (build, test dei contenuti, link interni, build delle fixture), `e2e` (container Playwright: smoke, isole del motore sulle fixture, axe WCAG 2.2 AA 0 violazioni serious/critical
+- `.github/workflows/ci.yml` (PR e push su main): `check` (astro check, tsc, ESLint, prettier), `audit` (`npm audit --omit=dev`,
+  blocca da «high»), `unit` (vitest con copertura, soglie al valore misurato), `build` (l'unica build: build con CSP, test dei
+  contenuti, link interni, build delle fixture; passa `dist/` agli altri job come artefatto), `e2e` (container Playwright: smoke, isole del motore sulle fixture, axe WCAG 2.2 AA 0 violazioni serious/critical
   in tema chiaro e scuro, visual 390/1280 px chiaro/scuro), `lighthouse` (≥ 0.95 nelle quattro categorie, JS ≤ 50 KB).
 - **Baseline visive**: si generano solo in CI con il workflow *Aggiorna baseline visive* (avvio manuale, oppure push su un branch con `[baseline]` nel messaggio dell'ultimo commit)
   (`visual-baselines.yml`), che le committa sul branch. Dopo il suo commit serve un nuovo push perché la CI riparta
@@ -253,5 +255,10 @@ In locale con un Chromium già installato: `PW_CHROMIUM_PATH=/opt/pw-browsers/ch
   in `tests/e2e/pages.ts` (solo la finestra iniziale).
 - **Tema nei test**: il sito è scuro di default e non segue `prefers-color-scheme`; axe, visual e simulazioni scelgono il tema
   scrivendo `sh:v1:global:theme` con `addInitScript`. Gli screenshot attendono `networkidle` (le isole cambiano l'altezza della pagina).
-- `.github/workflows/deploy.yml` (push su main): build e pubblicazione con `actions/deploy-pages`.
+- **Pubblicazione**: job `deploy` di `ci.yml`, solo su main (push o avvio manuale) e solo con tutti gli altri job verdi;
+  pubblica con `actions/deploy-pages` lo stesso `dist/` provato dal giro. Un main rosso non va online.
   Richiede Settings → Pages → Source: **GitHub Actions**.
+- **Lint**: `npm run lint` (`eslint.config.js`: typescript-eslint, eslint-plugin-astro, jsx-a11y su `.astro` e `.tsx`).
+  Le regole spente o allentate sono motivate in `docs/decisions.md` (PR9); un `eslint-disable` va sulla singola riga, con `-- motivo`.
+- **Dependabot** (`.github/dependabot.yml`): il lunedì, minori e patch raggruppate (produzione, sviluppo, Actions);
+  Playwright escluso (va aggiornato a mano con l'immagine del container e le baseline).
