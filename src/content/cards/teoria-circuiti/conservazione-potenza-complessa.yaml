@@ -9,7 +9,7 @@
     en: '**Conservation of complex power and balance.** Prove the conservation of complex power and use it for a power balance.'
   back:
     it: |-
-      **Risposta modello.** Si applica il teorema di Tellegen ai fasori: le correnti coniugate soddisfano ancora la KCL perché i coefficienti sono reali, quindi la somma dei prodotti V_k I_k coniugato è nulla. Separando parte reale e immaginaria si conservano P e Q, ma non i moduli. Nel bilancio la potenza erogata dai generatori è uguale a quella assorbita dagli altri elementi.
+      **Risposta modello.** Si applica il teorema di Tellegen ai fasori: le correnti coniugate soddisfano ancora la KCL perché i coefficienti sono reali, quindi la somma dei prodotti $V_k I_k$ coniugato è nulla. Separando parte reale e immaginaria si conservano P e Q, ma non i moduli. Nel bilancio la potenza erogata dai generatori è uguale a quella assorbita dagli altri elementi.
 
       **Punti da toccare:**
 
@@ -18,7 +18,7 @@
       - Si conservano $P$ e $Q$ separatamente, non i moduli
       - Bilancio: potenza erogata dai generatori = assorbita dagli elementi
     en: |-
-      **Model answer.** Tellegen's theorem is applied to phasors: the conjugate currents still satisfy KCL because the coefficients are real, so the sum of the products V_k times I_k conjugate is zero. Separating real and imaginary parts, P and Q are conserved, but not the magnitudes. In the balance the power delivered by the sources equals the power absorbed by the other elements.
+      **Model answer.** Tellegen's theorem is applied to phasors: the conjugate currents still satisfy KCL because the coefficients are real, so the sum of the products $V_k$ times $I_k$ conjugate is zero. Separating real and imaginary parts, P and Q are conserved, but not the magnitudes. In the balance the power delivered by the sources equals the power absorbed by the other elements.
 
       **Points to cover:**
 

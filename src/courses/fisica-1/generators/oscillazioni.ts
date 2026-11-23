@@ -219,7 +219,11 @@ export const pendolo = registerGenerator({
           ],
         ),
       ],
-      [ans('T₀', T0, 's'), ans('v', v, 'm/s'), ans(L(lang, 'T_filo', 'T_string'), Tmax, 'N')],
+      [
+        ans('T₀', T0, 's'),
+        ans('v', v, 'm/s'),
+        ans(L(lang, '$T_{\\mathrm{filo}}$', '$T_{\\mathrm{string}}$'), Tmax, 'N'),
+      ],
       {
         type: 'pendulum',
         params: { angle: th, forces: true, lengthLabel: 'L', massLabel: 'm', angleLabel: 'θ_0' },

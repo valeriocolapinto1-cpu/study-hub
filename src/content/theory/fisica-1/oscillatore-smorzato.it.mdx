@@ -46,7 +46,7 @@ Un oscillatore smorzato è un oscillatore armonico soggetto anche a una forza di
 
 <Diagram
   {...Fig.dampedPlot({ gamma: 0.3, omega: 5 })}
-  caption="Regime sottosmorzato: l'ampiezza decade come e^(−γt) e il periodo è un po' più lungo di quello libero."
+  caption="Regime sottosmorzato: l'ampiezza decade come $e^{-\gamma t}$ e il periodo è un po' più lungo di quello libero."
 />
 
 <div data-note-id="teoria/oscillatore-smorzato/derivazione" class="derivation">
@@ -84,7 +84,7 @@ $$
 x(t) = A\,e^{-\gamma t}\cos(\omega_s t + \varphi), \qquad \omega_s = \sqrt{\omega_0^2 - \gamma^2}
 $$
 
-Le radici sono complesse coniugate: oscillazione a pulsazione $\omega_s$ &lt; ω₀ dentro un inviluppo esponenziale Ae^\{−γt\}. Il tempo caratteristico di decadimento dell'ampiezza è τ = 1/γ.
+Le radici sono complesse coniugate: oscillazione a pulsazione $\omega_s$ &lt; ω₀ dentro un inviluppo esponenziale $Ae^{-\gamma t}$. Il tempo caratteristico di decadimento dell'ampiezza è τ = 1/γ.
 
 </details>
 
@@ -106,7 +106,7 @@ $$
 \frac{dE}{dt} = \frac{d}{dt}\Big(\frac{1}{2}m\dot{x}^2 + \frac{1}{2}kx^2\Big) = \dot{x}(m\ddot{x} + kx) = -b\dot{x}^2 \le 0
 $$
 
-L'energia meccanica decresce sempre: la potenza dissipata dall'attrito viscoso è bv². Nel regime sottosmorzato E(t) ≈ E₀e^\{−2γt\} (decade col quadrato dell'ampiezza).
+L'energia meccanica decresce sempre: la potenza dissipata dall'attrito viscoso è bv². Nel regime sottosmorzato E(t) ≈ $E_0 e^{-2\gamma t}$ (decade col quadrato dell'ampiezza).
 
 </details>
 
@@ -177,7 +177,7 @@ Un corpo di massa m = 0,50 kg, attaccato a una molla di costante k = 50 N/m, è 
 <div data-note-id="teoria/oscillatore-smorzato/errori">
 
 - Scrivere che la pulsazione di oscillazione resta ω₀: è $\omega_s$ = √(ω₀² − γ²) &lt; ω₀.
-- Confondere il decadimento dell'ampiezza (e^\{−γt\}) con quello dell'energia (e^\{−2γt\}).
+- Confondere il decadimento dell'ampiezza ($e^{-\gamma t}$) con quello dell'energia ($e^{-2\gamma t}$).
 - Credere che il sovrasmorzato torni all'equilibrio più in fretta del critico: è il contrario.
 - Dimenticare il fattore 2 nella definizione γ = b/2m.
 

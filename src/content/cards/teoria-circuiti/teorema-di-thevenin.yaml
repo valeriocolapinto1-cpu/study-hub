@@ -113,11 +113,11 @@
     it: |-
       $$Z_{th}=\frac{V_{th}}{I_{sc}}=\frac{V}{I}\Big|_{\text{indip. spenti}}$$
 
-      I_sc corrente di cortocircuito [A]; V, I tensione e corrente del generatore di prova
+      $I_{\mathrm{sc}}$ corrente di cortocircuito [A]; V, I tensione e corrente del generatore di prova
     en: |-
       $$Z_{th}=\frac{V_{th}}{I_{sc}}=\frac{V}{I}\Big|_{\text{indip. spenti}}$$
 
-      I_sc short-circuit current [A]; V, I voltage and current of the test source
+      $I_{\mathrm{sc}}$ short-circuit current [A]; V, I voltage and current of the test source
 - id: formula-th-eq
   topic: teorema-di-thevenin
   objectives:

@@ -9,7 +9,7 @@
     en: '**Maximum power transfer: proof.** Prove that the active power delivered to a load $Z_L$ by a Thévenin equivalent is maximum for $Z_L=Z_{th}^*$ and compute $P_{max}$.'
   back:
     it: |-
-      **Risposta modello.** La corrente nel carico è Vth/(Zth+ZL); la potenza attiva è metà del prodotto R_L per il modulo quadro della corrente. Scegliendo X_L = -X_th la reattanza totale è nulla e il modulo della corrente è massimo. Poi si deriva rispetto a R_L e si trova il massimo per R_L = R_th, quindi ZL = Zth coniugata. Pmax = |Vth|^2/(8 Rth) con valori di picco.
+      **Risposta modello.** La corrente nel carico è Vth/(Zth+ZL); la potenza attiva è metà del prodotto $R_L$ per il modulo quadro della corrente. Scegliendo $X_L = -X_{\mathrm{th}}$ la reattanza totale è nulla e il modulo della corrente è massimo. Poi si deriva rispetto a $R_L$ e si trova il massimo per $R_L = R_{\mathrm{th}}$, quindi ZL = Zth coniugata. Pmax = |Vth|^2/(8 Rth) con valori di picco.
 
       **Punti da toccare:**
 
@@ -18,7 +18,7 @@
       - Si deriva rispetto a $R_L$: massimo per $R_L=R_{th}$
       - $P_{max}=|V_{th}|^2/(8R_{th})$ con ampiezze di picco (o $/(4R_{th})$ con efficaci)
     en: |-
-      **Model answer.** The load current is Vth/(Zth+ZL); the active power is half the product of R_L and the squared magnitude of the current. Choosing X_L = -X_th the total reactance is zero and the magnitude of the current is maximum. Then differentiating with respect to R_L the maximum is found at R_L = R_th, hence ZL = Zth conjugate. Pmax = |Vth|^2/(8 Rth) with peak values.
+      **Model answer.** The load current is Vth/(Zth+ZL); the active power is half the product of $R_L$ and the squared magnitude of the current. Choosing $X_L = -X_{\mathrm{th}}$ the total reactance is zero and the magnitude of the current is maximum. Then differentiating with respect to $R_L$ the maximum is found at $R_L = R_{\mathrm{th}}$, hence ZL = Zth conjugate. Pmax = |Vth|^2/(8 Rth) with peak values.
 
       **Points to cover:**
 
@@ -37,7 +37,7 @@
     en: '**Maximum transfer with an ideal transformer.** A real source (equivalent $V_{th}$, $R_{th}$) feeds a resistive load $R_L$ through an ideal transformer of ratio $n$. How is $n$ chosen for maximum transfer and what power is obtained?'
   back:
     it: |-
-      **Risposta modello.** Il carico visto dal primario è l'impedenza riportata n^2 R_L. Per il massimo trasferimento si impone l'adattamento n^2 R_L = R_th, quindi n = sqrt(R_th/R_L). La potenza massima è Vth^2/(8 R_th) con valori di picco e non dipende dal rapporto scelto.
+      **Risposta modello.** Il carico visto dal primario è l'impedenza riportata n^2 $R_L$. Per il massimo trasferimento si impone l'adattamento n^2 $R_L = R_{\mathrm{th}}$, quindi $n = \sqrt{R_{\mathrm{th}}/R_L}$. La potenza massima è Vth^2/(8 $R_{\mathrm{th}}$) con valori di picco e non dipende dal rapporto scelto.
 
       **Punti da toccare:**
 
@@ -45,7 +45,7 @@
       - Condizione di adattamento: $n^2R_L=R_{th}$
       - La potenza massima è $|V_{th}|^2/(8R_{th})$ (picco): non dipende da $n$
     en: |-
-      **Model answer.** The load seen from the primary is the reflected impedance n^2 R_L. For maximum transfer the matching n^2 R_L = R_th is imposed, hence n = sqrt(R_th/R_L). The maximum power is Vth^2/(8 R_th) with peak values and does not depend on the chosen ratio.
+      **Model answer.** The load seen from the primary is the reflected impedance n^2 $R_L$. For maximum transfer the matching n^2 $R_L = R_{\mathrm{th}}$ is imposed, hence $n = \sqrt{R_{\mathrm{th}}/R_L}$. The maximum power is Vth^2/(8 $R_{\mathrm{th}}$) with peak values and does not depend on the chosen ratio.
 
       **Points to cover:**
 
@@ -65,11 +65,11 @@
     it: |-
       $$P_{max}=\frac{|V_{th}|^2}{8R_{th}}$$
 
-      V_th di picco
+      $V_{\mathrm{th}}$ di picco
     en: |-
       $$P_{max}=\frac{|V_{th}|^2}{8R_{th}}$$
 
-      peak V_th
+      peak $V_{\mathrm{th}}$
 - id: formula-pmax-eff
   topic: massimo-trasferimento-potenza
   objectives:
@@ -83,11 +83,11 @@
     it: |-
       $$P_{max}=\frac{|V_{th}|^2}{4R_{th}}$$
 
-      V_th efficace
+      $V_{\mathrm{th}}$ efficace
     en: |-
       $$P_{max}=\frac{|V_{th}|^2}{4R_{th}}$$
 
-      RMS V_th
+      RMS $V_{\mathrm{th}}$
 - id: formula-zl-coniugata
   topic: massimo-trasferimento-potenza
   objectives:
@@ -101,11 +101,11 @@
     it: |-
       $$Z_L=Z_{th}^{*}$$
 
-      Z_th* coniugato dell'impedenza di Thevenin [Ω]
+      $Z_{\mathrm{th}}^*$ coniugato dell'impedenza di Thevenin [Ω]
     en: |-
       $$Z_L=Z_{th}^{*}$$
 
-      Z_th* conjugate of the Thévenin impedance [Ω]
+      $Z_{\mathrm{th}}^*$ conjugate of the Thévenin impedance [Ω]
 - id: formula-rl-modulo
   topic: massimo-trasferimento-potenza
   objectives:
@@ -118,11 +118,11 @@
     it: |-
       $$R_L=|Z_{th}|=\sqrt{R_{th}^2+X_{th}^2}$$
 
-      R_th, X_th resistenza e reattanza di Thevenin [Ω]
+      $R_{\mathrm{th}}$, $X_{\mathrm{th}}$ resistenza e reattanza di Thevenin [Ω]
     en: |-
       $$R_L=|Z_{th}|=\sqrt{R_{th}^2+X_{th}^2}$$
 
-      R_th, X_th Thévenin resistance and reactance [Ω]
+      $R_{\mathrm{th}}$, $X_{\mathrm{th}}$ Thévenin resistance and reactance [Ω]
 - id: formula-rendimento-50
   topic: massimo-trasferimento-potenza
   objectives:
@@ -152,8 +152,8 @@
     it: |-
       $$n^2R_L=R_{th}$$
 
-      n rapporto di trasformazione; R_L carico [Ω]; R_th [Ω]
+      n rapporto di trasformazione; $R_L$ carico [Ω]; $R_{\mathrm{th}}$ [Ω]
     en: |-
       $$n^2R_L=R_{th}$$
 
-      n turns ratio; R_L load [Ω]; R_th [Ω]
+      n turns ratio; $R_L$ load [Ω]; $R_{\mathrm{th}}$ [Ω]

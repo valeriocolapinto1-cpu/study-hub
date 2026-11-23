@@ -171,7 +171,9 @@ const courseLd = courseJsonLd({
           <tbody>
             {course.exam.structure.map((s) => (
               <tr>
-                <td>{tr(s.label, lang)}</td>
+                <td>
+                  <InlineTex text={tr(s.label, lang)} />
+                </td>
                 <td class="num">{s.points ?? '—'}</td>
               </tr>
             ))}

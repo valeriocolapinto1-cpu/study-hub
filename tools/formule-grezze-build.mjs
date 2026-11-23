@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Controllo statico delle formule grezze sulla build (dist/): testo visibile dell'HTML (pagine e stampe),
- * stringhe nelle props delle isole e nei dati delle isole (`dati/*.json`). Vedi tools/formule-grezze-regole.mjs.
+ * Controllo statico delle formule grezze sulla build (dist/): testo visibile dell'HTML (pagine e stampe, con
+ * l'HTML già reso delle isole) e testi dei dati delle isole (`dati/*.json`, caricati nel browser). Vedi tools/formule-grezze-regole.mjs.
  * Uso: node tools/formule-grezze-build.mjs [cartella=dist]  → JSON { file: [frammenti] }, uscita 1 se ce ne sono.
  */
 import { readdirSync, readFileSync } from 'node:fs';
@@ -50,15 +50,6 @@ export function controllaBuild(dist) {
   for (const f of file(dist, '.html')) {
     const html = readFileSync(f, 'utf8');
     segna(f, testoVisibile(html));
-    for (const m of html.matchAll(/<astro-island\b[^>]*?\sprops="([^"]*)"/g)) {
-      let props;
-      try {
-        props = JSON.parse(decodifica(m[1]));
-      } catch {
-        continue;
-      }
-      for (const [k, s] of stringhe(props)) if (!CHIAVI_NON_TESTO.has(k)) segna(f, testoDiStringa(s));
-    }
   }
   for (const f of file(dist, '.json').filter((p) => /[\\/]dati[\\/]/.test(p))) {
     for (const [k, s] of stringhe(JSON.parse(readFileSync(f, 'utf8'))))

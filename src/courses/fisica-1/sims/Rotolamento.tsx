@@ -2,6 +2,7 @@
  * Simulazione «Rotolamento»: campo delle velocità v = v_cm + ω × r su una ruota che rotola
  * senza strisciare. Il punto di contatto ha velocità nulla, la cima 2v.
  */
+import { SubText } from '../../../sim/SubText';
 import { useState } from 'preact/hooks';
 import { Canvas2D } from '../../../sim/Canvas2D';
 import { Controls } from '../../../sim/Controls';
@@ -114,7 +115,9 @@ export default function Rotolamento({ lang }: { lang: Lang }): preact.JSX.Elemen
           }
         }}
       />
-      <p class="sim-note">{t.note}</p>
+      <p class="sim-note">
+        <SubText text={t.note} />
+      </p>
     </div>
   );
 }

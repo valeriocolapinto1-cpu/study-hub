@@ -46,7 +46,7 @@ A damped oscillator is a harmonic oscillator also subject to a viscous friction 
 
 <Diagram
   {...Fig.dampedPlot({ gamma: 0.3, omega: 5 })}
-  caption="Underdamped regime: the amplitude decays as e^(−γt) and the period is slightly longer than the free one."
+  caption="Underdamped regime: the amplitude decays as $e^{-\gamma t}$ and the period is slightly longer than the free one."
 />
 
 <div data-note-id="teoria/oscillatore-smorzato/derivazione" class="derivation">
@@ -84,7 +84,7 @@ $$
 x(t) = A\,e^{-\gamma t}\cos(\omega_s t + \varphi), \qquad \omega_s = \sqrt{\omega_0^2 - \gamma^2}
 $$
 
-The roots are complex conjugates: oscillation at angular frequency $\omega_s$ &lt; ω₀ inside an exponential envelope Ae^\{−γt\}. The characteristic decay time of the amplitude is τ = 1/γ.
+The roots are complex conjugates: oscillation at angular frequency $\omega_s$ &lt; ω₀ inside an exponential envelope $Ae^{-\gamma t}$. The characteristic decay time of the amplitude is τ = 1/γ.
 
 </details>
 
@@ -106,7 +106,7 @@ $$
 \frac{dE}{dt} = \frac{d}{dt}\Big(\frac{1}{2}m\dot{x}^2 + \frac{1}{2}kx^2\Big) = \dot{x}(m\ddot{x} + kx) = -b\dot{x}^2 \le 0
 $$
 
-Mechanical energy always decreases: the power dissipated by viscous friction is bv². In the underdamped regime E(t) ≈ E₀e^\{−2γt\} (it decays as the square of the amplitude).
+Mechanical energy always decreases: the power dissipated by viscous friction is bv². In the underdamped regime E(t) ≈ $E_0 e^{-2\gamma t}$ (it decays as the square of the amplitude).
 
 </details>
 
@@ -177,7 +177,7 @@ A body of mass m = 0.50 kg, attached to a spring of constant k = 50 N/m, is imme
 <div data-note-id="teoria/oscillatore-smorzato/errori">
 
 - Writing that the oscillation angular frequency stays ω₀: it is $\omega_s$ = √(ω₀² − γ²) &lt; ω₀.
-- Confusing the decay of the amplitude (e^\{−γt\}) with that of the energy (e^\{−2γt\}).
+- Confusing the decay of the amplitude ($e^{-\gamma t}$) with that of the energy ($e^{-2\gamma t}$).
 - Believing that the overdamped oscillator returns to equilibrium faster than the critical one: it is the opposite.
 - Forgetting the factor 2 in the definition γ = b/2m.
 

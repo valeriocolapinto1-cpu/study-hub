@@ -1,6 +1,7 @@
 ---
 /** Extra «Archivio degli appelli»: solo date e argomenti delle prove passate, nessun testo. */
 import Reliability from '../components/Reliability.astro';
+import InlineTex from '../../../components/InlineTex.astro';
 import { ARCHIVE, ARCHIVE_TOPICS_EN } from '../data';
 import type { Lang } from '../../../i18n';
 interface Props {
@@ -23,9 +24,13 @@ const top = [...counts].sort((a, b) => b[1] - a[1]).slice(0, 10);
     <Reliability kind="storico" lang={lang} />
   </p>
   <p>
-    {it
-      ? "Per il periodo 2015–2024 è nota solo una sintesi aggregata: 14 esercizi risolti di 11 appelli, tutti nella forma «determinare v_out(t) per tutto l'asse dei tempi»."
-      : 'For 2015–2024 only an aggregate summary is known: 14 solved exercises from 11 sessions, all of the form "find v_out(t) over the whole time axis".'}
+    <InlineTex
+      text={
+        it
+          ? "Per il periodo 2015–2024 è nota solo una sintesi aggregata: 14 esercizi risolti di 11 appelli, tutti nella forma «determinare $v_{\\mathrm{out}}(t)$ per tutto l'asse dei tempi»."
+          : 'For 2015–2024 only an aggregate summary is known: 14 solved exercises from 11 sessions, all of the form "find $v_{\\mathrm{out}}(t)$ over the whole time axis".'
+      }
+    />
   </p>
   <h2 id="ricorrenti">{it ? 'Gli argomenti più ricorrenti' : 'The most recurrent topics'}</h2>
   <ol>

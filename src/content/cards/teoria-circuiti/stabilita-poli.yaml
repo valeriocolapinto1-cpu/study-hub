@@ -9,7 +9,7 @@
     en: '**Stability and poles.** State and prove the asymptotic-stability condition of a linear system in terms of its poles.'
   back:
     it: |-
-      **Risposta modello.** Il sistema è asintoticamente stabile se e solo se tutti i poli hanno parte reale negativa, cioè stanno nel semipiano sinistro aperto. Si scompone H(s) in fratti semplici: ogni polo p dà un modo esponenziale e^{pt}. Se la parte reale è negativa il modo decade a zero; se è positiva il modo diverge e il sistema è instabile.
+      **Risposta modello.** Il sistema è asintoticamente stabile se e solo se tutti i poli hanno parte reale negativa, cioè stanno nel semipiano sinistro aperto. Si scompone H(s) in fratti semplici: ogni polo p dà un modo esponenziale $e^{pt}$. Se la parte reale è negativa il modo decade a zero; se è positiva il modo diverge e il sistema è instabile.
 
       **Punti da toccare:**
 
@@ -18,7 +18,7 @@
       - Se $\mathrm{Re}\,p<0$ i modi decadono a zero
       - Se c'è un polo con $\mathrm{Re}\,p>0$ (o doppio sull'asse) il modo diverge
     en: |-
-      **Model answer.** The system is asymptotically stable if and only if all the poles have negative real part, i.e. lie in the open left half-plane. H(s) is expanded in partial fractions: each pole p gives an exponential mode e^{pt}. If the real part is negative the mode decays to zero; if it is positive the mode diverges and the system is unstable.
+      **Model answer.** The system is asymptotically stable if and only if all the poles have negative real part, i.e. lie in the open left half-plane. H(s) is expanded in partial fractions: each pole p gives an exponential mode $e^{pt}$. If the real part is negative the mode decays to zero; if it is positive the mode diverges and the system is unstable.
 
       **Points to cover:**
 
@@ -66,11 +66,11 @@
     it: |-
       $$\mathrm{Re}\,p_i<0\ \ \forall i$$
 
-      p_i poli di H
+      $p_i$ poli di H
     en: |-
       $$\mathrm{Re}\,p_i<0\ \ \forall i$$
 
-      p_i poles of H
+      $p_i$ poles of H
 - id: formula-routh2
   topic: stabilita-poli
   objectives:

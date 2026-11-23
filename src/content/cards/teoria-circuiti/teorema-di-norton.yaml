@@ -66,11 +66,11 @@
     it: |-
       $$I_N=I_{sc}$$
 
-      I_sc corrente con la porta in cortocircuito [A]
+      $I_{\mathrm{sc}}$ corrente con la porta in cortocircuito [A]
     en: |-
       $$I_N=I_{sc}$$
 
-      I_sc current with the port short-circuited [A]
+      $I_{\mathrm{sc}}$ current with the port short-circuited [A]
 - id: formula-n-zn
   topic: teorema-di-norton
   objectives:
@@ -83,11 +83,11 @@
     it: |-
       $$Z_N=Z_{th}$$
 
-      Z_N [Ω]
+      $Z_N$ [Ω]
     en: |-
       $$Z_N=Z_{th}$$
 
-      Z_N [Ω]
+      $Z_N$ [Ω]
 - id: formula-th-norton
   topic: teorema-di-norton
   objectives:
@@ -101,8 +101,8 @@
     it: |-
       $$I_N=\frac{V_{th}}{Z_{th}}$$
 
-      V_th [V]; Z_th [Ω]; I_N [A]
+      $V_{\mathrm{th}}$ [V]; $Z_{\mathrm{th}}$ [Ω]; $I_N$ [A]
     en: |-
       $$I_N=\frac{V_{th}}{Z_{th}}$$
 
-      V_th [V]; Z_th [Ω]; I_N [A]
+      $V_{\mathrm{th}}$ [V]; $Z_{\mathrm{th}}$ [Ω]; $I_N$ [A]

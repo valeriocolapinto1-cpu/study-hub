@@ -9,7 +9,7 @@
     en: '**Tree, cotree and matrices A and B.** Define tree and cotree, fundamental loops and cut sets, and write the relation between the blocks of $A$ and $B$.'
   back:
     it: |-
-      **Risposta modello.** Un albero è un sottografo connesso che contiene tutti i nodi e non ha maglie: ha n-1 rami; il coalbero ha b-n+1 rami. Ogni ramo di coalbero individua una maglia fondamentale, ogni ramo d'albero un taglio fondamentale. Dalla KVL e KCL si ha A B^T = 0. In forma a blocchi, con A = [At Ac] e B = [Bt 1], si ottiene B_t = -(A_t^{-1} A_c)^T, cioè -F^T.
+      **Risposta modello.** Un albero è un sottografo connesso che contiene tutti i nodi e non ha maglie: ha n-1 rami; il coalbero ha b-n+1 rami. Ogni ramo di coalbero individua una maglia fondamentale, ogni ramo d'albero un taglio fondamentale. Dalla KVL e KCL si ha A B^T = 0. In forma a blocchi, con A = [At Ac] e B = [Bt 1], si ottiene $B_t = -(A_t^{-1} A_c)^T$, cioè $-F^T$.
 
       **Punti da toccare:**
 
@@ -18,7 +18,7 @@
       - Dalla KVL/KCL: $A B^{T}=0$
       - Forma a blocchi: $B_t=-(A_t^{-1}A_c)^{T}$ (con $B_c=1$)
     en: |-
-      **Model answer.** A tree is a connected subgraph containing all the nodes and no loops: it has n-1 branches; the cotree has b-n+1 branches. Each cotree branch identifies a fundamental loop, each tree branch a fundamental cut set. From KVL and KCL, A B^T = 0. In block form, with A = [At Ac] and B = [Bt 1], B_t = -(A_t^{-1} A_c)^T, i.e. -F^T.
+      **Model answer.** A tree is a connected subgraph containing all the nodes and no loops: it has n-1 branches; the cotree has b-n+1 branches. Each cotree branch identifies a fundamental loop, each tree branch a fundamental cut set. From KVL and KCL, A B^T = 0. In block form, with A = [At Ac] and B = [Bt 1], $B_t = -(A_t^{-1} A_c)^T$, i.e. $-F^T$.
 
       **Points to cover:**
 

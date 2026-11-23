@@ -35,8 +35,8 @@
     it: Legge di Kirchhoff delle correnti
     en: Kirchhoff's current law
   symbols:
-    it: i_k corrente di ramo [A]; segno + uscenti, − entranti
-    en: i_k branch current [A]; sign + leaving, − entering
+    it: $i_k$ corrente di ramo [A]; segno + uscenti, − entranti
+    en: $i_k$ branch current [A]; sign + leaving, − entering
   usage:
     it: Ogni nodo e ogni taglio.
     en: Every node and every cut set.
@@ -50,8 +50,8 @@
     it: Legge di Kirchhoff delle tensioni
     en: Kirchhoff's voltage law
   symbols:
-    it: v_k tensione di ramo [V]; + se concorde col giro
-    en: v_k branch voltage [V]; + if it agrees with the traversal
+    it: $v_k$ tensione di ramo [V]; + se concorde col giro
+    en: $v_k$ branch voltage [V]; + if it agrees with the traversal
   usage:
     it: Ogni maglia.
     en: Every loop.
@@ -146,8 +146,8 @@
     it: In continua è un aperto.
     en: In DC it is an open circuit.
   pitfall:
-    it: Imporre v_C(0⁺)=0 dopo un regime.
-    en: Imposing v_C(0⁺)=0 after a steady state.
+    it: Imporre $v_C(0^+)=0$ dopo un regime.
+    en: Imposing $v_C(0^+)=0$ after a steady state.
 - id: induttore
   topic: relazioni-costitutive
   latex: v=L\frac{di}{dt},\qquad i(t)=i(t_0)+\frac1L\int_{t_0}^{t}v\,d\tau
@@ -161,8 +161,8 @@
     it: In continua è un corto.
     en: In DC it is a short circuit.
   pitfall:
-    it: Imporre i_L(0⁺)=0 dopo un regime.
-    en: Imposing i_L(0⁺)=0 after a steady state.
+    it: Imporre $i_L(0^+)=0$ dopo un regime.
+    en: Imposing $i_L(0^+)=0$ after a steady state.
 - id: cont-vc-il
   topic: relazioni-costitutive
   latex: v_C(0^+)=v_C(0^-),\qquad i_L(0^+)=i_L(0^-)
@@ -170,14 +170,14 @@
     it: Continuità di vC e iL
     en: Continuity of vC and iL
   symbols:
-    it: Valida se i_C e v_L sono limitate
-    en: Valid if i_C and v_L are bounded
+    it: Valida se $i_C$ e $v_L$ sono limitate
+    en: Valid if $i_C$ and $v_L$ are bounded
   usage:
     it: Passo 3 e 8 della procedura d'esame.
     en: Steps 3 and 8 of the exam procedure.
   pitfall:
-    it: Applicarla a v_out o ad altre grandezze.
-    en: Applying it to v_out or to other quantities.
+    it: Applicarla a $v_{\mathrm{out}}$ o ad altre grandezze.
+    en: Applying it to $v_{\mathrm{out}}$ or to other quantities.
 - id: energia-c
   topic: energia-e-bipoli-reali
   latex: W_C=\tfrac12\,C\,v^2
@@ -245,8 +245,8 @@
     it: Generatore controllato VCCS
     en: Controlled source VCCS
   symbols:
-    it: g_m transconduttanza [S]
-    en: g_m transconductance [S]
+    it: $g_m$ transconduttanza [S]
+    en: $g_m$ transconductance [S]
   usage:
     it: Transistor.
     en: Transistors.
@@ -260,8 +260,8 @@
     it: Generatore controllato CCVS
     en: Controlled source CCVS
   symbols:
-    it: r_m transresistenza [Ω]
-    en: r_m transresistance [Ω]
+    it: $r_m$ transresistenza [Ω]
+    en: $r_m$ transresistance [Ω]
   usage:
     it: Amplificatori di corrente-tensione.
     en: Current-to-voltage amplifiers.
@@ -320,8 +320,8 @@
     it: Impedenza riportata
     en: Reflected impedance
   symbols:
-    it: Z_L carico alla porta 2 [Ω]
-    en: Z_L load at port 2 [Ω]
+    it: $Z_L$ carico alla porta 2 [Ω]
+    en: $Z_L$ load at port 2 [Ω]
   usage:
     it: Riduzione di circuiti col trasformatore.
     en: Reducing circuits with a transformer.
@@ -341,8 +341,8 @@
     it: Op-amp ideale.
     en: Ideal op-amp.
   pitfall:
-    it: Credere che i_2 sia nulla.
-    en: Believing that i_2 is zero.
+    it: Credere che $i_2$ sia nulla.
+    en: Believing that $i_2$ is zero.
 - id: opamp-reale
   topic: nullore-e-amplificatore-operazionale
   latex: v_o=A\,(v_+-v_-),\quad A\in[10^5,10^8]
@@ -356,8 +356,8 @@
     it: Dal reale all'ideale.
     en: From the real to the ideal amplifier.
   pitfall:
-    it: Dimenticare le saturazioni ±V_cc.
-    en: Forgetting saturation at ±V_cc.
+    it: Dimenticare le saturazioni $\pm V_{\mathrm{cc}}$.
+    en: Forgetting saturation at $\pm V_{\mathrm{cc}}$.
 - id: invertente
   topic: nullore-e-amplificatore-operazionale
   latex: v_o=-\frac{R_2}{R_1}\,V_g
@@ -365,8 +365,8 @@
     it: Op-amp invertente
     en: Inverting op-amp
   symbols:
-    it: R_1 ingresso, R_2 retroazione
-    en: R_1 input, R_2 feedback
+    it: $R_1$ ingresso, $R_2$ retroazione
+    en: $R_1$ input, $R_2$ feedback
   usage:
     it: Amplificazione con inversione.
     en: Amplification with inversion.
@@ -380,14 +380,14 @@
     it: Sommatore invertente
     en: Inverting summer
   symbols:
-    it: R_0 retroazione
-    en: R_0 feedback
+    it: $R_0$ retroazione
+    en: $R_0$ feedback
   usage:
     it: Somma pesata.
     en: Weighted sum.
   pitfall:
-    it: Confondere R_0 con R_k.
-    en: Confusing R_0 with R_k.
+    it: Confondere $R_0$ con $R_k$.
+    en: Confusing $R_0$ with $R_k$.
 - id: non-invertente
   topic: nullore-e-amplificatore-operazionale
   latex: v_o=\left(1+\frac{R_2}{R_1}\right)V_g
@@ -512,8 +512,8 @@
     it: Tensioni indipendenti
     en: Independent voltages
   symbols:
-    it: v_t tensioni d'albero
-    en: v_t tree voltages
+    it: $v_t$ tensioni d'albero
+    en: $v_t$ tree voltages
   usage:
     it: Ridurre le incognite.
     en: Reducing the unknowns.
@@ -563,8 +563,8 @@
     it: Resistori in serie
     en: Resistors in series
   symbols:
-    it: R_k resistenze [Ω]
-    en: R_k resistances [Ω]
+    it: $R_k$ resistenze [Ω]
+    en: $R_k$ resistances [Ω]
   usage:
     it: Stessa corrente.
     en: Same current.
@@ -578,8 +578,8 @@
     it: Resistori in parallelo
     en: Resistors in parallel
   symbols:
-    it: R_k resistenze [Ω]
-    en: R_k resistances [Ω]
+    it: $R_k$ resistenze [Ω]
+    en: $R_k$ resistances [Ω]
   usage:
     it: Stessa tensione.
     en: Same voltage.
@@ -593,8 +593,8 @@
     it: Partitore di tensione
     en: Voltage divider
   symbols:
-    it: v tensione totale [V]; R_k [Ω]
-    en: v total voltage [V]; R_k [Ω]
+    it: v tensione totale [V]; $R_k$ [Ω]
+    en: v total voltage [V]; $R_k$ [Ω]
   usage:
     it: Serie senza carico a valle.
     en: Series with no downstream load.
@@ -623,8 +623,8 @@
     it: Metodo dei nodi (rete resistiva)
     en: Node method (resistive network)
   symbols:
-    it: i_s correnti entranti nei nodi
-    en: i_s currents entering the nodes
+    it: $i_s$ correnti entranti nei nodi
+    en: $i_s$ currents entering the nodes
   usage:
     it: Reti con pochi nodi.
     en: Networks with few nodes.
@@ -638,8 +638,8 @@
     it: Equazioni ai nodi
     en: Node equations
   symbols:
-    it: 𝒢 = diag(G_k)
-    en: 𝒢 = diag(G_k)
+    it: 𝒢 = $\operatorname{diag}(G_k)$
+    en: 𝒢 = $\operatorname{diag}(G_k)$
   usage:
     it: Forma compatta.
     en: Compact form.
@@ -650,8 +650,8 @@
     it: Metodo delle maglie
     en: Mesh method
   symbols:
-    it: v_s tensioni dei generatori nel giro
-    en: v_s source voltages along the loop
+    it: $v_s$ tensioni dei generatori nel giro
+    en: $v_s$ source voltages along the loop
   usage:
     it: Reti con poche maglie.
     en: Networks with few loops.
@@ -665,8 +665,8 @@
     it: Equazioni alle maglie
     en: Mesh equations
   symbols:
-    it: ℛ = diag(R_k)
-    en: ℛ = diag(R_k)
+    it: ℛ = $\operatorname{diag}(R_k)$
+    en: ℛ = $\operatorname{diag}(R_k)$
   usage:
     it: Forma compatta.
     en: Compact form.
@@ -677,14 +677,14 @@
     it: Costante di tempo RC
     en: RC time constant
   symbols:
-    it: R_eq vista dai morsetti di C, indipendenti spenti [Ω]; C [F]
-    en: R_eq seen from the terminals of C, independent sources off [Ω]; C [F]
+    it: $R_{\mathrm{eq}}$ vista dai morsetti di C, indipendenti spenti [Ω]; C [F]
+    en: $R_{\mathrm{eq}}$ seen from the terminals of C, independent sources off [Ω]; C [F]
   usage:
     it: Circuiti del primo ordine con condensatore.
     en: First-order circuits with a capacitor.
   pitfall:
-    it: Usare una resistenza qualsiasi invece di R_eq.
-    en: Using any resistance instead of R_eq.
+    it: Usare una resistenza qualsiasi invece di $R_{\mathrm{eq}}$.
+    en: Using any resistance instead of $R_{\mathrm{eq}}$.
 - id: tau-rl
   topic: circuiti-primo-ordine
   latex: \tau=\dfrac{L}{R_{eq}}
@@ -707,8 +707,8 @@
     it: Soluzione del primo ordine
     en: First-order solution
   symbols:
-    it: x_0 = x(0⁻)
-    en: x_0 = x(0⁻)
+    it: $x_0$ = x(0⁻)
+    en: $x_0$ = x(0⁻)
   usage:
     it: Eccitazione variabile.
     en: Time-varying excitation.
@@ -737,8 +737,8 @@
     it: Fasore
     en: Phasor
   symbols:
-    it: V_m ampiezza di picco, φ fase
-    en: V_m peak amplitude, φ phase
+    it: $V_m$ ampiezza di picco, φ fase
+    en: $V_m$ peak amplitude, φ phase
   usage:
     it: Regime sinusoidale.
     en: Sinusoidal steady state.
@@ -857,8 +857,8 @@
     it: Partitore di tensione complesso
     en: Complex voltage divider
   symbols:
-    it: V̇ tensione totale; Z_k impedenza del tratto k [Ω]
-    en: V̇ total voltage; Z_k impedance of section k [Ω]
+    it: V̇ tensione totale; $Z_k$ impedenza del tratto k [Ω]
+    en: V̇ total voltage; $Z_k$ impedance of section k [Ω]
   usage:
     it: Serie senza carico a valle.
     en: Series with no downstream load.
@@ -869,8 +869,8 @@
     it: Validità dei fasori
     en: Validity of phasors
   symbols:
-    it: a_k, b_k coefficienti reali; p_i poli
-    en: a_k, b_k real coefficients; p_i poles
+    it: $a_k$, $b_k$ coefficienti reali; $p_i$ poli
+    en: $a_k$, $b_k$ real coefficients; $p_i$ poles
   usage:
     it: Condizione di applicabilità.
     en: Applicability condition.
@@ -896,8 +896,8 @@
     it: Sovrapposizione nel tempo
     en: Superposition in time
   symbols:
-    it: ω_k frequenze diverse
-    en: ω_k different frequencies
+    it: $\omega_k$ frequenze diverse
+    en: $\omega_k$ different frequencies
   usage:
     it: Più generatori a frequenze diverse.
     en: Several sources at different frequencies.
@@ -911,8 +911,8 @@
     it: Condizione iniziale nel caso misto
     en: Initial condition in the mixed case
   symbols:
-    it: x_dc valore continuo; X_k fasore della k-esima sinusoide
-    en: x_dc DC value; X_k phasor of the k-th sinusoid
+    it: $x_{\mathrm{dc}}$ valore continuo; $X_k$ fasore della k-esima sinusoide
+    en: $x_{\mathrm{dc}}$ DC value; $X_k$ phasor of the k-th sinusoid
   usage:
     it: Passo 3 dell'esercizio.
     en: Step 3 of the exercise.
@@ -926,8 +926,8 @@
     it: Potenza attiva (picco)
     en: Active power (peak)
   symbols:
-    it: V_m, I_m ampiezze di picco; φ sfasamento tensione–corrente
-    en: V_m, I_m peak amplitudes; φ voltage–current phase shift
+    it: $V_m$, $I_m$ ampiezze di picco; φ sfasamento tensione–corrente
+    en: $V_m$, $I_m$ peak amplitudes; φ voltage–current phase shift
   usage:
     it: Valori di picco.
     en: Peak values.
@@ -1364,8 +1364,8 @@
     it: Generatore sinusoidale in Laplace
     en: Sinusoidal source in Laplace
   symbols:
-    it: V_m ampiezza; ω pulsazione
-    en: V_m amplitude; ω angular frequency
+    it: $V_m$ ampiezza; ω pulsazione
+    en: $V_m$ amplitude; ω angular frequency
   usage:
     it: Generatori sinusoidali in Laplace.
     en: Sinusoidal sources in Laplace.
@@ -1376,8 +1376,8 @@
     it: Condensatore con condizione iniziale (serie)
     en: Capacitor with initial condition (series)
   symbols:
-    it: I(s) corrente; C [F]; v_C(0⁻) tensione iniziale [V]
-    en: I(s) current; C [F]; v_C(0⁻) initial voltage [V]
+    it: I(s) corrente; C [F]; $v_C(0^-)$ tensione iniziale [V]
+    en: I(s) current; C [F]; $v_C(0^-)$ initial voltage [V]
   usage:
     it: Passo 4 dell'esercizio.
     en: Step 4 of the exercise.
@@ -1391,8 +1391,8 @@
     it: Condensatore con condizione iniziale (parallelo)
     en: Capacitor with initial condition (parallel)
   symbols:
-    it: generatore di corrente C v_C(0⁻)
-    en: current source C v_C(0⁻)
+    it: generatore di corrente C $v_C(0^-)$
+    en: current source C $v_C(0^-)$
 - id: modello-l-serie
   topic: condizioni-iniziali-generatori
   latex: V=sL\,I-L\,i_L(0^-)
@@ -1400,8 +1400,8 @@
     it: Induttore con condizione iniziale (serie)
     en: Inductor with initial condition (series)
   symbols:
-    it: L [H]; i_L(0⁻) corrente iniziale [A]
-    en: L [H]; i_L(0⁻) initial current [A]
+    it: L [H]; $i_L(0^-)$ corrente iniziale [A]
+    en: L [H]; $i_L(0^-)$ initial current [A]
   usage:
     it: Induttore con condizione iniziale (modello in serie).
     en: Inductor with initial condition (series model).
@@ -1412,8 +1412,8 @@
     it: Induttore con condizione iniziale (parallelo)
     en: Inductor with initial condition (parallel)
   symbols:
-    it: L [H]; i_L(0⁻) [A]
-    en: L [H]; i_L(0⁻) [A]
+    it: L [H]; $i_L(0^-)$ [A]
+    en: L [H]; $i_L(0^-)$ [A]
   usage:
     it: Induttore con condizione iniziale (modello in parallelo).
     en: Inductor with initial condition (parallel model).
@@ -1508,8 +1508,8 @@
     it: Libera + forzata
     en: Zero-input + zero-state
   symbols:
-    it: y_lib da condizioni iniziali; y_forz da ingresso
-    en: y_zi from the initial conditions; y_zs from the input
+    it: $y_{\mathrm{lib}}$ da condizioni iniziali; $y_{\mathrm{forz}}$ da ingresso
+    en: $y_{\mathrm{zi}}$ from the initial conditions; $y_{\mathrm{zs}}$ from the input
   usage:
     it: Scomposizione della risposta completa.
     en: Splitting the complete response.
@@ -1520,8 +1520,8 @@
     it: Stabilità asintotica
     en: Asymptotic stability
   symbols:
-    it: p_i poli di H
-    en: p_i poles of H
+    it: $p_i$ poli di H
+    en: $p_i$ poles of H
   usage:
     it: Condizione necessaria e sufficiente.
     en: Necessary and sufficient condition.
@@ -1586,8 +1586,8 @@
     it: Pulsazione di taglio RC
     en: RC cut-off frequency
   symbols:
-    it: R [Ω]; C [F]; ω_c in rad/s
-    en: R [Ω]; C [F]; ω_c in rad/s
+    it: R [Ω]; C [F]; $\omega_c$ in rad/s
+    en: R [Ω]; C [F]; $\omega_c$ in rad/s
   usage:
     it: Pulsazione di taglio a 3 dB del filtro RC.
     en: 3 dB cut-off of the RC filter.
@@ -1598,8 +1598,8 @@
     it: Pulsazione di taglio RL
     en: RL cut-off frequency
   symbols:
-    it: R [Ω]; L [H]; ω_c in rad/s
-    en: R [Ω]; L [H]; ω_c in rad/s
+    it: R [Ω]; L [H]; $\omega_c$ in rad/s
+    en: R [Ω]; L [H]; $\omega_c$ in rad/s
   usage:
     it: Pulsazione di taglio a 3 dB del filtro RL.
     en: 3 dB cut-off of the RL filter.
@@ -1610,8 +1610,8 @@
     it: Modulo del passa-basso
     en: Magnitude of the low-pass
   symbols:
-    it: ω_c pulsazione di taglio [rad/s]
-    en: ω_c cut-off angular frequency [rad/s]
+    it: $\omega_c$ pulsazione di taglio [rad/s]
+    en: $\omega_c$ cut-off angular frequency [rad/s]
   usage:
     it: Modulo di un passa-basso del primo ordine.
     en: Magnitude of a first-order low-pass.
@@ -1736,8 +1736,8 @@
     it: Impedenza di Thevenin
     en: Thévenin impedance
   symbols:
-    it: I_sc corrente di cortocircuito [A]; V, I tensione e corrente del generatore di prova
-    en: I_sc short-circuit current [A]; V, I voltage and current of the test source
+    it: $I_{\mathrm{sc}}$ corrente di cortocircuito [A]; V, I tensione e corrente del generatore di prova
+    en: $I_{\mathrm{sc}}$ short-circuit current [A]; V, I voltage and current of the test source
   usage:
     it: Impedenza di Thevenin.
     en: Thévenin impedance.
@@ -1772,8 +1772,8 @@
     it: Corrente di Norton
     en: Norton current
   symbols:
-    it: I_sc corrente con la porta in cortocircuito [A]
-    en: I_sc current with the port short-circuited [A]
+    it: $I_{\mathrm{sc}}$ corrente con la porta in cortocircuito [A]
+    en: $I_{\mathrm{sc}}$ current with the port short-circuited [A]
   usage:
     it: Generatore del circuito equivalente di Norton.
     en: Source of the Norton equivalent.
@@ -1787,8 +1787,8 @@
     it: Impedenza di Norton
     en: Norton impedance
   symbols:
-    it: Z_N [Ω]
-    en: Z_N [Ω]
+    it: $Z_N$ [Ω]
+    en: $Z_N$ [Ω]
   usage:
     it: Impedenza dell'equivalente di Norton.
     en: Impedance of the Norton equivalent.
@@ -1799,8 +1799,8 @@
     it: Trasformazione di generatori
     en: Source transformation
   symbols:
-    it: V_th [V]; Z_th [Ω]; I_N [A]
-    en: V_th [V]; Z_th [Ω]; I_N [A]
+    it: $V_{\mathrm{th}}$ [V]; $Z_{\mathrm{th}}$ [Ω]; $I_N$ [A]
+    en: $V_{\mathrm{th}}$ [V]; $Z_{\mathrm{th}}$ [Ω]; $I_N$ [A]
   usage:
     it: Passare da Thevenin a Norton e viceversa.
     en: Switching between Thévenin and Norton.
@@ -1811,8 +1811,8 @@
     it: Rete a N porte
     en: N-port network
   symbols:
-    it: N numero di porte; v_k, i_k tensione e corrente alla porta k
-    en: N number of ports; v_k, i_k voltage and current at port k
+    it: N numero di porte; $v_k$, $i_k$ tensione e corrente alla porta k
+    en: N number of ports; $v_k$, $i_k$ voltage and current at port k
   usage:
     it: Descrizione di reti a più porte.
     en: Describing multi-port networks.
@@ -1832,8 +1832,8 @@
     it: Matrice Y
     en: Y matrix
   symbols:
-    it: y_jk in siemens [S]; correnti entranti nelle porte
-    en: y_jk in siemens [S]; currents entering the ports
+    it: $y_{jk}$ in siemens [S]; correnti entranti nelle porte
+    en: $y_{jk}$ in siemens [S]; currents entering the ports
   usage:
     it: Rappresentazione in ammettenze.
     en: Admittance representation.
@@ -1883,8 +1883,8 @@
     it: Rete a T
     en: T network
   symbols:
-    it: R_a, R_b in serie; R_c in derivazione
-    en: R_a, R_b in series; R_c in shunt
+    it: $R_a$, $R_b$ in serie; $R_c$ in derivazione
+    en: $R_a$, $R_b$ in series; $R_c$ in shunt
 - id: rete-pi
   topic: doppi-bipoli-z-y
   latex: Y=\begin{pmatrix}G_a+G_c&-G_c\\-G_c&G_b+G_c\end{pmatrix}
@@ -1892,8 +1892,8 @@
     it: Rete a π
     en: π network
   symbols:
-    it: G_a, G_b in derivazione; G_c in serie
-    en: G_a, G_b in shunt; G_c in series
+    it: $G_a$, $G_b$ in derivazione; $G_c$ in serie
+    en: $G_a$, $G_b$ in shunt; $G_c$ in series
 - id: t-def
   topic: altre-rappresentazioni-doppi-bipoli
   latex: \begin{pmatrix}v_1\\i_1\end{pmatrix}=\begin{pmatrix}A&B\\C&D\end{pmatrix}\begin{pmatrix}v_2\\-i_2\end{pmatrix}
@@ -1916,8 +1916,8 @@
     it: Da Z a T
     en: From Z to T
   symbols:
-    it: Δ_z = z₁₁z₂₂ − z₁₂z₂₁
-    en: Δ_z = z₁₁z₂₂ − z₁₂z₂₁
+    it: $\Delta_z$ = z₁₁z₂₂ − z₁₂z₂₁
+    en: $\Delta_z$ = z₁₁z₂₂ − z₁₂z₂₁
 - id: t-recip
   topic: altre-rappresentazioni-doppi-bipoli
   latex: AD-BC=1
@@ -1946,8 +1946,8 @@
     it: Serie-serie
     en: Series-series
   symbols:
-    it: Z_a, Z_b matrici delle impedenze [Ω]
-    en: Z_a, Z_b impedance matrices [Ω]
+    it: $Z_a$, $Z_b$ matrici delle impedenze [Ω]
+    en: $Z_a$, $Z_b$ impedance matrices [Ω]
   usage:
     it: Prova di validità.
     en: Validity test.
@@ -1958,8 +1958,8 @@
     it: Parallelo-parallelo
     en: Parallel-parallel
   symbols:
-    it: Y_a, Y_b matrici delle ammettenze [S]
-    en: Y_a, Y_b admittance matrices [S]
+    it: $Y_a$, $Y_b$ matrici delle ammettenze [S]
+    en: $Y_a$, $Y_b$ admittance matrices [S]
   usage:
     it: Prova di validità.
     en: Validity test.
@@ -1970,8 +1970,8 @@
     it: Cascata
     en: Cascade
   symbols:
-    it: T_a, T_b matrici di trasmissione
-    en: T_a, T_b transmission matrices
+    it: $T_a$, $T_b$ matrici di trasmissione
+    en: $T_a$, $T_b$ transmission matrices
   usage:
     it: Doppi bipoli in cascata.
     en: Two-ports in cascade.
@@ -2000,8 +2000,8 @@
     it: Potenza massima (picco)
     en: Maximum power (peak)
   symbols:
-    it: V_th di picco
-    en: peak V_th
+    it: $V_{\mathrm{th}}$ di picco
+    en: peak $V_{\mathrm{th}}$
 - id: pmax-eff
   topic: massimo-trasferimento-potenza
   latex: P_{max}=\frac{|V_{th}|^2}{4R_{th}}
@@ -2009,8 +2009,8 @@
     it: Potenza massima (efficace)
     en: Maximum power (RMS)
   symbols:
-    it: V_th efficace
-    en: RMS V_th
+    it: $V_{\mathrm{th}}$ efficace
+    en: RMS $V_{\mathrm{th}}$
 - id: zl-coniugata
   topic: massimo-trasferimento-potenza
   latex: Z_L=Z_{th}^{*}
@@ -2018,14 +2018,14 @@
     it: Adattamento coniugato
     en: Conjugate matching
   symbols:
-    it: Z_th* coniugato dell'impedenza di Thevenin [Ω]
-    en: Z_th* conjugate of the Thévenin impedance [Ω]
+    it: $Z_{\mathrm{th}}^*$ coniugato dell'impedenza di Thevenin [Ω]
+    en: $Z_{\mathrm{th}}^*$ conjugate of the Thévenin impedance [Ω]
   usage:
     it: Massimo trasferimento di potenza attiva.
     en: Maximum active power transfer.
   pitfall:
-    it: Z_L = Z_th.
-    en: Z_L = Z_th.
+    it: $Z_L = Z_{\mathrm{th}}$.
+    en: $Z_L = Z_{\mathrm{th}}$.
 - id: rl-modulo
   topic: massimo-trasferimento-potenza
   latex: R_L=|Z_{th}|=\sqrt{R_{th}^2+X_{th}^2}
@@ -2033,8 +2033,8 @@
     it: Carico resistivo
     en: Resistive load
   symbols:
-    it: R_th, X_th resistenza e reattanza di Thevenin [Ω]
-    en: R_th, X_th Thévenin resistance and reactance [Ω]
+    it: $R_{\mathrm{th}}$, $X_{\mathrm{th}}$ resistenza e reattanza di Thevenin [Ω]
+    en: $R_{\mathrm{th}}$, $X_{\mathrm{th}}$ Thévenin resistance and reactance [Ω]
   usage:
     it: Carico puramente resistivo.
     en: Purely resistive load.
@@ -2057,8 +2057,8 @@
     it: Adattamento con trasformatore
     en: Matching with a transformer
   symbols:
-    it: n rapporto di trasformazione; R_L carico [Ω]; R_th [Ω]
-    en: n turns ratio; R_L load [Ω]; R_th [Ω]
+    it: n rapporto di trasformazione; $R_L$ carico [Ω]; $R_{\mathrm{th}}$ [Ω]
+    en: n turns ratio; $R_L$ load [Ω]; $R_{\mathrm{th}}$ [Ω]
   usage:
     it: Adattare un carico con un trasformatore ideale.
     en: Matching a load with an ideal transformer.

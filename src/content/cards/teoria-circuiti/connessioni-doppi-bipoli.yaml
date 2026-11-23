@@ -36,11 +36,11 @@
     it: |-
       $$Z=Z_a+Z_b$$
 
-      Z_a, Z_b matrici delle impedenze [Ω]
+      $Z_a$, $Z_b$ matrici delle impedenze [Ω]
     en: |-
       $$Z=Z_a+Z_b$$
 
-      Z_a, Z_b impedance matrices [Ω]
+      $Z_a$, $Z_b$ impedance matrices [Ω]
 - id: formula-conn-pp
   topic: connessioni-doppi-bipoli
   objectives:
@@ -53,11 +53,11 @@
     it: |-
       $$Y=Y_a+Y_b$$
 
-      Y_a, Y_b matrici delle ammettenze [S]
+      $Y_a$, $Y_b$ matrici delle ammettenze [S]
     en: |-
       $$Y=Y_a+Y_b$$
 
-      Y_a, Y_b admittance matrices [S]
+      $Y_a$, $Y_b$ admittance matrices [S]
 - id: formula-conn-cascata
   topic: connessioni-doppi-bipoli
   objectives:
@@ -71,8 +71,8 @@
     it: |-
       $$T=T_a\,T_b$$
 
-      T_a, T_b matrici di trasmissione
+      $T_a$, $T_b$ matrici di trasmissione
     en: |-
       $$T=T_a\,T_b$$
 
-      T_a, T_b transmission matrices
+      $T_a$, $T_b$ transmission matrices
