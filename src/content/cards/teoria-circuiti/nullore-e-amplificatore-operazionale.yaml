@@ -37,7 +37,7 @@
     en: '**From the real operational amplifier to the nullor.** Explain how the nullor is obtained from the linear model of the real operational amplifier.'
   back:
     it: |-
-      **Risposta modello.** Il modello lineare ha una resistenza d'ingresso Ri, una d'uscita Ro e un generatore controllato v_o = A v_d. Gli ordini di grandezza sono A molto grande, Ri molto grande e Ro piccola. Nel limite ideale A e Ri tendono a infinito e Ro a zero, quindi v_d è nulla e le correnti d'ingresso sono nulle: è un nullore.
+      **Risposta modello.** Il modello lineare ha una resistenza d'ingresso Ri, una d'uscita Ro e un generatore controllato $v_o = A v_d$. Gli ordini di grandezza sono A molto grande, Ri molto grande e Ro piccola. Nel limite ideale A e Ri tendono a infinito e Ro a zero, quindi $v_d$ è nulla e le correnti d'ingresso sono nulle: è un nullore.
 
       **Punti da toccare:**
 
@@ -46,7 +46,7 @@
       - Limite ideale: $A\to\infty$, $R_i\to\infty$, $R_o\to0$
       - Quindi $v_d=0$ e correnti d'ingresso nulle: nullore
     en: |-
-      **Model answer.** The linear model has an input resistance Ri, an output resistance Ro and a controlled source v_o = A v_d. The orders of magnitude are A very large, Ri very large and Ro small. In the ideal limit A and Ri tend to infinity and Ro to zero, so v_d is zero and the input currents are zero: it is a nullor.
+      **Model answer.** The linear model has an input resistance Ri, an output resistance Ro and a controlled source $v_o = A v_d$. The orders of magnitude are A very large, Ri very large and Ro small. In the ideal limit A and Ri tend to infinity and Ro to zero, so $v_d$ is zero and the input currents are zero: it is a nullor.
 
       **Points to cover:**
 
@@ -101,11 +101,11 @@
     it: |-
       $$v_o=-\frac{R_2}{R_1}\,V_g$$
 
-      R_1 ingresso, R_2 retroazione
+      $R_1$ ingresso, $R_2$ retroazione
     en: |-
       $$v_o=-\frac{R_2}{R_1}\,V_g$$
 
-      R_1 input, R_2 feedback
+      $R_1$ input, $R_2$ feedback
 - id: formula-sommatore
   topic: nullore-e-amplificatore-operazionale
   objectives:
@@ -118,11 +118,11 @@
     it: |-
       $$v_o=-R_0\left(\frac{V_{g1}}{R_1}+\frac{V_{g2}}{R_2}+\frac{V_{g3}}{R_3}\right)$$
 
-      R_0 retroazione
+      $R_0$ retroazione
     en: |-
       $$v_o=-R_0\left(\frac{V_{g1}}{R_1}+\frac{V_{g2}}{R_2}+\frac{V_{g3}}{R_3}\right)$$
 
-      R_0 feedback
+      $R_0$ feedback
 - id: formula-non-invertente
   topic: nullore-e-amplificatore-operazionale
   objectives:

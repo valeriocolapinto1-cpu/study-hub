@@ -182,10 +182,10 @@
   back:
     it: >-
       Corpo perfettamente rigido; campo di gravità uniforme (per baricentro ≡ CM); vincoli lisci o scabri
-      modellati con reazioni normali e attrito statico ≤ μ_sN.
+      modellati con reazioni normali e attrito statico ≤ $\mu_s N$.
     en: >-
       Perfectly rigid body; uniform gravitational field (for centre of gravity ≡ CM); smooth or rough
-      constraints modelled with normal reactions and static friction ≤ μ_sN.
+      constraints modelled with normal reactions and static friction ≤ $\mu_s N$.
 - id: statica-corpo-rigido-casi-limite
   topic: statica-corpo-rigido
   objectives:
@@ -230,7 +230,7 @@
       - Sbagliare il braccio delle forze (usare la distanza dal punto di applicazione invece che dalla retta
       d'azione).
 
-      - Dimenticare che l'attrito statico è un'incognita ≤ μ_sN, non uguale a μ_sN salvo al limite dello
+      - Dimenticare che l'attrito statico è un'incognita ≤ $\mu_s N$, non uguale a $\mu_s N$ salvo al limite dello
       slittamento.
     en: >-
       - Imposing only ΣF = 0 and forgetting torques (a couple has zero resultant but makes things rotate).
@@ -240,5 +240,5 @@
       - Getting the lever arm wrong (using the distance from the point of application instead of from the line
       of action).
 
-      - Forgetting that static friction is an unknown ≤ μ_sN, not equal to μ_sN except at the verge of
+      - Forgetting that static friction is an unknown ≤ $\mu_s N$, not equal to $\mu_s N$ except at the verge of
       slipping.

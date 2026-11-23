@@ -7,7 +7,6 @@ import ExerciseList, { packItem } from '../../islands/ExerciseList';
 import SectionHeader from './SectionHeader.astro';
 import { getCourseData } from '../../lib/course-data';
 import { t, type Lang } from '../../i18n';
-import { texToPlain } from '../../lib/inline-tex';
 
 interface Props {
   lang: Lang;
@@ -15,10 +14,10 @@ interface Props {
 }
 const { lang, courseId } = Astro.props;
 const data = await getCourseData(courseId, lang);
-// Le opzioni di un <select> non possono contenere KaTeX: obiettivi in testo semplice.
+// Le opzioni di un <select> non possono contenere KaTeX: obiettivi in testo semplice (senza `tex`).
 const topics = data.topics.map((tp) => ({
   ...tp,
-  objectives: tp.objectives.map((o) => ({ ...o, text: texToPlain(o.text) })),
+  objectives: tp.objectives.map(({ id, text }) => ({ id, text })),
 }));
 const counts = new Map<string, number>();
 for (const e of data.exercises) counts.set(e.topic, (counts.get(e.topic) ?? 0) + 1);

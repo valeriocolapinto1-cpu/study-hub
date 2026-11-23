@@ -45,6 +45,8 @@ export interface ExamQuestion {
   objectives: string[];
   /** Etichetta della parte (es. «Esercizio 1»), già localizzata. */
   label: string;
+  /** Etichetta con la matematica (`$…$`), se ne contiene. */
+  labelTex?: string;
   points: number;
   category: QuestionCategory;
   /** Seme della variante per gli esercizi generati. */
@@ -175,13 +177,20 @@ export function assembleExam(
   const all = candidates(pool, topics);
   const used = new Set<string>();
   const usedTopics = new Map<string, number>();
-  const parts: Array<{ label: string; points: number; category: QuestionCategory; tag?: string }> = [];
+  const parts: Array<{
+    label: string;
+    labelTex?: string;
+    points: number;
+    category: QuestionCategory;
+    tag?: string;
+  }> = [];
 
   if (config.mode === 'completa' && course.structure.length > 0) {
     const anyPoints = course.structure.some((p) => p.points !== undefined);
     for (const p of course.structure)
       parts.push({
         label: p.label,
+        ...(p.labelTex ? { labelTex: p.labelTex } : {}),
         points: anyPoints ? (p.points ?? 0) : 1,
         category: categoryOf(p.kind),
         ...(p.tag ? { tag: p.tag } : {}),
@@ -215,6 +224,7 @@ export function assembleExam(
       topic: c.topic,
       objectives: c.objectives,
       label: part.label,
+      ...(part.labelTex ? { labelTex: part.labelTex } : {}),
       points: part.points,
       category: c.category,
       ...(c.generated ? { seed: deriveSeed(config.seed, i, c.id) } : {}),

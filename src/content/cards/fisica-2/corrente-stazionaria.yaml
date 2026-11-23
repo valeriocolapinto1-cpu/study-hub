@@ -344,11 +344,11 @@
     it: |-
       $$\text{voltmetro a valle: } R_{mis} = \frac{R\,R_V}{R+R_V}\qquad \text{voltmetro a monte: } R_{mis} = R + R_A$$
 
-      R_A resistenza dell'amperometro, R_V del voltmetro.
+      $R_A$ resistenza dell'amperometro, $R_V$ del voltmetro.
     en: |-
       $$\text{voltmetro a valle: } R_{mis} = \frac{R\,R_V}{R+R_V}\qquad \text{voltmetro a monte: } R_{mis} = R + R_A$$
 
-      R_A resistance of the ammeter, R_V of the voltmeter.
+      $R_A$ resistance of the ammeter, $R_V$ of the voltmeter.
 - id: formula-rc-carica
   topic: corrente-stazionaria
   objectives:

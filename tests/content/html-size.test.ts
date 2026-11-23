@@ -28,6 +28,8 @@ const EXCEPTIONS: Record<string, string> = {
   'en/anno-2/fisica-2/teoria/magnetostatica-nel-vuoto/index.html': 'teoria con molte formule',
   'it/anno-2/fisica-2/teoria/campi-variabili/index.html': 'teoria con molte formule',
   'en/anno-2/fisica-2/teoria/campi-variabili/index.html': 'teoria con molte formule',
+  // esercizi con molte etichette dei campi in KaTeX (revisione 2, R10: `i_L(τ)`, `|V_{R_2}(0^+)|`…, ~9 KB)
+  'it/anno-2/fisica-2/esercizi/campi-variabili/index.html': 'etichette dei campi in KaTeX',
 };
 
 function htmlFiles(dir: string): string[] {

@@ -23,15 +23,15 @@
       **Scaletta:**
 
 
-      - Enunciare e giustificare il vincolo v_cm = ωR
+      - Enunciare e giustificare il vincolo $v_{\mathrm{cm}} = \omega R$
 
       - Scrivere K con König e il vincolo (forma con β)
 
       - Impostare le due cardinali per la discesa dal piano inclinato
 
-      - Ricavare a_cm = g sinθ/(1+β) e f_s
+      - Ricavare $a_{\mathrm{cm}} = g \sin\theta/(1+\beta)$ e $f_s$
 
-      - Ricavare la condizione sul μ_s per il rotolamento puro
+      - Ricavare la condizione sul $\mu_s$ per il rotolamento puro
 
       - Rifare il calcolo con la conservazione dell'energia
 
@@ -46,15 +46,15 @@
       **Outline:**
 
 
-      - State and justify the constraint v_cm = ωR
+      - State and justify the constraint $v_{\mathrm{cm}} = \omega R$
 
       - Write K with König and the constraint (β form)
 
       - Set up the two cardinal equations for rolling down an incline
 
-      - Derive a_cm = g sinθ/(1+β) and f_s
+      - Derive $a_{\mathrm{cm}} = g \sin\theta/(1+\beta)$ and $f_s$
 
-      - Derive the condition on μ_s for pure rolling
+      - Derive the condition on $\mu_s$ for pure rolling
 
       - Redo the calculation with energy conservation
 
@@ -189,10 +189,10 @@
     en: 'Validity assumptions: Pure rolling'
   back:
     it: >-
-      Corpo rigido a sezione circolare; contatto puntiforme; rotolamento puro (v_contatto = 0) con attrito
+      Corpo rigido a sezione circolare; contatto puntiforme; rotolamento puro ($v_{\mathrm{contatto}} = 0$) con attrito
       statico sufficiente; si trascura l'attrito volvente (resistenza al rotolamento).
     en: >-
-      Rigid body with circular cross-section; point contact; pure rolling (v_contact = 0) with sufficient
+      Rigid body with circular cross-section; point contact; pure rolling ($v_{\mathrm{contact}} = 0$) with sufficient
       static friction; rolling resistance is neglected.
 - id: rotolamento-puro-casi-limite
   topic: rotolamento-puro
@@ -210,12 +210,12 @@
     en: 'Limiting cases: Pure rolling'
   back:
     it: >-
-      μ_s = 0 (piano liscio): il corpo non può rotolare, slitta traslando con a = g sin θ senza ruotare. β → 0
-      (massa tutta nel centro): a → g sin θ, come un punto che scivola. Strisciamento: v_cm ≠ ωR, l'attrito
+      $\mu_s = 0$ (piano liscio): il corpo non può rotolare, slitta traslando con a = g sin θ senza ruotare. β → 0
+      (massa tutta nel centro): a → g sin θ, come un punto che scivola. Strisciamento: $v_{\mathrm{cm}} \ne \omega R$, l'attrito
       diventa dinamico e dissipa finché il vincolo non si ristabilisce.
     en: >-
-      μ_s = 0 (smooth plane): the body cannot roll, it slides translating with a = g sin θ without rotating. β
-      → 0 (all mass at the centre): a → g sin θ, like a sliding point. Slipping: v_cm ≠ ωR, friction becomes
+      $\mu_s = 0$ (smooth plane): the body cannot roll, it slides translating with a = g sin θ without rotating. β
+      → 0 (all mass at the centre): a → g sin θ, like a sliding point. Slipping: $v_{\mathrm{cm}} \ne \omega R$, friction becomes
       kinetic and dissipates until the constraint is restored.
 - id: rotolamento-puro-errori
   topic: rotolamento-puro
@@ -236,17 +236,17 @@
       - Dire che l'attrito statico dissipa energia nel rotolamento puro: il punto di applicazione è fermo, W =
       0.
 
-      - Imporre f_s = μ_sN: nel rotolamento f_s è un'incognita, μ_sN è solo il suo limite.
+      - Imporre $f_s = \mu_s N$: nel rotolamento $f_s$ è un'incognita, $\mu_s N$ è solo il suo limite.
 
       - Dimenticare il termine rotazionale nell'energia.
 
-      - Applicare v_cm = ωR anche quando il corpo striscia.
+      - Applicare $v_{\mathrm{cm}} = \omega R$ anche quando il corpo striscia.
     en: >-
       - Saying that static friction dissipates energy in pure rolling: the point of application is at rest, W
       = 0.
 
-      - Imposing f_s = μ_sN: in rolling f_s is an unknown, μ_sN is only its limit.
+      - Imposing $f_s = \mu_s N$: in rolling $f_s$ is an unknown, $\mu_s N$ is only its limit.
 
       - Forgetting the rotational term in the energy.
 
-      - Applying v_cm = ωR even when the body slips.
+      - Applying $v_{\mathrm{cm}} = \omega R$ even when the body slips.

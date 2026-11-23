@@ -38,11 +38,11 @@
     it: |-
       $$\sum_{k\in\text{nodo/taglio}}\pm i_k=0$$
 
-      i_k corrente di ramo [A]; segno + uscenti, − entranti
+      $i_k$ corrente di ramo [A]; segno + uscenti, − entranti
     en: |-
       $$\sum_{k\in\text{nodo/taglio}}\pm i_k=0$$
 
-      i_k branch current [A]; sign + leaving, − entering
+      $i_k$ branch current [A]; sign + leaving, − entering
 - id: formula-kvl
   topic: leggi-di-kirchhoff
   objectives:
@@ -55,8 +55,8 @@
     it: |-
       $$\sum_{k\in\text{maglia}}\pm v_k=0$$
 
-      v_k tensione di ramo [V]; + se concorde col giro
+      $v_k$ tensione di ramo [V]; + se concorde col giro
     en: |-
       $$\sum_{k\in\text{maglia}}\pm v_k=0$$
 
-      v_k branch voltage [V]; + if it agrees with the traversal
+      $v_k$ branch voltage [V]; + if it agrees with the traversal

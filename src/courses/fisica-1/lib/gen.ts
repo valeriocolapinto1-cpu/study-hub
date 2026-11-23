@@ -35,9 +35,20 @@ const trim = (s: string) => (s.includes('.') ? s.replace(/0+$/, '').replace(/\.$
 /** Valore arrotondato come viene mostrato nel testo (stesse cifre significative di `num`). */
 export const round = (x: number, sig = 3): number => (x === 0 ? 0 : Number(x.toPrecision(sig)));
 
+/**
+ * Unità in TeX: gli esponenti Unicode (`m/s²`, `kg·m²`) fuori da `\text{}`, che in modo strict KaTeX
+ * rifiuta (la formula resterebbe TeX grezzo): `\text{m/s}^{2}`.
+ */
+const unitTex = (unit: string) =>
+  unit
+    .split(/([²³])/)
+    .filter(Boolean)
+    .map((p) => (p === '²' ? '^{2}' : p === '³' ? '^{3}' : `\\text{${p}}`))
+    .join('');
+
 /** Grandezza con unità dentro la matematica: `$v = 3{,}2\ \text{m/s}$`. */
 export const q = (x: number, unit: string, lang: Lang, sig = 3) =>
-  `${num(x, lang, sig)}${unit ? `\\ \\text{${unit}}` : ''}`;
+  `${num(x, lang, sig)}${unit ? `\\ ${unitTex(unit)}` : ''}`;
 
 export const step = (lang: Lang, it: [string, string], en: [string, string]): ExerciseStep => ({
   title: L(lang, it[0], en[0]),

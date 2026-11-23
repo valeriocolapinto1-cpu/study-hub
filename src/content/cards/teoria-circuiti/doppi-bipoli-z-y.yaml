@@ -9,7 +9,7 @@
     en: '**Two-ports: Z, Y and inverse T matrices.** Define the $Z$, $Y$ and inverse transmission matrices of a two-port and say how the parameters are measured.'
   back:
     it: |-
-      **Risposta modello.** La matrice Z lega le tensioni alle correnti, v = Z i: z11 e z21 si misurano con la porta 2 aperta, z12 e z22 con la porta 1 aperta. La matrice Y è definita da i = Y v e i parametri si misurano con una porta in cortocircuito. Se esistono Y = Z^{-1}, cioè la matrice inversa. La matrice di trasmissione lega (v1,i1) a (v2,-i2) ed è utile per la cascata.
+      **Risposta modello.** La matrice Z lega le tensioni alle correnti, v = Z i: z11 e z21 si misurano con la porta 2 aperta, z12 e z22 con la porta 1 aperta. La matrice Y è definita da i = Y v e i parametri si misurano con una porta in cortocircuito. Se esistono $Y = Z^{-1}$, cioè la matrice inversa. La matrice di trasmissione lega (v1,i1) a (v2,-i2) ed è utile per la cascata.
 
       **Punti da toccare:**
 
@@ -18,7 +18,7 @@
       - Relazione $Y=Z^{-1}$ (se esiste)
       - Matrice di trasmissione inversa: lega $(v_1,i_1)$ a $(v_2,-i_2)$, utile per la cascata
     en: |-
-      **Model answer.** The Z matrix relates voltages to currents, v = Z i: z11 and z21 are measured with port 2 open, z12 and z22 with port 1 open. The Y matrix is defined by i = Y v and its parameters are measured with one port short-circuited. If they exist, Y = Z^{-1}, i.e. the inverse matrix. The transmission matrix relates (v1,i1) to (v2,-i2) and is useful for cascades.
+      **Model answer.** The Z matrix relates voltages to currents, v = Z i: z11 and z21 are measured with port 2 open, z12 and z22 with port 1 open. The Y matrix is defined by i = Y v and its parameters are measured with one port short-circuited. If they exist, $Y = Z^{-1}$, i.e. the inverse matrix. The transmission matrix relates (v1,i1) to (v2,-i2) and is useful for cascades.
 
       **Points to cover:**
 
@@ -83,11 +83,11 @@
     it: |-
       $$\begin{pmatrix}i_1\\i_2\end{pmatrix}=\begin{pmatrix}y_{11}&y_{12}\\y_{21}&y_{22}\end{pmatrix}\begin{pmatrix}v_1\\v_2\end{pmatrix}$$
 
-      y_jk in siemens [S]; correnti entranti nelle porte
+      $y_{jk}$ in siemens [S]; correnti entranti nelle porte
     en: |-
       $$\begin{pmatrix}i_1\\i_2\end{pmatrix}=\begin{pmatrix}y_{11}&y_{12}\\y_{21}&y_{22}\end{pmatrix}\begin{pmatrix}v_1\\v_2\end{pmatrix}$$
 
-      y_jk in siemens [S]; currents entering the ports
+      $y_{jk}$ in siemens [S]; currents entering the ports
 - id: formula-z-y-inv
   topic: doppi-bipoli-z-y
   objectives:
@@ -168,11 +168,11 @@
     it: |-
       $$Z=\begin{pmatrix}R_a+R_c&R_c\\R_c&R_b+R_c\end{pmatrix}$$
 
-      R_a, R_b in serie; R_c in derivazione
+      $R_a$, $R_b$ in serie; $R_c$ in derivazione
     en: |-
       $$Z=\begin{pmatrix}R_a+R_c&R_c\\R_c&R_b+R_c\end{pmatrix}$$
 
-      R_a, R_b in series; R_c in shunt
+      $R_a$, $R_b$ in series; $R_c$ in shunt
 - id: formula-rete-pi
   topic: doppi-bipoli-z-y
   objectives:
@@ -185,8 +185,8 @@
     it: |-
       $$Y=\begin{pmatrix}G_a+G_c&-G_c\\-G_c&G_b+G_c\end{pmatrix}$$
 
-      G_a, G_b in derivazione; G_c in serie
+      $G_a$, $G_b$ in derivazione; $G_c$ in serie
     en: |-
       $$Y=\begin{pmatrix}G_a+G_c&-G_c\\-G_c&G_b+G_c\end{pmatrix}$$
 
-      G_a, G_b in shunt; G_c in series
+      $G_a$, $G_b$ in shunt; $G_c$ in series

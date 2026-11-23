@@ -10,7 +10,7 @@ import * as Fig from '../../../courses/fisica-1/lib/figures';
 
 <div data-note-id="teoria/calori-molari/idea">
 
-Scaldare a volume costante è 'versare' energia solo nel serbatoio interno; scaldare a pressione costante costringe anche a pagare il pedaggio del lavoro di espansione, sempre pari a R per mole e per grado: ecco Mayer. Nei solidi ogni atomo, molla tra molle, ha sei tasche da ½k_BT: per questo materiali diversissimi condividono lo stesso calore molare 3R.
+Scaldare a volume costante è 'versare' energia solo nel serbatoio interno; scaldare a pressione costante costringe anche a pagare il pedaggio del lavoro di espansione, sempre pari a R per mole e per grado: ecco Mayer. Nei solidi ogni atomo, molla tra molle, ha sei tasche da $\tfrac{1}{2}k_B T$: per questo materiali diversissimi condividono lo stesso calore molare 3R.
 
 </div>
 
@@ -28,13 +28,13 @@ Scaldare a volume costante è 'versare' energia solo nel serbatoio interno; scal
 
 ## Definizioni
 
-Il calore molare è il calore necessario per innalzare di 1 K la temperatura di una mole: $c = \frac{1}{n}\frac{\delta Q}{dT}$. Dipende dalla trasformazione: a volume costante c_V, a pressione costante c_p. Per i gas perfetti vale la relazione di Mayer $c_p = c_V + R$ e si definisce $\gamma = c_p/c_V$. Per i solidi cristallini la legge di Dulong-Petit prevede c ≈ 3R, indipendente dal materiale.
+Il calore molare è il calore necessario per innalzare di 1 K la temperatura di una mole: $c = \frac{1}{n}\frac{\delta Q}{dT}$. Dipende dalla trasformazione: a volume costante $c_V$, a pressione costante $c_p$. Per i gas perfetti vale la relazione di Mayer $c_p = c_V + R$ e si definisce $\gamma = c_p/c_V$. Per i solidi cristallini la legge di Dulong-Petit prevede c ≈ 3R, indipendente dal materiale.
 
 </div>
 
 <Diagram
   {...Fig.heatingPv({ n: 1, dT: 100 })}
-  caption="Stesso ΔT, stessa ΔU: lungo l'isobara il gas compie anche il lavoro (area colorata), perciò c_p = c_V + R."
+  caption="Stesso ΔT, stessa ΔU: lungo l'isobara il gas compie anche il lavoro (area colorata), perciò $c_p = c_V + R$."
 />
 
 <div data-note-id="teoria/calori-molari/derivazione" class="derivation">
@@ -50,7 +50,7 @@ $$
 V = \text{cost} \Rightarrow W = 0 \Rightarrow \delta Q = dU \;\Rightarrow\; c_V = \frac{1}{n}\Big(\frac{dU}{dT}\Big) = \frac{f}{2}R
 $$
 
-Senza lavoro, tutto il calore va in energia interna: c_V misura direttamente la capacità del gas di immagazzinare energia nei suoi gradi di libertà.
+Senza lavoro, tutto il calore va in energia interna: $c_V$ misura direttamente la capacità del gas di immagazzinare energia nei suoi gradi di libertà.
 
 </details>
 
@@ -83,7 +83,7 @@ $$
 nc_p\,dT = nc_V\,dT + nR\,dT \;\Rightarrow\; c_p = c_V + R
 $$
 
-c_p supera sempre c_V esattamente di R: il sovrapprezzo è il lavoro di espansione per grado di riscaldamento. Vale per ogni gas perfetto, qualunque sia f.
+$c_p$ supera sempre $c_V$ esattamente di R: il sovrapprezzo è il lavoro di espansione per grado di riscaldamento. Vale per ogni gas perfetto, qualunque sia f.
 
 </details>
 
@@ -105,7 +105,7 @@ $$
 \text{3 oscillatori} \times 2\;\text{termini quadratici} = 6 \;\Rightarrow\; U = 3nRT \;\Rightarrow\; c \approx 3R \approx 25\;\tfrac{\text{J}}{\text{mol·K}}
 $$
 
-Ogni atomo del reticolo è un oscillatore 3D: 3 termini cinetici + 3 potenziali elastici, ciascuno ½k_BT. Il calore molare è lo stesso per (quasi) tutti i solidi a temperatura ambiente; crolla a basse T per effetti quantistici (Einstein, Debye).
+Ogni atomo del reticolo è un oscillatore 3D: 3 termini cinetici + 3 potenziali elastici, ciascuno $\tfrac{1}{2}k_B T$. Il calore molare è lo stesso per (quasi) tutti i solidi a temperatura ambiente; crolla a basse T per effetti quantistici (Einstein, Debye).
 
 </details>
 
@@ -123,7 +123,7 @@ Gas perfetto in equilibrio; trasformazioni quasi-statiche; gradi di libertà cla
 
 ## Casi limite
 
-Per i solidi a bassa T: c → 0 come T³ (Debye), Dulong-Petit fallisce. Per i gas a T crescente: c_V sale a gradini con l'attivazione di rotazioni e vibrazioni. Nei liquidi non esiste una teoria altrettanto semplice.
+Per i solidi a bassa T: c → 0 come T³ (Debye), Dulong-Petit fallisce. Per i gas a T crescente: $c_V$ sale a gradini con l'attivazione di rotazioni e vibrazioni. Nei liquidi non esiste una teoria altrettanto semplice.
 
 </div>
 
@@ -160,8 +160,8 @@ Si vogliono scaldare 3,0 mol di aria (biatomico ideale) da 290 K a 340 K. Calcol
 
 <div data-note-id="teoria/calori-molari/errori">
 
-- Dire che il calore molare è una proprietà unica del gas: dipende dalla trasformazione (c_V ≠ c_p, e ogni politropica ha il suo).
-- Usare c_p in ΔU = nc ΔT: l'energia interna va sempre con c_V.
+- Dire che il calore molare è una proprietà unica del gas: dipende dalla trasformazione ($c_V \ne c_p$, e ogni politropica ha il suo).
+- Usare $c_p$ in ΔU = nc ΔT: l'energia interna va sempre con $c_V$.
 - Dimenticare che la relazione di Mayer vale solo per i gas perfetti.
 - Contare 3 gradi di libertà per l'atomo del solido invece di 6 (manca il potenziale elastico).
 

@@ -9,7 +9,7 @@
     en: '**Node method and choice criteria.** Describe the node method and explain when it is preferable to the mesh method.'
   back:
     it: |-
-      **Risposta modello.** Le incognite sono le n-1 tensioni di nodo rispetto a un nodo di riferimento. Si scrive la KCL a ciascun nodo con le relazioni costitutive, ottenendo G e = i_s, con G matrice delle conduttanze. I generatori di tensione si trattano con il supernodo. Conviene quando n-1 è minore del numero di maglie indipendenti, cioè con pochi nodi.
+      **Risposta modello.** Le incognite sono le n-1 tensioni di nodo rispetto a un nodo di riferimento. Si scrive la KCL a ciascun nodo con le relazioni costitutive, ottenendo G $e = i_s$, con G matrice delle conduttanze. I generatori di tensione si trattano con il supernodo. Conviene quando n-1 è minore del numero di maglie indipendenti, cioè con pochi nodi.
 
       **Punti da toccare:**
 
@@ -18,7 +18,7 @@
       - Generatori di tensione: supernodo o corrente come incognita
       - Conviene se $n-1<b-n+1$ (pochi nodi)
     en: |-
-      **Model answer.** The unknowns are the n-1 node voltages with respect to a reference node. KCL is written at each node with the constitutive relations, giving G e = i_s, with G the conductance matrix. Voltage sources are handled with a supernode. It is convenient when n-1 is smaller than the number of independent loops, i.e. with few nodes.
+      **Model answer.** The unknowns are the n-1 node voltages with respect to a reference node. KCL is written at each node with the constitutive relations, giving G $e = i_s$, with G the conductance matrix. Voltage sources are handled with a supernode. It is convenient when n-1 is smaller than the number of independent loops, i.e. with few nodes.
 
       **Points to cover:**
 
@@ -38,11 +38,11 @@
     it: |-
       $$G_{jj}=\sum G\ \text{al nodo}\ j,\quad G_{jk}=-G_{jk}^{\text{ramo}}$$
 
-      i_s correnti entranti nei nodi
+      $i_s$ correnti entranti nei nodi
     en: |-
       $$G_{jj}=\sum G\ \text{al nodo}\ j,\quad G_{jk}=-G_{jk}^{\text{ramo}}$$
 
-      i_s currents entering the nodes
+      $i_s$ currents entering the nodes
 - id: formula-nodi-mat
   topic: metodo-dei-nodi
   objectives:
@@ -55,8 +55,8 @@
     it: |-
       $$A\,\mathcal G\,A^{\mathsf T}\,\mathbf e=\mathbf i_s$$
 
-      𝒢 = diag(G_k)
+      𝒢 = $\operatorname{diag}(G_k)$
     en: |-
       $$A\,\mathcal G\,A^{\mathsf T}\,\mathbf e=\mathbf i_s$$
 
-      𝒢 = diag(G_k)
+      𝒢 = $\operatorname{diag}(G_k)$

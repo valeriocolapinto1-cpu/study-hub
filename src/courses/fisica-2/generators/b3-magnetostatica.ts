@@ -214,7 +214,7 @@ defineTemplate({
       ],
       answer: [
         { label: 'B', value: B, unit: 'T' },
-        { label: 'H_fe', value: Hfe, unit: 'A/m' },
+        { label: '$H_{\\mathrm{fe}}$', value: Hfe, unit: 'A/m' },
         { label: 'H₀', value: Ha, unit: 'A/m' },
         { label: 'Φ', value: Phi, unit: 'Wb' },
         { label: 'U', value: Ug, unit: 'J' },

@@ -27,7 +27,7 @@ import { plainText } from '../engine/rich';
 import { hashString } from '../engine/random';
 import { richHtml as richHtmlFull, richInline as richInlineFull } from './rich-server';
 import { stripMathml } from './katex-lite';
-import { texToPlain } from './inline-tex';
+import { hasTex, texToPlain } from './inline-tex';
 import { renderSchematic } from '../sim/circuits/schematic';
 import { renderDiagram } from '../figures/render';
 import { loadCourseGenerators, runGenerator } from '../engine/generators/index';
@@ -37,6 +37,15 @@ type CourseEntry = CollectionEntry<'courses'>['data'];
 // Testi per le isole: KaTeX senza la copia MathML (il TeX resta come nome accessibile).
 const richHtml = (text: string) => stripMathml(richHtmlFull(text));
 const richInline = (text: string) => stripMathml(richInlineFull(text));
+
+/**
+ * Testo breve per le isole (obiettivi, voci della prova): testo semplice (`text`, per l'HTML del server,
+ * le opzioni e i nomi accessibili) e, solo se contiene matematica, il sorgente (`tex`), che l'isola
+ * rende con KaTeX caricato al bisogno (TexText). Niente HTML di KaTeX nelle props né in `dati/indice.json`.
+ */
+export function shortText(text: string): { text: string; tex?: string } {
+  return { text: texToPlain(text), ...(hasTex(text) ? { tex: text } : {}) };
+}
 
 export function coursePaths(course: Pick<CourseEntry, 'id' | 'year'>, lang: Lang): CoursePaths {
   const base = coursePath(course);
@@ -61,12 +70,16 @@ export function courseSummary(course: CourseEntry, lang: Lang): CourseSummary {
     title: tr(course.title, lang),
     examFormat: course.exam.format,
     ...(course.exam.durationMin ? { durationMin: course.exam.durationMin } : {}),
-    structure: course.exam.structure.map((p) => ({
-      label: tr(p.label, lang),
-      kind: p.kind,
-      ...(p.points !== undefined ? { points: p.points } : {}),
-      ...(p.tag ? { tag: p.tag } : {}),
-    })),
+    structure: course.exam.structure.map((p) => {
+      const label = shortText(tr(p.label, lang));
+      return {
+        label: label.text,
+        ...(label.tex ? { labelTex: label.tex } : {}),
+        kind: p.kind,
+        ...(p.points !== undefined ? { points: p.points } : {}),
+        ...(p.tag ? { tag: p.tag } : {}),
+      };
+    }),
     examDates: course.examDates ?? [],
     paths: coursePaths(course, lang),
   };
@@ -87,7 +100,7 @@ export async function courseTopics(courseId: string, lang: Lang): Promise<TopicI
     id: t.id,
     order: t.order,
     title: tr(t.title, lang),
-    objectives: t.objectives.map((o) => ({ id: o.id, text: tr(o.text, lang) })),
+    objectives: t.objectives.map((o) => ({ id: o.id, ...shortText(tr(o.text, lang)) })),
     ...(t.group ? { group: tr(t.group, lang) } : {}),
   }));
 }
@@ -124,7 +137,7 @@ export function exerciseData(e: CollectionEntry<'exercises'>['data'], lang: Lang
       bodyHtml: richHtml(tr(s.body, lang)),
     })),
     answer: (e.answer ?? []).map((a) => ({
-      label: plainText(tr(a.label, lang)),
+      label: plainText(texToPlain(tr(a.label, lang))),
       labelHtml: richInline(tr(a.label, lang)),
       value: a.value,
       ...(a.unit ? { unit: a.unit } : {}),
@@ -136,7 +149,7 @@ export function exerciseData(e: CollectionEntry<'exercises'>['data'], lang: Lang
       ? {
           choices: e.choices.map((c) => ({
             html: richInline(tr(c.text, lang)),
-            label: plainText(tr(c.text, lang)),
+            label: plainText(texToPlain(tr(c.text, lang))),
             correct: c.correct,
             ...(c.fixedLast ? { fixedLast: true } : {}),
             ...(c.explanation ? { explanationHtml: richHtml(tr(c.explanation, lang)) } : {}),
@@ -322,12 +335,16 @@ export async function withPregenerated(ex: ExerciseData, seed: number, lang: Lan
     statementHtml: richHtml(g.statement),
     ...(figureSvg ? { figureSvg } : {}),
     steps: g.steps.map((s) => ({ titleHtml: richInline(s.title), bodyHtml: richHtml(s.body) })),
-    answer: g.answer.map((a) => ({ ...a, label: plainText(a.label), labelHtml: richInline(a.label) })),
+    answer: g.answer.map((a) => ({
+      ...a,
+      label: plainText(texToPlain(a.label)),
+      labelHtml: richInline(a.label),
+    })),
     ...(g.choices
       ? {
           choices: g.choices.map((c) => ({
             html: richInline(c.text),
-            label: plainText(c.text),
+            label: plainText(texToPlain(c.text)),
             correct: c.correct,
             ...(c.explanation ? { explanationHtml: richHtml(c.explanation) } : {}),
           })),

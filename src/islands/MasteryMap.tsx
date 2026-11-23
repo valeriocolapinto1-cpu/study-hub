@@ -5,6 +5,7 @@ import { LEVEL_KEYS, overallMastery, topicMastery, weakSpots } from '../engine/m
 import { useMastery, type MasteryProps } from './lib/course-state';
 import { t, type Lang } from './lib/i18n';
 import './islands.css';
+import { TexText } from './lib/TexText';
 
 export interface MasteryMapProps extends MasteryProps {
   lang: Lang;
@@ -19,7 +20,7 @@ export default function MasteryMap(props: MasteryMapProps) {
   const tm = topicMastery(topics, mastery ?? {});
   const weak = mastery ? weakSpots(mastery) : [];
   const objText = Object.fromEntries(
-    topics.flatMap((tp) => tp.objectives.map((o) => [o.id, { text: o.text, topic: tp.id }])),
+    topics.flatMap((tp) => tp.objectives.map((o) => [o.id, { text: o.text, tex: o.tex, topic: tp.id }])),
   );
   const overall = mastery ? pct(overallMastery(mastery)) : 0;
 
@@ -56,7 +57,9 @@ export default function MasteryMap(props: MasteryMapProps) {
         <ul class="sh-weak">
           {weak.map((w) => (
             <li key={w.id}>
-              <span>{objText[w.id]?.text ?? w.id}</span>{' '}
+              <span>
+                {objText[w.id] ? <TexText text={objText[w.id]!.text} tex={objText[w.id]!.tex} /> : w.id}
+              </span>{' '}
               <span class="sh-tag sh-level--1">{pct(w.value)}%</span>{' '}
               {objText[w.id] && (
                 <a href={`${paths.exercises}${objText[w.id]!.topic}/`}>{t(lang, 'mastery.exercises')}</a>
@@ -90,7 +93,9 @@ export default function MasteryMap(props: MasteryMapProps) {
                 <ul class="sh-objectives" aria-label={t(lang, 'mastery.objectives')}>
                   {tp.objectives.map((o) => (
                     <li key={o.id} data-level={o.level}>
-                      <span>{objText[o.id]?.text}</span>
+                      <span>
+                        {objText[o.id] && <TexText text={objText[o.id]!.text} tex={objText[o.id]!.tex} />}
+                      </span>
                       <span class={`sh-tag sh-level--${o.level}`}>
                         {t(lang, `mastery.level.${LEVEL_KEYS[o.level]}`)}
                         {o.evidence > 0 && ` · ${pct(o.value)}%`}

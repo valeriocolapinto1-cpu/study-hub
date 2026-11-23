@@ -4,6 +4,7 @@
  * delle spunte del sito originale, migrate da src/courses/fisica-2/migrations.ts.
  * I testi arrivano dalle props (nessun dizionario nel bundle).
  */
+import { SubText } from '../../../sim/SubText';
 import { useEffect, useState } from 'preact/hooks';
 import { read, subscribe, write } from '../../../engine/storage';
 import './checklist.css';
@@ -86,7 +87,7 @@ export default function Checklist({ scope, area, groups, progressLabel, label, h
                     onChange={(e) => toggle(it.id, e.currentTarget.checked)}
                   />
                   <span>
-                    {it.label}
+                    <SubText text={it.label} />
                     {it.meta && <span class="badge f2-checklist__meta">{it.meta}</span>}
                   </span>
                 </label>

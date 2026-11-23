@@ -11,11 +11,11 @@
     it: |-
       $$V=\frac{I}{sC}+\frac{v_C(0^-)}{s}$$
 
-      I(s) corrente; C [F]; v_C(0⁻) tensione iniziale [V]
+      I(s) corrente; C [F]; $v_C(0^-)$ tensione iniziale [V]
     en: |-
       $$V=\frac{I}{sC}+\frac{v_C(0^-)}{s}$$
 
-      I(s) current; C [F]; v_C(0⁻) initial voltage [V]
+      I(s) current; C [F]; $v_C(0^-)$ initial voltage [V]
 - id: formula-modello-c-par
   topic: condizioni-iniziali-generatori
   objectives:
@@ -29,11 +29,11 @@
     it: |-
       $$I=sC\,V-C\,v_C(0^-)$$
 
-      generatore di corrente C v_C(0⁻)
+      generatore di corrente C $v_C(0^-)$
     en: |-
       $$I=sC\,V-C\,v_C(0^-)$$
 
-      current source C v_C(0⁻)
+      current source C $v_C(0^-)$
 - id: formula-modello-l-serie
   topic: condizioni-iniziali-generatori
   objectives:
@@ -47,11 +47,11 @@
     it: |-
       $$V=sL\,I-L\,i_L(0^-)$$
 
-      L [H]; i_L(0⁻) corrente iniziale [A]
+      L [H]; $i_L(0^-)$ corrente iniziale [A]
     en: |-
       $$V=sL\,I-L\,i_L(0^-)$$
 
-      L [H]; i_L(0⁻) initial current [A]
+      L [H]; $i_L(0^-)$ initial current [A]
 - id: formula-modello-l-par
   topic: condizioni-iniziali-generatori
   objectives:
@@ -65,8 +65,8 @@
     it: |-
       $$I=\frac{V}{sL}+\frac{i_L(0^-)}{s}$$
 
-      L [H]; i_L(0⁻) [A]
+      L [H]; $i_L(0^-)$ [A]
     en: |-
       $$I=\frac{V}{sL}+\frac{i_L(0^-)}{s}$$
 
-      L [H]; i_L(0⁻) [A]
+      L [H]; $i_L(0^-)$ [A]

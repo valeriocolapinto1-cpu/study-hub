@@ -4,6 +4,7 @@
  * Fonte, in ordine: prop `tex`, contenuto (es. $$…$$ in MDX), collezione `formulas`
  * (`<course>/<id>`, con course dedotto dall'URL se non indicato).
  */
+import CaptionText from './CaptionText.astro';
 import { renderDisplayMath } from '../lib/katex-sprite';
 import { getEntry } from 'astro:content';
 import { getLangFromUrl, stripLang, t, tr, type Lang } from '../i18n';
@@ -45,5 +46,9 @@ const anchor = `f-${id}`;
       </a>
     )}
   </div>
-  {caption && <figcaption class="formula__caption">{caption}</figcaption>}
+  {caption && (
+    <figcaption class="formula__caption">
+      <CaptionText text={caption} />
+    </figcaption>
+  )}
 </figure>

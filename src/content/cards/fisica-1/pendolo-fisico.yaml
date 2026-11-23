@@ -202,11 +202,11 @@
   back:
     it: >-
       d → 0 (sospensione nel CM): il momento di richiamo sparisce, T → ∞, equilibrio indifferente. Tutta la
-      massa a distanza d: pendolo semplice. Esiste un d che minimizza T: d = √(I_cm/M) (raggio giratore
+      massa a distanza d: pendolo semplice. Esiste un d che minimizza T: $d = \sqrt{I_{\mathrm{cm}}/M}$ (raggio giratore
       baricentrico).
     en: >-
       d → 0 (suspension at the CM): the restoring torque vanishes, T → ∞, neutral equilibrium. All the mass at
-      distance d: simple pendulum. There is a d that minimises T: d = √(I_cm/M) (centroidal radius of
+      distance d: simple pendulum. There is a d that minimises T: $d = \sqrt{I_{\mathrm{cm}}/M}$ (centroidal radius of
       gyration).
 - id: pendolo-fisico-errori
   topic: pendolo-fisico
@@ -224,12 +224,12 @@
     en: 'Mistakes to avoid: Physical (compound) pendulum'
   back:
     it: |-
-      - Usare I_cm al posto di I rispetto all'asse di sospensione (manca Md²).
+      - Usare $I_{\mathrm{cm}}$ al posto di I rispetto all'asse di sospensione (manca Md²).
       - Confondere d (distanza asse-CM) con la lunghezza del corpo.
       - Applicare la formula del pendolo semplice T = 2π√(L/g) con L lunghezza geometrica del corpo.
       - Dimenticare che la formula del periodo vale solo per piccole oscillazioni.
     en: |-
-      - Using I_cm instead of I about the suspension axis (Md² is missing).
+      - Using $I_{\mathrm{cm}}$ instead of I about the suspension axis (Md² is missing).
       - Confusing d (axis–CM distance) with the length of the body.
       - Applying the simple-pendulum formula T = 2π√(L/g) with L the geometric length of the body.
       - Forgetting that the period formula holds only for small oscillations.

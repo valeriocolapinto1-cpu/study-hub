@@ -109,13 +109,13 @@
       value: 6
       unit: rad/s
     - label:
-        it: a_t
-        en: a_t
+        it: $a_t$
+        en: $a_t$
       value: 1.2
       unit: m/s²
     - label:
-        it: a_n
-        en: a_n
+        it: $a_n$
+        en: $a_n$
       value: 14.4
       unit: m/s²
     - label:
@@ -180,8 +180,8 @@
           \text{m/s}^2\). The centripetal component drops with the square of the speed.
   answer:
     - label:
-        it: a_t
-        en: a_t
+        it: $a_t$
+        en: $a_t$
       value: -3.33
       unit: m/s²
     - label:

@@ -5,6 +5,7 @@
  * I parametri sono validati con Zod: un errore ferma la build indicando il campo sbagliato.
  * Tipi e parametri: docs/FIGURE.md; catalogo in /<lang>/stile/figure/.
  */
+import CaptionText from '../components/CaptionText.astro';
 import './figures.css';
 import { parseDiagram } from './schemas';
 import { renderDiagram } from './render';
@@ -37,5 +38,9 @@ const { svg } = renderDiagram(type, valid as never, {
 
 <figure class:list={['diagram-figure', cls]}>
   <Fragment set:html={svg} />
-  {caption && <figcaption>{caption}</figcaption>}
+  {caption && (
+    <figcaption>
+      <CaptionText text={caption} />
+    </figcaption>
+  )}
 </figure>

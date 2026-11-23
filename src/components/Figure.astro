@@ -1,6 +1,7 @@
 ---
 /** Figura con didascalia numerata. Contenuto: SVG inline o <img> nello slot. */
 import { getLangFromUrl, t, type Lang } from '../i18n';
+import CaptionText from './CaptionText.astro';
 interface Props {
   caption?: string;
   /** Numero della figura, es. "2.1". */
@@ -11,10 +12,6 @@ interface Props {
 }
 const { caption, num, id, wide = false } = Astro.props;
 const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
-/** Didascalia in testo semplice: `V_th` o `N_{ab}` diventano pedici. */
-const captionParts = (caption ?? '')
-  .split(/(?<=[\p{L}])_(\{[^}]+\}|[\p{L}\d]+)/u)
-  .map((part, i) => ({ sub: i % 2 === 1, text: i % 2 === 1 ? part.replace(/^\{|\}$/g, '') : part }));
 ---
 
 <figure class:list={['figure', { 'figure--wide': wide }]} id={id}>
@@ -28,7 +25,7 @@ const captionParts = (caption ?? '')
           {t(lang, 'figure.label')} {num}
         </b>
       )}
-      {captionParts.map((p) => (p.sub ? <sub>{p.text}</sub> : p.text))}
+      {caption && <CaptionText text={caption} />}
     </figcaption>
   )}
 </figure>

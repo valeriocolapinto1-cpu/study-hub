@@ -29,7 +29,7 @@
 
       - Descrivere i tre regimi con le rispettive soluzioni
 
-      - Scrivere la soluzione sottosmorzata con inviluppo e ω_s
+      - Scrivere la soluzione sottosmorzata con inviluppo e $\omega_s$
 
       - Dimostrare che dE/dt = −bv² ≤ 0
 
@@ -51,7 +51,7 @@
 
       - Describe the three regimes with their solutions
 
-      - Write the underdamped solution with envelope and ω_s
+      - Write the underdamped solution with envelope and $\omega_s$
 
       - Prove that dE/dt = −bv² ≤ 0
 
@@ -211,11 +211,11 @@
     en: 'Limiting cases: Damped harmonic oscillator'
   back:
     it: >-
-      b → 0: si ritrova l'oscillatore armonico ideale (γ = 0, ω_s = ω₀). γ ≪ ω₀: molte oscillazioni quasi
+      b → 0: si ritrova l'oscillatore armonico ideale (γ = 0, $\omega_s = \omega_0$). γ ≪ ω₀: molte oscillazioni quasi
       armoniche con ampiezza lentamente decrescente. γ ≫ ω₀: moto 'strisciante', ritorno lentissimo dominato
       dalla radice piccola.
     en: >-
-      b → 0: the ideal harmonic oscillator is recovered (γ = 0, ω_s = ω₀). γ ≪ ω₀: many almost harmonic
+      b → 0: the ideal harmonic oscillator is recovered (γ = 0, $\omega_s = \omega_0$). γ ≪ ω₀: many almost harmonic
       oscillations with slowly decreasing amplitude. γ ≫ ω₀: 'creeping' motion, very slow return dominated by
       the small root.
 - id: oscillatore-smorzato-errori
@@ -234,14 +234,14 @@
     en: 'Mistakes to avoid: Damped harmonic oscillator'
   back:
     it: |-
-      - Scrivere che la pulsazione di oscillazione resta ω₀: è ω_s = √(ω₀² − γ²) < ω₀.
-      - Confondere il decadimento dell'ampiezza (e^{−γt}) con quello dell'energia (e^{−2γt}).
+      - Scrivere che la pulsazione di oscillazione resta ω₀: è $\omega_s$ = √(ω₀² − γ²) < ω₀.
+      - Confondere il decadimento dell'ampiezza ($e^{-\gamma t}$) con quello dell'energia ($e^{-2\gamma t}$).
       - Credere che il sovrasmorzato torni all'equilibrio più in fretta del critico: è il contrario.
       - Dimenticare il fattore 2 nella definizione γ = b/2m.
     en: >-
-      - Writing that the oscillation angular frequency stays ω₀: it is ω_s = √(ω₀² − γ²) < ω₀.
+      - Writing that the oscillation angular frequency stays ω₀: it is $\omega_s$ = √(ω₀² − γ²) < ω₀.
 
-      - Confusing the decay of the amplitude (e^{−γt}) with that of the energy (e^{−2γt}).
+      - Confusing the decay of the amplitude ($e^{-\gamma t}$) with that of the energy ($e^{-2\gamma t}$).
 
       - Believing that the overdamped oscillator returns to equilibrium faster than the critical one: it is
       the opposite.

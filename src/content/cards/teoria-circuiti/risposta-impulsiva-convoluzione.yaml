@@ -37,7 +37,7 @@
     en: '**Impulse response of an RC.** Derive the impulse response of an RC circuit (output across the capacitor).'
   back:
     it: |-
-      **Risposta modello.** Con il partitore H(s) = (1/sC)/(R + 1/sC) = (1/RC)/(s + 1/RC), con un polo in -1/(RC). Antitrasformando h(t) = (1/(RC)) e^{-t/(RC)} u(t), un esponenziale decrescente.
+      **Risposta modello.** Con il partitore H(s) = (1/sC)/(R + 1/sC) = (1/RC)/(s + 1/RC), con un polo in -1/(RC). Antitrasformando $h(t) = \frac{1}{RC}\,e^{-t/(RC)}\,u(t)$, un esponenziale decrescente.
 
       **Punti da toccare:**
 
@@ -45,7 +45,7 @@
       - Polo in $-1/(RC)$
       - $h(t)=\dfrac1{RC}e^{-t/(RC)}u_{-1}(t)$
     en: |-
-      **Model answer.** With the divider H(s) = (1/sC)/(R + 1/sC) = (1/RC)/(s + 1/RC), with a pole at -1/(RC). Inverting, h(t) = (1/(RC)) e^{-t/(RC)} u(t), a decreasing exponential.
+      **Model answer.** With the divider H(s) = (1/sC)/(R + 1/sC) = (1/RC)/(s + 1/RC), with a pole at -1/(RC). Inverting, $h(t) = \frac{1}{RC}\,e^{-t/(RC)}\,u(t)$, a decreasing exponential.
 
       **Points to cover:**
 

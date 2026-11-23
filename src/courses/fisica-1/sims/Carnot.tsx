@@ -1,4 +1,5 @@
 /** Simulazione «Ciclo di Carnot»: ciclo nel piano p-V (gas monoatomico) con area del lavoro e rendimento. */
+import { SubText } from '../../../sim/SubText';
 import { useMemo, useState } from 'preact/hooks';
 import { Plot } from '../../../sim/Plot';
 import { Slider } from '../../../sim/Slider';
@@ -78,8 +79,8 @@ export default function Carnot({ lang }: { lang: Lang }): preact.JSX.Element {
           onInput={setTf}
         />
         <p class="sim-note" aria-live="polite">
-          η = 1 − T_F/T_C = <strong>{formatNumber(100 * c.eta, 3, lang)} %</strong> · {t.work} W ={' '}
-          {formatNumber(c.W, 3, lang)} J (Q_C = {formatNumber(c.Qc, 3, lang)} J)
+          η = 1 − T<sub>F</sub>/T<sub>C</sub> = <strong>{formatNumber(100 * c.eta, 3, lang)} %</strong> ·{' '}
+          {t.work} W = {formatNumber(c.W, 3, lang)} J (Q<sub>C</sub> = {formatNumber(c.Qc, 3, lang)} J)
         </p>
       </div>
       <Plot
@@ -99,7 +100,9 @@ export default function Carnot({ lang }: { lang: Lang }): preact.JSX.Element {
           width: 2.5,
         }))}
       />
-      <p class="sim-note">{t.note}</p>
+      <p class="sim-note">
+        <SubText text={t.note} />
+      </p>
     </div>
   );
 }

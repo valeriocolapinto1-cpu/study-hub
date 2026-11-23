@@ -4,6 +4,7 @@
  * aria-valuetext che legge il valore con l'unità.
  * NumberInput: campo testuale che accetta prefissi SI ("4,7k", "10u").
  */
+import { SubText } from './SubText';
 import { useId, useState } from 'preact/hooks';
 import { formatSI, parseSI, type Lang } from './units';
 import { simT } from './i18n';
@@ -40,7 +41,7 @@ export function Slider(p: SliderProps): preact.JSX.Element {
   return (
     <div class="sim-slider">
       <label for={id} class="sim-slider__label">
-        {p.label}
+        <SubText text={p.label} />
       </label>
       <input
         id={id}
@@ -98,7 +99,9 @@ export function NumberInput(p: NumberInputProps): preact.JSX.Element {
   };
   return (
     <div class="sim-number">
-      <label for={id}>{p.label}</label>
+      <label for={id}>
+        <SubText text={p.label} />
+      </label>
       <span class="sim-number__field">
         <input
           id={id}

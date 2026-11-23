@@ -9,7 +9,7 @@
     en: '**Power-factor correction.** What is power-factor correction? Derive the capacitance to connect in parallel with an inductive load.'
   back:
     it: |-
-      **Risposta modello.** Il rifasamento riduce la potenza reattiva scambiata con la rete, aumentando il fattore di potenza. Si collega un condensatore in parallelo al carico induttivo, così la tensione non cambia. La reattiva del condensatore è Q_C = P (tan phi1 - tan phi2) = omega C V^2, da cui C = P (tan phi1 - tan phi2) / (omega V^2).
+      **Risposta modello.** Il rifasamento riduce la potenza reattiva scambiata con la rete, aumentando il fattore di potenza. Si collega un condensatore in parallelo al carico induttivo, così la tensione non cambia. La reattiva del condensatore è $Q_C = P$ (tan phi1 - tan phi2) = omega C V^2, da cui C = P (tan phi1 - tan phi2) / (omega V^2).
 
       **Punti da toccare:**
 
@@ -18,7 +18,7 @@
       - $Q_C=P(\tan\varphi_1-\tan\varphi_2)$
       - $C=\dfrac{P(\tan\varphi_1-\tan\varphi_2)}{\omega V^2}$
     en: |-
-      **Model answer.** Power-factor correction reduces the reactive power exchanged with the grid, raising the power factor. A capacitor is connected in parallel with the inductive load, so that the voltage does not change. The reactive power of the capacitor is Q_C = P (tan phi1 - tan phi2) = omega C V^2, from which C = P (tan phi1 - tan phi2) / (omega V^2).
+      **Model answer.** Power-factor correction reduces the reactive power exchanged with the grid, raising the power factor. A capacitor is connected in parallel with the inductive load, so that the voltage does not change. The reactive power of the capacitor is $Q_C = P$ (tan phi1 - tan phi2) = omega C V^2, from which C = P (tan phi1 - tan phi2) / (omega V^2).
 
       **Points to cover:**
 

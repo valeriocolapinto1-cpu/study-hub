@@ -28,11 +28,11 @@ The elementary work of a force $\vec{F}$ over an infinitesimal displacement $d\v
   type="function-plot"
   params={{
     x: { min: 0, max: 8, label: 'x', unit: 'm' },
-    y: { min: 0, label: 'F_x', unit: 'N' },
-    series: [{ kind: 'poly', coeffs: [2, 1.5, -0.15], label: 'F_x(x)' }],
+    y: { min: 0, label: '$F_x$', unit: 'N' },
+    series: [{ kind: 'poly', coeffs: [2, 1.5, -0.15], label: '$F_x(x)$' }],
     area: { series: 0, from: 1, to: 6, label: 'W' },
   }}
-  caption="In one dimension the work of a variable force between two positions is the area under the graph of F_x(x)."
+  caption="In one dimension the work of a variable force between two positions is the area under the graph of $F_x(x)$."
 />
 
 <div data-note-id="teoria/lavoro-energia-cinetica/derivazione" class="derivation">
@@ -48,7 +48,7 @@ $$
 \vec{F}_{tot} = m\frac{d\vec{v}}{dt}
 $$
 
-F_tot is the resultant of all the forces on the point particle.
+$F_{\mathrm{tot}}$ is the resultant of all the forces on the point particle.
 
 </details>
 
@@ -81,7 +81,7 @@ $$
 W_{tot} = \int_A^B \vec{F}_{tot}\cdot d\vec{r} = \int_{t_A}^{t_B} \frac{d}{dt}\Big(\frac{1}{2}mv^2\Big)dt = \frac{1}{2}mv_B^2 - \frac{1}{2}mv_A^2
 $$
 
-The result depends only on the initial and final speeds: W_tot = ΔK, whatever the forces and the path.
+The result depends only on the initial and final speeds: $W_{\mathrm{tot}} = \Delta K$, whatever the forces and the path.
 
 </details>
 
@@ -110,7 +110,7 @@ Point particle (for extended bodies the theorem must be applied with care: what 
 
 ## Limiting cases
 
-Constant force parallel to a straight displacement: W = Fs (elementary formula). Perpendicular force: W = 0, uniform circular motion. If W_tot &lt; 0 the body slows down (e.g. braking: W_friction = −ΔK).
+Constant force parallel to a straight displacement: W = Fs (elementary formula). Perpendicular force: W = 0, uniform circular motion. If $W_{\mathrm{tot}}$ &lt; 0 the body slows down (e.g. braking: $W_{\mathrm{friction}} = -\Delta K$).
 
 </div>
 

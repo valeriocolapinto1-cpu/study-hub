@@ -16,7 +16,7 @@
     it: >-
       All'equilibrio l'energia termica è perfettamente democratica: gli urti continui la redistribuiscono
       finché ogni 'modo quadratico' di immagazzinarla — muoversi lungo x, ruotare, vibrare — ne possiede in
-      media la stessa quota ½k_BT. L'energia interna è il censimento di questi modi; e il fatto che dipenda
+      media la stessa quota $\tfrac{1}{2}k_B T$. L'energia interna è il censimento di questi modi; e il fatto che dipenda
       solo da T (non da V) rispecchia l'assenza di legami tra molecole che non si parlano.
 
 
@@ -33,13 +33,13 @@
 
       - Enunciare la legge di Joule e l'esperimento dell'espansione libera
 
-      - Dedurre c_V = (f/2)R
+      - Dedurre $c_V = (f/2)R$
 
       - Accennare al congelamento quantistico dei gradi di libertà
     en: >-
       At equilibrium thermal energy is perfectly democratic: continual collisions redistribute it until every
       'quadratic mode' of storing it — moving along x, rotating, vibrating — owns on average the same share
-      ½k_BT. Internal energy is the census of these modes; and the fact that it depends only on T (not on V)
+      $\tfrac{1}{2}k_B T$. Internal energy is the census of these modes; and the fact that it depends only on T (not on V)
       mirrors the absence of bonds between molecules that do not talk to each other.
 
 
@@ -56,7 +56,7 @@
 
       - State Joule's law and the free-expansion experiment
 
-      - Deduce c_V = (f/2)R
+      - Deduce $c_V = (f/2)R$
 
       - Mention the quantum freezing of degrees of freedom
 - id: equipartizione-energia-orale-1
@@ -114,13 +114,13 @@
     en: Why does the specific heat of hydrogen grow in steps with temperature?
   back:
     it: >-
-      Le energie di rotazione e di vibrazione sono quantizzate: un grado di libertà contribuisce ½k_BT solo
-      quando k_BT supera la spaziatura dei suoi livelli. Per H₂ (molecola leggera, momento d'inerzia piccolo)
+      Le energie di rotazione e di vibrazione sono quantizzate: un grado di libertà contribuisce $\tfrac{1}{2}k_B T$ solo
+      quando $k_B T$ supera la spaziatura dei suoi livelli. Per H₂ (molecola leggera, momento d'inerzia piccolo)
       le rotazioni si attivano solo sopra circa 100 K e le vibrazioni sopra qualche migliaio di kelvin:
       \(c_V\) passa da \(\tfrac32 R\) a \(\tfrac52 R\) e poi verso \(\tfrac72 R\), a gradini. La fisica
       classica prevedrebbe un valore costante.
     en: >-
-      Rotational and vibrational energies are quantised: a degree of freedom contributes ½k_BT only when k_BT
+      Rotational and vibrational energies are quantised: a degree of freedom contributes $\tfrac{1}{2}k_B T$ only when $k_B T$
       exceeds the spacing of its levels. For H₂ (a light molecule, small moment of inertia) rotations switch
       on only above about 100 K and vibrations above a few thousand kelvin: \(c_V\) goes from \(\tfrac32 R\)
       to \(\tfrac52 R\) and then towards \(\tfrac72 R\), in steps. Classical physics would predict a constant
@@ -191,10 +191,10 @@
     it: >-
       Gas perfetto (niente interazioni intermolecolari); equilibrio termodinamico; validità della meccanica
       classica per i gradi di libertà considerati (fallisce quando i quanti di energia
-      rotazionali/vibrazionali superano k_BT).
+      rotazionali/vibrazionali superano $k_B T$).
     en: >-
       Ideal gas (no intermolecular interactions); thermodynamic equilibrium; validity of classical mechanics
-      for the degrees of freedom considered (it fails when rotational/vibrational energy quanta exceed k_BT).
+      for the degrees of freedom considered (it fails when rotational/vibrational energy quanta exceed $k_B T$).
 - id: equipartizione-energia-casi-limite
   topic: equipartizione-energia
   objectives:
@@ -235,11 +235,11 @@
   back:
     it: |-
       - Contare 3 rotazioni per il biatomico invece di 2.
-      - Usare ΔU = nc_VΔT solo per le isocore: vale per ogni trasformazione del gas perfetto.
+      - Usare $\Delta U = nc_V\Delta T$ solo per le isocore: vale per ogni trasformazione del gas perfetto.
       - Includere un'energia potenziale intermolecolare nell'energia interna del gas perfetto.
-      - Dimenticare che la vibrazione conta 2 mezzi-k_BT (termine cinetico + termine elastico).
+      - Dimenticare che la vibrazione conta 2 volte $\tfrac{1}{2}k_B T$ (termine cinetico + termine elastico).
     en: |-
       - Counting 3 rotations for the diatomic molecule instead of 2.
-      - Using ΔU = nc_VΔT only for isochoric processes: it holds for every transformation of the ideal gas.
+      - Using $\Delta U = nc_V\Delta T$ only for isochoric processes: it holds for every transformation of the ideal gas.
       - Including an intermolecular potential energy in the internal energy of the ideal gas.
-      - Forgetting that vibration counts 2 halves of k_BT (kinetic term + elastic term).
+      - Forgetting that vibration counts 2 halves of $k_B T$ (kinetic term + elastic term).

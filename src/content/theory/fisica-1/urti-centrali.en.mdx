@@ -41,12 +41,12 @@ A collision is an impulsive interaction between two bodies, so short that extern
   params={{
     values: false,
     before: [
-      { label: 'A', mass: 'm_A', v: 3 },
-      { label: 'B', mass: 'm_B', v: -1 },
+      { label: 'A', mass: '$m_A$', v: 3 },
+      { label: 'B', mass: '$m_B$', v: -1 },
     ],
     after: [
-      { label: 'A', mass: 'm_A', v: -1 },
-      { label: 'B', mass: 'm_B', v: 3 },
+      { label: 'A', mass: '$m_A$', v: -1 },
+      { label: 'B', mass: '$m_B$', v: 3 },
     ],
   }}
   caption="Head-on collision: the velocities stay on the line of centres; momentum is conserved and, if the collision is elastic, so is kinetic energy."
@@ -120,7 +120,7 @@ $$
 v' = \frac{m_1v_1 + m_2v_2}{m_1 + m_2} = v_{cm}, \qquad \Delta K = -\frac{1}{2}\mu(v_1 - v_2)^2,\;\; \mu = \frac{m_1m_2}{m_1+m_2}
 $$
 
-The bodies continue stuck together at the CM velocity. The dissipated energy is all that of the relative motion (½μv_rel²): König's CM term cannot be touched because P is conserved.
+The bodies continue stuck together at the CM velocity. The dissipated energy is all that of the relative motion ($\tfrac{1}{2}\mu v_{\mathrm{rel}}^2$): König's CM term cannot be touched because P is conserved.
 
 </details>
 

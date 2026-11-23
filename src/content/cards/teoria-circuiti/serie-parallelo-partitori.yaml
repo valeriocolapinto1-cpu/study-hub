@@ -9,7 +9,7 @@
     en: '**Series, parallel and dividers.** Derive the formulas for the series and parallel equivalent resistance and for the voltage divider.'
   back:
     it: |-
-      **Risposta modello.** In serie i resistori hanno la stessa corrente e per la KVL la resistenza equivalente è la somma. In parallelo hanno la stessa tensione e per la KCL si sommano le conduttanze. Il partitore di tensione dà v_k = v R_k/somma delle R, purché non ci sia un carico a valle che sottrae corrente.
+      **Risposta modello.** In serie i resistori hanno la stessa corrente e per la KVL la resistenza equivalente è la somma. In parallelo hanno la stessa tensione e per la KCL si sommano le conduttanze. Il partitore di tensione dà $v_k = v R_k/\sum R$, purché non ci sia un carico a valle che sottrae corrente.
 
       **Punti da toccare:**
 
@@ -18,7 +18,7 @@
       - Partitore: $v_k=v\,R_k/\sum R_j$
       - Condizione: nessun carico a valle
     en: |-
-      **Model answer.** In series the resistors carry the same current and by KVL the equivalent resistance is the sum. In parallel they have the same voltage and by KCL the conductances add. The voltage divider gives v_k = v R_k/sum of the R, provided that no downstream load draws current.
+      **Model answer.** In series the resistors carry the same current and by KVL the equivalent resistance is the sum. In parallel they have the same voltage and by KCL the conductances add. The voltage divider gives $v_k = v R_k/\sum R$, provided that no downstream load draws current.
 
       **Points to cover:**
 
@@ -39,11 +39,11 @@
     it: |-
       $$R_{eq}=\sum_k R_k$$
 
-      R_k resistenze [Ω]
+      $R_k$ resistenze [Ω]
     en: |-
       $$R_{eq}=\sum_k R_k$$
 
-      R_k resistances [Ω]
+      $R_k$ resistances [Ω]
 - id: formula-parallelo
   topic: serie-parallelo-partitori
   objectives:
@@ -57,11 +57,11 @@
     it: |-
       $$\frac1{R_{eq}}=\sum_k\frac1{R_k},\quad R_{eq}=\frac{R_1R_2}{R_1+R_2}$$
 
-      R_k resistenze [Ω]
+      $R_k$ resistenze [Ω]
     en: |-
       $$\frac1{R_{eq}}=\sum_k\frac1{R_k},\quad R_{eq}=\frac{R_1R_2}{R_1+R_2}$$
 
-      R_k resistances [Ω]
+      $R_k$ resistances [Ω]
 - id: formula-part-v
   topic: serie-parallelo-partitori
   objectives:
@@ -75,11 +75,11 @@
     it: |-
       $$v_k=v\,\frac{R_k}{\sum_jR_j}$$
 
-      v tensione totale [V]; R_k [Ω]
+      v tensione totale [V]; $R_k$ [Ω]
     en: |-
       $$v_k=v\,\frac{R_k}{\sum_jR_j}$$
 
-      v total voltage [V]; R_k [Ω]
+      v total voltage [V]; $R_k$ [Ω]
 - id: formula-part-i
   topic: serie-parallelo-partitori
   objectives:

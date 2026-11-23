@@ -33,7 +33,7 @@
 
       - Dimostrare l'uguaglianza dei rendimenti reversibili nei due versi
 
-      - Dedurre |Q_F|/Q_C = T_F/T_C e la scala assoluta
+      - Dedurre $|Q_F|/Q_C = T_F/T_C$ e la scala assoluta
 
       - Distinguere il caso irreversibile (disuguaglianza stretta)
     en: >-
@@ -56,7 +56,7 @@
 
       - Prove the equality of reversible efficiencies both ways
 
-      - Deduce |Q_F|/Q_C = T_F/T_C and the absolute scale
+      - Deduce $|Q_F|/Q_C = T_F/T_C$ and the absolute scale
 
       - Distinguish the irreversible case (strict inequality)
 - id: teorema-di-carnot-orale-1
@@ -207,12 +207,12 @@
     en: "Limiting cases: Carnot's theorem"
   back:
     it: >-
-      Macchina irreversibile: η < η_rev strettamente (attriti, salti termici finiti). Macchina reversibile: η
-      = 1 − T_F/T_C esattamente. Il teorema non dice nulla sulla potenza: la macchina di Carnot ideale è
+      Macchina irreversibile: $\eta < \eta_{\mathrm{rev}}$ strettamente (attriti, salti termici finiti). Macchina reversibile: η
+      = $1 - T_F/T_C$ esattamente. Il teorema non dice nulla sulla potenza: la macchina di Carnot ideale è
       infinitamente lenta.
     en: >-
-      Irreversible engine: η < η_rev strictly (friction, finite temperature jumps). Reversible engine: η = 1 −
-      T_F/T_C exactly. The theorem says nothing about power: the ideal Carnot engine is infinitely slow.
+      Irreversible engine: $\eta < \eta_{\mathrm{rev}}$ strictly (friction, finite temperature jumps). Reversible engine: η = 1 −
+      $T_F/T_C$ exactly. The theorem says nothing about power: the ideal Carnot engine is infinitely slow.
 - id: teorema-di-carnot-errori
   topic: teorema-di-carnot
   objectives:
@@ -235,7 +235,7 @@
       - Dimenticare che l'inversione richiede la reversibilità di R: una macchina reale non si può 'far girare
       al contrario' con gli stessi scambi.
 
-      - Concludere che tutte le macchine hanno η = 1 − T_F/T_C: solo le reversibili; le altre stanno sotto.
+      - Concludere che tutte le macchine hanno $\eta = 1 - T_F/T_C$: solo le reversibili; le altre stanno sotto.
 
       - Trascurare la clausola 'stesse due sorgenti'.
     en: >-
@@ -245,6 +245,6 @@
       - Forgetting that reversing requires R to be reversible: a real engine cannot be 'run backwards' with
       the same exchanges.
 
-      - Concluding that all engines have η = 1 − T_F/T_C: only reversible ones; the others fall below.
+      - Concluding that all engines have $\eta = 1 - T_F/T_C$: only reversible ones; the others fall below.
 
       - Neglecting the clause 'same two reservoirs'.

@@ -1,5 +1,6 @@
 ---
 /** Laboratorio: le cinque esperienze del corso e la checklist della relazione (spunte salvate in locale). */
+import CaptionText from '../../../components/CaptionText.astro';
 import Checklist from '../islands/Checklist';
 import { LAB, LEZIONI } from '../data';
 import { localizePath, type Lang } from '../../../i18n';
@@ -38,11 +39,15 @@ const labels = Object.fromEntries(
   {LAB.esperienze.map((e, k) => (
     <section aria-labelledby={`lab-${e.id}`} data-note-id={`extra/laboratorio/${e.id}`}>
       <h2 id={`lab-${e.id}`}>{`${k + 1}. ${tx(e.titolo)}`}</h2>
-      <p>{tx(e.obiettivo)}</p>
+      <p>
+        <CaptionText text={tx(e.obiettivo)} />
+      </p>
       <h3>{it ? 'Strumentazione' : 'Equipment'}</h3>
       <ul>
         {e.strumentazione.map((s) => (
-          <li>{tx(s)}</li>
+          <li>
+            <CaptionText text={tx(s)} />
+          </li>
         ))}
       </ul>
       <h3>{it ? 'Lezioni collegate' : 'Related lessons'}</h3>
