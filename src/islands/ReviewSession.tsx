@@ -267,7 +267,8 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
   if (now > 0 && ids.length === 0) {
     const links = decks.filter((d) => d.theoryPath);
     return (
-      <div class="sh-review-start">
+      // Stesso contenitore della sessione (spazio riservato in CSS): niente spostamenti all'idratazione.
+      <section class="sh-review sh-review-start" aria-label={t(lang, 'review.title')}>
         <p class="sh-muted">
           {anyStudied && waiting > 0
             ? t(lang, 'review.waiting', { n: waiting })
@@ -284,7 +285,7 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
             ))}
           </p>
         )}
-      </div>
+      </section>
     );
   }
 
