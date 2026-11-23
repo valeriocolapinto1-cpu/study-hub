@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: ./.github/actions/setup
       - run: npm run check
       - run: npm run lint
@@ -40,8 +40,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
       # Solo le dipendenze che finiscono nel sito; blocca da "high" in su (vedi docs/decisions.md, PR9).
@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: ./.github/actions/setup
       # vitest con copertura: soglie su src/engine in vitest.config.ts (valori misurati, PR9)
       - run: npm run test:coverage
@@ -62,7 +62,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: ./.github/actions/setup
       # Unica build del sito: e2e, Lighthouse e pubblicazione usano questo dist/.
       - run: npm run build
@@ -75,13 +75,13 @@ jobs:
         run: node tools/check-links.mjs
       - name: Build delle fixture (corso finto per i test delle isole del motore)
         run: npm run build:fixtures
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           name: dist
           path: dist
           include-hidden-files: true
           retention-days: 3
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           name: dist-fixtures
           path: dist-fixtures
@@ -105,13 +105,13 @@ jobs:
       image: mcr.microsoft.com/playwright:v1.63.0-noble
       options: --user 1001
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: ./.github/actions/setup
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           name: dist
           path: dist
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           name: dist-fixtures
           path: dist-fixtures
@@ -122,7 +122,7 @@ jobs:
             exit 1
           fi
       - run: npx playwright test
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: playwright-report
@@ -138,14 +138,14 @@ jobs:
     # ~45 s per pagina (3 esecuzioni): con 19+ pagine campione 15 minuti non bastano.
     timeout-minutes: 25
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: ./.github/actions/setup
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           name: dist
           path: dist
       - run: npm run lhci
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: lighthouse
