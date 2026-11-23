@@ -23,6 +23,19 @@ async function hydrated(page: Page, selector: string) {
   await expect(page.locator(`astro-island:has(${selector})`).first()).not.toHaveAttribute('ssr', /.*/);
 }
 
+/**
+ * Argomenti del corso d'esempio segnati come studiati due giorni fa (R13): le carte nuove entrano
+ * nel ripasso solo per gli argomenti studiati, dal giorno dopo la segnatura.
+ */
+const studiedBefore = (page: Page) =>
+  page.addInitScript(() => {
+    const at = Date.now() - 2 * 86_400_000;
+    localStorage.setItem(
+      'sh:v1:esempio:studied',
+      JSON.stringify({ v: 1, topics: { resistori: at, condensatori: at } }),
+    );
+  });
+
 const errors: string[] = [];
 test.beforeEach(async ({ page }) => {
   errors.length = 0;
@@ -130,6 +143,7 @@ test('ExercisePlayer generato: KaTeX lazy e nuova variante', async ({ page }) =>
 });
 
 test('ReviewSession: tastiera, valutazioni, fine sessione', async ({ page }) => {
+  await studiedBefore(page);
   await page.goto(`${C}ripasso/`);
   await hydrated(page, '.sh-review');
   await expect(page.locator('.sh-count')).toHaveText('0 da ripassare · 3 nuove');
@@ -255,6 +269,7 @@ test('ExamRunner da tastiera: avvio, risposte, ← →, pannello «?», consegna
 test('ReviewSession da tastiera: risposta col focus, valutazione annunciata, pannello «?»', async ({
   page,
 }) => {
+  await studiedBefore(page);
   await page.goto(`${C}ripasso/`);
   await hydrated(page, '.sh-review');
   await expect(page.getByRole('button', { name: 'Mostra la risposta' })).toBeVisible();
@@ -282,6 +297,7 @@ for (const theme of ['light', 'dark'] as const) {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.emulateMedia({ colorScheme: theme });
     await page.addInitScript((t) => localStorage.setItem('sh:v1:global:theme', JSON.stringify(t)), theme);
+    await studiedBefore(page);
     await page.goto(`${C}ripasso/`);
     await hydrated(page, '.sh-review');
     await page.keyboard.press('Space');

@@ -38,7 +38,7 @@ src/sim/                        kit simulatori e circuiti (netlist, MNA, schemi 
 src/figures/                    kit delle figure (parametri → SVG, <Diagram>, varianti interattive; docs/FIGURE.md)
 src/courses/<courseId>/         codice specifico: generators/*.ts, sims/*.tsx, extras/*
 src/content/                    content collections (dati)
-src/scripts/site.ts             script globale (tema, lingua, migrazioni, prefetch)
+src/scripts/site.ts             script globale (tema, lingua, migrazioni, prefetch); studied.ts (argomenti studiati, a richiesta)
 src/lib/seo.ts, og-image.ts     JSON-LD e anteprime social; src/pages/og/, src/pages/site.webmanifest.ts
 src/pages/index.astro           radice: reindirizza alla lingua
 src/pages/[lang]/…              tutte le pagine (getStaticPaths su it/en)
@@ -127,7 +127,7 @@ I file `src/courses/<courseId>/generators/*.ts` si registrano da soli; `loadAllG
 
 `src/engine/storage.ts`: chiavi `sh:v1:<scope>:<area>` (scope = courseId | `global`), valori JSON, ogni accesso in try/catch.
 API: `read(scope, area, fallback)`, `write`, `update`, `remove`, `listKeys(scope?)`, `subscribe(scope, area, cb)` (evento `sh:storage`
-nella scheda e `storage` tra schede), `setStorageBackend()` per i test. Aree tipiche: `progress`, `srs`, `exam`, `notes`, `settings`;
+nella scheda e `storage` tra schede), `setStorageBackend()` per i test. Aree tipiche: `progress`, `srs`, `exam`, `notes`, `studied`, `settings`;
 globali: `theme`, `lang`, `examDates`, `migrations`, `backup`, `lastStudy` (con `<corso>:lastPage`: ultima pagina di studio, «Riprendi da dove eri»; non esportate).
 `read()` restituisce il ripiego anche se il valore salvato è di un altro tipo (oggetto/array/numero/stringa/booleano; con
 ripiego `null` passa tutto e normalizza il `sanitize*` dell'area). Una scrittura fallita emette `sh:storage-error`

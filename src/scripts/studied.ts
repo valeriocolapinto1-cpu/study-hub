@@ -69,7 +69,7 @@ function render(): void {
     const link = first?.querySelector('a');
     next.hidden = !link;
     if (link) {
-      next.href = link.href;
+      next.href = link.getAttribute('href') ?? link.href;
       next.textContent = `${next.dataset.t ?? ''} ${link.firstChild?.textContent ?? ''}`.trim();
     }
   }

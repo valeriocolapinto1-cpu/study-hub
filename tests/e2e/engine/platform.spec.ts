@@ -92,6 +92,11 @@ test.describe('offline', () => {
   test.describe.configure({ mode: 'serial' });
 
   test('scarica un corso, funziona senza rete e lo rimuove', async ({ page, context }) => {
+    // Ripasso offline: carte nuove solo degli argomenti studiati (R13), segnati due giorni fa.
+    await page.addInitScript(() => {
+      const at = Date.now() - 2 * 86_400_000;
+      localStorage.setItem('sh:v1:esempio:studied', JSON.stringify({ v: 1, topics: { resistori: at } }));
+    });
     await page.goto(C);
     await expect(page.locator('html')).toHaveAttribute('data-sw', 'ready', { timeout: 20_000 });
     const box = page.locator('.pf-offline');

@@ -136,6 +136,7 @@ pagina è `hashString(id)` (SSR e client coincidono); "Nuova variante" usa `rand
 | `progress.ts` | aree `progress` (tentativi per esercizio, `exerciseStatus`) e `srs` (carte + log) con `save*`/`load*`/`sanitize*` |
 | `exam.ts` | `assembleExam` (deterministico; modalità `completa`/`personalizzata`/`mirata`; `forcedRefs` per ristampare), `gradeExam`, `analyze`, timer (`remainingMs`, `formatClock`), sessione e storico (area `exam`), `printQuery`/`parsePrintQuery` |
 | `mastery.ts` | `computeMastery` (esercizi, prove, carte; decadimento con emivita 21 g; prior), `topicMastery`, `weakSpots`, `buildStudyPlan` (giorni fino all'esame, carico, richiami, simulazioni) |
+| `studied.ts` | argomenti segnati come studiati (area `studied`, R13): `loadStudied`/`saveStudied`/`withStudied`, `sanitizeStudied`, `mergeStudied`, `isStudied`; pure per le pagine e le voci successive: `studiedByChapter(topics, state, lang)` → `{ title, ids, studied, total, done }[]` per capitolo (gruppi consecutivi come nell'indice, «3/5 argomenti»), `firstUnstudied(ids, state)` («Riprendi»), `reviewableCards(cards, srs, state, now)` → `{ ids, waiting }` (carte ammesse al ripasso), `reviewFrom(at)` |
 | `notes.ts` | appunti per scope (area `notes`), `allNotes`, `searchNotes`, `notesToMarkdown` |
 | `exportImport.ts` | `buildExport` (schema `{format:'study-hub', version:1, data}`), `validateExport`, `applyImport` (`merge` area per area o `replace`), `summarize` |
 | `qr.ts` | `compressText` (deflate + base64url), frame `SH1:i/n:crc:…` (`splitFrames`, `FrameCollector`), `encodeForQr` (null oltre 24 QR → file), `decodePasted`, `matrixToSvg` |
@@ -144,11 +145,27 @@ pagina è `hashString(id)` (SSR e client coincidono); "Nuova variante" usa `rand
 | `backup.ts` | promemoria di backup (area `global:backup`, resta sul dispositivo): `backupDue`, `snoozeBackup`, `loadBackupState`, `hasUserData` |
 | `migrate.ts` | (PR1) + `registerMigration(m)` per aggiungere voci da `src/courses/<id>/migrations.ts`, `jsonTransform` |
 
-Aree di storage: per corso `progress`, `srs`, `exam`, `notes`, `settings` (`dailyMinutes`); globali
+Aree di storage: per corso `progress`, `srs`, `exam`, `notes`, `studied`, `settings` (`dailyMinutes`); globali
 `examDates` (`{ <courseId>: 'AAAA-MM-GG' }`), `settings` (`newPerDay`), `theme`, `lang`, `migrations`,
 `backup` (`{ lastExport?, snoozeUntil? }`). Ogni lettura di `progress`, `srs`, `exam`, `notes` passa dal `sanitize*`
 dell'area (`load*`, e `update` nei `save*`): un valore corrotto diventa lo stato vuoto o perde solo le voci malformate;
 gli esiti d'esame incompleti restano con valori neutri (come quelli migrati), così nessuno viene perso.
+
+## Argomenti studiati (R13)
+
+- **Dati**: `sh:v1:<corso>:studied` = `{ v: 1, topics: { <argomento>: <istante ms> } }`, esportata (file e QR)
+  come le altre aree del corso; all'importazione si fonde per unione (data della prima segnatura). Migrazione:
+  senza area salvata vale `progress.read` (i segni dei siti originali, migrati dalle PR dei corsi); la prima
+  scrittura la salva e da lì `progress.read` non si consulta più.
+- **Padronanza**: «studiato» è un segnale a parte, non entra in `computeMastery` (Progressi mostra «Studiato ·
+  padronanza 0 %»).
+- **Ripasso**: le carte già viste (stato FSRS salvato) restano come prima; le **nuove** entrano solo se il loro
+  argomento è studiato, dal giorno dopo la segnatura (`reviewableCards`). Senza nulla da ripassare la sessione
+  invita a segnare un argomento (link `Deck.theoryPath`) o dice quante carte entrano domani.
+- **Interfaccia senza isole**: `src/components/course/StudiedToggle.astro` (fondo della teoria) e attributi
+  `data-studied-mark`, `data-chapter-ids`/`data-chapter-count`/`data-studied-chapter`, `data-studied-next`
+  (+ `data-studied-next-list`), letti da `src/scripts/studied.ts`, che `site.ts` scarica solo se la pagina ne
+  ha. `CourseLayout` `studiedMarks={false}` toglie le spunte dall'indice laterale (prova d'esame: budget JS).
 
 ## Dati per le isole (src/lib/course-data.ts)
 
