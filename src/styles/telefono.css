@@ -68,6 +68,10 @@
     outline-offset: -3px;
     border-radius: var(--radius-m);
   }
+  /* Il margine dell'iPhone lo copre già la barra (padding del body): il piè di pagina non lo ripete. */
+  body:has(.course-tabbar) .site-footer {
+    padding-bottom: 0;
+  }
   /* Avvisi sopra la barra. */
   body:has(.course-tabbar) .toast-region {
     bottom: calc(var(--tabbar-h) + var(--tabbar-safe) + var(--space-s));
