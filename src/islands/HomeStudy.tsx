@@ -15,6 +15,7 @@ import { allNotes } from '../engine/notes';
 import { exerciseStatus, loadProgress, loadSrs } from '../engine/progress';
 import { GLOBAL_SCOPE, read, subscribe } from '../engine/storage';
 import { indexUrl, type CourseIndex } from '../engine/course-data';
+import { STUDIED_AREA, loadStudied, reviewableCards } from '../engine/studied';
 import { fetchJson } from './lib/hooks';
 import './platform.css';
 
@@ -55,7 +56,8 @@ const fmt = (s: string | undefined, p: Record<string, string | number>) =>
   (s ?? '').replace(/\{(\w+)\}/g, (m, k: string) => (k in p ? String(p[k]) : m));
 
 /** Id noti di un corso (dall'indice), `error` se non scaricabile. */
-type Known = { exercises: Set<string>; cards: Set<string> } | 'error';
+type Known =
+  { exercises: Set<string>; cards: Set<string>; cardTopics: { id: string; topic: string }[] } | 'error';
 
 export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, texts: T }: HomeStudyProps) {
   const [rows, setRows] = useState<Row[] | null>(null);
@@ -78,7 +80,11 @@ export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, 
   useEffect(() => {
     const withData = courses.filter((c) => {
       const srs = loadSrs(c.id);
-      return Object.keys(srs.cards).length > 0 || Object.keys(loadProgress(c.id).exercises).length > 0;
+      return (
+        Object.keys(srs.cards).length > 0 ||
+        Object.keys(loadProgress(c.id).exercises).length > 0 ||
+        Object.keys(loadStudied(c.id).topics).length > 0
+      );
     });
     setWaiting(withData.length);
     for (const c of withData)
@@ -86,6 +92,7 @@ export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, 
         .then((ix) => ({
           exercises: new Set(ix.exercises.map((e) => e.id)),
           cards: new Set(ix.cards.map((x) => x.id)),
+          cardTopics: ix.cards.map((x) => ({ id: x.id, topic: x.topic })),
         }))
         .catch((): Known => 'error')
         .then((k) => {
@@ -111,7 +118,15 @@ export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, 
           );
           const studied = cardIds.length;
           const due = studied ? buildQueue(cardIds, srs.cards, now, { newLimit: 0 }).length : 0;
-          const fresh = studied ? Math.min(newPerDay, Math.max(0, c.cardCount - studied)) : 0;
+          // Nuove: solo quelle degli argomenti segnati come studiati (serve l'indice con gli argomenti).
+          const fresh =
+            k && k !== 'error'
+              ? Math.min(
+                  newPerDay,
+                  reviewableCards(k.cardTopics, srs.cards, loadStudied(c.id), now).ids.length -
+                    k.cardTopics.filter((x) => srs.cards[x.id]).length,
+                )
+              : 0;
           const date = examDateFor(personal[c.id], c.examDates, now);
           const days = date ? daysUntil(date, now) : null;
           return {
@@ -153,7 +168,9 @@ export default function HomeStudy({ lang, base, courses, reviewPath, notesPath, 
     );
     const subs = [
       subscribe(GLOBAL_SCOPE, 'examDates', load),
-      ...courses.flatMap((c) => ['srs', 'progress', 'notes'].map((a) => subscribe(c.id, a, load))),
+      ...courses.flatMap((c) =>
+        ['srs', 'progress', 'notes', STUDIED_AREA].map((a) => subscribe(c.id, a, load)),
+      ),
     ];
     return () => subs.forEach((u) => u());
   }, [known]);

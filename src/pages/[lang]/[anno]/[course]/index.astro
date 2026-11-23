@@ -129,12 +129,21 @@ const courseLd = courseJsonLd({
     data-t-due={t(lang, 'overview.status.due')}
     data-t-resume={t(lang, 'overview.status.resume')}
   >
+    <span data-chapter-ids={topics.map((x) => x.id).join(' ')}>
+      {t(lang, 'overview.status.theory')}
+      <b data-chapter-count data-t="{n} / {total}">
+        0 / {topics.length}
+      </b>
+    </span>
     <span>
       {t(lang, 'overview.status.solved')} <b data-solved>0</b> / {index.exercises.length}
     </span>
     <span>
-      {t(lang, 'overview.status.studied')} <b data-studied>0</b> / {index.cards.length}
+      {t(lang, 'overview.status.studied')} <b data-cards-studied>0</b> / {index.cards.length}
     </span>
+    <a data-studied-next hidden data-t={t(lang, 'overview.status.next')} href="#mappa">
+      {t(lang, 'overview.status.next')}
+    </a>
   </p>
   <nav class="page-toc" aria-label={t(lang, 'overview.toc')}>
     <ol>
@@ -229,17 +238,29 @@ const courseLd = courseJsonLd({
 
     <h2 id="mappa">{t(lang, 'overview.map', { n: topics.length })}</h2>
   </div>
-  <div class="topic-map">
+  <div class="topic-map" data-studied-next-list data-studied-label={t(lang, 'studied.short')}>
     {groups.map((g, gi) => (
-      <section class="topic-map__group" aria-labelledby={g.title ? `m-${gi + 1}` : undefined}>
+      <section
+        class="topic-map__group"
+        aria-labelledby={g.title ? `m-${gi + 1}` : undefined}
+        data-chapter-ids={g.items.map((x) => x.id).join(' ')}
+      >
         {g.title && (
           <h3 class="topic-map__chapter" id={`m-${gi + 1}`}>
-            {g.title}
+            {g.title}{' '}
+            <span
+              class="topic-map__count"
+              data-chapter-count
+              data-t={t(lang, 'studied.chapterCount')}
+              data-pagefind-ignore
+            >
+              {t(lang, 'studied.chapterCount', { n: 0, total: g.items.length })}
+            </span>
           </h3>
         )}
         <ol class="topic-map__list">
           {g.items.map((x) => (
-            <li data-topic={x.id}>
+            <li data-topic={x.id} data-studied-mark={x.id}>
               <p class="topic-map__text">
                 <span class="topic-map__num" aria-hidden="true">
                   {String(x.order).padStart(2, '0')}
@@ -274,7 +295,7 @@ const courseLd = courseJsonLd({
     const cards = (el.dataset.cards ?? '').split(' ').filter((c) => c in srs.cards);
     const solved = [...exercises].filter((e) => exerciseStatus(progress.exercises[e]) === 'risolto').length;
     el.querySelector('[data-solved]')!.textContent = String(solved);
-    el.querySelector('[data-studied]')!.textContent = String(cards.length);
+    el.querySelector('[data-cards-studied]')!.textContent = String(cards.length);
     const due = cards.length ? buildQueue(cards, srs.cards, Date.now(), { newLimit: 0 }).length : 0;
     if (due > 0) {
       const a = document.createElement('a');

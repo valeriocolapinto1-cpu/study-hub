@@ -1,6 +1,9 @@
 /** @jsxImportSource preact */
 /** Mappa della preparazione: argomenti → obiettivi con livello di padronanza, punti deboli, link a teoria ed esercizi. */
+import { useEffect, useState } from 'preact/hooks';
 import type { CoursePaths } from '../engine/course-data';
+import { subscribe } from '../engine/storage';
+import { STUDIED_AREA, emptyStudied, isStudied, loadStudied } from '../engine/studied';
 import { LEVEL_KEYS, overallMastery, topicMastery, weakSpots } from '../engine/mastery';
 import { useMastery, type MasteryProps } from './lib/course-state';
 import { t, type Lang } from './lib/i18n';
@@ -22,6 +25,14 @@ export default function MasteryMap(props: MasteryMapProps) {
     topics.flatMap((tp) => tp.objectives.map((o) => [o.id, { text: o.text, topic: tp.id }])),
   );
   const overall = mastery ? pct(overallMastery(mastery)) : 0;
+  // «Studiato» è un segnale a parte: non cambia la padronanza, la affianca (colonna «Teoria»).
+  const [studied, setStudied] = useState(emptyStudied);
+  useEffect(() => {
+    const load = () => setStudied(loadStudied(props.courseId));
+    load();
+    const subs = [STUDIED_AREA, 'progress'].map((a) => subscribe(props.courseId, a, load));
+    return () => subs.forEach((u) => u());
+  }, [props.courseId]);
 
   return (
     <section class="sh-mastery" aria-labelledby="sh-mastery-h" aria-busy={!mastery && !error}>
@@ -66,6 +77,10 @@ export default function MasteryMap(props: MasteryMapProps) {
         </ul>
       )}
 
+      <p class="sh-topics__head" aria-hidden="true">
+        <span />
+        <span>{t(lang, 'mastery.theoryCol')}</span>
+      </p>
       <ol class="sh-topics">
         {tm.map((tp) => {
           const info = topics.find((x) => x.id === tp.id)!;
@@ -86,6 +101,12 @@ export default function MasteryMap(props: MasteryMapProps) {
                     value={pct(tp.value)}
                     aria-label={`${info.title}: ${pct(tp.value)}%`}
                   />
+                  <span class={`sh-tag sh-theory${isStudied(studied, tp.id) ? ' sh-theory--done' : ''}`}>
+                    <span class="sh-visually-hidden">{t(lang, 'mastery.theoryCol')}: </span>
+                    {isStudied(studied, tp.id)
+                      ? t(lang, 'mastery.studiedMastery', { n: pct(tp.value) })
+                      : t(lang, 'mastery.notStudied')}
+                  </span>
                 </summary>
                 <ul class="sh-objectives" aria-label={t(lang, 'mastery.objectives')}>
                   {tp.objectives.map((o) => (

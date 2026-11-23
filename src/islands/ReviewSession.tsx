@@ -19,6 +19,7 @@ import {
 import { loadSrs, reviewsOn, saveReview, type SrsState } from '../engine/progress';
 import { GLOBAL_SCOPE, read, subscribe, update } from '../engine/storage';
 import { examDateFor } from '../engine/mastery';
+import { STUDIED_AREA, loadStudied, reviewableCards, type StudiedState } from '../engine/studied';
 import { ignoreKey, openKeys, useNow, useRemote } from './lib/hooks';
 import { loadCard, loadTopic } from './lib/course-data-client';
 import { t, type Lang } from './lib/i18n';
@@ -33,6 +34,8 @@ export interface Deck {
   cards?: CardMeta[];
   /** Date d'appello suggerite (per non programmare ripassi oltre l'esame). */
   examDates?: string[];
+  /** Indice della teoria del corso (invito a segnare come studiato un argomento). */
+  theoryPath?: string;
 }
 
 export interface ReviewSessionProps {
@@ -68,6 +71,7 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
   const remote = useRemote<CourseIndex>(remoteUrls);
   const now = useNow(60_000);
   const [states, setStates] = useState<Record<string, SrsState>>({});
+  const [studied, setStudied] = useState<Record<string, StudiedState>>({});
   const [settings, setSettings] = useState<Settings>({});
   const [flipped, setFlipped] = useState(false);
   const [doneToday, setDoneToday] = useState(0);
@@ -96,10 +100,11 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
   useEffect(() => {
     const load = () => {
       setStates(Object.fromEntries(decks.map((d) => [d.courseId, loadSrs(d.courseId)])));
+      setStudied(Object.fromEntries(decks.map((d) => [d.courseId, loadStudied(d.courseId)])));
       setSettings(read<Settings>(GLOBAL_SCOPE, 'settings', {}));
     };
     load();
-    const unsubs = decks.map((d) => subscribe(d.courseId, 'srs', load));
+    const unsubs = decks.flatMap((d) => ['srs', STUDIED_AREA].map((a) => subscribe(d.courseId, a, load)));
     return () => unsubs.forEach((u) => u());
   }, [decks]);
 
@@ -110,7 +115,27 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
     return m;
   }, [states]);
 
-  const ids = useMemo(() => [...allCards.keys()], [allCards]);
+  // Nel ripasso: le carte già viste e le nuove dei soli argomenti segnati come studiati (studied.ts).
+  const { ids, waiting } = useMemo(() => {
+    const out = { ids: [] as string[], waiting: 0 };
+    if (!now) return out;
+    for (const d of decks) {
+      const prefix = `${d.courseId}${SEP}`;
+      const cards = [...allCards.entries()]
+        .filter(([, v]) => v.courseId === d.courseId)
+        .map(([, v]) => ({ id: v.card.id, topic: v.card.topic }));
+      const r = reviewableCards(
+        cards,
+        states[d.courseId]?.cards ?? {},
+        studied[d.courseId] ?? { v: 1, topics: {} },
+        now,
+      );
+      out.ids.push(...r.ids.map((id) => prefix + id));
+      out.waiting += r.waiting;
+    }
+    return out;
+  }, [allCards, states, studied, now, decks]);
+  const anyStudied = Object.values(studied).some((s) => Object.keys(s.topics).length > 0);
   const newPerDay = settings.newPerDay ?? 20;
   // Nuove già introdotte oggi (prima valutazione oggi).
   const introducedToday = useMemo(() => {
@@ -238,7 +263,30 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
         </button>
       </p>
     );
-  if (ids.length === 0) return <p class="sh-muted">{t(lang, 'review.empty')}</p>;
+  if (allCards.size === 0) return <p class="sh-muted">{t(lang, 'review.empty')}</p>;
+  if (now > 0 && ids.length === 0) {
+    const links = decks.filter((d) => d.theoryPath);
+    return (
+      <div class="sh-review-start">
+        <p class="sh-muted">
+          {anyStudied && waiting > 0
+            ? t(lang, 'review.waiting', { n: waiting })
+            : t(lang, 'review.startStudied')}
+        </p>
+        {links.length > 0 && (
+          <p class="sh-actions">
+            {links.map((d) => (
+              <a key={d.courseId} class="btn btn--primary" href={d.theoryPath}>
+                {links.length > 1
+                  ? t(lang, 'review.toTheoryOf', { course: d.title })
+                  : t(lang, 'review.toTheory')}
+              </a>
+            ))}
+          </p>
+        )}
+      </div>
+    );
+  }
 
   return (
     <section class="sh-review" aria-label={t(lang, 'review.title')}>
@@ -247,6 +295,7 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
       </p>
 
       {now > 0 && !current && <p class="sh-alert sh-alert--success">{t(lang, 'review.done')}</p>}
+      {waiting > 0 && <p class="sh-help">{t(lang, 'review.waiting', { n: waiting })}</p>}
 
       {current && info && (
         <div

@@ -32,11 +32,34 @@ const groups = groupTopics(topics, lang);
 >
   <PageHeader title={t(lang, 'nav.course.theory')} lede={t(lang, 'theory.indexLede', { n: topics.length })} />
   {groups.map((g, gi) => (
-    <section class="topic-index__group" aria-labelledby={`g-${gi + 1}`}>
+    <section
+      class="topic-index__group"
+      aria-labelledby={g.title ? `g-${gi + 1}` : undefined}
+      data-chapter-ids={g.items.map((x) => x.id).join(' ')}
+      data-studied-label={t(lang, 'studied.short')}
+    >
       {g.title && (
-        <h2 class="topic-index__group-title" id={`g-${gi + 1}`}>
-          {g.title}
-        </h2>
+        <div class="chapter-head">
+          <h2 class="topic-index__group-title" id={`g-${gi + 1}`}>
+            {g.title}
+          </h2>
+          <p class="chapter-head__tools" data-pagefind-ignore>
+            <span class="chapter-head__count" data-chapter-count data-t={t(lang, 'studied.chapterCount')}>
+              {t(lang, 'studied.chapterCount', { n: 0, total: g.items.length })}
+            </span>
+            <button
+              type="button"
+              class="btn btn--sm btn--ghost"
+              data-studied-chapter
+              hidden
+              data-label-off={t(lang, 'studied.chapterMark')}
+              data-label-on={t(lang, 'studied.chapterUndo')}
+              aria-describedby={`g-${gi + 1}`}
+            >
+              {t(lang, 'studied.chapterMark')}
+            </button>
+          </p>
+        </div>
       )}
       <ol class="topic-index">
         {g.items.map((x) => (
@@ -47,6 +70,7 @@ const groups = groupTopics(topics, lang);
             summary={tr(x.summary, lang)}
             meta={[t(lang, 'theory.objectivesCount', { n: x.objectives.length })]}
             topicId={x.id}
+            studiedMark
           />
         ))}
       </ol>

@@ -15,13 +15,20 @@ interface Props {
   progress?: number | undefined;
   progressLabel?: string | undefined;
   topicId?: string;
+  /** Spunta «studiato» (src/scripts/studied.ts, richiede `topicId`). */
+  studiedMark?: boolean;
 }
-const { num, title, href, summary, meta = [], progress, progressLabel, topicId } = Astro.props;
+const { num, title, href, summary, meta = [], progress, progressLabel, topicId, studiedMark } = Astro.props;
 const state =
   progress === undefined ? undefined : progress >= 100 ? 'done' : progress > 0 ? 'started' : 'new';
 ---
 
-<li class="topic-card" data-state={state} data-topic={topicId}>
+<li
+  class="topic-card"
+  data-state={state}
+  data-topic={topicId}
+  data-studied-mark={studiedMark && topicId ? topicId : undefined}
+>
   <span class="topic-card__num" aria-hidden="true">
     {String(num).padStart(2, '0')}
   </span>

@@ -60,7 +60,12 @@ export function loadStudied(courseId: string): StudiedState {
 }
 
 /** Segna (`on`) o toglie un gruppo di argomenti (puro). */
-export function withStudied(state: StudiedState, ids: readonly string[], on: boolean, now: number): StudiedState {
+export function withStudied(
+  state: StudiedState,
+  ids: readonly string[],
+  on: boolean,
+  now: number,
+): StudiedState {
   const topics = { ...state.topics };
   for (const id of ids) {
     if (!on) delete topics[id];
@@ -70,9 +75,19 @@ export function withStudied(state: StudiedState, ids: readonly string[], on: boo
 }
 
 /** Segna o toglie e salva; restituisce lo stato nuovo. */
-export function saveStudied(courseId: string, ids: readonly string[], on: boolean, now: number): StudiedState {
+export function saveStudied(
+  courseId: string,
+  ids: readonly string[],
+  on: boolean,
+  now: number,
+): StudiedState {
   return update<unknown>(courseId, STUDIED_AREA, null, (raw) =>
-    withStudied(raw === null ? studiedFromProgress(loadProgress(courseId)) : sanitizeStudied(raw), ids, on, now),
+    withStudied(
+      raw === null ? studiedFromProgress(loadProgress(courseId)) : sanitizeStudied(raw),
+      ids,
+      on,
+      now,
+    ),
   ) as StudiedState;
 }
 

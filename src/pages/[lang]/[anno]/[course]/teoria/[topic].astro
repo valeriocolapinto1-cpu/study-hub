@@ -1,7 +1,7 @@
 ---
 /**
  * Pagina di teoria di un argomento: sommario, tempo di lettura, obiettivi a spunta, indice della pagina,
- * strati della spiegazione (MDX), barra ← precedente · esercizi dell'argomento · successivo →.
+ * strati della spiegazione (MDX), «Segna come studiato», barra ← precedente · esercizi dell'argomento · successivo →.
  */
 import { render } from 'astro:content';
 import CourseLayout from '../../../../../layouts/CourseLayout.astro';
@@ -17,6 +17,7 @@ import Circuit from '../../../../../sim/Circuit.astro';
 import Diagram from '../../../../../figures/Diagram.astro';
 import DiagramLive from '../../../../../figures/DiagramLive.astro';
 import Notes from '../../../../../components/course/Notes.astro';
+import StudiedToggle from '../../../../../components/course/StudiedToggle.astro';
 import Icon from '../../../../../components/Icon.astro';
 import InlineTex from '../../../../../components/InlineTex.astro';
 import { theoryOutline } from '../../../../../lib/theory-outline';
@@ -111,6 +112,7 @@ const link = (x: TopicData | undefined) =>
   <article class="prose" data-topic={topic.id}>
     <Content components={{ Layer, Formula, Figure, Callout, Circuit, Diagram, DiagramLive, a: TheoryLink }} />
   </article>
+  <StudiedToggle lang={lang} topicId={topic.id} />
   <Pagination
     lang={lang}
     prev={link(topics[i - 1])}
