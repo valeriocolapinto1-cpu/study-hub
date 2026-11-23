@@ -1,9 +1,10 @@
 /**
- * Integrazione Astro della piattaforma: dopo la build crea l'indice di ricerca
- * (Pagefind) e poi il service worker con i manifest dell'offline, che includono
- * anche i file dell'indice.
+ * Integrazione Astro della piattaforma: dopo la build aggiunge la Content-Security-Policy
+ * alle pagine, crea l'indice di ricerca (Pagefind) e poi il service worker con i manifest
+ * dell'offline, che includono anche i file dell'indice (e quindi le pagine con la CSP).
  */
 import { fileURLToPath } from 'node:url';
+import { applyCsp } from './csp.mjs';
 import { buildSearchIndex } from './pagefind.mjs';
 import { buildServiceWorker } from './pwa.mjs';
 
@@ -18,6 +19,7 @@ export default function platform() {
       },
       'astro:build:done': async ({ dir, logger }) => {
         const dist = fileURLToPath(dir);
+        await applyCsp(dist, logger);
         await buildSearchIndex(dist, base, logger);
         await buildServiceWorker(dist, base, logger);
       },

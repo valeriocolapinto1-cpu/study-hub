@@ -1,5 +1,7 @@
 ---
+import JsonLd from './JsonLd.astro';
 import { t, type Lang } from '../i18n';
+import { breadcrumbJsonLd } from '../lib/seo';
 export interface Crumb {
   label: string;
   href?: string | undefined;
@@ -11,6 +13,19 @@ interface Props {
 const { lang, items } = Astro.props;
 // Su telefono resta visibile solo il livello superiore («← Teoria»): il resto è nell'intestazione.
 const parent = items.findLastIndex((c, i) => i < items.length - 1 && c.href);
+// Dati strutturati: URL assoluti; la pagina corrente è l'URL della pagina.
+const site = Astro.site ?? new URL('http://localhost');
+const structured = breadcrumbJsonLd(
+  items.map((c, i) => ({
+    label: c.label,
+    url:
+      i === items.length - 1
+        ? new URL(Astro.url.pathname, site).href
+        : c.href
+          ? new URL(c.href, site).href
+          : undefined,
+  })),
+);
 ---
 
 <nav class="breadcrumbs" aria-label={t(lang, 'breadcrumbs.label')}>
@@ -28,3 +43,4 @@ const parent = items.findLastIndex((c, i) => i < items.length - 1 && c.href);
     )}
   </ol>
 </nav>
+<JsonLd data={structured} />

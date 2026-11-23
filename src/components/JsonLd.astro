@@ -1,0 +1,10 @@
+---
+/** Dati strutturati schema.org (src/lib/seo.ts): non eseguiti, quindi fuori dalla CSP degli script. */
+import { serializeJsonLd } from '../lib/seo';
+interface Props {
+  data: Record<string, unknown>;
+}
+const json = serializeJsonLd(Astro.props.data);
+---
+
+<script type="application/ld+json" set:html={json} />

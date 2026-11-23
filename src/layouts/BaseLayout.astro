@@ -49,7 +49,14 @@ const searchConfig = {
 <!doctype html>
 <html lang={htmlLang[lang]} data-course={course} data-area={course ? 'course' : 'hub'}>
   <head>
-    <Head lang={lang} title={title} description={description} alternates={alternates} noindex={noindex} />
+    <Head
+      lang={lang}
+      title={title}
+      description={description}
+      alternates={alternates}
+      noindex={noindex}
+      course={course}
+    />
     <slot name="head" />
   </head>
   <body class={bodyClass}>
