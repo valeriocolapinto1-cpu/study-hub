@@ -132,13 +132,13 @@ The stack carries the return address, parameters, local variables and the regist
 
 ```
 ; multiplication by repeated addition (RISC style)
-      Load  LOC1, NUM1
-      Load  LOC2, NUM2
-      Clear LOC3
-CICLO: Sub   LOC2, LOC2, 1
-      Add   LOC3, LOC3, LOC1
-      Branch_if_[LOC2]>0  CICLO
-      Store LOC3, RES
+      Load  R1, NUM1      ; R1 ← multiplicand
+      Load  R2, NUM2      ; R2 ← multiplier (counter)
+      Clear R3            ; R3 ← 0 (accumulator)
+CICLO: Sub   R2, R2, #1    ; decrement the counter
+      Add   R3, R3, R1    ; R3 ← [R3] + [R1]
+      Branch_if_[R2]>0  CICLO
+      Store R3, RES       ; RES ← [R3]
 ```
 
 Read it like this: the accumulator is cleared, the multiplicand is added as many times as the multiplier's value, decrementing the counter at every iteration. The branch is **at the end**, so the body is executed at least once.
