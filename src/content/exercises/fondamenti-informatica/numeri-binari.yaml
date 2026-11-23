@@ -603,27 +603,27 @@
   difficulty: 1
   kind: static
   statement:
-    it: 'In una rappresentazione Big Endian, il bit di segno si trova:'
-    en: 'In a Big Endian representation, the sign bit is found:'
+    it: 'In memoria, con ordinamento Big Endian, il byte che contiene il bit di segno si trova:'
+    en: 'In memory, with Big Endian ordering, the byte that contains the sign bit is found:'
   steps:
     - title:
         it: Risposta
         en: Answer
       body:
-        it: All'inizio (byte più significativo)
-        en: At the start (most significant byte)
+        it: Il byte più significativo, che contiene il bit di segno, sta all'indirizzo più basso.
+        en: The most significant byte, which contains the sign bit, is at the lowest address.
   choices:
     - text:
-        it: Alla fine
-        en: At the end
+        it: All'indirizzo più alto
+        en: At the highest address
       correct: false
     - text:
-        it: All'inizio (byte più significativo)
-        en: At the start (most significant byte)
+        it: All'indirizzo più basso (è il byte più significativo)
+        en: At the lowest address (it is the most significant byte)
       correct: true
     - text:
-        it: Al centro
-        en: In the middle
+        it: A metà della parola
+        en: In the middle of the word
       correct: false
     - text:
         it: In un registro a parte

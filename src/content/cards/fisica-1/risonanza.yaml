@@ -92,12 +92,12 @@
   back:
     it: >-
       La larghezza a metà potenza della curva di potenza assorbita vale \(\Delta\omega \approx 2\gamma\) (per
-      smorzamento debole), quindi \(Q = \omega_0/\Delta\omega = \omega_0/2\gamma\): più lo smorzamento è
+      smorzamento debole; la curva d'ampiezza, a metà altezza, è larga invece circa \(2\sqrt{3}\,\gamma\)), quindi \(Q = \omega_0/\Delta\omega = \omega_0/2\gamma\): più lo smorzamento è
       debole, più il picco è stretto e selettivo. Q misura anche quante oscillazioni servono per raggiungere
       (o perdere) il regime: il tempo di assestamento è dell'ordine di 1/γ.
     en: >-
-      The half-power width of the absorbed-power curve is \(\Delta\omega \approx 2\gamma\) (for weak damping),
-      so \(Q = \omega_0/\Delta\omega = \omega_0/2\gamma\): the weaker the damping, the narrower and more
+      The half-power width of the absorbed-power curve is \(\Delta\omega \approx 2\gamma\) (for weak damping;
+      the amplitude curve, at half height, is instead about \(2\sqrt{3}\,\gamma\) wide), so \(Q = \omega_0/\Delta\omega = \omega_0/2\gamma\): the weaker the damping, the narrower and more
       selective the peak. Q also measures how many oscillations it takes to reach (or lose) the steady state:
       the settling time is of order 1/γ.
 - id: risonanza-orale-3

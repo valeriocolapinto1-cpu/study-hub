@@ -485,11 +485,12 @@
   examTags:
     - assembly
   statement:
-    it: Scrivi un programma in stile RISC che calcoli la moltiplicazione di due numeri in LOC1 e LOC2 tramite
-      somme successive, salvando il risultato in LOC3.
-    en:
-      Write a RISC-style program that computes the multiplication of two numbers in LOC1 and LOC2 by repeated
-      addition, saving the result in LOC3.
+    it: Scrivi un programma in stile RISC (modello load/store, operazioni solo fra registri) che calcoli il
+      prodotto dei due numeri naturali nelle celle NUM1 e NUM2 (con NUM2 > 0) tramite somme successive,
+      salvando il risultato nella cella RES.
+    en: Write a RISC-style program (load/store model, operations only between registers) that computes the
+      product of the two natural numbers in cells NUM1 and NUM2 (with NUM2 > 0) by repeated addition, saving
+      the result in cell RES.
   figure:
     diagram:
       type: memory
@@ -500,11 +501,11 @@
           en: Operands and result in memory
         cells:
           - value: a
-            label: LOC1
+            label: NUM1
           - value: b
-            label: LOC2
+            label: NUM2
           - value: '?'
-            label: LOC3
+            label: RES
             highlight: true
   steps:
     - title:
@@ -513,23 +514,23 @@
       body:
         it: |-
           ```
-                Load  LOC1, NUM1
-                Load  LOC2, NUM2
-                Clear LOC3
-          CICLO: Sub   LOC2, LOC2, 1
-                Add   LOC3, LOC3, LOC1
-                Branch_if_[LOC2]>0  CICLO
-                Store LOC3, RES
+                Load  R1, NUM1      ; R1 ← moltiplicando
+                Load  R2, NUM2      ; R2 ← moltiplicatore (contatore)
+                Clear R3            ; R3 ← 0 (accumulatore)
+          CICLO: Sub   R2, R2, #1    ; decrementa il contatore
+                Add   R3, R3, R1    ; R3 ← [R3] + [R1]
+                Branch_if_[R2]>0  CICLO
+                Store R3, RES       ; RES ← [R3]
           ```
         en: |-
           ```
-                Load  LOC1, NUM1
-                Load  LOC2, NUM2
-                Clear LOC3
-          CICLO: Sub   LOC2, LOC2, 1
-                Add   LOC3, LOC3, LOC1
-                Branch_if_[LOC2]>0  CICLO
-                Store LOC3, RES
+                Load  R1, NUM1      ; R1 ← multiplicand
+                Load  R2, NUM2      ; R2 ← multiplier (counter)
+                Clear R3            ; R3 ← 0 (accumulator)
+          CICLO: Sub   R2, R2, #1    ; decrement the counter
+                Add   R3, R3, R1    ; R3 ← [R3] + [R1]
+                Branch_if_[R2]>0  CICLO
+                Store R3, RES       ; RES ← [R3]
           ```
   origin: originale
 - id: asmw-sum-list
