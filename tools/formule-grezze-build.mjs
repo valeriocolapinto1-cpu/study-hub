@@ -6,7 +6,7 @@
  */
 import { readdirSync, readFileSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
-import { decodifica, testoVisibile } from './formule-grezze-html.mjs';
+import { testoVisibile } from './formule-grezze-html.mjs';
 import { formuleGrezze } from './formule-grezze-regole.mjs';
 
 function file(dir, est) {
@@ -26,6 +26,8 @@ function stringhe(v, chiave = '', out = []) {
 
 /** Chiavi dei dati che non sono testo da leggere (identificatori, URL, sorgenti TeX resi dal client). */
 const CHIAVI_NON_TESTO = new Set([
+  'tex',
+  'labelTex',
   'id',
   'href',
   'url',

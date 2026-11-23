@@ -102,7 +102,7 @@ export default function PrintExam({ lang, dataPaths }: PrintExamProps) {
           return (
             <li key={q.index} class="sh-print__q">
               <h2>
-                <TexText text={q.label} html={q.labelHtml} />{' '}
+                <TexText text={q.label} tex={q.labelTex} />{' '}
                 <span class="sh-muted">
                   ({t(lang, 'exam.points', { points: formatNumber(q.points, { lang }) })})
                 </span>

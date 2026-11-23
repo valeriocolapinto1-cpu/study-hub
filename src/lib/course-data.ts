@@ -27,7 +27,7 @@ import { plainText } from '../engine/rich';
 import { hashString } from '../engine/random';
 import { richHtml as richHtmlFull, richInline as richInlineFull } from './rich-server';
 import { stripMathml } from './katex-lite';
-import { hasTex, texInlineHtml, texToPlain } from './inline-tex';
+import { hasTex, texToPlain } from './inline-tex';
 import { renderSchematic } from '../sim/circuits/schematic';
 import { renderDiagram } from '../figures/render';
 import { loadCourseGenerators, runGenerator } from '../engine/generators/index';
@@ -39,11 +39,12 @@ const richHtml = (text: string) => stripMathml(richHtmlFull(text));
 const richInline = (text: string) => stripMathml(richInlineFull(text));
 
 /**
- * Testo breve per le isole (obiettivi, voci della prova): testo semplice (`text`, per opzioni, nomi
- * accessibili, ricerca) e, solo se contiene matematica, l'HTML con KaTeX leggero già reso (`html`).
+ * Testo breve per le isole (obiettivi, voci della prova): testo semplice (`text`, per l'HTML del server,
+ * le opzioni e i nomi accessibili) e, solo se contiene matematica, il sorgente (`tex`), che l'isola
+ * rende con KaTeX caricato al bisogno (TexText). Niente HTML di KaTeX nelle props né in `dati/indice.json`.
  */
-export function shortText(text: string): { text: string; html?: string } {
-  return { text: texToPlain(text), ...(hasTex(text) ? { html: stripMathml(texInlineHtml(text)) } : {}) };
+export function shortText(text: string): { text: string; tex?: string } {
+  return { text: texToPlain(text), ...(hasTex(text) ? { tex: text } : {}) };
 }
 
 export function coursePaths(course: Pick<CourseEntry, 'id' | 'year'>, lang: Lang): CoursePaths {
@@ -73,7 +74,7 @@ export function courseSummary(course: CourseEntry, lang: Lang): CourseSummary {
       const label = shortText(tr(p.label, lang));
       return {
         label: label.text,
-        ...(label.html ? { labelHtml: label.html } : {}),
+        ...(label.tex ? { labelTex: label.tex } : {}),
         kind: p.kind,
         ...(p.points !== undefined ? { points: p.points } : {}),
         ...(p.tag ? { tag: p.tag } : {}),

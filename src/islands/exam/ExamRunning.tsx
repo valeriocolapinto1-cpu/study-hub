@@ -108,8 +108,7 @@ export function ExamRunning(p: ExamRunningProps) {
       </nav>
       <article class="sh-card sh-question" aria-labelledby="sh-q-h">
         <h2 id="sh-q-h" ref={p.headingRef} tabIndex={-1}>
-          {t(lang, 'exam.question', { n: q.index + 1, total })} ·{' '}
-          <TexText text={q.label} html={q.labelHtml} />
+          {t(lang, 'exam.question', { n: q.index + 1, total })} · <TexText text={q.label} tex={q.labelTex} />
           <span class="sh-muted">
             {' '}
             · {t(lang, 'exam.points', { points: formatNumber(q.points, { lang }) })}

@@ -14,7 +14,7 @@ interface Props {
 }
 const { lang, courseId } = Astro.props;
 const data = await getCourseData(courseId, lang);
-// Le opzioni di un <select> non possono contenere KaTeX: obiettivi in testo semplice (senza `html`).
+// Le opzioni di un <select> non possono contenere KaTeX: obiettivi in testo semplice (senza `tex`).
 const topics = data.topics.map((tp) => ({
   ...tp,
   objectives: tp.objectives.map(({ id, text }) => ({ id, text })),

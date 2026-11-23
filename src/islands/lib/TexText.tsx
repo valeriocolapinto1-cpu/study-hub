@@ -1,8 +1,33 @@
 /** @jsxImportSource preact */
 /**
- * Testo breve con matematica già resa a build-time (`html`, KaTeX leggero da `shortText` in
- * src/lib/course-data.ts); senza `html` è testo semplice. Nessun KaTeX nel browser.
+ * Testo breve con matematica nelle isole. `html`: già reso a build-time (etichette dei dati degli
+ * argomenti). `tex`: sorgente con `$…$` (obiettivi, voci della prova, da `shortText` in
+ * src/lib/course-data.ts), reso nel browser da rich-client con KaTeX caricato al bisogno; finché non è
+ * pronto (e nell'HTML del server) si vede `text`, la versione in testo semplice.
  */
-export function TexText({ text, html }: { text: string; html?: string | undefined }) {
-  return html ? <span dangerouslySetInnerHTML={{ __html: html }} /> : <>{text}</>;
+import { useEffect, useState } from 'preact/hooks';
+
+export function TexText({
+  text,
+  html,
+  tex,
+}: {
+  text: string;
+  html?: string | undefined;
+  tex?: string | undefined;
+}) {
+  const [rendered, setRendered] = useState<string | null>(null);
+  useEffect(() => {
+    if (html || !tex) return;
+    let live = true;
+    void import('./rich-client')
+      .then((m) => m.renderRichClient(tex, { inlineOnly: true }))
+      .then((h) => live && setRendered(h))
+      .catch(() => {});
+    return () => {
+      live = false;
+    };
+  }, [html, tex]);
+  const out = html ?? rendered;
+  return out ? <span dangerouslySetInnerHTML={{ __html: out }} /> : <>{text}</>;
 }

@@ -85,7 +85,7 @@ export function ExamSetup(p: ExamSetupProps) {
           <ol class="sh-structure">
             {course.structure.map((s, i) => (
               <li key={i}>
-                <TexText text={s.label} html={s.labelHtml} />
+                <TexText text={s.label} tex={s.labelTex} />
                 {s.points !== undefined && (
                   <span class="sh-muted"> · {t(lang, 'exam.points', { points: s.points })}</span>
                 )}

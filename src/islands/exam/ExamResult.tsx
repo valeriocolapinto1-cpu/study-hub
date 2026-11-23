@@ -18,7 +18,7 @@ export interface ExamResultProps {
   result: Graded;
   timeUp: boolean;
   topicTitle: Record<string, string>;
-  objectiveText: Record<string, { text: string; html?: string | undefined }>;
+  objectiveText: Record<string, { text: string; tex?: string | undefined }>;
   printHref: (part: 'prova' | 'soluzioni') => string;
   onSelf: (index: number, self: 0 | 0.5 | 1) => void;
   onNew: () => void;
@@ -98,7 +98,7 @@ export function ExamResult(p: ExamResultProps) {
             {weak.slice(0, 6).map((o) => (
               <li key={o.id}>
                 {objectiveText[o.id] ? (
-                  <TexText text={objectiveText[o.id]!.text} html={objectiveText[o.id]!.html} />
+                  <TexText text={objectiveText[o.id]!.text} tex={objectiveText[o.id]!.tex} />
                 ) : (
                   o.id
                 )}{' '}
@@ -118,8 +118,8 @@ export function ExamResult(p: ExamResultProps) {
           return (
             <li key={qq.index} class={`sh-card sh-qresult is-${r.status}`}>
               <h4>
-                <TexText text={qq.label} html={qq.labelHtml} /> ·{' '}
-                {formatNumber(r.earned, { lang, digits: 3 })}/{qq.points} ·{' '}
+                <TexText text={qq.label} tex={qq.labelTex} /> · {formatNumber(r.earned, { lang, digits: 3 })}/
+                {qq.points} ·{' '}
                 <span class={`sh-tag sh-tag--${r.status}`}>{t(lang, `exercise.${r.status}`)}</span>
               </h4>
               <div class="prose" dangerouslySetInnerHTML={{ __html: cc.statementHtml }} />
