@@ -45,6 +45,16 @@ const course = await getCourse('fisica-2');
 </CourseLayout>
 ```
 
+## Tastiera e lettori di schermo
+
+- **Ripasso** (`ReviewSession`): Spazio gira la carta e porta il focus sulla risposta, Tab ai voti, 1–4 valuta;
+  la valutazione si annuncia con l'intervallo («Valutata «Bene»: torna fra 3 g.»).
+- **Prova** (`ExamRunner`, sottocomponenti in `src/islands/exam/`): ← / → fra le domande quando il focus non è
+  in un campo (nelle crocette le frecce restano al browser); il tempo residuo si annuncia alle soglie
+  30/15/10/5/1 min e l'esito alla consegna, in una sola regione `aria-live="polite"` comune alle fasi.
+- «?» apre in entrambe l'elenco delle scorciatoie (`KeysHelp`/`openKeys` di `src/islands/lib/keys.tsx`, popover
+  nativo: Esc lo chiude e il focus torna dov'era). I tasti premuti nei campi o con Alt/Ctrl/⌘ si ignorano (`ignoreKey`).
+
 ## Appunti sulle pagine di teoria e formulario
 
 Ogni elemento con `data-note-id` (id stabile, `^[a-z0-9][a-z0-9\-.:/]*$`) riceve il pulsante appunti;

@@ -66,7 +66,8 @@ describe('CSP: politica', () => {
   });
 
   it('i domini esterni coincidono con quelli usati dal modulo Contribuisci', () => {
-    const form = readFileSync(join(process.cwd(), 'src/islands/ContributeForm.tsx'), 'utf8');
+    // Turnstile si carica da src/islands/contribute/turnstile.ts (modulo del form Contribuisci).
+    const form = readFileSync(join(process.cwd(), 'src/islands/contribute/turnstile.ts'), 'utf8');
     const src = /TURNSTILE_SRC = '([^']+)'/.exec(form)?.[1];
     expect(src && new URL(src).origin).toBe(TURNSTILE_ORIGIN);
     // L'endpoint pubblicato di Apps Script è script.google.com (risposta da googleusercontent).
