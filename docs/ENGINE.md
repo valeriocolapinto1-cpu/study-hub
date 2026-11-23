@@ -205,3 +205,6 @@ chiama `window.print()` (il browser offre "Salva come PDF"). Le soluzioni sono u
   `tests/fixtures/generators/`), compilato con `npm run build:fixtures` in `dist-fixtures/` e servito sulla porta
   4322 (progetto Playwright `engine`), con axe WCAG 2.2 AA in tema chiaro e scuro.
   In locale: `npm run build:fixtures && PW_CHROMIUM_PATH=/opt/pw-browsers/chromium npx playwright test --project=engine`.
+- `tests/e2e/engine/studiato.spec.ts` — «Segna come studiato» (R13) sullo stesso corso finto: tastiera, invito,
+  capitoli, panoramica, ripasso dal giorno dopo (`page.clock`), Progressi, axe. I test del ripasso che vogliono
+  carte nuove segnano prima gli argomenti come studiati (in `addInitScript`, data di due giorni prima).
