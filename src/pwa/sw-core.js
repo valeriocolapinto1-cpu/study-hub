@@ -24,19 +24,42 @@ export const NETWORK_TIMEOUT_MS = 3000;
 /** @param {string} version */
 export const runtimeCacheName = (version) => `${RUNTIME_PREFIX}:${version}`;
 
+/** Prefisso delle cache "in pensione": file con hash tolti dalla shell o dai corsi a un aggiornamento. */
+export const RETIRED_PREFIX = 'sh-retired';
+/** Chiave (in `sh-meta`) degli id delle finestre aperte quando una versione ha preso il posto della precedente. */
+export const RETIRING_KEY = '__retiring';
+
+/** @param {string} version */
+export const retiredCacheName = (version) => `${RETIRED_PREFIX}:${version}`;
+
 /**
- * Cache da eliminare all'attivazione di `version`: quelle di passaggio delle versioni
- * precedenti (anche il vecchio nome senza versione) e le cache temporanee d'installazione.
+ * Cache temporanee d'installazione: si eliminano all'attivazione.
+ * @param {string[]} names
+ */
+export const stagingCaches = (names) => names.filter((n) => n.startsWith('sh-staging:'));
+
+/**
+ * Cache delle versioni precedenti che le pagine ancora aperte possono usare: le cache di passaggio
+ * delle altre versioni (anche il vecchio nome senza versione) e quelle in pensione. Si eliminano
+ * solo quando le finestre aperte al momento dell'aggiornamento sono tutte chiuse (`sweepRetired`
+ * in sw.js): una pagina vecchia rimasta aperta continua a trovare i suoi file con hash.
  * @param {string[]} names @param {string} version
  */
-export function staleCaches(names, version) {
+export function retiringCaches(names, version) {
   const keep = runtimeCacheName(version);
   return names.filter(
     (n) =>
-      n.startsWith('sh-staging:') ||
+      n.startsWith(`${RETIRED_PREFIX}:`) ||
       (n !== keep && (n === RUNTIME_PREFIX || n.startsWith(`${RUNTIME_PREFIX}:`))),
   );
 }
+
+/**
+ * Finestre da attendere prima di eliminare le cache in pensione: quelle già registrate ancora
+ * aperte più quelle aperte adesso (senza doppioni).
+ * @param {string[]} recorded @param {string[]} open
+ */
+export const mergeClients = (recorded, open) => [...new Set([...recorded, ...open])];
 
 /**
  * File con l'hash del contenuto nel nome (mai modificati sullo stesso URL): si servono

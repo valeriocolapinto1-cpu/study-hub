@@ -46,16 +46,43 @@ export interface CacheEnv {
 
 /**
  * Deregistra i service worker e svuota Cache Storage. Non tocca localStorage né IndexedDB
- * (progressi, appunti, ripasso restano dove sono).
+ * (progressi, appunti, ripasso restano dove sono). `keep` conserva alcune cache: «Ricarica»
+ * nel riquadro d'errore tiene i corsi scaricati (senza `sh-meta` il nuovo worker li riscarica
+ * in sottofondo, ma restano consultabili offline nel frattempo).
  */
-export async function resetSiteCaches(env: CacheEnv): Promise<{ workers: number; caches: number }> {
+export async function resetSiteCaches(
+  env: CacheEnv,
+  keep: (name: string) => boolean = () => false,
+): Promise<{ workers: number; caches: number }> {
   let workers = 0;
   let removed = 0;
   if (env.serviceWorker) {
     for (const reg of await env.serviceWorker.getRegistrations()) if (await reg.unregister()) workers++;
   }
   if (env.caches) {
-    for (const name of await env.caches.keys()) if (await env.caches.delete(name)) removed++;
+    for (const name of await env.caches.keys()) if (!keep(name) && (await env.caches.delete(name))) removed++;
   }
   return { workers, caches: removed };
 }
+
+/** Cache dei corsi scaricati per l'offline (vedi src/pwa/sw-core.js). */
+export const isCourseCache = (name: string): boolean => name.startsWith('sh-course:');
+
+/**
+ * Errore di caricamento del codice (import dinamico fallito, file sparito dopo una
+ * pubblicazione). Messaggi di Chrome, Safari e Firefox, più quello dei chunk CSS di Vite.
+ */
+export const isChunkLoadError = (error: unknown): boolean =>
+  /dynamically imported module|Importing a module script failed|error loading dynamically|Unable to preload CSS|Failed to fetch/i.test(
+    String((error as Error | undefined)?.message ?? error),
+  );
+
+/** Chiave in sessionStorage: commit per cui la pagina si è già ricaricata da sola. */
+export const RELOAD_GUARD_KEY = 'sh:auto-reload';
+
+/**
+ * Ricaricare da sola la pagina? Solo se la build pubblicata è più recente di quella della
+ * pagina e non ci si è già ricaricati per quella build (protezione contro i cicli).
+ */
+export const shouldAutoReload = (local: BuildInfo, remote: BuildInfo | null, guard: string | null): boolean =>
+  isNewerBuild(local, remote) && guard !== remote?.commit;

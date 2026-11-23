@@ -9,6 +9,14 @@
  * continua a funzionare. Gli errori nei gestori di eventi non arrivano qui
  * (come in React): restano nella console.
  *
+ * Prima di mostrare il messaggio l'errore passa a `src/scripts/pwa.ts` (evento
+ * `sh:island-error`): se la pagina è di una build non più pubblicata (HTML vecchio
+ * in cache, codice o dati cambiati) il worker si aggiorna e la pagina si ricarica da
+ * sola, e il riquadro non compare. Altrimenti il motivo (`versione-ripetuta`, `offline`,
+ * `stessa-versione`) e la build finiscono nel registro locale `sh:errors` e nel
+ * messaggio di «Segnala errore». «Ricarica» chiede a pwa.ts un aggiornamento completo
+ * (`sh:hard-reload`: worker deregistrato, cache svuotate tranne i corsi scaricati).
+ *
  * Testi IT/EN qui dentro e niente JSX: pesa poche centinaia di byte, perché
  * entra nel bundle di ogni pagina con isole (budget di Lighthouse).
  */
@@ -18,6 +26,24 @@ const TEXTS = {
   it: ['Questa sezione non si è caricata per un errore.', 'Ricarica', 'Segnala errore'],
   en: ['This section failed to load because of an error.', 'Reload', 'Report error'],
 };
+
+/** Registro locale degli ultimi errori delle isole (fuori da `sh:v1:`: non entra nell'export). */
+export const ERROR_LOG_KEY = 'sh:errors';
+
+/** Testo dell'errore per registro e segnalazione: motivo, build, messaggio. */
+export const errorText = (error: unknown, reason?: string): string =>
+  `${reason ? `[${reason} · ${__SH_BUILD__.commit}] ` : ''}${String((error as Error | undefined)?.message ?? error)}`;
+
+/** Aggiunge l'errore al registro locale (ultimi 5); mai un'eccezione. */
+export function logError(page: string, text: string, now = Date.now()): void {
+  try {
+    const list = JSON.parse(localStorage.getItem(ERROR_LOG_KEY) ?? '[]') as unknown;
+    const next = [...(Array.isArray(list) ? list : []), { t: now, page, text: text.slice(0, 300) }];
+    localStorage.setItem(ERROR_LOG_KEY, JSON.stringify(next.slice(-5)));
+  } catch {
+    /* storage non disponibile */
+  }
+}
 
 /** Link al modulo Contribuisci con tipo «errore», pagina, corso e messaggio. */
 export function reportHref(loc: Pick<Location, 'pathname'>, base: string, error: unknown): string {
@@ -34,16 +60,36 @@ export function reportHref(loc: Pick<Location, 'pathname'>, base: string, error:
 
 interface State {
   error?: unknown;
+  /** Controllo della versione in corso: niente riquadro (la pagina potrebbe ricaricarsi). */
+  pending?: boolean;
+}
+
+interface Recovery {
+  reload: boolean;
+  reason: string;
 }
 
 export function withBoundary<P extends object>(Inner: ComponentType<P>): ComponentType<P> {
   return class IslandBoundary extends Component<P, State> {
     override componentDidCatch(error: unknown) {
       console.error(error);
-      this.setState({ error });
+      const detail: { pending?: Promise<Recovery> } = {};
+      dispatchEvent(new CustomEvent('sh:island-error', { detail }));
+      const show = (reason?: string) => {
+        const text = errorText(error, reason);
+        logError(location.pathname, text);
+        this.setState({ error: text, pending: false });
+      };
+      if (!detail.pending) return show();
+      this.setState({ error, pending: true });
+      detail.pending.then(
+        (r) => !r.reload && show(r.reason),
+        () => show(),
+      );
     }
     override render(props: P, state: State) {
       if (!('error' in state)) return h(Inner, props);
+      if (state.pending) return null;
       const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       const [msg, reload, report] = TEXTS[document.documentElement.lang.startsWith('en') ? 'en' : 'it'];
       return h(
@@ -53,7 +99,17 @@ export function withBoundary<P extends object>(Inner: ComponentType<P>): Compone
         h(
           'p',
           { class: 'btn-row' },
-          h('button', { type: 'button', class: 'btn btn--sm', onClick: () => location.reload() }, reload),
+          h(
+            'button',
+            {
+              type: 'button',
+              class: 'btn btn--sm',
+              // Senza pwa.ts (che annulla l'evento) si ricarica e basta.
+              onClick: () =>
+                dispatchEvent(new Event('sh:hard-reload', { cancelable: true })) && location.reload(),
+            },
+            reload,
+          ),
           ' ',
           h(
             'a',

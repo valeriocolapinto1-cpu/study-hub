@@ -4,10 +4,12 @@
  *
  * - Installazione: scarica in una cache temporanea solo i file della shell (e dei corsi
  *   già scaricati) che sono cambiati rispetto alla versione in uso.
- * - Attesa: la nuova versione non prende il controllo da sola; la pagina mostra
- *   "Nuova versione disponibile" e, alla conferma, invia SKIP_WAITING.
- * - Attivazione: sposta i file aggiornati nelle cache definitive, rimuove quelli spariti
- *   e cancella le cache di passaggio delle versioni precedenti.
+ * - Attivazione immediata (skipWaiting + clients.claim): un worker vecchio in attesa
+ *   continuerebbe a servire pagine e file di una versione non più pubblicata. Le pagine già
+ *   aperte non si ricaricano: mostrano "Nuova versione disponibile".
+ * - Attivazione: sposta i file aggiornati nelle cache definitive e mette "in pensione" i file
+ *   con hash spariti e le cache di passaggio delle versioni precedenti: restano finché le
+ *   finestre aperte al momento dell'aggiornamento non sono tutte chiuse (`sweepRetired`).
  * - Richieste: i file con hash nel nome (/_astro/, frammenti di Pagefind) dalla cache, se ci
  *   sono; pagine e altri file prima dalla rete (rivalidando la cache HTTP), con la copia in
  *   cache solo se la rete non risponde entro NETWORK_TIMEOUT_MS o manca; offline, la pagina
@@ -15,7 +17,7 @@
  *   sw.js e version.json non passano mai dal service worker.
  * - Messaggi: COURSE_STATUS, COURSE_DOWNLOAD (con avanzamento), COURSE_REMOVE, SKIP_WAITING.
  */
-/* global MANIFEST, SHELL_CACHE, META_CACHE, RUNTIME_MAX, NETWORK_TIMEOUT_MS, runtimeCacheName, shouldTrimRuntime, cachesFor, staleCaches, isImmutableAsset, isBypassed, courseCacheName, parseCourseCache, stagingCacheName, diffEntries, lookupCandidates, langOf, courseStatus, pool */
+/* global MANIFEST, SHELL_CACHE, META_CACHE, RUNTIME_MAX, NETWORK_TIMEOUT_MS, runtimeCacheName, mergeClients, shouldTrimRuntime, cachesFor, stagingCaches, retiringCaches, retiredCacheName, RETIRING_KEY, isImmutableAsset, isBypassed, courseCacheName, parseCourseCache, stagingCacheName, diffEntries, lookupCandidates, langOf, courseStatus, pool */
 
 const BASE = MANIFEST.base;
 const RUNTIME_CACHE = runtimeCacheName(MANIFEST.version);
@@ -84,8 +86,9 @@ self.addEventListener('install', (event) => {
           await staging.put(abs(url), await fetchFresh(url));
         });
       }
-      // Primo arrivo: nessuna versione precedente da rispettare.
-      if (!self.registration.active) await self.skipWaiting();
+      // Subito attivo anche se c'è una versione precedente: le pagine aperte con quella trovano
+      // i loro file con hash nelle cache in pensione (vedi activate).
+      await self.skipWaiting();
     })(),
   );
 });
@@ -104,7 +107,14 @@ async function commit(name, entries) {
     await target.put(abs(url), res);
     revs[url] = rev;
   }
+  const retired = remove.some((url) => isImmutableAsset(url, BASE))
+    ? await caches.open(retiredCacheName(MANIFEST.version))
+    : null;
   for (const url of remove) {
+    if (retired && isImmutableAsset(url, BASE)) {
+      const old = await target.match(abs(url));
+      if (old) await retired.put(abs(url), old);
+    }
     await target.delete(abs(url));
     delete revs[url];
   }
@@ -124,14 +134,42 @@ self.addEventListener('activate', (event) => {
           await writeMeta(name, null);
         }
       }
-      // Cache temporanee e cache di passaggio delle versioni precedenti (le pagine viste con
-      // una versione vecchia possono richiamare risorse sparite).
-      for (const name of staleCaches(await caches.keys(), MANIFEST.version)) await caches.delete(name);
+      for (const name of stagingCaches(await caches.keys())) await caches.delete(name);
+      // Finestre aperte adesso: usano la versione precedente, le sue cache restano finché sono aperte.
+      const open = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+      if (open.length)
+        await writeMeta(
+          RETIRING_KEY,
+          mergeClients(
+            (await readMeta(RETIRING_KEY)) ?? [],
+            open.map((c) => c.id),
+          ),
+        );
       forgetOwnedCourses();
       await self.clients.claim();
+      await sweepRetired();
     })(),
   );
 });
+
+/**
+ * Elimina le cache delle versioni precedenti (`retiringCaches`) quando le finestre registrate
+ * all'attivazione sono tutte chiuse; altrimenti aggiorna l'elenco con quelle ancora aperte.
+ */
+async function sweepRetired() {
+  const ids = (await readMeta(RETIRING_KEY)) ?? [];
+  const alive = [];
+  for (const id of ids) if (await self.clients.get(id)) alive.push(id);
+  if (alive.length) {
+    if (alive.length !== ids.length) await writeMeta(RETIRING_KEY, alive);
+    return;
+  }
+  for (const name of retiringCaches(await caches.keys(), MANIFEST.version)) await caches.delete(name);
+  if (ids.length) await writeMeta(RETIRING_KEY, null);
+}
+
+/** Ultimo controllo delle cache in pensione (al più uno ogni 30 s, alle navigazioni). */
+let lastSweep = 0;
 
 /* ------------------------------------------------------------------ fetch */
 
@@ -244,6 +282,10 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== ORIGIN || !url.pathname.startsWith(BASE)) return;
   if (isBypassed(url.pathname, BASE)) return;
   event.respondWith(handle(event, url));
+  if (request.mode === 'navigate' && Date.now() - lastSweep > 30_000) {
+    lastSweep = Date.now();
+    event.waitUntil(sweepRetired().catch(() => undefined));
+  }
 });
 
 /* ------------------------------------------------------------------ messaggi */
