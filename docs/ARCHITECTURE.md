@@ -23,13 +23,15 @@ astro.config.mjs  package.json  tsconfig.json  vitest.config.ts  playwright.conf
 src/config/site.ts              autore, contatti, repository, endpoint Contribuisci, LEGACY_REPOS
 src/i18n/                       it.json, en.json (interfaccia), glossary.yaml (termini IT→EN), index.ts
 src/styles/tokens.css           SOLO variabili (contratto dei nomi più sotto)
-src/styles/{base,components,prose,print}.css, src/styles/courses/<courseId>.css (solo --accent*)
+src/styles/{base,components,prose,print}.css, originale.css (grafica), lettura.css (revisione di lettura),
+                                telefono.css (barra in basso dei corsi), src/styles/courses/<courseId>.css (solo --accent*)
 src/layouts/                    BaseLayout, CourseLayout, PrintLayout
 src/components/                 Head, Header, Footer, LangSwitch, ThemeToggle, CourseNav, …
 src/lib/courses.ts              coursePath(), sortCourses(), COURSE_SECTIONS
 src/engine/                     TS puro: storage, migrate, random, units, grading, fsrs, progress, exam, mastery,
                                 notes, exportImport, qr, rich, course-data, generators/{registry,index}.ts (docs/ENGINE.md)
-src/islands/                    isole Preact del motore (ExercisePlayer, ReviewSession, ExamRunner, …) + islands.css
+src/islands/                    isole Preact del motore (ExercisePlayer, ReviewSession, ExamRunner, …) + islands.css;
+                                exam/ e contribute/: sottocomponenti; lib/keys.tsx: scorciatoie e pannello «?»
 src/components/course/          sezioni generiche del corso (esercizi, ripasso, esame, progressi, appunti)
 src/lib/course-data.ts          dati dei corsi per le isole (testi localizzati, HTML con KaTeX a build-time)
 src/sim/                        kit simulatori e circuiti (netlist, MNA, schemi SVG, Plot, Scope…): guida in docs/SIM.md

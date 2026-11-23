@@ -1,0 +1,43 @@
+---
+/**
+ * Barra di navigazione in basso nelle pagine dei corsi, solo sotto i 48em (telefono):
+ * Teoria · Esercizi · Ripasso · Esame · Progressi, bersagli alti almeno 44 px.
+ * Solo HTML e CSS (stili in src/styles/telefono.css): nessuno script.
+ */
+import Icon, { type IconName } from './Icon.astro';
+import { localizePath, stripLang, t, type Lang } from '../i18n';
+import { coursePath } from '../lib/courses';
+import type { Course } from '../content/schemas';
+
+interface Props {
+  lang: Lang;
+  course: Pick<Course, 'id' | 'year' | 'semester'>;
+}
+const { lang, course } = Astro.props;
+const base = coursePath(course);
+const current = stripLang(Astro.url.pathname);
+const TABS: { slug: string; key: string; icon: IconName }[] = [
+  { slug: 'teoria', key: 'nav.course.theory', icon: 'book' },
+  { slug: 'esercizi', key: 'nav.course.exercises', icon: 'pencil' },
+  { slug: 'ripasso', key: 'nav.course.review', icon: 'cards' },
+  { slug: 'esame', key: 'nav.course.exam', icon: 'clock' },
+  { slug: 'progressi', key: 'nav.course.progress', icon: 'target' },
+];
+---
+
+<nav class="course-tabbar" aria-label={t(lang, 'nav.course.tabbar')} data-pagefind-ignore>
+  <ul>
+    {TABS.map((s) => {
+      const path = `${base}/${s.slug}`;
+      const here = current === path ? 'page' : current.startsWith(`${path}/`) ? 'true' : undefined;
+      return (
+        <li>
+          <a href={localizePath(path, lang)} aria-current={here}>
+            <Icon name={s.icon} />
+            <span>{t(lang, s.key)}</span>
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</nav>

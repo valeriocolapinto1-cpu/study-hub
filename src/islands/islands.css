@@ -501,7 +501,8 @@ textarea.sh-input {
   max-inline-size: var(--measure);
   margin-block: var(--space-m);
 }
-.sh-flashcard:focus-visible {
+.sh-flashcard:focus-visible,
+.sh-flashcard__back:focus-visible {
   outline: 3px solid var(--focus);
 }
 .sh-flashcard__meta {
@@ -630,6 +631,11 @@ textarea.sh-input {
 .sh-nav__btn[aria-current] {
   outline: 2px solid var(--text);
   outline-offset: 1px;
+}
+/* Il segno della domanda corrente non deve coprire l'anello di focus. */
+.sh-nav__btn[aria-current]:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
 }
 .sh-question h2 {
   font-size: var(--step-1);
@@ -953,4 +959,61 @@ div[data-note-id]:has(> p[data-note-id]:only-child) > .sh-note-btn--corner:not(.
   .sh-qr__code {
     transition: none;
   }
+}
+
+/* Scorciatoie da tastiera: pulsante «?» e pannello (popover nativo). */
+.sh-keys-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xs);
+}
+.sh-keys-btn {
+  min-inline-size: 2.75rem;
+  min-block-size: 2.75rem;
+  font-family: var(--font-mono);
+}
+.sh-keys {
+  inline-size: min(26rem, calc(100vw - 2 * var(--space-s)));
+  padding: var(--space-s);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-m);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-2);
+}
+.sh-keys::backdrop {
+  background: rgb(0 0 0 / 0.35);
+}
+.sh-keys__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  margin-block-end: var(--space-xs);
+}
+.sh-keys h2 {
+  margin: 0;
+  font-size: var(--step-0);
+}
+.sh-keys kbd {
+  padding: 0.1em 0.4em;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-s);
+  background: var(--surface-2);
+}
+.sh-keys__list {
+  display: grid;
+  gap: var(--space-2xs);
+  margin: 0;
+}
+.sh-keys__list > div {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: var(--space-xs);
+  align-items: baseline;
+}
+.sh-keys__list dd {
+  margin: 0;
+  font-size: var(--step--1);
 }

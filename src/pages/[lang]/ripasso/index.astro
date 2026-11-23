@@ -4,6 +4,7 @@ import 'katex/dist/katex.min.css';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import ReviewSession from '../../../islands/ReviewSession';
+import KeysPanel from '../../../components/course/KeysPanel.astro';
 import SectionHeader from '../../../components/course/SectionHeader.astro';
 import { coursePaths } from '../../../lib/course-data';
 import { sortCourses } from '../../../lib/courses';
@@ -24,5 +25,13 @@ const decks = courses.map((c) => ({
   <div class="container page">
     <SectionHeader title={t(lang, 'page.globalReview.title')} lead={t(lang, 'page.review.lead')} />
     <ReviewSession client:load lang={lang} decks={decks} />
+    <KeysPanel
+      lang={lang}
+      id="sh-review-keys"
+      items={[
+        [t(lang, 'keys.review.space'), t(lang, 'keys.review.flip')],
+        ['1 – 4', t(lang, 'keys.review.rate')],
+      ]}
+    />
   </div>
 </BaseLayout>
