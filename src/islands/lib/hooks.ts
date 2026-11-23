@@ -77,3 +77,14 @@ export function useRemote<T>(urls: readonly string[]): Remote<T[]> {
   }, [key, attempt]);
   return res;
 }
+
+/** Scorciatoie: vero se il tasto va lasciato al campo (scrittura, scelta) o ha modificatori. */
+export const ignoreKey = (e: KeyboardEvent) =>
+  e.altKey || e.ctrlKey || e.metaKey || /^(INPUT|TEXTAREA|SELECT)$/.test((e.target as Element).tagName);
+
+/**
+ * Apre l'elenco statico delle scorciatoie (components/course/KeysPanel.astro) come farebbe il
+ * pulsante «?»: popover nativo, focus su «Chiudi» (`autofocus`) e di nuovo dov'era alla chiusura.
+ */
+export const openKeys = (id: string) =>
+  document.querySelector<HTMLElement>(`[popovertarget="${id}"]`)?.click();

@@ -992,7 +992,7 @@ div[data-note-id]:has(> p[data-note-id]:only-child) > .sh-note-btn--corner:not(.
   gap: var(--space-xs);
   margin-block-end: var(--space-xs);
 }
-.sh-keys h3 {
+.sh-keys h2 {
   margin: 0;
   font-size: var(--step-0);
 }

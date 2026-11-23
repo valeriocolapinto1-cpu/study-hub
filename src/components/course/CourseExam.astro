@@ -7,6 +7,7 @@
  */
 import 'katex/dist/katex.min.css';
 import ExamRunner from '../../islands/ExamRunner';
+import KeysPanel from './KeysPanel.astro';
 import SectionHeader from './SectionHeader.astro';
 import { courseSummary, courseTopics, getCourse } from '../../lib/course-data';
 import { t, type Lang } from '../../i18n';
@@ -22,3 +23,11 @@ const topics = (await courseTopics(courseId, lang)).map(({ id, title }) => ({ id
 
 <SectionHeader title={t(lang, 'page.exam.title')} lead={t(lang, 'page.exam.lead')} />
 <ExamRunner client:load lang={lang} course={course} topics={topics} />
+<KeysPanel
+  lang={lang}
+  id="sh-exam-keys"
+  items={[
+    ['← →', t(lang, 'keys.exam.nav')],
+    ['Tab', t(lang, 'keys.exam.tab')],
+  ]}
+/>

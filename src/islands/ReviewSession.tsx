@@ -19,10 +19,9 @@ import {
 import { loadSrs, reviewsOn, saveReview, type SrsState } from '../engine/progress';
 import { GLOBAL_SCOPE, read, subscribe, update } from '../engine/storage';
 import { examDateFor } from '../engine/mastery';
-import { useNow, useRemote } from './lib/hooks';
+import { ignoreKey, openKeys, useNow, useRemote } from './lib/hooks';
 import { loadCard, loadTopic } from './lib/course-data-client';
 import { t, type Lang } from './lib/i18n';
-import { KeysHelp, ignoreKey, openKeys } from './lib/keys';
 import './islands.css';
 
 export interface Deck {
@@ -42,6 +41,7 @@ export interface ReviewSessionProps {
 }
 
 const SEP = '::';
+/** Elenco delle scorciatoie (HTML statico di CourseReview.astro e della pagina /ripasso/). */
 const KEYS_ID = 'sh-review-keys';
 const RATING_KEYS: Record<Rating, string> = {
   1: 'review.again',
@@ -305,14 +305,15 @@ export default function ReviewSession({ lang, decks }: ReviewSessionProps) {
           )}
           <div class="sh-keys-row">
             <p class="sh-help">{t(lang, 'review.keys')}</p>
-            <KeysHelp
-              id={KEYS_ID}
-              lang={lang}
-              items={[
-                [t(lang, 'review.keys.space'), t(lang, 'review.keys.flip')],
-                ['1 – 4', t(lang, 'review.keys.rate')],
-              ]}
-            />
+            <button
+              type="button"
+              class="btn btn--sm sh-keys-btn"
+              popovertarget={KEYS_ID}
+              aria-keyshortcuts="?"
+              aria-label={t(lang, 'engine.keys')}
+            >
+              ?
+            </button>
           </div>
         </div>
       )}

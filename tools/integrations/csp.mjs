@@ -8,7 +8,7 @@
  * - `style-src 'unsafe-inline'`: KaTeX e i simulatori scrivono attributi `style` nell'HTML, che con
  *   un hash nella direttiva verrebbero bloccati; gli stili non eseguono codice.
  * - Domini esterni solo dove servono: Turnstile (script e iframe) e Google Apps Script (invio)
- *   nella pagina Contribuisci (src/islands/ContributeForm.tsx, src/lib/contribute/upload.ts).
+ *   nella pagina Contribuisci (src/islands/contribute/turnstile.ts, src/lib/contribute/upload.ts).
  *
  * Il meta va prima di ogni script: subito dopo `<meta charset>` (o in testa a `<head>`).
  * In sviluppo (`astro dev`) non c'è CSP: si verifica sulla build (tests/content/csp.test.ts, e2e).

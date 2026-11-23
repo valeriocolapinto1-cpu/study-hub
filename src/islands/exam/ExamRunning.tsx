@@ -11,9 +11,10 @@ import { formatClock, type Exam, type ExamAnswer } from '../../engine/exam';
 import { formatNumber } from '../../engine/units';
 import type { QuestionContent } from '../lib/exam-content';
 import { t, type Lang } from '../lib/i18n';
-import { KeysHelp, ignoreKey, openKeys } from '../lib/keys';
+import { ignoreKey, openKeys } from '../lib/hooks';
 import { isAnswered } from './answered';
 
+/** Elenco delle scorciatoie (HTML statico di CourseExam.astro). */
 const KEYS_ID = 'sh-exam-keys';
 
 export interface ExamRunningProps {
@@ -71,14 +72,15 @@ export function ExamRunning(p: ExamRunningProps) {
         <p class="sh-muted">
           {answeredCount}/{total}
         </p>
-        <KeysHelp
-          id={KEYS_ID}
-          lang={lang}
-          items={[
-            ['← →', t(lang, 'exam.keys.nav')],
-            ['Tab', t(lang, 'exam.keys.tab')],
-          ]}
-        />
+        <button
+          type="button"
+          class="btn btn--sm sh-keys-btn"
+          popovertarget={KEYS_ID}
+          aria-keyshortcuts="?"
+          aria-label={t(lang, 'engine.keys')}
+        >
+          ?
+        </button>
         <button type="button" class="btn btn--primary" onClick={p.onSubmit}>
           {t(lang, 'exam.submit')}
         </button>

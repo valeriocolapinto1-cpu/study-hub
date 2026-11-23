@@ -200,7 +200,7 @@ test('ExamRunner da tastiera: avvio, risposte, ← →, pannello «?», consegna
   await tabTo(page, page.getByRole('button', { name: 'Inizia la prova' }));
   await page.keyboard.press('Enter');
   await expect(page.getByRole('heading', { name: /Domanda 1 di 3/ })).toBeFocused();
-  await expect(live).toHaveText('Tempo rimasto: 5 min');
+  await expect(live).toHaveText('Tempo rimasto: al massimo 5 min');
   await expect(page.locator('.sh-timer time')).not.toHaveAttribute('aria-live', /.*/);
 
   // ← / → fra le domande quando il focus non è in un campo
@@ -296,6 +296,18 @@ for (const theme of ['light', 'dark'] as const) {
     await axe(page);
   });
 }
+
+test('ExamRunner: prova mirata (padronanza caricata a richiesta) ed esito', async ({ page }) => {
+  await page.goto(`${C}esame/`);
+  await hydrated(page, '.sh-exam');
+  await page.getByRole('radio', { name: 'Prova mirata sui punti deboli' }).check();
+  await page.getByRole('button', { name: 'Inizia la prova' }).click();
+  await expect(page.getByRole('heading', { name: /Domanda 1 di/ })).toBeFocused();
+  page.once('dialog', (d) => d.accept());
+  await page.getByRole('button', { name: 'Consegna' }).click();
+  await expect(page.getByRole('heading', { name: 'Esito' })).toBeFocused();
+  await expect(page.locator('.sh-score')).toContainText('punti');
+});
 
 test('Stampa: parametri non validi', async ({ page }) => {
   await page.goto(`${B}it/stampa/prova/?corso=boh&seme=1&modo=completa`);

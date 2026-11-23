@@ -1,0 +1,35 @@
+---
+/**
+ * Elenco delle scorciatoie da tastiera (prova d'esame, ripasso) in HTML statico: popover
+ * nativo aperto dal pulsante «?» dell'isola (`popovertarget`) o dal tasto «?» (`openKeys`
+ * di src/islands/lib/hooks.ts). Nessun JS e nessun testo nel dizionario delle isole.
+ */
+import { t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+  id: string;
+  items: [string, string][];
+}
+const { lang, id, items } = Astro.props;
+const all: [string, string][] = [...items, ['?', t(lang, 'keys.help')]];
+---
+
+<div id={id} class="sh-keys" popover="auto" role="dialog" aria-labelledby={`${id}-h`} data-pagefind-ignore>
+  <div class="sh-keys__head">
+    <h2 id={`${id}-h`}>{t(lang, 'engine.keys')}</h2>
+    <button type="button" class="btn btn--sm" popovertarget={id} popovertargetaction="hide" autofocus>
+      {t(lang, 'keys.close')}
+    </button>
+  </div>
+  <dl class="sh-keys__list">
+    {all.map(([k, d]) => (
+      <div>
+        <dt>
+          <kbd>{k}</kbd>
+        </dt>
+        <dd>{d}</dd>
+      </div>
+    ))}
+  </dl>
+</div>
