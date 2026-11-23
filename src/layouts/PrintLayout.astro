@@ -31,7 +31,7 @@ const { lang, title, description, course, variant = 'theory', backHref } = Astro
 <!doctype html>
 <html lang={htmlLang[lang]} data-course={course} data-print>
   <head>
-    <Head lang={lang} title={title} description={description} noindex />
+    <Head lang={lang} title={title} description={description} noindex course={course} />
     <slot name="head" />
   </head>
   <body class={`print-${variant}`}>

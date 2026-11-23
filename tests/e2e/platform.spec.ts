@@ -8,7 +8,8 @@ import { CHUNK_BYTES } from '../../src/lib/contribute/rules';
 
 const B = '/study-hub/';
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
-const ENDPOINT = 'https://script.example.test/macros/s/finto/exec';
+// Dominio reale di Apps Script (l'unico ammesso dalla CSP della pagina); le richieste sono intercettate.
+const ENDPOINT = 'https://script.google.com/macros/s/finto/exec';
 
 async function axe(page: Page) {
   const results = await new AxeBuilder({ page }).withTags(TAGS).analyze();

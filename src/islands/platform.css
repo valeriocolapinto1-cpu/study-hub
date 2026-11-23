@@ -359,8 +359,8 @@ h2.pf-cf-result__title {
 }
 @media (max-width: 40em) {
   .pf-search-dialog {
-    margin-block-start: var(--space-s);
-    max-height: calc(100dvh - 2 * var(--space-s));
+    margin-block-start: calc(var(--space-s) + var(--safe-top));
+    max-height: calc(100dvh - 2 * var(--space-s) - var(--safe-top) - var(--safe-bottom));
   }
   .pf-search__foot {
     display: none;

@@ -9,14 +9,27 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import HomeStudy from '../../islands/HomeStudy';
 import Icon from '../../components/Icon.astro';
+import JsonLd from '../../components/JsonLd.astro';
 import { BASE_URL, SITE } from '../../config/site';
-import { langPaths, localizePath, t, texts, tr, type Lang } from '../../i18n';
+import { htmlLang, langPaths, localizePath, t, texts, tr, type Lang } from '../../i18n';
 import { coursePaths } from '../../lib/course-data';
 import { coursePath, sortCourses } from '../../lib/courses';
+import { webSiteJsonLd } from '../../lib/seo';
 
 export const getStaticPaths = langPaths;
 
 const lang = Astro.params.lang as Lang;
+const site = Astro.site ?? new URL('http://localhost');
+const homeUrl = new URL(localizePath('', lang), site).href;
+// Dati strutturati: il sito e la sua ricerca (`?q=` apre la ricerca, src/scripts/search.ts).
+const websiteLd = webSiteJsonLd({
+  name: SITE.title[lang],
+  description: SITE.description[lang],
+  url: homeUrl,
+  inLanguage: htmlLang[lang],
+  searchUrlTemplate: `${homeUrl}?q={search_term_string}`,
+  author: { name: SITE.author, url: new URL(localizePath('chi-sono', lang), site).href },
+});
 const [courseEntries, topics, exercises, cards, formulas] = await Promise.all([
   getCollection('courses'),
   getCollection('topics'),
@@ -97,6 +110,7 @@ const metaLine = (id: string) => {
 ---
 
 <BaseLayout lang={lang} title={SITE.title[lang]} description={SITE.description[lang]}>
+  <JsonLd slot="head" data={websiteLd} />
   <script is:inline slot="head">
     // Chi ha già dati di studio vede subito "La tua preparazione" (prima del disegno: niente salti).
     try {
