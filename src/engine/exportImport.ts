@@ -7,6 +7,7 @@
  * { "format": "study-hub", "version": 1, "exportedAt": "2026-…Z",
  *   "data": { "sh:v1:fisica-2:srs": { … }, "sh:v1:global:examDates": { … } } }
  * ```
+ * Gli argomenti studiati (`studied`, studied.ts) si esportano come le altre aree del corso.
  * Le annotazioni delle migrazioni (`global:migrations`), il promemoria di backup (`global:backup`)
  * e l'ultima pagina di studio (`lastPage`, `lastStudy`: memoria di navigazione) restano sul dispositivo.
  * Importazione in due modalità:
@@ -18,6 +19,7 @@ import { sanitizeNotes, type NotesState } from './notes';
 import { sanitizeExamState, type ExamState, MAX_HISTORY } from './exam';
 import { BACKUP_AREA, clearScope, listKeys, parseKey, readAll, readRaw, writeRaw } from './storage';
 import { MIGRATIONS_AREA } from './migrate';
+import { STUDIED_AREA, loadStudied, mergeStudied, sanitizeStudied } from './studied';
 
 export const EXPORT_FORMAT = 'study-hub';
 export const EXPORT_VERSION = 1;
@@ -88,6 +90,8 @@ function sanitizeArea(area: string, value: unknown): unknown {
       return sanitizeNotes(value);
     case 'exam':
       return sanitizeExamState(value);
+    case STUDIED_AREA:
+      return sanitizeStudied(value);
     default:
       return value;
   }
@@ -154,6 +158,8 @@ export function mergeArea(area: string, local: unknown, incoming: unknown): unkn
       return mergeNotes(sanitizeNotes(local), sanitizeNotes(incoming));
     case 'exam':
       return mergeExam(sanitizeExamState(local), sanitizeExamState(incoming));
+    case STUDIED_AREA:
+      return mergeStudied(sanitizeStudied(local), sanitizeStudied(incoming));
     case 'examDates':
       return typeof local === 'object' && typeof incoming === 'object'
         ? { ...(incoming as object), ...(local as object) }
@@ -187,6 +193,11 @@ export function applyImport(file: ExportFile, mode: 'merge' | 'replace'): Import
         local = raw === null ? undefined : JSON.parse(raw);
       } catch {
         local = undefined;
+      }
+      // Argomenti studiati non ancora salvati in `studied`: quelli migrati da `progress.read`.
+      if (local === undefined && parsed.area === STUDIED_AREA) {
+        const migrated = loadStudied(parsed.scope);
+        if (Object.keys(migrated.topics).length > 0) local = migrated;
       }
       next = mergeArea(parsed.area, local, value);
     }

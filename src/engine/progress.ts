@@ -34,7 +34,8 @@ export interface ExerciseProgress {
 export interface ProgressState {
   v: 1;
   exercises: Record<string, ExerciseProgress>;
-  /** Argomenti segnati come studiati (id → istante). */
+  /** Argomenti segnati come studiati nei siti originali (id → istante): solo origine della migrazione
+   *  verso l'area `studied` (studied.ts), che da R13 è l'unica fonte. */
   read: Record<string, number>;
 }
 
