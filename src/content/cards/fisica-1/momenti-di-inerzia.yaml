@@ -35,7 +35,7 @@
 
       - Saper svolgere il calcolo integrale per l'asta
 
-      - Discutere perché I_cm è il minimo tra assi paralleli
+      - Discutere perché $I_{\mathrm{cm}}$ è il minimo tra assi paralleli
     en: >-
       The moment of inertia weighs mass by the square of the distance from the axis: peripheral mass counts
       much more. That is why a flywheel has its mass on the rim (it stores rotation) and a skater speeds up by
@@ -58,7 +58,7 @@
 
       - Be able to do the integral calculation for the rod
 
-      - Discuss why I_cm is the minimum among parallel axes
+      - Discuss why $I_{\mathrm{cm}}$ is the minimum among parallel axes
 - id: momenti-di-inerzia-orale-1
   topic: momenti-di-inerzia
   objectives:
@@ -208,11 +208,11 @@
     it: >-
       Tutta la massa sull'asse: I = 0. Massa concentrata a distanza R: I = MR² (punto materiale). A parità di
       massa e raggio: anello > disco > sfera, perché conta quanta massa sta lontana dall'asse. d = 0: I =
-      I_cm, il minimo tra tutti gli assi paralleli.
+      $I_{\mathrm{cm}}$, il minimo tra tutti gli assi paralleli.
     en: >-
       All the mass on the axis: I = 0. Mass concentrated at distance R: I = MR² (point particle). For equal
       mass and radius: ring > disc > sphere, because what matters is how much mass lies far from the axis. d =
-      0: I = I_cm, the minimum among all parallel axes.
+      0: $I = I_{\mathrm{cm}}$, the minimum among all parallel axes.
 - id: momenti-di-inerzia-errori
   topic: momenti-di-inerzia
   objectives:
@@ -230,19 +230,19 @@
   back:
     it: >-
       - Applicare Huygens-Steiner tra due assi di cui nessuno passa per il CM (va fatto in due passi via
-      I_cm).
+      $I_{\mathrm{cm}}$).
 
       - Dire che I dipende solo dalla massa: dipende soprattutto dalla sua distribuzione (r²).
 
       - Usare il raggio del corpo al posto della distanza dall'asse nell'integrale.
 
-      - Dimenticare che I_cm è il minimo: I rispetto a qualsiasi altro asse parallelo è maggiore.
+      - Dimenticare che $I_{\mathrm{cm}}$ è il minimo: I rispetto a qualsiasi altro asse parallelo è maggiore.
     en: >-
       - Applying Huygens–Steiner between two axes neither of which passes through the CM (it must be done in
-      two steps via I_cm).
+      two steps via $I_{\mathrm{cm}}$).
 
       - Saying that I depends only on the mass: it depends above all on its distribution (r²).
 
       - Using the radius of the body instead of the distance from the axis in the integral.
 
-      - Forgetting that I_cm is the minimum: I about any other parallel axis is larger.
+      - Forgetting that $I_{\mathrm{cm}}$ is the minimum: I about any other parallel axis is larger.

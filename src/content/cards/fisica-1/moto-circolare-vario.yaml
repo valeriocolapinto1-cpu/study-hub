@@ -27,11 +27,11 @@
 
       - Ricavare v = ωR dalla coordinata curvilinea s = θR
 
-      - Spiegare perché la derivata del versore tangente non è nulla e da dove esce û_n
+      - Spiegare perché la derivata del versore tangente non è nulla e da dove esce $\hat{u}_n$
 
-      - Ricavare a_t = αR e a_n = ω²R = v²/R
+      - Ricavare $a_t = \alpha R$ e $a_n = \omega^2R = v^2/R$
 
-      - Disegnare i vettori v, a_t, a_n su una circonferenza
+      - Disegnare i vettori v, $a_t$, $a_n$ su una circonferenza
 
       - Discutere il caso limite del moto circolare uniforme
 
@@ -50,11 +50,11 @@
 
       - Derive v = ωR from the arc-length coordinate s = θR
 
-      - Explain why the derivative of the tangent unit vector is not zero and where û_n comes from
+      - Explain why the derivative of the tangent unit vector is not zero and where $\hat{u}_n$ comes from
 
-      - Derive a_t = αR and a_n = ω²R = v²/R
+      - Derive $a_t = \alpha R$ and $a_n = \omega^2R = v^2/R$
 
-      - Draw the vectors v, a_t, a_n on a circle
+      - Draw the vectors v, $a_t$, $a_n$ on a circle
 
       - Discuss the limiting case of uniform circular motion
 
@@ -66,17 +66,17 @@
     - moto-circolare-vario.7
   kind: orale
   front:
-    it: In un moto curvilineo qualsiasi (non circolare) come si generalizza a_n?
-    en: In a generic curvilinear (non-circular) motion, how does a_n generalise?
+    it: In un moto curvilineo qualsiasi (non circolare) come si generalizza $a_n$?
+    en: In a generic curvilinear (non-circular) motion, how does $a_n$ generalise?
   back:
     it: >-
       Nel moto curvilineo generico si usa il cerchio osculatore: localmente la traiettoria è approssimata da
       una circonferenza di raggio ρ (raggio di curvatura), quindi \(a_n = v^2/\rho\) diretta verso il centro
-      di curvatura, mentre \(a_t = dv/dt\) resta invariata. Per una retta ρ → ∞ e a_n = 0.
+      di curvatura, mentre \(a_t = dv/dt\) resta invariata. Per una retta ρ → ∞ e $a_n = 0$.
     en: >-
       For a generic curvilinear motion one uses the osculating circle: locally the trajectory is approximated
       by a circle of radius ρ (radius of curvature), so \(a_n = v^2/\rho\) points towards the centre of
-      curvature, while \(a_t = dv/dt\) is unchanged. For a straight line ρ → ∞ and a_n = 0.
+      curvature, while \(a_t = dv/dt\) is unchanged. For a straight line ρ → ∞ and $a_n = 0$.
 - id: moto-circolare-vario-orale-2
   topic: moto-circolare-vario
   objectives:
@@ -205,12 +205,12 @@
       Se \(\alpha = 0\) (ω costante) il moto è circolare uniforme: resta solo l'accelerazione centripeta \(a_n
       = \omega^2 R\). Se \(R \to \infty\) la traiettoria tende a una retta e \(a_n \to 0\): resta solo
       l'accelerazione tangenziale, come nel moto rettilineo. Se v = 0 istantaneamente (inversione del moto),
-      a_n = 0 in quell'istante.
+      $a_n = 0$ in quell'istante.
     en: >-
       If \(\alpha = 0\) (constant ω) the motion is uniform circular motion: only the centripetal acceleration
       \(a_n = \omega^2 R\) remains. If \(R \to \infty\) the path tends to a straight line and \(a_n \to 0\):
       only the tangential acceleration remains, as in rectilinear motion. If v = 0 at some instant (reversal
-      of motion), a_n = 0 at that instant.
+      of motion), $a_n = 0$ at that instant.
 - id: moto-circolare-vario-errori
   topic: moto-circolare-vario
   objectives:
@@ -230,10 +230,10 @@
       - Dire che nel moto circolare uniforme l'accelerazione è nulla perché la velocità 'è costante': è
       costante solo il modulo, non il vettore.
 
-      - Confondere a_t = αR (deriva dal cambiamento del modulo di v) con a_n = ω²R (deriva dal cambiamento di
+      - Confondere $a_t = \alpha R$ (deriva dal cambiamento del modulo di v) con $a_n = \omega^2R$ (deriva dal cambiamento di
       direzione).
 
-      - Scrivere a_n = v²/R con v velocità angolare invece che tangenziale.
+      - Scrivere $a_n = v^2/R$ con v velocità angolare invece che tangenziale.
 
       - Trattare la 'forza centripeta' come una forza in più: è la risultante delle forze reali proiettata
       sulla normale.
@@ -241,10 +241,10 @@
       - Saying that in uniform circular motion the acceleration is zero because the velocity 'is constant':
       only its magnitude is constant, not the vector.
 
-      - Confusing a_t = αR (due to the change in the magnitude of v) with a_n = ω²R (due to the change in
+      - Confusing $a_t = \alpha R$ (due to the change in the magnitude of v) with $a_n = \omega^2R$ (due to the change in
       direction).
 
-      - Writing a_n = v²/R with v the angular velocity instead of the tangential speed.
+      - Writing $a_n = v^2/R$ with v the angular velocity instead of the tangential speed.
 
       - Treating the 'centripetal force' as an extra force: it is the resultant of the real forces projected
       on the normal.

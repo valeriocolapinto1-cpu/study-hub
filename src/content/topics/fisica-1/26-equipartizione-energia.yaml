@@ -8,11 +8,11 @@ summary:
   it: >-
     All'equilibrio l'energia termica è perfettamente democratica: gli urti continui la redistribuiscono finché
     ogni 'modo quadratico' di immagazzinarla — muoversi lungo x, ruotare, vibrare — ne possiede in media la
-    stessa quota ½k_BT.
+    stessa quota $\tfrac{1}{2}k_B T$.
   en: >-
     At equilibrium thermal energy is perfectly democratic: continual collisions redistribute it until every
     'quadratic mode' of storing it — moving along x, rotating, vibrating — owns on average the same share
-    ½k_BT.
+    $\tfrac{1}{2}k_B T$.
 group:
   it: Fluidi e termodinamica
   en: Fluids and thermodynamics
@@ -39,8 +39,8 @@ objectives:
       en: State Joule's law and the free-expansion experiment
   - id: equipartizione-energia.6
     text:
-      it: Dedurre c_V = (f/2)R
-      en: Deduce c_V = (f/2)R
+      it: Dedurre $c_V = (f/2)R$
+      en: Deduce $c_V = (f/2)R$
   - id: equipartizione-energia.7
     text:
       it: Accennare al congelamento quantistico dei gradi di libertà

@@ -28,11 +28,11 @@ Il lavoro elementare di una forza $\vec{F}$ su uno spostamento infinitesimo $d\v
   type="function-plot"
   params={{
     x: { min: 0, max: 8, label: 'x', unit: 'm' },
-    y: { min: 0, label: 'F_x', unit: 'N' },
-    series: [{ kind: 'poly', coeffs: [2, 1.5, -0.15], label: 'F_x(x)' }],
+    y: { min: 0, label: '$F_x$', unit: 'N' },
+    series: [{ kind: 'poly', coeffs: [2, 1.5, -0.15], label: '$F_x(x)$' }],
     area: { series: 0, from: 1, to: 6, label: 'W' },
   }}
-  caption="In una dimensione il lavoro di una forza variabile tra due posizioni è l'area sotto il grafico di F_x(x)."
+  caption="In una dimensione il lavoro di una forza variabile tra due posizioni è l'area sotto il grafico di $F_x(x)$."
 />
 
 <div data-note-id="teoria/lavoro-energia-cinetica/derivazione" class="derivation">
@@ -48,7 +48,7 @@ $$
 \vec{F}_{tot} = m\frac{d\vec{v}}{dt}
 $$
 
-F_tot è la risultante di tutte le forze sul punto materiale.
+$F_{\mathrm{tot}}$ è la risultante di tutte le forze sul punto materiale.
 
 </details>
 
@@ -81,7 +81,7 @@ $$
 W_{tot} = \int_A^B \vec{F}_{tot}\cdot d\vec{r} = \int_{t_A}^{t_B} \frac{d}{dt}\Big(\frac{1}{2}mv^2\Big)dt = \frac{1}{2}mv_B^2 - \frac{1}{2}mv_A^2
 $$
 
-Il risultato dipende solo dai moduli iniziale e finale della velocità: W_tot = ΔK, qualunque siano le forze e la traiettoria.
+Il risultato dipende solo dai moduli iniziale e finale della velocità: $W_{\mathrm{tot}} = \Delta K$, qualunque siano le forze e la traiettoria.
 
 </details>
 
@@ -110,7 +110,7 @@ Punto materiale (per i corpi estesi il teorema va applicato con cautela: conta l
 
 ## Casi limite
 
-Forza costante e parallela allo spostamento rettilineo: W = Fs (formula elementare). Forza perpendicolare: W = 0, moto circolare uniforme. Se W_tot &lt; 0 il corpo rallenta (es. frenata: W_attrito = −ΔK).
+Forza costante e parallela allo spostamento rettilineo: W = Fs (formula elementare). Forza perpendicolare: W = 0, moto circolare uniforme. Se $W_{\mathrm{tot}}$ &lt; 0 il corpo rallenta (es. frenata: $W_{\mathrm{attrito}} = -\Delta K$).
 
 </div>
 

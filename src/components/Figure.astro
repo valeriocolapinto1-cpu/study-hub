@@ -1,8 +1,7 @@
 ---
 /** Figura con didascalia numerata. Contenuto: SVG inline o <img> nello slot. */
 import { getLangFromUrl, t, type Lang } from '../i18n';
-import InlineTex from './InlineTex.astro';
-import { hasTex } from '../lib/inline-tex';
+import CaptionText from './CaptionText.astro';
 interface Props {
   caption?: string;
   /** Numero della figura, es. "2.1". */
@@ -13,19 +12,6 @@ interface Props {
 }
 const { caption, num, id, wide = false } = Astro.props;
 const lang = Astro.props.lang ?? getLangFromUrl(Astro.url);
-/**
- * Didascalia: con `$…$` la matematica è resa da KaTeX (InlineTex); in testo semplice `V_th` o `N_{ab}`
- * diventano pedici ed `e^{−t}` un apice.
- */
-const captionTex = !!caption && hasTex(caption);
-const captionParts = (captionTex ? '' : (caption ?? ''))
-  .split(/(?<=[\p{L}\d)])(_|\^)(\{[^}]+\}|[\p{L}\d∞]+)/u)
-  .reduce<{ tag?: 'sub' | 'sup'; text: string }[]>((out, part, i) => {
-    if (i % 3 === 0) out.push({ text: part });
-    else if (i % 3 === 1) out.push({ tag: part === '_' ? 'sub' : 'sup', text: '' });
-    else out[out.length - 1]!.text = part.replace(/^\{|\}$/g, '');
-    return out;
-  }, []);
 ---
 
 <figure class:list={['figure', { 'figure--wide': wide }]} id={id}>
@@ -39,13 +25,7 @@ const captionParts = (captionTex ? '' : (caption ?? ''))
           {t(lang, 'figure.label')} {num}
         </b>
       )}
-      {captionTex ? (
-        <InlineTex text={caption!} />
-      ) : (
-        captionParts.map((p) =>
-          p.tag === 'sub' ? <sub>{p.text}</sub> : p.tag === 'sup' ? <sup>{p.text}</sup> : p.text,
-        )
-      )}
+      {caption && <CaptionText text={caption} />}
     </figcaption>
   )}
 </figure>

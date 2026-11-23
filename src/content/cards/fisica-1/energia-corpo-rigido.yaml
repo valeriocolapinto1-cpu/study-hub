@@ -26,7 +26,7 @@
 
       - Scrivere la forma di König e mostrare la coerenza delle due scritture
 
-      - Dimostrare U = Mgz_cm
+      - Dimostrare $U = Mgz_{\mathrm{cm}}$
 
       - Spiegare perché il lavoro delle forze interne di un rigido è nullo
 
@@ -47,7 +47,7 @@
 
       - Write the König form and show that the two forms agree
 
-      - Prove U = Mgz_cm
+      - Prove $U = Mgz_{\mathrm{cm}}$
 
       - Explain why the work of internal forces of a rigid body is zero
 
@@ -191,11 +191,11 @@
     en: 'Limiting cases: Kinetic and mechanical energy of a rigid body'
   back:
     it: >-
-      Pura traslazione: K = ½Mv². Pura rotazione baricentrica: K = ½I_cmω². Rotolamento puro: entrambi i
-      termini con il vincolo v = ωR. Perno scabro o strisciamento: E non si conserva, ΔE = W_attrito.
+      Pura traslazione: K = ½Mv². Pura rotazione baricentrica: $K = \tfrac{1}{2}I_{\mathrm{cm}}\omega^2$. Rotolamento puro: entrambi i
+      termini con il vincolo v = ωR. Perno scabro o strisciamento: E non si conserva, $\Delta E = W_{\mathrm{attrito}}$.
     en: >-
-      Pure translation: K = ½Mv². Pure rotation about the CM: K = ½I_cmω². Pure rolling: both terms with the
-      constraint v = ωR. Rough pivot or slipping: E is not conserved, ΔE = W_friction.
+      Pure translation: K = ½Mv². Pure rotation about the CM: $K = \tfrac{1}{2}I_{\mathrm{cm}}\omega^2$. Pure rolling: both terms with the
+      constraint v = ωR. Rough pivot or slipping: E is not conserved, $\Delta E = W_{\mathrm{friction}}$.
 - id: energia-corpo-rigido-errori
   topic: energia-corpo-rigido
   objectives:
@@ -211,12 +211,12 @@
     en: 'Mistakes to avoid: Kinetic and mechanical energy of a rigid body'
   back:
     it: |-
-      - Sommare ½I_asse ω² (con I rispetto al perno) E ½Mv_cm²: si conta due volte la traslazione.
-      - Usare I_cm quando la rotazione è attorno a un perno decentrato (o viceversa) senza Huygens-Steiner.
+      - Sommare $\tfrac{1}{2}I_{\mathrm{asse}} \omega^2$ (con I rispetto al perno) E $\tfrac{1}{2}Mv_{\mathrm{cm}}^2$: si conta due volte la traslazione.
+      - Usare $I_{\mathrm{cm}}$ quando la rotazione è attorno a un perno decentrato (o viceversa) senza Huygens-Steiner.
       - Calcolare U con la quota di un punto qualsiasi invece che del CM.
       - Dimenticare di verificare che i vincoli non lavorino prima di conservare E.
     en: |-
-      - Adding ½I_axis ω² (with I about the pivot) AND ½Mv_cm²: translation is counted twice.
-      - Using I_cm when the rotation is about an off-centre pivot (or vice versa) without Huygens–Steiner.
+      - Adding $\tfrac{1}{2}I_{\mathrm{axis}} \omega^2$ (with I about the pivot) AND $\tfrac{1}{2}Mv_{\mathrm{cm}}^2$: translation is counted twice.
+      - Using $I_{\mathrm{cm}}$ when the rotation is about an off-centre pivot (or vice versa) without Huygens–Steiner.
       - Computing U with the height of an arbitrary point instead of the CM.
       - Forgetting to check that the constraints do no work before conserving E.

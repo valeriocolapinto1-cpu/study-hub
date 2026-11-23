@@ -34,7 +34,7 @@ Carnot designs the 'perfect' engine by eliminating every waste: never a thermal 
 
 ## Definitions
 
-The Carnot cycle is the reversible cycle performed between only TWO thermal reservoirs (hot T*C, from Italian caldo, and cold T_F, from freddo), made of four quasi-static transformations: isothermal expansion at T_C, adiabatic expansion from T_C to T_F, isothermal compression at T_F, adiabatic compression back to T_C. For an ideal gas its efficiency is $\eta*{Carnot} = 1 - T_F/T_C$: it depends only on the temperatures of the reservoirs.
+The Carnot cycle is the reversible cycle performed between only TWO thermal reservoirs (hot $T_C$, from Italian caldo, and cold $T_F$, from freddo), made of four quasi-static transformations: isothermal expansion at $T_C$, adiabatic expansion from $T_C$ to $T_F$, isothermal compression at $T_F$, adiabatic compression back to $T_C$. For an ideal gas its efficiency is $\eta_{\text{Carnot}} = 1 - T_F/T_C$: it depends only on the temperatures of the reservoirs.
 
 </div>
 
@@ -52,13 +52,13 @@ The Carnot cycle is the reversible cycle performed between only TWO thermal rese
 <p class="muted">Try deriving it aloud first, then open one step at a time.</p>
 
 <details id="passo-1">
-<summary>Step 1 · Branch 1→2: isothermal expansion at T_C</summary>
+<summary>Step 1 · Branch 1→2: isothermal expansion at $T_C$</summary>
 
 $$
 \Delta U = 0 \;\Rightarrow\; Q_C = W_{12} = nRT_C\ln\frac{V_2}{V_1} > 0
 $$
 
-The gas absorbs Q_C from the hot reservoir and converts it entirely into work (for this branch). Perfect thermal contact and infinite slowness are required: reversible.
+The gas absorbs $Q_C$ from the hot reservoir and converts it entirely into work (for this branch). Perfect thermal contact and infinite slowness are required: reversible.
 
 </details>
 
@@ -69,18 +69,18 @@ $$
 Q = 0, \qquad W_{23} = -\Delta U = nc_V(T_C - T_F) > 0
 $$
 
-Thermally isolated, the gas keeps expanding while cooling from T_C to T_F: the work is paid for by internal energy.
+Thermally isolated, the gas keeps expanding while cooling from $T_C$ to $T_F$: the work is paid for by internal energy.
 
 </details>
 
 <details id="passo-3">
-<summary>Step 3 · Branch 3→4: isothermal compression at T_F</summary>
+<summary>Step 3 · Branch 3→4: isothermal compression at $T_F$</summary>
 
 $$
 Q_F = W_{34} = nRT_F\ln\frac{V_4}{V_3} < 0
 $$
 
-The gas is compressed, releasing to the cold reservoir the heat |Q_F| = nRT_F ln(V₃/V₄).
+The gas is compressed, releasing to the cold reservoir the heat $|Q_F| = nRT_F$ ln(V₃/V₄).
 
 </details>
 
@@ -91,7 +91,7 @@ $$
 Q = 0, \qquad W_{41} = -nc_V(T_C - T_F) < 0
 $$
 
-Adiabatic compression heats the gas back to T_C: it closes the cycle. The works of the two adiabatic branches cancel exactly.
+Adiabatic compression heats the gas back to $T_C$: it closes the cycle. The works of the two adiabatic branches cancel exactly.
 
 </details>
 
@@ -113,7 +113,7 @@ $$
 \eta = 1 - \frac{|Q_F|}{Q_C} = 1 - \frac{nRT_F\ln(V_3/V_4)}{nRT_C\ln(V_2/V_1)} = 1 - \frac{T_F}{T_C}
 $$
 
-Thanks to the equality of the volume ratios the logarithms cancel: the efficiency depends ONLY on the temperatures. Immediate corollary: Q_C/T_C = |Q_F|/T_F (the 'reduced heats' balance).
+Thanks to the equality of the volume ratios the logarithms cancel: the efficiency depends ONLY on the temperatures. Immediate corollary: $Q_C/T_C = |Q_F|/T_F$ (the 'reduced heats' balance).
 
 </details>
 
@@ -131,7 +131,7 @@ All transformations reversible (quasi-static, frictionless, heat exchanges acros
 
 ## Limiting cases
 
-T_F → T_C: η → 0, no temperature difference, no work. T_F → 0: η → 1, but absolute zero is unreachable (third law). Reversed cycle: Carnot refrigerator with COP = T_F/(T_C − T_F), the maximum possible.
+$T_F \to T_C$: η → 0, no temperature difference, no work. $T_F \to 0$: η → 1, but absolute zero is unreachable (third law). Reversed cycle: Carnot refrigerator with $\mathrm{COP} = T_F/(T_C - T_F)$, the maximum possible.
 
 </div>
 
@@ -155,7 +155,7 @@ T_F → T_C: η → 0, no temperature difference, no work. T_F → 0: η → 1, 
 
 <div data-note-id="teoria/ciclo-di-carnot/esempio">
 
-0.20 mol of monatomic ideal gas performs a Carnot cycle between 600 K and 300 K. In the isothermal expansion the volume doubles. Find: (a) the absorbed heat Q_C; (b) the efficiency; (c) the net work per cycle; (d) the ratio between the maximum and minimum volume of the cycle.
+0.20 mol of monatomic ideal gas performs a Carnot cycle between 600 K and 300 K. In the isothermal expansion the volume doubles. Find: (a) the absorbed heat $Q_C$; (b) the efficiency; (c) the net work per cycle; (d) the ratio between the maximum and minimum volume of the cycle.
 
 1. **Hot isotherm.** $Q_C = nRT_C\ln 2 = 0.20 \cdot 8.314 \cdot 600 \cdot 0.693 \approx 691.5\ \text{J}$.
 2. **Efficiency and work.** $\eta = 1 - 300/600 = 0.50$, $W = \eta Q_C \approx 345.8\ \text{J}$.

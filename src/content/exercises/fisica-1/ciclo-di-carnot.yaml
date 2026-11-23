@@ -9,11 +9,11 @@
   statement:
     it: >-
       0,20 mol di gas perfetto monoatomico compiono un ciclo di Carnot tra 600 K e 300 K. Nell'espansione
-      isoterma il volume raddoppia. Calcolare: (a) il calore assorbito Q_C; (b) il rendimento; (c) il lavoro
+      isoterma il volume raddoppia. Calcolare: (a) il calore assorbito $Q_C$; (b) il rendimento; (c) il lavoro
       netto per ciclo; (d) il rapporto tra il volume massimo e il volume minimo del ciclo.
     en: >-
       0.20 mol of monatomic ideal gas performs a Carnot cycle between 600 K and 300 K. In the isothermal
-      expansion the volume doubles. Find: (a) the absorbed heat Q_C; (b) the efficiency; (c) the net work per
+      expansion the volume doubles. Find: (a) the absorbed heat $Q_C$; (b) the efficiency; (c) the net work per
       cycle; (d) the ratio between the maximum and minimum volume of the cycle.
   figure:
     diagram:
@@ -65,8 +65,8 @@
           \cdot 2.83 \approx 5.66\).
   answer:
     - label:
-        it: Q_C
-        en: Q_C
+        it: $Q_C$
+        en: $Q_C$
       value: 691.5
       unit: J
     - label:
@@ -79,8 +79,8 @@
       value: 345.8
       unit: J
     - label:
-        it: V_max/V_min
-        en: V_max/V_min
+        it: $V_{\mathrm{max}}/V_{\mathrm{min}}$
+        en: $V_{\mathrm{max}}/V_{\mathrm{min}}$
       value: 5.66
   origin: originale
 - id: frigorifero-carnot
@@ -142,8 +142,8 @@
       value: 16.9
       unit: kJ
     - label:
-        it: Q_C
-        en: Q_C
+        it: $Q_C$
+        en: $Q_C$
       value: 116.9
       unit: kJ
   origin: originale

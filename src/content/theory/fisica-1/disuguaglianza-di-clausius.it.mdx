@@ -35,12 +35,12 @@ La disuguaglianza di Clausius generalizza il teorema di Carnot a cicli qualsiasi
   params={{
     kind: 'engine',
     reservoirs: [
-      { label: 'T_1', heat: 'Q_1', side: 'hot' },
-      { label: 'T_2', heat: 'Q_2', side: 'hot' },
-      { label: 'T_3', heat: 'Q_3', side: 'cold' },
+      { label: '$T_1$', heat: '$Q_1$', side: 'hot' },
+      { label: '$T_2$', heat: '$Q_2$', side: 'hot' },
+      { label: '$T_3$', heat: '$Q_3$', side: 'cold' },
     ],
   }}
-  caption="Ciclo che scambia calore con più sorgenti: la somma dei calori ridotti Σ Q_i/T_i non può essere positiva."
+  caption="Ciclo che scambia calore con più sorgenti: la somma dei calori ridotti Σ $Q_i/T_i$ non può essere positiva."
 />
 
 <div data-note-id="teoria/disuguaglianza-di-clausius/derivazione" class="derivation">
@@ -111,7 +111,7 @@ $$
 \oint \frac{\delta Q}{T} \le 0; \qquad \text{ciclo reversibile: percorrendolo al contrario} \Rightarrow \oint \frac{\delta Q}{T} = 0
 $$
 
-Per N → ∞ la somma diventa integrale. Se il ciclo è reversibile, invertendolo tutti i δQ cambiano segno: valgono sia ≤ 0 sia ≥ 0, dunque = 0. L'annullarsi dell'integrale su ogni ciclo reversibile implica che δQ_rev/T è un differenziale esatto: nasce l'entropia.
+Per N → ∞ la somma diventa integrale. Se il ciclo è reversibile, invertendolo tutti i δQ cambiano segno: valgono sia ≤ 0 sia ≥ 0, dunque = 0. L'annullarsi dell'integrale su ogni ciclo reversibile implica che $\delta Q_{\mathrm{rev}}/T$ è un differenziale esatto: nasce l'entropia.
 
 </details>
 

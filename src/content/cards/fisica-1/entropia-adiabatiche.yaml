@@ -25,7 +25,7 @@
       **Scaletta:**
 
 
-      - Dimostrare che δQ_rev/T è un differenziale esatto (da Clausius)
+      - Dimostrare che $\delta Q_{\mathrm{rev}}/T$ è un differenziale esatto (da Clausius)
 
       - Definire ΔS e spiegare l'uso del cammino reversibile ausiliario
 
@@ -37,9 +37,9 @@
 
       - Distinguere adiabatico da isoentropico con l'espansione libera
 
-      - Calcolare ΔS_univ per lo scambio termico tra due corpi
+      - Calcolare $\Delta S_{\mathrm{univ}}$ per lo scambio termico tra due corpi
 
-      - Accennare a S = k_B ln Ω
+      - Accennare a $S = k_B \ln \Omega$
     en: >-
       Entropy is the odometer of irreversibility: it records how much 'quality' energy has lost. Every real
       process leaves the universe with more entropy than before — not because a force imposes it, but because
@@ -51,7 +51,7 @@
       **Outline:**
 
 
-      - Prove that δQ_rev/T is an exact differential (from Clausius)
+      - Prove that $\delta Q_{\mathrm{rev}}/T$ is an exact differential (from Clausius)
 
       - Define ΔS and explain the use of the auxiliary reversible path
 
@@ -63,9 +63,9 @@
 
       - Distinguish adiabatic from isentropic with free expansion
 
-      - Compute ΔS_univ for the heat exchange between two bodies
+      - Compute $\Delta S_{\mathrm{univ}}$ for the heat exchange between two bodies
 
-      - Mention S = k_B ln Ω
+      - Mention $S = k_B \ln \Omega$
 - id: entropia-adiabatiche-orale-1
   topic: entropia-adiabatiche
   objectives:
@@ -78,12 +78,12 @@
   back:
     it: >-
       Con capacità termica C ciascuno, la temperatura finale è \(T_f = (T_1 + T_2)/2\). Ogni corpo si porta
-      reversibilmente (idealmente) a T_f: \(\Delta S = C\ln(T_f/T_1) + C\ln(T_f/T_2) =
+      reversibilmente (idealmente) a $T_f$: \(\Delta S = C\ln(T_f/T_1) + C\ln(T_f/T_2) =
       C\ln\dfrac{T_f^2}{T_1T_2}\). Poiché la media aritmetica supera la geometrica, \(T_f^2 > T_1T_2\) e ΔS >
       0 (nulla solo se T₁ = T₂).
     en: >-
       With heat capacity C each, the final temperature is \(T_f = (T_1 + T_2)/2\). Each body is brought
-      (ideally reversibly) to T_f: \(\Delta S = C\ln(T_f/T_1) + C\ln(T_f/T_2) = C\ln\dfrac{T_f^2}{T_1T_2}\).
+      (ideally reversibly) to $T_f$: \(\Delta S = C\ln(T_f/T_1) + C\ln(T_f/T_2) = C\ln\dfrac{T_f^2}{T_1T_2}\).
       Since the arithmetic mean exceeds the geometric mean, \(T_f^2 > T_1T_2\) and ΔS > 0 (zero only if T₁ =
       T₂).
 - id: entropia-adiabatiche-orale-2
@@ -214,12 +214,12 @@
   back:
     it: >-
       Trasformazione reversibile adiabatica: ΔS = 0. Isoterma reversibile: ΔS = Q/T. Scambio di calore tra due
-      corpi a temperature diverse: ΔS_univ = Q(1/T_F − 1/T_C) > 0, la quintessenza dell'irreversibilità. Ciclo
-      qualsiasi: ΔS_sistema = 0 (funzione di stato) ma ΔS_univ ≥ 0.
+      corpi a temperature diverse: $\Delta S_{\mathrm{univ}}$ = Q(1/T_F − $1/T_C$) > 0, la quintessenza dell'irreversibilità. Ciclo
+      qualsiasi: $\Delta S_{\mathrm{sistema}} = 0$ (funzione di stato) ma $\Delta S_{\mathrm{univ}} \ge 0$.
     en: >-
       Reversible adiabatic transformation: ΔS = 0. Reversible isotherm: ΔS = Q/T. Heat exchange between two
-      bodies at different temperatures: ΔS_univ = Q(1/T_F − 1/T_C) > 0, the quintessence of irreversibility.
-      Any cycle: ΔS_system = 0 (state function) but ΔS_univ ≥ 0.
+      bodies at different temperatures: $\Delta S_{\mathrm{univ}}$ = Q(1/T_F − $1/T_C$) > 0, the quintessence of irreversibility.
+      Any cycle: $\Delta S_{\mathrm{system}} = 0$ (state function) but $\Delta S_{\mathrm{univ}} \ge 0$.
 - id: entropia-adiabatiche-errori
   topic: entropia-adiabatiche
   objectives:

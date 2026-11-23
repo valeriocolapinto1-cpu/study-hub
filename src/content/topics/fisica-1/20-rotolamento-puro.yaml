@@ -17,8 +17,8 @@ group:
 objectives:
   - id: rotolamento-puro.1
     text:
-      it: Enunciare e giustificare il vincolo v_cm = ωR
-      en: State and justify the constraint v_cm = ωR
+      it: Enunciare e giustificare il vincolo $v_{\mathrm{cm}} = \omega R$
+      en: State and justify the constraint $v_{\mathrm{cm}} = \omega R$
   - id: rotolamento-puro.2
     text:
       it: Scrivere K con König e il vincolo (forma con β)
@@ -29,12 +29,12 @@ objectives:
       en: Set up the two cardinal equations for rolling down an incline
   - id: rotolamento-puro.4
     text:
-      it: Ricavare a_cm = g sinθ/(1+β) e f_s
-      en: Derive a_cm = g sinθ/(1+β) and f_s
+      it: Ricavare $a_{\mathrm{cm}} = g \sin\theta/(1+\beta)$ e $f_s$
+      en: Derive $a_{\mathrm{cm}} = g \sin\theta/(1+\beta)$ and $f_s$
   - id: rotolamento-puro.5
     text:
-      it: Ricavare la condizione sul μ_s per il rotolamento puro
-      en: Derive the condition on μ_s for pure rolling
+      it: Ricavare la condizione sul $\mu_s$ per il rotolamento puro
+      en: Derive the condition on $\mu_s$ for pure rolling
   - id: rotolamento-puro.6
     text:
       it: Rifare il calcolo con la conservazione dell'energia

@@ -80,13 +80,13 @@
           \text{kg·m}^2\). ✓
   answer:
     - label:
-        it: I_cm
-        en: I_cm
+        it: $I_{\mathrm{cm}}$
+        en: $I_{\mathrm{cm}}$
       value: 0.16
       unit: kg·m²
     - label:
-        it: I_estremo
-        en: I_end
+        it: $I_{\mathrm{estremo}}$
+        en: $I_{\mathrm{end}}$
       value: 0.448
       unit: kg·m²
   origin: originale
@@ -168,13 +168,13 @@
       value: 3
       unit: kg
     - label:
-        it: x_cm
-        en: x_cm
+        it: $x_{\mathrm{cm}}$
+        en: $x_{\mathrm{cm}}$
       value: -0.0333
       unit: m
     - label:
-        it: I_O
-        en: I_O
+        it: $I_O$
+        en: $I_O$
       value: 0.065
       unit: kg·m²
   origin: originale

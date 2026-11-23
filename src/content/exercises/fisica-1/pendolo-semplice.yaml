@@ -54,12 +54,12 @@
       value: 1.794
       unit: s
     - label:
-        it: v_max
-        en: v_max
+        it: $v_{\mathrm{max}}$
+        en: $v_{\mathrm{max}}$
       value: 0.391
       unit: m/s
     - label:
-        it: T_filo max
+        it: $T_{\mathrm{filo}}$ max
         en: max tension
       value: 2.5
       unit: 'N'
@@ -160,8 +160,8 @@
         en: '\(T/T_0 = (g/g_{eff})^{1/2} \approx 0.985\): the pendulum swings slightly faster.'
   answer:
     - label:
-        it: θ_eq
-        en: θ_eq
+        it: $\theta_{\mathrm{eq}}$
+        en: $\theta_{\mathrm{eq}}$
       value: 14.3
       unit: °
     - label:

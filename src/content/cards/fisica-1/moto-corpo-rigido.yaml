@@ -25,7 +25,7 @@
 
       - Definire il corpo rigido e contarne i gradi di libertà
 
-      - Scrivere la formula fondamentale v_P = v_Q + ω×(r_P−r_Q)
+      - Scrivere la formula fondamentale $v_P = v_Q$ + $\omega\times (r_P-r_Q)$
 
       - Impostare le due equazioni cardinali per il moto rototraslatorio
 
@@ -48,7 +48,7 @@
 
       - Define a rigid body and count its degrees of freedom
 
-      - Write the fundamental formula v_P = v_Q + ω×(r_P−r_Q)
+      - Write the fundamental formula $v_P = v_Q$ + $\omega\times (r_P-r_Q)$
 
       - Set up the two cardinal equations for roto-translational motion
 
@@ -132,13 +132,13 @@
       Un corpo rigido è un sistema di punti le cui distanze mutue restano costanti. Il suo moto più generale è
       la composizione di una traslazione (descritta dal moto del CM) e di una rotazione attorno a un asse
       passante per il CM: servono 6 coordinate (3 + 3). Il campo delle velocità è \(\vec{v}_P = \vec{v}_{cm} +
-      \vec{\omega}\times\vec{r}_{P}\), con r_P posizione di P rispetto al CM. Il moto è governato dalle due
+      \vec{\omega}\times\vec{r}_{P}\), con $r_P$ posizione di P rispetto al CM. Il moto è governato dalle due
       equazioni cardinali.
     en: >-
       A rigid body is a system of points whose mutual distances stay constant. Its most general motion is the
       composition of a translation (described by the motion of the CM) and a rotation about an axis through
       the CM: 6 coordinates are needed (3 + 3). The velocity field is \(\vec{v}_P = \vec{v}_{cm} +
-      \vec{\omega}\times\vec{r}_{P}\), with r_P the position of P relative to the CM. The motion is governed
+      \vec{\omega}\times\vec{r}_{P}\), with $r_P$ the position of P relative to the CM. The motion is governed
       by the two cardinal equations.
 - id: moto-corpo-rigido-formule
   topic: moto-corpo-rigido
@@ -203,11 +203,11 @@
   back:
     it: >-
       Pura traslazione: ω = 0, tutti i punti hanno la stessa velocità. Pura rotazione attorno ad asse fisso:
-      v_cm dell'asse nulla. Rotolamento: combinazione con vincolo v_cm = ωR. Corpo libero nello spazio: il CM
+      $v_{\mathrm{cm}}$ dell'asse nulla. Rotolamento: combinazione con vincolo $v_{\mathrm{cm}} = \omega R$. Corpo libero nello spazio: il CM
       va di moto rettilineo uniforme e il corpo ruota attorno a esso.
     en: >-
       Pure translation: ω = 0, all points have the same velocity. Pure rotation about a fixed axis: zero
-      velocity of the axis. Rolling: combination with the constraint v_cm = ωR. Free body in space: the CM
+      velocity of the axis. Rolling: combination with the constraint $v_{\mathrm{cm}} = \omega R$. Free body in space: the CM
       moves in uniform rectilinear motion and the body rotates about it.
 - id: moto-corpo-rigido-errori
   topic: moto-corpo-rigido

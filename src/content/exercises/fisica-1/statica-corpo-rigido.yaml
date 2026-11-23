@@ -99,18 +99,18 @@
           and length.
   answer:
     - label:
-        it: N_muro
-        en: N_wall
+        it: $N_{\mathrm{muro}}$
+        en: $N_{\mathrm{wall}}$
       value: 33.98
       unit: 'N'
     - label:
-        it: f_s
-        en: f_s
+        it: $f_s$
+        en: $f_s$
       value: 33.98
       unit: 'N'
     - label:
-        it: μ_s min
-        en: min μ_s
+        it: $\mu_s$ min
+        en: min $\mu_s$
       value: 0.289
   origin: originale
 - id: trave-due-appoggi
@@ -197,13 +197,13 @@
         en: '\(R_A = 100g - R_B = 60g \approx 589\ \text{N}\): the support closer to the load carries more.'
   answer:
     - label:
-        it: R_A
-        en: R_A
+        it: $R_A$
+        en: $R_A$
       value: 589
       unit: 'N'
     - label:
-        it: R_B
-        en: R_B
+        it: $R_B$
+        en: $R_B$
       value: 392
       unit: 'N'
   origin: originale
