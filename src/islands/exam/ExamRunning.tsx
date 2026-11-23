@@ -5,7 +5,7 @@
  * campi, «?» per l'elenco delle scorciatoie.
  */
 import type { Ref } from 'preact';
-import { useEffect } from 'preact/hooks';
+import { useEffect, useRef } from 'preact/hooks';
 import { answerHelpKey } from '../../engine/course-data';
 import { formatClock, type Exam, type ExamAnswer } from '../../engine/exam';
 import { formatNumber } from '../../engine/units';
@@ -38,13 +38,18 @@ export function ExamRunning(p: ExamRunningProps) {
   const total = exam.questions.length;
   const answeredCount = exam.questions.filter((qq) => isAnswered(answers[qq.index], qq.category)).length;
 
+  // Indice e navigazione letti al momento del tasto: un tasto premuto subito dopo il cambio di
+  // domanda (prima che un effetto si riesegua) non deve trovare l'indice precedente.
+  const live = useRef({ current, total, go: p.go });
+  live.current = { current, total, go: p.go };
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (ignoreKey(e)) return;
+      const { current: at, total: n, go } = live.current;
       const step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-      if (step && current + step >= 0 && current + step < total) {
+      if (step && at + step >= 0 && at + step < n) {
         e.preventDefault();
-        p.go(current + step);
+        go(at + step);
       } else if (e.key === '?') {
         e.preventDefault();
         openKeys(KEYS_ID);
@@ -52,7 +57,7 @@ export function ExamRunning(p: ExamRunningProps) {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [current, total]);
+  }, []);
 
   return (
     <section class="sh-exam sh-exam--running" aria-label={t(lang, 'page.exam.title')}>
