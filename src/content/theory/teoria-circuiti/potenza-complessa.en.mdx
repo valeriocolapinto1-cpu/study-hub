@@ -36,7 +36,7 @@ For a one-port with impedance $Z=R+jX$ and RMS current $I$: $P=RI^2$, $Q=XI^2$. 
 1. Inductor: $Q_L=\omega LI^2$ (RMS). The instantaneous energy $\tfrac12Li^2$ has average $W_L=\tfrac12L\,\overline{i^2}=\tfrac12LI^2$, hence $Q_L=2\omega W_L$.
 2. Capacitor: $Q_C=-\dfrac{I^2}{\omega C}=-\omega CV_C^2$ and $W_C=\tfrac12CV_C^2$ (RMS), hence $Q_C=-2\omega W_C$.
 3. Resistor: $Q_R=0$ and no stored energy.
-4. By conservation of complex power (Tellegen) the total reactive power absorbed by the elements is zero if the source is included; the reactive power delivered by the sources is the sum $\sum Q_k=2\omega(W_L-W_C)$ over the passive elements. $\square$
+4. By conservation of complex power (Tellegen) the total reactive power absorbed by the elements is zero if the source is included; the reactive power delivered by the sources is the sum $\sum Q_k=2\omega(W_L-W_C)$ over the passive elements. In formulas, with the passive sign convention on every branch: $\operatorname{Im}\sum_k\dot V_k\dot I_k^*=0\;\Rightarrow\;Q_{\text{deliv}}=\sum_{\text{passive}}Q_k=\sum_L Q_L+\sum_C Q_C+\sum_R Q_R=2\omega W_L-2\omega W_C$. $\square$
 
 </details>
 

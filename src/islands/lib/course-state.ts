@@ -76,12 +76,24 @@ export function useMastery({ courseId, topics, dataPath }: MasteryProps): Master
 
 export type ExamDates = Record<string, string>;
 
+/**
+ * Date d'esame salvate: solo coppie corso → "AAAA-MM-GG". Valori di formati diversi (dati
+ * vecchi o modificati a mano) si ignorano invece di far fallire le isole che le leggono.
+ */
+export const sanitizeExamDates = (x: unknown): ExamDates =>
+  Object.fromEntries(
+    Object.entries(x && typeof x === 'object' && !Array.isArray(x) ? x : {}).filter(
+      ([, v]) => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v),
+    ),
+  );
+const readExamDates = () => sanitizeExamDates(read<unknown>(GLOBAL_SCOPE, 'examDates', {}));
+
 /** Data personale se non è passata, altrimenti il primo appello suggerito non ancora passato. */
 export function effectiveExamDate(
   courseId: string,
   suggested: readonly string[],
   now: number,
-  dates: ExamDates = read<ExamDates>(GLOBAL_SCOPE, 'examDates', {}),
+  dates: ExamDates = readExamDates(),
 ): { date: string | null; personal: boolean } {
   const date = examDateFor(dates[courseId], suggested, now);
   return { date, personal: !!date && date === dates[courseId] };
@@ -90,14 +102,14 @@ export function effectiveExamDate(
 export function useExamDates(): [ExamDates, (courseId: string, date: string | null) => void] {
   const [dates, setDates] = useState<ExamDates>({});
   useEffect(() => {
-    const load = () => setDates(read<ExamDates>(GLOBAL_SCOPE, 'examDates', {}));
+    const load = () => setDates(readExamDates());
     load();
     return subscribe(GLOBAL_SCOPE, 'examDates', load);
   }, []);
   const set = (courseId: string, date: string | null) =>
     setDates(
       update<ExamDates>(GLOBAL_SCOPE, 'examDates', {}, (d) => {
-        const next = { ...d };
+        const next = sanitizeExamDates(d);
         if (date) next[courseId] = date;
         else delete next[courseId];
         return next;
