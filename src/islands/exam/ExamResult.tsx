@@ -7,6 +7,7 @@ import { formatNumber } from '../../engine/units';
 import type { QuestionContent } from '../lib/exam-content';
 import { formatExpected } from '../lib/exercise-content';
 import { t, type Lang } from '../lib/i18n';
+import { TexText } from '../lib/TexText';
 
 export interface ExamResultProps {
   lang: Lang;
@@ -17,7 +18,7 @@ export interface ExamResultProps {
   result: Graded;
   timeUp: boolean;
   topicTitle: Record<string, string>;
-  objectiveText: Record<string, string>;
+  objectiveText: Record<string, { text: string; html?: string | undefined }>;
   printHref: (part: 'prova' | 'soluzioni') => string;
   onSelf: (index: number, self: 0 | 0.5 | 1) => void;
   onNew: () => void;
@@ -96,7 +97,12 @@ export function ExamResult(p: ExamResultProps) {
           <ul>
             {weak.slice(0, 6).map((o) => (
               <li key={o.id}>
-                {objectiveText[o.id] ?? o.id} — {o.percent}%
+                {objectiveText[o.id] ? (
+                  <TexText text={objectiveText[o.id]!.text} html={objectiveText[o.id]!.html} />
+                ) : (
+                  o.id
+                )}{' '}
+                — {o.percent}%
               </li>
             ))}
           </ul>
@@ -112,7 +118,8 @@ export function ExamResult(p: ExamResultProps) {
           return (
             <li key={qq.index} class={`sh-card sh-qresult is-${r.status}`}>
               <h4>
-                {qq.label} · {formatNumber(r.earned, { lang, digits: 3 })}/{qq.points} ·{' '}
+                <TexText text={qq.label} html={qq.labelHtml} /> ·{' '}
+                {formatNumber(r.earned, { lang, digits: 3 })}/{qq.points} ·{' '}
                 <span class={`sh-tag sh-tag--${r.status}`}>{t(lang, `exercise.${r.status}`)}</span>
               </h4>
               <div class="prose" dangerouslySetInnerHTML={{ __html: cc.statementHtml }} />
@@ -120,7 +127,8 @@ export function ExamResult(p: ExamResultProps) {
                 <ul class="sh-expected">
                   {cc.answer.map((x, i) => (
                     <li key={i}>
-                      {x.label}: <code>{a?.fields?.[i] || '—'}</code> → {formatExpected(x, lang)}
+                      <TexText text={x.label} html={x.labelHtml} />: <code>{a?.fields?.[i] || '—'}</code> →{' '}
+                      {formatExpected(x, lang)}
                     </li>
                   ))}
                 </ul>

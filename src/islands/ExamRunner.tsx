@@ -89,7 +89,12 @@ export default function ExamRunner({ lang, course, topics: topicList }: ExamRunn
 
   const topicTitle = useMemo(() => Object.fromEntries(topicList.map((tp) => [tp.id, tp.title])), [topicList]);
   const objectiveText = useMemo(
-    () => Object.fromEntries((data?.topics ?? []).flatMap((tp) => tp.objectives.map((o) => [o.id, o.text]))),
+    () =>
+      Object.fromEntries(
+        (data?.topics ?? []).flatMap((tp) =>
+          tp.objectives.map((o) => [o.id, { text: o.text, html: o.html }]),
+        ),
+      ),
     [data],
   );
 

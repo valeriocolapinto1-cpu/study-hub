@@ -18,6 +18,11 @@ const { lang, courseId } = Astro.props;
 const data = await getCourseIndex(courseId, lang);
 // Gli obiettivi di esercizi e carte (per la padronanza) si leggono da dati/indice.json nel browser.
 const common = { courseId, topics: data.topics, dataPath: data.paths.data };
+// Il piano di studio non mostra i testi degli obiettivi: niente HTML delle formule nelle sue props.
+const planTopics = data.topics.map((tp) => ({
+  ...tp,
+  objectives: tp.objectives.map(({ id, text }) => ({ id, text })),
+}));
 ---
 
 <SectionHeader title={t(lang, 'page.progress.title')} lead={t(lang, 'page.progress.lead')} />
@@ -27,6 +32,7 @@ const common = { courseId, topics: data.topics, dataPath: data.paths.data };
     client:load
     lang={lang}
     {...common}
+    topics={planTopics}
     suggestedDates={data.examDates}
     mockExams={data.examFormat !== 'orale'}
     {...(data.durationMin ? { mockMinutes: data.durationMin } : {})}

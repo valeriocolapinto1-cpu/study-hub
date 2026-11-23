@@ -12,7 +12,10 @@ import type { Lang } from '../config/site';
 
 export interface ObjectiveInfo {
   id: string;
+  /** Testo semplice (la matematica è già testo). */
   text: string;
+  /** HTML con la matematica resa (KaTeX leggero), solo se il testo ne contiene. */
+  html?: string;
 }
 
 export interface TopicInfo {
@@ -107,6 +110,8 @@ export interface CardData extends CardMeta {
 
 export interface ExamPartData {
   label: string;
+  /** Etichetta con la matematica resa (KaTeX leggero), solo se ne contiene. */
+  labelHtml?: string;
   points?: number;
   kind: string;
   /** Solo esercizi con questo `examTags` (se ce ne sono). */

@@ -13,6 +13,7 @@ import type { QuestionContent } from '../lib/exam-content';
 import { t, type Lang } from '../lib/i18n';
 import { ignoreKey, openKeys } from '../lib/hooks';
 import { isAnswered } from './answered';
+import { TexText } from '../lib/TexText';
 
 /** Elenco delle scorciatoie (HTML statico di CourseExam.astro). */
 const KEYS_ID = 'sh-exam-keys';
@@ -107,7 +108,8 @@ export function ExamRunning(p: ExamRunningProps) {
       </nav>
       <article class="sh-card sh-question" aria-labelledby="sh-q-h">
         <h2 id="sh-q-h" ref={p.headingRef} tabIndex={-1}>
-          {t(lang, 'exam.question', { n: q.index + 1, total })} · {q.label}
+          {t(lang, 'exam.question', { n: q.index + 1, total })} ·{' '}
+          <TexText text={q.label} html={q.labelHtml} />
           <span class="sh-muted">
             {' '}
             · {t(lang, 'exam.points', { points: formatNumber(q.points, { lang }) })}
@@ -182,7 +184,9 @@ function Answer({ lang, index, content: c, ans, setAnswer }: AnswerProps) {
       <div class="sh-fields">
         {c.answer.map((a, i) => (
           <div class="sh-field" key={`${index}-${i}`}>
-            <label for={`sh-q${index}-f${i}`}>{a.label}</label>
+            <label for={`sh-q${index}-f${i}`}>
+              <TexText text={a.label} html={a.labelHtml} />
+            </label>
             <div class="sh-field__row">
               <input
                 id={`sh-q${index}-f${i}`}

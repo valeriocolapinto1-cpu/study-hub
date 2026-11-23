@@ -14,6 +14,7 @@ import { resolveExam, type QuestionContent } from './lib/exam-content';
 import { formatExpected } from './lib/exercise-content';
 import { t, type Lang } from './lib/i18n';
 import './islands.css';
+import { TexText } from './lib/TexText';
 
 export interface PrintExamProps {
   lang: Lang;
@@ -101,7 +102,7 @@ export default function PrintExam({ lang, dataPaths }: PrintExamProps) {
           return (
             <li key={q.index} class="sh-print__q">
               <h2>
-                {q.label}{' '}
+                <TexText text={q.label} html={q.labelHtml} />{' '}
                 <span class="sh-muted">
                   ({t(lang, 'exam.points', { points: formatNumber(q.points, { lang }) })})
                 </span>
@@ -123,7 +124,12 @@ export default function PrintExam({ lang, dataPaths }: PrintExamProps) {
                   {c.answer.length > 0 && (
                     <p>
                       <strong>{t(lang, 'print.answer')}:</strong>{' '}
-                      {c.answer.map((a) => `${a.label} = ${formatExpected(a, lang)}`).join('; ')}
+                      {c.answer.map((a, i) => (
+                        <span key={i}>
+                          {i > 0 && '; '}
+                          <TexText text={a.label} html={a.labelHtml} /> = {formatExpected(a, lang)}
+                        </span>
+                      ))}
                     </p>
                   )}
                   <ol class="sh-steps">
