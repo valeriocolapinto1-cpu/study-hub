@@ -79,7 +79,7 @@ export function Canvas2D(props: Canvas2DProps): preact.JSX.Element {
   // ridisegno statico: dimensioni, tema, parametri
   useEffect(() => {
     paint(0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // dipendenze volute: si ridisegna solo per misure, tema e parametri dichiarati (props.deps).
   }, [width, height, theme, props.resetKey, ...(props.deps ?? [])]);
   useAnimationFrame(
     (dt) => {

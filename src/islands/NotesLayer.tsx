@@ -191,6 +191,7 @@ export default function NotesLayer({ scope, page, labels, root = 'main' }: Notes
               value={draft}
               placeholder={labels.placeholder}
               onInput={(e) => setDraft((e.target as HTMLTextAreaElement).value)}
+              // eslint-disable-next-line jsx-a11y/no-autofocus -- il dialogo dell'appunto si apre su richiesta: il fuoco va nel campo da scrivere
               autoFocus
             />
             <div class="sh-actions">

@@ -252,11 +252,18 @@ export function vectors(p: P<'vectors'>, c: Ctx): Drawn {
   if (!range) {
     const xs = [0];
     const ys = [0];
-    for (const q of placed) (xs.push(q.s[0], q.s[0] + q.v.dx), ys.push(q.s[1], q.s[1] + q.v.dy));
-    if (p.sum) (xs.push(R0[0] + R[0]), ys.push(R0[1] + R[1]));
+    for (const q of placed) {
+      xs.push(q.s[0], q.s[0] + q.v.dx);
+      ys.push(q.s[1], q.s[1] + q.v.dy);
+    }
+    if (p.sum) {
+      xs.push(R0[0] + R[0]);
+      ys.push(R0[1] + R[1]);
+    }
     for (const f of p.frames ?? []) {
       const L = f.length ?? 2;
-      (xs.push(f.x - L * 0.3, f.x + L), ys.push(f.y - L * 0.3, f.y + L));
+      xs.push(f.x - L * 0.3, f.x + L);
+      ys.push(f.y - L * 0.3, f.y + L);
     }
     range = {
       xMin: Math.floor(Math.min(...xs)) - 1,

@@ -83,6 +83,7 @@ export function renderRich(
     return rest
       .split(/\n{2,}/)
       .map((block) => {
+        // eslint-disable-next-line no-control-regex -- \u0000 è il segnaposto voluto di codice e formule estratti
         const m = /^\u0000C(\d+)\u0000$/.exec(block.trim());
         return m ? (code[Number(m[1])] ?? '') : block.trim() ? renderRich(block, render) : '';
       })
@@ -90,6 +91,7 @@ export function renderRich(
   }
   const { text, math } = extractMath(normalized, render);
   const restore = (html: string) =>
+    // eslint-disable-next-line no-control-regex -- \u0000 è il segnaposto voluto di codice e formule estratti
     html.replace(/\u0000M(\d+)\u0000/g, (_, i: string) => math[Number(i)] ?? '');
   if (opts.inlineOnly) return restore(inline(text));
   const blocks = text.split(/\n{2,}/);
@@ -104,6 +106,7 @@ export function renderRich(
       }
       // Blocco composto da sola matematica display: niente <p> attorno.
       if (
+        // eslint-disable-next-line no-control-regex -- \u0000 è il segnaposto voluto di codice e formule estratti
         /^\u0000M\d+\u0000$/.test(block.trim()) &&
         math[Number(block.trim().slice(2, -1))]?.startsWith('<span class="math-display">')
       ) {

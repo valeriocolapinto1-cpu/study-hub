@@ -65,7 +65,6 @@ export function theoryDiagrams(course: string): Array<{ file: string; type: stri
         else if (src[i] === '}') depth--;
         i++;
       }
-      // eslint-disable-next-line @typescript-eslint/no-implied-eval
       const params: unknown = new Function(`return (${src.slice(start, i - 1)});`)();
       out.push({ file, type: m[1]!, params });
     }
