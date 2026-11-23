@@ -143,7 +143,8 @@ avvolge il componente prima dell'idratazione. Un'eccezione nel render o negli ef
 
 `src/engine/migrate.ts`: tabella `MIGRATIONS` dalle chiavi legacy (stessa origine github.io). Ogni PR di corso aggiunge le sue
 voci `{ id, legacyKey, scope, area, transform, merge? }`. Le chiavi legacy non si cancellano mai; le migrazioni eseguite sono in
-`sh:v1:global:migrations`; un valore nuovo già presente non viene sovrascritto (salvo `merge`). Eseguita da `src/scripts/site.ts`.
+`sh:v1:global:migrations`; un valore nuovo già presente non viene sovrascritto (salvo `merge`). Eseguita da `src/scripts/site.ts`,
+che la scarica (con le migrazioni dei corsi) solo se in localStorage c'è una chiave fuori da `sh:`.
 
 ## Design token
 
@@ -193,10 +194,13 @@ pagine globali `/<lang>/ripasso/`, `/<lang>/appunti/`, `/<lang>/i-miei-dati/`, `
   lingua, scaricabile su richiesta da "Scarica per l'offline" nella panoramica, con i file non HTML sotto il
   suo percorso (`dati/`) e l'indice di ricerca della lingua (`pagefind/<lingua>/` tranne i frammenti, più i
   frammenti delle pagine del corso e di quelle fuori dai corsi) (`src/islands/OfflineCourse.tsx`, inserita da `CourseLayout`). Aggiornamenti
-  incrementali (solo i file cambiati), attivati dopo conferma ("Nuova versione disponibile",
-  `src/scripts/pwa.ts`); offline, le pagine non salvate portano a `/<lingua>/offline/`. Cache: `sh-shell`,
+  incrementali (solo i file cambiati); il worker nuovo si attiva subito (`skipWaiting` + `clients.claim`),
+  le pagine aperte si ricaricano solo su conferma ("Nuova versione disponibile", `src/scripts/pwa.ts`); offline, le pagine non salvate portano a `/<lingua>/offline/`. Cache: `sh-shell`,
   `sh-course:<id>:<lingua>`, `sh-runtime:<versione>` (≤ 120 voci, sfoltita alla prima scrittura di ogni
-  avvio del worker e poi ogni 20; quelle delle versioni precedenti si eliminano all'attivazione), `sh-meta`.
+  avvio del worker e poi ogni 20), `sh-retired:<versione>` (file con hash tolti da shell e corsi a un
+  aggiornamento), `sh-meta`. Le cache di passaggio precedenti e quelle in pensione restano finché le finestre
+  aperte all'attivazione (id in `sh-meta`, chiave `__retiring`) non sono tutte chiuse: controllo all'attivazione
+  e alle navigazioni, al più ogni 30 s (`sweepRetired`). Così una pagina vecchia ancora aperta trova i suoi file.
   Ricerca in cache: elenco dei corsi scaricati letto una volta per avvio; pagine e dati di un corso solo nella
   sua cache e in quella di passaggio, le risorse comuni in shell, corsi e passaggio (`cachesFor`).
   **Strategie**: i file con hash nel nome (`/_astro/`, frammenti/indici/filtri di Pagefind) cache-first;
@@ -210,6 +214,13 @@ pagine globali `/<lang>/ripasso/`, `/<lang>/appunti/`, `/<lang>/i-miei-dati/`, `
   torna visibile (`visibilitychange`/`pageshow`: la PWA su iPhone resta sospesa per giorni) e ogni 30 min;
   se la build pubblicata è più recente (`isNewerBuild`, `src/pwa/update.ts`) chiama `registration.update()`
   e mostra l'avviso (senza worker in attesa il pulsante ricarica e basta).
+  **Recupero dopo una pubblicazione** (`pwa.ts`): se un'isola non carica il suo codice (`astro:hydration-error`,
+  import dinamico fallito) o va in errore (`sh:island-error` da IslandBoundary) si legge `version.json`; se la
+  build pubblicata è più recente si attiva il worker nuovo e la pagina si ricarica, una volta per build
+  (`sh:auto-reload` in sessionStorage). Il riquadro d'errore non compare durante il controllo né se si ricarica;
+  altrimenti il motivo (`versione-ripetuta`, `offline`, `stessa-versione`) e la build vanno in console e nel
+  messaggio di «Segnala errore». «Ricarica» nel riquadro (`sh:hard-reload`, `src/pwa/reset.ts` a richiesta)
+  deregistra il worker e svuota le cache tranne i corsi scaricati; offline ricarica e basta.
   **"Aggiorna il sito"** (`src/islands/RefreshSite.tsx` in `/<lingua>/i-miei-dati/`): dopo conferma scarica il
   backup (stesso file di "Esporta in un file"), deregistra i service worker, svuota Cache Storage e ricarica;
   localStorage e IndexedDB (progressi, appunti, ripasso) non si toccano, i corsi offline vanno riscaricati.

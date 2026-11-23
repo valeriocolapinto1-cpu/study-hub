@@ -68,6 +68,63 @@ describe('IslandBoundary', () => {
     expect(reload).toHaveBeenCalled();
   });
 
+  it('Ricarica chiede l’aggiornamento completo a pwa.ts, se c’è', () => {
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    const reload = vi.fn();
+    vi.spyOn(window, 'location', 'get').mockReturnValue({ ...window.location, reload, pathname: '/' });
+    const hard = vi.fn((e: Event) => e.preventDefault());
+    addEventListener('sh:hard-reload', hard);
+    try {
+      render(h(withBoundary(Boom), { when: 'render' }));
+      fireEvent.click(screen.getByRole('button'));
+      expect(hard).toHaveBeenCalled();
+      expect(reload).not.toHaveBeenCalled();
+    } finally {
+      removeEventListener('sh:hard-reload', hard);
+    }
+  });
+
+  it('pagina di una build vecchia: niente riquadro mentre si controlla la versione', async () => {
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    let settle!: (r: { reload: boolean; reason: string }) => void;
+    const listener = (e: Event) => {
+      (e as CustomEvent<{ pending?: Promise<unknown> }>).detail.pending = new Promise((r) => (settle = r));
+    };
+    addEventListener('sh:island-error', listener);
+    try {
+      render(h('div', null, h(withBoundary(Boom), { when: 'render' })));
+      expect(screen.queryByRole('alert')).toBeNull();
+      settle({ reload: false, reason: 'stessa-versione' });
+      expect(await screen.findByRole('alert')).toBeTruthy();
+      const href = screen.getByRole('link', { name: 'Segnala errore' }).getAttribute('href') ?? '';
+      expect(new URLSearchParams(href.slice(href.indexOf('?'))).get('messaggio')).toMatch(
+        /^\[stessa-versione · \S+\] Cannot read properties of null$/,
+      );
+      // Registrato in console con il motivo.
+      expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[stessa-versione'));
+    } finally {
+      removeEventListener('sh:island-error', listener);
+    }
+  });
+
+  it('se la pagina si ricarica il riquadro non compare', async () => {
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    const listener = (e: Event) => {
+      (e as CustomEvent<{ pending?: Promise<unknown> }>).detail.pending = Promise.resolve({
+        reload: true,
+        reason: 'versione',
+      });
+    };
+    addEventListener('sh:island-error', listener);
+    try {
+      render(h(withBoundary(Boom), { when: 'render' }));
+      await new Promise((r) => setTimeout(r, 0));
+      expect(screen.queryByRole('alert')).toBeNull();
+    } finally {
+      removeEventListener('sh:island-error', listener);
+    }
+  });
+
   it('il link precompila tipo, pagina, corso e messaggio nel modulo Contribuisci', () => {
     const href = reportHref(
       { pathname: '/study-hub/en/anno-2/fisica-2/esame/' },

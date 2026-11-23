@@ -1,12 +1,22 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
   formatBuild,
+  isChunkLoadError,
   isNewerBuild,
   parseBuildInfo,
-  resetSiteCaches,
+  shouldAutoReload,
   shouldCheck,
 } from '../../../src/pwa/update';
-import { isBypassed, isImmutableAsset, runtimeCacheName, staleCaches } from '../../../src/pwa/sw-core.js';
+import { isCourseCache, resetSiteCaches } from '../../../src/pwa/reset';
+import {
+  isBypassed,
+  isImmutableAsset,
+  mergeClients,
+  retiredCacheName,
+  retiringCaches,
+  runtimeCacheName,
+  stagingCaches,
+} from '../../../src/pwa/sw-core.js';
 
 const local = { commit: 'aaaaaaa', date: '2026-11-09T10:00:00.000Z' };
 
@@ -57,8 +67,39 @@ describe('Aggiorna il sito', () => {
     expect(del.mock.calls.map((c) => c[0])).toEqual(names);
   });
 
+  it('«Ricarica» del riquadro d’errore conserva i corsi scaricati', async () => {
+    const names = ['sh-shell', 'sh-meta', 'sh-course:x:it', 'sh-runtime:abc', 'sh-retired:abc'];
+    const del = vi.fn(async () => true);
+    const out = await resetSiteCaches({ caches: { keys: async () => names, delete: del } }, isCourseCache);
+    expect(out).toEqual({ workers: 0, caches: 4 });
+    expect(del.mock.calls.map((c) => (c as unknown[])[0])).not.toContain('sh-course:x:it');
+  });
+
   it('funziona anche senza service worker né Cache Storage', async () => {
     expect(await resetSiteCaches({})).toEqual({ workers: 0, caches: 0 });
+  });
+});
+
+describe('recupero dopo una pubblicazione', () => {
+  it('riconosce gli import falliti di Chrome, Safari, Firefox e Vite', () => {
+    for (const msg of [
+      'Failed to fetch dynamically imported module: https://x/_astro/A.js',
+      'Importing a module script failed.',
+      'error loading dynamically imported module: https://x/_astro/A.js',
+      'Unable to preload CSS for /_astro/A.css',
+    ])
+      expect(isChunkLoadError(new TypeError(msg))).toBe(true);
+    expect(isChunkLoadError(new TypeError("Cannot read properties of undefined (reading 'x')"))).toBe(false);
+    expect(isChunkLoadError(undefined)).toBe(false);
+  });
+
+  it('ricarica una volta sola per build, e solo se quella pubblicata è più recente', () => {
+    const remote = { commit: 'bbbbbbb', date: '2026-11-10T00:00:00Z' };
+    expect(shouldAutoReload(local, remote, null)).toBe(true);
+    expect(shouldAutoReload(local, remote, 'ccccccc')).toBe(true);
+    expect(shouldAutoReload(local, remote, 'bbbbbbb')).toBe(false);
+    expect(shouldAutoReload(local, local, null)).toBe(false);
+    expect(shouldAutoReload(local, null, null)).toBe(false);
   });
 });
 
@@ -80,21 +121,31 @@ describe('strategie di cache del service worker', () => {
     expect(isBypassed('/study-hub/it/', BASE)).toBe(false);
   });
 
-  it('lega la cache di passaggio alla versione ed elimina le vecchie', () => {
+  it('lega la cache di passaggio alla versione; le vecchie vanno in pensione', () => {
     expect(runtimeCacheName('v2')).toBe('sh-runtime:v2');
-    expect(
-      staleCaches(
-        [
-          'sh-shell',
-          'sh-meta',
-          'sh-runtime',
-          'sh-runtime:v1',
-          'sh-runtime:v2',
-          'sh-staging:v2:sh-shell',
-          'sh-course:x:it',
-        ],
-        'v2',
-      ),
-    ).toEqual(['sh-runtime', 'sh-runtime:v1', 'sh-staging:v2:sh-shell']);
+    expect(retiredCacheName('v2')).toBe('sh-retired:v2');
+    const names = [
+      'sh-shell',
+      'sh-meta',
+      'sh-runtime',
+      'sh-runtime:v1',
+      'sh-runtime:v2',
+      'sh-retired:v1',
+      'sh-retired:v2',
+      'sh-staging:v2:sh-shell',
+      'sh-course:x:it',
+    ];
+    expect(stagingCaches(names)).toEqual(['sh-staging:v2:sh-shell']);
+    expect(retiringCaches(names, 'v2')).toEqual([
+      'sh-runtime',
+      'sh-runtime:v1',
+      'sh-retired:v1',
+      'sh-retired:v2',
+    ]);
+  });
+
+  it('attende le finestre già registrate e quelle aperte adesso', () => {
+    expect(mergeClients(['a', 'b'], ['b', 'c'])).toEqual(['a', 'b', 'c']);
+    expect(mergeClients([], [])).toEqual([]);
   });
 });
