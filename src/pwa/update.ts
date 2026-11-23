@@ -1,7 +1,8 @@
 /**
  * Logica pura degli aggiornamenti del sito (testata in tests/unit/pwa/update.test.ts):
  * confronto tra la build della pagina e quella pubblicata (version.json), frequenza dei
- * controlli e pulizia di service worker e Cache Storage per "Aggiorna il sito".
+ * controlli e ricaricamento automatico dopo una pubblicazione. La pulizia delle cache
+ * ("Aggiorna il sito", «Ricarica») è in reset.ts, caricato solo quando serve.
  */
 
 export interface BuildInfo {
@@ -39,43 +40,12 @@ export const shouldCheck = (last: number, now: number, gap = CHECK_MIN_GAP_MS): 
 /** Testo breve della build per il footer: "abc1234 · 2026-11-09". */
 export const formatBuild = (b: BuildInfo): string => `${b.commit} · ${b.date.slice(0, 10)}`;
 
-export interface CacheEnv {
-  serviceWorker?: { getRegistrations(): Promise<ReadonlyArray<{ unregister(): Promise<boolean> }>> };
-  caches?: { keys(): Promise<string[]>; delete(name: string): Promise<boolean> };
-}
-
-/**
- * Deregistra i service worker e svuota Cache Storage. Non tocca localStorage né IndexedDB
- * (progressi, appunti, ripasso restano dove sono). `keep` conserva alcune cache: «Ricarica»
- * nel riquadro d'errore tiene i corsi scaricati (senza `sh-meta` il nuovo worker li riscarica
- * in sottofondo, ma restano consultabili offline nel frattempo).
- */
-export async function resetSiteCaches(
-  env: CacheEnv,
-  keep: (name: string) => boolean = () => false,
-): Promise<{ workers: number; caches: number }> {
-  let workers = 0;
-  let removed = 0;
-  if (env.serviceWorker) {
-    for (const reg of await env.serviceWorker.getRegistrations()) if (await reg.unregister()) workers++;
-  }
-  if (env.caches) {
-    for (const name of await env.caches.keys()) if (!keep(name) && (await env.caches.delete(name))) removed++;
-  }
-  return { workers, caches: removed };
-}
-
-/** Cache dei corsi scaricati per l'offline (vedi src/pwa/sw-core.js). */
-export const isCourseCache = (name: string): boolean => name.startsWith('sh-course:');
-
 /**
  * Errore di caricamento del codice (import dinamico fallito, file sparito dopo una
  * pubblicazione). Messaggi di Chrome, Safari e Firefox, più quello dei chunk CSS di Vite.
  */
 export const isChunkLoadError = (error: unknown): boolean =>
-  /dynamically imported module|Importing a module script failed|error loading dynamically|Unable to preload CSS|Failed to fetch/i.test(
-    String((error as Error | undefined)?.message ?? error),
-  );
+  /imported module|module script failed|preload CSS/i.test(String((error as Error)?.message ?? error));
 
 /** Chiave in sessionStorage: commit per cui la pagina si è già ricaricata da sola. */
 export const RELOAD_GUARD_KEY = 'sh:auto-reload';

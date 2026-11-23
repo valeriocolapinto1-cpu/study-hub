@@ -4,7 +4,6 @@
  */
 import { GLOBAL_SCOPE, STORAGE_ERROR_EVENT, write } from '../engine/storage';
 import { backupDue, snoozeBackup } from '../engine/backup';
-import { runMigrations } from '../engine/migrate';
 import './search';
 import './pwa';
 
@@ -209,9 +208,9 @@ for (const type of ['pointerover', 'focusin'])
 }
 
 syncToggles();
-runMigrations();
-// Migrazioni dei corsi dalle chiavi dei vecchi siti: il codice si scarica solo se nel
-// browser c'è almeno una chiave che non è del nuovo formato (`sh:`), cioè quasi mai.
+// Migrazioni dalle chiavi dei vecchi siti (src/engine/migrate.ts e quelle dei corsi): ogni
+// migrazione legge una chiave legacy, quindi il codice si scarica solo se nel browser c'è
+// almeno una chiave che non è del nuovo formato (`sh:`), cioè quasi mai.
 const courseMigrations = import.meta.glob('../courses/*/migrations.ts');
 const hasLegacyKeys = (): boolean => {
   try {
@@ -222,5 +221,7 @@ const hasLegacyKeys = (): boolean => {
   return false;
 };
 if (hasLegacyKeys()) {
-  void Promise.all(Object.values(courseMigrations).map((load) => load())).then(() => runMigrations());
+  void Promise.all([import('../engine/migrate'), ...Object.values(courseMigrations).map((load) => load())])
+    .then(([m]) => m.runMigrations())
+    .catch(() => undefined);
 }

@@ -19,10 +19,8 @@ import {
   CHECK_INTERVAL_MS,
   RELOAD_GUARD_KEY,
   isChunkLoadError,
-  isCourseCache,
   isNewerBuild,
   parseBuildInfo,
-  resetSiteCaches,
   shouldAutoReload,
   shouldCheck,
   type BuildInfo,
@@ -198,10 +196,14 @@ addEventListener('sh:hard-reload', (e) => {
   void (async () => {
     // Offline non si tocca nulla: senza rete la cache è tutto ciò che resta.
     if (await fetchRemote())
-      await resetSiteCaches(
-        { serviceWorker: navigator.serviceWorker, caches: 'caches' in window ? caches : undefined },
-        isCourseCache,
-      ).catch(() => undefined);
+      await import('../pwa/reset')
+        .then((m) =>
+          m.resetSiteCaches(
+            { serviceWorker: navigator.serviceWorker, caches: 'caches' in window ? caches : undefined },
+            m.isCourseCache,
+          ),
+        )
+        .catch(() => undefined);
     location.reload();
   })();
 });

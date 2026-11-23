@@ -6,7 +6,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { h } from 'preact';
 import { useEffect } from 'preact/hooks';
 import { cleanup, fireEvent, render, screen } from '@testing-library/preact';
-import { ERROR_LOG_KEY, reportHref, withBoundary } from '../../../src/islands/lib/boundary';
+import { reportHref, withBoundary } from '../../../src/islands/lib/boundary';
 import { dataPageHref, showNotice } from '../../../src/scripts/data-notice';
 import { prefillFromQuery } from '../../../src/lib/contribute/rules';
 
@@ -92,7 +92,6 @@ describe('IslandBoundary', () => {
     };
     addEventListener('sh:island-error', listener);
     try {
-      localStorage.removeItem(ERROR_LOG_KEY);
       render(h('div', null, h(withBoundary(Boom), { when: 'render' })));
       expect(screen.queryByRole('alert')).toBeNull();
       settle({ reload: false, reason: 'stessa-versione' });
@@ -101,9 +100,8 @@ describe('IslandBoundary', () => {
       expect(new URLSearchParams(href.slice(href.indexOf('?'))).get('messaggio')).toMatch(
         /^\[stessa-versione · \S+\] Cannot read properties of null$/,
       );
-      // Registro locale con il motivo.
-      const log = JSON.parse(localStorage.getItem(ERROR_LOG_KEY) ?? '[]') as Array<{ text: string }>;
-      expect(log.at(-1)?.text).toContain('[stessa-versione');
+      // Registrato in console con il motivo.
+      expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[stessa-versione'));
     } finally {
       removeEventListener('sh:island-error', listener);
     }

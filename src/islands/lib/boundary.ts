@@ -13,8 +13,8 @@
  * `sh:island-error`): se la pagina è di una build non più pubblicata (HTML vecchio
  * in cache, codice o dati cambiati) il worker si aggiorna e la pagina si ricarica da
  * sola, e il riquadro non compare. Altrimenti il motivo (`versione-ripetuta`, `offline`,
- * `stessa-versione`) e la build finiscono nel registro locale `sh:errors` e nel
- * messaggio di «Segnala errore». «Ricarica» chiede a pwa.ts un aggiornamento completo
+ * `stessa-versione`) e la build finiscono nella console e nel messaggio di
+ * «Segnala errore». «Ricarica» chiede a pwa.ts un aggiornamento completo
  * (`sh:hard-reload`: worker deregistrato, cache svuotate tranne i corsi scaricati).
  *
  * Testi IT/EN qui dentro e niente JSX: pesa poche centinaia di byte, perché
@@ -27,23 +27,9 @@ const TEXTS = {
   en: ['This section failed to load because of an error.', 'Reload', 'Report error'],
 };
 
-/** Registro locale degli ultimi errori delle isole (fuori da `sh:v1:`: non entra nell'export). */
-export const ERROR_LOG_KEY = 'sh:errors';
-
-/** Testo dell'errore per registro e segnalazione: motivo, build, messaggio. */
+/** Testo dell'errore per console e segnalazione: motivo, build, messaggio. */
 export const errorText = (error: unknown, reason?: string): string =>
   `${reason ? `[${reason} · ${__SH_BUILD__.commit}] ` : ''}${String((error as Error | undefined)?.message ?? error)}`;
-
-/** Aggiunge l'errore al registro locale (ultimi 5); mai un'eccezione. */
-export function logError(page: string, text: string, now = Date.now()): void {
-  try {
-    const list = JSON.parse(localStorage.getItem(ERROR_LOG_KEY) ?? '[]') as unknown;
-    const next = [...(Array.isArray(list) ? list : []), { t: now, page, text: text.slice(0, 300) }];
-    localStorage.setItem(ERROR_LOG_KEY, JSON.stringify(next.slice(-5)));
-  } catch {
-    /* storage non disponibile */
-  }
-}
 
 /** Link al modulo Contribuisci con tipo «errore», pagina, corso e messaggio. */
 export function reportHref(loc: Pick<Location, 'pathname'>, base: string, error: unknown): string {
@@ -77,7 +63,7 @@ export function withBoundary<P extends object>(Inner: ComponentType<P>): Compone
       dispatchEvent(new CustomEvent('sh:island-error', { detail }));
       const show = (reason?: string) => {
         const text = errorText(error, reason);
-        logError(location.pathname, text);
+        if (reason) console.error(text);
         this.setState({ error: text, pending: false });
       };
       if (!detail.pending) return show();

@@ -6,7 +6,7 @@
  * IndexedDB (progressi, appunti, ripasso) non vengono toccati.
  */
 import { useState } from 'preact/hooks';
-import { resetSiteCaches } from '../pwa/update';
+import { resetSiteCaches } from '../pwa/reset';
 import { isStorageAvailable } from '../engine/storage';
 import { downloadExport } from './lib/download-export';
 import { t, type Lang } from './lib/i18n';

@@ -2,13 +2,12 @@ import { describe, expect, it, vi } from 'vitest';
 import {
   formatBuild,
   isChunkLoadError,
-  isCourseCache,
   isNewerBuild,
   parseBuildInfo,
-  resetSiteCaches,
   shouldAutoReload,
   shouldCheck,
 } from '../../../src/pwa/update';
+import { isCourseCache, resetSiteCaches } from '../../../src/pwa/reset';
 import {
   isBypassed,
   isImmutableAsset,
