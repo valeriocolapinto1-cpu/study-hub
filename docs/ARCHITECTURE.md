@@ -63,7 +63,7 @@ tests/unit, tests/content, tests/e2e, tests/fixtures
   sharp, fondo SVG con i colori scuri del corso letti da `src/styles/courses/<id>.css`, testi in Geist TTF da
   `tools/og/fonts/`, OFL). Le pagine di un corso usano l'immagine del corso (prop `course` di `Head`).
 - **Dati strutturati** (`src/lib/seo.ts`, componente `JsonLd`): `WebSite` + `SearchAction` nella home
-  (`?q=…` apre la ricerca già compilata, `src/scripts/search.ts`), `Course` nella panoramica di ogni corso,
+  (`?q=…` apre la ricerca già compilata, `src/scripts/search.ts`), `Course` nella panoramica di ogni corso (nella pagina, non in `CourseLayout`),
   `BreadcrumbList` dal componente `Breadcrumbs`.
 - **Tema e barra del browser**: lo script inline di `Head.astro` applica il tema salvato prima del disegno e tiene
   `theme-color` uguale a `--bg` (anche del corso), ricalcolato quando cambia `data-theme`.

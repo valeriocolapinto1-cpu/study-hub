@@ -6,7 +6,7 @@
  * di pagina (Segnala errore).
  */
 import 'katex/dist/katex.min.css';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import type { Topic } from '../content/schemas';
 import BaseLayout from './BaseLayout.astro';
 import Breadcrumbs, { type Crumb } from '../components/Breadcrumbs.astro';
@@ -14,11 +14,8 @@ import CourseNav from '../components/CourseNav.astro';
 import Icon from '../components/Icon.astro';
 import ReportError from '../components/ReportError.astro';
 import TopicNav from '../components/TopicNav.astro';
-import JsonLd from '../components/JsonLd.astro';
 import OfflineCourse from '../islands/OfflineCourse';
-import { SITE } from '../config/site';
-import { courseJsonLd, ogImagePath } from '../lib/seo';
-import { htmlLang, localizePath, stripLang, t, texts, tr, withBase, type Lang } from '../i18n';
+import { localizePath, stripLang, t, texts, tr, withBase, type Lang } from '../i18n';
 import { COURSE_SECTIONS, coursePath } from '../lib/courses';
 
 interface Props {
@@ -55,24 +52,6 @@ const base = coursePath(course);
 
 // Panoramica del corso: offre il download per l'offline (service worker).
 const isOverview = stripLang(Astro.url.pathname) === base;
-// Dati strutturati del corso (schema.org Course) nella sola panoramica.
-const site = Astro.site ?? new URL('http://localhost');
-const courseLd = isOverview
-  ? courseJsonLd({
-      name: courseTitle,
-      description: tr(course.description, lang),
-      url: new URL(Astro.url.pathname, site).href,
-      inLanguage: htmlLang[lang],
-      image: new URL(withBase(ogImagePath(lang, course.id)), site).href,
-      provider: { name: SITE.author, url: new URL(localizePath('chi-sono', lang), site).href },
-      topics: (await getCollection('topics'))
-        .map((e) => e.data)
-        .filter((tp) => tp.course === course.id)
-        .sort((a, b) => a.order - b.order)
-        .map((tp) => tr(tp.title, lang)),
-      educationalLevel: t(lang, 'seo.educationalLevel'),
-    })
-  : undefined;
 
 let crumbs = Astro.props.crumbs;
 if (!crumbs) {
@@ -98,7 +77,6 @@ const barEyebrow = eyebrow && eyebrow !== parentLabel ? eyebrow : undefined;
   course={course.id}
 >
   <slot name="head" slot="head" />
-  {courseLd && <JsonLd slot="head" data={courseLd} />}
   <div class="container course-shell">
     <aside
       id="indice-corso"
