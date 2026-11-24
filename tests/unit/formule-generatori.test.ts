@@ -62,9 +62,9 @@ describe.each(COURSES)('generatori di %s: formule rese, niente notazione grezza'
       }
       expect(errors.slice(0, 5)).toEqual([]);
       expect([...raw]).toEqual([]);
-      // 24 varianti per generatore con KaTeX strict: i generatori di circuiti più lunghi superavano
-      // i 5 s predefiniti sul runner della CI con la copertura attiva (~1,5 s senza).
+      // Come in tests/unit/teoria-circuiti/analisi.test.ts: i generatori d'analisi di TdC (livello 3) in CI,
+      // con i file in parallelo, impiegano decine di secondi su 12 semi × 2 lingue; 5 s di default non bastano.
     },
-    30_000,
+    60_000,
   );
 });
