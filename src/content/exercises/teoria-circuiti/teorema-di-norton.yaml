@@ -204,3 +204,37 @@
         en: $Z_{th}^2$
       correct: false
   origin: originale
+- id: r2-no-1
+  topic: teorema-di-norton
+  objectives:
+    - teorema-di-norton.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Ai morsetti di una rete lineare si misurano una tensione a vuoto di $9\,\mathrm{V}$ e una corrente di corto circuito di $3\,\mathrm{A}$. Ricava gli equivalenti di Thevenin e di Norton e la potenza su un carico $R_L=6\,\Omega$.'
+    en: 'At the terminals of a linear network you measure an open-circuit voltage of $9\,\mathrm{V}$ and a short-circuit current of $3\,\mathrm{A}$. Derive the Thévenin and Norton equivalents and the power in a load $R_L=6\,\Omega$.'
+  steps:
+    - title:
+        it: 'Legame'
+        en: 'Link'
+      body:
+        it: '$V_{th}=9\,\mathrm{V}$, $I_N=3\,\mathrm{A}$ e la stessa resistenza: $R_{th}=R_N=V_{th}/I_N=3\,\Omega$. I due equivalenti sono uno la trasformazione di sorgente dell''altro.'
+        en: '$V_{th}=9\,\mathrm{V}$, $I_N=3\,\mathrm{A}$ and the same resistance: $R_{th}=R_N=V_{th}/I_N=3\,\Omega$. Each equivalent is the source transformation of the other.'
+    - title:
+        it: 'Carico'
+        en: 'Load'
+      body:
+        it: '$I_L=\dfrac{9}{3+6}=1\,\mathrm{A}$, $P=R_L I_L^2=6\,\mathrm{W}$ (con Norton: $I_L=3\cdot\dfrac{3}{3+6}=1\,\mathrm{A}$, stesso risultato).'
+        en: '$I_L=\dfrac{9}{3+6}=1\,\mathrm{A}$, $P=R_L I_L^2=6\,\mathrm{W}$ (with Norton: $I_L=3\cdot\dfrac{3}{3+6}=1\,\mathrm{A}$, same result).'
+  answer:
+    - label:
+        it: '$R_{th}=R_N$'
+        en: '$R_{th}=R_N$'
+      value: 3
+      unit: 'Ω'
+    - label:
+        it: 'Potenza su $R_L$'
+        en: 'Power in $R_L$'
+      value: 6
+      unit: 'W'
+  origin: originale

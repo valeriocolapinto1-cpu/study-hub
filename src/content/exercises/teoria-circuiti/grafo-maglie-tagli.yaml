@@ -152,3 +152,67 @@
         en: $b-n+1$
       correct: true
   origin: originale
+- id: r2-gr-1
+  topic: grafo-maglie-tagli
+  objectives:
+    - grafo-maglie-tagli.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'In un grafo connesso, quale descrizione corrisponde a un **taglio**?'
+    en: 'In a connected graph, which description corresponds to a **cut set**?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Una maglia è un percorso chiuso di rami (vi si scrive la LKT); un taglio è un insieme minimo di rami che, rimosso, divide il grafo in due parti separate (vi si scrive la LKC generalizzata, come per una superficie chiusa).'
+        en: 'A loop is a closed path of branches (KVL is written on it); a cut set is a minimal set of branches whose removal splits the graph into two separate parts (the generalised KCL is written on it, as for a closed surface).'
+  choices:
+    - text:
+        it: 'Un insieme minimo di rami la cui rimozione divide il grafo in due parti; vi si applica la LKC'
+        en: 'A minimal set of branches whose removal splits the graph into two parts; KCL applies to it'
+      correct: true
+    - text:
+        it: 'Un percorso chiuso che non ripassa per lo stesso nodo; vi si applica la LKT'
+        en: 'A closed path not passing twice through a node; KVL applies to it'
+      correct: false
+    - text:
+        it: 'Un sottografo connesso senza maglie che tocca tutti i nodi'
+        en: 'A connected subgraph without loops touching all nodes'
+      correct: false
+    - text:
+        it: "L'insieme dei rami che non appartengono all'albero"
+        en: 'The set of branches not belonging to the tree'
+      correct: false
+  origin: originale
+- id: r2-gr-2
+  topic: grafo-maglie-tagli
+  objectives:
+    - grafo-maglie-tagli.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Un grafo connesso ha $n=6$ nodi e $l=9$ rami. Quanti rami ha un albero, quante sono le maglie fondamentali e quanti i tagli fondamentali?'
+    en: 'A connected graph has $n=6$ nodes and $l=9$ branches. How many branches does a tree have, how many fundamental loops and how many fundamental cut sets are there?'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: "Albero: $n-1=5$ rami. Coalbero: $l-n+1=4$ rami, una maglia fondamentale per ciascuno: $4$. Un taglio fondamentale per ogni ramo d'albero: $5$."
+        en: 'Tree: $n-1=5$ branches. Cotree: $l-n+1=4$ branches, one fundamental loop each: $4$. One fundamental cut set per tree branch: $5$.'
+  answer:
+    - label:
+        it: "Rami dell'albero"
+        en: 'Tree branches'
+      value: 5
+    - label:
+        it: 'Maglie fondamentali'
+        en: 'Fundamental loops'
+      value: 4
+    - label:
+        it: 'Tagli fondamentali'
+        en: 'Fundamental cut sets'
+      value: 5
+  origin: originale

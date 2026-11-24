@@ -58,3 +58,74 @@
         en: 'False'
       correct: false
   origin: originale
+- id: r2-eid-1
+  topic: equazioni-integro-differenziali
+  objectives:
+    - equazioni-integro-differenziali.2
+    - equazioni-integro-differenziali.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Risolvi con Laplace $y''(t)+3\,y(t)=6\,u(t)$ con $y(0^-)=1$. Scrivi $Y(s)=\dfrac{K_1}{s}+\dfrac{K_2}{s+3}$ e calcola $y(0{,}5)$.'
+    en: 'Solve with Laplace $y''(t)+3\,y(t)=6\,u(t)$ with $y(0^-)=1$. Write $Y(s)=\dfrac{K_1}{s}+\dfrac{K_2}{s+3}$ and find $y(0.5)$.'
+  steps:
+    - title:
+        it: 'Condizione iniziale'
+        en: 'Initial condition'
+      body:
+        it: '$\mathcal L\{y''\}=sY-y(0^-)$, quindi $sY-1+3Y=\dfrac6s\Rightarrow Y=\dfrac{s+6}{s\,(s+3)}$.'
+        en: '$\mathcal L\{y''\}=sY-y(0^-)$, hence $sY-1+3Y=\dfrac6s\Rightarrow Y=\dfrac{s+6}{s\,(s+3)}$.'
+    - title:
+        it: 'Antitrasformata'
+        en: 'Inverse transform'
+      body:
+        it: '$K_1=\left.\tfrac{s+6}{s+3}\right|_0=2$, $K_2=\left.\tfrac{s+6}{s}\right|_{-3}=-1$: $y(t)=2-e^{-3t}$ per $t\ge0$, $y(0{,}5)=2-e^{-1{,}5}\approx1{,}777$. Controllo: $y(0^+)=1$, coerente con la condizione iniziale.'
+        en: '$K_1=\left.\tfrac{s+6}{s+3}\right|_0=2$, $K_2=\left.\tfrac{s+6}{s}\right|_{-3}=-1$: $y(t)=2-e^{-3t}$ for $t\ge0$, $y(0.5)=2-e^{-1.5}\approx1.777$. Check: $y(0^+)=1$, consistent with the initial condition.'
+  answer:
+    - label:
+        it: '$K_1$'
+        en: '$K_1$'
+      value: 2
+    - label:
+        it: '$K_2$'
+        en: '$K_2$'
+      value: -1
+    - label:
+        it: '$y(0{,}5)$'
+        en: '$y(0.5)$'
+      value: 1.77687
+  origin: originale
+- id: r2-eid-2
+  topic: equazioni-integro-differenziali
+  objectives:
+    - equazioni-integro-differenziali.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Qual è la trasformata di $y''(t)$ con le condizioni iniziali $y(0^-)$ e $y'(0^-)$?"
+    en: "What is the transform of $y''(t)$ with initial conditions $y(0^-)$ and $y'(0^-)$?"
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Applicando due volte la regola della derivata: $\mathcal L\{y''''\}=s\,\mathcal L\{y''\}-y''(0^-)=s^2Y(s)-s\,y(0^-)-y''(0^-)$.'
+        en: 'Applying the derivative rule twice: $\mathcal L\{y''''\}=s\,\mathcal L\{y''\}-y''(0^-)=s^2Y(s)-s\,y(0^-)-y''(0^-)$.'
+  choices:
+    - text:
+        it: '$s^2Y(s)-s\,y(0^-)-y''(0^-)$'
+        en: '$s^2Y(s)-s\,y(0^-)-y''(0^-)$'
+      correct: true
+    - text:
+        it: '$s^2Y(s)-y(0^-)-s\,y''(0^-)$'
+        en: '$s^2Y(s)-y(0^-)-s\,y''(0^-)$'
+      correct: false
+    - text:
+        it: '$s^2Y(s)+s\,y(0^-)+y''(0^-)$'
+        en: '$s^2Y(s)+s\,y(0^-)+y''(0^-)$'
+      correct: false
+    - text:
+        it: "$s^2Y(s)$: le condizioni iniziali compaiono solo nell'antitrasformata"
+        en: '$s^2Y(s)$: initial conditions only appear in the inverse transform'
+      correct: false
+  origin: originale

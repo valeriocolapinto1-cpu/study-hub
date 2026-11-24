@@ -230,3 +230,70 @@
         en: $1/(j\omega L)$
       correct: false
   origin: originale
+- id: r2-imp-1
+  topic: impedenza-ammettenza
+  objectives:
+    - impedenza-ammettenza.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'A $\omega=1000\,\mathrm{rad/s}$ calcola le reattanze di un induttore $L=20\,\mathrm{mH}$ e di un condensatore $C=50\,\mu\mathrm{F}$ (con $\bar Z=R+jX$).'
+    en: 'At $\omega=1000\,\mathrm{rad/s}$ find the reactances of an inductor $L=20\,\mathrm{mH}$ and a capacitor $C=50\,\mu\mathrm{F}$ (with $\bar Z=R+jX$).'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$\bar Z_R=R$, $\bar Z_L=j\omega L$, $\bar Z_C=\dfrac{1}{j\omega C}=-\dfrac{j}{\omega C}$. Quindi $X_L=1000\cdot0{,}02=20\,\Omega$ e $X_C=-\dfrac{1}{1000\cdot50\cdot10^{-6}}=-20\,\Omega$.'
+        en: '$\bar Z_R=R$, $\bar Z_L=j\omega L$, $\bar Z_C=\dfrac{1}{j\omega C}=-\dfrac{j}{\omega C}$. Hence $X_L=1000\cdot0.02=20\,\Omega$ and $X_C=-\dfrac{1}{1000\cdot50\cdot10^{-6}}=-20\,\Omega$.'
+  answer:
+    - label:
+        it: '$X_L$'
+        en: '$X_L$'
+      value: 20
+      unit: 'Ω'
+    - label:
+        it: '$X_C$'
+        en: '$X_C$'
+      value: -20
+      unit: 'Ω'
+  origin: originale
+- id: r2-imp-2
+  topic: impedenza-ammettenza
+  objectives:
+    - impedenza-ammettenza.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un resistore $R=10\,\Omega$ è in serie al parallelo di $\bar Z_L=j20\,\Omega$ e $\bar Z_C=-j10\,\Omega$. Alla serie si applica $\bar V=100\angle0^\circ\,\mathrm{V}$. Calcola $\bar Z_{eq}$ e $|\bar I|$.'
+    en: 'A resistor $R=10\,\Omega$ is in series with the parallel of $\bar Z_L=j20\,\Omega$ and $\bar Z_C=-j10\,\Omega$. The series is driven by $\bar V=100\angle0^\circ\,\mathrm{V}$. Find $\bar Z_{eq}$ and $|\bar I|$.'
+  steps:
+    - title:
+        it: 'Parallelo'
+        en: 'Parallel'
+      body:
+        it: 'Stesse regole dei resistori, con i complessi: $\bar Z_p=\dfrac{(j20)(-j10)}{j20-j10}=\dfrac{200}{j10}=-j20\,\Omega$ (domina il condensatore).'
+        en: 'Same rules as resistors, with complex numbers: $\bar Z_p=\dfrac{(j20)(-j10)}{j20-j10}=\dfrac{200}{j10}=-j20\,\Omega$ (the capacitor dominates).'
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$\bar Z_{eq}=10-j20\,\Omega$, $|\bar Z_{eq}|=\sqrt{500}\approx22{,}36\,\Omega$, $|\bar I|=100/22{,}36\approx4{,}47\,\mathrm{A}$.'
+        en: '$\bar Z_{eq}=10-j20\,\Omega$, $|\bar Z_{eq}|=\sqrt{500}\approx22.36\,\Omega$, $|\bar I|=100/22.36\approx4.47\,\mathrm{A}$.'
+  answer:
+    - label:
+        it: '$\operatorname{Re}\bar Z_{eq}$'
+        en: '$\operatorname{Re}\bar Z_{eq}$'
+      value: 10
+      unit: 'Ω'
+    - label:
+        it: '$\operatorname{Im}\bar Z_{eq}$'
+        en: '$\operatorname{Im}\bar Z_{eq}$'
+      value: -20
+      unit: 'Ω'
+    - label:
+        it: '$|\bar I|$'
+        en: '$|\bar I|$'
+      value: 4.472136
+      unit: 'A'
+  origin: originale

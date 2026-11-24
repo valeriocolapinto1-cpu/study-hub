@@ -198,3 +198,48 @@
         en: 'False'
       correct: true
   origin: originale
+- id: r2-rif-1
+  topic: rifasamento
+  objectives:
+    - rifasamento.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un carico induttivo assorbe $P=10\,\mathrm{kW}$ con $\cos\varphi=0{,}6$ da una rete a $230\,\mathrm{V}$ efficaci, $50\,\mathrm{Hz}$. Si vuole $\cos\varphi''=0{,}9$. Calcola la potenza reattiva del banco di condensatori, la capacità e verifica il risultato con il bilancio delle potenze reattive.'
+    en: 'An inductive load absorbs $P=10\,\mathrm{kW}$ with $\cos\varphi=0.6$ from a $230\,\mathrm{V}$ rms, $50\,\mathrm{Hz}$ supply. The target is $\cos\varphi''=0.9$. Find the reactive power of the capacitor bank, its capacitance, and check the result with the reactive-power balance.'
+  steps:
+    - title:
+        it: 'Potenze reattive'
+        en: 'Reactive powers'
+      body:
+        it: '$Q=P\tan\varphi=10\cdot\tfrac{0{,}8}{0{,}6}\approx13{,}33\,\mathrm{kvar}$; $Q''=P\tan\varphi''\approx4{,}84\,\mathrm{kvar}$; il banco fornisce $Q_C=Q-Q''\approx8{,}49\,\mathrm{kvar}$.'
+        en: '$Q=P\tan\varphi=10\cdot\tfrac{0.8}{0.6}\approx13.33\,\mathrm{kvar}$; $Q''=P\tan\varphi''\approx4.84\,\mathrm{kvar}$; the bank supplies $Q_C=Q-Q''\approx8.49\,\mathrm{kvar}$.'
+    - title:
+        it: 'Capacità'
+        en: 'Capacitance'
+      body:
+        it: '$C=\dfrac{Q_C}{\omega V^2}=\dfrac{8490}{314{,}16\cdot230^2}\approx511\,\mu\mathrm{F}$.'
+        en: '$C=\dfrac{Q_C}{\omega V^2}=\dfrac{8490}{314.16\cdot230^2}\approx511\,\mu\mathrm{F}$.'
+    - title:
+        it: 'Verifica'
+        en: 'Check'
+      body:
+        it: 'Con il banco $Q_{tot}=13{,}33-8{,}49=4{,}84\,\mathrm{kvar}$, $P$ invariata: $\cos\varphi''=P/\sqrt{P^2+Q_{tot}^2}=10/11{,}11=0{,}9$. Il rifasamento non cambia la potenza attiva.'
+        en: 'With the bank $Q_{tot}=13.33-8.49=4.84\,\mathrm{kvar}$, $P$ unchanged: $\cos\varphi''=P/\sqrt{P^2+Q_{tot}^2}=10/11.11=0.9$. Power-factor correction does not change the active power.'
+  answer:
+    - label:
+        it: '$Q_C$'
+        en: '$Q_C$'
+      value: 8.490112
+      unit: 'kvar'
+    - label:
+        it: '$C$'
+        en: '$C$'
+      value: 510.867046
+      unit: 'μF'
+    - label:
+        it: '$Q$ dopo il rifasamento'
+        en: '$Q$ after correction'
+      value: 4.843221
+      unit: 'kvar'
+  origin: originale

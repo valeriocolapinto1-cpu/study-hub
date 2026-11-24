@@ -260,3 +260,36 @@
         en: 'False'
       correct: true
   origin: originale
+- id: r2-fas-1
+  topic: fasori
+  objectives:
+    - fasori.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Scrivi $x(t)=3\cos\omega t-4\sin\omega t$ nella forma $A\cos(\omega t+\varphi)$, con $A>0$.'
+    en: 'Write $x(t)=3\cos\omega t-4\sin\omega t$ in the form $A\cos(\omega t+\varphi)$, with $A>0$.'
+  steps:
+    - title:
+        it: 'Confronto'
+        en: 'Matching'
+      body:
+        it: '$A\cos(\omega t+\varphi)=A\cos\varphi\cos\omega t-A\sin\varphi\sin\omega t$, quindi $A\cos\varphi=3$ e $A\sin\varphi=4$.'
+        en: '$A\cos(\omega t+\varphi)=A\cos\varphi\cos\omega t-A\sin\varphi\sin\omega t$, hence $A\cos\varphi=3$ and $A\sin\varphi=4$.'
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$A=\sqrt{3^2+4^2}=5$, $\varphi=\arctan(4/3)\approx53{,}13^\circ$ (primo quadrante: coseno e seno positivi). Il fasore è $\bar X=3+4j=5\angle53{,}13^\circ$.'
+        en: '$A=\sqrt{3^2+4^2}=5$, $\varphi=\arctan(4/3)\approx53.13^\circ$ (first quadrant: cosine and sine positive). The phasor is $\bar X=3+4j=5\angle53.13^\circ$.'
+  answer:
+    - label:
+        it: '$A$'
+        en: '$A$'
+      value: 5
+    - label:
+        it: '$\varphi$'
+        en: '$\varphi$'
+      value: 53.130102
+      unit: '°'
+  origin: originale

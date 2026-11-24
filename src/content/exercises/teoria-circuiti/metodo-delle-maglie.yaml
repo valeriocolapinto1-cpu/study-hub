@@ -118,3 +118,37 @@
         en: $b-n+1$
       correct: true
   origin: originale
+- id: r2-maglie-1
+  topic: metodo-delle-maglie
+  objectives:
+    - metodo-delle-maglie.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Una rete planare connessa ha $4$ nodi e $8$ rami, con soli resistori e generatori di tensione in serie ai resistori. Quale metodo conviene e perché?'
+    en: 'A connected planar network has $4$ nodes and $8$ branches, with only resistors and voltage sources in series with resistors. Which method is better and why?'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Nodi: $n-1=3$ incognite. Maglie: $l-n+1=5$ incognite. Conviene il metodo dei nodi (i generatori di tensione con resistore in serie si trasformano in generatori di corrente equivalenti). In generale vince il metodo con meno incognite: i nodi quando $n-1<l-n+1$, le maglie nel caso opposto.'
+        en: 'Nodes: $n-1=3$ unknowns. Meshes: $l-n+1=5$ unknowns. Nodal analysis is better (voltage sources with a series resistor become equivalent current sources). In general the method with fewer unknowns wins: nodes when $n-1<l-n+1$, meshes otherwise.'
+  choices:
+    - text:
+        it: 'Metodo dei nodi: $3$ incognite contro $5$'
+        en: 'Nodal analysis: $3$ unknowns versus $5$'
+      correct: true
+    - text:
+        it: 'Metodo delle maglie: $3$ incognite contro $5$'
+        en: 'Mesh analysis: $3$ unknowns versus $5$'
+      correct: false
+    - text:
+        it: 'Sono equivalenti: entrambi hanno $4$ incognite'
+        en: 'They are equivalent: both have $4$ unknowns'
+      correct: false
+    - text:
+        it: 'Metodo delle maglie, perché ci sono generatori di tensione'
+        en: 'Mesh analysis, because there are voltage sources'
+      correct: false
+  origin: originale

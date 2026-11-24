@@ -118,3 +118,37 @@
         en: 'False'
       correct: false
   origin: originale
+- id: r2-mod-1
+  topic: modellamento-costanti-concentrate
+  objectives:
+    - modellamento-costanti-concentrate.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Un resistore a film di $1\,\mathrm{k\Omega}$ è usato prima a $50\,\mathrm{Hz}$ e poi a $500\,\mathrm{MHz}$. Quale affermazione distingue correttamente il componente fisico dal suo modello circuitale?'
+    en: 'A $1\,\mathrm{k\Omega}$ film resistor is used first at $50\,\mathrm{Hz}$ and then at $500\,\mathrm{MHz}$. Which statement correctly distinguishes the physical component from its circuit model?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Il modello è un''astrazione scelta per le condizioni di lavoro: a $50\,\mathrm{Hz}$ basta la resistenza ideale $R$; a $500\,\mathrm{MHz}$ contano induttanza dei terminali e capacità parassita, quindi lo stesso oggetto fisico si modella con $R$, $L$ e $C$ ideali.'
+        en: 'The model is an abstraction chosen for the operating conditions: at $50\,\mathrm{Hz}$ the ideal resistance $R$ is enough; at $500\,\mathrm{MHz}$ lead inductance and stray capacitance matter, so the same physical object is modelled with ideal $R$, $L$ and $C$.'
+  choices:
+    - text:
+        it: 'Lo stesso componente fisico può avere modelli diversi: a $500\,\mathrm{MHz}$ servono anche $L$ e $C$ parassite'
+        en: 'The same physical component can have different models: at $500\,\mathrm{MHz}$ parasitic $L$ and $C$ are also needed'
+      correct: true
+    - text:
+        it: 'Il modello di un resistore è sempre e solo $R$, a qualunque frequenza'
+        en: "A resistor's model is always just $R$, at any frequency"
+      correct: false
+    - text:
+        it: 'A $500\,\mathrm{MHz}$ il componente fisico diventa un induttore'
+        en: 'At $500\,\mathrm{MHz}$ the physical component turns into an inductor'
+      correct: false
+    - text:
+        it: 'Circuito fisico e modello coincidono se i fili sono di rame'
+        en: 'Physical circuit and model coincide if the wires are made of copper'
+      correct: false
+  origin: originale

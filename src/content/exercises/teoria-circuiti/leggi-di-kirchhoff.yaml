@@ -144,3 +144,37 @@
         en: 'False'
       correct: true
   origin: originale
+- id: r2-kir-1
+  topic: leggi-di-kirchhoff
+  objectives:
+    - leggi-di-kirchhoff.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'In un nodo arrivano quattro rami. Con i versi di riferimento indicati: $i_1=3\,\mathrm{A}$ entrante, $i_2=-2\,\mathrm{A}$ entrante, $i_3=4\,\mathrm{A}$ uscente, $i_4$ uscente (incognita). Lungo una maglia percorsa in senso orario si incontrano $v_a=12\,\mathrm{V}$ concorde col verso di percorrenza, $v_b=5\,\mathrm{V}$ discorde e $v_c$ concorde (incognita). Calcola $i_4$ e $v_c$.'
+    en: 'Four branches meet at a node. With the reference directions shown: $i_1=3\,\mathrm{A}$ entering, $i_2=-2\,\mathrm{A}$ entering, $i_3=4\,\mathrm{A}$ leaving, $i_4$ leaving (unknown). Going clockwise around a loop you meet $v_a=12\,\mathrm{V}$ concordant with the direction of travel, $v_b=5\,\mathrm{V}$ discordant and $v_c$ concordant (unknown). Find $i_4$ and $v_c$.'
+  steps:
+    - title:
+        it: 'Legge delle correnti'
+        en: 'Current law'
+      body:
+        it: 'Somma delle entranti uguale alla somma delle uscenti, con i valori col loro segno: $3+(-2)=4+i_4\Rightarrow i_4=-3\,\mathrm{A}$. Il segno meno dice che la corrente esce dal ramo $4$ nel verso opposto a quello di riferimento, cioè entra nel nodo.'
+        en: 'Sum of entering currents equals sum of leaving ones, each with its sign: $3+(-2)=4+i_4\Rightarrow i_4=-3\,\mathrm{A}$. The minus sign says that the current in branch $4$ flows opposite to its reference, i.e. into the node.'
+    - title:
+        it: 'Legge delle tensioni'
+        en: 'Voltage law'
+      body:
+        it: 'Tensioni concordi col segno $+$, discordi col segno $-$: $v_a-v_b+v_c=0\Rightarrow v_c=5-12=-7\,\mathrm{V}$.'
+        en: 'Concordant voltages with $+$, discordant with $-$: $v_a-v_b+v_c=0\Rightarrow v_c=5-12=-7\,\mathrm{V}$.'
+  answer:
+    - label:
+        it: '$i_4$'
+        en: '$i_4$'
+      value: -3
+      unit: 'A'
+    - label:
+        it: '$v_c$'
+        en: '$v_c$'
+      value: -7
+      unit: 'V'
+  origin: originale

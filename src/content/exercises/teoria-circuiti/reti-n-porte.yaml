@@ -66,3 +66,37 @@
         en: $N$ linear relations among the $2N$ port variables
       correct: true
   origin: originale
+- id: r2-np-1
+  topic: reti-n-porte
+  objectives:
+    - reti-n-porte.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Una rete ha quattro morsetti, raggruppati in due coppie $(1,1')$ e $(2,2')$. Quando le coppie si possono trattare come porte?"
+    en: "A network has four terminals, grouped in two pairs $(1,1')$ and $(2,2')$. When can the pairs be treated as ports?"
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: "Condizione di porta: la corrente che entra in un morsetto della coppia è uguale a quella che esce dall'altro. Non è una proprietà della rete ma dei collegamenti esterni: è garantita, per esempio, se ogni coppia è chiusa su un bipolo che non ha altri collegamenti."
+        en: 'Port condition: the current entering one terminal of the pair equals the current leaving the other. It is not a property of the network but of the external connections: it is guaranteed, for example, if each pair is closed on a one-port with no other connections.'
+  choices:
+    - text:
+        it: "Quando per ogni coppia la corrente entrante in un morsetto è uguale a quella uscente dall'altro, grazie ai collegamenti esterni"
+        en: 'When for each pair the current entering one terminal equals the current leaving the other, thanks to the external connections'
+      correct: true
+    - text:
+        it: 'Sempre, perché la somma delle quattro correnti è nulla'
+        en: 'Always, because the sum of the four currents is zero'
+      correct: false
+    - text:
+        it: "Quando le tensioni $v_{11'}$ e $v_{22'}$ sono uguali"
+        en: "When the voltages $v_{11'}$ and $v_{22'}$ are equal"
+      correct: false
+    - text:
+        it: 'Solo se la rete è reciproca'
+        en: 'Only if the network is reciprocal'
+      correct: false
+  origin: originale

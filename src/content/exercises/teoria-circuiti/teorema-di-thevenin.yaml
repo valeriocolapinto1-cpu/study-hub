@@ -371,3 +371,37 @@
         en: short-circuit
       correct: false
   origin: originale
+- id: r2-th-1
+  topic: teorema-di-thevenin
+  objectives:
+    - teorema-di-thevenin.2
+  difficulty: 3
+  kind: static
+  statement:
+    it: 'Nella dimostrazione del teorema di Thevenin si collega alla porta un generatore di corrente di prova $i$. Quale passaggio porta a $v=V_{th}+R_{th}\,i$?'
+    en: 'In the proof of Thévenin''s theorem a test current source $i$ is connected to the port. Which step leads to $v=V_{th}+R_{th}\,i$?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'La rete è lineare, quindi vale la sovrapposizione: $v$ è la somma del contributo dei generatori interni con $i=0$ (la tensione a vuoto $V_{th}$) e del contributo di $i$ con i generatori indipendenti interni spenti ($R_{th}\,i$, dove $R_{th}$ è la resistenza vista dalla porta).'
+        en: 'The network is linear, so superposition holds: $v$ is the sum of the contribution of the internal sources with $i=0$ (the open-circuit voltage $V_{th}$) and the contribution of $i$ with the internal independent sources off ($R_{th}\,i$, where $R_{th}$ is the resistance seen from the port).'
+  choices:
+    - text:
+        it: 'Sovrapposizione: generatori interni con $i=0$ danno $V_{th}$, il solo $i$ con i generatori indipendenti spenti dà $R_{th}\,i$'
+        en: 'Superposition: internal sources with $i=0$ give $V_{th}$, $i$ alone with the independent sources off gives $R_{th}\,i$'
+      correct: true
+    - text:
+        it: 'Il teorema di Tellegen applicato alla porta'
+        en: "Tellegen's theorem applied to the port"
+      correct: false
+    - text:
+        it: 'La legge di Ohm applicata alla rete intera, che è un resistore'
+        en: "Ohm's law applied to the whole network, which is a resistor"
+      correct: false
+    - text:
+        it: 'Il massimo trasferimento di potenza'
+        en: 'Maximum power transfer'
+      correct: false
+  origin: originale

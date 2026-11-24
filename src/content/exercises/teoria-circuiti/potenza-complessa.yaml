@@ -344,3 +344,42 @@
         en: $Q$
       correct: false
   origin: originale
+- id: r2-pc-1
+  topic: potenza-complessa
+  objectives:
+    - potenza-complessa.2
+  difficulty: 3
+  kind: static
+  statement:
+    it: 'In un RLC serie scorre una corrente sinusoidale con valore efficace $I=2\,\mathrm{A}$ a $\omega=100\,\mathrm{rad/s}$; $L=0{,}5\,\mathrm{H}$, $C=400\,\mu\mathrm{F}$. Calcola le energie medie $W_L$, $W_C$ e verifica $Q=2\omega(W_L-W_C)$.'
+    en: 'A sinusoidal current with rms value $I=2\,\mathrm{A}$ at $\omega=100\,\mathrm{rad/s}$ flows in a series RLC; $L=0.5\,\mathrm{H}$, $C=400\,\mu\mathrm{F}$. Find the average energies $W_L$, $W_C$ and check $Q=2\omega(W_L-W_C)$.'
+  steps:
+    - title:
+        it: 'Energie medie'
+        en: 'Average energies'
+      body:
+        it: 'Con $i=\sqrt2\,I\cos\omega t$ il valore medio di $\tfrac12Li^2$ è $W_L=\tfrac12LI^2=1\,\mathrm{J}$. Sul condensatore $V_C=I/(\omega C)=50\,\mathrm{V}$ efficaci, $W_C=\tfrac12CV_C^2=0{,}5\,\mathrm{J}$.'
+        en: 'With $i=\sqrt2\,I\cos\omega t$ the average of $\tfrac12Li^2$ is $W_L=\tfrac12LI^2=1\,\mathrm{J}$. Across the capacitor $V_C=I/(\omega C)=50\,\mathrm{V}$ rms, $W_C=\tfrac12CV_C^2=0.5\,\mathrm{J}$.'
+    - title:
+        it: 'Dimostrazione sul caso'
+        en: 'Proof on the example'
+      body:
+        it: '$Q_L=\omega L\,I^2=2\omega\cdot\tfrac12LI^2=2\omega W_L$ e $Q_C=-\dfrac{I^2}{\omega C}=-\omega C\,V_C^2=-2\omega W_C$. Quindi $Q=2\cdot100\cdot(1-0{,}5)=100\,\mathrm{var}$, uguale a $(X_L+X_C)\,I^2=(50-25)\cdot4$.'
+        en: '$Q_L=\omega L\,I^2=2\omega\cdot\tfrac12LI^2=2\omega W_L$ and $Q_C=-\dfrac{I^2}{\omega C}=-\omega C\,V_C^2=-2\omega W_C$. Hence $Q=2\cdot100\cdot(1-0.5)=100\,\mathrm{var}$, equal to $(X_L+X_C)\,I^2=(50-25)\cdot4$.'
+  answer:
+    - label:
+        it: '$W_L$'
+        en: '$W_L$'
+      value: 1
+      unit: 'J'
+    - label:
+        it: '$W_C$'
+        en: '$W_C$'
+      value: 0.5
+      unit: 'J'
+    - label:
+        it: '$Q$'
+        en: '$Q$'
+      value: 100
+      unit: 'var'
+  origin: originale

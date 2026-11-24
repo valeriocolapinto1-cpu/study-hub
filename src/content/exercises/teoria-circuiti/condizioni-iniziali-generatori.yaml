@@ -144,3 +144,42 @@
         en: 'False'
       correct: true
   origin: originale
+- id: r2-cig-1
+  topic: condizioni-iniziali-generatori
+  objectives:
+    - condizioni-iniziali-generatori.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un condensatore $C=0{,}5\,\mathrm{F}$ con $v_C(0^-)=4\,\mathrm{V}$ è collegato in $t=0$, tramite $R=2\,\Omega$, a un generatore $E=10\,\mathrm{V}$. Modella la condizione iniziale con un generatore e calcola $V_C(s)=\dfrac{A}{s}+\dfrac{B}{s+1/\tau}$ e $\tau$.'
+    en: 'A capacitor $C=0.5\,\mathrm{F}$ with $v_C(0^-)=4\,\mathrm{V}$ is connected at $t=0$, through $R=2\,\Omega$, to a source $E=10\,\mathrm{V}$. Model the initial condition with a source and find $V_C(s)=\dfrac{A}{s}+\dfrac{B}{s+1/\tau}$ and $\tau$.'
+  steps:
+    - title:
+        it: 'Modello'
+        en: 'Model'
+      body:
+        it: '$C$ diventa l''impedenza $\dfrac{1}{sC}=\dfrac2s$ in serie a un generatore $\dfrac{v_C(0^-)}{s}=\dfrac4s$. Maglia: $I=\dfrac{10/s-4/s}{2+2/s}=\dfrac{3}{s+1}$.'
+        en: '$C$ becomes the impedance $\dfrac{1}{sC}=\dfrac2s$ in series with a source $\dfrac{v_C(0^-)}{s}=\dfrac4s$. Loop: $I=\dfrac{10/s-4/s}{2+2/s}=\dfrac{3}{s+1}$.'
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$V_C=\dfrac{I}{sC}+\dfrac4s=\dfrac{6}{s\,(s+1)}+\dfrac4s=\dfrac{10}{s}-\dfrac{6}{s+1}$: $A=10$, $B=-6$, $\tau=RC=1\,\mathrm{s}$; $v_C(t)=10-6e^{-t}$, che parte da $4\,\mathrm{V}$ come deve.'
+        en: '$V_C=\dfrac{I}{sC}+\dfrac4s=\dfrac{6}{s\,(s+1)}+\dfrac4s=\dfrac{10}{s}-\dfrac{6}{s+1}$: $A=10$, $B=-6$, $\tau=RC=1\,\mathrm{s}$; $v_C(t)=10-6e^{-t}$, starting from $4\,\mathrm{V}$ as it must.'
+  answer:
+    - label:
+        it: '$A$'
+        en: '$A$'
+      value: 10
+      unit: 'V'
+    - label:
+        it: '$B$'
+        en: '$B$'
+      value: -6
+      unit: 'V'
+    - label:
+        it: '$\tau$'
+        en: '$\tau$'
+      value: 1
+      unit: 's'
+  origin: originale

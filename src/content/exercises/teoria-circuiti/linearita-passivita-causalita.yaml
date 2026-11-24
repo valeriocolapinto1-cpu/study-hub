@@ -118,3 +118,77 @@
         en: 'False'
       correct: false
   origin: originale
+- id: r2-lin-1
+  topic: linearita-passivita-causalita
+  objectives:
+    - linearita-passivita-causalita.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un bipolo ha caratteristica $v=R\,i+V_0$ con $R=2\,\Omega$ e $V_0=6\,\mathrm{V}$ (resistore in serie a una batteria). Quali proprietà ha?'
+    en: 'A one-port has characteristic $v=R\,i+V_0$ with $R=2\,\Omega$ and $V_0=6\,\mathrm{V}$ (a resistor in series with a battery). Which properties does it have?'
+  steps:
+    - title:
+        it: 'Linearità'
+        en: 'Linearity'
+      body:
+        it: 'Con $i=0$ si ha $v=6\,\mathrm{V}\neq0$: la caratteristica è affine, non lineare (raddoppiando $i$ non raddoppia $v$).'
+        en: 'With $i=0$ we get $v=6\,\mathrm{V}\neq0$: the characteristic is affine, not linear (doubling $i$ does not double $v$).'
+    - title:
+        it: 'Tempo-invarianza e passività'
+        en: 'Time invariance and passivity'
+      body:
+        it: '$R$ e $V_0$ non dipendono dal tempo: tempo-invariante. La potenza assorbita $p=R\,i^2+V_0\,i$ è negativa per esempio con $i=-1\,\mathrm{A}$ ($p=2-6=-4\,\mathrm{W}$): non è passivo.'
+        en: '$R$ and $V_0$ do not depend on time: time-invariant. The absorbed power $p=R\,i^2+V_0\,i$ is negative e.g. for $i=-1\,\mathrm{A}$ ($p=2-6=-4\,\mathrm{W}$): it is not passive.'
+  choices:
+    - text:
+        it: 'Non lineare (affine), tempo-invariante, non passivo'
+        en: 'Non-linear (affine), time-invariant, not passive'
+      correct: true
+    - text:
+        it: 'Lineare, tempo-invariante, passivo'
+        en: 'Linear, time-invariant, passive'
+      correct: false
+    - text:
+        it: 'Lineare, tempo-variante, non passivo'
+        en: 'Linear, time-varying, not passive'
+      correct: false
+    - text:
+        it: 'Non lineare, tempo-invariante, passivo perché $R>0$'
+        en: 'Non-linear, time-invariant, passive because $R>0$'
+      correct: false
+  origin: originale
+- id: r2-lin-2
+  topic: linearita-passivita-causalita
+  objectives:
+    - linearita-passivita-causalita.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Quale coppia «elemento – proprietà che viola» è corretta?'
+    en: 'Which pair «element – property it violates» is correct?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Il diodo ha $i=I_s\,(e^{v/V_T}-1)$: la caratteristica non è una retta per l''origine, quindi viola la linearità. Il condensatore ideale è causale, il resistore con $R>0$ è passivo, il trasformatore ideale è lineare.'
+        en: 'The diode has $i=I_s\,(e^{v/V_T}-1)$: the characteristic is not a straight line through the origin, so it violates linearity. The ideal capacitor is causal, the resistor with $R>0$ is passive, the ideal transformer is linear.'
+  choices:
+    - text:
+        it: 'Diodo – linearità'
+        en: 'Diode – linearity'
+      correct: true
+    - text:
+        it: 'Condensatore ideale – causalità'
+        en: 'Ideal capacitor – causality'
+      correct: false
+    - text:
+        it: 'Resistore con $R>0$ – passività'
+        en: 'Resistor with $R>0$ – passivity'
+      correct: false
+    - text:
+        it: 'Trasformatore ideale – linearità'
+        en: 'Ideal transformer – linearity'
+      correct: false
+  origin: originale

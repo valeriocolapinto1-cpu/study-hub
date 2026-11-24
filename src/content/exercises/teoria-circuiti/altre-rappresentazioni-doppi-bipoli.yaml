@@ -58,3 +58,83 @@
         en: 'False'
       correct: false
   origin: originale
+- id: r2-ar-1
+  topic: altre-rappresentazioni-doppi-bipoli
+  objectives:
+    - altre-rappresentazioni-doppi-bipoli.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un doppio bipolo ha $Z=\begin{pmatrix}4&2\\2&6\end{pmatrix}\Omega$. Calcola la matrice di trasmissione $T=\begin{pmatrix}A&B\\C&D\end{pmatrix}$ (con $v_1=Av_2+B(-i_2)$, $i_1=Cv_2+D(-i_2)$).'
+    en: 'A two-port has $Z=\begin{pmatrix}4&2\\2&6\end{pmatrix}\Omega$. Find the transmission matrix $T=\begin{pmatrix}A&B\\C&D\end{pmatrix}$ (with $v_1=Av_2+B(-i_2)$, $i_1=Cv_2+D(-i_2)$).'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$\Delta_z=4\cdot6-2\cdot2=20$. $A=z_{11}/z_{21}=2$, $B=\Delta_z/z_{21}=10\,\Omega$, $C=1/z_{21}=0{,}5\,\mathrm{S}$, $D=z_{22}/z_{21}=3$.'
+        en: '$\Delta_z=4\cdot6-2\cdot2=20$. $A=z_{11}/z_{21}=2$, $B=\Delta_z/z_{21}=10\,\Omega$, $C=1/z_{21}=0.5\,\mathrm{S}$, $D=z_{22}/z_{21}=3$.'
+    - title:
+        it: 'Verifica'
+        en: 'Check'
+      body:
+        it: 'Rete reciproca: $AD-BC=6-5=1$.'
+        en: 'Reciprocal network: $AD-BC=6-5=1$.'
+  answer:
+    - label:
+        it: '$A$'
+        en: '$A$'
+      value: 2
+    - label:
+        it: '$B$'
+        en: '$B$'
+      value: 10
+      unit: 'Ω'
+    - label:
+        it: '$C$'
+        en: '$C$'
+      value: 0.5
+      unit: 'S'
+    - label:
+        it: '$D$'
+        en: '$D$'
+      value: 3
+  origin: originale
+- id: r2-ar-2
+  topic: altre-rappresentazioni-doppi-bipoli
+  objectives:
+    - altre-rappresentazioni-doppi-bipoli.3
+  difficulty: 3
+  kind: static
+  statement:
+    it: 'Due doppi bipoli identici con $T=\begin{pmatrix}2&10\,\Omega\\0{,}5\,\mathrm{S}&3\end{pmatrix}$ sono collegati in cascata. Calcola $A$ e $B$ della cascata e l''impedenza d''ingresso quando l''uscita è chiusa su $R_L=10\,\Omega$.'
+    en: 'Two identical two-ports with $T=\begin{pmatrix}2&10\,\Omega\\0.5\,\mathrm{S}&3\end{pmatrix}$ are connected in cascade. Find $A$ and $B$ of the cascade and the input impedance when the output is closed on $R_L=10\,\Omega$.'
+  steps:
+    - title:
+        it: 'Cascata'
+        en: 'Cascade'
+      body:
+        it: 'Le matrici di trasmissione si moltiplicano nell''ordine: $T_{tot}=T\,T=\begin{pmatrix}2\cdot2+10\cdot0{,}5&2\cdot10+10\cdot3\\0{,}5\cdot2+3\cdot0{,}5&0{,}5\cdot10+3\cdot3\end{pmatrix}=\begin{pmatrix}9&50\\2{,}5&14\end{pmatrix}$.'
+        en: 'Transmission matrices multiply in order: $T_{tot}=T\,T=\begin{pmatrix}2\cdot2+10\cdot0.5&2\cdot10+10\cdot3\\0.5\cdot2+3\cdot0.5&0.5\cdot10+3\cdot3\end{pmatrix}=\begin{pmatrix}9&50\\2.5&14\end{pmatrix}$.'
+    - title:
+        it: "Impedenza d'ingresso"
+        en: 'Input impedance'
+      body:
+        it: 'Con $v_2=R_L(-i_2)$: $Z_{in}=\dfrac{v_1}{i_1}=\dfrac{A R_L+B}{C R_L+D}=\dfrac{90+50}{25+14}\approx3{,}59\,\Omega$.'
+        en: 'With $v_2=R_L(-i_2)$: $Z_{in}=\dfrac{v_1}{i_1}=\dfrac{A R_L+B}{C R_L+D}=\dfrac{90+50}{25+14}\approx3.59\,\Omega$.'
+  answer:
+    - label:
+        it: '$A_{tot}$'
+        en: '$A_{tot}$'
+      value: 9
+    - label:
+        it: '$B_{tot}$'
+        en: '$B_{tot}$'
+      value: 50
+      unit: 'Ω'
+    - label:
+        it: '$Z_{in}$'
+        en: '$Z_{in}$'
+      value: 3.589744
+      unit: 'Ω'
+  origin: originale

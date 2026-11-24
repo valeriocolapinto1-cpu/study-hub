@@ -280,3 +280,37 @@
         en: $di/dt$
       correct: true
   origin: originale
+- id: r2-rc-1
+  topic: relazioni-costitutive
+  objectives:
+    - relazioni-costitutive.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un generatore $E=10\,\mathrm{V}$ in serie a $R_1=2\,\Omega$ alimenta il nodo $A$. Da $A$ verso massa ci sono due rami: $R_2=3\,\Omega$ in serie a un induttore $L$, e un condensatore $C$. Il circuito è a regime con generatore costante. Calcola $i_L$ e $v_C$.'
+    en: 'A source $E=10\,\mathrm{V}$ in series with $R_1=2\,\Omega$ feeds node $A$. From $A$ to ground there are two branches: $R_2=3\,\Omega$ in series with an inductor $L$, and a capacitor $C$. The circuit is in steady state with a constant source. Find $i_L$ and $v_C$.'
+  steps:
+    - title:
+        it: 'Modelli in continua'
+        en: 'DC models'
+      body:
+        it: "A regime costante $di/dt=0$ e $dv/dt=0$: l'induttore è un corto circuito ($v_L=0$), il condensatore un circuito aperto ($i_C=0$)."
+        en: 'In constant steady state $di/dt=0$ and $dv/dt=0$: the inductor is a short circuit ($v_L=0$), the capacitor an open circuit ($i_C=0$).'
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Resta la serie $R_1+R_2$: $i_L=10/5=2\,\mathrm{A}$; $v_C=v_A=R_2\,i_L=6\,\mathrm{V}$.'
+        en: 'Only the series $R_1+R_2$ remains: $i_L=10/5=2\,\mathrm{A}$; $v_C=v_A=R_2\,i_L=6\,\mathrm{V}$.'
+  answer:
+    - label:
+        it: '$i_L$'
+        en: '$i_L$'
+      value: 2
+      unit: 'A'
+    - label:
+        it: '$v_C$'
+        en: '$v_C$'
+      value: 6
+      unit: 'V'
+  origin: originale
