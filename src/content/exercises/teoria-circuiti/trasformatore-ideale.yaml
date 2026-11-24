@@ -163,3 +163,37 @@
         en: 'False'
       correct: true
   origin: originale
+- id: r2-tr-1
+  topic: trasformatore-ideale
+  objectives:
+    - trasformatore-ideale.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Per il trasformatore ideale $v_1=n\,v_2$, $i_1=-i_2/n$ (correnti entranti in entrambe le porte). Quanto vale la potenza istantanea assorbita complessivamente dalle due porte?'
+    en: 'For the ideal transformer $v_1=n\,v_2$, $i_1=-i_2/n$ (currents entering both ports). What is the total instantaneous power absorbed by the two ports?'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$p=v_1 i_1+v_2 i_2=(n\,v_2)\left(-\dfrac{i_2}{n}\right)+v_2 i_2=0$ in ogni istante e con qualunque carico: il trasformatore ideale trasferisce potenza da una porta all''altra senza assorbirne né immagazzinarne.'
+        en: '$p=v_1 i_1+v_2 i_2=(n\,v_2)\left(-\dfrac{i_2}{n}\right)+v_2 i_2=0$ at every instant and for any load: the ideal transformer moves power from one port to the other without absorbing or storing it.'
+  choices:
+    - text:
+        it: 'Zero in ogni istante, qualunque sia il carico'
+        en: 'Zero at every instant, whatever the load'
+      correct: true
+    - text:
+        it: 'Zero solo in media su un periodo'
+        en: 'Zero only on average over a period'
+      correct: false
+    - text:
+        it: '$n^2\,v_2\,i_2$'
+        en: '$n^2\,v_2\,i_2$'
+      correct: false
+    - text:
+        it: 'Dipende dal carico collegato al secondario'
+        en: 'It depends on the load connected to the secondary'
+      correct: false
+  origin: originale

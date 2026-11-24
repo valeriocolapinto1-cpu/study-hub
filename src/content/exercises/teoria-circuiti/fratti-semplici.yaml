@@ -229,3 +229,43 @@
         en: 'False'
       correct: true
   origin: originale
+- id: r2-fs-1
+  topic: fratti-semplici
+  objectives:
+    - fratti-semplici.3
+  difficulty: 3
+  kind: static
+  statement:
+    it: 'Antitrasforma $F(s)=\dfrac{1}{s\,(s+1)^2}$ scrivendola come $\dfrac{A}{s}+\dfrac{B}{s+1}+\dfrac{C}{(s+1)^2}$. Dai $A$, $B$, $C$ e $f(1)$.'
+    en: 'Invert $F(s)=\dfrac{1}{s\,(s+1)^2}$ writing it as $\dfrac{A}{s}+\dfrac{B}{s+1}+\dfrac{C}{(s+1)^2}$. Give $A$, $B$, $C$ and $f(1)$.'
+  steps:
+    - title:
+        it: 'Polo semplice e polo doppio'
+        en: 'Simple and double pole'
+      body:
+        it: '$A=[sF]_{s=0}=1$. $C=[(s+1)^2F]_{s=-1}=\left.\tfrac1s\right|_{-1}=-1$. $B=\left.\dfrac{d}{ds}\big[(s+1)^2F\big]\right|_{s=-1}=\left.-\tfrac{1}{s^2}\right|_{-1}=-1$.'
+        en: '$A=[sF]_{s=0}=1$. $C=[(s+1)^2F]_{s=-1}=\left.\tfrac1s\right|_{-1}=-1$. $B=\left.\dfrac{d}{ds}\big[(s+1)^2F\big]\right|_{s=-1}=\left.-\tfrac{1}{s^2}\right|_{-1}=-1$.'
+    - title:
+        it: 'Antitrasformata'
+        en: 'Inverse transform'
+      body:
+        it: '$\dfrac{1}{(s+1)^2}\to t\,e^{-t}$, quindi $f(t)=\big(1-e^{-t}-t\,e^{-t}\big)u(t)$ e $f(1)=1-2/e\approx0{,}264$.'
+        en: '$\dfrac{1}{(s+1)^2}\to t\,e^{-t}$, hence $f(t)=\big(1-e^{-t}-t\,e^{-t}\big)u(t)$ and $f(1)=1-2/e\approx0.264$.'
+  answer:
+    - label:
+        it: '$A$'
+        en: '$A$'
+      value: 1
+    - label:
+        it: '$B$'
+        en: '$B$'
+      value: -1
+    - label:
+        it: '$C$'
+        en: '$C$'
+      value: -1
+    - label:
+        it: '$f(1)$'
+        en: '$f(1)$'
+      value: 0.264241
+  origin: originale

@@ -126,3 +126,29 @@
         en: $-8$
       correct: false
   origin: originale
+- id: r2-tci-1
+  topic: tensioni-correnti-indipendenti
+  objectives:
+    - tensioni-correnti-indipendenti.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Una rete planare connessa ha $n=7$ nodi e $l=11$ rami, senza generatori ideali. Quante equazioni scrive il metodo dei nodi e quante il metodo delle maglie?'
+    en: 'A connected planar network has $n=7$ nodes and $l=11$ branches, with no ideal sources. How many equations does nodal analysis write, and how many does mesh analysis write?'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Le tensioni indipendenti sono $n-1=6$ (i potenziali di nodo rispetto al riferimento): tante sono le equazioni ai nodi. Le correnti indipendenti sono $l-n+1=5$ (le correnti di coalbero, o di anello in una rete planare): tante sono le equazioni alle maglie.'
+        en: 'There are $n-1=6$ independent voltages (node potentials with respect to the reference): that many nodal equations. There are $l-n+1=5$ independent currents (cotree, or mesh currents in a planar network): that many mesh equations.'
+  answer:
+    - label:
+        it: 'Equazioni ai nodi'
+        en: 'Nodal equations'
+      value: 6
+    - label:
+        it: 'Equazioni alle maglie'
+        en: 'Mesh equations'
+      value: 5
+  origin: originale

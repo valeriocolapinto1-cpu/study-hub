@@ -158,3 +158,43 @@
         en: 'False'
       correct: false
   origin: originale
+- id: r2-pcc-1
+  topic: poli-complessi-coniugati
+  objectives:
+    - poli-complessi-coniugati.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Antitrasforma $F(s)=\dfrac{s+5}{s^2+4s+13}$ riconducendo il denominatore alla forma $(s+\alpha)^2+\omega^2$ e scrivendo $f(t)=e^{-\alpha t}\,(A\cos\omega t+B\sin\omega t)$.'
+    en: 'Invert $F(s)=\dfrac{s+5}{s^2+4s+13}$ by rewriting the denominator as $(s+\alpha)^2+\omega^2$ and writing $f(t)=e^{-\alpha t}\,(A\cos\omega t+B\sin\omega t)$.'
+  steps:
+    - title:
+        it: 'Completamento del quadrato'
+        en: 'Completing the square'
+      body:
+        it: '$s^2+4s+13=(s+2)^2+9$: $\alpha=2$, $\omega=3$ (poli $-2\pm3j$).'
+        en: '$s^2+4s+13=(s+2)^2+9$: $\alpha=2$, $\omega=3$ (poles $-2\pm3j$).'
+    - title:
+        it: 'Numeratore'
+        en: 'Numerator'
+      body:
+        it: '$s+5=(s+2)+3$, quindi $F=\dfrac{s+2}{(s+2)^2+9}+\dfrac{3}{(s+2)^2+9}\to e^{-2t}(\cos3t+\sin3t)$: $A=1$, $B=1$.'
+        en: '$s+5=(s+2)+3$, hence $F=\dfrac{s+2}{(s+2)^2+9}+\dfrac{3}{(s+2)^2+9}\to e^{-2t}(\cos3t+\sin3t)$: $A=1$, $B=1$.'
+  answer:
+    - label:
+        it: '$\alpha$'
+        en: '$\alpha$'
+      value: 2
+    - label:
+        it: '$\omega$'
+        en: '$\omega$'
+      value: 3
+    - label:
+        it: '$A$'
+        en: '$A$'
+      value: 1
+    - label:
+        it: '$B$'
+        en: '$B$'
+      value: 1
+  origin: originale

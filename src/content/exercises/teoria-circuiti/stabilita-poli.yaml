@@ -288,3 +288,37 @@
         en: zero imaginary
       correct: false
   origin: originale
+- id: r2-stab-1
+  topic: stabilita-poli
+  objectives:
+    - stabilita-poli.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Perché una rete i cui poli della funzione di rete hanno tutti parte reale negativa è asintoticamente stabile?'
+    en: 'Why is a network whose network-function poles all have negative real part asymptotically stable?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'La risposta libera è combinazione di termini $t^k e^{p_i t}$ (con $k$ minore della molteplicità del polo $p_i$). Se $\operatorname{Re}p_i<0$ l''esponenziale decresce più in fretta di qualunque potenza di $t$, quindi ogni termine tende a zero e la libera si spegne.'
+        en: 'The natural response is a combination of terms $t^k e^{p_i t}$ (with $k$ less than the multiplicity of pole $p_i$). If $\operatorname{Re}p_i<0$ the exponential decays faster than any power of $t$, so every term goes to zero and the natural response dies out.'
+  choices:
+    - text:
+        it: 'Ogni termine $t^k e^{p_i t}$ della risposta libera tende a zero se $\operatorname{Re}p_i<0$'
+        en: 'Every term $t^k e^{p_i t}$ of the natural response goes to zero if $\operatorname{Re}p_i<0$'
+      correct: true
+    - text:
+        it: 'Perché gli zeri cancellano i poli'
+        en: 'Because the zeros cancel the poles'
+      correct: false
+    - text:
+        it: 'Perché $|H(j\omega)|<1$ a tutte le frequenze'
+        en: 'Because $|H(j\omega)|<1$ at all frequencies'
+      correct: false
+    - text:
+        it: 'Perché la risposta forzata è sempre limitata'
+        en: 'Because the forced response is always bounded'
+      correct: false
+  origin: originale

@@ -126,3 +126,50 @@
         en: 'False'
       correct: true
   origin: originale
+- id: r2-con-1
+  topic: connessioni-doppi-bipoli
+  objectives:
+    - connessioni-doppi-bipoli.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'In cascata: prima un resistore serie $R=2\,\Omega$ ($T_a=\begin{pmatrix}1&2\\0&1\end{pmatrix}$), poi un resistore in derivazione $3\,\Omega$ ($T_b=\begin{pmatrix}1&0\\1/3&1\end{pmatrix}$). L''uscita è chiusa su $R_L=6\,\Omega$. Calcola $C_{tot}$ della matrice di trasmissione complessiva e l''impedenza d''ingresso.'
+    en: 'In cascade: first a series resistor $R=2\,\Omega$ ($T_a=\begin{pmatrix}1&2\\0&1\end{pmatrix}$), then a $3\,\Omega$ shunt resistor ($T_b=\begin{pmatrix}1&0\\1/3&1\end{pmatrix}$). The output is closed on $R_L=6\,\Omega$. Find $C_{tot}$ of the overall transmission matrix and the input impedance.'
+  figure:
+    netlist:
+      elements:
+        - { 'type': 'R', 'id': 'Ra', 'a': 'in', 'b': 'out', 'value': 2 }
+        - { 'type': 'R', 'id': 'Rb', 'a': 'out', 'b': '0', 'value': 3 }
+        - { 'type': 'R', 'id': 'RL', 'a': 'out', 'b': '0', 'value': 6 }
+      ports: [{ 'id': 'IN', 'plus': 'in', 'minus': '0', 'label': 'Z_{in}' }]
+  steps:
+    - title:
+        it: 'Cascata'
+        en: 'Cascade'
+      body:
+        it: '$T=T_aT_b=\begin{pmatrix}1+2/3&2\\1/3&1\end{pmatrix}$, quindi $C_{tot}=1/3\,\mathrm{S}$.'
+        en: '$T=T_aT_b=\begin{pmatrix}1+2/3&2\\1/3&1\end{pmatrix}$, hence $C_{tot}=1/3\,\mathrm{S}$.'
+    - title:
+        it: "Impedenza d'ingresso"
+        en: 'Input impedance'
+      body:
+        it: '$Z_{in}=\dfrac{AR_L+B}{CR_L+D}=\dfrac{10+2}{2+1}=4\,\Omega$.'
+        en: '$Z_{in}=\dfrac{AR_L+B}{CR_L+D}=\dfrac{10+2}{2+1}=4\,\Omega$.'
+    - title:
+        it: 'Verifica'
+        en: 'Check'
+      body:
+        it: 'A mano: $3\parallel6=2\,\Omega$, più $2\,\Omega$ in serie: $4\,\Omega$.'
+        en: 'By hand: $3\parallel6=2\,\Omega$, plus $2\,\Omega$ in series: $4\,\Omega$.'
+  answer:
+    - label:
+        it: '$C_{tot}$'
+        en: '$C_{tot}$'
+      value: 0.333333
+      unit: 'S'
+    - label:
+        it: '$Z_{in}$'
+        en: '$Z_{in}$'
+      value: 4
+      unit: 'Ω'
+  origin: originale

@@ -84,3 +84,71 @@
         en: 'False'
       correct: true
   origin: originale
+- id: r2-app-1
+  topic: applicabilita-fasori
+  objectives:
+    - applicabilita-fasori.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Nella dimostrazione che, a regime, tutte le grandezze di una rete sono sinusoidi alla stessa pulsazione del generatore, quale insieme di ipotesi è necessario?'
+    en: 'In proving that, in steady state, all quantities of a network are sinusoids at the source angular frequency, which set of hypotheses is required?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'La risposta è somma di libera e forzata. Se la rete è lineare e tempo-invariante, la forzata a un ingresso $e^{j\omega t}$ è $H(j\omega)\,e^{j\omega t}$, isofrequenziale; se è asintoticamente stabile la libera si spegne. Servono anche generatori tutti alla stessa pulsazione (altrimenti si sovrappone).'
+        en: 'The response is the sum of natural and forced parts. If the network is linear and time-invariant, the forced response to $e^{j\omega t}$ is $H(j\omega)\,e^{j\omega t}$, at the same frequency; if it is asymptotically stable the natural response dies out. All sources must also share the same frequency (otherwise use superposition).'
+  choices:
+    - text:
+        it: 'Rete lineare, tempo-invariante, asintoticamente stabile, generatori isofrequenziali'
+        en: 'Linear, time-invariant, asymptotically stable network, sources at the same frequency'
+      correct: true
+    - text:
+        it: 'Rete passiva e generatori di ampiezza piccola'
+        en: 'Passive network and small-amplitude sources'
+      correct: false
+    - text:
+        it: "Rete lineare e condizioni iniziali nulle, nient'altro"
+        en: 'Linear network and zero initial conditions, nothing else'
+      correct: false
+    - text:
+        it: 'Basta che la rete contenga solo $R$, $L$, $C$'
+        en: 'It is enough that the network contains only $R$, $L$, $C$'
+      correct: false
+  origin: originale
+- id: r2-app-2
+  topic: applicabilita-fasori
+  objectives:
+    - applicabilita-fasori.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'In quale caso il metodo dei fasori **non** si può applicare?'
+    en: 'In which case can the phasor method **not** be applied?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: "Il diodo è non lineare: con un ingresso sinusoidale la risposta contiene armoniche e non esiste un'impedenza del diodo. Negli altri casi la rete è lineare, tempo-invariante e (con le resistenze) stabile; anche il generatore controllato è un elemento lineare."
+        en: 'The diode is non-linear: with a sinusoidal input the response contains harmonics and there is no diode impedance. In the other cases the network is linear, time-invariant and (with the resistors) stable; the controlled source is a linear element too.'
+  choices:
+    - text:
+        it: 'Rete con un diodo alimentata da una sinusoide'
+        en: 'Network with a diode driven by a sinusoid'
+      correct: true
+    - text:
+        it: 'RLC serie con generatore a $50\,\mathrm{Hz}$'
+        en: 'Series RLC with a $50\,\mathrm{Hz}$ source'
+      correct: false
+    - text:
+        it: 'Rete RC con generatore sinusoidale di ampiezza $230\,\mathrm{V}$'
+        en: 'RC network with a $230\,\mathrm{V}$ sinusoidal source'
+      correct: false
+    - text:
+        it: 'Rete resistiva con un generatore di tensione controllato in tensione'
+        en: 'Resistive network with a voltage-controlled voltage source'
+      correct: false
+  origin: originale

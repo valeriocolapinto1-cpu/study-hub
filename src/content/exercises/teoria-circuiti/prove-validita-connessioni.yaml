@@ -84,3 +84,37 @@
         en: raising the frequency
       correct: false
   origin: originale
+- id: r2-pv-1
+  topic: prove-validita-connessioni
+  objectives:
+    - prove-validita-connessioni.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'La prova di validità di una connessione serie di due doppi bipoli fallisce (le condizioni di porta non sono rispettate). Quale rimedio la rende valida senza cambiare il comportamento dei due doppi bipoli?'
+    en: 'The validity test for a series connection of two two-ports fails (the port conditions are not met). Which remedy makes it valid without changing the behaviour of the two two-ports?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Un trasformatore ideale $1{:}1$ su una porta di uno dei due doppi bipoli impone che le correnti della porta siano uguali e opposte (isola galvanicamente) senza alterare tensioni e correnti alla porta: la condizione di porta torna valida e le matrici si possono sommare.'
+        en: 'An ideal $1{:}1$ transformer on one port of one of the two two-ports forces the port currents to be equal and opposite (galvanic isolation) without altering the port voltages and currents: the port condition holds again and the matrices can be added.'
+  choices:
+    - text:
+        it: 'Inserire un trasformatore ideale $1{:}1$ su una porta di uno dei due doppi bipoli'
+        en: 'Insert an ideal $1{:}1$ transformer on one port of one of the two two-ports'
+      correct: true
+    - text:
+        it: "Sommare comunque le matrici $Z$: l'errore è trascurabile"
+        en: 'Add the $Z$ matrices anyway: the error is negligible'
+      correct: false
+    - text:
+        it: 'Collegare a massa tutti i morsetti inferiori'
+        en: 'Ground all the lower terminals'
+      correct: false
+    - text:
+        it: 'Usare le matrici $Y$ al posto delle $Z$'
+        en: 'Use the $Y$ matrices instead of the $Z$ ones'
+      correct: false
+  origin: originale

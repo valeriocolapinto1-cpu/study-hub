@@ -304,3 +304,37 @@
         en: 'False'
       correct: true
   origin: originale
+- id: r2-zy-1
+  topic: doppi-bipoli-z-y
+  objectives:
+    - doppi-bipoli-z-y.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Quale matrice $Z$ (in $\Omega$) descrive un doppio bipolo reciproco?'
+    en: 'Which matrix $Z$ (in $\Omega$) describes a reciprocal two-port?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Reciprocità: $z_{12}=z_{21}$ (equivalentemente $y_{12}=y_{21}$). Vale per reti di soli $R$, $L$, $C$ e trasformatori ideali; un generatore controllato in genere la rompe, rendendo $Z$ non simmetrica.'
+        en: 'Reciprocity: $z_{12}=z_{21}$ (equivalently $y_{12}=y_{21}$). It holds for networks of $R$, $L$, $C$ and ideal transformers only; a controlled source generally breaks it, making $Z$ non-symmetric.'
+  choices:
+    - text:
+        it: '$\begin{pmatrix}5&2\\2&8\end{pmatrix}$'
+        en: '$\begin{pmatrix}5&2\\2&8\end{pmatrix}$'
+      correct: true
+    - text:
+        it: '$\begin{pmatrix}5&2\\7&8\end{pmatrix}$'
+        en: '$\begin{pmatrix}5&2\\7&8\end{pmatrix}$'
+      correct: false
+    - text:
+        it: '$\begin{pmatrix}5&-2\\2&8\end{pmatrix}$'
+        en: '$\begin{pmatrix}5&-2\\2&8\end{pmatrix}$'
+      correct: false
+    - text:
+        it: '$\begin{pmatrix}5&2\\2&5\end{pmatrix}$ e solo le matrici con $z_{11}=z_{22}$'
+        en: '$\begin{pmatrix}5&2\\2&5\end{pmatrix}$ and only matrices with $z_{11}=z_{22}$'
+      correct: false
+  origin: originale

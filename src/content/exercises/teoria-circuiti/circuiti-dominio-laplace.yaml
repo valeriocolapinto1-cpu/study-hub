@@ -116,3 +116,55 @@
         en: $\dfrac{2}{s+4}$
       correct: false
   origin: originale
+- id: r2-cdl-1
+  topic: circuiti-dominio-laplace
+  objectives:
+    - circuiti-dominio-laplace.2
+    - circuiti-dominio-laplace.3
+  difficulty: 3
+  kind: static
+  statement:
+    it: 'RLC serie a riposo: $R=3\,\Omega$, $L=1\,\mathrm{H}$, $C=0{,}5\,\mathrm{F}$, alimentato da un gradino di $10\,\mathrm{V}$ applicato in $t=0$. L''uscita è la tensione su $C$. Scrivi $V_C(s)=\dfrac{A}{s}+\dfrac{B}{s+1}+\dfrac{D}{s+2}$ e calcola $v_C(1)$.'
+    en: 'Series RLC at rest: $R=3\,\Omega$, $L=1\,\mathrm{H}$, $C=0.5\,\mathrm{F}$, driven by a $10\,\mathrm{V}$ step applied at $t=0$. The output is the voltage across $C$. Write $V_C(s)=\dfrac{A}{s}+\dfrac{B}{s+1}+\dfrac{D}{s+2}$ and find $v_C(1)$.'
+  figure:
+    netlist:
+      elements:
+        - { 'type': 'V', 'id': 'E', 'a': 'in', 'b': '0', 'dc': 10 }
+        - { 'type': 'R', 'id': 'R', 'a': 'in', 'b': 'a', 'value': 3 }
+        - { 'type': 'L', 'id': 'L', 'a': 'a', 'b': 'b', 'value': 1 }
+        - { 'type': 'C', 'id': 'C', 'a': 'b', 'b': '0', 'value': 0.5, 'show': { 'v': 'v_C' } }
+  steps:
+    - title:
+        it: 'Impedenze'
+        en: 'Impedances'
+      body:
+        it: '$Z_R=3$, $Z_L=s$, $Z_C=\dfrac{1}{sC}=\dfrac2s$. Partitore: $V_C=\dfrac{10}{s}\cdot\dfrac{2/s}{3+s+2/s}=\dfrac{20}{s\,(s^2+3s+2)}=\dfrac{20}{s\,(s+1)(s+2)}$.'
+        en: '$Z_R=3$, $Z_L=s$, $Z_C=\dfrac{1}{sC}=\dfrac2s$. Divider: $V_C=\dfrac{10}{s}\cdot\dfrac{2/s}{3+s+2/s}=\dfrac{20}{s\,(s^2+3s+2)}=\dfrac{20}{s\,(s+1)(s+2)}$.'
+    - title:
+        it: 'Residui'
+        en: 'Residues'
+      body:
+        it: '$A=\dfrac{20}{1\cdot2}=10$, $B=\dfrac{20}{(-1)(1)}=-20$, $D=\dfrac{20}{(-2)(-1)}=10$: $v_C(t)=10-20e^{-t}+10e^{-2t}$, $v_C(1)\approx4{,}00\,\mathrm{V}$. Controllo: $v_C(0^+)=0$ e $v_C(\infty)=10\,\mathrm{V}$.'
+        en: '$A=\dfrac{20}{1\cdot2}=10$, $B=\dfrac{20}{(-1)(1)}=-20$, $D=\dfrac{20}{(-2)(-1)}=10$: $v_C(t)=10-20e^{-t}+10e^{-2t}$, $v_C(1)\approx4.00\,\mathrm{V}$. Check: $v_C(0^+)=0$ and $v_C(\infty)=10\,\mathrm{V}$.'
+  answer:
+    - label:
+        it: '$A$'
+        en: '$A$'
+      value: 10
+      unit: 'V'
+    - label:
+        it: '$B$'
+        en: '$B$'
+      value: -20
+      unit: 'V'
+    - label:
+        it: '$D$'
+        en: '$D$'
+      value: 10
+      unit: 'V'
+    - label:
+        it: '$v_C(1)$'
+        en: '$v_C(1)$'
+      value: 3.995764
+      unit: 'V'
+  origin: originale

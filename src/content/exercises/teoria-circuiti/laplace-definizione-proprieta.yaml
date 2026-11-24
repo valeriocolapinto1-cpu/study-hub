@@ -254,3 +254,37 @@
         en: $sx(0)$
       correct: false
   origin: originale
+- id: r2-lap-1
+  topic: laplace-definizione-proprieta
+  objectives:
+    - laplace-definizione-proprieta.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Sia $F(s)=\mathcal L\{f(t)\}$. Quale trasformata è corretta?'
+    en: 'Let $F(s)=\mathcal L\{f(t)\}$. Which transform is correct?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Derivazione: $\mathcal L\{f''\}=sF(s)-f(0^-)$ (integrando per parti la definizione). Le altre proprietà corrette sarebbero $\mathcal L\{e^{-at}f\}=F(s+a)$, $\mathcal L\{f(t-T)u(t-T)\}=e^{-sT}F(s)$ e $\mathcal L\{\int_{0^-}^t f\}=F(s)/s$.'
+        en: 'Differentiation: $\mathcal L\{f''\}=sF(s)-f(0^-)$ (integrating the definition by parts). The other correct properties would be $\mathcal L\{e^{-at}f\}=F(s+a)$, $\mathcal L\{f(t-T)u(t-T)\}=e^{-sT}F(s)$ and $\mathcal L\{\int_{0^-}^t f\}=F(s)/s$.'
+  choices:
+    - text:
+        it: '$\mathcal L\{f''(t)\}=sF(s)-f(0^-)$'
+        en: '$\mathcal L\{f''(t)\}=sF(s)-f(0^-)$'
+      correct: true
+    - text:
+        it: '$\mathcal L\{e^{-at}f(t)\}=F(s-a)$'
+        en: '$\mathcal L\{e^{-at}f(t)\}=F(s-a)$'
+      correct: false
+    - text:
+        it: '$\mathcal L\{f(t-T)u(t-T)\}=e^{sT}F(s)$'
+        en: '$\mathcal L\{f(t-T)u(t-T)\}=e^{sT}F(s)$'
+      correct: false
+    - text:
+        it: '$\mathcal L\{\int_{0^-}^t f(\tau)\,d\tau\}=sF(s)$'
+        en: '$\mathcal L\{\int_{0^-}^t f(\tau)\,d\tau\}=sF(s)$'
+      correct: false
+  origin: originale
