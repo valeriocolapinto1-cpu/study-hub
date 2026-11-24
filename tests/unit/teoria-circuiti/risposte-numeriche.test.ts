@@ -16,9 +16,10 @@ const all: Ex[] = readdirSync(DIR).flatMap((f) => (parse(readFileSync(join(DIR, 
 const deg = (r: number) => (r * 180) / Math.PI;
 const par = (a: number, b: number) => (a * b) / (a + b);
 /** Modulo e fase (°) di re + j·im. */
-const polar = (re: number, im: number) => [Math.hypot(re, im), deg(Math.atan2(im, re))];
+const polar = (re: number, im: number): [number, number] => [Math.hypot(re, im), deg(Math.atan2(im, re))];
 /** Prodotto di matrici 2×2 [a, b, c, d]. */
-const mul = (x: number[], y: number[]) => [
+type M = [number, number, number, number];
+const mul = (x: M, y: M): M => [
   x[0] * y[0] + x[1] * y[2],
   x[0] * y[1] + x[1] * y[3],
   x[2] * y[0] + x[3] * y[2],
@@ -108,11 +109,10 @@ describe('teoria-circuiti: risposte numeriche degli esercizi statici', () => {
 
   for (const e of numeric) {
     it(`${e.id}: valori coerenti con il ricalcolo`, () => {
-      const exp = EXPECTED[e.id];
-      expect(exp, `manca il ricalcolo di ${e.id}`).toBeDefined();
+      const exp = EXPECTED[e.id] ?? [];
       const got = e.answer!.map((a) => Number(a.value));
-      expect(got.length).toBe(exp.length);
-      got.forEach((v, i) => expect(v).toBeCloseTo(exp[i], 4));
+      expect(got.length, `manca il ricalcolo di ${e.id}`).toBe(exp.length);
+      got.forEach((v, i) => expect(v).toBeCloseTo(exp[i] ?? NaN, 4));
     });
   }
 });
