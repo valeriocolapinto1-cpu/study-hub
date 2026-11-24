@@ -254,12 +254,12 @@
         it: '$L_O$'
         en: '$L_O$'
       value: 24
-      unit: 'kg·m^2/s'
+      unit: 'kg·m²/s'
     - label:
         it: '$L_P$'
         en: '$L_P$'
       value: 18
-      unit: 'kg·m^2/s'
+      unit: 'kg·m²/s'
   origin: originale
 - id: r2-mang-2
   topic: momento-angolare
@@ -355,5 +355,5 @@
         it: '$dA/dt$'
         en: '$dA/dt$'
       value: 2226315000000000
-      unit: 'm^2/s'
+      unit: 'm²/s'
   origin: originale

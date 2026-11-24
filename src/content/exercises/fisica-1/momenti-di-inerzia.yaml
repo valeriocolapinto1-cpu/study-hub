@@ -242,22 +242,22 @@
         it: '$I_{anello}$'
         en: '$I_{ring}$'
       value: 0.02
-      unit: 'kg·m^2'
+      unit: 'kg·m²'
     - label:
         it: '$I_{disco}$'
         en: '$I_{disc}$'
       value: 0.01
-      unit: 'kg·m^2'
+      unit: 'kg·m²'
     - label:
         it: '$I_{sfera}$'
         en: '$I_{sphere}$'
       value: 0.008
-      unit: 'kg·m^2'
+      unit: 'kg·m²'
     - label:
         it: '$I_{asta}$'
         en: '$I_{rod}$'
       value: 0.041667
-      unit: 'kg·m^2'
+      unit: 'kg·m²'
   origin: originale
 - id: r2-mi-3
   topic: momenti-di-inerzia
@@ -306,17 +306,17 @@
         it: '$I_{estremo}$'
         en: '$I_{end}$'
       value: 0.256
-      unit: 'kg·m^2'
+      unit: 'kg·m²'
     - label:
         it: '$I_{cm}$'
         en: '$I_{cm}$'
       value: 0.064
-      unit: 'kg·m^2'
+      unit: 'kg·m²'
     - label:
         it: '$I_{0,1}$'
         en: '$I_{0.1}$'
       value: 0.076
-      unit: 'kg·m^2'
+      unit: 'kg·m²'
   origin: originale
 - id: r2-mi-4
   topic: momenti-di-inerzia

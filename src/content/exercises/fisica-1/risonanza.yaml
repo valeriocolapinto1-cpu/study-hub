@@ -301,7 +301,7 @@
         'type': 'function-plot',
         'params':
           {
-            'x': { 'min': 0, 'max': 20, 'label': 'ω', 'unit': 'rad/s' },
+            'x': { 'min': 0, 'max': 20, 'label': 'ω' },
             'y': { 'min': 0, 'max': 0.55, 'label': 'A', 'unit': 'm' },
             'series':
               [
