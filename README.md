@@ -18,7 +18,7 @@ Sito: <https://valeriocolapinto1-cpu.github.io/study-hub/>
 | `src/pages/`, `src/layouts/`, `src/components/` | Pagine Astro, layout e componenti statici |
 | `src/i18n/` | Dizionari dell'interfaccia (`it.json`, `en.json`) e glossario |
 | `tests/` | Unit e contenuti (vitest), end-to-end, axe e visivi (Playwright) |
-| `tools/` | Script di build, controllo dei link, backend del modulo Contribuisci (`tools/apps-script/`) |
+| `tools/` | Script di build, controllo dei link, backend del modulo Contribuisci (`tools/apps-script/`), Worker del tutor AI (`tools/ai-worker/`) |
 | `legacy/` | I siti originali con la loro storia (esclusi dalla build) |
 | `docs/` | Documentazione (vedi sotto) |
 
@@ -43,13 +43,15 @@ Le baseline dei test visivi si generano solo in CI (workflow «Aggiorna baseline
 
 ## Aggiungere contenuti
 
+Guida passo per passo, con esempi presi dal repository: [`docs/COME-AGGIUNGERE-CONTENUTI.md`](docs/COME-AGGIUNGERE-CONTENUTI.md).
+
 - **Teoria**: `src/content/theory/<corso>/<argomento>.<it|en>.mdx`, a strati (`<Layer kind="intuizione">`, …).
-- **Esercizi**: YAML in `src/content/exercises/<corso>/`; generatori parametrici in `src/courses/<corso>/generators/`.
+- **Esercizi** (e domande della prova d'esame): YAML in `src/content/exercises/<corso>/`; generatori parametrici in `src/courses/<corso>/generators/`.
 - **Formule e flashcard**: `src/content/formulas/`, `src/content/cards/`.
 - **Un corso nuovo**: procedura in [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
 Regole (bilinguismo, originalità, glossario): [`docs/CONTRIBUTING-CONTENT.md`](docs/CONTRIBUTING-CONTENT.md).
-Prima di una PR: `npm run check && npm run lint && npm test && npm run build`.
+Prima di una PR: `npm run check && npm run lint && npm run format:check && npm test && npm run build`.
 
 ## Documentazione
 
@@ -57,6 +59,8 @@ Prima di una PR: `npm run check && npm run lint && npm test && npm run build`.
 - [`docs/ENGINE.md`](docs/ENGINE.md) — motore di studio; [`docs/FIGURE.md`](docs/FIGURE.md) — figure; [`docs/SIM.md`](docs/SIM.md) — simulazioni
 - [`docs/decisions.md`](docs/decisions.md) — registro delle decisioni
 - [`docs/revisione/`](docs/revisione/) — note di revisione dei contenuti, corso per corso
+- [`docs/COME-AGGIUNGERE-CONTENUTI.md`](docs/COME-AGGIUNGERE-CONTENUTI.md) — come aggiungere teoria, esercizi, formule, flashcard, domande d'esame
+- [`docs/TUTOR-AI.md`](docs/TUTOR-AI.md) — tutor AI «Chiedi al tutor» (attivazione e costi); [`docs/CONTRIBUTI.md`](docs/CONTRIBUTI.md) — modulo Contribuisci
 - [`docs/COSE-DA-FARE-VALERIO.md`](docs/COSE-DA-FARE-VALERIO.md) — passi che richiedono il proprietario
 
 I siti originali sono conservati con la loro storia in `legacy/` (esclusi dalla build):
