@@ -102,6 +102,12 @@
   statement:
     it: 'RC serie con $R=2\,\Omega$, $C=0{,}25\,\mathrm{F}$, $v_C(0^-)=3\,\mathrm{V}$; in $t=0$ si applica un gradino $E=8\,\mathrm{V}$. Con Laplace separa risposta libera e forzata di $v_C$, poi ricomponi e calcola $v_C(0{,}5)$.'
     en: 'Series RC with $R=2\,\Omega$, $C=0.25\,\mathrm{F}$, $v_C(0^-)=3\,\mathrm{V}$; a step $E=8\,\mathrm{V}$ is applied at $t=0$. With Laplace split $v_C$ into natural and forced responses, then recombine and find $v_C(0.5)$.'
+  figure:
+    netlist:
+      elements:
+        - { 'type': 'V', 'id': 'E', 'a': 'in', 'b': '0', 'dc': 8 }
+        - { 'type': 'R', 'id': 'R', 'a': 'in', 'b': 'a', 'value': 2 }
+        - { 'type': 'C', 'id': 'C', 'a': 'a', 'b': '0', 'value': 0.25, 'v0': 3, 'show': { 'v': 'v_C' } }
   steps:
     - title:
         it: 'Libera'

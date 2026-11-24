@@ -153,6 +153,15 @@
   statement:
     it: 'Nodi $1$ e $2$, riferimento a massa. Il generatore $I_1=2\,\mathrm{A}$ entra nel nodo $1$, il generatore $I_2=0{,}5\,\mathrm{A}$ entra nel nodo $2$. Resistori: $R_1=2\,\Omega$ tra $1$ e massa, $R_2=4\,\Omega$ tra $1$ e $2$, $R_3=4\,\Omega$ tra $2$ e massa. Scrivi le equazioni ai nodi e calcola $G_{11}$, $v_1$ e $v_2$.'
     en: 'Nodes $1$ and $2$, reference at ground. Source $I_1=2\,\mathrm{A}$ enters node $1$, source $I_2=0.5\,\mathrm{A}$ enters node $2$. Resistors: $R_1=2\,\Omega$ between $1$ and ground, $R_2=4\,\Omega$ between $1$ and $2$, $R_3=4\,\Omega$ between $2$ and ground. Write the nodal equations and find $G_{11}$, $v_1$ and $v_2$.'
+  figure:
+    netlist:
+      elements:
+        - { 'type': 'I', 'id': 'I1', 'a': '0', 'b': 'n1', 'dc': 2 }
+        - { 'type': 'R', 'id': 'R1', 'a': 'n1', 'b': '0', 'value': 2 }
+        - { 'type': 'R', 'id': 'R2', 'a': 'n1', 'b': 'n2', 'value': 4 }
+        - { 'type': 'R', 'id': 'R3', 'a': 'n2', 'b': '0', 'value': 4 }
+        - { 'type': 'I', 'id': 'I2', 'a': '0', 'b': 'n2', 'dc': 0.5 }
+      nodes: { 'n1': { 'label': '1' }, 'n2': { 'label': '2' } }
   steps:
     - title:
         it: 'Equazioni'

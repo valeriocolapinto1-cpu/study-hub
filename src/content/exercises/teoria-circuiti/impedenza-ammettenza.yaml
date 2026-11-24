@@ -267,6 +267,14 @@
   statement:
     it: 'Un resistore $R=10\,\Omega$ è in serie al parallelo di $\bar Z_L=j20\,\Omega$ e $\bar Z_C=-j10\,\Omega$. Alla serie si applica $\bar V=100\angle0^\circ\,\mathrm{V}$. Calcola $\bar Z_{eq}$ e $|\bar I|$.'
     en: 'A resistor $R=10\,\Omega$ is in series with the parallel of $\bar Z_L=j20\,\Omega$ and $\bar Z_C=-j10\,\Omega$. The series is driven by $\bar V=100\angle0^\circ\,\mathrm{V}$. Find $\bar Z_{eq}$ and $|\bar I|$.'
+  figure:
+    netlist:
+      omega: 1000
+      elements:
+        - { 'type': 'V', 'id': 'V', 'a': 'in', 'b': '0', 'ac': 100 }
+        - { 'type': 'R', 'id': 'R', 'a': 'in', 'b': 'm', 'value': 10 }
+        - { 'type': 'L', 'id': 'L', 'a': 'm', 'b': '0', 'value': 0.02, 'label': 'j20 Ω' }
+        - { 'type': 'C', 'id': 'C', 'a': 'm', 'b': '0', 'value': 0.0001, 'label': '−j10 Ω' }
   steps:
     - title:
         it: 'Parallelo'

@@ -135,6 +135,13 @@
   statement:
     it: 'In cascata: prima un resistore serie $R=2\,\Omega$ ($T_a=\begin{pmatrix}1&2\\0&1\end{pmatrix}$), poi un resistore in derivazione $3\,\Omega$ ($T_b=\begin{pmatrix}1&0\\1/3&1\end{pmatrix}$). L''uscita è chiusa su $R_L=6\,\Omega$. Calcola $C_{tot}$ della matrice di trasmissione complessiva e l''impedenza d''ingresso.'
     en: 'In cascade: first a series resistor $R=2\,\Omega$ ($T_a=\begin{pmatrix}1&2\\0&1\end{pmatrix}$), then a $3\,\Omega$ shunt resistor ($T_b=\begin{pmatrix}1&0\\1/3&1\end{pmatrix}$). The output is closed on $R_L=6\,\Omega$. Find $C_{tot}$ of the overall transmission matrix and the input impedance.'
+  figure:
+    netlist:
+      elements:
+        - { 'type': 'R', 'id': 'Ra', 'a': 'in', 'b': 'out', 'value': 2 }
+        - { 'type': 'R', 'id': 'Rb', 'a': 'out', 'b': '0', 'value': 3 }
+        - { 'type': 'R', 'id': 'RL', 'a': 'out', 'b': '0', 'value': 6 }
+      ports: [{ 'id': 'IN', 'plus': 'in', 'minus': '0', 'label': 'Z_{in}' }]
   steps:
     - title:
         it: 'Cascata'

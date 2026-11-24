@@ -153,6 +153,12 @@
   statement:
     it: 'Un condensatore $C=0{,}5\,\mathrm{F}$ con $v_C(0^-)=4\,\mathrm{V}$ è collegato in $t=0$, tramite $R=2\,\Omega$, a un generatore $E=10\,\mathrm{V}$. Modella la condizione iniziale con un generatore e calcola $V_C(s)=\dfrac{A}{s}+\dfrac{B}{s+1/\tau}$ e $\tau$.'
     en: 'A capacitor $C=0.5\,\mathrm{F}$ with $v_C(0^-)=4\,\mathrm{V}$ is connected at $t=0$, through $R=2\,\Omega$, to a source $E=10\,\mathrm{V}$. Model the initial condition with a source and find $V_C(s)=\dfrac{A}{s}+\dfrac{B}{s+1/\tau}$ and $\tau$.'
+  figure:
+    netlist:
+      elements:
+        - { 'type': 'V', 'id': 'E', 'a': 'in', 'b': '0', 'dc': 10 }
+        - { 'type': 'R', 'id': 'R', 'a': 'in', 'b': 'a', 'value': 2 }
+        - { 'type': 'C', 'id': 'C', 'a': 'a', 'b': '0', 'value': 0.5, 'v0': 4, 'show': { 'v': 'v_C' } }
   steps:
     - title:
         it: 'Modello'

@@ -126,6 +126,13 @@
   statement:
     it: 'RLC serie a riposo: $R=3\,\Omega$, $L=1\,\mathrm{H}$, $C=0{,}5\,\mathrm{F}$, alimentato da un gradino di $10\,\mathrm{V}$ applicato in $t=0$. L''uscita è la tensione su $C$. Scrivi $V_C(s)=\dfrac{A}{s}+\dfrac{B}{s+1}+\dfrac{D}{s+2}$ e calcola $v_C(1)$.'
     en: 'Series RLC at rest: $R=3\,\Omega$, $L=1\,\mathrm{H}$, $C=0.5\,\mathrm{F}$, driven by a $10\,\mathrm{V}$ step applied at $t=0$. The output is the voltage across $C$. Write $V_C(s)=\dfrac{A}{s}+\dfrac{B}{s+1}+\dfrac{D}{s+2}$ and find $v_C(1)$.'
+  figure:
+    netlist:
+      elements:
+        - { 'type': 'V', 'id': 'E', 'a': 'in', 'b': '0', 'dc': 10 }
+        - { 'type': 'R', 'id': 'R', 'a': 'in', 'b': 'a', 'value': 3 }
+        - { 'type': 'L', 'id': 'L', 'a': 'a', 'b': 'b', 'value': 1 }
+        - { 'type': 'C', 'id': 'C', 'a': 'b', 'b': '0', 'value': 0.5, 'show': { 'v': 'v_C' } }
   steps:
     - title:
         it: 'Impedenze'

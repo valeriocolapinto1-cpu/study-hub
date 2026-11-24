@@ -381,6 +381,14 @@
   statement:
     it: 'Un RLC serie con $R=5\,\Omega$, $L=0{,}1\,\mathrm{H}$, $C=10\,\mu\mathrm{F}$ è alimentato alla risonanza da $V=10\,\mathrm{V}$ efficaci. Calcola $\omega_0$, il fattore di merito $Q$ e la tensione efficace sull''induttore.'
     en: 'A series RLC with $R=5\,\Omega$, $L=0.1\,\mathrm{H}$, $C=10\,\mu\mathrm{F}$ is driven at resonance by $V=10\,\mathrm{V}$ rms. Find $\omega_0$, the quality factor $Q$ and the rms voltage across the inductor.'
+  figure:
+    netlist:
+      omega: 1000
+      elements:
+        - { 'type': 'V', 'id': 'V', 'a': 'in', 'b': '0', 'ac': 10 }
+        - { 'type': 'R', 'id': 'R', 'a': 'in', 'b': 'a', 'value': 5 }
+        - { 'type': 'L', 'id': 'L', 'a': 'a', 'b': 'b', 'value': 0.1, 'show': { 'v': 'V_L' } }
+        - { 'type': 'C', 'id': 'C', 'a': 'b', 'b': '0', 'value': '10u' }
   steps:
     - title:
         it: 'Svolgimento'

@@ -316,6 +316,13 @@
   statement:
     it: 'Un partitore con $R_1=R_2=1\,\mathrm{k\Omega}$ è alimentato da $E=10\,\mathrm{V}$; in parallelo a $R_2$ si collega un carico $R_L=1\,\mathrm{k\Omega}$. Quanto vale la tensione su $R_2$? E quanto varrebbe usando, senza pensarci, la formula del partitore a vuoto?'
     en: 'A divider with $R_1=R_2=1\,\mathrm{k\Omega}$ is fed by $E=10\,\mathrm{V}$; a load $R_L=1\,\mathrm{k\Omega}$ is connected across $R_2$. What is the voltage across $R_2$? And what would the unloaded divider formula give if used blindly?'
+  figure:
+    netlist:
+      elements:
+        - { 'type': 'V', 'id': 'E', 'a': 'in', 'b': '0', 'dc': 10 }
+        - { 'type': 'R', 'id': 'R1', 'a': 'in', 'b': 'out', 'value': '1k' }
+        - { 'type': 'R', 'id': 'R2', 'a': 'out', 'b': '0', 'value': '1k', 'show': { 'v': 'v_2' } }
+        - { 'type': 'R', 'id': 'RL', 'a': 'out', 'b': '0', 'value': '1k' }
   steps:
     - title:
         it: 'Condizione di applicabilità'

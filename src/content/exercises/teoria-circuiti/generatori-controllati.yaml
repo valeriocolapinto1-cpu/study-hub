@@ -93,6 +93,14 @@
   statement:
     it: 'Un generatore $E=10\,\mathrm{V}$ in serie a $R_1=2\,\Omega$ è collegato al nodo $A$; da $A$ a massa c''è $R_2=2\,\Omega$. Un generatore di corrente controllato in tensione inietta nel nodo $A$ (da massa) la corrente $g\,v_A$ con $g=0{,}2\,\mathrm{S}$. Calcola $v_A$ e la potenza erogata dal generatore controllato.'
     en: 'A source $E=10\,\mathrm{V}$ in series with $R_1=2\,\Omega$ is connected to node $A$; from $A$ to ground there is $R_2=2\,\Omega$. A voltage-controlled current source injects into node $A$ (from ground) the current $g\,v_A$ with $g=0.2\,\mathrm{S}$. Find $v_A$ and the power delivered by the controlled source.'
+  figure:
+    netlist:
+      elements:
+        - { 'type': 'V', 'id': 'E', 'a': 'in', 'b': '0', 'dc': 10 }
+        - { 'type': 'R', 'id': 'R1', 'a': 'in', 'b': 'A', 'value': 2 }
+        - { 'type': 'R', 'id': 'R2', 'a': 'A', 'b': '0', 'value': 2, 'show': { 'v': 'v_A' } }
+        - { 'type': 'G', 'id': 'G', 'a': '0', 'b': 'A', 'cp': 'A', 'cn': '0', 'gain': 0.2 }
+      nodes: { 'A': { 'label': 'A' } }
   steps:
     - title:
         it: 'Equazione al nodo'
@@ -128,6 +136,13 @@
   statement:
     it: 'Tra i morsetti $a$ e $b$ ci sono, in serie, un generatore $E=6\,\mathrm{V}$, un resistore $R=2\,\Omega$ e un generatore di tensione controllato in corrente $v_x=r\,i$ con $r=3\,\Omega$, dove $i$ è la corrente entrante nel morsetto $a$. Calcola l''equivalente di Thevenin visto da $a$-$b$.'
     en: 'Between terminals $a$ and $b$ there are, in series, a source $E=6\,\mathrm{V}$, a resistor $R=2\,\Omega$ and a current-controlled voltage source $v_x=r\,i$ with $r=3\,\Omega$, where $i$ is the current entering terminal $a$. Find the Thévenin equivalent seen from $a$-$b$.'
+  figure:
+    netlist:
+      elements:
+        - { 'type': 'R', 'id': 'R', 'a': 'pa', 'b': 'm', 'value': 2, 'show': { 'i': 'i' } }
+        - { 'type': 'H', 'id': 'Hx', 'a': 'm', 'b': 'n', 'ctrl': 'R', 'gain': 3 }
+        - { 'type': 'V', 'id': 'E', 'a': 'n', 'b': '0', 'dc': 6 }
+      ports: [{ 'id': 'AB', 'plus': 'pa', 'minus': '0', 'label': 'a–b' }]
   steps:
     - title:
         it: 'Tensione a vuoto'
