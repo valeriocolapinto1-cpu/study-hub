@@ -12,6 +12,12 @@ Le matrici $A$ e $B$ sono il grafo «tradotto in numeri»: una riga per ogni nod
 
 </div>
 
+<div data-note-id="matrici-a-b-intuizione-2">
+
+Il vantaggio è pratico: un calcolatore non «vede» il disegno, ma sa moltiplicare matrici. Con $A$ e $B$ le equazioni di Kirchhoff di qualunque circuito si scrivono nello stesso modo, e i metodi dei nodi e delle maglie diventano prodotti come $A\,\mathcal G\,A^{\mathsf T}$ e $B\,\mathcal R\,B^{\mathsf T}$.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -70,6 +76,12 @@ _Nota._ La formulazione esatta data a lezione può essere diversa (ad esempio no
 
 </details>
 
+<div data-note-id="matrici-a-b-teoria-6">
+
+**Proprietà da controllare.** Nella matrice di incidenza _completa_ (tutte le $n$ righe) ogni colonna ha esattamente un $+1$ e un $-1$, perché ogni ramo esce da un nodo ed entra in un altro: le $n$ righe sommano a zero ed è per questo che si toglie la riga del riferimento. Nella matrice ridotta $A$ le colonne dei rami collegati al riferimento hanno un solo elemento non nullo. Il rango di $A$ è $n-1$, quello di $B$ è $b-n+1$.
+
+</div>
+
 <Formula id="kcl-mat" />
 <Formula id="kvl-mat" />
 <Formula id="b-da-a" />
@@ -101,6 +113,20 @@ Triangolo con nodi $0,1,2$ e rami: $a$: $0\to1$, $b$: $0\to2$, $c$: $1\to2$. Alb
 
 - **Sbagliato:** Scrivere $B=-A^{\mathsf T}$ come relazione tra le matrici complete.
 - **Corretto:** Le dimensioni non coincidono: la relazione è $B_t=-(A_t^{-1}A_c)^{\mathsf T}$ tra blocchi.
+
+</div>
+
+<div data-note-id="matrici-a-b-errore-2">
+
+- **Sbagliato:** Cercare un $+1$ e un $-1$ in ogni colonna della matrice ridotta $A$.
+- **Corretto:** Nella matrice ridotta i rami collegati al nodo di riferimento hanno un solo elemento non nullo: l'altro stava nella riga tolta.
+
+</div>
+
+<div data-note-id="matrici-a-b-errore-3">
+
+- **Sbagliato:** Scegliere a caso il verso di percorrenza delle maglie fondamentali.
+- **Corretto:** La maglia fondamentale si percorre nel verso del suo ramo di coalbero: così il blocco di coalbero di $B$ è l'identità, $B_c=\mathbb 1$.
 
 </div>
 

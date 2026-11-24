@@ -12,6 +12,12 @@ Charge does not pile up in wires and nodes: whatever current flows in must flow 
 
 </div>
 
+<div data-note-id="leggi-di-kirchhoff-intuizione-2">
+
+A hydraulic analogy helps: currents are water flows in pipes and nodes are fittings that cannot hold water; voltages are height differences, and whoever walks a loop trail returns to the starting altitude. The analogy holds as long as the circuit is lumped: that very assumption guarantees that no charge accumulates at nodes and that voltage does not depend on the path.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -114,6 +120,20 @@ Currents $i_1 = 3\,\mathrm{A}$ and $i_2 = 2\,\mathrm{A}$ enter a node, while $i_
 
 </div>
 
+<div class="worked" data-note-id="leggi-di-kirchhoff-esempio-2">
+
+### How many independent equations
+
+A connected circuit has $n=4$ nodes and $b=6$ branches. How many independent KCLs and KVLs can be written, and how many equations are needed in total?
+
+**Solution.**
+
+1. Independent KCLs: $n-1=3$ (the fourth is minus the sum of the others).
+2. Independent KVLs: $b-n+1=6-4+1=3$ (one per fundamental loop).
+3. Topological equations: $3+3=6=b$. With the $b=6$ constitutive relations we get $2b=12$ equations in the $12$ unknowns (one voltage and one current per branch) ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -122,6 +142,20 @@ Currents $i_1 = 3\,\mathrm{A}$ and $i_2 = 2\,\mathrm{A}$ enter a node, while $i_
 
 - **Wrong:** Writing KCL with mixed signs without fixing a convention, obtaining $i_1+i_2+i_3=0$ with all currents entering but positive.
 - **Right:** Fix "leaving $+$, entering $-$" and derive the signs from the reference directions, not from the values.
+
+</div>
+
+<div data-note-id="leggi-di-kirchhoff-errore-2">
+
+- **Wrong:** Writing a KCL for each of the $n$ nodes and treating them all as independent.
+- **Right:** Summing the $n$ KCLs every current appears twice with opposite signs and the result is $0=0$: only $n-1$ are independent.
+
+</div>
+
+<div data-note-id="leggi-di-kirchhoff-errore-3">
+
+- **Wrong:** In a KVL, adding the magnitudes of the voltages met along the loop.
+- **Right:** Each voltage enters with the sign given by comparing its reference direction with the direction of travel, whatever its value.
 
 </div>
 

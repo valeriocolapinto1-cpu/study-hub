@@ -12,6 +12,12 @@ It is the dual of the node method: imagine a current "circulating" in each loop 
 
 </div>
 
+<div data-note-id="metodo-delle-maglie-intuizione-2">
+
+Both loop currents flow in the branch that two meshes share: if they run in opposite directions in the branch, the actual current is their difference. That is why, with all meshes clockwise, the off-diagonal terms of $R_m$ have a minus sign: the drop on that branch "brakes" the neighbouring mesh.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -43,6 +49,18 @@ A current source in a branch belonging to a single loop fixes that loop current;
 
 </details>
 
+<div data-note-id="metodo-delle-maglie-teoria-3">
+
+**Writing by inspection.** The equation of mesh $j$ is KVL written with loop currents: for each resistor along the path add $R\,(j_j\mp j_k)$, where $j_k$ is the current of the other mesh crossing the same branch (minus if in the opposite direction). On the right-hand side go the source voltages that push current in the direction of the mesh.
+
+</div>
+
+<div data-note-id="metodo-delle-maglie-teoria-4">
+
+**When it pays.** Mesh analysis has $b-n+1$ unknowns against the $n-1$ of nodal analysis: it pays with many nodes and few loops ("ladder" circuits) and with voltage sources, which go straight into the known terms. Using the windows of the drawing as meshes requires a planar circuit.
+
+</div>
+
 <Formula id="maglie" />
 <Formula id="maglie-mat" />
 
@@ -64,6 +82,20 @@ Mesh 1: a $12\,\mathrm{V}$ source and $R_1=2\,\Omega$; shared branch $R_2=4\,\Om
 
 </div>
 
+<div class="worked" data-note-id="metodo-delle-maglie-esempio-2">
+
+### Supermesh
+
+Mesh 1: source $E=10\,\mathrm V$ and $R_1=2\,\Omega$; mesh 2: $R_2=3\,\Omega$; in the shared branch a current source imposes $j_1-j_2=1\,\mathrm A$. Find the mesh currents and the voltage across the current source.
+
+**Solution.**
+
+1. Supermesh (outer path, avoiding the current source): $10=2j_1+3j_2$.
+2. With $j_1=j_2+1$: $10=5j_2+2$, so $j_2=1.6\,\mathrm A$ and $j_1=2.6\,\mathrm A$.
+3. Voltage across the current source from mesh 1: $10-2\cdot2.6=4.8\,\mathrm V$; from mesh 2: $3\cdot1.6=4.8\,\mathrm V$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -72,6 +104,20 @@ Mesh 1: a $12\,\mathrm{V}$ source and $R_1=2\,\Omega$; shared branch $R_2=4\,\Om
 
 - **Wrong:** Forgetting the minus sign of the mutual terms when all the mesh currents are clockwise.
 - **Right:** With all meshes clockwise the shared branch carries opposite currents: the mutual term is $-R$.
+
+</div>
+
+<div data-note-id="metodo-delle-maglie-errore-2">
+
+- **Wrong:** Writing a KVL through a current source without introducing its voltage.
+- **Right:** The voltage of a current source is unknown: either use the supermesh, which avoids it, or add that voltage as an unknown.
+
+</div>
+
+<div data-note-id="metodo-delle-maglie-errore-3">
+
+- **Wrong:** Using the windows of the drawing as meshes in a non-planar circuit.
+- **Right:** Windows are independent only in planar circuits; otherwise use the fundamental loops of a tree.
 
 </div>
 

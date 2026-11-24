@@ -12,6 +12,12 @@ Two complex-conjugate poles are the signature of an oscillation: the imaginary p
 
 </div>
 
+<div data-note-id="poli-complessi-coniugati-intuizione-2">
+
+In the $s$ plane the position of the poles is a portrait of the response: the farther from the imaginary axis, the faster the oscillation dies out; the farther from the real axis, the faster the oscillation. Two poles close to the imaginary axis give an oscillation that takes long to die out, like a pendulum with little friction.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -50,6 +56,42 @@ $\alpha>0$: damped oscillation; $\alpha=0$: sustained (marginal) oscillation; $\
     }}
   />
 </Figure>
+
+<div data-note-id="poli-complessi-coniugati-teoria-3">
+
+**Where the formula comes from.** Writing the numerator as $a(s+\alpha)+(b-a\alpha)$ separates two known transforms: $\dfrac{a(s+\alpha)}{(s+\alpha)^2+\omega^2}\to ae^{-\alpha t}\cos\omega t$ and $\dfrac{b-a\alpha}{(s+\alpha)^2+\omega^2}=\dfrac{b-a\alpha}{\omega}\cdot\dfrac{\omega}{(s+\alpha)^2+\omega^2}\to\dfrac{b-a\alpha}{\omega}e^{-\alpha t}\sin\omega t$.
+
+</div>
+
+<div data-note-id="poli-complessi-coniugati-teoria-4">
+
+**Second-order parameters.** A denominator $s^2+2\zeta\omega_0s+\omega_0^2$ with $0\lt \zeta\lt 1$ has poles $-\zeta\omega_0\pm j\omega_0\sqrt{1-\zeta^2}$, i.e. $\alpha=\zeta\omega_0$ and $\omega=\omega_0\sqrt{1-\zeta^2}$. The distance of the poles from the origin is the natural angular frequency $\omega_0$; the damping ratio $\zeta$ fixes their angle. With $\zeta\ge1$ the poles become real.
+
+</div>
+
+<div data-note-id="poli-complessi-coniugati-teoria-5">
+
+**Together with other poles.** If besides the pair there are real poles, expand keeping the pair together in a term $\dfrac{as+b}{(s+\alpha)^2+\omega^2}$: the residues of the real poles are found as usual, $a$ and $b$ by comparing numerators.
+
+</div>
+
+<div data-note-id="poli-complessi-coniugati-teoria-6">
+
+**Amplitude and phase.** The combination $A\cos\omega t+B\sin\omega t$ can be written as $M\cos(\omega t-\theta)$ with $M=\sqrt{A^2+B^2}$ and $\theta=\mathrm{atan2}(B,A)$: this shows at once the initial amplitude of the oscillation and gives the envelope $\pm Me^{-\alpha t}$ within which the curve oscillates.
+
+</div>
+
+<div data-note-id="poli-complessi-coniugati-teoria-7">
+
+**Duration of the transient.** The envelope $e^{-\alpha t}$ falls below $1\,\%$ after about $4.6/\alpha$ (because $\ln100\approx4.6$): the real part of the poles sets the duration of the transient, the imaginary part how many oscillations fit in it, about $4.6\,\omega/(2\pi\alpha)$ periods.
+
+</div>
+
+<div data-note-id="poli-complessi-coniugati-teoria-8">
+
+**Link with circuits.** A series RLC has denominator $s^2+\dfrac{R}{L}s+\dfrac{1}{LC}$, so $\alpha=\dfrac{R}{2L}$ and $\omega_0=\dfrac{1}{\sqrt{LC}}$. The poles are complex when $\alpha\lt \omega_0$, that is, when the resistance is small enough to let the energy exchange between inductor and capacitor oscillate before it dies out.
+
+</div>
 
 <Formula id="complessi-antitr" />
 
@@ -95,6 +137,21 @@ Write $e^{-t}(\cos2t+\sin2t)$ in amplitude-phase form.
 
 </div>
 
+<div class="worked" data-note-id="poli-complessi-coniugati-esempio-4">
+
+### Step into an underdamped second-order system
+
+$F(s)=\dfrac{10}{s(s^2+2s+5)}$. Invert.
+
+**Solution.**
+
+1. Real pole at $0$: residue $\dfrac{10}{5}=2$. Write $F=\dfrac2s+\dfrac{as+b}{s^2+2s+5}$.
+2. Numerators: $10=2(s^2+2s+5)+(as+b)s$; $s^2$ term: $0=2+a\Rightarrow a=-2$; $s$ term: $0=4+b\Rightarrow b=-4$.
+3. $(s+1)^2+4$: $\alpha=1$, $\omega=2$, $\dfrac{b-a\alpha}{\omega}=\dfrac{-4+2}{2}=-1$, so $f=2-e^{-t}(2\cos2t+\sin2t)$.
+4. Check: $f(0)=2-2=0=\lim_{s\to\infty}sF$ ✓; $f(\infty)=2=\lim_{s\to0}sF$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -103,6 +160,27 @@ Write $e^{-t}(\cos2t+\sin2t)$ in amplitude-phase form.
 
 - **Wrong:** Factoring $s^2+2s+5$ into real factors.
 - **Right:** It has complex roots: complete the square.
+
+</div>
+
+<div data-note-id="poli-complessi-coniugati-errore-2">
+
+- **Wrong:** Reading $\omega$ off the uncompleted denominator: taking $\omega=\sqrt5$ in $s^2+2s+5$.
+- **Right:** Completing the square, $(s+1)^2+4$, gives $\omega=2$; $\sqrt5=\omega_0$ is the distance of the poles from the origin.
+
+</div>
+
+<div data-note-id="poli-complessi-coniugati-errore-3">
+
+- **Wrong:** Using $\dfrac{s}{(s+\alpha)^2+\omega^2}\to e^{-\alpha t}\cos\omega t$.
+- **Right:** The damped cosine needs $s+\alpha$ in the numerator: $s=(s+\alpha)-\alpha$, and the term $-\alpha$ produces a sine.
+
+</div>
+
+<div data-note-id="poli-complessi-coniugati-errore-4">
+
+- **Wrong:** Saying that with $\alpha=0$ the system is stable because the free response does not diverge.
+- **Right:** With poles on the imaginary axis the free response oscillates without damping: the system is at the limit (marginally stable) and an input at the same frequency gives a growing response.
 
 </div>
 

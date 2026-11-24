@@ -12,6 +12,12 @@ Un generatore controllato è un «rubinetto» comandato da un'altra grandezza de
 
 </div>
 
+<div data-note-id="generatori-controllati-intuizione-2">
+
+Il generatore controllato modella ciò che fa un transistor o un amplificatore: un segnale piccolo all'ingresso comanda una grandezza grande all'uscita, e l'energia necessaria arriva dall'alimentazione, che il modello non disegna. Per questo un controllato può erogare potenza netta: è il segno che dietro c'è una sorgente nascosta.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -43,6 +49,30 @@ Sono elementi _attivi_ (possono erogare potenza netta) e _non reciproci_. Servon
 
 </div>
 
+<div data-note-id="generatori-controllati-teoria-5">
+
+**Nelle equazioni.** Nel metodo dei nodi (o delle maglie) un generatore controllato si scrive prima come un generatore indipendente di valore incognito; poi si aggiunge un'equazione che esprime la grandezza di controllo in funzione delle incognite del metodo. La matrice del sistema perde in generale la simmetria: è la traccia della non reciprocità.
+
+</div>
+
+<div data-note-id="generatori-controllati-teoria-6">
+
+**Unità dei parametri.** $\mu$ (VCVS) e $\beta$ (CCCS) sono adimensionali; $g_m$ (VCCS) è una conduttanza, in siemens; $r_m$ (CCVS) è una resistenza, in ohm. Controllare le unità è un modo veloce per riconoscere quale dei quattro tipi si sta usando.
+
+</div>
+
+<div data-note-id="generatori-controllati-teoria-7">
+
+**Un controllato che diventa resistore.** Se la grandezza di controllo è la tensione (o la corrente) della porta stessa del generatore, il generatore equivale a un resistore: un VCCS che assorbe $g\,v$, con $v$ la propria tensione, è un resistore di valore $1/g$, negativo se $g\lt 0$. È il caso dell'esempio nella pagina del [teorema di Thevenin](../teorema-di-thevenin/).
+
+</div>
+
+<div data-note-id="generatori-controllati-teoria-8">
+
+**Resistenza negativa.** Un resistore $R$ in parallelo a un CCCS che inietta nel nodo superiore la corrente $2\,i_R$, con $i_R$ la corrente del resistore: la corrente assorbita dalla porta è $i=i_R-2\,i_R=-v/R$, quindi la porta equivale a $R_{eq}=-R$. Con soli elementi passivi non si otterrebbe mai.
+
+</div>
+
 <Formula id="vcvs" />
 <Formula id="vccs" />
 <Formula id="ccvs" />
@@ -66,6 +96,20 @@ Un generatore $V_g=6\,\mathrm{V}$ alimenta $R_1=2\,\Omega$ in serie con $R_2=4\,
 
 </div>
 
+<div class="worked" data-note-id="generatori-controllati-esempio-2">
+
+### Guadagno di potenza di un VCVS
+
+Un VCVS con $\mu=20$ ha all'ingresso una tensione $v_1=0{,}5\,\mathrm V$ (prelevata senza assorbire corrente) e all'uscita un carico $R_L=100\,\Omega$. Trova $v_2$, la corrente e la potenza nel carico, e la potenza fornita all'ingresso.
+
+**Soluzione.**
+
+1. $v_2=\mu\,v_1=20\cdot0{,}5=10\,\mathrm V$.
+2. $i_L=v_2/R_L=10/100=0{,}1\,\mathrm A$; $P_L=v_2\,i_L=1\,\mathrm W$.
+3. All'ingresso $i_1=0$, quindi $P_1=v_1 i_1=0$: il watt nel carico viene interamente dal generatore controllato, che eroga potenza netta (elemento attivo).
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -74,6 +118,27 @@ Un generatore $V_g=6\,\mathrm{V}$ alimenta $R_1=2\,\Omega$ in serie con $R_2=4\,
 
 - **Sbagliato:** Per trovare $R_{th}$ spegnere anche un VCCS («è un generatore»).
 - **Corretto:** Si spengono solo i generatori _indipendenti_; il controllato resta e $R_{th}$ si trova col generatore di prova $V/I$.
+
+</div>
+
+<div data-note-id="generatori-controllati-errore-2">
+
+- **Sbagliato:** Confondere VCCS e CCVS perché entrambi «mescolano» tensione e corrente.
+- **Corretto:** Il nome si legge controllo → uscita: VCCS è una corrente comandata da una tensione ($i_2=g_m v_1$, $g_m$ in siemens); CCVS è una tensione comandata da una corrente ($v_2=r_m i_1$, $r_m$ in ohm).
+
+</div>
+
+<div data-note-id="generatori-controllati-errore-3">
+
+- **Sbagliato:** Dimenticare l'equazione della grandezza di controllo nel metodo dei nodi.
+- **Corretto:** Ogni controllato aggiunge un termine che dipende da una grandezza del circuito: serve l'equazione che la lega alle tensioni di nodo, altrimenti il sistema ha più incognite che equazioni.
+
+</div>
+
+<div data-note-id="generatori-controllati-errore-4">
+
+- **Sbagliato:** Dare per scontato che un circuito di resistori positivi e generatori controllati abbia $R_{eq}\gt 0$.
+- **Corretto:** I controllati possono erogare potenza netta: la resistenza equivalente può risultare negativa, come nel caso del CCCS qui sopra.
 
 </div>
 

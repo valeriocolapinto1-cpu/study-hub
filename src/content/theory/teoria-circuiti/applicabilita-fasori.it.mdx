@@ -12,6 +12,12 @@ I fasori funzionano perché l'esponenziale complesso è «invariante» per deriv
 
 </div>
 
+<div data-note-id="applicabilita-fasori-intuizione-2">
+
+Un controllo pratico prima di usare i fasori: gli elementi sono tutti lineari e costanti? I generatori hanno tutti la stessa frequenza? Il circuito, lasciato a sé, torna a riposo? Con tre «sì» i fasori danno il regime; con un «no» serve altro: un'analisi per ogni frequenza, Laplace o un'analisi non lineare.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -39,6 +45,12 @@ Non si applica a elementi non lineari (diodi, saturazioni) né a elementi tempo-
 4. La soluzione generale è $y_p$ più la risposta libera: se i poli hanno parte reale negativa questa decade e resta $y_p$ (regime). Se il sistema è instabile non esiste un regime. $\square$
 
 </details>
+
+<div data-note-id="applicabilita-fasori-teoria-3">
+
+**La continua.** La continua è una sinusoide con $\omega=0$: il metodo vale ancora, con $Z_L=0$ (corto) e $Z_C\to\infty$ (aperto). Se in un circuito ci sono sia continua sia sinusoidi si usa la sovrapposizione: un'analisi per ciascuna frequenza, compresa $\omega=0$.
+
+</div>
 
 <Formula id="fasori-validita" />
 <Formula id="hjw-def" />
@@ -85,6 +97,20 @@ $H(s)=\dfrac{1}{s-1}$ con ingresso $\cos t$: ha senso $H(j)$?
 
 </div>
 
+<div class="worked" data-note-id="applicabilita-fasori-esempio-4">
+
+### Un regime che non esiste
+
+Un generatore $v_g=\cos t$ alimenta $L=1\,\mathrm H$ in serie a $C=1\,\mathrm F$, senza resistenze. Si può trovare la corrente di regime con i fasori?
+
+**Soluzione.**
+
+1. $Z=j\omega L+\dfrac{1}{j\omega C}=j\cdot1-j\cdot1=0$ a $\omega=1$.
+2. $\dot I=\dot V/Z=1/0$ non esiste: è il caso $D(j\omega)=0$ della dimostrazione, con i poli $s=\pm j$ proprio sulla frequenza del generatore.
+3. Nel tempo la soluzione contiene un termine proporzionale a $t$ che cresce senza limite: non c'è un regime sinusoidale, e basta una resistenza $R\gt 0$ in serie perché torni a esistere.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -100,6 +126,13 @@ $H(s)=\dfrac{1}{s-1}$ con ingresso $\cos t$: ha senso $H(j)$?
 
 - **Sbagliato:** Usare i fasori per il transitorio dopo un'accensione.
 - **Corretto:** Il transitorio richiede Laplace o l'equazione differenziale.
+
+</div>
+
+<div data-note-id="applicabilita-fasori-errore-3">
+
+- **Sbagliato:** Applicare i fasori quando $D(j\omega)=0$, come in un LC ideale alla sua frequenza di risonanza.
+- **Corretto:** In quel caso il regime sinusoidale non esiste: la risposta cresce nel tempo, e la divisione per zero lo segnala.
 
 </div>
 

@@ -12,6 +12,12 @@ In the Laplace domain a circuit with capacitors and inductors looks again like a
 
 </div>
 
+<div data-note-id="circuiti-dominio-laplace-intuizione-2">
+
+The advantage over phasors is that Laplace sees everything: the transient after switching, the response to arbitrary inputs (steps, ramps, impulses) and the initial conditions. Phasors are the special case $s=j\omega$, useful when only the sinusoidal steady state matters.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -25,6 +31,30 @@ In the $s$ domain the elements become $R$, $sL$, $\dfrac1{sC}$, with the initial
 <div data-note-id="circuiti-dominio-laplace-teoria-2">
 
 A constant source $V_0u_{-1}(t)$ becomes $V_0/s$; a sinusoidal source $V_m\cos\omega t$ becomes $V_ms/(s^2+\omega^2)$.
+
+</div>
+
+<div data-note-id="circuiti-dominio-laplace-teoria-3">
+
+**Procedure.** (1) Initial conditions $v_C(0^-)$ and $i_L(0^-)$ from the circuit for $t\lt 0$. (2) Transformed circuit for $t\gt 0$: impedances $R$, $sL$, $1/(sC)$, transformed sources and initial-condition sources. (3) Solution with the techniques for resistive circuits. (4) Inversion with partial fractions. (5) Check of initial and final values.
+
+</div>
+
+<div data-note-id="circuiti-dominio-laplace-teoria-4">
+
+**Impedances and admittances.** Series and parallel, dividers, Thévenin and Norton work as for resistors. For example a parallel RC has $Z(s)=\dfrac{R\cdot\frac{1}{sC}}{R+\frac1{sC}}=\dfrac{R}{1+sRC}$, with a pole at $s=-1/(RC)$.
+
+</div>
+
+<div data-note-id="circuiti-dominio-laplace-teoria-5">
+
+**What to read in the result.** The poles of a response are of two kinds: those of the circuit, which give the natural modes (the transient), and those of the input, which give the permanent response ($s=0$ for a step, $s=\pm j\omega$ for a sinusoid).
+
+</div>
+
+<div data-note-id="circuiti-dominio-laplace-teoria-6">
+
+**Network function.** With zero initial conditions the ratio between the transform of an output and that of an input depends only on the circuit: it is the network function $H(s)$ (see [network functions](../funzioni-di-rete/)), and the response is $Y(s)=H(s)\,X(s)$.
 
 </div>
 
@@ -73,6 +103,21 @@ $R=1$, $L=1$, $v_g=\cos t$, $i(0)=0$: find $I(s)$.
 
 </div>
 
+<div class="worked" data-note-id="circuiti-dominio-laplace-esempio-4">
+
+### RL with a sinusoidal source, all the way
+
+Complete the previous example: $R=1\,\Omega$, $L=1\,\mathrm H$, $v_g=\cos t$ switched on at $t=0$, $i(0^-)=0$, $I(s)=\dfrac{s}{(s+1)(s^2+1)}$. Find $i(t)$.
+
+**Solution.**
+
+1. Circuit pole $-1$: residue $\dfrac{-1}{1+1}=-\tfrac12$.
+2. Remainder $\dfrac{as+b}{s^2+1}$: from $s=-\tfrac12(s^2+1)+(as+b)(s+1)$ we get $a=\tfrac12$, $b=\tfrac12$.
+3. $i(t)=-\tfrac12e^{-t}+\tfrac12\cos t+\tfrac12\sin t$: transient from the circuit pole, steady state from the input poles $\pm j$.
+4. Check: $i(0)=-\tfrac12+\tfrac12=0$ ✓; the steady state matches the phasor $\dfrac{1}{1+j}=\tfrac12-\tfrac12j$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -81,6 +126,27 @@ $R=1$, $L=1$, $v_g=\cos t$, $i(0)=0$: find $I(s)$.
 
 - **Wrong:** Using $j\omega L$ instead of $sL$ in the transient.
 - **Right:** $s$ is the complex variable; $s=j\omega$ only for the steady state.
+
+</div>
+
+<div data-note-id="circuiti-dominio-laplace-errore-2">
+
+- **Wrong:** Forgetting the initial-condition sources in the transformed circuit.
+- **Right:** With $v_C(0^-)\neq0$ or $i_L(0^-)\neq0$ the transformed circuit also contains the sources $v_C(0^-)/s$ and $L\,i_L(0^-)$ (see [initial conditions as sources](../condizioni-iniziali-generatori/)).
+
+</div>
+
+<div data-note-id="circuiti-dominio-laplace-errore-3">
+
+- **Wrong:** Transforming a constant source $V_0$ switched on at $t=0$ as $V_0$.
+- **Right:** A step of amplitude $V_0$ has transform $V_0/s$; the constant $V_0$ without $1/s$ would be an impulse of area $V_0$.
+
+</div>
+
+<div data-note-id="circuiti-dominio-laplace-errore-4">
+
+- **Wrong:** Inverting an impedance as if it were a response.
+- **Right:** $Z(s)$ is a ratio of transforms, not a signal: one inverts a voltage or a current, after multiplying by the transform of the input.
 
 </div>
 

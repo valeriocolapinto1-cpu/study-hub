@@ -12,6 +12,12 @@ Every quantity of a linear circuit driven by a sinusoid oscillates at the same f
 
 </div>
 
+<div data-note-id="fasori-intuizione-2">
+
+You can picture the phasor as an arrow rotating counterclockwise in the complex plane with angular velocity $\omega$: the physical quantity is its projection on the real axis. All the arrows of a circuit rotate together, so a snapshot at $t=0$ is enough: their lengths and the angles between them are all the useful information.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -49,6 +55,30 @@ Cartesian ↔ amplitude-phase form: $a\cos\omega t+b\sin\omega t=\mathrm{Re}\{(a
     }}
   />
 </Figure>
+
+<div data-note-id="fasori-teoria-4">
+
+**Why it works.** The circuit operations (sums, derivatives, integrals, products by real constants) commute with $\mathrm{Re}\{\cdot\}$: for instance $\dfrac{d}{dt}\mathrm{Re}\{\dot Ve^{j\omega t}\}=\mathrm{Re}\{j\omega\dot Ve^{j\omega t}\}$. The product of two quantities does not: that is why the instantaneous power $p=v\,i$ is not $\mathrm{Re}\{\dot V\dot I\}$ and complex power is needed.
+
+</div>
+
+<div data-note-id="fasori-teoria-5">
+
+**Peak or RMS.** The phasor can be defined with the peak amplitude $V_m$ or with the RMS value $V=V_m/\sqrt2$. The linear relations (Kirchhoff, impedances) are identical in both cases; the power formulas change, and with RMS values they lose the factor $\tfrac12$.
+
+</div>
+
+<div data-note-id="fasori-teoria-6">
+
+**Operations in polar form.** Multiplying by $\rho e^{j\theta}$ means scaling the amplitude by $\rho$ and advancing the phase by $\theta$: $j$ advances by $90^\circ$, $-j$ delays by $90^\circ$, $j\omega$ (the derivative) amplifies by $\omega$ and advances by $90^\circ$. Sums and differences, instead, are done in Cartesian form.
+
+</div>
+
+<div data-note-id="fasori-teoria-7">
+
+**RMS value.** For a sinusoid $V=V_m/\sqrt2\approx0.707\,V_m$: the "$230\,\mathrm V$" mains voltage is an RMS value, with a peak of $230\sqrt2\approx325\,\mathrm V$.
+
+</div>
 
 <Formula id="fasore" />
 <Formula id="fasore-sin" />
@@ -97,6 +127,20 @@ What is the phasor of $5\sin(3t)$ in the cosine convention?
 
 </div>
 
+<div class="worked" data-note-id="fasori-esempio-4">
+
+### Sum of two phase-shifted sinusoids
+
+Find amplitude and phase of $v=4\cos(\omega t+30^\circ)+3\cos(\omega t-60^\circ)$.
+
+**Solution.**
+
+1. Phasors in Cartesian form: $4e^{j30^\circ}=3.464+2j$, $3e^{-j60^\circ}=1.5-2.598j$.
+2. Sum: $\dot V=4.964-0.598j$, $|\dot V|=\sqrt{4.964^2+0.598^2}=5.00$, phase $\arctan(-0.598/4.964)=-6.87^\circ$.
+3. $v=5\cos(\omega t-6.87^\circ)$. Check: the two phasors are $90^\circ$ apart, so $|\dot V|=\sqrt{4^2+3^2}=5$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -112,6 +156,20 @@ What is the phasor of $5\sin(3t)$ in the cosine convention?
 
 - **Wrong:** Confusing peak and RMS amplitude: $V_m=\sqrt2V$.
 - **Right:** Always state whether phasors are peak or RMS values (it changes $P$, $Q$).
+
+</div>
+
+<div data-note-id="fasori-errore-3">
+
+- **Wrong:** Adding the amplitudes of two phase-shifted sinusoids: $4+3=7$.
+- **Right:** Add the phasors: with a $90^\circ$ shift the amplitude is $\sqrt{4^2+3^2}=5$. Adding amplitudes works only for sinusoids in phase.
+
+</div>
+
+<div data-note-id="fasori-errore-4">
+
+- **Wrong:** Computing the phase as $\arctan(b/a)$ even when the real part is negative.
+- **Right:** With $a\lt 0$ the arctangent is off by $180^\circ$: use $\mathrm{atan2}$ or look at the quadrant (for $-1+j$ the phase is $135^\circ$, not $-45^\circ$).
 
 </div>
 

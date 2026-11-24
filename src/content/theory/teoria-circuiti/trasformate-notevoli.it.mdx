@@ -12,6 +12,12 @@ Con una decina di trasformate a memoria e le proprietà si ricostruisce quasi tu
 
 </div>
 
+<div data-note-id="trasformate-notevoli-intuizione-2">
+
+Conviene ricordare le trasformate «a famiglie». Il gradino ($1/s$) e le potenze di $t$ ($1/s^{n+1}$) hanno poli nell'origine; l'esponenziale sposta il polo in $-a$; seno e coseno sono una coppia di poli in $\pm j\omega$. Moltiplicare per $e^{-at}$ sposta tutti i poli di $-a$: è così che da $\cos\omega t$ si passa a $e^{-at}\cos\omega t$.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -365,6 +371,36 @@ Un segnale a tratti si scrive con gradini ritardati: l'impulso rettangolare $A[u
   />
 </Figure>
 
+<div data-note-id="trasformate-notevoli-teoria-3">
+
+**Come si ricavano.** Quasi tutta la tabella discende da $\mathcal L\{e^{pt}\}=\dfrac1{s-p}$. Con $p=\pm j\omega$ e la formula di Eulero: $\cos\omega t=\tfrac12(e^{j\omega t}+e^{-j\omega t})\to\tfrac12\left(\dfrac1{s-j\omega}+\dfrac1{s+j\omega}\right)=\dfrac{s}{s^2+\omega^2}$. Con la regola $\mathcal L\{t\,x(t)\}=-\dfrac{dX}{ds}$ si ottengono $t$, $t^n$ e $te^{-at}$.
+
+</div>
+
+<div data-note-id="trasformate-notevoli-teoria-4">
+
+**Segnali a tratti: metodo.** Si scrive il segnale come somma di pezzi accesi da gradini, $x(t)=\sum_k g_k(t)\,u_{-1}(t-t_k)$. Ogni pezzo va riscritto in funzione di $t-t_k$ prima di trasformare, perché la proprietà del ritardo vale per $g(t-t_k)\,u_{-1}(t-t_k)$, non per $g(t)\,u_{-1}(t-t_k)$.
+
+</div>
+
+<div data-note-id="trasformate-notevoli-teoria-5">
+
+**Impulso.** L'impulso $\delta(t)$ ha trasformata $1$ ed è la derivata del gradino, coerentemente con $\mathcal L\{\dot u_{-1}\}=s\cdot\dfrac1s-u_{-1}(0^-)=1$.
+
+</div>
+
+<div data-note-id="trasformate-notevoli-teoria-6">
+
+**Tabella e proprietà insieme.** La tabella copre pochi segnali, ma combinata con le proprietà ne genera moltissimi: la linearità permette di sommare righe diverse, il ritardo di spostarle nel tempo, la traslazione in frequenza di moltiplicarle per un esponenziale, la derivata rispetto a $s$ di moltiplicarle per $t$. Prima di cercare una formula nuova conviene chiedersi da quale riga, e con quale proprietà, si ottiene il segnale.
+
+</div>
+
+<div data-note-id="trasformate-notevoli-teoria-7">
+
+**Segnali periodici.** Un segnale periodico di periodo $T$ acceso a $t=0$, con primo periodo $x_1(t)$ di trasformata $X_1(s)$, ha trasformata $\dfrac{X_1(s)}{1-e^{-sT}}$: è la somma delle infinite copie ritardate, $X_1\,(1+e^{-sT}+e^{-2sT}+\dots)$, una serie geometrica. È una formula generale, non presente nelle fonti del corso <span class="badge badge--warning">DA VERIFICARE</span>.
+
+</div>
+
 <Formula id="l-delta" />
 <Formula id="l-gradino" />
 <Formula id="l-rampa" />
@@ -417,6 +453,21 @@ $x=t$ per $0<t<1$, nulla altrove.
 
 </div>
 
+<div class="worked" data-note-id="trasformate-notevoli-esempio-4">
+
+### Impulso triangolare
+
+$x(t)=t$ per $0\lt t\lt 1$, $x(t)=2-t$ per $1\lt t\lt 2$, nulla altrove. Trova $X(s)$.
+
+**Soluzione.**
+
+1. La pendenza cambia di $+1$ in $t=0$, di $-2$ in $t=1$, di $+1$ in $t=2$.
+2. Quindi $x=t\,u_{-1}(t)-2(t-1)\,u_{-1}(t-1)+(t-2)\,u_{-1}(t-2)$: ogni rampa è già scritta in $t-t_k$.
+3. $X(s)=\dfrac{1-2e^{-s}+e^{-2s}}{s^2}=\dfrac{(1-e^{-s})^2}{s^2}$.
+4. Verifica: $X(0)=\int_0^\infty x\,dt$ è l'area del triangolo, $1$; infatti per $s\to0$ $(1-e^{-s})^2/s^2\to s^2/s^2=1$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -425,6 +476,27 @@ $x=t$ per $0<t<1$, nulla altrove.
 
 - **Sbagliato:** Trasformare $\cos\omega t$ come $\omega/(s^2+\omega^2)$.
 - **Corretto:** Il coseno dà $s/(s^2+\omega^2)$, il seno $\omega/(s^2+\omega^2)$.
+
+</div>
+
+<div data-note-id="trasformate-notevoli-errore-2">
+
+- **Sbagliato:** Trasformare $t\,u_{-1}(t-1)$ come $e^{-s}/s^2$.
+- **Corretto:** Va riscritto come $(t-1)\,u_{-1}(t-1)+u_{-1}(t-1)$: la trasformata è $e^{-s}\left(\dfrac1{s^2}+\dfrac1s\right)$.
+
+</div>
+
+<div data-note-id="trasformate-notevoli-errore-3">
+
+- **Sbagliato:** Scrivere $\mathcal L\{e^{-at}\}=\dfrac{1}{s-a}$.
+- **Corretto:** Il polo è in $s=-a$: $\dfrac1{s+a}$. Controllo: con $a\gt 0$ il segnale decade e il polo deve stare nel semipiano sinistro.
+
+</div>
+
+<div data-note-id="trasformate-notevoli-errore-4">
+
+- **Sbagliato:** Dimenticare che la trasformata vede solo $t\ge0$ e trattare $\dfrac{s}{s^2+\omega^2}$ come un coseno «da sempre».
+- **Corretto:** $\dfrac{s}{s^2+\omega^2}$ è la trasformata di $\cos\omega t\,u_{-1}(t)$, un coseno acceso a $t=0$: entrando in un circuito produce anche un transitorio.
 
 </div>
 

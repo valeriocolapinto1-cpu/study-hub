@@ -12,6 +12,12 @@ A tree is the most economical way to connect all the nodes: no closed path, no r
 
 </div>
 
+<div data-note-id="albero-coalbero-intuizione-2">
+
+A concrete way to build a tree: start from a node and add one branch at a time, always choosing a branch that reaches a new node. After $n-1$ steps all nodes are reached. Every discarded branch would join two nodes already reached: it is a cotree branch, and the loop it closes is its fundamental loop.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -96,6 +102,12 @@ The choice of the tree is not unique: the fundamental loops and cut sets depend 
 
 </details>
 
+<div data-note-id="albero-coalbero-teoria-4">
+
+**Loop–cut-set duality.** A cotree branch $c$ belongs to the fundamental cut set of the tree branch $t$ if and only if $t$ belongs to the fundamental loop of $c$. In the example below (star tree) the cut set of branch $0$-$1$ contains $1$-$2$ and $1$-$3$, and indeed $0$-$1$ appears in the fundamental loops of $1$-$2$ and $1$-$3$, not in that of $2$-$3$. This property is the origin of the relation between the blocks of the matrices $B$ and $Q$.
+
+</div>
+
 <Formula id="albero-coalbero" />
 
 </Layer>
@@ -116,6 +128,20 @@ In the graph of the figure (tree: 0-1, 0-2, 0-3) list the fundamental loops and 
 
 </div>
 
+<div class="worked" data-note-id="albero-coalbero-esempio-2">
+
+### A different tree on the same graph
+
+In the complete graph on 4 nodes choose the "path" tree $0$-$1$, $1$-$2$, $2$-$3$. Find the cotree and the fundamental loops.
+
+**Solution.**
+
+1. Tree: $n-1=3$ branches; cotree: $b-n+1=6-4+1=3$ branches, $0$-$2$, $0$-$3$, $1$-$3$.
+2. Loops: $0$-$2$ closes $0\to1\to2$ ($3$ branches); $0$-$3$ closes $0\to1\to2\to3$ ($4$ branches); $1$-$3$ closes $1\to2\to3$ ($3$ branches).
+3. The number of fundamental loops is still $3$, but one has $4$ branches: with the star tree they all had $3$.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -124,6 +150,20 @@ In the graph of the figure (tree: 0-1, 0-2, 0-3) list the fundamental loops and 
 
 - **Wrong:** Choosing as a "tree" a set of $n-1$ branches that contains a loop (and leaves a node isolated).
 - **Right:** $n-1$ branches are a tree only if they connect all the nodes without loops.
+
+</div>
+
+<div data-note-id="albero-coalbero-errore-2">
+
+- **Wrong:** Thinking that fundamental loops and cut sets do not depend on the chosen tree.
+- **Right:** Changing the tree changes the fundamental loops (in the example one becomes 4 branches long); only their number, $b-n+1$, stays the same.
+
+</div>
+
+<div data-note-id="albero-coalbero-errore-3">
+
+- **Wrong:** Calling a tree a connected set of branches that does not touch all nodes.
+- **Right:** A tree must contain all $n$ nodes; a connected loop-free subgraph that leaves some out has fewer than $n-1$ branches.
 
 </div>
 

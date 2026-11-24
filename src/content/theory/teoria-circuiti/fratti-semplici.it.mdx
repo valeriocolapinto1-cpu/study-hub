@@ -12,6 +12,12 @@ Una funzione razionale complicata è una somma di pezzi semplici, uno per polo, 
 
 </div>
 
+<div data-note-id="fratti-semplici-intuizione-2">
+
+Il residuo di un polo semplice si trova «coprendo» il suo fattore: per il coefficiente di $\dfrac{1}{s+1}$ si copre $(s+1)$ nel denominatore e si valuta il resto in $s=-1$. È il metodo di Heaviside, ed è il motivo per cui con poli semplici bastano poche sostituzioni, senza sistemi di equazioni.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -25,6 +31,36 @@ Una $F(s)=N(s)/D(s)$ con $\deg N<\deg D$ si scompone in fratti semplici. Per un 
 <div data-note-id="fratti-semplici-teoria-2">
 
 Per un polo doppio $p$: $\dfrac{r_2}{(s-p)^2}+\dfrac{r_1}{s-p}$ con $r_2=\lim(s-p)^2F$, $r_1=\lim\dfrac{d}{ds}\left[(s-p)^2F\right]$; dà $(r_2t+r_1)e^{pt}$.
+
+</div>
+
+<div data-note-id="fratti-semplici-teoria-3">
+
+**Perché funziona.** Se $F(s)=\dfrac{r}{s-p}+G(s)$ con $G$ regolare in $p$, moltiplicando per $(s-p)$ si ha $(s-p)F(s)=r+(s-p)G(s)$; per $s\to p$ il secondo termine si annulla e resta $r$.
+
+</div>
+
+<div data-note-id="fratti-semplici-teoria-4">
+
+**Controlli rapidi.** Con poli semplici $f(0^+)$ è la somma dei residui e deve coincidere con $\lim_{s\to\infty}sF(s)$: se $\deg D-\deg N\ge2$ la somma dei residui è zero. Un secondo controllo è valutare $F$ in un punto comodo (per esempio $s=1$) e confrontarlo con la scomposizione.
+
+</div>
+
+<div data-note-id="fratti-semplici-teoria-5">
+
+**Poli complessi.** Il metodo dei residui vale anche per poli complessi: due poli coniugati $p=\sigma\pm j\omega$ hanno residui coniugati $r$ e $r^*$, e la coppia dà $2|r|e^{\sigma t}\cos(\omega t+\arg r)$. Spesso però è più rapido il completamento del quadrato (vedi [poli complessi coniugati](../poli-complessi-coniugati/)).
+
+</div>
+
+<div data-note-id="fratti-semplici-teoria-6">
+
+**Ordine delle operazioni.** (1) Se $\deg N\ge\deg D$ si divide. (2) Si fattorizza il denominatore e si classificano i poli: reali semplici, multipli, coppie complesse. (3) Si calcolano i coefficienti, partendo dai poli semplici. (4) Si antitrasforma termine per termine. (5) Si controlla con il valore iniziale o con un valore numerico di $F$.
+
+</div>
+
+<div data-note-id="fratti-semplici-teoria-7">
+
+**Polo di molteplicità $m$.** In generale un polo $p$ di molteplicità $m$ dà $m$ termini $\dfrac{r_k}{(s-p)^k}$, con $k=1,\dots,m$, e antitrasformate $r_k\dfrac{t^{k-1}}{(k-1)!}e^{pt}$. Il coefficiente di grado massimo si trova con la copertura; gli altri con derivate successive oppure confrontando i numeratori dopo aver trovato tutti gli altri coefficienti.
 
 </div>
 
@@ -75,6 +111,20 @@ $F(s)=\dfrac{s+3}{s+1}$.
 
 </div>
 
+<div class="worked" data-note-id="fratti-semplici-esempio-4">
+
+### Tre poli reali
+
+$F(s)=\dfrac{s^2+2}{s(s+1)(s+2)}$. Antitrasforma e verifica.
+
+**Soluzione.**
+
+1. Residui: in $0$, $\dfrac{2}{1\cdot2}=1$; in $-1$, $\dfrac{1+2}{(-1)(1)}=-3$; in $-2$, $\dfrac{4+2}{(-2)(-1)}=3$.
+2. $f(t)=1-3e^{-t}+3e^{-2t}$ per $t\gt 0$.
+3. Verifica 1: $f(0^+)=1-3+3=1=\lim_{s\to\infty}\dfrac{s^2+2}{(s+1)(s+2)}$ ✓. Verifica 2: $F(1)=\dfrac{3}{6}=0{,}5$ e $1-\dfrac32+\dfrac33=0{,}5$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -83,6 +133,34 @@ $F(s)=\dfrac{s+3}{s+1}$.
 
 - **Sbagliato:** Scomporre senza dividere quando $\deg N=\deg D$.
 - **Corretto:** Dividi prima: il quoziente dà un impulso.
+
+</div>
+
+<div data-note-id="fratti-semplici-errore-2">
+
+- **Sbagliato:** Calcolare un polo doppio con la sola formula del polo semplice.
+- **Corretto:** Un polo doppio richiede due coefficienti, $r_2$ con $(s-p)^2F$ e $r_1$ con la derivata: altrimenti manca il termine $te^{pt}$.
+
+</div>
+
+<div data-note-id="fratti-semplici-errore-3">
+
+- **Sbagliato:** Sbagliare il segno dell'esponente: $\dfrac{r}{s+2}\to re^{2t}$.
+- **Corretto:** Il polo è $p=-2$ e $\dfrac{r}{s-p}\to re^{pt}=re^{-2t}$.
+
+</div>
+
+<div data-note-id="fratti-semplici-errore-4">
+
+- **Sbagliato:** Valutare il resto nel punto sbagliato: per il termine $\dfrac{r}{s+3}$ sostituire $s=3$.
+- **Corretto:** Si valuta nel polo, cioè dove il fattore coperto si annulla: $s=-3$.
+
+</div>
+
+<div data-note-id="fratti-semplici-errore-5">
+
+- **Sbagliato:** Togliere più fattori del necessario durante la copertura.
+- **Corretto:** Coprendo $(s+1)$ in $\dfrac{3s+5}{(s+1)(s+3)}$ resta $\dfrac{3s+5}{s+3}$: tutti gli altri fattori restano e si valutano nel polo, $s=-1$.
 
 </div>
 

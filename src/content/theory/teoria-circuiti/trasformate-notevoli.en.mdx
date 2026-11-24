@@ -12,6 +12,12 @@ With a dozen transforms by heart and the properties you can rebuild almost every
 
 </div>
 
+<div data-note-id="trasformate-notevoli-intuizione-2">
+
+It pays to remember transforms "by families". The step ($1/s$) and the powers of $t$ ($1/s^{n+1}$) have poles at the origin; the exponential moves the pole to $-a$; sine and cosine are a pair of poles at $\pm j\omega$. Multiplying by $e^{-at}$ shifts all poles by $-a$: this is how one goes from $\cos\omega t$ to $e^{-at}\cos\omega t$.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -365,6 +371,36 @@ A piecewise signal is written with delayed steps: the rectangular pulse $A[u_{-1
   />
 </Figure>
 
+<div data-note-id="trasformate-notevoli-teoria-3">
+
+**How they are derived.** Almost the whole table follows from $\mathcal L\{e^{pt}\}=\dfrac1{s-p}$. With $p=\pm j\omega$ and Euler's formula: $\cos\omega t=\tfrac12(e^{j\omega t}+e^{-j\omega t})\to\tfrac12\left(\dfrac1{s-j\omega}+\dfrac1{s+j\omega}\right)=\dfrac{s}{s^2+\omega^2}$. With the rule $\mathcal L\{t\,x(t)\}=-\dfrac{dX}{ds}$ one gets $t$, $t^n$ and $te^{-at}$.
+
+</div>
+
+<div data-note-id="trasformate-notevoli-teoria-4">
+
+**Piecewise signals: method.** Write the signal as a sum of pieces switched on by steps, $x(t)=\sum_k g_k(t)\,u_{-1}(t-t_k)$. Each piece must be rewritten in terms of $t-t_k$ before transforming, because the delay property holds for $g(t-t_k)\,u_{-1}(t-t_k)$, not for $g(t)\,u_{-1}(t-t_k)$.
+
+</div>
+
+<div data-note-id="trasformate-notevoli-teoria-5">
+
+**Impulse.** The impulse $\delta(t)$ has transform $1$ and is the derivative of the step, consistently with $\mathcal L\{\dot u_{-1}\}=s\cdot\dfrac1s-u_{-1}(0^-)=1$.
+
+</div>
+
+<div data-note-id="trasformate-notevoli-teoria-6">
+
+**Table and properties together.** The table covers few signals, but combined with the properties it generates very many: linearity lets you add different rows, the delay shifts them in time, the frequency shift multiplies them by an exponential, the derivative with respect to $s$ multiplies them by $t$. Before looking for a new formula, ask from which row, and with which property, the signal can be obtained.
+
+</div>
+
+<div data-note-id="trasformate-notevoli-teoria-7">
+
+**Periodic signals.** A periodic signal of period $T$ switched on at $t=0$, whose first period $x_1(t)$ has transform $X_1(s)$, has transform $\dfrac{X_1(s)}{1-e^{-sT}}$: it is the sum of the infinitely many delayed copies, $X_1\,(1+e^{-sT}+e^{-2sT}+\dots)$, a geometric series. It is a general formula, not found in the course sources <span class="badge badge--warning">TO BE VERIFIED</span>.
+
+</div>
+
 <Formula id="l-delta" />
 <Formula id="l-gradino" />
 <Formula id="l-rampa" />
@@ -417,6 +453,21 @@ $x=t$ for $0<t<1$, zero elsewhere.
 
 </div>
 
+<div class="worked" data-note-id="trasformate-notevoli-esempio-4">
+
+### Triangular pulse
+
+$x(t)=t$ for $0\lt t\lt 1$, $x(t)=2-t$ for $1\lt t\lt 2$, zero elsewhere. Find $X(s)$.
+
+**Solution.**
+
+1. The slope changes by $+1$ at $t=0$, by $-2$ at $t=1$, by $+1$ at $t=2$.
+2. So $x=t\,u_{-1}(t)-2(t-1)\,u_{-1}(t-1)+(t-2)\,u_{-1}(t-2)$: each ramp is already written in $t-t_k$.
+3. $X(s)=\dfrac{1-2e^{-s}+e^{-2s}}{s^2}=\dfrac{(1-e^{-s})^2}{s^2}$.
+4. Check: $X(0)=\int_0^\infty x\,dt$ is the triangle's area, $1$; indeed for $s\to0$ $(1-e^{-s})^2/s^2\to s^2/s^2=1$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -425,6 +476,27 @@ $x=t$ for $0<t<1$, zero elsewhere.
 
 - **Wrong:** Transforming $\cos\omega t$ as $\omega/(s^2+\omega^2)$.
 - **Right:** The cosine gives $s/(s^2+\omega^2)$, the sine $\omega/(s^2+\omega^2)$.
+
+</div>
+
+<div data-note-id="trasformate-notevoli-errore-2">
+
+- **Wrong:** Transforming $t\,u_{-1}(t-1)$ as $e^{-s}/s^2$.
+- **Right:** It must be rewritten as $(t-1)\,u_{-1}(t-1)+u_{-1}(t-1)$: the transform is $e^{-s}\left(\dfrac1{s^2}+\dfrac1s\right)$.
+
+</div>
+
+<div data-note-id="trasformate-notevoli-errore-3">
+
+- **Wrong:** Writing $\mathcal L\{e^{-at}\}=\dfrac{1}{s-a}$.
+- **Right:** The pole is at $s=-a$: $\dfrac1{s+a}$. Check: with $a\gt 0$ the signal decays and the pole must lie in the left half-plane.
+
+</div>
+
+<div data-note-id="trasformate-notevoli-errore-4">
+
+- **Wrong:** Forgetting that the transform only sees $t\ge0$ and treating $\dfrac{s}{s^2+\omega^2}$ as a cosine that has "always" been there.
+- **Right:** $\dfrac{s}{s^2+\omega^2}$ is the transform of $\cos\omega t\,u_{-1}(t)$, a cosine switched on at $t=0$: entering a circuit it also produces a transient.
 
 </div>
 

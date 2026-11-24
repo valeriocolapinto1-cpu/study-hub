@@ -12,6 +12,12 @@ Instead of looking for every current and voltage, pick one node as "ground" and 
 
 </div>
 
+<div data-note-id="metodo-dei-nodi-intuizione-2">
+
+The method is also convenient because every equation can be read: "the current leaving the node through the conductances equals the current injected by the sources". The matrix $G$ is written by looking at the circuit, without going through the branch equations: on the diagonal the conductances touching the node, off the diagonal the shared ones, with a minus sign.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -49,6 +55,18 @@ with $G_{jj}=$ sum of the conductances connected to node $j$, $G_{jk}=-$ conduct
 
 </details>
 
+<div data-note-id="metodo-dei-nodi-teoria-4">
+
+**Writing by inspection.** The equation of node $j$ is KCL written with potentials: for each conductance connected to the node add $G_r\,(e_j-e_{\text{other}})$, where $e_{\text{other}}$ is the potential of the other end (zero if it is the reference), and equate to the sum of the source currents entering the node. Collecting coefficients gives back $G_{jj}$ and $G_{jk}$.
+
+</div>
+
+<div data-note-id="metodo-dei-nodi-teoria-5">
+
+**With controlled sources.** A VCCS that drives the current $g_m\,(e_p-e_q)$ out of node $j$ and into node $k$ adds terms that break the symmetry of $G$: in row $j$ add $+g_m$ in column $p$ and $-g_m$ in column $q$, in row $k$ the opposite. A controlled source of another type requires an extra equation for the controlling quantity.
+
+</div>
+
 <Formula id="nodi" />
 <Formula id="nodi-mat" />
 
@@ -71,6 +89,20 @@ A $3\,\mathrm{A}$ current source into node 1; resistances: node 1–reference $2
 
 </div>
 
+<div class="worked" data-note-id="metodo-dei-nodi-esempio-2">
+
+### Supernode
+
+A voltage source $E=6\,\mathrm V$ joins node 1 ($+$) to node 2. Between node 1 and the reference there is $R_1=2\,\Omega$, between node 2 and the reference $R_2=4\,\Omega$; a current source injects $6\,\mathrm A$ into node 2. Find $e_1$, $e_2$ and the current in the voltage source.
+
+**Solution.**
+
+1. Source constraint: $e_1-e_2=6$.
+2. KCL on the supernode $\{1,2\}$: $\dfrac{e_1}{2}+\dfrac{e_2}{4}=6$. With $e_1=e_2+6$: $\tfrac34e_2+3=6$, so $e_2=4\,\mathrm V$, $e_1=10\,\mathrm V$.
+3. Currents to the reference: $10/2=5\,\mathrm A$ and $4/4=1\,\mathrm A$, total $6\,\mathrm A$ ✓. The voltage source carries $5\,\mathrm A$ from node 2 to node 1 (all the current of $R_1$).
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -79,6 +111,20 @@ A $3\,\mathrm{A}$ current source into node 1; resistances: node 1–reference $2
 
 - **Wrong:** Putting the unknown current of a voltage source into a node equation without writing its constraint.
 - **Right:** Use the supernode, or add the source current as an unknown together with the equation $e_j-e_k=E$.
+
+</div>
+
+<div data-note-id="metodo-dei-nodi-errore-2">
+
+- **Wrong:** Putting on the right-hand side, with a plus sign, the source currents leaving the node.
+- **Right:** With the conductances on the left (outgoing currents), the right-hand side holds with a $+$ sign the source currents _entering_ the node.
+
+</div>
+
+<div data-note-id="metodo-dei-nodi-errore-3">
+
+- **Wrong:** Writing KCL for the reference node as well.
+- **Right:** The reference has zero potential and its KCL depends on the others: there are $n-1$ equations.
 
 </div>
 

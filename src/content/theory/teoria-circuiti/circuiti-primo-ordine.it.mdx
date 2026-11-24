@@ -12,6 +12,12 @@ Un condensatore che si carica attraverso un resistore non arriva subito al valor
 
 </div>
 
+<div data-note-id="circuiti-primo-ordine-intuizione-2">
+
+La costante di tempo si legge anche sul grafico: la tangente alla curva in $t=0$ raggiunge il valore finale esattamente dopo $\tau$. Dopo $\tau$ manca il $37\,\%$ del salto, dopo $3\tau$ il $5\,\%$, dopo $5\tau$ meno dell'$1\,\%$. Un $\tau$ grande indica un circuito «pigro»: una grande capacità da riempire, o poca corrente per riempirla.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -80,6 +86,18 @@ Un circuito con un solo elemento di memoria e generatori indipendenti è descrit
   />
 </Figure>
 
+<div data-note-id="circuiti-primo-ordine-teoria-4">
+
+**Procedura per un gradino.** (1) Regime per $t\lt 0$: $C$ aperto, $L$ corto, si ricava $x(0^-)$. (2) Continuità: $x(0^+)=x(0^-)$. (3) Regime finale con il circuito valido per $t\gt 0$: $x_\infty$. (4) Resistenza $R_{eq}$ vista dall'elemento con memoria, indipendenti spenti: $\tau$. (5) Si assembla $x(t)=x_\infty+(x_0-x_\infty)e^{-t/\tau}$. Le altre grandezze si ricavano da $x(t)$ con Kirchhoff, perché in generale non sono continue.
+
+</div>
+
+<div data-note-id="circuiti-primo-ordine-teoria-5">
+
+**Stabilità.** Con $R_{eq}\gt 0$ la costante di tempo è positiva e l'esponenziale si spegne. Con generatori controllati $R_{eq}$ può risultare negativa: allora $\tau\lt 0$, il termine $e^{-t/\tau}$ cresce e il circuito non raggiunge alcun regime.
+
+</div>
+
 <Formula id="tau-rc" />
 <Formula id="tau-rl" />
 <Formula id="sol-primo-ordine" />
@@ -129,6 +147,21 @@ $\dot y+y=\cos t$, $y(0)=0$ ($\tau=1$). Trova $y(t)$.
 
 </div>
 
+<div class="worked" data-note-id="circuiti-primo-ordine-esempio-4">
+
+### Scarica dopo un interruttore
+
+Per $t\lt 0$ un generatore $12\,\mathrm V$ con $R_1=2\,\Omega$ in serie alimenta $C=0{,}5\,\mathrm F$ in parallelo a $R_2=4\,\Omega$. A $t=0$ un interruttore stacca il generatore con $R_1$. Trova $v_C(t)$, le correnti a $0^\pm$ e l'energia dissipata in $R_2$.
+
+**Soluzione.**
+
+1. Regime per $t\lt 0$ ($C$ aperto): partitore, $v_C(0^-)=12\cdot\dfrac{4}{2+4}=8\,\mathrm V$.
+2. Per $t\gt 0$ il condensatore vede solo $R_2$: $\tau=R_2C=2\,\mathrm s$, $v_\infty=0$, quindi $v_C(t)=8e^{-t/2}\,\mathrm V$.
+3. Correnti: $i_{R_2}(0^\pm)=8/4=2\,\mathrm A$; $i_C(0^-)=0$ ma $i_C(0^+)=-2\,\mathrm A$: la corrente nel condensatore salta, la tensione no.
+4. Energia: $\int_0^\infty\dfrac{v_C^2}{R_2}dt=\dfrac{64}{4}\int_0^\infty e^{-t}dt=16\,\mathrm J=\tfrac12\cdot0{,}5\cdot8^2$ ✓, tutta l'energia iniziale del condensatore.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -144,6 +177,13 @@ $\dot y+y=\cos t$, $y(0)=0$ ($\tau=1$). Trova $y(t)$.
 
 - **Sbagliato:** Imporre $x(0^+)=0$ perché «il generatore è partito da zero».
 - **Corretto:** $x(0^+)=x(0^-)$ con il valore raggiunto nel regime precedente.
+
+</div>
+
+<div data-note-id="circuiti-primo-ordine-errore-3">
+
+- **Sbagliato:** Calcolare $\tau$ con il circuito valido per $t\lt 0$.
+- **Corretto:** $\tau$ si calcola con il circuito dopo la commutazione, quello in cui avviene il transitorio (nell'esempio $R_2C$, non $(R_1\parallel R_2)C$).
 
 </div>
 

@@ -12,6 +12,12 @@ lang: it
 
 </div>
 
+<div data-note-id="metodo-delle-maglie-intuizione-2">
+
+Nel ramo che due maglie condividono passano entrambe le correnti di maglia: se girano in versi opposti nel ramo, la corrente reale è la loro differenza. È per questo che, con tutte le maglie orarie, i termini fuori diagonale di $R_m$ hanno il segno meno: la caduta su quel ramo «frena» la maglia vicina.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -43,6 +49,18 @@ Un generatore di corrente su un solo ramo di una maglia fissa la corrente di que
 
 </details>
 
+<div data-note-id="metodo-delle-maglie-teoria-3">
+
+**Scrittura per ispezione.** L'equazione della maglia $j$ è la KVL scritta con le correnti di maglia: per ogni resistore del percorso si somma $R\,(j_j\mp j_k)$, dove $j_k$ è la corrente dell'altra maglia che attraversa lo stesso ramo (con il meno se in verso opposto). A secondo membro vanno le tensioni dei generatori che spingono corrente nel verso della maglia.
+
+</div>
+
+<div data-note-id="metodo-delle-maglie-teoria-4">
+
+**Quando conviene.** Il metodo delle maglie ha $b-n+1$ incognite contro le $n-1$ dei nodi: conviene con molti nodi e pochi anelli (circuiti «a scala») e con generatori di tensione, che entrano direttamente nei termini noti. Usare le finestre del disegno come maglie richiede un circuito planare.
+
+</div>
+
 <Formula id="maglie" />
 <Formula id="maglie-mat" />
 
@@ -64,6 +82,20 @@ Maglia 1: generatore $12\,\mathrm{V}$ e $R_1=2\,\Omega$; ramo comune $R_2=4\,\Om
 
 </div>
 
+<div class="worked" data-note-id="metodo-delle-maglie-esempio-2">
+
+### Supermaglia
+
+Maglia 1: generatore $E=10\,\mathrm V$ e $R_1=2\,\Omega$; maglia 2: $R_2=3\,\Omega$; nel ramo comune un generatore di corrente impone $j_1-j_2=1\,\mathrm A$. Trova le correnti di maglia e la tensione sul generatore di corrente.
+
+**Soluzione.**
+
+1. Supermaglia (percorso esterno, che evita il generatore di corrente): $10=2j_1+3j_2$.
+2. Con $j_1=j_2+1$: $10=5j_2+2$, quindi $j_2=1{,}6\,\mathrm A$ e $j_1=2{,}6\,\mathrm A$.
+3. Tensione sul generatore di corrente dalla maglia 1: $10-2\cdot2{,}6=4{,}8\,\mathrm V$; dalla maglia 2: $3\cdot1{,}6=4{,}8\,\mathrm V$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -72,6 +104,20 @@ Maglia 1: generatore $12\,\mathrm{V}$ e $R_1=2\,\Omega$; ramo comune $R_2=4\,\Om
 
 - **Sbagliato:** Dimenticare il segno meno dei termini mutui quando i versi delle correnti di maglia sono tutti orari.
 - **Corretto:** Con tutte le maglie orarie il ramo comune ha correnti opposte: il termine mutuo è $-R$.
+
+</div>
+
+<div data-note-id="metodo-delle-maglie-errore-2">
+
+- **Sbagliato:** Scrivere una KVL che attraversa un generatore di corrente senza introdurne la tensione.
+- **Corretto:** La tensione di un generatore di corrente è incognita: o si usa la supermaglia, che non lo attraversa, o si aggiunge quella tensione come incognita.
+
+</div>
+
+<div data-note-id="metodo-delle-maglie-errore-3">
+
+- **Sbagliato:** Usare le finestre del disegno come maglie in un circuito non planare.
+- **Corretto:** Le finestre sono indipendenti solo nei circuiti planari; altrimenti si usano le maglie fondamentali di un albero.
 
 </div>
 

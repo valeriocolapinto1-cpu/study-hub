@@ -12,6 +12,12 @@ An operational amplifier with enormous gain, closed in a feedback loop, adjusts 
 
 </div>
 
+<div data-note-id="nullore-e-amplificatore-operazionale-intuizione-2">
+
+The price of the idealisation is that the nullor alone is not enough: the nullator imposes two constraints and the norator none, so the circuit can be solved only thanks to the external feedback network linking output and input. Without negative feedback the model no longer describes the real op-amp, which ends up in saturation.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -164,6 +170,20 @@ A nullor has a current source $I_g=2\,\mathrm{A}$ at the nullator, in series wit
 
 </div>
 
+<div class="worked" data-note-id="nullore-e-amplificatore-operazionale-esempio-3">
+
+### Non-inverting amplifier
+
+Non-inverting amplifier with $R_1=1\,\mathrm{k\Omega}$ to ground, $R_2=4\,\mathrm{k\Omega}$ feedback and $V_g=0.5\,\mathrm V$ at the $+$ input. Find $v_o$ with the nullor.
+
+**Solution.**
+
+1. Nullator: $v_-=v_+=0.5\,\mathrm V$ and zero input current.
+2. Current in $R_1$: $0.5/1000=0.5\,\mathrm{mA}$, which flows entirely through $R_2$.
+3. $v_o=0.5+4000\cdot0.5\cdot10^{-3}=2.5\,\mathrm V=\left(1+\tfrac41\right)\cdot0.5$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -172,6 +192,20 @@ A nullor has a current source $I_g=2\,\mathrm{A}$ at the nullator, in series wit
 
 - **Wrong:** Saying that the input current is zero "because the input voltage is zero", as for a short circuit.
 - **Right:** In the nullator voltage _and_ current are both zero: the current is zero because $R_i\to\infty$, the voltage because $A\to\infty$ with feedback.
+
+</div>
+
+<div data-note-id="nullore-e-amplificatore-operazionale-errore-2">
+
+- **Wrong:** Writing KCL at the op-amp output node while ignoring the norator current.
+- **Right:** The norator output current is a free unknown: KCL at the output node serves to find that current, not the node voltages.
+
+</div>
+
+<div data-note-id="nullore-e-amplificatore-operazionale-errore-3">
+
+- **Wrong:** Using the nullor even when the op-amp is saturated or without negative feedback.
+- **Right:** The model $v_d=0$ holds only in the linear region, with negative feedback; in saturation $v_o=\pm V_{cc}$ and $v_d\neq0$.
 
 </div>
 

@@ -12,6 +12,12 @@ With Laplace there is no need to guess the particular solution or to impose the 
 
 </div>
 
+<div data-note-id="equazioni-integro-differenziali-intuizione-2">
+
+The procedure is always the same, in three moves: transform (derivatives carry the initial conditions with them), solve an algebraic equation in $Y(s)$, invert with partial fractions. The denominator of $Y(s)$ contains the characteristic polynomial of the equation: its zeros are the natural modes of the response.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -343,6 +349,36 @@ The advantage over the classical method (homogeneous + particular solution + con
   />
 </Figure>
 
+<div data-note-id="equazioni-integro-differenziali-teoria-3">
+
+**Structure of the solution.** For $a_2\ddot y+a_1\dot y+a_0y=x(t)$ one gets $Y(s)=\dfrac{X(s)}{a_2s^2+a_1s+a_0}+\dfrac{a_2\left(sy(0^-)+\dot y(0^-)\right)+a_1y(0^-)}{a_2s^2+a_1s+a_0}$: the first term is the forced response (depends only on the input), the second the free response (depends only on the initial conditions).
+
+</div>
+
+<div data-note-id="equazioni-integro-differenziali-teoria-4">
+
+**Integrals.** A term $\int_0^ty\,d\tau$ becomes $Y(s)/s$. If the integral starts at $-\infty$, as for a capacitor voltage, the value accumulated up to $0^-$ also appears: $\int_{-\infty}^ty\,d\tau\to\dfrac{Y(s)}{s}+\dfrac{1}{s}\int_{-\infty}^{0^-}y\,d\tau$.
+
+</div>
+
+<div data-note-id="equazioni-integro-differenziali-teoria-5">
+
+**Checks.** The result is checked by substituting $t=0$ (it must give $y(0^+)$, equal to $y(0^-)$ if there are no impulses) and by applying the initial and final value theorems directly to $Y(s)$, before inverting.
+
+</div>
+
+<div data-note-id="equazioni-integro-differenziali-teoria-6">
+
+**Comparison with the classical method.** In the classical method one finds the homogeneous solution with unknown constants, then a particular solution "guessed" from the form of the input, and only at the end imposes the initial conditions on the sum. With Laplace the three steps become one: the solution comes out with the right constants, and any input, even piecewise or impulsive, requires no guessing.
+
+</div>
+
+<div data-note-id="equazioni-integro-differenziali-teoria-7">
+
+**Systems of equations.** With several unknowns, for instance the currents of two meshes, each equation is transformed and a linear algebraic system in $Y_1(s),Y_2(s),\dots$ is obtained, solved by substitution or with Cramer's rule. The determinant of the system is the characteristic polynomial of the circuit: its zeros are the poles shared by all responses.
+
+</div>
+
 <Formula id="laplace-der" />
 <Formula id="laplace-der2" />
 
@@ -390,6 +426,21 @@ $\dot y+y+\int_0^ty\,d\tau=u_{-1}(t)$, $y(0^-)=0$.
 
 </div>
 
+<div class="worked" data-note-id="equazioni-integro-differenziali-esempio-4">
+
+### Forced plus free
+
+$\ddot y+4\dot y+3y=6\,u_{-1}(t)$ with $y(0^-)=0$, $\dot y(0^-)=1$. Find $y(t)$ and separate free and forced responses.
+
+**Solution.**
+
+1. Transform: $(s^2+4s+3)Y-1=\dfrac6s\Rightarrow Y=\dfrac{6}{s(s+1)(s+3)}+\dfrac{1}{(s+1)(s+3)}$.
+2. Forced: $\dfrac2s-\dfrac3{s+1}+\dfrac1{s+3}\to2-3e^{-t}+e^{-3t}$. Free: $\dfrac{1/2}{s+1}-\dfrac{1/2}{s+3}\to\tfrac12e^{-t}-\tfrac12e^{-3t}$.
+3. Total: $y=2-2.5e^{-t}+0.5e^{-3t}$.
+4. Check: $y(0)=2-2.5+0.5=0$ ✓, $\dot y(0)=2.5-1.5=1$ ✓, $y(\infty)=2=6/3$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -398,6 +449,34 @@ $\dot y+y+\int_0^ty\,d\tau=u_{-1}(t)$, $y(0^-)=0$.
 
 - **Wrong:** Forgetting $y(0^-)$ in the derivative.
 - **Right:** $\dot y\to sY-y(0^-)$.
+
+</div>
+
+<div data-note-id="equazioni-integro-differenziali-errore-2">
+
+- **Wrong:** Transforming $\ddot y$ as $s^2Y-y(0^-)$.
+- **Right:** $\ddot y\to s^2Y-sy(0^-)-\dot y(0^-)$: the condition on $y$ is multiplied by $s$, and the one on the derivative is needed too.
+
+</div>
+
+<div data-note-id="equazioni-integro-differenziali-errore-3">
+
+- **Wrong:** Inverting without checking the initial conditions.
+- **Right:** Substituting $t=0$ into the solution and its derivative takes a moment and catches most errors in the residues.
+
+</div>
+
+<div data-note-id="equazioni-integro-differenziali-errore-4">
+
+- **Wrong:** Stopping at $Y(s)$ as if it were the answer.
+- **Right:** The required result is $y(t)$: it must be inverted, and it must be stated for which instants it holds (usually $t\gt 0$).
+
+</div>
+
+<div data-note-id="equazioni-integro-differenziali-errore-5">
+
+- **Wrong:** Transforming $\int_0^t y\,d\tau$ as $sY$.
+- **Right:** The integral divides by $s$: $\int_0^t y\,d\tau\to Y(s)/s$; it is the derivative that multiplies by $s$.
 
 </div>
 
