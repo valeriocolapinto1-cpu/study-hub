@@ -17,6 +17,7 @@ export default tseslint.config(
       'playwright-report/',
       'test-results/',
       '.lighthouseci/',
+      'tools/ai-worker/.wrangler/',
       // Google Apps Script: altro runtime (V8 di Google, globali SpreadsheetApp/DriveApp…), provato a parte.
       'tools/apps-script/*.gs',
     ],

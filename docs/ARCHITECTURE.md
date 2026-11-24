@@ -45,7 +45,8 @@ src/pages/[lang]/…              tutte le pagine (getStaticPaths su it/en)
 src/pages/404.astro             pagina 404 bilingue
 legacy/<courseId>/, legacy/hub/ sorgenti originali (git subtree), esclusi da build, tsc, vitest, prettier
 tools/                          serve-dist.mjs, check-links.mjs, site-base.mjs, legacy-topics/, apps-script/,
-                                integrations/ (csp, pagefind, pwa), og/fonts/, screenshots.mjs
+                                integrations/ (csp, pagefind, pwa), og/fonts/, screenshots.mjs,
+                                ai-worker/ (Worker Cloudflare del tutor AI, package.json e wrangler.toml propri)
 tests/unit, tests/content, tests/e2e, tests/fixtures
 ```
 
@@ -235,6 +236,13 @@ pagine globali `/<lang>/ripasso/`, `/<lang>/appunti/`, `/<lang>/i-miei-dati/`, `
   backup (stesso file di "Esporta in un file"), deregistra i service worker, svuota Cache Storage e ricarica;
   localStorage e IndexedDB (progressi, appunti, ripasso) non si toccano, i corsi offline vanno riscaricati.
   Nei test Playwright il service worker è bloccato salvo `test.use({ serviceWorkers: 'allow' })`.
+- **Tutor AI** (R12, [TUTOR-AI.md](TUTOR-AI.md)): pulsante «Chiedi al tutor» su esercizi di un argomento, ripasso
+  e teoria (`components/course/TutorButton.astro` + `Tutor.astro`), mai nella prova d'esame; pannello
+  `src/scripts/tutor/` scaricato con `import()` al primo clic (CSS compreso, come file a parte), contesto letto dal
+  DOM con le formule in TeX, cronologia solo nel browser (`sh:tutor:<corso>`, fuori da `sh:v1:` e dall'export).
+  Il sito parla solo con il Worker `tools/ai-worker/` (chiave come secret, streaming SSE, Turnstile, limiti per IP
+  e tetto di spesa in un Durable Object). Con `SITE.tutor.endpoint` vuoto non c'è nulla nelle pagine; la CSP apre
+  `connect-src` al Worker solo nelle pagine con `data-tutor-endpoint`. Privacy: [PRIVACY-TUTOR.md](PRIVACY-TUTOR.md).
 - **Contributi**: modulo `/<lingua>/contribuisci/` + Google Apps Script — vedi [CONTRIBUTI.md](CONTRIBUTI.md).
   Crediti nella collection `credits` (`src/content/credits.yaml`), pagina `/<lingua>/ringraziamenti/`.
 - **Home**: vetrina con numeri reali dalle collections (corsi, argomenti, esercizi, flashcard, formule,
@@ -259,6 +267,7 @@ pagine globali `/<lang>/ripasso/`, `/<lang>/appunti/`, `/<lang>/i-miei-dati/`, `
 | `npm run test:e2e` | Playwright (smoke, axe, visual) su `dist/` servita da `tools/serve-dist.mjs` |
 | `npm run lhci` | Lighthouse CI su `dist/` |
 | `npm run format` / `format:check` | Prettier |
+| `npm run ai:deploy` | pubblica il Worker del tutor AI (solo Valerio, con wrangler: [TUTOR-AI.md](TUTOR-AI.md)) |
 
 In locale con un Chromium già installato: `PW_CHROMIUM_PATH=/opt/pw-browsers/chromium npm run test:e2e`,
 `CHROME_PATH=/opt/pw-browsers/chromium npm run lhci`.

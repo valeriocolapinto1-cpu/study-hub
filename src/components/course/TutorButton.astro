@@ -1,0 +1,46 @@
+---
+/**
+ * Pulsante «Chiedi al tutor» (R12): HTML statico; il clic lo gestisce il caricatore di Tutor.astro.
+ * `kind` e `target` dicono al pannello da dove prendere il contesto (esercizio `#<id>`, scheda di
+ * ripasso visibile, sezione di teoria in vista o testo selezionato). Invisibile se il tutor non è
+ * configurato.
+ */
+import { tutorConfig } from '../../config/site';
+import { t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+  kind: 'exercise' | 'card' | 'theory';
+  /** Esercizio: id dell'elemento; scheda e teoria: nessuno. */
+  target?: string;
+  /** Esercizio: argomento (per scaricare la soluzione da dati/<argomento>.json). */
+  topic?: string;
+  /** Teoria: pulsante fisso in basso a destra (il contesto è la sezione in vista). */
+  float?: boolean;
+  /** Per il nome accessibile, es. «Esercizio 3». */
+  what?: string;
+  class?: string;
+}
+const { lang, kind, target, topic, float, what, class: className } = Astro.props;
+const enabled = tutorConfig() !== null;
+---
+
+{enabled && (
+  <button
+    type="button"
+    class:list={['btn btn--sm tutor-open', { 'tutor-open--float': float }, className]}
+    data-tutor-open={kind}
+    data-tutor-target={target}
+    data-tutor-topic={topic}
+    aria-label={what ? t(lang, 'tutor.askAbout', { what }) : undefined}
+    aria-haspopup="dialog"
+    data-pagefind-ignore
+  >
+    {/* fumetto, stesso tratto delle icone di Icon.astro (fuori dal set: il catalogo /stile/ non cambia) */}
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M4.5 6a1.5 1.5 0 0 1 1.5-1.5h12A1.5 1.5 0 0 1 19.5 6v8.5A1.5 1.5 0 0 1 18 16h-7l-4.5 3.5V16H6a1.5 1.5 0 0 1-1.5-1.5Z" />
+      <path d="M8.5 9h7M8.5 12h4.5" />
+    </svg>
+    <span class="tutor-open__text">{t(lang, 'tutor.ask')}</span>
+  </button>
+)}

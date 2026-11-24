@@ -25,7 +25,8 @@
     "format:check": "prettier --check .",
     "test:links": "node tools/check-links.mjs",
     "script:push": "node tools/apps-script/push.mjs",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "ai:deploy": "npm --prefix tools/ai-worker install --no-audit --no-fund && npm --prefix tools/ai-worker run deploy"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "7.3.5",
@@ -43,6 +44,7 @@
     "remark-math": "6.0.0"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "1.10.0",
     "@astrojs/check": "0.9.12",
     "@axe-core/playwright": "4.14.0",
     "@eslint/js": "9.39.5",
