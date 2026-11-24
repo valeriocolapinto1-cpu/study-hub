@@ -2,7 +2,8 @@
 /**
  * Layout delle pagine di un corso: accento del corso, indice del corso (sezioni + sommario
  * argomenti) presente UNA volta nel DOM — barra laterale da 1024 px, menu (popover) sotto —,
- * una riga sola con pulsante dell'indice, percorso e occhiello, colonna di lettura e strumenti
+ * una riga sola con pulsante dell'indice (menu sotto i 1024 px, «Nascondi/Mostra indice» sopra:
+ * src/lib/course-index.ts), percorso e occhiello, colonna di lettura e strumenti
  * di pagina (Segnala errore); sotto i 48em la barra in basso con le sezioni di studio.
  */
 import 'katex/dist/katex.min.css';
@@ -18,6 +19,7 @@ import TopicNav from '../components/TopicNav.astro';
 import OfflineCourse from '../islands/OfflineCourse';
 import { localizePath, stripLang, t, texts, tr, withBase, type Lang } from '../i18n';
 import { COURSE_SECTIONS, coursePath } from '../lib/courses';
+import { courseIndexScript } from '../lib/course-index';
 
 interface Props {
   lang: Lang;
@@ -131,6 +133,12 @@ const barEyebrow = eyebrow && eyebrow !== parentLabel ? eyebrow : undefined;
           <Icon name="list" />
           <span class="course-bar__toggle-text">{t(lang, 'nav.course.menuShort')}</span>
         </button>
+        <button type="button" class="course-bar__index" aria-controls="indice-corso" aria-expanded="true">
+          <Icon name="sidebar" />
+          <span class="course-bar__index-hide">{t(lang, 'nav.course.hideIndex')}</span>
+          <span class="course-bar__index-show">{t(lang, 'nav.course.showIndex')}</span>
+        </button>
+        <script is:inline set:html={courseIndexScript} />
         <Breadcrumbs lang={lang} items={crumbs} />
         {barEyebrow && <p class="eyebrow course-bar__eyebrow">{barEyebrow}</p>}
       </div>

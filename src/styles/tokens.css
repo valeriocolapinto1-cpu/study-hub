@@ -102,6 +102,11 @@
   --accent-soft: #1a1d3d;
   --accent-2: #c483ff;
   --on-accent: #05060c;
+  /* barre di scorrimento: cursore nel colore del corso (var(--accent) si risolve su <html>,
+     dove i fogli dei corsi ridefiniscono l'accento), binario trasparente */
+  --scroll-thumb: color-mix(in srgb, var(--accent) 55%, var(--border-strong));
+  --scroll-thumb-hover: var(--accent);
+  --scroll-track: transparent;
 
   color-scheme: dark;
 }

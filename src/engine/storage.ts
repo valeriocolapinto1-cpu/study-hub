@@ -15,6 +15,8 @@ export type Scope = typeof GLOBAL_SCOPE | (string & {});
 export type GlobalArea = 'theme' | 'lang' | 'examDates' | 'migrations' | 'backup' | (string & {});
 /** Area globale del promemoria di backup (vedi backup.ts): qui per non creare chunk condivisi. */
 export const BACKUP_AREA = 'backup';
+/** Indice del corso nascosto (`"hidden"`/`"shown"`): preferenza del dispositivo, src/lib/course-index.ts. */
+export const COURSE_INDEX_AREA = 'courseIndex';
 export type CourseArea = 'progress' | 'srs' | 'exam' | 'notes' | 'settings' | (string & {});
 
 const SEGMENT_RE = /^[a-z0-9]+(?:[-.][a-z0-9]+)*$/i;
