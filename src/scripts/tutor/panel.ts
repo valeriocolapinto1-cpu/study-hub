@@ -8,7 +8,9 @@
  * KaTeX caricato solo se serve). Un rifiuto scarta il testo parziale; un errore lo dice e lascia la
  * domanda nel campo per riprovare.
  */
-import './tutor.css';
+// CSS come file a parte, collegato all'apertura: con `import './tutor.css'` Astro lo metterebbe
+// nell'HTML di ogni pagina col pulsante, anche senza clic.
+import cssUrl from './tutor.css?url';
 import { renderRichClient } from '../../islands/lib/rich-client';
 import { loadTurnstile } from '../../islands/contribute/turnstile';
 import type { CourseIndex, TopicData } from '../../engine/course-data';
@@ -448,8 +450,19 @@ async function gather(
   return { ctx: { ...theoryContext(article, pageTitle), key: `th:${location.pathname}` }, refresh: null };
 }
 
+function loadCss(): Promise<void> {
+  if (document.querySelector('link[data-tutor-css]')) return Promise.resolve();
+  return new Promise((resolve) => {
+    const link = h('link', { rel: 'stylesheet', href: cssUrl, 'data-tutor-css': '' });
+    link.addEventListener('load', () => resolve());
+    link.addEventListener('error', () => resolve());
+    document.head.append(link);
+  });
+}
+
 export async function openTutor(btn: HTMLElement): Promise<void> {
   const cfg = readConfig();
+  await loadCss();
   panel ??= new TutorPanel(cfg);
   try {
     const { ctx, refresh } = await gather(btn, cfg);

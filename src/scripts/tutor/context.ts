@@ -35,13 +35,21 @@ export function domToText(el: Element): string {
   const root = el.cloneNode(true) as Element;
   const doc = root.ownerDocument;
   for (const k of [...root.querySelectorAll('.katex')]) {
-    const tex = k.querySelector('annotation[encoding="application/x-tex"]')?.textContent?.trim() ?? '';
+    // HTML+MathML: sorgente nell'annotazione; solo HTML (dati delle isole): nell'aria-label.
+    const tex = (
+      k.querySelector('annotation[encoding="application/x-tex"]')?.textContent ??
+      k.getAttribute('aria-label') ??
+      k.textContent ??
+      ''
+    ).trim();
     const display = !!k.closest('.katex-display');
     const host = display ? (k.closest('.katex-display') ?? k) : k;
     host.replaceWith(doc.createTextNode(display ? `\n$$${tex}$$\n` : `$${tex}$`));
   }
   for (const d of [...root.querySelectorAll(DROP)]) d.remove();
   let out = '';
+  // I blocchi di codice tengono rientri e spazi: segnaposto durante la pulizia delle righe.
+  const pres: string[] = [];
   const walk = (n: Node) => {
     if (n.nodeType === 3) {
       out += (n.textContent ?? '').replace(/\s+/g, ' ');
@@ -51,7 +59,8 @@ export function domToText(el: Element): string {
     const tag = (n as Element).tagName;
     const block = BLOCK.test(tag);
     if (tag === 'PRE') {
-      out += `\n\`\`\`\n${n.textContent ?? ''}\n\`\`\`\n`;
+      pres.push(n.textContent ?? '');
+      out += `\n\u0000${pres.length - 1}\u0000\n`;
       return;
     }
     if (block) out += '\n';
@@ -65,7 +74,8 @@ export function domToText(el: Element): string {
     .map((l) => l.trim())
     .join('\n')
     .replace(/\n{3,}/g, '\n\n')
-    .trim();
+    .trim()
+    .replace(/\u0000(\d+)\u0000/g, (_, i: string) => `\`\`\`\n${pres[Number(i)]}\n\`\`\``);
 }
 
 const htmlToText = (html: string): string =>
