@@ -151,3 +151,62 @@ for (const theme of ['light', 'dark'] as const) {
     });
   }
 }
+
+/**
+ * Rifiniture da telefono (revisione 2, R6), a 390×844 nei due temi:
+ * barra in basso opaca, home con i corsi visibili senza scorrere, controlli dell'esame uniformi.
+ */
+test.describe('rifiniture da telefono (R6)', () => {
+  test.use({ viewport: PHONE });
+
+  for (const theme of ['light', 'dark'] as const) {
+    test(`barra in basso opaca (${theme})`, async ({ page }) => {
+      await useTheme(page, theme);
+      await page.goto(`${TC}teoria/teorema-di-thevenin/`);
+      const s = await page.locator('.course-tabbar').evaluate((el) => {
+        const c = getComputedStyle(el);
+        return { bg: c.backgroundColor, filter: c.backdropFilter };
+      });
+      // nessuna trasparenza: rgb(…) senza alfa, o alfa 1
+      const alpha = s.bg.startsWith('rgba') ? Number(s.bg.match(/[\d.]+\)$/)![0].slice(0, -1)) : 1;
+      expect(alpha, s.bg).toBe(1);
+      expect(s.filter).toBe('none');
+    });
+
+    for (const lang of ['it', 'en'] as const) {
+      test(`home: la prima scheda dei corsi si vede senza scorrere (${lang}, ${theme})`, async ({ page }) => {
+        await useTheme(page, theme);
+        await page.goto(`${BASE}${lang}/`);
+        const card = page.locator('.home-course').first();
+        const title = card.locator('.home-course__title a');
+        await expect(title).toBeInViewport({ ratio: 1 });
+        // titolo e inizio della descrizione sopra il fondo della schermata
+        const desc = await card.locator('.home-course__desc').boundingBox();
+        expect(desc!.y + 40).toBeLessThanOrEqual(PHONE.height);
+        expect(await page.evaluate(() => window.scrollY)).toBe(0);
+      });
+    }
+
+    test(`esame: «tipo di prova» con i colori degli altri controlli (${theme})`, async ({ page }) => {
+      await useTheme(page, theme);
+      await page.goto(`${TC}esame/`, { waitUntil: 'networkidle' });
+      const radios = page.locator('input[name="sh-mode"]');
+      await expect(radios.first()).toBeChecked();
+      const look = (sel: string) =>
+        page
+          .locator(sel)
+          .first()
+          .evaluate((el) => {
+            const c = getComputedStyle(el);
+            return { bg: c.backgroundColor, border: c.borderTopColor };
+          });
+      const field = await look('.sh-input');
+      const primary = await look('.btn--primary');
+      // non scelto: fondo e bordo dei campi; scelto: l'accento del pulsante principale
+      expect(await look('input[name="sh-mode"]:not(:checked)')).toEqual(field);
+      expect((await look('input[name="sh-mode"]:checked')).bg).toBe(primary.bg);
+      // la casella «Senza limite di tempo» segue le stesse regole
+      expect(await look('.sh-check input[type="checkbox"]:not(:checked)')).toEqual(field);
+    });
+  }
+});
