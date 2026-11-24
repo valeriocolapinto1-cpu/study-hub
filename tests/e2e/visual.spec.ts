@@ -34,7 +34,13 @@ for (const theme of ['light', 'dark'] as const) {
         // Lo screenshot a pagina intera scatta oltre la finestra senza allargarla: le voci con
         // content-visibility: auto fuori dalla finestra resterebbero vuote (spazio giusto, nessun
         // disegno). Si disegna tutto: la proprietà decide solo quando disegnare, non l'aspetto.
-        await page.addStyleTag({ content: '* { content-visibility: visible !important; }' });
+        // Barre di scorrimento: Playwright le nasconde (--hide-scrollbars), ma non quelle con
+        // `scrollbar-color` (src/styles/base.css), che nel container della CI rendono le catture delle
+        // pagine con molte formule lentissime (oltre 10 s l'una). Si torna ai colori di sistema, cioè
+        // alle barre nascoste come prima: colori e larghezza li verifica tests/e2e/indice.spec.ts.
+        await page.addStyleTag({
+          content: '* { content-visibility: visible !important; scrollbar-color: auto !important; }',
+        });
         await expect(page).toHaveScreenshot(`${p.name}-${theme}-${vp.name}.png`, {
           fullPage: p.visual !== 'viewport',
           // Commit e data della build nel footer cambiano a ogni pubblicazione (larghezza fissa, font mono).
