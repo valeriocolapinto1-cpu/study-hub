@@ -7,7 +7,8 @@
  * - un solo indice degli argomenti nel DOM della teoria;
  * - nessun TeX grezzo (`$…$`) visibile fuori da KaTeX, né nella meta description.
  */
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
+import { parse } from 'yaml';
 import { expect, test } from '@playwright/test';
 import { BASE } from './pages';
 import { PAGINE_LETTURA, normalizza, righeVisibili, sciolto, testoUnito } from './lettura/testo';
@@ -61,12 +62,19 @@ for (const p of PAGINE_LETTURA) {
 }
 
 /**
- * Altezze massime a 390 px. Esercizi: 40 % in meno della build di partenza (main abc2664, 36 802 px,
- * Chromium, finestra 390×844). Panoramica: 2 500 px (R8; prima 12 968, poi 7 489 dopo la PR10).
+ * Altezze massime a 390 px. Esercizi: 40 % in meno della build di partenza (main abc2664, 36 802 px
+ * con 302 esercizi, Chromium, finestra 390×844), riportato al numero di esercizi attuale (R2 ne ha
+ * aggiunti): la riga di ogni esercizio deve restare in media il 40 % più bassa di allora.
+ * Panoramica: 2 500 px (R8; prima 12 968, poi 7 489 dopo la PR10).
  */
+const ESERCIZI_TDC = readdirSync('src/content/exercises/teoria-circuiti').reduce(
+  (n, f) =>
+    n + (parse(readFileSync(`src/content/exercises/teoria-circuiti/${f}`, 'utf8')) as unknown[]).length,
+  0,
+);
 const ALTEZZE_MAX = {
   'it/anno-2/teoria-circuiti/': 2_500,
-  'it/anno-2/teoria-circuiti/esercizi/': Math.round(36_802 * 0.6),
+  'it/anno-2/teoria-circuiti/esercizi/': Math.round(((36_802 * 0.6) / 302) * ESERCIZI_TDC),
 } as const;
 
 test.describe('telefono (390 px)', () => {
