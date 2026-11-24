@@ -7,6 +7,8 @@ import 'katex/dist/katex.min.css';
 import ReviewSession from '../../islands/ReviewSession';
 import KeysPanel from './KeysPanel.astro';
 import SectionHeader from './SectionHeader.astro';
+import Tutor from './Tutor.astro';
+import TutorButton from './TutorButton.astro';
 import { getCourseIndex } from '../../lib/course-data';
 import { t, type Lang } from '../../i18n';
 
@@ -31,6 +33,7 @@ const decks = [
 
 <SectionHeader title={t(lang, 'page.review.title')} lead={t(lang, 'page.review.lead')} />
 <ReviewSession client:load lang={lang} decks={decks} />
+<TutorButton lang={lang} kind="card" class="tutor-open--card" />
 <KeysPanel
   lang={lang}
   id="sh-review-keys"
@@ -39,3 +42,4 @@ const decks = [
     ['1 – 4', t(lang, 'keys.review.rate')],
   ]}
 />
+<Tutor lang={lang} courseId={courseId} />

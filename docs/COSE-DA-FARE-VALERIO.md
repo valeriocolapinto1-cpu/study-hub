@@ -18,7 +18,14 @@ Finché non è fatto, il modulo mostra il ripiego via email. Procedura completa 
 4. Invia **URL `/exec`** e **Site Key** (entrambi pubblici) a una sessione, oppure inseriscili tu in
    `src/config/site.ts` → `contribute.endpoint` e `contribute.turnstileSiteKey`.
 
-## 3. Revisione dei contenuti
+## 3. Tutor AI («Chiedi al tutor»)
+
+Finché non è fatto, il pulsante non compare. Procedura (~20 minuti) in [`TUTOR-AI.md`](TUTOR-AI.md):
+chiave API su console.anthropic.com con un limite di spesa mensile, account Cloudflare gratuito,
+widget Turnstile, `npm run ai:deploy` con `wrangler secret put ANTHROPIC_API_KEY` e
+`TURNSTILE_SECRET_KEY`, poi URL del Worker e Site Key in `src/config/site.ts` → `tutor`.
+
+## 3b. Revisione dei contenuti
 
 Le note di migrazione, le scelte da confermare e le proposte sono in [`docs/revisione/`](revisione/):
 una pagina per corso (`teoria-circuiti.md`, `fondamenti-informatica.md`, `fisica-1.md`, `fisica-2.md`).

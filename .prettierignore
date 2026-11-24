@@ -9,3 +9,5 @@ playwright-report/
 .lighthouseci/
 tests/e2e/**/*-snapshots/
 *.md
+tools/ai-worker/node_modules/
+tools/ai-worker/.wrangler/
