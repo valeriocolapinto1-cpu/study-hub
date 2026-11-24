@@ -12,6 +12,12 @@ The $Z$ and $Y$ matrices treat the two ports alike; the transmission matrix inst
 
 </div>
 
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-intuizione-2">
+
+Each representation answers a different question. $Z$: which voltages do given currents produce? $Y$: which currents do given voltages produce? Transmission: what is needed at the input to get a given output? Hybrid: the most convenient variables for a transistor, current at the input and voltage at the output.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -36,6 +42,24 @@ The $Z$ and $Y$ matrices treat the two ports alike; the transmission matrix inst
 3. Hence $A=z_{11}/z_{21}$ and $B=\Delta_z/z_{21}$. $\square$
 
 </details>
+
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-teoria-3">
+
+**Hybrid parameters.** $h_{11}=v_1/i_1|_{v_2=0}$ is an input impedance with the output shorted, $h_{21}=i_2/i_1|_{v_2=0}$ a current gain, $h_{12}=v_1/v_2|_{i_1=0}$ a reverse voltage gain, $h_{22}=i_2/v_2|_{i_1=0}$ an output admittance with the input open: quantities of different nature, hence the name "hybrid". For a reciprocal network $h_{12}=-h_{21}$.
+
+</div>
+
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-teoria-4">
+
+**Transmission properties.** For a reciprocal network $AD-BC=1$: the determinant is a quick check of the algebra. $A$ and $D$ are dimensionless, $B$ is an impedance, $C$ an admittance; with port 2 open $A=v_1/v_2$ and $C=i_1/v_2$, with port 2 shorted $B=v_1/(-i_2)$ and $D=i_1/(-i_2)$.
+
+</div>
+
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-teoria-5">
+
+**When a representation is missing.** A matrix exists only if the variables chosen as independent can be set freely. A resistor in series between the ports forces $i_1=-i_2$ and has no $Z$, but has $Y$ and $T$; a shunt resistor forces $v_1=v_2$ and has no $Y$, but has $Z$ and $T$; the ideal transformer has $T$ and $h$ but neither $Z$ nor $Y$.
+
+</div>
 
 <Formula id="t-def" />
 <Formula id="t-da-z" />
@@ -83,6 +107,20 @@ $G=\tfrac13$ between the two branches.
 
 </div>
 
+<div class="worked" data-note-id="altre-rappresentazioni-doppi-bipoli-esempio-4">
+
+### Hybrid parameters of the T network
+
+For the T network with $1$, $2$ and $3\,\Omega$, $Z=\begin{pmatrix}4&3\\3&5\end{pmatrix}$. Find the $h$ parameters and check two of them on the circuit.
+
+**Solution.**
+
+1. From the formulas: $h_{11}=\Delta_z/z_{22}=11/5=2.2\,\Omega$, $h_{12}=z_{12}/z_{22}=0.6$, $h_{21}=-z_{21}/z_{22}=-0.6$, $h_{22}=1/z_{22}=0.2\,\mathrm S$.
+2. Check of $h_{11}$: with port 2 shorted, port 1 sees $1+3\parallel2=1+1.2=2.2\,\Omega$ ✓.
+3. Check of $h_{21}$: current divider, the $2\,\Omega$ branch towards the short carries $i_1\cdot\tfrac35=0.6\,i_1$, which leaves port 2: $i_2=-0.6\,i_1$ ✓; and $h_{12}=-h_{21}$ (reciprocal network) ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -91,6 +129,27 @@ $G=\tfrac13$ between the two branches.
 
 - **Wrong:** Using $i_2$ instead of $-i_2$ in the transmission matrix.
 - **Right:** The current $-i_2$ leaves port 2 (towards the load).
+
+</div>
+
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-errore-2">
+
+- **Wrong:** Taking for granted that every representation exists.
+- **Right:** A resistor in series between the ports has no $Z$, a shunt one has no $Y$: before computing, check that the chosen independent variables can be set freely.
+
+</div>
+
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-errore-3">
+
+- **Wrong:** Confusing the transmission matrix with its inverse.
+- **Right:** The one used in the course gives the input quantities $(v_1,i_1)$ in terms of the output ones $(v_2,-i_2)$; the other does the opposite and has different entries.
+
+</div>
+
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-errore-4">
+
+- **Wrong:** Computing $\det T$ of a network with controlled sources and expecting $1$.
+- **Right:** $AD-BC=1$ holds for reciprocal networks; with controlled sources the determinant is in general different from $1$.
 
 </div>
 

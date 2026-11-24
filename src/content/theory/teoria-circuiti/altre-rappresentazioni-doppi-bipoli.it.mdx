@@ -12,6 +12,12 @@ Le matrici $Z$ e $Y$ trattano le due porte allo stesso modo; quella di trasmissi
 
 </div>
 
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-intuizione-2">
+
+Ogni rappresentazione risponde a una domanda diversa. $Z$: quali tensioni producono certe correnti? $Y$: quali correnti producono certe tensioni? Trasmissione: che cosa serve all'ingresso per ottenere una certa uscita? Ibride: le variabili più comode per un transistor, corrente all'ingresso e tensione all'uscita.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -36,6 +42,24 @@ Le matrici $Z$ e $Y$ trattano le due porte allo stesso modo; quella di trasmissi
 3. Quindi $A=z_{11}/z_{21}$ e $B=\Delta_z/z_{21}$. $\square$
 
 </details>
+
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-teoria-3">
+
+**Parametri ibridi.** $h_{11}=v_1/i_1|_{v_2=0}$ è un'impedenza d'ingresso con uscita in corto, $h_{21}=i_2/i_1|_{v_2=0}$ un guadagno di corrente, $h_{12}=v_1/v_2|_{i_1=0}$ un guadagno di tensione inverso, $h_{22}=i_2/v_2|_{i_1=0}$ un'ammettenza d'uscita a ingresso aperto: grandezze di natura diversa, da cui il nome «ibridi». Per una rete reciproca $h_{12}=-h_{21}$.
+
+</div>
+
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-teoria-4">
+
+**Proprietà della trasmissione.** Per una rete reciproca $AD-BC=1$: il determinante è un controllo veloce dei conti. $A$ e $D$ sono adimensionali, $B$ è un'impedenza, $C$ un'ammettenza; con la porta 2 aperta $A=v_1/v_2$ e $C=i_1/v_2$, con la porta 2 in corto $B=v_1/(-i_2)$ e $D=i_1/(-i_2)$.
+
+</div>
+
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-teoria-5">
+
+**Quando una rappresentazione manca.** Una matrice esiste solo se le variabili scelte come indipendenti si possono fissare liberamente. Un resistore in serie fra le porte impone $i_1=-i_2$ e non ha $Z$, ma ha $Y$ e $T$; un resistore in derivazione impone $v_1=v_2$ e non ha $Y$, ma ha $Z$ e $T$; il trasformatore ideale ha $T$ e $h$ ma né $Z$ né $Y$.
+
+</div>
 
 <Formula id="t-def" />
 <Formula id="t-da-z" />
@@ -83,6 +107,20 @@ $G=\tfrac13$ tra i due rami.
 
 </div>
 
+<div class="worked" data-note-id="altre-rappresentazioni-doppi-bipoli-esempio-4">
+
+### Parametri ibridi della rete a T
+
+Per la rete a T con $1$, $2$ e $3\,\Omega$, $Z=\begin{pmatrix}4&3\\3&5\end{pmatrix}$. Trova i parametri $h$ e verificane due sul circuito.
+
+**Soluzione.**
+
+1. Dalle formule: $h_{11}=\Delta_z/z_{22}=11/5=2{,}2\,\Omega$, $h_{12}=z_{12}/z_{22}=0{,}6$, $h_{21}=-z_{21}/z_{22}=-0{,}6$, $h_{22}=1/z_{22}=0{,}2\,\mathrm S$.
+2. Verifica di $h_{11}$: con la porta 2 in corto la porta 1 vede $1+3\parallel2=1+1{,}2=2{,}2\,\Omega$ ✓.
+3. Verifica di $h_{21}$: partitore di corrente, nel ramo da $2\,\Omega$ verso il corto passa $i_1\cdot\tfrac35=0{,}6\,i_1$, che esce dalla porta 2: $i_2=-0{,}6\,i_1$ ✓; e $h_{12}=-h_{21}$ (rete reciproca) ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -91,6 +129,27 @@ $G=\tfrac13$ tra i due rami.
 
 - **Sbagliato:** Usare $i_2$ al posto di $-i_2$ nella matrice di trasmissione.
 - **Corretto:** La corrente $-i_2$ esce dalla porta 2 (verso il carico).
+
+</div>
+
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-errore-2">
+
+- **Sbagliato:** Dare per scontato che tutte le rappresentazioni esistano.
+- **Corretto:** Un resistore in serie fra le porte non ha $Z$, uno in derivazione non ha $Y$: prima di calcolare controlla che le variabili indipendenti scelte si possano fissare liberamente.
+
+</div>
+
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-errore-3">
+
+- **Sbagliato:** Confondere la matrice di trasmissione con la sua inversa.
+- **Corretto:** Quella del corso dà le grandezze d'ingresso $(v_1,i_1)$ in funzione di quelle d'uscita $(v_2,-i_2)$; l'altra fa il contrario e ha elementi diversi.
+
+</div>
+
+<div data-note-id="altre-rappresentazioni-doppi-bipoli-errore-4">
+
+- **Sbagliato:** Calcolare $\det T$ di una rete con generatori controllati e aspettarsi $1$.
+- **Corretto:** $AD-BC=1$ vale per le reti reciproche; con generatori controllati il determinante è in generale diverso da $1$.
 
 </div>
 

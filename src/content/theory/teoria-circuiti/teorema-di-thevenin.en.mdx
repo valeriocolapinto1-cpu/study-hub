@@ -12,6 +12,12 @@ Seen from two terminals, a linear circuit, however complicated, behaves like a r
 
 </div>
 
+<div data-note-id="teorema-di-thevenin-intuizione-2">
+
+The two numbers are found with two "measurements": the voltage with open terminals and the current with shorted terminals; their ratio is the internal resistance. It is what one would do in the lab with a battery: a voltmeter on open circuit and an ammeter on short circuit, if the battery can take it.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -57,6 +63,12 @@ Seen from two terminals, a linear circuit, however complicated, behaves like a r
 5. $v=V_{th}-Z_{th}i$ is the characteristic of a source $V_{th}$ in series with $Z_{th}$. $\square$
 
 </details>
+
+<div data-note-id="teorema-di-thevenin-teoria-3">
+
+**Which method for $Z_{th}$.** Without controlled sources it is enough to switch off the independent ones and combine series and parallel. With controlled sources use the test source, or $Z_{th}=V_{th}/I_{sc}$ when $V_{th}\neq0$; if $V_{th}=0$ the ratio is undetermined and the test source is the only way.
+
+</div>
 
 <Formula id="th-vth" />
 <Formula id="th-zth" />
@@ -121,6 +133,13 @@ Same example: short-circuit current.
 
 - **Wrong:** Applying Thévenin to a nonlinear one-port.
 - **Right:** Linearity is required.
+
+</div>
+
+<div data-note-id="teorema-di-thevenin-errore-3">
+
+- **Wrong:** Computing $V_{th}$ with the load still connected.
+- **Right:** $V_{th}$ is the open-circuit voltage: the load must be disconnected, otherwise one finds the voltage across the load, which is smaller.
 
 </div>
 

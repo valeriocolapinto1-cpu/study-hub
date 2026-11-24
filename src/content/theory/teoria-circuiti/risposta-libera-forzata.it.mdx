@@ -12,6 +12,18 @@ La risposta di un circuito ha due «cause»: l'energia che aveva già dentro (co
 
 </div>
 
+<div data-note-id="risposta-libera-forzata-intuizione-2">
+
+Questa distinzione non coincide con quella fra transitorio e regime. La libera è tutta transitoria (in un sistema stabile), ma la forzata contiene sia il regime sia un pezzo di transitorio: quello che serve perché l'uscita parta da zero quando le condizioni iniziali sono nulle.
+
+</div>
+
+<div data-note-id="risposta-libera-forzata-intuizione-3">
+
+In pratica la scomposizione è comoda quando lo stesso circuito va studiato con più ingressi: la libera si calcola una volta sola, la forzata si ricalcola per ciascun ingresso e si somma.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -46,6 +58,24 @@ Con Laplace: nel circuito trasformato si pongono a zero le condizioni iniziali (
     }}
   />
 </Figure>
+
+<div data-note-id="risposta-libera-forzata-teoria-3">
+
+**Due linearità.** La risposta libera è lineare nelle condizioni iniziali (raddoppiando $v_C(0^-)$ raddoppia), la forzata è lineare negli ingressi. La risposta completa, se le condizioni iniziali non sono nulle, non è lineare nell'ingresso da sola: è per questo che la linearità si enuncia «con condizioni iniziali nulle».
+
+</div>
+
+<div data-note-id="risposta-libera-forzata-teoria-4">
+
+**Nel dominio di $s$.** Nel circuito trasformato ci sono due tipi di generatori: quelli degli ingressi e quelli delle condizioni iniziali. Spegnendo i secondi si ottiene la forzata $Y_f(s)=H(s)X(s)$, spegnendo i primi la libera $Y_l(s)$. Le due hanno lo stesso denominatore (i modi naturali); la forzata contiene in più i poli dell'ingresso.
+
+</div>
+
+<div data-note-id="risposta-libera-forzata-teoria-5">
+
+**Due modi di tagliare la stessa somma.** Risposta completa $=$ libera $+$ forzata $=$ transitoria $+$ permanente. La prima scomposizione divide per causa (stato iniziale o ingresso), la seconda per comportamento nel tempo (ciò che si spegne e ciò che resta); vedi [risposta transitoria e permanente](../risposta-transitoria-permanente/).
+
+</div>
 
 <Formula id="y-libera-forzata" />
 
@@ -91,6 +121,20 @@ $H=\dfrac1{s+1}$ con $x=u_{-1}$, condizioni nulle.
 
 </div>
 
+<div class="worked" data-note-id="risposta-libera-forzata-esempio-4">
+
+### RL: le due scomposizioni a confronto
+
+$R=2\,\Omega$ in serie a $L=1\,\mathrm H$, $i(0^-)=3\,\mathrm A$, $v_g=10\,u_{-1}(t)$. Trova libera, forzata, transitoria e permanente.
+
+**Soluzione.**
+
+1. $\tau=L/R=0{,}5\,\mathrm s$, $i_\infty=10/2=5\,\mathrm A$. Libera: $3e^{-2t}$; forzata: $5(1-e^{-2t})$.
+2. Completa: $i=3e^{-2t}+5-5e^{-2t}=5-2e^{-2t}$; con Laplace $I=\dfrac{10/s+3}{s+2}=\dfrac5s-\dfrac2{s+2}$ ✓.
+3. Permanente $5\,\mathrm A$, transitoria $-2e^{-2t}$: la transitoria mescola la libera ($+3e^{-2t}$) e il pezzo transitorio della forzata ($-5e^{-2t}$). Controllo: $i(0)=5-2=3$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -99,6 +143,27 @@ $H=\dfrac1{s+1}$ con $x=u_{-1}$, condizioni nulle.
 
 - **Sbagliato:** Attribuire il transitorio alla sola risposta libera.
 - **Corretto:** La forzata contiene anche termini transitori ($-10e^{-t}$ sopra).
+
+</div>
+
+<div data-note-id="risposta-libera-forzata-errore-2">
+
+- **Sbagliato:** Calcolare la forzata con le condizioni iniziali del problema.
+- **Corretto:** La forzata si calcola con condizioni iniziali nulle; lo stato iniziale entra solo nella libera.
+
+</div>
+
+<div data-note-id="risposta-libera-forzata-errore-3">
+
+- **Sbagliato:** Pensare che la risposta libera dipenda dall'ingresso.
+- **Corretto:** La libera ha i modi naturali del circuito e ampiezze fissate dalle sole condizioni iniziali: l'ingresso non c'entra.
+
+</div>
+
+<div data-note-id="risposta-libera-forzata-errore-4">
+
+- **Sbagliato:** Sommare libera e forzata quando la forzata è stata calcolata con le condizioni iniziali vere.
+- **Corretto:** Così lo stato iniziale viene contato due volte: nell'esempio si otterrebbe $i(0)=6\,\mathrm A$ invece di $3\,\mathrm A$. Controlla sempre il valore a $t=0$.
 
 </div>
 

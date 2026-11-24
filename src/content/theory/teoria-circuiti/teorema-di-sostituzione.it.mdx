@@ -12,6 +12,12 @@ Se sai già quanto valgono tensione e corrente su un pezzo di circuito, il resto
 
 </div>
 
+<div data-note-id="teorema-di-sostituzione-intuizione-2">
+
+Il teorema permette di tagliare un circuito in due: risolta una parte, l'altra si studia da sola sostituendo la prima con un generatore. È come misurare la tensione di una presa e poi immaginare al posto della rete elettrica una batteria di quella tensione: per l'apparecchio collegato, finché il punto di lavoro resta quello, non cambia nulla.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -36,6 +42,18 @@ Il teorema non richiede la linearità. Serve da base per Thevenin, Norton e per 
 3. $(\mathbf v^*,\mathbf i^*)$ le soddisfa tutte: il bipolo sostituito ha proprio $v=v^*$. Se la soluzione del modificato è unica, coincide con $(\mathbf v^*,\mathbf i^*)$. $\square$
 
 </details>
+
+<div data-note-id="teorema-di-sostituzione-teoria-3">
+
+**Perché vale.** La soluzione originale soddisfa tutte le equazioni del circuito modificato: KCL e KVL non cambiano, le relazioni costitutive degli altri elementi nemmeno, e il generatore impone esattamente il valore $v^*$ (o $i^*$) che c'era già. Se il circuito modificato ha soluzione unica, la sua soluzione è proprio quella originale.
+
+</div>
+
+<div data-note-id="teorema-di-sostituzione-teoria-4">
+
+**Uso tipico.** Si sostituisce un elemento non lineare con il suo punto di lavoro, oppure un carico con un generatore di corrente per dimostrare Thevenin (primo passo della dimostrazione): il resto del circuito resta lineare e si può usare la sovrapposizione.
+
+</div>
 
 <Formula id="sost" />
 
@@ -79,6 +97,20 @@ Sostituire $R_2$ con un generatore di tensione $v^*$ in parallelo a un altro gen
 
 </div>
 
+<div class="worked" data-note-id="teorema-di-sostituzione-esempio-4">
+
+### Sostituire un elemento non lineare
+
+Un generatore $8\,\mathrm V$ alimenta $R=2\,\Omega$ in serie a un bipolo non lineare con $v=i^2$ (per $i\gt 0$). Trova il punto di lavoro e verifica la sostituzione.
+
+**Soluzione.**
+
+1. KVL: $8=2i+i^2\Rightarrow i^2+2i-8=0\Rightarrow i=2\,\mathrm A$ (l'altra radice, $-4$, è esclusa); $v=4\,\mathrm V$.
+2. Con un generatore di tensione $4\,\mathrm V$ al posto del bipolo: $i=\dfrac{8-4}{2}=2\,\mathrm A$ ✓.
+3. Con un generatore di corrente $2\,\mathrm A$: tensione su $R$ uguale a $4\,\mathrm V$, quindi sul generatore $8-4=4\,\mathrm V$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -87,6 +119,20 @@ Sostituire $R_2$ con un generatore di tensione $v^*$ in parallelo a un altro gen
 
 - **Sbagliato:** Applicare la sostituzione senza verificare l'unicità della soluzione.
 - **Corretto:** Il circuito modificato deve avere soluzione unica.
+
+</div>
+
+<div data-note-id="teorema-di-sostituzione-errore-2">
+
+- **Sbagliato:** Pensare che il teorema richieda un circuito lineare.
+- **Corretto:** Vale anche con elementi non lineari, purché la soluzione sia unica: è proprio ciò che permette di isolare un elemento non lineare.
+
+</div>
+
+<div data-note-id="teorema-di-sostituzione-errore-3">
+
+- **Sbagliato:** Usare il generatore sostituito per prevedere che cosa succede se cambia il resto del circuito.
+- **Corretto:** Il generatore riproduce il punto di lavoro di quella soluzione: se cambia un altro elemento cambia anche $v^*$, e la sostituzione va rifatta.
 
 </div>
 

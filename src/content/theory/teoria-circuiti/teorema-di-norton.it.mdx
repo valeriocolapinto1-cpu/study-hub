@@ -12,6 +12,12 @@ Norton racconta la stessa storia di Thevenin dal punto di vista della corrente: 
 
 </div>
 
+<div data-note-id="teorema-di-norton-intuizione-2">
+
+Thevenin e Norton sono la stessa scatola descritta in due modi: dall'esterno non si possono distinguere. Si sceglie quello che rende i conti più facili: Norton quando il carico è in parallelo ad altri elementi o si usa il metodo dei nodi, Thevenin quando il carico è in serie o si usano le maglie.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -53,6 +59,24 @@ Esiste anche se non esiste Thevenin (per $Z_{th}=0$ non esiste Norton).
 3. Questa è la caratteristica di un generatore di corrente $I_N=I_{sc}$ in parallelo a $Z_N$. Dal confronto con Thevenin $I_N=V_{th}/Z_{th}$ e $Z_N=Z_{th}$. $\square$
 
 </details>
+
+<div data-note-id="teorema-di-norton-teoria-3">
+
+**Trasformazione di generatori.** $V_{th}=Z_{th}I_N$ e $Z_N=Z_{th}$: un generatore di tensione con impedenza in serie equivale a un generatore di corrente $V_{th}/Z_{th}$ con la stessa impedenza in parallelo. La trasformazione si può applicare anche a pezzi interni di un circuito, per semplificarlo un passo alla volta.
+
+</div>
+
+<div data-note-id="teorema-di-norton-teoria-4">
+
+**Quando esistono.** Norton richiede $Z_{th}\neq0$ (un generatore ideale di tensione non ha equivalente Norton); Thevenin richiede $Z_N$ finita (un generatore ideale di corrente non ha equivalente Thevenin). Quando esistono entrambi descrivono la stessa caratteristica ai morsetti, $i=I_N-v/Z_N$.
+
+</div>
+
+<div data-note-id="teorema-di-norton-teoria-5">
+
+**Equivalenza solo esterna.** I due equivalenti danno le stesse tensioni e correnti al carico, non la stessa potenza interna: a vuoto il Thevenin non dissipa nulla, il Norton dissipa $I_N^2R_N$. Per la potenza dissipata dentro il bipolo bisogna tornare al circuito vero.
+
+</div>
 
 <Formula id="n-in" />
 <Formula id="n-zn" />
@@ -99,6 +123,20 @@ $I_N=6$, $R_N=\tfrac43$, carico $R_L=4$.
 
 </div>
 
+<div class="worked" data-note-id="teorema-di-norton-esempio-4">
+
+### Due generatori in parallelo
+
+Fra il nodo $A$ e la massa ci sono: $10\,\mathrm V$ in serie a $2\,\Omega$, $6\,\mathrm V$ in serie a $3\,\Omega$ e un carico $R_L=4\,\Omega$. Trova la tensione sul carico con Norton.
+
+**Soluzione.**
+
+1. Trasformazione: $10/2=5\,\mathrm A$ con $2\,\Omega$ e $6/3=2\,\mathrm A$ con $3\,\Omega$, tutti in parallelo.
+2. $I_N=5+2=7\,\mathrm A$, $R_N=2\parallel3=1{,}2\,\Omega$; con il carico $v=7\cdot(1{,}2\parallel4)=7\cdot\dfrac{4{,}8}{5{,}2}=6{,}46\,\mathrm V$.
+3. Verifica con i nodi: $\dfrac{v-10}{2}+\dfrac{v-6}{3}+\dfrac v4=0\Rightarrow13v=84$, $v=6{,}46\,\mathrm V$ ✓; corrente nel carico $1{,}62\,\mathrm A$.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -107,6 +145,20 @@ $I_N=6$, $R_N=\tfrac43$, carico $R_L=4$.
 
 - **Sbagliato:** Calcolare $I_N$ a porta aperta.
 - **Corretto:** $I_N$ è la corrente a porta in cortocircuito.
+
+</div>
+
+<div data-note-id="teorema-di-norton-errore-2">
+
+- **Sbagliato:** Mettere $R_N$ in serie al generatore di corrente.
+- **Corretto:** Nell'equivalente di Norton l'impedenza è in parallelo: in serie a un generatore di corrente ideale non avrebbe alcun effetto sul carico.
+
+</div>
+
+<div data-note-id="teorema-di-norton-errore-3">
+
+- **Sbagliato:** Sbagliare il verso di $I_N$.
+- **Corretto:** $I_N$ ha il verso della corrente di cortocircuito, che esce dal morsetto positivo e attraversa il corto: con quel verso il generatore la spinge nel carico.
 
 </div>
 

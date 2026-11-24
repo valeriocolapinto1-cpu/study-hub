@@ -12,6 +12,12 @@ Visto da due morsetti, un circuito lineare per quanto complicato si comporta com
 
 </div>
 
+<div data-note-id="teorema-di-thevenin-intuizione-2">
+
+I due numeri si trovano con due «misure»: la tensione con i morsetti aperti e la corrente con i morsetti in corto; il loro rapporto è la resistenza interna. È ciò che si farebbe in laboratorio con una pila: un voltmetro a vuoto e un amperometro in corto, se la pila lo sopporta.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -57,6 +63,12 @@ Visto da due morsetti, un circuito lineare per quanto complicato si comporta com
 5. $v=V_{th}-Z_{th}i$ è la caratteristica di un generatore $V_{th}$ in serie a $Z_{th}$. $\square$
 
 </details>
+
+<div data-note-id="teorema-di-thevenin-teoria-3">
+
+**Quale metodo per $Z_{th}$.** Senza generatori controllati basta spegnere gli indipendenti e combinare serie e parallelo. Con i controllati si usa il generatore di prova, oppure $Z_{th}=V_{th}/I_{sc}$ quando $V_{th}\neq0$; se $V_{th}=0$ il rapporto è indeterminato e il generatore di prova è l'unica strada.
+
+</div>
 
 <Formula id="th-vth" />
 <Formula id="th-zth" />
@@ -121,6 +133,13 @@ Stesso esempio: corrente di cortocircuito.
 
 - **Sbagliato:** Applicare Thevenin a un bipolo non lineare.
 - **Corretto:** Serve la linearità.
+
+</div>
+
+<div data-note-id="teorema-di-thevenin-errore-3">
+
+- **Sbagliato:** Calcolare $V_{th}$ lasciando il carico collegato.
+- **Corretto:** $V_{th}$ è la tensione a vuoto: il carico va staccato, altrimenti si trova la tensione sul carico, più piccola.
 
 </div>
 

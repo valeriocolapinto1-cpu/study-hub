@@ -12,6 +12,12 @@ Un «colpo» istantaneo all'ingresso fa risuonare il circuito secondo la sua nat
 
 </div>
 
+<div data-note-id="risposta-impulsiva-convoluzione-intuizione-2">
+
+La risposta al gradino è più facile da immaginare: è ciò che succede accendendo di colpo un generatore costante. L'impulso è la derivata del gradino, quindi la risposta impulsiva è la derivata della risposta al gradino: un'informazione equivalente, presentata nella forma che si presta alla convoluzione.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -58,6 +64,30 @@ Il legame con la funzione di rete è $h(t)=\mathcal L^{-1}\{H(s)\}$: i poli di $
   />
 </Figure>
 
+<div data-note-id="risposta-impulsiva-convoluzione-teoria-3">
+
+**Perché la convoluzione.** Un ingresso qualsiasi si approssima con una fila di impulsi di area $x(\tau)\,\Delta\tau$ agli istanti $\tau$. Per linearità e tempo-invarianza ciascuno produce $x(\tau)\,\Delta\tau\,h(t-\tau)$; sommando e passando al limite si ottiene $y(t)=\int_0^tx(\tau)\,h(t-\tau)\,d\tau$. Il fattore $h(t-\tau)$ pesa il passato: in un sistema stabile gli ingressi lontani contano sempre meno.
+
+</div>
+
+<div data-note-id="risposta-impulsiva-convoluzione-teoria-4">
+
+**Convoluzione e Laplace.** Nel dominio di $s$ la convoluzione diventa un prodotto, $Y(s)=H(s)X(s)$: di solito conviene moltiplicare e antitrasformare invece di calcolare l'integrale. L'integrale resta utile per ingressi definiti a tratti e per ragionare sulla causalità.
+
+</div>
+
+<div data-note-id="risposta-impulsiva-convoluzione-teoria-5">
+
+**Proprietà utili.** La convoluzione è commutativa, $x*h=h*x$; la risposta al gradino è l'integrale della risposta impulsiva, $y_{gr}(t)=\int_0^th(\tau)\,d\tau$; per un sistema stabile il suo valore finale è $H(0)=\int_0^\infty h(t)\,dt$.
+
+</div>
+
+<div data-note-id="risposta-impulsiva-convoluzione-teoria-6">
+
+**Causalità e stabilità lette su $h$.** Un circuito fisico è causale, quindi $h(t)=0$ per $t\lt 0$: l'uscita non può anticipare l'impulso. È stabile se $h$ si spegne abbastanza in fretta da avere area finita in valore assoluto; un $h$ che oscilla senza smorzarsi, o che cresce, indica un circuito marginale o instabile.
+
+</div>
+
 <Formula id="h-imp" />
 <Formula id="y-conv" />
 <Formula id="y-gradino" />
@@ -103,6 +133,20 @@ Stesso sistema, ingresso $1$ per $0<t<1$.
 
 </div>
 
+<div class="worked" data-note-id="risposta-impulsiva-convoluzione-esempio-4">
+
+### Convoluzione di due esponenziali
+
+$h(t)=e^{-2t}u_{-1}(t)$ e ingresso $x(t)=e^{-t}u_{-1}(t)$. Calcola $y=x*h$ con l'integrale e verifica con Laplace.
+
+**Soluzione.**
+
+1. $y(t)=\int_0^te^{-\tau}e^{-2(t-\tau)}d\tau=e^{-2t}\int_0^te^{\tau}d\tau=e^{-2t}(e^t-1)=e^{-t}-e^{-2t}$.
+2. Laplace: $Y=\dfrac{1}{(s+1)(s+2)}=\dfrac1{s+1}-\dfrac1{s+2}$ ✓.
+3. Massimo: $\dot y=-e^{-t}+2e^{-2t}=0\Rightarrow t=\ln2\approx0{,}69\,\mathrm s$, $y_{max}=0{,}5-0{,}25=0{,}25$.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -111,6 +155,27 @@ Stesso sistema, ingresso $1$ per $0<t<1$.
 
 - **Sbagliato:** Dedurre $h$ dalla risposta al gradino senza derivare.
 - **Corretto:** $h=\dfrac{d}{dt}y_{gradino}$.
+
+</div>
+
+<div data-note-id="risposta-impulsiva-convoluzione-errore-2">
+
+- **Sbagliato:** Scrivere nel tempo $y=h\cdot x$, come prodotto.
+- **Corretto:** Nel tempo è una convoluzione; il prodotto vale fra le trasformate, $Y=HX$.
+
+</div>
+
+<div data-note-id="risposta-impulsiva-convoluzione-errore-3">
+
+- **Sbagliato:** Usare la convoluzione con condizioni iniziali non nulle e dimenticare la risposta libera.
+- **Corretto:** $y=h*x$ è solo la risposta forzata: con condizioni iniziali non nulle va aggiunta la libera.
+
+</div>
+
+<div data-note-id="risposta-impulsiva-convoluzione-errore-4">
+
+- **Sbagliato:** Dimenticare che nella convoluzione l'argomento di $h$ è $t-\tau$.
+- **Corretto:** Si integra su $\tau$ il prodotto $x(\tau)\,h(t-\tau)$: scrivendo $h(\tau)$ si perde la dipendenza da $t$ e il risultato è una costante.
 
 </div>
 
