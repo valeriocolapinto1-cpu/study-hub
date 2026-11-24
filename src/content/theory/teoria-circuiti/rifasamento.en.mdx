@@ -12,6 +12,12 @@ A motor (inductive load) also draws reactive power from the grid, which drives c
 
 </div>
 
+<div data-note-id="rifasamento-intuizione-2">
+
+The grid carries current, and current is expensive: it causes $R_{line}I^2$ losses in the cables and requires larger conductors and transformers. Power-factor correction does not change what the load does (same active power, same voltage): it only changes how much current the grid must carry to achieve it.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -52,6 +58,30 @@ The goal is to reduce the current (and hence the losses) for the same $P$: $I=P/
     }}
   />
 </Figure>
+
+<div data-note-id="rifasamento-teoria-3">
+
+**Where the formula comes from.** Before: $Q_1=P\tan\varphi_1$. After: $Q_2=P\tan\varphi_2$, with the same $P$ because the ideal capacitor absorbs no active power. The capacitor must absorb the difference, $Q_C=Q_2-Q_1=-P(\tan\varphi_1-\tan\varphi_2)$; equating with $Q_C=-\omega CV^2$ gives $C$.
+
+</div>
+
+<div data-note-id="rifasamento-teoria-4">
+
+**Why in parallel.** In parallel the load voltage stays equal to the grid voltage and the load keeps working as before. In series the capacitor would change the voltage applied to the load, and with it the power the load absorbs.
+
+</div>
+
+<div data-note-id="rifasamento-teoria-5">
+
+**How far.** Usually correction is not pushed to $\cos\varphi=1$ but to a minimum value set by the grid operator (for instance $0.9$) <span class="badge badge--warning">TO BE VERIFIED</span>: beyond that, the capacitance grows a lot for a small gain in current, and when the load runs at reduced power there is a risk of over-correction (an overall capacitive load).
+
+</div>
+
+<div data-note-id="rifasamento-teoria-6">
+
+**Order of magnitude.** A capacitor $C$ at RMS voltage $V$ and angular frequency $\omega$ absorbs $Q_C=-\omega CV^2$: at $230\,\mathrm V$ and $50\,\mathrm{Hz}$ every $100\,\mu\mathrm F$ supplies about $1.66\,\mathrm{kvar}$.
+
+</div>
 
 <Formula id="rifasamento-c" />
 <Formula id="q-c" />
@@ -98,6 +128,21 @@ Same load: compare the RMS currents before and after full correction.
 
 </div>
 
+<div class="worked" data-note-id="rifasamento-esempio-4">
+
+### Correction at 50 Hz
+
+A load absorbs $P=10\,\mathrm{kW}$ at $V=230\,\mathrm V$ RMS, $f=50\,\mathrm{Hz}$, with $\cos\varphi_1=0.7$ inductive. Find $C$ to reach $\cos\varphi_2=0.95$ and the reduction of the line losses.
+
+**Solution.**
+
+1. $\omega=2\pi\cdot50=314.2\,\mathrm{rad/s}$; $\tan\varphi_1=1.020$, $\tan\varphi_2=0.329$.
+2. $C=\dfrac{10^4\,(1.020-0.329)}{314.2\cdot230^2}=416\,\mu\mathrm F$.
+3. Currents: before $I_1=\dfrac{10^4}{230\cdot0.7}=62.1\,\mathrm A$, after $I_2=\dfrac{10^4}{230\cdot0.95}=45.8\,\mathrm A$.
+4. Line losses in the ratio $(I_2/I_1)^2=(0.7/0.95)^2=0.543$: about $46\,\%$ less.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -106,6 +151,34 @@ Same load: compare the RMS currents before and after full correction.
 
 - **Wrong:** Connecting a correction inductor (instead of a capacitor) or the capacitor in series.
 - **Right:** The capacitor goes in parallel with the inductive load.
+
+</div>
+
+<div data-note-id="rifasamento-errore-2">
+
+- **Wrong:** Using the peak voltage in the formula for $C$ written for RMS values.
+- **Right:** In $C=P(\tan\varphi_1-\tan\varphi_2)/(\omega V^2)$ $V$ is the RMS value; with the peak $V_m$ use $V_m^2/2$.
+
+</div>
+
+<div data-note-id="rifasamento-errore-3">
+
+- **Wrong:** Thinking that correction reduces the active power absorbed by the load.
+- **Right:** The active power stays $P$; what decreases is the reactive power supplied by the grid, the line current and the cable losses.
+
+</div>
+
+<div data-note-id="rifasamento-errore-4">
+
+- **Wrong:** Computing the load reactive power as $Q_1=P\sin\varphi_1$.
+- **Right:** $Q_1=P\tan\varphi_1$, or $|S|\sin\varphi_1$ with $|S|=P/\cos\varphi_1$.
+
+</div>
+
+<div data-note-id="rifasamento-errore-5">
+
+- **Wrong:** Sizing the capacitor on the apparent power $|S|$ of the load.
+- **Right:** The capacitor compensates only reactive power: it is sized on the difference $Q_1-Q_2$, in var, and active power enters only through $\tan\varphi$.
 
 </div>
 

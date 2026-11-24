@@ -12,6 +12,12 @@ A phasor only makes sense together with its frequency: two phasors at different 
 
 </div>
 
+<div data-note-id="sovrapposizione-frequenze-diverse-intuizione-2">
+
+It is like an orchestra: each instrument plays its own note and the circuit responds to each one differently, because impedances and phase shifts depend on frequency. What you hear in the end is the sum of the responses, but to compute them you must listen to one note at a time.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -51,6 +57,18 @@ Never add phasors at different frequencies: they are numbers attached to differe
     }}
   />
 </Figure>
+
+<div data-note-id="sovrapposizione-frequenze-diverse-teoria-4">
+
+**Procedure.** (1) Switch off all sources except those at a given angular frequency $\omega_k$ (voltage → short, current → open). (2) Solve the circuit with phasors at $\omega_k$; in DC with $C$ open and $L$ shorted. (3) Go back to time: $x_k(t)=\mathrm{Re}\{X_ke^{j\omega_kt}\}$. (4) Add: $x(t)=x_{dc}+\sum_kx_k(t)$. Different sources at the _same_ frequency are instead handled together, in a single phasor analysis.
+
+</div>
+
+<div data-note-id="sovrapposizione-frequenze-diverse-teoria-5">
+
+**Average power.** For average power different frequencies do not interfere: products of sinusoids at different frequencies have zero mean, so $P=P_{dc}+\sum_kP_k$. For the same reason the overall RMS value is $X_{rms}=\sqrt{X_{dc}^2+\sum_kX_{k,rms}^2}$.
+
+</div>
 
 <Formula id="sovrapposizione" />
 <Formula id="cond-iniz-mista" />
@@ -97,6 +115,20 @@ A student adds the magnitudes, $|X_1|+|X_2|$, as the total amplitude. Why is thi
 
 </div>
 
+<div class="worked" data-note-id="sovrapposizione-frequenze-diverse-esempio-4">
+
+### DC and sinusoid on an RL circuit
+
+$R=1\,\Omega$ in series with $L=1\,\mathrm H$, $v_g=2+2\cos t\,\mathrm V$. Find the steady-state $i(t)$ and the average power in $R$.
+
+**Solution.**
+
+1. DC ($L$ shorted): $i_{dc}=2/1=2\,\mathrm A$.
+2. $\omega=1$: $\dot I=\dfrac{2}{1+j}=1-j$ (peak), so $i_1=\cos t+\sin t=\sqrt2\cos(t-45^\circ)$.
+3. $i(t)=2+\cos t+\sin t$, with $i(0)=3\,\mathrm A$. Average power: $P=R\left(i_{dc}^2+\tfrac12|\dot I|^2\right)=1\cdot(4+1)=5\,\mathrm W$.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -105,6 +137,27 @@ A student adds the magnitudes, $|X_1|+|X_2|$, as the total amplitude. Why is thi
 
 - **Wrong:** Using the magnitude of the phasor as the initial condition.
 - **Right:** You need the value at $t=0$: the real part of the phasor.
+
+</div>
+
+<div data-note-id="sovrapposizione-frequenze-diverse-errore-2">
+
+- **Wrong:** Computing the average power as $R\,(i_{dc}+|\dot I|)^2$.
+- **Right:** With different frequencies the cross terms have zero mean: $P=R\left(i_{dc}^2+\tfrac12|\dot I|^2\right)$ with peak phasors.
+
+</div>
+
+<div data-note-id="sovrapposizione-frequenze-diverse-errore-3">
+
+- **Wrong:** In the DC analysis keeping the capacitor as $1/(j\omega C)$ with the $\omega$ of the sinusoidal source.
+- **Right:** Each analysis uses its own angular frequency: for $\omega=0$ the capacitor is an open circuit and the inductor a short.
+
+</div>
+
+<div data-note-id="sovrapposizione-frequenze-diverse-errore-4">
+
+- **Wrong:** Computing the RMS value of the sum as the sum of the RMS values.
+- **Right:** With different frequencies $X_{rms}=\sqrt{X_{dc}^2+\sum_kX_{k,rms}^2}$: in the example $I_{rms}=\sqrt{4+1}=\sqrt5\approx2.24\,\mathrm A$, not $2+1=3\,\mathrm A$.
 
 </div>
 

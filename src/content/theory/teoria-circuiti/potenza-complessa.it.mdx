@@ -12,6 +12,12 @@ In regime sinusoidale l'energia va e viene: una parte viene davvero consumata (l
 
 </div>
 
+<div data-note-id="potenza-complessa-intuizione-2">
+
+Il fattore di potenza $\cos\varphi$ dice quanta parte della «portata» della linea viene usata davvero. Con $\cos\varphi=1$ tutta la corrente trasporta potenza attiva; con $\cos\varphi=0{,}5$ serve il doppio della corrente per la stessa potenza attiva, e le perdite nei cavi, proporzionali a $I^2$, quadruplicano.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -59,6 +65,18 @@ Per un bipolo di impedenza $Z=R+jX$ con corrente efficace $I$: $P=RI^2$, $Q=XI^2
     }}
   />
 </Figure>
+
+<div data-note-id="potenza-complessa-teoria-3">
+
+**Con i fasori.** Con fasori efficaci $S=\dot V\dot I^*=P+jQ$ e $|S|=VI$ è la potenza apparente. Il coniugato serve a ottenere la _differenza_ delle fasi: $\dot V\dot I^*=VIe^{j(\varphi_v-\varphi_i)}$. Con fasori di picco $S=\tfrac12\dot V\dot I^*$. Per un'impedenza $S=Z\,I^2=V^2/Z^*$.
+
+</div>
+
+<div data-note-id="potenza-complessa-teoria-4">
+
+**Unità e segni.** $P$ si misura in watt, $Q$ in volt-ampere reattivi (var), $|S|$ in volt-ampere (VA). Con la convenzione degli utilizzatori $Q\gt 0$ indica un carico induttivo (corrente in ritardo), $Q\lt 0$ un carico capacitivo (corrente in anticipo).
+
+</div>
 
 <Formula id="p-picco" />
 <Formula id="p-eff" />
@@ -110,6 +128,20 @@ $P=300\,\mathrm W$, $Q=400\,\mathrm{var}$.
 
 </div>
 
+<div class="worked" data-note-id="potenza-complessa-esempio-4">
+
+### Carico RC in parallelo
+
+Tensione efficace $\dot V=100\,\mathrm V$ su $R=50\,\Omega$ in parallelo a un condensatore con reattanza $X_C=-25\,\Omega$. Trova $P$, $Q$, $|S|$ e $\cos\varphi$.
+
+**Soluzione.**
+
+1. Correnti: $\dot I_R=100/50=2\,\mathrm A$, $\dot I_C=\dfrac{100}{-25j}=4j\,\mathrm A$, totale $\dot I=2+4j$.
+2. $S=\dot V\dot I^*=100\,(2-4j)=200-400j$: $P=200\,\mathrm W$, $Q=-400\,\mathrm{var}$.
+3. $|S|=\sqrt{200^2+400^2}=447{,}2\,\mathrm{VA}$, $\cos\varphi=200/447{,}2=0{,}447$ (capacitivo). Verifica: $P=V^2/R=200$ ✓, $Q_C=-V^2/25=-400$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -118,6 +150,27 @@ $P=300\,\mathrm W$, $Q=400\,\mathrm{var}$.
 
 - **Sbagliato:** Usare $P=V_mI_m\cos\varphi$ con valori di picco.
 - **Corretto:** Con picchi serve il fattore $\tfrac12$; con efficaci no.
+
+</div>
+
+<div data-note-id="potenza-complessa-errore-2">
+
+- **Sbagliato:** Calcolare $S=\dot V\dot I$ senza coniugare la corrente.
+- **Corretto:** Senza coniugato si somma la fase della corrente invece di sottrarla: la potenza complessa è $S=\dot V\dot I^*$.
+
+</div>
+
+<div data-note-id="potenza-complessa-errore-3">
+
+- **Sbagliato:** Attribuire a un condensatore una potenza reattiva assorbita positiva.
+- **Corretto:** Con la convenzione degli utilizzatori il condensatore assorbe $Q\lt 0$ (cioè eroga reattiva); è l'induttore ad assorbire $Q\gt 0$.
+
+</div>
+
+<div data-note-id="potenza-complessa-errore-4">
+
+- **Sbagliato:** Prendere $\varphi$ come anticipo della corrente sulla tensione.
+- **Corretto:** Con la convenzione degli utilizzatori $\varphi=\varphi_v-\varphi_i$: se la corrente è in ritardo $\varphi\gt 0$ e $Q\gt 0$ (carico induttivo).
 
 </div>
 

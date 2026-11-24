@@ -12,6 +12,12 @@ Come in continua nessuna energia compare dal nulla, così in regime sinusoidale 
 
 </div>
 
+<div data-note-id="conservazione-potenza-complessa-intuizione-2">
+
+Il bilancio è anche uno strumento di controllo: dopo aver risolto un circuito in regime sinusoidale, sommare $P$ dei resistori e $Q$ di induttori e condensatori e confrontarli con ciò che erogano i generatori richiede un minuto e scopre quasi ogni errore di segno o di calcolo.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -38,6 +44,18 @@ In regime sinusoidale la somma delle potenze complesse assorbite da tutti i rami
 3. Per il teorema di Tellegen $\dot{\mathbf V}^{\mathsf T}\dot{\mathbf I}^*=0$, cioè $\sum_k\dot V_k\dot I_k^*=0$. Parte reale: $\sum P_k=0$; parte immaginaria: $\sum Q_k=0$. $\square$
 
 </details>
+
+<div data-note-id="conservazione-potenza-complessa-teoria-3">
+
+**Che cosa non si conserva.** La potenza apparente non si conserva perché è un modulo: $|S_1+S_2|\le|S_1|+|S_2|$, con l'uguaglianza solo se i due carichi hanno lo stesso fattore di potenza. Per lo stesso motivo il fattore di potenza di più carichi non è la media dei singoli: si calcola da $P_{tot}$ e $Q_{tot}$.
+
+</div>
+
+<div data-note-id="conservazione-potenza-complessa-teoria-4">
+
+**Carichi in parallelo.** Più carichi alimentati dalla stessa tensione si combinano sommando le potenze complesse: $S_{tot}=\sum_kS_k$, cioè $P_{tot}=\sum P_k$ e $Q_{tot}=\sum Q_k$. La corrente di linea si ricava poi da $I=|S_{tot}|/V$.
+
+</div>
 
 <Formula id="cons-s" />
 <Formula id="bilancio-p" />
@@ -84,6 +102,20 @@ Carico $P=12$, $Q_L=16$ con un condensatore che assorbe $Q_C=-16$.
 
 </div>
 
+<div class="worked" data-note-id="conservazione-potenza-complessa-esempio-4">
+
+### Due carichi in parallelo
+
+Alla tensione efficace $V=200\,\mathrm V$ sono collegati un carico da $P_1=1000\,\mathrm W$ con $\cos\varphi_1=0{,}8$ induttivo e uno da $P_2=600\,\mathrm W$ con $\cos\varphi_2=0{,}6$ capacitivo. Trova potenza complessa totale, fattore di potenza e corrente di linea.
+
+**Soluzione.**
+
+1. $Q_1=P_1\tan\varphi_1=1000\cdot0{,}75=750\,\mathrm{var}$; $Q_2=-600\cdot\tfrac43=-800\,\mathrm{var}$.
+2. $S_{tot}=1600-50j$, $|S_{tot}|=1600{,}8\,\mathrm{VA}$, $\cos\varphi=1600/1600{,}8=0{,}9995$.
+3. $I=1600{,}8/200=8{,}0\,\mathrm A$. Sommando le apparenti ($1250+1000=2250\,\mathrm{VA}$) si stimerebbe $11{,}25\,\mathrm A$: sbagliato.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -92,6 +124,27 @@ Carico $P=12$, $Q_L=16$ con un condensatore che assorbe $Q_C=-16$.
 
 - **Sbagliato:** Sommare le potenze apparenti dei rami.
 - **Corretto:** Si sommano le potenze complesse (o $P$ e $Q$ separatamente).
+
+</div>
+
+<div data-note-id="conservazione-potenza-complessa-errore-2">
+
+- **Sbagliato:** Calcolare il fattore di potenza di più carichi come media dei fattori dei singoli.
+- **Corretto:** Si calcola dai totali: $\cos\varphi=P_{tot}/\sqrt{P_{tot}^2+Q_{tot}^2}$.
+
+</div>
+
+<div data-note-id="conservazione-potenza-complessa-errore-3">
+
+- **Sbagliato:** Lasciare fuori dal bilancio i generatori controllati.
+- **Corretto:** Un generatore controllato è un ramo come gli altri: la sua potenza complessa entra nella somma, e può essere erogata.
+
+</div>
+
+<div data-note-id="conservazione-potenza-complessa-errore-4">
+
+- **Sbagliato:** Calcolare la corrente di linea sommando i moduli delle correnti dei carichi.
+- **Corretto:** Si sommano i fasori (KCL), non i moduli: nell'esempio la linea porta $8\,\mathrm A$, non $6{,}25+5=11{,}25\,\mathrm A$.
 
 </div>
 

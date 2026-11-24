@@ -12,6 +12,12 @@ L'impedenza è la «legge di Ohm» del regime sinusoidale: un solo numero comple
 
 </div>
 
+<div data-note-id="impedenza-ammettenza-intuizione-2">
+
+Il segno della reattanza dice chi insegue chi. Nell'induttore la corrente arriva in ritardo, perché la tensione deve prima farla crescere; nel condensatore la corrente arriva in anticipo, perché è lei a caricarlo. Un bipolo con $X\gt 0$ si comporta «da induttore», con $X\lt 0$ «da condensatore», e con $X=0$ è puramente resistivo (o in risonanza).
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -53,6 +59,30 @@ Un induttore ha reattanza positiva (ritarda la corrente rispetto alla tensione),
     }}
   />
 </Figure>
+
+<div data-note-id="impedenza-ammettenza-teoria-4">
+
+**Forma polare.** $Z=|Z|e^{j\varphi}$ con $|Z|=\sqrt{R^2+X^2}$ e $\varphi=\arctan(X/R)$ (per $R\gt 0$): il modulo è il rapporto fra le ampiezze di tensione e corrente, $\varphi$ è l'anticipo della tensione sulla corrente. Per un bipolo passivo $R\ge0$, quindi $-90^\circ\le\varphi\le90^\circ$.
+
+</div>
+
+<div data-note-id="impedenza-ammettenza-teoria-5">
+
+**Da $Z$ a $Y$.** $Y=\dfrac1{R+jX}=\dfrac{R-jX}{R^2+X^2}$, quindi $G=\dfrac{R}{R^2+X^2}$ e $B=-\dfrac{X}{R^2+X^2}$. La conduttanza non è $1/R$ (lo è solo se $X=0$) e la suscettanza ha segno opposto alla reattanza.
+
+</div>
+
+<div data-note-id="impedenza-ammettenza-teoria-6">
+
+**Dipendenza dalla frequenza.** $|Z_L|=\omega L$ cresce con $\omega$, $|Z_C|=1/(\omega C)$ decresce. In un RL o RC serie c'è una pulsazione in cui reattanza e resistenza hanno lo stesso modulo ($\omega=R/L$ oppure $\omega=1/(RC)$): lì la fase è $\pm45^\circ$, ed è l'origine della frequenza di taglio dei filtri del primo ordine.
+
+</div>
+
+<div data-note-id="impedenza-ammettenza-teoria-7">
+
+**Equivalente a una frequenza.** Un bipolo passivo con $Z=R+jX$ a una data pulsazione si può sostituire con un resistore $R$ in serie a un induttore $L=X/\omega$ (se $X\gt 0$) o a un condensatore $C=-1/(\omega X)$ (se $X\lt 0$). L'equivalenza vale solo a quella frequenza.
+
+</div>
 
 <Formula id="imped-r" />
 <Formula id="imped-l" />
@@ -102,6 +132,20 @@ $R=1$ in serie con $C=1$ ($\omega=1$), $\dot V_g=1$. Tensione sul condensatore?
 
 </div>
 
+<div class="worked" data-note-id="impedenza-ammettenza-esempio-4">
+
+### RLC serie a una frequenza data
+
+$R=10\,\Omega$, $L=0{,}1\,\mathrm H$, $C=100\,\mu\mathrm F$ in serie, $\omega=200\,\mathrm{rad/s}$, tensione efficace $V=100\,\mathrm V$. Trova $Z$, la corrente e lo sfasamento.
+
+**Soluzione.**
+
+1. $X_L=\omega L=20\,\Omega$, $X_C=-\dfrac{1}{\omega C}=-\dfrac{1}{200\cdot10^{-4}}=-50\,\Omega$.
+2. $Z=10+j(20-50)=10-30j$, $|Z|=\sqrt{100+900}=31{,}62\,\Omega$, $\varphi=\arctan(-3)=-71{,}57^\circ$.
+3. $I=V/|Z|=100/31{,}62=3{,}16\,\mathrm A$, in anticipo di $71{,}57^\circ$ sulla tensione: a questa frequenza il circuito è capacitivo ($X\lt 0$).
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -110,6 +154,27 @@ $R=1$ in serie con $C=1$ ($\omega=1$), $\dot V_g=1$. Tensione sul condensatore?
 
 - **Sbagliato:** Scrivere $Z_C=j\omega C$.
 - **Corretto:** $Z_C=1/(j\omega C)=-j/(\omega C)$.
+
+</div>
+
+<div data-note-id="impedenza-ammettenza-errore-2">
+
+- **Sbagliato:** Calcolare la conduttanza come $G=1/R$ anche in presenza di reattanza.
+- **Corretto:** $G=\mathrm{Re}\{1/Z\}=R/(R^2+X^2)$: coincide con $1/R$ solo se $X=0$.
+
+</div>
+
+<div data-note-id="impedenza-ammettenza-errore-3">
+
+- **Sbagliato:** Sommare i moduli delle impedenze in serie: $|Z|=R+|X_L|+|X_C|$.
+- **Corretto:** Si sommano i numeri complessi: le reattanze di $L$ e $C$ hanno segni opposti e in parte si compensano (nell'esempio $20-50=-30$).
+
+</div>
+
+<div data-note-id="impedenza-ammettenza-errore-4">
+
+- **Sbagliato:** Usare $Z_L=j\omega L$ mettendo al posto di $\omega$ la frequenza in hertz.
+- **Corretto:** $\omega=2\pi f$ in rad/s: a $50\,\mathrm{Hz}$ un induttore da $0{,}1\,\mathrm H$ ha $|Z_L|=31{,}4\,\Omega$, non $5\,\Omega$.
 
 </div>
 

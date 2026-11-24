@@ -12,6 +12,12 @@ Phasors work because the complex exponential is "invariant" under differentiatio
 
 </div>
 
+<div data-note-id="applicabilita-fasori-intuizione-2">
+
+A practical check before using phasors: are all elements linear and constant? Do all sources have the same frequency? Does the circuit, left alone, return to rest? With three "yes" answers phasors give the steady state; with one "no" something else is needed: one analysis per frequency, Laplace or a nonlinear analysis.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -39,6 +45,12 @@ It does not apply to nonlinear elements (diodes, saturation) or time-varying ele
 4. The general solution is $y_p$ plus the zero-input response: if the poles have negative real part the latter decays and $y_p$ remains (steady state). If the system is unstable there is no steady state. $\square$
 
 </details>
+
+<div data-note-id="applicabilita-fasori-teoria-3">
+
+**DC.** DC is a sinusoid with $\omega=0$: the method still holds, with $Z_L=0$ (short) and $Z_C\to\infty$ (open). If a circuit has both DC and sinusoids, superposition is used: one analysis per frequency, including $\omega=0$.
+
+</div>
 
 <Formula id="fasori-validita" />
 <Formula id="hjw-def" />
@@ -85,6 +97,20 @@ $H(s)=\dfrac{1}{s-1}$ with input $\cos t$: does $H(j)$ make sense?
 
 </div>
 
+<div class="worked" data-note-id="applicabilita-fasori-esempio-4">
+
+### A steady state that does not exist
+
+A source $v_g=\cos t$ feeds $L=1\,\mathrm H$ in series with $C=1\,\mathrm F$, with no resistance. Can the steady-state current be found with phasors?
+
+**Solution.**
+
+1. $Z=j\omega L+\dfrac{1}{j\omega C}=j\cdot1-j\cdot1=0$ at $\omega=1$.
+2. $\dot I=\dot V/Z=1/0$ does not exist: this is the case $D(j\omega)=0$ of the proof, with the poles $s=\pm j$ exactly at the source frequency.
+3. In time the solution contains a term proportional to $t$ that grows without bound: there is no sinusoidal steady state, and any series resistance $R\gt 0$ brings it back.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -100,6 +126,13 @@ $H(s)=\dfrac{1}{s-1}$ with input $\cos t$: does $H(j)$ make sense?
 
 - **Wrong:** Using phasors for the transient after switching on.
 - **Right:** The transient requires Laplace or the differential equation.
+
+</div>
+
+<div data-note-id="applicabilita-fasori-errore-3">
+
+- **Wrong:** Applying phasors when $D(j\omega)=0$, as in an ideal LC at its resonant frequency.
+- **Right:** In that case the sinusoidal steady state does not exist: the response grows in time, and the division by zero signals it.
 
 </div>
 
