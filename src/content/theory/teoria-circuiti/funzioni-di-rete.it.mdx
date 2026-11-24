@@ -12,6 +12,12 @@ La funzione di rete è la «carta d'identità» di un circuito visto da un ingre
 
 </div>
 
+<div data-note-id="funzioni-di-rete-intuizione-2">
+
+Una volta nota $H(s)$ il circuito si può dimenticare: la risposta a qualunque ingresso, con condizioni iniziali nulle, è $Y(s)=H(s)X(s)$. È lo stesso passo d'astrazione di Thevenin, ma nel tempo: tutto ciò che conta del circuito, per quella coppia ingresso–uscita, sta in un rapporto di due polinomi.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -37,6 +43,24 @@ Per circuiti lineari tempo-invarianti a costanti concentrate $H(s)=\dfrac{N(s)}{
 4. Quindi $H=Y/X$ è un rapporto di polinomi reali. I polinomi reali hanno radici non reali in coppie coniugate. $\square$
 
 </details>
+
+<div data-note-id="funzioni-di-rete-teoria-3">
+
+**Tipi di funzioni di rete.** Con ingresso e uscita sulla stessa porta si ha un'impedenza ($V/I$) o un'ammettenza ($I/V$) di punto pilota; su porte diverse una funzione di trasferimento: rapporto di tensioni o di correnti, transimpedenza ($V_2/I_1$) o transammettenza ($I_2/V_1$). Il tipo dice anche le unità: adimensionale, ohm o siemens.
+
+</div>
+
+<div data-note-id="funzioni-di-rete-teoria-4">
+
+**Agli estremi.** Per $s\to0$ e $s\to\infty$ $H(s)$ si riduce al rapporto dei termini di grado minimo e massimo: è il comportamento del circuito in continua (condensatori aperti, induttori in corto) e ad altissima frequenza (condensatori in corto, induttori aperti). Calcolare $H(0)$ e $H(\infty)$ direttamente sul circuito è un controllo veloce del risultato.
+
+</div>
+
+<div data-note-id="funzioni-di-rete-teoria-5">
+
+**Ordine.** Il grado del denominatore è l'ordine del circuito: senza incongruenze coincide con il numero di elementi con memoria indipendenti. Un anello di soli condensatori (con eventuali generatori di tensione), o un taglio di soli induttori, riduce l'ordine di uno.
+
+</div>
 
 <Formula id="h-def" />
 <Formula id="h-razionale" />
@@ -84,6 +108,21 @@ $Z(s)$ di una serie $R=1$, $C=1$.
 
 </div>
 
+<div class="worked" data-note-id="funzioni-di-rete-esempio-4">
+
+### RLC serie con uscita sul resistore
+
+$R=2\,\Omega$, $L=1\,\mathrm H$, $C=\tfrac15\,\mathrm F$ in serie, ingresso la tensione del generatore, uscita la tensione su $R$. Trova $H(s)$, poli, zeri e $|H|$ alla risonanza.
+
+**Soluzione.**
+
+1. Partitore: $H=\dfrac{R}{R+sL+\frac1{sC}}=\dfrac{2s}{s^2+2s+5}$.
+2. Zero in $s=0$; poli $s=-1\pm2j$ (parte reale negativa).
+3. Controlli agli estremi: $H(0)=0$ (il condensatore aperto blocca la continua) e $H(\infty)=0$ (l'induttore aperto blocca le alte frequenze): passa-banda.
+4. Alla risonanza $\omega_0=\sqrt5$: $H(j\sqrt5)=\dfrac{2j\sqrt5}{5-5+2j\sqrt5}=1$, tutta la tensione è sul resistore.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -92,6 +131,20 @@ $Z(s)$ di una serie $R=1$, $C=1$.
 
 - **Sbagliato:** Calcolare $H(s)$ con $v_C(0^-)\ne0$ senza metterlo a zero.
 - **Corretto:** La funzione di rete è definita con condizioni iniziali nulle.
+
+</div>
+
+<div data-note-id="funzioni-di-rete-errore-2">
+
+- **Sbagliato:** Cancellare un fattore comune fra numeratore e denominatore e giudicare la stabilità dalla $H(s)$ semplificata.
+- **Corretto:** Una cancellazione polo–zero nasconde un modo naturale che nel circuito esiste ancora: per la stabilità conta il circuito, non solo $H(s)$ ridotta.
+
+</div>
+
+<div data-note-id="funzioni-di-rete-errore-3">
+
+- **Sbagliato:** Scambiare ingresso e uscita, $H=X/Y$.
+- **Corretto:** La funzione di rete è uscita su ingresso, $H=Y/X$: scambiandoli poli e zeri si invertono.
 
 </div>
 
