@@ -10,11 +10,11 @@
     it: |-
       $$y(t)=y_{dc}+\sum_k\mathrm{Re}\{Y_ke^{j\omega_kt}\}$$
 
-      ω_k frequenze diverse
+      $\omega_k$ frequenze diverse
     en: |-
       $$y(t)=y_{dc}+\sum_k\mathrm{Re}\{Y_ke^{j\omega_kt}\}$$
 
-      ω_k different frequencies
+      $\omega_k$ different frequencies
 - id: formula-cond-iniz-mista
   topic: sovrapposizione-frequenze-diverse
   objectives:
@@ -27,8 +27,8 @@
     it: |-
       $$x(0^-)=x_{dc}+\sum_k\mathrm{Re}\{X_k\}$$
 
-      x_dc valore continuo; X_k fasore della k-esima sinusoide
+      $x_{\mathrm{dc}}$ valore continuo; $X_k$ fasore della k-esima sinusoide
     en: |-
       $$x(0^-)=x_{dc}+\sum_k\mathrm{Re}\{X_k\}$$
 
-      x_dc DC value; X_k phasor of the k-th sinusoid
+      $x_{\mathrm{dc}}$ DC value; $X_k$ phasor of the k-th sinusoid

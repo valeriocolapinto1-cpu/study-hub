@@ -183,6 +183,9 @@ server: alle isole arriva in due parti.
   errori di rete come `LoadError`, mostrati con «Riprova»). `indice` è un nome riservato.
 - Nei testi per le isole KaTeX è senza MathML (`src/lib/katex-lite.ts`): `.katex` ha `role="img"` e il
   TeX come `aria-label`. Le pagine statiche (teoria, formulario) tengono il MathML.
+- Testi brevi con matematica nelle isole (obiettivi, voci della prova): `text` semplice + `tex` sorgente
+  (`shortText`), resi da `TexText` (`src/islands/lib/TexText.tsx`) con KaTeX caricato al bisogno. Nessuna
+  formula grezza nella build: `tests/content/formule-grezze.test.ts` (statico) e `tests/e2e/formule.spec.ts`.
 - Pagina di un argomento: `lightExercise` toglie passi e spiegazioni (scaricati al primo suggerimento,
   passo o verifica: `detailsUrl`, `stepCount`) e l'HTML di enunciato, figura, scelte ed etichette, che
   `TopicExercises` passa come slot (`statement`, `figure`, `c<i>`, `l<i>`): nell'HTML una volta sola.

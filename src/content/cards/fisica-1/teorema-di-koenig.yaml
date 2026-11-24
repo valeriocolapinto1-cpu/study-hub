@@ -30,7 +30,7 @@
 
       - Dimostrare il secondo teorema (K)
 
-      - Specializzare al corpo rigido: K = ½Mv_cm² + ½I_cmω²
+      - Specializzare al corpo rigido: $K = \tfrac{1}{2}Mv_{\mathrm{cm}}^2 + \tfrac{1}{2}I_{\mathrm{cm}}\omega^2$
 
       - Applicare al rotolamento o a un urto
     en: >-
@@ -51,7 +51,7 @@
 
       - Prove the second theorem (K)
 
-      - Specialise to the rigid body: K = ½Mv_cm² + ½I_cmω²
+      - Specialise to the rigid body: $K = \tfrac{1}{2}Mv_{\mathrm{cm}}^2 + \tfrac{1}{2}I_{\mathrm{cm}}\omega^2$
 
       - Apply it to rolling or to a collision
 - id: teorema-di-koenig-orale-1
@@ -196,11 +196,11 @@
     en: "Limiting cases: König's theorem (angular momentum and kinetic energy)"
   back:
     it: >-
-      Corpo che solo trasla: K' = 0, K = ½Mv_cm². Corpo che ruota attorno al CM fermo: K = ½I_cmω². Sistema di
-      due corpi: K' = ½μv_rel² con μ massa ridotta — la scomposizione usata negli urti.
+      Corpo che solo trasla: K' = 0, $K = \tfrac{1}{2}Mv_{\mathrm{cm}}^2$. Corpo che ruota attorno al CM fermo: $K = \tfrac{1}{2}I_{\mathrm{cm}}\omega^2$. Sistema di
+      due corpi: K' = $\tfrac{1}{2}\mu v_{\mathrm{rel}}^2$ con μ massa ridotta — la scomposizione usata negli urti.
     en: >-
-      A body that only translates: K' = 0, K = ½Mv_cm². A body rotating about a CM at rest: K = ½I_cmω².
-      Two-body system: K' = ½μv_rel² with μ the reduced mass — the decomposition used in collisions.
+      A body that only translates: K' = 0, $K = \tfrac{1}{2}Mv_{\mathrm{cm}}^2$. A body rotating about a CM at rest: $K = \tfrac{1}{2}I_{\mathrm{cm}}\omega^2$.
+      Two-body system: K' = $\tfrac{1}{2}\mu v_{\mathrm{rel}}^2$ with μ the reduced mass — the decomposition used in collisions.
 - id: teorema-di-koenig-errori
   topic: teorema-di-koenig
   objectives:

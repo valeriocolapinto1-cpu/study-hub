@@ -23,13 +23,13 @@
       **Scaletta:**
 
 
-      - Definire r_cm per sistemi discreti e continui
+      - Definire $r_{\mathrm{cm}}$ per sistemi discreti e continui
 
       - Scrivere Newton per il singolo punto separando interne ed esterne
 
       - Mostrare l'elisione delle forze interne con la terza legge
 
-      - Ricavare F_ext = Ma_cm = dP/dt
+      - Ricavare $F_{\mathrm{ext}} = Ma_{\mathrm{cm}}$ = dP/dt
 
       - Enunciare la conservazione di P per sistemi isolati
 
@@ -46,13 +46,13 @@
       **Outline:**
 
 
-      - Define r_cm for discrete and continuous systems
+      - Define $r_{\mathrm{cm}}$ for discrete and continuous systems
 
       - Write Newton for a single point, separating internal and external forces
 
       - Show the cancellation of internal forces with the third law
 
-      - Derive F_ext = Ma_cm = dP/dt
+      - Derive $F_{\mathrm{ext}} = Ma_{\mathrm{cm}}$ = dP/dt
 
       - State the conservation of P for isolated systems
 
@@ -207,11 +207,11 @@
   back:
     it: >-
       Sistema isolato: P costante (base per lo studio degli urti). Proiettile che esplode in volo: i frammenti
-      si disperdono ma il loro CM continua sulla parabola originaria. Corpo rigido: r_cm coincide col centro
+      si disperdono ma il loro CM continua sulla parabola originaria. Corpo rigido: $r_{\mathrm{cm}}$ coincide col centro
       geometrico se la densità è uniforme e c'è simmetria.
     en: >-
       Isolated system: P constant (the basis for studying collisions). A projectile exploding in flight: the
-      fragments scatter but their CM continues along the original parabola. Rigid body: r_cm coincides with
+      fragments scatter but their CM continues along the original parabola. Rigid body: $r_{\mathrm{cm}}$ coincides with
       the geometric centre if density is uniform and there is symmetry.
 - id: centro-di-massa-errori
   topic: centro-di-massa
@@ -233,7 +233,7 @@
 
       - Credere che il CM debba trovarsi dentro il corpo (controesempio: anello, boomerang).
 
-      - Confondere v_cm con la velocità di un punto specifico del corpo.
+      - Confondere $v_{\mathrm{cm}}$ con la velocità di un punto specifico del corpo.
 
       - Usare la conservazione di P quando la risultante esterna non è nulla (es. durante un urto con vincoli
       esterni impulsivi).
@@ -242,7 +242,7 @@
 
       - Believing that the CM must lie inside the body (counterexamples: ring, boomerang).
 
-      - Confusing v_cm with the velocity of a specific point of the body.
+      - Confusing $v_{\mathrm{cm}}$ with the velocity of a specific point of the body.
 
       - Using conservation of P when the external resultant is not zero (e.g. during a collision with
       impulsive external constraints).

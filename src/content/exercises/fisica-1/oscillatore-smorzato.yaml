@@ -232,14 +232,14 @@
       value: 0.4
       unit: 1/s
     - label:
-        it: ω_s
-        en: ω_s
+        it: $\omega_s$
+        en: $\omega_s$
       value: 9.992
       unit: rad/s
       tol: 0.001
     - label:
-        it: x_n/x_(n+1)
-        en: x_n/x_(n+1)
+        it: $x_n/x_{n+1}$
+        en: $x_n/x_{n+1}$
       value: 1.286
       tol: 0.005
     - label:

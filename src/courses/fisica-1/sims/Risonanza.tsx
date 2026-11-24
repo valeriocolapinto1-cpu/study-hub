@@ -52,9 +52,14 @@ export default function Risonanza({ lang }: { lang: Lang }): preact.JSX.Element 
           onInput={setG}
         />
         <p class="sim-note" aria-live="polite">
-          {hasPeak
-            ? `Ω_ris = ${formatNumber(omR, 3, lang)} rad/s · A_max = ${formatNumber(Am, 3, lang)} m`
-            : t.nopeak}
+          {hasPeak ? (
+            <>
+              Ω<sub>ris</sub> = {formatNumber(omR, 3, lang)} rad/s · A<sub>max</sub> ={' '}
+              {formatNumber(Am, 3, lang)} m
+            </>
+          ) : (
+            t.nopeak
+          )}
         </p>
       </div>
       <Plot

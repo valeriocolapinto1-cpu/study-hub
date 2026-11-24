@@ -5,6 +5,7 @@
  * La netlist è validata con lo schema Zod: un errore ferma la build con un
  * messaggio che indica il campo sbagliato.
  */
+import CaptionText from '../components/CaptionText.astro';
 import './sim.css';
 import { parseNetlist, type NetlistInput } from './circuits/netlist';
 import { renderSchematic } from './circuits/schematic';
@@ -31,5 +32,9 @@ const { svg } = renderSchematic(net, { lang, title, values });
 
 <figure class:list={['circuit-figure', cls]}>
   <Fragment set:html={svg} />
-  {caption && <figcaption>{caption}</figcaption>}
+  {caption && (
+    <figcaption>
+      <CaptionText text={caption} />
+    </figcaption>
+  )}
 </figure>

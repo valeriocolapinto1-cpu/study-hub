@@ -104,7 +104,7 @@ export const vqm = registerGenerator({
           ],
         ),
       ],
-      [ans('v_qm', v, 'm/s'), ans('⟨K⟩', E, 'J')],
+      [ans('$v_{\\mathrm{qm}}$', v, 'm/s'), ans('⟨K⟩', E, 'J')],
       Fig.gasBox({ wall: false }),
     );
   },
@@ -198,7 +198,7 @@ export const caloriMolari = registerGenerator({
           ],
         ),
       ],
-      [ans('Q_V', QV, 'J'), ans('Q_p', Qp, 'J'), ans('W', W, 'J')],
+      [ans('$Q_V$', QV, 'J'), ans('$Q_p$', Qp, 'J'), ans('W', W, 'J')],
       Fig.heatingPv({ n, dT }),
     );
   },
@@ -288,7 +288,7 @@ export const macchinaTermica = registerGenerator({
           ],
         ),
       ],
-      [ans('W', W, 'J'), ans('|Q_F|', Qf, 'J'), ans('COP', cop)],
+      [ans('W', W, 'J'), ans('$|Q_F|$', Qf, 'J'), ans('COP', cop)],
       Fig.heatEngine('engine'),
     );
   },
@@ -332,7 +332,7 @@ export const carnot = registerGenerator({
           ],
         ),
       ],
-      [ans('Q_C', Qc, 'J'), ans('η', eta), ans('W', W, 'J'), ans('|Q_F|', Qf, 'J')],
+      [ans('$Q_C$', Qc, 'J'), ans('η', eta), ans('W', W, 'J'), ans('$|Q_F|$', Qf, 'J')],
       Fig.carnotPv({ n, Tc, Tf, k }),
     );
   },
@@ -379,7 +379,7 @@ export const entropiaMescolamento = registerGenerator({
         ),
       ],
       [
-        ans('T_f', Tf, 'K', 0.001),
+        ans('$T_f$', Tf, 'K', 0.001),
         ans(L(lang, 'ΔS acqua calda', 'ΔS hot water'), S1, 'J/K'),
         ans(L(lang, 'ΔS universo', 'ΔS universe'), S1 + S2, 'J/K', 0.02),
       ],

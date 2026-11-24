@@ -64,7 +64,7 @@ const CALC: Record<string, Record<string, () => number>> = {
   'smorzato-decremento': {
     γ: () => 0.4 / (2 * 0.5),
     ω_s: () => Math.sqrt(100 - 0.16),
-    'x_n/x_(n+1)': () => Math.exp((0.4 * 2 * Math.PI) / Math.sqrt(99.84)),
+    'x_n/x_n+1': () => Math.exp((0.4 * 2 * Math.PI) / Math.sqrt(99.84)),
     Q: () => 10 / 0.8,
   },
   'smorzamento-critico-ammortizzatore': {
@@ -357,6 +357,24 @@ const DIR = resolve(import.meta.dirname, '../../../src/content/exercises/fisica-
 type Ex = { id: string; kind: string; answer?: { label: { it: string }; value: number; tol?: number }[] };
 const all = readdirSync(DIR).flatMap((f) => parse(readFileSync(join(DIR, f), 'utf8')) as Ex[]);
 
+/** Chiave in CALC: l'etichetta TeX in notazione da tastiera (`$v_{\\mathrm{cm}}$` → `v_cm`, `\\omega` → `ω`). */
+const GRECHE: Record<string, string> = {
+  omega: 'ω',
+  theta: 'θ',
+  alpha: 'α',
+  mu: 'μ',
+  Delta: 'Δ',
+  eta: 'η',
+  tau: 'τ',
+  Omega: 'Ω',
+};
+const chiave = (label: string) =>
+  label
+    .replace(/\$/g, '')
+    .replace(/\\mathrm\{([^}]*)\}/g, '$1')
+    .replace(/\\([A-Za-z]+) ?/g, (m, g: string) => GRECHE[g] ?? m)
+    .replace(/[{}]/g, '');
+
 describe('Fisica 1: soluzioni degli esercizi statici', () => {
   it('ogni esercizio statico ha le sue espressioni di verifica', () => {
     expect(
@@ -368,7 +386,7 @@ describe('Fisica 1: soluzioni degli esercizi statici', () => {
   });
   it.each(all.filter((e) => e.kind === 'static'))('$id', (e) => {
     for (const a of e.answer ?? []) {
-      const f = CALC[e.id]?.[a.label.it];
+      const f = CALC[e.id]?.[chiave(a.label.it)];
       expect(f, a.label.it).toBeTypeOf('function');
       const v = f!();
       const tol = a.tol ?? 0.01;

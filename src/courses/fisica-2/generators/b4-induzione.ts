@@ -49,8 +49,8 @@ defineTemplate({
       ],
       answer: [
         { label: 'I₀', value: I0, unit: 'A' },
-        { label: 'i_L(τ)', value: Itau, unit: 'A' },
-        { label: '|V_R₂(0⁺)|', value: Vpk, unit: 'V' },
+        { label: '$i_L(\\tau)$', value: Itau, unit: 'A' },
+        { label: '$|V_{R_2}(0^+)|$', value: Vpk, unit: 'V' },
         { label: 'W', value: W, unit: 'J' },
       ],
       parametri: { E, R1, R2, L },
@@ -113,7 +113,7 @@ defineTemplate({
         { label: '|ℰ(0)|', value: e0, unit: 'V' },
         { label: 'i(0)', value: i0, unit: 'A' },
         { label: 'Q', value: Q, unit: 'C' },
-        { label: 'W_J', value: Wj, unit: 'J' },
+        { label: '$W_J$', value: Wj, unit: 'J' },
       ],
       parametri: { a, lam, B0, tau },
       valori: { Rr, e0, i0, Wj, Q },
@@ -172,7 +172,7 @@ defineTemplate({
         ),
       ],
       answer: [
-        { label: 'v_L', value: vL, unit: 'm/s' },
+        { label: '$v_L$', value: vL, unit: 'm/s' },
         { label: 'i', value: I, unit: 'A' },
         { label: 'P', value: Pw, unit: 'W' },
         { label: 'τ', value: tau, unit: 's' },
@@ -355,7 +355,7 @@ defineTemplate({
       ],
       answer: [
         { label: 'ℰ(0)', value: e0, unit: 'V' },
-        { label: 'i_max', value: i0, unit: 'A' },
+        { label: '$i_{\\mathrm{max}}$', value: i0, unit: 'A' },
         { label: 'Q', value: Q, unit: 'C' },
       ],
       parametri: { n, I0, tau, N, d: dd, R },
@@ -537,7 +537,7 @@ defineTemplate({
       answer: [
         { label: 'B', value: B0, unit: 'T' },
         { label: 'E', value: E0, unit: 'V/m' },
-        { label: 'u_E/u_B', value: ratio },
+        { label: '$u_E/u_B$', value: ratio },
       ],
       parametri: { n, I0, tau, a, r: rr },
       valori: { B0, E0, ratio, ratio_formula: (rr / (2 * C0 * tau)) ** 2 },

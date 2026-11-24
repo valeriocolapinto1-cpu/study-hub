@@ -46,7 +46,7 @@ export const frenata = registerGenerator({
           ],
         ),
       ],
-      [ans('W_tot', -K, 'J'), ans('d', d, 'm')],
+      [ans('$W_{\\mathrm{tot}}$', -K, 'J'), ans('d', d, 'm')],
       Fig.braking(),
     );
   },
@@ -148,7 +148,7 @@ export const pianoScabro = registerGenerator({
           ],
         ),
       ],
-      [ans('d', d, 'm'), ans('v_f', vf, 'm/s')],
+      [ans('d', d, 'm'), ans('$v_f$', vf, 'm/s')],
       { type: 'inclined-plane', params: { angle: th, friction: true, motion: 'up', massLabel: 'm' } },
     );
   },

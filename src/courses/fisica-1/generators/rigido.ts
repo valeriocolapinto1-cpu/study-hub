@@ -135,7 +135,7 @@ export const astaConMasse = registerGenerator({
           ],
         ),
       ],
-      [ans('I_cm', Icm, 'kg·m²'), ans(L(lang, 'I estremo', 'I end'), Iend, 'kg·m²')],
+      [ans('$I_{\\mathrm{cm}}$', Icm, 'kg·m²'), ans(L(lang, 'I estremo', 'I end'), Iend, 'kg·m²')],
       Fig.rodWithMasses(),
     );
   },
@@ -250,7 +250,7 @@ export const rotolamento = registerGenerator({
           ],
         ),
       ],
-      [ans('a', a, 'm/s²'), ans('v', v, 'm/s'), ans('μ_s min', mu)],
+      [ans('a', a, 'm/s²'), ans('v', v, 'm/s'), ans('$\\mu_{s,\\mathrm{min}}$', mu)],
       Fig.rollingIncline({
         angle: th,
         style: body.beta === 1 ? 'ring' : body.beta === 1 / 2 ? 'disc' : 'sphere',

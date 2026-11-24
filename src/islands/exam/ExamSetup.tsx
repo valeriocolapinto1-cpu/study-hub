@@ -5,6 +5,7 @@ import type { CourseSummary } from '../../engine/course-data';
 import type { ExamMode, ExamRecord, ExamSession } from '../../engine/exam';
 import { formatNumber } from '../../engine/units';
 import { t, type Lang } from '../lib/i18n';
+import { TexText } from '../lib/TexText';
 
 export interface SetupForm {
   mode: ExamMode;
@@ -84,7 +85,7 @@ export function ExamSetup(p: ExamSetupProps) {
           <ol class="sh-structure">
             {course.structure.map((s, i) => (
               <li key={i}>
-                {s.label}
+                <TexText text={s.label} tex={s.labelTex} />
                 {s.points !== undefined && (
                   <span class="sh-muted"> · {t(lang, 'exam.points', { points: s.points })}</span>
                 )}

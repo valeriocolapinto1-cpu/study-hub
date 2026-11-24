@@ -35,12 +35,12 @@ Clausius' inequality generalises Carnot's theorem to arbitrary cycles with heat 
   params={{
     kind: 'engine',
     reservoirs: [
-      { label: 'T_1', heat: 'Q_1', side: 'hot' },
-      { label: 'T_2', heat: 'Q_2', side: 'hot' },
-      { label: 'T_3', heat: 'Q_3', side: 'cold' },
+      { label: '$T_1$', heat: '$Q_1$', side: 'hot' },
+      { label: '$T_2$', heat: '$Q_2$', side: 'hot' },
+      { label: '$T_3$', heat: '$Q_3$', side: 'cold' },
     ],
   }}
-  caption="Cycle exchanging heat with several reservoirs: the sum of the reduced heats Σ Q_i/T_i cannot be positive."
+  caption="Cycle exchanging heat with several reservoirs: the sum of the reduced heats Σ $Q_i/T_i$ cannot be positive."
 />
 
 <div data-note-id="teoria/disuguaglianza-di-clausius/derivazione" class="derivation">
@@ -111,7 +111,7 @@ $$
 \oint \frac{\delta Q}{T} \le 0; \qquad \text{reversible cycle: running it backwards} \Rightarrow \oint \frac{\delta Q}{T} = 0
 $$
 
-For N → ∞ the sum becomes an integral. If the cycle is reversible, reversing it changes the sign of every δQ: both ≤ 0 and ≥ 0 hold, hence = 0. The vanishing of the integral over every reversible cycle implies that δQ_rev/T is an exact differential: entropy is born.
+For N → ∞ the sum becomes an integral. If the cycle is reversible, reversing it changes the sign of every δQ: both ≤ 0 and ≥ 0 hold, hence = 0. The vanishing of the integral over every reversible cycle implies that $\delta Q_{\mathrm{rev}}/T$ is an exact differential: entropy is born.
 
 </details>
 

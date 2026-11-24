@@ -408,8 +408,8 @@
     it: 'Misura voltamperometrica: errori di inserzione'
     en: 'Voltmeter-ammeter measurement: insertion errors'
   note:
-    it: R_A resistenza dell'amperometro, R_V del voltmetro.
-    en: R_A resistance of the ammeter, R_V of the voltmeter.
+    it: $R_A$ resistenza dell'amperometro, $R_V$ del voltmetro.
+    en: $R_A$ resistance of the ammeter, $R_V$ of the voltmeter.
 - id: rc-carica
   topic: corrente-stazionaria
   latex: q(t) = C\mathcal E\left(1-e^{-t/\tau}\right),\qquad I(t) = \frac{\mathcal E}{R}\,e^{-t/\tau},\qquad \tau = RC
@@ -909,8 +909,8 @@
     it: Coefficienti di Fresnel (polarizzazione p, E ∥ piano di incidenza)
     en: Fresnel coefficients (p polarisation, E ∥ plane of incidence)
   note:
-    it: Il segno di r_p dipende dalla convenzione sui versi dei campi.
-    en: The sign of r_p depends on the convention for the directions of the fields.
+    it: Il segno di $r_p$ dipende dalla convenzione sui versi dei campi.
+    en: The sign of $r_p$ depends on the convention for the directions of the fields.
 - id: fresnel-norm
   topic: radiazione-materia
   latex: R = \left(\frac{n_1-n_2}{n_1+n_2}\right)^2,\qquad T = \frac{4n_1n_2}{(n_1+n_2)^2}

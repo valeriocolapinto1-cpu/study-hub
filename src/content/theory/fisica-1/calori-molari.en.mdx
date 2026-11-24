@@ -10,7 +10,7 @@ import * as Fig from '../../../courses/fisica-1/lib/figures';
 
 <div data-note-id="teoria/calori-molari/idea">
 
-Heating at constant volume 'pours' energy only into the internal tank; heating at constant pressure also forces you to pay the toll of expansion work, always equal to R per mole per degree: that is Mayer. In solids every atom, a spring among springs, has six pockets of ½k_BT: that is why very different materials share the same molar heat capacity 3R.
+Heating at constant volume 'pours' energy only into the internal tank; heating at constant pressure also forces you to pay the toll of expansion work, always equal to R per mole per degree: that is Mayer. In solids every atom, a spring among springs, has six pockets of $\tfrac{1}{2}k_B T$: that is why very different materials share the same molar heat capacity 3R.
 
 </div>
 
@@ -28,13 +28,13 @@ Heating at constant volume 'pours' energy only into the internal tank; heating a
 
 ## Definitions
 
-The molar heat capacity is the heat needed to raise the temperature of one mole by 1 K: $c = \frac{1}{n}\frac{\delta Q}{dT}$. It depends on the transformation: at constant volume c_V, at constant pressure c_p. For ideal gases Mayer's relation $c_p = c_V + R$ holds and one defines $\gamma = c_p/c_V$. For crystalline solids the Dulong–Petit law predicts c ≈ 3R, independent of the material.
+The molar heat capacity is the heat needed to raise the temperature of one mole by 1 K: $c = \frac{1}{n}\frac{\delta Q}{dT}$. It depends on the transformation: at constant volume $c_V$, at constant pressure $c_p$. For ideal gases Mayer's relation $c_p = c_V + R$ holds and one defines $\gamma = c_p/c_V$. For crystalline solids the Dulong–Petit law predicts c ≈ 3R, independent of the material.
 
 </div>
 
 <Diagram
   {...Fig.heatingPv({ n: 1, dT: 100 })}
-  caption="Same ΔT, same ΔU: along the isobar the gas also does work (shaded area), hence c_p = c_V + R."
+  caption="Same ΔT, same ΔU: along the isobar the gas also does work (shaded area), hence $c_p = c_V + R$."
 />
 
 <div data-note-id="teoria/calori-molari/derivazione" class="derivation">
@@ -50,7 +50,7 @@ $$
 V = \text{const} \Rightarrow W = 0 \Rightarrow \delta Q = dU \;\Rightarrow\; c_V = \frac{1}{n}\Big(\frac{dU}{dT}\Big) = \frac{f}{2}R
 $$
 
-With no work, all the heat goes into internal energy: c_V directly measures the capacity of the gas to store energy in its degrees of freedom.
+With no work, all the heat goes into internal energy: $c_V$ directly measures the capacity of the gas to store energy in its degrees of freedom.
 
 </details>
 
@@ -83,7 +83,7 @@ $$
 nc_p\,dT = nc_V\,dT + nR\,dT \;\Rightarrow\; c_p = c_V + R
 $$
 
-c_p always exceeds c_V by exactly R: the surcharge is the expansion work per degree of heating. It holds for every ideal gas, whatever f.
+$c_p$ always exceeds $c_V$ by exactly R: the surcharge is the expansion work per degree of heating. It holds for every ideal gas, whatever f.
 
 </details>
 
@@ -105,7 +105,7 @@ $$
 \text{3 oscillators} \times 2\;\text{quadratic terms} = 6 \;\Rightarrow\; U = 3nRT \;\Rightarrow\; c \approx 3R \approx 25\;\tfrac{\text{J}}{\text{mol·K}}
 $$
 
-Every atom of the lattice is a 3D oscillator: 3 kinetic + 3 elastic potential terms, each ½k_BT. The molar heat capacity is the same for (almost) all solids at room temperature; it collapses at low T because of quantum effects (Einstein, Debye).
+Every atom of the lattice is a 3D oscillator: 3 kinetic + 3 elastic potential terms, each $\tfrac{1}{2}k_B T$. The molar heat capacity is the same for (almost) all solids at room temperature; it collapses at low T because of quantum effects (Einstein, Debye).
 
 </details>
 
@@ -123,7 +123,7 @@ Ideal gas at equilibrium; quasi-static transformations; degrees of freedom class
 
 ## Limiting cases
 
-For solids at low T: c → 0 as T³ (Debye), Dulong–Petit fails. For gases at increasing T: c_V rises in steps as rotations and vibrations switch on. For liquids there is no equally simple theory.
+For solids at low T: c → 0 as T³ (Debye), Dulong–Petit fails. For gases at increasing T: $c_V$ rises in steps as rotations and vibrations switch on. For liquids there is no equally simple theory.
 
 </div>
 
@@ -160,8 +160,8 @@ For solids at low T: c → 0 as T³ (Debye), Dulong–Petit fails. For gases at 
 
 <div data-note-id="teoria/calori-molari/errori">
 
-- Saying that the molar heat capacity is a single property of the gas: it depends on the transformation (c_V ≠ c_p, and every polytropic has its own).
-- Using c_p in ΔU = nc ΔT: internal energy always goes with c_V.
+- Saying that the molar heat capacity is a single property of the gas: it depends on the transformation ($c_V \ne c_p$, and every polytropic has its own).
+- Using $c_p$ in ΔU = nc ΔT: internal energy always goes with $c_V$.
 - Forgetting that Mayer's relation holds only for ideal gases.
 - Counting 3 degrees of freedom for the atom of a solid instead of 6 (the elastic potential is missing).
 

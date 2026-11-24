@@ -13,7 +13,7 @@
     en: 'Present at the oral exam: “Mechanical energy in the presence of non-conservative forces”.'
   back:
     it: >-
-      ΔE = W_nc è il 'conto corrente' dell'energia meccanica: le forze conservative spostano fondi tra i
+      $\Delta E = W_{\mathrm{nc}}$ è il 'conto corrente' dell'energia meccanica: le forze conservative spostano fondi tra i
       depositi K e U senza toccare il saldo, le non conservative fanno versamenti (motori) o prelievi
       (attriti). Il denaro prelevato dall'attrito non è distrutto: è convertito nella valuta 'disordinata'
       dell'energia termica, non più interamente riconvertibile in moto.
@@ -22,7 +22,7 @@
       **Scaletta:**
 
 
-      - Enunciare il bilancio ΔE = W_nc e dimostrarlo in tre righe
+      - Enunciare il bilancio $\Delta E = W_{\mathrm{nc}}$ e dimostrarlo in tre righe
 
       - Distinguere forze conservative, dissipative e motrici
 
@@ -34,7 +34,7 @@
 
       - Risolvere un esempio completo (blocco che sale un piano scabro e ridiscende)
     en: >-
-      ΔE = W_nc is the 'current account' of mechanical energy: conservative forces move funds between the
+      $\Delta E = W_{\mathrm{nc}}$ is the 'current account' of mechanical energy: conservative forces move funds between the
       deposits K and U without touching the balance, non-conservative forces make deposits (engines) or
       withdrawals (friction). The money withdrawn by friction is not destroyed: it is converted into the
       'disordered' currency of thermal energy, which can no longer be fully converted back into motion.
@@ -43,7 +43,7 @@
       **Outline:**
 
 
-      - State the balance ΔE = W_nc and prove it in three lines
+      - State the balance $\Delta E = W_{\mathrm{nc}}$ and prove it in three lines
 
       - Distinguish conservative, dissipative and driving forces
 
@@ -107,19 +107,19 @@
     - forze-non-conservative.6
   kind: orale
   front:
-    it: Come si collega ΔE = W_nc al primo principio della termodinamica?
-    en: How is ΔE = W_nc related to the first law of thermodynamics?
+    it: Come si collega $\Delta E = W_{\mathrm{nc}}$ al primo principio della termodinamica?
+    en: How is $\Delta E = W_{\mathrm{nc}}$ related to the first law of thermodynamics?
   back:
     it: >-
       Il primo principio generalizza il bilancio: \(\Delta U_{int} = Q - W\). L'energia meccanica "persa" per
       attrito, \(-W_{nc}\), ricompare come aumento di energia interna dei corpi a contatto (o come calore
       ceduto all'ambiente). Considerando anche l'energia interna, l'energia totale si conserva sempre: ΔE =
-      W_nc è il caso meccanico di questa legge più generale.
+      $W_{\mathrm{nc}}$ è il caso meccanico di questa legge più generale.
     en: >-
       The first law generalises the balance: \(\Delta U_{int} = Q - W\). The mechanical energy "lost" to
       friction, \(-W_{nc}\), reappears as an increase in the internal energy of the bodies in contact (or as
       heat released to the surroundings). Including internal energy, total energy is always conserved: ΔE =
-      W_nc is the mechanical case of this more general law.
+      $W_{\mathrm{nc}}$ is the mechanical case of this more general law.
 - id: forze-non-conservative-definizione
   topic: forze-non-conservative
   objectives:
@@ -178,10 +178,10 @@
   back:
     it: >-
       Sistema in cui le forze sono classificabili in conservative e non; per l'attrito radente, modello di
-      Coulomb F = μ_d N con μ_d costante; N nota lungo il cammino.
+      Coulomb $F = \mu_d$ N con $\mu_d$ costante; N nota lungo il cammino.
     en: >-
       A system in which forces can be classified as conservative or not; for sliding friction, Coulomb's model
-      F = μ_d N with constant μ_d; N known along the path.
+      $F = \mu_d$ N with constant $\mu_d$; N known along the path.
 - id: forze-non-conservative-casi-limite
   topic: forze-non-conservative
   objectives:
@@ -197,12 +197,12 @@
     en: 'Limiting cases: Mechanical energy in the presence of non-conservative forces'
   back:
     it: >-
-      W_nc = 0: conservazione esatta di E. Moto a regime (velocità costante) con attrito: la forza motrice
-      compensa esattamente la dissipazione, ΔK = 0 e W_motrice = −W_attrito. Tempo lungo con sola
+      $W_{\mathrm{nc}} = 0$: conservazione esatta di E. Moto a regime (velocità costante) con attrito: la forza motrice
+      compensa esattamente la dissipazione, ΔK = 0 e $W_{\mathrm{motrice}} = -W_{\mathrm{attrito}}$. Tempo lungo con sola
       dissipazione: E decresce monotonicamente fino al minimo di U accessibile.
     en: >-
-      W_nc = 0: exact conservation of E. Steady motion (constant speed) with friction: the driving force
-      exactly compensates the dissipation, ΔK = 0 and W_driving = −W_friction. Long times with dissipation
+      $W_{\mathrm{nc}} = 0$: exact conservation of E. Steady motion (constant speed) with friction: the driving force
+      exactly compensates the dissipation, ΔK = 0 and $W_{\mathrm{driving}} = -W_{\mathrm{friction}}$. Long times with dissipation
       only: E decreases monotonically down to the lowest accessible minimum of U.
 - id: forze-non-conservative-errori
   topic: forze-non-conservative

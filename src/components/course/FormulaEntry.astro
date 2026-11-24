@@ -1,6 +1,8 @@
 ---
 /** Voce del formulario: formula, simboli, uso, errore tipico, rimando alla teoria e segnalibro. */
 import Formula from '../Formula.astro';
+import InlineTex from '../InlineTex.astro';
+import { texToPlain } from '../../lib/inline-tex';
 import { t, tr, type Lang } from '../../i18n';
 import type { Formula as FormulaData } from '../../content/schemas';
 
@@ -16,8 +18,15 @@ interface Props {
   html?: string | undefined;
 }
 const { lang, formula: f, theoryHref, topicTitle, bookmark = true, compact = false, html } = Astro.props;
-const label = tr(f.label, lang);
-const search = [label, f.symbols && tr(f.symbols, lang), f.usage && tr(f.usage, lang), topicTitle, f.id]
+const labelTex = tr(f.label, lang);
+const label = texToPlain(labelTex);
+const search = [
+  label,
+  f.symbols && texToPlain(tr(f.symbols, lang)),
+  f.usage && texToPlain(tr(f.usage, lang)),
+  topicTitle,
+  f.id,
+]
   .filter(Boolean)
   .join(' ')
   .toLowerCase();
@@ -31,7 +40,9 @@ const search = [label, f.symbols && tr(f.symbols, lang), f.usage && tr(f.usage, 
   id={`voce-${f.id}`}
 >
   <div class="formula-entry__head">
-    <h3 class="formula-entry__title">{label}</h3>
+    <h3 class="formula-entry__title">
+      <InlineTex text={labelTex} />
+    </h3>
     <span class="formula-entry__actions">
       {bookmark && (
         <button
@@ -57,25 +68,33 @@ const search = [label, f.symbols && tr(f.symbols, lang), f.usage && tr(f.usage, 
       {f.symbols && (
         <>
           <dt>{t(lang, 'formulary.symbols')}</dt>
-          <dd>{tr(f.symbols, lang)}</dd>
+          <dd>
+            <InlineTex text={tr(f.symbols, lang)} />
+          </dd>
         </>
       )}
       {f.usage && (
         <>
           <dt>{t(lang, 'formulary.usage')}</dt>
-          <dd>{tr(f.usage, lang)}</dd>
+          <dd>
+            <InlineTex text={tr(f.usage, lang)} />
+          </dd>
         </>
       )}
       {f.pitfall && (
         <>
           <dt>{t(lang, 'formulary.pitfall')}</dt>
-          <dd>{tr(f.pitfall, lang)}</dd>
+          <dd>
+            <InlineTex text={tr(f.pitfall, lang)} />
+          </dd>
         </>
       )}
       {f.note && (
         <>
           <dt>{t(lang, 'callout.nota')}</dt>
-          <dd>{tr(f.note, lang)}</dd>
+          <dd>
+            <InlineTex text={tr(f.note, lang)} />
+          </dd>
         </>
       )}
     </dl>

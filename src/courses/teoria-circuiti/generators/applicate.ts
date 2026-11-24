@@ -180,7 +180,7 @@ const filtro: Build = (rng, lang) => {
         lang,
         'Taglio',
         'Cut-off',
-        `${kind.startsWith('rc') ? '$\\omega_c=\\dfrac{1}{RC}$' : '$\\omega_c=\\dfrac{R}{L}$'}$=${withDec(wc, lang)}\\,\\mathrm{rad/s}$ ${tr(lang, '(a $\\omega_c$ il modulo vale $|H|_{max}/\\sqrt2$, cioè $-3\\,\\mathrm{dB}$).', '(at $\\omega_c$ the magnitude is $|H|_{max}/\\sqrt2$, i.e. $-3\\,\\mathrm{dB}$).')}`,
+        `${kind.startsWith('rc') ? '$\\omega_c=\\dfrac{1}{RC}' : '$\\omega_c=\\dfrac{R}{L}'}=${withDec(wc, lang)}\\,\\mathrm{rad/s}$ ${tr(lang, '(a $\\omega_c$ il modulo vale $|H|_{max}/\\sqrt2$, cioè $-3\\,\\mathrm{dB}$).', '(at $\\omega_c$ the magnitude is $|H|_{max}/\\sqrt2$, i.e. $-3\\,\\mathrm{dB}$).')}`,
       ),
       step(
         lang,

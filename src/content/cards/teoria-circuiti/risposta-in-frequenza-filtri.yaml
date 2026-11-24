@@ -39,11 +39,11 @@
     it: |-
       $$\omega_c=\frac1{RC}$$
 
-      R [Ω]; C [F]; ω_c in rad/s
+      R [Ω]; C [F]; $\omega_c$ in rad/s
     en: |-
       $$\omega_c=\frac1{RC}$$
 
-      R [Ω]; C [F]; ω_c in rad/s
+      R [Ω]; C [F]; $\omega_c$ in rad/s
 - id: formula-wc-rl
   topic: risposta-in-frequenza-filtri
   objectives:
@@ -57,11 +57,11 @@
     it: |-
       $$\omega_c=\frac RL$$
 
-      R [Ω]; L [H]; ω_c in rad/s
+      R [Ω]; L [H]; $\omega_c$ in rad/s
     en: |-
       $$\omega_c=\frac RL$$
 
-      R [Ω]; L [H]; ω_c in rad/s
+      R [Ω]; L [H]; $\omega_c$ in rad/s
 - id: formula-mod-lp
   topic: risposta-in-frequenza-filtri
   objectives:
@@ -74,11 +74,11 @@
     it: |-
       $$|H(j\omega)|=\frac{1}{\sqrt{1+(\omega/\omega_c)^2}}$$
 
-      ω_c pulsazione di taglio [rad/s]
+      $\omega_c$ pulsazione di taglio [rad/s]
     en: |-
       $$|H(j\omega)|=\frac{1}{\sqrt{1+(\omega/\omega_c)^2}}$$
 
-      ω_c cut-off angular frequency [rad/s]
+      $\omega_c$ cut-off angular frequency [rad/s]
 - id: formula-db
   topic: risposta-in-frequenza-filtri
   objectives:

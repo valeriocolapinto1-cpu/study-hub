@@ -220,7 +220,7 @@ defineTemplate({
       ],
       answer: [
         { label: 'Eₓ', value: Ex, unit: 'V/m' },
-        { label: 'E_y', value: Ey, unit: 'V/m' },
+        { label: '$E_y$', value: Ey, unit: 'V/m' },
         { label: '|E|', value: v.E, unit: 'V/m' },
       ],
       parametri: { L, Q, D },
@@ -282,8 +282,8 @@ defineTemplate({
       ],
       answer: [
         { label: 'C', value: C, unit: 'F' },
-        { label: 'V_max', value: Vmax, unit: 'V' },
-        { label: 'U_max', value: Umax, unit: 'J' },
+        { label: '$V_{\\mathrm{max}}$', value: Vmax, unit: 'V' },
+        { label: '$U_{\\mathrm{max}}$', value: Umax, unit: 'J' },
       ],
       parametri: { R1, R2, L, er, Ed },
       valori: v,
@@ -476,9 +476,9 @@ defineTemplate({
       ],
       answer: [
         { label: 'V₁', value: V1i, unit: 'V' },
-        { label: 'q_ext', value: Qt, unit: 'C' },
-        { label: 'V_f', value: Vf, unit: 'V' },
-        { label: 'W_d', value: Wd, unit: 'J' },
+        { label: '$q_{\\mathrm{ext}}$', value: Qt, unit: 'C' },
+        { label: '$V_f$', value: Vf, unit: 'V' },
+        { label: '$W_d$', value: Wd, unit: 'J' },
       ],
       parametri: { R1, R2, R3, Q1, Q2 },
       valori: v,

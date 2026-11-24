@@ -12,7 +12,10 @@ import type { Lang } from '../config/site';
 
 export interface ObjectiveInfo {
   id: string;
+  /** Testo semplice (la matematica è già testo). */
   text: string;
+  /** Sorgente con la matematica (`$…$`), solo se il testo ne contiene: l'isola lo rende con KaTeX. */
+  tex?: string;
 }
 
 export interface TopicInfo {
@@ -107,6 +110,8 @@ export interface CardData extends CardMeta {
 
 export interface ExamPartData {
   label: string;
+  /** Etichetta con la matematica (`$…$`), solo se ne contiene: l'isola la rende con KaTeX. */
+  labelTex?: string;
   points?: number;
   kind: string;
   /** Solo esercizi con questo `examTags` (se ce ne sono). */

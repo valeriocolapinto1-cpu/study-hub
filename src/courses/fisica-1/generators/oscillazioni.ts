@@ -55,7 +55,7 @@ export const motoCircolare = registerGenerator({
           ],
         ),
       ],
-      [ans('ω', omega, 'rad/s'), ans('a_t', at, 'm/s²'), ans('a_n', an, 'm/s²'), ans('|a|', a, 'm/s²')],
+      [ans('ω', omega, 'rad/s'), ans('$a_t$', at, 'm/s²'), ans('$a_n$', an, 'm/s²'), ans('|a|', a, 'm/s²')],
       Fig.flywheel({ torque: 'drive', rimPoint: true }),
     );
   },
@@ -109,7 +109,12 @@ export const motoArmonico = registerGenerator({
           ],
         ),
       ],
-      [ans('ω', w, 'rad/s'), ans('A', A, 'm'), ans('v_max', vmax, 'm/s'), ans('a_max', amax, 'm/s²')],
+      [
+        ans('ω', w, 'rad/s'),
+        ans('A', A, 'm'),
+        ans('$v_{\\mathrm{max}}$', vmax, 'm/s'),
+        ans('$a_{\\mathrm{max}}$', amax, 'm/s²'),
+      ],
       Fig.harmonicPlot({ T, x0, v0 }),
     );
   },
@@ -214,7 +219,11 @@ export const pendolo = registerGenerator({
           ],
         ),
       ],
-      [ans('T₀', T0, 's'), ans('v', v, 'm/s'), ans(L(lang, 'T_filo', 'T_string'), Tmax, 'N')],
+      [
+        ans('T₀', T0, 's'),
+        ans('v', v, 'm/s'),
+        ans(L(lang, '$T_{\\mathrm{filo}}$', '$T_{\\mathrm{string}}$'), Tmax, 'N'),
+      ],
       {
         type: 'pendulum',
         params: { angle: th, forces: true, lengthLabel: 'L', massLabel: 'm', angleLabel: 'θ_0' },
@@ -317,8 +326,8 @@ export const smorzato = registerGenerator({
       ],
       [
         ans('γ', g, '1/s'),
-        ans('ω_s', ws, 'rad/s', 0.002),
-        ans('x_n/x_(n+1)', ratio, undefined, 0.005),
+        ans('$\\omega_s$', ws, 'rad/s', 0.002),
+        ans('$x_n/x_{n+1}$', ratio, undefined, 0.005),
         ans('Q', Q),
       ],
       Fig.dampedPlot({ gamma: g, omega: ws }),
@@ -384,7 +393,7 @@ export const risonanza = registerGenerator({
           ],
         ),
       ],
-      [ans('A', A, 'm'), ans('δ', delta, 'rad'), ans('A_max', Amax, 'm')],
+      [ans('A', A, 'm'), ans('δ', delta, 'rad'), ans('$A_{\\mathrm{max}}$', Amax, 'm')],
       Fig.resonancePlot({ m, k, b, F0, Om }),
     );
   },

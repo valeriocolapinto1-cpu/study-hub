@@ -9,7 +9,7 @@
     en: '**Laplace transform: properties.** Define the unilateral Laplace transform and state its main properties (linearity, derivative, integral, shift, convolution).'
   back:
     it: |-
-      **Risposta modello.** X(s) è l'integrale da 0 meno a infinito di x(t) e^{-st}. La trasformata è lineare. La derivata si trasforma in s X(s) - x(0-), l'integrale in X(s)/s. Un ritardo T dà il fattore e^{-sT} (traslazione nel tempo). La convoluzione nel tempo diventa prodotto in frequenza.
+      **Risposta modello.** X(s) è l'integrale da 0 meno a infinito di $x(t)\,e^{-st}$. La trasformata è lineare. La derivata si trasforma in s X(s) - x(0-), l'integrale in X(s)/s. Un ritardo T dà il fattore $e^{-sT}$ (traslazione nel tempo). La convoluzione nel tempo diventa prodotto in frequenza.
 
       **Punti da toccare:**
 
@@ -19,7 +19,7 @@
       - Traslazione temporale $e^{-sT}X(s)$
       - Convoluzione ↔ prodotto
     en: |-
-      **Model answer.** X(s) is the integral from 0 minus to infinity of x(t) e^{-st}. The transform is linear. The derivative becomes s X(s) - x(0-), the integral X(s)/s. A delay T gives the factor e^{-sT} (time shift). Convolution in time becomes a product in frequency.
+      **Model answer.** X(s) is the integral from 0 minus to infinity of $x(t)\,e^{-st}$. The transform is linear. The derivative becomes s X(s) - x(0-), the integral X(s)/s. A delay T gives the factor $e^{-sT}$ (time shift). Convolution in time becomes a product in frequency.
 
       **Points to cover:**
 
@@ -38,7 +38,7 @@
     en: '**Transform of a piecewise signal.** Transform a rectangular pulse of amplitude $A$ and duration $T$ ($0<t<T$) and explain the procedure.'
   back:
     it: |-
-      **Risposta modello.** Si scrive il segnale come differenza di due gradini: A[u(t) - u(t-T)]. Il gradino ha trasformata 1/s e il ritardo di T moltiplica per e^{-sT}. Il risultato è A(1 - e^{-sT})/s.
+      **Risposta modello.** Si scrive il segnale come differenza di due gradini: A[u(t) - u(t-T)]. Il gradino ha trasformata 1/s e il ritardo di T moltiplica per $e^{-sT}$. Il risultato è $A(1 - e^{-sT})/s$.
 
       **Punti da toccare:**
 
@@ -47,7 +47,7 @@
       - Ritardo: $e^{-sT}$
       - Risultato $A(1-e^{-sT})/s$
     en: |-
-      **Model answer.** The signal is written as the difference of two steps: A[u(t) - u(t-T)]. The step has transform 1/s and the delay T multiplies by e^{-sT}. The result is A(1 - e^{-sT})/s.
+      **Model answer.** The signal is written as the difference of two steps: A[u(t) - u(t-T)]. The step has transform 1/s and the delay T multiplies by $e^{-sT}$. The result is $A(1 - e^{-sT})/s$.
 
       **Points to cover:**
 

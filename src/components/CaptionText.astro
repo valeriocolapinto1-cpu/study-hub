@@ -1,0 +1,27 @@
+---
+/**
+ * Testo di una didascalia (figure, diagrammi, circuiti, formule): con `$…$` la matematica è resa da
+ * KaTeX a build-time (InlineTex); in testo semplice `V_th` o `N_{ab}` diventano pedici ed `e^{−t}` un apice.
+ */
+import InlineTex from './InlineTex.astro';
+import { hasTex } from '../lib/inline-tex';
+interface Props {
+  text: string;
+}
+const { text } = Astro.props;
+const tex = hasTex(text);
+const parts = (tex ? '' : text)
+  .split(/(?<=[\p{L}\d)])(_|\^)(\{[^}]+\}|[\p{L}\d∞]+)/u)
+  .reduce<{ tag?: 'sub' | 'sup'; text: string }[]>((out, part, i) => {
+    if (i % 3 === 0) out.push({ text: part });
+    else if (i % 3 === 1) out.push({ tag: part === '_' ? 'sub' : 'sup', text: '' });
+    else out[out.length - 1]!.text = part.replace(/^\{|\}$/g, '');
+    return out;
+  }, []);
+---
+
+{tex ? (
+  <InlineTex text={text} />
+) : (
+  parts.map((p) => (p.tag === 'sub' ? <sub>{p.text}</sub> : p.tag === 'sup' ? <sup>{p.text}</sup> : p.text))
+)}
