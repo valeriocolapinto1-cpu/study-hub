@@ -17,7 +17,16 @@
 import { sanitizeProgress, sanitizeSrs, type ProgressState, type SrsState } from './progress';
 import { sanitizeNotes, type NotesState } from './notes';
 import { sanitizeExamState, type ExamState, MAX_HISTORY } from './exam';
-import { BACKUP_AREA, COURSE_INDEX_AREA, clearScope, listKeys, parseKey, readAll, readRaw, writeRaw } from './storage';
+import {
+  BACKUP_AREA,
+  COURSE_INDEX_AREA,
+  clearScope,
+  listKeys,
+  parseKey,
+  readAll,
+  readRaw,
+  writeRaw,
+} from './storage';
 import { MIGRATIONS_AREA } from './migrate';
 import { STUDIED_AREA, loadStudied, mergeStudied, sanitizeStudied } from './studied';
 
