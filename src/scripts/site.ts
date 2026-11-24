@@ -118,6 +118,10 @@ for (const type of ['pointerover', 'focusin'])
   }
 }
 
+// ---- Argomenti studiati (spunte, capitoli, «Segna come studiato»): modulo a parte, solo dove serve.
+if (root.dataset.course && document.querySelector('[data-studied-mark],[data-studied-toggle]'))
+  import('./studied').catch(Boolean);
+
 // ---- Indice del corso: un solo elemento (`popover`), barra laterale da 1024 px e menu sotto.
 // Il popover nativo gestisce apertura, Esc, clic fuori e aria-expanded; qui solo la voce corrente
 // in vista all'apertura e, senza Popover API, l'attributo `data-open` commutato dai due pulsanti.

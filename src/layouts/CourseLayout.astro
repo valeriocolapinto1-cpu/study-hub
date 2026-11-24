@@ -35,6 +35,8 @@ interface Props {
   wide?: boolean;
   /** Occhiello della pagina (capitolo, anno): sta nella stessa riga del percorso. */
   eyebrow?: string | undefined;
+  /** Spunte degli argomenti studiati nell'indice laterale (script a parte; no nella prova d'esame). */
+  studiedMarks?: boolean;
 }
 const {
   lang,
@@ -46,6 +48,7 @@ const {
   currentTopic,
   wide = false,
   eyebrow,
+  studiedMarks = true,
 } = Astro.props;
 const courseTitle = tr(course.title, lang);
 const pageTitle = title ? `${title} — ${courseTitle}` : courseTitle;
@@ -107,6 +110,7 @@ const barEyebrow = eyebrow && eyebrow !== parentLabel ? eyebrow : undefined;
           section={topicSection}
           current={currentTopic}
           idPrefix="side"
+          studied={studiedMarks}
         />
       )}
       <slot name="aside" />

@@ -17,6 +17,7 @@ const decks = courses.map((c) => ({
   courseId: c.id,
   title: tr(c.title, lang),
   dataPath: coursePaths(c, lang).data,
+  theoryPath: coursePaths(c, lang).theory,
   examDates: c.examDates ?? [],
 }));
 ---

@@ -1109,8 +1109,10 @@ progress.progress__bar::-moz-progress-bar {
   color: var(--accent-strong);
   font-weight: 600;
 }
-.topic-nav a[data-done='true'] .topic-nav__num::after {
+.topic-nav a[data-done='true'] .topic-nav__num::after,
+.topic-nav a[data-studied] .topic-nav__num::after {
   content: ' ✓';
+  content: ' ✓' / '';
   color: var(--success);
 }
 
@@ -1662,4 +1664,69 @@ progress.progress__bar::-moz-progress-bar {
 .weights__value {
   font-family: var(--font-mono);
   text-align: right;
+}
+
+/* =========================== Argomenti studiati (R13, src/scripts/studied.ts) =========================== */
+.chapter-head__tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+  margin: var(--space-2xs) 0 0;
+  font: 500 var(--step--1) / 1.3 var(--font-sans);
+  color: var(--text-muted);
+}
+.topic-card[data-studied] .topic-card__title::after,
+.topic-map__list li[data-studied] .topic-map__num::after,
+[data-chapter-ids][data-studied] > .chapter-head .chapter-head__count::before {
+  content: '✓ ';
+  content: '✓ ' / '';
+  color: var(--success);
+}
+.topic-card[data-studied] .topic-card__title::after {
+  content: ' ✓';
+  content: ' ✓' / '';
+}
+.topic-map__count {
+  font: 500 0.78rem / 1 var(--font-mono);
+  color: var(--text-muted);
+}
+.studied-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s);
+  margin: var(--space-xl) 0 var(--space-m);
+  padding: var(--space-s) var(--space-m);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  background: var(--surface);
+}
+.studied-box[data-studied] {
+  border-color: var(--success);
+}
+.studied-box__state {
+  margin: 0;
+}
+/* Invito discreto dopo ~80 % della lettura, sopra la barra in basso dei corsi su telefono. */
+.studied-hint {
+  position: fixed;
+  z-index: 30;
+  inset-inline: 0;
+  bottom: calc(var(--tabbar-h, 0px) + var(--tabbar-safe, 0px) + var(--space-s));
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  margin-inline: auto;
+  padding: var(--space-3xs);
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: var(--shadow-2);
+}
+.studied-hint[hidden] {
+  display: none;
 }
