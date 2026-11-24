@@ -356,7 +356,7 @@
   text-underline-offset: 0.2em;
 }
 .anchor-target,
-:is(.ex-topic, .ex-chapter, .layer, .topic-index__group-title)[id],
+:is(.ex-topic, .ex-chapter, .layer, .topic-index__group-title, .formulary__topic h2)[id],
 .prose :where(h2, h3)[id] {
   scroll-margin-top: 4.5rem;
 }

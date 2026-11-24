@@ -63,7 +63,7 @@ const search = [
     </span>
   </div>
   <Formula id={f.id} tex={lang === 'en' && f.latexEn ? f.latexEn : f.latex} html={html} />
-  {!compact && (
+  {!compact && (f.symbols || f.usage || f.pitfall || f.note) && (
     <dl class="formula-entry__meta">
       {f.symbols && (
         <>

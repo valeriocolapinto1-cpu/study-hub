@@ -58,12 +58,18 @@ tests/unit, tests/content, tests/e2e, tests/fixtures
 - `/study-hub/` → redirect a `/study-hub/it/` o `/study-hub/en/` (lingua salvata, poi del browser; ripiego `it`).
 - Gli slug sono **identici** nelle due lingue e sono in italiano: `/en/anno-2/teoria-circuiti/esercizi/`.
 - Corso: `/<lang>/anno-<year>/<courseId>/` con sezioni fisse (`COURSE_SECTIONS`):
+<<<<<<< HEAD
+  `` (Panoramica), `teoria/` (+ `teoria/<topic>/`), `formulario/` (indice dei capitoli, + `formulario/<capitolo>/`
+  e `formulario/stampa/`, `src/lib/formulary.ts`), `esercizi/` (+ `esercizi/<topic>/`),
+  `ripasso/`, `esame/`, `progressi/`; extra in `extra/<slug>/`.
+=======
   `` (Panoramica), `teoria/` (+ `teoria/<topic>/`), `formulario/`, `esercizi/` (+ `esercizi/<topic>/`),
   `ripasso/`, `esame/`, `progressi/`; extra in `extra/<slug>/`; `info/` (descrizione completa, il corso,
   l'esame con le date, come usare il sito: R8) fuori dalla navigazione, collegata dalla panoramica.
 - Panoramica (R8): frase breve `tagline` del corso (≤ 20 parole), pulsante «Riprendi da …», guida in 3 passi per
   chi arriva la prima volta (chiusa una volta per tutte: `sh:v1:global:firstSteps`), capitoli con gli argomenti
   studiati (R13, `docs/ENGINE.md`).
+>>>>>>> origin/main
 - Ogni pagina ha canonical e `hreflang` it-IT, en-US, x-default (`Head.astro`); sitemap da `@astrojs/sitemap` con i18n.
 
 ## Intestazione, SEO, sicurezza
@@ -196,7 +202,7 @@ pagine globali `/<lang>/ripasso/`, `/<lang>/appunti/`, `/<lang>/i-miei-dati/`, `
   dopo la build): un indice per lingua in `dist/pagefind/<it|en>/` (stemming corretto), solo il contenuto di
   `<main data-pagefind-body>` (BaseLayout) delle pagine indicizzabili (`pageSearchType` in
   `src/lib/search/records.ts`: teoria e pagine sì; esercizi, formulario, ripasso, esame, progressi, dati
-  personali e strumenti no) con filtri `tipo` e `corso`; in più un record per ogni formula (`formulario/#f-<id>`),
+  personali e strumenti no) con filtri `tipo` e `corso`; in più un record per ogni formula (`formulario/<capitolo>/#f-<id>`),
   esercizio statico (`esercizi/<topic>/#<id>`) e flashcard (`ripasso/#<id>`), generati da
   `src/pages/search-records.json.ts` (file rimosso dopo l'indicizzazione). Interfaccia propria
   (`src/islands/SearchDialog.tsx`), caricata alla prima apertura da `src/scripts/search.ts`: `/`, Ctrl/⌘+K o il
