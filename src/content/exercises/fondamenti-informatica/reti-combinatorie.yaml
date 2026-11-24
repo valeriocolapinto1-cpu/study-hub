@@ -830,3 +830,39 @@
       accept:
         - Select inputs
   origin: originale
+- id: r2-fi-rc-1
+  topic: reti-combinatorie
+  objectives:
+    - reti-combinatorie.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Si vuole realizzare con una ROM una rete combinatoria con 4 ingressi e 3 uscite. Quante parole ha la ROM, quanti bit ciascuna e quanti bit in tutto? Perché la ROM realizza la forma a due livelli?'
+    en: 'A combinational network with 4 inputs and 3 outputs is to be built with a ROM. How many words does the ROM have, how many bits each, and how many bits in total? Why does the ROM implement the two-level form?'
+  steps:
+    - title:
+        it: 'Dimensioni'
+        en: 'Size'
+      body:
+        it: 'Gli ingressi sono l''indirizzo: $2^4=16$ parole, una per riga della tabella di verità; ogni parola contiene le 3 uscite di quella riga. In tutto $16\cdot3=48$ bit.'
+        en: 'The inputs are the address: $2^4=16$ words, one per row of the truth table; each word holds the 3 outputs of that row. In total $16\cdot3=48$ bits.'
+    - title:
+        it: 'Due livelli'
+        en: 'Two levels'
+      body:
+        it: "Il decodificatore d'indirizzo genera tutti i mintermini (primo livello AND); la matrice di memoria fa l'OR dei mintermini per cui l'uscita vale 1 (secondo livello OR): è la somma di prodotti canonica, senza minimizzazione."
+        en: 'The address decoder generates all minterms (first AND level); the memory array ORs the minterms for which the output is 1 (second OR level): it is the canonical sum of products, without minimisation.'
+  answer:
+    - label:
+        it: 'parole'
+        en: 'words'
+      value: 16
+    - label:
+        it: 'bit per parola'
+        en: 'bits per word'
+      value: 3
+    - label:
+        it: 'bit totali'
+        en: 'total bits'
+      value: 48
+  origin: originale

@@ -490,3 +490,32 @@
   kind: generated
   generator: fisica-2/b2-ponte
   origin: tipologia-appello
+- id: r2-f2-cs-1
+  topic: corrente-stazionaria
+  objectives:
+    - corrente-stazionaria.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'In un filo di rame ($\rho=1{,}7\cdot10^{-8}\,\Omega\,\mathrm m$) lungo 2 m e di sezione $1\,\mathrm{mm^2}$ la densità di corrente è $J=4\cdot10^6\,\mathrm{A/m^2}$. Calcola la potenza dissipata per effetto Joule nel filo, in forma locale e globale.'
+    en: 'In a copper wire ($\rho=1.7\cdot10^{-8}\,\Omega\,\mathrm m$) 2 m long with $1\,\mathrm{mm^2}$ cross-section the current density is $J=4\cdot10^6\,\mathrm{A/m^2}$. Find the Joule power dissipated in the wire, in local and global form.'
+  steps:
+    - title:
+        it: 'Forma locale'
+        en: 'Local form'
+      body:
+        it: '$p=\vec J\cdot\vec E=\rho J^2=1{,}7\cdot10^{-8}\cdot1{,}6\cdot10^{13}=2{,}72\cdot10^5\,\mathrm{W/m^3}$; per il volume $2\cdot10^{-6}\,\mathrm{m^3}$: $P=0{,}544\,\mathrm W$.'
+        en: '$p=\vec J\cdot\vec E=\rho J^2=1.7\cdot10^{-8}\cdot1.6\cdot10^{13}=2.72\cdot10^5\,\mathrm{W/m^3}$; times the volume $2\cdot10^{-6}\,\mathrm{m^3}$: $P=0.544\,\mathrm W$.'
+    - title:
+        it: 'Verifica globale'
+        en: 'Global check'
+      body:
+        it: '$I=JS=4\,\mathrm A$, $R=\rho L/S=0{,}034\,\Omega$, $P=RI^2=0{,}544\,\mathrm W$.'
+        en: '$I=JS=4\,\mathrm A$, $R=\rho L/S=0.034\,\Omega$, $P=RI^2=0.544\,\mathrm W$.'
+  answer:
+    - label:
+        it: '$P$'
+        en: '$P$'
+      value: 0.544
+      unit: 'W'
+  origin: originale

@@ -1015,3 +1015,37 @@
         en: It depends on the value of the PC
       correct: false
   origin: originale
+- id: r2-fi-asm-1
+  topic: risc-cisc-assembly
+  objectives:
+    - risc-cisc-assembly.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Nel confronto fra RISC e CISC, dove si sposta la complessità?'
+    en: 'In the RISC versus CISC comparison, where does the complexity move?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: "CISC: istruzioni potenti, di lunghezza variabile, con operandi anche in memoria; la complessità sta nell'hardware (spesso microprogrammato). RISC: poche istruzioni semplici, di lunghezza fissa, modello load/store e molti registri: la decodifica e la pipeline sono semplici e la complessità passa al compilatore, che genera più istruzioni."
+        en: 'CISC: powerful, variable-length instructions, with operands also in memory; the complexity is in the hardware (often microprogrammed). RISC: few simple fixed-length instructions, load/store model and many registers: decoding and pipelining are simple and the complexity moves to the compiler, which emits more instructions.'
+  choices:
+    - text:
+        it: "RISC la sposta dall'hardware al compilatore; CISC la tiene nell'hardware con istruzioni complesse"
+        en: 'RISC moves it from the hardware to the compiler; CISC keeps it in the hardware with complex instructions'
+      correct: true
+    - text:
+        it: "RISC la sposta nell'hardware con istruzioni più potenti"
+        en: 'RISC moves it into the hardware with more powerful instructions'
+      correct: false
+    - text:
+        it: 'CISC elimina le istruzioni di accesso alla memoria'
+        en: 'CISC removes memory-access instructions'
+      correct: false
+    - text:
+        it: 'Non cambia nulla: è solo il numero di registri'
+        en: 'Nothing changes: it is only the number of registers'
+      correct: false
+  origin: originale

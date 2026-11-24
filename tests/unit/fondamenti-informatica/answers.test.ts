@@ -208,4 +208,10 @@ describe('risposte ricalcolate (Fondamenti di Informatica)', () => {
     expect(values('virgola-mobile-es-1')).toEqual([toHex(enc, 8)]);
     expect(values('virgola-mobile-es-2')).toEqual([decodeIeee754(bitsToFields((0x41200000).toString(2)))]);
   });
+
+  it('esercizi aggiunti in R2 (revisione 2)', () => {
+    expect(values('r2-fi-rc-1')).toEqual([2 ** 4, 3, 2 ** 4 * 3]);
+    close(values('r2-fi-pp-1')[0], 1.3 * 0.02 * 100);
+    close(values('r2-fi-pp-1')[1], 1 + 1.3 * 0.02 * 100 + 0.2);
+  });
 });

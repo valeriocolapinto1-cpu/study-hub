@@ -45,6 +45,9 @@ const SENZA_FIGURA: Record<string, string[]> = {
     'virgola-mobile-es-5',
   ],
   'calcolo con formule (tempi, prestazioni, consumi, percentuali) senza una struttura da disegnare': [
+    'r2-fi-rc-1',
+    'r2-fi-pp-1',
+
     'circuiti-sequenziali-es-5',
     'dal-sorgente-all-esecuzione-es-4',
     'gerarchia-di-memoria-es-2',
@@ -66,6 +69,9 @@ const SENZA_FIGURA: Record<string, string[]> = {
     'tempi-e-tecnologia-es-4',
   ],
   'domanda descrittiva o di classificazione (spiegare, motivare, attribuire, dimostrare)': [
+    'r2-fi-cs-1',
+    'r2-fi-asm-1',
+
     'algebra-di-boole-es-2',
     'algebra-di-boole-es-3',
     'algebra-di-boole-es-5',

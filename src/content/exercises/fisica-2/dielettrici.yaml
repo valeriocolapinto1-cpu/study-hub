@@ -98,3 +98,96 @@
   kind: generated
   generator: fisica-2/b1-piano-parallelo
   origin: tipologia-appello
+- id: r2-f2-di-1
+  topic: dielettrici
+  objectives:
+    - dielettrici.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Un condensatore piano a vuoto ha $C_0=10\,\mathrm{pF}$ ed è collegato a una batteria. Lo si riempie con un dielettrico di costante relativa $\varepsilon_r=4$. Quanto vale la nuova capacità? Che cosa succede al campo se invece il condensatore è isolato?'
+    en: 'A vacuum parallel-plate capacitor has $C_0=10\,\mathrm{pF}$ and is connected to a battery. It is filled with a dielectric of relative constant $\varepsilon_r=4$. What is the new capacitance? What happens to the field if instead the capacitor is isolated?'
+  figure:
+    diagram:
+      {
+        'type': 'capacitor',
+        'params': { 'geometry': 'parallel', 'dielectric': 'full', 'battery': true, 'field': true },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$C=\varepsilon_rC_0=40\,\mathrm{pF}$, indipendentemente da batteria o no. Con la batteria $V$ e quindi $E=V/d$ restano uguali e la carica cresce di $\varepsilon_r$; isolato, $Q$ resta e il campo nel dielettrico diventa $E_0/\varepsilon_r$ (le cariche di polarizzazione lo schermano in parte).'
+        en: '$C=\varepsilon_rC_0=40\,\mathrm{pF}$, battery or not. With the battery $V$, hence $E=V/d$, stays the same and the charge grows by $\varepsilon_r$; isolated, $Q$ stays and the field in the dielectric becomes $E_0/\varepsilon_r$ (polarisation charges partly screen it).'
+  answer:
+    - label:
+        it: '$C$'
+        en: '$C$'
+      value: 40
+      unit: 'pF'
+  origin: originale
+- id: r2-f2-di-2
+  topic: dielettrici
+  objectives:
+    - dielettrici.2
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Quale descrizione distingue correttamente la polarizzazione per deformazione da quella per orientamento?'
+    en: 'Which description correctly distinguishes deformation polarisation from orientation polarisation?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: "Per deformazione il campo sposta le nuvole elettroniche (o gli ioni) e induce dipoli in qualunque materiale; dipende poco dalla temperatura. Per orientamento il campo allinea dipoli permanenti di molecole polari (es. acqua) contro l'agitazione termica, quindi diminuisce al crescere di $T$."
+        en: 'In deformation polarisation the field displaces electron clouds (or ions) and induces dipoles in any material; it depends little on temperature. In orientation polarisation the field aligns permanent dipoles of polar molecules (e.g. water) against thermal agitation, so it decreases as $T$ grows.'
+  choices:
+    - text:
+        it: 'Deformazione: dipoli indotti in ogni materiale, quasi indipendente da $T$; orientamento: allineamento di dipoli permanenti, diminuisce con $T$'
+        en: 'Deformation: induced dipoles in every material, nearly independent of $T$; orientation: alignment of permanent dipoles, decreasing with $T$'
+      correct: true
+    - text:
+        it: 'Deformazione solo nelle molecole polari, orientamento in tutte'
+        en: 'Deformation only in polar molecules, orientation in all'
+      correct: false
+    - text:
+        it: 'Entrambe aumentano con la temperatura'
+        en: 'Both increase with temperature'
+      correct: false
+    - text:
+        it: "L'orientamento crea cariche libere nel materiale"
+        en: 'Orientation creates free charges in the material'
+      correct: false
+  origin: originale
+- id: r2-f2-di-3
+  topic: dielettrici
+  objectives:
+    - dielettrici.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'In una lastra di dielettrico omogeneo con $\varepsilon_r=3$ il campo è uniforme, $E=10^5\,\mathrm{V/m}$, perpendicolare alle facce. Calcola la polarizzazione e la densità di carica di polarizzazione sulle facce (quella di volume?).'
+    en: 'In a homogeneous dielectric slab with $\varepsilon_r=3$ the field is uniform, $E=10^5\,\mathrm{V/m}$, perpendicular to the faces. Find the polarisation and the polarisation charge density on the faces (and the volume one?).'
+  figure:
+    diagram:
+      {
+        'type': 'capacitor',
+        'params':
+          { 'geometry': 'parallel', 'dielectric': 'full', 'battery': false, 'field': true, 'charges': true },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$\vec P=\varepsilon_0(\varepsilon_r-1)\vec E$: $P=8{,}854\cdot10^{-12}\cdot2\cdot10^5\approx1{,}771\,\mu\mathrm{C/m^2}$. Sulle facce $\sigma_p=\vec P\cdot\hat n=\pm1{,}771\,\mu\mathrm{C/m^2}$; in volume $\rho_p=-\nabla\cdot\vec P=0$ perché $\vec P$ è uniforme.'
+        en: '$\vec P=\varepsilon_0(\varepsilon_r-1)\vec E$: $P=8.854\cdot10^{-12}\cdot2\cdot10^5\approx1.771\,\mu\mathrm{C/m^2}$. On the faces $\sigma_p=\vec P\cdot\hat n=\pm1.771\,\mu\mathrm{C/m^2}$; in the volume $\rho_p=-\nabla\cdot\vec P=0$ because $\vec P$ is uniform.'
+  answer:
+    - label:
+        it: '$|\sigma_p|$'
+        en: '$|\sigma_p|$'
+      value: 1.770838
+      unit: 'μC/m²'
+  origin: originale
