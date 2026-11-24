@@ -65,6 +65,8 @@ export interface RecordSources {
     latexEn?: string | undefined;
     label: Localized;
     note?: Localized | undefined;
+    /** Slug del capitolo del formulario (src/lib/formulary.ts): la formula sta in `formulario/<capitolo>/`. */
+    chapter?: string | undefined;
   }[];
   exercises: {
     id: string;
@@ -88,7 +90,7 @@ export function buildRecords(src: RecordSources): SearchRecord[] {
     if (!p) continue;
     const label = plainText(pickText(f.label, lang));
     out.push({
-      url: `${p.overview}formulario/#f-${f.id}`,
+      url: `${p.overview}formulario/${f.chapter ? `${f.chapter}/` : ''}#f-${f.id}`,
       language: lang,
       content: clip([label, plainText(pickText(f.note, lang))].filter(Boolean).join(' — ')),
       meta: { title: label },

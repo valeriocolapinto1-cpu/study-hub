@@ -20,8 +20,6 @@ I quattro corsi hanno questi id: `teoria-circuiti`, `fondamenti-informatica`, `f
 | Flashcard (ripasso) | `src/content/cards/<corso>/<argomento>.yaml` | `src/content/cards/fisica-1/pendolo-semplice.yaml` |
 | Figure | kit in `src/figures/` | guida in [`FIGURE.md`](FIGURE.md) |
 
-<!-- TODO(R4): i formulari stanno passando a una pagina per capitolo; aggiornare questa sezione dopo il merge. -->
-
 ## Regole che valgono ovunque
 
 - **Due lingue**: ogni testo è `{ it: …, en: … }`. Se manca l'inglese il sito mostra l'italiano con un avviso, ma
@@ -196,6 +194,13 @@ Voce in `src/content/formulas/<corso>.yaml` (un solo file per corso):
 
 Se `latex` contiene parole italiane (`\text{…}`) o decimali con la virgola, aggiungi `latexEn` con la versione
 inglese. Nei campi di testo (`symbols`, `usage`, …) la matematica va tra `$…$`.
+
+Dove compare: il formulario ha **una pagina per capitolo** (`formulario/<capitolo>/`), dove il capitolo è il
+gruppo (`group`) dell'argomento della formula, lo stesso dell'indice della teoria; `formulario/` è l'indice
+dei capitoli e `formulario/stampa/` il formulario completo da stampare. Basta scegliere il `topic` giusto:
+pagina, indice, ricerca e stampa si aggiornano da soli. Ogni pagina di capitolo deve restare sotto i 300 KB
+(`tests/content/html-size.test.ts`): se un capitolo cresce troppo, alleggerisci le voci o parlane prima di
+aggiungere formule (il capitolo più pesante, Elettrostatica di Fisica II, è a ~284 KB).
 
 ## Flashcard (scheda di ripasso)
 

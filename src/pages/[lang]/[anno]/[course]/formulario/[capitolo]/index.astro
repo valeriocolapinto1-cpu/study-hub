@@ -1,0 +1,204 @@
+---
+/**
+ * Un capitolo del formulario: indice degli argomenti del capitolo in cima, formule raggruppate per
+ * argomento con ricerca e segnalibri (salvati in sh:v1:<courseId>:formulary, comuni a tutti i
+ * capitoli), barra ← capitolo precedente · indice dei capitoli · successivo →.
+ * Il formulario completo sta solo nella versione stampabile (formulario/stampa/).
+ */
+import CourseLayout from '../../../../../../layouts/CourseLayout.astro';
+import PageHeader from '../../../../../../components/PageHeader.astro';
+import Pagination from '../../../../../../components/Pagination.astro';
+import FormulaEntry from '../../../../../../components/course/FormulaEntry.astro';
+import Notes from '../../../../../../components/course/Notes.astro';
+import Icon from '../../../../../../components/Icon.astro';
+import InlineTex from '../../../../../../components/InlineTex.astro';
+import { texToPlain } from '../../../../../../lib/inline-tex';
+import {
+  courseFormularyChapters,
+  coursePaths,
+  sectionPath,
+  type CourseData,
+} from '../../../../../../lib/course-pages';
+import { localizePath, t, tr, type Lang } from '../../../../../../i18n';
+import { renderDisplayMath, shareKatexPaths, STAR_SYMBOL } from '../../../../../../lib/katex-sprite';
+
+export async function getStaticPaths() {
+  const perCourse = await Promise.all(
+    (await coursePaths()).map(async (p) => {
+      const chapters = await courseFormularyChapters(p.props.course.id);
+      return chapters.map((chapter, index) => ({
+        params: { ...p.params, capitolo: chapter.slug },
+        props: { ...p.props, chapters, index },
+      }));
+    }),
+  );
+  return perCourse.flat();
+}
+type Chapters = Awaited<ReturnType<typeof courseFormularyChapters>>;
+interface Props {
+  course: CourseData;
+  chapters: Chapters;
+  index: number;
+}
+const { course, chapters, index } = Astro.props;
+const lang = Astro.params.lang as Lang;
+const chapter = chapters[index]!;
+const titleOf = (c: Chapters[number]) => (c.group ? tr(c.group, lang) : t(lang, 'nav.course.formulas'));
+const title = titleOf(chapter);
+const hrefOf = (c: Chapters[number]) => localizePath(sectionPath(course, 'formulario', c.slug), lang);
+const link = (c: Chapters[number] | undefined) => c && { href: hrefOf(c), title: titleOf(c) };
+// KaTeX reso qui, non in <Formula>, per condividere i tracciati SVG ripetuti (frecce dei
+// vettori, radici…) in un unico sprite per pagina, insieme alla stella dei preferiti.
+const shown = chapter.items.flatMap((x) => x.formulas);
+const shared = shareKatexPaths(
+  shown.map((f) => renderDisplayMath(lang === 'en' && f.latexEn ? f.latexEn : f.latex)),
+  [STAR_SYMBOL],
+);
+const mathOf = new Map(shown.map((f, i) => [f.id, shared.htmls[i]]));
+const count = (n: number) => t(lang, n === 1 ? 'formulary.countOne' : 'formulary.count', { n });
+---
+
+<CourseLayout
+  lang={lang}
+  course={course}
+  title={title}
+  description={t(lang, 'formulary.chapterLede', { i: index + 1, k: chapters.length, n: chapter.count })}
+  wide
+  eyebrow={tr(course.title, lang)}
+>
+  <PageHeader
+    title={title}
+    lede={t(lang, 'formulary.chapterLede', { i: index + 1, k: chapters.length, n: chapter.count })}
+  />
+  {chapter.items.length > 1 && (
+    <nav class="page-toc" aria-label={t(lang, 'formulary.inChapter')}>
+      <ul>
+        {chapter.items.map(({ topic, formulas: fs }) => (
+          <li>
+            <a href={`#ft-${topic.id}`}>
+              <InlineTex text={tr(topic.title, lang)} />
+              &nbsp;<span class="page-toc__count">({fs.length})</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )}
+  <div class="formulary-tools no-print" data-formulary={course.id}>
+    <div class="field">
+      <label class="field__label" for="fq">
+        {t(lang, 'formulary.searchChapter')}
+      </label>
+      <input id="fq" class="input" type="search" autocomplete="off" data-fq />
+    </div>
+    <label class="check">
+      <input type="checkbox" data-fstar />
+      <span>{t(lang, 'formulary.onlyBookmarks')}</span>
+    </label>
+    <a class="btn btn--ghost btn--sm" href={localizePath(sectionPath(course, 'formulario', 'stampa'), lang)}>
+      <Icon name="printer" />
+      {t(lang, 'formulary.printAll')}
+    </a>
+    <p class="muted formulary-tools__count" aria-live="polite" data-fcount>
+      {count(chapter.count)}
+    </p>
+  </div>
+  <Fragment set:html={shared.sprite} />
+  <div class="formulary">
+    {chapter.items.map(({ topic, formulas: fs }) => (
+      <section
+        class="formulary__topic"
+        aria-labelledby={`ft-${topic.id}`}
+        data-search={texToPlain(tr(topic.title, lang)).toLowerCase()}
+      >
+        <div class="formulary__topic-head">
+          <h2 class="eyebrow" id={`ft-${topic.id}`}>
+            {String(topic.order).padStart(2, '0')} · <InlineTex text={tr(topic.title, lang)} />
+          </h2>
+          {/* Rimando alla teoria una volta per argomento (non per voce: ~150 B a formula). */}
+          <a
+            class="formulary__theory no-print"
+            href={localizePath(sectionPath(course, 'teoria', topic.id), lang)}
+          >
+            {t(lang, 'formulary.theoryShort')} →
+          </a>
+        </div>
+        <div class="formulary__grid">
+          {fs.map((f) => (
+            <FormulaEntry lang={lang} formula={f} html={mathOf.get(f.id)} />
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+  <p class="muted" data-fempty hidden>
+    {t(lang, 'formulary.empty')}
+  </p>
+  <Pagination
+    lang={lang}
+    prev={link(chapters[index - 1])}
+    next={link(chapters[index + 1])}
+    middle={{
+      href: localizePath(sectionPath(course, 'formulario'), lang),
+      title: t(lang, 'formulary.chapters'),
+    }}
+  />
+  <Notes lang={lang} scope={course.id} />
+</CourseLayout>
+
+<script>
+  import { read, write } from '../../../../../../engine/storage';
+
+  const root = document.querySelector<HTMLElement>('[data-formulary]');
+  if (root) {
+    const course = root.dataset.formulary!;
+    const q = root.querySelector<HTMLInputElement>('[data-fq]')!;
+    const star = root.querySelector<HTMLInputElement>('[data-fstar]')!;
+    const count = root.querySelector<HTMLElement>('[data-fcount]')!;
+    const empty = document.querySelector<HTMLElement>('[data-fempty]')!;
+    const total = document.querySelectorAll('.formula-entry').length;
+    const topics = [...document.querySelectorAll<HTMLElement>('.formulary__topic')];
+    const marks = new Set(read<{ bookmarks?: string[] }>(course, 'formulary', {}).bookmarks ?? []);
+    const all = count.textContent;
+    const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+
+    const apply = () => {
+      const words = norm(q.value).split(/\s+/).filter(Boolean);
+      const filtering = words.length > 0 || star.checked;
+      let shown = 0;
+      for (const topic of topics) {
+        let any = false;
+        const where = topic.dataset.search ?? '';
+        for (const e of topic.querySelectorAll<HTMLElement>('.formula-entry')) {
+          const hay = norm(`${e.dataset.search ?? ''} ${where}`);
+          const ok = words.every((w) => hay.includes(w)) && (!star.checked || marks.has(e.dataset.formula!));
+          e.hidden = !ok;
+          if (ok) {
+            any = true;
+            shown++;
+          }
+        }
+        topic.hidden = !any;
+      }
+      count.textContent = filtering ? `${shown} / ${total}` : all;
+      empty.hidden = shown > 0;
+    };
+    for (const b of document.querySelectorAll<HTMLButtonElement>('[data-bookmark]')) {
+      const id = b.dataset.bookmark!;
+      // aria-pressed="false" è già nell'HTML: si tocca il DOM solo per i preferiti.
+      if (marks.has(id)) b.setAttribute('aria-pressed', 'true');
+      b.addEventListener('click', () => {
+        if (marks.has(id)) marks.delete(id);
+        else marks.add(id);
+        b.setAttribute('aria-pressed', String(marks.has(id)));
+        write(course, 'formulary', { bookmarks: [...marks] });
+        if (star.checked) apply();
+      });
+    }
+    q.addEventListener('input', apply);
+    star.addEventListener('change', apply);
+    // Senza filtri (caso normale) non si scorre il DOM delle voci; con valori ripristinati dal
+    // browser (ritorno alla pagina) si applicano.
+    if (q.value || star.checked) apply();
+  }
+</script>

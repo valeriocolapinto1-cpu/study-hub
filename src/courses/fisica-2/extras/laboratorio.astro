@@ -4,7 +4,8 @@ import CaptionText from '../../../components/CaptionText.astro';
 import Checklist from '../islands/Checklist';
 import { LAB, LEZIONI } from '../data';
 import { localizePath, type Lang } from '../../../i18n';
-import { sectionPath, type CourseData } from '../../../lib/course-pages';
+import { courseFormularyChapters, sectionPath, type CourseData } from '../../../lib/course-pages';
+import { chapterOfFormula } from '../../../lib/formulary';
 import { getEntry } from 'astro:content';
 
 interface Props {
@@ -14,7 +15,10 @@ interface Props {
 const { lang, course } = Astro.props;
 const it = lang === 'it';
 const tx = (x: { it: string; en: string }) => x[lang];
-const formulario = localizePath(sectionPath(course, 'formulario'), lang);
+// Ogni formula sta nella pagina del suo capitolo del formulario (formulario/<capitolo>/).
+const chapterOf = chapterOfFormula(await courseFormularyChapters(course.id));
+const formulaHref = (id: string) =>
+  `${localizePath(sectionPath(course, 'formulario', chapterOf.get(id) ?? ''), lang)}#f-${id}`;
 const teoria = localizePath(sectionPath(course, 'teoria', 'laboratorio-misura'), lang);
 const lezione = (n: number) => LEZIONI.find((l) => l.n === n)!;
 const ids = [...new Set(LAB.esperienze.flatMap((e) => e.formule))];
@@ -61,7 +65,7 @@ const labels = Object.fromEntries(
         {e.formule.map((f, i) => (
           <>
             {i > 0 && ', '}
-            <a href={`${formulario}#f-${f}`}>{labels[f]}</a>
+            <a href={formulaHref(f)}>{labels[f]}</a>
           </>
         ))}
       </p>

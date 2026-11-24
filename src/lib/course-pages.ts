@@ -5,6 +5,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { LANGS, type Lang } from '../i18n';
 import { coursePath, groupTopics } from './courses';
+import { formularyChapters } from './formulary';
 
 export { groupTopics };
 
@@ -33,6 +34,11 @@ export async function courseTopics(courseId: string): Promise<TopicData[]> {
 
 export async function courseFormulas(courseId: string) {
   return (await getCollection('formulas', (f) => f.data.course === courseId)).map((f) => f.data);
+}
+
+/** Capitoli del formulario del corso (src/lib/formulary.ts). */
+export async function courseFormularyChapters(courseId: string) {
+  return formularyChapters(await courseTopics(courseId), await courseFormulas(courseId));
 }
 
 export async function theoryEntry(courseId: string, topicId: string, lang: Lang) {
