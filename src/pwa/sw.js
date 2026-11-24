@@ -1,9 +1,15 @@
 /**
- * Service worker di study-hub. Nel file pubblicato (dist/sw.js) è preceduto da
- * `MANIFEST` (generato a build-time) e dalle funzioni di src/pwa/sw-core.js.
+ * Service worker di study-hub. Nel file pubblicato (dist/sw.js, minificato) è preceduto da
+ * `SW` (versione, base e nome del manifest, generati a build-time) e dalle funzioni di
+ * src/pwa/sw-core.js.
  *
- * - Installazione: scarica in una cache temporanea solo i file della shell (e dei corsi
- *   già scaricati) che sono cambiati rispetto alla versione in uso.
+ * - Manifest: `SW.manifest` (shell, e per ogni corso il nome del suo elenco) e gli elenchi dei
+ *   corsi sono file JSON a parte con l'hash del contenuto nel nome; sw.js resta piccolo. Si
+ *   scaricano all'installazione (il manifest e gli elenchi dei corsi già scaricati) o quando
+ *   servono (stato e download di un corso) e si conservano in `sh-meta` per l'uso offline.
+ * - Installazione: scarica il manifest e poi, in una cache temporanea, solo i file della shell
+ *   (e dei corsi già scaricati) che sono cambiati rispetto alla versione in uso. Se il manifest
+ *   non si scarica l'installazione fallisce e resta il worker precedente.
  * - Attivazione immediata (skipWaiting + clients.claim): un worker vecchio in attesa
  *   continuerebbe a servire pagine e file di una versione non più pubblicata. Le pagine già
  *   aperte non si ricaricano: mostrano "Nuova versione disponibile".
@@ -17,10 +23,11 @@
  *   sw.js e version.json non passano mai dal service worker.
  * - Messaggi: COURSE_STATUS, COURSE_DOWNLOAD (con avanzamento), COURSE_REMOVE, SKIP_WAITING.
  */
-/* global MANIFEST, SHELL_CACHE, META_CACHE, RUNTIME_MAX, NETWORK_TIMEOUT_MS, runtimeCacheName, mergeClients, shouldTrimRuntime, cachesFor, stagingCaches, retiringCaches, retiredCacheName, RETIRING_KEY, isImmutableAsset, isBypassed, courseCacheName, parseCourseCache, stagingCacheName, diffEntries, lookupCandidates, langOf, courseStatus, pool */
+/* global SW, SHELL_CACHE, META_CACHE, RUNTIME_MAX, NETWORK_TIMEOUT_MS, runtimeCacheName, mergeClients, shouldTrimRuntime, cachesFor, stagingCaches, retiringCaches, retiredCacheName, RETIRING_KEY, isImmutableAsset, isBypassed, courseCacheName, parseCourseCache, stagingCacheName, diffEntries, lookupCandidates, langOf, courseStatus, pool */
 
-const BASE = MANIFEST.base;
-const RUNTIME_CACHE = runtimeCacheName(MANIFEST.version);
+const BASE = SW.base;
+const VERSION = SW.version;
+const RUNTIME_CACHE = runtimeCacheName(VERSION);
 const ORIGIN = self.location.origin;
 const abs = (path) => new URL(path, ORIGIN).href;
 const metaKey = (cacheName) => abs(`${BASE}__sh-meta/${encodeURIComponent(cacheName)}`);
@@ -43,6 +50,39 @@ async function fetchFresh(url) {
   const res = await fetch(abs(url), { cache: 'no-cache', credentials: 'same-origin' });
   if (!res.ok) throw new Error(`${url}: HTTP ${res.status}`);
   return res;
+}
+
+/** Manifest e elenchi dei corsi (`sw-manifest.*.json`, `sw-course.*.json`). */
+const LIST_RE = /\/sw-(?:manifest|course)\.[^/]+\.json$/;
+
+/**
+ * Manifest o elenco di un corso: dalla copia in `sh-meta` o, con `fresh` o se manca, dalla rete
+ * (e poi conservato). I nomi hanno l'hash del contenuto: la copia conservata non invecchia.
+ * @param {string} file nome del file sotto la base
+ */
+async function loadList(file, fresh = false) {
+  const url = abs(`${BASE}${file}`);
+  const meta = await caches.open(META_CACHE);
+  let res = fresh ? undefined : await meta.match(url);
+  if (!res) {
+    res = await fetchFresh(`${BASE}${file}`);
+    await meta.put(url, res.clone());
+  }
+  return res.json();
+}
+
+/** @type {Promise<{ shell: [string, string, number][], courses: Record<string, Record<string, string>> }> | null} */
+let manifestP = null;
+const manifest = (fresh = false) =>
+  (manifestP = (fresh ? null : manifestP) ?? loadList(SW.manifest, fresh)).catch((err) => {
+    manifestP = null;
+    throw err;
+  });
+
+/** Elenco dei file di un corso (null se il corso non è pubblicato in quella lingua). */
+async function courseEntries(course, lang, fresh = false) {
+  const file = (await manifest()).courses[course]?.[lang];
+  return file ? loadList(file, fresh) : null;
 }
 
 /** Cache dei corsi scaricati presenti (nome → { course, lang }). */
@@ -72,15 +112,15 @@ const forgetOwnedCourses = () => {
 self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
-      const targets = [[SHELL_CACHE, MANIFEST.shell]];
+      const targets = [[SHELL_CACHE, (await manifest(true)).shell]];
       for (const [name, info] of await downloadedCourses()) {
-        const entries = MANIFEST.courses[info.course]?.[info.lang];
+        const entries = await courseEntries(info.course, info.lang, true);
         if (entries) targets.push([name, entries]);
       }
       for (const [name, entries] of targets) {
         const current = (await readMeta(name)) ?? {};
         const { fetch: changed } = diffEntries(entries, current);
-        const staging = await caches.open(stagingCacheName(MANIFEST.version, name));
+        const staging = await caches.open(stagingCacheName(VERSION, name));
         await pool(changed, 6, async ([url]) => {
           if (await staging.match(abs(url))) return;
           await staging.put(abs(url), await fetchFresh(url));
@@ -96,7 +136,7 @@ self.addEventListener('install', (event) => {
 /* ------------------------------------------------------------------ activate */
 
 async function commit(name, entries) {
-  const staging = await caches.open(stagingCacheName(MANIFEST.version, name));
+  const staging = await caches.open(stagingCacheName(VERSION, name));
   const target = await caches.open(name);
   const current = (await readMeta(name)) ?? {};
   const { fetch: changed, remove } = diffEntries(entries, current);
@@ -108,7 +148,7 @@ async function commit(name, entries) {
     revs[url] = rev;
   }
   const retired = remove.some((url) => isImmutableAsset(url, BASE))
-    ? await caches.open(retiredCacheName(MANIFEST.version))
+    ? await caches.open(retiredCacheName(VERSION))
     : null;
   for (const url of remove) {
     if (retired && isImmutableAsset(url, BASE)) {
@@ -124,9 +164,10 @@ async function commit(name, entries) {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     (async () => {
-      await commit(SHELL_CACHE, MANIFEST.shell);
+      const current = await manifest();
+      await commit(SHELL_CACHE, current.shell);
       for (const [name, info] of await downloadedCourses()) {
-        const entries = MANIFEST.courses[info.course]?.[info.lang];
+        const entries = await courseEntries(info.course, info.lang);
         if (entries) await commit(name, entries);
         else {
           // Corso non più pubblicato.
@@ -135,6 +176,15 @@ self.addEventListener('activate', (event) => {
         }
       }
       for (const name of stagingCaches(await caches.keys())) await caches.delete(name);
+      // Manifest ed elenchi delle versioni precedenti.
+      const lists = new Set(
+        [SW.manifest, ...Object.values(current.courses).flatMap((l) => Object.values(l))].map((f) =>
+          abs(`${BASE}${f}`),
+        ),
+      );
+      const meta = await caches.open(META_CACHE);
+      for (const req of await meta.keys())
+        if (LIST_RE.test(new URL(req.url).pathname) && !lists.has(req.url)) await meta.delete(req);
       // Finestre aperte adesso: usano la versione precedente, le sue cache restano finché sono aperte.
       const open = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
       if (open.length)
@@ -164,7 +214,7 @@ async function sweepRetired() {
     if (alive.length !== ids.length) await writeMeta(RETIRING_KEY, alive);
     return;
   }
-  for (const name of retiringCaches(await caches.keys(), MANIFEST.version)) await caches.delete(name);
+  for (const name of retiringCaches(await caches.keys(), VERSION)) await caches.delete(name);
   if (ids.length) await writeMeta(RETIRING_KEY, null);
 }
 
@@ -291,7 +341,7 @@ self.addEventListener('fetch', (event) => {
 /* ------------------------------------------------------------------ messaggi */
 
 async function courseState(course, lang) {
-  const entries = MANIFEST.courses[course]?.[lang];
+  const entries = await courseEntries(course, lang);
   if (!entries) return { state: 'unknown' };
   const name = courseCacheName(course, lang);
   const exists = (await caches.keys()).includes(name);
@@ -299,7 +349,7 @@ async function courseState(course, lang) {
 }
 
 async function download(course, lang, port) {
-  const entries = MANIFEST.courses[course]?.[lang];
+  const entries = await courseEntries(course, lang);
   if (!entries) throw new Error('unknown');
   const name = courseCacheName(course, lang);
   const cache = await caches.open(name);
@@ -329,10 +379,15 @@ self.addEventListener('message', (event) => {
       self.skipWaiting();
       break;
     case 'VERSION':
-      reply({ type: 'version', version: MANIFEST.version });
+      reply({ type: 'version', version: VERSION });
       break;
     case 'COURSE_STATUS':
-      event.waitUntil(courseState(data.course, data.lang).then((s) => reply({ type: 'status', ...s })));
+      event.waitUntil(
+        courseState(data.course, data.lang)
+          .then((s) => reply({ type: 'status', ...s }))
+          // Elenco del corso non scaricabile (es. offline e corso mai scaricato).
+          .catch((err) => reply({ type: 'error', message: String(err?.message ?? err) })),
+      );
       break;
     case 'COURSE_DOWNLOAD':
       event.waitUntil(

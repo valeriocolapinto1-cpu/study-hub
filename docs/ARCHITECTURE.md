@@ -186,9 +186,13 @@ pagine globali `/<lang>/ripasso/`, `/<lang>/appunti/`, `/<lang>/i-miei-dati/`, `
   `src/pages/search-records.json.ts` (file rimosso dopo l'indicizzazione). Interfaccia propria
   (`src/islands/SearchDialog.tsx`), caricata alla prima apertura da `src/scripts/search.ts`: `/`, Ctrl/⌘+K o il
   pulsante dell'intestazione; filtri corso, tipo, lingua; funziona offline.
-- **PWA** (`tools/integrations/pwa.mjs` → `dist/sw.js` e `dist/offline-summary.json`; `og/` e `screenshots/`
+- **PWA** (`tools/integrations/pwa.mjs` → `dist/sw.js`, `dist/sw-manifest.<hash>.json`,
+  `dist/sw-course.<corso>.<lingua>.<hash>.json` e `dist/offline-summary.json`; `og/` e `screenshots/`
   mai in cache): un solo service worker
-  (`src/pwa/sw.js` + funzioni pure `src/pwa/sw-core.js`) con il manifest di ogni file (hash e dimensione).
+  (`src/pwa/sw.js` + funzioni pure `src/pwa/sw-core.js`, minificato, ≤ 15 KB) che contiene solo versione,
+  base e nome del manifest; manifest della shell ed elenchi dei corsi (ogni file con hash e dimensione) sono
+  JSON a parte, scaricati all'installazione (se mancano l'installazione fallisce) o quando si chiede un corso
+  e conservati in `sh-meta`.
   Shell in precache (pagine globali, 404, radice, icone e le risorse che richiamano, solo import statici e
   font latin woff2; ≤ 200 file e ≤ 1,5 MB, verificato da `tests/content/pwa-shell.test.ts`); ogni corso, per
   lingua, scaricabile su richiesta da "Scarica per l'offline" nella panoramica, con i file non HTML sotto il
