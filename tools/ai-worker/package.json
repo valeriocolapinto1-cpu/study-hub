@@ -1,0 +1,17 @@
+{
+  "name": "study-hub-tutor",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Worker Cloudflare del tutor AI di study-hub (vedi docs/TUTOR-AI.md).",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "1.10.0"
+  },
+  "devDependencies": {
+    "wrangler": "4.163.0"
+  }
+}

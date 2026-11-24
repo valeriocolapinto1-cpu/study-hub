@@ -1,0 +1,27 @@
+# Worker del tutor AI (R12). Guida: docs/TUTOR-AI.md.
+# Secret (mai in questo file): wrangler secret put ANTHROPIC_API_KEY / TURNSTILE_SECRET_KEY
+name = "study-hub-tutor"
+main = "src/index.ts"
+compatibility_date = "2026-11-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Origine del sito (schema + dominio, senza percorso); più origini separate da virgole.
+ALLOWED_ORIGINS = "https://valeriocolapinto1-cpu.github.io"
+# claude-opus-5-5 (predefinito) | claude-sonnet-5-5 | claude-haiku-5-5
+MODEL = "claude-opus-5-5"
+# low | medium | high
+EFFORT = "low"
+MAX_TOKENS = "4000"
+# Richieste per IP all'ora.
+RATE_LIMIT_PER_HOUR = "20"
+# Tetto di spesa stimato al giorno (dollari, giorno UTC): poi «riprova domani».
+DAILY_BUDGET_USD = "2"
+
+[[durable_objects.bindings]]
+name = "LIMITS"
+class_name = "TutorLimits"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["TutorLimits"]
