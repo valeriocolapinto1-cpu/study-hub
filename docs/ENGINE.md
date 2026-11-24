@@ -189,8 +189,9 @@ server: alle isole arriva in due parti.
 - Pagina di un argomento: `lightExercise` toglie passi e spiegazioni (scaricati al primo suggerimento,
   passo o verifica: `detailsUrl`, `stepCount`) e l'HTML di enunciato, figura, scelte ed etichette, che
   `TopicExercises` passa come slot (`statement`, `figure`, `c<i>`, `l<i>`): nell'HTML una volta sola.
-- Limite: nessun HTML oltre 300 KB salvo formulari, stampa ed eccezioni elencate
-  (`tests/content/html-size.test.ts`).
+- Limite: nessun HTML oltre 300 KB salvo stampa ed eccezioni elencate (`tests/content/html-size.test.ts`).
+  I formulari sono una pagina per capitolo (`src/lib/formulary.ts`) e non hanno eccezioni: un capitolo
+  oltre il limite si alleggerisce o si divide, il formulario completo è solo in `formulario/stampa/`.
 
 `courseSummary`, `coursePaths`, `courseTopics`, `exerciseData`, `cardData`, `courseStaticPaths`,
 `courseTopicStaticPaths` sono esportati per pagine personalizzate.

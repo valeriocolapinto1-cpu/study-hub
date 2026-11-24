@@ -74,9 +74,9 @@ test.describe('ricerca', () => {
     await page.getByRole('button', { name: 'Formule' }).click();
     await expect(page.getByRole('button', { name: 'Formule' })).toHaveAttribute('aria-pressed', 'true');
     const links = page.locator('.pf-search__results > li > a.pf-search__link');
-    await expect(links.first()).toHaveAttribute('href', /formulario\/#f-/);
+    await expect(links.first()).toHaveAttribute('href', /formulario\/[a-z0-9-]+\/#f-/);
     for (const href of await links.evaluateAll((els) => els.map((e) => e.getAttribute('href'))))
-      expect(href).toContain('/formulario/#f-');
+      expect(href).toMatch(/\/formulario\/[a-z0-9-]+\/#f-/);
     await page.getByRole('button', { name: 'Formule' }).click();
     await page.getByRole('button', { name: 'Esercizi' }).click();
     await expect(links.first()).toHaveAttribute('href', /esercizi\/[a-z0-9-]+\/#/);

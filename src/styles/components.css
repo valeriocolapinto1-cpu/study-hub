@@ -1582,7 +1582,7 @@ progress.progress__bar::-moz-progress-bar {
   padding: 0;
   border-top: 1px solid var(--border);
 }
-.formulary-hits li {
+.formulary-hits li:not([hidden]) {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;

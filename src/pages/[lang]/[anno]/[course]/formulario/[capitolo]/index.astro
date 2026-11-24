@@ -23,14 +23,16 @@ import { localizePath, t, tr, type Lang } from '../../../../../../i18n';
 import { renderDisplayMath, shareKatexPaths, STAR_SYMBOL } from '../../../../../../lib/katex-sprite';
 
 export async function getStaticPaths() {
-  const out = [];
-  for (const p of await coursePaths()) {
-    const chapters = await courseFormularyChapters(p.props.course.id);
-    chapters.forEach((chapter, index) =>
-      out.push({ params: { ...p.params, capitolo: chapter.slug }, props: { ...p.props, chapters, index } }),
-    );
-  }
-  return out;
+  const perCourse = await Promise.all(
+    (await coursePaths()).map(async (p) => {
+      const chapters = await courseFormularyChapters(p.props.course.id);
+      return chapters.map((chapter, index) => ({
+        params: { ...p.params, capitolo: chapter.slug },
+        props: { ...p.props, chapters, index },
+      }));
+    }),
+  );
+  return perCourse.flat();
 }
 type Chapters = Awaited<ReturnType<typeof courseFormularyChapters>>;
 interface Props {
@@ -69,7 +71,7 @@ const count = (n: number) => t(lang, n === 1 ? 'formulary.countOne' : 'formulary
     lede={t(lang, 'formulary.chapterLede', { i: index + 1, k: chapters.length, n: chapter.count })}
   />
   {chapter.items.length > 1 && (
-    <nav class="page-toc page-toc--inline" aria-label={t(lang, 'formulary.inChapter')}>
+    <nav class="page-toc" aria-label={t(lang, 'formulary.inChapter')}>
       <ul>
         {chapter.items.map(({ topic, formulas: fs }) => (
           <li>

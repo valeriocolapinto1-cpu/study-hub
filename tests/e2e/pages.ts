@@ -9,8 +9,8 @@ export interface SamplePage {
   path: string;
   /**
    * false: nessun test visivo (restano a11y e smoke). 'viewport': solo la finestra iniziale,
-   * per le pagine troppo lunghe per uno screenshot a pagina intera entro il timeout (formulari
-   * con 100+ formule: disegnare 14 000–19 000 px di KaTeX richiede più di 20 s in CI).
+   * per le pagine troppo lunghe per uno screenshot a pagina intera entro il timeout (capitoli
+   * del formulario con 40+ formule: migliaia di px di KaTeX).
    */
   visual?: boolean | 'viewport';
 }
@@ -37,24 +37,40 @@ export const SAMPLE_PAGES: SamplePage[] = [
   { name: 'fi-teoria-en', path: `${BASE}en/anno-1/fondamenti-informatica/teoria/gerarchia-di-memoria/` },
   { name: 'fi-esercizi-it', path: `${BASE}it/anno-1/fondamenti-informatica/esercizi/mappe-di-karnaugh/` },
   { name: 'fi-formulario-it', path: `${BASE}it/anno-1/fondamenti-informatica/formulario/` },
+  {
+    name: 'fi-formulario-capitolo-it',
+    path: `${BASE}it/anno-1/fondamenti-informatica/formulario/numeri-e-logica/`,
+  },
   { name: 'fi-convertitori-en', path: `${BASE}en/anno-1/fondamenti-informatica/extra/convertitori/` },
   { name: 'tdc-panoramica-it', path: `${BASE}it/anno-2/teoria-circuiti/` },
   { name: 'tdc-info-it', path: `${BASE}it/anno-2/teoria-circuiti/info/` },
   { name: 'fi-info-en', path: `${BASE}en/anno-1/fondamenti-informatica/info/`, visual: false },
   { name: 'tdc-teoria-en', path: `${BASE}en/anno-2/teoria-circuiti/teoria/teorema-di-thevenin/` },
-  { name: 'tdc-formulario-it', path: `${BASE}it/anno-2/teoria-circuiti/formulario/`, visual: 'viewport' },
+  { name: 'tdc-formulario-it', path: `${BASE}it/anno-2/teoria-circuiti/formulario/` },
+  {
+    name: 'tdc-formulario-capitolo-it',
+    path: `${BASE}it/anno-2/teoria-circuiti/formulario/iii-regime-sinusoidale/`,
+    visual: 'viewport',
+  },
   { name: 'tdc-esercizi-it', path: `${BASE}it/anno-2/teoria-circuiti/esercizi/circuiti-primo-ordine/` },
   { name: 'tdc-extra-it', path: `${BASE}it/anno-2/teoria-circuiti/extra/esame-info/` },
   { name: 'fisica-2-panoramica-it', path: `${BASE}it/anno-2/fisica-2/` },
   { name: 'fisica-2-teoria-it', path: `${BASE}it/anno-2/fisica-2/teoria/fisica-moderna/` },
   { name: 'fisica-2-teoria-en', path: `${BASE}en/anno-2/fisica-2/teoria/magnetismo-nella-materia/` },
-  { name: 'fisica-2-formulario-it', path: `${BASE}it/anno-2/fisica-2/formulario/`, visual: 'viewport' },
+  { name: 'fisica-2-formulario-it', path: `${BASE}it/anno-2/fisica-2/formulario/` },
+  // capitolo più pesante di tutti i formulari (41 formule, ~285 KB)
+  {
+    name: 'fisica-2-formulario-capitolo-it',
+    path: `${BASE}it/anno-2/fisica-2/formulario/elettrostatica-nel-vuoto-conduttori-dielettrici/`,
+    visual: 'viewport',
+  },
   { name: 'fisica-2-esercizi-en', path: `${BASE}en/anno-2/fisica-2/esercizi/onde-elettromagnetiche/` },
   { name: 'fisica-2-laboratorio-en', path: `${BASE}en/anno-2/fisica-2/extra/laboratorio/` },
   { name: 'fisica-2-appelli-it', path: `${BASE}it/anno-2/fisica-2/extra/appelli/` },
   { name: 'f1-panoramica-it', path: `${BASE}it/anno-1/fisica-1/` },
   { name: 'f1-teoria-en', path: `${BASE}en/anno-1/fisica-1/teoria/ciclo-di-carnot/` },
   { name: 'f1-esercizi-it', path: `${BASE}it/anno-1/fisica-1/esercizi/urti-centrali/` },
-  { name: 'f1-formulario-en', path: `${BASE}en/anno-1/fisica-1/formulario/`, visual: 'viewport' },
+  { name: 'f1-formulario-en', path: `${BASE}en/anno-1/fisica-1/formulario/` },
+  { name: 'f1-formulario-capitolo-en', path: `${BASE}en/anno-1/fisica-1/formulario/lavoro-ed-energia/` },
   { name: 'f1-orale-it', path: `${BASE}it/anno-1/fisica-1/extra/simulazione-orale/` },
 ];
