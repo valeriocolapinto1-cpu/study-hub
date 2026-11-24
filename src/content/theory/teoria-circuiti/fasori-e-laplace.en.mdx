@@ -12,6 +12,18 @@ Phasors and Laplace are not two separate worlds: phasors are Laplace "restricted
 
 </div>
 
+<div data-note-id="fasori-e-laplace-intuizione-2">
+
+Setting $s=j\omega$ means asking how the circuit responds to a complex exponential $e^{j\omega t}$ that has "always" been there: there is no switch-on instant and therefore no transient. Laplace instead considers inputs switched on at $t=0$ and sees everything that follows, transient and steady state.
+
+</div>
+
+<div data-note-id="fasori-e-laplace-intuizione-3">
+
+In practice: for the sinusoidal steady state of a stable circuit computing $H(j\omega)$ with phasors is enough; to know how it is reached, from switch-on onwards, Laplace is needed.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -25,6 +37,30 @@ The network function for phasors is $H(j\omega)=H(s)\big|_{s=j\omega}$, valid fo
 <div data-note-id="fasori-e-laplace-teoria-2">
 
 The phasor equations are the Laplace ones with $s=j\omega$ and _without_ initial conditions: the phasor method only sees the steady state.
+
+</div>
+
+<div data-note-id="fasori-e-laplace-teoria-3">
+
+**Why it holds.** For a stable system with input $\cos\omega t$ switched on at $t=0$, the expansion of $Y(s)=H(s)X(s)$ contains the terms of the poles of $H$, which die out, and those of the input poles $\pm j\omega$, whose coefficient is proportional to $H(j\omega)$. As $t\to\infty$ what remains is $|H(j\omega)|\cos(\omega t+\arg H(j\omega))$: exactly the phasor result.
+
+</div>
+
+<div data-note-id="fasori-e-laplace-teoria-4">
+
+**Element by element.** The correspondence also holds for impedances: $sL\to j\omega L$, $\dfrac{1}{sC}\to\dfrac{1}{j\omega C}$. Every phasor method (nodes, meshes, Thévenin) is the corresponding $s$-domain method evaluated at $s=j\omega$ and without the initial-condition sources.
+
+</div>
+
+<div data-note-id="fasori-e-laplace-teoria-5">
+
+**What is lost.** Phasors do not show the transient, the initial conditions or non-sinusoidal inputs (steps, impulses). Laplace shows everything, but for the steady state the input poles must be expanded too: if only the sinusoidal steady state matters, phasors are quicker.
+
+</div>
+
+<div data-note-id="fasori-e-laplace-teoria-6">
+
+**Magnitude and phase from poles and zeros.** Writing $H(s)=K\dfrac{\prod(s-z_i)}{\prod(s-p_k)}$, at $s=j\omega$ the magnitude is $|K|$ times the product of the distances from $j\omega$ to the zeros divided by the product of the distances to the poles; the phase is the sum of the angles to the zeros minus the sum of the angles to the poles. This is why, approaching a lightly damped pole, the magnitude grows.
 
 </div>
 
@@ -71,6 +107,20 @@ $x=4\cos t$ in the first system.
 
 </div>
 
+<div class="worked" data-note-id="fasori-e-laplace-esempio-4">
+
+### Steady state of a second-order system
+
+$H(s)=\dfrac{10}{s^2+2s+10}$ with input $x=2\cos3t$. Find the steady-state output.
+
+**Solution.**
+
+1. Stability: poles $-1\pm3j$, negative real part: the steady state exists.
+2. $H(3j)=\dfrac{10}{10-9+6j}=\dfrac{10}{1+6j}$: $|H|=\dfrac{10}{\sqrt{37}}=1.644$, $\arg H=-\arctan6=-80.5^\circ$.
+3. $y_p=2\cdot1.644\cos(3t-80.5^\circ)=3.29\cos(3t-80.5^\circ)$: near the frequency of the poles the amplitude is amplified.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -79,6 +129,27 @@ $x=4\cos t$ in the first system.
 
 - **Wrong:** Using $H(j\omega)$ for unstable systems.
 - **Right:** The relation holds only with poles with negative real part.
+
+</div>
+
+<div data-note-id="fasori-e-laplace-errore-2">
+
+- **Wrong:** Substituting $s=\omega$ instead of $s=j\omega$.
+- **Right:** The sinusoidal response is read on the imaginary axis, $s=j\omega$: with $s=\omega$ one evaluates $H$ on the real axis, which is irrelevant.
+
+</div>
+
+<div data-note-id="fasori-e-laplace-errore-3">
+
+- **Wrong:** Using $H(j\omega)$ for the response right after switch-on.
+- **Right:** $H(j\omega)$ gives only the steady state; for the first instants the whole $Y(s)$ is needed, transient included.
+
+</div>
+
+<div data-note-id="fasori-e-laplace-errore-4">
+
+- **Wrong:** Using phasors when the input frequency coincides with a pole on the imaginary axis.
+- **Right:** Then $H(j\omega)$ is infinite and the steady state does not exist: the response grows in time, as in the ideal LC circuit at its resonance.
 
 </div>
 

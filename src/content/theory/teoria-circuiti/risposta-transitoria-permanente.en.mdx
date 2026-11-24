@@ -12,6 +12,12 @@ As soon as an input is switched on, the circuit "settles": for a while its natur
 
 </div>
 
+<div data-note-id="risposta-transitoria-permanente-intuizione-2">
+
+The transient is the "entry fee" for moving from one situation to another: the circuit has to join the state it was in with the one the input imposes. How long it lasts depends on the circuit's poles (the time constants); how large it is depends on how far apart the two states are.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -172,6 +178,24 @@ With Laplace: $Y(s)=F(s)X(s)$; in the partial-fraction expansion the poles of $X
   />
 </Figure>
 
+<div data-note-id="risposta-transitoria-permanente-teoria-3">
+
+**How to recognise them.** In the partial-fraction expansion of $Y(s)=F(s)X(s)$ the terms with the poles of $F$ form the transient response, those with the poles of $X$ the steady state. For a step the pole of $X$ is $s=0$ and the steady state is the constant $F(0)$; for a sinusoid the poles are $\pm j\omega_0$ and the steady state is the sinusoid computed with $F(j\omega_0)$.
+
+</div>
+
+<div data-note-id="risposta-transitoria-permanente-teoria-4">
+
+**When it makes sense.** A stable system is needed: with a pole of $F$ with zero or positive real part the "transient" does not die out and the split loses meaning. The poles of $X$ must also differ from those of $F$: at exact resonance terms such as $t\cos\omega_0t$ appear.
+
+</div>
+
+<div data-note-id="risposta-transitoria-permanente-teoria-5">
+
+**In practice.** The transient is considered over after about five times the longest time constant, that of the pole closest to the imaginary axis (the dominant pole): it decides how long to wait before measuring the steady state.
+
+</div>
+
 <Formula id="y-permanente" />
 
 </Layer>
@@ -215,6 +239,20 @@ Same $F$, $x=u_{-1}$.
 
 </div>
 
+<div class="worked" data-note-id="risposta-transitoria-permanente-esempio-4">
+
+### RL with a sinusoidal input
+
+$F(s)=\dfrac{2}{s+2}$, input $x=\cos2t$ switched on at $t=0$, zero conditions. Find steady state, transient and after how long the transient falls below $1\,\%$ of the steady-state amplitude.
+
+**Solution.**
+
+1. $F(2j)=\dfrac{2}{2+2j}=\tfrac12(1-j)$: $|F|=0.707$, $\arg F=-45^\circ$; steady state $y_p=0.707\cos(2t-45^\circ)=\tfrac12\cos2t+\tfrac12\sin2t$.
+2. $Y=\dfrac{2s}{(s+2)(s^2+4)}$: residue at $-2$, $\dfrac{-4}{8}=-\tfrac12$, so transient $-\tfrac12e^{-2t}$; check $y(0)=\tfrac12-\tfrac12=0$ ✓.
+3. $\tfrac12e^{-2t}\lt 0.01\cdot0.707\Rightarrow t\gt \tfrac12\ln70.7\approx2.13\,\mathrm s$, i.e. about $4.3\tau$ with $\tau=0.5\,\mathrm s$.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -223,6 +261,27 @@ Same $F$, $x=u_{-1}$.
 
 - **Wrong:** Computing the steady state with $F(s)$ at $s=\omega_0$.
 - **Right:** $F$ is evaluated at $s=j\omega_0$.
+
+</div>
+
+<div data-note-id="risposta-transitoria-permanente-errore-2">
+
+- **Wrong:** Thinking that the steady-state response depends on the initial conditions.
+- **Right:** In a stable system the steady state depends only on the input and on $F$; the initial conditions change only the transient.
+
+</div>
+
+<div data-note-id="risposta-transitoria-permanente-errore-3">
+
+- **Wrong:** Computing the steady state for a step with $F(j\omega)$ at some frequency.
+- **Right:** The step is frequency zero: the steady state is $F(0)$ times the step amplitude.
+
+</div>
+
+<div data-note-id="risposta-transitoria-permanente-errore-4">
+
+- **Wrong:** Estimating the settling time from the pole farthest from the imaginary axis.
+- **Right:** The farthest pole dies out first; the duration of the transient is decided by the dominant pole, the one closest to the axis.
 
 </div>
 

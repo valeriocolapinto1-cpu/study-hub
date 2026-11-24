@@ -12,6 +12,12 @@ A linear two-port is "measured" with four experiments: drive one port and look a
 
 </div>
 
+<div data-note-id="doppi-bipoli-z-y-intuizione-2">
+
+The parameters have a physical meaning: $z_{11}$ is the impedance seen from port 1 with port 2 open, $z_{21}$ tells how much voltage appears at port 2 for each ampere injected into port 1. Dually $y_{11}$ is the admittance seen from port 1 with port 2 shorted, $y_{21}$ the current in the short of port 2 for each volt applied to port 1.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -25,6 +31,24 @@ With currents entering the ports: $\mathbf v=Z\mathbf i$, i.e. $v_1=z_{11}i_1+z_
 <div data-note-id="doppi-bipoli-z-y-teoria-2">
 
 A **reciprocal** network (only $R$, $L$, $C$ and coupled transformers): $z_{12}=z_{21}$, $y_{12}=y_{21}$. With controlled sources it may not be. The ideal transformer has neither $Z$ nor $Y$.
+
+</div>
+
+<div data-note-id="doppi-bipoli-z-y-teoria-3">
+
+**From $Z$ to $Y$.** If $\Delta_z=z_{11}z_{22}-z_{12}z_{21}\neq0$, $Y=Z^{-1}$: $y_{11}=\dfrac{z_{22}}{\Delta_z}$, $y_{12}=-\dfrac{z_{12}}{\Delta_z}$, $y_{21}=-\dfrac{z_{21}}{\Delta_z}$, $y_{22}=\dfrac{z_{11}}{\Delta_z}$. In general $y_{11}\neq1/z_{11}$, because the two parameters are measured in different conditions (port 2 shorted or open).
+
+</div>
+
+<div data-note-id="doppi-bipoli-z-y-teoria-4">
+
+**Input impedance with a load.** Closing port 2 on $Z_L$ ($v_2=-Z_Li_2$) gives $Z_{in}=z_{11}-\dfrac{z_{12}z_{21}}{z_{22}+Z_L}$. With the port open ($Z_L\to\infty$) $Z_{in}=z_{11}$; shorted ($Z_L=0$) $Z_{in}=\Delta_z/z_{22}=1/y_{11}$.
+
+</div>
+
+<div data-note-id="doppi-bipoli-z-y-teoria-5">
+
+**Equivalent circuit.** A reciprocal two-port ($z_{12}=z_{21}$) is equivalent to a T network with branches $z_{11}-z_{12}$ and $z_{22}-z_{12}$ towards the ports and $z_{12}$ as the shunt; a non-reciprocal one needs a controlled source as well.
 
 </div>
 
@@ -81,6 +105,20 @@ $Z$ as above: $i_1=1$, port 2 open ($i_2=0$).
 
 </div>
 
+<div class="worked" data-note-id="doppi-bipoli-z-y-esempio-4">
+
+### A non-reciprocal two-port
+
+Port 1: $R_1=2\,\Omega$ to ground. Port 2: $R_2=4\,\Omega$ to ground and a CCCS injecting the current $3\,i_1$ into the node of port 2. Find $Z$ and $Y$.
+
+**Solution.**
+
+1. Port 2 open: $z_{11}=2\,\Omega$; all the current $3i_1$ flows in $R_2$, so $v_2=12i_1$ and $z_{21}=12\,\Omega$.
+2. Port 1 open ($i_1=0$, CCCS off): $z_{12}=0$, $z_{22}=4\,\Omega$. $Z=\begin{pmatrix}2&0\\12&4\end{pmatrix}$, non-reciprocal ($z_{12}\neq z_{21}$).
+3. $\Delta_z=8$: $Y=\dfrac18\begin{pmatrix}4&0\\-12&2\end{pmatrix}=\begin{pmatrix}0.5&0\\-1.5&0.25\end{pmatrix}\,\mathrm S$. Check of $y_{21}$: with $v_1=1\,\mathrm V$ and port 2 shorted, $i_1=0.5\,\mathrm A$ and the $1.5\,\mathrm A$ of the CCCS leave the network into the short: $i_2=-1.5\,\mathrm A$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -96,6 +134,20 @@ $Z$ as above: $i_1=1$, port 2 open ($i_2=0$).
 
 - **Wrong:** Current signs: assuming $i_2$ leaving.
 - **Right:** Standard convention: currents entering both ports.
+
+</div>
+
+<div data-note-id="doppi-bipoli-z-y-errore-3">
+
+- **Wrong:** Computing $y_{11}$ as $1/z_{11}$.
+- **Right:** $y_{11}=z_{22}/\Delta_z$: it equals $1/z_{11}$ only if $z_{12}z_{21}=0$, as in the non-reciprocal example.
+
+</div>
+
+<div data-note-id="doppi-bipoli-z-y-errore-4">
+
+- **Wrong:** Computing $z_{21}$ by measuring the port-2 voltage with port 2 loaded.
+- **Right:** All $Z$ parameters are measured with the other port open: with a load the current $i_2$ is no longer zero and the ratio $v_2/i_1$ is not $z_{21}$.
 
 </div>
 

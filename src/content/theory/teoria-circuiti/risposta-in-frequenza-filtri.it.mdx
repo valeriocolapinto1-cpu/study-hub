@@ -12,6 +12,18 @@ Un filtro è un circuito che tratta le frequenze in modo diverso: un RC con usci
 
 </div>
 
+<div data-note-id="risposta-in-frequenza-filtri-intuizione-2">
+
+Il diagramma di Bode rende i filtri facili da leggere: in scala logaritmica il modulo di un primo ordine è quasi piatto fino a $\omega_c$ e poi scende in linea retta di $20\,\mathrm{dB}$ per decade. Due asintoti e un angolo smussato di $3\,\mathrm{dB}$ riassumono tutto il comportamento.
+
+</div>
+
+<div data-note-id="risposta-in-frequenza-filtri-intuizione-3">
+
+Il passa-alto è lo specchio del passa-basso: con l'uscita sul resistore invece che sul condensatore, le variazioni rapide passano e la continua viene bloccata.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -83,6 +95,30 @@ Un filtro è un circuito che tratta le frequenze in modo diverso: un RC con usci
   />
 </Figure>
 
+<div data-note-id="risposta-in-frequenza-filtri-teoria-3">
+
+**Decibel.** $20\log_{10}|H|$: un fattore $10$ vale $20\,\mathrm{dB}$, un fattore $2$ circa $6\,\mathrm{dB}$, $1/\sqrt2$ circa $-3\,\mathrm{dB}$. Moduli che si moltiplicano diventano decibel che si sommano: i diagrammi di più blocchi in cascata (senza interazione fra i blocchi) si ottengono sommando quelli dei singoli blocchi.
+
+</div>
+
+<div data-note-id="risposta-in-frequenza-filtri-teoria-4">
+
+**Asintoti del passa-basso.** Per $\omega\ll\omega_c$ $|H|\approx1$ ($0\,\mathrm{dB}$) e fase circa $0$; per $\omega\gg\omega_c$ $|H|\approx\omega_c/\omega$, cioè $-20\,\mathrm{dB}$ per decade, e fase circa $-90^\circ$. L'errore massimo degli asintoti è a $\omega_c$, dove il modulo vero è $-3\,\mathrm{dB}$ e la fase $-45^\circ$.
+
+</div>
+
+<div data-note-id="risposta-in-frequenza-filtri-teoria-5">
+
+**Ordini superiori e passa-banda.** Un secondo ordine scende di $40\,\mathrm{dB}$ per decade; un passa-banda (per esempio un RLC con uscita sul resistore) passa le frequenze vicino a $\omega_0$ e attenua sia le basse sia le alte, con larghezza di banda $B=\omega_0/Q$ (vedi [circuiti risonanti](../circuiti-risonanti/)).
+
+</div>
+
+<div data-note-id="risposta-in-frequenza-filtri-teoria-6">
+
+**Fase e ritardo.** Uno sfasamento $\varphi$ alla pulsazione $\omega$ equivale a un ritardo $-\varphi/\omega$ dell'onda in uscita. Nel passa-basso a $\omega_c$ la fase è $-45^\circ=-\pi/4$, quindi l'uscita è ritardata di $\pi/(4\omega_c)$, un ottavo di periodo.
+
+</div>
+
 <Formula id="wc-rc" />
 <Formula id="wc-rl" />
 <Formula id="mod-lp" />
@@ -129,6 +165,20 @@ $H=\dfrac{s}{s+2}$.
 
 </div>
 
+<div class="worked" data-note-id="risposta-in-frequenza-filtri-esempio-4">
+
+### Progetto di un RC passa-basso
+
+Si vuole $f_c=1\,\mathrm{kHz}$ con $C=100\,\mathrm{nF}$. Trova $R$ e il guadagno a $500\,\mathrm{Hz}$ e a $10\,\mathrm{kHz}$.
+
+**Soluzione.**
+
+1. $R=\dfrac{1}{2\pi f_cC}=\dfrac{1}{2\pi\cdot10^3\cdot10^{-7}}=1592\,\Omega$.
+2. A $500\,\mathrm{Hz}$ ($f/f_c=0{,}5$): $|H|=1/\sqrt{1{,}25}=0{,}894$, cioè $-0{,}97\,\mathrm{dB}$, fase $-26{,}6^\circ$.
+3. A $10\,\mathrm{kHz}$ ($f/f_c=10$): $|H|=1/\sqrt{101}=0{,}0995$, cioè $-20{,}0\,\mathrm{dB}$, fase $-84{,}3^\circ$: una decade sopra il taglio, $20\,\mathrm{dB}$ in meno ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -137,6 +187,27 @@ $H=\dfrac{s}{s+2}$.
 
 - **Sbagliato:** Dire che la frequenza di taglio a 3 dB è dove il modulo è la metà del massimo.
 - **Corretto:** È dove il modulo è $|H|_{max}/\sqrt2$ (potenza dimezzata).
+
+</div>
+
+<div data-note-id="risposta-in-frequenza-filtri-errore-2">
+
+- **Sbagliato:** Confondere frequenza e pulsazione: $f_c=1/(RC)$.
+- **Corretto:** $\omega_c=1/(RC)$ in rad/s e $f_c=\dfrac{1}{2\pi RC}$ in hertz: differiscono di un fattore $2\pi\approx6{,}28$.
+
+</div>
+
+<div data-note-id="risposta-in-frequenza-filtri-errore-3">
+
+- **Sbagliato:** Calcolare i decibel di un rapporto di tensioni con $10\log_{10}$.
+- **Corretto:** Per tensioni e correnti si usa $20\log_{10}|H|$; $10\log_{10}$ vale per rapporti di potenze.
+
+</div>
+
+<div data-note-id="risposta-in-frequenza-filtri-errore-4">
+
+- **Sbagliato:** Collegare un carico all'uscita di un RC e usare ancora $\omega_c=1/(RC)$.
+- **Corretto:** Il carico cambia la resistenza vista dal condensatore: la pulsazione di taglio diventa $1/((R\parallel R_L)C)$ e il guadagno in banda passante scende a $R_L/(R+R_L)$.
 
 </div>
 

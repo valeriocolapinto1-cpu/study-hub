@@ -12,6 +12,12 @@ An instantaneous "kick" at the input makes the circuit ring according to its nat
 
 </div>
 
+<div data-note-id="risposta-impulsiva-convoluzione-intuizione-2">
+
+The step response is easier to picture: it is what happens when a constant source is suddenly switched on. The impulse is the derivative of the step, so the impulse response is the derivative of the step response: equivalent information, presented in the form that suits convolution.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -58,6 +64,30 @@ The link with the network function is $h(t)=\mathcal L^{-1}\{H(s)\}$: the poles 
   />
 </Figure>
 
+<div data-note-id="risposta-impulsiva-convoluzione-teoria-3">
+
+**Why convolution.** Any input can be approximated by a train of impulses of area $x(\tau)\,\Delta\tau$ at the instants $\tau$. By linearity and time invariance each produces $x(\tau)\,\Delta\tau\,h(t-\tau)$; summing and taking the limit gives $y(t)=\int_0^tx(\tau)\,h(t-\tau)\,d\tau$. The factor $h(t-\tau)$ weighs the past: in a stable system distant inputs count less and less.
+
+</div>
+
+<div data-note-id="risposta-impulsiva-convoluzione-teoria-4">
+
+**Convolution and Laplace.** In the $s$ domain convolution becomes a product, $Y(s)=H(s)X(s)$: it is usually easier to multiply and invert than to compute the integral. The integral remains useful for piecewise inputs and for reasoning about causality.
+
+</div>
+
+<div data-note-id="risposta-impulsiva-convoluzione-teoria-5">
+
+**Useful properties.** Convolution is commutative, $x*h=h*x$; the step response is the integral of the impulse response, $y_{st}(t)=\int_0^th(\tau)\,d\tau$; for a stable system its final value is $H(0)=\int_0^\infty h(t)\,dt$.
+
+</div>
+
+<div data-note-id="risposta-impulsiva-convoluzione-teoria-6">
+
+**Causality and stability read on $h$.** A physical circuit is causal, so $h(t)=0$ for $t\lt 0$: the output cannot anticipate the impulse. It is stable if $h$ dies out fast enough to have a finite absolute area; an $h$ that oscillates without damping, or grows, indicates a marginal or unstable circuit.
+
+</div>
+
 <Formula id="h-imp" />
 <Formula id="y-conv" />
 <Formula id="y-gradino" />
@@ -103,6 +133,20 @@ Same system, input $1$ for $0<t<1$.
 
 </div>
 
+<div class="worked" data-note-id="risposta-impulsiva-convoluzione-esempio-4">
+
+### Convolution of two exponentials
+
+$h(t)=e^{-2t}u_{-1}(t)$ and input $x(t)=e^{-t}u_{-1}(t)$. Compute $y=x*h$ with the integral and check with Laplace.
+
+**Solution.**
+
+1. $y(t)=\int_0^te^{-\tau}e^{-2(t-\tau)}d\tau=e^{-2t}\int_0^te^{\tau}d\tau=e^{-2t}(e^t-1)=e^{-t}-e^{-2t}$.
+2. Laplace: $Y=\dfrac{1}{(s+1)(s+2)}=\dfrac1{s+1}-\dfrac1{s+2}$ ✓.
+3. Maximum: $\dot y=-e^{-t}+2e^{-2t}=0\Rightarrow t=\ln2\approx0.69\,\mathrm s$, $y_{max}=0.5-0.25=0.25$.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -111,6 +155,27 @@ Same system, input $1$ for $0<t<1$.
 
 - **Wrong:** Deriving $h$ from the step response without differentiating.
 - **Right:** $h=\dfrac{d}{dt}y_{step}$.
+
+</div>
+
+<div data-note-id="risposta-impulsiva-convoluzione-errore-2">
+
+- **Wrong:** Writing $y=h\cdot x$ in time, as a product.
+- **Right:** In time it is a convolution; the product holds between transforms, $Y=HX$.
+
+</div>
+
+<div data-note-id="risposta-impulsiva-convoluzione-errore-3">
+
+- **Wrong:** Using convolution with nonzero initial conditions and forgetting the free response.
+- **Right:** $y=h*x$ is only the forced response: with nonzero initial conditions the free response must be added.
+
+</div>
+
+<div data-note-id="risposta-impulsiva-convoluzione-errore-4">
+
+- **Wrong:** Forgetting that in convolution the argument of $h$ is $t-\tau$.
+- **Right:** One integrates over $\tau$ the product $x(\tau)\,h(t-\tau)$: writing $h(\tau)$ loses the dependence on $t$ and the result is a constant.
 
 </div>
 

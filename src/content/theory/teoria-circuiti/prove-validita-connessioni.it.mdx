@@ -12,6 +12,12 @@ Sommare le matrici funziona solo se, dopo il collegamento, ogni doppio bipolo co
 
 </div>
 
+<div data-note-id="prove-validita-connessioni-intuizione-2">
+
+Il problema nasce quasi sempre da un morsetto comune: due reti con la massa in comune, collegate in serie, finiscono per cortocircuitare un pezzo di una delle due. Il trasformatore ideale 1:1 risolve perché separa le due reti: lascia passare tensione e corrente di porta, ma non crea percorsi di corrente fra i morsetti delle due reti.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -36,6 +42,12 @@ La somma delle matrici $Z$ (o $Y$) è corretta solo se, dopo il collegamento, ci
 3. L'ipotesi $\mathbf i_a=\mathbf i_b=\mathbf i$ vale solo se, per ogni doppio bipolo, la corrente entrante in un morsetto di una porta è uguale a quella uscente dall'altro anche dopo il collegamento: è la condizione verificata dalla prova di validità. $\square$
 
 </details>
+
+<div data-note-id="prove-validita-connessioni-teoria-3">
+
+**Prova per il parallelo-parallelo.** Si mettono in corto le porte d'uscita di ciascuna rete e si alimentano in parallelo le porte d'ingresso: fra i morsetti d'uscita che andranno uniti la tensione deve essere nulla; poi si ripete scambiando ingresso e uscita. È la prova di Brune; la forma data a lezione può essere diversa <span class="badge badge--warning">DA VERIFICARE</span>.
+
+</div>
 
 <Formula id="prova-validita" />
 
@@ -80,6 +92,20 @@ Due reti a π (massa comune) in parallelo.
 
 </div>
 
+<div class="worked" data-note-id="prove-validita-connessioni-esempio-4">
+
+### Serie-serie resa valida da un trasformatore
+
+Due reti con massa comune, $Z_a=\begin{pmatrix}4&3\\3&5\end{pmatrix}$ e $Z_b=\begin{pmatrix}2&1\\1&2\end{pmatrix}\,\Omega$, vanno collegate in serie-serie; sulla porta 2 di $b$ si inserisce un trasformatore ideale 1:1. Trova $Z$ e le impedenze d'ingresso con la porta 2 aperta e in corto.
+
+**Soluzione.**
+
+1. Con il trasformatore la prova di validità è superata: $Z=Z_a+Z_b=\begin{pmatrix}6&4\\4&7\end{pmatrix}\,\Omega$.
+2. Porta 2 aperta: $Z_{in}=z_{11}=6\,\Omega$.
+3. Porta 2 in corto: $\Delta_z=42-16=26$, $Z_{in}=\Delta_z/z_{22}=26/7\approx3{,}71\,\Omega$. Senza trasformatore, con le masse unite, questi valori non sarebbero garantiti.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -88,6 +114,20 @@ Due reti a π (massa comune) in parallelo.
 
 - **Sbagliato:** Sommare le matrici senza verificare la prova di validità.
 - **Corretto:** Verifica sempre la condizione di porta prima di usare le formule di connessione.
+
+</div>
+
+<div data-note-id="prove-validita-connessioni-errore-2">
+
+- **Sbagliato:** Pensare che anche la cascata richieda una prova di validità.
+- **Corretto:** Nella cascata la porta d'uscita della prima rete è chiusa direttamente sulla porta d'ingresso della seconda: la condizione di porta è garantita e $T=T_aT_b$ vale sempre.
+
+</div>
+
+<div data-note-id="prove-validita-connessioni-errore-3">
+
+- **Sbagliato:** Isolare le reti con un trasformatore di rapporto diverso da 1.
+- **Corretto:** Serve un trasformatore ideale 1:1, che isola senza cambiare tensioni e correnti; con $n\neq1$ cambierebbe la matrice della rete.
 
 </div>
 

@@ -12,6 +12,12 @@ A network function is the "identity card" of a circuit seen from an input to an 
 
 </div>
 
+<div data-note-id="funzioni-di-rete-intuizione-2">
+
+Once $H(s)$ is known the circuit can be forgotten: the response to any input, with zero initial conditions, is $Y(s)=H(s)X(s)$. It is the same step of abstraction as Thévenin, but in time: everything that matters about the circuit, for that input–output pair, is contained in a ratio of two polynomials.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -37,6 +43,24 @@ For linear time-invariant lumped circuits $H(s)=\dfrac{N(s)}{D(s)}$ is _rational
 4. Hence $H=Y/X$ is a ratio of real polynomials. Real polynomials have non-real roots in conjugate pairs. $\square$
 
 </details>
+
+<div data-note-id="funzioni-di-rete-teoria-3">
+
+**Kinds of network functions.** With input and output on the same port one has a driving-point impedance ($V/I$) or admittance ($I/V$); on different ports a transfer function: a voltage or current ratio, a transimpedance ($V_2/I_1$) or a transadmittance ($I_2/V_1$). The kind also gives the units: dimensionless, ohms or siemens.
+
+</div>
+
+<div data-note-id="funzioni-di-rete-teoria-4">
+
+**At the extremes.** For $s\to0$ and $s\to\infty$ $H(s)$ reduces to the ratio of the lowest- and highest-degree terms: it is the behaviour of the circuit in DC (capacitors open, inductors shorted) and at very high frequency (capacitors shorted, inductors open). Computing $H(0)$ and $H(\infty)$ directly on the circuit is a quick check of the result.
+
+</div>
+
+<div data-note-id="funzioni-di-rete-teoria-5">
+
+**Order.** The degree of the denominator is the order of the circuit: without inconsistencies it equals the number of independent memory elements. A loop of capacitors only (possibly with voltage sources), or a cut set of inductors only, lowers the order by one.
+
+</div>
 
 <Formula id="h-def" />
 <Formula id="h-razionale" />
@@ -84,6 +108,21 @@ $Z(s)$ of a series $R=1$, $C=1$.
 
 </div>
 
+<div class="worked" data-note-id="funzioni-di-rete-esempio-4">
+
+### Series RLC with output across the resistor
+
+$R=2\,\Omega$, $L=1\,\mathrm H$, $C=\tfrac15\,\mathrm F$ in series, input the source voltage, output the voltage across $R$. Find $H(s)$, poles, zeros and $|H|$ at resonance.
+
+**Solution.**
+
+1. Divider: $H=\dfrac{R}{R+sL+\frac1{sC}}=\dfrac{2s}{s^2+2s+5}$.
+2. Zero at $s=0$; poles $s=-1\pm2j$ (negative real part).
+3. Checks at the extremes: $H(0)=0$ (the open capacitor blocks DC) and $H(\infty)=0$ (the open inductor blocks high frequencies): band-pass.
+4. At resonance $\omega_0=\sqrt5$: $H(j\sqrt5)=\dfrac{2j\sqrt5}{5-5+2j\sqrt5}=1$, all the voltage is across the resistor.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -92,6 +131,20 @@ $Z(s)$ of a series $R=1$, $C=1$.
 
 - **Wrong:** Computing $H(s)$ with $v_C(0^-)\ne0$ without setting it to zero.
 - **Right:** The network function is defined with zero initial conditions.
+
+</div>
+
+<div data-note-id="funzioni-di-rete-errore-2">
+
+- **Wrong:** Cancelling a common factor between numerator and denominator and judging stability from the simplified $H(s)$.
+- **Right:** A pole–zero cancellation hides a natural mode that still exists in the circuit: for stability what counts is the circuit, not only the reduced $H(s)$.
+
+</div>
+
+<div data-note-id="funzioni-di-rete-errore-3">
+
+- **Wrong:** Swapping input and output, $H=X/Y$.
+- **Right:** The network function is output over input, $H=Y/X$: swapping them inverts poles and zeros.
 
 </div>
 
