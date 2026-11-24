@@ -251,8 +251,13 @@ describe('sito compilato: manifest della PWA', () => {
 
   it.runIf(hasDist)('anteprime e schermate fuori dalla cache del service worker', () => {
     const sw = readFileSync(join(DIST, 'sw.js'), 'utf8');
-    const m = /^const MANIFEST = (.*);$/m.exec(sw);
+    const m = /^const SW = (.*);$/m.exec(sw);
     expect(m).not.toBeNull();
-    expect(m![1]).not.toMatch(/\/(og|screenshots)\//);
+    const { manifest } = JSON.parse(m![1]!) as { manifest: string };
+    const text = readFileSync(join(DIST, manifest), 'utf8');
+    const lists = Object.values(
+      (JSON.parse(text) as { courses: Record<string, Record<string, string>> }).courses,
+    ).flatMap((l) => Object.values(l).map((f) => readFileSync(join(DIST, f), 'utf8')));
+    for (const t of [text, ...lists]) expect(t).not.toMatch(/\/(og|screenshots)\//);
   });
 });

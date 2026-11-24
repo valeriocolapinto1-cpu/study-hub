@@ -155,16 +155,41 @@ describe('buildServiceWorker', () => {
     ]);
     expect(summary.courses['fisica-1']!.it!.files).toBe(12);
     const sw = readFileSync(join(dist, 'sw.js'), 'utf8');
-    expect(sw).toContain(`const MANIFEST = {"version":"${manifest.version}"`);
-    expect(sw).not.toMatch(/^export /m);
-    expect(sw).toContain("self.addEventListener('fetch'");
+    // sw.js: solo versione, base e nome del manifest, più il codice minificato.
+    const head = /^const SW = (.*);$/m.exec(sw);
+    expect(head).not.toBeNull();
+    const swInfo = JSON.parse(head![1]!) as { version: string; base: string; manifest: string };
+    expect(swInfo).toEqual({
+      version: manifest.version,
+      base: BASE,
+      manifest: expect.stringMatching(/^sw-manifest\.[a-f0-9]{12}\.json$/),
+    });
+    expect(sw).not.toMatch(/\bexport\b/);
+    expect(sw).toMatch(/self\.addEventListener\([`'"]fetch[`'"]/);
+    expect(sw).not.toContain('/study-hub/_astro/base.css');
+    expect(sw.length).toBeLessThan(15_000);
+    // Manifest: la shell e, per ogni corso, il nome del suo elenco (con l'hash del contenuto).
+    const pub = JSON.parse(readFileSync(join(dist, swInfo.manifest), 'utf8')) as {
+      version: string;
+      shell: Entry[];
+      courses: Record<string, Record<string, string>>;
+    };
+    expect(pub.version).toBe(manifest.version);
+    expect(pub.shell).toEqual(manifest.shell);
+    expect(Object.keys(pub.courses)).toEqual(Object.keys(manifest.courses));
+    for (const [id, langs] of Object.entries(pub.courses))
+      for (const [lang, file] of Object.entries(langs)) {
+        expect(file).toMatch(new RegExp(`^sw-course\\.${id}\\.${lang}\\.[a-f0-9]{12}\\.json$`));
+        expect(JSON.parse(readFileSync(join(dist, file), 'utf8'))).toEqual(manifest.courses[id]![lang]);
+      }
     expect(JSON.parse(readFileSync(join(dist, 'offline-summary.json'), 'utf8')).version).toBe(
       manifest.version,
     );
 
-    // La versione cambia solo se cambia un file.
+    // La versione cambia solo se cambia un file; manifest ed elenchi già scritti non entrano nei file.
     const again = await build(dist);
     expect(again.manifest.version).toBe(manifest.version);
+    expect(readFileSync(join(dist, 'sw.js'), 'utf8')).toBe(sw);
     writeFileSync(join(dist, '_astro/shared.js'), 'x2');
     expect((await build(dist)).manifest.version).not.toBe(manifest.version);
   });

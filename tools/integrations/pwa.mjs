@@ -2,8 +2,14 @@
  * Service worker a build-time (unico per tutto il sito).
  *
  * Dopo la build (e dopo Pagefind) analizza dist/ e produce:
- *   - dist/sw.js: src/pwa/sw-core.js + src/pwa/sw.js preceduti dal manifest
- *     (shell e corsi, ogni file con revisione = hash del contenuto e dimensione);
+ *   - dist/sw.js: src/pwa/sw-core.js + src/pwa/sw.js minificati, preceduti da `SW` (versione,
+ *     base e nome del manifest). Resta piccolo (il browser lo riscarica a ogni controllo di
+ *     aggiornamento) e cambia a ogni versione, così il browser installa il worker nuovo;
+ *   - dist/sw-manifest.<hash>.json: i file della shell (revisione = hash del contenuto,
+ *     dimensione) e, per ogni corso e lingua, il nome del suo elenco;
+ *   - dist/sw-course.<corso>.<lingua>.<hash>.json: l'elenco dei file di un corso scaricabile
+ *     (letto solo quando quel corso è scaricato o se ne chiede lo stato). Nomi con l'hash del
+ *     contenuto: non cambiano mai contenuto sullo stesso URL;
  *   - dist/offline-summary.json: dimensione e numero di file di ogni corso per lingua
  *     (lo legge "Scarica per l'offline" per mostrare la stima prima di scaricare);
  *   - dist/version.json: commit e data della build (tools/build-info.mjs) e versione del
@@ -26,6 +32,7 @@ import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { join, posix, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { gunzipSync } from 'node:zlib';
+import { minify } from 'vite';
 import { buildInfo } from '../build-info.mjs';
 
 const ROOT = fileURLToPath(new URL('../../', import.meta.url));
@@ -35,6 +42,8 @@ const EXCLUDED_PAGES = [/^(it|en)\/stile\//];
 /** File di dist mai messi in cache. */
 const EXCLUDED_FILES = [
   /^sw\.js$/,
+  // Manifest e elenchi dei corsi: li legge il service worker, non vanno in cache come file del sito.
+  /^sw-(?:manifest|course)\./,
   // Anteprime per i social e schermate del manifest: non servono a chi usa il sito.
   /^og\//,
   /^screenshots\//,
@@ -236,15 +245,37 @@ export async function buildServiceWorker(distDir, base, logger) {
   summary.version = version;
   summary.shell = { files: shellList.length, bytes: shellList.reduce((s, e) => s + e[2], 0) };
 
+  const hash = (text) => createHash('sha256').update(text).digest('hex').slice(0, 12);
+  /** Manifest pubblicato: per i corsi solo il nome dell'elenco (`sw-course.*.json`). */
+  const published = { version, base, shell: shellList, courses: {} };
+  for (const [id, langs] of Object.entries(courses))
+    for (const [lang, list] of Object.entries(langs)) {
+      const text = JSON.stringify(list);
+      const name = `sw-course.${id}.${lang}.${hash(text)}.json`;
+      await writeFile(join(distDir, name), text);
+      published.courses[id] ??= {};
+      published.courses[id][lang] = name;
+    }
+  const manifestText = JSON.stringify(published);
+  const manifestFile = `sw-manifest.${hash(manifestText)}.json`;
+  await writeFile(join(distDir, manifestFile), manifestText);
+
   const core = (await readFile(join(ROOT, 'src/pwa/sw-core.js'), 'utf8')).replace(/^export\s+/gm, '');
   const main = await readFile(join(ROOT, 'src/pwa/sw.js'), 'utf8');
-  const sw = `/* study-hub service worker · versione ${version} · generato da tools/integrations/pwa.mjs */\n'use strict';\nconst MANIFEST = ${JSON.stringify(manifest)};\n${core}\n${main}`;
+  const { code } = await minify('sw.js', `${core}\n${main}`, {
+    compress: true,
+    mangle: true,
+    format: 'iife',
+  });
+  const sw =
+    `/* study-hub service worker · versione ${version} · generato da tools/integrations/pwa.mjs */\n` +
+    `'use strict';\nconst SW = ${JSON.stringify({ version, base, manifest: manifestFile })};\n${code}`;
   await writeFile(join(distDir, 'sw.js'), sw);
   await writeFile(join(distDir, 'offline-summary.json'), JSON.stringify(summary));
   await writeFile(join(distDir, 'version.json'), JSON.stringify({ ...buildInfo(), sw: version }));
   const kb = (n) => `${Math.round(n / 1024)} KB`;
   logger.info(
-    `service worker ${version}: shell ${shellList.length} file (${kb(summary.shell.bytes)}), ` +
+    `service worker ${version} (sw.js ${kb(Buffer.byteLength(sw))}): shell ${shellList.length} file (${kb(summary.shell.bytes)}), ` +
       Object.entries(summary.courses)
         .map(
           ([id, l]) =>
@@ -254,5 +285,5 @@ export async function buildServiceWorker(distDir, base, logger) {
         )
         .join(', '),
   );
-  return { manifest, summary };
+  return { manifest, summary, manifestFile, swBytes: Buffer.byteLength(sw) };
 }
