@@ -12,6 +12,12 @@ A circuit with $b$ branches has $2b$ unknowns, but Kirchhoff's laws "tie" many o
 
 </div>
 
+<div data-note-id="tensioni-correnti-indipendenti-intuizione-2">
+
+Node voltages are the simplest case of independent voltages: once a node is chosen as "ground", every potential can be set freely, and every branch voltage is the difference between the potentials of its ends. Dually, loop currents can be set freely: every branch current is the signed sum of the currents of the loops passing through it.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -43,6 +49,18 @@ In blocks: $\mathbf v_c=F^{\mathsf T}\mathbf v_t$ (from KVL $B\mathbf v=0$) and 
 
 </details>
 
+<div data-note-id="tensioni-correnti-indipendenti-teoria-4">
+
+**Node and tree voltages.** Node voltages $\mathbf e$ are a special case of tree voltages: they correspond to the "star" tree formed by the branches (possibly fictitious) joining each node to the reference. For a branch $k$ going from node $p$ to node $q$, $v_k=e_p-e_q$, that is, in matrix form, $\mathbf v=A^{\mathsf T}\mathbf e$.
+
+</div>
+
+<div data-note-id="tensioni-correnti-indipendenti-teoria-5">
+
+**Counting unknowns.** With $b$ branches there are $2b$ unknowns. KCL and KVL give $(n-1)+(b-n+1)=b$ equations, the constitutive relations the other $b$. Using independent quantities reduces the unknowns: $n-1$ voltages for nodal analysis, $b-n+1$ currents for mesh analysis.
+
+</div>
+
 <Formula id="tens-indip" />
 <Formula id="corr-indip" />
 
@@ -64,6 +82,21 @@ In the triangle of example II-03 (tree $a,b$) with $v_a=5\,\mathrm{V}$, $v_b=3\,
 
 </div>
 
+<div class="worked" data-note-id="tensioni-correnti-indipendenti-esempio-2">
+
+### All voltages from two potentials
+
+Graph with nodes $0,1,2$ and four branches: $a$: $1\to0$, $b$: $1\to2$, $c$: $2\to0$, $d$: $1\to0$ (in parallel with $a$). With $e_1=6\,\mathrm V$ and $e_2=2\,\mathrm V$ find the branch voltages and check KVL.
+
+**Solution.**
+
+1. $v_a=v_d=e_1-0=6\,\mathrm V$.
+2. $v_b=e_1-e_2=4\,\mathrm V$, $v_c=e_2-0=2\,\mathrm V$.
+3. Loop $1\to2\to0\to1$: $v_b+v_c-v_a=4+2-6=0$ ✓; loop $a$–$d$: $v_a-v_d=0$ ✓.
+4. With $n-1=2$ independent voltages all $b=4$ branch voltages are obtained.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -72,6 +105,20 @@ In the triangle of example II-03 (tree $a,b$) with $v_a=5\,\mathrm{V}$, $v_b=3\,
 
 - **Wrong:** Assigning $b$ branch voltages freely.
 - **Right:** Only $n-1$ voltages (and $b-n+1$ currents) are independent: the others follow from KVL/KCL.
+
+</div>
+
+<div data-note-id="tensioni-correnti-indipendenti-errore-2">
+
+- **Wrong:** Confusing loop currents with branch currents.
+- **Right:** A loop current is an auxiliary unknown; the current in a shared branch is the algebraic sum of the currents of the loops passing through it.
+
+</div>
+
+<div data-note-id="tensioni-correnti-indipendenti-errore-3">
+
+- **Wrong:** Choosing any $n-1$ branch voltages as independent.
+- **Right:** They must be voltages of branches forming a tree: two branches in parallel, like $a$ and $d$ in the example, have the same voltage and are not independent.
 
 </div>
 

@@ -12,6 +12,12 @@ Su un circuito con $b$ rami ci sono $2b$ incognite, ma le leggi di Kirchhoff ne 
 
 </div>
 
+<div data-note-id="tensioni-correnti-indipendenti-intuizione-2">
+
+Le tensioni di nodo sono il caso più semplice di tensioni indipendenti: scelto un nodo come «terra», ogni potenziale si può fissare liberamente, e ogni tensione di ramo è la differenza fra i potenziali dei suoi estremi. Dualmente, le correnti di maglia si possono fissare liberamente: ogni corrente di ramo è la somma, con segno, delle correnti delle maglie che lo attraversano.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -43,6 +49,18 @@ In blocchi: $\mathbf v_c=F^{\mathsf T}\mathbf v_t$ (dalla KVL $B\mathbf v=0$) e 
 
 </details>
 
+<div data-note-id="tensioni-correnti-indipendenti-teoria-4">
+
+**Tensioni di nodo e d'albero.** Le tensioni di nodo $\mathbf e$ sono un caso particolare di tensioni d'albero: corrispondono all'albero «a stella» formato dai rami (anche fittizi) che collegano ogni nodo al riferimento. Per un ramo $k$ che va dal nodo $p$ al nodo $q$ vale $v_k=e_p-e_q$, cioè, in forma matriciale, $\mathbf v=A^{\mathsf T}\mathbf e$.
+
+</div>
+
+<div data-note-id="tensioni-correnti-indipendenti-teoria-5">
+
+**Conteggio delle incognite.** Con $b$ rami le incognite sono $2b$. KCL e KVL danno $(n-1)+(b-n+1)=b$ equazioni, le relazioni costitutive le altre $b$. Usando grandezze indipendenti le incognite si riducono: $n-1$ tensioni per il metodo dei nodi, $b-n+1$ correnti per quello delle maglie.
+
+</div>
+
 <Formula id="tens-indip" />
 <Formula id="corr-indip" />
 
@@ -64,6 +82,21 @@ Nel triangolo dell'esempio II-03 (albero $a,b$) con $v_a=5\,\mathrm{V}$, $v_b=3\
 
 </div>
 
+<div class="worked" data-note-id="tensioni-correnti-indipendenti-esempio-2">
+
+### Tutte le tensioni da due potenziali
+
+Grafo con nodi $0,1,2$ e quattro rami: $a$: $1\to0$, $b$: $1\to2$, $c$: $2\to0$, $d$: $1\to0$ (in parallelo ad $a$). Con $e_1=6\,\mathrm V$ ed $e_2=2\,\mathrm V$ trova le tensioni di ramo e verifica la KVL.
+
+**Soluzione.**
+
+1. $v_a=v_d=e_1-0=6\,\mathrm V$.
+2. $v_b=e_1-e_2=4\,\mathrm V$, $v_c=e_2-0=2\,\mathrm V$.
+3. Maglia $1\to2\to0\to1$: $v_b+v_c-v_a=4+2-6=0$ ✓; maglia $a$–$d$: $v_a-v_d=0$ ✓.
+4. Con $n-1=2$ tensioni indipendenti si ottengono tutte e $b=4$ le tensioni di ramo.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -72,6 +105,20 @@ Nel triangolo dell'esempio II-03 (albero $a,b$) con $v_a=5\,\mathrm{V}$, $v_b=3\
 
 - **Sbagliato:** Assegnare liberamente $b$ tensioni di ramo.
 - **Corretto:** Solo $n-1$ tensioni (e $b-n+1$ correnti) sono indipendenti: le altre seguono dalla KVL/KCL.
+
+</div>
+
+<div data-note-id="tensioni-correnti-indipendenti-errore-2">
+
+- **Sbagliato:** Confondere le correnti di maglia con le correnti di ramo.
+- **Corretto:** Una corrente di maglia è un'incognita ausiliaria; la corrente in un ramo condiviso è la somma algebrica delle correnti delle maglie che lo attraversano.
+
+</div>
+
+<div data-note-id="tensioni-correnti-indipendenti-errore-3">
+
+- **Sbagliato:** Scegliere come indipendenti $n-1$ tensioni di ramo qualsiasi.
+- **Corretto:** Devono essere tensioni di rami che formano un albero: due rami in parallelo, come $a$ e $d$ nell'esempio, hanno la stessa tensione e non sono indipendenti.
 
 </div>
 

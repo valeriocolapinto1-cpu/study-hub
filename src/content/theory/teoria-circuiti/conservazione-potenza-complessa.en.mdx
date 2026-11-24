@@ -12,6 +12,12 @@ Just as in DC no energy appears from nowhere, in sinusoidal steady state active 
 
 </div>
 
+<div data-note-id="conservazione-potenza-complessa-intuizione-2">
+
+The balance is also a checking tool: after solving a circuit in sinusoidal steady state, adding up $P$ of the resistors and $Q$ of inductors and capacitors and comparing them with what the sources deliver takes a minute and catches almost every sign or arithmetic error.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -38,6 +44,18 @@ In sinusoidal steady state the sum of the complex powers absorbed by all the bra
 3. By Tellegen's theorem $\dot{\mathbf V}^{\mathsf T}\dot{\mathbf I}^*=0$, i.e. $\sum_k\dot V_k\dot I_k^*=0$. Real part: $\sum P_k=0$; imaginary part: $\sum Q_k=0$. $\square$
 
 </details>
+
+<div data-note-id="conservazione-potenza-complessa-teoria-3">
+
+**What is not conserved.** Apparent power is not conserved because it is a modulus: $|S_1+S_2|\le|S_1|+|S_2|$, with equality only if the two loads have the same power factor. For the same reason the power factor of several loads is not the average of the individual ones: it is computed from $P_{tot}$ and $Q_{tot}$.
+
+</div>
+
+<div data-note-id="conservazione-potenza-complessa-teoria-4">
+
+**Loads in parallel.** Several loads fed by the same voltage combine by adding their complex powers: $S_{tot}=\sum_kS_k$, i.e. $P_{tot}=\sum P_k$ and $Q_{tot}=\sum Q_k$. The line current then follows from $I=|S_{tot}|/V$.
+
+</div>
 
 <Formula id="cons-s" />
 <Formula id="bilancio-p" />
@@ -84,6 +102,20 @@ Load $P=12$, $Q_L=16$ with a capacitor absorbing $Q_C=-16$.
 
 </div>
 
+<div class="worked" data-note-id="conservazione-potenza-complessa-esempio-4">
+
+### Two loads in parallel
+
+At an RMS voltage $V=200\,\mathrm V$ are connected a load of $P_1=1000\,\mathrm W$ with $\cos\varphi_1=0.8$ inductive and one of $P_2=600\,\mathrm W$ with $\cos\varphi_2=0.6$ capacitive. Find the total complex power, the power factor and the line current.
+
+**Solution.**
+
+1. $Q_1=P_1\tan\varphi_1=1000\cdot0.75=750\,\mathrm{var}$; $Q_2=-600\cdot\tfrac43=-800\,\mathrm{var}$.
+2. $S_{tot}=1600-50j$, $|S_{tot}|=1600.8\,\mathrm{VA}$, $\cos\varphi=1600/1600.8=0.9995$.
+3. $I=1600.8/200=8.0\,\mathrm A$. Adding the apparent powers ($1250+1000=2250\,\mathrm{VA}$) would give $11.25\,\mathrm A$: wrong.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -92,6 +124,27 @@ Load $P=12$, $Q_L=16$ with a capacitor absorbing $Q_C=-16$.
 
 - **Wrong:** Adding the apparent powers of the branches.
 - **Right:** Add the complex powers (or $P$ and $Q$ separately).
+
+</div>
+
+<div data-note-id="conservazione-potenza-complessa-errore-2">
+
+- **Wrong:** Computing the power factor of several loads as the average of the individual ones.
+- **Right:** It is computed from the totals: $\cos\varphi=P_{tot}/\sqrt{P_{tot}^2+Q_{tot}^2}$.
+
+</div>
+
+<div data-note-id="conservazione-potenza-complessa-errore-3">
+
+- **Wrong:** Leaving controlled sources out of the balance.
+- **Right:** A controlled source is a branch like the others: its complex power enters the sum, and it may be delivered.
+
+</div>
+
+<div data-note-id="conservazione-potenza-complessa-errore-4">
+
+- **Wrong:** Computing the line current by adding the magnitudes of the load currents.
+- **Right:** Phasors are added (KCL), not magnitudes: in the example the line carries $8\,\mathrm A$, not $6.25+5=11.25\,\mathrm A$.
 
 </div>
 

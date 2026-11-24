@@ -12,6 +12,12 @@ Un albero è il modo più economico di collegare tutti i nodi: nessun percorso c
 
 </div>
 
+<div data-note-id="albero-coalbero-intuizione-2">
+
+Un modo concreto di costruire un albero: si parte da un nodo e si aggiunge un ramo alla volta, scegliendo sempre un ramo che porta a un nodo nuovo. Dopo $n-1$ passi tutti i nodi sono raggiunti. Ogni ramo scartato collegherebbe due nodi già raggiunti: è un ramo di coalbero, e l'anello che chiude è la sua maglia fondamentale.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -96,6 +102,12 @@ La scelta dell'albero non è unica: le maglie e i tagli fondamentali dipendono d
 
 </details>
 
+<div data-note-id="albero-coalbero-teoria-4">
+
+**Dualità maglie–tagli.** Un ramo di coalbero $c$ appartiene al taglio fondamentale del ramo d'albero $t$ se e solo se $t$ appartiene alla maglia fondamentale di $c$. Nell'esempio qui sotto (albero a stella) il taglio del ramo $0$-$1$ contiene $1$-$2$ e $1$-$3$, e infatti $0$-$1$ compare nelle maglie fondamentali di $1$-$2$ e di $1$-$3$, non in quella di $2$-$3$. Questa proprietà è l'origine della relazione fra i blocchi delle matrici $B$ e $Q$.
+
+</div>
+
 <Formula id="albero-coalbero" />
 
 </Layer>
@@ -116,6 +128,20 @@ Nel grafo della figura (albero: 0-1, 0-2, 0-3) elenca maglie e tagli fondamental
 
 </div>
 
+<div class="worked" data-note-id="albero-coalbero-esempio-2">
+
+### Un albero diverso sullo stesso grafo
+
+Nel grafo completo a 4 nodi scegli l'albero «a cammino» $0$-$1$, $1$-$2$, $2$-$3$. Trova coalbero e maglie fondamentali.
+
+**Soluzione.**
+
+1. Albero: $n-1=3$ rami; coalbero: $b-n+1=6-4+1=3$ rami, $0$-$2$, $0$-$3$, $1$-$3$.
+2. Maglie: $0$-$2$ chiude $0\to1\to2$ ($3$ rami); $0$-$3$ chiude $0\to1\to2\to3$ ($4$ rami); $1$-$3$ chiude $1\to2\to3$ ($3$ rami).
+3. Il numero di maglie fondamentali è ancora $3$, ma una ha $4$ rami: con l'albero a stella erano tutte da $3$.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -124,6 +150,20 @@ Nel grafo della figura (albero: 0-1, 0-2, 0-3) elenca maglie e tagli fondamental
 
 - **Sbagliato:** Scegliere come «albero» un insieme di $n-1$ rami che contiene una maglia (e lascia un nodo isolato).
 - **Corretto:** $n-1$ rami sono un albero solo se connettono tutti i nodi senza maglie.
+
+</div>
+
+<div data-note-id="albero-coalbero-errore-2">
+
+- **Sbagliato:** Pensare che maglie e tagli fondamentali non dipendano dall'albero scelto.
+- **Corretto:** Cambiando albero cambiano le maglie fondamentali (nell'esempio una diventa di 4 rami); resta invariato solo il loro numero, $b-n+1$.
+
+</div>
+
+<div data-note-id="albero-coalbero-errore-3">
+
+- **Sbagliato:** Chiamare albero un insieme di rami connesso che non tocca tutti i nodi.
+- **Corretto:** Un albero deve contenere tutti gli $n$ nodi; un sottografo connesso senza maglie che ne lascia fuori qualcuno ha meno di $n-1$ rami.
 
 </div>
 

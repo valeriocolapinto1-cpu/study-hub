@@ -12,6 +12,12 @@ A one-port is a "black box" with two terminals: we do not care what is inside, o
 
 </div>
 
+<div data-note-id="porta-e-bipolo-intuizione-2">
+
+The sign convention is just a way of keeping the books. Choosing the passive convention says nothing about what the one-port actually does: if in the end $p=v\,i$ turns out negative, the one-port is delivering. It is like a bank statement where payments are written with a minus sign: the sign of the balance tells the fact, the convention only fixes the format.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -73,6 +79,24 @@ The energy absorbed between $t_0$ and $t$ is $w(t_0,t)=\int_{t_0}^{t} v(\tau)\,i
   </svg>
 </Figure>
 
+<div data-note-id="porta-e-bipolo-teoria-4">
+
+**Port and KCL.** For an element with only two terminals the port condition follows from KCL: the current entering one terminal must leave from the other. In an element with more terminals, instead, a pair of terminals is a port only if the rest of the circuit guarantees it, that is, if no other current leaves the pair. This is why, when two-ports are connected, the port condition must be checked (see [validity tests for connections](../prove-validita-connessioni/)).
+
+</div>
+
+<div data-note-id="porta-e-bipolo-teoria-5">
+
+**Constant and average power.** If $v$ and $i$ are constant, the energy absorbed over an interval $\Delta t$ is simply $w=v\,i\,\Delta t$. In a periodic steady state of period $T$ what counts is the average power $P=\frac1T\int_0^T v\,i\,dt$: a one-port may absorb at some instants and deliver at others, and the sign of $P$ tells who, on average, gives up energy.
+
+</div>
+
+<div data-note-id="porta-e-bipolo-teoria-6">
+
+**More ports.** For a two-port, with the passive convention on both ports, the absorbed power is $p=v_1i_1+v_2i_2$: one term per port. The one-port is the case with a single port; an $n$-port has $n$ terms. Each port has its own reference directions and the convention is chosen port by port, independently of the others.
+
+</div>
+
 <Formula id="potenza-istantanea" />
 <Formula id="energia" />
 
@@ -93,6 +117,20 @@ A one-port has $v = 12\,\mathrm{V}$ and $i = -2\,\mathrm{A}$ with the passive si
 
 </div>
 
+<div class="worked" data-note-id="porta-e-bipolo-esempio-2">
+
+### A battery that charges and discharges
+
+Across a battery $v=10\,\mathrm V$ is constant; with the passive convention $i=2\,\mathrm A$ for $0\lt t\lt 3\,\mathrm s$ and $i=-1\,\mathrm A$ for $3\lt t\lt 5\,\mathrm s$. Find the energy absorbed in the $5\,\mathrm s$ and the average power.
+
+**Solution.**
+
+1. First phase: $w_1=v\,i\,\Delta t=10\cdot2\cdot3=60\,\mathrm J$ absorbed (the battery charges).
+2. Second phase: $w_2=10\cdot(-1)\cdot2=-20\,\mathrm J$, i.e. $20\,\mathrm J$ delivered.
+3. Total $w=60-20=40\,\mathrm J$ absorbed; average power $P=40/5=8\,\mathrm W$ absorbed.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -101,6 +139,27 @@ A one-port has $v = 12\,\mathrm{V}$ and $i = -2\,\mathrm{A}$ with the passive si
 
 - **Wrong:** Using $p=vi$ as the absorbed power when $i$ is referenced as leaving the $+$ terminal.
 - **Right:** With the active sign convention $p=vi$ is the delivered power; the absorbed power has the opposite sign.
+
+</div>
+
+<div data-note-id="porta-e-bipolo-errore-2">
+
+- **Wrong:** Inferring the convention from the numerical sign of $v$ or $i$.
+- **Right:** The convention depends only on the reference directions drawn, not on the values: with negative values the convention stays the same and only the sign of $p$ changes.
+
+</div>
+
+<div data-note-id="porta-e-bipolo-errore-3">
+
+- **Wrong:** Concluding that a one-port that delivers power at some instant is active.
+- **Right:** A capacitor can give back at some instants the energy stored earlier: what counts is the overall balance (passivity), not the instantaneous sign of $p$.
+
+</div>
+
+<div data-note-id="porta-e-bipolo-errore-4">
+
+- **Wrong:** Adding the powers of two ports written with different conventions.
+- **Right:** Before adding, bring all powers to the same convention (all absorbed or all delivered), changing sign where needed.
 
 </div>
 

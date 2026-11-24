@@ -12,6 +12,12 @@ Un bipolo è una «scatola nera» con due morsetti: non ci interessa cosa c'è d
 
 </div>
 
+<div data-note-id="porta-e-bipolo-intuizione-2">
+
+La convenzione è solo un modo di tenere la contabilità. Scegliere la convenzione degli utilizzatori non dice nulla su che cosa faccia davvero il bipolo: se alla fine $p=v\,i$ risulta negativa, il bipolo sta erogando. È come un estratto conto in cui le uscite si scrivono con il segno meno: il segno del saldo racconta il fatto, la convenzione stabilisce soltanto il formato.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -73,6 +79,24 @@ L'energia assorbita tra $t_0$ e $t$ è $w(t_0,t)=\int_{t_0}^{t} v(\tau)\,i(\tau)
   </svg>
 </Figure>
 
+<div data-note-id="porta-e-bipolo-teoria-4">
+
+**Porta e KCL.** Per un elemento con due soli morsetti la condizione di porta discende dalla KCL: la corrente che entra da un morsetto deve uscire dall'altro. In un elemento con più morsetti, invece, una coppia di morsetti è una porta solo se il resto del circuito lo garantisce, cioè se nessun'altra corrente lascia la coppia. Per questo, quando si collegano doppi bipoli, la condizione di porta va controllata (vedi [prove di validità delle connessioni](../prove-validita-connessioni/)).
+
+</div>
+
+<div data-note-id="porta-e-bipolo-teoria-5">
+
+**Potenza costante e potenza media.** Se $v$ e $i$ sono costanti, l'energia assorbita in un intervallo $\Delta t$ è semplicemente $w=v\,i\,\Delta t$. In un regime periodico di periodo $T$ conta la potenza media $P=\frac1T\int_0^T v\,i\,dt$: un bipolo può assorbire in alcuni istanti ed erogare in altri, ed è il segno di $P$ a dire chi, in media, cede energia.
+
+</div>
+
+<div data-note-id="porta-e-bipolo-teoria-6">
+
+**Più porte.** Per un doppio bipolo, con la convenzione degli utilizzatori su entrambe le porte, la potenza assorbita è $p=v_1i_1+v_2i_2$: un termine per porta. Il bipolo è il caso con una sola porta; un $n$-porte ha $n$ termini. Ogni porta ha i suoi versi di riferimento e la convenzione si sceglie porta per porta, indipendentemente dalle altre.
+
+</div>
+
 <Formula id="potenza-istantanea" />
 <Formula id="energia" />
 
@@ -93,6 +117,20 @@ Un bipolo ha $v = 12\,\mathrm{V}$ e $i = -2\,\mathrm{A}$ nella convenzione degli
 
 </div>
 
+<div class="worked" data-note-id="porta-e-bipolo-esempio-2">
+
+### Una batteria che si carica e si scarica
+
+Ai capi di una batteria $v=10\,\mathrm V$ costante; con la convenzione degli utilizzatori $i=2\,\mathrm A$ per $0\lt t\lt 3\,\mathrm s$ e $i=-1\,\mathrm A$ per $3\lt t\lt 5\,\mathrm s$. Trova l'energia assorbita nei $5\,\mathrm s$ e la potenza media.
+
+**Soluzione.**
+
+1. Prima fase: $w_1=v\,i\,\Delta t=10\cdot2\cdot3=60\,\mathrm J$ assorbiti (la batteria si carica).
+2. Seconda fase: $w_2=10\cdot(-1)\cdot2=-20\,\mathrm J$, cioè $20\,\mathrm J$ erogati.
+3. Totale $w=60-20=40\,\mathrm J$ assorbiti; potenza media $P=40/5=8\,\mathrm W$ assorbita.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -101,6 +139,27 @@ Un bipolo ha $v = 12\,\mathrm{V}$ e $i = -2\,\mathrm{A}$ nella convenzione degli
 
 - **Sbagliato:** Usare $p=vi$ come potenza assorbita con $i$ riferita in verso uscente dal $+$.
 - **Corretto:** Con la convenzione dei generatori $p=vi$ è erogata; per l'assorbita cambia segno.
+
+</div>
+
+<div data-note-id="porta-e-bipolo-errore-2">
+
+- **Sbagliato:** Dedurre la convenzione dal segno numerico di $v$ o di $i$.
+- **Corretto:** La convenzione dipende solo dai versi di riferimento disegnati, non dai valori: con valori negativi la convenzione resta la stessa e cambia solo il segno di $p$.
+
+</div>
+
+<div data-note-id="porta-e-bipolo-errore-3">
+
+- **Sbagliato:** Concludere che un bipolo che in un istante eroga potenza sia attivo.
+- **Corretto:** Un condensatore può restituire in alcuni istanti l'energia accumulata prima: conta il bilancio complessivo (passività), non il segno istantaneo di $p$.
+
+</div>
+
+<div data-note-id="porta-e-bipolo-errore-4">
+
+- **Sbagliato:** Sommare le potenze di due porte scritte con convenzioni diverse.
+- **Corretto:** Prima di sommare, riporta tutte le potenze alla stessa convenzione (tutte assorbite o tutte erogate), cambiando segno dove serve.
 
 </div>
 

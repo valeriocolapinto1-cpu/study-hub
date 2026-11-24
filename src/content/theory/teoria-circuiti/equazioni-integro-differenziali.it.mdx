@@ -12,6 +12,12 @@ Con Laplace non serve più indovinare la soluzione particolare né imporre le co
 
 </div>
 
+<div data-note-id="equazioni-integro-differenziali-intuizione-2">
+
+La procedura è sempre la stessa, in tre mosse: trasformare (le derivate portano con sé le condizioni iniziali), risolvere un'equazione algebrica in $Y(s)$, antitrasformare con i fratti semplici. Il denominatore di $Y(s)$ contiene il polinomio caratteristico dell'equazione: i suoi zeri sono i modi naturali della risposta.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -343,6 +349,36 @@ Il vantaggio rispetto al metodo classico (omogenea + particolare + costanti) è 
   />
 </Figure>
 
+<div data-note-id="equazioni-integro-differenziali-teoria-3">
+
+**Struttura della soluzione.** Per $a_2\ddot y+a_1\dot y+a_0y=x(t)$ si ottiene $Y(s)=\dfrac{X(s)}{a_2s^2+a_1s+a_0}+\dfrac{a_2\left(sy(0^-)+\dot y(0^-)\right)+a_1y(0^-)}{a_2s^2+a_1s+a_0}$: il primo termine è la risposta forzata (dipende solo dall'ingresso), il secondo la risposta libera (dipende solo dalle condizioni iniziali).
+
+</div>
+
+<div data-note-id="equazioni-integro-differenziali-teoria-4">
+
+**Integrali.** Un termine $\int_0^ty\,d\tau$ diventa $Y(s)/s$. Se l'integrale parte da $-\infty$, come la tensione di un condensatore, compare anche il valore accumulato fino a $0^-$: $\int_{-\infty}^ty\,d\tau\to\dfrac{Y(s)}{s}+\dfrac{1}{s}\int_{-\infty}^{0^-}y\,d\tau$.
+
+</div>
+
+<div data-note-id="equazioni-integro-differenziali-teoria-5">
+
+**Controlli.** Il risultato si verifica sostituendo $t=0$ (deve dare $y(0^+)$, uguale a $y(0^-)$ se non ci sono impulsi) e applicando i teoremi del valore iniziale e finale direttamente a $Y(s)$, prima di antitrasformare.
+
+</div>
+
+<div data-note-id="equazioni-integro-differenziali-teoria-6">
+
+**Confronto con il metodo classico.** Nel metodo classico si trova la soluzione dell'omogenea con costanti incognite, poi una soluzione particolare «indovinata» dalla forma dell'ingresso, e solo alla fine si impongono le condizioni iniziali sulla somma. Con Laplace i tre passi diventano uno: la soluzione esce già con le costanti giuste, e un ingresso qualsiasi, anche a tratti o impulsivo, non richiede di indovinare nulla.
+
+</div>
+
+<div data-note-id="equazioni-integro-differenziali-teoria-7">
+
+**Sistemi di equazioni.** Con più incognite, per esempio le correnti di due maglie, si trasforma ciascuna equazione e si ottiene un sistema algebrico lineare in $Y_1(s),Y_2(s),\dots$, che si risolve per sostituzione o con Cramer. Il determinante del sistema è il polinomio caratteristico del circuito: i suoi zeri sono i poli comuni a tutte le risposte.
+
+</div>
+
 <Formula id="laplace-der" />
 <Formula id="laplace-der2" />
 
@@ -390,6 +426,21 @@ $\dot y+y+\int_0^ty\,d\tau=u_{-1}(t)$, $y(0^-)=0$.
 
 </div>
 
+<div class="worked" data-note-id="equazioni-integro-differenziali-esempio-4">
+
+### Forzata più libera
+
+$\ddot y+4\dot y+3y=6\,u_{-1}(t)$ con $y(0^-)=0$, $\dot y(0^-)=1$. Trova $y(t)$ e separa risposta libera e forzata.
+
+**Soluzione.**
+
+1. Trasformata: $(s^2+4s+3)Y-1=\dfrac6s\Rightarrow Y=\dfrac{6}{s(s+1)(s+3)}+\dfrac{1}{(s+1)(s+3)}$.
+2. Forzata: $\dfrac2s-\dfrac3{s+1}+\dfrac1{s+3}\to2-3e^{-t}+e^{-3t}$. Libera: $\dfrac{1/2}{s+1}-\dfrac{1/2}{s+3}\to\tfrac12e^{-t}-\tfrac12e^{-3t}$.
+3. Totale: $y=2-2{,}5e^{-t}+0{,}5e^{-3t}$.
+4. Verifica: $y(0)=2-2{,}5+0{,}5=0$ ✓, $\dot y(0)=2{,}5-1{,}5=1$ ✓, $y(\infty)=2=6/3$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -398,6 +449,34 @@ $\dot y+y+\int_0^ty\,d\tau=u_{-1}(t)$, $y(0^-)=0$.
 
 - **Sbagliato:** Dimenticare $y(0^-)$ nella derivata.
 - **Corretto:** $\dot y\to sY-y(0^-)$.
+
+</div>
+
+<div data-note-id="equazioni-integro-differenziali-errore-2">
+
+- **Sbagliato:** Trasformare $\ddot y$ come $s^2Y-y(0^-)$.
+- **Corretto:** $\ddot y\to s^2Y-sy(0^-)-\dot y(0^-)$: la condizione su $y$ è moltiplicata per $s$, e serve anche quella sulla derivata.
+
+</div>
+
+<div data-note-id="equazioni-integro-differenziali-errore-3">
+
+- **Sbagliato:** Antitrasformare senza controllare le condizioni iniziali.
+- **Corretto:** Sostituire $t=0$ nella soluzione e nella sua derivata richiede un istante e scopre la maggior parte degli errori nei residui.
+
+</div>
+
+<div data-note-id="equazioni-integro-differenziali-errore-4">
+
+- **Sbagliato:** Fermarsi a $Y(s)$ come se fosse la risposta.
+- **Corretto:** Il risultato richiesto è $y(t)$: va antitrasformato, e va detto per quali istanti vale (di solito $t\gt 0$).
+
+</div>
+
+<div data-note-id="equazioni-integro-differenziali-errore-5">
+
+- **Sbagliato:** Trasformare $\int_0^t y\,d\tau$ come $sY$.
+- **Corretto:** L'integrale divide per $s$: $\int_0^t y\,d\tau\to Y(s)/s$; è la derivata a moltiplicare per $s$.
 
 </div>
 

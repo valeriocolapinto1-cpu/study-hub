@@ -12,6 +12,12 @@ Tellegen says that, in any circuit, all the power supplied by someone is absorbe
 
 </div>
 
+<div data-note-id="teorema-di-tellegen-intuizione-2">
+
+One way to convince yourself: every power $v_k\,i_k$ is a potential difference times a current. Summing over all branches, every node potential ends up multiplied by the sum of the currents leaving that node, which is zero by KCL. The terms cancel node by node, whatever the components.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -55,6 +61,18 @@ Geometrically: the voltage vector belongs to the subspace spanned by the columns
 
 </details>
 
+<div data-note-id="teorema-di-tellegen-teoria-4">
+
+**Consequences.** Besides the conservation of instantaneous power, the theorem implies the conservation of complex power in sinusoidal steady state (with phasors $\dot V_k$ and conjugates $\dot I_k^*$, see [conservation of complex power](../conservazione-potenza-complessa/)). Applied to two different situations of the same circuit it gives $\sum_k v_k'\,i_k''=\sum_k v_k''\,i_k'=0$, the basis of reciprocity proofs.
+
+</div>
+
+<div data-note-id="teorema-di-tellegen-teoria-5">
+
+**Minimal assumptions.** Linearity, time invariance and passivity are not needed: a voltage vector compatible with KVL and a current vector compatible with KCL on the same graph, with consistent reference directions, are enough.
+
+</div>
+
 <Formula id="tellegen" />
 <Formula id="ortogonalita" />
 
@@ -76,6 +94,20 @@ A voltage source $V_g=10\,\mathrm{V}$ feeds $R_1=2\,\Omega$ and $R_2=3\,\Omega$ 
 
 </div>
 
+<div class="worked" data-note-id="teorema-di-tellegen-esempio-2">
+
+### Voltages and currents from different circuits
+
+Graph with nodes $0,1,2$ and branches $a$: $1\to0$, $b$: $1\to2$, $c$: $2\to0$, $d$: $1\to0$. Voltages of one circuit: $e_1=6\,\mathrm V$, $e_2=2\,\mathrm V$. Currents of another circuit: $i_b=i_c=1\,\mathrm A$, $i_a=2\,\mathrm A$, $i_d=-3\,\mathrm A$. Check Tellegen.
+
+**Solution.**
+
+1. KCL of the currents: node 1, $i_a+i_b+i_d=2+1-3=0$ ✓; node 2, $-i_b+i_c=0$ ✓.
+2. Voltages: $v_a=v_d=6\,\mathrm V$, $v_b=4\,\mathrm V$, $v_c=2\,\mathrm V$ (KVL-compatible).
+3. $\sum v_k i_k=6\cdot2+4\cdot1+2\cdot1+6\cdot(-3)=12+4+2-18=0$ ✓, even though the two circuits share nothing but the graph.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -84,6 +116,20 @@ A voltage source $V_g=10\,\mathrm{V}$ feeds $R_1=2\,\Omega$ and $R_2=3\,\Omega$ 
 
 - **Wrong:** Adding "delivered" and "absorbed" powers with the same sign.
 - **Right:** Use a single convention (passive on every branch): the algebraic sum is zero.
+
+</div>
+
+<div data-note-id="teorema-di-tellegen-errore-2">
+
+- **Wrong:** Thinking that Tellegen holds only for linear circuits.
+- **Right:** It holds for any lumped circuit, even nonlinear or time-varying: it uses only KCL and KVL.
+
+</div>
+
+<div data-note-id="teorema-di-tellegen-errore-3">
+
+- **Wrong:** Using voltages and currents of two circuits with different graphs.
+- **Right:** The two vectors must refer to the same graph with the same directions; the components, instead, may differ.
 
 </div>
 

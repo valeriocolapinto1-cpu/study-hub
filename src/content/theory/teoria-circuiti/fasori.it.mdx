@@ -12,6 +12,12 @@ Tutte le grandezze di un circuito lineare alimentato da una sinusoide oscillano 
 
 </div>
 
+<div data-note-id="fasori-intuizione-2">
+
+Si può immaginare il fasore come una freccia che ruota in senso antiorario nel piano complesso con velocità angolare $\omega$: la grandezza fisica è la sua proiezione sull'asse reale. Tutte le frecce di un circuito ruotano insieme, quindi basta fotografarle a $t=0$: lunghezze e angoli fra loro sono tutta l'informazione utile.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -49,6 +55,30 @@ Forma cartesiana ↔ ampiezza-fase: $a\cos\omega t+b\sin\omega t=\mathrm{Re}\{(a
     }}
   />
 </Figure>
+
+<div data-note-id="fasori-teoria-4">
+
+**Perché funziona.** Le operazioni del circuito (somme, derivate, integrali, prodotti per costanti reali) commutano con $\mathrm{Re}\{\cdot\}$: per esempio $\dfrac{d}{dt}\mathrm{Re}\{\dot Ve^{j\omega t}\}=\mathrm{Re}\{j\omega\dot Ve^{j\omega t}\}$. Non commuta invece il prodotto di due grandezze: per questo la potenza istantanea $p=v\,i$ non è $\mathrm{Re}\{\dot V\dot I\}$ e serve la potenza complessa.
+
+</div>
+
+<div data-note-id="fasori-teoria-5">
+
+**Picco o efficace.** Il fasore si può definire con l'ampiezza di picco $V_m$ o con il valore efficace $V=V_m/\sqrt2$. Le relazioni lineari (Kirchhoff, impedenze) sono identiche nei due casi; cambiano le formule delle potenze, che con i valori efficaci non hanno il fattore $\tfrac12$.
+
+</div>
+
+<div data-note-id="fasori-teoria-6">
+
+**Operazioni in forma polare.** Moltiplicare per $\rho e^{j\theta}$ significa scalare l'ampiezza di $\rho$ e anticipare la fase di $\theta$: $j$ anticipa di $90^\circ$, $-j$ ritarda di $90^\circ$, $j\omega$ (la derivata) amplifica di $\omega$ e anticipa di $90^\circ$. Somme e differenze si fanno invece in forma cartesiana.
+
+</div>
+
+<div data-note-id="fasori-teoria-7">
+
+**Valore efficace.** Per una sinusoide $V=V_m/\sqrt2\approx0{,}707\,V_m$: la tensione di rete «$230\,\mathrm V$» è un valore efficace, con picco $230\sqrt2\approx325\,\mathrm V$.
+
+</div>
 
 <Formula id="fasore" />
 <Formula id="fasore-sin" />
@@ -97,6 +127,20 @@ Fasore di $5\sin(3t)$ nella convenzione del coseno?
 
 </div>
 
+<div class="worked" data-note-id="fasori-esempio-4">
+
+### Somma di due sinusoidi sfasate
+
+Trova ampiezza e fase di $v=4\cos(\omega t+30^\circ)+3\cos(\omega t-60^\circ)$.
+
+**Soluzione.**
+
+1. Fasori in forma cartesiana: $4e^{j30^\circ}=3{,}464+2j$, $3e^{-j60^\circ}=1{,}5-2{,}598j$.
+2. Somma: $\dot V=4{,}964-0{,}598j$, $|\dot V|=\sqrt{4{,}964^2+0{,}598^2}=5{,}00$, fase $\arctan(-0{,}598/4{,}964)=-6{,}87^\circ$.
+3. $v=5\cos(\omega t-6{,}87^\circ)$. Verifica: i due fasori sono sfasati di $90^\circ$, quindi $|\dot V|=\sqrt{4^2+3^2}=5$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -112,6 +156,20 @@ Fasore di $5\sin(3t)$ nella convenzione del coseno?
 
 - **Sbagliato:** Confondere ampiezza di picco ed efficace: $V_m=\sqrt2V$.
 - **Corretto:** Dichiara sempre se i fasori sono di picco o efficaci (cambia $P$, $Q$).
+
+</div>
+
+<div data-note-id="fasori-errore-3">
+
+- **Sbagliato:** Sommare le ampiezze di due sinusoidi sfasate: $4+3=7$.
+- **Corretto:** Si sommano i fasori: con uno sfasamento di $90^\circ$ l'ampiezza è $\sqrt{4^2+3^2}=5$. La somma delle ampiezze vale solo per sinusoidi in fase.
+
+</div>
+
+<div data-note-id="fasori-errore-4">
+
+- **Sbagliato:** Calcolare la fase con $\arctan(b/a)$ anche quando la parte reale è negativa.
+- **Corretto:** Con $a\lt 0$ l'arcotangente sbaglia di $180^\circ$: usa $\mathrm{atan2}$ o guarda il quadrante (per $-1+j$ la fase è $135^\circ$, non $-45^\circ$).
 
 </div>
 

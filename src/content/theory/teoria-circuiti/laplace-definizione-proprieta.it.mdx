@@ -12,6 +12,12 @@ La trasformata di Laplace «fotografa» un segnale scomponendolo in esponenziali
 
 </div>
 
+<div data-note-id="laplace-definizione-proprieta-intuizione-2">
+
+Il prezzo da pagare è che il risultato è una funzione di $s$, non di $t$: alla fine bisogna tornare indietro. Ma il viaggio conviene, perché nel dominio di $s$ le operazioni difficili diventano facili: la derivata è un prodotto per $s$, la convoluzione è un prodotto, il ritardo è un fattore esponenziale.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -335,6 +341,24 @@ La trasformata unilatera di $x(t)$ (nulla per $t<0^-$) è $X(s)=\int_{0^-}^{\inf
   />
 </Figure>
 
+<div data-note-id="laplace-definizione-proprieta-teoria-4">
+
+**Convergenza.** L'integrale converge per $\mathrm{Re}\,s\gt \sigma_0$, con $\sigma_0$ legato alla crescita del segnale: per $e^{at}$ serve $\mathrm{Re}\,s\gt a$. Nei circuiti i segnali crescono al più in modo esponenziale, quindi la trasformata esiste sempre in un semipiano destro; la formula ottenuta si usa poi in tutto il piano, tranne nei poli.
+
+</div>
+
+<div data-note-id="laplace-definizione-proprieta-teoria-5">
+
+**Un esempio dalla definizione.** Per $x=e^{-at}u_{-1}(t)$: $X(s)=\int_0^\infty e^{-(s+a)t}dt=\left[\dfrac{-e^{-(s+a)t}}{s+a}\right]_0^\infty=\dfrac{1}{s+a}$, per $\mathrm{Re}\,s\gt -a$. Con $a=0$ si ottiene il gradino, $1/s$.
+
+</div>
+
+<div data-note-id="laplace-definizione-proprieta-teoria-6">
+
+**Perché $0^-$.** Con il limite inferiore $0^-$ la trasformata della derivata usa il valore _prima_ della commutazione, $x(0^-)$, noto dal regime precedente; un eventuale salto in $t=0$ produce un impulso nella derivata, che l'integrale da $0^-$ include. Con $0^+$ servirebbe il valore dopo il salto, di solito incognito.
+
+</div>
+
 <Formula id="laplace-def" />
 <Formula id="laplace-lin" />
 <Formula id="laplace-der" />
@@ -387,6 +411,21 @@ $x(t)=e^{-t}u_{-1}(t)$ ritardato di $2$.
 
 </div>
 
+<div class="worked" data-note-id="laplace-definizione-proprieta-esempio-4">
+
+### Valori iniziale e finale di una risposta
+
+$X(s)=\dfrac{10(s+2)}{s(s^2+4s+5)}$. Trova $x(0^+)$, $\dot x(0^+)$ e $x(\infty)$ senza antitrasformare, poi verifica.
+
+**Soluzione.**
+
+1. Poli di $sX$: $s^2+4s+5=0\Rightarrow s=-2\pm j$, parte reale negativa: il valore finale si può usare.
+2. $x(\infty)=\lim_{s\to0}sX=\dfrac{10\cdot2}{5}=4$; $x(0^+)=\lim_{s\to\infty}sX=0$.
+3. $\dot x(0^+)=\lim_{s\to\infty}s\left[sX-x(0^+)\right]=\lim_{s\to\infty}\dfrac{10s(s+2)}{s^2+4s+5}=10$.
+4. Verifica: $x(t)=4-e^{-2t}(4\cos t-2\sin t)$ dà $x(0)=0$, $\dot x(0)=8+2=10$, $x(\infty)=4$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -402,6 +441,27 @@ $x(t)=e^{-t}u_{-1}(t)$ ritardato di $2$.
 
 - **Sbagliato:** Dimenticare $x(0^-)$ nella trasformata della derivata.
 - **Corretto:** $\dot x\to sX-x(0^-)$.
+
+</div>
+
+<div data-note-id="laplace-definizione-proprieta-errore-3">
+
+- **Sbagliato:** Applicare il teorema del valore iniziale a una $X(s)$ con numeratore e denominatore dello stesso grado.
+- **Corretto:** Allora $x$ contiene un impulso in $t=0$ e $\lim_{s\to\infty}sX$ diverge: prima si separa la parte impropria con la divisione.
+
+</div>
+
+<div data-note-id="laplace-definizione-proprieta-errore-4">
+
+- **Sbagliato:** Confondere $e^{-sT}X(s)$ con $X(s+a)$.
+- **Corretto:** Il fattore $e^{-sT}$ ritarda il segnale di $T$; lo spostamento in $s$, $X(s+a)$, moltiplica il segnale per $e^{-at}$.
+
+</div>
+
+<div data-note-id="laplace-definizione-proprieta-errore-5">
+
+- **Sbagliato:** Pensare che la trasformata unilatera descriva il segnale anche per $t\lt 0$.
+- **Corretto:** $X(s)$ contiene solo l'informazione per $t\ge0^-$: il passato entra soltanto attraverso le condizioni iniziali.
 
 </div>
 

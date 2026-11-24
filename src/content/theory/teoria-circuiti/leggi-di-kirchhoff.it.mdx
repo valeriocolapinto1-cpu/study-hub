@@ -12,6 +12,12 @@ La carica non si accumula nei fili e nei nodi: quanta corrente entra, tanta ne e
 
 </div>
 
+<div data-note-id="leggi-di-kirchhoff-intuizione-2">
+
+Un'analogia idraulica aiuta: le correnti sono portate d'acqua nei tubi e i nodi sono raccordi che non possono trattenere acqua; le tensioni sono dislivelli, e chi percorre un sentiero ad anello torna alla quota di partenza. L'analogia regge finché il circuito è concentrato: è proprio quell'ipotesi a garantire che nei nodi non si accumuli carica e che la tensione non dipenda dal percorso.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -110,6 +116,20 @@ A un nodo entrano $i_1 = 3\,\mathrm{A}$ e $i_2 = 2\,\mathrm{A}$ ed escono $i_3 =
 
 </div>
 
+<div class="worked" data-note-id="leggi-di-kirchhoff-esempio-2">
+
+### Quante equazioni indipendenti
+
+Un circuito connesso ha $n=4$ nodi e $b=6$ rami. Quante KCL e quante KVL indipendenti si possono scrivere, e quante equazioni servono in tutto?
+
+**Soluzione.**
+
+1. KCL indipendenti: $n-1=3$ (la quarta è la somma delle altre cambiata di segno).
+2. KVL indipendenti: $b-n+1=6-4+1=3$ (una per ogni maglia fondamentale).
+3. Equazioni topologiche: $3+3=6=b$. Con le $b=6$ relazioni costitutive si ottengono $2b=12$ equazioni nelle $12$ incognite (una tensione e una corrente per ramo) ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -118,6 +138,20 @@ A un nodo entrano $i_1 = 3\,\mathrm{A}$ e $i_2 = 2\,\mathrm{A}$ ed escono $i_3 =
 
 - **Sbagliato:** Scrivere KCL con segni misti senza fissare una convenzione, ottenendo $i_1+i_2+i_3=0$ con correnti tutte entranti ma di valore positivo.
 - **Corretto:** Fissa «uscenti $+$, entranti $-$» e ricava i segni dai versi di riferimento, non dai valori.
+
+</div>
+
+<div data-note-id="leggi-di-kirchhoff-errore-2">
+
+- **Sbagliato:** Scrivere una KCL per ciascuno degli $n$ nodi e trattarle tutte come indipendenti.
+- **Corretto:** Sommando le $n$ KCL ogni corrente compare due volte con segni opposti e il risultato è $0=0$: solo $n-1$ sono indipendenti.
+
+</div>
+
+<div data-note-id="leggi-di-kirchhoff-errore-3">
+
+- **Sbagliato:** Nella KVL sommare i moduli delle tensioni incontrate lungo il giro.
+- **Corretto:** Ogni tensione entra con il segno dato dal confronto fra il suo verso di riferimento e il verso di percorrenza, qualunque sia il suo valore.
 
 </div>
 

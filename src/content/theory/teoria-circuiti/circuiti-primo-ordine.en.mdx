@@ -12,6 +12,12 @@ A capacitor charging through a resistor does not reach its final value at once: 
 
 </div>
 
+<div data-note-id="circuiti-primo-ordine-intuizione-2">
+
+The time constant can also be read on the graph: the tangent to the curve at $t=0$ reaches the final value exactly after $\tau$. After $\tau$, $37\,\%$ of the step is still missing, after $3\tau$ $5\,\%$, after $5\tau$ less than $1\,\%$. A large $\tau$ means a "lazy" circuit: a large capacitance to fill, or little current to fill it.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -80,6 +86,18 @@ A circuit with a single memory element and independent sources is described by $
   />
 </Figure>
 
+<div data-note-id="circuiti-primo-ordine-teoria-4">
+
+**Procedure for a step.** (1) Steady state for $t\lt 0$: $C$ open, $L$ short, giving $x(0^-)$. (2) Continuity: $x(0^+)=x(0^-)$. (3) Final steady state with the circuit valid for $t\gt 0$: $x_\infty$. (4) Resistance $R_{eq}$ seen by the memory element, independent sources off: $\tau$. (5) Assemble $x(t)=x_\infty+(x_0-x_\infty)e^{-t/\tau}$. The other quantities follow from $x(t)$ with Kirchhoff's laws, because in general they are not continuous.
+
+</div>
+
+<div data-note-id="circuiti-primo-ordine-teoria-5">
+
+**Stability.** With $R_{eq}\gt 0$ the time constant is positive and the exponential dies out. With controlled sources $R_{eq}$ can turn out negative: then $\tau\lt 0$, the term $e^{-t/\tau}$ grows and the circuit reaches no steady state.
+
+</div>
+
 <Formula id="tau-rc" />
 <Formula id="tau-rl" />
 <Formula id="sol-primo-ordine" />
@@ -129,6 +147,21 @@ $\dot y+y=\cos t$, $y(0)=0$ ($\tau=1$). Find $y(t)$.
 
 </div>
 
+<div class="worked" data-note-id="circuiti-primo-ordine-esempio-4">
+
+### Discharge after a switch
+
+For $t\lt 0$ a $12\,\mathrm V$ source with $R_1=2\,\Omega$ in series feeds $C=0.5\,\mathrm F$ in parallel with $R_2=4\,\Omega$. At $t=0$ a switch disconnects the source with $R_1$. Find $v_C(t)$, the currents at $0^\pm$ and the energy dissipated in $R_2$.
+
+**Solution.**
+
+1. Steady state for $t\lt 0$ ($C$ open): divider, $v_C(0^-)=12\cdot\dfrac{4}{2+4}=8\,\mathrm V$.
+2. For $t\gt 0$ the capacitor sees only $R_2$: $\tau=R_2C=2\,\mathrm s$, $v_\infty=0$, so $v_C(t)=8e^{-t/2}\,\mathrm V$.
+3. Currents: $i_{R_2}(0^\pm)=8/4=2\,\mathrm A$; $i_C(0^-)=0$ but $i_C(0^+)=-2\,\mathrm A$: the capacitor current jumps, its voltage does not.
+4. Energy: $\int_0^\infty\dfrac{v_C^2}{R_2}dt=\dfrac{64}{4}\int_0^\infty e^{-t}dt=16\,\mathrm J=\tfrac12\cdot0.5\cdot8^2$ ✓, all the initial energy of the capacitor.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -144,6 +177,13 @@ $\dot y+y=\cos t$, $y(0)=0$ ($\tau=1$). Find $y(t)$.
 
 - **Wrong:** Imposing $x(0^+)=0$ because "the source started from zero".
 - **Right:** $x(0^+)=x(0^-)$, the value reached in the previous steady state.
+
+</div>
+
+<div data-note-id="circuiti-primo-ordine-errore-3">
+
+- **Wrong:** Computing $\tau$ with the circuit valid for $t\lt 0$.
+- **Right:** $\tau$ is computed with the circuit after switching, the one in which the transient takes place (in the example $R_2C$, not $(R_1\parallel R_2)C$).
 
 </div>
 
