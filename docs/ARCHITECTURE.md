@@ -69,6 +69,10 @@ tests/unit, tests/content, tests/e2e, tests/fixtures
   `BreadcrumbList` dal componente `Breadcrumbs`.
 - **Tema e barra del browser**: lo script inline di `Head.astro` applica il tema salvato prima del disegno e tiene
   `theme-color` uguale a `--bg` (anche del corso), ricalcolato quando cambia `data-theme`.
+  Lo stesso script applica `html[data-course-index="hidden"]` (indice del corso nascosto con «Nascondi indice»,
+  da 1024 px): niente spostamento del layout. Il pulsante ha un suo script inline subito dopo (`aria-expanded`, clic).
+- **Barre di scorrimento** (`base.css`, token `--scroll-thumb*`/`--scroll-track`): sottili e nel colore del corso
+  per ogni elemento che scorre; `::-webkit-scrollbar` per Safari; di sistema con `forced-colors`.
 - **iOS**: `apple-mobile-web-app-capable`, barra di stato `black-translucent`, `viewport-fit=cover`. Aree sicure in
   `tokens.css` (`--safe-top|right|bottom|left`, `--safe-inline`), usate da intestazione, `.container`, piè di
   pagina, indice del corso (`#indice-corso`), avvisi e ricerca; nel tema chiaro dell'app installata una fascia
@@ -128,7 +132,8 @@ I file `src/courses/<courseId>/generators/*.ts` si registrano da soli; `loadAllG
 `src/engine/storage.ts`: chiavi `sh:v1:<scope>:<area>` (scope = courseId | `global`), valori JSON, ogni accesso in try/catch.
 API: `read(scope, area, fallback)`, `write`, `update`, `remove`, `listKeys(scope?)`, `subscribe(scope, area, cb)` (evento `sh:storage`
 nella scheda e `storage` tra schede), `setStorageBackend()` per i test. Aree tipiche: `progress`, `srs`, `exam`, `notes`, `studied`, `settings`;
-globali: `theme`, `lang`, `examDates`, `migrations`, `backup`, `lastStudy` (con `<corso>:lastPage`: ultima pagina di studio, «Riprendi da dove eri»; non esportate).
+globali: `theme`, `lang`, `examDates`, `migrations`, `backup`, `lastStudy` (con `<corso>:lastPage`: ultima pagina di studio, «Riprendi da dove eri»; non esportate),
+`courseIndex` (`"hidden"`/`"shown"`: indice del corso nascosto, preferenza del dispositivo, non esportata; `src/lib/course-index.ts`).
 `read()` restituisce il ripiego anche se il valore salvato è di un altro tipo (oggetto/array/numero/stringa/booleano; con
 ripiego `null` passa tutto e normalizza il `sanitize*` dell'area). Una scrittura fallita emette `sh:storage-error`
 (`{ key, quota }`): `site.ts` mostra una volta l'avviso di `src/scripts/data-notice.ts` (caricato solo allora), con link a
