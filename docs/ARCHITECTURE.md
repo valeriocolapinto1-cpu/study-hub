@@ -9,6 +9,9 @@ Pubblicato su GitHub Pages: `https://valeriocolapinto1-cpu.github.io/study-hub/`
 - **MDX** per la teoria; **content collections** con schemi **Zod** (`src/content.config.ts`, schemi in `src/content/schemas.ts`).
 - Matematica: **KaTeX a build-time** (`remark-math` + `rehype-katex`, uscita HTML+MathML) tramite il processore `unified()`
   di `@astrojs/markdown-remark` (Sätteri, il processore predefinito di Astro 7, non gestisce la matematica). Nessun MathJax.
+  Fuori dall'MDX la matematica è sempre `$…$` resa con KaTeX (R10): `InlineTex.astro` nelle pagine statiche,
+  `CaptionText.astro` nelle didascalie, `TexText.tsx` nelle isole (KaTeX caricato solo se serve), `SubText.tsx`
+  (solo pedici) nei simulatori. Dettagli in `docs/ENGINE.md`.
 - TypeScript strict, Node 22 (`.nvmrc`), npm. Font Geist e Geist Mono da `@fontsource-variable/*` (OFL).
 - Nessun Tailwind, nessuna analytics, nessuna chiave API nel browser.
 
@@ -55,9 +58,18 @@ tests/unit, tests/content, tests/e2e, tests/fixtures
 - `/study-hub/` → redirect a `/study-hub/it/` o `/study-hub/en/` (lingua salvata, poi del browser; ripiego `it`).
 - Gli slug sono **identici** nelle due lingue e sono in italiano: `/en/anno-2/teoria-circuiti/esercizi/`.
 - Corso: `/<lang>/anno-<year>/<courseId>/` con sezioni fisse (`COURSE_SECTIONS`):
+<<<<<<< HEAD
   `` (Panoramica), `teoria/` (+ `teoria/<topic>/`), `formulario/` (indice dei capitoli, + `formulario/<capitolo>/`
   e `formulario/stampa/`, `src/lib/formulary.ts`), `esercizi/` (+ `esercizi/<topic>/`),
   `ripasso/`, `esame/`, `progressi/`; extra in `extra/<slug>/`.
+=======
+  `` (Panoramica), `teoria/` (+ `teoria/<topic>/`), `formulario/`, `esercizi/` (+ `esercizi/<topic>/`),
+  `ripasso/`, `esame/`, `progressi/`; extra in `extra/<slug>/`; `info/` (descrizione completa, il corso,
+  l'esame con le date, come usare il sito: R8) fuori dalla navigazione, collegata dalla panoramica.
+- Panoramica (R8): frase breve `tagline` del corso (≤ 20 parole), pulsante «Riprendi da …», guida in 3 passi per
+  chi arriva la prima volta (chiusa una volta per tutte: `sh:v1:global:firstSteps`), capitoli con gli argomenti
+  studiati (R13, `docs/ENGINE.md`).
+>>>>>>> origin/main
 - Ogni pagina ha canonical e `hreflang` it-IT, en-US, x-default (`Head.astro`); sitemap da `@astrojs/sitemap` con i18n.
 
 ## Intestazione, SEO, sicurezza
@@ -136,7 +148,8 @@ I file `src/courses/<courseId>/generators/*.ts` si registrano da soli; `loadAllG
 API: `read(scope, area, fallback)`, `write`, `update`, `remove`, `listKeys(scope?)`, `subscribe(scope, area, cb)` (evento `sh:storage`
 nella scheda e `storage` tra schede), `setStorageBackend()` per i test. Aree tipiche: `progress`, `srs`, `exam`, `notes`, `studied`, `settings`;
 globali: `theme`, `lang`, `examDates`, `migrations`, `backup`, `lastStudy` (con `<corso>:lastPage`: ultima pagina di studio, «Riprendi da dove eri»; non esportate),
-`courseIndex` (`"hidden"`/`"shown"`: indice del corso nascosto, preferenza del dispositivo, non esportata; `src/lib/course-index.ts`).
+`courseIndex` (`"hidden"`/`"shown"`: indice del corso nascosto, preferenza del dispositivo, non esportata; `src/lib/course-index.ts`),
+`firstSteps` (guida della panoramica chiusa, R8).
 `read()` restituisce il ripiego anche se il valore salvato è di un altro tipo (oggetto/array/numero/stringa/booleano; con
 ripiego `null` passa tutto e normalizza il `sanitize*` dell'area). Una scrittura fallita emette `sh:storage-error`
 (`{ key, quota }`): `site.ts` mostra una volta l'avviso di `src/scripts/data-notice.ts` (caricato solo allora), con link a
@@ -161,7 +174,7 @@ che la scarica (con le migrazioni dei corsi) solo se in localStorage c'è una ch
 --success --warning --danger --info --focus`, `--font-serif --font-sans --font-mono`, `--step--2 … --step-5`,
 `--leading-tight --leading-body`, `--space-3xs … --space-3xl` (3xs, 2xs, xs, s, m, l, xl, 2xl, 3xl), `--radius-s --radius-m --radius-l`,
 `--shadow-1 --shadow-2`, `--measure`, `--content-max`.
-Tema: `html[data-theme="light"|"dark"]`, senza attributo segue `prefers-color-scheme`; scelta salvata in `sh:v1:global:theme`
+Tema: `html[data-theme="light"|"dark"]`, scuro di default (senza attributo non segue `prefers-color-scheme`); scelta salvata in `sh:v1:global:theme`
 e applicata prima del disegno da uno script inline in `Head.astro`. Accento: `html[data-course="<id>"]` (impostato da
 `BaseLayout` con la prop `course`) in `src/styles/courses/<id>.css`, che ridefinisce solo `--accent*`.
 Principi, componenti e regole d'uso: `docs/design/README.md`; catalogo visivo di tutti i componenti in `/it/stile/`.
@@ -261,13 +274,14 @@ pagine globali `/<lang>/ripasso/`, `/<lang>/appunti/`, `/<lang>/i-miei-dati/`, `
 | `npm run check` | `astro check` + `tsc --noEmit` |
 | `npm run lint` | ESLint (`eslint.config.js`) |
 | `npm test` | vitest (unit + contenuti) |
-| `npm run test:coverage` | vitest con copertura (≥ 90 % righe su `src/engine`) |
+| `npm run test:coverage` | vitest con copertura su `src/engine` (soglie in `vitest.config.ts`: 97 % righe) |
 | `npm run build:fixtures` | build del corso finto di `tests/fixtures/content` in `dist-fixtures/` (e2e delle isole) |
 | `npm run test:content` | solo i controlli sui contenuti |
 | `npm run test:links` | link interni di `dist/` (dopo la build) |
 | `npm run test:e2e` | Playwright (smoke, axe, visual) su `dist/` servita da `tools/serve-dist.mjs` |
 | `npm run lhci` | Lighthouse CI su `dist/` |
 | `npm run format` / `format:check` | Prettier |
+| `npm run script:push` | carica il backend di Contribuisci su Apps Script (clasp: `tools/apps-script/README.md`) |
 | `npm run ai:deploy` | pubblica il Worker del tutor AI (solo Valerio, con wrangler: [TUTOR-AI.md](TUTOR-AI.md)) |
 
 In locale con un Chromium già installato: `PW_CHROMIUM_PATH=/opt/pw-browsers/chromium npm run test:e2e`,

@@ -6,4 +6,5 @@
 - Teoria a strati in MDX: `<Layer kind="intuizione">`, `formalismo`, `esempio`, `errori`. Formule in LaTeX (KaTeX).
 - Esercizi: originali; quelli "tipo appello" riproducono solo la tipologia (`origin: tipologia-appello`), mai il testo dei docenti.
 - Niente dispense, slide, figure o testi di terzi (vedi `COMPLIANCE.md`).
-- Prima di aprire una PR: `npm run check && npm test && npm run build`.
+- Guida pratica con esempi: `docs/COME-AGGIUNGERE-CONTENUTI.md`.
+- Prima di aprire una PR: `npm run check && npm run lint && npm run format:check && npm test && npm run build`.
