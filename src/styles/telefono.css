@@ -22,9 +22,8 @@
     z-index: 45;
     padding: 0 var(--safe-right) var(--tabbar-safe) var(--safe-left);
     border-top: 1px solid var(--border);
-    background: var(--header-bg);
-    -webkit-backdrop-filter: saturate(180%) blur(14px);
-    backdrop-filter: saturate(180%) blur(14px);
+    /* Opaca (revisione 2, R6): con il vetro semitrasparente il testo sotto si leggeva attraverso. */
+    background: var(--bg);
   }
   .course-tabbar ul {
     display: grid;

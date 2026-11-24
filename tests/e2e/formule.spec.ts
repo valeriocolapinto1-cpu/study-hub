@@ -1,6 +1,6 @@
 /**
  * Formule nel testo reso nel browser (revisione 2, R10), su un campione: per ogni corso, in italiano e
- * in inglese, panoramica, teoria e stampa, esercizi (con una nuova variante dei generati e la soluzione),
+ * in inglese, panoramica, teoria e stampa, info, un extra, esercizi (con una nuova variante dei generati e la soluzione),
  * progressi, prova e formulario. Dopo l'idratazione delle isole e con i <details> aperti, nel testo di
  * <main> fuori da KaTeX, codice e figure non devono comparire `$…$`, comandi TeX, `x_…` o `^{…}`.
  * Tutte le pagine compilate sono controllate in modo statico da tests/content/formule-grezze.test.ts.
@@ -10,10 +10,10 @@ import { BASE } from './pages';
 import { formuleGrezze } from '../../tools/formule-grezze-regole.mjs';
 
 const CORSI = [
-  ['anno-1/fisica-1', 'rotolamento-puro', 'oscillatore-smorzato'],
-  ['anno-1/fondamenti-informatica', 'gerarchia-di-memoria', 'gerarchia-di-memoria'],
-  ['anno-2/fisica-2', 'campi-variabili', 'corrente-stazionaria'],
-  ['anno-2/teoria-circuiti', 'circuiti-primo-ordine', 'risposta-in-frequenza-filtri'],
+  ['anno-1/fisica-1', 'rotolamento-puro', 'oscillatore-smorzato', 'simulazione-orale'],
+  ['anno-1/fondamenti-informatica', 'gerarchia-di-memoria', 'gerarchia-di-memoria', 'convertitori'],
+  ['anno-2/fisica-2', 'campi-variabili', 'corrente-stazionaria', 'laboratorio'],
+  ['anno-2/teoria-circuiti', 'circuiti-primo-ordine', 'risposta-in-frequenza-filtri', 'esame-info'],
 ] as const;
 const TESTI = {
   it: { variante: 'Nuova variante', soluzione: 'Mostra tutta la soluzione' },
@@ -48,7 +48,7 @@ async function testo(page: Page): Promise<string> {
 }
 
 for (const lang of ['it', 'en'] as const) {
-  for (const [corso, teoria, esercizi] of CORSI) {
+  for (const [corso, teoria, esercizi, extra] of CORSI) {
     const base = `${BASE}${lang}/${corso}/`;
     test(`nessuna formula grezza: ${lang} ${corso}`, async ({ page }) => {
       test.setTimeout(120_000);
@@ -62,6 +62,8 @@ for (const lang of ['it', 'en'] as const) {
         '',
         `teoria/${teoria}/`,
         `teoria/${teoria}/stampa/`,
+        'info/',
+        `extra/${extra}/`,
         'progressi/',
         'esame/',
         'formulario/',

@@ -216,6 +216,65 @@ textarea.sh-input {
   accent-color: var(--accent);
   flex: none;
 }
+/* Revisione 2, R6: radio e caselle disegnati come gli altri controlli (fondo e bordo dei campi, accento
+   solo quando scelti) invece del grigio nativo del tema scuro, diverso da campi e pulsanti. */
+.sh-choice input:is([type='radio'], [type='checkbox']),
+.sh-check input:is([type='radio'], [type='checkbox']) {
+  appearance: none;
+  display: inline-grid;
+  place-content: center;
+  margin-inline: 0;
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s;
+}
+.sh-choice input[type='radio'],
+.sh-check input[type='radio'] {
+  border-radius: 50%;
+}
+.sh-choice input:is([type='radio'], [type='checkbox']):hover,
+.sh-check input:is([type='radio'], [type='checkbox']):hover {
+  border-color: var(--accent);
+}
+.sh-choice input:is([type='radio'], [type='checkbox']):checked,
+.sh-check input:is([type='radio'], [type='checkbox']):checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.sh-choice input[type='radio']:checked::before,
+.sh-check input[type='radio']:checked::before {
+  content: '';
+  inline-size: 0.4rem;
+  block-size: 0.4rem;
+  border-radius: 50%;
+  background: var(--on-accent);
+}
+.sh-choice input[type='checkbox']:checked::before,
+.sh-check input[type='checkbox']:checked::before {
+  content: '';
+  inline-size: 0.32rem;
+  block-size: 0.6rem;
+  margin-block-start: -0.12rem;
+  border: solid var(--on-accent);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.sh-choice input:is([type='radio'], [type='checkbox']):disabled,
+.sh-check input:is([type='radio'], [type='checkbox']):disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+/* Contrasto elevato di Windows: i controlli nativi, che lo stato scelto lo mostrano da soli. */
+@media (forced-colors: active) {
+  .sh-choice input:is([type='radio'], [type='checkbox']),
+  .sh-check input:is([type='radio'], [type='checkbox']) {
+    appearance: auto;
+  }
+}
 .sh-choice.is-correct {
   border-color: var(--success);
 }

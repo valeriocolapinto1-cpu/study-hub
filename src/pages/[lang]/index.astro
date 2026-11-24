@@ -301,6 +301,41 @@ const metaLine = (id: string) => {
     margin-top: var(--space-l);
     gap: var(--space-xs);
   }
+  /* Telefono (revisione 2, R6): introduzione compatta, la prima scheda dei corsi si vede senza scorrere
+     (390×844). «Scegli un corso» porterebbe subito sotto: sul telefono resta solo il ripasso. */
+  @media (max-width: 40em) {
+    .home-hero {
+      padding-top: var(--space-s);
+    }
+    .home-hero h1 {
+      max-width: none;
+      font-size: clamp(1.6rem, 7.2vw, 2rem);
+      line-height: 1.1;
+    }
+    .home-hero .lead {
+      margin-top: var(--space-xs);
+      font-size: var(--step--1);
+      line-height: 1.5;
+    }
+    .home-hero__actions {
+      margin-top: var(--space-s);
+    }
+    .home-hero__actions .btn--primary {
+      display: none;
+    }
+    .home-section:first-of-type {
+      margin-top: var(--space-l);
+    }
+    .home-section__head {
+      margin-bottom: var(--space-s);
+    }
+    .home-section__head h2 {
+      font-size: 1.5rem;
+    }
+    .home-section__head .muted {
+      font-size: var(--step--1);
+    }
+  }
   .home-numbers {
     margin-top: clamp(2.5rem, 7vw, 4.5rem);
   }
