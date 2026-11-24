@@ -39,6 +39,8 @@ export const SAMPLE_PAGES: SamplePage[] = [
   { name: 'fi-formulario-it', path: `${BASE}it/anno-1/fondamenti-informatica/formulario/` },
   { name: 'fi-convertitori-en', path: `${BASE}en/anno-1/fondamenti-informatica/extra/convertitori/` },
   { name: 'tdc-panoramica-it', path: `${BASE}it/anno-2/teoria-circuiti/` },
+  { name: 'tdc-info-it', path: `${BASE}it/anno-2/teoria-circuiti/info/` },
+  { name: 'fi-info-en', path: `${BASE}en/anno-1/fondamenti-informatica/info/`, visual: false },
   { name: 'tdc-teoria-en', path: `${BASE}en/anno-2/teoria-circuiti/teoria/teorema-di-thevenin/` },
   { name: 'tdc-formulario-it', path: `${BASE}it/anno-2/teoria-circuiti/formulario/`, visual: 'viewport' },
   { name: 'tdc-esercizi-it', path: `${BASE}it/anno-2/teoria-circuiti/esercizi/circuiti-primo-ordine/` },

@@ -4,13 +4,26 @@ import type { Page } from '@playwright/test';
  * Pagine campione della revisione di lettura («Pagine più leggere da leggere»): il loro testo visibile
  * deve contenere tutte le frasi che conteneva prima della revisione (`frasi.json`).
  */
-export const PAGINE_LETTURA = [
+/**
+ * `anche`: pagine in cui le frasi si sono spostate (R8: dalla panoramica alla pagina info — descrizione,
+ * «Il corso», «L'esame», «Come usare il sito» — e all'indice della teoria — titoli e descrizioni degli
+ * argomenti della vecchia mappa). Il confronto si fa sull'unione dei testi.
+ */
+export const PAGINE_LETTURA: readonly { name: string; path: string; anche?: readonly string[] }[] = [
   { name: 'home-it', path: 'it/' },
-  { name: 'tdc-panoramica-it', path: 'it/anno-2/teoria-circuiti/' },
+  {
+    name: 'tdc-panoramica-it',
+    path: 'it/anno-2/teoria-circuiti/',
+    anche: ['it/anno-2/teoria-circuiti/info/', 'it/anno-2/teoria-circuiti/teoria/'],
+  },
   { name: 'tdc-esercizi-indice-it', path: 'it/anno-2/teoria-circuiti/esercizi/' },
   { name: 'tdc-teoria-thevenin-it', path: 'it/anno-2/teoria-circuiti/teoria/teorema-di-thevenin/' },
-  { name: 'fisica-2-panoramica-it', path: 'it/anno-2/fisica-2/' },
-] as const;
+  {
+    name: 'fisica-2-panoramica-it',
+    path: 'it/anno-2/fisica-2/',
+    anche: ['it/anno-2/fisica-2/info/', 'it/anno-2/fisica-2/teoria/'],
+  },
+];
 
 /**
  * Testo visibile di `<main>` diviso in righe: le formule KaTeX diventano il loro TeX tra `$`
