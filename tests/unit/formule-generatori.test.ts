@@ -43,22 +43,28 @@ function render(text: string, errors: string[]): string {
 describe.each(COURSES)('generatori di %s: formule rese, niente notazione grezza', (course) => {
   const ids = listGenerators(course).map((g) => g.id);
   it('ci sono generatori', () => expect(ids.length).toBeGreaterThan(0));
-  it.each(ids)('%s', (id) => {
-    const errors: string[] = [];
-    const raw = new Set<string>();
-    for (const lang of ['it', 'en'] as const) {
-      for (const seed of SEEDS) {
-        const g = runGenerator(id, seed, lang);
-        const texts = [
-          g.statement,
-          ...g.steps.flatMap((s) => [s.title, s.body]),
-          ...g.answer.map((a) => a.label),
-          ...(g.choices ?? []).flatMap((c) => [c.text, c.explanation ?? '']),
-        ];
-        for (const t of texts) for (const f of formuleGrezze(testoVisibile(render(t, errors)))) raw.add(f);
+  it.each(ids)(
+    '%s',
+    (id) => {
+      const errors: string[] = [];
+      const raw = new Set<string>();
+      for (const lang of ['it', 'en'] as const) {
+        for (const seed of SEEDS) {
+          const g = runGenerator(id, seed, lang);
+          const texts = [
+            g.statement,
+            ...g.steps.flatMap((s) => [s.title, s.body]),
+            ...g.answer.map((a) => a.label),
+            ...(g.choices ?? []).flatMap((c) => [c.text, c.explanation ?? '']),
+          ];
+          for (const t of texts) for (const f of formuleGrezze(testoVisibile(render(t, errors)))) raw.add(f);
+        }
       }
-    }
-    expect(errors.slice(0, 5)).toEqual([]);
-    expect([...raw]).toEqual([]);
-  });
+      expect(errors.slice(0, 5)).toEqual([]);
+      expect([...raw]).toEqual([]);
+      // Come in tests/unit/teoria-circuiti/analisi.test.ts: i generatori d'analisi di TdC (livello 3) in CI,
+      // con i file in parallelo, impiegano decine di secondi su 12 semi × 2 lingue; 5 s di default non bastano.
+    },
+    60_000,
+  );
 });
