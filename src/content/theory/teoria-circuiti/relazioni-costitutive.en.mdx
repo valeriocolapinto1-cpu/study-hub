@@ -12,6 +12,12 @@ A resistor reacts to the present: the current now depends on the voltage now. Ca
 
 </div>
 
+<div data-note-id="relazioni-costitutive-intuizione-2">
+
+Continuity holds as long as the quantities stay bounded: a jump in $v_C$ would require an impulsive current in the capacitor, a jump in $i_L$ an impulsive voltage across the inductor. In circuits with ordinary resistors and sources this does not happen; the exceptions are connections between inconsistent ideal elements, such as two capacitors at different voltages put in parallel (see the note in the formalism).
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -77,6 +83,24 @@ _Note._ If $v$ contains impulses (cases with inconsistent ideal elements) contin
   />
 </Figure>
 
+<div data-note-id="relazioni-costitutive-teoria-6">
+
+**Duality.** The relations of capacitor and inductor swap under $v\leftrightarrow i$ and $C\leftrightarrow L$: $i=C\,dv/dt$ becomes $v=L\,di/dt$. The same correspondence links series and parallel, short and open circuit, voltage source and current source. With duality one result follows from the other without redoing the algebra.
+
+</div>
+
+<div data-note-id="relazioni-costitutive-teoria-7">
+
+**Sign convention.** The relations $v=Ri$, $i=C\,dv/dt$, $v=L\,di/dt$ are written with the passive sign convention. With the active convention a minus sign appears: $v=-Ri$, $i=-C\,dv/dt$, $v=-L\,di/dt$.
+
+</div>
+
+<div data-note-id="relazioni-costitutive-teoria-8">
+
+**Memory and state.** The voltage of a capacitor at $t$ depends on all the past current, $v(t)=\frac1C\int_{-\infty}^{t} i\,d\tau$; but the value $v(t_0)$ summarises the whole past up to $t_0$. This is why $v_C$ and $i_L$ are called _state variables_, and in a circuit without inconsistencies their number is the order of the circuit.
+
+</div>
+
 <Formula id="resistore" />
 <Formula id="condensatore" />
 <Formula id="induttore" />
@@ -99,6 +123,20 @@ A capacitor $C = 2\,\mathrm{F}$, initially uncharged, carries $i = 3\,\mathrm{A}
 
 </div>
 
+<div class="worked" data-note-id="relazioni-costitutive-esempio-2">
+
+### Inductor with a ramp current
+
+An inductor $L=0.5\,\mathrm H$ carries $i(t)=4t\,\mathrm A$ for $0\lt t\lt 2\,\mathrm s$, then the current stays constant. Find the voltage and the energy stored at $t=2\,\mathrm s$.
+
+**Solution.**
+
+1. During the ramp $v=L\,\dfrac{di}{dt}=0.5\cdot4=2\,\mathrm V$; after $t=2\,\mathrm s$ the current is constant and $v=0$.
+2. At $t=2\,\mathrm s$: $i=8\,\mathrm A$, $W_L=\tfrac12 L i^2=\tfrac12\cdot0.5\cdot64=16\,\mathrm J$.
+3. Check: $\int_0^2 v\,i\,dt=\int_0^2 2\cdot4t\,dt=4t^2\big|_0^2=16\,\mathrm J$ ✓. The voltage jumps from $2$ to $0\,\mathrm V$ at $t=2\,\mathrm s$, the current does not.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -107,6 +145,27 @@ A capacitor $C = 2\,\mathrm{F}$, initially uncharged, carries $i = 3\,\mathrm{A}
 
 - **Wrong:** Imposing $v_C(0^+)=0$ for $t>0$ "because the source is switched off".
 - **Right:** $v_C$ is continuous: $v_C(0^+)=v_C(0^-)$ is the value reached in the previous steady state.
+
+</div>
+
+<div data-note-id="relazioni-costitutive-errore-2">
+
+- **Wrong:** Treating a capacitor in DC as a short circuit.
+- **Right:** In DC $dv/dt=0$ so $i=0$: the capacitor is an open circuit; it is the inductor that behaves as a short.
+
+</div>
+
+<div data-note-id="relazioni-costitutive-errore-3">
+
+- **Wrong:** Imposing continuity on $i_C$ or $v_L$ as well.
+- **Right:** Only $v_C$ and $i_L$, the state variables, are continuous; $i_C$ and $v_L$ can jump, as in the ramp example.
+
+</div>
+
+<div data-note-id="relazioni-costitutive-errore-4">
+
+- **Wrong:** Using $v(t)=\frac1C\int_{t_0}^{t} i\,d\tau$ without the initial value.
+- **Right:** $v(t)=v(t_0)+\frac1C\int_{t_0}^{t} i\,d\tau$: without $v(t_0)$ the result holds only for a capacitor discharged at $t_0$.
 
 </div>
 

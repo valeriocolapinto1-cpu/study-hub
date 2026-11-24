@@ -12,6 +12,12 @@ Il resistore reagisce al presente: la corrente di adesso dipende dalla tensione 
 
 </div>
 
+<div data-note-id="relazioni-costitutive-intuizione-2">
+
+La continuità vale finché le grandezze restano limitate: un salto di $v_C$ richiederebbe una corrente impulsiva nel condensatore, un salto di $i_L$ una tensione impulsiva sull'induttore. Nei circuiti con resistori e generatori ordinari questo non succede; le eccezioni sono i collegamenti fra elementi ideali incongruenti, come due condensatori a tensioni diverse messi in parallelo (vedi la nota nel formalismo).
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -77,6 +83,24 @@ _Nota._ Se $v$ contiene impulsi (casi con elementi ideali incongruenti) la conti
   />
 </Figure>
 
+<div data-note-id="relazioni-costitutive-teoria-6">
+
+**Dualità.** Le relazioni di condensatore e induttore si scambiano sostituendo $v\leftrightarrow i$ e $C\leftrightarrow L$: $i=C\,dv/dt$ diventa $v=L\,di/dt$. La stessa corrispondenza lega serie e parallelo, cortocircuito e circuito aperto, generatore di tensione e generatore di corrente. Con la dualità un risultato si ricava dall'altro senza rifare i conti.
+
+</div>
+
+<div data-note-id="relazioni-costitutive-teoria-7">
+
+**Convenzione dei segni.** Le relazioni $v=Ri$, $i=C\,dv/dt$, $v=L\,di/dt$ sono scritte con la convenzione degli utilizzatori. Con la convenzione dei generatori compare un segno meno: $v=-Ri$, $i=-C\,dv/dt$, $v=-L\,di/dt$.
+
+</div>
+
+<div data-note-id="relazioni-costitutive-teoria-8">
+
+**Memoria e stato.** La tensione di un condensatore a $t$ dipende da tutta la corrente passata, $v(t)=\frac1C\int_{-\infty}^{t} i\,d\tau$; ma il valore $v(t_0)$ riassume tutto il passato fino a $t_0$. Per questo $v_C$ e $i_L$ si chiamano _variabili di stato_, e in un circuito senza incongruenze il loro numero è l'ordine del circuito.
+
+</div>
+
 <Formula id="resistore" />
 <Formula id="condensatore" />
 <Formula id="induttore" />
@@ -99,6 +123,20 @@ Un condensatore $C = 2\,\mathrm{F}$, inizialmente scarico, è attraversato da $i
 
 </div>
 
+<div class="worked" data-note-id="relazioni-costitutive-esempio-2">
+
+### Induttore con corrente a rampa
+
+In un induttore $L=0{,}5\,\mathrm H$ scorre $i(t)=4t\,\mathrm A$ per $0\lt t\lt 2\,\mathrm s$, poi la corrente resta costante. Trova la tensione e l'energia accumulata a $t=2\,\mathrm s$.
+
+**Soluzione.**
+
+1. Durante la rampa $v=L\,\dfrac{di}{dt}=0{,}5\cdot4=2\,\mathrm V$; dopo $t=2\,\mathrm s$ la corrente è costante e $v=0$.
+2. A $t=2\,\mathrm s$: $i=8\,\mathrm A$, $W_L=\tfrac12 L i^2=\tfrac12\cdot0{,}5\cdot64=16\,\mathrm J$.
+3. Verifica: $\int_0^2 v\,i\,dt=\int_0^2 2\cdot4t\,dt=4t^2\big|_0^2=16\,\mathrm J$ ✓. La tensione salta da $2$ a $0\,\mathrm V$ a $t=2\,\mathrm s$, la corrente no.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -107,6 +145,27 @@ Un condensatore $C = 2\,\mathrm{F}$, inizialmente scarico, è attraversato da $i
 
 - **Sbagliato:** Imporre $v_C(0^+)=0$ per t>0 «perché il generatore si spegne».
 - **Corretto:** $v_C$ è continua: $v_C(0^+)=v_C(0^-)$ è il valore raggiunto nel regime precedente.
+
+</div>
+
+<div data-note-id="relazioni-costitutive-errore-2">
+
+- **Sbagliato:** Trattare un condensatore in continua come un cortocircuito.
+- **Corretto:** In continua $dv/dt=0$ e quindi $i=0$: il condensatore è un circuito aperto; è l'induttore a comportarsi come un corto.
+
+</div>
+
+<div data-note-id="relazioni-costitutive-errore-3">
+
+- **Sbagliato:** Imporre la continuità anche a $i_C$ o a $v_L$.
+- **Corretto:** Sono continue solo $v_C$ e $i_L$, le variabili di stato; $i_C$ e $v_L$ possono saltare, come nell'esempio della rampa.
+
+</div>
+
+<div data-note-id="relazioni-costitutive-errore-4">
+
+- **Sbagliato:** Usare $v(t)=\frac1C\int_{t_0}^{t} i\,d\tau$ senza il valore iniziale.
+- **Corretto:** $v(t)=v(t_0)+\frac1C\int_{t_0}^{t} i\,d\tau$: senza $v(t_0)$ il risultato vale solo per un condensatore scarico in $t_0$.
 
 </div>
 

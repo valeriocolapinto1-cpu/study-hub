@@ -12,6 +12,12 @@ Queste proprietà rispondono a domande semplici. Se raddoppio l'ingresso, raddop
 
 </div>
 
+<div data-note-id="linearita-passivita-causalita-intuizione-2">
+
+Ogni proprietà si controlla con un esperimento mentale. Per la linearità si applicano due ingressi separatamente e poi la loro combinazione; per la tempo-invarianza si ripete la prova con l'ingresso ritardato; per la causalità ci si chiede se l'uscita a $t$ usa valori dell'ingresso successivi a $t$; per la passività si fa il bilancio dell'energia entrata dai morsetti. Un solo controesempio basta a smentire una proprietà.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -56,6 +62,18 @@ Esempi. $R$, $L$, $C$ costanti sono lineari, tempo-invarianti e passivi. Un gene
 
 </details>
 
+<div data-note-id="linearita-passivita-causalita-teoria-6">
+
+**Un test rapido.** In un sistema lineare a ingresso nullo corrisponde uscita nulla (con condizioni iniziali nulle): basta l'omogeneità con $a=0$. Quindi un bipolo come $v=R\,i+E$ con $E\neq0$ non è lineare ma _affine_: è un elemento lineare ($R$) più un generatore. È per questo che nei circuiti con generatori indipendenti la sovrapposizione si applica ai contributi dei singoli generatori.
+
+</div>
+
+<div data-note-id="linearita-passivita-causalita-teoria-7">
+
+**Linearità e condizioni iniziali.** Con stato iniziale non nullo la risposta è la somma di una parte dovuta allo stato (risposta libera) e di una dovuta all'ingresso (risposta forzata); è la forzata a dipendere linearmente dall'ingresso. Le condizioni iniziali si possono trattare come generatori aggiuntivi, e allora la sovrapposizione torna a valere su tutto (vedi [condizioni iniziali come generatori](../condizioni-iniziali-generatori/)).
+
+</div>
+
 <Formula id="linearita" />
 <Formula id="tempo-invarianza" />
 
@@ -77,6 +95,20 @@ Classifica: (a) $v = 3i$; (b) $v = 2i^2$; (c) $v = t\,i$.
 
 </div>
 
+<div class="worked" data-note-id="linearita-passivita-causalita-esempio-2">
+
+### Un bipolo affine
+
+Un bipolo ha caratteristica $v=2i+1$ (volt e ampere, convenzione degli utilizzatori). È lineare? È passivo?
+
+**Soluzione.**
+
+1. Con $i_1=1\,\mathrm A$: $v_1=3\,\mathrm V$; con $i_2=2\,\mathrm A$: $v_2=5\,\mathrm V$.
+2. Con $i_1+i_2=3\,\mathrm A$: $v=7\,\mathrm V\neq v_1+v_2=8\,\mathrm V$: non è additivo, quindi non è lineare.
+3. Con $i=-0{,}25\,\mathrm A$: $v=0{,}5\,\mathrm V$ e $p=v\,i=-0{,}125\,\mathrm W$: eroga potenza senza averne ricevuta, quindi non è passivo (contiene un generatore da $1\,\mathrm V$).
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -85,6 +117,20 @@ Classifica: (a) $v = 3i$; (b) $v = 2i^2$; (c) $v = t\,i$.
 
 - **Sbagliato:** Dire che un circuito con un generatore indipendente è «lineare» e applicare la sovrapposizione alla sola uscita totale.
 - **Corretto:** La sovrapposizione si applica agli effetti dei singoli generatori (anche i controllati restano nel circuito).
+
+</div>
+
+<div data-note-id="linearita-passivita-causalita-errore-2">
+
+- **Sbagliato:** Ritenere tempo-variante un circuito perché i suoi segnali cambiano nel tempo.
+- **Corretto:** Tempo-variante è un elemento i cui _parametri_ cambiano col tempo, come $R(t)$; un RC con ingresso sinusoidale è tempo-invariante.
+
+</div>
+
+<div data-note-id="linearita-passivita-causalita-errore-3">
+
+- **Sbagliato:** Provare la linearità con un solo esempio numerico che «torna».
+- **Corretto:** Un esempio che torna non dimostra nulla, uno che non torna basta a smentire: la dimostrazione richiede ingressi generici.
 
 </div>
 

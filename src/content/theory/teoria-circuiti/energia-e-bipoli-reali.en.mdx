@@ -12,6 +12,12 @@ Ideal elements are handy but "too perfect": two different ideal batteries in par
 
 </div>
 
+<div data-note-id="energia-e-bipoli-reali-intuizione-2">
+
+The two-capacitor paradox shows it well: whatever the resistance $R$ of the connection, the energy lost is always the same, half of the initial energy in the example below. If $R$ decreases the current grows and the transient gets shorter, but the dissipated energy does not change. The ideal model gives the right final balance; what it cannot describe is how the transfer happens.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -53,6 +59,18 @@ Ideal elements are handy but "too perfect": two different ideal batteries in par
   />
 </Figure>
 
+<div data-note-id="energia-e-bipoli-reali-teoria-4">
+
+**Power in the three elements.** In the resistor $p=Ri^2\ge0$ at every instant: energy goes in and does not come back. In the capacitor $p=v\,i=C\,v\,\dfrac{dv}{dt}=\dfrac{d}{dt}\left(\tfrac12Cv^2\right)$: power is the derivative of the stored energy, positive while $|v|$ grows and negative while it decreases. In the inductor, by duality, $p=\dfrac{d}{dt}\left(\tfrac12Li^2\right)$. In a periodic steady state the stored energy returns to its initial value every period, so $L$ and $C$ absorb zero average power.
+
+</div>
+
+<div data-note-id="energia-e-bipoli-reali-teoria-5">
+
+**The two battery models.** The source $E$ in series with $r$ and the source $E/r$ in parallel with $r$ have the same terminal characteristic $v=E-r\,i$, so they are equivalent for the external circuit. They are not equivalent for what happens inside: on open circuit the first dissipates nothing, the second dissipates $E^2/r$ in its resistance.
+
+</div>
+
 <Formula id="energia-c" />
 <Formula id="energia-l" />
 <Formula id="pila-reale" />
@@ -75,6 +93,20 @@ $C_1=C_2=1\,\mathrm{F}$ with $v_1=2\,\mathrm{V}$ and $v_2=0$ are connected in pa
 
 </div>
 
+<div class="worked" data-note-id="energia-e-bipoli-reali-esempio-2">
+
+### Power balance of a real battery
+
+A battery with $E=12\,\mathrm V$ and internal resistance $r=0.5\,\Omega$ feeds a load $R=5.5\,\Omega$. Find current, terminal voltage, powers and efficiency.
+
+**Solution.**
+
+1. $i=\dfrac{E}{r+R}=\dfrac{12}{6}=2\,\mathrm A$; $v=E-r\,i=12-1=11\,\mathrm V$.
+2. Power in the load $P_R=v\,i=22\,\mathrm W$; lost in the battery $P_r=r\,i^2=0.5\cdot4=2\,\mathrm W$.
+3. Delivered by the source $P_E=E\,i=24\,\mathrm W=22+2$ ✓; efficiency $\eta=22/24\approx91.7\,\%$.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -83,6 +115,20 @@ $C_1=C_2=1\,\mathrm{F}$ with $v_1=2\,\mathrm{V}$ and $v_2=0$ are connected in pa
 
 - **Wrong:** Concluding that energy is always conserved in the ideal circuit.
 - **Right:** An ideal connection can have an impulsive transient with energy loss: the result depends on a neglected resistance.
+
+</div>
+
+<div data-note-id="energia-e-bipoli-reali-errore-2">
+
+- **Wrong:** Putting two equal ideal voltage sources in parallel and computing how much current each supplies.
+- **Right:** With equal values KVL is satisfied, but the sharing of the current between them is undetermined: the internal resistances are needed to decide it.
+
+</div>
+
+<div data-note-id="energia-e-bipoli-reali-errore-3">
+
+- **Wrong:** Computing the power in a resistor as $R\,i$.
+- **Right:** $R\,i$ is the voltage; the power is $p=R\,i^2=v^2/R$ (unit check: $\Omega\cdot\mathrm A^2=\mathrm W$).
 
 </div>
 

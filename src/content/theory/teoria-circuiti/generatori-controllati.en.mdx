@@ -12,6 +12,12 @@ A controlled source is a "tap" operated by another quantity of the circuit: its 
 
 </div>
 
+<div data-note-id="generatori-controllati-intuizione-2">
+
+A controlled source models what a transistor or an amplifier does: a small signal at the input commands a large quantity at the output, and the energy needed comes from the power supply, which the model does not draw. This is why a controlled source can deliver net power: it is the sign of a hidden source behind it.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -43,6 +49,30 @@ They are _active_ elements (they can deliver net power) and _non-reciprocal_. Th
 
 </div>
 
+<div data-note-id="generatori-controllati-teoria-5">
+
+**In the equations.** In nodal (or mesh) analysis a controlled source is first written as an independent source of unknown value; then an equation is added expressing the controlling quantity in terms of the unknowns of the method. The system matrix in general loses its symmetry: this is the trace of non-reciprocity.
+
+</div>
+
+<div data-note-id="generatori-controllati-teoria-6">
+
+**Units of the parameters.** $\mu$ (VCVS) and $\beta$ (CCCS) are dimensionless; $g_m$ (VCCS) is a conductance, in siemens; $r_m$ (CCVS) is a resistance, in ohms. Checking units is a quick way to recognise which of the four types is in use.
+
+</div>
+
+<div data-note-id="generatori-controllati-teoria-7">
+
+**A controlled source that becomes a resistor.** If the controlling quantity is the voltage (or current) of the source's own port, the source is equivalent to a resistor: a VCCS absorbing $g\,v$, with $v$ its own voltage, is a resistor of value $1/g$, negative if $g\lt 0$. This is the case of the example on the [Thévenin's theorem](../teorema-di-thevenin/) page.
+
+</div>
+
+<div data-note-id="generatori-controllati-teoria-8">
+
+**Negative resistance.** A resistor $R$ in parallel with a CCCS that injects into the top node the current $2\,i_R$, where $i_R$ is the resistor current: the current absorbed by the port is $i=i_R-2\,i_R=-v/R$, so the port is equivalent to $R_{eq}=-R$. With passive elements alone this could never happen.
+
+</div>
+
 <Formula id="vcvs" />
 <Formula id="vccs" />
 <Formula id="ccvs" />
@@ -66,6 +96,20 @@ A source $V_g=6\,\mathrm{V}$ feeds $R_1=2\,\Omega$ in series with $R_2=4\,\Omega
 
 </div>
 
+<div class="worked" data-note-id="generatori-controllati-esempio-2">
+
+### Power gain of a VCVS
+
+A VCVS with $\mu=20$ has an input voltage $v_1=0.5\,\mathrm V$ (taken without drawing current) and a load $R_L=100\,\Omega$ at the output. Find $v_2$, the load current and power, and the power supplied at the input.
+
+**Solution.**
+
+1. $v_2=\mu\,v_1=20\cdot0.5=10\,\mathrm V$.
+2. $i_L=v_2/R_L=10/100=0.1\,\mathrm A$; $P_L=v_2\,i_L=1\,\mathrm W$.
+3. At the input $i_1=0$, so $P_1=v_1 i_1=0$: the watt in the load comes entirely from the controlled source, which delivers net power (an active element).
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -74,6 +118,27 @@ A source $V_g=6\,\mathrm{V}$ feeds $R_1=2\,\Omega$ in series with $R_2=4\,\Omega
 
 - **Wrong:** Switching off a VCCS as well when finding $R_{th}$ ("it is a source").
 - **Right:** Only _independent_ sources are switched off; the controlled one stays and $R_{th}$ is found with the test source $V/I$.
+
+</div>
+
+<div data-note-id="generatori-controllati-errore-2">
+
+- **Wrong:** Mixing up VCCS and CCVS because both "mix" voltage and current.
+- **Right:** The name reads control → output: a VCCS is a current commanded by a voltage ($i_2=g_m v_1$, $g_m$ in siemens); a CCVS is a voltage commanded by a current ($v_2=r_m i_1$, $r_m$ in ohms).
+
+</div>
+
+<div data-note-id="generatori-controllati-errore-3">
+
+- **Wrong:** Forgetting the equation of the controlling quantity in nodal analysis.
+- **Right:** Each controlled source adds a term that depends on a circuit quantity: the equation linking it to the node voltages is needed, otherwise the system has more unknowns than equations.
+
+</div>
+
+<div data-note-id="generatori-controllati-errore-4">
+
+- **Wrong:** Taking for granted that a circuit of positive resistors and controlled sources has $R_{eq}\gt 0$.
+- **Right:** Controlled sources can deliver net power: the equivalent resistance can turn out negative, as in the CCCS case above.
 
 </div>
 

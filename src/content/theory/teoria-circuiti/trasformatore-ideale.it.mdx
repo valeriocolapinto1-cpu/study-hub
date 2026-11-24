@@ -12,6 +12,12 @@ Il trasformatore ideale è una «leva» elettrica: moltiplica la tensione per $n
 
 </div>
 
+<div data-note-id="trasformatore-ideale-intuizione-2">
+
+Il trasformatore ideale non immagazzina e non dissipa energia: tutto ciò che entra da una porta esce, istante per istante, dall'altra. Per questo si usa per «adattare» un carico: cambiando $n$ si sceglie quale resistenza vede il generatore, senza perdere potenza nel passaggio.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -66,6 +72,24 @@ Non è un induttore: funziona anche in continua ed è un modello limite (accoppi
 
 </details>
 
+<div data-note-id="trasformatore-ideale-teoria-4">
+
+**Potenza nulla, verifica.** Con $v_1=n\,v_2$ e $i_1=-i_2/n$: $p=v_1i_1+v_2i_2=n\,v_2\cdot(-i_2/n)+v_2\,i_2=0$ in ogni istante. Il trasformatore ideale è quindi senza perdite e senza memoria: a differenza di due induttori accoppiati non accumula energia magnetica, e per questo trasferisce anche la continua.
+
+</div>
+
+<div data-note-id="trasformatore-ideale-teoria-5">
+
+**Carico riportato.** Un carico $Z_L$ alla porta 2 è percorso dalla corrente $-i_2$ (quella che esce dal trasformatore), quindi $v_2=-Z_L\,i_2$ e $\dfrac{v_1}{i_1}=\dfrac{n\,v_2}{-i_2/n}=n^2\dfrac{v_2}{-i_2}=n^2Z_L$. Viceversa, un'impedenza alla porta 1 vista dalla porta 2 vale $Z/n^2$.
+
+</div>
+
+<div data-note-id="trasformatore-ideale-teoria-6">
+
+**Come doppio bipolo.** Il trasformatore ideale non ha matrice $Z$ né $Y$: le sue relazioni non danno le tensioni in funzione delle correnti, né viceversa. Ha però una rappresentazione ibrida: $v_1=n\,v_2$ e $i_2=-n\,i_1$, cioè $\begin{pmatrix}v_1\\i_2\end{pmatrix}=\begin{pmatrix}0&n\\-n&0\end{pmatrix}\begin{pmatrix}i_1\\v_2\end{pmatrix}$.
+
+</div>
+
 <Formula id="trasf-v" />
 <Formula id="trasf-i" />
 <Formula id="trasf-z" />
@@ -89,6 +113,21 @@ $n=2$, carico $R_L=3\,\Omega$ alla porta 2; alla porta 1 un generatore $24\,\mat
 
 </div>
 
+<div class="worked" data-note-id="trasformatore-ideale-esempio-2">
+
+### Adattamento di un altoparlante
+
+Un generatore $E=10\,\mathrm V$ con resistenza interna $R_s=800\,\Omega$ deve alimentare un altoparlante $R_L=8\,\Omega$. Quale $n$ massimizza la potenza nel carico, e quanto vale?
+
+**Soluzione.**
+
+1. Serve $n^2R_L=R_s$: $n=\sqrt{800/8}=10$.
+2. Lato primario: $i_1=\dfrac{10}{800+800}=6{,}25\,\mathrm{mA}$, $v_1=800\cdot i_1=5\,\mathrm V$.
+3. Lato carico: $v_2=v_1/n=0{,}5\,\mathrm V$, $P_L=v_2^2/R_L=0{,}25/8=31{,}25\,\mathrm{mW}$.
+4. Verifica: $v_1 i_1=5\cdot6{,}25\,\mathrm{mW}=31{,}25\,\mathrm{mW}=\dfrac{E^2}{4R_s}$ ✓. Senza trasformatore: $i=10/808$ e $P_L=8\,i^2\approx1{,}2\,\mathrm{mW}$.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -97,6 +136,20 @@ $n=2$, carico $R_L=3\,\Omega$ alla porta 2; alla porta 1 un generatore $24\,\mat
 
 - **Sbagliato:** Usare $i_1=i_2/n$ con entrambe le correnti entranti.
 - **Corretto:** Con convenzione degli utilizzatori su entrambe le porte, $i_1=-i_2/n$ (il segno meno compensa i versi).
+
+</div>
+
+<div data-note-id="trasformatore-ideale-errore-2">
+
+- **Sbagliato:** Pensare che il trasformatore ideale funzioni solo in alternata.
+- **Corretto:** Il modello ideale vale anche in continua; è il trasformatore reale, fatto di induttori accoppiati, a non trasferire la continua.
+
+</div>
+
+<div data-note-id="trasformatore-ideale-errore-3">
+
+- **Sbagliato:** Riportare un carico con $Z_L/n^2$ invece di $n^2Z_L$, o viceversa.
+- **Corretto:** Con $v_1=n\,v_2$ il carico alla porta 2 visto dalla porta 1 è $n^2Z_L$; con la definizione opposta di $n$ il fattore si inverte. Controlla con il caso $n=1$ e con il verso del rapporto di tensioni.
 
 </div>
 
