@@ -118,3 +118,41 @@
         en: 'False'
       correct: false
   origin: originale
+- id: r2-rtp-1
+  topic: risposta-transitoria-permanente
+  objectives:
+    - risposta-transitoria-permanente.2
+    - risposta-transitoria-permanente.3
+  difficulty: 3
+  kind: static
+  statement:
+    it: 'Una rete a riposo ha $H(s)=\dfrac{2}{s+2}$ e riceve $x(t)=3\cos(2t)\,u(t)$. Calcola ampiezza e fase della risposta permanente con $H(j\omega)$ e il coefficiente $K$ della transitoria $K\,e^{-2t}$.'
+    en: 'A network at rest has $H(s)=\dfrac{2}{s+2}$ and receives $x(t)=3\cos(2t)\,u(t)$. Find amplitude and phase of the steady-state response using $H(j\omega)$, and the coefficient $K$ of the transient $K\,e^{-2t}$.'
+  steps:
+    - title:
+        it: 'Permanente'
+        en: 'Steady state'
+      body:
+        it: '$H(j2)=\dfrac{2}{2+2j}=\dfrac{1-j}{2}$: $|H|=\tfrac{1}{\sqrt2}$, $\angle H=-45^\circ$. Quindi $y_p=3\cdot0{,}707\cos(2t-45^\circ)\approx2{,}12\cos(2t-45^\circ)$.'
+        en: '$H(j2)=\dfrac{2}{2+2j}=\dfrac{1-j}{2}$: $|H|=\tfrac{1}{\sqrt2}$, $\angle H=-45^\circ$. Hence $y_p=3\cdot0.707\cos(2t-45^\circ)\approx2.12\cos(2t-45^\circ)$.'
+    - title:
+        it: 'Transitoria'
+        en: 'Transient'
+      body:
+        it: '$Y(s)=\dfrac{2}{s+2}\cdot\dfrac{3s}{s^2+4}$; il residuo nel polo della rete è $K=\left.\dfrac{6s}{s^2+4}\right|_{s=-2}=-1{,}5$. Controllo: $y(0)=-1{,}5+2{,}12\cos(-45^\circ)=0$, come deve per una rete a riposo con $H$ strettamente propria.'
+        en: '$Y(s)=\dfrac{2}{s+2}\cdot\dfrac{3s}{s^2+4}$; the residue at the network pole is $K=\left.\dfrac{6s}{s^2+4}\right|_{s=-2}=-1.5$. Check: $y(0)=-1.5+2.12\cos(-45^\circ)=0$, as it must be for a network at rest with strictly proper $H$.'
+  answer:
+    - label:
+        it: 'Ampiezza permanente'
+        en: 'Steady-state amplitude'
+      value: 2.12132
+    - label:
+        it: 'Fase permanente'
+        en: 'Steady-state phase'
+      value: -45
+      unit: '°'
+    - label:
+        it: '$K$'
+        en: '$K$'
+      value: -1.5
+  origin: originale

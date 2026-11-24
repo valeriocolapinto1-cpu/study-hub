@@ -92,3 +92,55 @@
         en: 'False'
       correct: false
   origin: originale
+- id: r2-rlf-1
+  topic: risposta-libera-forzata
+  objectives:
+    - risposta-libera-forzata.2
+    - risposta-libera-forzata.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'RC serie con $R=2\,\Omega$, $C=0{,}25\,\mathrm{F}$, $v_C(0^-)=3\,\mathrm{V}$; in $t=0$ si applica un gradino $E=8\,\mathrm{V}$. Con Laplace separa risposta libera e forzata di $v_C$, poi ricomponi e calcola $v_C(0{,}5)$.'
+    en: 'Series RC with $R=2\,\Omega$, $C=0.25\,\mathrm{F}$, $v_C(0^-)=3\,\mathrm{V}$; a step $E=8\,\mathrm{V}$ is applied at $t=0$. With Laplace split $v_C$ into natural and forced responses, then recombine and find $v_C(0.5)$.'
+  figure:
+    netlist:
+      elements:
+        - { 'type': 'V', 'id': 'E', 'a': 'in', 'b': '0', 'dc': 8 }
+        - { 'type': 'R', 'id': 'R', 'a': 'in', 'b': 'a', 'value': 2 }
+        - { 'type': 'C', 'id': 'C', 'a': 'a', 'b': '0', 'value': 0.25, 'v0': 3, 'show': { 'v': 'v_C' } }
+  steps:
+    - title:
+        it: 'Libera'
+        en: 'Natural'
+      body:
+        it: 'Ingresso spento, solo il generatore $3/s$ della condizione iniziale: $V_{lib}=\dfrac{3}{s+2}$ ($1/RC=2$), $v_{lib}=3e^{-2t}$.'
+        en: 'Input off, only the initial-condition source $3/s$: $V_{nat}=\dfrac{3}{s+2}$ ($1/RC=2$), $v_{nat}=3e^{-2t}$.'
+    - title:
+        it: 'Forzata'
+        en: 'Forced'
+      body:
+        it: 'Condizioni iniziali nulle: $V_{for}=\dfrac8s\cdot\dfrac{2}{s+2}=\dfrac8s-\dfrac{8}{s+2}$, $v_{for}=8\,(1-e^{-2t})$.'
+        en: 'Zero initial conditions: $V_{for}=\dfrac8s\cdot\dfrac{2}{s+2}=\dfrac8s-\dfrac{8}{s+2}$, $v_{for}=8\,(1-e^{-2t})$.'
+    - title:
+        it: 'Risposta completa'
+        en: 'Complete response'
+      body:
+        it: '$v_C=8-5e^{-2t}$; $v_C(0{,}5)=8-5/e\approx6{,}16\,\mathrm{V}$.'
+        en: '$v_C=8-5e^{-2t}$; $v_C(0.5)=8-5/e\approx6.16\,\mathrm{V}$.'
+  answer:
+    - label:
+        it: 'Ampiezza della libera $v_{lib}(0^+)$'
+        en: 'Natural response amplitude $v_{nat}(0^+)$'
+      value: 3
+      unit: 'V'
+    - label:
+        it: 'Valore finale della forzata'
+        en: 'Final value of the forced response'
+      value: 8
+      unit: 'V'
+    - label:
+        it: '$v_C(0{,}5)$'
+        en: '$v_C(0.5)$'
+      value: 6.160603
+      unit: 'V'
+  origin: originale

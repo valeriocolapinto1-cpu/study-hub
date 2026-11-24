@@ -338,3 +338,83 @@
         en: $Q^2$
       correct: false
   origin: originale
+- id: r2-ris-1
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.2
+  difficulty: 3
+  kind: static
+  statement:
+    it: 'Nel RLC serie la banda passante è $B=\omega_2-\omega_1$, con $\omega_{1,2}$ pulsazioni a cui la corrente scende a $1/\sqrt2$ del massimo. Quale passaggio porta a $B=\omega_0/Q$?'
+    en: 'In the series RLC the bandwidth is $B=\omega_2-\omega_1$, where $\omega_{1,2}$ are the angular frequencies at which the current drops to $1/\sqrt2$ of its peak. Which step leads to $B=\omega_0/Q$?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: '$|I|=V/\sqrt{R^2+X^2}$ scende di $\sqrt2$ quando $|X|=R$, cioè $\omega L-\dfrac{1}{\omega C}=\pm R$. Le radici positive delle due equazioni di secondo grado danno $\omega_2-\omega_1=R/L$ (e $\omega_1\omega_2=\omega_0^2$). Con $Q=\omega_0L/R$: $B=R/L=\omega_0/Q$.'
+        en: '$|I|=V/\sqrt{R^2+X^2}$ drops by $\sqrt2$ when $|X|=R$, i.e. $\omega L-\dfrac{1}{\omega C}=\pm R$. The positive roots of the two quadratics give $\omega_2-\omega_1=R/L$ (and $\omega_1\omega_2=\omega_0^2$). With $Q=\omega_0L/R$: $B=R/L=\omega_0/Q$.'
+  choices:
+    - text:
+        it: 'Imporre $\omega L-\dfrac{1}{\omega C}=\pm R$: le due radici positive distano $R/L=\omega_0/Q$'
+        en: 'Impose $\omega L-\dfrac{1}{\omega C}=\pm R$: the two positive roots are $R/L=\omega_0/Q$ apart'
+      correct: true
+    - text:
+        it: 'Imporre $\omega L=\dfrac{1}{\omega C}$ e dividere per $Q$'
+        en: 'Impose $\omega L=\dfrac{1}{\omega C}$ and divide by $Q$'
+      correct: false
+    - text:
+        it: 'Imporre $|X|=R/\sqrt2$: la distanza delle radici è $\sqrt2\,R/L$'
+        en: 'Impose $|X|=R/\sqrt2$: the roots are $\sqrt2\,R/L$ apart'
+      correct: false
+    - text:
+        it: 'Imporre che la potenza si dimezzi rispetto a $\omega=0$'
+        en: 'Impose that the power halves with respect to $\omega=0$'
+      correct: false
+  origin: originale
+- id: r2-ris-2
+  topic: circuiti-risonanti
+  objectives:
+    - circuiti-risonanti.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un RLC serie con $R=5\,\Omega$, $L=0{,}1\,\mathrm{H}$, $C=10\,\mu\mathrm{F}$ è alimentato alla risonanza da $V=10\,\mathrm{V}$ efficaci. Calcola $\omega_0$, il fattore di merito $Q$ e la tensione efficace sull''induttore.'
+    en: 'A series RLC with $R=5\,\Omega$, $L=0.1\,\mathrm{H}$, $C=10\,\mu\mathrm{F}$ is driven at resonance by $V=10\,\mathrm{V}$ rms. Find $\omega_0$, the quality factor $Q$ and the rms voltage across the inductor.'
+  figure:
+    netlist:
+      omega: 1000
+      elements:
+        - { 'type': 'V', 'id': 'V', 'a': 'in', 'b': '0', 'ac': 10 }
+        - { 'type': 'R', 'id': 'R', 'a': 'in', 'b': 'a', 'value': 5 }
+        - { 'type': 'L', 'id': 'L', 'a': 'a', 'b': 'b', 'value': 0.1, 'show': { 'v': 'V_L' } }
+        - { 'type': 'C', 'id': 'C', 'a': 'b', 'b': '0', 'value': '10u' }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$\omega_0=1/\sqrt{LC}=1000\,\mathrm{rad/s}$, $Q=\omega_0L/R=100/5=20$. Alla risonanza $I=V/R=2\,\mathrm{A}$ e $V_L=\omega_0L\,I=200\,\mathrm{V}=Q\,V$.'
+        en: '$\omega_0=1/\sqrt{LC}=1000\,\mathrm{rad/s}$, $Q=\omega_0L/R=100/5=20$. At resonance $I=V/R=2\,\mathrm{A}$ and $V_L=\omega_0L\,I=200\,\mathrm{V}=Q\,V$.'
+    - title:
+        it: 'Interpretazione'
+        en: 'Interpretation'
+      body:
+        it: 'Sovratensione: $L$ e $C$ hanno ciascuno $200\,\mathrm{V}$, venti volte la tensione applicata, ma in opposizione di fase, così la loro somma è nulla. I componenti vanno dimensionati per $Q\,V$, non per $V$.'
+        en: 'Overvoltage: $L$ and $C$ each see $200\,\mathrm{V}$, twenty times the applied voltage, but in phase opposition, so their sum is zero. Components must be rated for $Q\,V$, not $V$.'
+  answer:
+    - label:
+        it: '$\omega_0$'
+        en: '$\omega_0$'
+      value: 1000
+      unit: 'rad/s'
+    - label:
+        it: '$Q$'
+        en: '$Q$'
+      value: 20
+    - label:
+        it: '$V_L$'
+        en: '$V_L$'
+      value: 200
+      unit: 'V'
+  origin: originale

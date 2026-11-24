@@ -84,3 +84,42 @@
         en: 'False'
       correct: false
   origin: originale
+- id: r2-cons-1
+  topic: conservazione-potenza-complessa
+  objectives:
+    - conservazione-potenza-complessa.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Due carichi in parallelo assorbono $P_1=3\,\mathrm{kW}$, $Q_1=4\,\mathrm{kvar}$ e $P_2=3\,\mathrm{kW}$, $Q_2=-4\,\mathrm{kvar}$. Calcola potenza attiva, reattiva e apparente totali e confronta la potenza apparente con $|S_1|+|S_2|$.'
+    en: 'Two loads in parallel absorb $P_1=3\,\mathrm{kW}$, $Q_1=4\,\mathrm{kvar}$ and $P_2=3\,\mathrm{kW}$, $Q_2=-4\,\mathrm{kvar}$. Find the total active, reactive and apparent power and compare the apparent power with $|S_1|+|S_2|$.'
+  steps:
+    - title:
+        it: 'Cosa si conserva'
+        en: 'What is conserved'
+      body:
+        it: 'Per Tellegen si conserva la potenza complessa $\bar S=P+jQ$, quindi si sommano $P$ e $Q$: $P=6\,\mathrm{kW}$, $Q=4-4=0$.'
+        en: 'By Tellegen the complex power $\bar S=P+jQ$ is conserved, so $P$ and $Q$ add: $P=6\,\mathrm{kW}$, $Q=4-4=0$.'
+    - title:
+        it: 'Cosa non si conserva'
+        en: 'What is not conserved'
+      body:
+        it: '$|\bar S|=\sqrt{P^2+Q^2}=6\,\mathrm{kVA}$, mentre $|S_1|+|S_2|=5+5=10\,\mathrm{kVA}$: le potenze apparenti non si sommano.'
+        en: '$|\bar S|=\sqrt{P^2+Q^2}=6\,\mathrm{kVA}$, while $|S_1|+|S_2|=5+5=10\,\mathrm{kVA}$: apparent powers do not add.'
+  answer:
+    - label:
+        it: '$P$ totale'
+        en: 'Total $P$'
+      value: 6
+      unit: 'kW'
+    - label:
+        it: '$|\bar S|$ totale'
+        en: 'Total $|\bar S|$'
+      value: 6
+      unit: 'kVA'
+    - label:
+        it: '$|S_1|+|S_2|$'
+        en: '$|S_1|+|S_2|$'
+      value: 10
+      unit: 'kVA'
+  origin: originale

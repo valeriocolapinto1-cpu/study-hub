@@ -338,3 +338,37 @@
         en: $-a$
       correct: false
   origin: originale
+- id: r2-tn-1
+  topic: trasformate-notevoli
+  objectives:
+    - trasformate-notevoli.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Dalla definizione, quanto vale $\mathcal L\{e^{-at}u(t)\}$ e per quali $s$ converge l''integrale?'
+    en: 'From the definition, what is $\mathcal L\{e^{-at}u(t)\}$ and for which $s$ does the integral converge?'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$\displaystyle\int_0^{\infty}e^{-at}e^{-st}\,dt=\left[\frac{-e^{-(s+a)t}}{s+a}\right]_0^{\infty}=\frac{1}{s+a}$, a patto che $e^{-(s+a)t}\to0$, cioè $\operatorname{Re}s>-a$.'
+        en: '$\displaystyle\int_0^{\infty}e^{-at}e^{-st}\,dt=\left[\frac{-e^{-(s+a)t}}{s+a}\right]_0^{\infty}=\frac{1}{s+a}$, provided $e^{-(s+a)t}\to0$, i.e. $\operatorname{Re}s>-a$.'
+  choices:
+    - text:
+        it: '$\dfrac{1}{s+a}$ per $\operatorname{Re}s>-a$'
+        en: '$\dfrac{1}{s+a}$ for $\operatorname{Re}s>-a$'
+      correct: true
+    - text:
+        it: '$\dfrac{1}{s-a}$ per $\operatorname{Re}s>a$'
+        en: '$\dfrac{1}{s-a}$ for $\operatorname{Re}s>a$'
+      correct: false
+    - text:
+        it: '$\dfrac{a}{s+a}$ per ogni $s$'
+        en: '$\dfrac{a}{s+a}$ for every $s$'
+      correct: false
+    - text:
+        it: '$\dfrac{1}{s+a}$ per $\operatorname{Re}s<-a$'
+        en: '$\dfrac{1}{s+a}$ for $\operatorname{Re}s<-a$'
+      correct: false
+  origin: originale

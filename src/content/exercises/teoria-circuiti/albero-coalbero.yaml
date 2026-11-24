@@ -220,3 +220,37 @@
         en: 'False'
       correct: true
   origin: originale
+- id: r2-alb-1
+  topic: albero-coalbero
+  objectives:
+    - albero-coalbero.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Quale ragionamento dimostra che un albero di un grafo connesso con $n$ nodi ha esattamente $n-1$ rami?'
+    en: 'Which argument proves that a tree of a connected graph with $n$ nodes has exactly $n-1$ branches?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: "Si costruisce l'albero partendo da un nodo e aggiungendo un ramo alla volta. Ogni ramo deve raggiungere un nodo nuovo: se collegasse due nodi già raggiunti chiuderebbe una maglia. Per toccare gli $n-1$ nodi rimanenti servono quindi esattamente $n-1$ rami (induzione sul numero di nodi)."
+        en: 'Build the tree starting from one node and adding one branch at a time. Each branch must reach a new node: if it joined two nodes already reached it would close a loop. Touching the remaining $n-1$ nodes therefore takes exactly $n-1$ branches (induction on the number of nodes).'
+  choices:
+    - text:
+        it: 'Ogni ramo aggiunto raggiunge un nodo nuovo (altrimenti chiude una maglia): da $1$ nodo a $n$ nodi servono $n-1$ rami'
+        en: 'Each added branch reaches a new node (otherwise it closes a loop): going from $1$ to $n$ nodes takes $n-1$ branches'
+      correct: true
+    - text:
+        it: 'Ogni nodo ha grado $2$ in un albero, quindi i rami sono $2n/2-1$'
+        en: 'Every node has degree $2$ in a tree, so there are $2n/2-1$ branches'
+      correct: false
+    - text:
+        it: 'Perché le maglie fondamentali sono $n-1$'
+        en: 'Because there are $n-1$ fundamental loops'
+      correct: false
+    - text:
+        it: 'Si verifica sul grafo completo e vale per tutti i grafi'
+        en: 'It is checked on the complete graph and holds for all graphs'
+      correct: false
+  origin: originale

@@ -84,3 +84,71 @@
         en: 'False'
       correct: false
   origin: originale
+- id: r2-sost-1
+  topic: teorema-di-sostituzione
+  objectives:
+    - teorema-di-sostituzione.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un ramo con tensione $v_k$ e corrente $i_k$ (note dalla soluzione) si sostituisce con un generatore ideale di tensione $v_k$. Quando il teorema di sostituzione garantisce che le altre grandezze non cambiano?'
+    en: 'A branch with voltage $v_k$ and current $i_k$ (known from the solution) is replaced by an ideal voltage source $v_k$. When does the substitution theorem guarantee that the other quantities do not change?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'La soluzione originale soddisfa ancora tutte le equazioni della rete modificata; perché sia **la** soluzione serve che la rete modificata abbia soluzione unica. La rete può essere anche non lineare: è proprio uno dei casi in cui il teorema è utile.'
+        en: 'The original solution still satisfies all equations of the modified network; for it to be **the** solution the modified network must have a unique solution. The network may even be non-linear: that is one of the cases where the theorem is useful.'
+  choices:
+    - text:
+        it: 'Quando la rete ottenuta dopo la sostituzione ha soluzione unica'
+        en: 'When the network obtained after the substitution has a unique solution'
+      correct: true
+    - text:
+        it: 'Solo se la rete è lineare'
+        en: 'Only if the network is linear'
+      correct: false
+    - text:
+        it: 'Solo se il ramo sostituito è un resistore'
+        en: 'Only if the replaced branch is a resistor'
+      correct: false
+    - text:
+        it: 'Sempre, senza condizioni'
+        en: 'Always, without conditions'
+      correct: false
+  origin: originale
+- id: r2-sost-2
+  topic: teorema-di-sostituzione
+  objectives:
+    - teorema-di-sostituzione.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un generatore $E=12\,\mathrm{V}$ con $R_1=4\,\Omega$ in serie alimenta il nodo $A$; da $A$ a massa ci sono $R_2=6\,\Omega$ e un bipolo non lineare $N$. Si misura $v_A=6\,\mathrm{V}$. Usando la sostituzione, calcola la corrente in $R_1$ e quella in $N$.'
+    en: 'A source $E=12\,\mathrm{V}$ with $R_1=4\,\Omega$ in series feeds node $A$; from $A$ to ground there are $R_2=6\,\Omega$ and a non-linear one-port $N$. The measured value is $v_A=6\,\mathrm{V}$. Using substitution, find the current in $R_1$ and the current in $N$.'
+  steps:
+    - title:
+        it: 'Sostituzione'
+        en: 'Substitution'
+      body:
+        it: 'Si sostituisce $N$ con un generatore ideale di $6\,\mathrm{V}$: la rete diventa lineare con soluzione unica e identica a quella di partenza.'
+        en: 'Replace $N$ with an ideal $6\,\mathrm{V}$ source: the network becomes linear, with a unique solution equal to the original one.'
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$i_{R_1}=\dfrac{12-6}{4}=1{,}5\,\mathrm{A}$, $i_{R_2}=\dfrac{6}{6}=1\,\mathrm{A}$, quindi in $N$ (verso massa) $i_N=1{,}5-1=0{,}5\,\mathrm{A}$.'
+        en: '$i_{R_1}=\dfrac{12-6}{4}=1.5\,\mathrm{A}$, $i_{R_2}=\dfrac{6}{6}=1\,\mathrm{A}$, hence in $N$ (towards ground) $i_N=1.5-1=0.5\,\mathrm{A}$.'
+  answer:
+    - label:
+        it: '$i_{R_1}$'
+        en: '$i_{R_1}$'
+      value: 1.5
+      unit: 'A'
+    - label:
+        it: '$i_N$'
+        en: '$i_N$'
+      value: 0.5
+      unit: 'A'
+  origin: originale

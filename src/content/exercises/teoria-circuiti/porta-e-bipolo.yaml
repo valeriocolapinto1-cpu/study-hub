@@ -126,3 +126,37 @@
         en: 'False'
       correct: false
   origin: originale
+- id: r2-pb-1
+  topic: porta-e-bipolo
+  objectives:
+    - porta-e-bipolo.3
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Il bipolo A ha $v=8\,\mathrm{V}$ e $i=-0{,}5\,\mathrm{A}$ con la convenzione degli utilizzatori. Il bipolo B ha $v=8\,\mathrm{V}$ e $i=2\,\mathrm{A}$ con la convenzione dei generatori (corrente uscente dal morsetto $+$). Calcola la potenza **assorbita** da ciascuno.'
+    en: 'One-port A has $v=8\,\mathrm{V}$ and $i=-0.5\,\mathrm{A}$ with the passive sign convention. One-port B has $v=8\,\mathrm{V}$ and $i=2\,\mathrm{A}$ with the active (generator) convention (current leaving the $+$ terminal). Find the power **absorbed** by each.'
+  steps:
+    - title:
+        it: 'Bipolo A'
+        en: 'One-port A'
+      body:
+        it: 'Convenzione degli utilizzatori: $p_{ass}=v\,i=8\cdot(-0{,}5)=-4\,\mathrm{W}$ (in realtà eroga $4\,\mathrm{W}$).'
+        en: 'Passive convention: $p_{abs}=v\,i=8\cdot(-0.5)=-4\,\mathrm{W}$ (it actually delivers $4\,\mathrm{W}$).'
+    - title:
+        it: 'Bipolo B'
+        en: 'One-port B'
+      body:
+        it: 'Convenzione dei generatori: $v\,i=16\,\mathrm{W}$ è la potenza erogata, quindi $p_{ass}=-v\,i=-16\,\mathrm{W}$.'
+        en: 'Active convention: $v\,i=16\,\mathrm{W}$ is the delivered power, so $p_{abs}=-v\,i=-16\,\mathrm{W}$.'
+  answer:
+    - label:
+        it: '$p_{ass}$ di A'
+        en: '$p_{abs}$ of A'
+      value: -4
+      unit: 'W'
+    - label:
+        it: '$p_{ass}$ di B'
+        en: '$p_{abs}$ of B'
+      value: -16
+      unit: 'W'
+  origin: originale

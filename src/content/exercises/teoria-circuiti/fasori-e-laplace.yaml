@@ -58,3 +58,30 @@
         en: 'False'
       correct: true
   origin: originale
+- id: r2-fl-1
+  topic: fasori-e-laplace
+  objectives:
+    - fasori-e-laplace.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Per $H(s)=\dfrac{10}{s^2+2s+10}$ calcola modulo e fase di $H(j\omega)$ a $\omega=3\,\mathrm{rad/s}$.'
+    en: 'For $H(s)=\dfrac{10}{s^2+2s+10}$ find magnitude and phase of $H(j\omega)$ at $\omega=3\,\mathrm{rad/s}$.'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Si pone $s=j3$: denominatore $-9+6j+10=1+6j$. $|H|=\dfrac{10}{\sqrt{37}}\approx1{,}644$, $\angle H=-\arctan6\approx-80{,}5^\circ$. Il modulo supera $1$: siamo vicini alla risonanza ($\omega_0=\sqrt{10}\approx3{,}16$).'
+        en: 'Set $s=j3$: denominator $-9+6j+10=1+6j$. $|H|=\dfrac{10}{\sqrt{37}}\approx1.644$, $\angle H=-\arctan6\approx-80.5^\circ$. The magnitude exceeds $1$: we are close to resonance ($\omega_0=\sqrt{10}\approx3.16$).'
+  answer:
+    - label:
+        it: '$|H(j3)|$'
+        en: '$|H(j3)|$'
+      value: 1.64399
+    - label:
+        it: '$\angle H(j3)$'
+        en: '$\angle H(j3)$'
+      value: -80.537678
+      unit: '°'
+  origin: originale
