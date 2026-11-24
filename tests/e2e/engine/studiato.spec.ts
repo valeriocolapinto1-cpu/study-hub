@@ -97,7 +97,7 @@ test('capitolo nell’indice, panoramica e «Riprendi da …»', async ({ page }
   await expect(page.locator('.chapters__list [data-chapter-count]').first()).toHaveText('2/2 argomenti');
   await expect(page.locator('.course-status [data-chapter-count]')).toHaveText('2 / 2');
   // tutto studiato, nessuna pagina di argomento aperta: il pulsante riprende dal primo argomento
-  await expect(page.locator('[data-course-start]')).toHaveText('Riprendi da Resistori');
+  await expect(page.locator('[data-course-start]')).toHaveText('Riprendi da Resistori e legge di Ohm');
   await axe(page);
 
   // annullato il capitolo, «Riprendi» propone il primo argomento non studiato

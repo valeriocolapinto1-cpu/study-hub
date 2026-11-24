@@ -119,7 +119,10 @@ for (const type of ['pointerover', 'focusin'])
 }
 
 // ---- Argomenti studiati (spunte, capitoli, «Segna come studiato»): modulo a parte, solo dove serve.
-if (root.dataset.course && document.querySelector('[data-studied-mark],[data-studied-toggle],[data-chapter-ids]'))
+if (
+  root.dataset.course &&
+  document.querySelector('[data-studied-mark],[data-studied-toggle],[data-chapter-ids]')
+)
   import('./studied').catch(Boolean);
 
 // ---- Indice del corso: un solo elemento (`popover`), barra laterale da 1024 px e menu sotto.
