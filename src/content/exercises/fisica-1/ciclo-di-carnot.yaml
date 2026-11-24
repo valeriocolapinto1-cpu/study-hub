@@ -156,3 +156,124 @@
   kind: generated
   generator: fisica-1/ciclo-di-carnot
   origin: tipologia-appello
+- id: r2-cc-1
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Nel ciclo di Carnot (isoterme $1\to2$ a $T_C$ e $3\to4$ a $T_F$, adiabatiche $2\to3$ e $4\to1$) come si dimostra $V_2/V_1=V_3/V_4$?'
+    en: 'In the Carnot cycle (isotherms $1\to2$ at $T_C$ and $3\to4$ at $T_F$, adiabats $2\to3$ and $4\to1$) how does one prove $V_2/V_1=V_3/V_4$?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Sulle adiabatiche $TV^{\gamma-1}=$ cost: $T_CV_2^{\gamma-1}=T_FV_3^{\gamma-1}$ e $T_CV_1^{\gamma-1}=T_FV_4^{\gamma-1}$. Dividendo membro a membro: $(V_2/V_1)^{\gamma-1}=(V_3/V_4)^{\gamma-1}$.'
+        en: 'On the adiabats $TV^{\gamma-1}=$ const: $T_CV_2^{\gamma-1}=T_FV_3^{\gamma-1}$ and $T_CV_1^{\gamma-1}=T_FV_4^{\gamma-1}$. Dividing side by side: $(V_2/V_1)^{\gamma-1}=(V_3/V_4)^{\gamma-1}$.'
+  choices:
+    - text:
+        it: 'Scrivendo $TV^{\gamma-1}=$ cost sulle due adiabatiche e dividendo le due relazioni'
+        en: 'Writing $TV^{\gamma-1}=$ const on the two adiabats and dividing the two relations'
+      correct: true
+    - text:
+        it: 'Con $pV=$ cost sulle adiabatiche'
+        en: 'With $pV=$ const on the adiabats'
+      correct: false
+    - text:
+        it: 'Imponendo $Q_C=|Q_F|$'
+        en: 'Imposing $Q_C=|Q_F|$'
+      correct: false
+    - text:
+        it: 'Perché le isoterme hanno la stessa lunghezza'
+        en: 'Because the isotherms have the same length'
+      correct: false
+  origin: originale
+- id: r2-cc-2
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.5
+    - ciclo-di-carnot.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Un motore di Carnot lavora fra 500 K e 300 K e assorbe 2000 J per ciclo dalla sorgente calda. Calcola rendimento, lavoro e calore ceduto, e verifica $Q_C/T_C=|Q_F|/T_F$.'
+    en: 'A Carnot engine works between 500 K and 300 K and absorbs 2000 J per cycle from the hot reservoir. Find efficiency, work and heat rejected, and check $Q_C/T_C=|Q_F|/T_F$.'
+  figure:
+    diagram:
+      {
+        'type': 'heat-engine',
+        'params':
+          {
+            'kind': 'engine',
+            'reservoirs':
+              [
+                { 'label': 'T_C = 500 K', 'heat': 'Q_C', 'side': 'hot' },
+                { 'label': 'T_F = 300 K', 'heat': 'Q_F', 'side': 'cold' },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Dai calori sulle isoterme $Q_C=nRT_C\ln(V_2/V_1)$, $|Q_F|=nRT_F\ln(V_3/V_4)$ e dai rapporti uguali: $\eta=1-T_F/T_C=0{,}4$. $W=800\,\mathrm{J}$, $|Q_F|=1200\,\mathrm{J}$. Controllo: $2000/500=1200/300=4\,\mathrm{J/K}$.'
+        en: 'From the isothermal heats $Q_C=nRT_C\ln(V_2/V_1)$, $|Q_F|=nRT_F\ln(V_3/V_4)$ and the equal ratios: $\eta=1-T_F/T_C=0.4$. $W=800\,\mathrm{J}$, $|Q_F|=1200\,\mathrm{J}$. Check: $2000/500=1200/300=4\,\mathrm{J/K}$.'
+  answer:
+    - label:
+        it: '$\eta$'
+        en: '$\eta$'
+      value: 0.4
+    - label:
+        it: '$W$'
+        en: '$W$'
+      value: 800
+      unit: 'J'
+    - label:
+        it: '$|Q_F|$'
+        en: '$|Q_C|$'
+      value: 1200
+      unit: 'J'
+  origin: originale
+- id: r2-cc-3
+  topic: ciclo-di-carnot
+  objectives:
+    - ciclo-di-carnot.7
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Un ciclo di Carnot invertito lavora fra $T_F=260\,\mathrm{K}$ e $T_C=300\,\mathrm{K}$. Calcola il COP come frigorifero e come pompa di calore. Che cosa succede quando $T_F\to T_C$?'
+    en: 'An inverted Carnot cycle works between $T_F=260\,\mathrm{K}$ and $T_C=300\,\mathrm{K}$. Find the COP as a refrigerator and as a heat pump. What happens when $T_F\to T_C$?'
+  figure:
+    diagram:
+      {
+        'type': 'heat-engine',
+        'params':
+          {
+            'kind': 'refrigerator',
+            'reservoirs':
+              [
+                { 'label': 'T_C = 300 K', 'heat': 'Q_C', 'side': 'hot' },
+                { 'label': 'T_F = 260 K', 'heat': 'Q_F', 'side': 'cold' },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$\mathrm{COP}_f=\dfrac{T_F}{T_C-T_F}=6{,}5$; $\mathrm{COP}_{pc}=\dfrac{T_C}{T_C-T_F}=7{,}5$. Per $T_F\to T_C$ i COP divergono (non serve lavoro per spostare calore fra temperature uguali), mentre il rendimento del motore $1-T_F/T_C$ tende a zero; con $T_F\to0$ il rendimento tende a 1.'
+        en: '$\mathrm{COP}_r=\dfrac{T_F}{T_C-T_F}=6.5$; $\mathrm{COP}_{hp}=\dfrac{T_C}{T_C-T_F}=7.5$. As $T_F\to T_C$ the COPs diverge (no work is needed to move heat between equal temperatures), while the engine efficiency $1-T_F/T_C$ tends to zero; as $T_F\to0$ the efficiency tends to 1.'
+  answer:
+    - label:
+        it: '$COP_f$'
+        en: '$COP_r$'
+      value: 6.5
+    - label:
+        it: '$COP_{pc}$'
+        en: '$COP_{hp}$'
+      value: 7.5
+  origin: originale

@@ -144,3 +144,127 @@
       value: -1169
       unit: J
   origin: originale
+- id: r2-eq-1
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.4
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Calcola l'energia interna di 2 mol di gas a 300 K se il gas è monoatomico e se è biatomico (rotazioni attive, vibrazioni congelate)."
+    en: 'Find the internal energy of 2 mol of gas at 300 K if the gas is monatomic and if it is diatomic (rotations active, vibrations frozen).'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Ogni termine quadratico dell''energia contribuisce $\tfrac12k_BT$ per molecola: $U=\tfrac f2Nk_BT=\tfrac f2nRT$. Monoatomico ($f=3$): $7483\,\mathrm{J}$; biatomico ($f=5$): $12471\,\mathrm{J}$.'
+        en: 'Each quadratic energy term contributes $\tfrac12k_BT$ per molecule: $U=\tfrac f2Nk_BT=\tfrac f2nRT$. Monatomic ($f=3$): $7483\,\mathrm{J}$; diatomic ($f=5$): $12471\,\mathrm{J}$.'
+  answer:
+    - label:
+        it: '$U_{mono}$'
+        en: '$U_{mono}$'
+      value: 7482.6
+      unit: 'J'
+    - label:
+        it: '$U_{bi}$'
+        en: '$U_{di}$'
+      value: 12471
+      unit: 'J'
+  origin: originale
+- id: r2-eq-2
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Nell'espansione libera di Joule un gas si espande nel vuoto in un recipiente isolato e la temperatura non cambia. Che cosa se ne deduce?"
+    en: "In Joule's free expansion a gas expands into vacuum in an insulated container and the temperature does not change. What follows?"
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: '$Q=0$ (isolato) e $W=0$ (espansione nel vuoto), quindi $\Delta U=0$. Il volume è cambiato e $T$ no: l''energia interna di un gas perfetto dipende solo dalla temperatura (legge di Joule).'
+        en: '$Q=0$ (insulated) and $W=0$ (expansion into vacuum), so $\Delta U=0$. The volume changed and $T$ did not: the internal energy of an ideal gas depends only on temperature (Joule''s law).'
+  choices:
+    - text:
+        it: "L'energia interna di un gas perfetto dipende solo dalla temperatura"
+        en: 'The internal energy of an ideal gas depends only on temperature'
+      correct: true
+    - text:
+        it: "L'energia interna dipende solo dal volume"
+        en: 'The internal energy depends only on volume'
+      correct: false
+    - text:
+        it: 'Il gas compie lavoro sul vuoto'
+        en: 'The gas does work on the vacuum'
+      correct: false
+    - text:
+        it: "Il gas assorbe calore dall'esterno"
+        en: 'The gas absorbs heat from outside'
+      correct: false
+  origin: originale
+- id: r2-eq-3
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Da $U=\tfrac f2nRT$ ricava il calore molare a volume costante di un gas biatomico e calcola il calore per scaldare a volume costante 3 mol di questo gas di 20 K.'
+    en: 'From $U=\tfrac f2nRT$ derive the molar heat capacity at constant volume of a diatomic gas and find the heat needed to warm 3 mol of it by 20 K at constant volume.'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'A volume costante $W=0$ e $Q=\Delta U$: $c_V=\dfrac{1}{n}\dfrac{dU}{dT}=\tfrac f2R=\tfrac52\cdot8{,}314\approx20{,}79\,\mathrm{J/(mol\,K)}$. $Q=nc_V\Delta T\approx1247\,\mathrm{J}$.'
+        en: 'At constant volume $W=0$ and $Q=\Delta U$: $c_V=\dfrac{1}{n}\dfrac{dU}{dT}=\tfrac f2R=\tfrac52\cdot8.314\approx20.79\,\mathrm{J/(mol\,K)}$. $Q=nc_V\Delta T\approx1247\,\mathrm{J}$.'
+  answer:
+    - label:
+        it: '$c_V$'
+        en: '$c_V$'
+      value: 20.785
+      unit: 'J/(mol·K)'
+    - label:
+        it: '$Q$'
+        en: '$Q$'
+      value: 1247.1
+      unit: 'J'
+  origin: originale
+- id: r2-eq-4
+  topic: equipartizione-energia
+  objectives:
+    - equipartizione-energia.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'A temperatura ambiente un gas biatomico ha $c_V\approx\tfrac52R$ e non $\tfrac72R$, anche se la molecola può vibrare. Perché?'
+    en: 'At room temperature a diatomic gas has $c_V\approx\tfrac52R$ and not $\tfrac72R$, even though the molecule can vibrate. Why?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: "L'energia di vibrazione è quantizzata: se il salto fra i livelli è molto maggiore di $k_BT$ gli urti non riescono a eccitarla e quei gradi di libertà sono «congelati». Si attivano ad alta temperatura."
+        en: 'Vibrational energy is quantised: if the level spacing is much larger than $k_BT$ collisions cannot excite it and those degrees of freedom are «frozen». They switch on at high temperature.'
+  choices:
+    - text:
+        it: 'I livelli vibrazionali sono quantizzati e distanti più di $k_BT$: le vibrazioni sono congelate'
+        en: 'Vibrational levels are quantised and spaced more than $k_BT$ apart: vibrations are frozen'
+      correct: true
+    - text:
+        it: 'Perché le molecole biatomiche non possono vibrare'
+        en: 'Because diatomic molecules cannot vibrate'
+      correct: false
+    - text:
+        it: 'Perché il principio di equipartizione vale solo per i solidi'
+        en: 'Because equipartition holds only for solids'
+      correct: false
+    - text:
+        it: 'Perché le rotazioni sono congelate'
+        en: 'Because rotations are frozen'
+      correct: false
+  origin: originale

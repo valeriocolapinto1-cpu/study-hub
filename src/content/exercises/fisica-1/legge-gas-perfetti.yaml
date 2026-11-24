@@ -179,3 +179,88 @@
   kind: generated
   generator: fisica-1/legge-combinata
   origin: tipologia-appello
+- id: r2-lgp-1
+  topic: legge-gas-perfetti
+  objectives:
+    - legge-gas-perfetti.4
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Un pallone contiene 2 L di gas a 100 kPa e 300 K. Sale in quota dove la pressione è 80 kPa e la temperatura 250 K. Che volume occupa (quantità di gas costante)?'
+    en: 'A balloon holds 2 L of gas at 100 kPa and 300 K. It rises to where the pressure is 80 kPa and the temperature 250 K. What volume does it occupy (constant amount of gas)?'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Combinando Boyle, Charles e Gay-Lussac: $\dfrac{p_1V_1}{T_1}=\dfrac{p_2V_2}{T_2}\Rightarrow V_2=2\cdot\dfrac{100}{80}\cdot\dfrac{250}{300}\approx2{,}083\,\mathrm{L}$.'
+        en: 'Combining Boyle, Charles and Gay-Lussac: $\dfrac{p_1V_1}{T_1}=\dfrac{p_2V_2}{T_2}\Rightarrow V_2=2\cdot\dfrac{100}{80}\cdot\dfrac{250}{300}\approx2.083\,\mathrm{L}$.'
+  answer:
+    - label:
+        it: '$V_2$'
+        en: '$V_2$'
+      value: 2.083333
+      unit: 'L'
+  origin: originale
+- id: r2-lgp-2
+  topic: legge-gas-perfetti
+  objectives:
+    - legge-gas-perfetti.5
+    - legge-gas-perfetti.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Un gas occupa 10 L a 200 kPa e 300 K. Calcola il numero di moli e il numero di molecole, prima con $pV=nRT$ e poi con $pV=Nk_BT$.'
+    en: 'A gas occupies 10 L at 200 kPa and 300 K. Find the number of moles and the number of molecules, first with $pV=nRT$ and then with $pV=Nk_BT$.'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$n=\dfrac{pV}{RT}=\dfrac{2\cdot10^5\cdot10^{-2}}{8{,}314\cdot300}\approx0{,}802\,\mathrm{mol}$. $N=\dfrac{pV}{k_BT}\approx4{,}829\cdot10^{23}$, cioè $nN_A$: $k_B=R/N_A$ è la costante dei gas «per molecola».'
+        en: '$n=\dfrac{pV}{RT}=\dfrac{2\cdot10^5\cdot10^{-2}}{8.314\cdot300}\approx0.802\,\mathrm{mol}$. $N=\dfrac{pV}{k_BT}\approx4.829\cdot10^{23}$, i.e. $nN_A$: $k_B=R/N_A$ is the gas constant «per molecule».'
+  answer:
+    - label:
+        it: '$n$'
+        en: '$n$'
+      value: 0.8018603
+      unit: 'mol'
+    - label:
+        it: '$N$'
+        en: '$N$'
+      value: 4.828647e+23
+  origin: originale
+- id: r2-lgp-3
+  topic: legge-gas-perfetti
+  objectives:
+    - legge-gas-perfetti.7
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Quando la legge dei gas perfetti smette di descrivere bene un gas reale?'
+    en: 'When does the ideal-gas law stop describing a real gas well?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Il modello trascura il volume proprio delle molecole e le forze fra di esse. Diventano importanti ad alta densità: pressioni alte e temperature basse, vicino alla liquefazione.'
+        en: "The model neglects the molecules' own volume and the forces between them. These matter at high density: high pressures and low temperatures, close to liquefaction."
+  choices:
+    - text:
+        it: 'Ad alta pressione e bassa temperatura, vicino alla liquefazione'
+        en: 'At high pressure and low temperature, close to liquefaction'
+      correct: true
+    - text:
+        it: 'A bassa pressione e alta temperatura'
+        en: 'At low pressure and high temperature'
+      correct: false
+    - text:
+        it: 'Solo per i gas monoatomici'
+        en: 'Only for monatomic gases'
+      correct: false
+    - text:
+        it: 'Quando il recipiente è grande'
+        en: 'When the container is large'
+      correct: false
+  origin: originale

@@ -286,3 +286,245 @@
   kind: generated
   generator: fisica-1/risonanza
   origin: tipologia-appello
+- id: r2-ris-1
+  topic: risonanza
+  objectives:
+    - risonanza.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un oscillatore forzato ha $m=1\,\mathrm{kg}$, $k=100\,\mathrm{N/m}$, $b=2\,\mathrm{kg/s}$ ($\gamma=1\,\mathrm{s^{-1}}$) e forza $F_0\cos\omega t$ con $F_0=10\,\mathrm{N}$. Calcola l''ampiezza a frequenza molto bassa, l''ampiezza a $\omega=\omega_0$ e la pulsazione di massima ampiezza.'
+    en: 'A driven oscillator has $m=1\,\mathrm{kg}$, $k=100\,\mathrm{N/m}$, $b=2\,\mathrm{kg/s}$ ($\gamma=1\,\mathrm{s^{-1}}$) and force $F_0\cos\omega t$ with $F_0=10\,\mathrm{N}$. Find the amplitude at very low frequency, the amplitude at $\omega=\omega_0$ and the angular frequency of maximum amplitude.'
+  figure:
+    diagram:
+      {
+        'type': 'function-plot',
+        'params':
+          {
+            'x': { 'min': 0, 'max': 20, 'label': 'ω' },
+            'y': { 'min': 0, 'max': 0.55, 'label': 'A', 'unit': 'm' },
+            'series':
+              [
+                {
+                  'kind': 'points',
+                  'points':
+                    [
+                      [0.0, 0.1],
+                      [0.25, 0.10006128676375697],
+                      [0.5, 0.10024558925782293],
+                      [0.75, 0.10055424191371956],
+                      [1.0, 0.10098949511412772],
+                      [1.25, 0.10155455558652342],
+                      [1.5, 0.10225364479826772],
+                      [1.75, 0.10309207731068261],
+                      [2.0, 0.10407636178045333],
+                      [2.25, 0.10521432817343199],
+                      [2.5, 0.1065152858323015],
+                      [2.75, 0.1079902183852992],
+                      [3.0, 0.10965202319032638],
+                      [3.25, 0.11151580520039385],
+                      [3.5, 0.11359923797886744],
+                      [3.75, 0.11592300831318966],
+                      [4.0, 0.1185113657849943],
+                      [4.25, 0.1213928051826511],
+                      [4.5, 0.12460091838535607],
+                      [4.75, 0.12817546413460865],
+                      [5.0, 0.13216372009101796],
+                      [5.25, 0.136622203345062],
+                      [5.5, 0.1416188752868843],
+                      [5.75, 0.14723598734205567],
+                      [6.0, 0.1535737792084878],
+                      [6.25, 0.16075531497706505],
+                      [6.5, 0.1689328379995156],
+                      [6.75, 0.1782961404027848],
+                      [7.0, 0.18908355841512123],
+                      [7.25, 0.20159625256209138],
+                      [7.5, 0.21621621621621623],
+                      [7.75, 0.23342744768020618],
+                      [8.0, 0.25383654128340477],
+                      [8.25, 0.2781801091431679],
+                      [8.5, 0.3072834744462328],
+                      [8.75, 0.34187956141981884],
+                      [9.0, 0.38208035995043504],
+                      [9.25, 0.4261336700335161],
+                      [9.5, 0.4682608166479861],
+                      [9.75, 0.4971318033752347],
+                      [10.0, 0.5],
+                      [10.25, 0.4735780189127994],
+                      [10.5, 0.42793600053776154],
+                      [10.75, 0.37677108196530223],
+                      [11.0, 0.3287979746107146],
+                      [11.25, 0.28726425302806713],
+                      [11.5, 0.2524526178081732],
+                      [11.75, 0.22355069880292622],
+                      [12.0, 0.19952172111690553],
+                      [12.25, 0.17941718893612166],
+                      [12.5, 0.16245538642137905],
+                      [12.75, 0.14801718093502209],
+                      [13.0, 0.1356189362208996],
+                      [13.25, 0.1248835476407903],
+                      [13.5, 0.11551578789062193],
+                      [13.75, 0.10728292943759726],
+                      [14.0, 0.1],
+                      [14.25, 0.09351869932926665],
+                      [14.5, 0.08771908731777601],
+                      [14.75, 0.08250333257954248],
+                      [15.0, 0.07779098415844139],
+                      [15.25, 0.07351536981346257],
+                      [15.5, 0.06962083098164466],
+                      [15.75, 0.06606058286841299],
+                      [16.0, 0.06279504491291604],
+                      [16.25, 0.05979052787421337],
+                      [16.5, 0.05701819339900217],
+                      [16.75, 0.05445322340116835],
+                      [17.0, 0.052074152231077746],
+                      [17.25, 0.049862326089064],
+                      [17.5, 0.047801462612690596],
+                      [17.75, 0.04587728987062609],
+                      [18.0, 0.044077248717709766],
+                      [18.25, 0.042390246028143404],
+                      [18.5, 0.04080644903032164],
+                      [18.75, 0.03931711303732658],
+                      [19.0, 0.037914436461611],
+                      [19.25, 0.03659143823824635],
+                      [19.5, 0.03534185374495655],
+                      [19.75, 0.03416004606338002],
+                      [20.0, 0.03304093002275449],
+                    ],
+                },
+              ],
+            'vlines': [{ 'x': 10, 'label': 'ω_0' }],
+          },
+      }
+  steps:
+    - title:
+        it: 'Ampiezza'
+        en: 'Amplitude'
+      body:
+        it: '$A(\omega)=\dfrac{F_0/m}{\sqrt{(\omega_0^2-\omega^2)^2+4\gamma^2\omega^2}}$, $\omega_0=10\,\mathrm{rad/s}$. Per $\omega\to0$: $A=F_0/k=0{,}1\,\mathrm{m}$. Per $\omega=\omega_0$: $A=\dfrac{F_0}{2m\gamma\omega_0}=0{,}5\,\mathrm{m}$.'
+        en: '$A(\omega)=\dfrac{F_0/m}{\sqrt{(\omega_0^2-\omega^2)^2+4\gamma^2\omega^2}}$, $\omega_0=10\,\mathrm{rad/s}$. For $\omega\to0$: $A=F_0/k=0.1\,\mathrm{m}$. For $\omega=\omega_0$: $A=\dfrac{F_0}{2m\gamma\omega_0}=0.5\,\mathrm{m}$.'
+    - title:
+        it: 'Massimo'
+        en: 'Maximum'
+      body:
+        it: 'Il denominatore è minimo per $\omega_r=\sqrt{\omega_0^2-2\gamma^2}=\sqrt{98}\approx9{,}90\,\mathrm{rad/s}$, un po'' sotto $\omega_0$; più lo smorzamento è grande, più il picco si abbassa e si sposta verso sinistra.'
+        en: 'The denominator is smallest at $\omega_r=\sqrt{\omega_0^2-2\gamma^2}=\sqrt{98}\approx9.90\,\mathrm{rad/s}$, slightly below $\omega_0$; the larger the damping, the lower the peak and the further left it moves.'
+  answer:
+    - label:
+        it: '$A(0)$'
+        en: '$A(0)$'
+      value: 0.1
+      unit: 'm'
+    - label:
+        it: '$A(\omega_0)$'
+        en: '$A(\omega_0)$'
+      value: 0.5
+      unit: 'm'
+    - label:
+        it: '$\omega_r$'
+        en: '$\omega_r$'
+      value: 9.899495
+      unit: 'rad/s'
+  origin: originale
+- id: r2-ris-2
+  topic: risonanza
+  objectives:
+    - risonanza.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Come varia lo sfasamento $\delta$ fra spostamento e forza (spostamento in ritardo) al crescere di $\omega$?'
+    en: 'How does the phase lag $\delta$ of the displacement behind the force change as $\omega$ increases?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: '$\tan\delta=\dfrac{2\gamma\omega}{\omega_0^2-\omega^2}$: a bassa frequenza $\delta\approx0$ (segue la forza), a $\omega_0$ $\delta=90^\circ$ (la velocità è in fase con la forza), ad alta frequenza $\delta\to180^\circ$ (opposizione di fase).'
+        en: '$\tan\delta=\dfrac{2\gamma\omega}{\omega_0^2-\omega^2}$: at low frequency $\delta\approx0$ (it follows the force), at $\omega_0$ $\delta=90^\circ$ (velocity in phase with the force), at high frequency $\delta\to180^\circ$ (phase opposition).'
+  choices:
+    - text:
+        it: 'Da $\approx0$ a $90^\circ$ in risonanza, fino a $\approx180^\circ$ ad alta frequenza'
+        en: 'From $\approx0$ to $90^\circ$ at resonance, up to $\approx180^\circ$ at high frequency'
+      correct: true
+    - text:
+        it: 'Resta sempre nullo'
+        en: 'It is always zero'
+      correct: false
+    - text:
+        it: 'Da $180^\circ$ a $0$'
+        en: 'From $180^\circ$ to $0$'
+      correct: false
+    - text:
+        it: 'Vale $90^\circ$ a tutte le frequenze'
+        en: 'It is $90^\circ$ at all frequencies'
+      correct: false
+  origin: originale
+- id: r2-ris-3
+  topic: risonanza
+  objectives:
+    - risonanza.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Perché la potenza media assorbita da un oscillatore forzato è massima esattamente a $\omega=\omega_0$ (anche se il massimo dell''ampiezza è un po'' più in basso)?'
+    en: 'Why is the average power absorbed by a driven oscillator largest exactly at $\omega=\omega_0$ (even though the amplitude peak is slightly lower)?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: '$\langle P\rangle=\langle F\,v\rangle$ dipende dall''ampiezza della **velocità** e dal suo sfasamento con la forza. A $\omega_0$ velocità e forza sono in fase e l''ampiezza di velocità $\omega A$ è massima: la forza spinge sempre nel verso del moto.'
+        en: '$\langle P\rangle=\langle F\,v\rangle$ depends on the **velocity** amplitude and its phase relative to the force. At $\omega_0$ velocity and force are in phase and the velocity amplitude $\omega A$ is largest: the force always pushes along the motion.'
+  choices:
+    - text:
+        it: 'A $\omega_0$ velocità e forza sono in fase e l''ampiezza della velocità è massima'
+        en: 'At $\omega_0$ velocity and force are in phase and the velocity amplitude is largest'
+      correct: true
+    - text:
+        it: 'Perché a $\omega_0$ lo smorzamento si annulla'
+        en: 'Because at $\omega_0$ damping vanishes'
+      correct: false
+    - text:
+        it: 'Perché a $\omega_0$ lo spostamento è in fase con la forza'
+        en: 'Because at $\omega_0$ the displacement is in phase with the force'
+      correct: false
+    - text:
+        it: 'Perché la potenza non dipende da $\omega$'
+        en: 'Because the power does not depend on $\omega$'
+      correct: false
+  origin: originale
+- id: r2-ris-4
+  topic: risonanza
+  objectives:
+    - risonanza.7
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Quale di questi è un esempio di risonanza?'
+    en: 'Which of these is an example of resonance?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: "Spingere l'altalena al ritmo della sua oscillazione propria trasferisce energia a ogni spinta e fa crescere l'ampiezza; nello stesso modo un circuito RLC sintonizzato seleziona una stazione radio."
+        en: 'Pushing a swing at the rhythm of its natural oscillation transfers energy at every push and makes the amplitude grow; in the same way a tuned RLC circuit selects a radio station.'
+  choices:
+    - text:
+        it: "Spingere un'altalena al ritmo della sua oscillazione propria"
+        en: 'Pushing a swing at the rhythm of its natural oscillation'
+      correct: true
+    - text:
+        it: 'Una palla che rimbalza sempre più in basso'
+        en: 'A ball bouncing lower and lower'
+      correct: false
+    - text:
+        it: "Un pendolo che si ferma per l'attrito dell'aria"
+        en: 'A pendulum stopping because of air drag'
+      correct: false
+    - text:
+        it: 'Un blocco che scivola su un piano inclinato'
+        en: 'A block sliding down an incline'
+      correct: false
+  origin: originale

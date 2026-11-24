@@ -204,3 +204,184 @@
       value: 9.6
       unit: J
   origin: originale
+- id: r2-koe-1
+  topic: teorema-di-koenig
+  objectives:
+    - teorema-di-koenig.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Nella dimostrazione del secondo teorema di König si scrive $\vec v_i=\vec v_{cm}+\vec v\,''_i$. Quale passaggio porta a $K=\tfrac12Mv_{cm}^2+K''$?'
+    en: 'In the proof of König''s second theorem one writes $\vec v_i=\vec v_{cm}+\vec v\,''_i$. Which step leads to $K=\tfrac12Mv_{cm}^2+K''$?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: '$K=\sum\tfrac12m_i(\vec v_{cm}+\vec v\,''_i)^2=\tfrac12Mv_{cm}^2+\vec v_{cm}\cdot\sum m_i\vec v\,''_i+K''$; il termine misto è nullo perché $\sum m_i\vec v\,''_i$ è la quantità di moto nel riferimento del CM, che vale zero.'
+        en: '$K=\sum\tfrac12m_i(\vec v_{cm}+\vec v\,''_i)^2=\tfrac12Mv_{cm}^2+\vec v_{cm}\cdot\sum m_i\vec v\,''_i+K''$; the mixed term vanishes because $\sum m_i\vec v\,''_i$ is the momentum in the CM frame, which is zero.'
+  choices:
+    - text:
+        it: 'Il termine misto $\vec v_{cm}\cdot\sum m_i\vec v\,''_i$ è nullo perché nel riferimento del CM la quantità di moto è zero'
+        en: 'The mixed term $\vec v_{cm}\cdot\sum m_i\vec v\,''_i$ vanishes because the momentum in the CM frame is zero'
+      correct: true
+    - text:
+        it: "Si trascura $K'$ perché il corpo è rigido"
+        en: "$K'$ is neglected because the body is rigid"
+      correct: false
+    - text:
+        it: '$\vec v_{cm}$ è perpendicolare a ogni $\vec v\,''_i$'
+        en: '$\vec v_{cm}$ is perpendicular to every $\vec v\,''_i$'
+      correct: false
+    - text:
+        it: 'Le forze interne non compiono lavoro'
+        en: 'Internal forces do no work'
+      correct: false
+  origin: originale
+- id: r2-koe-2
+  topic: teorema-di-koenig
+  objectives:
+    - teorema-di-koenig.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Una sfera piena di 3 kg e raggio 10 cm rotola senza strisciare a 2 m/s. Calcola l'energia cinetica di traslazione, quella di rotazione attorno al CM e quella totale."
+    en: 'A 3 kg solid sphere of radius 10 cm rolls without slipping at 2 m/s. Find the translational kinetic energy, the rotational one about the CM and the total.'
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Sfera che rotola senza strisciare con velocità del centro v_CM.',
+                'en': 'Sphere rolling without slipping, centre velocity v_CM.',
+              },
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-3, 0], 'to': [3, 0] },
+                { 'kind': 'disc', 'at': [0, 1.5], 'r': 1.5, 'style': 'sphere' },
+                {
+                  'kind': 'vector',
+                  'from': [0, 1.5],
+                  'to': [1.8, 1.5],
+                  'label': 'v_{CM}',
+                  'vkind': 'velocity',
+                },
+                { 'kind': 'rotation', 'at': [0, 1.5], 'r': 26, 'from': 60, 'to': -30, 'label': 'ω' },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'König per il rigido: $K=\tfrac12Mv_{cm}^2+\tfrac12I_{cm}\omega^2$. $K_{tr}=\tfrac12\cdot3\cdot4=6\,\mathrm{J}$; con $I_{cm}=\tfrac25MR^2$ e $\omega=v/R$: $K_{rot}=\tfrac15Mv^2=2{,}4\,\mathrm{J}$; $K=8{,}4\,\mathrm{J}$ (il raggio non conta).'
+        en: 'König for a rigid body: $K=\tfrac12Mv_{cm}^2+\tfrac12I_{cm}\omega^2$. $K_{tr}=\tfrac12\cdot3\cdot4=6\,\mathrm{J}$; with $I_{cm}=\tfrac25MR^2$ and $\omega=v/R$: $K_{rot}=\tfrac15Mv^2=2.4\,\mathrm{J}$; $K=8.4\,\mathrm{J}$ (the radius drops out).'
+  answer:
+    - label:
+        it: '$K_{tr}$'
+        en: '$K_{tr}$'
+      value: 6
+      unit: 'J'
+    - label:
+        it: '$K_{rot}$'
+        en: '$K_{rot}$'
+      value: 2.4
+      unit: 'J'
+    - label:
+        it: '$K$'
+        en: '$K$'
+      value: 8.4
+      unit: 'J'
+  origin: originale
+- id: r2-koe-3
+  topic: teorema-di-koenig
+  objectives:
+    - teorema-di-koenig.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Un carrello di 2 kg a 4 m/s urta un carrello fermo di 3 kg e i due restano attaccati. Usando König, calcola l'energia cinetica del centro di massa e l'energia dissipata."
+    en: 'A 2 kg cart at 4 m/s hits a 3 kg cart at rest and the two stick together. Using König, find the kinetic energy of the centre of mass and the energy dissipated.'
+  figure:
+    diagram:
+      {
+        'type': 'collision',
+        'params':
+          {
+            'unit': 'm/s',
+            'before': [{ 'label': '1', 'mass': '2 kg', 'v': 4 }, { 'label': '2', 'mass': '3 kg', 'v': 0 }],
+            'after': [{ 'label': '1+2', 'mass': '5 kg', 'v': 1.6 }],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$K=\tfrac12Mv_{cm}^2+K''$ con $v_{cm}=8/5=1{,}6\,\mathrm{m/s}$: $K_{cm}=\tfrac12\cdot5\cdot1{,}6^2=6{,}4\,\mathrm{J}$, che si conserva nell''urto (la quantità di moto non cambia). Prima $K=16\,\mathrm{J}$, dopo resta solo $K_{cm}$: si perde $K''=9{,}6\,\mathrm{J}$, cioè $\tfrac12\mu v_{rel}^2$ con $\mu=m_1m_2/(m_1+m_2)=1{,}2\,\mathrm{kg}$.'
+        en: '$K=\tfrac12Mv_{cm}^2+K''$ with $v_{cm}=8/5=1.6\,\mathrm{m/s}$: $K_{cm}=\tfrac12\cdot5\cdot1.6^2=6.4\,\mathrm{J}$, conserved in the collision (momentum does not change). Before $K=16\,\mathrm{J}$, afterwards only $K_{cm}$ remains: $K''=9.6\,\mathrm{J}$ is lost, i.e. $\tfrac12\mu v_{rel}^2$ with $\mu=m_1m_2/(m_1+m_2)=1.2\,\mathrm{kg}$.'
+  answer:
+    - label:
+        it: '$K_{cm}$'
+        en: '$K_{cm}$'
+      value: 6.4
+      unit: 'J'
+    - label:
+        it: '$E_{diss}$'
+        en: '$E_{diss}$'
+      value: 9.6
+      unit: 'J'
+  origin: originale
+- id: r2-koe-4
+  topic: teorema-di-koenig
+  objectives:
+    - teorema-di-koenig.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Un manubrio è fatto di due masse da 1 kg agli estremi di un'asta leggera lunga 60 cm. Il centro si muove a 2 m/s mentre il manubrio ruota a 5 rad/s attorno al centro. Calcola $I_{cm}$ e l'energia cinetica totale."
+    en: 'A dumbbell consists of two 1 kg masses at the ends of a light 60 cm rod. Its centre moves at 2 m/s while it spins at 5 rad/s about the centre. Find $I_{cm}$ and the total kinetic energy.'
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': "Manubrio: due masse uguali agli estremi di un'asta, il centro avanza mentre ruota.",
+                'en': 'Dumbbell: two equal masses at the ends of a rod, the centre moves while it spins.',
+              },
+            'items':
+              [
+                { 'kind': 'rod', 'from': [-3, 0], 'to': [3, 0] },
+                { 'kind': 'disc', 'at': [-3, 0], 'r': 0.5, 'style': 'sphere' },
+                { 'kind': 'disc', 'at': [3, 0], 'r': 0.5, 'style': 'sphere' },
+                { 'kind': 'vector', 'from': [0, 0], 'to': [0, 2], 'label': 'v_{CM}', 'vkind': 'velocity' },
+                { 'kind': 'rotation', 'at': [0, 0], 'r': 22, 'from': 200, 'to': 320, 'label': 'ω' },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$I_{cm}=2\cdot1\cdot0{,}3^2=0{,}18\,\mathrm{kg\,m^2}$. $K=\tfrac12Mv_{cm}^2+\tfrac12I_{cm}\omega^2=4+2{,}25=6{,}25\,\mathrm{J}$.'
+        en: '$I_{cm}=2\cdot1\cdot0.3^2=0.18\,\mathrm{kg\,m^2}$. $K=\tfrac12Mv_{cm}^2+\tfrac12I_{cm}\omega^2=4+2.25=6.25\,\mathrm{J}$.'
+  answer:
+    - label:
+        it: '$I_{cm}$'
+        en: '$I_{cm}$'
+      value: 0.18
+      unit: 'kg·m²'
+    - label:
+        it: '$K$'
+        en: '$K$'
+      value: 6.25
+      unit: 'J'
+  origin: originale

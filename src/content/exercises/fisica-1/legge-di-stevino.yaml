@@ -228,3 +228,167 @@
   kind: generated
   generator: fisica-1/stevino
   origin: tipologia-appello
+- id: r2-stv-1
+  topic: legge-di-stevino
+  objectives:
+    - legge-di-stevino.4
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'L''equilibrio di un elemento di fluido dà $\dfrac{dp}{dz}=-\rho g$ ($z$ verso l''alto). Con quale ipotesi si integra fino a $p=p_0+\rho gh$, con $h$ profondità?'
+    en: 'Equilibrium of a fluid element gives $\dfrac{dp}{dz}=-\rho g$ ($z$ upwards). Under which assumption does it integrate to $p=p_0+\rho gh$, with $h$ the depth?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Con $\rho$ e $g$ costanti (liquido incomprimibile, quote piccole) l''integrale è lineare: $p(z)=p_0-\rho g(z-z_0)=p_0+\rho gh$. Per un gas $\rho$ dipende da $p$ e si ottiene un andamento esponenziale.'
+        en: 'With constant $\rho$ and $g$ (incompressible liquid, small heights) the integral is linear: $p(z)=p_0-\rho g(z-z_0)=p_0+\rho gh$. For a gas $\rho$ depends on $p$ and the result is exponential.'
+  choices:
+    - text:
+        it: 'Densità costante (fluido incomprimibile)'
+        en: 'Constant density (incompressible fluid)'
+      correct: true
+    - text:
+        it: 'Pressione costante'
+        en: 'Constant pressure'
+      correct: false
+    - text:
+        it: 'Recipiente cilindrico'
+        en: 'Cylindrical container'
+      correct: false
+    - text:
+        it: 'Fluido in moto uniforme'
+        en: 'Fluid in uniform motion'
+      correct: false
+  origin: originale
+- id: r2-stv-2
+  topic: legge-di-stevino
+  objectives:
+    - legge-di-stevino.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Tre recipienti di forma diversa (stretto, largo, a imbuto) hanno la stessa base e contengono acqua alla stessa altezza. Come sono le pressioni sul fondo?'
+    en: 'Three containers of different shapes (narrow, wide, funnel-shaped) have the same base and contain water to the same height. How do the pressures on the bottom compare?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Paradosso idrostatico: per Stevino la pressione dipende solo dalla profondità, non dalla forma né dalla quantità di liquido. Per lo stesso motivo nei vasi comunicanti il liquido si porta alla stessa altezza.'
+        en: "Hydrostatic paradox: by Stevin's law the pressure depends only on the depth, not on the shape or the amount of liquid. For the same reason in communicating vessels the liquid settles at the same height."
+  choices:
+    - text:
+        it: 'Uguali: dipendono solo dalla profondità'
+        en: 'Equal: they depend only on the depth'
+      correct: true
+    - text:
+        it: 'Maggiore nel recipiente più largo'
+        en: 'Largest in the widest container'
+      correct: false
+    - text:
+        it: 'Maggiore in quello che contiene più acqua'
+        en: 'Largest in the one holding more water'
+      correct: false
+    - text:
+        it: 'Maggiore in quello a imbuto'
+        en: 'Largest in the funnel-shaped one'
+      correct: false
+  origin: originale
+- id: r2-stv-3
+  topic: legge-di-stevino
+  objectives:
+    - legge-di-stevino.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Nel barometro di Torricelli un tubo chiuso in alto, pieno di liquido, è capovolto in una vaschetta. Con $p_0=101\,325\,\mathrm{Pa}$ calcola l''altezza della colonna con il mercurio ($\rho=13\,600\,\mathrm{kg/m^3}$) e con l''acqua.'
+    en: 'In Torricelli''s barometer a tube closed at the top and full of liquid is inverted into a dish. With $p_0=101\,325\,\mathrm{Pa}$ find the column height with mercury ($\rho=13\,600\,\mathrm{kg/m^3}$) and with water.'
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': "Tubo capovolto in una vaschetta: la colonna di liquido è alta h, sopra c'è il vuoto.",
+                'en': 'Tube inverted in a dish: the liquid column is h high, vacuum above it.',
+              },
+            'items':
+              [
+                { 'kind': 'line', 'points': [[-3, 1], [-3, 0], [3, 0], [3, 1]] },
+                { 'kind': 'line', 'points': [[-0.4, 0.4], [-0.4, 6], [0.4, 6], [0.4, 0.4]] },
+                { 'kind': 'dim', 'from': [1, 0.8], 'to': [1, 4.5], 'label': 'h' },
+                { 'kind': 'label', 'at': [0, 5.3], 'text': 'vuoto' },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'In cima la pressione è quasi nulla (vapore trascurabile): $p_0=\rho gh\Rightarrow h=\dfrac{p_0}{\rho g}$. Mercurio: $0{,}759\,\mathrm{m}$ (circa 760 mm); acqua: $10{,}33\,\mathrm{m}$.'
+        en: 'At the top the pressure is nearly zero (negligible vapour): $p_0=\rho gh\Rightarrow h=\dfrac{p_0}{\rho g}$. Mercury: $0.759\,\mathrm{m}$ (about 760 mm); water: $10.33\,\mathrm{m}$.'
+  answer:
+    - label:
+        it: '$h_{Hg}$'
+        en: '$h_{Hg}$'
+      value: 0.7594666
+      unit: 'm'
+    - label:
+        it: '$h_{acqua}$'
+        en: '$h_{water}$'
+      value: 10.32875
+      unit: 'm'
+  origin: originale
+- id: r2-stv-4
+  topic: legge-di-stevino
+  objectives:
+    - legge-di-stevino.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un cubo di lato 10 cm è completamente immerso in acqua con le facce orizzontali. Con la legge di Stevino calcola la differenza di pressione fra faccia inferiore e superiore e la forza risultante del fluido.'
+    en: "A cube of side 10 cm is fully immersed in water with horizontal faces. Using Stevin's law find the pressure difference between the bottom and top faces and the resulting fluid force."
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Cubo immerso: la pressione sulla faccia inferiore supera quella sulla superiore.',
+                'en': 'Immersed cube: the pressure on the bottom face exceeds that on the top face.',
+              },
+            'items':
+              [
+                { 'kind': 'line', 'points': [[-4, 6], [4, 6]], 'label': 'p_0' },
+                { 'kind': 'block', 'at': [0, 2.5], 'w': 2, 'h': 2 },
+                { 'kind': 'vector', 'from': [0, 5], 'to': [0, 3.6], 'label': 'p_1 a^2', 'vkind': 'other' },
+                { 'kind': 'vector', 'from': [0, 0], 'to': [0, 1.5], 'label': 'p_2 a^2', 'vkind': 'other' },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$\Delta p=\rho g a=1000\cdot9{,}81\cdot0{,}1=981\,\mathrm{Pa}$, indipendente dalla profondità. Le forze sulle facce laterali si annullano; risultante verso l''alto $F=\Delta p\,a^2=9{,}81\,\mathrm{N}=\rho gV$: è la spinta di Archimede, uguale al peso dell''acqua spostata.'
+        en: '$\Delta p=\rho g a=1000\cdot9.81\cdot0.1=981\,\mathrm{Pa}$, independent of depth. The forces on the side faces cancel; upward resultant $F=\Delta p\,a^2=9.81\,\mathrm{N}=\rho gV$: this is Archimedes'' buoyancy, equal to the weight of the displaced water.'
+  answer:
+    - label:
+        it: '$\Delta p$'
+        en: '$\Delta p$'
+      value: 981
+      unit: 'Pa'
+    - label:
+        it: '$F_A$'
+        en: '$F_A$'
+      value: 9.81
+      unit: 'N'
+  origin: originale

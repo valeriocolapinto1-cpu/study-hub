@@ -178,3 +178,132 @@
   kind: generated
   generator: fisica-1/massa-molla
   origin: tipologia-appello
+- id: r2-omm-1
+  topic: oscillatore-massa-molla
+  objectives:
+    - oscillatore-massa-molla.4
+    - oscillatore-massa-molla.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Una massa di 0,5 kg attaccata a una molla orizzontale con $k=200\,\mathrm{N/m}$ oscilla con ampiezza 10 cm su un piano liscio. Calcola l''energia meccanica, l''energia potenziale elastica e la velocità quando $x=6\,\mathrm{cm}$.'
+    en: 'A 0.5 kg mass attached to a horizontal spring with $k=200\,\mathrm{N/m}$ oscillates with amplitude 10 cm on a smooth surface. Find the mechanical energy, the elastic potential energy and the speed when $x=6\,\mathrm{cm}$.'
+  figure:
+    diagram:
+      {
+        'type': 'spring-mass',
+        'params':
+          {
+            'orientation': 'horizontal',
+            'displacement': 0.6,
+            'kLabel': 'k',
+            'massLabel': 'm',
+            'xLabel': 'x',
+          },
+      }
+  steps:
+    - title:
+        it: 'Energia potenziale'
+        en: 'Potential energy'
+      body:
+        it: 'Il lavoro della forza elastica da $0$ a $x$ è $\int_0^x(-kx'')\,dx''=-\tfrac12kx^2$, quindi $U=\tfrac12kx^2$: in $x=0{,}06\,\mathrm{m}$, $U=0{,}36\,\mathrm{J}$.'
+        en: 'The work of the elastic force from $0$ to $x$ is $\int_0^x(-kx'')\,dx''=-\tfrac12kx^2$, so $U=\tfrac12kx^2$: at $x=0.06\,\mathrm{m}$, $U=0.36\,\mathrm{J}$.'
+    - title:
+        it: 'Conservazione'
+        en: 'Conservation'
+      body:
+        it: 'Agli estremi $v=0$: $E=\tfrac12kA^2=1\,\mathrm{J}$, costante. In $x=0{,}06$: $\tfrac12mv^2=1-0{,}36=0{,}64\,\mathrm{J}\Rightarrow v=1{,}6\,\mathrm{m/s}$.'
+        en: 'At the turning points $v=0$: $E=\tfrac12kA^2=1\,\mathrm{J}$, constant. At $x=0.06$: $\tfrac12mv^2=1-0.36=0.64\,\mathrm{J}\Rightarrow v=1.6\,\mathrm{m/s}$.'
+  answer:
+    - label:
+        it: '$E$'
+        en: '$E$'
+      value: 1
+      unit: 'J'
+    - label:
+        it: '$U$'
+        en: '$U$'
+      value: 0.36
+      unit: 'J'
+    - label:
+        it: '$v$'
+        en: '$v$'
+      value: 1.6
+      unit: 'm/s'
+  origin: originale
+- id: r2-omm-2
+  topic: oscillatore-massa-molla
+  objectives:
+    - oscillatore-massa-molla.6
+    - oscillatore-massa-molla.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Una massa di 0,4 kg è appesa a una molla verticale con $k=100\,\mathrm{N/m}$. Calcola l''allungamento all''equilibrio e il periodo delle piccole oscillazioni verticali.'
+    en: 'A 0.4 kg mass hangs from a vertical spring with $k=100\,\mathrm{N/m}$. Find the extension at equilibrium and the period of small vertical oscillations.'
+  figure:
+    diagram:
+      {
+        'type': 'spring-mass',
+        'params':
+          { 'orientation': 'vertical', 'displacement': 0.4, 'kLabel': 'k', 'massLabel': 'm', 'xLabel': 'y' },
+      }
+  steps:
+    - title:
+        it: 'Equilibrio'
+        en: 'Equilibrium'
+      body:
+        it: '$k\,\Delta=mg\Rightarrow\Delta=0{,}4\cdot9{,}81/100\approx3{,}92\,\mathrm{cm}$.'
+        en: '$k\,\Delta=mg\Rightarrow\Delta=0.4\cdot9.81/100\approx3.92\,\mathrm{cm}$.'
+    - title:
+        it: 'Cambio di coordinata'
+        en: 'Change of coordinate'
+      body:
+        it: 'Con $y$ misurata dall''equilibrio: $m\ddot y=mg-k(\Delta+y)=-ky$. Il peso sposta solo il centro di oscillazione: $T=2\pi\sqrt{m/k}\approx0{,}397\,\mathrm{s}$, come per la molla orizzontale (non dipende da $g$ né dall''ampiezza).'
+        en: 'With $y$ measured from equilibrium: $m\ddot y=mg-k(\Delta+y)=-ky$. Gravity only shifts the centre of oscillation: $T=2\pi\sqrt{m/k}\approx0.397\,\mathrm{s}$, as for the horizontal spring (independent of $g$ and of the amplitude).'
+  answer:
+    - label:
+        it: '$\Delta$'
+        en: '$\Delta$'
+      value: 0.03924
+      unit: 'm'
+    - label:
+        it: '$T$'
+        en: '$T$'
+      value: 0.3973835
+      unit: 's'
+  origin: originale
+- id: r2-omm-3
+  topic: oscillatore-massa-molla
+  objectives:
+    - oscillatore-massa-molla.7
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Quale di queste modifiche cambia il periodo di un oscillatore massa-molla?'
+    en: 'Which of these changes alters the period of a mass-spring oscillator?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: '$T=2\pi\sqrt{m/k}$ dipende solo da massa e costante elastica: quadruplicando $m$ il periodo raddoppia. Non dipende dall''ampiezza (isocronismo), da $g$ (sulla Luna o in verticale cambia solo la posizione di equilibrio) né dall''orientazione.'
+        en: '$T=2\pi\sqrt{m/k}$ depends only on the mass and the spring constant: quadrupling $m$ doubles the period. It does not depend on the amplitude (isochronism), on $g$ (on the Moon or vertically only the equilibrium position changes) or on the orientation.'
+  choices:
+    - text:
+        it: 'Quadruplicare la massa (il periodo raddoppia)'
+        en: 'Quadrupling the mass (the period doubles)'
+      correct: true
+    - text:
+        it: "Raddoppiare l'ampiezza"
+        en: 'Doubling the amplitude'
+      correct: false
+    - text:
+        it: "Portare l'oscillatore sulla Luna"
+        en: 'Taking the oscillator to the Moon'
+      correct: false
+    - text:
+        it: 'Montare la molla in verticale'
+        en: 'Mounting the spring vertically'
+      correct: false
+  origin: originale

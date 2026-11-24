@@ -184,3 +184,129 @@
   kind: generated
   generator: fisica-1/pendolo
   origin: tipologia-appello
+- id: r2-ps-1
+  topic: pendolo-semplice
+  objectives:
+    - pendolo-semplice.4
+    - pendolo-semplice.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Per un pendolo semplice di lunghezza $L$ l''equazione del moto lungo l''arco è $mL\ddot\theta=-mg\sin\theta$. Quale passaggio porta a $T=2\pi\sqrt{L/g}$ indipendente dalla massa?'
+    en: 'For a simple pendulum of length $L$ the equation of motion along the arc is $mL\ddot\theta=-mg\sin\theta$. Which step leads to $T=2\pi\sqrt{L/g}$, independent of the mass?'
+  figure:
+    diagram:
+      {
+        'type': 'pendulum',
+        'params': { 'angle': 12, 'forces': true, 'lengthLabel': 'L', 'massLabel': 'm', 'angleLabel': 'θ' },
+      }
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Per piccoli angoli $\sin\theta\approx\theta$; la massa inerziale a sinistra e quella gravitazionale a destra sono uguali e si semplificano: $\ddot\theta=-(g/L)\theta$, moto armonico con $\omega=\sqrt{g/L}$.'
+        en: 'For small angles $\sin\theta\approx\theta$; the inertial mass on the left and the gravitational mass on the right are equal and cancel: $\ddot\theta=-(g/L)\theta$, harmonic motion with $\omega=\sqrt{g/L}$.'
+  choices:
+    - text:
+        it: '$\sin\theta\approx\theta$ e la massa inerziale si semplifica con quella gravitazionale: $\ddot\theta=-(g/L)\theta$'
+        en: '$\sin\theta\approx\theta$ and the inertial mass cancels with the gravitational one: $\ddot\theta=-(g/L)\theta$'
+      correct: true
+    - text:
+        it: 'La tensione del filo bilancia il peso, quindi la massa non conta'
+        en: 'The string tension balances the weight, so the mass does not matter'
+      correct: false
+    - text:
+        it: 'Si trascura la massa perché il filo è inestensibile'
+        en: 'The mass is neglected because the string is inextensible'
+      correct: false
+    - text:
+        it: '$\cos\theta\approx1$ e quindi $\omega=\sqrt{L/g}$'
+        en: '$\cos\theta\approx1$ and so $\omega=\sqrt{L/g}$'
+      correct: false
+  origin: originale
+- id: r2-ps-2
+  topic: pendolo-semplice
+  objectives:
+    - pendolo-semplice.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un pendolo di lunghezza 1,2 m e massa 0,3 kg viene lasciato da fermo a $\theta_0=30^\circ$. Calcola la velocità nel punto più basso e la tensione del filo nel punto più basso e agli estremi.'
+    en: 'A pendulum of length 1.2 m and mass 0.3 kg is released from rest at $\theta_0=30^\circ$. Find the speed at the lowest point and the string tension at the lowest point and at the turning points.'
+  figure:
+    diagram:
+      {
+        'type': 'pendulum',
+        'params': { 'angle': 30, 'forces': true, 'lengthLabel': 'L', 'massLabel': 'm', 'angleLabel': 'θ_0' },
+      }
+  steps:
+    - title:
+        it: 'Velocità'
+        en: 'Speed'
+      body:
+        it: 'Energia: $v_{max}=\sqrt{2gL(1-\cos\theta_0)}\approx1{,}78\,\mathrm{m/s}$.'
+        en: 'Energy: $v_{max}=\sqrt{2gL(1-\cos\theta_0)}\approx1.78\,\mathrm{m/s}$.'
+    - title:
+        it: 'Equazione radiale'
+        en: 'Radial equation'
+      body:
+        it: '$T_{filo}-mg\cos\theta=mv^2/L$. In basso: $T_{filo}=mg+mv^2/L=mg(3-2\cos\theta_0)\approx3{,}73\,\mathrm{N}$. Agli estremi $v=0$: $T_{filo}=mg\cos\theta_0\approx2{,}55\,\mathrm{N}$.'
+        en: '$T_{str}-mg\cos\theta=mv^2/L$. At the bottom: $T_{str}=mg+mv^2/L=mg(3-2\cos\theta_0)\approx3.73\,\mathrm{N}$. At the turning points $v=0$: $T_{str}=mg\cos\theta_0\approx2.55\,\mathrm{N}$.'
+  answer:
+    - label:
+        it: '$v_{max}$'
+        en: '$v_{max}$'
+      value: 1.776034
+      unit: 'm/s'
+    - label:
+        it: '$T_{max}$'
+        en: '$T_{max}$'
+      value: 3.731574
+      unit: 'N'
+    - label:
+        it: '$T_{min}$'
+        en: '$T_{min}$'
+      value: 2.548713
+      unit: 'N'
+  origin: originale
+- id: r2-ps-3
+  topic: pendolo-semplice
+  objectives:
+    - pendolo-semplice.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un pendolo lungo 1 m oscilla con ampiezza $\theta_0=40^\circ$. Calcola il periodo delle piccole oscillazioni $T_0$ e il periodo corretto con $T\approx T_0\left(1+\theta_0^2/16\right)$.'
+    en: 'A 1 m long pendulum swings with amplitude $\theta_0=40^\circ$. Find the small-oscillation period $T_0$ and the corrected period with $T\approx T_0\left(1+\theta_0^2/16\right)$.'
+  figure:
+    diagram:
+      {
+        'type': 'pendulum',
+        'params': { 'angle': 40, 'forces': false, 'lengthLabel': 'L', 'massLabel': 'm', 'angleLabel': 'θ_0' },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$T_0=2\pi\sqrt{1/9{,}81}\approx2{,}006\,\mathrm{s}$. In radianti $\theta_0=0{,}698$, quindi $T\approx T_0(1+0{,}0305)\approx2{,}067\,\mathrm{s}$.'
+        en: '$T_0=2\pi\sqrt{1/9.81}\approx2.006\,\mathrm{s}$. In radians $\theta_0=0.698$, so $T\approx T_0(1+0.0305)\approx2.067\,\mathrm{s}$.'
+    - title:
+        it: 'Grandi ampiezze'
+        en: 'Large amplitudes'
+      body:
+        it: 'Con $\sin\theta<\theta$ la forza di richiamo è minore di quella armonica: il periodo cresce con l''ampiezza (circa il 3 % a $40^\circ$) e il pendolo non è più isocrono.'
+        en: 'With $\sin\theta<\theta$ the restoring force is smaller than the harmonic one: the period grows with the amplitude (about 3 % at $40^\circ$) and the pendulum is no longer isochronous.'
+  answer:
+    - label:
+        it: '$T_0$'
+        en: '$T_0$'
+      value: 2.006067
+      unit: 's'
+    - label:
+        it: '$T$'
+        en: '$T$'
+      value: 2.067175
+      unit: 's'
+  origin: originale

@@ -134,3 +134,177 @@
         en: Carnot η
       value: 0.5
   origin: originale
+- id: r2-dc-1
+  topic: disuguaglianza-di-clausius
+  objectives:
+    - disuguaglianza-di-clausius.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Nella dimostrazione della disuguaglianza di Clausius gli scambi del sistema con le sorgenti $T_i$ sono forniti da motori di Carnot che prelevano calore da un'unica sorgente $T_0$. Che cosa impone Kelvin-Planck al sistema composto?"
+    en: "In the proof of the Clausius inequality the system's exchanges with reservoirs $T_i$ are supplied by Carnot engines drawing heat from a single reservoir $T_0$. What does Kelvin-Planck impose on the composite system?"
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Il sistema composto compie un ciclo scambiando calore solo con $T_0$: $Q_0=T_0\sum Q_i/T_i$. Per Kelvin-Planck non può trasformarlo tutto in lavoro positivo, quindi $Q_0\le0$, cioè $\sum Q_i/T_i\le0$ ($\oint\delta Q/T\le0$).'
+        en: 'The composite system runs a cycle exchanging heat only with $T_0$: $Q_0=T_0\sum Q_i/T_i$. By Kelvin-Planck it cannot turn it all into positive work, so $Q_0\le0$, i.e. $\sum Q_i/T_i\le0$ ($\oint\delta Q/T\le0$).'
+  choices:
+    - text:
+        it: 'Il calore preso da $T_0$ non può essere positivo, quindi $\sum Q_i/T_i\le0$'
+        en: 'The heat taken from $T_0$ cannot be positive, hence $\sum Q_i/T_i\le0$'
+      correct: true
+    - text:
+        it: 'Il lavoro totale deve essere positivo'
+        en: 'The total work must be positive'
+      correct: false
+    - text:
+        it: '$\sum Q_i=0$'
+        en: '$\sum Q_i=0$'
+      correct: false
+    - text:
+        it: '$\sum Q_i/T_i\ge0$'
+        en: '$\sum Q_i/T_i\ge0$'
+      correct: false
+  origin: originale
+- id: r2-dc-2
+  topic: disuguaglianza-di-clausius
+  objectives:
+    - disuguaglianza-di-clausius.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Perché per un ciclo **reversibile** vale l''uguaglianza $\oint\delta Q/T=0$?'
+    en: 'Why does equality $\oint\delta Q/T=0$ hold for a **reversible** cycle?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'La disuguaglianza vale per ogni ciclo: $\oint\delta Q/T\le0$. Percorrendo all''indietro il ciclo reversibile ogni $\delta Q$ cambia segno, quindi anche $-\oint\delta Q/T\le0$. Le due condizioni insieme danno zero.'
+        en: 'The inequality holds for every cycle: $\oint\delta Q/T\le0$. Running the reversible cycle backwards every $\delta Q$ changes sign, so also $-\oint\delta Q/T\le0$. Both together give zero.'
+  choices:
+    - text:
+        it: 'Invertendo il ciclo i calori cambiano segno: valgono sia $\le0$ sia $\ge0$'
+        en: 'Reversing the cycle changes the sign of the heats: both $\le0$ and $\ge0$ hold'
+      correct: true
+    - text:
+        it: 'Perché in un ciclo reversibile $Q=0$'
+        en: 'Because $Q=0$ in a reversible cycle'
+      correct: false
+    - text:
+        it: 'Perché la temperatura è costante'
+        en: 'Because the temperature is constant'
+      correct: false
+    - text:
+        it: 'Perché il lavoro è nullo'
+        en: 'Because the work is zero'
+      correct: false
+  origin: originale
+- id: r2-dc-3
+  topic: disuguaglianza-di-clausius
+  objectives:
+    - disuguaglianza-di-clausius.6
+  difficulty: 3
+  kind: static
+  statement:
+    it: '1 mol di gas monoatomico va da $(300\,\mathrm K,\,10\,\mathrm L)$ a $(600\,\mathrm K,\,20\,\mathrm L)$ per due vie reversibili: (1) isocora fino a 600 K, poi isoterma; (2) isoterma a 300 K, poi isocora. Calcola il calore lungo ciascuna via e $\int\delta Q/T$.'
+    en: '1 mol of monatomic gas goes from $(300\,\mathrm K,\,10\,\mathrm L)$ to $(600\,\mathrm K,\,20\,\mathrm L)$ along two reversible paths: (1) isochoric to 600 K, then isothermal; (2) isothermal at 300 K, then isochoric. Find the heat along each path and $\int\delta Q/T$.'
+  figure:
+    diagram:
+      {
+        'type': 'pv-cycle',
+        'params':
+          {
+            'values': false,
+            'work': false,
+            'units': { 'p': 'kPa', 'V': 'L' },
+            'states':
+              [
+                { 'id': 'A', 'V': 10, 'p': 249.42 },
+                { 'id': 'B', 'V': 10, 'p': 498.84 },
+                { 'id': 'C', 'V': 20, 'p': 124.71 },
+                { 'id': 'D', 'V': 20, 'p': 249.42 },
+              ],
+            'processes':
+              [
+                { 'from': 'A', 'to': 'B', 'kind': 'isochoric' },
+                { 'from': 'B', 'to': 'D', 'kind': 'isothermal' },
+                { 'from': 'A', 'to': 'C', 'kind': 'isothermal' },
+                { 'from': 'C', 'to': 'D', 'kind': 'isochoric' },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Calori'
+        en: 'Heats'
+      body:
+        it: '(1) $\tfrac32R\cdot300+R\cdot600\ln2\approx7199\,\mathrm J$; (2) $R\cdot300\ln2+\tfrac32R\cdot300\approx5470\,\mathrm J$: diversi, $\delta Q$ non è un differenziale esatto.'
+        en: '(1) $\tfrac32R\cdot300+R\cdot600\ln2\approx7199\,\mathrm J$; (2) $R\cdot300\ln2+\tfrac32R\cdot300\approx5470\,\mathrm J$: different, $\delta Q$ is not an exact differential.'
+    - title:
+        it: 'Integrale di Clausius'
+        en: 'Clausius integral'
+      body:
+        it: 'Su entrambe: $\int\dfrac{\delta Q}{T}=\tfrac32R\ln2+R\ln2\approx14{,}41\,\mathrm{J/K}$. Non dipende dal percorso: $\delta Q_{rev}/T=dS$ è esatto (conseguenza di $\oint\delta Q_{rev}/T=0$).'
+        en: 'On both: $\int\dfrac{\delta Q}{T}=\tfrac32R\ln2+R\ln2\approx14.41\,\mathrm{J/K}$. It does not depend on the path: $\delta Q_{rev}/T=dS$ is exact (a consequence of $\oint\delta Q_{rev}/T=0$).'
+  answer:
+    - label:
+        it: '$Q_1$'
+        en: '$Q_1$'
+      value: 7198.995
+      unit: 'J'
+    - label:
+        it: '$Q_2$'
+        en: '$Q_2$'
+      value: 5470.148
+      unit: 'J'
+    - label:
+        it: '$\Delta S$'
+        en: '$\Delta S$'
+      value: 14.40706
+      unit: 'J/K'
+  origin: originale
+- id: r2-dc-4
+  topic: disuguaglianza-di-clausius
+  objectives:
+    - disuguaglianza-di-clausius.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un motore assorbe per ciclo 1000 J da una sorgente a 500 K e ne cede 700 J a una a 300 K. Calcola $\oint\delta Q/T$ e l''entropia prodotta nell''universo per ciclo.'
+    en: 'Per cycle an engine absorbs 1000 J from a reservoir at 500 K and rejects 700 J to one at 300 K. Find $\oint\delta Q/T$ and the entropy produced in the universe per cycle.'
+  figure:
+    diagram:
+      {
+        'type': 'heat-engine',
+        'params':
+          {
+            'kind': 'engine',
+            'reservoirs':
+              [
+                { 'label': '500 K', 'heat': 'Q_C = 1000 J', 'side': 'hot' },
+                { 'label': '300 K', 'heat': 'Q_F = 700 J', 'side': 'cold' },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$\oint\dfrac{\delta Q}{T}=\dfrac{1000}{500}-\dfrac{700}{300}\approx-0{,}333\,\mathrm{J/K}<0$: ciclo irreversibile. L''entropia del fluido non cambia (ciclo); le sorgenti guadagnano $-2+2{,}333=0{,}333\,\mathrm{J/K}$: $\Delta S_{univ}=-\oint\delta Q/T>0$. Così la disuguaglianza diventa la legge dell''aumento dell''entropia.'
+        en: '$\oint\dfrac{\delta Q}{T}=\dfrac{1000}{500}-\dfrac{700}{300}\approx-0.333\,\mathrm{J/K}<0$: irreversible cycle. The fluid''s entropy does not change (cycle); the reservoirs gain $-2+2.333=0.333\,\mathrm{J/K}$: $\Delta S_{univ}=-\oint\delta Q/T>0$. This is how the inequality becomes the law of entropy increase.'
+  answer:
+    - label:
+        it: '$\oint \delta Q/T$'
+        en: '$\oint \delta Q/T$'
+      value: -0.3333333
+      unit: 'J/K'
+    - label:
+        it: '$\Delta S_{univ}$'
+        en: '$\Delta S_{univ}$'
+      value: 0.3333333
+      unit: 'J/K'
+  origin: originale

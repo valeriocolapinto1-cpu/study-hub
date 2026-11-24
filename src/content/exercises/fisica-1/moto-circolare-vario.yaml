@@ -204,3 +204,123 @@
   kind: generated
   generator: fisica-1/moto-circolare
   origin: tipologia-appello
+- id: r2-mcv-1
+  topic: moto-circolare-vario
+  objectives:
+    - moto-circolare-vario.4
+    - moto-circolare-vario.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un''auto percorre una curva circolare di raggio 50 m aumentando la velocità in modo uniforme da 10 m/s a 20 m/s in 5 s. Nell''istante in cui $v=15\,\mathrm{m/s}$ calcola l''accelerazione angolare, l''accelerazione centripeta e il modulo dell''accelerazione totale.'
+    en: 'A car drives along a circular bend of radius 50 m, speeding up uniformly from 10 m/s to 20 m/s in 5 s. At the instant when $v=15\,\mathrm{m/s}$ find the angular acceleration, the centripetal acceleration and the magnitude of the total acceleration.'
+  figure:
+    diagram:
+      {
+        'type': 'circular-motion',
+        'params': { 'angle': 40, 'tangential': 'speeding', 'radiusLabel': 'R', 'showAngle': false },
+      }
+  steps:
+    - title:
+        it: 'Componente tangenziale'
+        en: 'Tangential component'
+      body:
+        it: '$a_t=\Delta v/\Delta t=10/5=2\,\mathrm{m/s^2}$; da $v=\omega R$ derivando si ha $a_t=\alpha R$, quindi $\alpha=a_t/R=0{,}04\,\mathrm{rad/s^2}$.'
+        en: '$a_t=\Delta v/\Delta t=10/5=2\,\mathrm{m/s^2}$; differentiating $v=\omega R$ gives $a_t=\alpha R$, hence $\alpha=a_t/R=0.04\,\mathrm{rad/s^2}$.'
+    - title:
+        it: 'Componente normale e modulo'
+        en: 'Normal component and magnitude'
+      body:
+        it: '$a_n=v^2/R=225/50=4{,}5\,\mathrm{m/s^2}$, diretta verso il centro. Le due componenti sono perpendicolari: $|\vec a|=\sqrt{a_t^2+a_n^2}=\sqrt{4+20{,}25}\approx4{,}92\,\mathrm{m/s^2}$.'
+        en: '$a_n=v^2/R=225/50=4.5\,\mathrm{m/s^2}$, pointing to the centre. The two components are perpendicular: $|\vec a|=\sqrt{a_t^2+a_n^2}=\sqrt{4+20.25}\approx4.92\,\mathrm{m/s^2}$.'
+  answer:
+    - label:
+        it: '$\alpha$'
+        en: '$\alpha$'
+      value: 0.04
+      unit: 'rad/s²'
+    - label:
+        it: '$a_n$'
+        en: '$a_n$'
+      value: 4.5
+      unit: 'm/s²'
+    - label:
+        it: '$|a|$'
+        en: '$|a|$'
+      value: 4.924429
+      unit: 'm/s²'
+  origin: originale
+- id: r2-mcv-2
+  topic: moto-circolare-vario
+  objectives:
+    - moto-circolare-vario.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Un punto percorre una circonferenza in senso antiorario **rallentando**. Come sono orientati $\vec v$, $\vec a_t$ e $\vec a_n$?'
+    en: 'A point moves anticlockwise on a circle while **slowing down**. How are $\vec v$, $\vec a_t$ and $\vec a_n$ oriented?'
+  figure:
+    diagram:
+      {
+        'type': 'circular-motion',
+        'params': { 'angle': 60, 'tangential': 'slowing', 'radiusLabel': 'R', 'showAngle': false },
+      }
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: '$\vec v$ è tangente nel verso del moto; $\vec a_t$ è tangente ma opposta a $\vec v$ perché il modulo diminuisce; $\vec a_n$ punta sempre verso il centro. L''accelerazione totale punta quindi verso l''interno e «all''indietro».'
+        en: '$\vec v$ is tangent in the direction of motion; $\vec a_t$ is tangent but opposite to $\vec v$ because the speed decreases; $\vec a_n$ always points to the centre. The total acceleration therefore points inwards and «backwards».'
+  choices:
+    - text:
+        it: '$\vec v$ tangente nel verso del moto, $\vec a_t$ tangente e opposta a $\vec v$, $\vec a_n$ verso il centro'
+        en: '$\vec v$ tangent in the direction of motion, $\vec a_t$ tangent and opposite to $\vec v$, $\vec a_n$ towards the centre'
+      correct: true
+    - text:
+        it: '$\vec v$ verso il centro, $\vec a_t$ tangente, $\vec a_n$ verso l''esterno'
+        en: '$\vec v$ towards the centre, $\vec a_t$ tangent, $\vec a_n$ outwards'
+      correct: false
+    - text:
+        it: '$\vec a_t$ concorde a $\vec v$, $\vec a_n$ verso il centro'
+        en: '$\vec a_t$ parallel to $\vec v$, $\vec a_n$ towards the centre'
+      correct: false
+    - text:
+        it: '$\vec a_n$ tangente e opposta a $\vec v$, $\vec a_t$ nulla'
+        en: '$\vec a_n$ tangent and opposite to $\vec v$, $\vec a_t$ zero'
+      correct: false
+  origin: originale
+- id: r2-mcv-3
+  topic: moto-circolare-vario
+  objectives:
+    - moto-circolare-vario.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Nel caso limite del moto circolare **uniforme**:'
+    en: 'In the limiting case of **uniform** circular motion:'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Con $|\vec v|$ costante $a_t=dv/dt=0$ e $\alpha=0$; resta solo $a_n=v^2/R=\omega^2R\neq0$: il moto è accelerato perché cambia la direzione della velocità.'
+        en: 'With constant $|\vec v|$, $a_t=dv/dt=0$ and $\alpha=0$; only $a_n=v^2/R=\omega^2R\neq0$ remains: the motion is accelerated because the direction of the velocity changes.'
+  choices:
+    - text:
+        it: '$a_t=0$ e l''accelerazione è tutta centripeta, $a_n=\omega^2R$'
+        en: '$a_t=0$ and the acceleration is entirely centripetal, $a_n=\omega^2R$'
+      correct: true
+    - text:
+        it: "l'accelerazione è nulla perché la velocità ha modulo costante"
+        en: 'the acceleration is zero because the speed is constant'
+      correct: false
+    - text:
+        it: '$a_n=0$ e resta solo $a_t$'
+        en: '$a_n=0$ and only $a_t$ remains'
+      correct: false
+    - text:
+        it: '$\alpha$ è costante e diversa da zero'
+        en: '$\alpha$ is constant and non-zero'
+      correct: false
+  origin: originale

@@ -182,3 +182,128 @@
   kind: generated
   generator: fisica-1/lavoro-frenata
   origin: tipologia-appello
+- id: r2-lec-1
+  topic: lavoro-energia-cinetica
+  objectives:
+    - lavoro-energia-cinetica.6
+    - lavoro-energia-cinetica.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Una cassa di 5 kg, ferma su un pavimento con $\mu_d=0{,}2$, viene tirata per 3 m da una forza di 40 N inclinata di $30^\circ$ sopra l''orizzontale. Calcola il lavoro della forza, il lavoro dell''attrito e la velocità finale.'
+    en: 'A 5 kg crate, at rest on a floor with $\mu_k=0.2$, is pulled for 3 m by a 40 N force tilted $30^\circ$ above the horizontal. Find the work of the force, the work of friction and the final speed.'
+  figure:
+    diagram:
+      {
+        'type': 'free-body',
+        'params':
+          {
+            'forces':
+              [
+                { 'label': 'F', 'angle': 30, 'magnitude': 2, 'kind': 'applied' },
+                { 'label': 'N', 'angle': 90, 'magnitude': 1.2, 'kind': 'normal' },
+                { 'label': 'mg', 'angle': 270, 'magnitude': 2, 'kind': 'weight' },
+                { 'label': 'f_a', 'angle': 180, 'magnitude': 0.6, 'kind': 'friction' },
+              ],
+            'body': 'block',
+            'ground': true,
+          },
+      }
+  steps:
+    - title:
+        it: 'Forze'
+        en: 'Forces'
+      body:
+        it: '$N=mg-F\sin30^\circ=49{,}05-20=29{,}05\,\mathrm{N}$. $W_F=F\,d\cos30^\circ\approx103{,}9\,\mathrm{J}$; $W_a=-\mu_dN\,d\approx-17{,}43\,\mathrm{J}$; peso e normale sono perpendicolari allo spostamento e non lavorano.'
+        en: '$N=mg-F\sin30^\circ=49.05-20=29.05\,\mathrm{N}$. $W_F=F\,d\cos30^\circ\approx103.9\,\mathrm{J}$; $W_f=-\mu_kN\,d\approx-17.43\,\mathrm{J}$; weight and normal force are perpendicular to the displacement and do no work.'
+    - title:
+        it: "Teorema dell'energia cinetica"
+        en: 'Work-energy theorem'
+      body:
+        it: 'Vale con il lavoro **totale**, di tutte le forze, conservative o no: $\tfrac12mv^2=W_F+W_a\approx86{,}5\,\mathrm{J}\Rightarrow v\approx5{,}88\,\mathrm{m/s}$.'
+        en: 'It holds with the **total** work of all forces, conservative or not: $\tfrac12mv^2=W_F+W_f\approx86.5\,\mathrm{J}\Rightarrow v\approx5.88\,\mathrm{m/s}$.'
+  answer:
+    - label:
+        it: '$W_F$'
+        en: '$W_F$'
+      value: 103.923
+      unit: 'J'
+    - label:
+        it: '$W_a$'
+        en: '$W_f$'
+      value: -17.43
+      unit: 'J'
+    - label:
+        it: '$v$'
+        en: '$v$'
+      value: 5.88194
+      unit: 'm/s'
+  origin: originale
+- id: r2-lec-2
+  topic: lavoro-energia-cinetica
+  objectives:
+    - lavoro-energia-cinetica.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Un sasso legato a una corda gira su una circonferenza orizzontale a velocità costante. Quanto lavoro compie la tensione in un giro, e perché?'
+    en: 'A stone tied to a string moves on a horizontal circle at constant speed. How much work does the tension do in one turn, and why?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: '$dW=\vec F\cdot d\vec s=F\,ds\cos\theta$: la tensione è centripeta, sempre perpendicolare allo spostamento, quindi $dW=0$ istante per istante. Infatti l''energia cinetica non cambia.'
+        en: '$dW=\vec F\cdot d\vec s=F\,ds\cos\theta$: the tension is centripetal, always perpendicular to the displacement, so $dW=0$ at every instant. Indeed the kinetic energy does not change.'
+  choices:
+    - text:
+        it: 'Zero: è sempre perpendicolare allo spostamento'
+        en: 'Zero: it is always perpendicular to the displacement'
+      correct: true
+    - text:
+        it: '$2\pi R\,T$'
+        en: '$2\pi R\,T$'
+      correct: false
+    - text:
+        it: 'Dipende dalla velocità del sasso'
+        en: "It depends on the stone's speed"
+      correct: false
+    - text:
+        it: 'Negativo, perché frena il sasso'
+        en: 'Negative, because it slows the stone down'
+      correct: false
+  origin: originale
+- id: r2-lec-3
+  topic: lavoro-energia-cinetica
+  objectives:
+    - lavoro-energia-cinetica.4
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Il teorema dell''energia cinetica $W=\Delta K$ vale:'
+    en: 'The work-energy theorem $W=\Delta K$ holds:'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Si ricava da $\vec F=m\vec a$ con $\vec F$ risultante di **tutte** le forze: vale per il lavoro totale, qualunque sia la natura delle forze (attrito compreso). Non serve la conservazione dell''energia.'
+        en: 'It follows from $\vec F=m\vec a$ with $\vec F$ the resultant of **all** forces: it holds for the total work, whatever the nature of the forces (friction included). Energy conservation is not needed.'
+  choices:
+    - text:
+        it: 'per il lavoro totale di tutte le forze, conservative o no'
+        en: 'for the total work of all forces, conservative or not'
+      correct: true
+    - text:
+        it: 'solo per le forze conservative'
+        en: 'only for conservative forces'
+      correct: false
+    - text:
+        it: "solo se non c'è attrito"
+        en: 'only if there is no friction'
+      correct: false
+    - text:
+        it: 'solo per il lavoro del peso'
+        en: 'only for the work of gravity'
+      correct: false
+  origin: originale

@@ -166,3 +166,172 @@
   kind: generated
   generator: fisica-1/espansione-isoterma-adiabatica
   origin: tipologia-appello
+- id: r2-pp-1
+  topic: primo-principio
+  objectives:
+    - primo-principio.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: '1 mol di gas perfetto si espande in modo isotermo reversibile a 300 K da 10 L a 30 L. Calcola il lavoro compiuto dal gas e il calore assorbito.'
+    en: '1 mol of ideal gas expands isothermally and reversibly at 300 K from 10 L to 30 L. Find the work done by the gas and the heat absorbed.'
+  figure:
+    diagram:
+      {
+        'type': 'pv-cycle',
+        'params':
+          {
+            'values': false,
+            'work': true,
+            'units': { 'p': 'kPa', 'V': 'L' },
+            'states': [{ 'id': 'A', 'V': 10, 'p': 249.42 }, { 'id': 'B', 'V': 30, 'p': 83.14 }],
+            'processes': [{ 'from': 'A', 'to': 'B', 'kind': 'isothermal' }],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$W=\int_{V_1}^{V_2}p\,dV=\int\dfrac{nRT}{V}dV=nRT\ln\dfrac{V_2}{V_1}=8{,}314\cdot300\cdot\ln3\approx2740\,\mathrm{J}$. Isoterma: $\Delta U=0$, quindi $Q=W$.'
+        en: '$W=\int_{V_1}^{V_2}p\,dV=\int\dfrac{nRT}{V}dV=nRT\ln\dfrac{V_2}{V_1}=8.314\cdot300\cdot\ln3\approx2740\,\mathrm{J}$. Isotherm: $\Delta U=0$, so $Q=W$.'
+  answer:
+    - label:
+        it: '$W$'
+        en: '$W$'
+      value: 2740.159
+      unit: 'J'
+    - label:
+        it: '$Q$'
+        en: '$Q$'
+      value: 2740.159
+      unit: 'J'
+  origin: originale
+- id: r2-pp-2
+  topic: primo-principio
+  objectives:
+    - primo-principio.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Aria ($\gamma=1{,}4$) a 100 kPa, 1 L e 300 K viene compressa adiabaticamente e reversibilmente fino a 0,5 L. Calcola pressione e temperatura finali.'
+    en: 'Air ($\gamma=1.4$) at 100 kPa, 1 L and 300 K is compressed adiabatically and reversibly to 0.5 L. Find the final pressure and temperature.'
+  figure:
+    diagram:
+      {
+        'type': 'pv-cycle',
+        'params':
+          {
+            'values': false,
+            'work': true,
+            'gamma': 1.4,
+            'units': { 'p': 'kPa', 'V': 'L' },
+            'states': [{ 'id': 'A', 'V': 1, 'p': 100 }, { 'id': 'B', 'V': 0.5, 'p': 263.9 }],
+            'processes': [{ 'from': 'A', 'to': 'B', 'kind': 'adiabatic' }],
+          },
+      }
+  steps:
+    - title:
+        it: 'Adiabatica'
+        en: 'Adiabatic'
+      body:
+        it: '$dQ=0$: $nc_VdT=-p\,dV=-\dfrac{nRT}{V}dV\Rightarrow\dfrac{dT}{T}=-(\gamma-1)\dfrac{dV}{V}$, cioè $TV^{\gamma-1}=$ cost e, con $pV=nRT$, $pV^\gamma=$ cost.'
+        en: '$dQ=0$: $nc_VdT=-p\,dV=-\dfrac{nRT}{V}dV\Rightarrow\dfrac{dT}{T}=-(\gamma-1)\dfrac{dV}{V}$, i.e. $TV^{\gamma-1}=$ const and, with $pV=nRT$, $pV^\gamma=$ const.'
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$p_2=100\cdot2^{1{,}4}\approx263{,}9\,\mathrm{kPa}$; $T_2=300\cdot2^{0{,}4}\approx395{,}9\,\mathrm{K}$.'
+        en: '$p_2=100\cdot2^{1.4}\approx263.9\,\mathrm{kPa}$; $T_2=300\cdot2^{0.4}\approx395.9\,\mathrm{K}$.'
+  answer:
+    - label:
+        it: '$p_2$'
+        en: '$p_2$'
+      value: 263.9016
+      unit: 'kPa'
+    - label:
+        it: '$T_2$'
+        en: '$T_2$'
+      value: 395.8524
+      unit: 'K'
+  origin: originale
+- id: r2-pp-3
+  topic: primo-principio
+  objectives:
+    - primo-principio.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: '2 mol di gas monoatomico vengono scaldate a pressione costante $10^5\,\mathrm{Pa}$ da 300 K a 400 K. Calcola lavoro, variazione di energia interna e calore.'
+    en: '2 mol of monatomic gas are heated at a constant pressure of $10^5\,\mathrm{Pa}$ from 300 K to 400 K. Find work, change of internal energy and heat.'
+  figure:
+    diagram:
+      {
+        'type': 'pv-cycle',
+        'params':
+          {
+            'values': false,
+            'work': true,
+            'units': { 'p': 'kPa', 'V': 'L' },
+            'states': [{ 'id': 'A', 'V': 49.88, 'p': 100 }, { 'id': 'B', 'V': 66.51, 'p': 100 }],
+            'processes': [{ 'from': 'A', 'to': 'B', 'kind': 'isobaric' }],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Isobara: $W=p\Delta V=nR\Delta T\approx1662{,}8\,\mathrm{J}$; $\Delta U=nc_V\Delta T=\tfrac32nR\Delta T\approx2494{,}2\,\mathrm{J}$; $Q=\Delta U+W=nc_p\Delta T\approx4157\,\mathrm{J}$. Le altre trasformazioni notevoli: isocora $W=0$, $Q=\Delta U$; isoterma $\Delta U=0$, $Q=W$; adiabatica $Q=0$, $W=-\Delta U$.'
+        en: 'Isobaric: $W=p\Delta V=nR\Delta T\approx1662.8\,\mathrm{J}$; $\Delta U=nc_V\Delta T=\tfrac32nR\Delta T\approx2494.2\,\mathrm{J}$; $Q=\Delta U+W=nc_p\Delta T\approx4157\,\mathrm{J}$. The other notable processes: isochoric $W=0$, $Q=\Delta U$; isothermal $\Delta U=0$, $Q=W$; adiabatic $Q=0$, $W=-\Delta U$.'
+  answer:
+    - label:
+        it: '$W$'
+        en: '$W$'
+      value: 1662.8
+      unit: 'J'
+    - label:
+        it: '$\Delta U$'
+        en: '$\Delta U$'
+      value: 2494.2
+      unit: 'J'
+    - label:
+        it: '$Q$'
+        en: '$Q$'
+      value: 4157
+      unit: 'J'
+  origin: originale
+- id: r2-pp-4
+  topic: primo-principio
+  objectives:
+    - primo-principio.7
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Che cosa dice il primo principio $\Delta U=Q-W$ su un ciclo e sull''espansione libera di un gas perfetto?'
+    en: 'What does the first law $\Delta U=Q-W$ say about a cycle and about the free expansion of an ideal gas?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: '$U$ è funzione di stato: in un ciclo $\Delta U=0$ e quindi $Q=W$. Nell''espansione libera $Q=0$ (isolato) e $W=0$ (nel vuoto): $\Delta U=0$ e, per un gas perfetto, $T$ non cambia.'
+        en: '$U$ is a state function: in a cycle $\Delta U=0$ and so $Q=W$. In free expansion $Q=0$ (insulated) and $W=0$ (into vacuum): $\Delta U=0$ and, for an ideal gas, $T$ does not change.'
+  choices:
+    - text:
+        it: 'Ciclo: $Q=W$; espansione libera: $Q=W=\Delta U=0$'
+        en: 'Cycle: $Q=W$; free expansion: $Q=W=\Delta U=0$'
+      correct: true
+    - text:
+        it: 'Ciclo: $Q=0$; espansione libera: $W=-\Delta U$'
+        en: 'Cycle: $Q=0$; free expansion: $W=-\Delta U$'
+      correct: false
+    - text:
+        it: 'Ciclo: $W=0$; espansione libera: $Q=\Delta U$'
+        en: 'Cycle: $W=0$; free expansion: $Q=\Delta U$'
+      correct: false
+    - text:
+        it: 'In entrambi i casi la temperatura scende'
+        en: 'In both cases the temperature drops'
+      correct: false
+  origin: originale

@@ -139,3 +139,164 @@
   kind: generated
   generator: fisica-1/urto-elastico
   origin: tipologia-appello
+- id: r2-uc-1
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Un corpo di 1 kg a 6 m/s urta elasticamente e frontalmente un corpo fermo di 2 kg. Calcola le velocità dopo l'urto."
+    en: 'A 1 kg body at 6 m/s collides elastically head-on with a 2 kg body at rest. Find the velocities after the collision.'
+  figure:
+    diagram:
+      {
+        'type': 'collision',
+        'params':
+          {
+            'unit': 'm/s',
+            'before': [{ 'label': '1', 'mass': '1 kg', 'v': 6 }, { 'label': '2', 'mass': '2 kg', 'v': 0 }],
+            'after': [{ 'label': '1', 'mass': '1 kg', 'v': -2 }, { 'label': '2', 'mass': '2 kg', 'v': 4 }],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$v_1''=\dfrac{m_1-m_2}{m_1+m_2}v_1=-2\,\mathrm{m/s}$ (rimbalza, perché $m_1<m_2$), $v_2''=\dfrac{2m_1}{m_1+m_2}v_1=4\,\mathrm{m/s}$. Casi notevoli: masse uguali si scambiano le velocità; contro una massa molto grande il corpo rimbalza con $-v_1$.'
+        en: '$v_1''=\dfrac{m_1-m_2}{m_1+m_2}v_1=-2\,\mathrm{m/s}$ (it bounces back, since $m_1<m_2$), $v_2''=\dfrac{2m_1}{m_1+m_2}v_1=4\,\mathrm{m/s}$. Notable cases: equal masses swap velocities; against a very large mass the body bounces back with $-v_1$.'
+    - title:
+        it: 'Verifica'
+        en: 'Check'
+      body:
+        it: 'Quantità di moto $6=-2+8$; energia $18=2+16\,\mathrm{J}$.'
+        en: 'Momentum $6=-2+8$; energy $18=2+16\,\mathrm{J}$.'
+  answer:
+    - label:
+        it: "$v_1'$"
+        en: "$v_1'$"
+      value: -2
+      unit: 'm/s'
+    - label:
+        it: "$v_2'$"
+        en: "$v_2'$"
+      value: 4
+      unit: 'm/s'
+  origin: originale
+- id: r2-uc-2
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Un corpo di 3 kg a 4 m/s urta frontalmente un corpo di 1 kg che gli viene incontro a 2 m/s; i due restano uniti. Calcola la velocità finale e l'energia cinetica persa."
+    en: 'A 3 kg body at 4 m/s hits head-on a 1 kg body coming towards it at 2 m/s; they stick together. Find the final velocity and the kinetic energy lost.'
+  figure:
+    diagram:
+      {
+        'type': 'collision',
+        'params':
+          {
+            'unit': 'm/s',
+            'before': [{ 'label': '1', 'mass': '3 kg', 'v': 4 }, { 'label': '2', 'mass': '1 kg', 'v': -2 }],
+            'after': [{ 'label': '1+2', 'mass': '4 kg', 'v': 2.5 }],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$v''=v_{cm}=\dfrac{3\cdot4+1\cdot(-2)}{4}=2{,}5\,\mathrm{m/s}$. $K_i=24+2=26\,\mathrm{J}$, $K_f=\tfrac12\cdot4\cdot2{,}5^2=12{,}5\,\mathrm{J}$: persi $13{,}5\,\mathrm{J}$.'
+        en: '$v''=v_{cm}=\dfrac{3\cdot4+1\cdot(-2)}{4}=2.5\,\mathrm{m/s}$. $K_i=24+2=26\,\mathrm{J}$, $K_f=\tfrac12\cdot4\cdot2.5^2=12.5\,\mathrm{J}$: $13.5\,\mathrm{J}$ lost.'
+  answer:
+    - label:
+        it: "$v'$"
+        en: "$v'$"
+      value: 2.5
+      unit: 'm/s'
+    - label:
+        it: '$|\Delta K|$'
+        en: '$|\Delta K|$'
+      value: 13.5
+      unit: 'J'
+  origin: originale
+- id: r2-uc-3
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Perché in un urto si può dissipare al più l'energia del moto relativo, e non quella del centro di massa?"
+    en: 'Why can a collision dissipate at most the energy of the relative motion, and not that of the centre of mass?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Durante l''urto agiscono solo forze interne: $\vec P$ e quindi $\vec v_{cm}$ restano uguali, così come $\tfrac12Mv_{cm}^2$. Per König $K=\tfrac12Mv_{cm}^2+K''$: solo $K''$ (moto relativo) può cambiare; nel caso perfettamente anelastico si azzera.'
+        en: 'During the collision only internal forces act: $\vec P$, hence $\vec v_{cm}$, stays the same, and so does $\tfrac12Mv_{cm}^2$. By König $K=\tfrac12Mv_{cm}^2+K''$: only $K''$ (relative motion) can change; in the perfectly inelastic case it drops to zero.'
+  choices:
+    - text:
+        it: 'Perché $\vec v_{cm}$ non cambia e per König solo $K''$ può variare'
+        en: 'Because $\vec v_{cm}$ does not change and by König only $K''$ can vary'
+      correct: true
+    - text:
+        it: "Perché l'energia del CM è potenziale"
+        en: 'Because the CM energy is potential'
+      correct: false
+    - text:
+        it: "Perché nell'urto l'energia si conserva sempre"
+        en: 'Because energy is always conserved in a collision'
+      correct: false
+    - text:
+        it: 'Perché le forze esterne compensano la perdita'
+        en: 'Because external forces make up for the loss'
+      correct: false
+  origin: originale
+- id: r2-uc-4
+  topic: urti-centrali
+  objectives:
+    - urti-centrali.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Due corpi uguali di 1 kg: il primo a 4 m/s urta frontalmente il secondo, fermo, con coefficiente di restituzione $e=0{,}5$. Calcola le velocità dopo l'urto e la frazione di energia cinetica persa."
+    en: 'Two equal 1 kg bodies: the first, at 4 m/s, hits the second, at rest, head-on with coefficient of restitution $e=0.5$. Find the velocities after the collision and the fraction of kinetic energy lost.'
+  figure:
+    diagram:
+      {
+        'type': 'collision',
+        'params':
+          {
+            'unit': 'm/s',
+            'before': [{ 'label': '1', 'mass': '1 kg', 'v': 4 }, { 'label': '2', 'mass': '1 kg', 'v': 0 }],
+            'after': [{ 'label': '1', 'mass': '1 kg', 'v': 1 }, { 'label': '2', 'mass': '1 kg', 'v': 3 }],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$e=\dfrac{v_2''-v_1''}{v_1-v_2}$ e $v_1''+v_2''=4$: $v_2''-v_1''=2$, quindi $v_1''=1\,\mathrm{m/s}$, $v_2''=3\,\mathrm{m/s}$. $K$: da $8$ a $0{,}5+4{,}5=5\,\mathrm{J}$, persa la frazione $3/8$. $e=1$ elastico, $e=0$ perfettamente anelastico.'
+        en: '$e=\dfrac{v_2''-v_1''}{v_1-v_2}$ and $v_1''+v_2''=4$: $v_2''-v_1''=2$, hence $v_1''=1\,\mathrm{m/s}$, $v_2''=3\,\mathrm{m/s}$. $K$: from $8$ to $0.5+4.5=5\,\mathrm{J}$, fraction lost $3/8$. $e=1$ elastic, $e=0$ perfectly inelastic.'
+  answer:
+    - label:
+        it: "$v_1'$"
+        en: "$v_1'$"
+      value: 1
+      unit: 'm/s'
+    - label:
+        it: "$v_2'$"
+        en: "$v_2'$"
+      value: 3
+      unit: 'm/s'
+    - label:
+        it: 'frazione persa'
+        en: 'fraction lost'
+      value: 0.375
+  origin: originale

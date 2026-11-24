@@ -237,3 +237,155 @@
   kind: generated
   generator: fisica-1/riferimento-accelerato
   origin: tipologia-appello
+- id: r2-sr-1
+  topic: sistemi-di-riferimento
+  objectives:
+    - sistemi-di-riferimento.4
+    - sistemi-di-riferimento.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Una persona di 60 kg sta su una bilancia in ascensore. Calcola la lettura della bilancia (a) quando l''ascensore accelera verso il basso con $2\,\mathrm{m/s^2}$ e (b) quando, scendendo, frena con decelerazione $2\,\mathrm{m/s^2}$.'
+    en: 'A 60 kg person stands on a scale in a lift. Find the scale reading (a) when the lift accelerates downwards at $2\,\mathrm{m/s^2}$ and (b) when, going down, it brakes with a deceleration of $2\,\mathrm{m/s^2}$.'
+  figure:
+    diagram:
+      {
+        'type': 'free-body',
+        'params':
+          {
+            'forces':
+              [
+                { 'label': 'N', 'angle': 90, 'magnitude': 1.6, 'kind': 'normal' },
+                { 'label': 'mg', 'angle': 270, 'magnitude': 2, 'kind': 'weight' },
+              ],
+            'body': 'block',
+            'acceleration': { 'angle': 270, 'label': 'A' },
+          },
+      }
+  steps:
+    - title:
+        it: 'Forza apparente'
+        en: 'Apparent force'
+      body:
+        it: 'Nel riferimento dell''ascensore (accelerazione $\vec A$) si aggiunge $\vec F_{app}=-m\vec A$ e la persona è in equilibrio: $N=m(g-A_y)$ con $A_y$ positiva verso l''alto.'
+        en: 'In the lift frame (acceleration $\vec A$) we add $\vec F_{app}=-m\vec A$ and the person is in equilibrium: $N=m(g-A_y)$ with $A_y$ positive upwards.'
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '(a) $A_y=-2$: $N=60\cdot7{,}81=468{,}6\,\mathrm{N}$ (peso apparente minore). (b) Scendere frenando vuol dire accelerazione verso l''alto, $A_y=+2$: $N=60\cdot11{,}81=708{,}6\,\mathrm{N}$.'
+        en: '(a) $A_y=-2$: $N=60\cdot7.81=468.6\,\mathrm{N}$ (smaller apparent weight). (b) Braking while going down means upward acceleration, $A_y=+2$: $N=60\cdot11.81=708.6\,\mathrm{N}$.'
+  answer:
+    - label:
+        it: '$N_a$'
+        en: '$N_a$'
+      value: 468.6
+      unit: 'N'
+    - label:
+        it: '$N_b$'
+        en: '$N_b$'
+      value: 708.6
+      unit: 'N'
+  origin: originale
+- id: r2-sr-2
+  topic: sistemi-di-riferimento
+  objectives:
+    - sistemi-di-riferimento.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Su un camion che accelera in avanti con $A=3\,\mathrm{m/s^2}$ è appesa al soffitto una borsa di 0,5 kg. Nel riferimento del camion calcola la forza apparente sulla borsa e l''angolo del filo rispetto alla verticale all''equilibrio.'
+    en: 'A 0.5 kg bag hangs from the roof of a lorry accelerating forwards at $A=3\,\mathrm{m/s^2}$. In the lorry frame find the apparent force on the bag and the angle of the string with the vertical at equilibrium.'
+  figure:
+    diagram:
+      {
+        'type': 'pendulum',
+        'params': { 'angle': -17, 'forces': false, 'lengthLabel': 'L', 'massLabel': 'm', 'angleLabel': 'θ' },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$\vec F_{app}=-m\vec A$: modulo $0{,}5\cdot3=1{,}5\,\mathrm{N}$, verso l''indietro. Equilibrio fra tensione, peso e forza apparente: $\tan\theta=A/g\Rightarrow\theta\approx17{,}0^\circ$, filo inclinato all''indietro.'
+        en: '$\vec F_{app}=-m\vec A$: magnitude $0.5\cdot3=1.5\,\mathrm{N}$, backwards. Balance of tension, weight and apparent force: $\tan\theta=A/g\Rightarrow\theta\approx17.0^\circ$, string tilted backwards.'
+  answer:
+    - label:
+        it: '$F_{app}$'
+        en: '$F_{app}$'
+      value: 1.5
+      unit: 'N'
+    - label:
+        it: '$\theta$'
+        en: '$\theta$'
+      value: 17.00418
+      unit: '°'
+  origin: originale
+- id: r2-sr-3
+  topic: sistemi-di-riferimento
+  objectives:
+    - sistemi-di-riferimento.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Perché le forze apparenti non hanno una reazione (terzo principio)?'
+    en: 'Why do apparent forces have no reaction (third law)?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Il terzo principio riguarda le interazioni fra corpi. $-m\vec A$ non è esercitata da alcun corpo: nasce dalla scelta di un riferimento accelerato, quindi non c''è un corpo su cui agisca la reazione.'
+        en: 'The third law is about interactions between bodies. $-m\vec A$ is not exerted by any body: it comes from choosing an accelerated frame, so there is no body on which a reaction could act.'
+  choices:
+    - text:
+        it: "Non sono dovute all'interazione con un altro corpo, ma all'accelerazione del riferimento"
+        en: 'They are not due to an interaction with another body, but to the acceleration of the frame'
+      correct: true
+    - text:
+        it: 'Perché sono sempre perpendicolari alla velocità'
+        en: 'Because they are always perpendicular to the velocity'
+      correct: false
+    - text:
+        it: 'Perché la reazione è il peso'
+        en: 'Because the reaction is the weight'
+      correct: false
+    - text:
+        it: "Ce l'hanno, ed è applicata al riferimento"
+        en: 'They do have one, applied to the frame'
+      correct: false
+  origin: originale
+- id: r2-sr-4
+  topic: sistemi-di-riferimento
+  objectives:
+    - sistemi-di-riferimento.7
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Il cavo dell'ascensore si spezza e la cabina cade liberamente. Che cosa legge la bilancia sotto la persona?"
+    en: 'The lift cable snaps and the car falls freely. What does the scale under the person read?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: "Con $A_y=-g$: $N=m(g-g)=0$. Nel riferimento della cabina la forza apparente $+mg$ annulla il peso: tutti i corpi cadono con la stessa accelerazione e si sperimenta l'assenza di peso."
+        en: 'With $A_y=-g$: $N=m(g-g)=0$. In the car frame the apparent force $+mg$ cancels the weight: all bodies fall with the same acceleration and one experiences weightlessness.'
+  choices:
+    - text:
+        it: 'Zero: forza apparente e peso si annullano (assenza di peso)'
+        en: 'Zero: apparent force and weight cancel (weightlessness)'
+      correct: true
+    - text:
+        it: 'Il peso normale $mg$'
+        en: 'The normal weight $mg$'
+      correct: false
+    - text:
+        it: 'Il doppio del peso'
+        en: 'Twice the weight'
+      correct: false
+    - text:
+        it: 'Metà del peso'
+        en: 'Half the weight'
+      correct: false
+  origin: originale

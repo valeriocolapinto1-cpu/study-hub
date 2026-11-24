@@ -208,3 +208,131 @@
   kind: generated
   generator: fisica-1/carrucola-massiva
   origin: tipologia-appello
+- id: r2-tma-1
+  topic: teorema-momento-angolare
+  objectives:
+    - teorema-momento-angolare.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Per un sistema in moto, rispetto a quale polo si può scrivere $d\vec L/dt=\vec\tau_{ext}$ senza termini aggiuntivi?'
+    en: 'For a moving system, about which pole can one write $d\vec L/dt=\vec\tau_{ext}$ without extra terms?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Il termine $-\vec v_Q\times M\vec v_{cm}$ è nullo se $Q$ è fisso ($\vec v_Q=0$) o se $Q$ è il centro di massa ($\vec v_Q\parallel\vec v_{cm}$), anche quando il CM accelera.'
+        en: 'The term $-\vec v_Q\times M\vec v_{cm}$ vanishes if $Q$ is fixed ($\vec v_Q=0$) or if $Q$ is the centre of mass ($\vec v_Q\parallel\vec v_{cm}$), even when the CM accelerates.'
+  choices:
+    - text:
+        it: 'Un polo fisso oppure il centro di massa (anche se accelera)'
+        en: 'A fixed pole or the centre of mass (even if accelerating)'
+      correct: true
+    - text:
+        it: 'Solo un polo fisso nel riferimento inerziale'
+        en: 'Only a pole fixed in the inertial frame'
+      correct: false
+    - text:
+        it: 'Qualunque punto in moto rettilineo uniforme'
+        en: 'Any point in uniform straight-line motion'
+      correct: false
+    - text:
+        it: 'Il punto di contatto con il suolo, sempre'
+        en: 'The contact point with the ground, always'
+      correct: false
+  origin: originale
+- id: r2-tma-2
+  topic: teorema-momento-angolare
+  objectives:
+    - teorema-momento-angolare.5
+    - teorema-momento-angolare.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Una massa di 1 kg è appesa a un filo avvolto su una carrucola a disco pieno di 2 kg e raggio 10 cm, libera di ruotare attorno al suo asse fisso. Calcola l'accelerazione della massa, la tensione del filo e l'accelerazione angolare della carrucola."
+    en: 'A 1 kg mass hangs from a string wound on a solid-disc pulley of 2 kg and radius 10 cm, free to rotate about its fixed axis. Find the acceleration of the mass, the string tension and the angular acceleration of the pulley.'
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Carrucola a disco con asse fisso; dal bordo scende un filo verticale con una massa appesa.',
+                'en': 'Disc pulley on a fixed axis; a vertical string hangs from its rim with a mass attached.',
+              },
+            'items':
+              [
+                { 'kind': 'disc', 'at': [0, 0], 'r': 1, 'radius': { 'angle': 135, 'label': 'R' } },
+                { 'kind': 'pivot', 'at': [0, 0], 'style': 'pin' },
+                { 'kind': 'line', 'points': [[1, 0], [1, -3]] },
+                { 'kind': 'block', 'at': [1, -3.5], 'w': 1, 'h': 1, 'label': 'm' },
+                {
+                  'kind': 'vector',
+                  'from': [1, -4.2],
+                  'to': [1, -5.4],
+                  'label': 'a',
+                  'vkind': 'acceleration',
+                },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Equazioni'
+        en: 'Equations'
+      body:
+        it: 'Massa: $mg-T=ma$. Carrucola, asse fisso: $I\alpha=TR$ con $I=\tfrac12MR^2$ e $a=\alpha R$ (filo che non slitta) $\Rightarrow T=\tfrac12Ma$.'
+        en: 'Mass: $mg-T=ma$. Pulley, fixed axis: $I\alpha=TR$ with $I=\tfrac12MR^2$ and $a=\alpha R$ (non-slipping string) $\Rightarrow T=\tfrac12Ma$.'
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$a=\dfrac{mg}{m+M/2}=\dfrac{9{,}81}{2}\approx4{,}905\,\mathrm{m/s^2}$, $T=\tfrac12Ma\approx4{,}905\,\mathrm{N}$, $\alpha=a/R\approx49{,}05\,\mathrm{rad/s^2}$.'
+        en: '$a=\dfrac{mg}{m+M/2}=\dfrac{9.81}{2}\approx4.905\,\mathrm{m/s^2}$, $T=\tfrac12Ma\approx4.905\,\mathrm{N}$, $\alpha=a/R\approx49.05\,\mathrm{rad/s^2}$.'
+  answer:
+    - label:
+        it: '$a$'
+        en: '$a$'
+      value: 4.905
+      unit: 'm/s²'
+    - label:
+        it: '$T$'
+        en: '$T$'
+      value: 4.905
+      unit: 'N'
+    - label:
+        it: '$\alpha$'
+        en: '$\alpha$'
+      value: 49.05
+      unit: 'rad/s²'
+  origin: originale
+- id: r2-tma-3
+  topic: teorema-momento-angolare
+  objectives:
+    - teorema-momento-angolare.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Una pattinatrice ruota a 2 rad/s con momento d''inerzia $4\,\mathrm{kg\,m^2}$, poi raccoglie le braccia e scende a $1{,}6\,\mathrm{kg\,m^2}$. Calcola la nuova velocità angolare e il rapporto fra l''energia cinetica finale e quella iniziale.'
+    en: 'A skater spins at 2 rad/s with moment of inertia $4\,\mathrm{kg\,m^2}$, then pulls in her arms down to $1.6\,\mathrm{kg\,m^2}$. Find the new angular velocity and the ratio of final to initial kinetic energy.'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Il momento delle forze esterne rispetto all''asse è nullo (peso e normale sono sull''asse, ghiaccio liscio): $L=I\omega$ si conserva, $\omega_2=\dfrac{4\cdot2}{1{,}6}=5\,\mathrm{rad/s}$. $K=L^2/2I$, quindi $K_2/K_1=I_1/I_2=2{,}5$: l''energia in più viene dal lavoro dei muscoli.'
+        en: 'The external torque about the axis is zero (weight and normal force are on the axis, smooth ice): $L=I\omega$ is conserved, $\omega_2=\dfrac{4\cdot2}{1.6}=5\,\mathrm{rad/s}$. $K=L^2/2I$, so $K_2/K_1=I_1/I_2=2.5$: the extra energy comes from the work of the muscles.'
+  answer:
+    - label:
+        it: '$\omega_2$'
+        en: '$\omega_2$'
+      value: 5
+      unit: 'rad/s'
+    - label:
+        it: '$K_2/K_1$'
+        en: '$K_2/K_1$'
+      value: 2.5
+  origin: originale

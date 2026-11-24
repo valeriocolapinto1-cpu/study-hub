@@ -218,3 +218,142 @@
   kind: generated
   generator: fisica-1/momento-angolare-filo
   origin: tipologia-appello
+- id: r2-mang-1
+  topic: momento-angolare
+  objectives:
+    - momento-angolare.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Una particella di 2 kg si muove a 3 m/s lungo la retta $y=4\,\mathrm{m}$, parallela all''asse $x$. Calcola il modulo del momento angolare rispetto all''origine $O$ e rispetto al punto $P=(0,1)\,\mathrm{m}$.'
+    en: 'A 2 kg particle moves at 3 m/s along the line $y=4\,\mathrm{m}$, parallel to the $x$ axis. Find the magnitude of the angular momentum about the origin $O$ and about the point $P=(0,1)\,\mathrm{m}$.'
+  figure:
+    diagram:
+      {
+        'type': 'vectors',
+        'params':
+          {
+            'vectors':
+              [
+                { 'label': 'v', 'x': -3, 'y': 4, 'dx': 3, 'dy': 0 },
+                { 'label': 'r', 'x': 0, 'y': 0, 'dx': 0, 'dy': 4, 'dashed': true },
+              ],
+            'range': { 'xMin': -4, 'xMax': 4, 'yMin': -1, 'yMax': 5 },
+            'axes': true,
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$|\vec L|=|\vec r\times m\vec v|=m\,v\,d$, con $d$ distanza del polo dalla retta del moto (braccio), che non cambia mentre la particella avanza. $L_O=2\cdot3\cdot4=24\,\mathrm{kg\,m^2/s}$, $L_P=2\cdot3\cdot3=18\,\mathrm{kg\,m^2/s}$: costanti, come deve essere con forza nulla.'
+        en: '$|\vec L|=|\vec r\times m\vec v|=m\,v\,d$, with $d$ the distance of the pole from the line of motion (lever arm), which does not change as the particle moves. $L_O=2\cdot3\cdot4=24\,\mathrm{kg\,m^2/s}$, $L_P=2\cdot3\cdot3=18\,\mathrm{kg\,m^2/s}$: constant, as it must be with zero force.'
+  answer:
+    - label:
+        it: '$L_O$'
+        en: '$L_O$'
+      value: 24
+      unit: 'kg·m²/s'
+    - label:
+        it: '$L_P$'
+        en: '$L_P$'
+      value: 18
+      unit: 'kg·m²/s'
+  origin: originale
+- id: r2-mang-2
+  topic: momento-angolare
+  objectives:
+    - momento-angolare.4
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Un pianeta si muove sotto l'azione della sola forza gravitazionale del Sole. Perché il suo momento angolare rispetto al Sole si conserva?"
+    en: "A planet moves under the Sun's gravitational force alone. Why is its angular momentum about the Sun conserved?"
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'La forza è centrale: $\vec F\parallel\vec r$, quindi $\vec\tau=\vec r\times\vec F=0$ e $d\vec L/dt=0$. Conseguenza: l''orbita è piana.'
+        en: 'The force is central: $\vec F\parallel\vec r$, so $\vec\tau=\vec r\times\vec F=0$ and $d\vec L/dt=0$. Consequence: the orbit is planar.'
+  choices:
+    - text:
+        it: 'La forza è centrale, quindi il suo momento rispetto al Sole è nullo'
+        en: 'The force is central, so its torque about the Sun is zero'
+      correct: true
+    - text:
+        it: 'Perché la velocità del pianeta è costante'
+        en: "Because the planet's speed is constant"
+      correct: false
+    - text:
+        it: "Perché l'energia si conserva"
+        en: 'Because energy is conserved'
+      correct: false
+    - text:
+        it: 'Perché la forza è perpendicolare a $\vec r$'
+        en: 'Because the force is perpendicular to $\vec r$'
+      correct: false
+  origin: originale
+- id: r2-mang-3
+  topic: momento-angolare
+  objectives:
+    - momento-angolare.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Se il polo $Q$ si muove con velocità $\vec v_Q$, come cambia la relazione fra momento angolare e momento della forza per una particella di velocità $\vec v$?'
+    en: 'If the pole $Q$ moves with velocity $\vec v_Q$, how does the relation between angular momentum and torque change for a particle with velocity $\vec v$?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: '$\dfrac{d\vec L_Q}{dt}=\vec\tau_Q-\vec v_Q\times m\vec v$. Il termine correttivo sparisce se il polo è fisso o se $\vec v_Q\parallel\vec v$ (per un sistema, se $Q$ è il centro di massa).'
+        en: '$\dfrac{d\vec L_Q}{dt}=\vec\tau_Q-\vec v_Q\times m\vec v$. The correction term vanishes if the pole is fixed or if $\vec v_Q\parallel\vec v$ (for a system, if $Q$ is the centre of mass).'
+  choices:
+    - text:
+        it: '$d\vec L_Q/dt=\vec\tau_Q-\vec v_Q\times m\vec v$'
+        en: '$d\vec L_Q/dt=\vec\tau_Q-\vec v_Q\times m\vec v$'
+      correct: true
+    - text:
+        it: 'Non cambia: $d\vec L_Q/dt=\vec\tau_Q$ per qualunque polo'
+        en: 'It does not change: $d\vec L_Q/dt=\vec\tau_Q$ for any pole'
+      correct: false
+    - text:
+        it: '$d\vec L_Q/dt=\vec\tau_Q+m\,\vec v_Q\cdot\vec v$'
+        en: '$d\vec L_Q/dt=\vec\tau_Q+m\,\vec v_Q\cdot\vec v$'
+      correct: false
+    - text:
+        it: '$d\vec L_Q/dt=0$ sempre'
+        en: '$d\vec L_Q/dt=0$ always'
+      correct: false
+  origin: originale
+- id: r2-mang-4
+  topic: momento-angolare
+  objectives:
+    - momento-angolare.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Al perielio la Terra dista $1{,}47\cdot10^{11}\,\mathrm{m}$ dal Sole e ha velocità $30{,}29\,\mathrm{km/s}$; all''afelio dista $1{,}52\cdot10^{11}\,\mathrm{m}$. Calcola la velocità all''afelio e la velocità areolare.'
+    en: 'At perihelion the Earth is $1.47\cdot10^{11}\,\mathrm{m}$ from the Sun with speed $30.29\,\mathrm{km/s}$; at aphelion it is $1.52\cdot10^{11}\,\mathrm{m}$ away. Find the aphelion speed and the areal velocity.'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Nei due punti $\vec v\perp\vec r$, quindi $L=mrv$ costante: $v_2=\dfrac{r_1v_1}{r_2}\approx29{,}29\,\mathrm{km/s}$. Velocità areolare $\dfrac{dA}{dt}=\dfrac{L}{2m}=\tfrac12r_1v_1\approx2{,}226\cdot10^{15}\,\mathrm{m^2/s}$, costante: è la seconda legge di Keplero.'
+        en: 'At the two points $\vec v\perp\vec r$, so $L=mrv$ is constant: $v_2=\dfrac{r_1v_1}{r_2}\approx29.29\,\mathrm{km/s}$. Areal velocity $\dfrac{dA}{dt}=\dfrac{L}{2m}=\tfrac12r_1v_1\approx2.226\cdot10^{15}\,\mathrm{m^2/s}$, constant: this is Kepler''s second law.'
+  answer:
+    - label:
+        it: '$v_2$'
+        en: '$v_2$'
+      value: 29.29362
+      unit: 'km/s'
+    - label:
+        it: '$dA/dt$'
+        en: '$dA/dt$'
+      value: 2226315000000000.0
+      unit: 'm²/s'
+  origin: originale

@@ -218,3 +218,95 @@
   kind: generated
   generator: fisica-1/velocita-quadratica-media
   origin: tipologia-appello
+- id: r2-tcg-1
+  topic: teoria-cinetica-gas
+  objectives:
+    - teoria-cinetica-gas.4
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Nel calcolo della pressione si ottiene $p=n_v m\langle v_x^2\rangle$. Come si passa a $\langle v^2\rangle$?'
+    en: 'In the pressure calculation one obtains $p=n_v m\langle v_x^2\rangle$. How does one get to $\langle v^2\rangle$?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Il gas è isotropo: nessuna direzione è privilegiata, quindi $\langle v_x^2\rangle=\langle v_y^2\rangle=\langle v_z^2\rangle$ e, poiché $v^2=v_x^2+v_y^2+v_z^2$, $\langle v_x^2\rangle=\tfrac13\langle v^2\rangle$.'
+        en: 'The gas is isotropic: no direction is preferred, so $\langle v_x^2\rangle=\langle v_y^2\rangle=\langle v_z^2\rangle$ and, since $v^2=v_x^2+v_y^2+v_z^2$, $\langle v_x^2\rangle=\tfrac13\langle v^2\rangle$.'
+  choices:
+    - text:
+        it: 'Per isotropia le tre medie sono uguali: $\langle v_x^2\rangle=\tfrac13\langle v^2\rangle$'
+        en: 'By isotropy the three averages are equal: $\langle v_x^2\rangle=\tfrac13\langle v^2\rangle$'
+      correct: true
+    - text:
+        it: '$\langle v_x^2\rangle=\langle v^2\rangle$ perché il moto è lungo $x$'
+        en: '$\langle v_x^2\rangle=\langle v^2\rangle$ because motion is along $x$'
+      correct: false
+    - text:
+        it: '$\langle v_x^2\rangle=\tfrac12\langle v^2\rangle$'
+        en: '$\langle v_x^2\rangle=\tfrac12\langle v^2\rangle$'
+      correct: false
+    - text:
+        it: '$\langle v_x\rangle^2=\langle v^2\rangle/3$'
+        en: '$\langle v_x\rangle^2=\langle v^2\rangle/3$'
+      correct: false
+  origin: originale
+- id: r2-tcg-2
+  topic: teoria-cinetica-gas
+  objectives:
+    - teoria-cinetica-gas.6
+    - teoria-cinetica-gas.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Per l''azoto ($M=0{,}028\,\mathrm{kg/mol}$) a 300 K calcola l''energia cinetica media di traslazione di una molecola e la velocità quadratica media.'
+    en: 'For nitrogen ($M=0.028\,\mathrm{kg/mol}$) at 300 K find the average translational kinetic energy of a molecule and the root-mean-square speed.'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Dal confronto di $pV=\tfrac23N\langle K\rangle$ con $pV=Nk_BT$: $\langle K\rangle=\tfrac32k_BT\approx6{,}213\cdot10^{-21}\,\mathrm{J}$ (la temperatura misura l''energia cinetica media). $v_{qm}=\sqrt{\langle v^2\rangle}=\sqrt{3RT/M}\approx517\,\mathrm{m/s}$.'
+        en: 'Comparing $pV=\tfrac23N\langle K\rangle$ with $pV=Nk_BT$: $\langle K\rangle=\tfrac32k_BT\approx6.213\cdot10^{-21}\,\mathrm{J}$ (temperature measures the average kinetic energy). $v_{rms}=\sqrt{\langle v^2\rangle}=\sqrt{3RT/M}\approx517\,\mathrm{m/s}$.'
+  answer:
+    - label:
+        it: '$\langle K\rangle$'
+        en: '$\langle K\rangle$'
+      value: 6.212921e-21
+      unit: 'J'
+    - label:
+        it: '$v_{qm}$'
+        en: '$v_{rms}$'
+      value: 516.9485
+      unit: 'm/s'
+  origin: originale
+- id: r2-tcg-3
+  topic: teoria-cinetica-gas
+  objectives:
+    - teoria-cinetica-gas.5
+    - teoria-cinetica-gas.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un recipiente di $1\,\mathrm{m^3}$ contiene $2{,}5\cdot10^{25}$ molecole con energia cinetica media di traslazione $6\cdot10^{-21}\,\mathrm{J}$. Calcola la pressione e la temperatura.'
+    en: 'A $1\,\mathrm{m^3}$ container holds $2.5\cdot10^{25}$ molecules with average translational kinetic energy $6\cdot10^{-21}\,\mathrm{J}$. Find the pressure and the temperature.'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$pV=\tfrac23N\langle K\rangle\Rightarrow p=\tfrac23\cdot2{,}5\cdot10^{25}\cdot6\cdot10^{-21}=10^5\,\mathrm{Pa}$. $T=\dfrac{2\langle K\rangle}{3k_B}\approx290\,\mathrm{K}$.'
+        en: '$pV=\tfrac23N\langle K\rangle\Rightarrow p=\tfrac23\cdot2.5\cdot10^{25}\cdot6\cdot10^{-21}=10^5\,\mathrm{Pa}$. $T=\dfrac{2\langle K\rangle}{3k_B}\approx290\,\mathrm{K}$.'
+  answer:
+    - label:
+        it: '$p$'
+        en: '$p$'
+      value: 100000
+      unit: 'Pa'
+    - label:
+        it: '$T$'
+        en: '$T$'
+      value: 289.7188
+      unit: 'K'
+  origin: originale
