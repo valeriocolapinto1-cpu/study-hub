@@ -163,8 +163,8 @@ gli esiti d'esame incompleti restano con valori neutri (come quelli migrati), co
   argomento è studiato, dal giorno dopo la segnatura (`reviewableCards`). Senza nulla da ripassare la sessione
   invita a segnare un argomento (link `Deck.theoryPath`) o dice quante carte entrano domani.
 - **Interfaccia senza isole**: `src/components/course/StudiedToggle.astro` (fondo della teoria) e attributi
-  `data-studied-mark`, `data-chapter-ids`/`data-chapter-count`/`data-studied-chapter`, `data-studied-next`
-  (+ `data-studied-next-list`), letti da `src/scripts/studied.ts`, che `site.ts` scarica solo se la pagina ne
+  `data-studied-mark`, `data-chapter-ids`/`data-chapter-count`/`data-studied-chapter`, letti da
+  `src/scripts/studied.ts`, che `site.ts` scarica solo se la pagina ne
   ha. `CourseLayout` `studiedMarks={false}` toglie le spunte dall'indice laterale (prova d'esame: budget JS).
 
 ## Dati per le isole (src/lib/course-data.ts)
@@ -203,7 +203,7 @@ chiama `window.print()` (il browser offre "Salva come PDF"). Le soluzioni sono u
 
 ## Test
 
-- `tests/unit/engine/*.test.ts` — motore (`npm run test:coverage`, soglia 90 % righe).
+- `tests/unit/engine/*.test.ts` — motore (`npm run test:coverage`, soglie in `vitest.config.ts`).
 - `tests/e2e/engine/engine.spec.ts` — tutte le isole sul corso finto `tests/fixtures/content` (+ generatore
   `tests/fixtures/generators/`), compilato con `npm run build:fixtures` in `dist-fixtures/` e servito sulla porta
   4322 (progetto Playwright `engine`), con axe WCAG 2.2 AA in tema chiaro e scuro.
