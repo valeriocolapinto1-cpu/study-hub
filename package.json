@@ -25,7 +25,8 @@
     "format:check": "prettier --check .",
     "test:links": "node tools/check-links.mjs",
     "script:push": "node tools/apps-script/push.mjs",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "ai:deploy": "npm --prefix tools/ai-worker install --no-audit --no-fund && npm --prefix tools/ai-worker run deploy"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "7.3.5",

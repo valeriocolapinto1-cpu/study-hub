@@ -60,7 +60,7 @@ export function domToText(el: Element): string {
     const block = BLOCK.test(tag);
     if (tag === 'PRE') {
       pres.push(n.textContent ?? '');
-      out += `\n\u0000${pres.length - 1}\u0000\n`;
+      out += `\n\uE000${pres.length - 1}\uE000\n`;
       return;
     }
     if (block) out += '\n';
@@ -75,7 +75,7 @@ export function domToText(el: Element): string {
     .join('\n')
     .replace(/\n{3,}/g, '\n\n')
     .trim()
-    .replace(/\u0000(\d+)\u0000/g, (_, i: string) => `\`\`\`\n${pres[Number(i)]}\n\`\`\``);
+    .replace(/\uE000(\d+)\uE000/g, (_, i: string) => `\`\`\`\n${pres[Number(i)]}\n\`\`\``);
 }
 
 const htmlToText = (html: string): string =>
