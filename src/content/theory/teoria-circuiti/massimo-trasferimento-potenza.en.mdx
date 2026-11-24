@@ -12,6 +12,18 @@ If the load is too small it "short-circuits" the source, if it is too large it l
 
 </div>
 
+<div data-note-id="massimo-trasferimento-potenza-intuizione-2">
+
+Maximum transfer is not maximum efficiency: at matching half the power stays in the source. In telecommunications, where signals are weak and receiving as much as possible matters, one matches; in power distribution, where wasting little matters, loads much larger than the internal resistance are used.
+
+</div>
+
+<div data-note-id="massimo-trasferimento-potenza-intuizione-3">
+
+With transformer matching the trick is the same: the load is not changed, only how the source "sees" it, bringing it to $R_{th}$ through the ratio $n^2$.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -187,6 +199,24 @@ With a purely resistive load the maximum is at $R_L=|Z_{th}|$. The efficiency (l
   />
 </Figure>
 
+<div data-note-id="massimo-trasferimento-potenza-teoria-3">
+
+**Proof in the resistive case.** With $P(R_L)=\dfrac{V_{th}^2R_L}{(R_{th}+R_L)^2}$ (RMS values), the derivative $\dfrac{dP}{dR_L}=V_{th}^2\dfrac{R_{th}-R_L}{(R_{th}+R_L)^3}$ vanishes at $R_L=R_{th}$, positive before and negative after: it is a maximum, equal to $\dfrac{V_{th}^2}{4R_{th}}$.
+
+</div>
+
+<div data-note-id="massimo-trasferimento-potenza-teoria-4">
+
+**Complex case.** $P=\dfrac{|V_{th}|^2R_L}{(R_{th}+R_L)^2+(X_{th}+X_L)^2}$: for any $R_L$ it pays to choose $X_L=-X_{th}$, which cancels the second term of the denominator; what remains is the resistive case, hence $R_L=R_{th}$.
+
+</div>
+
+<div data-note-id="massimo-trasferimento-potenza-teoria-5">
+
+**A flat curve.** Near the maximum the power changes little: in the example a load half or twice the optimum loses only $11\,\%$ of the power. This is why an approximate match is often enough, and a somewhat larger load can be chosen to gain efficiency.
+
+</div>
+
 <Formula id="pmax-picco" />
 <Formula id="pmax-eff" />
 <Formula id="zl-coniugata" />
@@ -235,6 +265,20 @@ $Z_{th}=3+4j\,\Omega$, resistive load.
 
 </div>
 
+<div class="worked" data-note-id="massimo-trasferimento-potenza-esempio-4">
+
+### Power and efficiency as the load varies
+
+$V_{th}=12\,\mathrm V$ RMS, $R_{th}=6\,\Omega$. Compare load power and efficiency for $R_L=3$, $6$, $12\,\Omega$.
+
+**Solution.**
+
+1. $R_L=3$: $P=\dfrac{144\cdot3}{9^2}=5.33\,\mathrm W$, $\eta=\dfrac{3}{9}=33\,\%$.
+2. $R_L=6$ (matching): $P=\dfrac{144\cdot6}{12^2}=6\,\mathrm W=\dfrac{V_{th}^2}{4R_{th}}$, $\eta=50\,\%$.
+3. $R_L=12$: $P=\dfrac{144\cdot12}{18^2}=5.33\,\mathrm W$, $\eta=\dfrac{12}{18}=67\,\%$: same power as with $R_L=3$, but twice the efficiency.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -250,6 +294,20 @@ $Z_{th}=3+4j\,\Omega$, resistive load.
 
 - **Wrong:** Confusing $/(8R_{th})$ (peak) and $/(4R_{th})$ (RMS).
 - **Right:** State whether $V_{th}$ is a peak or an RMS value.
+
+</div>
+
+<div data-note-id="massimo-trasferimento-potenza-errore-3">
+
+- **Wrong:** Believing that efficiency is maximum at matching.
+- **Right:** At matching the efficiency is $50\,\%$; it grows with $R_L$ (in the example $67\,\%$ with $12\,\Omega$) while the load power decreases.
+
+</div>
+
+<div data-note-id="massimo-trasferimento-potenza-errore-4">
+
+- **Wrong:** Matching the load to the ideal source instead of to the Thévenin equivalent of the circuit feeding it.
+- **Right:** Matching is done on $Z_{th}$, the impedance seen from the load terminals with the independent sources off: it includes the whole circuit, not only the internal resistance of the source.
 
 </div>
 

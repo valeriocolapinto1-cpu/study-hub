@@ -12,6 +12,18 @@ Se il carico è troppo piccolo «cortocircuita» il generatore, se è troppo gra
 
 </div>
 
+<div data-note-id="massimo-trasferimento-potenza-intuizione-2">
+
+Il massimo trasferimento non è il massimo rendimento: all'adattamento metà della potenza resta nel generatore. Nelle telecomunicazioni, dove i segnali sono deboli e conta riceverne il più possibile, si adatta; nella distribuzione di energia, dove conta sprecare poco, si lavora con carichi molto più grandi della resistenza interna.
+
+</div>
+
+<div data-note-id="massimo-trasferimento-potenza-intuizione-3">
+
+Nel caso dell'adattamento con trasformatore il trucco è lo stesso: non si cambia il carico, si cambia come il generatore lo «vede», portandolo a $R_{th}$ con il rapporto $n^2$.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -187,6 +199,24 @@ Con carico solo resistivo il massimo è per $R_L=|Z_{th}|$. Il rendimento (poten
   />
 </Figure>
 
+<div data-note-id="massimo-trasferimento-potenza-teoria-3">
+
+**Dimostrazione nel caso resistivo.** Con $P(R_L)=\dfrac{V_{th}^2R_L}{(R_{th}+R_L)^2}$ (valori efficaci), la derivata $\dfrac{dP}{dR_L}=V_{th}^2\dfrac{R_{th}-R_L}{(R_{th}+R_L)^3}$ si annulla per $R_L=R_{th}$, ed è positiva prima e negativa dopo: è un massimo, e vale $\dfrac{V_{th}^2}{4R_{th}}$.
+
+</div>
+
+<div data-note-id="massimo-trasferimento-potenza-teoria-4">
+
+**Caso complesso.** $P=\dfrac{|V_{th}|^2R_L}{(R_{th}+R_L)^2+(X_{th}+X_L)^2}$: per qualunque $R_L$ conviene $X_L=-X_{th}$, che annulla il secondo termine del denominatore; resta il caso resistivo, quindi $R_L=R_{th}$.
+
+</div>
+
+<div data-note-id="massimo-trasferimento-potenza-teoria-5">
+
+**Una curva piatta.** Vicino al massimo la potenza cambia poco: nell'esempio un carico metà o doppio di quello ottimo perde solo l'$11\,\%$ della potenza. Per questo un adattamento approssimato è spesso sufficiente, e si può scegliere un carico un po' più grande per guadagnare rendimento.
+
+</div>
+
 <Formula id="pmax-picco" />
 <Formula id="pmax-eff" />
 <Formula id="zl-coniugata" />
@@ -235,6 +265,20 @@ $Z_{th}=3+4j\,\Omega$, carico resistivo.
 
 </div>
 
+<div class="worked" data-note-id="massimo-trasferimento-potenza-esempio-4">
+
+### Potenza e rendimento al variare del carico
+
+$V_{th}=12\,\mathrm V$ efficaci, $R_{th}=6\,\Omega$. Confronta potenza sul carico e rendimento per $R_L=3$, $6$, $12\,\Omega$.
+
+**Soluzione.**
+
+1. $R_L=3$: $P=\dfrac{144\cdot3}{9^2}=5{,}33\,\mathrm W$, $\eta=\dfrac{3}{9}=33\,\%$.
+2. $R_L=6$ (adattamento): $P=\dfrac{144\cdot6}{12^2}=6\,\mathrm W=\dfrac{V_{th}^2}{4R_{th}}$, $\eta=50\,\%$.
+3. $R_L=12$: $P=\dfrac{144\cdot12}{18^2}=5{,}33\,\mathrm W$, $\eta=\dfrac{12}{18}=67\,\%$: stessa potenza del caso $R_L=3$, ma rendimento doppio.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -250,6 +294,20 @@ $Z_{th}=3+4j\,\Omega$, carico resistivo.
 
 - **Sbagliato:** Confondere $/(8R_{th})$ (picco) e $/(4R_{th})$ (efficace).
 - **Corretto:** Dichiara se $V_{th}$ è di picco o efficace.
+
+</div>
+
+<div data-note-id="massimo-trasferimento-potenza-errore-3">
+
+- **Sbagliato:** Credere che all'adattamento il rendimento sia massimo.
+- **Corretto:** All'adattamento il rendimento è il $50\,\%$; cresce con $R_L$ (nell'esempio $67\,\%$ con $12\,\Omega$) mentre la potenza sul carico diminuisce.
+
+</div>
+
+<div data-note-id="massimo-trasferimento-potenza-errore-4">
+
+- **Sbagliato:** Adattare il carico al generatore ideale invece che all'equivalente di Thevenin del circuito che lo alimenta.
+- **Corretto:** L'adattamento si fa su $Z_{th}$, l'impedenza vista dai morsetti del carico con gli indipendenti spenti: comprende tutto il circuito, non solo la resistenza interna del generatore.
 
 </div>
 

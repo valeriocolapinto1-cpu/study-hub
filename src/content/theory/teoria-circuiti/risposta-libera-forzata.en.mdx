@@ -12,6 +12,18 @@ The response of a circuit has two "causes": the energy it already stored (initia
 
 </div>
 
+<div data-note-id="risposta-libera-forzata-intuizione-2">
+
+This distinction does not coincide with the one between transient and steady state. The free response is entirely transient (in a stable system), but the forced response contains both the steady state and a piece of transient: the piece needed for the output to start from zero when the initial conditions are zero.
+
+</div>
+
+<div data-note-id="risposta-libera-forzata-intuizione-3">
+
+In practice the split is handy when the same circuit must be studied with several inputs: the free response is computed once, the forced one is recomputed for each input and added.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -46,6 +58,24 @@ With Laplace: in the transformed circuit set the initial conditions to zero (zer
     }}
   />
 </Figure>
+
+<div data-note-id="risposta-libera-forzata-teoria-3">
+
+**Two linearities.** The free response is linear in the initial conditions (doubling $v_C(0^-)$ doubles it), the forced response is linear in the inputs. The complete response, if the initial conditions are nonzero, is not linear in the input alone: this is why linearity is stated "with zero initial conditions".
+
+</div>
+
+<div data-note-id="risposta-libera-forzata-teoria-4">
+
+**In the $s$ domain.** The transformed circuit has two kinds of sources: those of the inputs and those of the initial conditions. Switching off the latter gives the forced response $Y_f(s)=H(s)X(s)$, switching off the former the free response $Y_l(s)$. Both share the same denominator (the natural modes); the forced one also contains the poles of the input.
+
+</div>
+
+<div data-note-id="risposta-libera-forzata-teoria-5">
+
+**Two ways to cut the same sum.** Complete response $=$ free $+$ forced $=$ transient $+$ steady state. The first split is by cause (initial state or input), the second by behaviour in time (what dies out and what remains); see [transient and steady-state response](../risposta-transitoria-permanente/).
+
+</div>
 
 <Formula id="y-libera-forzata" />
 
@@ -91,6 +121,20 @@ $H=\dfrac1{s+1}$ with $x=u_{-1}$, zero initial conditions.
 
 </div>
 
+<div class="worked" data-note-id="risposta-libera-forzata-esempio-4">
+
+### RL: the two splits compared
+
+$R=2\,\Omega$ in series with $L=1\,\mathrm H$, $i(0^-)=3\,\mathrm A$, $v_g=10\,u_{-1}(t)$. Find free, forced, transient and steady-state responses.
+
+**Solution.**
+
+1. $\tau=L/R=0.5\,\mathrm s$, $i_\infty=10/2=5\,\mathrm A$. Free: $3e^{-2t}$; forced: $5(1-e^{-2t})$.
+2. Complete: $i=3e^{-2t}+5-5e^{-2t}=5-2e^{-2t}$; with Laplace $I=\dfrac{10/s+3}{s+2}=\dfrac5s-\dfrac2{s+2}$ ✓.
+3. Steady state $5\,\mathrm A$, transient $-2e^{-2t}$: the transient mixes the free response ($+3e^{-2t}$) and the transient part of the forced one ($-5e^{-2t}$). Check: $i(0)=5-2=3$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -99,6 +143,27 @@ $H=\dfrac1{s+1}$ with $x=u_{-1}$, zero initial conditions.
 
 - **Wrong:** Attributing the transient to the zero-input response alone.
 - **Right:** The zero-state response also contains transient terms ($-10e^{-t}$ above).
+
+</div>
+
+<div data-note-id="risposta-libera-forzata-errore-2">
+
+- **Wrong:** Computing the forced response with the problem's initial conditions.
+- **Right:** The forced response is computed with zero initial conditions; the initial state enters only the free response.
+
+</div>
+
+<div data-note-id="risposta-libera-forzata-errore-3">
+
+- **Wrong:** Thinking that the free response depends on the input.
+- **Right:** The free response has the circuit's natural modes and amplitudes fixed by the initial conditions alone: the input plays no part.
+
+</div>
+
+<div data-note-id="risposta-libera-forzata-errore-4">
+
+- **Wrong:** Adding free and forced responses when the forced one was computed with the true initial conditions.
+- **Right:** This counts the initial state twice: in the example one would get $i(0)=6\,\mathrm A$ instead of $3\,\mathrm A$. Always check the value at $t=0$.
 
 </div>
 

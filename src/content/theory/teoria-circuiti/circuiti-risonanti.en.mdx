@@ -8,7 +8,13 @@ lang: en
 
 <div data-note-id="circuiti-risonanti-intuizione-1">
 
-In an RLC circuit, inductor and capacitor exchange energy like a spring and a mass. At the resonant frequency their reactances cancel each other and the circuit responds at its maximum: the smaller the resistance, the "sharper" and higher the resonance.
+In an RLC circuit, inductor and capacitor exchange energy like a spring and a mass. At the resonant frequency their reactances cancel each other and the circuit responds at its maximum: the smaller the losses (a small resistance in the series circuit, a large one in the parallel circuit), the "sharper" and higher the resonance.
+
+</div>
+
+<div data-note-id="circuiti-risonanti-intuizione-2">
+
+At resonance the energy bounces between inductor and capacitor without passing through the source: when one grows the other shrinks and their sum stays constant. The source only has to replace what the resistance dissipates each cycle; this is why $Q$, which compares stored and dissipated energy, measures how "clean" the resonance is.
 
 </div>
 
@@ -70,6 +76,24 @@ In an RLC circuit, inductor and capacitor exchange energy like a spring and a ma
   />
 </Figure>
 
+<div data-note-id="circuiti-risonanti-teoria-3">
+
+**Energy definition of $Q$.** $Q=2\pi\dfrac{W_{st}}{W_{diss,cycle}}=\dfrac{\omega_0W_{st}}{P}$, with $W_{st}$ the stored energy (constant at resonance) and $P$ the average dissipated power. For the series circuit it gives $\omega_0L/R$, for the parallel one $R/(\omega_0L)$: the same definition explains why the two expressions depend on $R$ in opposite ways.
+
+</div>
+
+<div data-note-id="circuiti-risonanti-teoria-4">
+
+**Cutoff frequencies.** The $-3\,\mathrm{dB}$ angular frequencies are $\omega_{1,2}=\mp\dfrac{B}{2}+\sqrt{\dfrac{B^2}{4}+\omega_0^2}$, with $\omega_2-\omega_1=B$ and $\omega_1\omega_2=\omega_0^2$: $\omega_0$ is their geometric mean, not the arithmetic one (the two nearly coincide when $Q$ is large).
+
+</div>
+
+<div data-note-id="circuiti-risonanti-teoria-5">
+
+**Overvoltages and overcurrents.** In the series circuit, at resonance, the voltages across $L$ and $C$ are $Q$ times the source voltage and in phase opposition; in the parallel one, dually, the currents in $L$ and $C$ are $Q$ times the source current. With a large $Q$ these values can far exceed the components' ratings.
+
+</div>
+
 <Formula id="w0" />
 <Formula id="q-serie" />
 <Formula id="q-par" />
@@ -117,6 +141,20 @@ Series circuit with $Q=10$ fed by $1\,\mathrm V$.
 
 </div>
 
+<div class="worked" data-note-id="circuiti-risonanti-esempio-4">
+
+### Series RLC: bandwidth and overvoltage
+
+$R=10\,\Omega$, $L=10\,\mathrm{mH}$, $C=1\,\mu\mathrm F$, source of $1\,\mathrm V$ RMS. Find $\omega_0$, $Q$, $B$, the cutoff frequencies and the capacitor voltage at resonance.
+
+**Solution.**
+
+1. $\omega_0=\dfrac1{\sqrt{10^{-2}\cdot10^{-6}}}=10^4\,\mathrm{rad/s}$ ($f_0\approx1592\,\mathrm{Hz}$); $Q=\dfrac{\omega_0L}{R}=\dfrac{10^4\cdot0.01}{10}=10$.
+2. $B=R/L=1000\,\mathrm{rad/s}$; $\sqrt{500^2+10^8}=10\,012.5$, so $\omega_1=9512.5$ and $\omega_2=10\,512.5\,\mathrm{rad/s}$.
+3. At resonance $I=1/10=0.1\,\mathrm A$ and $V_C=\dfrac{I}{\omega_0C}=\dfrac{0.1}{10^4\cdot10^{-6}}=10\,\mathrm V=Q\cdot1\,\mathrm V$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -125,6 +163,27 @@ Series circuit with $Q=10$ fed by $1\,\mathrm V$.
 
 - **Wrong:** Using $Q=\omega_0L/R$ for the parallel circuit as well.
 - **Right:** In the parallel circuit $Q=R/(\omega_0L)=\omega_0RC$.
+
+</div>
+
+<div data-note-id="circuiti-risonanti-errore-2">
+
+- **Wrong:** Thinking that at resonance a voltage-driven parallel RLC draws maximum current.
+- **Right:** In the parallel circuit at resonance the impedance is maximum: with a voltage source the current is minimum; with a current source it is the voltage that is maximum.
+
+</div>
+
+<div data-note-id="circuiti-risonanti-errore-3">
+
+- **Wrong:** Computing $\omega_0$ as $1/(LC)$.
+- **Right:** $\omega_0=1/\sqrt{LC}$; unit check: $LC$ is measured in $\mathrm s^2$.
+
+</div>
+
+<div data-note-id="circuiti-risonanti-errore-4">
+
+- **Wrong:** Computing the bandwidth as $B=\omega_0Q$.
+- **Right:** $B=\omega_0/Q$: the more selective the resonance (large $Q$), the narrower the band.
 
 </div>
 

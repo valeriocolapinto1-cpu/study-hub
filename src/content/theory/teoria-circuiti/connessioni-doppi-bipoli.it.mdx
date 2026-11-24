@@ -12,6 +12,12 @@ Collegare doppi bipoli è come combinare resistori, ma con matrici: in serie si 
 
 </div>
 
+<div data-note-id="connessioni-doppi-bipoli-intuizione-2">
+
+La regola si ricorda guardando che cosa hanno in comune le due reti dopo il collegamento. In serie-serie hanno le stesse correnti di porta e le tensioni si sommano: si sommano le $Z$. In parallelo-parallelo hanno le stesse tensioni e le correnti si sommano: si sommano le $Y$. In cascata l'uscita dell'una è l'ingresso dell'altra: si moltiplicano le $T$.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -109,6 +115,24 @@ Nella cascata i versi di riferimento contano: la corrente di uscita della prima 
   </svg>
 </Figure>
 
+<div data-note-id="connessioni-doppi-bipoli-teoria-3">
+
+**Perché la cascata moltiplica.** Per la prima rete $\begin{pmatrix}v_1\\i_1\end{pmatrix}=T_a\begin{pmatrix}v_2^{(a)}\\-i_2^{(a)}\end{pmatrix}$; il collegamento impone $v_2^{(a)}=v_1^{(b)}$ e $-i_2^{(a)}=i_1^{(b)}$, cioè il vettore d'uscita di $a$ è il vettore d'ingresso di $b$, che vale $T_b\begin{pmatrix}v_2\\-i_2\end{pmatrix}$. Sostituendo si ottiene $T=T_aT_b$. L'ordine conta: in generale $T_aT_b\neq T_bT_a$.
+
+</div>
+
+<div data-note-id="connessioni-doppi-bipoli-teoria-4">
+
+**Connessioni miste.** Serie-parallelo (ingressi in serie, uscite in parallelo) e parallelo-serie si trattano allo stesso modo con le matrici ibride: si sommano rispettivamente le $h$ e le loro inverse $g$, sempre dopo aver verificato la validità della connessione.
+
+</div>
+
+<div data-note-id="connessioni-doppi-bipoli-teoria-5">
+
+**Matrici dei blocchi elementari.** Un'impedenza $Z$ in serie fra le porte ha $T=\begin{pmatrix}1&Z\\0&1\end{pmatrix}$, un'ammettenza $Y$ in derivazione $T=\begin{pmatrix}1&0\\Y&1\end{pmatrix}$, un trasformatore ideale $T=\begin{pmatrix}n&0\\0&1/n\end{pmatrix}$. Una rete a scala qualsiasi si ottiene moltiplicando queste matrici nell'ordine in cui i blocchi compaiono dal generatore al carico.
+
+</div>
+
 <Formula id="conn-ss" />
 <Formula id="conn-pp" />
 <Formula id="conn-cascata" />
@@ -154,6 +178,20 @@ $Z_a=\begin{pmatrix}2&1\\1&2\end{pmatrix}$, $Z_b=\begin{pmatrix}1&1\\1&3\end{pma
 
 </div>
 
+<div class="worked" data-note-id="connessioni-doppi-bipoli-esempio-4">
+
+### Cascata in ordine inverso
+
+Stessi blocchi dell'esempio precedente, ma prima la derivazione $G=\tfrac13$ e poi la serie $R=2$. Trova $T$ e l'impedenza d'ingresso a porta 2 aperta.
+
+**Soluzione.**
+
+1. $T=\begin{pmatrix}1&0\\1/3&1\end{pmatrix}\begin{pmatrix}1&2\\0&1\end{pmatrix}=\begin{pmatrix}1&2\\1/3&5/3\end{pmatrix}$; $\det T=\tfrac53-\tfrac23=1$ ✓.
+2. Porta 2 aperta: $Z_{in}=A/C=1/(1/3)=3\,\Omega$.
+3. Verifica sul circuito: l'ingresso vede direttamente la derivazione da $3\,\Omega$, mentre la serie da $2\,\Omega$ è aperta in fondo. Nell'ordine precedente era $5\,\Omega$: l'ordine della cascata conta.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -162,6 +200,27 @@ $Z_a=\begin{pmatrix}2&1\\1&2\end{pmatrix}$, $Z_b=\begin{pmatrix}1&1\\1&3\end{pma
 
 - **Sbagliato:** Moltiplicare le matrici $Z$ in una cascata.
 - **Corretto:** Cascata: si moltiplicano le matrici di trasmissione.
+
+</div>
+
+<div data-note-id="connessioni-doppi-bipoli-errore-2">
+
+- **Sbagliato:** Dimenticare che nella cascata l'ordine delle matrici conta.
+- **Corretto:** $T=T_aT_b$ con $a$ la rete dal lato del generatore: scambiando l'ordine cambia il circuito (nell'esempio $Z_{in}$ passa da $5$ a $3\,\Omega$).
+
+</div>
+
+<div data-note-id="connessioni-doppi-bipoli-errore-3">
+
+- **Sbagliato:** Sommare le $Y$ di due reti collegate in serie-serie.
+- **Corretto:** In serie-serie si sommano le $Z$, perché le correnti di porta sono comuni e le tensioni si sommano; le $Y$ si sommano nel parallelo-parallelo.
+
+</div>
+
+<div data-note-id="connessioni-doppi-bipoli-errore-4">
+
+- **Sbagliato:** Usare le formule di somma senza controllare che la connessione sia valida.
+- **Corretto:** Serie-serie e parallelo-parallelo richiedono che ogni porta resti una porta dopo il collegamento: va controllato con le [prove di validità](../prove-validita-connessioni/).
 
 </div>
 

@@ -12,6 +12,12 @@ A circuit left to itself after a disturbance: does it return to rest, keep oscil
 
 </div>
 
+<div data-note-id="stabilita-poli-intuizione-2">
+
+A mechanical picture: a ball at the bottom of a valley rolls back if displaced (stable), on a flat surface it stays where it is put (marginal), on top of a hill it runs away (unstable). Circuits of positive resistors, capacitors and inductors only are valleys or at most flat surfaces: they dissipate or conserve energy, they do not create it.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -56,6 +62,24 @@ A linear system is **asymptotically stable** if the zero-input response tends to
     }}
   />
 </Figure>
+
+<div data-note-id="stabilita-poli-teoria-3">
+
+**Why the real part matters.** A pole $p=\sigma+j\omega$ produces a mode $e^{pt}=e^{\sigma t}e^{j\omega t}$ of modulus $e^{\sigma t}$: it decays if $\sigma\lt 0$, stays constant if $\sigma=0$, grows if $\sigma\gt 0$; the imaginary part only makes it oscillate. A multiple pole multiplies the mode by powers of $t$, and on the imaginary axis this is enough to make it grow.
+
+</div>
+
+<div data-note-id="stabilita-poli-teoria-4">
+
+**What makes a circuit unstable.** With positive $R$, $L$, $C$ only, the circuit is stable or at most marginal (for instance a lossless LC). Instability requires active elements: controlled sources or amplifiers with feedback, which can behave as negative resistances.
+
+</div>
+
+<div data-note-id="stabilita-poli-teoria-5">
+
+**Input–output stability.** Another definition requires every bounded input to give a bounded output. For linear time-invariant circuits it requires all poles of $H(s)$ in the open left half-plane: a pole on the imaginary axis is not enough, because an input at its frequency gives a growing output.
+
+</div>
 
 <Formula id="stab-poli" />
 <Formula id="routh2" />
@@ -102,6 +126,20 @@ $H=\dfrac{1}{s-1}$.
 
 </div>
 
+<div class="worked" data-note-id="stabilita-poli-esempio-4">
+
+### An amplifier that becomes an oscillator
+
+An active filter with an amplifier of gain $k$ has $D(s)=s^2+(3-k)s+1$. Study stability for $k=2$, $3$, $4$.
+
+**Solution.**
+
+1. $k=2$: $s^2+s+1$, poles $-0.5\pm0.866j$: stable.
+2. $k=3$: $s^2+1$, poles $\pm j$: marginal, the circuit oscillates at $\omega=1$ without damping (it is an oscillator).
+3. $k=4$: $s^2-s+1$, poles $0.5\pm0.866j$: unstable. Second-degree criterion: we need $3-k\gt 0$, i.e. $k\lt 3$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -110,6 +148,20 @@ $H=\dfrac{1}{s-1}$.
 
 - **Wrong:** Saying that a pole on the imaginary axis makes the system stable.
 - **Right:** At most marginal: the response does not decay and may become unbounded (multiple pole or resonant input).
+
+</div>
+
+<div data-note-id="stabilita-poli-errore-2">
+
+- **Wrong:** Judging stability from the poles of $H(s)$ after a cancellation with a zero.
+- **Right:** A cancelled mode still exists in the circuit: an unstable pole hidden by a zero still makes the circuit unstable.
+
+</div>
+
+<div data-note-id="stabilita-poli-errore-3">
+
+- **Wrong:** For a third-degree polynomial checking only the signs of the coefficients.
+- **Right:** For the third degree positive coefficients are not enough: $a_2a_1\gt a_0$ is also needed.
 
 </div>
 

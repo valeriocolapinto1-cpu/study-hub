@@ -12,6 +12,12 @@ Appena si accende un ingresso, il circuito «si assesta»: per un po' convivono 
 
 </div>
 
+<div data-note-id="risposta-transitoria-permanente-intuizione-2">
+
+Il transitorio è il «costo d'ingresso» del passaggio da una situazione all'altra: il circuito deve raccordare lo stato in cui si trovava con quello che l'ingresso gli impone. Quanto dura dipende dai poli del circuito (le costanti di tempo); quanto è grande dipende da quanto i due stati sono lontani.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -172,6 +178,24 @@ Con Laplace: $Y(s)=F(s)X(s)$; nella scomposizione in fratti semplici i poli di $
   />
 </Figure>
 
+<div data-note-id="risposta-transitoria-permanente-teoria-3">
+
+**Come si riconoscono.** Nella scomposizione in fratti semplici di $Y(s)=F(s)X(s)$ i termini con i poli di $F$ formano la risposta transitoria, quelli con i poli di $X$ la permanente. Per un gradino il polo di $X$ è $s=0$ e la permanente è la costante $F(0)$; per una sinusoide i poli sono $\pm j\omega_0$ e la permanente è la sinusoide calcolata con $F(j\omega_0)$.
+
+</div>
+
+<div data-note-id="risposta-transitoria-permanente-teoria-4">
+
+**Quando ha senso.** Serve un sistema stabile: con un polo di $F$ a parte reale nulla o positiva il «transitorio» non si spegne e la separazione perde significato. Serve anche che i poli di $X$ non coincidano con quelli di $F$: in caso di risonanza esatta compaiono termini come $t\cos\omega_0t$.
+
+</div>
+
+<div data-note-id="risposta-transitoria-permanente-teoria-5">
+
+**Nella pratica.** Il transitorio si considera esaurito dopo circa cinque volte la costante di tempo più lunga, quella del polo più vicino all'asse immaginario (polo dominante): è lui a decidere quanto aspettare prima di misurare il regime.
+
+</div>
+
 <Formula id="y-permanente" />
 
 </Layer>
@@ -215,6 +239,20 @@ Stesso $F$, $x=u_{-1}$.
 
 </div>
 
+<div class="worked" data-note-id="risposta-transitoria-permanente-esempio-4">
+
+### RL con ingresso sinusoidale
+
+$F(s)=\dfrac{2}{s+2}$, ingresso $x=\cos2t$ acceso a $t=0$, condizioni nulle. Trova permanente, transitoria e dopo quanto il transitorio scende sotto l'$1\,\%$ dell'ampiezza di regime.
+
+**Soluzione.**
+
+1. $F(2j)=\dfrac{2}{2+2j}=\tfrac12(1-j)$: $|F|=0{,}707$, $\arg F=-45^\circ$; permanente $y_p=0{,}707\cos(2t-45^\circ)=\tfrac12\cos2t+\tfrac12\sin2t$.
+2. $Y=\dfrac{2s}{(s+2)(s^2+4)}$: residuo in $-2$, $\dfrac{-4}{8}=-\tfrac12$, quindi transitoria $-\tfrac12e^{-2t}$; controllo $y(0)=\tfrac12-\tfrac12=0$ ✓.
+3. $\tfrac12e^{-2t}\lt 0{,}01\cdot0{,}707\Rightarrow t\gt \tfrac12\ln70{,}7\approx2{,}13\,\mathrm s$, cioè circa $4{,}3\tau$ con $\tau=0{,}5\,\mathrm s$.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -223,6 +261,27 @@ Stesso $F$, $x=u_{-1}$.
 
 - **Sbagliato:** Calcolare la permanente con $F(s)$ a $s=\omega_0$.
 - **Corretto:** Si valuta $F$ in $s=j\omega_0$.
+
+</div>
+
+<div data-note-id="risposta-transitoria-permanente-errore-2">
+
+- **Sbagliato:** Pensare che la risposta permanente dipenda dalle condizioni iniziali.
+- **Corretto:** In un sistema stabile la permanente dipende solo dall'ingresso e da $F$; le condizioni iniziali cambiano solo il transitorio.
+
+</div>
+
+<div data-note-id="risposta-transitoria-permanente-errore-3">
+
+- **Sbagliato:** Calcolare la permanente a un gradino con $F(j\omega)$ a una frequenza qualsiasi.
+- **Corretto:** Il gradino è la frequenza zero: la permanente è $F(0)$ moltiplicato per l'ampiezza del gradino.
+
+</div>
+
+<div data-note-id="risposta-transitoria-permanente-errore-4">
+
+- **Sbagliato:** Valutare il tempo di estinzione dal polo più lontano dall'asse immaginario.
+- **Corretto:** Il polo più lontano si spegne per primo; la durata del transitorio la decide il polo dominante, quello più vicino all'asse.
 
 </div>
 

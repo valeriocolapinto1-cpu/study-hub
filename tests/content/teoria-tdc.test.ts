@@ -17,11 +17,8 @@ const THEORY = join(process.cwd(), 'src/content/theory', COURSE);
 const FILES = readdirSync(join(process.cwd(), 'src/content/topics', COURSE))
   .filter((f) => f.endsWith('.yaml'))
   .sort();
-/**
- * R1 arriva in due PR: la prima completa i capitoli I–IV (argomenti 1–32), la seconda V–VI.
- * Le soglie valgono per gli argomenti già completati; la seconda PR porta il limite a 49.
- */
-const COMPLETATI_FINO_A = 32;
+/** R1 è arrivata in due PR (capitoli I–IV, poi V–VI): ora le soglie valgono per tutti gli argomenti. */
+const COMPLETATI_FINO_A = 49;
 const TOPICS = FILES.filter((f) => Number.parseInt(f, 10) <= COMPLETATI_FINO_A).map((f) =>
   f.replace(/^\d+-/, '').replace(/\.yaml$/, ''),
 );

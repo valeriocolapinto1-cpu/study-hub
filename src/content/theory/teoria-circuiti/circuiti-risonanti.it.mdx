@@ -8,7 +8,13 @@ lang: it
 
 <div data-note-id="circuiti-risonanti-intuizione-1">
 
-In un RLC induttore e condensatore si scambiano energia come una molla e una massa. Alla frequenza di risonanza le loro reattanze si annullano a vicenda e il circuito risponde al massimo: più è piccola la resistenza, più la risonanza è «stretta» e alta.
+In un RLC induttore e condensatore si scambiano energia come una molla e una massa. Alla frequenza di risonanza le loro reattanze si annullano a vicenda e il circuito risponde al massimo: più sono piccole le perdite (resistenza piccola nel serie, grande nel parallelo), più la risonanza è «stretta» e alta.
+
+</div>
+
+<div data-note-id="circuiti-risonanti-intuizione-2">
+
+Alla risonanza l'energia rimbalza fra induttore e condensatore senza passare dal generatore: quando una cresce l'altra cala e la loro somma resta costante. Il generatore deve solo rimpiazzare ciò che la resistenza dissipa a ogni ciclo; per questo $Q$, che confronta energia immagazzinata ed energia dissipata, misura quanto è «pulita» la risonanza.
 
 </div>
 
@@ -70,6 +76,24 @@ In un RLC induttore e condensatore si scambiano energia come una molla e una mas
   />
 </Figure>
 
+<div data-note-id="circuiti-risonanti-teoria-3">
+
+**Definizione energetica di $Q$.** $Q=2\pi\dfrac{W_{imm}}{W_{dis,ciclo}}=\dfrac{\omega_0W_{imm}}{P}$, con $W_{imm}$ energia immagazzinata (costante alla risonanza) e $P$ potenza media dissipata. Per il serie dà $\omega_0L/R$, per il parallelo $R/(\omega_0L)$: la stessa definizione spiega perché le due espressioni dipendono da $R$ in modo opposto.
+
+</div>
+
+<div data-note-id="circuiti-risonanti-teoria-4">
+
+**Frequenze di taglio.** Le pulsazioni a $-3\,\mathrm{dB}$ sono $\omega_{1,2}=\mp\dfrac{B}{2}+\sqrt{\dfrac{B^2}{4}+\omega_0^2}$, con $\omega_2-\omega_1=B$ e $\omega_1\omega_2=\omega_0^2$: $\omega_0$ è la media geometrica delle due, non quella aritmetica (le due coincidono quasi quando $Q$ è grande).
+
+</div>
+
+<div data-note-id="circuiti-risonanti-teoria-5">
+
+**Sovratensioni e sovracorrenti.** Nel serie, alla risonanza, le tensioni su $L$ e $C$ valgono $Q$ volte quella del generatore e sono in opposizione di fase; nel parallelo, dualmente, le correnti in $L$ e $C$ valgono $Q$ volte quella del generatore. Con $Q$ grande questi valori possono superare di molto quelli nominali dei componenti.
+
+</div>
+
 <Formula id="w0" />
 <Formula id="q-serie" />
 <Formula id="q-par" />
@@ -117,6 +141,20 @@ Serie con $Q=10$ alimentato da $1\,\mathrm V$.
 
 </div>
 
+<div class="worked" data-note-id="circuiti-risonanti-esempio-4">
+
+### RLC serie: banda e sovratensione
+
+$R=10\,\Omega$, $L=10\,\mathrm{mH}$, $C=1\,\mu\mathrm F$, generatore da $1\,\mathrm V$ efficace. Trova $\omega_0$, $Q$, $B$, le pulsazioni di taglio e la tensione sul condensatore alla risonanza.
+
+**Soluzione.**
+
+1. $\omega_0=\dfrac1{\sqrt{10^{-2}\cdot10^{-6}}}=10^4\,\mathrm{rad/s}$ ($f_0\approx1592\,\mathrm{Hz}$); $Q=\dfrac{\omega_0L}{R}=\dfrac{10^4\cdot0{,}01}{10}=10$.
+2. $B=R/L=1000\,\mathrm{rad/s}$; $\sqrt{500^2+10^8}=10\,012{,}5$, quindi $\omega_1=9512{,}5$ e $\omega_2=10\,512{,}5\,\mathrm{rad/s}$.
+3. Alla risonanza $I=1/10=0{,}1\,\mathrm A$ e $V_C=\dfrac{I}{\omega_0C}=\dfrac{0{,}1}{10^4\cdot10^{-6}}=10\,\mathrm V=Q\cdot1\,\mathrm V$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -125,6 +163,27 @@ Serie con $Q=10$ alimentato da $1\,\mathrm V$.
 
 - **Sbagliato:** Usare $Q=\omega_0L/R$ anche per il parallelo.
 - **Corretto:** Nel parallelo $Q=R/(\omega_0L)=\omega_0RC$.
+
+</div>
+
+<div data-note-id="circuiti-risonanti-errore-2">
+
+- **Sbagliato:** Pensare che alla risonanza di un RLC parallelo alimentato in tensione la corrente sia massima.
+- **Corretto:** Nel parallelo alla risonanza l'impedenza è massima: con un generatore di tensione la corrente è minima; con un generatore di corrente è la tensione a essere massima.
+
+</div>
+
+<div data-note-id="circuiti-risonanti-errore-3">
+
+- **Sbagliato:** Calcolare $\omega_0$ come $1/(LC)$.
+- **Corretto:** $\omega_0=1/\sqrt{LC}$; controllo delle unità: $LC$ si misura in $\mathrm s^2$.
+
+</div>
+
+<div data-note-id="circuiti-risonanti-errore-4">
+
+- **Sbagliato:** Calcolare la banda come $B=\omega_0Q$.
+- **Corretto:** $B=\omega_0/Q$: più la risonanza è selettiva ($Q$ grande), più la banda è stretta.
 
 </div>
 

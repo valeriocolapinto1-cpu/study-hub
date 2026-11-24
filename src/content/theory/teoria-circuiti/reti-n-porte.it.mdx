@@ -12,6 +12,12 @@ Quando un circuito si collega al mondo esterno attraverso più coppie di morsett
 
 </div>
 
+<div data-note-id="reti-n-porte-intuizione-2">
+
+Pensare per porte cambia il livello di dettaglio: non interessa più che cosa succede dentro, ma solo come le grandezze di una porta influenzano quelle delle altre. È il passo di Thevenin esteso a più coppie di morsetti: un circuito complicato diventa una matrice.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -79,6 +85,24 @@ Un doppio bipolo ($N=2$) ha due relazioni tra $v_1,i_1,v_2,i_2$.
   </svg>
 </Figure>
 
+<div data-note-id="reti-n-porte-teoria-3">
+
+**Rappresentazioni.** In una rete lineare a $N$ porte le $2N$ grandezze sono legate da $N$ equazioni: si scelgono $N$ variabili indipendenti e si esprimono le altre $N$ in funzione di queste. Scegliendo le correnti si ha la matrice $Z$, scegliendo le tensioni la $Y$, con scelte miste le ibride. Non tutte le scelte sono possibili per ogni rete.
+
+</div>
+
+<div data-note-id="reti-n-porte-teoria-4">
+
+**La condizione di porta dipende dall'esterno.** È vera se ogni porta è chiusa su un bipolo (un generatore o un carico); può cadere se morsetti di porte diverse vengono collegati fra loro. Per questo le connessioni di doppi bipoli richiedono le [prove di validità](../prove-validita-connessioni/).
+
+</div>
+
+<div data-note-id="reti-n-porte-teoria-5">
+
+**Potenza.** Con correnti entranti in tutte le porte la potenza assorbita è $p=\sum_kv_ki_k$, un termine per porta. Una rete di soli resistori positivi assorbe sempre $p\ge0$: è passiva.
+
+</div>
+
 <Formula id="nporte-rel" />
 
 </Layer>
@@ -121,6 +145,20 @@ Il trasformatore ideale: quali variabili sono indipendenti?
 
 </div>
 
+<div class="worked" data-note-id="reti-n-porte-esempio-4">
+
+### Chiudere una porta su un carico
+
+Un doppio bipolo ha $Z=\begin{pmatrix}4&3\\3&5\end{pmatrix}\,\Omega$ (la rete a T con $1$, $2$ e $3\,\Omega$). La porta 2 è chiusa su $R_L=2\,\Omega$: trova l'impedenza vista dalla porta 1.
+
+**Soluzione.**
+
+1. Carico: $v_2=-2i_2$ (la corrente nel carico è $-i_2$). Seconda equazione: $3i_1+5i_2=-2i_2\Rightarrow i_2=-\tfrac37i_1$.
+2. Prima equazione: $v_1=4i_1+3i_2=\left(4-\tfrac97\right)i_1=\tfrac{19}{7}i_1$, quindi $Z_{in}=\tfrac{19}7\approx2{,}71\,\Omega$.
+3. Verifica sulla rete a T: $1+3\parallel(2+2)=1+\tfrac{12}{7}=\tfrac{19}{7}$ ✓. Chiudendo una porta, la rete a due porte diventa un bipolo.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -129,6 +167,20 @@ Il trasformatore ideale: quali variabili sono indipendenti?
 
 - **Sbagliato:** Trattare come porta una coppia di morsetti che non soddisfa la condizione di porta.
 - **Corretto:** Verifica che $i_{entrante}=i_{uscente}$.
+
+</div>
+
+<div data-note-id="reti-n-porte-errore-2">
+
+- **Sbagliato:** Pensare che una rete a $N$ porte abbia sempre la matrice $Z$.
+- **Corretto:** Esiste solo se le correnti si possono scegliere liberamente: il trasformatore ideale, per esempio, non ha né $Z$ né $Y$.
+
+</div>
+
+<div data-note-id="reti-n-porte-errore-3">
+
+- **Sbagliato:** Chiudere una porta su un carico scrivendo $v_2=R_Li_2$.
+- **Corretto:** Con $i_2$ entrante nella rete, nel carico scorre $-i_2$: $v_2=-R_Li_2$.
 
 </div>
 

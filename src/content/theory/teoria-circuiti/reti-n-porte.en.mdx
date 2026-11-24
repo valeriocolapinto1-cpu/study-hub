@@ -12,6 +12,12 @@ When a circuit connects to the outside world through several pairs of terminals,
 
 </div>
 
+<div data-note-id="reti-n-porte-intuizione-2">
+
+Thinking in ports changes the level of detail: what happens inside no longer matters, only how the quantities of one port affect those of the others. It is Thévenin's step extended to several pairs of terminals: a complicated circuit becomes a matrix.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -75,6 +81,24 @@ A two-port ($N=2$) has two relations among $v_1,i_1,v_2,i_2$.
   </svg>
 </Figure>
 
+<div data-note-id="reti-n-porte-teoria-3">
+
+**Representations.** In a linear $N$-port the $2N$ quantities are linked by $N$ equations: one chooses $N$ independent variables and expresses the other $N$ in terms of them. Choosing the currents gives the matrix $Z$, choosing the voltages $Y$, mixed choices the hybrid matrices. Not every choice is possible for every network.
+
+</div>
+
+<div data-note-id="reti-n-porte-teoria-4">
+
+**The port condition depends on the outside.** It holds if every port is closed on a one-port (a source or a load); it can fail if terminals of different ports are connected together. This is why connections of two-ports require the [validity tests](../prove-validita-connessioni/).
+
+</div>
+
+<div data-note-id="reti-n-porte-teoria-5">
+
+**Power.** With currents entering all ports the absorbed power is $p=\sum_kv_ki_k$, one term per port. A network of positive resistors only always absorbs $p\ge0$: it is passive.
+
+</div>
+
 <Formula id="nporte-rel" />
 
 </Layer>
@@ -117,6 +141,20 @@ The ideal transformer: which variables are independent?
 
 </div>
 
+<div class="worked" data-note-id="reti-n-porte-esempio-4">
+
+### Closing a port on a load
+
+A two-port has $Z=\begin{pmatrix}4&3\\3&5\end{pmatrix}\,\Omega$ (the T network with $1$, $2$ and $3\,\Omega$). Port 2 is closed on $R_L=2\,\Omega$: find the impedance seen from port 1.
+
+**Solution.**
+
+1. Load: $v_2=-2i_2$ (the load current is $-i_2$). Second equation: $3i_1+5i_2=-2i_2\Rightarrow i_2=-\tfrac37i_1$.
+2. First equation: $v_1=4i_1+3i_2=\left(4-\tfrac97\right)i_1=\tfrac{19}{7}i_1$, so $Z_{in}=\tfrac{19}7\approx2.71\,\Omega$.
+3. Check on the T network: $1+3\parallel(2+2)=1+\tfrac{12}{7}=\tfrac{19}{7}$ ✓. Closing a port turns the two-port into a one-port.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -125,6 +163,20 @@ The ideal transformer: which variables are independent?
 
 - **Wrong:** Treating as a port a pair of terminals that does not satisfy the port condition.
 - **Right:** Check that $i_{in}=i_{out}$.
+
+</div>
+
+<div data-note-id="reti-n-porte-errore-2">
+
+- **Wrong:** Thinking that an $N$-port always has a $Z$ matrix.
+- **Right:** It exists only if the currents can be chosen freely: the ideal transformer, for instance, has neither $Z$ nor $Y$.
+
+</div>
+
+<div data-note-id="reti-n-porte-errore-3">
+
+- **Wrong:** Closing a port on a load by writing $v_2=R_Li_2$.
+- **Right:** With $i_2$ entering the network, the load carries $-i_2$: $v_2=-R_Li_2$.
 
 </div>
 

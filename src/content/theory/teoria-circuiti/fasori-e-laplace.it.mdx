@@ -12,6 +12,18 @@ Fasori e Laplace non sono due mondi separati: i fasori sono Laplace «ristretto�
 
 </div>
 
+<div data-note-id="fasori-e-laplace-intuizione-2">
+
+Porre $s=j\omega$ significa chiedersi come il circuito risponde a un'esponenziale complessa $e^{j\omega t}$ presente «da sempre»: non c'è un istante di accensione e quindi nessun transitorio. Laplace considera invece ingressi accesi a $t=0$ e vede tutto ciò che segue, transitorio e regime.
+
+</div>
+
+<div data-note-id="fasori-e-laplace-intuizione-3">
+
+In pratica: per il regime sinusoidale di un circuito stabile basta calcolare $H(j\omega)$ con i fasori; per sapere come ci si arriva, dall'accensione in poi, serve Laplace.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -25,6 +37,30 @@ La funzione di rete per i fasori è $H(j\omega)=H(s)\big|_{s=j\omega}$, valida p
 <div data-note-id="fasori-e-laplace-teoria-2">
 
 Le equazioni dei fasori sono quelle di Laplace con $s=j\omega$ e _senza_ condizioni iniziali: il metodo dei fasori vede solo il regime.
+
+</div>
+
+<div data-note-id="fasori-e-laplace-teoria-3">
+
+**Perché vale.** Per un sistema stabile con ingresso $\cos\omega t$ acceso a $t=0$, la scomposizione di $Y(s)=H(s)X(s)$ contiene i termini dei poli di $H$, che si spengono, e quelli dei poli $\pm j\omega$ dell'ingresso, il cui coefficiente è proporzionale a $H(j\omega)$. Per $t\to\infty$ resta $|H(j\omega)|\cos(\omega t+\arg H(j\omega))$: esattamente il risultato dei fasori.
+
+</div>
+
+<div data-note-id="fasori-e-laplace-teoria-4">
+
+**Elemento per elemento.** La corrispondenza vale anche per le impedenze: $sL\to j\omega L$, $\dfrac{1}{sC}\to\dfrac{1}{j\omega C}$. Ogni metodo dei fasori (nodi, maglie, Thevenin) è il corrispondente metodo nel dominio di $s$, valutato in $s=j\omega$ e senza i generatori delle condizioni iniziali.
+
+</div>
+
+<div data-note-id="fasori-e-laplace-teoria-5">
+
+**Che cosa si perde.** Con i fasori non si vedono il transitorio, le condizioni iniziali e gli ingressi non sinusoidali (gradini, impulsi). Con Laplace si vede tutto, ma per il regime bisogna scomporre anche i poli dell'ingresso: se interessa solo il regime sinusoidale, i fasori sono più rapidi.
+
+</div>
+
+<div data-note-id="fasori-e-laplace-teoria-6">
+
+**Modulo e fase da poli e zeri.** Scrivendo $H(s)=K\dfrac{\prod(s-z_i)}{\prod(s-p_k)}$, in $s=j\omega$ il modulo è $|K|$ per il prodotto delle distanze di $j\omega$ dagli zeri diviso il prodotto delle distanze dai poli; la fase è la somma degli angoli verso gli zeri meno quella degli angoli verso i poli. Per questo, avvicinandosi a un polo poco smorzato, il modulo cresce.
 
 </div>
 
@@ -71,6 +107,20 @@ $x=4\cos t$ nel primo sistema.
 
 </div>
 
+<div class="worked" data-note-id="fasori-e-laplace-esempio-4">
+
+### Regime di un secondo ordine
+
+$H(s)=\dfrac{10}{s^2+2s+10}$ con ingresso $x=2\cos3t$. Trova l'uscita a regime.
+
+**Soluzione.**
+
+1. Stabilità: poli $-1\pm3j$, parte reale negativa: il regime esiste.
+2. $H(3j)=\dfrac{10}{10-9+6j}=\dfrac{10}{1+6j}$: $|H|=\dfrac{10}{\sqrt{37}}=1{,}644$, $\arg H=-\arctan6=-80{,}5^\circ$.
+3. $y_p=2\cdot1{,}644\cos(3t-80{,}5^\circ)=3{,}29\cos(3t-80{,}5^\circ)$: vicino alla frequenza dei poli l'ampiezza è amplificata.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -79,6 +129,27 @@ $x=4\cos t$ nel primo sistema.
 
 - **Sbagliato:** Usare $H(j\omega)$ per sistemi instabili.
 - **Corretto:** Il legame vale solo con poli a parte reale negativa.
+
+</div>
+
+<div data-note-id="fasori-e-laplace-errore-2">
+
+- **Sbagliato:** Sostituire $s=\omega$ invece di $s=j\omega$.
+- **Corretto:** La risposta sinusoidale si legge sull'asse immaginario, $s=j\omega$: con $s=\omega$ si valuta $H$ sull'asse reale, che non c'entra.
+
+</div>
+
+<div data-note-id="fasori-e-laplace-errore-3">
+
+- **Sbagliato:** Usare $H(j\omega)$ per la risposta subito dopo l'accensione.
+- **Corretto:** $H(j\omega)$ dà solo il regime; per i primi istanti serve l'intera $Y(s)$, transitorio compreso.
+
+</div>
+
+<div data-note-id="fasori-e-laplace-errore-4">
+
+- **Sbagliato:** Usare i fasori quando la frequenza dell'ingresso coincide con un polo sull'asse immaginario.
+- **Corretto:** Allora $H(j\omega)$ è infinito e il regime non esiste: la risposta cresce nel tempo, come nel circuito LC ideale alla sua risonanza.
 
 </div>
 

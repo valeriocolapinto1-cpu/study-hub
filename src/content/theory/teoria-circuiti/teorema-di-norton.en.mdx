@@ -12,6 +12,12 @@ Norton tells the same story as Thévenin from the point of view of current: inst
 
 </div>
 
+<div data-note-id="teorema-di-norton-intuizione-2">
+
+Thévenin and Norton are the same box described in two ways: from outside they cannot be told apart. One picks whichever makes the algebra easier: Norton when the load is in parallel with other elements or nodal analysis is used, Thévenin when the load is in series or mesh analysis is used.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -53,6 +59,24 @@ It exists even when Thévenin does not (for $Z_{th}=0$ Norton does not exist).
 3. This is the characteristic of a current source $I_N=I_{sc}$ in parallel with $Z_N$. Comparing with Thévenin, $I_N=V_{th}/Z_{th}$ and $Z_N=Z_{th}$. $\square$
 
 </details>
+
+<div data-note-id="teorema-di-norton-teoria-3">
+
+**Source transformation.** $V_{th}=Z_{th}I_N$ and $Z_N=Z_{th}$: a voltage source with a series impedance is equivalent to a current source $V_{th}/Z_{th}$ with the same impedance in parallel. The transformation can also be applied to internal pieces of a circuit, to simplify it one step at a time.
+
+</div>
+
+<div data-note-id="teorema-di-norton-teoria-4">
+
+**When they exist.** Norton requires $Z_{th}\neq0$ (an ideal voltage source has no Norton equivalent); Thévenin requires a finite $Z_N$ (an ideal current source has no Thévenin equivalent). When both exist they describe the same terminal characteristic, $i=I_N-v/Z_N$.
+
+</div>
+
+<div data-note-id="teorema-di-norton-teoria-5">
+
+**Only externally equivalent.** The two equivalents give the same voltages and currents at the load, not the same internal power: on open circuit the Thévenin model dissipates nothing, the Norton model dissipates $I_N^2R_N$. For the power dissipated inside the one-port one must go back to the real circuit.
+
+</div>
 
 <Formula id="n-in" />
 <Formula id="n-zn" />
@@ -99,6 +123,20 @@ $I_N=6$, $R_N=\tfrac43$, load $R_L=4$.
 
 </div>
 
+<div class="worked" data-note-id="teorema-di-norton-esempio-4">
+
+### Two sources in parallel
+
+Between node $A$ and ground there are: $10\,\mathrm V$ in series with $2\,\Omega$, $6\,\mathrm V$ in series with $3\,\Omega$ and a load $R_L=4\,\Omega$. Find the load voltage with Norton.
+
+**Solution.**
+
+1. Transformation: $10/2=5\,\mathrm A$ with $2\,\Omega$ and $6/3=2\,\mathrm A$ with $3\,\Omega$, all in parallel.
+2. $I_N=5+2=7\,\mathrm A$, $R_N=2\parallel3=1.2\,\Omega$; with the load $v=7\cdot(1.2\parallel4)=7\cdot\dfrac{4.8}{5.2}=6.46\,\mathrm V$.
+3. Check with nodal analysis: $\dfrac{v-10}{2}+\dfrac{v-6}{3}+\dfrac v4=0\Rightarrow13v=84$, $v=6.46\,\mathrm V$ ✓; load current $1.62\,\mathrm A$.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -107,6 +145,20 @@ $I_N=6$, $R_N=\tfrac43$, load $R_L=4$.
 
 - **Wrong:** Computing $I_N$ with the port open.
 - **Right:** $I_N$ is the current with the port short-circuited.
+
+</div>
+
+<div data-note-id="teorema-di-norton-errore-2">
+
+- **Wrong:** Putting $R_N$ in series with the current source.
+- **Right:** In the Norton equivalent the impedance is in parallel: in series with an ideal current source it would have no effect on the load.
+
+</div>
+
+<div data-note-id="teorema-di-norton-errore-3">
+
+- **Wrong:** Getting the direction of $I_N$ wrong.
+- **Right:** $I_N$ has the direction of the short-circuit current, which leaves the positive terminal and flows through the short: with that direction the source pushes it into the load.
 
 </div>
 

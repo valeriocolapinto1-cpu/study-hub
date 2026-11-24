@@ -12,6 +12,12 @@ Un circuito lasciato a sé stesso, dopo una perturbazione, torna a riposo, conti
 
 </div>
 
+<div data-note-id="stabilita-poli-intuizione-2">
+
+Un'immagine meccanica: una pallina sul fondo di una valle torna giù se la si sposta (stabile), su un piano resta dove la si mette (marginale), in cima a una collina scappa via (instabile). I circuiti di soli resistori, condensatori e induttori positivi sono valli o al più piani: dissipano o conservano energia, non la creano.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -56,6 +62,24 @@ Un sistema lineare è **asintoticamente stabile** se la risposta libera tende a 
     }}
   />
 </Figure>
+
+<div data-note-id="stabilita-poli-teoria-3">
+
+**Perché conta la parte reale.** Un polo $p=\sigma+j\omega$ produce un modo $e^{pt}=e^{\sigma t}e^{j\omega t}$ di modulo $e^{\sigma t}$: decade se $\sigma\lt 0$, resta costante se $\sigma=0$, cresce se $\sigma\gt 0$; la parte immaginaria fa solo oscillare. Un polo multiplo moltiplica il modo per potenze di $t$, e sull'asse immaginario questo basta a farlo crescere.
+
+</div>
+
+<div data-note-id="stabilita-poli-teoria-4">
+
+**Chi rende instabile un circuito.** Con soli $R$, $L$, $C$ positivi il circuito è stabile o al più marginale (per esempio un LC senza perdite). L'instabilità richiede elementi attivi: generatori controllati o amplificatori con retroazione, che possono comportarsi come resistenze negative.
+
+</div>
+
+<div data-note-id="stabilita-poli-teoria-5">
+
+**Stabilità ingresso–uscita.** Un'altra definizione chiede che a ogni ingresso limitato corrisponda un'uscita limitata. Per i circuiti lineari tempo-invarianti richiede tutti i poli di $H(s)$ nel semipiano sinistro aperto: un polo sull'asse immaginario non basta, perché un ingresso alla sua frequenza dà un'uscita che cresce.
+
+</div>
 
 <Formula id="stab-poli" />
 <Formula id="routh2" />
@@ -102,6 +126,20 @@ $H=\dfrac{1}{s-1}$.
 
 </div>
 
+<div class="worked" data-note-id="stabilita-poli-esempio-4">
+
+### Un amplificatore che diventa oscillatore
+
+Un filtro attivo con amplificatore di guadagno $k$ ha $D(s)=s^2+(3-k)s+1$. Studia la stabilità per $k=2$, $3$, $4$.
+
+**Soluzione.**
+
+1. $k=2$: $s^2+s+1$, poli $-0{,}5\pm0{,}866j$: stabile.
+2. $k=3$: $s^2+1$, poli $\pm j$: marginale, il circuito oscilla a $\omega=1$ senza smorzarsi (è un oscillatore).
+3. $k=4$: $s^2-s+1$, poli $0{,}5\pm0{,}866j$: instabile. Criterio del secondo grado: serve $3-k\gt 0$, cioè $k\lt 3$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -110,6 +148,20 @@ $H=\dfrac{1}{s-1}$.
 
 - **Sbagliato:** Dire che un polo sull'asse immaginario rende il sistema stabile.
 - **Corretto:** Al più marginale: la risposta non decade e può diventare illimitata (polo multiplo o ingresso risonante).
+
+</div>
+
+<div data-note-id="stabilita-poli-errore-2">
+
+- **Sbagliato:** Giudicare la stabilità dai poli di $H(s)$ dopo una cancellazione con uno zero.
+- **Corretto:** Un modo cancellato esiste ancora nel circuito: un polo instabile nascosto da uno zero rende comunque il circuito instabile.
+
+</div>
+
+<div data-note-id="stabilita-poli-errore-3">
+
+- **Sbagliato:** Per un polinomio di terzo grado controllare solo il segno dei coefficienti.
+- **Corretto:** Per il terzo grado coefficienti positivi non bastano: serve anche $a_2a_1\gt a_0$.
 
 </div>
 
