@@ -12,6 +12,12 @@ Adding the matrices only works if, after the connection, each two-port still "se
 
 </div>
 
+<div data-note-id="prove-validita-connessioni-intuizione-2">
+
+The problem almost always comes from a common terminal: two networks sharing ground, connected in series, end up shorting a piece of one of them. The 1:1 ideal transformer solves it because it separates the two networks: it passes port voltage and current, but creates no current path between the terminals of the two networks.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -36,6 +42,12 @@ Adding the $Z$ (or $Y$) matrices is correct only if, after the connection, each 
 3. The assumption $\mathbf i_a=\mathbf i_b=\mathbf i$ holds only if, for each two-port, the current entering one terminal of a port equals the current leaving the other even after the connection: this is the condition checked by the validity test. $\square$
 
 </details>
+
+<div data-note-id="prove-validita-connessioni-teoria-3">
+
+**Test for parallel-parallel.** Short the output ports of each network and feed the input ports in parallel: between the output terminals that will be joined the voltage must be zero; then repeat swapping input and output. This is Brune's test; the form given in class may differ <span class="badge badge--warning">TO BE VERIFIED</span>.
+
+</div>
 
 <Formula id="prova-validita" />
 
@@ -80,6 +92,20 @@ Two π networks (common ground) in parallel.
 
 </div>
 
+<div class="worked" data-note-id="prove-validita-connessioni-esempio-4">
+
+### Series-series made valid by a transformer
+
+Two networks with a common ground, $Z_a=\begin{pmatrix}4&3\\3&5\end{pmatrix}$ and $Z_b=\begin{pmatrix}2&1\\1&2\end{pmatrix}\,\Omega$, are to be connected in series-series; a 1:1 ideal transformer is inserted at port 2 of $b$. Find $Z$ and the input impedances with port 2 open and shorted.
+
+**Solution.**
+
+1. With the transformer the validity test is passed: $Z=Z_a+Z_b=\begin{pmatrix}6&4\\4&7\end{pmatrix}\,\Omega$.
+2. Port 2 open: $Z_{in}=z_{11}=6\,\Omega$.
+3. Port 2 shorted: $\Delta_z=42-16=26$, $Z_{in}=\Delta_z/z_{22}=26/7\approx3.71\,\Omega$. Without the transformer, with the grounds joined, these values would not be guaranteed.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -88,6 +114,20 @@ Two π networks (common ground) in parallel.
 
 - **Wrong:** Adding the matrices without checking the validity test.
 - **Right:** Always check the port condition before using the connection formulas.
+
+</div>
+
+<div data-note-id="prove-validita-connessioni-errore-2">
+
+- **Wrong:** Thinking that the cascade also requires a validity test.
+- **Right:** In a cascade the output port of the first network is closed directly on the input port of the second: the port condition is guaranteed and $T=T_aT_b$ always holds.
+
+</div>
+
+<div data-note-id="prove-validita-connessioni-errore-3">
+
+- **Wrong:** Isolating the networks with a transformer of ratio other than 1.
+- **Right:** A 1:1 ideal transformer is needed, which isolates without changing voltages and currents; with $n\neq1$ the network matrix would change.
 
 </div>
 

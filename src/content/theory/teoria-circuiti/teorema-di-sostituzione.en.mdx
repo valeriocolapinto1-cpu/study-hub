@@ -12,6 +12,12 @@ If you already know the voltage and current on a piece of circuit, the rest of t
 
 </div>
 
+<div data-note-id="teorema-di-sostituzione-intuizione-2">
+
+The theorem lets you cut a circuit in two: once one part is solved, the other can be studied alone by replacing the first with a source. It is like measuring the voltage of a socket and then imagining a battery of that voltage in place of the grid: for the appliance plugged in, as long as the operating point stays the same, nothing changes.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -36,6 +42,18 @@ The theorem does not require linearity. It is the basis for Thévenin, Norton an
 3. $(\mathbf v^*,\mathbf i^*)$ satisfies all of them: the replaced one-port has exactly $v=v^*$. If the solution of the modified circuit is unique, it coincides with $(\mathbf v^*,\mathbf i^*)$. $\square$
 
 </details>
+
+<div data-note-id="teorema-di-sostituzione-teoria-3">
+
+**Why it holds.** The original solution satisfies all the equations of the modified circuit: KCL and KVL do not change, nor do the constitutive relations of the other elements, and the source imposes exactly the value $v^*$ (or $i^*$) that was already there. If the modified circuit has a unique solution, that solution is precisely the original one.
+
+</div>
+
+<div data-note-id="teorema-di-sostituzione-teoria-4">
+
+**Typical use.** A nonlinear element is replaced by its operating point, or a load by a current source to prove Thévenin's theorem (first step of the proof): the rest of the circuit stays linear and superposition can be used.
+
+</div>
 
 <Formula id="sost" />
 
@@ -79,6 +97,20 @@ Replacing $R_2$ with a voltage source $v^*$ in parallel with another, different 
 
 </div>
 
+<div class="worked" data-note-id="teorema-di-sostituzione-esempio-4">
+
+### Replacing a nonlinear element
+
+An $8\,\mathrm V$ source feeds $R=2\,\Omega$ in series with a nonlinear one-port with $v=i^2$ (for $i\gt 0$). Find the operating point and check the substitution.
+
+**Solution.**
+
+1. KVL: $8=2i+i^2\Rightarrow i^2+2i-8=0\Rightarrow i=2\,\mathrm A$ (the other root, $-4$, is excluded); $v=4\,\mathrm V$.
+2. With a $4\,\mathrm V$ voltage source in place of the one-port: $i=\dfrac{8-4}{2}=2\,\mathrm A$ ✓.
+3. With a $2\,\mathrm A$ current source: voltage across $R$ equal to $4\,\mathrm V$, hence across the source $8-4=4\,\mathrm V$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -87,6 +119,20 @@ Replacing $R_2$ with a voltage source $v^*$ in parallel with another, different 
 
 - **Wrong:** Applying substitution without checking that the solution is unique.
 - **Right:** The modified circuit must have a unique solution.
+
+</div>
+
+<div data-note-id="teorema-di-sostituzione-errore-2">
+
+- **Wrong:** Thinking that the theorem requires a linear circuit.
+- **Right:** It also holds with nonlinear elements, as long as the solution is unique: this is precisely what allows a nonlinear element to be isolated.
+
+</div>
+
+<div data-note-id="teorema-di-sostituzione-errore-3">
+
+- **Wrong:** Using the substituted source to predict what happens when the rest of the circuit changes.
+- **Right:** The source reproduces the operating point of that solution: if another element changes, $v^*$ changes too, and the substitution must be redone.
 
 </div>
 

@@ -12,6 +12,12 @@ Un doppio bipolo lineare si «misura» con quattro esperimenti: si alimenta una 
 
 </div>
 
+<div data-note-id="doppi-bipoli-z-y-intuizione-2">
+
+I parametri hanno un significato fisico: $z_{11}$ è l'impedenza vista dalla porta 1 con la porta 2 aperta, $z_{21}$ dice quanta tensione compare sulla porta 2 per ogni ampere iniettato nella 1. Dualmente $y_{11}$ è l'ammettenza vista dalla porta 1 con la porta 2 in corto, $y_{21}$ la corrente nel corto della porta 2 per ogni volt applicato alla 1.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -25,6 +31,24 @@ Con correnti entranti nelle porte: $\mathbf v=Z\mathbf i$, cioè $v_1=z_{11}i_1+
 <div data-note-id="doppi-bipoli-z-y-teoria-2">
 
 Rete **reciproca** (soli $R$, $L$, $C$ e trasformatori accoppiati): $z_{12}=z_{21}$, $y_{12}=y_{21}$. Con generatori controllati può non esserlo. Il trasformatore ideale non ha né $Z$ né $Y$.
+
+</div>
+
+<div data-note-id="doppi-bipoli-z-y-teoria-3">
+
+**Da $Z$ a $Y$.** Se $\Delta_z=z_{11}z_{22}-z_{12}z_{21}\neq0$, $Y=Z^{-1}$: $y_{11}=\dfrac{z_{22}}{\Delta_z}$, $y_{12}=-\dfrac{z_{12}}{\Delta_z}$, $y_{21}=-\dfrac{z_{21}}{\Delta_z}$, $y_{22}=\dfrac{z_{11}}{\Delta_z}$. In generale $y_{11}\neq1/z_{11}$, perché i due parametri si misurano in condizioni diverse (porta 2 in corto o aperta).
+
+</div>
+
+<div data-note-id="doppi-bipoli-z-y-teoria-4">
+
+**Impedenza d'ingresso con carico.** Chiudendo la porta 2 su $Z_L$ ($v_2=-Z_Li_2$) si ottiene $Z_{in}=z_{11}-\dfrac{z_{12}z_{21}}{z_{22}+Z_L}$. Con la porta aperta ($Z_L\to\infty$) $Z_{in}=z_{11}$; in corto ($Z_L=0$) $Z_{in}=\Delta_z/z_{22}=1/y_{11}$.
+
+</div>
+
+<div data-note-id="doppi-bipoli-z-y-teoria-5">
+
+**Circuito equivalente.** Un doppio bipolo reciproco ($z_{12}=z_{21}$) equivale a una rete a T con rami $z_{11}-z_{12}$ e $z_{22}-z_{12}$ verso le porte e $z_{12}$ in derivazione; uno non reciproco richiede in più un generatore controllato.
 
 </div>
 
@@ -81,6 +105,20 @@ $Z$ come sopra: $i_1=1$, porta 2 aperta ($i_2=0$).
 
 </div>
 
+<div class="worked" data-note-id="doppi-bipoli-z-y-esempio-4">
+
+### Un doppio bipolo non reciproco
+
+Porta 1: $R_1=2\,\Omega$ verso massa. Porta 2: $R_2=4\,\Omega$ verso massa e un CCCS che inietta nel nodo della porta 2 la corrente $3\,i_1$. Trova $Z$ e $Y$.
+
+**Soluzione.**
+
+1. Porta 2 aperta: $z_{11}=2\,\Omega$; tutta la corrente $3i_1$ passa in $R_2$, quindi $v_2=12i_1$ e $z_{21}=12\,\Omega$.
+2. Porta 1 aperta ($i_1=0$, CCCS spento): $z_{12}=0$, $z_{22}=4\,\Omega$. $Z=\begin{pmatrix}2&0\\12&4\end{pmatrix}$, non reciproca ($z_{12}\neq z_{21}$).
+3. $\Delta_z=8$: $Y=\dfrac18\begin{pmatrix}4&0\\-12&2\end{pmatrix}=\begin{pmatrix}0{,}5&0\\-1{,}5&0{,}25\end{pmatrix}\,\mathrm S$. Verifica di $y_{21}$: con $v_1=1\,\mathrm V$ e porta 2 in corto, $i_1=0{,}5\,\mathrm A$ e i $1{,}5\,\mathrm A$ del CCCS escono dalla rete nel corto: $i_2=-1{,}5\,\mathrm A$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -96,6 +134,20 @@ $Z$ come sopra: $i_1=1$, porta 2 aperta ($i_2=0$).
 
 - **Sbagliato:** Segni delle correnti: assumere $i_2$ uscente.
 - **Corretto:** Convenzione standard: correnti entranti in entrambe le porte.
+
+</div>
+
+<div data-note-id="doppi-bipoli-z-y-errore-3">
+
+- **Sbagliato:** Calcolare $y_{11}$ come $1/z_{11}$.
+- **Corretto:** $y_{11}=z_{22}/\Delta_z$: coincide con $1/z_{11}$ solo se $z_{12}z_{21}=0$, come nell'esempio non reciproco.
+
+</div>
+
+<div data-note-id="doppi-bipoli-z-y-errore-4">
+
+- **Sbagliato:** Calcolare $z_{21}$ misurando la tensione della porta 2 con la porta 2 caricata.
+- **Corretto:** Tutti i parametri $Z$ si misurano con l'altra porta aperta: con un carico la corrente $i_2$ non è più nulla e il rapporto $v_2/i_1$ non è $z_{21}$.
 
 </div>
 
