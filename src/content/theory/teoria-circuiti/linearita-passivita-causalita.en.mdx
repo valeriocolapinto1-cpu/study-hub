@@ -12,6 +12,12 @@ These properties answer simple questions. If I double the input, does the output
 
 </div>
 
+<div data-note-id="linearita-passivita-causalita-intuizione-2">
+
+Each property is checked with a thought experiment. For linearity apply two inputs separately and then their combination; for time invariance repeat the test with the input delayed; for causality ask whether the output at $t$ uses input values after $t$; for passivity balance the energy that entered through the terminals. A single counterexample is enough to disprove a property.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -56,6 +62,18 @@ Examples. Constant $R$, $L$, $C$ are linear, time-invariant and passive. An inde
 
 </details>
 
+<div data-note-id="linearita-passivita-causalita-teoria-6">
+
+**A quick test.** In a linear system zero input gives zero output (with zero initial conditions): homogeneity with $a=0$ is enough. So a one-port such as $v=R\,i+E$ with $E\neq0$ is not linear but _affine_: it is a linear element ($R$) plus a source. This is why in circuits with independent sources superposition is applied to the contributions of the individual sources.
+
+</div>
+
+<div data-note-id="linearita-passivita-causalita-teoria-7">
+
+**Linearity and initial conditions.** With a nonzero initial state the response is the sum of a part due to the state (free response) and a part due to the input (forced response); it is the forced part that depends linearly on the input. Initial conditions can be treated as additional sources, and then superposition holds for everything (see [initial conditions as sources](../condizioni-iniziali-generatori/)).
+
+</div>
+
 <Formula id="linearita" />
 <Formula id="tempo-invarianza" />
 
@@ -77,6 +95,20 @@ Classify: (a) $v = 3i$; (b) $v = 2i^2$; (c) $v = t\,i$.
 
 </div>
 
+<div class="worked" data-note-id="linearita-passivita-causalita-esempio-2">
+
+### An affine one-port
+
+A one-port has the characteristic $v=2i+1$ (volts and amperes, passive convention). Is it linear? Is it passive?
+
+**Solution.**
+
+1. With $i_1=1\,\mathrm A$: $v_1=3\,\mathrm V$; with $i_2=2\,\mathrm A$: $v_2=5\,\mathrm V$.
+2. With $i_1+i_2=3\,\mathrm A$: $v=7\,\mathrm V\neq v_1+v_2=8\,\mathrm V$: not additive, hence not linear.
+3. With $i=-0.25\,\mathrm A$: $v=0.5\,\mathrm V$ and $p=v\,i=-0.125\,\mathrm W$: it delivers power without having received any, so it is not passive (it contains a $1\,\mathrm V$ source).
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -85,6 +117,20 @@ Classify: (a) $v = 3i$; (b) $v = 2i^2$; (c) $v = t\,i$.
 
 - **Wrong:** Calling a circuit with an independent source "linear" and applying superposition to the total output only.
 - **Right:** Superposition applies to the effects of the individual sources (controlled sources always stay in the circuit).
+
+</div>
+
+<div data-note-id="linearita-passivita-causalita-errore-2">
+
+- **Wrong:** Calling a circuit time-varying because its signals change in time.
+- **Right:** An element is time-varying when its _parameters_ change with time, like $R(t)$; an RC circuit with a sinusoidal input is time-invariant.
+
+</div>
+
+<div data-note-id="linearita-passivita-causalita-errore-3">
+
+- **Wrong:** Proving linearity with a single numerical example that "works".
+- **Right:** An example that works proves nothing, one that fails is enough to disprove: the proof needs generic inputs.
 
 </div>
 

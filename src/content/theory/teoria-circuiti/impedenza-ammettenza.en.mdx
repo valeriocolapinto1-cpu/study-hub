@@ -12,6 +12,12 @@ Impedance is the "Ohm's law" of sinusoidal steady state: a single complex number
 
 </div>
 
+<div data-note-id="impedenza-ammettenza-intuizione-2">
+
+The sign of the reactance tells who chases whom. In the inductor the current arrives late, because the voltage must first make it grow; in the capacitor the current arrives early, because it is the current that charges it. A one-port with $X\gt 0$ behaves "like an inductor", with $X\lt 0$ "like a capacitor", and with $X=0$ it is purely resistive (or at resonance).
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -53,6 +59,30 @@ An inductor has positive reactance (the current lags the voltage), a capacitor n
     }}
   />
 </Figure>
+
+<div data-note-id="impedenza-ammettenza-teoria-4">
+
+**Polar form.** $Z=|Z|e^{j\varphi}$ with $|Z|=\sqrt{R^2+X^2}$ and $\varphi=\arctan(X/R)$ (for $R\gt 0$): the modulus is the ratio of the voltage and current amplitudes, $\varphi$ is the lead of the voltage over the current. For a passive one-port $R\ge0$, so $-90^\circ\le\varphi\le90^\circ$.
+
+</div>
+
+<div data-note-id="impedenza-ammettenza-teoria-5">
+
+**From $Z$ to $Y$.** $Y=\dfrac1{R+jX}=\dfrac{R-jX}{R^2+X^2}$, so $G=\dfrac{R}{R^2+X^2}$ and $B=-\dfrac{X}{R^2+X^2}$. The conductance is not $1/R$ (it is only when $X=0$) and the susceptance has the opposite sign of the reactance.
+
+</div>
+
+<div data-note-id="impedenza-ammettenza-teoria-6">
+
+**Frequency dependence.** $|Z_L|=\omega L$ grows with $\omega$, $|Z_C|=1/(\omega C)$ decreases. In a series RL or RC there is an angular frequency where reactance and resistance have the same magnitude ($\omega=R/L$ or $\omega=1/(RC)$): there the phase is $\pm45^\circ$, which is the origin of the cutoff frequency of first-order filters.
+
+</div>
+
+<div data-note-id="impedenza-ammettenza-teoria-7">
+
+**Equivalent at one frequency.** A passive one-port with $Z=R+jX$ at a given angular frequency can be replaced by a resistor $R$ in series with an inductor $L=X/\omega$ (if $X\gt 0$) or a capacitor $C=-1/(\omega X)$ (if $X\lt 0$). The equivalence holds only at that frequency.
+
+</div>
 
 <Formula id="imped-r" />
 <Formula id="imped-l" />
@@ -102,6 +132,20 @@ $R=1$ in series with $C=1$ ($\omega=1$), $\dot V_g=1$. What is the capacitor vol
 
 </div>
 
+<div class="worked" data-note-id="impedenza-ammettenza-esempio-4">
+
+### Series RLC at a given frequency
+
+$R=10\,\Omega$, $L=0.1\,\mathrm H$, $C=100\,\mu\mathrm F$ in series, $\omega=200\,\mathrm{rad/s}$, RMS voltage $V=100\,\mathrm V$. Find $Z$, the current and the phase shift.
+
+**Solution.**
+
+1. $X_L=\omega L=20\,\Omega$, $X_C=-\dfrac{1}{\omega C}=-\dfrac{1}{200\cdot10^{-4}}=-50\,\Omega$.
+2. $Z=10+j(20-50)=10-30j$, $|Z|=\sqrt{100+900}=31.62\,\Omega$, $\varphi=\arctan(-3)=-71.57^\circ$.
+3. $I=V/|Z|=100/31.62=3.16\,\mathrm A$, leading the voltage by $71.57^\circ$: at this frequency the circuit is capacitive ($X\lt 0$).
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -110,6 +154,27 @@ $R=1$ in series with $C=1$ ($\omega=1$), $\dot V_g=1$. What is the capacitor vol
 
 - **Wrong:** Writing $Z_C=j\omega C$.
 - **Right:** $Z_C=1/(j\omega C)=-j/(\omega C)$.
+
+</div>
+
+<div data-note-id="impedenza-ammettenza-errore-2">
+
+- **Wrong:** Computing the conductance as $G=1/R$ even when there is reactance.
+- **Right:** $G=\mathrm{Re}\{1/Z\}=R/(R^2+X^2)$: it equals $1/R$ only if $X=0$.
+
+</div>
+
+<div data-note-id="impedenza-ammettenza-errore-3">
+
+- **Wrong:** Adding the magnitudes of series impedances: $|Z|=R+|X_L|+|X_C|$.
+- **Right:** Add the complex numbers: the reactances of $L$ and $C$ have opposite signs and partly cancel (in the example $20-50=-30$).
+
+</div>
+
+<div data-note-id="impedenza-ammettenza-errore-4">
+
+- **Wrong:** Using $Z_L=j\omega L$ with the frequency in hertz in place of $\omega$.
+- **Right:** $\omega=2\pi f$ in rad/s: at $50\,\mathrm{Hz}$ a $0.1\,\mathrm H$ inductor has $|Z_L|=31.4\,\Omega$, not $5\,\Omega$.
 
 </div>
 

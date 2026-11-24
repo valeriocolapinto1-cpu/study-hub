@@ -12,6 +12,12 @@ In serie la corrente è costretta a passare da tutti i resistori, quindi le «di
 
 </div>
 
+<div data-note-id="serie-parallelo-partitori-intuizione-2">
+
+Due casi limite aiutano a ricordare le formule. In serie a un resistore molto grande, uno piccolo conta poco: $R_{eq}\approx R_{grande}$. In parallelo succede il contrario: il resistore piccolo «cortocircuita» quello grande e $R_{eq}\approx R_{piccolo}$. Il parallelo è sempre minore della più piccola delle resistenze, la serie sempre maggiore della più grande.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -59,6 +65,24 @@ Condizione di applicabilità del partitore di tensione: la corrente è la stessa
 
 </details>
 
+<div data-note-id="serie-parallelo-partitori-teoria-4">
+
+**Riconoscere serie e parallelo.** Due bipoli sono in serie se condividono un nodo a cui non è collegato nient'altro (stessa corrente per la KCL); sono in parallelo se sono collegati alla stessa coppia di nodi (stessa tensione per la KVL). Il criterio vale per bipoli qualsiasi, non solo resistori: due generatori di tensione in serie si sommano, due generatori di corrente in parallelo si sommano.
+
+</div>
+
+<div data-note-id="serie-parallelo-partitori-teoria-5">
+
+**Partitore con carico.** Se sul nodo intermedio di un partitore $R_1$–$R_2$ si collega un carico $R_L$, la tensione d'uscita diventa $v\,\dfrac{R_2\parallel R_L}{R_1+R_2\parallel R_L}$, sempre minore di quella a vuoto. Il partitore a vuoto è una buona approssimazione solo se $R_L\gg R_2$. È un primo esempio di equivalente di Thevenin: tensione a vuoto $v\,R_2/(R_1+R_2)$ e resistenza $R_1\parallel R_2$.
+
+</div>
+
+<div data-note-id="serie-parallelo-partitori-teoria-6">
+
+**Oltre i resistori.** In regime sinusoidale le stesse regole valgono per le impedenze (serie: $Z_{eq}=\sum Z_k$; parallelo: $Y_{eq}=\sum Y_k$). Nel dominio del tempo induttori in serie si sommano come i resistori, $L_{eq}=\sum L_k$, mentre i condensatori si sommano in parallelo, $C_{eq}=\sum C_k$, come le conduttanze.
+
+</div>
+
 <Formula id="serie" />
 <Formula id="parallelo" />
 <Formula id="part-v" />
@@ -81,6 +105,20 @@ $R_1=6\,\Omega$ e $R_2=3\,\Omega$ in parallelo, in serie con $R_3=4\,\Omega$, al
 
 </div>
 
+<div class="worked" data-note-id="serie-parallelo-partitori-esempio-2">
+
+### Partitore caricato
+
+Partitore con $v=12\,\mathrm V$, $R_1=R_2=10\,\mathrm{k\Omega}$. Trova l'uscita a vuoto e con un carico $R_L=10\,\mathrm{k\Omega}$; verifica con l'equivalente di Thevenin.
+
+**Soluzione.**
+
+1. A vuoto: $v_o=12\cdot\dfrac{10}{20}=6\,\mathrm V$.
+2. Con il carico: $R_2\parallel R_L=5\,\mathrm{k\Omega}$, $v_o=12\cdot\dfrac{5}{10+5}=4\,\mathrm V$.
+3. Thevenin: $V_{th}=6\,\mathrm V$, $R_{th}=10\parallel10=5\,\mathrm{k\Omega}$; sul carico $6\cdot\dfrac{10}{5+10}=4\,\mathrm V$ ✓. Il carico «ruba» un terzo della tensione.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -89,6 +127,20 @@ $R_1=6\,\Omega$ e $R_2=3\,\Omega$ in parallelo, in serie con $R_3=4\,\Omega$, al
 
 - **Sbagliato:** Usare il partitore di tensione con un carico collegato sul nodo intermedio senza includerlo.
 - **Corretto:** Il carico entra in parallelo a $R_2$: usa $R_2\parallel R_L$.
+
+</div>
+
+<div data-note-id="serie-parallelo-partitori-errore-2">
+
+- **Sbagliato:** Considerare in serie due resistori che condividono un nodo a cui è collegato anche un terzo ramo.
+- **Corretto:** La serie richiede la stessa corrente: se nel nodo comune arriva un altro ramo, la corrente si divide e i due resistori non sono in serie.
+
+</div>
+
+<div data-note-id="serie-parallelo-partitori-errore-3">
+
+- **Sbagliato:** Nel partitore di corrente scrivere $i_1=i\,\dfrac{R_1}{R_1+R_2}$.
+- **Corretto:** Con due rami $i_1=i\,\dfrac{R_2}{R_1+R_2}$: la corrente maggiore passa nella resistenza minore (le conduttanze, non le resistenze, stanno al numeratore).
 
 </div>
 

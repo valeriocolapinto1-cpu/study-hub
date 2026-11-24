@@ -12,6 +12,12 @@ Immagina di guardare un circuito «da lontano»: se il segnale cambia lentamente
 
 </div>
 
+<div data-note-id="modellamento-costanti-concentrate-intuizione-2">
+
+Un altro modo di vederlo: un segnale a $50\,\mathrm{Hz}$ ha periodo $20\,\mathrm{ms}$, mentre la luce attraversa un banco di laboratorio in pochi nanosecondi. In quel tempo il segnale è praticamente fermo: è come fotografare il circuito istante per istante. Quando il periodo si avvicina al tempo di attraversamento la «fotografia» viene mossa: lungo lo stesso filo convivono valori diversi di corrente e tensione, e servono le equazioni dei campi o delle linee di trasmissione.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -40,6 +46,18 @@ In questo regime i campi elettrico e magnetico sono confinati nei componenti: l'
 
 </div>
 
+<div data-note-id="modellamento-costanti-concentrate-teoria-5">
+
+**Che cosa si perde.** Nel modello concentrato le grandezze dipendono solo dal tempo, $v(t)$ e $i(t)$, e non dalla posizione: le equazioni del circuito sono algebriche e differenziali ordinarie. In un modello a costanti distribuite (linea di trasmissione) tensione e corrente dipendono anche dalla coordinata $x$ lungo il conduttore e si ottengono equazioni alle derivate parziali. Il confine fra i due è il confronto fra $L$ e $\lambda$, o, in modo equivalente, fra il ritardo di propagazione $\tau_p=L/c$ e il periodo $T$: infatti $\tau_p/T=L/\lambda$.
+
+</div>
+
+<div data-note-id="modellamento-costanti-concentrate-teoria-6">
+
+**Segnali non sinusoidali.** Per un'onda quadra o un impulso conta la componente significativa a frequenza più alta, non la fondamentale: le armoniche di un clock a $100\,\mathrm{MHz}$ arrivano a centinaia di megahertz. Una stima pratica della banda di un fronte di salita di durata $t_r$ è $f\approx0{,}35/t_r$ <span class="badge badge--warning">DA VERIFICARE</span> (regola empirica, non presente nelle fonti del corso).
+
+</div>
+
 <Formula id="lambda" />
 <Formula id="concentrate" />
 
@@ -61,6 +79,20 @@ Un circuito di dimensione massima $L = 20\,\mathrm{cm}$ lavora a $f = 10\,\mathr
 
 </div>
 
+<div class="worked" data-note-id="modellamento-costanti-concentrate-esempio-2">
+
+### Una pista su circuito stampato
+
+Una pista lunga $L=15\,\mathrm{cm}$ porta un clock a $f=100\,\mathrm{MHz}$. Il modello concentrato vale alla fondamentale? E alla terza armonica?
+
+**Soluzione.**
+
+1. Fondamentale: $\lambda=c/f=3\cdot10^8/10^8=3\,\mathrm m$, quindi $L/\lambda=0{,}15/3=0{,}05$: sotto la soglia pratica $0{,}1$.
+2. Terza armonica, $300\,\mathrm{MHz}$: $\lambda=1\,\mathrm m$ e $L/\lambda=0{,}15$: il criterio non è più rispettato.
+3. Verifica con i tempi: $\tau_p=L/c=0{,}15/(3\cdot10^8)=0{,}5\,\mathrm{ns}$ e $T=10\,\mathrm{ns}$, quindi $\tau_p/T=0{,}05=L/\lambda$ ✓. Conclusione: per i fronti del clock la pista va trattata come una linea.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -69,6 +101,27 @@ Un circuito di dimensione massima $L = 20\,\mathrm{cm}$ lavora a $f = 10\,\mathr
 
 - **Sbagliato:** Applicare le leggi di Kirchhoff a una linea lunga o ad alta frequenza «perché valgono sempre».
 - **Corretto:** Le leggi di Kirchhoff derivano dal modello a costanti concentrate: vanno applicate solo se $L \ll \lambda$.
+
+</div>
+
+<div data-note-id="modellamento-costanti-concentrate-errore-2">
+
+- **Sbagliato:** Giudicare un circuito «concentrato» guardando solo la frequenza («$10\,\mathrm{MHz}$ è bassa»).
+- **Corretto:** Conta il rapporto $L/\lambda$: a $10\,\mathrm{MHz}$ un circuito da $20\,\mathrm{cm}$ è concentrato, una linea lunga $30\,\mathrm m$ no.
+
+</div>
+
+<div data-note-id="modellamento-costanti-concentrate-errore-3">
+
+- **Sbagliato:** Valutare $\lambda$ solo alla fondamentale di un'onda quadra o di un impulso.
+- **Corretto:** Le armoniche alte (fronti ripidi) hanno $\lambda$ più corta: il criterio va controllato alla frequenza più alta significativa.
+
+</div>
+
+<div data-note-id="modellamento-costanti-concentrate-errore-4">
+
+- **Sbagliato:** Scrivere $\lambda=c\,f$.
+- **Corretto:** $\lambda=c/f$: a frequenza più alta corrisponde una lunghezza d'onda più corta (controllo delle unità: $\mathrm{m/s}$ diviso $\mathrm{Hz}$ dà metri).
 
 </div>
 

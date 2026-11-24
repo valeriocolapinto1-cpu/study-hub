@@ -12,6 +12,12 @@ In sinusoidal steady state energy comes and goes: part of it is really consumed 
 
 </div>
 
+<div data-note-id="potenza-complessa-intuizione-2">
+
+The power factor $\cos\varphi$ tells how much of the line's "capacity" is really used. With $\cos\varphi=1$ all the current carries active power; with $\cos\varphi=0.5$ twice the current is needed for the same active power, and the cable losses, proportional to $I^2$, quadruple.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -59,6 +65,18 @@ For a one-port with impedance $Z=R+jX$ and RMS current $I$: $P=RI^2$, $Q=XI^2$. 
     }}
   />
 </Figure>
+
+<div data-note-id="potenza-complessa-teoria-3">
+
+**With phasors.** With RMS phasors $S=\dot V\dot I^*=P+jQ$ and $|S|=VI$ is the apparent power. The conjugate gives the _difference_ of the phases: $\dot V\dot I^*=VIe^{j(\varphi_v-\varphi_i)}$. With peak phasors $S=\tfrac12\dot V\dot I^*$. For an impedance $S=Z\,I^2=V^2/Z^*$.
+
+</div>
+
+<div data-note-id="potenza-complessa-teoria-4">
+
+**Units and signs.** $P$ is measured in watts, $Q$ in volt-amperes reactive (var), $|S|$ in volt-amperes (VA). With the passive convention $Q\gt 0$ indicates an inductive load (lagging current), $Q\lt 0$ a capacitive load (leading current).
+
+</div>
 
 <Formula id="p-picco" />
 <Formula id="p-eff" />
@@ -110,6 +128,20 @@ $P=300\,\mathrm W$, $Q=400\,\mathrm{var}$.
 
 </div>
 
+<div class="worked" data-note-id="potenza-complessa-esempio-4">
+
+### Parallel RC load
+
+RMS voltage $\dot V=100\,\mathrm V$ across $R=50\,\Omega$ in parallel with a capacitor of reactance $X_C=-25\,\Omega$. Find $P$, $Q$, $|S|$ and $\cos\varphi$.
+
+**Solution.**
+
+1. Currents: $\dot I_R=100/50=2\,\mathrm A$, $\dot I_C=\dfrac{100}{-25j}=4j\,\mathrm A$, total $\dot I=2+4j$.
+2. $S=\dot V\dot I^*=100\,(2-4j)=200-400j$: $P=200\,\mathrm W$, $Q=-400\,\mathrm{var}$.
+3. $|S|=\sqrt{200^2+400^2}=447.2\,\mathrm{VA}$, $\cos\varphi=200/447.2=0.447$ (capacitive). Check: $P=V^2/R=200$ ✓, $Q_C=-V^2/25=-400$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -118,6 +150,27 @@ $P=300\,\mathrm W$, $Q=400\,\mathrm{var}$.
 
 - **Wrong:** Using $P=V_mI_m\cos\varphi$ with peak values.
 - **Right:** With peak values the factor $\tfrac12$ is needed; with RMS values it is not.
+
+</div>
+
+<div data-note-id="potenza-complessa-errore-2">
+
+- **Wrong:** Computing $S=\dot V\dot I$ without conjugating the current.
+- **Right:** Without the conjugate the current phase is added instead of subtracted: complex power is $S=\dot V\dot I^*$.
+
+</div>
+
+<div data-note-id="potenza-complessa-errore-3">
+
+- **Wrong:** Assigning a positive absorbed reactive power to a capacitor.
+- **Right:** With the passive convention the capacitor absorbs $Q\lt 0$ (that is, it supplies reactive power); it is the inductor that absorbs $Q\gt 0$.
+
+</div>
+
+<div data-note-id="potenza-complessa-errore-4">
+
+- **Wrong:** Taking $\varphi$ as the lead of the current over the voltage.
+- **Right:** With the passive convention $\varphi=\varphi_v-\varphi_i$: if the current lags, $\varphi\gt 0$ and $Q\gt 0$ (inductive load).
 
 </div>
 

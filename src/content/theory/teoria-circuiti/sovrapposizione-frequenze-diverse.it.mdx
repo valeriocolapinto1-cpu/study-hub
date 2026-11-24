@@ -12,6 +12,12 @@ Un fasore ha senso solo insieme alla sua frequenza: due fasori a frequenze diver
 
 </div>
 
+<div data-note-id="sovrapposizione-frequenze-diverse-intuizione-2">
+
+È come un'orchestra: ogni strumento suona la sua nota e il circuito risponde a ciascuna in modo diverso, perché impedenze e sfasamenti dipendono dalla frequenza. Quello che si ascolta alla fine è la somma delle risposte, ma per calcolarle bisogna ascoltare una nota alla volta.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -51,6 +57,18 @@ Mai sommare fasori di frequenze diverse: sono numeri associati a $e^{j\omega_kt}
     }}
   />
 </Figure>
+
+<div data-note-id="sovrapposizione-frequenze-diverse-teoria-4">
+
+**Procedura.** (1) Si spengono tutti i generatori tranne quelli a una data pulsazione $\omega_k$ (tensione → corto, corrente → aperto). (2) Si risolve il circuito con i fasori a $\omega_k$; in continua con $C$ aperti e $L$ in corto. (3) Si torna nel tempo: $x_k(t)=\mathrm{Re}\{X_ke^{j\omega_kt}\}$. (4) Si somma: $x(t)=x_{dc}+\sum_kx_k(t)$. Generatori diversi alla _stessa_ frequenza si trattano invece insieme, in un'unica analisi fasoriale.
+
+</div>
+
+<div data-note-id="sovrapposizione-frequenze-diverse-teoria-5">
+
+**Potenza media.** Per la potenza media le frequenze diverse non interferiscono: i prodotti fra sinusoidi di frequenze diverse hanno media nulla, quindi $P=P_{dc}+\sum_kP_k$. Per lo stesso motivo il valore efficace complessivo è $X_{eff}=\sqrt{X_{dc}^2+\sum_kX_{k,eff}^2}$.
+
+</div>
 
 <Formula id="sovrapposizione" />
 <Formula id="cond-iniz-mista" />
@@ -97,6 +115,20 @@ Un allievo somma i moduli: $|X_1|+|X_2|$ come ampiezza totale. Perché è sbagli
 
 </div>
 
+<div class="worked" data-note-id="sovrapposizione-frequenze-diverse-esempio-4">
+
+### Continua e sinusoide su un RL
+
+$R=1\,\Omega$ in serie a $L=1\,\mathrm H$, $v_g=2+2\cos t\,\mathrm V$. Trova $i(t)$ a regime e la potenza media in $R$.
+
+**Soluzione.**
+
+1. Continua ($L$ corto): $i_{dc}=2/1=2\,\mathrm A$.
+2. $\omega=1$: $\dot I=\dfrac{2}{1+j}=1-j$ (picco), quindi $i_1=\cos t+\sin t=\sqrt2\cos(t-45^\circ)$.
+3. $i(t)=2+\cos t+\sin t$, con $i(0)=3\,\mathrm A$. Potenza media: $P=R\left(i_{dc}^2+\tfrac12|\dot I|^2\right)=1\cdot(4+1)=5\,\mathrm W$.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -105,6 +137,27 @@ Un allievo somma i moduli: $|X_1|+|X_2|$ come ampiezza totale. Perché è sbagli
 
 - **Sbagliato:** Usare il modulo del fasore come condizione iniziale.
 - **Corretto:** Serve il valore all'istante $t=0$: la parte reale del fasore.
+
+</div>
+
+<div data-note-id="sovrapposizione-frequenze-diverse-errore-2">
+
+- **Sbagliato:** Calcolare la potenza media come $R\,(i_{dc}+|\dot I|)^2$.
+- **Corretto:** Con frequenze diverse i termini misti hanno media nulla: $P=R\left(i_{dc}^2+\tfrac12|\dot I|^2\right)$ con fasori di picco.
+
+</div>
+
+<div data-note-id="sovrapposizione-frequenze-diverse-errore-3">
+
+- **Sbagliato:** Nell'analisi in continua lasciare il condensatore come $1/(j\omega C)$ con la $\omega$ del generatore sinusoidale.
+- **Corretto:** Ogni analisi usa la propria pulsazione: per $\omega=0$ il condensatore è un circuito aperto e l'induttore un corto.
+
+</div>
+
+<div data-note-id="sovrapposizione-frequenze-diverse-errore-4">
+
+- **Sbagliato:** Calcolare il valore efficace della somma come somma dei valori efficaci.
+- **Corretto:** Con frequenze diverse $X_{eff}=\sqrt{X_{dc}^2+\sum_kX_{k,eff}^2}$: nell'esempio $I_{eff}=\sqrt{4+1}=\sqrt5\approx2{,}24\,\mathrm A$, non $2+1=3\,\mathrm A$.
 
 </div>
 

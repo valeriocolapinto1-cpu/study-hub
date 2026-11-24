@@ -12,6 +12,12 @@ Un motore (carico induttivo) chiede alla rete anche potenza reattiva, che fa sco
 
 </div>
 
+<div data-note-id="rifasamento-intuizione-2">
+
+La rete trasporta corrente, e la corrente costa: provoca perdite $R_{linea}I^2$ nei cavi e richiede conduttori e trasformatori più grandi. Rifasare non cambia ciò che il carico fa (stessa potenza attiva, stessa tensione): cambia solo quanta corrente la rete deve portare per ottenerlo.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -52,6 +58,30 @@ Lo scopo è ridurre la corrente (e quindi le perdite) a parità di $P$: $I=P/(V\
     }}
   />
 </Figure>
+
+<div data-note-id="rifasamento-teoria-3">
+
+**Da dove viene la formula.** Prima: $Q_1=P\tan\varphi_1$. Dopo: $Q_2=P\tan\varphi_2$, con la stessa $P$ perché il condensatore ideale non assorbe potenza attiva. Il condensatore deve assorbire la differenza, $Q_C=Q_2-Q_1=-P(\tan\varphi_1-\tan\varphi_2)$; uguagliando a $Q_C=-\omega CV^2$ si ottiene $C$.
+
+</div>
+
+<div data-note-id="rifasamento-teoria-4">
+
+**Perché in parallelo.** In parallelo la tensione sul carico resta quella di rete e il carico continua a lavorare come prima. In serie il condensatore cambierebbe la tensione applicata al carico, e con essa la potenza che assorbe.
+
+</div>
+
+<div data-note-id="rifasamento-teoria-5">
+
+**Fino a dove.** Di solito non si rifasa fino a $\cos\varphi=1$ ma fino a un valore minimo imposto dal gestore della rete (per esempio $0{,}9$) <span class="badge badge--warning">DA VERIFICARE</span>: oltre, la capacità cresce molto per un guadagno di corrente piccolo, e quando il carico lavora a potenza ridotta si rischia di sovra-rifasare (carico complessivo capacitivo).
+
+</div>
+
+<div data-note-id="rifasamento-teoria-6">
+
+**Ordine di grandezza.** Un condensatore $C$ alla tensione efficace $V$ e pulsazione $\omega$ assorbe $Q_C=-\omega CV^2$: a $230\,\mathrm V$ e $50\,\mathrm{Hz}$ ogni $100\,\mu\mathrm F$ forniscono circa $1{,}66\,\mathrm{kvar}$.
+
+</div>
 
 <Formula id="rifasamento-c" />
 <Formula id="q-c" />
@@ -98,6 +128,21 @@ Stesso carico: confronta le correnti efficaci prima e dopo il rifasamento comple
 
 </div>
 
+<div class="worked" data-note-id="rifasamento-esempio-4">
+
+### Rifasamento a 50 Hz
+
+Un carico assorbe $P=10\,\mathrm{kW}$ a $V=230\,\mathrm V$ efficaci, $f=50\,\mathrm{Hz}$, con $\cos\varphi_1=0{,}7$ induttivo. Trova $C$ per arrivare a $\cos\varphi_2=0{,}95$ e la riduzione delle perdite di linea.
+
+**Soluzione.**
+
+1. $\omega=2\pi\cdot50=314{,}2\,\mathrm{rad/s}$; $\tan\varphi_1=1{,}020$, $\tan\varphi_2=0{,}329$.
+2. $C=\dfrac{10^4\,(1{,}020-0{,}329)}{314{,}2\cdot230^2}=416\,\mu\mathrm F$.
+3. Correnti: prima $I_1=\dfrac{10^4}{230\cdot0{,}7}=62{,}1\,\mathrm A$, dopo $I_2=\dfrac{10^4}{230\cdot0{,}95}=45{,}8\,\mathrm A$.
+4. Perdite di linea in rapporto $(I_2/I_1)^2=(0{,}7/0{,}95)^2=0{,}543$: circa il $46\,\%$ in meno.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -106,6 +151,34 @@ Stesso carico: confronta le correnti efficaci prima e dopo il rifasamento comple
 
 - **Sbagliato:** Collegare l'induttore di rifasamento (invece del condensatore) o il condensatore in serie.
 - **Corretto:** Il condensatore va in parallelo al carico induttivo.
+
+</div>
+
+<div data-note-id="rifasamento-errore-2">
+
+- **Sbagliato:** Usare la tensione di picco nella formula di $C$ scritta per valori efficaci.
+- **Corretto:** In $C=P(\tan\varphi_1-\tan\varphi_2)/(\omega V^2)$ la $V$ è efficace; con il picco $V_m$ si usa $V_m^2/2$.
+
+</div>
+
+<div data-note-id="rifasamento-errore-3">
+
+- **Sbagliato:** Pensare che il rifasamento riduca la potenza attiva assorbita dal carico.
+- **Corretto:** La potenza attiva resta $P$; diminuiscono la reattiva fornita dalla rete, la corrente di linea e le perdite nei cavi.
+
+</div>
+
+<div data-note-id="rifasamento-errore-4">
+
+- **Sbagliato:** Calcolare la reattiva del carico come $Q_1=P\sin\varphi_1$.
+- **Corretto:** $Q_1=P\tan\varphi_1$, oppure $|S|\sin\varphi_1$ con $|S|=P/\cos\varphi_1$.
+
+</div>
+
+<div data-note-id="rifasamento-errore-5">
+
+- **Sbagliato:** Dimensionare il condensatore sulla potenza apparente $|S|$ del carico.
+- **Corretto:** Il condensatore compensa solo la potenza reattiva: si dimensiona sulla differenza $Q_1-Q_2$, in var, e la potenza attiva non entra in gioco se non attraverso $\tan\varphi$.
 
 </div>
 

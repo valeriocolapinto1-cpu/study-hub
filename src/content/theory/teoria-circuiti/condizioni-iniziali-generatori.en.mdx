@@ -12,6 +12,12 @@ A charged capacitor is like an uncharged one with a small battery in series: the
 
 </div>
 
+<div data-note-id="condizioni-iniziali-generatori-intuizione-2">
+
+The choice between a series and a parallel source is like that between Thévenin and Norton: the two forms are equivalent at the terminals and one picks the more convenient for the method. With mesh analysis series voltage sources are handier, with nodal analysis parallel current sources.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -35,6 +41,30 @@ A charged capacitor is like an uncharged one with a small battery in series: the
 2. $L$: $v=L\,di/dt\Rightarrow V=L[sI-i(0^-)]=sLI-Li(0^-)$. $\square$
 
 </details>
+
+<div data-note-id="condizioni-iniziali-generatori-teoria-3">
+
+**Where they come from.** For the capacitor $i=C\,\dot v\to I=C\left(sV-v_C(0^-)\right)$, that is $V=\dfrac{I}{sC}+\dfrac{v_C(0^-)}{s}$. For the inductor $v=L\,\dot i\to V=L\left(sI-i_L(0^-)\right)=sLI-Li_L(0^-)$. The two forms of each element follow from one another by the Thévenin–Norton transformation.
+
+</div>
+
+<div data-note-id="condizioni-iniziali-generatori-teoria-4">
+
+**In time.** The source $v_C(0^-)/s$ is a step: a battery of value $v_C(0^-)$ switched on at $t=0$. The inductor source $L\,i_L(0^-)$ is instead, in time, an impulse of area $L\,i_L(0^-)$: this is why the parallel model, with the current step $i_L(0^-)/s$, is often more intuitive.
+
+</div>
+
+<div data-note-id="condizioni-iniziali-generatori-teoria-5">
+
+**A check on directions.** Closing the charged element on a resistor, the response must start exactly from $v_C(0^-)$ or $i_L(0^-)$, with the right sign: if it starts from the opposite value, the source was drawn the wrong way round.
+
+</div>
+
+<div data-note-id="condizioni-iniziali-generatori-teoria-6">
+
+**Initial energy.** The initial-condition sources bring into the transformed circuit the energy stored before $t=0$, $\tfrac12Cv_C(0^-)^2$ and $\tfrac12Li_L(0^-)^2$: in a circuit with no other sources it is exactly this energy that the resistors dissipate during the free response.
+
+</div>
 
 <Formula id="modello-c-serie" />
 <Formula id="modello-c-par" />
@@ -82,6 +112,20 @@ Same RC: voltage across the resistor after $t=0$.
 
 </div>
 
+<div class="worked" data-note-id="condizioni-iniziali-generatori-esempio-4">
+
+### Charged capacitor and step
+
+$R=2\,\Omega$ in series with $C=1\,\mathrm F$ with $v_C(0^-)=4\,\mathrm V$; at $t=0$ the source $v_g=10\,u_{-1}(t)$ is switched on. Find $i(t)$ and $v_C(t)$ with the series model.
+
+**Solution.**
+
+1. KVL in the transformed circuit: $\dfrac{10}{s}=2I+\dfrac{I}{s}+\dfrac4s\Rightarrow I=\dfrac{6}{2s+1}=\dfrac{3}{s+1/2}$, so $i=3e^{-t/2}\,\mathrm A$.
+2. $V_C=\dfrac{I}{s}+\dfrac4s=\dfrac{10}{s}-\dfrac{6}{s+1/2}$, so $v_C=10-6e^{-t/2}\,\mathrm V$.
+3. Check: $v_C(0^+)=4$ ✓ (continuity), $i(0^+)=(10-4)/2=3\,\mathrm A$ ✓, $v_C(\infty)=10$ ✓, $\tau=RC=2\,\mathrm s$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -90,6 +134,27 @@ Same RC: voltage across the resistor after $t=0$.
 
 - **Wrong:** Placing the source $v_C(0^-)/s$ with the wrong polarity.
 - **Right:** From KVL: the drop across $1/(sC)$ plus $v_C(0^-)/s$ equals the terminal voltage.
+
+</div>
+
+<div data-note-id="condizioni-iniziali-generatori-errore-2">
+
+- **Wrong:** Using $L\,i_L(0^-)/s$ for the source in series with the inductor.
+- **Right:** In the series model the source is $L\,i_L(0^-)$, without $1/s$; the factor $1/s$ appears in the parallel model, $i_L(0^-)/s$.
+
+</div>
+
+<div data-note-id="condizioni-iniziali-generatori-errore-3">
+
+- **Wrong:** Using the values at $0^+$ instead of $0^-$.
+- **Right:** The model uses the values at $0^-$, known from the previous steady state: any jumps at $t=0$ are already described by the transform.
+
+</div>
+
+<div data-note-id="condizioni-iniziali-generatori-errore-4">
+
+- **Wrong:** Giving the source in parallel with the capacitor the value $v_C(0^-)/s$.
+- **Right:** In parallel with the admittance $sC$ the source is a current source of value $C\,v_C(0^-)$ (an impulse in time).
 
 </div>
 

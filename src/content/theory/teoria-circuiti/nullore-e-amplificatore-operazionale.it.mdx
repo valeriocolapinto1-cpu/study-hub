@@ -12,6 +12,12 @@ Un amplificatore operazionale con guadagno enorme, chiuso in retroazione, si reg
 
 </div>
 
+<div data-note-id="nullore-e-amplificatore-operazionale-intuizione-2">
+
+Il prezzo dell'idealizzazione è che il nullore da solo non basta: il nullatore impone due vincoli e il noratore nessuno, quindi il circuito si risolve solo grazie alla rete esterna di retroazione che lega l'uscita all'ingresso. Senza retroazione negativa il modello non descrive più l'operazionale reale, che finisce in saturazione.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -164,6 +170,20 @@ Un nullore ha un generatore di corrente $I_g=2\,\mathrm{A}$ al nullatore in seri
 
 </div>
 
+<div class="worked" data-note-id="nullore-e-amplificatore-operazionale-esempio-3">
+
+### Non invertente
+
+Amplificatore non invertente con $R_1=1\,\mathrm{k\Omega}$ verso massa, $R_2=4\,\mathrm{k\Omega}$ di retroazione e $V_g=0{,}5\,\mathrm V$ all'ingresso $+$. Trova $v_o$ con il nullore.
+
+**Soluzione.**
+
+1. Nullatore: $v_-=v_+=0{,}5\,\mathrm V$ e corrente d'ingresso nulla.
+2. Corrente in $R_1$: $0{,}5/1000=0{,}5\,\mathrm{mA}$, che passa tutta in $R_2$.
+3. $v_o=0{,}5+4000\cdot0{,}5\cdot10^{-3}=2{,}5\,\mathrm V=\left(1+\tfrac41\right)\cdot0{,}5$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -172,6 +192,20 @@ Un nullore ha un generatore di corrente $I_g=2\,\mathrm{A}$ al nullatore in seri
 
 - **Sbagliato:** Dire che la corrente d'ingresso è nulla «perché la tensione d'ingresso è nulla» come su un corto.
 - **Corretto:** Nel nullatore tensione _e_ corrente sono entrambe nulle: la corrente è nulla perché $R_i\to\infty$, la tensione perché $A\to\infty$ con retroazione.
+
+</div>
+
+<div data-note-id="nullore-e-amplificatore-operazionale-errore-2">
+
+- **Sbagliato:** Scrivere la KCL al nodo d'uscita dell'operazionale ignorando la corrente del noratore.
+- **Corretto:** La corrente d'uscita del noratore è un'incognita libera: la KCL al nodo d'uscita serve a trovare quella corrente, non le tensioni di nodo.
+
+</div>
+
+<div data-note-id="nullore-e-amplificatore-operazionale-errore-3">
+
+- **Sbagliato:** Usare il nullore anche quando l'operazionale è in saturazione o senza retroazione negativa.
+- **Corretto:** Il modello $v_d=0$ vale solo in regione lineare, con retroazione negativa; in saturazione $v_o=\pm V_{cc}$ e $v_d\neq0$.
 
 </div>
 

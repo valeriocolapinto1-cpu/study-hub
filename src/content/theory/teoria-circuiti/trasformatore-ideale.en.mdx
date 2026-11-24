@@ -12,6 +12,12 @@ The ideal transformer is an electrical "lever": it multiplies voltage by $n$ and
 
 </div>
 
+<div data-note-id="trasformatore-ideale-intuizione-2">
+
+The ideal transformer neither stores nor dissipates energy: everything that enters one port leaves the other, instant by instant. This is why it is used to "match" a load: by changing $n$ one chooses which resistance the source sees, without losing power in between.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -66,6 +72,24 @@ It is not an inductor: it also works in DC and it is a limiting model (perfect c
 
 </details>
 
+<div data-note-id="trasformatore-ideale-teoria-4">
+
+**Zero power, a check.** With $v_1=n\,v_2$ and $i_1=-i_2/n$: $p=v_1i_1+v_2i_2=n\,v_2\cdot(-i_2/n)+v_2\,i_2=0$ at every instant. The ideal transformer is therefore lossless and memoryless: unlike two coupled inductors it stores no magnetic energy, and that is why it also transfers DC.
+
+</div>
+
+<div data-note-id="trasformatore-ideale-teoria-5">
+
+**Reflected load.** A load $Z_L$ at port 2 carries the current $-i_2$ (the one leaving the transformer), so $v_2=-Z_L\,i_2$ and $\dfrac{v_1}{i_1}=\dfrac{n\,v_2}{-i_2/n}=n^2\dfrac{v_2}{-i_2}=n^2Z_L$. Conversely, an impedance at port 1 seen from port 2 is $Z/n^2$.
+
+</div>
+
+<div data-note-id="trasformatore-ideale-teoria-6">
+
+**As a two-port.** The ideal transformer has neither a $Z$ nor a $Y$ matrix: its relations give neither the voltages in terms of the currents nor the reverse. It does have a hybrid representation: $v_1=n\,v_2$ and $i_2=-n\,i_1$, i.e. $\begin{pmatrix}v_1\\i_2\end{pmatrix}=\begin{pmatrix}0&n\\-n&0\end{pmatrix}\begin{pmatrix}i_1\\v_2\end{pmatrix}$.
+
+</div>
+
 <Formula id="trasf-v" />
 <Formula id="trasf-i" />
 <Formula id="trasf-z" />
@@ -89,6 +113,21 @@ $n=2$, load $R_L=3\,\Omega$ at port 2; at port 1 a $24\,\mathrm{V}$ source in se
 
 </div>
 
+<div class="worked" data-note-id="trasformatore-ideale-esempio-2">
+
+### Matching a loudspeaker
+
+A source $E=10\,\mathrm V$ with internal resistance $R_s=800\,\Omega$ must feed a loudspeaker $R_L=8\,\Omega$. Which $n$ maximises the load power, and how much is it?
+
+**Solution.**
+
+1. We need $n^2R_L=R_s$: $n=\sqrt{800/8}=10$.
+2. Primary side: $i_1=\dfrac{10}{800+800}=6.25\,\mathrm{mA}$, $v_1=800\cdot i_1=5\,\mathrm V$.
+3. Load side: $v_2=v_1/n=0.5\,\mathrm V$, $P_L=v_2^2/R_L=0.25/8=31.25\,\mathrm{mW}$.
+4. Check: $v_1 i_1=5\cdot6.25\,\mathrm{mW}=31.25\,\mathrm{mW}=\dfrac{E^2}{4R_s}$ ✓. Without the transformer: $i=10/808$ and $P_L=8\,i^2\approx1.2\,\mathrm{mW}$.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -97,6 +136,20 @@ $n=2$, load $R_L=3\,\Omega$ at port 2; at port 1 a $24\,\mathrm{V}$ source in se
 
 - **Wrong:** Using $i_1=i_2/n$ with both currents entering.
 - **Right:** With the passive convention on both ports, $i_1=-i_2/n$ (the minus sign compensates for the directions).
+
+</div>
+
+<div data-note-id="trasformatore-ideale-errore-2">
+
+- **Wrong:** Thinking that the ideal transformer works only with AC.
+- **Right:** The ideal model also holds in DC; it is the real transformer, made of coupled inductors, that does not transfer DC.
+
+</div>
+
+<div data-note-id="trasformatore-ideale-errore-3">
+
+- **Wrong:** Reflecting a load as $Z_L/n^2$ instead of $n^2Z_L$, or vice versa.
+- **Right:** With $v_1=n\,v_2$ the load at port 2 seen from port 1 is $n^2Z_L$; with the opposite definition of $n$ the factor is inverted. Check with the case $n=1$ and with the direction of the voltage ratio.
 
 </div>
 

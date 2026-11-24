@@ -38,9 +38,10 @@ export function theoryOutline(
   }
   const prose = body
     .replace(/^---[\s\S]*?---/, '')
+    // prima la matematica: un `<` dentro una formula ($n-1<b$) non deve sembrare l'inizio di un tag
+    .replace(/\$\$[\s\S]*?\$\$|\$[^$]*\$/g, ' x ')
     .replace(/<[^>]+>/g, ' ')
-    .replace(/\{[^}]*\}/g, ' ')
-    .replace(/\$\$[\s\S]*?\$\$|\$[^$]*\$/g, ' x ');
+    .replace(/\{[^}]*\}/g, ' ');
   const words = prose.split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w)).length;
   return { items, words };
 }
