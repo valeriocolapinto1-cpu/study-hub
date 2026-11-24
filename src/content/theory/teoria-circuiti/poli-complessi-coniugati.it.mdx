@@ -12,6 +12,12 @@ Due poli complessi coniugati sono la firma di un'oscillazione: la parte immagina
 
 </div>
 
+<div data-note-id="poli-complessi-coniugati-intuizione-2">
+
+Nel piano $s$ la posizione dei poli è un ritratto della risposta: più sono lontani dall'asse immaginario, più in fretta l'oscillazione si spegne; più sono lontani dall'asse reale, più l'oscillazione è rapida. Due poli vicini all'asse immaginario danno un'oscillazione lenta a spegnersi, come un pendolo con poco attrito.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -50,6 +56,42 @@ $\alpha>0$: oscillazione smorzata; $\alpha=0$: oscillazione permanente (marginal
     }}
   />
 </Figure>
+
+<div data-note-id="poli-complessi-coniugati-teoria-3">
+
+**Da dove viene la formula.** Con il numeratore scritto come $a(s+\alpha)+(b-a\alpha)$ si separano due trasformate note: $\dfrac{a(s+\alpha)}{(s+\alpha)^2+\omega^2}\to ae^{-\alpha t}\cos\omega t$ e $\dfrac{b-a\alpha}{(s+\alpha)^2+\omega^2}=\dfrac{b-a\alpha}{\omega}\cdot\dfrac{\omega}{(s+\alpha)^2+\omega^2}\to\dfrac{b-a\alpha}{\omega}e^{-\alpha t}\sin\omega t$.
+
+</div>
+
+<div data-note-id="poli-complessi-coniugati-teoria-4">
+
+**Parametri del secondo ordine.** Un denominatore $s^2+2\zeta\omega_0s+\omega_0^2$ con $0\lt \zeta\lt 1$ ha poli $-\zeta\omega_0\pm j\omega_0\sqrt{1-\zeta^2}$, cioè $\alpha=\zeta\omega_0$ e $\omega=\omega_0\sqrt{1-\zeta^2}$. La distanza dei poli dall'origine è la pulsazione naturale $\omega_0$; il coefficiente di smorzamento $\zeta$ ne fissa l'angolo. Con $\zeta\ge1$ i poli diventano reali.
+
+</div>
+
+<div data-note-id="poli-complessi-coniugati-teoria-5">
+
+**Insieme ad altri poli.** Se oltre alla coppia ci sono poli reali, si scompone lasciando la coppia unita in un termine $\dfrac{as+b}{(s+\alpha)^2+\omega^2}$: i residui dei poli reali si trovano come al solito, $a$ e $b$ confrontando i numeratori.
+
+</div>
+
+<div data-note-id="poli-complessi-coniugati-teoria-6">
+
+**Ampiezza e fase.** La combinazione $A\cos\omega t+B\sin\omega t$ si scrive come $M\cos(\omega t-\theta)$ con $M=\sqrt{A^2+B^2}$ e $\theta=\mathrm{atan2}(B,A)$: così si legge subito l'ampiezza iniziale dell'oscillazione e si disegna l'inviluppo $\pm Me^{-\alpha t}$ entro cui la curva oscilla.
+
+</div>
+
+<div data-note-id="poli-complessi-coniugati-teoria-7">
+
+**Durata del transitorio.** L'inviluppo $e^{-\alpha t}$ scende sotto l'$1\,\%$ dopo circa $4{,}6/\alpha$ (perché $\ln100\approx4{,}6$): la parte reale dei poli fissa la durata del transitorio, la parte immaginaria quante oscillazioni ci stanno dentro, circa $4{,}6\,\omega/(2\pi\alpha)$ periodi.
+
+</div>
+
+<div data-note-id="poli-complessi-coniugati-teoria-8">
+
+**Collegamento con i circuiti.** Un RLC serie ha denominatore $s^2+\dfrac{R}{L}s+\dfrac{1}{LC}$, quindi $\alpha=\dfrac{R}{2L}$ e $\omega_0=\dfrac{1}{\sqrt{LC}}$. I poli sono complessi quando $\alpha\lt \omega_0$, cioè quando la resistenza è abbastanza piccola da lasciare oscillare lo scambio di energia fra induttore e condensatore prima che si esaurisca.
+
+</div>
 
 <Formula id="complessi-antitr" />
 
@@ -95,6 +137,21 @@ Scrivi $e^{-t}(\cos2t+\sin2t)$ in ampiezza-fase.
 
 </div>
 
+<div class="worked" data-note-id="poli-complessi-coniugati-esempio-4">
+
+### Gradino su un secondo ordine sottosmorzato
+
+$F(s)=\dfrac{10}{s(s^2+2s+5)}$. Antitrasforma.
+
+**Soluzione.**
+
+1. Polo reale in $0$: residuo $\dfrac{10}{5}=2$. Si scrive $F=\dfrac2s+\dfrac{as+b}{s^2+2s+5}$.
+2. Numeratori: $10=2(s^2+2s+5)+(as+b)s$; termine in $s^2$: $0=2+a\Rightarrow a=-2$; termine in $s$: $0=4+b\Rightarrow b=-4$.
+3. $(s+1)^2+4$: $\alpha=1$, $\omega=2$, $\dfrac{b-a\alpha}{\omega}=\dfrac{-4+2}{2}=-1$, quindi $f=2-e^{-t}(2\cos2t+\sin2t)$.
+4. Verifica: $f(0)=2-2=0=\lim_{s\to\infty}sF$ ✓; $f(\infty)=2=\lim_{s\to0}sF$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -103,6 +160,27 @@ Scrivi $e^{-t}(\cos2t+\sin2t)$ in ampiezza-fase.
 
 - **Sbagliato:** Scomporre $s^2+2s+5$ in fattori reali.
 - **Corretto:** Ha radici complesse: si usa il completamento del quadrato.
+
+</div>
+
+<div data-note-id="poli-complessi-coniugati-errore-2">
+
+- **Sbagliato:** Leggere $\omega$ dal denominatore non completato: in $s^2+2s+5$ prendere $\omega=\sqrt5$.
+- **Corretto:** Completando il quadrato, $(s+1)^2+4$, si ha $\omega=2$; $\sqrt5=\omega_0$ è la distanza dei poli dall'origine.
+
+</div>
+
+<div data-note-id="poli-complessi-coniugati-errore-3">
+
+- **Sbagliato:** Usare $\dfrac{s}{(s+\alpha)^2+\omega^2}\to e^{-\alpha t}\cos\omega t$.
+- **Corretto:** Il coseno smorzato vuole $s+\alpha$ al numeratore: $s=(s+\alpha)-\alpha$, e il termine $-\alpha$ produce un seno.
+
+</div>
+
+<div data-note-id="poli-complessi-coniugati-errore-4">
+
+- **Sbagliato:** Dire che con $\alpha=0$ il sistema è stabile perché la risposta libera non diverge.
+- **Corretto:** Con poli sull'asse immaginario la risposta libera oscilla senza smorzarsi: il sistema è al limite (marginalmente stabile) e un ingresso alla stessa frequenza dà una risposta che cresce.
 
 </div>
 

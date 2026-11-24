@@ -12,6 +12,12 @@ Nel dominio di Laplace un circuito con condensatori e induttori torna a sembrare
 
 </div>
 
+<div data-note-id="circuiti-dominio-laplace-intuizione-2">
+
+Il vantaggio sui fasori è che Laplace vede tutto: il transitorio dopo una commutazione, la risposta a ingressi qualsiasi (gradini, rampe, impulsi) e le condizioni iniziali. I fasori sono il caso particolare $s=j\omega$, utile quando interessa solo il regime sinusoidale.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -25,6 +31,30 @@ Nel dominio di $s$ gli elementi diventano: $R$, $sL$, $\dfrac1{sC}$, con le cond
 <div data-note-id="circuiti-dominio-laplace-teoria-2">
 
 Un generatore costante $V_0u_{-1}(t)$ diventa $V_0/s$; un generatore sinusoidale $V_m\cos\omega t$ diventa $V_ms/(s^2+\omega^2)$.
+
+</div>
+
+<div data-note-id="circuiti-dominio-laplace-teoria-3">
+
+**Procedura.** (1) Condizioni iniziali $v_C(0^-)$ e $i_L(0^-)$ dal circuito per $t\lt 0$. (2) Circuito trasformato per $t\gt 0$: impedenze $R$, $sL$, $1/(sC)$, generatori trasformati e generatori delle condizioni iniziali. (3) Soluzione con le tecniche dei circuiti resistivi. (4) Antitrasformata con i fratti semplici. (5) Controllo di valore iniziale e finale.
+
+</div>
+
+<div data-note-id="circuiti-dominio-laplace-teoria-4">
+
+**Impedenze e ammettenze.** Serie e parallelo, partitori, Thevenin e Norton valgono come per i resistori. Per esempio un RC parallelo ha $Z(s)=\dfrac{R\cdot\frac{1}{sC}}{R+\frac1{sC}}=\dfrac{R}{1+sRC}$, con un polo in $s=-1/(RC)$.
+
+</div>
+
+<div data-note-id="circuiti-dominio-laplace-teoria-5">
+
+**Che cosa leggere nel risultato.** I poli di una risposta sono di due tipi: quelli del circuito, che danno i modi naturali (il transitorio), e quelli dell'ingresso, che danno la risposta permanente ($s=0$ per un gradino, $s=\pm j\omega$ per una sinusoide).
+
+</div>
+
+<div data-note-id="circuiti-dominio-laplace-teoria-6">
+
+**Funzione di rete.** Con condizioni iniziali nulle il rapporto fra la trasformata di un'uscita e quella di un ingresso dipende solo dal circuito: è la funzione di rete $H(s)$ (vedi [funzioni di rete](../funzioni-di-rete/)), e la risposta si ottiene come $Y(s)=H(s)\,X(s)$.
 
 </div>
 
@@ -73,6 +103,21 @@ $R=1$, $L=1$, $v_g=\cos t$, $i(0)=0$: $I(s)$.
 
 </div>
 
+<div class="worked" data-note-id="circuiti-dominio-laplace-esempio-4">
+
+### RL con generatore sinusoidale, fino in fondo
+
+Completa l'esempio precedente: $R=1\,\Omega$, $L=1\,\mathrm H$, $v_g=\cos t$ acceso a $t=0$, $i(0^-)=0$, $I(s)=\dfrac{s}{(s+1)(s^2+1)}$. Trova $i(t)$.
+
+**Soluzione.**
+
+1. Polo del circuito $-1$: residuo $\dfrac{-1}{1+1}=-\tfrac12$.
+2. Resto $\dfrac{as+b}{s^2+1}$: da $s=-\tfrac12(s^2+1)+(as+b)(s+1)$ si ha $a=\tfrac12$, $b=\tfrac12$.
+3. $i(t)=-\tfrac12e^{-t}+\tfrac12\cos t+\tfrac12\sin t$: transitorio dal polo del circuito, regime dai poli $\pm j$ dell'ingresso.
+4. Verifica: $i(0)=-\tfrac12+\tfrac12=0$ ✓; il regime coincide con il fasore $\dfrac{1}{1+j}=\tfrac12-\tfrac12j$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -81,6 +126,27 @@ $R=1$, $L=1$, $v_g=\cos t$, $i(0)=0$: $I(s)$.
 
 - **Sbagliato:** Usare $j\omega L$ invece di $sL$ nel transitorio.
 - **Corretto:** $s$ è la variabile complessa; $s=j\omega$ solo per il regime.
+
+</div>
+
+<div data-note-id="circuiti-dominio-laplace-errore-2">
+
+- **Sbagliato:** Dimenticare i generatori delle condizioni iniziali nel circuito trasformato.
+- **Corretto:** Con $v_C(0^-)\neq0$ o $i_L(0^-)\neq0$ il circuito trasformato contiene anche i generatori $v_C(0^-)/s$ e $L\,i_L(0^-)$ (vedi [condizioni iniziali come generatori](../condizioni-iniziali-generatori/)).
+
+</div>
+
+<div data-note-id="circuiti-dominio-laplace-errore-3">
+
+- **Sbagliato:** Trasformare un generatore costante $V_0$ acceso a $t=0$ come $V_0$.
+- **Corretto:** Un gradino di ampiezza $V_0$ ha trasformata $V_0/s$; la costante $V_0$ senza $1/s$ sarebbe un impulso di area $V_0$.
+
+</div>
+
+<div data-note-id="circuiti-dominio-laplace-errore-4">
+
+- **Sbagliato:** Antitrasformare un'impedenza come se fosse una risposta.
+- **Corretto:** $Z(s)$ è un rapporto fra trasformate, non un segnale: si antitrasforma una tensione o una corrente, dopo aver moltiplicato per la trasformata dell'ingresso.
 
 </div>
 

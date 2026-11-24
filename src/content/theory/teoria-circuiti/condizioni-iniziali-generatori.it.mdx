@@ -12,6 +12,12 @@ Un condensatore carico è come un condensatore scarico con una piccola batteria 
 
 </div>
 
+<div data-note-id="condizioni-iniziali-generatori-intuizione-2">
+
+La scelta fra generatore in serie e in parallelo è come quella fra Thevenin e Norton: le due forme sono equivalenti ai morsetti e si sceglie quella più comoda per il metodo. Con il metodo delle maglie convengono i generatori di tensione in serie, con il metodo dei nodi quelli di corrente in parallelo.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -35,6 +41,30 @@ Un condensatore carico è come un condensatore scarico con una piccola batteria 
 2. $L$: $v=L\,di/dt\Rightarrow V=L[sI-i(0^-)]=sLI-Li(0^-)$. $\square$
 
 </details>
+
+<div data-note-id="condizioni-iniziali-generatori-teoria-3">
+
+**Da dove vengono.** Per il condensatore $i=C\,\dot v\to I=C\left(sV-v_C(0^-)\right)$, cioè $V=\dfrac{I}{sC}+\dfrac{v_C(0^-)}{s}$. Per l'induttore $v=L\,\dot i\to V=L\left(sI-i_L(0^-)\right)=sLI-Li_L(0^-)$. Le due forme di ciascun elemento si ottengono una dall'altra con la trasformazione Thevenin–Norton.
+
+</div>
+
+<div data-note-id="condizioni-iniziali-generatori-teoria-4">
+
+**Nel tempo.** Il generatore $v_C(0^-)/s$ è un gradino: una batteria di valore $v_C(0^-)$ accesa a $t=0$. Il generatore $L\,i_L(0^-)$ dell'induttore è invece, nel tempo, un impulso di area $L\,i_L(0^-)$: per questo il modello in parallelo, con il gradino di corrente $i_L(0^-)/s$, è spesso più intuitivo.
+
+</div>
+
+<div data-note-id="condizioni-iniziali-generatori-teoria-5">
+
+**Un controllo sui versi.** Chiudendo l'elemento carico su un resistore, la risposta deve partire proprio da $v_C(0^-)$ o da $i_L(0^-)$, con il segno giusto: se parte dal valore opposto, il generatore è stato disegnato al contrario.
+
+</div>
+
+<div data-note-id="condizioni-iniziali-generatori-teoria-6">
+
+**Energia iniziale.** I generatori delle condizioni iniziali portano nel circuito trasformato l'energia immagazzinata prima di $t=0$, $\tfrac12Cv_C(0^-)^2$ e $\tfrac12Li_L(0^-)^2$: in un circuito senza altri generatori è proprio questa energia che i resistori dissipano durante la risposta libera.
+
+</div>
 
 <Formula id="modello-c-serie" />
 <Formula id="modello-c-par" />
@@ -82,6 +112,20 @@ Stesso RC: tensione sul resistore dopo $t=0$.
 
 </div>
 
+<div class="worked" data-note-id="condizioni-iniziali-generatori-esempio-4">
+
+### Condensatore carico e gradino
+
+$R=2\,\Omega$ in serie a $C=1\,\mathrm F$ con $v_C(0^-)=4\,\mathrm V$; a $t=0$ si accende $v_g=10\,u_{-1}(t)$. Trova $i(t)$ e $v_C(t)$ con il modello in serie.
+
+**Soluzione.**
+
+1. KVL nel circuito trasformato: $\dfrac{10}{s}=2I+\dfrac{I}{s}+\dfrac4s\Rightarrow I=\dfrac{6}{2s+1}=\dfrac{3}{s+1/2}$, quindi $i=3e^{-t/2}\,\mathrm A$.
+2. $V_C=\dfrac{I}{s}+\dfrac4s=\dfrac{10}{s}-\dfrac{6}{s+1/2}$, quindi $v_C=10-6e^{-t/2}\,\mathrm V$.
+3. Verifica: $v_C(0^+)=4$ ✓ (continuità), $i(0^+)=(10-4)/2=3\,\mathrm A$ ✓, $v_C(\infty)=10$ ✓, $\tau=RC=2\,\mathrm s$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -90,6 +134,27 @@ Stesso RC: tensione sul resistore dopo $t=0$.
 
 - **Sbagliato:** Mettere il generatore $v_C(0^-)/s$ con polarità sbagliata.
 - **Corretto:** Dalla KVL: caduta su $1/(sC)$ più $v_C(0^-)/s$ uguale alla tensione ai morsetti.
+
+</div>
+
+<div data-note-id="condizioni-iniziali-generatori-errore-2">
+
+- **Sbagliato:** Usare $L\,i_L(0^-)/s$ per il generatore in serie all'induttore.
+- **Corretto:** Nel modello in serie il generatore vale $L\,i_L(0^-)$, senza $1/s$; il fattore $1/s$ compare nel modello in parallelo, $i_L(0^-)/s$.
+
+</div>
+
+<div data-note-id="condizioni-iniziali-generatori-errore-3">
+
+- **Sbagliato:** Usare i valori a $0^+$ invece che a $0^-$.
+- **Corretto:** Il modello usa i valori a $0^-$, noti dal regime precedente: eventuali salti in $t=0$ sono già descritti dalla trasformata.
+
+</div>
+
+<div data-note-id="condizioni-iniziali-generatori-errore-4">
+
+- **Sbagliato:** Dare al generatore in parallelo al condensatore il valore $v_C(0^-)/s$.
+- **Corretto:** In parallelo all'ammettenza $sC$ il generatore è di corrente e vale $C\,v_C(0^-)$ (un impulso nel tempo).
 
 </div>
 

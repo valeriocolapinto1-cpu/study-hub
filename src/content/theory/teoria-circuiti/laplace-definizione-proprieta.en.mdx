@@ -12,6 +12,12 @@ The Laplace transform "photographs" a signal by decomposing it into complex expo
 
 </div>
 
+<div data-note-id="laplace-definizione-proprieta-intuizione-2">
+
+The price to pay is that the result is a function of $s$, not of $t$: at the end one has to go back. But the trip is worth it, because in the $s$ domain the hard operations become easy: the derivative is a product by $s$, convolution is a product, a delay is an exponential factor.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -335,6 +341,24 @@ The unilateral transform of $x(t)$ (zero for $t<0^-$) is $X(s)=\int_{0^-}^{\inft
   />
 </Figure>
 
+<div data-note-id="laplace-definizione-proprieta-teoria-4">
+
+**Convergence.** The integral converges for $\mathrm{Re}\,s\gt \sigma_0$, with $\sigma_0$ tied to the growth of the signal: for $e^{at}$ we need $\mathrm{Re}\,s\gt a$. In circuits signals grow at most exponentially, so the transform always exists in a right half-plane; the resulting formula is then used in the whole plane except at the poles.
+
+</div>
+
+<div data-note-id="laplace-definizione-proprieta-teoria-5">
+
+**An example from the definition.** For $x=e^{-at}u_{-1}(t)$: $X(s)=\int_0^\infty e^{-(s+a)t}dt=\left[\dfrac{-e^{-(s+a)t}}{s+a}\right]_0^\infty=\dfrac{1}{s+a}$, for $\mathrm{Re}\,s\gt -a$. With $a=0$ we get the step, $1/s$.
+
+</div>
+
+<div data-note-id="laplace-definizione-proprieta-teoria-6">
+
+**Why $0^-$.** With the lower limit $0^-$ the transform of the derivative uses the value _before_ switching, $x(0^-)$, known from the previous steady state; a jump at $t=0$ produces an impulse in the derivative, which the integral from $0^-$ includes. With $0^+$ the value after the jump would be needed, usually unknown.
+
+</div>
+
 <Formula id="laplace-def" />
 <Formula id="laplace-lin" />
 <Formula id="laplace-der" />
@@ -387,6 +411,21 @@ $x(t)=e^{-t}u_{-1}(t)$ delayed by $2$.
 
 </div>
 
+<div class="worked" data-note-id="laplace-definizione-proprieta-esempio-4">
+
+### Initial and final values of a response
+
+$X(s)=\dfrac{10(s+2)}{s(s^2+4s+5)}$. Find $x(0^+)$, $\dot x(0^+)$ and $x(\infty)$ without inverting, then check.
+
+**Solution.**
+
+1. Poles of $sX$: $s^2+4s+5=0\Rightarrow s=-2\pm j$, negative real part: the final value theorem applies.
+2. $x(\infty)=\lim_{s\to0}sX=\dfrac{10\cdot2}{5}=4$; $x(0^+)=\lim_{s\to\infty}sX=0$.
+3. $\dot x(0^+)=\lim_{s\to\infty}s\left[sX-x(0^+)\right]=\lim_{s\to\infty}\dfrac{10s(s+2)}{s^2+4s+5}=10$.
+4. Check: $x(t)=4-e^{-2t}(4\cos t-2\sin t)$ gives $x(0)=0$, $\dot x(0)=8+2=10$, $x(\infty)=4$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -402,6 +441,27 @@ $x(t)=e^{-t}u_{-1}(t)$ delayed by $2$.
 
 - **Wrong:** Forgetting $x(0^-)$ in the transform of the derivative.
 - **Right:** $\dot x\to sX-x(0^-)$.
+
+</div>
+
+<div data-note-id="laplace-definizione-proprieta-errore-3">
+
+- **Wrong:** Applying the initial value theorem to an $X(s)$ with numerator and denominator of equal degree.
+- **Right:** Then $x$ contains an impulse at $t=0$ and $\lim_{s\to\infty}sX$ diverges: first separate the improper part by division.
+
+</div>
+
+<div data-note-id="laplace-definizione-proprieta-errore-4">
+
+- **Wrong:** Confusing $e^{-sT}X(s)$ with $X(s+a)$.
+- **Right:** The factor $e^{-sT}$ delays the signal by $T$; the shift in $s$, $X(s+a)$, multiplies the signal by $e^{-at}$.
+
+</div>
+
+<div data-note-id="laplace-definizione-proprieta-errore-5">
+
+- **Wrong:** Thinking that the unilateral transform also describes the signal for $t\lt 0$.
+- **Right:** $X(s)$ only contains information for $t\ge0^-$: the past enters only through the initial conditions.
 
 </div>
 

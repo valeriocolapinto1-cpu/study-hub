@@ -12,6 +12,12 @@ A complicated rational function is a sum of simple pieces, one per pole, and eac
 
 </div>
 
+<div data-note-id="fratti-semplici-intuizione-2">
+
+The residue of a simple pole is found by "covering" its factor: for the coefficient of $\dfrac{1}{s+1}$, cover $(s+1)$ in the denominator and evaluate the rest at $s=-1$. This is Heaviside's cover-up method, and it is why with simple poles a few substitutions suffice, with no systems of equations.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -25,6 +31,36 @@ An $F(s)=N(s)/D(s)$ with $\deg N<\deg D$ is expanded into partial fractions. For
 <div data-note-id="fratti-semplici-teoria-2">
 
 For a double pole $p$: $\dfrac{r_2}{(s-p)^2}+\dfrac{r_1}{s-p}$ with $r_2=\lim(s-p)^2F$, $r_1=\lim\dfrac{d}{ds}\left[(s-p)^2F\right]$; it gives $(r_2t+r_1)e^{pt}$.
+
+</div>
+
+<div data-note-id="fratti-semplici-teoria-3">
+
+**Why it works.** If $F(s)=\dfrac{r}{s-p}+G(s)$ with $G$ regular at $p$, multiplying by $(s-p)$ gives $(s-p)F(s)=r+(s-p)G(s)$; as $s\to p$ the second term vanishes and $r$ remains.
+
+</div>
+
+<div data-note-id="fratti-semplici-teoria-4">
+
+**Quick checks.** With simple poles $f(0^+)$ is the sum of the residues and must equal $\lim_{s\to\infty}sF(s)$: if $\deg D-\deg N\ge2$ the residues sum to zero. A second check is to evaluate $F$ at a convenient point (say $s=1$) and compare with the expansion.
+
+</div>
+
+<div data-note-id="fratti-semplici-teoria-5">
+
+**Complex poles.** The residue method also works for complex poles: two conjugate poles $p=\sigma\pm j\omega$ have conjugate residues $r$ and $r^*$, and the pair gives $2|r|e^{\sigma t}\cos(\omega t+\arg r)$. Often, though, completing the square is quicker (see [complex conjugate poles](../poli-complessi-coniugati/)).
+
+</div>
+
+<div data-note-id="fratti-semplici-teoria-6">
+
+**Order of operations.** (1) If $\deg N\ge\deg D$, divide. (2) Factor the denominator and classify the poles: simple real, multiple, complex pairs. (3) Compute the coefficients, starting from the simple poles. (4) Invert term by term. (5) Check with the initial value or with a numerical value of $F$.
+
+</div>
+
+<div data-note-id="fratti-semplici-teoria-7">
+
+**Pole of multiplicity $m$.** In general a pole $p$ of multiplicity $m$ gives $m$ terms $\dfrac{r_k}{(s-p)^k}$, with $k=1,\dots,m$, and inverse transforms $r_k\dfrac{t^{k-1}}{(k-1)!}e^{pt}$. The highest-order coefficient is found by cover-up; the others by successive derivatives or by comparing numerators once all the other coefficients are known.
 
 </div>
 
@@ -75,6 +111,20 @@ $F(s)=\dfrac{s+3}{s+1}$.
 
 </div>
 
+<div class="worked" data-note-id="fratti-semplici-esempio-4">
+
+### Three real poles
+
+$F(s)=\dfrac{s^2+2}{s(s+1)(s+2)}$. Invert and check.
+
+**Solution.**
+
+1. Residues: at $0$, $\dfrac{2}{1\cdot2}=1$; at $-1$, $\dfrac{1+2}{(-1)(1)}=-3$; at $-2$, $\dfrac{4+2}{(-2)(-1)}=3$.
+2. $f(t)=1-3e^{-t}+3e^{-2t}$ for $t\gt 0$.
+3. Check 1: $f(0^+)=1-3+3=1=\lim_{s\to\infty}\dfrac{s^2+2}{(s+1)(s+2)}$ ✓. Check 2: $F(1)=\dfrac{3}{6}=0.5$ and $1-\dfrac32+\dfrac33=0.5$ ✓.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -83,6 +133,34 @@ $F(s)=\dfrac{s+3}{s+1}$.
 
 - **Wrong:** Expanding without dividing when $\deg N=\deg D$.
 - **Right:** Divide first: the quotient gives an impulse.
+
+</div>
+
+<div data-note-id="fratti-semplici-errore-2">
+
+- **Wrong:** Handling a double pole with the simple-pole formula alone.
+- **Right:** A double pole needs two coefficients, $r_2$ from $(s-p)^2F$ and $r_1$ from the derivative: otherwise the term $te^{pt}$ is missing.
+
+</div>
+
+<div data-note-id="fratti-semplici-errore-3">
+
+- **Wrong:** Getting the sign of the exponent wrong: $\dfrac{r}{s+2}\to re^{2t}$.
+- **Right:** The pole is $p=-2$ and $\dfrac{r}{s-p}\to re^{pt}=re^{-2t}$.
+
+</div>
+
+<div data-note-id="fratti-semplici-errore-4">
+
+- **Wrong:** Evaluating the remainder at the wrong point: for the term $\dfrac{r}{s+3}$ substituting $s=3$.
+- **Right:** Evaluate at the pole, where the covered factor vanishes: $s=-3$.
+
+</div>
+
+<div data-note-id="fratti-semplici-errore-5">
+
+- **Wrong:** Removing more factors than needed during cover-up.
+- **Right:** Covering $(s+1)$ in $\dfrac{3s+5}{(s+1)(s+3)}$ leaves $\dfrac{3s+5}{s+3}$: all the other factors stay and are evaluated at the pole, $s=-1$.
 
 </div>
 
