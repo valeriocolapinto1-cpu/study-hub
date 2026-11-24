@@ -209,6 +209,52 @@ test.describe('offline', () => {
     }
   });
 
+  test('manifest non scaricabile: l’installazione fallisce e resta il worker in uso', async ({ page }) => {
+    await page.goto(`${B}it/`);
+    await expect(page.locator('html')).toHaveAttribute('data-sw', 'ready', { timeout: 20_000 });
+    await page.waitForFunction(() => !!navigator.serviceWorker.controller, undefined, { timeout: 20_000 });
+    const swVersion = () =>
+      page.evaluate(
+        () =>
+          new Promise<string>((resolve) => {
+            const ch = new MessageChannel();
+            ch.port1.onmessage = (e) => resolve(e.data.version);
+            navigator.serviceWorker.controller!.postMessage({ type: 'VERSION' }, [ch.port2]);
+          }),
+      );
+    const before = await swVersion();
+    // Pubblicazione con il manifest mancante: sw.js nuovo che rimanda a un file inesistente.
+    const file = 'dist-fixtures/sw.js';
+    const original = readFileSync(file, 'utf8');
+    writeFileSync(
+      file,
+      original
+        .replace(/"version":"[a-f0-9]+"/, '"version":"senza-manifest"')
+        .replace(/sw-manifest\.[a-f0-9]+\.json/, 'sw-manifest.mancante.json'),
+    );
+    try {
+      const outcome = await page.evaluate(async () => {
+        const reg = (await navigator.serviceWorker.getRegistration())!;
+        await reg.update();
+        const w = reg.installing;
+        if (w && w.state !== 'redundant')
+          await new Promise<void>((resolve) =>
+            w.addEventListener('statechange', () => {
+              if (w.state === 'redundant' || w.state === 'installed' || w.state === 'activated') resolve();
+            }),
+          );
+        return { state: w?.state ?? null, waiting: !!reg.waiting };
+      });
+      expect(outcome.waiting).toBe(false);
+      if (outcome.state) expect(outcome.state).toBe('redundant');
+    } finally {
+      writeFileSync(file, original);
+    }
+    expect(await swVersion()).toBe(before);
+    await page.reload();
+    await expect(page.locator('html')).toHaveAttribute('data-sw', 'ready', { timeout: 20_000 });
+  });
+
   test('version.json più recente: avviso di aggiornamento', async ({ page }) => {
     await page.goto(`${B}it/`);
     await expect(page.locator('html')).toHaveAttribute('data-sw', 'ready', { timeout: 20_000 });
