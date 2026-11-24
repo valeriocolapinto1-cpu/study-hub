@@ -1,0 +1,152 @@
+---
+/**
+ * Informazioni sul corso e sull'esame (R8): descrizione completa, «Il corso» (introduzione propria del
+ * corso in src/courses/<courseId>/Overview.astro, prop `lang`), struttura d'esame, date suggerite e
+ * «Come usare il sito». Testi spostati dalla panoramica senza cambiarli.
+ */
+import CourseLayout from '../../../../../layouts/CourseLayout.astro';
+import PageHeader from '../../../../../components/PageHeader.astro';
+import InlineTex from '../../../../../components/InlineTex.astro';
+import { coursePaths, sectionPath, type CourseData } from '../../../../../lib/course-pages';
+import { COURSE_SECTIONS } from '../../../../../lib/courses';
+import { localizePath, t, tr, type Lang } from '../../../../../i18n';
+import { upcomingDates } from '../../../../../engine/mastery';
+
+export const getStaticPaths = coursePaths;
+interface Props {
+  course: CourseData;
+}
+const { course } = Astro.props;
+const lang = Astro.params.lang as Lang;
+const intros = import.meta.glob<{ default: (props: { lang: Lang }) => unknown }>(
+  '../../../../../courses/*/Overview.astro',
+  { eager: true },
+);
+const Intro = Object.entries(intros).find(([k]) => k.includes(`/courses/${course.id}/`))?.[1].default;
+const fmtDate = (d: string) =>
+  new Intl.DateTimeFormat(lang === 'it' ? 'it-IT' : 'en-GB', { dateStyle: 'long', timeZone: 'UTC' }).format(
+    new Date(`${d}T12:00:00Z`),
+  );
+// Appelli già passati alla build: non si mostrano (vedi anche lo script più sotto).
+const dates = upcomingDates(course.examDates ?? [], Date.now());
+const total = course.exam.structure.reduce((s, x) => s + (x.points ?? 0), 0);
+const title = t(lang, 'overview.infoTitle');
+const courseTitle = tr(course.title, lang);
+const toc = [
+  ...(Intro ? [{ id: 'il-corso', key: 'overview.toc.course' }] : []),
+  { id: 'esame', key: 'overview.exam' },
+  { id: 'come-usare', key: 'overview.howto' },
+];
+const howto = COURSE_SECTIONS.filter((s) => s.slug).map((s) => ({
+  href: localizePath(sectionPath(course, s.slug), lang),
+  title: t(lang, s.key),
+  text: t(lang, `overview.howto.${s.slug}`),
+}));
+---
+
+<CourseLayout
+  lang={lang}
+  course={course}
+  title={title}
+  crumbs={[
+    { label: t(lang, 'nav.home'), href: localizePath('', lang) },
+    { label: courseTitle, href: localizePath(sectionPath(course), lang) },
+    { label: title },
+  ]}
+  eyebrow={courseTitle}
+>
+  <PageHeader title={title} lede={tr(course.description, lang)} />
+  <nav class="page-toc" aria-label={t(lang, 'overview.toc')}>
+    <ol>
+      {toc.map((x) => (
+        <li>
+          <a href={`#${x.id}`}>{t(lang, x.key)}</a>
+        </li>
+      ))}
+    </ol>
+  </nav>
+  <div class="prose prose--overview">
+    {Intro && (
+      <div id="il-corso" class="anchor-target">
+        <Intro lang={lang} />
+      </div>
+    )}
+
+    <h2 id="esame">{t(lang, 'overview.exam')}</h2>
+    <p>
+      {t(lang, `overview.format.${course.exam.format}`)}
+      {course.exam.durationMin && ` · ${t(lang, 'overview.duration', { min: course.exam.durationMin })}`}
+    </p>
+    {course.exam.structure.length > 0 && (
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">{t(lang, 'overview.part')}</th>
+              <th scope="col" class="num">
+                {t(lang, 'overview.points')}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {course.exam.structure.map((s) => (
+              <tr>
+                <td>
+                  <InlineTex text={tr(s.label, lang)} />
+                </td>
+                <td class="num">{s.points ?? '—'}</td>
+              </tr>
+            ))}
+          </tbody>
+          {total > 0 && (
+            <tfoot>
+              <tr>
+                <th scope="row">{t(lang, 'overview.total')}</th>
+                <td class="num">{total}</td>
+              </tr>
+            </tfoot>
+          )}
+        </table>
+      </div>
+    )}
+    {dates.length > 0 && (
+      <>
+        <h3 data-exam-dates>{t(lang, 'overview.dates')}</h3>
+        <ul class="inline-list" data-exam-dates>
+          {dates.map((d) => (
+            <li data-date={d}>
+              <time datetime={d}>{fmtDate(d)}</time>
+            </li>
+          ))}
+        </ul>
+        <p class="muted" data-exam-dates>
+          {t(lang, 'overview.datesNote')}
+        </p>
+        {/* Pagina statica: gli appelli passati dopo la build si tolgono all'apertura. */}
+        <script is:inline>
+          {
+            const n = new Date();
+            const today = [n.getFullYear(), n.getMonth() + 1, n.getDate()]
+              .map((x) => String(x).padStart(2, '0'))
+              .join('-');
+            document.querySelectorAll('[data-date]').forEach((li) => li.dataset.date < today && li.remove());
+            if (!document.querySelector('[data-date]'))
+              document.querySelectorAll('[data-exam-dates]').forEach((el) => el.remove());
+          }
+        </script>
+      </>
+    )}
+
+    <h2 id="come-usare">{t(lang, 'overview.howto')}</h2>
+    <dl class="howto">
+      {howto.map((h) => (
+        <div>
+          <dt>
+            <a href={h.href}>{h.title}</a>
+          </dt>
+          <dd>{h.text}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</CourseLayout>

@@ -35,6 +35,11 @@ export const courseSchema = z.strictObject({
   title: localized,
   subtitle: localized.optional(),
   description: localized,
+  /** Una frase (≤ 20 parole) per la panoramica; la descrizione completa sta nella pagina info. */
+  tagline: localized.refine(
+    (v) => Object.values(v).every((x) => typeof x !== 'string' || x.trim().split(/\s+/).length <= 20),
+    'al massimo 20 parole',
+  ),
   /** Nome della tinta d'accento (definita in src/styles/courses/<id>.css). */
   accent: kebabId,
   exam: z.strictObject({

@@ -1677,8 +1677,8 @@ progress.progress__bar::-moz-progress-bar {
   color: var(--text-muted);
 }
 .topic-card[data-studied] .topic-card__title::after,
-.topic-map__list li[data-studied] .topic-map__num::after,
-[data-chapter-ids][data-studied] > .chapter-head .chapter-head__count::before {
+[data-chapter-ids][data-studied] > .chapter-head .chapter-head__count::before,
+.chapters__list li[data-studied] .chapters__count::before {
   content: '✓ ';
   content: '✓ ' / '';
   color: var(--success);
@@ -1686,10 +1686,6 @@ progress.progress__bar::-moz-progress-bar {
 .topic-card[data-studied] .topic-card__title::after {
   content: ' ✓';
   content: ' ✓' / '';
-}
-.topic-map__count {
-  font: 500 0.78rem / 1 var(--font-mono);
-  color: var(--text-muted);
 }
 .studied-box {
   display: flex;

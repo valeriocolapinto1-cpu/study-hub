@@ -3,10 +3,10 @@
  * elementi `data-studied-*`. Legge l'area `studied` del corso (`<html data-course>`) e aggiorna:
  * - `[data-studied-mark="<argomento>"]`: spunta (`data-studied`) e testo per i lettori di schermo
  *   (`data-studied-label` sul contenitore più vicino);
- * - `[data-chapter-ids]`: «n/totale argomenti» in `[data-chapter-count]` (modello `data-t`) e il
- *   pulsante `[data-studied-chapter]` (segna o annulla tutto il capitolo);
- * - `[data-studied-toggle]`: pulsante in fondo alla teoria, con invito dopo ~80 % della lettura;
- * - `[data-studied-next]`: link al primo argomento non studiato di `[data-studied-next-list]`.
+ * - `[data-chapter-ids]`: «n/totale argomenti» in `[data-chapter-count]` (modello `data-t`), la
+ *   frazione studiata in `--studied` (barra dei capitoli della panoramica) e il pulsante
+ *   `[data-studied-chapter]` (segna o annulla tutto il capitolo);
+ * - `[data-studied-toggle]`: pulsante in fondo alla teoria, con invito dopo ~80 % della lettura.
  */
 import { subscribe } from '../engine/storage';
 import { STUDIED_AREA, isStudied, loadStudied, saveStudied } from '../engine/studied';
@@ -44,6 +44,7 @@ function render(): void {
     const n = list.filter(on).length;
     const done = list.length > 0 && n === list.length;
     ch.toggleAttribute('data-studied', done);
+    ch.style.setProperty('--studied', String(list.length ? n / list.length : 0));
     const count = ch.querySelector<HTMLElement>('[data-chapter-count]');
     if (count) count.textContent = fill(count.dataset.t, { n, total: list.length });
     const btn = ch.querySelector<HTMLButtonElement>('[data-studied-chapter]');
@@ -60,18 +61,6 @@ function render(): void {
     if (state) state.textContent = (studiedNow ? toggle.dataset.stateOn : toggle.dataset.stateOff) ?? '';
     toggle.closest('.studied-box')?.toggleAttribute('data-studied', studiedNow);
     if (studiedNow && hint) hint.hidden = true;
-  }
-  const next = document.querySelector<HTMLAnchorElement>('[data-studied-next]');
-  if (next) {
-    const first = $$('[data-studied-next-list] [data-studied-mark]').find(
-      (el) => !on(el.dataset.studiedMark!),
-    );
-    const link = first?.querySelector('a');
-    next.hidden = !link;
-    if (link) {
-      next.href = link.getAttribute('href') ?? link.href;
-      next.textContent = `${next.dataset.t ?? ''} ${link.firstChild?.textContent ?? ''}`.trim();
-    }
   }
 }
 
