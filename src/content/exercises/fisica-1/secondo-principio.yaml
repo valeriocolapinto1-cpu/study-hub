@@ -171,7 +171,7 @@
         en: 'Solution'
       body:
         it: '$\eta=W/Q_C=0{,}3$ (cede $700\,\mathrm{J}$: per Kelvin-Planck $Q_F\neq0$, quindi $\eta<1$). $\mathrm{COP}_f=Q_F/W=2{,}5$; $\mathrm{COP}_{pc}=Q_C/W=3{,}5$. I COP possono superare 1: misurano il calore spostato per unità di lavoro.'
-        en: '$\eta=W/Q_H=0.3$ (it rejects $700\,\mathrm{J}$: by Kelvin-Planck $Q_C\neq0$, so $\eta<1$). $\mathrm{COP}_r=Q_C/W=2.5$; $\mathrm{COP}_{hp}=Q_H/W=3.5$. COPs can exceed 1: they measure the heat moved per unit work.'
+        en: '$\eta=W/Q_C=0.3$ (it rejects $700\,\mathrm{J}$: by Kelvin-Planck $Q_F\neq0$, so $\eta<1$). $\mathrm{COP}_r=Q_F/W=2.5$; $\mathrm{COP}_{hp}=Q_C/W=3.5$. COPs can exceed 1: they measure the heat moved per unit work.'
   answer:
     - label:
         it: '$\eta$'
