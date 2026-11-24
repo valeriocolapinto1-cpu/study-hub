@@ -177,9 +177,54 @@
     min-height: 2.25rem;
   }
 }
+/* «Nascondi/Mostra indice»: solo con la barra laterale (da 1024 px). Testo dallo stato di <html>,
+   applicato prima del disegno (src/lib/course-index.ts). */
+.course-bar__index,
+.course-bar__index-show,
+:root[data-course-index='hidden'] .course-bar__index-hide {
+  display: none;
+}
+:root[data-course-index='hidden'] .course-bar__index-show {
+  display: inline;
+}
 @media (min-width: 64em) {
   .course-bar__toggle {
     display: none;
+  }
+  .course-bar__index {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 2.25rem;
+    margin-left: -0.55rem;
+    padding: 0 0.55rem;
+    border: 0;
+    border-radius: 9px;
+    background: none;
+    color: var(--text-muted);
+    font: 550 var(--step--1) / 1 var(--font-sans);
+    cursor: pointer;
+  }
+  .course-bar__index .icon {
+    width: 1.05rem;
+    height: 1.05rem;
+    color: var(--accent-strong);
+  }
+  .course-bar__index:hover {
+    background: var(--surface-2);
+    color: var(--text);
+  }
+  /* Indice nascosto: una colonna sola, testo centrato fino al limite di lettura. */
+  :root[data-course-index='hidden'] .course-shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  :root[data-course-index='hidden'] .course-shell__side {
+    display: none;
+  }
+  :root[data-course-index='hidden'] .course-shell__main:has(> .reading) {
+    width: 100%;
+    max-width: var(--measure);
+    justify-self: center;
   }
   .course-bar__eyebrow {
     margin-left: auto;

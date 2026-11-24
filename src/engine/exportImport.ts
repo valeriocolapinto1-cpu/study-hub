@@ -17,7 +17,7 @@
 import { sanitizeProgress, sanitizeSrs, type ProgressState, type SrsState } from './progress';
 import { sanitizeNotes, type NotesState } from './notes';
 import { sanitizeExamState, type ExamState, MAX_HISTORY } from './exam';
-import { BACKUP_AREA, clearScope, listKeys, parseKey, readAll, readRaw, writeRaw } from './storage';
+import { BACKUP_AREA, COURSE_INDEX_AREA, clearScope, listKeys, parseKey, readAll, readRaw, writeRaw } from './storage';
 import { MIGRATIONS_AREA } from './migrate';
 import { STUDIED_AREA, loadStudied, mergeStudied, sanitizeStudied } from './studied';
 
@@ -31,8 +31,11 @@ export interface ExportFile {
   data: Record<string, unknown>;
 }
 
-/** Aree che restano sul dispositivo: migrazioni eseguite, promemoria di backup, ultima pagina di studio. */
-export const LOCAL_ONLY_AREAS = [MIGRATIONS_AREA, BACKUP_AREA, 'lastPage', 'lastStudy'];
+/**
+ * Aree che restano sul dispositivo: migrazioni eseguite, promemoria di backup, ultima pagina di studio,
+ * indice del corso nascosto (preferenza del dispositivo).
+ */
+export const LOCAL_ONLY_AREAS = [MIGRATIONS_AREA, BACKUP_AREA, 'lastPage', 'lastStudy', COURSE_INDEX_AREA];
 const excluded = (key: string) => LOCAL_ONLY_AREAS.includes(parseKey(key)?.area ?? '');
 
 export function buildExport(now: Date = new Date()): ExportFile {

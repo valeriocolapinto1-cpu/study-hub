@@ -23,6 +23,36 @@ html {
     scroll-behavior: smooth;
   }
 }
+
+/* ---- Barre di scorrimento: sottili, nel colore del corso, mai nascoste ----
+   Pagina, indice del corso, formule e tabelle che scorrono in orizzontale (ogni elemento
+   che scorre). Proprietà standard (Firefox, Chromium) + ::-webkit-scrollbar per Safari
+   (Chromium le ignora quando ci sono quelle standard). In contrasto elevato restano
+   quelle di sistema: tutto il blocco vale solo fuori da forced-colors. */
+@media not (forced-colors: active) {
+  html {
+    scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+  }
+  :where(*) {
+    scrollbar-width: thin;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background: var(--scroll-track);
+  }
+  ::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+    border-radius: 999px;
+    background: var(--scroll-thumb) padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scroll-thumb-hover);
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
 body {
   margin: 0;
   min-height: 100vh;
