@@ -24,7 +24,7 @@ src/config/site.ts              autore, contatti, repository, endpoint Contribui
 src/i18n/                       it.json, en.json (interfaccia), glossary.yaml (termini IT→EN), index.ts
 src/styles/tokens.css           SOLO variabili (contratto dei nomi più sotto)
 src/styles/{base,components,prose,print}.css, originale.css (grafica), lettura.css (revisione di lettura),
-                                telefono.css (barra in basso dei corsi), src/styles/courses/<courseId>.css (solo --accent*)
+                                telefono.css (barra in basso dei corsi, opaca), src/styles/courses/<courseId>.css (solo --accent*)
 src/layouts/                    BaseLayout, CourseLayout, PrintLayout
 src/components/                 Head, Header, Footer, LangSwitch, ThemeToggle, CourseNav, …
 src/lib/courses.ts              coursePath(), sortCourses(), COURSE_SECTIONS
