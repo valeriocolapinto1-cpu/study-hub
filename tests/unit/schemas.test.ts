@@ -54,6 +54,7 @@ describe('schemi dei contenuti', () => {
       year: 1,
       title: { it: 'C' },
       description: { it: 'D' },
+      tagline: { it: 'T' },
       accent: 'blu',
       exam: { format: 'scritto' },
       legacyRepo: 'r',
@@ -62,5 +63,8 @@ describe('schemi dei contenuti', () => {
     expect(courseSchema.safeParse(course).success).toBe(true);
     expect(courseSchema.safeParse({ ...course, examDates: ['20/01/2027'] }).success).toBe(false);
     expect(courseSchema.safeParse({ ...course, exam: { format: 'pratico' } }).success).toBe(false);
+    // la frase della panoramica: al massimo 20 parole
+    expect(courseSchema.safeParse({ ...course, tagline: { it: 'parola '.repeat(21) } }).success).toBe(false);
+    expect(courseSchema.safeParse({ ...course, tagline: { it: 'parola '.repeat(20) } }).success).toBe(true);
   });
 });

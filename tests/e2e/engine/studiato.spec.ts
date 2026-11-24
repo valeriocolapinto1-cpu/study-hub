@@ -80,7 +80,7 @@ test('teoria: invito dopo l’80 % della lettura, niente segnatura automatica', 
   expect(Object.keys((await stored(page)).topics)).toEqual(['resistori']);
 });
 
-test('capitolo nell’indice, panoramica e «Riprendi la teoria»', async ({ page }) => {
+test('capitolo nell’indice, panoramica e «Riprendi da …»', async ({ page }) => {
   await page.goto(`${C}teoria/`);
   const group = page.locator('.topic-index__group').first();
   await expect(group.locator('[data-chapter-count]')).toHaveText('0/2 argomenti');
@@ -93,10 +93,11 @@ test('capitolo nell’indice, panoramica e «Riprendi la teoria»', async ({ pag
   await axe(page);
 
   await page.goto(C);
-  await expect(page.locator('.topic-map li[data-studied]')).toHaveCount(2);
-  await expect(page.locator('.topic-map [data-chapter-count]').first()).toHaveText('2/2 argomenti');
+  await expect(page.locator('.chapters__list li[data-studied]')).toHaveCount(1);
+  await expect(page.locator('.chapters__list [data-chapter-count]').first()).toHaveText('2/2 argomenti');
   await expect(page.locator('.course-status [data-chapter-count]')).toHaveText('2 / 2');
-  await expect(page.locator('[data-studied-next]')).toBeHidden();
+  // tutto studiato, nessuna pagina di argomento aperta: il pulsante riprende dal primo argomento
+  await expect(page.locator('[data-course-start]')).toHaveText('Riprendi da Resistori');
   await axe(page);
 
   // annullato il capitolo, «Riprendi» propone il primo argomento non studiato
@@ -106,8 +107,8 @@ test('capitolo nell’indice, panoramica e «Riprendi la teoria»', async ({ pag
   await page.goto(`${C}teoria/resistori/`);
   await page.getByRole('button', { name: 'Segna come studiato' }).click();
   await page.goto(C);
-  const next = page.locator('[data-studied-next]');
-  await expect(next).toHaveText('Riprendi la teoria: Condensatori');
+  const next = page.locator('[data-course-start]');
+  await expect(next).toHaveText('Riprendi da Condensatori');
   await expect(next).toHaveAttribute('href', `${C}teoria/condensatori/`);
   await expect(page.locator('.course-status [data-chapter-count]')).toHaveText('1 / 2');
 });
