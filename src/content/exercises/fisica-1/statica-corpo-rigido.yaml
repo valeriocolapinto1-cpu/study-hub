@@ -207,3 +207,194 @@
       value: 392
       unit: 'N'
   origin: originale
+- id: r2-stat-1
+  topic: statica-corpo-rigido
+  objectives:
+    - statica-corpo-rigido.4
+    - statica-corpo-rigido.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Una scala omogenea di 20 kg, lunga 5 m, è appoggiata a una parete liscia e forma $60^\circ$ con il pavimento scabro. Calcola la reazione della parete, la forza d''attrito al pavimento e il coefficiente d''attrito statico minimo.'
+    en: 'A uniform 20 kg ladder, 5 m long, leans against a smooth wall at $60^\circ$ with the rough floor. Find the wall reaction, the friction force at the floor and the minimum coefficient of static friction.'
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Scala appoggiata a una parete liscia, inclinata di 60° sul pavimento.',
+                'en': 'Ladder leaning on a smooth wall, at 60° to the floor.',
+              },
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-1, 0], 'to': [4, 0] },
+                { 'kind': 'surface', 'from': [0, 5], 'to': [0, 0] },
+                { 'kind': 'rod', 'from': [2.5, 0], 'to': [0, 4.33] },
+                { 'kind': 'angle', 'at': [2.5, 0], 'from': 120, 'to': 180, 'label': '60°' },
+                {
+                  'kind': 'vector',
+                  'from': [1.25, 2.17],
+                  'to': [1.25, 0.9],
+                  'label': 'mg',
+                  'vkind': 'weight',
+                },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Equazioni'
+        en: 'Equations'
+      body:
+        it: 'Traslazione: $N_p=f$ (orizzontale), $N_s=mg$ (verticale). Rotazione con polo nel piede della scala: le due forze incognite $N_s$ e $f$ hanno braccio nullo e restano solo peso e parete: $N_p\,L\sin60^\circ=mg\,\tfrac L2\cos60^\circ$.'
+        en: 'Translation: $N_w=f$ (horizontal), $N_f=mg$ (vertical). Rotation about the foot of the ladder: the two unknown forces $N_f$ and $f$ have zero lever arm and only weight and wall remain: $N_w\,L\sin60^\circ=mg\,\tfrac L2\cos60^\circ$.'
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$N_p=\dfrac{mg}{2\tan60^\circ}\approx56{,}64\,\mathrm{N}=f$; $N_s=196{,}2\,\mathrm{N}$; $\mu_s\ge f/N_s=\dfrac{1}{2\tan60^\circ}\approx0{,}289$.'
+        en: '$N_w=\dfrac{mg}{2\tan60^\circ}\approx56.64\,\mathrm{N}=f$; $N_f=196.2\,\mathrm{N}$; $\mu_s\ge f/N_f=\dfrac{1}{2\tan60^\circ}\approx0.289$.'
+  answer:
+    - label:
+        it: '$N_p$'
+        en: '$N_w$'
+      value: 56.638061
+      unit: 'N'
+    - label:
+        it: '$f$'
+        en: '$f$'
+      value: 56.638061
+      unit: 'N'
+    - label:
+        it: '$\mu_{min}$'
+        en: '$\mu_{min}$'
+      value: 0.288675
+  origin: originale
+- id: r2-stat-2
+  topic: statica-corpo-rigido
+  objectives:
+    - statica-corpo-rigido.4
+    - statica-corpo-rigido.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Una trave omogenea di 30 kg, lunga 4 m, poggia su due appoggi agli estremi. A 1 m dall'estremo sinistro è posato un carico di 50 kg. Calcola le reazioni dei due appoggi."
+    en: 'A uniform 30 kg beam, 4 m long, rests on two supports at its ends. A 50 kg load sits 1 m from the left end. Find the reactions of the two supports.'
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Trave su due appoggi agli estremi con un carico a un quarto della lunghezza.',
+                'en': 'Beam on two end supports with a load at a quarter of its length.',
+              },
+            'items':
+              [
+                { 'kind': 'rod', 'from': [0, 1], 'to': [8, 1] },
+                { 'kind': 'pivot', 'at': [0, 1], 'style': 'support' },
+                { 'kind': 'pivot', 'at': [8, 1], 'style': 'support' },
+                { 'kind': 'block', 'at': [2, 1.6], 'w': 1.2, 'h': 1.2, 'label': '50 kg' },
+                { 'kind': 'dim', 'from': [0, -0.4], 'to': [2, -0.4], 'label': '1 m' },
+                { 'kind': 'dim', 'from': [0, -1.2], 'to': [8, -1.2], 'label': '4 m' },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Scelta del polo'
+        en: 'Choice of pole'
+      body:
+        it: 'Polo nell''appoggio sinistro: la sua reazione non compare. $R_d\cdot4=30g\cdot2+50g\cdot1\Rightarrow R_d=27{,}5\,g\approx269{,}8\,\mathrm{N}$.'
+        en: 'Pole at the left support: its reaction drops out. $R_r\cdot4=30g\cdot2+50g\cdot1\Rightarrow R_r=27.5\,g\approx269.8\,\mathrm{N}$.'
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Equilibrio verticale: $R_s=80g-R_d=52{,}5\,g\approx515{,}0\,\mathrm{N}$. Controllo con il polo a destra: $R_s\cdot4=30g\cdot2+50g\cdot3=210\,g$, uguale.'
+        en: 'Vertical balance: $R_l=80g-R_r=52.5\,g\approx515.0\,\mathrm{N}$. Check with the pole on the right: $R_l\cdot4=30g\cdot2+50g\cdot3=210\,g$, the same.'
+  answer:
+    - label:
+        it: '$R_s$'
+        en: '$R_l$'
+      value: 515.025
+      unit: 'N'
+    - label:
+        it: '$R_d$'
+        en: '$R_r$'
+      value: 269.775
+      unit: 'N'
+  origin: originale
+- id: r2-stat-3
+  topic: statica-corpo-rigido
+  objectives:
+    - statica-corpo-rigido.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Nella statica di un corpo rigido, come conviene scegliere il polo per l'equazione dei momenti?"
+    en: 'In rigid-body statics, how should the pole for the torque equation be chosen?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: "All'equilibrio il momento totale è nullo rispetto a **qualunque** polo. Conviene metterlo dove passano le forze incognite (o più di una): hanno braccio nullo e spariscono dall'equazione."
+        en: 'At equilibrium the total torque is zero about **any** pole. It is convenient to put it where unknown forces act (one or more): they have zero lever arm and drop out of the equation.'
+  choices:
+    - text:
+        it: "Nel punto di applicazione delle forze incognite, così spariscono dall'equazione"
+        en: 'At the point where the unknown forces act, so that they drop out of the equation'
+      correct: true
+    - text:
+        it: 'Sempre nel centro di massa, altrimenti il risultato è sbagliato'
+        en: 'Always at the centre of mass, otherwise the result is wrong'
+      correct: false
+    - text:
+        it: 'Il più lontano possibile dalle forze'
+        en: 'As far as possible from the forces'
+      correct: false
+    - text:
+        it: 'Il polo non conta perché le forze si annullano'
+        en: 'The pole does not matter because the forces cancel'
+      correct: false
+  origin: originale
+- id: r2-stat-4
+  topic: statica-corpo-rigido
+  objectives:
+    - statica-corpo-rigido.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Un'asta può ruotare attorno a un perno per un estremo. Quale posizione di equilibrio è stabile?"
+    en: 'A rod can rotate about a pin at one end. Which equilibrium position is stable?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'L''energia potenziale è $U=Mg\,y_{cm}$: l''equilibrio è stabile dove $U$ è minima, cioè con il baricentro nel punto più basso possibile (asta appesa sotto il perno). Con il baricentro sopra il perno $U$ è massima: equilibrio instabile.'
+        en: 'The potential energy is $U=Mg\,y_{cm}$: equilibrium is stable where $U$ is minimum, i.e. with the centre of gravity as low as possible (rod hanging below the pin). With the centre of gravity above the pin $U$ is maximum: unstable equilibrium.'
+  choices:
+    - text:
+        it: 'Asta verticale sotto il perno: baricentro più basso possibile, $U$ minima'
+        en: 'Rod vertical below the pin: centre of gravity as low as possible, $U$ minimum'
+      correct: true
+    - text:
+        it: 'Asta verticale sopra il perno'
+        en: 'Rod vertical above the pin'
+      correct: false
+    - text:
+        it: 'Asta orizzontale'
+        en: 'Rod horizontal'
+      correct: false
+    - text:
+        it: 'Tutte le posizioni sono stabili'
+        en: 'All positions are stable'
+      correct: false
+  origin: originale

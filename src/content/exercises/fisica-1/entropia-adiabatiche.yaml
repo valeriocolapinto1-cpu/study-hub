@@ -170,3 +170,113 @@
   kind: generated
   generator: fisica-1/entropia-mescolamento
   origin: tipologia-appello
+- id: r2-ent-1
+  topic: entropia-adiabatiche
+  objectives:
+    - entropia-adiabatiche.6
+    - entropia-adiabatiche.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: '2 mol di gas perfetto si espandono liberamente nel vuoto da 10 L a 30 L in un recipiente isolato. Calcola il calore scambiato e la variazione di entropia del gas.'
+    en: '2 mol of ideal gas expand freely into vacuum from 10 L to 30 L in an insulated container. Find the heat exchanged and the change in entropy of the gas.'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$Q=0$ (adiabatica) e $T$ costante. Per calcolare $\Delta S$ si usa una via reversibile fra gli stessi stati, l''isoterma: $\Delta S=nc_V\ln\dfrac{T_2}{T_1}+nR\ln\dfrac{V_2}{V_1}=2\cdot8{,}314\cdot\ln3\approx18{,}27\,\mathrm{J/K}>0$. Adiabatica ma non isoentropica, perché irreversibile.'
+        en: '$Q=0$ (adiabatic) and $T$ constant. To compute $\Delta S$ use a reversible path between the same states, the isotherm: $\Delta S=nc_V\ln\dfrac{T_2}{T_1}+nR\ln\dfrac{V_2}{V_1}=2\cdot8.314\cdot\ln3\approx18.27\,\mathrm{J/K}>0$. Adiabatic but not isentropic, because irreversible.'
+  answer:
+    - label:
+        it: '$\Delta S$'
+        en: '$\Delta S$'
+      value: 18.267725
+      unit: 'J/K'
+  origin: originale
+- id: r2-ent-2
+  topic: entropia-adiabatiche
+  objectives:
+    - entropia-adiabatiche.7
+    - entropia-adiabatiche.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Due blocchi di capacità termica $400\,\mathrm{J/K}$ ciascuno, a 400 K e 300 K, sono messi a contatto in un contenitore isolato. Calcola la temperatura finale e la variazione di entropia dell''universo.'
+    en: 'Two blocks of heat capacity $400\,\mathrm{J/K}$ each, at 400 K and 300 K, are put in contact in an insulated container. Find the final temperature and the change in entropy of the universe.'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Capacità uguali: $T_f=350\,\mathrm{K}$. $\Delta S=C\ln\dfrac{T_f}{T_1}+C\ln\dfrac{T_f}{T_2}=400\,(\ln0{,}875+\ln1{,}1\overline{6})\approx8{,}25\,\mathrm{J/K}$. Il caldo perde meno entropia di quanta ne guadagni il freddo: nel sistema isolato l''entropia aumenta, come vuole il secondo principio.'
+        en: 'Equal capacities: $T_f=350\,\mathrm{K}$. $\Delta S=C\ln\dfrac{T_f}{T_1}+C\ln\dfrac{T_f}{T_2}=400\,(\ln0.875+\ln1.1\overline{6})\approx8.25\,\mathrm{J/K}$. The hot block loses less entropy than the cold one gains: in the isolated system entropy increases, as the second law requires.'
+  answer:
+    - label:
+        it: '$T_f$'
+        en: '$T_f$'
+      value: 350
+      unit: 'K'
+    - label:
+        it: '$\Delta S_{univ}$'
+        en: '$\Delta S_{univ}$'
+      value: 8.247715
+      unit: 'J/K'
+  origin: originale
+- id: r2-ent-3
+  topic: entropia-adiabatiche
+  objectives:
+    - entropia-adiabatiche.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: '1 mol di gas biatomico passa da 300 K a 450 K mentre il volume si dimezza. Calcola la variazione di entropia.'
+    en: '1 mol of diatomic gas goes from 300 K to 450 K while its volume halves. Find the change in entropy.'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Da $dS=\dfrac{\delta Q}{T}=nc_V\dfrac{dT}{T}+nR\dfrac{dV}{V}$: $\Delta S=nc_V\ln\dfrac{T_2}{T_1}+nR\ln\dfrac{V_2}{V_1}=\tfrac52R\ln1{,}5+R\ln0{,}5\approx8{,}428-5{,}763=2{,}665\,\mathrm{J/K}$.'
+        en: 'From $dS=\dfrac{\delta Q}{T}=nc_V\dfrac{dT}{T}+nR\dfrac{dV}{V}$: $\Delta S=nc_V\ln\dfrac{T_2}{T_1}+nR\ln\dfrac{V_2}{V_1}=\tfrac52R\ln1.5+R\ln0.5\approx8.428-5.763=2.665\,\mathrm{J/K}$.'
+  answer:
+    - label:
+        it: '$\Delta S$'
+        en: '$\Delta S$'
+      value: 2.664767
+      unit: 'J/K'
+  origin: originale
+- id: r2-ent-4
+  topic: entropia-adiabatiche
+  objectives:
+    - entropia-adiabatiche.8
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Con $S=k_B\ln\Omega$, quanto aumenta l''entropia quando $N$ molecole di un gas raddoppiano il volume a disposizione (a temperatura costante)?'
+    en: 'With $S=k_B\ln\Omega$, by how much does the entropy increase when $N$ gas molecules double the available volume (at constant temperature)?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Ogni molecola ha il doppio delle posizioni possibili: $\Omega\to2^N\Omega$ e $\Delta S=k_B\ln2^N=Nk_B\ln2=nR\ln2$, lo stesso risultato della termodinamica per l''isoterma.'
+        en: 'Every molecule has twice as many possible positions: $\Omega\to2^N\Omega$ and $\Delta S=k_B\ln2^N=Nk_B\ln2=nR\ln2$, the same result as thermodynamics gives for the isotherm.'
+  choices:
+    - text:
+        it: '$\Delta S=Nk_B\ln2=nR\ln2$'
+        en: '$\Delta S=Nk_B\ln2=nR\ln2$'
+      correct: true
+    - text:
+        it: '$\Delta S=k_B\ln2$'
+        en: '$\Delta S=k_B\ln2$'
+      correct: false
+    - text:
+        it: '$\Delta S=2Nk_B$'
+        en: '$\Delta S=2Nk_B$'
+      correct: false
+    - text:
+        it: '$\Delta S=0$, perché $T$ è costante'
+        en: '$\Delta S=0$, because $T$ is constant'
+      correct: false
+  origin: originale

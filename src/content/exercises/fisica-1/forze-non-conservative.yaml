@@ -188,3 +188,116 @@
   kind: generated
   generator: fisica-1/piano-scabro
   origin: tipologia-appello
+- id: r2-fnc-1
+  topic: forze-non-conservative
+  objectives:
+    - forze-non-conservative.6
+  difficulty: 3
+  kind: static
+  statement:
+    it: 'Un blocco di 2 kg viene lanciato a 6 m/s su per un piano inclinato di $30^\circ$ con $\mu_d=0{,}25$. Calcola la distanza percorsa in salita, la velocità con cui torna al punto di partenza e l''energia meccanica dissipata in tutto.'
+    en: 'A 2 kg block is launched at 6 m/s up a $30^\circ$ incline with $\mu_k=0.25$. Find the distance travelled upwards, the speed with which it returns to the starting point and the total mechanical energy dissipated.'
+  figure:
+    diagram:
+      {
+        'type': 'inclined-plane',
+        'params': { 'angle': 30, 'friction': true, 'motion': 'up', 'components': false },
+      }
+  steps:
+    - title:
+        it: 'Salita'
+        en: 'Going up'
+      body:
+        it: '$\tfrac12mv_0^2=mgd\,(\sin\theta+\mu_d\cos\theta)\Rightarrow d=\dfrac{36}{2\cdot9{,}81\cdot0{,}7165}\approx2{,}56\,\mathrm{m}$. Poiché $\tan30^\circ>\mu$ il blocco ridiscende.'
+        en: '$\tfrac12mv_0^2=mgd\,(\sin\theta+\mu_k\cos\theta)\Rightarrow d=\dfrac{36}{2\cdot9.81\cdot0.7165}\approx2.56\,\mathrm{m}$. Since $\tan30^\circ>\mu$ the block slides back.'
+    - title:
+        it: 'Discesa'
+        en: 'Coming down'
+      body:
+        it: '$\tfrac12mv^2=mgd\,(\sin\theta-\mu_d\cos\theta)\Rightarrow v\approx3{,}77\,\mathrm{m/s}$. Dissipata: $\tfrac12m(v_0^2-v^2)\approx21{,}8\,\mathrm{J}=2\mu_dmg\cos\theta\,d$, proporzionale alla strada percorsa $2d$ e non allo spostamento (nullo).'
+        en: '$\tfrac12mv^2=mgd\,(\sin\theta-\mu_k\cos\theta)\Rightarrow v\approx3.77\,\mathrm{m/s}$. Dissipated: $\tfrac12m(v_0^2-v^2)\approx21.8\,\mathrm{J}=2\mu_kmg\cos\theta\,d$, proportional to the path length $2d$ and not to the displacement (zero).'
+  answer:
+    - label:
+        it: '$d$'
+        en: '$d$'
+      value: 2.560846
+      unit: 'm'
+    - label:
+        it: '$v$'
+        en: '$v$'
+      value: 3.774096
+      unit: 'm/s'
+    - label:
+        it: '$E_{diss}$'
+        en: '$E_{diss}$'
+      value: 21.756203
+      unit: 'J'
+  origin: originale
+- id: r2-fnc-2
+  topic: forze-non-conservative
+  objectives:
+    - forze-non-conservative.4
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Un blocco viene trascinato da A a B lungo un tavolo scabro (tratto $d$) e poi riportato in A. Quanto vale il lavoro totale dell'attrito dinamico?"
+    en: 'A block is dragged from A to B on a rough table (distance $d$) and then back to A. What is the total work of kinetic friction?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'L''attrito è sempre opposto alla velocità: in ogni tratto $dW=-\mu_dN\,ds<0$. Si somma la lunghezza del percorso ($2d$), non lo spostamento (nullo): $W=-2\mu_dmg\,d$.'
+        en: 'Friction is always opposite to the velocity: on each piece $dW=-\mu_kN\,ds<0$. The path length ($2d$) adds up, not the displacement (zero): $W=-2\mu_kmg\,d$.'
+  choices:
+    - text:
+        it: '$-2\mu_d mg\,d$'
+        en: '$-2\mu_k mg\,d$'
+      correct: true
+    - text:
+        it: 'Zero, perché il blocco torna al punto di partenza'
+        en: 'Zero, because the block returns to its starting point'
+      correct: false
+    - text:
+        it: '$-\mu_d mg\,d$'
+        en: '$-\mu_k mg\,d$'
+      correct: false
+    - text:
+        it: '$+2\mu_d mg\,d$'
+        en: '$+2\mu_k mg\,d$'
+      correct: false
+  origin: originale
+- id: r2-fnc-3
+  topic: forze-non-conservative
+  objectives:
+    - forze-non-conservative.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Un'auto frena fino a fermarsi. Dove finisce la sua energia cinetica?"
+    en: 'A car brakes to a stop. Where does its kinetic energy go?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: "Il lavoro delle forze d'attrito non distrugge energia: la converte in energia interna (agitazione microscopica) di dischi, pastiglie, pneumatici e asfalto, che si scaldano. L'energia totale si conserva, quella meccanica no."
+        en: 'The work of friction does not destroy energy: it converts it into internal energy (microscopic agitation) of discs, pads, tyres and road, which heat up. Total energy is conserved, mechanical energy is not.'
+  choices:
+    - text:
+        it: 'In energia interna di freni, gomme e asfalto, che si scaldano'
+        en: 'Into internal energy of brakes, tyres and road, which heat up'
+      correct: true
+    - text:
+        it: "Viene distrutta dall'attrito"
+        en: 'It is destroyed by friction'
+      correct: false
+    - text:
+        it: 'Diventa energia potenziale gravitazionale'
+        en: 'It becomes gravitational potential energy'
+      correct: false
+    - text:
+        it: "Resta energia cinetica dell'auto ferma"
+        en: 'It stays as kinetic energy of the stopped car'
+      correct: false
+  origin: originale

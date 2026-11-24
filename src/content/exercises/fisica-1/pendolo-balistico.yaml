@@ -225,3 +225,118 @@
   kind: generated
   generator: fisica-1/pendolo-balistico
   origin: tipologia-appello
+- id: r2-pb-1
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.5
+    - pendolo-balistico.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un proiettile di 10 g si conficca in un blocco di 2 kg appeso a fili lunghi 1,5 m, che si sposta fino a un angolo massimo di $12^\circ$. Calcola la quota raggiunta e la velocità del proiettile.'
+    en: 'A 10 g bullet embeds itself in a 2 kg block hanging from 1.5 m strings, which swings up to a maximum angle of $12^\circ$. Find the height reached and the bullet''s speed.'
+  figure:
+    diagram:
+      {
+        'type': 'pendulum',
+        'params':
+          { 'angle': 12, 'forces': false, 'lengthLabel': 'L', 'massLabel': 'M+m', 'angleLabel': 'θ_{max}' },
+      }
+  steps:
+    - title:
+        it: 'Quota'
+        en: 'Height'
+      body:
+        it: '$h=L(1-\cos\theta)=1{,}5\,(1-\cos12^\circ)\approx0{,}0328\,\mathrm{m}$.'
+        en: '$h=L(1-\cos\theta)=1.5\,(1-\cos12^\circ)\approx0.0328\,\mathrm{m}$.'
+    - title:
+        it: 'Urto e risalita'
+        en: 'Collision and swing'
+      body:
+        it: 'Urto: $mv_0=(m+M)V$; risalita: $V=\sqrt{2gh}$. Quindi $v_0=\dfrac{m+M}{m}\sqrt{2gh}=201\cdot0{,}802\approx161\,\mathrm{m/s}$.'
+        en: 'Collision: $mv_0=(m+M)V$; swing: $V=\sqrt{2gh}$. Hence $v_0=\dfrac{m+M}{m}\sqrt{2gh}=201\cdot0.802\approx161\,\mathrm{m/s}$.'
+  answer:
+    - label:
+        it: '$h$'
+        en: '$h$'
+      value: 0.032779
+      unit: 'm'
+    - label:
+        it: '$v_0$'
+        en: '$v_0$'
+      value: 161.190986
+      unit: 'm/s'
+  origin: originale
+- id: r2-pb-2
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Nel pendolo balistico, perché durante la risalita si conserva l'energia meccanica ma non la quantità di moto?"
+    en: 'In the ballistic pendulum, why is mechanical energy conserved during the swing but momentum is not?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Dopo l''urto agiscono peso (conservativo) e tensione (perpendicolare alla velocità, non lavora): $E$ si conserva. La loro risultante però non è nulla, quindi $\vec P$ cambia (il blocco rallenta e cambia direzione). Nell''urto, brevissimo, è il contrario.'
+        en: 'After the collision gravity (conservative) and tension (perpendicular to the velocity, no work) act: $E$ is conserved. Their resultant is not zero, though, so $\vec P$ changes (the block slows down and turns). In the very short collision it is the other way round.'
+  choices:
+    - text:
+        it: 'Peso e tensione non dissipano energia, ma hanno risultante non nulla'
+        en: 'Gravity and tension dissipate no energy, but their resultant is not zero'
+      correct: true
+    - text:
+        it: 'Perché la tensione compie lavoro positivo'
+        en: 'Because the tension does positive work'
+      correct: false
+    - text:
+        it: "Perché l'urto è elastico"
+        en: 'Because the collision is elastic'
+      correct: false
+    - text:
+        it: 'Si conservano entrambe'
+        en: 'Both are conserved'
+      correct: false
+  origin: originale
+- id: r2-pb-3
+  topic: pendolo-balistico
+  objectives:
+    - pendolo-balistico.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Un proiettile di 20 g a 300 m/s si conficca in un blocco di 0,98 kg. Calcola la frazione di energia cinetica persa nell'urto e l'energia persa."
+    en: 'A 20 g bullet at 300 m/s embeds itself in a 0.98 kg block. Find the fraction of kinetic energy lost in the collision and the energy lost.'
+  figure:
+    diagram:
+      {
+        'type': 'collision',
+        'params':
+          {
+            'unit': 'm/s',
+            'before':
+              [{ 'label': 'm', 'mass': '20 g', 'v': 300 }, { 'label': 'M', 'mass': '0,98 kg', 'v': 0 }],
+            'after': [{ 'label': 'm+M', 'mass': '1 kg', 'v': 6 }],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$K_f/K_i=\dfrac{m}{m+M}$, quindi la frazione persa è $\dfrac{M}{m+M}=0{,}98$. $K_i=\tfrac12\cdot0{,}02\cdot300^2=900\,\mathrm{J}$: persi $882\,\mathrm{J}$, che scaldano e deformano il blocco. Per questo nella fase d''urto non si può usare l''energia.'
+        en: '$K_f/K_i=\dfrac{m}{m+M}$, so the fraction lost is $\dfrac{M}{m+M}=0.98$. $K_i=\tfrac12\cdot0.02\cdot300^2=900\,\mathrm{J}$: $882\,\mathrm{J}$ lost, which heat and deform the block. That is why energy cannot be used in the collision phase.'
+  answer:
+    - label:
+        it: 'frazione persa'
+        en: 'fraction lost'
+      value: 0.98
+    - label:
+        it: '$E_{persa}$'
+        en: '$E_{lost}$'
+      value: 882
+      unit: 'J'
+  origin: originale

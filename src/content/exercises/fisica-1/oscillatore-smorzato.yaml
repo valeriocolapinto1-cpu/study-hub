@@ -397,3 +397,129 @@
   kind: generated
   generator: fisica-1/oscillatore-smorzato
   origin: tipologia-appello
+- id: r2-os-1
+  topic: oscillatore-smorzato
+  objectives:
+    - oscillatore-smorzato.4
+    - oscillatore-smorzato.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un oscillatore ha $m=0{,}2\,\mathrm{kg}$, $k=80\,\mathrm{N/m}$ e coefficiente di attrito viscoso $b=0{,}4\,\mathrm{kg/s}$. Calcola $\gamma=b/2m$, la pulsazione smorzata $\omega_s$, il fattore di qualità $Q=\omega_0/2\gamma$ e il rapporto fra l''ampiezza dopo 2 s e quella iniziale.'
+    en: 'An oscillator has $m=0.2\,\mathrm{kg}$, $k=80\,\mathrm{N/m}$ and viscous coefficient $b=0.4\,\mathrm{kg/s}$. Find $\gamma=b/2m$, the damped angular frequency $\omega_s$, the quality factor $Q=\omega_0/2\gamma$ and the ratio of the amplitude after 2 s to the initial one.'
+  figure:
+    diagram:
+      {
+        'type': 'function-plot',
+        'params':
+          {
+            'x': { 'min': 0, 'max': 3, 'label': 't', 'unit': 's' },
+            'y': { 'min': -1.1, 'max': 1.1, 'label': 'x/A_0' },
+            'series':
+              [
+                { 'kind': 'damped', 'amp': 1, 'alpha': 1, 'omega': 19.97 },
+                { 'kind': 'exp', 'a': 1, 'b': -1, 'dash': true, 'label': 'e^{-γt}' },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Soluzione sottosmorzata'
+        en: 'Underdamped solution'
+      body:
+        it: '$\gamma=1\,\mathrm{s^{-1}}<\omega_0=\sqrt{k/m}=20\,\mathrm{rad/s}$: $x(t)=A_0e^{-\gamma t}\cos(\omega_st+\varphi)$ con $\omega_s=\sqrt{\omega_0^2-\gamma^2}=\sqrt{399}\approx19{,}97\,\mathrm{rad/s}$.'
+        en: '$\gamma=1\,\mathrm{s^{-1}}<\omega_0=\sqrt{k/m}=20\,\mathrm{rad/s}$: $x(t)=A_0e^{-\gamma t}\cos(\omega_st+\varphi)$ with $\omega_s=\sqrt{\omega_0^2-\gamma^2}=\sqrt{399}\approx19.97\,\mathrm{rad/s}$.'
+    - title:
+        it: 'Inviluppo e Q'
+        en: 'Envelope and Q'
+      body:
+        it: 'L''inviluppo è $A_0e^{-\gamma t}$: dopo 2 s il rapporto è $e^{-2}\approx0{,}135$. $Q=\omega_0/2\gamma=10$: circa $Q/\pi\approx3$ oscillazioni perché l''ampiezza scenda di un fattore $e$.'
+        en: 'The envelope is $A_0e^{-\gamma t}$: after 2 s the ratio is $e^{-2}\approx0.135$. $Q=\omega_0/2\gamma=10$: about $Q/\pi\approx3$ oscillations for the amplitude to fall by a factor $e$.'
+  answer:
+    - label:
+        it: '$\gamma$'
+        en: '$\gamma$'
+      value: 1
+      unit: '1/s'
+    - label:
+        it: '$\omega_s$'
+        en: '$\omega_s$'
+      value: 19.974984
+      unit: 'rad/s'
+    - label:
+        it: '$Q$'
+        en: '$Q$'
+      value: 10
+    - label:
+        it: '$A(2)/A_0$'
+        en: '$A(2)/A_0$'
+      value: 0.135335
+  origin: originale
+- id: r2-os-2
+  topic: oscillatore-smorzato
+  objectives:
+    - oscillatore-smorzato.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Con $m\ddot x=-kx-b\dot x$, quanto vale la derivata dell''energia meccanica $E=\tfrac12m\dot x^2+\tfrac12kx^2$?'
+    en: 'With $m\ddot x=-kx-b\dot x$, what is the derivative of the mechanical energy $E=\tfrac12m\dot x^2+\tfrac12kx^2$?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: '$\dfrac{dE}{dt}=m\dot x\ddot x+kx\dot x=\dot x\,(m\ddot x+kx)=\dot x\,(-b\dot x)=-bv^2\le0$: l''energia diminuisce sempre, ed è ferma solo agli istanti in cui $v=0$.'
+        en: '$\dfrac{dE}{dt}=m\dot x\ddot x+kx\dot x=\dot x\,(m\ddot x+kx)=\dot x\,(-b\dot x)=-bv^2\le0$: the energy always decreases, and is momentarily constant only when $v=0$.'
+  choices:
+    - text:
+        it: '$dE/dt=-bv^2\le0$'
+        en: '$dE/dt=-bv^2\le0$'
+      correct: true
+    - text:
+        it: '$dE/dt=-bx^2$'
+        en: '$dE/dt=-bx^2$'
+      correct: false
+    - text:
+        it: "$dE/dt=0$: l'energia si conserva"
+        en: '$dE/dt=0$: energy is conserved'
+      correct: false
+    - text:
+        it: '$dE/dt=-b\,v$'
+        en: '$dE/dt=-b\,v$'
+      correct: false
+  origin: originale
+- id: r2-os-3
+  topic: oscillatore-smorzato
+  objectives:
+    - oscillatore-smorzato.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Perché negli ammortizzatori di un''auto si sceglie uno smorzamento vicino a quello critico ($\gamma=\omega_0$)?'
+    en: 'Why are car shock absorbers designed close to critical damping ($\gamma=\omega_0$)?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: "Con smorzamento critico il sistema torna all'equilibrio nel tempo più breve senza oscillare: sottosmorzato rimbalzerebbe più volte, sovrasmorzato tornerebbe troppo lentamente."
+        en: 'With critical damping the system returns to equilibrium in the shortest time without oscillating: underdamped it would bounce several times, overdamped it would return too slowly.'
+  choices:
+    - text:
+        it: "Torna all'equilibrio nel tempo più breve senza oscillare"
+        en: 'It returns to equilibrium in the shortest time without oscillating'
+      correct: true
+    - text:
+        it: "Massimizza l'ampiezza delle oscillazioni"
+        en: 'It maximises the oscillation amplitude'
+      correct: false
+    - text:
+        it: "Elimina l'attrito"
+        en: 'It removes friction'
+      correct: false
+    - text:
+        it: 'Rende il periodo indipendente dalla massa'
+        en: 'It makes the period independent of the mass'
+      correct: false
+  origin: originale

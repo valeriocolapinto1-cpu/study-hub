@@ -240,3 +240,170 @@
       value: 3.92
       unit: W
   origin: originale
+- id: r2-mcr-1
+  topic: moto-corpo-rigido
+  objectives:
+    - moto-corpo-rigido.4
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Per un corpo rigido che ruota attorno a un asse fisso vale $I\alpha=\tau$. Quale analogia con la dinamica del punto è corretta?'
+    en: 'For a rigid body rotating about a fixed axis $I\alpha=\tau$ holds. Which analogy with point dynamics is correct?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Da $L_z=I\omega$ e $dL_z/dt=\tau_z$ con $I$ costante si ha $I\alpha=\tau$: $\tau\leftrightarrow F$, $I\leftrightarrow m$ (inerzia alla rotazione), $\alpha\leftrightarrow a$.'
+        en: 'From $L_z=I\omega$ and $dL_z/dt=\tau_z$ with constant $I$ we get $I\alpha=\tau$: $\tau\leftrightarrow F$, $I\leftrightarrow m$ (rotational inertia), $\alpha\leftrightarrow a$.'
+  choices:
+    - text:
+        it: '$\tau\leftrightarrow F$, $I\leftrightarrow m$, $\alpha\leftrightarrow a$'
+        en: '$\tau\leftrightarrow F$, $I\leftrightarrow m$, $\alpha\leftrightarrow a$'
+      correct: true
+    - text:
+        it: '$\tau\leftrightarrow m$, $I\leftrightarrow F$, $\alpha\leftrightarrow a$'
+        en: '$\tau\leftrightarrow m$, $I\leftrightarrow F$, $\alpha\leftrightarrow a$'
+      correct: false
+    - text:
+        it: '$L\leftrightarrow F$, $I\leftrightarrow v$'
+        en: '$L\leftrightarrow F$, $I\leftrightarrow v$'
+      correct: false
+    - text:
+        it: '$\omega\leftrightarrow F$, $I\leftrightarrow a$'
+        en: '$\omega\leftrightarrow F$, $I\leftrightarrow a$'
+      correct: false
+  origin: originale
+- id: r2-mcr-2
+  topic: moto-corpo-rigido
+  objectives:
+    - moto-corpo-rigido.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Una ruota parte da ferma con accelerazione angolare costante di $3\,\mathrm{rad/s^2}$. Dopo 4 s calcola la velocità angolare, l''angolo descritto e il numero di giri.'
+    en: 'A wheel starts from rest with a constant angular acceleration of $3\,\mathrm{rad/s^2}$. After 4 s find the angular velocity, the angle swept and the number of turns.'
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Ruota che gira attorno al suo asse fisso con accelerazione angolare α.',
+                'en': 'Wheel turning about its fixed axis with angular acceleration α.',
+              },
+            'items':
+              [
+                { 'kind': 'disc', 'at': [0, 0], 'r': 1.5, 'style': 'ring' },
+                { 'kind': 'pivot', 'at': [0, 0], 'style': 'pin' },
+                { 'kind': 'rotation', 'at': [0, 0], 'r': 40, 'from': 30, 'to': 150, 'label': 'α' },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Come nel moto uniformemente accelerato: $\omega=\alpha t=12\,\mathrm{rad/s}$, $\theta=\tfrac12\alpha t^2=24\,\mathrm{rad}$, giri $=\theta/2\pi\approx3{,}82$.'
+        en: 'As in uniformly accelerated motion: $\omega=\alpha t=12\,\mathrm{rad/s}$, $\theta=\tfrac12\alpha t^2=24\,\mathrm{rad}$, turns $=\theta/2\pi\approx3.82$.'
+  answer:
+    - label:
+        it: '$\omega$'
+        en: '$\omega$'
+      value: 12
+      unit: 'rad/s'
+    - label:
+        it: '$\theta$'
+        en: '$\theta$'
+      value: 24
+      unit: 'rad'
+    - label:
+        it: 'giri'
+        en: 'turns'
+      value: 3.819719
+  origin: originale
+- id: r2-mcr-3
+  topic: moto-corpo-rigido
+  objectives:
+    - moto-corpo-rigido.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Una ruota rotola senza strisciare con il centro a velocità $v$. Qual è il centro di istantanea rotazione e quanto è veloce il punto più alto?'
+    en: 'A wheel rolls without slipping with its centre at speed $v$. What is the instantaneous centre of rotation, and how fast is the top point?'
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Ruota che rotola: il punto di contatto P è fermo.',
+                'en': 'Rolling wheel: the contact point P is at rest.',
+              },
+            'items':
+              [
+                { 'kind': 'surface', 'from': [-3, 0], 'to': [3, 0] },
+                { 'kind': 'disc', 'at': [0, 1.5], 'r': 1.5, 'style': 'ring' },
+                { 'kind': 'vector', 'from': [0, 1.5], 'to': [1.6, 1.5], 'label': 'v', 'vkind': 'velocity' },
+                { 'kind': 'dot', 'at': [0, 0], 'label': 'P', 'labelAngle': 225 },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Il punto di contatto ha velocità nulla: in quell''istante la ruota ruota attorno a esso con $\omega=v/R$. Il punto più alto dista $2R$, quindi va a $2v$.'
+        en: 'The contact point has zero velocity: at that instant the wheel rotates about it with $\omega=v/R$. The top point is $2R$ away, so it moves at $2v$.'
+  choices:
+    - text:
+        it: 'Il punto di contatto con il suolo; il punto più alto va a $2v$'
+        en: 'The contact point with the ground; the top point moves at $2v$'
+      correct: true
+    - text:
+        it: 'Il centro della ruota; il punto più alto va a $v$'
+        en: 'The centre of the wheel; the top point moves at $v$'
+      correct: false
+    - text:
+        it: 'Il punto più alto; il centro va a $2v$'
+        en: 'The top point; the centre moves at $2v$'
+      correct: false
+    - text:
+        it: 'Non esiste perché la ruota trasla'
+        en: 'There is none because the wheel translates'
+      correct: false
+  origin: originale
+- id: r2-mcr-4
+  topic: moto-corpo-rigido
+  objectives:
+    - moto-corpo-rigido.7
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Un motore applica un momento costante di $5\,\mathrm{N\,m}$ a un albero che gira a 300 giri/min. Calcola la potenza erogata e il lavoro compiuto in 10 giri.'
+    en: 'A motor applies a constant torque of $5\,\mathrm{N\,m}$ to a shaft turning at 300 rpm. Find the power delivered and the work done in 10 turns.'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$\omega=300\cdot2\pi/60=10\pi\,\mathrm{rad/s}$. $P=\tau\omega\approx157{,}1\,\mathrm{W}$ (analogo di $Fv$); $W=\tau\,\Delta\theta=5\cdot20\pi\approx314{,}2\,\mathrm{J}$ (analogo di $Fs$).'
+        en: '$\omega=300\cdot2\pi/60=10\pi\,\mathrm{rad/s}$. $P=\tau\omega\approx157.1\,\mathrm{W}$ (analogue of $Fv$); $W=\tau\,\Delta\theta=5\cdot20\pi\approx314.2\,\mathrm{J}$ (analogue of $Fs$).'
+  answer:
+    - label:
+        it: '$P$'
+        en: '$P$'
+      value: 157.079633
+      unit: 'W'
+    - label:
+        it: '$W$'
+        en: '$W$'
+      value: 314.159265
+      unit: 'J'
+  origin: originale

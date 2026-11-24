@@ -237,3 +237,158 @@
   kind: generated
   generator: fisica-1/giro-della-morte
   origin: tipologia-appello
+- id: r2-fc-1
+  topic: forze-conservative
+  objectives:
+    - forze-conservative.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Una molla con $k=800\,\mathrm{N/m}$, compressa di 10 cm, lancia una pallina di 50 g su un binario liscio che poi sale. Calcola la velocità con cui la pallina lascia la molla e la quota massima raggiunta rispetto al tratto orizzontale.'
+    en: 'A spring with $k=800\,\mathrm{N/m}$, compressed by 10 cm, launches a 50 g ball along a smooth track that then rises. Find the speed at which the ball leaves the spring and the maximum height reached above the horizontal section.'
+  figure:
+    diagram:
+      {
+        'type': 'spring-mass',
+        'params':
+          {
+            'orientation': 'horizontal',
+            'displacement': -0.6,
+            'kLabel': 'k',
+            'massLabel': 'm',
+            'xLabel': 'x',
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Forze conservative: $\tfrac12kx^2=\tfrac12mv^2\Rightarrow v=x\sqrt{k/m}=0{,}1\sqrt{16000}\approx12{,}65\,\mathrm{m/s}$; poi $\tfrac12mv^2=mgh\Rightarrow h=\dfrac{kx^2}{2mg}=\dfrac{4}{0{,}981}\approx8{,}15\,\mathrm{m}$.'
+        en: 'Conservative forces: $\tfrac12kx^2=\tfrac12mv^2\Rightarrow v=x\sqrt{k/m}=0.1\sqrt{16000}\approx12.65\,\mathrm{m/s}$; then $\tfrac12mv^2=mgh\Rightarrow h=\dfrac{kx^2}{2mg}=\dfrac{4}{0.981}\approx8.15\,\mathrm{m}$.'
+  answer:
+    - label:
+        it: '$v$'
+        en: '$v$'
+      value: 12.649111
+      unit: 'm/s'
+    - label:
+        it: '$h$'
+        en: '$h$'
+      value: 8.154944
+      unit: 'm'
+  origin: originale
+- id: r2-fc-2
+  topic: forze-conservative
+  objectives:
+    - forze-conservative.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Una forza conservativa ha energia potenziale $U(x)=2x^3-6x$ (U in J, x in m). Calcola la forza in $x=2\,\mathrm{m}$ e trova la posizione di equilibrio stabile.'
+    en: 'A conservative force has potential energy $U(x)=2x^3-6x$ (U in J, x in m). Find the force at $x=2\,\mathrm{m}$ and the position of stable equilibrium.'
+  figure:
+    diagram:
+      {
+        'type': 'function-plot',
+        'params':
+          {
+            'x': { 'min': -2, 'max': 2, 'label': 'x', 'unit': 'm' },
+            'y': { 'label': 'U', 'unit': 'J' },
+            'series': [{ 'kind': 'poly', 'coeffs': [0, -6, 0, 2] }],
+            'markers': [{ 'x': 1, 'y': -4, 'label': 'stabile' }, { 'x': -1, 'y': 4, 'label': 'instabile' }],
+          },
+      }
+  steps:
+    - title:
+        it: 'Forza'
+        en: 'Force'
+      body:
+        it: '$F=-\dfrac{dU}{dx}=-6x^2+6$; in $x=2$: $F=-18\,\mathrm{N}$.'
+        en: '$F=-\dfrac{dU}{dx}=-6x^2+6$; at $x=2$: $F=-18\,\mathrm{N}$.'
+    - title:
+        it: 'Equilibri'
+        en: 'Equilibria'
+      body:
+        it: '$F=0$ per $x=\pm1$. $U''''=12x$: in $x=1$ è positiva (minimo, stabile), in $x=-1$ negativa (massimo, instabile).'
+        en: '$F=0$ at $x=\pm1$. $U''''=12x$: positive at $x=1$ (minimum, stable), negative at $x=-1$ (maximum, unstable).'
+  answer:
+    - label:
+        it: '$F(2)$'
+        en: '$F(2)$'
+      value: -18
+      unit: 'N'
+    - label:
+        it: '$x_s$'
+        en: '$x_s$'
+      value: 1
+      unit: 'm'
+  origin: originale
+- id: r2-fc-3
+  topic: forze-conservative
+  objectives:
+    - forze-conservative.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Quale di queste forze **non** è conservativa?'
+    en: 'Which of these forces is **not** conservative?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: "Il lavoro dell'attrito dinamico dipende dal percorso (è sempre negativo e proporzionale alla lunghezza percorsa), quindi su un percorso chiuso non è nullo. Peso, forza elastica e gravitazione hanno un'energia potenziale."
+        en: 'The work of kinetic friction depends on the path (it is always negative and proportional to the length travelled), so it is not zero around a closed path. Weight, spring force and gravitation have a potential energy.'
+  choices:
+    - text:
+        it: "L'attrito dinamico"
+        en: 'Kinetic friction'
+      correct: true
+    - text:
+        it: 'Il peso'
+        en: 'Weight'
+      correct: false
+    - text:
+        it: 'La forza elastica di una molla'
+        en: 'The spring force'
+      correct: false
+    - text:
+        it: 'La forza gravitazionale fra due masse'
+        en: 'The gravitational force between two masses'
+      correct: false
+  origin: originale
+- id: r2-fc-4
+  topic: forze-conservative
+  objectives:
+    - forze-conservative.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un corpo si muove lungo $x$ con energia meccanica $E$ in un potenziale $U(x)$. Che cosa si legge dal grafico di $U(x)$?'
+    en: 'A body moves along $x$ with mechanical energy $E$ in a potential $U(x)$. What can be read from the graph of $U(x)$?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: '$K=E-U(x)\ge0$: il moto avviene solo dove $U\le E$; i punti con $U=E$ sono punti di inversione; la velocità è massima dove $U$ è minima; i minimi di $U$ sono equilibri stabili.'
+        en: '$K=E-U(x)\ge0$: motion happens only where $U\le E$; points with $U=E$ are turning points; the speed is largest where $U$ is smallest; minima of $U$ are stable equilibria.'
+  choices:
+    - text:
+        it: 'Il moto è confinato dove $U\le E$, si inverte dove $U=E$ ed è più veloce dove $U$ è minima'
+        en: 'Motion is confined where $U\le E$, reverses where $U=E$ and is fastest where $U$ is minimum'
+      correct: true
+    - text:
+        it: 'Il corpo è più veloce dove $U$ è massima'
+        en: 'The body is fastest where $U$ is maximum'
+      correct: false
+    - text:
+        it: 'Il corpo può andare ovunque, perché $E$ si conserva'
+        en: 'The body can go anywhere, since $E$ is conserved'
+      correct: false
+    - text:
+        it: 'I massimi di $U$ sono equilibri stabili'
+        en: 'The maxima of $U$ are stable equilibria'
+      correct: false
+  origin: originale

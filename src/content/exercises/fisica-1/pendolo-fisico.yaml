@@ -183,3 +183,120 @@
   kind: generated
   generator: fisica-1/pendolo-fisico
   origin: tipologia-appello
+- id: r2-pf-1
+  topic: pendolo-fisico
+  objectives:
+    - pendolo-fisico.6
+    - pendolo-fisico.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Un'asta omogenea lunga 1 m oscilla attorno a un asse orizzontale per un estremo. Calcola il periodo delle piccole oscillazioni e la lunghezza ridotta (lunghezza del pendolo semplice con lo stesso periodo)."
+    en: 'A uniform 1 m rod swings about a horizontal axis through one end. Find the period of small oscillations and the reduced length (length of the simple pendulum with the same period).'
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Asta sospesa a un estremo, spostata di un piccolo angolo dalla verticale.',
+                'en': 'Rod hanging from one end, displaced by a small angle from the vertical.',
+              },
+            'items':
+              [
+                { 'kind': 'pivot', 'at': [0, 0], 'style': 'hinge' },
+                { 'kind': 'rod', 'from': [0, 0], 'to': [1.2, -3.8] },
+                { 'kind': 'line', 'points': [[0, 0], [0, -4]], 'label': 'L' },
+                { 'kind': 'angle', 'at': [0, 0], 'from': 270, 'to': 287, 'label': 'θ' },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$T=2\pi\sqrt{\dfrac{I}{Mgd}}$ con $I=\tfrac13ML^2$ e $d=L/2$: $T=2\pi\sqrt{\dfrac{2L}{3g}}\approx1{,}638\,\mathrm{s}$. Lunghezza ridotta $l=\dfrac{I}{Md}=\tfrac23L\approx0{,}667\,\mathrm{m}$.'
+        en: '$T=2\pi\sqrt{\dfrac{I}{Mgd}}$ with $I=\tfrac13ML^2$ and $d=L/2$: $T=2\pi\sqrt{\dfrac{2L}{3g}}\approx1.638\,\mathrm{s}$. Reduced length $l=\dfrac{I}{Md}=\tfrac23L\approx0.667\,\mathrm{m}$.'
+  answer:
+    - label:
+        it: '$T$'
+        en: '$T$'
+      value: 1.637947
+      unit: 's'
+    - label:
+        it: '$l$'
+        en: '$l$'
+      value: 0.666667
+      unit: 'm'
+  origin: originale
+- id: r2-pf-2
+  topic: pendolo-fisico
+  objectives:
+    - pendolo-fisico.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Come si ritrova il pendolo semplice dal pendolo fisico $T=2\pi\sqrt{I/(Mgd)}$?'
+    en: 'How is the simple pendulum recovered from the physical pendulum $T=2\pi\sqrt{I/(Mgd)}$?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Se tutta la massa è concentrata a distanza $d$ dall''asse, $I=Md^2$ e $T=2\pi\sqrt{d/g}$: pendolo semplice di lunghezza $d$.'
+        en: 'If all the mass is concentrated at distance $d$ from the axis, $I=Md^2$ and $T=2\pi\sqrt{d/g}$: simple pendulum of length $d$.'
+  choices:
+    - text:
+        it: 'Con la massa concentrata in un punto a distanza $d$: $I=Md^2$ e $T=2\pi\sqrt{d/g}$'
+        en: 'With the mass concentrated at a point at distance $d$: $I=Md^2$ and $T=2\pi\sqrt{d/g}$'
+      correct: true
+    - text:
+        it: 'Ponendo $I=0$'
+        en: 'Setting $I=0$'
+      correct: false
+    - text:
+        it: 'Ponendo $d=0$'
+        en: 'Setting $d=0$'
+      correct: false
+    - text:
+        it: 'Con $I=\tfrac12Md^2$'
+        en: 'With $I=\tfrac12Md^2$'
+      correct: false
+  origin: originale
+- id: r2-pf-3
+  topic: pendolo-fisico
+  objectives:
+    - pendolo-fisico.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Che cosa succede al periodo di un pendolo fisico quando l''asse si avvicina al centro di massa ($d\to0$)?'
+    en: 'What happens to the period of a physical pendulum when the axis approaches the centre of mass ($d\to0$)?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: '$T=2\pi\sqrt{\dfrac{I_{cm}+Md^2}{Mgd}}\to\infty$: il momento di richiamo $Mgd\sin\theta$ si annulla. Con l''asse nel CM l''equilibrio è indifferente e il corpo non oscilla.'
+        en: '$T=2\pi\sqrt{\dfrac{I_{cm}+Md^2}{Mgd}}\to\infty$: the restoring torque $Mgd\sin\theta$ vanishes. With the axis through the CM equilibrium is neutral and the body does not oscillate.'
+  choices:
+    - text:
+        it: "Tende all'infinito: il momento di richiamo si annulla"
+        en: 'It tends to infinity: the restoring torque vanishes'
+      correct: true
+    - text:
+        it: 'Tende a zero'
+        en: 'It tends to zero'
+      correct: false
+    - text:
+        it: 'Tende a quello del pendolo semplice di lunghezza $L$'
+        en: 'It tends to that of a simple pendulum of length $L$'
+      correct: false
+    - text:
+        it: 'Non cambia'
+        en: 'It does not change'
+      correct: false
+  origin: originale

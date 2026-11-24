@@ -126,3 +126,150 @@
       value: 288
       unit: MW
   origin: originale
+- id: r2-tc-1
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Per dimostrare il teorema di Carnot si suppone un motore $X$ con rendimento maggiore di quello reversibile $R$ e si accoppia $X$ a $R$ fatto funzionare al contrario, con lo stesso lavoro. Qual è il bilancio?'
+    en: "To prove Carnot's theorem one assumes an engine $X$ more efficient than the reversible one $R$ and couples $X$ to $R$ run backwards, with the same work. What is the balance?"
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: '$W$ è lo stesso e $\eta_X>\eta_R$, quindi $X$ assorbe meno calore dalla sorgente calda di quanto $R$ ve ne restituisca: in tutto passa calore dalla sorgente fredda alla calda senza lavoro esterno, contro l''enunciato di Clausius.'
+        en: '$W$ is the same and $\eta_X>\eta_R$, so $X$ takes less heat from the hot reservoir than $R$ returns to it: overall heat flows from the cold reservoir to the hot one with no external work, against the Clausius statement.'
+  choices:
+    - text:
+        it: 'Passa calore dalla sorgente fredda alla calda senza lavoro: viola Clausius'
+        en: 'Heat flows from the cold reservoir to the hot one with no work: it violates Clausius'
+      correct: true
+    - text:
+        it: 'Si produce lavoro da una sola sorgente'
+        en: 'Work is produced from a single reservoir'
+      correct: false
+    - text:
+        it: 'Si crea energia dal nulla'
+        en: 'Energy is created from nothing'
+      correct: false
+    - text:
+        it: "Nessuna violazione: il teorema è un'ipotesi"
+        en: 'No violation: the theorem is an assumption'
+      correct: false
+  origin: originale
+- id: r2-tc-2
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Come si dimostra che due motori reversibili $R_1$ e $R_2$ fra le stesse sorgenti hanno lo stesso rendimento?'
+    en: 'How does one prove that two reversible engines $R_1$ and $R_2$ between the same reservoirs have the same efficiency?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Con $R_1$ come motore e $R_2$ invertito si ottiene $\eta_1\le\eta_2$; essendo entrambi reversibili si possono scambiare i ruoli e si ottiene $\eta_2\le\eta_1$. Quindi $\eta_1=\eta_2$: dipende solo dalle temperature.'
+        en: 'With $R_1$ as engine and $R_2$ reversed one gets $\eta_1\le\eta_2$; both being reversible, the roles can be swapped, giving $\eta_2\le\eta_1$. Hence $\eta_1=\eta_2$: it depends only on the temperatures.'
+  choices:
+    - text:
+        it: 'Si applica il ragionamento nei due versi: $\eta_1\le\eta_2$ e $\eta_2\le\eta_1$'
+        en: 'Apply the argument both ways: $\eta_1\le\eta_2$ and $\eta_2\le\eta_1$'
+      correct: true
+    - text:
+        it: 'Si calcolano con il gas perfetto e si confrontano'
+        en: 'Compute them for an ideal gas and compare'
+      correct: false
+    - text:
+        it: 'Hanno lo stesso rendimento solo se usano lo stesso fluido'
+        en: 'They have the same efficiency only if they use the same fluid'
+      correct: false
+    - text:
+        it: 'Si usa il primo principio'
+        en: 'Use the first law'
+      correct: false
+  origin: originale
+- id: r2-tc-3
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Un motore reversibile lavora fra una sorgente a temperatura incognita $T$ e una al punto triplo dell'acqua (273,16 K). Per ciclo assorbe 1000 J dalla prima e ne cede 600 J alla seconda. Quanto vale $T$ sulla scala termodinamica?"
+    en: 'A reversible engine works between a reservoir at unknown temperature $T$ and one at the triple point of water (273.16 K). Per cycle it absorbs 1000 J from the first and rejects 600 J to the second. What is $T$ on the thermodynamic scale?'
+  figure:
+    diagram:
+      {
+        'type': 'heat-engine',
+        'params':
+          {
+            'kind': 'engine',
+            'reservoirs':
+              [
+                { 'label': 'T = ?', 'heat': 'Q_C = 1000 J', 'side': 'hot' },
+                { 'label': '273,16 K', 'heat': 'Q_F = 600 J', 'side': 'cold' },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Dal teorema di Carnot $|Q_F|/Q_C$ dipende solo dalle temperature e si definisce $|Q_F|/Q_C=T_F/T_C$, indipendente dalla sostanza: $T=273{,}16\cdot\dfrac{1000}{600}\approx455{,}27\,\mathrm{K}$.'
+        en: 'By Carnot''s theorem $|Q_C|/Q_H$ depends only on the temperatures and one defines $|Q_C|/Q_H=T_C/T_H$, independent of the substance: $T=273.16\cdot\dfrac{1000}{600}\approx455.27\,\mathrm{K}$.'
+  answer:
+    - label:
+        it: '$T$'
+        en: '$T$'
+      value: 455.266667
+      unit: 'K'
+  origin: originale
+- id: r2-tc-4
+  topic: teorema-di-carnot
+  objectives:
+    - teorema-di-carnot.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Un motore reale lavora fra 600 K e 300 K: assorbe 1000 J e produce 350 J di lavoro per ciclo. Confronta il rendimento con quello di Carnot e calcola l'aumento di entropia dell'universo per ciclo."
+    en: "A real engine works between 600 K and 300 K: it absorbs 1000 J and produces 350 J of work per cycle. Compare its efficiency with Carnot's and find the entropy increase of the universe per cycle."
+  figure:
+    diagram:
+      {
+        'type': 'heat-engine',
+        'params':
+          {
+            'kind': 'engine',
+            'reservoirs':
+              [
+                { 'label': 'T_C = 600 K', 'heat': 'Q_C = 1000 J', 'side': 'hot' },
+                { 'label': 'T_F = 300 K', 'heat': 'Q_F', 'side': 'cold' },
+              ],
+            'work': 'W = 350 J',
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$\eta=0{,}35<\eta_C=0{,}5$: possibile, il motore è irreversibile (disuguaglianza stretta). Cede $650\,\mathrm{J}$: $\Delta S_{univ}=-\dfrac{1000}{600}+\dfrac{650}{300}\approx0{,}5\,\mathrm{J/K}>0$ (il fluido torna allo stato iniziale, $\Delta S=0$).'
+        en: '$\eta=0.35<\eta_C=0.5$: possible, the engine is irreversible (strict inequality). It rejects $650\,\mathrm{J}$: $\Delta S_{univ}=-\dfrac{1000}{600}+\dfrac{650}{300}\approx0.5\,\mathrm{J/K}>0$ (the working fluid returns to its initial state, $\Delta S=0$).'
+  answer:
+    - label:
+        it: '$\eta$'
+        en: '$\eta$'
+      value: 0.35
+    - label:
+        it: '$\Delta S_{univ}$'
+        en: '$\Delta S_{univ}$'
+      value: 0.5
+      unit: 'J/K'
+  origin: originale

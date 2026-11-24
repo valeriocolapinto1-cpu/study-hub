@@ -187,3 +187,168 @@
   kind: generated
   generator: fisica-1/momenti-di-inerzia
   origin: tipologia-appello
+- id: r2-mi-1
+  topic: momenti-di-inerzia
+  objectives:
+    - momenti-di-inerzia.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Nella dimostrazione di Huygens-Steiner $I=\sum m_i|\vec r\,''_i+\vec d|^2=I_{cm}+Md^2+2\,\vec d\cdot\sum m_i\vec r\,''_i$. Perché il termine misto è nullo?'
+    en: 'In the proof of Huygens-Steiner $I=\sum m_i|\vec r\,''_i+\vec d|^2=I_{cm}+Md^2+2\,\vec d\cdot\sum m_i\vec r\,''_i$. Why does the mixed term vanish?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: '$\vec r\,''_i$ sono le posizioni (perpendicolari all''asse) misurate dal centro di massa: per definizione di CM $\sum m_i\vec r\,''_i=M\vec r\,''_{cm}=0$.'
+        en: '$\vec r\,''_i$ are the positions (perpendicular to the axis) measured from the centre of mass: by definition of CM $\sum m_i\vec r\,''_i=M\vec r\,''_{cm}=0$.'
+  choices:
+    - text:
+        it: 'Perché $\sum m_i\vec r\,''_i=0$: le posizioni sono misurate dal centro di massa'
+        en: 'Because $\sum m_i\vec r\,''_i=0$: positions are measured from the centre of mass'
+      correct: true
+    - text:
+        it: 'Perché $\vec d$ è perpendicolare a tutti i $\vec r\,''_i$'
+        en: 'Because $\vec d$ is perpendicular to all $\vec r\,''_i$'
+      correct: false
+    - text:
+        it: 'Perché il corpo è simmetrico'
+        en: 'Because the body is symmetric'
+      correct: false
+    - text:
+        it: 'Perché si trascura: è piccolo rispetto a $Md^2$'
+        en: 'Because it is neglected: it is small compared with $Md^2$'
+      correct: false
+  origin: originale
+- id: r2-mi-2
+  topic: momenti-di-inerzia
+  objectives:
+    - momenti-di-inerzia.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Corpi di massa 2 kg e raggio 10 cm. Calcola i momenti d'inerzia rispetto all'asse di simmetria di un anello sottile, di un disco pieno e di una sfera piena, e quello di un'asta lunga 50 cm (stessa massa) rispetto all'asse perpendicolare passante per il centro."
+    en: 'Bodies of mass 2 kg and radius 10 cm. Find the moments of inertia about the symmetry axis of a thin ring, a solid disc and a solid sphere, and that of a 50 cm rod (same mass) about the perpendicular axis through its centre.'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Anello $MR^2=0{,}02$; disco $\tfrac12MR^2=0{,}01$; sfera $\tfrac25MR^2=0{,}008$; asta $\tfrac1{12}ML^2\approx0{,}0417\,\mathrm{kg\,m^2}$. A parità di massa e raggio, più la massa è lontana dall''asse più $I$ è grande.'
+        en: 'Ring $MR^2=0.02$; disc $\tfrac12MR^2=0.01$; sphere $\tfrac25MR^2=0.008$; rod $\tfrac1{12}ML^2\approx0.0417\,\mathrm{kg\,m^2}$. For the same mass and radius, the farther the mass from the axis the larger $I$.'
+  answer:
+    - label:
+        it: '$I_{anello}$'
+        en: '$I_{ring}$'
+      value: 0.02
+      unit: 'kg·m^2'
+    - label:
+        it: '$I_{disco}$'
+        en: '$I_{disc}$'
+      value: 0.01
+      unit: 'kg·m^2'
+    - label:
+        it: '$I_{sfera}$'
+        en: '$I_{sphere}$'
+      value: 0.008
+      unit: 'kg·m^2'
+    - label:
+        it: '$I_{asta}$'
+        en: '$I_{rod}$'
+      value: 0.041667
+      unit: 'kg·m^2'
+  origin: originale
+- id: r2-mi-3
+  topic: momenti-di-inerzia
+  objectives:
+    - momenti-di-inerzia.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Un'asta omogenea di 1,2 kg lunga 80 cm. Calcola con l'integrale il momento d'inerzia rispetto all'asse perpendicolare per un estremo, poi quello per il centro e quello per un asse parallelo a 10 cm dal centro."
+    en: 'A uniform 1.2 kg rod, 80 cm long. Use the integral to find the moment of inertia about the perpendicular axis through one end, then about the centre and about a parallel axis 10 cm from the centre.'
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': "Asta di lunghezza L con l'asse per un estremo e l'asse per il centro.",
+                'en': 'Rod of length L with the axis through one end and the axis through the centre.',
+              },
+            'items':
+              [
+                { 'kind': 'rod', 'from': [0, 0], 'to': [8, 0] },
+                { 'kind': 'line', 'points': [[0, -1.2], [0, 1.2]], 'label': 'estremo' },
+                { 'kind': 'line', 'points': [[4, -1.2], [4, 1.2]], 'label': 'cm' },
+                { 'kind': 'dim', 'from': [0, -1.6], 'to': [8, -1.6], 'label': 'L' },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Integrale'
+        en: 'Integral'
+      body:
+        it: 'Con $\lambda=M/L$: $I_{estr}=\int_0^L\lambda x^2dx=\tfrac13ML^2=0{,}256\,\mathrm{kg\,m^2}$; dal centro $\int_{-L/2}^{L/2}\lambda x^2dx=\tfrac1{12}ML^2=0{,}064\,\mathrm{kg\,m^2}$.'
+        en: 'With $\lambda=M/L$: $I_{end}=\int_0^L\lambda x^2dx=\tfrac13ML^2=0.256\,\mathrm{kg\,m^2}$; from the centre $\int_{-L/2}^{L/2}\lambda x^2dx=\tfrac1{12}ML^2=0.064\,\mathrm{kg\,m^2}$.'
+    - title:
+        it: 'Steiner'
+        en: 'Steiner'
+      body:
+        it: 'Controllo: $I_{cm}+M(L/2)^2=0{,}064+0{,}192=0{,}256$. A 10 cm: $0{,}064+1{,}2\cdot0{,}01=0{,}076\,\mathrm{kg\,m^2}$.'
+        en: 'Check: $I_{cm}+M(L/2)^2=0.064+0.192=0.256$. At 10 cm: $0.064+1.2\cdot0.01=0.076\,\mathrm{kg\,m^2}$.'
+  answer:
+    - label:
+        it: '$I_{estremo}$'
+        en: '$I_{end}$'
+      value: 0.256
+      unit: 'kg·m^2'
+    - label:
+        it: '$I_{cm}$'
+        en: '$I_{cm}$'
+      value: 0.064
+      unit: 'kg·m^2'
+    - label:
+        it: '$I_{0,1}$'
+        en: '$I_{0.1}$'
+      value: 0.076
+      unit: 'kg·m^2'
+  origin: originale
+- id: r2-mi-4
+  topic: momenti-di-inerzia
+  objectives:
+    - momenti-di-inerzia.7
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Fra tutti gli assi paralleli a una data direzione, rispetto a quale il momento d'inerzia è minimo?"
+    en: 'Among all axes parallel to a given direction, about which is the moment of inertia smallest?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Per Huygens-Steiner $I=I_{cm}+Md^2\ge I_{cm}$, con uguaglianza solo per $d=0$: il minimo è sull''asse per il centro di massa.'
+        en: 'By Huygens-Steiner $I=I_{cm}+Md^2\ge I_{cm}$, with equality only for $d=0$: the minimum is on the axis through the centre of mass.'
+  choices:
+    - text:
+        it: 'Quello passante per il centro di massa'
+        en: 'The one through the centre of mass'
+      correct: true
+    - text:
+        it: 'Quello più lontano dal centro di massa'
+        en: 'The one farthest from the centre of mass'
+      correct: false
+    - text:
+        it: 'Sono tutti uguali'
+        en: 'They are all equal'
+      correct: false
+    - text:
+        it: 'Quello tangente al corpo'
+        en: 'The one tangent to the body'
+      correct: false
+  origin: originale

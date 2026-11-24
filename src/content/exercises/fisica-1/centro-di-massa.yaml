@@ -268,3 +268,108 @@
   kind: generated
   generator: fisica-1/centro-di-massa-barca
   origin: tipologia-appello
+- id: r2-cm-1
+  topic: centro-di-massa
+  objectives:
+    - centro-di-massa.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un proiettile è sparato a 20 m/s con un angolo di $60^\circ$. Nel punto più alto esplode in due frammenti di massa uguale: uno ricade verticalmente partendo da fermo. Trascurando l''aria, dove atterra l''altro frammento (distanza orizzontale dal punto di sparo)?'
+    en: 'A projectile is fired at 20 m/s at $60^\circ$. At the highest point it explodes into two fragments of equal mass: one falls vertically starting from rest. Neglecting air, where does the other fragment land (horizontal distance from the launch point)?'
+  figure:
+    diagram: { 'type': 'projectile', 'params': { 'v0': 20, 'angle': 60, 'apex': true, 'range': true } }
+  steps:
+    - title:
+        it: 'Centro di massa'
+        en: 'Centre of mass'
+      body:
+        it: 'Le forze dell''esplosione sono interne: il CM continua la parabola e atterra alla gittata $R=v_0^2\sin120^\circ/g\approx35{,}31\,\mathrm{m}$.'
+        en: 'The explosion forces are internal: the CM continues along the parabola and lands at the range $R=v_0^2\sin120^\circ/g\approx35.31\,\mathrm{m}$.'
+    - title:
+        it: 'Frammenti'
+        en: 'Fragments'
+      body:
+        it: 'Il primo cade in $R/2$; i due toccano terra insieme (stessa quota, velocità verticale nulla), quindi $x_{cm}=\tfrac12(x_1+x_2)=R\Rightarrow x_2=\tfrac32R\approx52{,}97\,\mathrm{m}$.'
+        en: 'The first lands at $R/2$; both reach the ground together (same height, zero vertical velocity), so $x_{cm}=\tfrac12(x_1+x_2)=R\Rightarrow x_2=\tfrac32R\approx52.97\,\mathrm{m}$.'
+  answer:
+    - label:
+        it: '$R$'
+        en: '$R$'
+      value: 35.311943
+      unit: 'm'
+    - label:
+        it: '$x_2$'
+        en: '$x_2$'
+      value: 52.967915
+      unit: 'm'
+  origin: originale
+- id: r2-cm-2
+  topic: centro-di-massa
+  objectives:
+    - centro-di-massa.4
+    - centro-di-massa.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Per un sistema di punti si ottiene $\vec F_{ext}=M\vec a_{cm}=d\vec P/dt$. Quale affermazione è corretta?'
+    en: 'For a system of particles one gets $\vec F_{ext}=M\vec a_{cm}=d\vec P/dt$. Which statement is correct?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Sommando $m_i\vec a_i=\vec F_i^{ext}+\sum_j\vec F_{ij}$ le forze interne si annullano a coppie (terzo principio). Non serve che le distanze fra i punti siano fisse: vale per gas, persone, frammenti di un''esplosione.'
+        en: 'Summing $m_i\vec a_i=\vec F_i^{ext}+\sum_j\vec F_{ij}$ the internal forces cancel in pairs (third law). The distances between particles need not be fixed: it holds for gases, people, fragments of an explosion.'
+  choices:
+    - text:
+        it: 'Le forze interne si annullano a coppie, e il risultato vale per qualunque sistema, anche non rigido'
+        en: 'Internal forces cancel in pairs, and the result holds for any system, even non-rigid'
+      correct: true
+    - text:
+        it: 'Vale solo per i corpi rigidi'
+        en: 'It holds only for rigid bodies'
+      correct: false
+    - text:
+        it: 'Le forze interne contano se il sistema si deforma'
+        en: 'Internal forces count if the system deforms'
+      correct: false
+    - text:
+        it: 'Vale solo se le forze esterne sono nulle'
+        en: 'It holds only if external forces vanish'
+      correct: false
+  origin: originale
+- id: r2-cm-3
+  topic: centro-di-massa
+  objectives:
+    - centro-di-massa.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Due pattinatori, di 50 kg e 75 kg, fermi sul ghiaccio, si spingono a vicenda. Il primo si allontana a 3 m/s. Con che velocità si muove il secondo?'
+    en: 'Two skaters, 50 kg and 75 kg, at rest on the ice, push each other. The first moves away at 3 m/s. How fast does the second move?'
+  figure:
+    diagram:
+      {
+        'type': 'collision',
+        'params':
+          {
+            'unit': 'm/s',
+            'before': [{ 'label': '1', 'mass': '50 kg', 'v': 0 }, { 'label': '2', 'mass': '75 kg', 'v': 0 }],
+            'after': [{ 'label': '1', 'mass': '50 kg', 'v': -3 }, { 'label': '2', 'mass': '75 kg', 'v': 2 }],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Il sistema è isolato in orizzontale (attrito trascurabile): $\vec P$ si conserva e resta nullo. $50\cdot3+75\,v_2=0\Rightarrow v_2=-2\,\mathrm{m/s}$: modulo $2\,\mathrm{m/s}$, verso opposto. Il CM resta fermo.'
+        en: 'The system is isolated horizontally (negligible friction): $\vec P$ is conserved and stays zero. $50\cdot3+75\,v_2=0\Rightarrow v_2=-2\,\mathrm{m/s}$: magnitude $2\,\mathrm{m/s}$, opposite direction. The CM stays at rest.'
+  answer:
+    - label:
+        it: '$|v_2|$'
+        en: '$|v_2|$'
+      value: 2
+      unit: 'm/s'
+  origin: originale

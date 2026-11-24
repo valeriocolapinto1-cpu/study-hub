@@ -167,3 +167,130 @@
   kind: generated
   generator: fisica-1/calori-molari
   origin: tipologia-appello
+- id: r2-cmol-1
+  topic: calori-molari
+  objectives:
+    - calori-molari.4
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Perché per un gas perfetto $c_p>c_V$, e precisamente $c_p-c_V=R$?'
+    en: 'Why is $c_p>c_V$ for an ideal gas, and precisely $c_p-c_V=R$?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'A pressione costante parte del calore serve al lavoro di espansione $p\,\Delta V=nR\,\Delta T$; l''aumento di energia interna è lo stesso che a volume costante (dipende solo da $T$). Per mole e per kelvin il calore in più è $R$.'
+        en: 'At constant pressure part of the heat goes into the expansion work $p\,\Delta V=nR\,\Delta T$; the increase in internal energy is the same as at constant volume (it depends only on $T$). Per mole and per kelvin the extra heat is $R$.'
+  choices:
+    - text:
+        it: 'A pressione costante il gas compie anche il lavoro $p\Delta V=nR\Delta T$'
+        en: 'At constant pressure the gas also does the work $p\Delta V=nR\Delta T$'
+      correct: true
+    - text:
+        it: "A pressione costante l'energia interna cresce di più"
+        en: 'At constant pressure the internal energy grows more'
+      correct: false
+    - text:
+        it: 'A volume costante il gas cede calore'
+        en: 'At constant volume the gas gives off heat'
+      correct: false
+    - text:
+        it: 'Perché $\gamma>1$ per definizione'
+        en: 'Because $\gamma>1$ by definition'
+      correct: false
+  origin: originale
+- id: r2-cmol-2
+  topic: calori-molari
+  objectives:
+    - calori-molari.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Calcola $\gamma=c_p/c_V$ per un gas monoatomico e per uno biatomico, e $c_p$ del biatomico.'
+    en: 'Find $\gamma=c_p/c_V$ for a monatomic and a diatomic gas, and $c_p$ of the diatomic gas.'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$c_V=\tfrac f2R$, $c_p=c_V+R$, $\gamma=1+\tfrac2f$. Monoatomico $f=3$: $\gamma=5/3\approx1{,}667$. Biatomico $f=5$: $\gamma=1{,}4$ e $c_p=\tfrac72R\approx29{,}10\,\mathrm{J/(mol\,K)}$.'
+        en: '$c_V=\tfrac f2R$, $c_p=c_V+R$, $\gamma=1+\tfrac2f$. Monatomic $f=3$: $\gamma=5/3\approx1.667$. Diatomic $f=5$: $\gamma=1.4$ and $c_p=\tfrac72R\approx29.10\,\mathrm{J/(mol\,K)}$.'
+  answer:
+    - label:
+        it: '$\gamma_{mono}$'
+        en: '$\gamma_{mono}$'
+      value: 1.666667
+    - label:
+        it: '$\gamma_{bi}$'
+        en: '$\gamma_{di}$'
+      value: 1.4
+    - label:
+        it: '$c_p$'
+        en: '$c_p$'
+      value: 29.099
+      unit: 'J/(mol·K)'
+  origin: originale
+- id: r2-cmol-3
+  topic: calori-molari
+  objectives:
+    - calori-molari.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'In un solido ogni atomo oscilla in tre direzioni. Contando i termini quadratici dell''energia ricava il calore molare (Dulong-Petit) e stima il calore specifico del rame ($M=63{,}5\,\mathrm{g/mol}$).'
+    en: 'In a solid every atom oscillates in three directions. By counting the quadratic energy terms derive the molar heat capacity (Dulong-Petit) and estimate the specific heat of copper ($M=63.5\,\mathrm{g/mol}$).'
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Per direzione: energia cinetica $\tfrac12mv_x^2$ e potenziale $\tfrac12kx^2$, 2 termini; in tutto $6$: $U=3nRT$, $c=3R\approx24{,}94\,\mathrm{J/(mol\,K)}$. Rame: $c/M\approx393\,\mathrm{J/(kg\,K)}$ (misurato circa 385).'
+        en: 'Per direction: kinetic $\tfrac12mv_x^2$ and potential $\tfrac12kx^2$, 2 terms; 6 in all: $U=3nRT$, $c=3R\approx24.94\,\mathrm{J/(mol\,K)}$. Copper: $c/M\approx393\,\mathrm{J/(kg\,K)}$ (measured about 385).'
+  answer:
+    - label:
+        it: '$c$'
+        en: '$c$'
+      value: 24.942
+      unit: 'J/(mol·K)'
+    - label:
+        it: '$c_{Cu}$'
+        en: '$c_{Cu}$'
+      value: 392.787402
+      unit: 'J/(kg·K)'
+  origin: originale
+- id: r2-cmol-4
+  topic: calori-molari
+  objectives:
+    - calori-molari.7
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Che cosa succede al calore molare di un solido a temperature molto basse?'
+    en: 'What happens to the molar heat capacity of a solid at very low temperatures?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Le vibrazioni del reticolo sono quantizzate: quando $k_BT$ diventa piccolo rispetto al quanto di energia le oscillazioni si congelano e il calore molare scende sotto $3R$, tendendo a zero per $T\to0$. Dulong-Petit vale solo a temperature abbastanza alte.'
+        en: 'Lattice vibrations are quantised: when $k_BT$ becomes small compared with the energy quantum the oscillations freeze and the molar heat capacity drops below $3R$, tending to zero as $T\to0$. Dulong-Petit holds only at high enough temperatures.'
+  choices:
+    - text:
+        it: 'Scende sotto $3R$ e tende a zero: le vibrazioni quantizzate si congelano'
+        en: 'It drops below $3R$ and tends to zero: the quantised vibrations freeze'
+      correct: true
+    - text:
+        it: 'Resta $3R$ a ogni temperatura'
+        en: 'It stays $3R$ at all temperatures'
+      correct: false
+    - text:
+        it: 'Cresce senza limite'
+        en: 'It grows without bound'
+      correct: false
+    - text:
+        it: 'Diventa $\tfrac32R$ come per un gas'
+        en: 'It becomes $\tfrac32R$ as for a gas'
+      correct: false
+  origin: originale

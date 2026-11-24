@@ -233,3 +233,116 @@
   kind: generated
   generator: fisica-1/rotolamento
   origin: tipologia-appello
+- id: r2-rp-1
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.4
+    - rotolamento-puro.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un cilindro pieno di 2 kg rotola senza strisciare lungo un piano inclinato di $30^\circ$. Calcola l''accelerazione del centro, la forza d''attrito statico e il coefficiente d''attrito minimo perché non strisci.'
+    en: 'A 2 kg solid cylinder rolls without slipping down a $30^\circ$ incline. Find the acceleration of the centre, the static friction force and the minimum friction coefficient for it not to slip.'
+  figure:
+    diagram:
+      {
+        'type': 'inclined-plane',
+        'params': { 'angle': 30, 'friction': true, 'motion': 'down', 'massLabel': 'M' },
+      }
+  steps:
+    - title:
+        it: 'Equazioni'
+        en: 'Equations'
+      body:
+        it: '$Ma=Mg\sin\theta-f$, $I_{cm}\alpha=fR$, $a=\alpha R$. Con $I_{cm}=\beta MR^2$ ($\beta=\tfrac12$): $f=\beta Ma$ e $a=\dfrac{g\sin\theta}{1+\beta}$.'
+        en: '$Ma=Mg\sin\theta-f$, $I_{cm}\alpha=fR$, $a=\alpha R$. With $I_{cm}=\beta MR^2$ ($\beta=\tfrac12$): $f=\beta Ma$ and $a=\dfrac{g\sin\theta}{1+\beta}$.'
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$a=\dfrac{9{,}81\cdot0{,}5}{1{,}5}=3{,}27\,\mathrm{m/s^2}$, $f=\tfrac12\cdot2\cdot3{,}27=3{,}27\,\mathrm{N}$. Serve $f\le\mu_sMg\cos\theta$: $\mu_s\ge\dfrac{\beta}{1+\beta}\tan\theta\approx0{,}192$.'
+        en: '$a=\dfrac{9.81\cdot0.5}{1.5}=3.27\,\mathrm{m/s^2}$, $f=\tfrac12\cdot2\cdot3.27=3.27\,\mathrm{N}$. We need $f\le\mu_sMg\cos\theta$: $\mu_s\ge\dfrac{\beta}{1+\beta}\tan\theta\approx0.192$.'
+  answer:
+    - label:
+        it: '$a$'
+        en: '$a$'
+      value: 3.27
+      unit: 'm/s^2'
+    - label:
+        it: '$f$'
+        en: '$f$'
+      value: 3.27
+      unit: 'N'
+    - label:
+        it: '$\mu_{min}$'
+        en: '$\mu_{min}$'
+      value: 0.19245
+  origin: originale
+- id: r2-rp-2
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Partendo da fermi, un cilindro pieno e un anello rotolano senza strisciare scendendo di una quota $h=1{,}5\,\mathrm{m}$. Con la conservazione dell''energia calcola la velocità finale del centro di ciascuno.'
+    en: 'Starting from rest, a solid cylinder and a hoop roll without slipping down a height $h=1.5\,\mathrm{m}$. Using energy conservation find the final speed of the centre of each.'
+  figure:
+    diagram:
+      {
+        'type': 'inclined-plane',
+        'params': { 'angle': 25, 'friction': true, 'motion': 'down', 'forces': false },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$Mgh=\tfrac12Mv^2+\tfrac12\beta MR^2(v/R)^2\Rightarrow v=\sqrt{\dfrac{2gh}{1+\beta}}$. Cilindro ($\beta=\tfrac12$): $4{,}43\,\mathrm{m/s}$; anello ($\beta=1$): $3{,}84\,\mathrm{m/s}$. Non dipende né dalla massa né dal raggio; lo stesso risultato si ottiene integrando $a=g\sin\theta/(1+\beta)$.'
+        en: '$Mgh=\tfrac12Mv^2+\tfrac12\beta MR^2(v/R)^2\Rightarrow v=\sqrt{\dfrac{2gh}{1+\beta}}$. Cylinder ($\beta=\tfrac12$): $4.43\,\mathrm{m/s}$; hoop ($\beta=1$): $3.84\,\mathrm{m/s}$. It depends on neither mass nor radius; the same result follows from integrating $a=g\sin\theta/(1+\beta)$.'
+  answer:
+    - label:
+        it: '$v_{cilindro}$'
+        en: '$v_{cylinder}$'
+      value: 4.429447
+      unit: 'm/s'
+    - label:
+        it: '$v_{anello}$'
+        en: '$v_{hoop}$'
+      value: 3.836014
+      unit: 'm/s'
+  origin: originale
+- id: r2-rp-3
+  topic: rotolamento-puro
+  objectives:
+    - rotolamento-puro.7
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Perché nel rotolamento puro l'attrito statico non dissipa energia?"
+    en: 'Why does static friction not dissipate energy in pure rolling?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'La forza d''attrito è applicata al punto di contatto, che ha velocità nulla: la sua potenza $\vec f\cdot\vec v_P$ è zero. Non c''è strisciamento, quindi niente conversione in energia interna.'
+        en: 'The friction force acts at the contact point, which has zero velocity: its power $\vec f\cdot\vec v_P$ is zero. There is no sliding, hence no conversion into internal energy.'
+  choices:
+    - text:
+        it: 'Agisce sul punto di contatto, che è fermo: potenza nulla'
+        en: 'It acts on the contact point, which is at rest: zero power'
+      correct: true
+    - text:
+        it: 'Perché è molto piccola'
+        en: 'Because it is very small'
+      correct: false
+    - text:
+        it: 'Perché è perpendicolare al piano'
+        en: 'Because it is perpendicular to the incline'
+      correct: false
+    - text:
+        it: 'La dissipa, ma la recupera la rotazione'
+        en: 'It does, but the rotation recovers it'
+      correct: false
+  origin: originale

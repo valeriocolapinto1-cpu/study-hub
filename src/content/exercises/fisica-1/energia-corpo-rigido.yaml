@@ -203,3 +203,119 @@
   kind: generated
   generator: fisica-1/asta-che-cade
   origin: tipologia-appello
+- id: r2-ecr-1
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Perché il lavoro totale delle forze interne di un corpo rigido è nullo?'
+    en: 'Why is the total work of the internal forces of a rigid body zero?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Le forze interne sono a coppie uguali e opposte lungo la congiungente. Il lavoro di una coppia dipende dalla variazione della distanza fra i due punti, che in un rigido è costante: ogni coppia lavora zero.'
+        en: 'Internal forces come in equal and opposite pairs along the joining line. The work of a pair depends on the change of the distance between the two points, which is constant in a rigid body: each pair does zero work.'
+  choices:
+    - text:
+        it: 'Le coppie di forze interne lavorano solo se cambia la distanza fra i punti, che nel rigido è fissa'
+        en: 'Pairs of internal forces do work only if the distance between the points changes, which is fixed in a rigid body'
+      correct: true
+    - text:
+        it: 'Perché le forze interne sono nulle'
+        en: 'Because internal forces are zero'
+      correct: false
+    - text:
+        it: 'Perché sono perpendicolari alla velocità del CM'
+        en: 'Because they are perpendicular to the CM velocity'
+      correct: false
+    - text:
+        it: "Non è nullo: è uguale all'energia di rotazione"
+        en: 'It is not zero: it equals the rotational energy'
+      correct: false
+  origin: originale
+- id: r2-ecr-2
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Un cilindro scende lungo un piano inclinato. In quale caso si può usare la conservazione dell'energia meccanica?"
+    en: 'A cylinder goes down an incline. In which case can conservation of mechanical energy be used?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: "Servono forze conservative e vincoli ideali (che non lavorano). Nel rotolamento puro l'attrito statico agisce su un punto fermo e non lavora; se il cilindro striscia, l'attrito dinamico dissipa energia."
+        en: 'Conservative forces and ideal constraints (that do no work) are required. In pure rolling static friction acts on a point at rest and does no work; if the cylinder slips, kinetic friction dissipates energy.'
+  choices:
+    - text:
+        it: "Se rotola senza strisciare: l'attrito statico non lavora"
+        en: 'If it rolls without slipping: static friction does no work'
+      correct: true
+    - text:
+        it: 'Solo se il piano è perfettamente liscio e il cilindro rotola'
+        en: 'Only if the incline is perfectly smooth and the cylinder rolls'
+      correct: false
+    - text:
+        it: "Anche se striscia, perché l'attrito è interno"
+        en: 'Even if it slips, because friction is internal'
+      correct: false
+    - text:
+        it: "Mai, perché c'è attrito"
+        en: 'Never, because there is friction'
+      correct: false
+  origin: originale
+- id: r2-ecr-3
+  topic: energia-corpo-rigido
+  objectives:
+    - energia-corpo-rigido.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: "Un'asta omogenea lunga 1,2 m, incernierata senza attrito a un estremo, viene lasciata da ferma in posizione orizzontale. Calcola la velocità angolare e la velocità dell'estremo libero quando passa per la verticale."
+    en: 'A uniform 1.2 m rod, hinged without friction at one end, is released from rest in a horizontal position. Find its angular velocity and the speed of the free end as it passes through the vertical.'
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Asta incernierata a un estremo, lasciata in orizzontale, che ruota fino alla verticale.',
+                'en': 'Rod hinged at one end, released horizontally, swinging down to the vertical.',
+              },
+            'items':
+              [
+                { 'kind': 'pivot', 'at': [0, 0], 'style': 'hinge' },
+                { 'kind': 'rod', 'from': [0, 0], 'to': [4, 0] },
+                { 'kind': 'line', 'points': [[0, 0], [0, -4]], 'label': 'L' },
+                { 'kind': 'arc', 'center': [0, 0], 'r': 4, 'from': 270, 'to': 360, 'dash': true },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Il CM scende di $L/2$: $Mg\tfrac L2=\tfrac12\cdot\tfrac13ML^2\omega^2\Rightarrow\omega=\sqrt{3g/L}\approx4{,}95\,\mathrm{rad/s}$; estremo: $v=\omega L\approx5{,}94\,\mathrm{m/s}$, più di $\sqrt{2gL}$ di un sasso in caduta libera dalla stessa quota.'
+        en: 'The CM drops by $L/2$: $Mg\tfrac L2=\tfrac12\cdot\tfrac13ML^2\omega^2\Rightarrow\omega=\sqrt{3g/L}\approx4.95\,\mathrm{rad/s}$; end: $v=\omega L\approx5.94\,\mathrm{m/s}$, more than the $\sqrt{2gL}$ of a stone falling freely from the same height.'
+  answer:
+    - label:
+        it: '$\omega$'
+        en: '$\omega$'
+      value: 4.952272
+      unit: 'rad/s'
+    - label:
+        it: '$v$'
+        en: '$v$'
+      value: 5.942727
+      unit: 'm/s'
+  origin: originale

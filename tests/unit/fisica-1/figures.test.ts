@@ -18,10 +18,78 @@ import '../../../src/courses/fisica-1/generators/termodinamica';
 
 const DIR = resolve('src/content/exercises/fisica-1');
 /**
- * Esercizi statici senza figura, con il motivo. Vuota: oggi tutti gli esercizi del corso
- * descrivono una situazione disegnabile (anche i calcoli sui gas hanno il loro piano pV).
+ * Esercizi statici senza figura, con il motivo. Fino alla revisione 2 era vuota; R2 ha aggiunto
+ * crocette concettuali e calcoli senza una situazione da disegnare.
  */
-const NO_FIGURE: Record<string, string> = {};
+const NO_FIGURE: Record<string, string> = {
+  'r2-mcv-3': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-ma-2': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-ma-3': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-omm-3': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-sr-3': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-sr-4': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-os-2': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-os-3': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-ris-2': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-ris-3': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-ris-4': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-lec-2': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-lec-3': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-fc-3': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-fc-4': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-fnc-2': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-fnc-3': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-mang-2': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-mang-3': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-mang-4': "dati astronomici: la figura di un'ellisse quasi circolare non aggiungerebbe informazioni",
+  'r2-cm-2': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-mi-1': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-mi-2':
+    'confronto fra quattro forme notevoli: la figura sarebbe un catalogo, non la situazione di un problema',
+  'r2-mi-4': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-tma-1': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-tma-3': 'conti su un sistema descritto dai dati, senza una geometria particolare da disegnare',
+  'r2-koe-1': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-mcr-1': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-mcr-4': 'conti su un sistema descritto dai dati, senza una geometria particolare da disegnare',
+  'r2-stat-3': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-stat-4': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-ecr-1': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-ecr-2': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-pf-2': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-pf-3': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-rp-3': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-uc-3': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-pb-2': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-stv-1': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-stv-2': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-tcg-1': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-tcg-2': 'calcolo sullo stato di un gas, senza trasformazioni da disegnare nel piano pV',
+  'r2-tcg-3': 'calcolo sullo stato di un gas, senza trasformazioni da disegnare nel piano pV',
+  'r2-lgp-1': 'calcolo sullo stato di un gas, senza trasformazioni da disegnare nel piano pV',
+  'r2-lgp-2': 'calcolo sullo stato di un gas, senza trasformazioni da disegnare nel piano pV',
+  'r2-lgp-3': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-eq-1': 'calcolo sullo stato di un gas, senza trasformazioni da disegnare nel piano pV',
+  'r2-eq-2': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-eq-3': 'calcolo sullo stato di un gas, senza trasformazioni da disegnare nel piano pV',
+  'r2-eq-4': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-cmol-1': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-cmol-2': 'calcolo sullo stato di un gas, senza trasformazioni da disegnare nel piano pV',
+  'r2-cmol-3': 'calcolo sullo stato di un gas, senza trasformazioni da disegnare nel piano pV',
+  'r2-cmol-4': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-pp-4': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-sp-2': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-sp-3': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-cc-1': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-tc-1': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-tc-2': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-dc-1': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-dc-2': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+  'r2-ent-1': 'espansione libera: non è una trasformazione quasi-statica e non ha una curva nel piano pV',
+  'r2-ent-2': 'scambio di calore fra due corpi: la situazione è descritta completamente dai dati',
+  'r2-ent-3': 'calcolo sullo stato di un gas, senza trasformazioni da disegnare nel piano pV',
+  'r2-ent-4': 'crocetta concettuale (R2): nessuna situazione da disegnare',
+};
 
 interface Ex {
   id: string;

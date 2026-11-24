@@ -140,3 +140,117 @@
   kind: generated
   generator: fisica-1/macchina-termica
   origin: tipologia-appello
+- id: r2-sp-1
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.4
+    - secondo-principio.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Un motore assorbe 1000 J e produce 300 J di lavoro per ciclo. Un frigorifero estrae 500 J dall'interno con 200 J di lavoro. Una pompa di calore cede 700 J alla casa con 200 J di lavoro. Calcola il rendimento del motore e i due coefficienti di prestazione."
+    en: 'An engine absorbs 1000 J and produces 300 J of work per cycle. A refrigerator extracts 500 J from inside using 200 J of work. A heat pump delivers 700 J to the house using 200 J of work. Find the engine efficiency and the two coefficients of performance.'
+  figure:
+    diagram:
+      {
+        'type': 'heat-engine',
+        'params':
+          {
+            'kind': 'engine',
+            'reservoirs':
+              [
+                { 'label': 'T_C', 'heat': 'Q_C = 1000 J', 'side': 'hot' },
+                { 'label': 'T_F', 'heat': 'Q_F', 'side': 'cold' },
+              ],
+            'work': 'W = 300 J',
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$\eta=W/Q_C=0{,}3$ (cede $700\,\mathrm{J}$: per Kelvin-Planck $Q_F\neq0$, quindi $\eta<1$). $\mathrm{COP}_f=Q_F/W=2{,}5$; $\mathrm{COP}_{pc}=Q_C/W=3{,}5$. I COP possono superare 1: misurano il calore spostato per unità di lavoro.'
+        en: '$\eta=W/Q_H=0.3$ (it rejects $700\,\mathrm{J}$: by Kelvin-Planck $Q_C\neq0$, so $\eta<1$). $\mathrm{COP}_r=Q_C/W=2.5$; $\mathrm{COP}_{hp}=Q_H/W=3.5$. COPs can exceed 1: they measure the heat moved per unit work.'
+  answer:
+    - label:
+        it: '$\eta$'
+        en: '$\eta$'
+      value: 0.3
+    - label:
+        it: '$COP_f$'
+        en: '$COP_r$'
+      value: 2.5
+    - label:
+        it: '$COP_{pc}$'
+        en: '$COP_{hp}$'
+      value: 3.5
+  origin: originale
+- id: r2-sp-2
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Quale di queste trasformazioni è (idealmente) reversibile?'
+    en: 'Which of these processes is (ideally) reversible?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: "Reversibile = quasi-statica e senza dissipazioni: si può ripercorrere all'indietro riportando sistema e ambiente allo stato iniziale. Attrito, espansione libera e passaggio di calore con salto finito di temperatura sono irreversibili."
+        en: 'Reversible = quasi-static and without dissipation: it can be run backwards bringing system and surroundings back to the initial state. Friction, free expansion and heat flow across a finite temperature difference are irreversible.'
+  choices:
+    - text:
+        it: 'Compressione isoterma lentissima di un gas a contatto con un serbatoio alla stessa temperatura'
+        en: 'Very slow isothermal compression of a gas in contact with a reservoir at the same temperature'
+      correct: true
+    - text:
+        it: 'Espansione libera di un gas nel vuoto'
+        en: 'Free expansion of a gas into vacuum'
+      correct: false
+    - text:
+        it: 'Un blocco che si ferma per attrito'
+        en: 'A block stopping because of friction'
+      correct: false
+    - text:
+        it: 'Una tazza calda che si raffredda nella stanza'
+        en: 'A hot cup cooling down in the room'
+      correct: false
+  origin: originale
+- id: r2-sp-3
+  topic: secondo-principio
+  objectives:
+    - secondo-principio.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: "In un'espansione isoterma di un gas perfetto tutto il calore assorbito diventa lavoro. Perché non viola l'enunciato di Kelvin-Planck?"
+    en: 'In an isothermal expansion of an ideal gas all the heat absorbed becomes work. Why does it not violate the Kelvin-Planck statement?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: "Kelvin-Planck vieta che l'**unico** risultato di un processo sia trasformare in lavoro il calore di una sola sorgente. Qui il gas finisce in uno stato diverso (volume maggiore): non è un ciclo, e per tornare indietro bisogna cedere calore."
+        en: 'Kelvin-Planck forbids that the **only** result of a process be turning heat from a single reservoir into work. Here the gas ends in a different state (larger volume): it is not a cycle, and getting back requires giving off heat.'
+  choices:
+    - text:
+        it: 'Perché non è un ciclo: il gas resta in uno stato diverso'
+        en: 'Because it is not a cycle: the gas ends in a different state'
+      correct: true
+    - text:
+        it: 'Perché il gas non è perfetto'
+        en: 'Because the gas is not ideal'
+      correct: false
+    - text:
+        it: 'Perché il lavoro è negativo'
+        en: 'Because the work is negative'
+      correct: false
+    - text:
+        it: 'Perché lo viola, ma solo per poco tempo'
+        en: 'Because it does violate it, but only briefly'
+      correct: false
+  origin: originale

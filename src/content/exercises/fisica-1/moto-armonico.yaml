@@ -150,3 +150,118 @@
   kind: generated
   generator: fisica-1/moto-armonico
   origin: tipologia-appello
+- id: r2-ma-1
+  topic: moto-armonico
+  objectives:
+    - moto-armonico.4
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un punto in moto armonico con $\omega=10\,\mathrm{rad/s}$ ha all''istante $t=0$ posizione $x_0=3\,\mathrm{cm}$ e velocità $v_0=-0{,}4\,\mathrm{m/s}$. Scrivendo $x(t)=A\cos(\omega t+\varphi)$, trova $A$ e $\varphi$.'
+    en: 'A point in harmonic motion with $\omega=10\,\mathrm{rad/s}$ has, at $t=0$, position $x_0=3\,\mathrm{cm}$ and velocity $v_0=-0.4\,\mathrm{m/s}$. Writing $x(t)=A\cos(\omega t+\varphi)$, find $A$ and $\varphi$.'
+  figure:
+    diagram:
+      {
+        'type': 'spring-mass',
+        'params':
+          {
+            'orientation': 'horizontal',
+            'displacement': 0.6,
+            'kLabel': 'k',
+            'massLabel': 'm',
+            'xLabel': 'x_0',
+          },
+      }
+  steps:
+    - title:
+        it: 'Condizioni iniziali'
+        en: 'Initial conditions'
+      body:
+        it: '$x_0=A\cos\varphi=0{,}03$ e $v_0=-A\omega\sin\varphi=-0{,}4\Rightarrow A\sin\varphi=0{,}04$.'
+        en: '$x_0=A\cos\varphi=0.03$ and $v_0=-A\omega\sin\varphi=-0.4\Rightarrow A\sin\varphi=0.04$.'
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$A=\sqrt{x_0^2+(v_0/\omega)^2}=\sqrt{0{,}03^2+0{,}04^2}=0{,}05\,\mathrm{m}$; $\cos\varphi=0{,}6$ e $\sin\varphi=0{,}8$ (primo quadrante): $\varphi\approx53{,}1^\circ$.'
+        en: '$A=\sqrt{x_0^2+(v_0/\omega)^2}=\sqrt{0.03^2+0.04^2}=0.05\,\mathrm{m}$; $\cos\varphi=0.6$ and $\sin\varphi=0.8$ (first quadrant): $\varphi\approx53.1^\circ$.'
+  answer:
+    - label:
+        it: '$A$'
+        en: '$A$'
+      value: 0.05
+      unit: 'm'
+    - label:
+        it: '$\varphi$'
+        en: '$\varphi$'
+      value: 53.130102
+      unit: '°'
+  origin: originale
+- id: r2-ma-2
+  topic: moto-armonico
+  objectives:
+    - moto-armonico.5
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'In un moto armonico $x=A\cos(\omega t+\varphi)$, dove sono massimi il modulo della velocità e quello dell''accelerazione?'
+    en: 'In a harmonic motion $x=A\cos(\omega t+\varphi)$, where are the speed and the magnitude of the acceleration largest?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: '$v^2=\omega^2(A^2-x^2)$ è massima in $x=0$ ($v_{max}=\omega A$); $a=-\omega^2x$ è massima in modulo agli estremi $x=\pm A$ ($a_{max}=\omega^2A$), dove la velocità è nulla.'
+        en: '$v^2=\omega^2(A^2-x^2)$ is largest at $x=0$ ($v_{max}=\omega A$); $a=-\omega^2x$ is largest in magnitude at the turning points $x=\pm A$ ($a_{max}=\omega^2A$), where the speed is zero.'
+  choices:
+    - text:
+        it: 'Velocità al centro ($x=0$), accelerazione agli estremi ($x=\pm A$)'
+        en: 'Speed at the centre ($x=0$), acceleration at the turning points ($x=\pm A$)'
+      correct: true
+    - text:
+        it: 'Entrambe agli estremi'
+        en: 'Both at the turning points'
+      correct: false
+    - text:
+        it: 'Entrambe al centro'
+        en: 'Both at the centre'
+      correct: false
+    - text:
+        it: 'Velocità agli estremi, accelerazione al centro'
+        en: 'Speed at the turning points, acceleration at the centre'
+      correct: false
+  origin: originale
+- id: r2-ma-3
+  topic: moto-armonico
+  objectives:
+    - moto-armonico.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Che cosa significa che il moto armonico è **isocrono** e come si collega al moto circolare uniforme?'
+    en: 'What does it mean that harmonic motion is **isochronous**, and how is it related to uniform circular motion?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Il periodo $T=2\pi/\omega$ non dipende dall''ampiezza. Il moto armonico è la proiezione su un diametro di un moto circolare uniforme di raggio $A$ e velocità angolare $\omega$: il punto che gira impiega sempre $2\pi/\omega$ per un giro, qualunque sia il raggio.'
+        en: 'The period $T=2\pi/\omega$ does not depend on the amplitude. Harmonic motion is the projection onto a diameter of a uniform circular motion of radius $A$ and angular velocity $\omega$: the rotating point always takes $2\pi/\omega$ for one turn, whatever the radius.'
+  choices:
+    - text:
+        it: 'Il periodo non dipende dall''ampiezza; il moto è la proiezione di un moto circolare uniforme con la stessa $\omega$'
+        en: 'The period does not depend on the amplitude; the motion is the projection of a uniform circular motion with the same $\omega$'
+      correct: true
+    - text:
+        it: "Il periodo cresce con l'ampiezza, come nel moto circolare"
+        en: 'The period grows with the amplitude, as in circular motion'
+      correct: false
+    - text:
+        it: 'La velocità è costante, come nel moto circolare uniforme'
+        en: 'The speed is constant, as in uniform circular motion'
+      correct: false
+    - text:
+        it: 'Il periodo dipende dalla fase iniziale $\varphi$'
+        en: 'The period depends on the initial phase $\varphi$'
+      correct: false
+  origin: originale
