@@ -12,6 +12,12 @@ Tellegen dice che, in qualunque circuito, tutta la potenza fornita da qualcuno v
 
 </div>
 
+<div data-note-id="teorema-di-tellegen-intuizione-2">
+
+Un modo per convincersene: ogni potenza $v_k\,i_k$ è il prodotto di una differenza di potenziali per una corrente. Sommando su tutti i rami, ogni potenziale di nodo finisce moltiplicato per la somma delle correnti che lasciano quel nodo, che è zero per la KCL. I termini si cancellano nodo per nodo, qualunque siano i componenti.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -55,6 +61,18 @@ Geometricamente: il vettore delle tensioni appartiene al sottospazio generato da
 
 </details>
 
+<div data-note-id="teorema-di-tellegen-teoria-4">
+
+**Conseguenze.** Oltre alla conservazione della potenza istantanea, dal teorema segue la conservazione della potenza complessa in regime sinusoidale (con i fasori $\dot V_k$ e i coniugati $\dot I_k^*$, vedi [conservazione della potenza complessa](../conservazione-potenza-complessa/)). Applicato a due situazioni diverse dello stesso circuito dà $\sum_k v_k'\,i_k''=\sum_k v_k''\,i_k'=0$, la base delle dimostrazioni di reciprocità.
+
+</div>
+
+<div data-note-id="teorema-di-tellegen-teoria-5">
+
+**Ipotesi minime.** Non servono linearità, tempo-invarianza o passività: bastano un vettore di tensioni compatibile con la KVL e uno di correnti compatibile con la KCL sullo stesso grafo, con versi di riferimento coerenti.
+
+</div>
+
 <Formula id="tellegen" />
 <Formula id="ortogonalita" />
 
@@ -76,6 +94,20 @@ Un generatore di tensione $V_g=10\,\mathrm{V}$ alimenta in serie $R_1=2\,\Omega$
 
 </div>
 
+<div class="worked" data-note-id="teorema-di-tellegen-esempio-2">
+
+### Tensioni e correnti di circuiti diversi
+
+Grafo con nodi $0,1,2$ e rami $a$: $1\to0$, $b$: $1\to2$, $c$: $2\to0$, $d$: $1\to0$. Tensioni di un circuito: $e_1=6\,\mathrm V$, $e_2=2\,\mathrm V$. Correnti di un altro circuito: $i_b=i_c=1\,\mathrm A$, $i_a=2\,\mathrm A$, $i_d=-3\,\mathrm A$. Verifica Tellegen.
+
+**Soluzione.**
+
+1. KCL delle correnti: nodo 1, $i_a+i_b+i_d=2+1-3=0$ ✓; nodo 2, $-i_b+i_c=0$ ✓.
+2. Tensioni: $v_a=v_d=6\,\mathrm V$, $v_b=4\,\mathrm V$, $v_c=2\,\mathrm V$ (compatibili con la KVL).
+3. $\sum v_k i_k=6\cdot2+4\cdot1+2\cdot1+6\cdot(-3)=12+4+2-18=0$ ✓, anche se i due circuiti non hanno niente in comune oltre al grafo.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -84,6 +116,20 @@ Un generatore di tensione $V_g=10\,\mathrm{V}$ alimenta in serie $R_1=2\,\Omega$
 
 - **Sbagliato:** Sommare potenze «erogate» e «assorbite» con lo stesso segno.
 - **Corretto:** Usa una convenzione unica (utilizzatori su tutti i rami): la somma algebrica è zero.
+
+</div>
+
+<div data-note-id="teorema-di-tellegen-errore-2">
+
+- **Sbagliato:** Pensare che Tellegen valga solo per circuiti lineari.
+- **Corretto:** Vale per qualunque circuito a costanti concentrate, anche non lineare o tempo-variante: usa soltanto KCL e KVL.
+
+</div>
+
+<div data-note-id="teorema-di-tellegen-errore-3">
+
+- **Sbagliato:** Usare tensioni e correnti di due circuiti con grafi diversi.
+- **Corretto:** I due vettori devono riferirsi allo stesso grafo con gli stessi versi; i componenti invece possono essere diversi.
 
 </div>
 

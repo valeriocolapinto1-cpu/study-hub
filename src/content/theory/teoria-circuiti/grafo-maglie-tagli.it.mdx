@@ -12,6 +12,12 @@ Per scrivere le leggi di Kirchhoff non importa se un ramo è un resistore o un g
 
 </div>
 
+<div data-note-id="grafo-maglie-tagli-intuizione-2">
+
+Lo stesso grafo può descrivere circuiti molto diversi: un ponte di resistori e un ponte con condensatori e generatori hanno lo stesso scheletro, quindi le stesse equazioni di Kirchhoff. Da un circuito all'altro cambiano solo le relazioni costitutive. Separare la topologia dai componenti è il passo che rende l'analisi sistematica.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -75,6 +81,18 @@ I versi dei rami coincidono con i versi di riferimento di corrente (e tensione, 
   </svg>
 </Figure>
 
+<div data-note-id="grafo-maglie-tagli-teoria-4">
+
+**Grafi planari e anelli.** Un grafo è _planare_ se si può disegnare nel piano senza rami che si incrocino. In questo caso le «finestre» del disegno, dette _anelli_ o maglie elementari, sono $b-n+1$ (dalla formula di Eulero) e formano un insieme di maglie indipendenti: è la scelta più comoda per il metodo delle maglie su circuiti disegnati a mano. Per grafi non planari si usano le maglie fondamentali di un albero.
+
+</div>
+
+<div data-note-id="grafo-maglie-tagli-teoria-5">
+
+**Taglio e superficie chiusa.** Ogni taglio corrisponde a una superficie chiusa che divide i nodi in due gruppi $\mathcal N_1$ e $\mathcal N_2$: i rami del taglio sono quelli che la attraversano. Il taglio «di nodo» è il caso in cui $\mathcal N_1$ contiene un solo nodo. Con $n$ nodi ci sono $2^{n-1}-1$ modi di dividerli in due gruppi non vuoti; una divisione dà un taglio (minimale) solo se entrambi i gruppi restano connessi.
+
+</div>
+
 <Formula id="n-b" />
 
 </Layer>
@@ -94,6 +112,20 @@ Nel grafo della figura (4 nodi, 6 rami): quante maglie di 3 rami ci sono? Quanti
 
 </div>
 
+<div class="worked" data-note-id="grafo-maglie-tagli-esempio-2">
+
+### Tutti i tagli del grafo completo a 4 nodi
+
+Nel grafo completo con nodi $0,1,2,3$ ($b=6$) elenca i tagli e conta quanti sono indipendenti.
+
+**Soluzione.**
+
+1. Divisioni dei nodi in due gruppi: $2^{4-1}-1=7$.
+2. $4$ divisioni isolano un nodo: tagli da $3$ rami. Le altre $3$ separano due coppie, per esempio $\{0,1\}|\{2,3\}$: rami $0$-$2$, $0$-$3$, $1$-$2$, $1$-$3$, cioè $4$ rami.
+3. Nel grafo completo ogni gruppo è connesso, quindi tutte e $7$ le divisioni sono tagli; le KCL indipendenti restano $n-1=3$.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -102,6 +134,20 @@ Nel grafo della figura (4 nodi, 6 rami): quante maglie di 3 rami ci sono? Quanti
 
 - **Sbagliato:** Considerare maglia un insieme di rami che «si chiude» passando due volte per un nodo.
 - **Corretto:** Nella definizione di maglia ogni nodo è toccato una sola volta (altrimenti è unione di maglie).
+
+</div>
+
+<div data-note-id="grafo-maglie-tagli-errore-2">
+
+- **Sbagliato:** Contare come nodi distinti due punti collegati da un conduttore ideale.
+- **Corretto:** Un conduttore ideale non è un ramo: i suoi estremi sono lo stesso nodo. Prima di contare $n$ e $b$ conviene ridisegnare il circuito accorpando i nodi.
+
+</div>
+
+<div data-note-id="grafo-maglie-tagli-errore-3">
+
+- **Sbagliato:** Pensare che un taglio debba isolare un solo nodo.
+- **Corretto:** Un taglio separa due gruppi di nodi qualsiasi; quello di nodo è solo un caso particolare (nel grafo completo a 4 nodi ci sono 3 tagli che separano due coppie).
 
 </div>
 

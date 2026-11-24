@@ -12,6 +12,12 @@ Invece di cercare tutte le correnti e le tensioni, si sceglie un nodo «a terra�
 
 </div>
 
+<div data-note-id="metodo-dei-nodi-intuizione-2">
+
+Il metodo conviene anche perché ogni equazione si legge: «la corrente che esce dal nodo attraverso le conduttanze è uguale a quella iniettata dai generatori». La matrice $G$ si scrive guardando il circuito, senza passare dalle equazioni di ramo: sulla diagonale le conduttanze che toccano il nodo, fuori diagonale quelle condivise, con il segno meno.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -49,6 +55,18 @@ con $G_{jj}=$ somma delle conduttanze collegate al nodo $j$, $G_{jk}=-$ condutta
 
 </details>
 
+<div data-note-id="metodo-dei-nodi-teoria-4">
+
+**Scrittura per ispezione.** L'equazione del nodo $j$ è la KCL scritta con i potenziali: per ogni conduttanza collegata al nodo si somma $G_r\,(e_j-e_{\text{altro}})$, dove $e_{\text{altro}}$ è il potenziale dell'altro estremo (zero se è il riferimento), e si eguaglia alla somma delle correnti dei generatori che entrano nel nodo. Raccogliendo i coefficienti si ritrovano $G_{jj}$ e $G_{jk}$.
+
+</div>
+
+<div data-note-id="metodo-dei-nodi-teoria-5">
+
+**Con generatori controllati.** Un VCCS che fa uscire dal nodo $j$ ed entrare nel nodo $k$ la corrente $g_m\,(e_p-e_q)$ aggiunge termini che rompono la simmetria di $G$: nella riga $j$ si somma $+g_m$ in colonna $p$ e $-g_m$ in colonna $q$, nella riga $k$ il contrario. Un controllato di altro tipo richiede un'equazione in più per la grandezza di controllo.
+
+</div>
+
 <Formula id="nodi" />
 <Formula id="nodi-mat" />
 
@@ -71,6 +89,20 @@ Generatore di corrente $3\,\mathrm{A}$ nel nodo 1; resistenze: nodo 1–riferime
 
 </div>
 
+<div class="worked" data-note-id="metodo-dei-nodi-esempio-2">
+
+### Supernodo
+
+Un generatore di tensione $E=6\,\mathrm V$ collega il nodo 1 ($+$) al nodo 2. Fra il nodo 1 e il riferimento c'è $R_1=2\,\Omega$, fra il nodo 2 e il riferimento $R_2=4\,\Omega$; un generatore di corrente inietta $6\,\mathrm A$ nel nodo 2. Trova $e_1$, $e_2$ e la corrente nel generatore di tensione.
+
+**Soluzione.**
+
+1. Vincolo del generatore: $e_1-e_2=6$.
+2. KCL sul supernodo $\{1,2\}$: $\dfrac{e_1}{2}+\dfrac{e_2}{4}=6$. Con $e_1=e_2+6$: $\tfrac34e_2+3=6$, quindi $e_2=4\,\mathrm V$, $e_1=10\,\mathrm V$.
+3. Correnti verso il riferimento: $10/2=5\,\mathrm A$ e $4/4=1\,\mathrm A$, totale $6\,\mathrm A$ ✓. Nel generatore di tensione passano $5\,\mathrm A$ dal nodo 2 al nodo 1 (tutta la corrente di $R_1$).
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -79,6 +111,20 @@ Generatore di corrente $3\,\mathrm{A}$ nel nodo 1; resistenze: nodo 1–riferime
 
 - **Sbagliato:** Inserire nell'equazione di nodo la corrente di un generatore di tensione ignota senza scriverne il vincolo.
 - **Corretto:** Usa il supernodo oppure aggiungi la corrente del generatore come incognita con l'equazione $e_j-e_k=E$.
+
+</div>
+
+<div data-note-id="metodo-dei-nodi-errore-2">
+
+- **Sbagliato:** Mettere a secondo membro le correnti dei generatori che escono dal nodo con segno positivo.
+- **Corretto:** Con le conduttanze a primo membro (correnti uscenti), a secondo membro vanno con segno $+$ le correnti dei generatori _entranti_ nel nodo.
+
+</div>
+
+<div data-note-id="metodo-dei-nodi-errore-3">
+
+- **Sbagliato:** Scrivere la KCL anche per il nodo di riferimento.
+- **Corretto:** Il riferimento ha potenziale zero e la sua KCL dipende dalle altre: le equazioni sono $n-1$.
 
 </div>
 

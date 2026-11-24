@@ -12,6 +12,12 @@ In series the current is forced through every resistor, so the "obstacles" add u
 
 </div>
 
+<div data-note-id="serie-parallelo-partitori-intuizione-2">
+
+Two limiting cases help remember the formulas. In series with a very large resistor, a small one hardly matters: $R_{eq}\approx R_{large}$. In parallel the opposite happens: the small resistor "shorts" the large one and $R_{eq}\approx R_{small}$. The parallel is always smaller than the smallest resistance, the series always larger than the largest.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -59,6 +65,24 @@ Condition for the voltage divider: the current is the same in all the resistors,
 
 </details>
 
+<div data-note-id="serie-parallelo-partitori-teoria-4">
+
+**Recognising series and parallel.** Two one-ports are in series if they share a node to which nothing else is connected (same current by KCL); they are in parallel if they are connected to the same pair of nodes (same voltage by KVL). The criterion holds for any one-port, not only resistors: two voltage sources in series add up, two current sources in parallel add up.
+
+</div>
+
+<div data-note-id="serie-parallelo-partitori-teoria-5">
+
+**Loaded divider.** If a load $R_L$ is connected to the middle node of an $R_1$–$R_2$ divider, the output voltage becomes $v\,\dfrac{R_2\parallel R_L}{R_1+R_2\parallel R_L}$, always lower than the open-circuit value. The unloaded divider is a good approximation only if $R_L\gg R_2$. It is a first example of a Thévenin equivalent: open-circuit voltage $v\,R_2/(R_1+R_2)$ and resistance $R_1\parallel R_2$.
+
+</div>
+
+<div data-note-id="serie-parallelo-partitori-teoria-6">
+
+**Beyond resistors.** In sinusoidal steady state the same rules hold for impedances (series: $Z_{eq}=\sum Z_k$; parallel: $Y_{eq}=\sum Y_k$). In the time domain inductors in series add like resistors, $L_{eq}=\sum L_k$, while capacitors add in parallel, $C_{eq}=\sum C_k$, like conductances.
+
+</div>
+
 <Formula id="serie" />
 <Formula id="parallelo" />
 <Formula id="part-v" />
@@ -81,6 +105,20 @@ $R_1=6\,\Omega$ and $R_2=3\,\Omega$ in parallel, in series with $R_3=4\,\Omega$,
 
 </div>
 
+<div class="worked" data-note-id="serie-parallelo-partitori-esempio-2">
+
+### Loaded divider
+
+Divider with $v=12\,\mathrm V$, $R_1=R_2=10\,\mathrm{k\Omega}$. Find the output unloaded and with a load $R_L=10\,\mathrm{k\Omega}$; check with the Thévenin equivalent.
+
+**Solution.**
+
+1. Unloaded: $v_o=12\cdot\dfrac{10}{20}=6\,\mathrm V$.
+2. With the load: $R_2\parallel R_L=5\,\mathrm{k\Omega}$, $v_o=12\cdot\dfrac{5}{10+5}=4\,\mathrm V$.
+3. Thévenin: $V_{th}=6\,\mathrm V$, $R_{th}=10\parallel10=5\,\mathrm{k\Omega}$; across the load $6\cdot\dfrac{10}{5+10}=4\,\mathrm V$ ✓. The load "steals" one third of the voltage.
+
+</div>
+
 </Layer>
 
 <Layer kind="errori">
@@ -89,6 +127,20 @@ $R_1=6\,\Omega$ and $R_2=3\,\Omega$ in parallel, in series with $R_3=4\,\Omega$,
 
 - **Wrong:** Using the voltage divider with a load connected to the middle node without including it.
 - **Right:** The load is in parallel with $R_2$: use $R_2\parallel R_L$.
+
+</div>
+
+<div data-note-id="serie-parallelo-partitori-errore-2">
+
+- **Wrong:** Treating as series two resistors that share a node to which a third branch is also connected.
+- **Right:** Series requires the same current: if another branch reaches the common node, the current splits and the two resistors are not in series.
+
+</div>
+
+<div data-note-id="serie-parallelo-partitori-errore-3">
+
+- **Wrong:** In the current divider writing $i_1=i\,\dfrac{R_1}{R_1+R_2}$.
+- **Right:** With two branches $i_1=i\,\dfrac{R_2}{R_1+R_2}$: the larger current flows in the smaller resistance (conductances, not resistances, go in the numerator).
 
 </div>
 

@@ -12,6 +12,12 @@ Matrices $A$ and $B$ are the graph "translated into numbers": one row per node (
 
 </div>
 
+<div data-note-id="matrici-a-b-intuizione-2">
+
+The advantage is practical: a computer does not "see" the drawing, but it can multiply matrices. With $A$ and $B$ the Kirchhoff equations of any circuit are written the same way, and nodal and mesh analysis become products such as $A\,\mathcal G\,A^{\mathsf T}$ and $B\,\mathcal R\,B^{\mathsf T}$.
+
+</div>
+
 </Layer>
 
 <Layer kind="formalismo">
@@ -70,6 +76,12 @@ _Note._ The exact formulation given in class may differ (for instance normalised
 
 </details>
 
+<div data-note-id="matrici-a-b-teoria-6">
+
+**Properties to check.** In the _complete_ incidence matrix (all $n$ rows) every column has exactly one $+1$ and one $-1$, because every branch leaves one node and enters another: the $n$ rows sum to zero, which is why the reference row is removed. In the reduced matrix $A$ the columns of branches connected to the reference have a single nonzero entry. The rank of $A$ is $n-1$, that of $B$ is $b-n+1$.
+
+</div>
+
 <Formula id="kcl-mat" />
 <Formula id="kvl-mat" />
 <Formula id="b-da-a" />
@@ -101,6 +113,20 @@ Triangle with nodes $0,1,2$ and branches: $a$: $0\to1$, $b$: $0\to2$, $c$: $1\to
 
 - **Wrong:** Writing $B=-A^{\mathsf T}$ as a relation between the full matrices.
 - **Right:** The sizes do not match: the relation is $B_t=-(A_t^{-1}A_c)^{\mathsf T}$ between blocks.
+
+</div>
+
+<div data-note-id="matrici-a-b-errore-2">
+
+- **Wrong:** Looking for a $+1$ and a $-1$ in every column of the reduced matrix $A$.
+- **Right:** In the reduced matrix the branches connected to the reference node have a single nonzero entry: the other one was in the removed row.
+
+</div>
+
+<div data-note-id="matrici-a-b-errore-3">
+
+- **Wrong:** Choosing the direction of the fundamental loops at random.
+- **Right:** A fundamental loop is traversed in the direction of its cotree branch: this makes the cotree block of $B$ the identity, $B_c=\mathbb 1$.
 
 </div>
 
