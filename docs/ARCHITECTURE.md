@@ -72,7 +72,8 @@ tests/unit, tests/content, tests/e2e, tests/fixtures
   Lo stesso script applica `html[data-course-index="hidden"]` (indice del corso nascosto con «Nascondi indice»,
   da 1024 px): niente spostamento del layout. Il pulsante ha un suo script inline subito dopo (`aria-expanded`, clic).
 - **Barre di scorrimento** (`base.css`, token `--scroll-thumb*`/`--scroll-track`): sottili e nel colore del corso
-  per ogni elemento che scorre; `::-webkit-scrollbar` per Safari; di sistema con `forced-colors`.
+  per ogni elemento che scorre; `::-webkit-scrollbar` solo per Safari; di sistema con `forced-colors`. I test visivi
+  le catturano con `scrollbar-color: auto` (nascoste, come fa Playwright): vedi `docs/decisions.md` (R9).
 - **iOS**: `apple-mobile-web-app-capable`, barra di stato `black-translucent`, `viewport-fit=cover`. Aree sicure in
   `tokens.css` (`--safe-top|right|bottom|left`, `--safe-inline`), usate da intestazione, `.container`, piè di
   pagina, indice del corso (`#indice-corso`), avvisi e ricerca; nel tema chiaro dell'app installata una fascia
