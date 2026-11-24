@@ -287,3 +287,100 @@
   kind: generated
   generator: fisica-2/b5-angolo-limite-specchio
   origin: tipologia-appello
+- id: r2-f2-rm-1
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'All''interfaccia piana fra il vuoto e un dielettrico con $\varepsilon_r=4$ (nessuna carica libera) il campo nel vuoto vale $E_1=1000\,\mathrm{V/m}$ e forma $30^\circ$ con la normale. Calcola il modulo del campo nel dielettrico.'
+    en: 'At the plane interface between vacuum and a dielectric with $\varepsilon_r=4$ (no free charge) the field in vacuum is $E_1=1000\,\mathrm{V/m}$ at $30^\circ$ to the normal. Find the magnitude of the field in the dielectric.'
+  steps:
+    - title:
+        it: 'Condizioni di raccordo'
+        en: 'Boundary conditions'
+      body:
+        it: '$E_{1t}=E_{2t}$ (circuitazione di $\vec E$) e $D_{1n}=D_{2n}$ (Gauss per $\vec D$): $E_{2t}=1000\sin30^\circ=500\,\mathrm{V/m}$, $E_{2n}=E_{1n}/\varepsilon_r=866/4\approx216{,}5\,\mathrm{V/m}$.'
+        en: '$E_{1t}=E_{2t}$ (circulation of $\vec E$) and $D_{1n}=D_{2n}$ (Gauss for $\vec D$): $E_{2t}=1000\sin30^\circ=500\,\mathrm{V/m}$, $E_{2n}=E_{1n}/\varepsilon_r=866/4\approx216.5\,\mathrm{V/m}$.'
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$E_2=\sqrt{500^2+216{,}5^2}\approx544{,}9\,\mathrm{V/m}$; il campo si allontana dalla normale.'
+        en: '$E_2=\sqrt{500^2+216.5^2}\approx544.9\,\mathrm{V/m}$; the field bends away from the normal.'
+  answer:
+    - label:
+        it: '$E_2$'
+        en: '$E_2$'
+      value: 544.8624
+      unit: 'V/m'
+  origin: originale
+- id: r2-f2-rm-2
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.3
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Che cos'è la dispersione della luce e che effetto ha in un prisma di vetro (dispersione normale)?"
+    en: 'What is the dispersion of light, and what effect does it have in a glass prism (normal dispersion)?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'L''indice di rifrazione dipende dalla lunghezza d''onda, perché la risposta degli elettroni del mezzo dipende dalla frequenza. Nel vetro (dispersione normale) $n$ cresce al diminuire di $\lambda$: il violetto è deviato più del rosso e la luce bianca si separa nei colori.'
+        en: 'The refractive index depends on wavelength, because the response of the medium''s electrons depends on frequency. In glass (normal dispersion) $n$ grows as $\lambda$ decreases: violet is deviated more than red and white light splits into colours.'
+  choices:
+    - text:
+        it: '$n$ dipende da $\lambda$; nel vetro cresce per $\lambda$ minori e il violetto è deviato più del rosso'
+        en: '$n$ depends on $\lambda$; in glass it grows for shorter $\lambda$ and violet is deviated more than red'
+      correct: true
+    - text:
+        it: '$n$ è uguale per tutti i colori, il prisma riflette la luce'
+        en: '$n$ is the same for all colours, the prism reflects light'
+      correct: false
+    - text:
+        it: 'Il rosso è deviato più del violetto'
+        en: 'Red is deviated more than violet'
+      correct: false
+    - text:
+        it: 'La velocità nel mezzo non dipende dalla frequenza'
+        en: 'The speed in the medium does not depend on frequency'
+      correct: false
+  origin: originale
+- id: r2-f2-rm-3
+  topic: radiazione-materia
+  objectives:
+    - radiazione-materia.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Che cosa afferma il principio di Huygens-Fresnel e che cosa aggiunge la teoria di Kirchhoff?'
+    en: "What does the Huygens-Fresnel principle state, and what does Kirchhoff's theory add?"
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: "Ogni punto di un fronte d'onda è sorgente di onde secondarie coerenti, che interferiscono e danno l'onda nei punti successivi. Kirchhoff lo ricava dall'equazione delle onde (teorema integrale): ne giustifica le ampiezze e il fattore d'inclinazione, che elimina l'onda all'indietro."
+        en: 'Every point of a wavefront is a source of coherent secondary waves, which interfere and give the wave further on. Kirchhoff derives it from the wave equation (integral theorem): he justifies the amplitudes and the obliquity factor, which removes the backward wave.'
+  choices:
+    - text:
+        it: "Ogni punto del fronte è sorgente di onde secondarie coerenti; Kirchhoff lo fonda sull'equazione delle onde e giustifica il fattore d'inclinazione"
+        en: 'Every point of the front is a source of coherent secondary waves; Kirchhoff grounds it on the wave equation and justifies the obliquity factor'
+      correct: true
+    - text:
+        it: 'La luce si propaga solo in linea retta; Kirchhoff lo dimostra'
+        en: 'Light travels only in straight lines; Kirchhoff proves it'
+      correct: false
+    - text:
+        it: 'Le onde secondarie sono incoerenti e non interferiscono'
+        en: 'Secondary waves are incoherent and do not interfere'
+      correct: false
+    - text:
+        it: "Kirchhoff introduce l'onda all'indietro"
+        en: 'Kirchhoff introduces the backward wave'
+      correct: false
+  origin: originale

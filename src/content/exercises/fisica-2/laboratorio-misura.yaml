@@ -182,3 +182,39 @@
         it: Non si può dire
         en: Cannot tell
       correct: false
+- id: r2-f2-lab-1
+  topic: laboratorio-misura
+  objectives:
+    - laboratorio-misura.6
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Nell''esperienza RC con l''oscilloscopio, durante la scarica del condensatore la tensione si dimezza in $t_{1/2}=6{,}9\,\mathrm{ms}$. Quanto vale la costante di tempo misurata? Con $R=10\,\mathrm{k\Omega}$ e $C=1\,\mu\mathrm F$ nominali, è compatibile?'
+    en: 'In the RC experiment with the oscilloscope, during the capacitor discharge the voltage halves in $t_{1/2}=6.9\,\mathrm{ms}$. What is the measured time constant? With nominal $R=10\,\mathrm{k\Omega}$ and $C=1\,\mu\mathrm F$, is it compatible?'
+  figure:
+    diagram:
+      {
+        'type': 'function-plot',
+        'params':
+          {
+            'x': { 'min': 0, 'max': 40, 'label': 't', 'unit': 'ms' },
+            'y': { 'min': 0, 'max': 1.05, 'label': 'V/V_0' },
+            'series': [{ 'kind': 'exp', 'a': 1, 'b': -0.1 }],
+            'hlines': [{ 'y': 0.5, 'label': '1/2' }],
+            'vlines': [{ 'x': 6.93, 'label': 't_{1/2}' }],
+          },
+      }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$V(t)=V_0e^{-t/\tau}$: $V=V_0/2$ per $t_{1/2}=\tau\ln2$, quindi $\tau=6{,}9/0{,}693\approx9{,}95\,\mathrm{ms}$, vicino a $RC=10\,\mathrm{ms}$. Per il confronto servono le incertezze (letture sullo schermo, tolleranze dei componenti, impedenze di generatore e oscilloscopio).'
+        en: '$V(t)=V_0e^{-t/\tau}$: $V=V_0/2$ at $t_{1/2}=\tau\ln2$, so $\tau=6.9/0.693\approx9.95\,\mathrm{ms}$, close to $RC=10\,\mathrm{ms}$. The comparison needs the uncertainties (screen readings, component tolerances, generator and oscilloscope impedances).'
+  answer:
+    - label:
+        it: '$\tau$'
+        en: '$\tau$'
+      value: 9.954596
+      unit: 'ms'
+  origin: originale

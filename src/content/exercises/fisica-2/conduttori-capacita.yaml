@@ -250,3 +250,79 @@
   kind: generated
   generator: fisica-2/b1-conduttori-sferici
   origin: tipologia-appello
+- id: r2-f2-cc-1
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.6
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un condensatore piano isolato ha armature di area $100\,\mathrm{cm^2}$ con carica $\pm10\,\mathrm{nC}$. Con il metodo dei lavori virtuali calcola la forza con cui si attraggono le armature.'
+    en: 'An isolated parallel-plate capacitor has plates of area $100\,\mathrm{cm^2}$ with charge $\pm10\,\mathrm{nC}$. Using virtual work find the force with which the plates attract each other.'
+  figure:
+    diagram:
+      {
+        'type': 'capacitor',
+        'params': { 'geometry': 'parallel', 'dielectric': 'none', 'battery': false, 'field': true },
+      }
+  steps:
+    - title:
+        it: 'Lavori virtuali a carica costante'
+        en: 'Virtual work at constant charge'
+      body:
+        it: '$U=\dfrac{Q^2}{2C}=\dfrac{Q^2x}{2\varepsilon_0A}$; a $Q$ costante $F=-\dfrac{\partial U}{\partial x}=-\dfrac{Q^2}{2\varepsilon_0A}$ (attrattiva). A potenziale costante si userebbe $F=+\partial U/\partial x$, perché lavora anche il generatore: il risultato è lo stesso.'
+        en: '$U=\dfrac{Q^2}{2C}=\dfrac{Q^2x}{2\varepsilon_0A}$; at constant $Q$, $F=-\dfrac{\partial U}{\partial x}=-\dfrac{Q^2}{2\varepsilon_0A}$ (attractive). At constant potential one would use $F=+\partial U/\partial x$, because the source also does work: same result.'
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$|F|=\dfrac{(10^{-8})^2}{2\cdot8{,}854\cdot10^{-12}\cdot0{,}01}\approx5{,}647\cdot10^{-4}\,\mathrm N$, cioè pressione elettrostatica $\sigma^2/2\varepsilon_0$ per l''area.'
+        en: '$|F|=\dfrac{(10^{-8})^2}{2\cdot8.854\cdot10^{-12}\cdot0.01}\approx5.647\cdot10^{-4}\,\mathrm N$, i.e. the electrostatic pressure $\sigma^2/2\varepsilon_0$ times the area.'
+  answer:
+    - label:
+        it: '$|F|$'
+        en: '$|F|$'
+      value: 0.0005647045
+      unit: 'N'
+  origin: originale
+- id: r2-f2-cc-2
+  topic: conduttori-capacita
+  objectives:
+    - conduttori-capacita.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Una carica $q=1\,\mathrm{nC}$ si trova a $10\,\mathrm{cm}$ da un piano conduttore indefinito collegato a terra. Con il metodo delle cariche immagine calcola la forza sulla carica.'
+    en: 'A charge $q=1\,\mathrm{nC}$ is $10\,\mathrm{cm}$ from an infinite grounded conducting plane. Using the method of images find the force on the charge.'
+  figure:
+    diagram:
+      {
+        'type': 'point-charges',
+        'params':
+          {
+            'charges':
+              [{ 'x': 0, 'y': 1, 'q': 1, 'label': 'q' }, { 'x': 0, 'y': -1, 'q': -1, 'label': '−q' }],
+            'lines': 8,
+            'equipotentials': 3,
+          },
+      }
+  steps:
+    - title:
+        it: 'Carica immagine'
+        en: 'Image charge'
+      body:
+        it: "Una carica $-q$ simmetrica rispetto al piano rende nullo il potenziale sul piano; per l'unicità della soluzione il campo nella regione della carica è quello delle due cariche."
+        en: 'A charge $-q$ symmetric with respect to the plane makes the potential on the plane zero; by uniqueness the field in the region of the charge is that of the two charges.'
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$F=\dfrac{1}{4\pi\varepsilon_0}\dfrac{q^2}{(2d)^2}=8{,}99\cdot10^9\cdot\dfrac{10^{-18}}{0{,}04}\approx2{,}247\cdot10^{-7}\,\mathrm N$, attrattiva verso il piano.'
+        en: '$F=\dfrac{1}{4\pi\varepsilon_0}\dfrac{q^2}{(2d)^2}=8.99\cdot10^9\cdot\dfrac{10^{-18}}{0.04}\approx2.247\cdot10^{-7}\,\mathrm N$, attractive towards the plane.'
+  answer:
+    - label:
+        it: '$F$'
+        en: '$F$'
+      value: 2.246888e-07
+      unit: 'N'
+  origin: originale

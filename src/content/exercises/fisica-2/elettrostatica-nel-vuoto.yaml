@@ -246,3 +246,91 @@
   kind: generated
   generator: fisica-2/b1-lavoro-anello-asse
   origin: tipologia-appello
+- id: r2-f2-ev-1
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.5
+  difficulty: 3
+  kind: static
+  statement:
+    it: 'Una sfera con densità di carica uniforme $\rho=1\,\mu\mathrm{C/m^3}$ contiene una cavità sferica vuota il cui centro dista $d=2\,\mathrm{cm}$ dal centro della sfera. Calcola il modulo del campo elettrico dentro la cavità.'
+    en: 'A sphere with uniform charge density $\rho=1\,\mu\mathrm{C/m^3}$ contains an empty spherical cavity whose centre is $d=2\,\mathrm{cm}$ from the centre of the sphere. Find the magnitude of the electric field inside the cavity.'
+  figure:
+    diagram:
+      {
+        'type': 'scene',
+        'params':
+          {
+            'description':
+              {
+                'it': 'Sfera carica uniformemente con una cavità sferica spostata di d dal centro.',
+                'en': 'Uniformly charged sphere with a spherical cavity displaced by d from the centre.',
+              },
+            'items':
+              [
+                {
+                  'kind': 'disc',
+                  'at': [0, 0],
+                  'r': 3,
+                  'style': 'sphere',
+                  'hole': { 'at': [1.2, 0], 'r': 1 },
+                },
+                { 'kind': 'dot', 'at': [0, 0], 'label': 'O', 'labelAngle': 225 },
+                { 'kind': 'dim', 'from': [0, -0.4], 'to': [1.2, -0.4], 'label': 'd' },
+              ],
+          },
+      }
+  steps:
+    - title:
+        it: 'Sovrapposizione'
+        en: 'Superposition'
+      body:
+        it: 'La cavità equivale alla sfera piena ($+\rho$) più una sfera di densità $-\rho$ al posto della cavità. Dentro una sfera uniforme $\vec E=\dfrac{\rho}{3\varepsilon_0}\vec r$, quindi nella cavità $\vec E=\dfrac{\rho}{3\varepsilon_0}(\vec r-\vec r\,'')=\dfrac{\rho}{3\varepsilon_0}\vec d$: uniforme.'
+        en: 'The cavity is equivalent to the full sphere ($+\rho$) plus a sphere of density $-\rho$ in place of the cavity. Inside a uniform sphere $\vec E=\dfrac{\rho}{3\varepsilon_0}\vec r$, so in the cavity $\vec E=\dfrac{\rho}{3\varepsilon_0}(\vec r-\vec r\,'')=\dfrac{\rho}{3\varepsilon_0}\vec d$: uniform.'
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$E=\dfrac{10^{-6}\cdot0{,}02}{3\cdot8{,}854\cdot10^{-12}}\approx753\,\mathrm{V/m}$, diretto come $\vec d$ (dal centro della sfera a quello della cavità).'
+        en: '$E=\dfrac{10^{-6}\cdot0.02}{3\cdot8.854\cdot10^{-12}}\approx753\,\mathrm{V/m}$, directed along $\vec d$ (from the centre of the sphere to that of the cavity).'
+  answer:
+    - label:
+        it: '$E$'
+        en: '$E$'
+      value: 752.9394
+      unit: 'V/m'
+  origin: originale
+- id: r2-f2-ev-2
+  topic: elettrostatica-nel-vuoto
+  objectives:
+    - elettrostatica-nel-vuoto.7
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Perché il campo elettrostatico è conservativo, e quale equazione lega il potenziale alla densità di carica?'
+    en: 'Why is the electrostatic field conservative, and which equation links the potential to the charge density?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Il campo di una carica puntiforme è radiale con modulo dipendente solo da $r$: la sua circuitazione è nulla e, per sovrapposizione, lo è per ogni distribuzione: $\nabla\times\vec E=0$, quindi $\vec E=-\nabla V$. Con $\nabla\cdot\vec E=\rho/\varepsilon_0$ si ottiene l''equazione di Poisson $\nabla^2V=-\rho/\varepsilon_0$ (Laplace dove $\rho=0$).'
+        en: 'The field of a point charge is radial with magnitude depending only on $r$: its circulation is zero and, by superposition, so is that of any distribution: $\nabla\times\vec E=0$, hence $\vec E=-\nabla V$. With $\nabla\cdot\vec E=\rho/\varepsilon_0$ one gets Poisson''s equation $\nabla^2V=-\rho/\varepsilon_0$ (Laplace where $\rho=0$).'
+  choices:
+    - text:
+        it: 'È sovrapposizione di campi centrali ($\nabla\times\vec E=0$); $\nabla^2V=-\rho/\varepsilon_0$'
+        en: 'It is a superposition of central fields ($\nabla\times\vec E=0$); $\nabla^2V=-\rho/\varepsilon_0$'
+      correct: true
+    - text:
+        it: 'Perché $\nabla\cdot\vec E=0$; $\nabla^2V=\rho/\varepsilon_0$'
+        en: 'Because $\nabla\cdot\vec E=0$; $\nabla^2V=\rho/\varepsilon_0$'
+      correct: false
+    - text:
+        it: 'Perché il campo è uniforme; $\nabla V=\rho/\varepsilon_0$'
+        en: 'Because the field is uniform; $\nabla V=\rho/\varepsilon_0$'
+      correct: false
+    - text:
+        it: 'Perché le cariche sono ferme; $\nabla^2V=0$ ovunque'
+        en: 'Because the charges are at rest; $\nabla^2V=0$ everywhere'
+      correct: false
+  origin: originale

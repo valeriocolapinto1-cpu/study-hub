@@ -21,8 +21,8 @@ const ROOT = join(process.cwd(), 'src/content');
 const MAX_UNCOVERED: Record<string, number> = {
   'teoria-circuiti': 0,
   'fisica-1': 0,
-  'fisica-2': 18,
-  'fondamenti-informatica': 4,
+  'fisica-2': 0,
+  'fondamenti-informatica': 0,
 };
 
 const yamlFiles = (dir: string) =>

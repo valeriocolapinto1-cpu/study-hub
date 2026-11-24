@@ -135,3 +135,32 @@
         it: espelle il campo più intensamente
         en: expels the field more strongly
       correct: false
+- id: r2-f2-fm-1
+  topic: fisica-moderna
+  objectives:
+    - fisica-moderna.2
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un muone ha vita media propria $\tau_0=2{,}2\,\mu\mathrm s$ e viaggia a $v=0{,}99\,c$ rispetto alla Terra. Quanto vale la vita media misurata a terra?'
+    en: 'A muon has proper mean lifetime $\tau_0=2.2\,\mu\mathrm s$ and moves at $v=0.99\,c$ relative to the Earth. What is the mean lifetime measured on the ground?'
+  steps:
+    - title:
+        it: 'Postulati'
+        en: 'Postulates'
+      body:
+        it: 'Le leggi della fisica sono le stesse in tutti i riferimenti inerziali e la velocità della luce è $c$ per tutti. Ne seguono le trasformazioni di Lorentz $t''=\gamma(t-vx/c^2)$, $x''=\gamma(x-vt)$ con $\gamma=1/\sqrt{1-v^2/c^2}$.'
+        en: 'The laws of physics are the same in all inertial frames and the speed of light is $c$ for all. Lorentz transformations follow: $t''=\gamma(t-vx/c^2)$, $x''=\gamma(x-vt)$ with $\gamma=1/\sqrt{1-v^2/c^2}$.'
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: '$\gamma=1/\sqrt{1-0{,}99^2}\approx7{,}09$; dilatazione dei tempi: $\tau=\gamma\tau_0\approx15{,}6\,\mu\mathrm s$.'
+        en: '$\gamma=1/\sqrt{1-0.99^2}\approx7.09$; time dilation: $\tau=\gamma\tau_0\approx15.6\,\mu\mathrm s$.'
+  answer:
+    - label:
+        it: '$\tau$'
+        en: '$\tau$'
+      value: 15.59539
+      unit: 'μs'
+  origin: originale

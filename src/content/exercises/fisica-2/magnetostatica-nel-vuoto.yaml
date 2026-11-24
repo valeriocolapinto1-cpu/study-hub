@@ -383,3 +383,37 @@
   kind: generated
   generator: fisica-2/b3-spira-semicerchio
   origin: tipologia-appello
+- id: r2-f2-mv-1
+  topic: magnetostatica-nel-vuoto
+  objectives:
+    - magnetostatica-nel-vuoto.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Quale affermazione sul potenziale vettore $\vec A$ è corretta?'
+    en: 'Which statement about the vector potential $\vec A$ is correct?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Da $\nabla\cdot\vec B=0$ si può scrivere $\vec B=\nabla\times\vec A$. $\vec A$ è definito a meno di un gradiente ($\vec A+\nabla f$ dà lo stesso $\vec B$), quindi si può imporre $\nabla\cdot\vec A=0$; allora Ampère diventa $\nabla^2\vec A=-\mu_0\vec J$, analoga a Poisson.'
+        en: 'From $\nabla\cdot\vec B=0$ one can write $\vec B=\nabla\times\vec A$. $\vec A$ is defined up to a gradient ($\vec A+\nabla f$ gives the same $\vec B$), so one can impose $\nabla\cdot\vec A=0$; then Ampère becomes $\nabla^2\vec A=-\mu_0\vec J$, analogous to Poisson.'
+  choices:
+    - text:
+        it: '$\vec B=\nabla\times\vec A$, $\vec A$ è definito a meno di un gradiente e con $\nabla\cdot\vec A=0$ vale $\nabla^2\vec A=-\mu_0\vec J$'
+        en: '$\vec B=\nabla\times\vec A$, $\vec A$ is defined up to a gradient and with $\nabla\cdot\vec A=0$ one has $\nabla^2\vec A=-\mu_0\vec J$'
+      correct: true
+    - text:
+        it: '$\vec B=-\nabla\vec A$ ed è unico'
+        en: '$\vec B=-\nabla\vec A$ and it is unique'
+      correct: false
+    - text:
+        it: '$\vec A$ esiste solo se $\nabla\times\vec B=0$'
+        en: '$\vec A$ exists only if $\nabla\times\vec B=0$'
+      correct: false
+    - text:
+        it: '$\nabla\times\vec A=\mu_0\vec J$'
+        en: '$\nabla\times\vec A=\mu_0\vec J$'
+      correct: false
+  origin: originale

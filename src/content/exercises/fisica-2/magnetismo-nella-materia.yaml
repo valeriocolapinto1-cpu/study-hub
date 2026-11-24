@@ -114,3 +114,62 @@
   kind: generated
   generator: fisica-2/b3-toroide-traferro
   origin: tipologia-appello
+- id: r2-f2-mm-1
+  topic: magnetismo-nella-materia
+  objectives:
+    - magnetismo-nella-materia.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Un lungo cilindro è magnetizzato uniformemente lungo l''asse con $M=10^5\,\mathrm{A/m}$. Calcola la densità lineare delle correnti amperiane sulla superficie laterale e il campo $B$ all''interno, lontano dalle basi.'
+    en: 'A long cylinder is uniformly magnetised along its axis with $M=10^5\,\mathrm{A/m}$. Find the linear density of the amperian currents on the lateral surface and the field $B$ inside, far from the ends.'
+  figure:
+    diagram: { 'type': 'magnetic-field', 'params': { 'source': 'solenoid', 'fieldLines': true } }
+  steps:
+    - title:
+        it: 'Svolgimento'
+        en: 'Solution'
+      body:
+        it: 'Correnti amperiane: in volume $\vec J_m=\nabla\times\vec M=0$ (uniforme), in superficie $\vec K_m=\vec M\times\hat n$, modulo $10^5\,\mathrm{A/m}$, che gira attorno al cilindro come in un solenoide. Quindi dentro $B=\mu_0K_m=\mu_0M\approx0{,}126\,\mathrm T$.'
+        en: 'Amperian currents: in the volume $\vec J_m=\nabla\times\vec M=0$ (uniform), on the surface $\vec K_m=\vec M\times\hat n$, magnitude $10^5\,\mathrm{A/m}$, circulating around the cylinder as in a solenoid. Hence inside $B=\mu_0K_m=\mu_0M\approx0.126\,\mathrm T$.'
+  answer:
+    - label:
+        it: '$B$'
+        en: '$B$'
+      value: 0.1256637
+      unit: 'T'
+  origin: originale
+- id: r2-f2-mm-2
+  topic: magnetismo-nella-materia
+  objectives:
+    - magnetismo-nella-materia.4
+  difficulty: 1
+  kind: static
+  statement:
+    it: "Nel ciclo d'isteresi di un ferromagnete, che cosa rappresentano campo coercitivo, magnetizzazione residua e area del ciclo?"
+    en: 'In the hysteresis loop of a ferromagnet, what do the coercive field, remanent magnetisation and loop area represent?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: "Il materiale è diviso in domini di Weiss, già magnetizzati; il campo esterno sposta le pareti e ruota i domini in modo in parte irreversibile. Tolto $H$ resta $M_r$ (residua); per annullare $M$ serve il campo coercitivo $H_c$; l'area del ciclo è l'energia dissipata per unità di volume in un ciclo."
+        en: 'The material is split into Weiss domains, already magnetised; the external field moves the walls and rotates the domains in a partly irreversible way. Removing $H$ leaves $M_r$ (remanent); cancelling $M$ needs the coercive field $H_c$; the loop area is the energy dissipated per unit volume in one cycle.'
+  choices:
+    - text:
+        it: "$H_c$ annulla $M$, $M_r$ resta a campo nullo, l'area è l'energia dissipata per ciclo e per volume"
+        en: '$H_c$ cancels $M$, $M_r$ remains at zero field, the area is the energy dissipated per cycle and per volume'
+      correct: true
+    - text:
+        it: "$H_c$ è il campo di saturazione, l'area è nulla"
+        en: '$H_c$ is the saturation field, the area is zero'
+      correct: false
+    - text:
+        it: '$M_r$ è la magnetizzazione a saturazione'
+        en: '$M_r$ is the saturation magnetisation'
+      correct: false
+    - text:
+        it: "L'area è l'energia immagazzinata, restituita a fine ciclo"
+        en: 'The area is stored energy, returned at the end of the cycle'
+      correct: false
+  origin: originale

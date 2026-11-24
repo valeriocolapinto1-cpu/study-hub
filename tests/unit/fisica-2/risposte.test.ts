@@ -1,6 +1,6 @@
 /**
  * Fisica Generale II: ricalcolo indipendente delle risposte numeriche degli esercizi statici
- * (quiz del sito originale) a partire dai dati dell'enunciato e dalle formule chiuse.
+ * (quiz del sito originale e quelli aggiunti in R2) a partire dai dati dell'enunciato e dalle formule chiuse.
  */
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -53,6 +53,17 @@ const EXPECTED: Record<string, number> = {
   'quiz-q515': (C0 / 1e9) * 100, // cm
   'quiz-q704': Math.hypot(0.3, 0.4),
   'quiz-q705': Math.hypot(1, 2), // %
+  // Revisione 2, R2
+  'r2-f2-ev-1': (1e-6 * 0.02) / (3 * EPS0),
+  'r2-f2-cc-1': 1e-8 ** 2 / (2 * EPS0 * 0.01),
+  'r2-f2-cc-2': (K * 1e-18) / 0.2 ** 2,
+  'r2-f2-di-1': 4 * 10,
+  'r2-f2-di-3': EPS0 * 2 * 1e5 * 1e6,
+  'r2-f2-cs-1': 1.7e-8 * 4e6 ** 2 * 2 * 1e-6,
+  'r2-f2-mm-1': MU0 * 1e5,
+  'r2-f2-rm-1': Math.hypot((1000 * Math.cos(Math.PI / 6)) / 4, 1000 * Math.sin(Math.PI / 6)),
+  'r2-f2-fm-1': 2.2 / Math.sqrt(1 - 0.99 ** 2),
+  'r2-f2-lab-1': 6.9 / Math.log(2),
 };
 
 describe('fisica-2: risposte numeriche degli esercizi statici', () => {

@@ -246,3 +246,71 @@
   kind: generated
   generator: fisica-2/b5-onda-piana
   origin: tipologia-appello
+- id: r2-f2-oe-1
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.1
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'Come si ricava l''equazione delle onde per $\vec E$ dalle equazioni di Maxwell nel vuoto?'
+    en: 'How is the wave equation for $\vec E$ derived from Maxwell''s equations in vacuum?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'Si prende il rotore di $\nabla\times\vec E=-\partial\vec B/\partial t$ e si usa Ampère-Maxwell $\nabla\times\vec B=\mu_0\varepsilon_0\partial\vec E/\partial t$; con $\nabla\times\nabla\times\vec E=\nabla(\nabla\cdot\vec E)-\nabla^2\vec E$ e $\nabla\cdot\vec E=0$: $\nabla^2\vec E=\mu_0\varepsilon_0\,\partial^2\vec E/\partial t^2$, onde a velocità $c=1/\sqrt{\mu_0\varepsilon_0}$.'
+        en: 'Take the curl of $\nabla\times\vec E=-\partial\vec B/\partial t$ and use Ampère-Maxwell $\nabla\times\vec B=\mu_0\varepsilon_0\partial\vec E/\partial t$; with $\nabla\times\nabla\times\vec E=\nabla(\nabla\cdot\vec E)-\nabla^2\vec E$ and $\nabla\cdot\vec E=0$: $\nabla^2\vec E=\mu_0\varepsilon_0\,\partial^2\vec E/\partial t^2$, waves at speed $c=1/\sqrt{\mu_0\varepsilon_0}$.'
+  choices:
+    - text:
+        it: 'Rotore della legge di Faraday, sostituzione di Ampère-Maxwell e $\nabla\cdot\vec E=0$: $c=1/\sqrt{\mu_0\varepsilon_0}$'
+        en: 'Curl of Faraday''s law, substitution of Ampère-Maxwell and $\nabla\cdot\vec E=0$: $c=1/\sqrt{\mu_0\varepsilon_0}$'
+      correct: true
+    - text:
+        it: 'Divergenza della legge di Gauss: $c=\mu_0\varepsilon_0$'
+        en: 'Divergence of Gauss''s law: $c=\mu_0\varepsilon_0$'
+      correct: false
+    - text:
+        it: 'Basta Ampère senza corrente di spostamento'
+        en: 'Ampère without displacement current is enough'
+      correct: false
+    - text:
+        it: 'Si deriva nel tempo la legge di Coulomb'
+        en: "Differentiate Coulomb's law with respect to time"
+      correct: false
+  origin: originale
+- id: r2-f2-oe-2
+  topic: onde-elettromagnetiche
+  objectives:
+    - onde-elettromagnetiche.5
+  difficulty: 2
+  kind: static
+  statement:
+    it: 'A che cosa serve la gauge di Lorentz $\nabla\cdot\vec A+\dfrac{1}{c^2}\dfrac{\partial\varphi}{\partial t}=0$ per i potenziali elettrodinamici ($\vec E=-\nabla\varphi-\partial\vec A/\partial t$, $\vec B=\nabla\times\vec A$)?'
+    en: 'What is the Lorenz gauge $\nabla\cdot\vec A+\dfrac{1}{c^2}\dfrac{\partial\varphi}{\partial t}=0$ for in electrodynamic potentials ($\vec E=-\nabla\varphi-\partial\vec A/\partial t$, $\vec B=\nabla\times\vec A$)?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'I potenziali sono definiti a meno di una trasformazione di gauge. Scegliendo la gauge di Lorentz le equazioni per $\varphi$ e $\vec A$ si separano in due equazioni delle onde con sorgenti: $\Box\varphi=-\rho/\varepsilon_0$, $\Box\vec A=-\mu_0\vec J$, risolte dai potenziali ritardati.'
+        en: 'The potentials are defined up to a gauge transformation. Choosing the Lorenz gauge the equations for $\varphi$ and $\vec A$ decouple into two wave equations with sources: $\Box\varphi=-\rho/\varepsilon_0$, $\Box\vec A=-\mu_0\vec J$, solved by the retarded potentials.'
+  choices:
+    - text:
+        it: 'Disaccoppia le equazioni: $\varphi$ e $\vec A$ soddisfano equazioni delle onde con sorgenti $\rho$ e $\vec J$'
+        en: 'It decouples the equations: $\varphi$ and $\vec A$ satisfy wave equations with sources $\rho$ and $\vec J$'
+      correct: true
+    - text:
+        it: 'Rende $\vec B$ nullo'
+        en: 'It makes $\vec B$ zero'
+      correct: false
+    - text:
+        it: 'Impone che le cariche siano ferme'
+        en: 'It forces the charges to be at rest'
+      correct: false
+    - text:
+        it: 'Cambia i campi $\vec E$ e $\vec B$ misurabili'
+        en: 'It changes the measurable fields $\vec E$ and $\vec B$'
+      correct: false
+  origin: originale

@@ -65,6 +65,18 @@ const SENZA_FIGURA: Record<string, string> = {
   'quiz-q704': 'propagazione delle incertezze',
   'quiz-q705': 'propagazione delle incertezze',
   'quiz-q706': 'compatibilità di misure',
+  // Revisione 2, R2
+  'r2-f2-ev-2': 'proprietà generale del campo, nessuna configurazione',
+  'r2-f2-di-2': 'meccanismi microscopici, nessuna configurazione',
+  'r2-f2-cs-1': 'filo di lunghezza e sezione date: la figura non aggiunge nulla',
+  'r2-f2-mv-1': 'definizione formale, nessuna configurazione',
+  'r2-f2-mm-2': 'il grafico del ciclo sarebbe la risposta',
+  'r2-f2-oe-1': 'derivazione formale, nessuna configurazione',
+  'r2-f2-oe-2': 'scelta formale, nessuna configurazione',
+  'r2-f2-rm-1': 'condizioni di raccordo dei campi: la figura dei raggi del kit sarebbe fuorviante',
+  'r2-f2-rm-2': 'fenomeno descrittivo',
+  'r2-f2-rm-3': 'principio generale, nessuna configurazione',
+  'r2-f2-fm-1': 'calcolo di dilatazione dei tempi, nessuna geometria',
 };
 
 function checkFigure(fig: ExerciseFigure, where: string, lang: 'it' | 'en' = 'it'): void {

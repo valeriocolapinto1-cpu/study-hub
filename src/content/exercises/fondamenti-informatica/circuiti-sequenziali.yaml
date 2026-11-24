@@ -1145,3 +1145,37 @@
       accept:
         - Next state
   origin: originale
+- id: r2-fi-cs-1
+  topic: circuiti-sequenziali
+  objectives:
+    - circuiti-sequenziali.1
+  difficulty: 1
+  kind: static
+  statement:
+    it: 'Che cosa distingue una rete sequenziale da una combinatoria?'
+    en: 'What distinguishes a sequential network from a combinational one?'
+  steps:
+    - title:
+        it: 'Spiegazione'
+        en: 'Explanation'
+      body:
+        it: 'In una rete combinatoria le uscite dipendono solo dagli ingressi attuali. In una sequenziale una retroazione (o un elemento di memoria) conserva uno stato, quindi le uscite dipendono anche dalla storia degli ingressi: è così che un latch o un flip-flop memorizza un bit.'
+        en: 'In a combinational network the outputs depend only on the current inputs. In a sequential one a feedback loop (or a memory element) keeps a state, so the outputs also depend on the history of the inputs: this is how a latch or a flip-flop stores a bit.'
+  choices:
+    - text:
+        it: 'Ha uno stato, mantenuto da una retroazione: le uscite dipendono anche dagli ingressi passati'
+        en: 'It has a state, kept by feedback: outputs also depend on past inputs'
+      correct: true
+    - text:
+        it: 'Usa più porte logiche'
+        en: 'It uses more logic gates'
+      correct: false
+    - text:
+        it: 'Non ha bisogno di alimentazione per ricordare'
+        en: 'It needs no power to remember'
+      correct: false
+    - text:
+        it: 'Le uscite dipendono solo dagli ingressi attuali'
+        en: 'Outputs depend only on the current inputs'
+      correct: false
+  origin: originale
