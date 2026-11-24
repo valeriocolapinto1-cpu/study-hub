@@ -702,13 +702,30 @@ meter {
 .sh-topic {
   border-block-end: 1px solid var(--border);
 }
-.sh-topic summary {
+.sh-topic summary,
+.sh-topics__head {
   display: grid;
-  grid-template-columns: 1fr auto minmax(5rem, 9rem);
+  grid-template-columns: 1fr auto minmax(5rem, 9rem) 12rem;
   align-items: center;
   gap: var(--space-xs);
   min-block-size: 2.75rem;
   cursor: pointer;
+}
+.sh-topics__head {
+  grid-template-columns: 1fr 12rem;
+  margin: var(--space-s) 0 0;
+  font: 600 var(--step--2) / 1.2 var(--font-sans);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.sh-theory {
+  justify-self: start;
+  color: var(--text-muted);
+}
+.sh-theory--done {
+  color: var(--text);
+  border-color: var(--success);
 }
 .sh-objectives li {
   display: flex;
@@ -950,8 +967,12 @@ div[data-note-id]:has(> p[data-note-id]:only-child) > .sh-note-btn--corner:not(.
   .sh-topic summary {
     grid-template-columns: 1fr auto;
   }
-  .sh-topic summary meter {
+  .sh-topic summary meter,
+  .sh-topic summary .sh-theory {
     grid-column: 1 / -1;
+  }
+  .sh-topics__head {
+    display: none;
   }
 }
 

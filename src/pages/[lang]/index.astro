@@ -117,7 +117,7 @@ const metaLine = (id: string) => {
       for (let i = 0; i < localStorage.length; i++) {
         const k = localStorage.key(i) || '';
         if (
-          /^sh:v1:[a-z0-9-]+:(progress|srs|notes|exam)$/.test(k) ||
+          /^sh:v1:[a-z0-9-]+:(progress|srs|notes|exam|studied)$/.test(k) ||
           k === 'sh:v1:global:examDates' ||
           k === 'sh:v1:global:lastStudy'
         ) {

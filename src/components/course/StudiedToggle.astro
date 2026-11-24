@@ -1,0 +1,50 @@
+---
+/**
+ * «Segna come studiato» in fondo a una pagina di teoria (R13): HTML statico, il comportamento è in
+ * src/scripts/studied.ts (caricato da site.ts solo nelle pagine con `data-studied-*`). Dopo circa
+ * l'80 % della lettura compare un invito discreto; niente segnatura automatica.
+ */
+import { t, type Lang } from '../../i18n';
+
+interface Props {
+  lang: Lang;
+  topicId: string;
+}
+const { lang, topicId } = Astro.props;
+---
+
+<section class="studied-box" aria-labelledby="studied-box-h" data-pagefind-ignore>
+  <h2 id="studied-box-h" class="visually-hidden">
+    {t(lang, 'studied.heading')}
+  </h2>
+  <p class="studied-box__state" data-studied-state>
+    {t(lang, 'studied.notYet')}
+  </p>
+  <button
+    type="button"
+    class="btn studied-box__btn"
+    data-studied-toggle={topicId}
+    data-label-on={t(lang, 'studied.undo')}
+    data-label-off={t(lang, 'studied.mark')}
+    data-state-on={t(lang, 'studied.state')}
+    data-state-off={t(lang, 'studied.notYet')}
+    data-said-on={t(lang, 'studied.marked')}
+    data-said-off={t(lang, 'studied.unmarked')}
+  >
+    {t(lang, 'studied.mark')}
+  </button>
+  <p class="visually-hidden" role="status" data-studied-status></p>
+</section>
+<div class="studied-hint" data-studied-hint hidden data-pagefind-ignore>
+  <button type="button" class="btn btn--sm btn--primary" data-studied-hint-mark>
+    {t(lang, 'studied.hint')}
+  </button>
+  <button
+    type="button"
+    class="icon-btn icon-btn--bare studied-hint__close"
+    data-studied-hint-close
+    aria-label={t(lang, 'studied.hintClose')}
+  >
+    ×
+  </button>
+</div>

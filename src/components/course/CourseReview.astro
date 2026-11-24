@@ -18,7 +18,14 @@ const { lang, courseId } = Astro.props;
 // Solo le voci delle carte: fronte e retro arrivano da dati/<argomento>.json quando servono.
 const data = await getCourseIndex(courseId, lang);
 const decks = [
-  { courseId, title: data.title, dataPath: data.paths.data, cards: data.cards, examDates: data.examDates },
+  {
+    courseId,
+    title: data.title,
+    dataPath: data.paths.data,
+    cards: data.cards,
+    examDates: data.examDates,
+    theoryPath: data.paths.theory,
+  },
 ];
 ---
 
