@@ -18,6 +18,8 @@ import Diagram from '../../../../../figures/Diagram.astro';
 import DiagramLive from '../../../../../figures/DiagramLive.astro';
 import Notes from '../../../../../components/course/Notes.astro';
 import StudiedToggle from '../../../../../components/course/StudiedToggle.astro';
+import Tutor from '../../../../../components/course/Tutor.astro';
+import TutorButton from '../../../../../components/course/TutorButton.astro';
 import Icon from '../../../../../components/Icon.astro';
 import InlineTex from '../../../../../components/InlineTex.astro';
 import { theoryOutline } from '../../../../../lib/theory-outline';
@@ -128,4 +130,6 @@ const link = (x: TopicData | undefined) =>
     {t(lang, 'print.version')}
   </a>
   <Notes lang={lang} scope={course.id} />
+  <TutorButton lang={lang} kind="theory" float />
+  <Tutor lang={lang} courseId={course.id} />
 </CourseLayout>

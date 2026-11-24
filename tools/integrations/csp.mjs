@@ -8,7 +8,10 @@
  * - `style-src 'unsafe-inline'`: KaTeX e i simulatori scrivono attributi `style` nell'HTML, che con
  *   un hash nella direttiva verrebbero bloccati; gli stili non eseguono codice.
  * - Domini esterni solo dove servono: Turnstile (script e iframe) e Google Apps Script (invio)
- *   nella pagina Contribuisci (src/islands/contribute/turnstile.ts, src/lib/contribute/upload.ts).
+ *   nella pagina Contribuisci (src/islands/contribute/turnstile.ts, src/lib/contribute/upload.ts);
+ *   il Worker del tutor AI (e Turnstile, se ha una sitekey) solo nelle pagine che contengono la sua
+ *   configurazione (`data-tutor-endpoint`, src/components/course/Tutor.astro), cioè solo quando
+ *   `SITE.tutor.endpoint` è impostato: altrimenti nessuna pagina cambia.
  *
  * Il meta va prima di ogni script: subito dopo `<meta charset>` (o in testa a `<head>`).
  * In sviluppo (`astro dev`) non c'è CSP: si verifica sulla build (tests/content/csp.test.ts, e2e).
@@ -49,6 +52,33 @@ export const PAGE_POLICIES = [
   },
 ];
 
+/**
+ * Aggiunte decise dal contenuto della pagina: il tutor AI (R12). L'origine del Worker viene
+ * dall'attributo `data-tutor-endpoint` della configurazione; deve essere https (o http su localhost).
+ */
+export const HTML_POLICIES = [
+  {
+    match: /<script\b[^>]*\bdata-tutor-endpoint="([^"]+)"[^>]*>/i,
+    add: (m) => {
+      const origin = tutorOrigin(m[1]);
+      const turnstile = /\bdata-tutor-turnstile\b/i.test(m[0]);
+      return {
+        'connect-src': [origin],
+        ...(turnstile ? { 'script-src': [TURNSTILE_ORIGIN], 'frame-src': [TURNSTILE_ORIGIN] } : {}),
+      };
+    },
+  },
+];
+
+/** Origine del Worker, validata (niente sorgenti CSP arbitrarie da un attributo). */
+export function tutorOrigin(raw) {
+  const url = new URL(raw.replaceAll('&amp;', '&'));
+  const local = url.hostname === 'localhost' || url.hostname === '127.0.0.1';
+  if (url.protocol !== 'https:' && !(local && url.protocol === 'http:'))
+    throw new Error(`CSP: origine del tutor non sicura: ${raw}`);
+  return url.origin;
+}
+
 /** Tipi di `<script>` eseguiti dal browser (gli altri, come JSON e JSON-LD, sono dati). */
 const EXECUTABLE = /^(?:|text\/javascript|application\/javascript|module|speculationrules)$/i;
 
@@ -68,14 +98,18 @@ export function inlineScripts(html) {
 export const sha256 = (text) => `'sha256-${createHash('sha256').update(text, 'utf8').digest('base64')}'`;
 
 /** Politica (testo del meta) di una pagina, dato il suo percorso e i suoi script inline. */
-export function policyFor(rel, scripts) {
+export function policyFor(rel, scripts, html = '') {
   const policy = Object.fromEntries(Object.entries(BASE_POLICY).map(([k, v]) => [k, [...v]]));
-  for (const page of PAGE_POLICIES) {
-    if (!page.test.test(rel)) continue;
-    for (const [directive, sources] of Object.entries(page.add)) {
+  const extend = (add) => {
+    for (const [directive, sources] of Object.entries(add)) {
       const list = (policy[directive] ?? []).filter((s) => s !== "'none'");
       policy[directive] = [...new Set([...list, ...sources])];
     }
+  };
+  for (const page of PAGE_POLICIES) if (page.test.test(rel)) extend(page.add);
+  for (const rule of HTML_POLICIES) {
+    const m = rule.match.exec(html);
+    if (m) extend(rule.add(m));
   }
   policy['script-src'] = [...new Set([...policy['script-src'], ...scripts.map(sha256)])];
   return Object.entries(policy)
@@ -89,7 +123,7 @@ const META_RE = /<meta\s+http-equiv="content-security-policy"[^>]*>/i;
 /** Aggiunge (o sostituisce) il meta della CSP subito dopo `<meta charset>`. */
 export function injectCsp(html, rel) {
   const clean = html.replace(META_RE, '');
-  const meta = `<meta http-equiv="Content-Security-Policy" content="${escapeAttr(policyFor(rel, inlineScripts(clean)))}">`;
+  const meta = `<meta http-equiv="Content-Security-Policy" content="${escapeAttr(policyFor(rel, inlineScripts(clean), clean))}">`;
   const charset = /<meta\s+charset=["']?[\w-]+["']?\s*\/?>/i.exec(clean);
   if (charset) {
     const at = charset.index + charset[0].length;

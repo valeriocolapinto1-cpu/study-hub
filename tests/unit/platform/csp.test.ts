@@ -10,6 +10,7 @@ import {
   inlineScripts,
   policyFor,
   sha256,
+  tutorOrigin,
 } from '../../../tools/integrations/csp.mjs';
 
 const directives = (policy: string) =>
@@ -57,6 +58,25 @@ describe('CSP: politica', () => {
     const other = policyFor('it/chi-sono/index.html', []);
     expect(other).not.toContain('cloudflare');
     expect(other).not.toContain('google');
+  });
+
+  it('tutor AI: connect-src al Worker solo nelle pagine con la sua configurazione', () => {
+    const cfg = (attrs: string) =>
+      `<script type="application/json" id="sh-tutor-config" data-tutor-endpoint="https://tutor.esempio.workers.dev"${attrs}>{}</script>`;
+    const d = directives(policyFor('it/anno-2/x/esercizi/a/index.html', [], cfg('')));
+    expect(d.get('connect-src')).toEqual(["'self'", 'https://tutor.esempio.workers.dev']);
+    expect(d.get('frame-src')).toEqual(["'none'"]);
+    const ts = directives(policyFor('it/anno-2/x/teoria/a/index.html', [], cfg(' data-tutor-turnstile')));
+    expect(ts.get('script-src')).toContain(TURNSTILE_ORIGIN);
+    expect(ts.get('frame-src')).toEqual([TURNSTILE_ORIGIN]);
+    // senza configurazione (endpoint vuoto) la politica non cambia
+    expect(policyFor('it/anno-2/x/teoria/a/index.html', [], '<p>teoria</p>')).toBe(
+      policyFor('it/anno-2/x/teoria/a/index.html', []),
+    );
+    expect(tutorOrigin('https://a.example/chat')).toBe('https://a.example');
+    expect(tutorOrigin('http://localhost:8787/chat')).toBe('http://localhost:8787');
+    expect(() => tutorOrigin('http://a.example')).toThrow();
+    expect(() => tutorOrigin("https://a.example' 'unsafe-inline")).toThrow();
   });
 
   it('non modifica la politica comune (copia per pagina)', () => {

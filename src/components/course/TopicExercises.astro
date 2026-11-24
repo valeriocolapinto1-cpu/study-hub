@@ -7,6 +7,8 @@ import 'katex/dist/katex.min.css';
 import ExercisePlayer from '../../islands/ExercisePlayer';
 import SectionHeader from './SectionHeader.astro';
 import Notes from './Notes.astro';
+import Tutor from './Tutor.astro';
+import TutorButton from './TutorButton.astro';
 import { getCourseData, lightExercise, withPregenerated } from '../../lib/course-data';
 import { hashString } from '../../engine/random';
 import { t, type Lang } from '../../i18n';
@@ -35,31 +37,42 @@ const exercises = await Promise.all(
 </SectionHeader>
 <div class="sh-exercise-stack">
   {exercises.map((exercise, i) => (
-    <ExercisePlayer
-      client:visible
-      lang={lang}
-      courseId={courseId}
-      exercise={lightExercise(exercise, data.paths)}
-      number={i + 1}
-      headingLevel={2}
-      seed={hashString(exercise.id)}
-    >
-      {/* enunciato e figura come slot: nell'HTML una volta sola, non duplicati nelle props */}
-      <div slot="statement" class="sh-exercise__statement prose" set:html={exercise.statementHtml ?? ''} />
-      {exercise.figureSvg && (
-        <figure
-          slot="figure"
-          class="sh-figure"
-          role="group"
-          aria-label={t(lang, 'exercise.figure')}
-          set:html={exercise.figureSvg}
-        />
-      )}
-      {exercise.choices?.map((c, j) => (
-        <span slot={`c${j}`} set:html={c.html} />
-      ))}
-      {exercise.answer.map((a, j) => a.labelHtml && <span slot={`l${j}`} set:html={a.labelHtml} />)}
-    </ExercisePlayer>
+    <>
+      <ExercisePlayer
+        client:visible
+        lang={lang}
+        courseId={courseId}
+        exercise={lightExercise(exercise, data.paths)}
+        number={i + 1}
+        headingLevel={2}
+        seed={hashString(exercise.id)}
+      >
+        {/* enunciato e figura come slot: nell'HTML una volta sola, non duplicati nelle props */}
+        <div slot="statement" class="sh-exercise__statement prose" set:html={exercise.statementHtml ?? ''} />
+        {exercise.figureSvg && (
+          <figure
+            slot="figure"
+            class="sh-figure"
+            role="group"
+            aria-label={t(lang, 'exercise.figure')}
+            set:html={exercise.figureSvg}
+          />
+        )}
+        {exercise.choices?.map((c, j) => (
+          <span slot={`c${j}`} set:html={c.html} />
+        ))}
+        {exercise.answer.map((a, j) => a.labelHtml && <span slot={`l${j}`} set:html={a.labelHtml} />)}
+      </ExercisePlayer>
+      <TutorButton
+        lang={lang}
+        kind="exercise"
+        target={exercise.id}
+        topic={topicId}
+        what={t(lang, 'exercise.title', { n: i + 1 })}
+        class="tutor-open--exercise"
+      />
+    </>
   ))}
 </div>
 <Notes lang={lang} scope={courseId} />
+<Tutor lang={lang} courseId={courseId} />

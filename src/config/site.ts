@@ -47,6 +47,15 @@ export const SITE = {
     endpoint: '',
     turnstileSiteKey: '',
   },
+  /**
+   * Tutor AI (R12): URL del Worker Cloudflare (tools/ai-worker, guida in docs/TUTOR-AI.md) e
+   * sitekey di Turnstile del widget del tutor. Con l'URL vuoto il pulsante «Chiedi al tutor» non
+   * compare e le pagine non cambiano di un byte.
+   */
+  tutor: {
+    endpoint: '',
+    turnstileSiteKey: '',
+  },
   themeColor: { light: '#f6f7fc', dark: '#05060c' },
 } as const;
 
@@ -59,3 +68,18 @@ export const LEGACY_REPOS = {
 } as const;
 
 export const isContributeConfigured = (): boolean => SITE.contribute.endpoint.length > 0;
+
+/**
+ * Configurazione effettiva del tutor. Nella build delle fixture (test end-to-end) punta a un
+ * dominio inesistente, intercettato dai test con un server SSE finto; la sitekey è quella di prova
+ * di Turnstile, il cui script è sostituito da uno finto nei test.
+ */
+export function tutorConfig(): { endpoint: string; turnstileSiteKey: string } | null {
+  if (import.meta.env.PUBLIC_STUDY_HUB_FIXTURES === '1')
+    return { endpoint: 'https://tutor.invalid/chat', turnstileSiteKey: '1x00000000000000000000AA' };
+  // Tipi larghi: con `as const` le stringhe vuote sarebbero il tipo letterale ''.
+  const { endpoint, turnstileSiteKey }: { endpoint: string; turnstileSiteKey: string } = SITE.tutor;
+  if (!endpoint) return null;
+  const base = endpoint.replace(/\/+$/, '');
+  return { endpoint: base.endsWith('/chat') ? base : `${base}/chat`, turnstileSiteKey };
+}

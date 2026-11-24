@@ -1,0 +1,69 @@
+---
+/**
+ * Tutor AI (R12), una volta per pagina: configurazione in JSON (dati, non eseguibile) e un caricatore
+ * minimo che scarica il pannello (src/scripts/tutor/panel.ts, con il suo CSS) solo al primo clic su
+ * un pulsante `data-tutor-open` (TutorButton.astro). Se il Worker non è configurato
+ * (`SITE.tutor.endpoint` vuoto) non rende nulla: niente pulsanti, niente script.
+ * La CSP (tools/integrations/csp.mjs) legge `data-tutor-endpoint` e apre connect-src a quell'origine
+ * solo nelle pagine che lo contengono. Nella pagina d'esame il tutor non si usa.
+ */
+import { SITE, tutorConfig } from '../../config/site';
+import { texts, type Lang } from '../../i18n';
+import { indexUrl } from '../../engine/course-data';
+import { getCourseIndex } from '../../lib/course-data';
+
+interface Props {
+  lang: Lang;
+  courseId: string;
+}
+const { lang, courseId } = Astro.props;
+const cfg = tutorConfig();
+const index = cfg ? await getCourseIndex(courseId, lang) : null;
+const config = cfg &&
+  index && {
+    endpoint: cfg.endpoint,
+    siteKey: cfg.turnstileSiteKey,
+    lang,
+    course: { id: courseId, title: index.title },
+    indexUrl: indexUrl(index.paths),
+    dataUrl: index.paths.data,
+    privacyUrl: `${SITE.repo.url}/blob/main/docs/PRIVACY-TUTOR.md`,
+    texts: texts(lang, 'tutor.'),
+  };
+// Stile dei pulsanti, solo nelle pagine col tutor configurato (niente CSS in più altrove; il
+// pannello porta il suo CSS con sé). Il pulsante fisso della teoria sta sopra la barra in basso.
+const STYLE = `.tutor-open{display:inline-flex;align-items:center;gap:var(--space-3xs)}
+.tutor-open .icon{width:1.1em;height:1.1em;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.tutor-open[aria-busy=true]{cursor:progress}
+.tutor-open--exercise{margin:var(--space-2xs) 0 var(--space-m)}
+.tutor-open--card{margin-top:var(--space-s)}
+.tutor-open--float{position:fixed;z-index:31;right:max(var(--space-m),var(--safe-right,0px));bottom:calc(var(--tabbar-h,0px) + var(--tabbar-safe,0px) + var(--space-s));box-shadow:var(--shadow-2);border-radius:999px;background:var(--surface)}
+html[data-tutor=open] .tutor-open--float{display:none}
+@media (max-width:40em){.tutor-open--float .tutor-open__text{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.tutor-open--float{padding:var(--space-xs)}.tutor-open--float .icon{width:1.4em;height:1.4em}}
+@media print{.tutor-open{display:none}}`;
+---
+
+{config && (
+  <>
+    <script
+      type="application/json"
+      id="sh-tutor-config"
+      data-tutor-endpoint={new URL(config.endpoint).origin}
+      data-tutor-turnstile={config.siteKey ? '' : undefined}
+      set:html={JSON.stringify(config).replaceAll('<', '\\u003c')}
+    />
+    <style is:inline set:html={STYLE} />
+    <script>
+      // Caricatore: il pannello e il suo CSS si scaricano solo al primo clic.
+      document.addEventListener('click', (e) => {
+        const btn = (e.target as Element | null)?.closest?.<HTMLElement>('[data-tutor-open]');
+        if (!btn) return;
+        e.preventDefault();
+        import('../../scripts/tutor/panel')
+          .then((m) => m.openTutor(btn))
+          .catch(() => btn.removeAttribute('aria-busy'));
+        btn.setAttribute('aria-busy', 'true');
+      });
+    </script>
+  </>
+)}
