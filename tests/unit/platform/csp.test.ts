@@ -3,7 +3,6 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
-  APPS_SCRIPT_ORIGINS,
   BASE_POLICY,
   TURNSTILE_ORIGIN,
   injectCsp,
@@ -48,16 +47,13 @@ describe('CSP: politica', () => {
     expect(d.get('base-uri')).toEqual(["'self'"]);
   });
 
-  it('Turnstile e Apps Script solo nella pagina Contribuisci', () => {
+  it('Contribuisci (link al Google Form, R14): nessun dominio esterno, come le altre pagine', () => {
     for (const rel of ['it/contribuisci/index.html', 'en/contribuisci/index.html']) {
-      const d = directives(policyFor(rel, []));
-      expect(d.get('script-src')).toContain(TURNSTILE_ORIGIN);
-      expect(d.get('frame-src')).toEqual([TURNSTILE_ORIGIN]);
-      expect(d.get('connect-src')).toEqual(["'self'", ...APPS_SCRIPT_ORIGINS]);
+      const policy = policyFor(rel, []);
+      expect(policy).toBe(policyFor('it/chi-sono/index.html', []));
+      expect(policy).not.toContain('cloudflare');
+      expect(policy).not.toContain('google');
     }
-    const other = policyFor('it/chi-sono/index.html', []);
-    expect(other).not.toContain('cloudflare');
-    expect(other).not.toContain('google');
   });
 
   it('tutor AI: connect-src al Worker solo nelle pagine con la sua configurazione', () => {
@@ -85,16 +81,11 @@ describe('CSP: politica', () => {
     expect(BASE_POLICY['script-src']).toEqual(["'self'", "'wasm-unsafe-eval'"]);
   });
 
-  it('i domini esterni coincidono con quelli usati dal modulo Contribuisci', () => {
-    // Turnstile si carica da src/islands/contribute/turnstile.ts (modulo del form Contribuisci).
-    const form = readFileSync(join(process.cwd(), 'src/islands/contribute/turnstile.ts'), 'utf8');
-    const src = /TURNSTILE_SRC = '([^']+)'/.exec(form)?.[1];
+  it('l’origine di Turnstile coincide con quella caricata dal tutor', () => {
+    // Turnstile si carica da src/islands/contribute/turnstile.ts (oggi usato solo dal tutor AI).
+    const loader = readFileSync(join(process.cwd(), 'src/islands/contribute/turnstile.ts'), 'utf8');
+    const src = /TURNSTILE_SRC = '([^']+)'/.exec(loader)?.[1];
     expect(src && new URL(src).origin).toBe(TURNSTILE_ORIGIN);
-    // L'endpoint pubblicato di Apps Script è script.google.com (risposta da googleusercontent).
-    expect(APPS_SCRIPT_ORIGINS).toEqual([
-      'https://script.google.com',
-      'https://script.googleusercontent.com',
-    ]);
   });
 });
 

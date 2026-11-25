@@ -1,6 +1,7 @@
 /**
- * Turnstile (caricato alla prima interazione con il modulo) e identificativo anonimo del
- * dispositivo per i limiti di invio del backend.
+ * Caricamento di Cloudflare Turnstile, oggi usato solo dal tutor AI (src/scripts/tutor/panel.ts).
+ * Nato per il vecchio modulo Contribuisci (sostituito da un Google Form, R14): il file resta qui
+ * per non toccare il tutor; il percorso si può riordinare in una voce del tutor.
  */
 declare global {
   interface Window {
@@ -9,25 +10,10 @@ declare global {
       reset(id?: string): void;
       remove(id?: string): void;
     };
-    /** Solo per i test end-to-end: sostituisce endpoint e sitekey della build. */
-    __SH_CONTRIBUTE__?: { endpoint: string; siteKey: string };
   }
 }
 
 const TURNSTILE_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
-const CLIENT_KEY = 'sh:v1:global:contribClient';
-
-export function clientId(): string {
-  try {
-    const saved = JSON.parse(localStorage.getItem(CLIENT_KEY) ?? 'null');
-    if (typeof saved === 'string' && /^[A-Za-z0-9-]{8,64}$/.test(saved)) return saved;
-    const id = crypto.randomUUID();
-    localStorage.setItem(CLIENT_KEY, JSON.stringify(id));
-    return id;
-  } catch {
-    return '';
-  }
-}
 
 let turnstileLoading: Promise<void> | null = null;
 export function loadTurnstile(): Promise<void> {

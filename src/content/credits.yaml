@@ -1,12 +1,15 @@
-# Ringraziamenti: persone che hanno contribuito e hanno indicato un nome nel modulo
-# Contribuisci (o via email/issue) chiedendo di comparire. Una voce per contributo
-# accolto; schema in src/content/schemas.ts (creditSchema), flusso in docs/CONTRIBUTI.md.
+# Ringraziamenti e fonti dei contributi integrati (docs/CONTRIBUTI.md). Una voce per contributo
+# accolto, con la fonte verificata; il nome solo se la persona ha chiesto di essere citata.
+# Schema in src/content/schemas.ts (creditSchema); pagina /<lingua>/ringraziamenti/.
 #
-# - id: anna-rossi-2026-11
-#   name: Anna Rossi
+# - id: 2026-11-20-partitore
+#   name: Anna Rossi          # facoltativo: solo con il consenso dato nel modulo
 #   contribution:
 #     it: errore nel partitore di tensione
 #     en: error in the voltage divider
 #   course: teoria-circuiti
-#   date: '2026-11-20'  # tra virgolette: è una stringa
+#   source: 'Alexander, Sadiku, Circuiti elettrici, 5a ed., p. 52'
+#   sourceUrl: https://…      # facoltativo
+#   pr: 60
+#   date: '2026-11-20'        # tra virgolette: è una stringa
 []

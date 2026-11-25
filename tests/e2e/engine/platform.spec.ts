@@ -1,6 +1,6 @@
 /**
- * Piattaforma sul corso finto (build delle fixture): home per chi torna, ricerca con
- * filtri e record di formule/esercizi, service worker (download del corso, uso offline,
+ * Piattaforma sul corso finto (build delle fixture): Contribuisci con un modulo finto, home per
+ * chi torna, ricerca con filtri e record di formule/esercizi, service worker (download del corso, uso offline,
  * pagina "sei offline", avviso di nuova versione, pagine sempre dalla rete, "Aggiorna il sito").
  */
 import AxeBuilder from '@axe-core/playwright';
@@ -16,6 +16,35 @@ async function axe(page: Page) {
   const serious = results.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
   expect(serious.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(' ')).join(', ')}`)).toEqual([]);
 }
+
+test.describe('Contribuisci con il modulo configurato (R14)', () => {
+  test('un solo pulsante «Apri il modulo» in una nuova scheda, con la nota privacy', async ({ page }) => {
+    const third: string[] = [];
+    page.on(
+      'request',
+      (r) => /^https?:/.test(r.url()) && !r.url().startsWith('http://localhost') && third.push(r.url()),
+    );
+    await page.goto(`${B}it/contribuisci/`);
+    const open = page.getByRole('link', { name: /^Apri il modulo/ });
+    await expect(open).toHaveCount(1);
+    await expect(open).toHaveAttribute('href', 'https://docs.google.com/forms/d/e/finto/viewform');
+    await expect(open).toHaveAttribute('target', '_blank');
+    await expect(open).toHaveAttribute('rel', 'noopener noreferrer');
+    await expect(open).toHaveAccessibleName('Apri il modulo (si apre in una nuova scheda)');
+    await expect(page.locator('main .btn--primary')).toHaveCount(1);
+    await expect(page.getByText('Le risposte vanno a Google Forms')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Modulo in arrivo' })).toHaveCount(0);
+    await page.waitForLoadState('networkidle');
+    // È solo un link: la pagina non contatta Google.
+    expect(third).toEqual([]);
+    await axe(page);
+
+    await page.goto(`${B}en/contribuisci/`);
+    await expect(page.getByRole('link', { name: /^Open the form/ })).toHaveAttribute('target', '_blank');
+    await expect(page.getByText('Answers go to Google Forms')).toBeVisible();
+    await axe(page);
+  });
+});
 
 test.describe('home', () => {
   test('mostra la preparazione solo a chi ha già dati di studio', async ({ page }) => {

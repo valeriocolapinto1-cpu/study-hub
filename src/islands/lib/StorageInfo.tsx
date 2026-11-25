@@ -7,7 +7,7 @@
 import { useEffect, useState } from 'preact/hooks';
 import { loadBackupState } from '../../engine/backup';
 import { BACKUP_AREA, GLOBAL_SCOPE, subscribe, usageBytes } from '../../engine/storage';
-import { formatBytes } from '../../lib/contribute/rules';
+import { formatBytes } from '../../lib/format-bytes';
 import { t, type Lang } from './i18n';
 
 interface Info {

@@ -1,12 +1,13 @@
 ---
 /**
- * Ringraziamenti: la collection `credits` (src/content/credits.yaml), cioè chi ha
- * contribuito e ha chiesto di comparire, con il nome da lui indicato. Le voci si
+ * Ringraziamenti: la collection `credits` (src/content/credits.yaml), cioè i contributi
+ * integrati con la loro fonte e, solo se la persona l'ha chiesto, il nome indicato. Le voci si
  * aggiungono quando un contributo viene integrato (docs/CONTRIBUTI.md).
  */
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import { SITE } from '../../config/site';
 import { langPaths, localizePath, t, tr, type Lang } from '../../i18n';
 
 export const getStaticPaths = langPaths;
@@ -16,7 +17,7 @@ const courseTitles = Object.fromEntries(
 );
 const credits = (await getCollection('credits'))
   .map((c) => c.data)
-  .sort((a, b) => b.date.localeCompare(a.date) || a.name.localeCompare(b.name));
+  .sort((a, b) => b.date.localeCompare(a.date) || a.id.localeCompare(b.id));
 const fmt = (d: string) =>
   new Intl.DateTimeFormat(lang === 'it' ? 'it-IT' : 'en-GB', {
     month: 'long',
@@ -33,10 +34,28 @@ const fmt = (d: string) =>
         <ul class="credits">
           {credits.map((p) => (
             <li class="credits__item">
-              <span class="credits__name">{p.name}</span>
+              <span class="credits__name">{p.name ?? t(lang, 'thanks.anonymous')}</span>
               <span class="credits__what">
                 {tr(p.contribution, lang)}
                 {p.course && courseTitles[p.course] && ` · ${courseTitles[p.course]}`}
+                {p.pr && (
+                  <>
+                    {' · '}
+                    <a href={`${SITE.repo.url}/pull/${p.pr}`} rel="noopener">
+                      {t(lang, 'thanks.pr', { n: p.pr })}
+                    </a>
+                  </>
+                )}
+              </span>
+              <span class="credits__what" data-credit-source>
+                {t(lang, 'thanks.source')}{' '}
+                {p.sourceUrl ? (
+                  <a href={p.sourceUrl} rel="noopener noreferrer">
+                    {p.source}
+                  </a>
+                ) : (
+                  p.source
+                )}
               </span>
               <time class="credits__date" datetime={p.date}>
                 {fmt(p.date)}

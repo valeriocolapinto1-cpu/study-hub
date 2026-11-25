@@ -8,9 +8,6 @@ blob-report/
 .lighthouseci/
 *.log
 .DS_Store
-# clasp: ID del progetto Apps Script e credenziali personali
-tools/apps-script/.clasp.json
-.clasprc.json
 # Worker del tutor AI: stato locale di wrangler
 .wrangler/
 .dev.vars

@@ -228,11 +228,23 @@ export type Card = z.infer<typeof cardSchema>;
 /** Persone che hanno contribuito e hanno chiesto di comparire (src/content/credits.yaml). */
 export const creditSchema = z.strictObject({
   id: kebabId,
-  /** Nome come indicato nel modulo "Nome per i ringraziamenti". */
-  name: z.string().trim().min(1).max(80),
+  /**
+   * Nome con cui la persona ha chiesto di essere citata nel modulo Contribuisci. Assente se non ha
+   * dato il consenso: la voce compare come contributo anonimo, con la fonte.
+   */
+  name: z.string().trim().min(1).max(80).optional(),
   /** Cosa ha fatto, in breve (es. "errori nel formulario"). */
   contribution: localized,
   course: kebabId.optional(),
+  /** Fonte indicata nel modulo e verificata (libro e pagina, oppure titolo del sito). Obbligatoria. */
+  source: z.string().trim().min(3).max(300),
+  /** Link della fonte, se è online. */
+  sourceUrl: z
+    .string()
+    .regex(/^https:\/\/[^\s"'<>]+$/)
+    .optional(),
+  /** Numero della PR che ha integrato il contributo. */
+  pr: z.number().int().positive().optional(),
   /** Data di integrazione del contributo. */
   date: isoDate,
 });

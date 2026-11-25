@@ -1,58 +1,62 @@
 ---
 /**
- * Contribuisci: suggerimenti, segnalazioni di errori, appunti e materiali.
- * Il modulo (isola ContributeForm) invia al Google Apps Script configurato in
- * SITE.contribute (tools/apps-script, docs/CONTRIBUTI.md); se l'endpoint non è
- * configurato prepara un'email precompilata. Precompilazione da
- * `?corso=…&pagina=…&tipo=errore|miglioria|appunti` (link "Segnala un errore").
+ * Contribuisci (R14): un link al Google Form configurato in `SITE.contribuisci.formUrl`
+ * (risposte in un Foglio di Drive, poi lette e verificate in una sessione: docs/CONTRIBUTI.md).
+ * Con l'URL vuoto la pagina dice che il modulo è in arrivo e non mostra il pulsante; email e
+ * segnalazione GitHub restano sempre. Nessuno script e nessuna richiesta verso Google: il link
+ * apre il modulo in una nuova scheda. I link «Segnala un errore» arrivano qui con
+ * `?corso=…&pagina=…&tipo=errore` (parametri pronti per un'eventuale precompilazione del modulo).
  */
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import ContributeForm from '../../islands/ContributeForm';
-import { SITE } from '../../config/site';
-import { langPaths, localizePath, t, texts, tr, type Lang } from '../../i18n';
-import { sortCourses } from '../../lib/courses';
+import { SITE, contribuisciFormUrl } from '../../config/site';
+import { langPaths, localizePath, t, type Lang } from '../../i18n';
 
 export const getStaticPaths = langPaths;
 const lang = Astro.params.lang as Lang;
-const courses = sortCourses((await getCollection('courses')).map((c) => c.data)).map((c) => ({
-  id: c.id,
-  title: tr(c.title, lang),
-  year: c.year,
-}));
+const formUrl = contribuisciFormUrl();
 ---
 
 <BaseLayout lang={lang} title={t(lang, 'contribute.title')} description={t(lang, 'contribute.description')}>
   <div class="container page">
     <PageHeader title={t(lang, 'contribute.title')} lede={t(lang, 'contribute.lead')} />
     <div class="contribute-layout">
-      <div class="contribute-layout__form">
-        <ContributeForm
-          client:idle
-          lang={lang}
-          endpoint={SITE.contribute.endpoint}
-          siteKey={SITE.contribute.turnstileSiteKey}
-          email={SITE.contacts.email}
-          issuesUrl={`${SITE.repo.issues}/new`}
-          privacyHref={localizePath('privacy', lang)}
-          courses={courses}
-          texts={texts(lang, 'cf.')}
-        />
-      </div>
-      <aside class="contribute-layout__aside stack" aria-labelledby="contribute-how">
-        <h2 id="contribute-how" class="eyebrow">
-          {t(lang, 'contribute.how')}
-        </h2>
-        <ul class="contribute-tips">
+      <div class="contribute-layout__main prose">
+        {formUrl ? (
+          <section aria-labelledby="contribute-form" data-contribute-form>
+            <h2 id="contribute-form">{t(lang, 'contribute.formTitle')}</h2>
+            <p>{t(lang, 'contribute.formBody')}</p>
+            <p>
+              <a class="btn btn--primary" href={formUrl} target="_blank" rel="noopener noreferrer">
+                {t(lang, 'contribute.formOpen')}
+                <span class="visually-hidden"> {t(lang, 'contribute.newTab')}</span>
+              </a>
+            </p>
+            <p class="muted contribute-note">
+              {t(lang, 'contribute.formPrivacy')}{' '}
+              <a href={localizePath('privacy', lang)}>{t(lang, 'privacy.title')}</a>
+            </p>
+          </section>
+        ) : (
+          <section aria-labelledby="contribute-soon" class="contribute-soon" data-contribute-soon>
+            <h2 id="contribute-soon">{t(lang, 'contribute.soonTitle')}</h2>
+            <p>{t(lang, 'contribute.soonBody')}</p>
+          </section>
+        )}
+        <h2 id="contribute-how">{t(lang, 'contribute.how')}</h2>
+        <ul>
           <li>{t(lang, 'contribute.tip1')}</li>
           <li>{t(lang, 'contribute.tip2')}</li>
           <li>{t(lang, 'contribute.tip3')}</li>
         </ul>
-        <h2 class="eyebrow">{t(lang, 'contribute.notesTitle')}</h2>
+        <h2>{t(lang, 'contribute.notesTitle')}</h2>
         <p>{t(lang, 'contribute.notesBody')}</p>
-        <h2 class="eyebrow">{t(lang, 'contribute.otherTitle')}</h2>
+      </div>
+      <aside class="contribute-layout__aside stack" aria-labelledby="contribute-other">
+        <h2 id="contribute-other" class="eyebrow">
+          {t(lang, 'contribute.otherTitle')}
+        </h2>
         <ul class="contribute-links">
           <li>
             <a href={`mailto:${SITE.contacts.email}`}>
@@ -105,11 +109,6 @@ const courses = sortCourses((await getCollection('courses')).map((c) => c.data))
   .contribute-layout__aside h2:first-child {
     margin-top: 0;
   }
-  .contribute-tips,
-  .contribute-links {
-    margin: 0;
-    padding-inline-start: 1.1em;
-  }
   .contribute-links {
     list-style: none;
     padding: 0;
@@ -123,5 +122,18 @@ const courses = sortCourses((await getCollection('courses')).map((c) => c.data))
   }
   .contribute-privacy {
     font-size: var(--step--2);
+  }
+  .contribute-note {
+    font-size: var(--step--1);
+  }
+  .contribute-soon {
+    padding: var(--space-s) var(--space-m);
+    border: 1px solid var(--border);
+    border-inline-start: 3px solid var(--warning);
+    border-radius: var(--radius-m);
+    background: var(--surface);
+  }
+  .contribute-soon h2 {
+    margin-top: 0;
   }
 </style>

@@ -8,7 +8,6 @@ import { useEffect } from 'preact/hooks';
 import { cleanup, fireEvent, render, screen } from '@testing-library/preact';
 import { reportHref, withBoundary } from '../../../src/islands/lib/boundary';
 import { dataPageHref, showNotice } from '../../../src/scripts/data-notice';
-import { prefillFromQuery } from '../../../src/lib/contribute/rules';
 
 const BASE = '/study-hub/';
 
@@ -125,21 +124,22 @@ describe('IslandBoundary', () => {
     }
   });
 
-  it('il link precompila tipo, pagina, corso e messaggio nel modulo Contribuisci', () => {
+  it('il link porta a Contribuisci con tipo, pagina, corso e messaggio', () => {
+    const params = (href: string) => Object.fromEntries(new URLSearchParams(href.slice(href.indexOf('?'))));
     const href = reportHref(
       { pathname: '/study-hub/en/anno-2/fisica-2/esame/' },
       BASE,
       new Error('x is undefined'),
     );
     expect(href.startsWith('/study-hub/en/contribuisci/?')).toBe(true);
-    expect(prefillFromQuery(href.slice(href.indexOf('?')), ['fisica-2'])).toEqual({
+    expect(params(href)).toEqual({
       tipo: 'errore',
       pagina: '/anno-2/fisica-2/esame',
       corso: 'fisica-2',
       messaggio: 'x is undefined',
     });
     const hub = reportHref({ pathname: '/study-hub/it/appunti/' }, BASE, 'stringa');
-    expect(prefillFromQuery(hub.slice(hub.indexOf('?')), [])).toEqual({
+    expect(params(hub)).toEqual({
       tipo: 'errore',
       pagina: '/appunti',
       messaggio: 'stringa',

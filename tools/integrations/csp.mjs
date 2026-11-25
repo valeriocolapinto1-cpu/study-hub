@@ -7,11 +7,11 @@
  *   inline): niente `'unsafe-inline'`. `'wasm-unsafe-eval'` serve a Pagefind (WebAssembly).
  * - `style-src 'unsafe-inline'`: KaTeX e i simulatori scrivono attributi `style` nell'HTML, che con
  *   un hash nella direttiva verrebbero bloccati; gli stili non eseguono codice.
- * - Domini esterni solo dove servono: Turnstile (script e iframe) e Google Apps Script (invio)
- *   nella pagina Contribuisci (src/islands/contribute/turnstile.ts, src/lib/contribute/upload.ts);
- *   il Worker del tutor AI (e Turnstile, se ha una sitekey) solo nelle pagine che contengono la sua
+ * - Domini esterni solo dove servono: il Worker del tutor AI (e Turnstile, se ha una sitekey) solo nelle pagine che contengono la sua
  *   configurazione (`data-tutor-endpoint`, src/components/course/Tutor.astro), cioè solo quando
- *   `SITE.tutor.endpoint` è impostato: altrimenti nessuna pagina cambia.
+ *   `SITE.tutor.endpoint` è impostato: altrimenti nessuna pagina cambia. La pagina Contribuisci
+ *   (R14) ha solo un link al Google Form: un link non è una richiesta e non richiede nessuna
+ *   sorgente in più (prima c'erano Turnstile e Apps Script).
  *
  * Il meta va prima di ogni script: subito dopo `<meta charset>` (o in testa a `<head>`).
  * In sviluppo (`astro dev`) non c'è CSP: si verifica sulla build (tests/content/csp.test.ts, e2e).
@@ -21,7 +21,6 @@ import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { join, relative, sep } from 'node:path';
 
 export const TURNSTILE_ORIGIN = 'https://challenges.cloudflare.com';
-export const APPS_SCRIPT_ORIGINS = ['https://script.google.com', 'https://script.googleusercontent.com'];
 
 /** Politica comune a tutte le pagine. */
 export const BASE_POLICY = {
@@ -40,17 +39,11 @@ export const BASE_POLICY = {
   'form-action': ["'self'"],
 };
 
-/** Aggiunte per pagina (percorso relativo a dist, con `/`). */
-export const PAGE_POLICIES = [
-  {
-    test: /^(it|en)\/contribuisci\/index\.html$/,
-    add: {
-      'script-src': [TURNSTILE_ORIGIN],
-      'frame-src': [TURNSTILE_ORIGIN],
-      'connect-src': APPS_SCRIPT_ORIGINS,
-    },
-  },
-];
+/**
+ * Aggiunte per pagina (percorso relativo a dist, con `/`): `{ test: RegExp, add: { direttiva: [sorgenti] } }`.
+ * Oggi nessuna: era la pagina Contribuisci con Turnstile e Apps Script, sostituiti da un link (R14).
+ */
+export const PAGE_POLICIES = [];
 
 /**
  * Aggiunte decise dal contenuto della pagina: il tutor AI (R12). L'origine del Worker viene

@@ -2,7 +2,7 @@
 
 - Nessun account, nessun cookie, nessuna statistica di traffico, nessun tracker, nessuna pubblicità.
 - Preferenze e progressi restano **solo nel tuo browser** (`localStorage`) e non vengono inviati a nessuno.
-- Il modulo **Contribuisci** invia al titolare solo ciò che scrivi tu, quando decidi di inviarlo; puoi chiederne la cancellazione in qualsiasi momento.
+- Il modulo **Contribuisci** è un Google Form esterno: ciò che scrivi arriva al titolare solo se lo invii; puoi chiederne la cancellazione in qualsiasi momento.
 
 ## Titolare
 
@@ -28,14 +28,13 @@ Questi dati non lasciano il tuo dispositivo. Dalla pagina **Progressi** di ogni 
 
 ## Modulo «Contribuisci»
 
-Se usi il modulo per segnalare un errore, proporre un miglioramento o inviare appunti, vengono inviati: il tipo di contributo, il corso e la pagina a cui si riferisce, il testo che scrivi, le tre dichiarazioni (privacy, diritti sul materiale, pubblicazione), la lingua della pagina e, **solo se li inserisci**, gli allegati, un nome (per i ringraziamenti) e un indirizzo email (per una risposta).
+La pagina Contribuisci contiene solo un **link a un modulo Google Forms**, che si apre in una nuova scheda: il sito non invia nulla a Google e non carica risorse di Google. Nel modulo ti vengono chiesti il tipo di contributo, il corso e l'argomento, il testo, la fonte e, **solo se vuoi**, il nome con cui essere citato o citata.
 
-- **Dove finiscono.** L'invio passa da uno script **Google Apps Script** del titolare: una riga in un foglio Google, gli allegati in una cartella dedicata sul suo **Google Drive** e un'email di notifica nella sua casella Gmail. Google (Google Ireland Ltd. / Google LLC) agisce come **responsabile del trattamento** per conto del titolare, alle condizioni dei termini di Google Workspace e dell'informativa policies.google.com/privacy; i dati possono essere trasferiti negli Stati Uniti con le garanzie previste da Google (clausole contrattuali tipo, EU-U.S. Data Privacy Framework).
-- **Anti-spam.** Il modulo usa **Cloudflare Turnstile** (Cloudflare, Inc., informativa cloudflare.com/privacypolicy), caricato **solo quando inizi a compilare il modulo**: può elaborare l'indirizzo IP e alcune caratteristiche del browser per distinguere le persone dai programmi automatici e non imposta cookie di profilazione. Il risultato della verifica viene controllato dallo script e non conservato. Per limitare gli invii ripetuti lo script tiene per un'ora, in forma cifrata con hash (SHA-256), l'indirizzo email e un identificativo casuale del browser (chiave `sh:v1:global:contribClient` in `localStorage`, generata al primo invio); dopo un'ora vengono cancellati da soli.
-- **Uso e conservazione.** I dati servono solo a correggere e migliorare il sito e a risponderti; non sono ceduti a nessuno. Il testo e gli allegati possono essere letti da un processo automatico (un assistente di programmazione eseguito dal titolare) che prepara la proposta di modifica, sempre approvata a mano. Le righe e gli allegati vengono cancellati quando il contributo è chiuso (integrato o scartato), **al più tardi dopo 12 mesi**; l'email non viene mai pubblicata.
-- **Pubblicazione.** Se il contributo viene integrato, il contenuto (anche rielaborato) è pubblicato nel sito e nel repository pubblico; il nome che hai indicato compare nella pagina **Ringraziamenti** e nel file `src/content/credits.yaml` del repository. Puoi chiedere in ogni momento di toglierlo.
-- **Base giuridica.** Il tuo consenso, espresso con la casella dedicata (art. 6.1.a GDPR), revocabile in qualsiasi momento senza conseguenze sui trattamenti già svolti.
-- **Cancellazione.** Per farti cancellare un contributo scrivi al titolare indicando il **codice del contributo** mostrato dopo l'invio (oppure data e indirizzo email usati): riga, allegati ed email di notifica vengono eliminati entro 30 giorni.
+- **Dove finiscono.** Le risposte sono raccolte da **Google Forms** e salvate in un foglio Google sul **Google Drive** del titolare. Google (Google Ireland Ltd. / Google LLC) tratta i dati alle condizioni dei propri termini e dell'informativa policies.google.com/privacy (che si applica anche alla pagina del modulo); i dati possono essere trasferiti negli Stati Uniti con le garanzie previste da Google (clausole contrattuali tipo, EU-U.S. Data Privacy Framework). Se il modulo richiede l'accesso con un account Google, lo dice la pagina del modulo stessa.
+- **Uso e conservazione.** Le risposte servono solo a correggere e migliorare il sito; non sono cedute a nessuno. Possono essere lette da un assistente di programmazione eseguito dal titolare, che le verifica sulla fonte indicata e prepara la modifica, sempre approvata a mano. Le righe vengono cancellate quando il contributo è chiuso (integrato o scartato), **al più tardi dopo 12 mesi**.
+- **Pubblicazione.** Se il contributo viene integrato, il contenuto (anche rielaborato) è pubblicato nel sito e nel repository pubblico, con la **fonte** che hai indicato; il nome compare nella pagina **Ringraziamenti** e nel file `src/content/credits.yaml` del repository **solo se lo hai chiesto**. Puoi chiedere in ogni momento di toglierlo.
+- **Base giuridica.** Il tuo consenso, dato inviando il modulo (art. 6.1.a GDPR), revocabile in qualsiasi momento senza conseguenze sui trattamenti già svolti.
+- **Cancellazione.** Per farti cancellare un contributo scrivi al titolare indicando data e contenuto dell'invio: la riga viene eliminata entro 30 giorni.
 
 Se preferisci, puoi scrivere direttamente via email o aprire una segnalazione su GitHub (pubblica e soggetta all'informativa di GitHub).
 
@@ -45,11 +44,11 @@ Il sito può essere installato come applicazione e funziona anche senza connessi
 
 ## Hosting
 
-Il sito è ospitato su **GitHub Pages** (GitHub, Inc.): come qualsiasi server web, GitHub può registrare l'indirizzo IP dei visitatori per motivi di sicurezza (informativa: docs.github.com, «GitHub General Privacy Statement»). Font, formule e script sono serviti dallo stesso dominio: nessun'altra risorsa esterna viene caricata, salvo Turnstile quando compili il modulo Contribuisci.
+Il sito è ospitato su **GitHub Pages** (GitHub, Inc.): come qualsiasi server web, GitHub può registrare l'indirizzo IP dei visitatori per motivi di sicurezza (informativa: docs.github.com, «GitHub General Privacy Statement»). Font, formule e script sono serviti dallo stesso dominio: nessun'altra risorsa esterna viene caricata.
 
 ## I tuoi diritti
 
-Chi gestisce il sito non conserva dati dei visitatori, salvo le segnalazioni inviate con il modulo. Hai i diritti previsti dagli articoli 15–22 del Regolamento (UE) 2016/679 (accesso, rettifica, cancellazione, limitazione, opposizione, portabilità): per le segnalazioni scrivi al titolare, per i dati trattati dai fornitori indicati sopra rivolgiti a loro. Puoi presentare reclamo al Garante per la protezione dei dati personali.
+Chi gestisce il sito non conserva dati dei visitatori, salvo i contributi inviati con il modulo. Hai i diritti previsti dagli articoli 15–22 del Regolamento (UE) 2016/679 (accesso, rettifica, cancellazione, limitazione, opposizione, portabilità): per le segnalazioni scrivi al titolare, per i dati trattati dai fornitori indicati sopra rivolgiti a loro. Puoi presentare reclamo al Garante per la protezione dei dati personali.
 
 ## Modifiche
 
