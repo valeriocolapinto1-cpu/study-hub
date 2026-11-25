@@ -23,7 +23,7 @@ Un test (`tests/content/source.test.ts`) vieta in `src/` URL assoluti del sito o
 
 ```
 astro.config.mjs  package.json  tsconfig.json  vitest.config.ts  playwright.config.ts  lighthouserc.cjs
-src/config/site.ts              autore, contatti, repository, endpoint Contribuisci, LEGACY_REPOS
+src/config/site.ts              autore, contatti, repository, URL del modulo Contribuisci, tutor, LEGACY_REPOS
 src/i18n/                       it.json, en.json (interfaccia), glossary.yaml (termini IT→EN), index.ts
 src/styles/tokens.css           SOLO variabili (contratto dei nomi più sotto)
 src/styles/{base,components,prose,print}.css, originale.css (grafica), lettura.css (revisione di lettura),
@@ -34,7 +34,7 @@ src/lib/courses.ts              coursePath(), sortCourses(), COURSE_SECTIONS
 src/engine/                     TS puro: storage, migrate, random, units, grading, fsrs, progress, exam, mastery,
                                 notes, exportImport, qr, rich, course-data, generators/{registry,index}.ts (docs/ENGINE.md)
 src/islands/                    isole Preact del motore (ExercisePlayer, ReviewSession, ExamRunner, …) + islands.css;
-                                exam/ e contribute/: sottocomponenti; lib/keys.tsx: scorciatoie e pannello «?»
+                                exam/: sottocomponenti; contribute/turnstile.ts: Turnstile del tutor; lib/keys.tsx: scorciatoie e pannello «?»
 src/components/course/          sezioni generiche del corso (esercizi, ripasso, esame, progressi, appunti)
 src/lib/course-data.ts          dati dei corsi per le isole (testi localizzati, HTML con KaTeX a build-time)
 src/sim/                        kit simulatori e circuiti (netlist, MNA, schemi SVG, Plot, Scope…): guida in docs/SIM.md
@@ -47,7 +47,7 @@ src/pages/index.astro           radice: reindirizza alla lingua
 src/pages/[lang]/…              tutte le pagine (getStaticPaths su it/en)
 src/pages/404.astro             pagina 404 bilingue
 legacy/<courseId>/, legacy/hub/ sorgenti originali (git subtree), esclusi da build, tsc, vitest, prettier
-tools/                          serve-dist.mjs, check-links.mjs, site-base.mjs, legacy-topics/, apps-script/,
+tools/                          serve-dist.mjs, check-links.mjs, site-base.mjs, legacy-topics/,
                                 integrations/ (csp, pagefind, pwa), og/fonts/, screenshots.mjs,
                                 ai-worker/ (Worker Cloudflare del tutor AI, package.json e wrangler.toml propri)
 tests/unit, tests/content, tests/e2e, tests/fixtures
@@ -99,7 +99,7 @@ tests/unit, tests/content, tests/e2e, tests/fixtures
 - **Content-Security-Policy** in `<meta>` (Pages non permette intestazioni), aggiunta dopo la build da
   `tools/integrations/csp.mjs`: `script-src 'self'` + hash SHA-256 di ogni script inline della pagina (tema,
   runtime delle isole, script piccoli di Vite) + `'wasm-unsafe-eval'` (Pagefind); `style-src 'unsafe-inline'`
-  (attributi `style` di KaTeX e simulatori); Turnstile e Apps Script solo in *Contribuisci*. Assente in
+  (attributi `style` di KaTeX e simulatori); il Worker del tutor (e Turnstile) solo nelle pagine con il tutor configurato. Assente in
   `astro dev`. Un nuovo dominio esterno va aggiunto in `csp.mjs` (`PAGE_POLICIES`). Verifiche:
   `tests/content/head.test.ts` (sorgenti compilati), `tests/e2e/head.spec.ts` (violazioni nel browser).
 
@@ -160,7 +160,7 @@ QR, `markExported`) ha più di 30 giorni e ci sono dati; la prima scadenza parte
 Errori nelle isole: ogni isola Preact è avvolta da `IslandBoundary` (`src/islands/lib/boundary.ts`) senza toccarla — il
 plugin `tools/vite/island-boundary.mjs` risolve `@astrojs/preact/client.js` in `src/islands/lib/boundary-client.ts`, che
 avvolge il componente prima dell'idratazione. Un'eccezione nel render o negli effetti mostra un messaggio con «Ricarica» e
-«Segnala errore» (Contribuisci precompilato con pagina, corso e messaggio); gli errori nei gestori di eventi no.
+«Segnala errore» (Contribuisci con pagina, corso e messaggio nella query); gli errori nei gestori di eventi no.
 
 `src/engine/migrate.ts`: tabella `MIGRATIONS` dalle chiavi legacy (stessa origine github.io). Ogni PR di corso aggiunge le sue
 voci `{ id, legacyKey, scope, area, transform, merge? }`. Le chiavi legacy non si cancellano mai; le migrazioni eseguite sono in
@@ -257,7 +257,7 @@ pagine globali `/<lang>/ripasso/`, `/<lang>/appunti/`, `/<lang>/i-miei-dati/`, `
   Il sito parla solo con il Worker `tools/ai-worker/` (chiave come secret, streaming SSE, Turnstile, limiti per IP
   e tetto di spesa in un Durable Object). Con `SITE.tutor.endpoint` vuoto non c'è nulla nelle pagine; la CSP apre
   `connect-src` al Worker solo nelle pagine con `data-tutor-endpoint`. Privacy: [PRIVACY-TUTOR.md](PRIVACY-TUTOR.md).
-- **Contributi**: modulo `/<lingua>/contribuisci/` + Google Apps Script — vedi [CONTRIBUTI.md](CONTRIBUTI.md).
+- **Contributi**: `/<lingua>/contribuisci/` è un link al Google Form di `SITE.contribuisci.formUrl` (risposte in un Foglio di Drive, lette e verificate in una sessione) — vedi [CONTRIBUTI.md](CONTRIBUTI.md).
   Crediti nella collection `credits` (`src/content/credits.yaml`), pagina `/<lingua>/ringraziamenti/`.
 - **Home**: vetrina con numeri reali dalle collections (corsi, argomenti, esercizi, flashcard, formule,
   simulatori/approfondimenti), corsi per anno, cosa offre il sito, chi lo cura; per chi ha già dati locali
@@ -281,7 +281,6 @@ pagine globali `/<lang>/ripasso/`, `/<lang>/appunti/`, `/<lang>/i-miei-dati/`, `
 | `npm run test:e2e` | Playwright (smoke, axe, visual) su `dist/` servita da `tools/serve-dist.mjs` |
 | `npm run lhci` | Lighthouse CI su `dist/` |
 | `npm run format` / `format:check` | Prettier |
-| `npm run script:push` | carica il backend di Contribuisci su Apps Script (clasp: `tools/apps-script/README.md`) |
 | `npm run ai:deploy` | pubblica il Worker del tutor AI (solo Valerio, con wrangler: [TUTOR-AI.md](TUTOR-AI.md)) |
 
 In locale con un Chromium già installato: `PW_CHROMIUM_PATH=/opt/pw-browsers/chromium npm run test:e2e`,

@@ -25,14 +25,14 @@ test('il cambio lingua resta sulla stessa pagina', async ({ page }) => {
   await expect(page.locator('html')).toHaveAttribute('lang', 'en-US');
 });
 
-test('"Segnala un errore" porta a Contribuisci con la pagina precompilata', async ({ page }) => {
+test('"Segnala un errore" porta a Contribuisci con pagina e tipo nella query', async ({ page }) => {
   await page.goto(`${BASE}it/stile/`);
   const link = page.locator('a.report-error').first();
   await expect(link).toHaveAttribute('href', /contribuisci\/\?pagina=%2Fstile&tipo=errore$/);
   await link.click();
-  // Il modulo (isola) si precompila dalla query.
-  await expect(page.getByLabel('Pagina')).toHaveValue('/stile');
-  await expect(page.getByRole('radio', { name: 'Errore' })).toBeChecked();
+  // Il modulo è un Google Form esterno (R14): la pagina si apre, i parametri restano nell'indirizzo.
+  await expect(page).toHaveURL(/\/it\/contribuisci\/\?pagina=%2Fstile&tipo=errore$/);
+  await expect(page.getByRole('heading', { level: 1, name: 'Contribuisci' })).toBeVisible();
 });
 
 test('le pagine di stampa e le icone dichiarate esistono', async ({ request }) => {

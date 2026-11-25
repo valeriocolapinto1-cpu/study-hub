@@ -34,12 +34,14 @@ test.describe('IslandBoundary', () => {
     await expect(page.locator('html')).not.toHaveAttribute('data-theme', before ?? 'dark');
     // L'errore non è sfuggito come eccezione non gestita.
     expect(errors).toEqual([]);
-    // «Segnala errore» apre Contribuisci precompilato con pagina, corso e messaggio.
+    // «Segnala errore» apre Contribuisci con pagina, corso e messaggio nella query.
     await fallback.getByRole('link', { name: 'Segnala errore' }).click();
     await expect(page).toHaveURL(/\/it\/contribuisci\/\?tipo=errore/);
-    await expect(page.locator('astro-island:has(.pf-cf)')).not.toHaveAttribute('ssr', /.*/);
-    await expect(page.getByLabel('Pagina')).toHaveValue('/anno-2/fisica-2/progressi');
-    await expect(page.getByLabel('Messaggio')).toHaveValue('isola rotta (test)');
+    const q = new URL(page.url()).searchParams;
+    expect(q.get('pagina')).toBe('/anno-2/fisica-2/progressi');
+    expect(q.get('corso')).toBe('fisica-2');
+    expect(q.get('messaggio')).toBe('isola rotta (test)');
+    await expect(page.getByRole('heading', { level: 1, name: 'Contribuisci' })).toBeVisible();
   });
 });
 

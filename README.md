@@ -18,7 +18,7 @@ Sito: <https://valeriocolapinto1-cpu.github.io/study-hub/>
 | `src/pages/`, `src/layouts/`, `src/components/` | Pagine Astro, layout e componenti statici |
 | `src/i18n/` | Dizionari dell'interfaccia (`it.json`, `en.json`) e glossario |
 | `tests/` | Unit e contenuti (vitest), end-to-end, axe e visivi (Playwright) |
-| `tools/` | Script di build, controllo dei link, backend del modulo Contribuisci (`tools/apps-script/`), Worker del tutor AI (`tools/ai-worker/`) |
+| `tools/` | Script di build, controllo dei link, Worker del tutor AI (`tools/ai-worker/`) |
 | `legacy/` | I siti originali con la loro storia (esclusi dalla build) |
 | `docs/` | Documentazione (vedi sotto) |
 
@@ -60,7 +60,7 @@ Prima di una PR: `npm run check && npm run lint && npm run format:check && npm t
 - [`docs/decisions.md`](docs/decisions.md) — registro delle decisioni
 - [`docs/revisione/`](docs/revisione/) — note di revisione dei contenuti, corso per corso
 - [`docs/COME-AGGIUNGERE-CONTENUTI.md`](docs/COME-AGGIUNGERE-CONTENUTI.md) — come aggiungere teoria, esercizi, formule, flashcard, domande d'esame
-- [`docs/TUTOR-AI.md`](docs/TUTOR-AI.md) — tutor AI «Chiedi al tutor» (attivazione e costi); [`docs/CONTRIBUTI.md`](docs/CONTRIBUTI.md) — modulo Contribuisci
+- [`docs/TUTOR-AI.md`](docs/TUTOR-AI.md) — tutor AI «Chiedi al tutor» (attivazione e costi); [`docs/CONTRIBUTI.md`](docs/CONTRIBUTI.md) — contributi dal Google Form
 - [`docs/COSE-DA-FARE-VALERIO.md`](docs/COSE-DA-FARE-VALERIO.md) — passi che richiedono il proprietario
 
 I siti originali sono conservati con la loro storia in `legacy/` (esclusi dalla build):
