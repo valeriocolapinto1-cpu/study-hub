@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { courseSchema, exerciseSchema, topicSchema } from '../../src/content/schemas';
+import { courseSchema, creditSchema, exerciseSchema, topicSchema } from '../../src/content/schemas';
 
 const ex = {
   id: 'es-1',
@@ -66,5 +66,26 @@ describe('schemi dei contenuti', () => {
     // la frase della panoramica: al massimo 20 parole
     expect(courseSchema.safeParse({ ...course, tagline: { it: 'parola '.repeat(21) } }).success).toBe(false);
     expect(courseSchema.safeParse({ ...course, tagline: { it: 'parola '.repeat(20) } }).success).toBe(true);
+  });
+});
+
+describe('creditSchema (contributi dal modulo, R14)', () => {
+  const base = {
+    id: '2026-12-03-koenig',
+    contribution: { it: 'esempio sul teorema di Koenig', en: 'example on König’s theorem' },
+    course: 'fisica-1',
+    source: 'Mazzoldi, Nigro, Voci, Fisica I, p. 245',
+    date: '2026-12-03',
+  };
+  it('fonte obbligatoria, nome facoltativo (solo con consenso)', () => {
+    expect(creditSchema.safeParse(base).success).toBe(true);
+    expect(creditSchema.safeParse({ ...base, name: 'Anna Rossi', pr: 61 }).success).toBe(true);
+    const { source: _source, ...noSource } = base;
+    expect(creditSchema.safeParse(noSource).success).toBe(false);
+  });
+  it('link della fonte solo https', () => {
+    expect(creditSchema.safeParse({ ...base, sourceUrl: 'https://example.org/a' }).success).toBe(true);
+    expect(creditSchema.safeParse({ ...base, sourceUrl: 'javascript:alert(1)' }).success).toBe(false);
+    expect(creditSchema.safeParse({ ...base, sourceUrl: 'http://example.org' }).success).toBe(false);
   });
 });

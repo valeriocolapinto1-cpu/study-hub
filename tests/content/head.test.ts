@@ -94,21 +94,19 @@ describe('sito compilato: intestazione delle pagine', () => {
             problems.push(`${rel}: script inline senza hash (${s.slice(0, 40)}…)`);
         if (directives.get('object-src')?.join(' ') !== "'none'") problems.push(`${rel}: object-src`);
         const external = [...directives.values()].flat().filter((s) => /^https?:/.test(s));
-        const contribute = /^(it|en)\/contribuisci\/index\.html$/.test(rel);
-        if (!contribute && external.length > 0) problems.push(`${rel}: domini esterni ${external.join(' ')}`);
+        if (external.length > 0) problems.push(`${rel}: domini esterni ${external.join(' ')}`);
       }
       expect(problems).toEqual([]);
     },
   );
 
-  it.runIf(hasDist)('Contribuisci: Turnstile (script e iframe) e Apps Script (invio)', () => {
+  it.runIf(hasDist)('Contribuisci: solo un link al modulo, nessuno script o richiesta esterna (R14)', () => {
     for (const lang of ['it', 'en']) {
-      const { directives } = cspOf(page(`${lang}/contribuisci/index.html`));
-      expect(directives.get('script-src')).toContain('https://challenges.cloudflare.com');
-      expect(directives.get('frame-src')).toEqual(['https://challenges.cloudflare.com']);
-      expect(directives.get('connect-src')).toEqual(
-        expect.arrayContaining(['https://script.google.com', 'https://script.googleusercontent.com']),
-      );
+      const html = page(`${lang}/contribuisci/index.html`);
+      const { directives } = cspOf(html);
+      expect(directives.get('connect-src')).toEqual(["'self'"]);
+      expect(directives.get('frame-src')).toEqual(["'none'"]);
+      expect(html).not.toMatch(/challenges\.cloudflare\.com|script\.google/);
     }
   });
 

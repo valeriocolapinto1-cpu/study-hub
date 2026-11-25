@@ -6,7 +6,7 @@
  * scaricato, aggiornamento disponibile), e permette di rimuoverlo.
  */
 import { useEffect, useState } from 'preact/hooks';
-import { formatBytes } from '../lib/contribute/rules';
+import { formatBytes } from '../lib/format-bytes';
 import './platform.css';
 
 export interface OfflineCourseProps {

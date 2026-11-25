@@ -24,6 +24,17 @@ describe('contenuti del sito (src/content)', () => {
     };
     expect(await checkContent(opts)).toEqual([]);
   });
+
+  it('anno e semestre dei corsi (decisi da Valerio il 25/11 per Fisica 1 e Fondamenti)', () => {
+    const when = (id: string) => {
+      const yaml = readFileSync(join(ROOT, `src/content/courses/${id}.yaml`), 'utf8');
+      return { year: /^year: (\d)$/m.exec(yaml)?.[1], semester: /^semester: (\d)$/m.exec(yaml)?.[1] };
+    };
+    expect(when('fisica-1')).toEqual({ year: '1', semester: '2' });
+    expect(when('fondamenti-informatica')).toEqual({ year: '1', semester: '2' });
+    expect(when('fisica-2')).toEqual({ year: '2', semester: '1' });
+    expect(when('teoria-circuiti')).toEqual({ year: '2', semester: '1' });
+  });
 });
 
 describe('controlli sui contenuti (fixture)', () => {

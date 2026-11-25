@@ -1,6 +1,6 @@
 /**
  * Configurazione globale del sito. Unico punto in cui compaiono URL esterni
- * del progetto (repository, contatti, endpoint del modulo Contribuisci).
+ * del progetto (repository, contatti, modulo Contribuisci, tutor).
  * Dominio e percorso base stanno solo in astro.config.mjs: qui si leggono
  * tramite import.meta.env, mai scritti a mano.
  */
@@ -39,13 +39,13 @@ export const SITE = {
     instagram: 'https://www.instagram.com/valerioo.c',
   },
   /**
-   * Modulo "Contribuisci": endpoint del Google Apps Script e sitekey di
-   * Cloudflare Turnstile. Vuoti finché lo script non è pubblicato: il modulo
-   * mostra allora il ripiego via email.
+   * «Contribuisci» (R14): indirizzo pubblico del Google Form (quello «Invia» del modulo, per
+   * esempio https://docs.google.com/forms/d/e/…/viewform), con le risposte collegate a un Foglio in
+   * Drive. Vuoto finché il modulo non esiste: la pagina mostra allora una nota «in arrivo» e gli
+   * altri canali, senza pulsante. È solo un link: nessuna richiesta dal sito a Google (docs/CONTRIBUTI.md).
    */
-  contribute: {
-    endpoint: '',
-    turnstileSiteKey: '',
+  contribuisci: {
+    formUrl: '',
   },
   /**
    * Tutor AI (R12): URL del Worker Cloudflare (tools/ai-worker, guida in docs/TUTOR-AI.md) e
@@ -67,7 +67,17 @@ export const LEGACY_REPOS = {
   'fisica-1': 'https://github.com/valeriocolapinto1-cpu/orale-fisica-1-ingegneria-elettronica',
 } as const;
 
-export const isContributeConfigured = (): boolean => SITE.contribute.endpoint.length > 0;
+/**
+ * URL del modulo «Contribuisci», o null se non è configurato. Nella build delle fixture (test
+ * end-to-end) vale un indirizzo finto, così i test vedono la pagina con il pulsante; il sito vero
+ * segue `SITE.contribuisci.formUrl`. Solo indirizzi https (il valore finisce in un href).
+ */
+export function contribuisciFormUrl(): string | null {
+  if (import.meta.env.PUBLIC_STUDY_HUB_FIXTURES === '1')
+    return 'https://docs.google.com/forms/d/e/finto/viewform';
+  const url: string = SITE.contribuisci.formUrl.trim();
+  return /^https:\/\/[^\s"'<>]+$/.test(url) ? url : null;
+}
 
 /**
  * Configurazione effettiva del tutor. Nella build delle fixture (test end-to-end) punta a un

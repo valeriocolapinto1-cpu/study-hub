@@ -21,8 +21,8 @@ sono applicate al testo italiano; i **dubbi** restano come nell'originale in att
 | risonanza | domande, «Δω ≈ 2γ» | vero per la larghezza a metà potenza della curva di potenza (o dell'ampiezza al quadrato); per la curva d'ampiezza a metà altezza vale ≈ 2√3 γ. Proposta: precisare «larghezza a metà potenza». **Deciso (23/11)**: la risposta modello già parlava di larghezza a metà potenza; aggiunto (IT/EN) che la curva d'ampiezza, a metà altezza, è larga circa $2\sqrt3\,\gamma$. |
 | pendolo-semplice | casi limite | «T ≈ T₀(1 + θ₀²/16)»: corretto al secondo ordine; ok. Nessuna modifica. |
 | oscillatore-smorzato | notazione | ω_s (pulsazione «smorzata») mantenuto anche in inglese (dove è più comune ω_d). **Deciso (23/11)**: resta ω_s. |
-| (corso) | struttura della prova | «Tre problemi + due domande d'orale, 120 min» è una scelta del sito: il motore estrae esercizi da qualunque argomento. Proposta: confermare la struttura con il programma reale. **In attesa di Valerio**. |
-| (corso) | semestre | L'originale non indica il semestre: non impostato. **In attesa di Valerio**. |
+| (corso) | struttura della prova | «Tre problemi + due domande d'orale, 120 min» è una scelta del sito: il motore estrae esercizi da qualunque argomento. Proposta: confermare la struttura con il programma reale. **Confermato (25/11)**: la struttura è ricavata dalle vecchie prove d'esame; il campo `exam` resta invariato (i testi delle prove non si ripubblicano, vedi `COMPLIANCE.md`). |
+| (corso) | semestre | L'originale non indica il semestre. **Deciso (25/11)**: primo anno, secondo semestre (`semester: 2` in `src/content/courses/fisica-1.yaml`; la Panoramica lo cita). |
 
 ## Osservazioni sulla conversione
 
