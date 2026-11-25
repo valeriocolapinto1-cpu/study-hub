@@ -1,22 +1,11 @@
 /**
- * Worker Cloudflare del tutor AI (revisione 2, R12). Tiene la chiave dell'API come secret e
- * chiama la Messages API in streaming; il sito parla solo con questo Worker.
- * Guida alla pubblicazione: docs/TUTOR-AI.md. Logica in handler.ts (provata con un client finto).
+ * Worker Cloudflare del tutor AI (R12, con Gemini da R15). Tiene la chiave dell'API come secret e
+ * chiama `streamGenerateContent` con `fetch`; il sito parla solo con questo Worker.
+ * Guida alla pubblicazione: docs/TUTOR-AI.md. Logica in handler.ts (provata con un fetch finto).
  */
-import Anthropic from '@anthropic-ai/sdk';
 import type { Env } from './config';
 import { handle, type LimitsClient } from './handler';
 import { begin, end, type LimitStore } from './limits';
-
-/** Errori dell'API → codice breve per il pannello (le classi dell'SDK, non i messaggi). */
-export function classifyError(err: unknown): string {
-  if (err instanceof Anthropic.RateLimitError) return 'overloaded';
-  if (err instanceof Anthropic.InternalServerError) return 'overloaded';
-  if (err instanceof Anthropic.AuthenticationError) return 'unconfigured';
-  if (err instanceof Anthropic.BadRequestError) return 'invalid';
-  if (err instanceof Anthropic.APIError) return 'upstream';
-  return 'upstream';
-}
 
 /** Client dei limiti verso il Durable Object (un'istanza sola, nome fisso). */
 function limitsClient(env: Env): LimitsClient | null {
@@ -44,15 +33,9 @@ export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContextLike): Promise<Response> {
     return handle(request, {
       env,
-      streamer: (apiKey) => {
-        // Due tentativi automatici dell'SDK su 429/5xx/errori di rete, come da predefinito.
-        const client = new Anthropic({ apiKey });
-        return { stream: (params, opts) => client.beta.messages.stream(params, { signal: opts.signal }) };
-      },
       limits: limitsClient(env),
       fetchFn: fetch.bind(globalThis),
       waitUntil: (p) => ctx.waitUntil(p),
-      classifyError,
     });
   },
 };
