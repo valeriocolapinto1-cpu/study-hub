@@ -3,36 +3,46 @@
  * Valori mancanti o non validi → predefiniti prudenti (mai un errore all'avvio).
  */
 
-/** Modelli selezionabili con la variabile `MODEL`. Il primo è il predefinito. */
-export const MODELS = ['claude-opus-5-5', 'claude-sonnet-5-5', 'claude-haiku-5-5'] as const;
-export type TutorModel = (typeof MODELS)[number];
-
-export const EFFORTS = ['low', 'medium', 'high'] as const;
-export type Effort = (typeof EFFORTS)[number];
-
-/** Beta del fallback lato server (`fallbacks: "default"`). */
-export const FALLBACK_BETA = 'server-side-fallback-2026-07-01';
+/**
+ * Modello predefinito: Gemini 4 Hydrogen, stabile, disponibile sia nel livello gratuito sia a
+ * pagamento (documentazione di ai.google.dev verificata il 25 novembre 2026). I modelli cambiano
+ * spesso: l'elenco aggiornato è in Google AI Studio e su https://ai.google.dev/gemini-api/docs/models.
+ */
+export const DEFAULT_MODEL = 'gemini-4-hydrogen';
 
 /**
- * Modelli con fallback lato server. Claude Haiku 5.5 non ne ha: con `fallbacks` una lista
- * darebbe 400 e `"default"` non farebbe nulla, quindi per lui il parametro non si manda.
+ * Livelli di ragionamento (`thinkingConfig.thinkingLevel`). Gemini 4 Hydrogen accetta
+ * low/medium/high/xhigh (predefinito high) e rifiuta minimal; i Flash-Lite accettano anche minimal.
+ * `default` = il campo non si manda e vale il predefinito del modello.
  */
-export const HAS_SERVER_FALLBACK: Record<TutorModel, boolean> = {
-  'claude-opus-5-5': true,
-  'claude-sonnet-5-5': true,
-  'claude-haiku-5-5': false,
-};
+export const THINKING_LEVELS = ['minimal', 'low', 'medium', 'high', 'xhigh', 'default'] as const;
+export type ThinkingLevel = (typeof THINKING_LEVELS)[number];
+
+/**
+ * Prezzi predefiniti per milione di token, in dollari: listino di `gemini-4-hydrogen` (livello a
+ * pagamento, «Standard») letto il 25 novembre 2026 su https://ai.google.dev/gemini-api/docs/pricing.
+ * Da aggiornare dal listino Google se cambia il modello o il prezzo (variabili PRICE_*).
+ */
+export const DEFAULT_PRICE = { input: 1.5, output: 7.5 } as const;
 
 export interface Env {
-  /** Secret: chiave dell'API Anthropic (`wrangler secret put ANTHROPIC_API_KEY`). */
-  ANTHROPIC_API_KEY?: string;
+  /** Secret: chiave dell'API Gemini (`wrangler secret put GEMINI_API_KEY`). */
+  GEMINI_API_KEY?: string;
   /** Secret: chiave segreta di Turnstile (`wrangler secret put TURNSTILE_SECRET_KEY`). */
   TURNSTILE_SECRET_KEY?: string;
   /** Origini del sito ammesse (CORS), separate da virgole, es. `https://utente.github.io`. */
   ALLOWED_ORIGINS?: string;
+  /** Codice del modello Gemini, es. `gemini-4-hydrogen`. */
   MODEL?: string;
-  EFFORT?: string;
+  THINKING_LEVEL?: string;
+  /** Tetto dei token in uscita (ragionamento compreso). */
   MAX_TOKENS?: string;
+  /** Prezzo per milione di token in ingresso, dollari. */
+  PRICE_INPUT_PER_MTOK?: string;
+  /** Prezzo per milione di token in uscita (ragionamento compreso), dollari. */
+  PRICE_OUTPUT_PER_MTOK?: string;
+  /** Tempo massimo di una risposta, in secondi. */
+  TIMEOUT_SECONDS?: string;
   /** Richieste per IP all'ora. */
   RATE_LIMIT_PER_HOUR?: string;
   /** Tetto di spesa giornaliero stimato, in dollari (giorno UTC). */
@@ -50,9 +60,11 @@ export interface DurableObjectNamespaceLike {
 }
 
 export interface TutorConfig {
-  model: TutorModel;
-  effort: Effort;
+  model: string;
+  thinkingLevel: ThinkingLevel;
   maxTokens: number;
+  price: { input: number; output: number };
+  timeoutMs: number;
   ratePerHour: number;
   dailyBudgetUsd: number;
   origins: string[];
@@ -66,15 +78,22 @@ const num = (raw: string | undefined, fallback: number, min: number, max: number
     : fallback;
 };
 
+/** Codice di modello plausibile: finisce nel percorso dell'URL, quindi niente `/`, `?`, `:`. */
+const MODEL_RE = /^[a-z0-9][a-z0-9.-]{1,63}$/;
+
 export function readConfig(env: Env): TutorConfig {
-  const model = (MODELS as readonly string[]).includes(env.MODEL ?? '')
-    ? (env.MODEL as TutorModel)
-    : MODELS[0];
-  const effort = (EFFORTS as readonly string[]).includes(env.EFFORT ?? '') ? (env.EFFORT as Effort) : 'low';
+  const model = (env.MODEL ?? '').trim();
+  const level = (env.THINKING_LEVEL ?? '').trim().toLowerCase();
   return {
-    model,
-    effort,
-    maxTokens: Math.round(num(env.MAX_TOKENS, 4000, 256, 8000)),
+    model: MODEL_RE.test(model) ? model : DEFAULT_MODEL,
+    thinkingLevel: (THINKING_LEVELS as readonly string[]).includes(level) ? (level as ThinkingLevel) : 'low',
+    maxTokens: Math.round(num(env.MAX_TOKENS, 4000, 256, 16000)),
+    // Un prezzo non valido o assente vale il predefinito; zero non è ammesso (il tetto sparirebbe).
+    price: {
+      input: num(env.PRICE_INPUT_PER_MTOK, DEFAULT_PRICE.input, 0.001, 1000),
+      output: num(env.PRICE_OUTPUT_PER_MTOK, DEFAULT_PRICE.output, 0.001, 1000),
+    },
+    timeoutMs: Math.round(num(env.TIMEOUT_SECONDS, 60, 5, 300) * 1000),
     ratePerHour: Math.round(num(env.RATE_LIMIT_PER_HOUR, 20, 1, 1000)),
     dailyBudgetUsd: num(env.DAILY_BUDGET_USD, 2, 0, 1000),
     origins: (env.ALLOWED_ORIGINS ?? '')

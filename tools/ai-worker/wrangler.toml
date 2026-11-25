@@ -1,18 +1,27 @@
-# Worker del tutor AI (R12). Guida: docs/TUTOR-AI.md.
-# Secret (mai in questo file): wrangler secret put ANTHROPIC_API_KEY / TURNSTILE_SECRET_KEY
+# Worker del tutor AI (R12; API Gemini da R15). Guida: docs/TUTOR-AI.md.
+# Secret (mai in questo file): wrangler secret put GEMINI_API_KEY / TURNSTILE_SECRET_KEY
 name = "study-hub-tutor"
 main = "src/index.ts"
 compatibility_date = "2026-11-01"
-compatibility_flags = ["nodejs_compat"]
 
 [vars]
 # Origine del sito (schema + dominio, senza percorso); più origini separate da virgole.
 ALLOWED_ORIGINS = "https://valeriocolapinto1-cpu.github.io"
-# claude-opus-5-5 (predefinito) | claude-sonnet-5-5 | claude-haiku-5-5
-MODEL = "claude-opus-5-5"
-# low | medium | high
-EFFORT = "low"
+# Codice del modello Gemini. Elenco aggiornato: Google AI Studio o
+# https://ai.google.dev/gemini-api/docs/models (gemini-4-hydrogen verificato a novembre 2026).
+MODEL = "gemini-4-hydrogen"
+# Ragionamento: low | medium | high | xhigh (Gemini 4); minimal solo sui Flash-Lite;
+# default = predefinito del modello (high su gemini-4-hydrogen, più lento e costoso).
+THINKING_LEVEL = "low"
+# Tetto dei token in uscita, ragionamento compreso.
 MAX_TOKENS = "4000"
+# Prezzi in dollari per milione di token, DA AGGIORNARE DAL LISTINO GOOGLE
+# (https://ai.google.dev/gemini-api/docs/pricing) se cambi modello o se cambia il listino.
+# Valori di gemini-4-hydrogen, livello a pagamento «Standard», al 25/11/2026.
+PRICE_INPUT_PER_MTOK = "1.5"
+PRICE_OUTPUT_PER_MTOK = "7.5"
+# Tempo massimo di una risposta, in secondi.
+TIMEOUT_SECONDS = "60"
 # Richieste per IP all'ora.
 RATE_LIMIT_PER_HOUR = "20"
 # Tetto di spesa stimato al giorno (dollari, giorno UTC): poi «riprova domani».

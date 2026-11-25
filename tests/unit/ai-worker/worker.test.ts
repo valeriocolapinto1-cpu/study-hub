@@ -1,20 +1,11 @@
 /**
  * Worker del tutor (tools/ai-worker): CORS, validazione, Turnstile e sessione, limiti per IP,
- * tetto di spesa, streaming SSE, rifiuti ed errori. Client dell'API finto: nessuna chiamata reale.
+ * tetto di spesa, streaming SSE da Gemini, blocchi di sicurezza, MAX_TOKENS, errori e tempo massimo.
+ * `fetch` finto per Turnstile e per l'API Gemini: nessuna chiamata reale.
  */
 import { describe, expect, it } from 'vitest';
-import type {
-  BetaMessage,
-  BetaRawMessageStreamEvent,
-} from '@anthropic-ai/sdk/resources/beta/messages/messages';
-import {
-  handle,
-  buildParams,
-  type Deps,
-  type LimitsClient,
-  type Streamer,
-} from '../../../tools/ai-worker/src/handler';
-import { readConfig, FALLBACK_BETA } from '../../../tools/ai-worker/src/config';
+import { handle, type Deps, type LimitsClient } from '../../../tools/ai-worker/src/handler';
+import { readConfig, DEFAULT_MODEL, DEFAULT_PRICE } from '../../../tools/ai-worker/src/config';
 import {
   begin,
   end,
@@ -22,12 +13,18 @@ import {
   secondsToNextDay,
   type LimitStore,
 } from '../../../tools/ai-worker/src/limits';
-import { usageCost, attemptCost } from '../../../tools/ai-worker/src/pricing';
+import { usageCost, tokenCost, worstCaseCost } from '../../../tools/ai-worker/src/pricing';
 import { validateRequest, LIMITS } from '../../../tools/ai-worker/src/validate';
-import { INSTRUCTIONS, apiMessages, contextBlock } from '../../../tools/ai-worker/src/prompt';
-import { checkSession, hashIp, issueSession } from '../../../tools/ai-worker/src/session';
-import { classifyError } from '../../../tools/ai-worker/src/index';
-import Anthropic from '@anthropic-ai/sdk';
+import { INSTRUCTIONS, apiContents, contextBlock } from '../../../tools/ai-worker/src/prompt';
+import {
+  buildRequest,
+  classifyStatus,
+  outcome,
+  readSse,
+  streamUrl,
+  type StreamChunk,
+} from '../../../tools/ai-worker/src/gemini';
+import { checkSession, hashIp, issueSession, SITEVERIFY_URL } from '../../../tools/ai-worker/src/session';
 
 const ORIGIN = 'https://esempio.github.io';
 const NOW = Date.UTC(2026, 10, 24, 10, 0, 0);
@@ -60,86 +57,115 @@ function memoryLimits(store = memoryStore()): LimitsClient & { store: ReturnType
   return { store, begin: (o) => begin(store, o), end: (o) => end(store, o) };
 }
 
-const message = (over: Partial<BetaMessage> = {}): BetaMessage =>
-  ({
-    id: 'msg_1',
-    type: 'message',
-    role: 'assistant',
-    model: 'claude-opus-5-5',
-    content: [],
-    stop_reason: 'end_turn',
-    stop_sequence: null,
-    usage: {
-      input_tokens: 1000,
-      output_tokens: 200,
-      cache_creation_input_tokens: 0,
-      cache_read_input_tokens: 0,
+const USAGE = {
+  promptTokenCount: 1000,
+  candidatesTokenCount: 150,
+  thoughtsTokenCount: 50,
+  totalTokenCount: 1200,
+};
+
+/** Pezzi di una risposta normale: testo a pezzi, poi finishReason e usageMetadata. */
+const textChunks = (parts: string[], finishReason = 'STOP', usage: object | null = USAGE): StreamChunk[] => [
+  ...parts.map(
+    (text) => ({ candidates: [{ content: { role: 'model', parts: [{ text }] } }] }) as StreamChunk,
+  ),
+  {
+    candidates: [{ content: { role: 'model', parts: [] }, finishReason }],
+    ...(usage ? { usageMetadata: usage } : {}),
+  } as StreamChunk,
+];
+
+/** Corpo SSE come lo manda Google (`data: {json}\r\n\r\n`), in pezzi di byte arbitrari. */
+function sseBody(
+  chunks: unknown[],
+  opts: { cutAfter?: number; split?: number } = {},
+): ReadableStream<Uint8Array> {
+  const text = chunks
+    .slice(0, opts.cutAfter ?? chunks.length)
+    .map((c) => `data: ${JSON.stringify(c)}\r\n\r\n`)
+    .join('');
+  const bytes = new TextEncoder().encode(text);
+  const size = opts.split ?? 7;
+  let i = 0;
+  return new ReadableStream({
+    pull(ctrl) {
+      if (i >= bytes.length) {
+        if (opts.cutAfter !== undefined && opts.cutAfter < chunks.length) ctrl.error(new Error('rete'));
+        else ctrl.close();
+        return;
+      }
+      ctrl.enqueue(bytes.slice(i, i + size));
+      i += size;
     },
-    ...over,
-  }) as unknown as BetaMessage;
-
-const textEvents = (parts: string[], final: BetaMessage): BetaRawMessageStreamEvent[] =>
-  [
-    { type: 'message_start', message: { ...final, content: [], stop_reason: null } },
-    { type: 'content_block_start', index: 0, content_block: { type: 'text', text: '' } },
-    ...parts.map((text) => ({ type: 'content_block_delta', index: 0, delta: { type: 'text_delta', text } })),
-    { type: 'content_block_stop', index: 0 },
-    { type: 'message_delta', delta: { stop_reason: final.stop_reason }, usage: final.usage },
-    { type: 'message_stop' },
-  ] as unknown as BetaRawMessageStreamEvent[];
-
-interface FakeCall {
-  params: Parameters<Streamer['stream']>[0];
+  });
 }
 
-function fakeStreamer(
-  opts: { parts?: string[]; final?: BetaMessage; throwAt?: number; error?: unknown } = {},
-) {
-  const calls: FakeCall[] = [];
-  const final = opts.final ?? message();
-  const streamer = (apiKey: string): Streamer => {
-    expect(apiKey).toBe('sk-finta');
-    return {
-      stream: (params) => {
-        calls.push({ params });
-        const events = textEvents(opts.parts ?? ['Ciao', ' studente'], final);
-        return {
-          async *[Symbol.asyncIterator]() {
-            for (const [i, e] of events.entries()) {
-              if (opts.throwAt === i) throw opts.error ?? new Error('rete');
-              yield e;
-            }
-          },
-          finalMessage: async () => final,
-        };
-      },
-    };
-  };
-  return { streamer, calls };
+type GeminiReply =
+  | { chunks: unknown[]; cutAfter?: number }
+  | { status: number; json?: unknown }
+  | { hang: true }
+  | { throws: true };
+
+interface GeminiCall {
+  url: string;
+  headers: Headers;
+  body: Record<string, unknown>;
 }
 
-function deps(over: Partial<Deps> & { verify?: boolean } = {}) {
-  const pending: Promise<unknown>[] = [];
-  const turnstileCalls: string[] = [];
-  const fetchFn = (async (_url: string | URL | Request, init?: RequestInit) => {
-    const form = init?.body as FormData;
-    turnstileCalls.push(String(form.get('response')));
-    return Response.json({ success: (over.verify ?? true) && form.get('response') === 'tok-ok' });
+/** `fetch` finto: Turnstile accetta solo `tok-ok`; Gemini risponde con le risposte in coda. */
+function fakeFetch(replies: GeminiReply[] = [{ chunks: textChunks(['Ciao', ' studente']) }], verify = true) {
+  const gemini: GeminiCall[] = [];
+  const turnstile: string[] = [];
+  let next = 0;
+  const fetchFn = (async (input: string | URL | Request, init?: RequestInit) => {
+    const url = String(input);
+    if (url === SITEVERIFY_URL) {
+      const form = init?.body as FormData;
+      turnstile.push(String(form.get('response')));
+      return Response.json({ success: verify && form.get('response') === 'tok-ok' });
+    }
+    expect(url.startsWith('https://generativelanguage.googleapis.com/v1beta/models/')).toBe(true);
+    gemini.push({
+      url,
+      headers: new Headers(init?.headers),
+      body: JSON.parse(String(init?.body)) as Record<string, unknown>,
+    });
+    const reply = replies[Math.min(next++, replies.length - 1)]!;
+    if ('throws' in reply) throw new TypeError('fetch failed');
+    if ('hang' in reply)
+      return new Promise<Response>((_, reject) =>
+        init?.signal?.addEventListener('abort', () => reject(new DOMException('Aborted', 'AbortError'))),
+      );
+    if ('status' in reply)
+      return Response.json(reply.json ?? { error: { code: reply.status, status: 'X' } }, {
+        status: reply.status,
+      });
+    return new Response(sseBody(reply.chunks, { cutAfter: reply.cutAfter }), {
+      headers: { 'content-type': 'text/event-stream' },
+    });
   }) as typeof fetch;
+  return { fetchFn, gemini, turnstile };
+}
+
+function deps(over: Partial<Deps> & { replies?: GeminiReply[]; verify?: boolean } = {}) {
+  const pending: Promise<unknown>[] = [];
+  const logs: string[] = [];
+  const fake = fakeFetch(over.replies, over.verify ?? true);
   const d: Deps = {
     env: {
-      ANTHROPIC_API_KEY: 'sk-finta',
+      GEMINI_API_KEY: 'chiave-finta',
       TURNSTILE_SECRET_KEY: 'segreto',
       ALLOWED_ORIGINS: `${ORIGIN}, http://localhost:4321/`,
     },
-    streamer: fakeStreamer().streamer,
     limits: memoryLimits(),
-    fetchFn,
+    fetchFn: fake.fetchFn,
     waitUntil: (p) => void pending.push(p),
     now: () => NOW,
+    sleep: async () => undefined,
+    log: (m) => void logs.push(m),
     ...over,
   };
-  return { d, pending, turnstileCalls };
+  return { d, pending, logs, gemini: fake.gemini, turnstileCalls: fake.turnstile };
 }
 
 const post = (payload: unknown, headers: Record<string, string> = {}) =>
@@ -161,6 +187,17 @@ async function events(res: Response): Promise<Record<string, unknown>[]> {
     .split('\n\n')
     .filter((b) => b.startsWith('data: '))
     .map((b) => JSON.parse(b.slice(6)) as Record<string, unknown>);
+}
+
+/** Una domanda completa: eventi dello stream e stato dei limiti a fine risposta. */
+async function ask(replies: GeminiReply[], over: Partial<Deps> = {}) {
+  const limits = memoryLimits();
+  const x = deps({ replies, limits, ...over });
+  const res = await handle(post(body()), x.d);
+  const ev = await events(res);
+  await Promise.all(x.pending);
+  const day = limits.store.data.get('day:2026-11-24') as { reserved: number; spent: number };
+  return { ev, day, ...x };
 }
 
 describe('CORS e metodo', () => {
@@ -195,7 +232,7 @@ describe('CORS e metodo', () => {
   it('503 senza chiave, senza Durable Object o senza Turnstile', async () => {
     expect((await handle(post(body()), deps({ env: { ALLOWED_ORIGINS: ORIGIN } }).d)).status).toBe(503);
     expect((await handle(post(body()), deps({ limits: null }).d)).status).toBe(503);
-    const noTs = deps({ env: { ANTHROPIC_API_KEY: 'sk-finta', ALLOWED_ORIGINS: ORIGIN } }).d;
+    const noTs = deps({ env: { GEMINI_API_KEY: 'chiave-finta', ALLOWED_ORIGINS: ORIGIN } }).d;
     expect((await handle(post(body()), noTs)).status).toBe(503);
   });
 });
@@ -271,7 +308,7 @@ describe('Turnstile e sessione', () => {
 
   it('senza secret di Turnstile solo con ALLOW_NO_TURNSTILE=1 (prove locali)', async () => {
     const { d, pending } = deps({
-      env: { ANTHROPIC_API_KEY: 'sk-finta', ALLOWED_ORIGINS: ORIGIN, ALLOW_NO_TURNSTILE: '1' },
+      env: { GEMINI_API_KEY: 'chiave-finta', ALLOWED_ORIGINS: ORIGIN, ALLOW_NO_TURNSTILE: '1' },
     });
     const res = await handle(post(body({ turnstile: undefined })), d);
     expect(res.status).toBe(200);
@@ -318,7 +355,7 @@ describe('limiti', () => {
     await events(r1);
     await Promise.all(pending);
     const spent = await spentToday(limits.store, NOW);
-    expect(spent).toBeCloseTo(usageCost(message().usage, 'claude-opus-5-5'));
+    expect(spent).toBeCloseTo(tokenCost(1000, 200, DEFAULT_PRICE));
     const day = limits.store.data.get('day:2026-11-24') as { reserved: number };
     expect(day.reserved).toBeCloseTo(0);
 
@@ -340,15 +377,9 @@ describe('limiti', () => {
   });
 });
 
-describe('streaming e chiamata all’API', () => {
+describe('streaming e chiamata a Gemini', () => {
   it('inoltra il testo in SSE e chiude con done', async () => {
-    const { streamer, calls } = fakeStreamer({ parts: ['La legge ', 'di Ohm: $V = RI$'] });
-    const { d, pending } = deps({ streamer });
-    const res = await handle(post(body()), d);
-    expect(res.headers.get('content-type')).toContain('text/event-stream');
-    expect(res.headers.get('access-control-allow-origin')).toBe(ORIGIN);
-    const ev = await events(res);
-    await Promise.all(pending);
+    const { ev, gemini, day } = await ask([{ chunks: textChunks(['La legge ', 'di Ohm: $V = RI$']) }]);
     expect(
       ev
         .filter((e) => e.type === 'text')
@@ -356,50 +387,33 @@ describe('streaming e chiamata all’API', () => {
         .join(''),
     ).toBe('La legge di Ohm: $V = RI$');
     expect(ev.at(-1)).toEqual({ type: 'done', stop: 'end_turn' });
-    expect(calls).toHaveLength(1);
+    expect(gemini).toHaveLength(1);
+    // costo da usageMetadata: ingresso 1000, uscita 150 + 50 di ragionamento
+    expect(day.spent).toBeCloseTo((1000 * 1.5 + 200 * 7.5) / 1e6);
+    expect(day.reserved).toBeCloseTo(0);
   });
 
-  it('parametri: modello predefinito, effort low, max_tokens 4000, cache, fallback, niente prefill', () => {
-    const r = validateRequest(body());
-    if (!r.ok) throw new Error('richiesta non valida');
-    const p = buildParams(r.value, readConfig({}));
-    expect(p.model).toBe('claude-opus-5-5');
-    expect(p.output_config).toEqual({ effort: 'low' });
-    expect(p.max_tokens).toBe(4000);
-    expect(p).not.toHaveProperty('thinking');
-    expect(p.betas).toEqual([FALLBACK_BETA]);
-    expect(p.fallbacks).toBe('default');
-    expect(p.cache_control).toEqual({ type: 'ephemeral' });
-    const system = p.system as { text: string; cache_control?: unknown }[];
-    expect(system[0]!.text).toBe(INSTRUCTIONS);
-    expect(system.every((b) => b.cache_control)).toBe(true);
-    // le parti fisse non cambiano tra lingue e pagine diverse (prefisso della cache)
-    const en = validateRequest(body({ lang: 'en', context: { kind: 'theory', title: 'X', text: 'Y' } }));
-    if (!en.ok) throw new Error('richiesta non valida');
-    expect(buildParams(en.value, readConfig({})).system).toEqual(p.system);
-    expect(p.messages.at(-1)!.role).toBe('user');
-    expect(JSON.stringify(p.messages[0])).toContain('reply_language=\\"Italian\\"');
-  });
-
-  it('Sonnet e Haiku selezionabili; Haiku senza fallback lato server', () => {
-    const r = validateRequest(body());
-    if (!r.ok) throw new Error('richiesta non valida');
-    const sonnet = buildParams(r.value, readConfig({ MODEL: 'claude-sonnet-5-5' }));
-    expect(sonnet.model).toBe('claude-sonnet-5-5');
-    expect(sonnet.fallbacks).toBe('default');
-    const haiku = buildParams(r.value, readConfig({ MODEL: 'claude-haiku-5-5', EFFORT: 'medium' }));
-    expect(haiku.model).toBe('claude-haiku-5-5');
-    expect(haiku).not.toHaveProperty('fallbacks');
-    expect(haiku).not.toHaveProperty('betas');
-    expect(haiku.output_config).toEqual({ effort: 'medium' });
-    expect(readConfig({ MODEL: 'gpt-qualcosa', EFFORT: 'max', MAX_TOKENS: '999999' })).toMatchObject({
-      model: 'claude-opus-5-5',
-      effort: 'low',
-      maxTokens: 8000,
+  it('URL, chiave nell’intestazione e mai nell’URL, corpo della richiesta', async () => {
+    const { gemini } = await ask([{ chunks: textChunks(['ok']) }]);
+    const call = gemini[0]!;
+    expect(call.url).toBe(
+      'https://generativelanguage.googleapis.com/v1beta/models/gemini-4-hydrogen:streamGenerateContent?alt=sse',
+    );
+    expect(call.url).not.toContain('chiave-finta');
+    expect(call.headers.get('x-goog-api-key')).toBe('chiave-finta');
+    expect(call.headers.get('content-type')).toBe('application/json');
+    expect(call.body.generationConfig).toEqual({
+      maxOutputTokens: 4000,
+      thinkingConfig: { thinkingLevel: 'LOW' },
     });
+    const sys = call.body.systemInstruction as { parts: { text: string }[] };
+    expect(sys.parts[0]!.text).toBe(INSTRUCTIONS);
+    expect(sys.parts[1]!.text).toContain('<course id="teoria-circuiti">');
+    for (const k of ['temperature', 'topP', 'topK', 'cachedContent', 'tools', 'safetySettings'])
+      expect(JSON.stringify(call.body)).not.toContain(`"${k}"`);
   });
 
-  it('il contesto della pagina va nel primo messaggio, con soluzione o «not available»', () => {
+  it('richiesta: ruoli user/model, contesto nel primo messaggio, parti fisse uguali tra pagine', () => {
     const r = validateRequest(
       body({
         context: { kind: 'card', title: 'Scheda', text: 'Fronte' },
@@ -411,76 +425,241 @@ describe('streaming e chiamata all’API', () => {
       }),
     );
     if (!r.ok) throw new Error('richiesta non valida');
-    const msgs = apiMessages(r.value);
-    expect(msgs).toHaveLength(3);
-    expect(JSON.stringify(msgs[0])).toContain('<reference_solution>not available');
-    expect(msgs[2]).toEqual({ role: 'user', content: 'c' });
+    const contents = apiContents(r.value);
+    expect(contents.map((c) => c.role)).toEqual(['user', 'model', 'user']);
+    expect(contents[0]!.parts).toHaveLength(2);
+    expect(contents[0]!.parts[0]!.text).toContain('<reference_solution>not available');
+    expect(contents[0]!.parts[0]!.text).toContain('reply_language="Italian"');
+    expect(contents[2]).toEqual({ role: 'user', parts: [{ text: 'c' }] });
     expect(contextBlock(r.value)).toContain('kind="flashcard"');
+    // il prefisso (systemInstruction) non cambia tra lingue e pagine diverse
+    const en = validateRequest(body({ lang: 'en', context: { kind: 'theory', title: 'X', text: 'Y' } }));
+    if (!en.ok) throw new Error('richiesta non valida');
+    expect(buildRequest(en.value, readConfig({})).systemInstruction).toEqual(
+      buildRequest(r.value, readConfig({})).systemInstruction,
+    );
   });
 
-  it('rifiuto: evento refusal (il pannello scarta il testo parziale)', async () => {
-    const { streamer } = fakeStreamer({ parts: ['Parz'], final: message({ stop_reason: 'refusal' }) });
-    const { d, pending } = deps({ streamer });
-    const ev = await events(await handle(post(body()), d));
-    await Promise.all(pending);
-    expect(ev.at(-1)).toEqual({ type: 'refusal' });
+  it('configurazione: modello, livello di ragionamento, tetti e prezzi dalle variabili', () => {
+    expect(readConfig({})).toMatchObject({
+      model: DEFAULT_MODEL,
+      thinkingLevel: 'low',
+      maxTokens: 4000,
+      price: DEFAULT_PRICE,
+      timeoutMs: 60_000,
+    });
+    const c = readConfig({
+      MODEL: 'gemini-3.5-flash-lite',
+      THINKING_LEVEL: 'MINIMAL',
+      MAX_TOKENS: '999999',
+      PRICE_INPUT_PER_MTOK: '0.25',
+      PRICE_OUTPUT_PER_MTOK: '2',
+      TIMEOUT_SECONDS: '30',
+    });
+    expect(c).toMatchObject({
+      model: 'gemini-3.5-flash-lite',
+      thinkingLevel: 'minimal',
+      maxTokens: 16000,
+      price: { input: 0.25, output: 2 },
+      timeoutMs: 30_000,
+    });
+    // valori non validi → predefiniti (un nome con / o ? finirebbe nell'URL)
+    expect(
+      readConfig({
+        MODEL: '../x?key=1',
+        THINKING_LEVEL: 'tanto',
+        PRICE_INPUT_PER_MTOK: 'gratis',
+        PRICE_OUTPUT_PER_MTOK: '0',
+      }),
+    ).toMatchObject({ model: DEFAULT_MODEL, thinkingLevel: 'low', price: { input: 1.5, output: 0.001 } });
+    const r = validateRequest(body());
+    if (!r.ok) throw new Error('richiesta non valida');
+    expect(buildRequest(r.value, readConfig({ THINKING_LEVEL: 'default' })).generationConfig).toEqual({
+      maxOutputTokens: 4000,
+    });
+    expect(streamUrl('gemini-3.5-flash-lite')).toContain(
+      '/models/gemini-3.5-flash-lite:streamGenerateContent?alt=sse',
+    );
   });
 
-  it('risposta troncata: done con max_tokens', async () => {
-    const { streamer } = fakeStreamer({ final: message({ stop_reason: 'max_tokens' }) });
-    const { d, pending } = deps({ streamer });
-    const ev = await events(await handle(post(body()), d));
-    await Promise.all(pending);
+  it('le parti di ragionamento non arrivano allo studente', async () => {
+    const { ev } = await ask([
+      {
+        chunks: [
+          { candidates: [{ content: { parts: [{ text: 'penso…', thought: true }, { text: 'Risposta' }] } }] },
+          { candidates: [{ content: { parts: [] }, finishReason: 'STOP' }], usageMetadata: USAGE },
+        ],
+      },
+    ]);
+    expect(ev.filter((e) => e.type === 'text')).toEqual([{ type: 'text', text: 'Risposta' }]);
+  });
+
+  it('domanda bloccata (promptFeedback.blockReason): refusal senza testo', async () => {
+    const { ev, day } = await ask([
+      {
+        chunks: [
+          {
+            promptFeedback: { blockReason: 'SAFETY' },
+            usageMetadata: { promptTokenCount: 900, totalTokenCount: 900 },
+          },
+        ],
+      },
+    ]);
+    expect(ev).toEqual([{ type: 'session', token: expect.any(String) }, { type: 'refusal' }]);
+    expect(day.spent).toBeCloseTo((900 * 1.5) / 1e6);
+  });
+
+  it.each(['SAFETY', 'RECITATION', 'PROHIBITED_CONTENT', 'SPII', 'BLOCKLIST', 'OTHER'])(
+    'risposta bloccata a metà (%s): refusal, il pannello scarta il parziale',
+    async (reason) => {
+      const { ev } = await ask([{ chunks: textChunks(['Parz'], reason) }]);
+      expect(ev.some((e) => e.type === 'text')).toBe(true);
+      expect(ev.at(-1)).toEqual({ type: 'refusal' });
+    },
+  );
+
+  it('MAX_TOKENS: done con max_tokens (avviso «risposta interrotta»)', async () => {
+    const { ev } = await ask([{ chunks: textChunks(['Lunga…'], 'MAX_TOKENS') }]);
     expect(ev.at(-1)).toEqual({ type: 'done', stop: 'max_tokens' });
   });
 
-  it('errore dell’API a metà: evento error classificato e prenotazione chiusa', async () => {
-    const err = new Anthropic.RateLimitError(429, { type: 'error' }, 'troppo', new Headers());
-    const { streamer } = fakeStreamer({ throwAt: 3, error: err });
-    const limits = memoryLimits();
-    const { d, pending } = deps({ streamer, limits, classifyError });
-    const ev = await events(await handle(post(body()), d));
-    await Promise.all(pending);
-    expect(ev.at(-1)).toEqual({ type: 'error', code: 'overloaded' });
-    expect(ev.some((e) => e.type === 'text')).toBe(true);
-    const day = limits.store.data.get('day:2026-11-24') as { reserved: number; spent: number };
+  it('esiti: STOP, troncamenti, blocchi, errori del servizio, stream senza fine', () => {
+    expect(outcome(undefined, 'STOP')).toEqual({ kind: 'done', stop: 'end_turn' });
+    expect(outcome(undefined, 'CONTINUATION')).toEqual({ kind: 'done', stop: 'max_tokens' });
+    expect(outcome('PROHIBITED_CONTENT', undefined)).toMatchObject({ kind: 'refusal' });
+    expect(outcome('OTHER', 'STOP')).toMatchObject({ kind: 'refusal' });
+    expect(outcome(undefined, 'MALFORMED_RESPONSE')).toEqual({ kind: 'error', code: 'upstream' });
+    expect(outcome(undefined, undefined)).toEqual({ kind: 'error', code: 'upstream' });
+  });
+
+  it('stream interrotto senza finishReason: errore, costo stimato dalla lunghezza', async () => {
+    const { ev, day } = await ask([
+      { chunks: textChunks(['x'.repeat(300), 'y'], 'STOP', null), cutAfter: 1 },
+    ]);
+    expect(ev.at(-1)).toEqual({ type: 'error', code: 'upstream' });
+    // senza usageMetadata: ingresso dalla richiesta (+ istruzioni), uscita dai 300 caratteri arrivati
+    expect(day.spent).toBeGreaterThan(tokenCost(INSTRUCTIONS.length / 3, 100, DEFAULT_PRICE) * 0.99);
     expect(day.reserved).toBeCloseTo(0);
+  });
+
+  it('finishReason senza usageMetadata: stima dalla lunghezza', async () => {
+    const { ev, day } = await ask([{ chunks: textChunks(['abc'], 'STOP', null) }]);
+    expect(ev.at(-1)).toEqual({ type: 'done', stop: 'end_turn' });
     expect(day.spent).toBeGreaterThan(0);
   });
 
-  it('classifica gli errori con le classi dell’SDK', () => {
-    const h = new Headers();
-    expect(classifyError(new Anthropic.InternalServerError(529, undefined, 'x', h))).toBe('overloaded');
-    expect(classifyError(new Anthropic.AuthenticationError(401, undefined, 'x', h))).toBe('unconfigured');
-    expect(classifyError(new Anthropic.BadRequestError(400, undefined, 'x', h))).toBe('invalid');
-    expect(classifyError(new Error('x'))).toBe('upstream');
+  it.each([
+    [400, 'INVALID_ARGUMENT', 'invalid'],
+    [400, 'FAILED_PRECONDITION', 'unconfigured'],
+    [401, 'UNAUTHENTICATED', 'unconfigured'],
+    [403, 'PERMISSION_DENIED', 'unconfigured'],
+    [404, 'NOT_FOUND', 'unconfigured'],
+    [429, 'RESOURCE_EXHAUSTED', 'quota'],
+    [504, 'DEADLINE_EXCEEDED', 'timeout'],
+  ])('HTTP %i %s → error %s, senza nuovi tentativi', async (status, gStatus, code) => {
+    const { ev, gemini, logs, day } = await ask([
+      { status, json: { error: { code: status, message: 'dettagli', status: gStatus } } },
+    ]);
+    expect(ev.at(-1)).toEqual({ type: 'error', code });
+    expect(gemini).toHaveLength(1);
+    expect(logs).toEqual([`gemini ${status} ${gStatus}`]);
+    expect(day.reserved).toBeCloseTo(0);
+  });
+
+  it('503/500: due nuovi tentativi, poi overloaded; se un tentativo riesce, la risposta arriva', async () => {
+    const fail = await ask([{ status: 503 }, { status: 500 }, { status: 503 }]);
+    expect(fail.gemini).toHaveLength(3);
+    expect(fail.ev.at(-1)).toEqual({ type: 'error', code: 'overloaded' });
+    const ok = await ask([{ status: 503 }, { chunks: textChunks(['Eccomi']) }]);
+    expect(ok.gemini).toHaveLength(2);
+    expect(ok.ev.at(-1)).toEqual({ type: 'done', stop: 'end_turn' });
+  });
+
+  it('errore di rete: nuovi tentativi, poi upstream', async () => {
+    const { ev, gemini } = await ask([{ throws: true }]);
+    expect(gemini).toHaveLength(3);
+    expect(ev.at(-1)).toEqual({ type: 'error', code: 'upstream' });
+  });
+
+  it('errore dentro lo stream: evento error classificato', async () => {
+    const { ev, logs } = await ask([
+      {
+        chunks: [
+          { candidates: [{ content: { parts: [{ text: 'Inizio' }] } }] },
+          { error: { code: 429, status: 'RESOURCE_EXHAUSTED', message: 'quota' } },
+        ],
+      },
+    ]);
+    expect(ev.at(-1)).toEqual({ type: 'error', code: 'quota' });
+    expect(logs[0]).toContain('429');
+  });
+
+  it('tempo massimo: la chiamata si interrompe ed esce timeout', async () => {
+    const { ev, day } = await ask([{ hang: true }], {
+      env: { ...deps().d.env, TIMEOUT_SECONDS: '5' },
+    });
+    expect(ev.at(-1)).toEqual({ type: 'error', code: 'timeout' });
+    expect(day.reserved).toBeCloseTo(0);
+  }, 10_000);
+
+  it('classifica gli stati HTTP', () => {
+    expect(classifyStatus(402)).toBe('unconfigured');
+    expect(classifyStatus(500)).toBe('overloaded');
+    expect(classifyStatus(418)).toBe('upstream');
+  });
+
+  it('lettore SSE: righe CRLF, pezzi spezzati a metà, righe non JSON ignorate', async () => {
+    const raw = 'data: {"a":1}\r\n\r\n: commento\r\n\r\ndata: rotto\r\n\r\ndata: {"b":2}';
+    const bytes = new TextEncoder().encode(raw);
+    const stream = new ReadableStream<Uint8Array>({
+      start(c) {
+        for (let i = 0; i < bytes.length; i += 3) c.enqueue(bytes.slice(i, i + 3));
+        c.close();
+      },
+    });
+    const out: unknown[] = [];
+    for await (const chunk of readSse(stream)) out.push(chunk);
+    expect(out).toEqual([{ a: 1 }, { b: 2 }]);
   });
 });
 
 describe('stima dei costi', () => {
-  it('prezzi per modello, cache e tentativi di fallback', () => {
-    expect(attemptCost({ input_tokens: 1e6, output_tokens: 0 }, 'claude-opus-5-5')).toBeCloseTo(4);
-    expect(attemptCost({ input_tokens: 0, output_tokens: 1e6 }, 'claude-haiku-5-5')).toBeCloseTo(0.5);
+  const price = { input: 1.5, output: 7.5 };
+
+  it('da usageMetadata: ingresso + strumenti; uscita + ragionamento', () => {
     expect(
-      attemptCost({ input_tokens: 0, output_tokens: 0, cache_read_input_tokens: 1e6 }, 'claude-sonnet-5-5'),
-    ).toBeCloseTo(0.1);
+      usageCost(
+        { promptTokenCount: 1e6, toolUsePromptTokenCount: 0, candidatesTokenCount: 0, totalTokenCount: 1e6 },
+        price,
+        { inputChars: 0, outputChars: 0 },
+      ),
+    ).toBeCloseTo(1.5);
     expect(
-      attemptCost({ input_tokens: 0, output_tokens: 0, cache_creation_input_tokens: 1e6 }, 'claude-opus-5-5'),
-    ).toBeCloseTo(5);
-    // modello sconosciuto: prezzo più alto
-    expect(attemptCost({ input_tokens: 0, output_tokens: 1e6 }, 'claude-ignoto')).toBeCloseTo(25);
-    const withFallback = usageCost(
-      {
-        input_tokens: 0,
-        output_tokens: 0,
-        iterations: [
-          { type: 'message', model: 'claude-opus-5-5', input_tokens: 1e6, output_tokens: 0 },
-          { type: 'fallback_message', model: 'claude-opus-4-8', input_tokens: 1e6, output_tokens: 0 },
-        ],
-      } as never,
-      'claude-opus-5-5',
-    );
-    expect(withFallback).toBeCloseTo(9);
-    expect(usageCost(undefined, 'claude-opus-5-5')).toBe(0);
+      usageCost(
+        { promptTokenCount: 0, candidatesTokenCount: 5e5, thoughtsTokenCount: 5e5, totalTokenCount: 1e6 },
+        price,
+        { inputChars: 0, outputChars: 0 },
+      ),
+    ).toBeCloseTo(7.5);
+    // la cache implicita non dà sconto nella stima (per eccesso)
+    expect(
+      usageCost({ promptTokenCount: 1e6, cachedContentTokenCount: 9e5, candidatesTokenCount: 0 }, price, {
+        inputChars: 0,
+        outputChars: 0,
+      }),
+    ).toBeCloseTo(1.5);
+    // solo il totale: l'uscita è la differenza
+    expect(
+      usageCost({ promptTokenCount: 1e6, totalTokenCount: 2e6 }, price, { inputChars: 0, outputChars: 0 }),
+    ).toBeCloseTo(9);
+  });
+
+  it('senza usageMetadata: stima dai caratteri (3 per token)', () => {
+    expect(usageCost(undefined, price, { inputChars: 3e6, outputChars: 3e6 })).toBeCloseTo(9);
+    expect(usageCost({}, price, { inputChars: 3e6, outputChars: 0 })).toBeCloseTo(1.5);
+  });
+
+  it('prenotazione = ingresso stimato + tetto dei token in uscita', () => {
+    expect(worstCaseCost(3e6, 1e6, price)).toBeCloseTo(9);
   });
 });
