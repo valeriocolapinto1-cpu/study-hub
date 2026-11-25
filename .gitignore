@@ -14,3 +14,5 @@ tools/apps-script/.clasp.json
 # Worker del tutor AI: stato locale di wrangler
 .wrangler/
 .dev.vars
+# secret locali per wrangler dev (GEMINI_API_KEY, TURNSTILE_SECRET_KEY): mai nel repository
+tools/ai-worker/.env*
