@@ -1,18 +1,25 @@
 /**
- * Prompt del tutor e forma della richiesta all'API.
+ * Prompt del tutor e forma della richiesta a `generateContent` (Gemini).
  *
- * Ordine pensato per il prompt caching (prefisso identico byte per byte):
- *  1. istruzioni fisse (uguali per tutti i corsi e le lingue) — punto di cache;
- *  2. contesto del corso (titolo e argomenti, uguale per corso e lingua) — punto di cache;
- *  3. nei messaggi: il contesto della pagina (esercizio, scheda o teoria) e la lingua, poi la
- *     conversazione; la cache automatica di primo livello copre la conversazione che cresce.
- * Niente data, ora o identificativi nelle parti fisse: invaliderebbero la cache.
+ * Ordine stabile, utile alla cache implicita di Gemini (prefisso identico byte per byte):
+ *  1. `systemInstruction`: istruzioni fisse (uguali per tutti), poi il contesto del corso
+ *     (titolo e argomenti, uguale per corso e lingua);
+ *  2. `contents`: il contesto della pagina (esercizio, scheda o teoria) e la lingua davanti al
+ *     primo messaggio dello studente, poi la conversazione.
+ * Niente data, ora o identificativi nelle parti fisse.
  */
-import type {
-  BetaMessageParam,
-  BetaTextBlockParam,
-} from '@anthropic-ai/sdk/resources/beta/messages/messages';
 import type { TutorRequest } from './validate';
+
+/** Una parte di testo di un `Content` di Gemini. */
+export interface TextPart {
+  text: string;
+}
+
+/** `Content` di Gemini: `user` per lo studente, `model` per il tutor. */
+export interface GeminiContent {
+  role: 'user' | 'model';
+  parts: TextPart[];
+}
 
 export const INSTRUCTIONS = `You are the study tutor of "Siti di studio", a free, unofficial website with theory, exercises and flashcards for students of an Electronic Engineering bachelor's degree (Italian university). You appear in a small chat panel next to the page the student is reading.
 
@@ -58,24 +65,21 @@ export function contextBlock(req: TutorRequest): string {
   return parts.join('\n');
 }
 
-export function systemBlocks(req: TutorRequest): BetaTextBlockParam[] {
-  return [
-    { type: 'text', text: INSTRUCTIONS, cache_control: { type: 'ephemeral' } },
-    { type: 'text', text: courseBlock(req), cache_control: { type: 'ephemeral' } },
-  ];
+/** `systemInstruction`: istruzioni fisse, poi il blocco del corso. */
+export function systemInstruction(req: TutorRequest): { parts: TextPart[] } {
+  return { parts: [{ text: INSTRUCTIONS }, { text: courseBlock(req) }] };
 }
 
-/** Conversazione per l'API: il contesto della pagina va davanti al primo messaggio dello studente. */
-export function apiMessages(req: TutorRequest): BetaMessageParam[] {
+/**
+ * Conversazione per l'API: il contesto della pagina va davanti al primo messaggio dello studente.
+ * Le risposte precedenti tornano come testo semplice, senza le «thought signature»: per le parti di
+ * testo Google non le verifica (sono obbligatorie solo con le chiamate a funzione, che il tutor non
+ * usa) e conservarle vorrebbe dire tenere nel browser dati opachi del modello.
+ */
+export function apiContents(req: TutorRequest): GeminiContent[] {
   return req.messages.map((m, i) =>
     i === 0
-      ? {
-          role: 'user',
-          content: [
-            { type: 'text', text: contextBlock(req) },
-            { type: 'text', text: m.content },
-          ],
-        }
-      : { role: m.role, content: m.content },
+      ? { role: 'user', parts: [{ text: contextBlock(req) }, { text: m.content }] }
+      : { role: m.role === 'assistant' ? 'model' : 'user', parts: [{ text: m.content }] },
   );
 }

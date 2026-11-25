@@ -21,9 +21,12 @@ implementarle citando la fonte».
 
 ## 2. Tutor AI «Chiedi al tutor»
 
-Userà una chiave **Google Gemini** (da Google AI Studio) invece di Anthropic. La procedura completa (chiave,
-Worker, configurazione del sito) è in [`TUTOR-AI.md`](TUTOR-AI.md), che la voce R15 sta aggiornando; privacy in
-[`PRIVACY-TUTOR.md`](PRIVACY-TUTOR.md). Finché non è fatto, il pulsante non compare.
+Usa una chiave **Google Gemini** (`GEMINI_API_KEY`, da Google AI Studio), non più Anthropic. Tutti i passi
+(chiave, Worker, configurazione del sito) sono in [`TUTOR-AI.md`](TUTOR-AI.md); privacy in
+[`PRIVACY-TUTOR.md`](PRIVACY-TUTOR.md). Da sapere prima di cominciare: con studenti nell'UE servono i termini
+del livello **a pagamento** (fatturazione attiva, anche se la spesa resta bassa), l'età minima d'uso è **18
+anni**, e il **registro delle chiamate** di AI Studio va spento prima di impostare l'endpoint. Finché non è
+fatto, il pulsante non compare.
 
 ## 3. Pull request di Dependabot
 
@@ -70,7 +73,7 @@ Tutti questi hanno la PR mergiata:
   `claude/rev2-r3-virgola`, `claude/rev2-r4-formulari`, `claude/rev2-r5-sw-piccolo`, `claude/rev2-r6-telefono`,
   `claude/rev2-r7-documentazione`, `claude/rev2-r8-panoramica`, `claude/rev2-r9-scroll-indice`,
   `claude/rev2-r10-formule`, `claude/rev2-r11-aggiornamenti`, `claude/rev2-r12-tutor-ai`, `claude/rev2-r13-studiato`.
-- Revisione 3, dopo il loro merge: `claude/rev3-r14-semestri-contribuisci`, `claude/rev3-r15-tutor-gemini`.
+- Revisione 3: `claude/rev3-r15-tutor-gemini`; `claude/rev3-r14-semestri-contribuisci` dopo il suo merge.
 - Dependabot già mergiato: `dependabot/github_actions/actions-e674aeb039`.
 - Vecchi, interamente contenuti in `main`: `conformita-legale`, `revisione-grafica`.
 - Dopo la chiusura della PR #18: `claude/dati-isole`.

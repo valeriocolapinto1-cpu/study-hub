@@ -254,7 +254,7 @@ pagine globali `/<lang>/ripasso/`, `/<lang>/appunti/`, `/<lang>/i-miei-dati/`, `
   e teoria (`components/course/TutorButton.astro` + `Tutor.astro`), mai nella prova d'esame; pannello
   `src/scripts/tutor/` scaricato con `import()` al primo clic (CSS compreso, come file a parte), contesto letto dal
   DOM con le formule in TeX, cronologia solo nel browser (`sh:tutor:<corso>`, fuori da `sh:v1:` e dall'export).
-  Il sito parla solo con il Worker `tools/ai-worker/` (chiave come secret, streaming SSE, Turnstile, limiti per IP
+  Il sito parla solo con il Worker `tools/ai-worker/` (API Gemini da R15; chiave come secret, streaming SSE, Turnstile, limiti per IP
   e tetto di spesa in un Durable Object). Con `SITE.tutor.endpoint` vuoto non c'è nulla nelle pagine; la CSP apre
   `connect-src` al Worker solo nelle pagine con `data-tutor-endpoint`. Privacy: [PRIVACY-TUTOR.md](PRIVACY-TUTOR.md).
 - **Contributi**: `/<lingua>/contribuisci/` è un link al Google Form di `SITE.contribuisci.formUrl` (risposte in un Foglio di Drive, lette e verificate in una sessione) — vedi [CONTRIBUTI.md](CONTRIBUTI.md).

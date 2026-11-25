@@ -153,6 +153,24 @@ test('rifiuto: il testo parziale sparisce e la domanda resta da riprovare', asyn
   expect(saved ?? '').not.toContain('Testo parziale');
 });
 
+test('errori a risposta iniziata: quota del servizio e tempo massimo', async ({ page }) => {
+  let n = 0;
+  await fakeWorker(page, () => ({
+    events: [
+      { type: 'text', text: 'Parz' },
+      { type: 'error', code: ++n === 1 ? 'quota' : 'timeout' },
+    ],
+  }));
+  await page.goto(`${C}esercizi/resistori/`);
+  await page.getByRole('button', { name: 'Chiedi al tutor: Esercizio 1' }).click();
+  const panel = page.getByRole('dialog', { name: 'Tutor' });
+  await page.getByLabel('La tua domanda').fill('Domanda');
+  await panel.getByRole('button', { name: 'Invia' }).click();
+  await expect(panel.getByRole('alert')).toContainText('limite di richieste del servizio');
+  await panel.getByRole('button', { name: 'Riprova' }).click();
+  await expect(panel.getByRole('alert')).toContainText('ci sta mettendo troppo');
+});
+
 test('limiti: tetto del giorno e richieste per ora', async ({ page }) => {
   let n = 0;
   await fakeWorker(page, () =>

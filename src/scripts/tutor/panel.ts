@@ -44,6 +44,15 @@ function readConfig(): Config {
   return JSON.parse(el?.textContent ?? '{}') as Config;
 }
 
+/** Codici d'errore del Worker a risposta iniziata → messaggio del pannello. */
+const STREAM_ERRORS: Record<string, string> = {
+  overloaded: 'err.overloaded',
+  quota: 'err.quota',
+  timeout: 'err.timeout',
+  invalid: 'err.invalid',
+  unconfigured: 'err.unconfigured',
+};
+
 const h = <K extends keyof HTMLElementTagNameMap>(
   tag: K,
   attrs: Record<string, string> = {},
@@ -371,7 +380,7 @@ class TutorPanel {
         } else if (ev.type === 'error') {
           clearTimeout(pending);
           ended = true;
-          return fail(ev.code === 'overloaded' ? 'err.overloaded' : 'err.network');
+          return fail(STREAM_ERRORS[ev.code] ?? 'err.network');
         } else if (ev.type === 'done') {
           clearTimeout(pending);
           ended = true;
